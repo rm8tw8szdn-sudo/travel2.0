@@ -40,6 +40,16 @@ export { createContentEnricher } from "./content-enricher.mjs";
 export { createProviderRegistry } from "./provider-registry.mjs";
 export { createRepositoryBuild } from "./repository-build.mjs";
 export { createAcceptedRouteRepository } from "./accepted-repository.mjs";
+export {
+  ROUTE_CANDIDATE_NEUTRAL_STATUSES,
+  ROUTE_CANDIDATE_SCHEMA_VERSION,
+  createRouteCandidateId,
+  createRouteCandidatePoolStore,
+  defaultRouteCandidatePoolPath,
+  isRouteV2CandidatePoolEnabled,
+  normalizeRouteCandidate,
+  validateRouteCandidate,
+} from "./route-candidate-pool.mjs";
 export { createRouteJobStore } from "./route-job-store.mjs";
 export { dedupeRouteRecords, isDuplicateRoute, routeDedupeFingerprint } from "./route-dedupe.mjs";
 export { createFeedBuffer } from "./feed-buffer.mjs";

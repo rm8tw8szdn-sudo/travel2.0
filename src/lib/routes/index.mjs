@@ -50,6 +50,17 @@ export {
   normalizeRouteCandidate,
   validateRouteCandidate,
 } from "./route-candidate-pool.mjs";
+export {
+  ROUTE_CANDIDATE_BUILDER_CREATED_AT,
+  ROUTE_CANDIDATE_BUILDER_DEFAULT_TARGET,
+  ROUTE_CANDIDATE_BUILDER_MAX_TARGET,
+  ROUTE_CANDIDATE_BUILDER_MIN_TARGET,
+  ROUTE_CANDIDATE_BUILDER_SOURCE,
+  buildRouteCandidatesFromPool,
+  candidateHasMeaningfulDifference,
+  candidateShapeKey,
+  clampCandidateTarget,
+} from "./route-candidate-builder.mjs";
 export { createRouteJobStore } from "./route-job-store.mjs";
 export { dedupeRouteRecords, isDuplicateRoute, routeDedupeFingerprint } from "./route-dedupe.mjs";
 export { createFeedBuffer } from "./feed-buffer.mjs";

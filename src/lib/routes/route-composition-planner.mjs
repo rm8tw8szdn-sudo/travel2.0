@@ -11,6 +11,8 @@ import { createWebEvidenceCorroborator } from "./web-evidence-corroborator.mjs";
 import { createDecisionTraceStore, writeLegacyDecisionTraceSafe } from "./decision-trace-store.mjs";
 import { buildRouteCandidatesFromPool } from "./route-candidate-builder.mjs";
 import { createRouteCandidatePoolStore } from "./route-candidate-pool.mjs";
+import { createEvidenceBundleStore } from "./evidence-bundle-store.mjs";
+import { writeLocalEvidenceSidecarSafe } from "./local-evidence-sidecar.mjs";
 
 const PHASE_2A_STRATEGIES = ["Geographic", "Theme", "Season", "Transport", "Depth", "Efficiency"];
 const MAX_SEGMENT_KM = 650;
@@ -600,21 +602,24 @@ async function writeCandidatePoolSidecarSafe({
     });
     let written = 0;
     const failures = [];
+    const writtenCandidates = [];
     for (const candidate of candidates) {
-      const result = await candidatePoolStore.append({
+      const sidecarCandidate = {
         ...candidate,
         supportingSignals: [
           ...(candidate.supportingSignals || []),
           { type: "planner-sidecar-stage", value: "after-selectDestinationPool-before-buildRouteSkeleton" },
         ],
-      });
+      };
+      const result = await candidatePoolStore.append(sidecarCandidate);
       if (result?.written) {
         written += 1;
+        writtenCandidates.push(sidecarCandidate);
       } else if (!result?.skipped) {
         failures.push(result?.reason || "candidate-write-failed");
       }
     }
-    return { enabled: true, generated: candidates.length, written, failures };
+    return { enabled: true, generated: candidates.length, written, failures, writtenCandidates };
   } catch (error) {
     return {
       enabled: true,
@@ -929,7 +934,7 @@ function validatePlannerCandidate(record, concept, context, strategyRegistry) {
 }
 
 // 新管线主体
-async function runPipeline({ context, knowledgeGraph, evidenceRepository, acceptedRepository, strategyRegistry, llmRefineProvider, webEvidencePipeline, decisionTraceStore, candidatePoolStore, routeCandidateBuilder, limit }) {
+async function runPipeline({ context, knowledgeGraph, evidenceRepository, acceptedRepository, strategyRegistry, llmRefineProvider, webEvidencePipeline, decisionTraceStore, candidatePoolStore, evidenceBundleStore, routeCandidateBuilder, localEvidenceSidecar, localEvidenceCollector, env, limit }) {
   const accepted = [];
   const rejected = [];
 
@@ -973,7 +978,15 @@ async function runPipeline({ context, knowledgeGraph, evidenceRepository, accept
     return { accepted, rejected, concept };
   }
 
-  await writeCandidatePoolSidecarSafe({ context, concept, pool, candidatePoolStore, routeCandidateBuilder });
+  const candidateSidecar = await writeCandidatePoolSidecarSafe({ context, concept, pool, candidatePoolStore, routeCandidateBuilder });
+  await localEvidenceSidecar({
+    candidates: candidateSidecar?.writtenCandidates || [],
+    kgPool: pool,
+    candidatePoolStore,
+    evidenceBundleStore,
+    env,
+    ...(localEvidenceCollector ? { localEvidenceCollector } : {}),
+  });
 
   // [3] buildRouteSkeleton
   const skeleton = buildRouteSkeleton(pool, concept, context);
@@ -1137,16 +1150,17 @@ function durationBandFromDays(days) {
   return "15d+";
 }
 
-export function createRouteCompositionPlanner({ evidenceRepository, acceptedRepository, strategyRegistry = null, knowledgeGraph = null, llmRefineProvider = null, webEvidencePipeline = null, decisionTraceStore = null, candidatePoolStore = null, routeCandidateBuilder = buildRouteCandidatesFromPool, env = process.env } = {}) {
+export function createRouteCompositionPlanner({ evidenceRepository, acceptedRepository, strategyRegistry = null, knowledgeGraph = null, llmRefineProvider = null, webEvidencePipeline = null, decisionTraceStore = null, candidatePoolStore = null, evidenceBundleStore = null, routeCandidateBuilder = buildRouteCandidatesFromPool, localEvidenceSidecar = writeLocalEvidenceSidecarSafe, localEvidenceCollector = null, env = process.env } = {}) {
   if (!evidenceRepository?.bySourceRoute) throw new Error("EVIDENCE_REPOSITORY_REQUIRED");
   if (!acceptedRepository?.list) throw new Error("ACCEPTED_REPOSITORY_REQUIRED");
   const traceStore = decisionTraceStore || createDecisionTraceStore({ env });
   const sidecarCandidatePoolStore = candidatePoolStore || createRouteCandidatePoolStore({ env });
+  const sidecarEvidenceBundleStore = evidenceBundleStore || createEvidenceBundleStore({ env });
   return {
     async buildCandidates({ limit = 5, context = null } = {}) {
       // 新管线模式：有 context（{durationDays, country, style, ...}）走知识图驱动（async，含 LLM 节点）
       if (context && (context.country || context.durationDays || context.travelStyle)) {
-        return runPipeline({ context, knowledgeGraph, evidenceRepository, acceptedRepository, strategyRegistry, llmRefineProvider, webEvidencePipeline, decisionTraceStore: traceStore, candidatePoolStore: sidecarCandidatePoolStore, routeCandidateBuilder, limit });
+        return runPipeline({ context, knowledgeGraph, evidenceRepository, acceptedRepository, strategyRegistry, llmRefineProvider, webEvidencePipeline, decisionTraceStore: traceStore, candidatePoolStore: sidecarCandidatePoolStore, evidenceBundleStore: sidecarEvidenceBundleStore, routeCandidateBuilder, localEvidenceSidecar, localEvidenceCollector, env, limit });
       }
       // 旧兼容模式：evidence 桶缝合（codex 原 buildCandidates，仅旧 verify 脚本与生产 run-route-ai-production-phase2a 走此路径）
       const existingRecords = acceptedRepository.list({ limit: 100_000 }).records;

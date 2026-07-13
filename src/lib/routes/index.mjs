@@ -61,6 +61,11 @@ export {
   collectLocalEvidenceBundle,
 } from "./local-evidence-collector.mjs";
 export {
+  ROUTE_V2_EVIDENCE_LOCAL_FLAG,
+  isRouteV2LocalEvidenceEnabled,
+  writeLocalEvidenceSidecarSafe,
+} from "./local-evidence-sidecar.mjs";
+export {
   ROUTE_CANDIDATE_NEUTRAL_STATUSES,
   ROUTE_CANDIDATE_SCHEMA_VERSION,
   createRouteCandidateId,

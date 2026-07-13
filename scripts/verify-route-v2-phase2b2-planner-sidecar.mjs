@@ -1,8 +1,8 @@
 import assert from "node:assert/strict";
-import crypto from "node:crypto";
 import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
+import { assertStatesUnchanged, statesFor } from "./lib/route-v2-test-file-state.mjs";
 import {
   createAcceptedRouteRepository,
   createEvidenceRepository,
@@ -26,25 +26,6 @@ const protectedPaths = [
   path.resolve(projectRoot, "src/lib/routes/discovery.mjs"),
   path.resolve(projectRoot, "src/lib/routes/route-search-service.mjs"),
 ];
-
-function sha256IfExists(filePath) {
-  if (!fs.existsSync(filePath)) return null;
-  return crypto.createHash("sha256").update(fs.readFileSync(filePath)).digest("hex");
-}
-
-function fileState(filePath) {
-  if (!fs.existsSync(filePath)) return { exists: false };
-  const stat = fs.statSync(filePath);
-  return { exists: true, size: stat.size, mtimeMs: stat.mtimeMs, sha256: sha256IfExists(filePath) };
-}
-
-function statesFor(files) {
-  return Object.fromEntries(files.map((file) => [file, fileState(file)]));
-}
-
-function assertStatesUnchanged(before, after) {
-  assert.deepEqual(after, before, "protected files changed");
-}
 
 function routeCount(filePath) {
   if (!fs.existsSync(filePath)) return 0;

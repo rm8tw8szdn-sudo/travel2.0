@@ -1,8 +1,8 @@
 import assert from "node:assert/strict";
-import crypto from "node:crypto";
 import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
+import { fileState } from "./lib/route-v2-test-file-state.mjs";
 import {
   ROUTE_CANDIDATE_SCHEMA_VERSION,
   createRouteCandidateId,
@@ -16,16 +16,6 @@ const fixedNow = "2026-01-01T00:00:00.000Z";
 const tempRoot = fs.mkdtempSync(path.join(os.tmpdir(), "route-v2-phase2a-candidate-"));
 const realCandidatePath = defaultRouteCandidatePoolPath();
 const realAcceptedPath = path.resolve(".route-v2-cache", "accepted-routes.json");
-
-function sha256(file) {
-  return crypto.createHash("sha256").update(fs.readFileSync(file)).digest("hex");
-}
-
-function fileState(file) {
-  if (!fs.existsSync(file)) return { exists: false, size: 0, mtimeMs: 0, hash: "" };
-  const stat = fs.statSync(file);
-  return { exists: true, size: stat.size, mtimeMs: stat.mtimeMs, hash: sha256(file) };
-}
 
 const realCandidateBefore = fileState(realCandidatePath);
 const acceptedBefore = fileState(realAcceptedPath);

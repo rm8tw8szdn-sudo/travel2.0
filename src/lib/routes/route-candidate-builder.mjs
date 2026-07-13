@@ -1,35 +1,15 @@
-import crypto from "node:crypto";
 import {
   ROUTE_CANDIDATE_SCHEMA_VERSION,
   normalizeRouteCandidate,
   validateRouteCandidate,
 } from "./route-candidate-pool.mjs";
+import { cleanString, stableHash, uniqueStrings as unique } from "./route-v2-utils.mjs";
 
 export const ROUTE_CANDIDATE_BUILDER_DEFAULT_TARGET = 8;
 export const ROUTE_CANDIDATE_BUILDER_MIN_TARGET = 3;
 export const ROUTE_CANDIDATE_BUILDER_MAX_TARGET = 12;
 export const ROUTE_CANDIDATE_BUILDER_SOURCE = "route-v2-phase2b1-kg-pool-builder";
 export const ROUTE_CANDIDATE_BUILDER_CREATED_AT = "1970-01-01T00:00:00.000Z";
-
-function cleanString(value) {
-  return String(value || "").trim();
-}
-
-function unique(values = []) {
-  return [...new Set(values.map(cleanString).filter(Boolean))];
-}
-
-function stableJson(value) {
-  if (Array.isArray(value)) return `[${value.map(stableJson).join(",")}]`;
-  if (value && typeof value === "object") {
-    return `{${Object.keys(value).sort().map((key) => `${JSON.stringify(key)}:${stableJson(value[key])}`).join(",")}}`;
-  }
-  return JSON.stringify(value);
-}
-
-function stableHash(value) {
-  return crypto.createHash("sha256").update(stableJson(value)).digest("hex");
-}
 
 function numericOrNull(value) {
   const number = Number(value);

@@ -1,12 +1,9 @@
 import fs from "node:fs";
 import path from "node:path";
 import { buildLegacyDecisionTrace, validateDecisionTrace } from "./decision-trace-schema.mjs";
+import { envFlag } from "./route-v2-env.mjs";
 
-export function envFlag(env = process.env, name, defaultValue = false) {
-  const raw = env?.[name];
-  if (raw == null || raw === "") return defaultValue;
-  return ["1", "true", "yes", "on"].includes(String(raw).trim().toLocaleLowerCase("en-US"));
-}
+export { envFlag } from "./route-v2-env.mjs";
 
 export function isRouteV2TraceEnabled(env = process.env) {
   return envFlag(env, "ROUTE_V2_TRACE_ENABLED", false);

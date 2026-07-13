@@ -41,6 +41,20 @@ export { createProviderRegistry } from "./provider-registry.mjs";
 export { createRepositoryBuild } from "./repository-build.mjs";
 export { createAcceptedRouteRepository } from "./accepted-repository.mjs";
 export {
+  EVIDENCE_BUNDLE_SCHEMA_VERSION,
+  EVIDENCE_BUNDLE_STATUSES,
+  createEvidenceBundleId,
+  createEvidenceItemId,
+  normalizeEvidenceBundle,
+  summarizeEvidenceBundle,
+  validateEvidenceBundle,
+} from "./evidence-bundle.mjs";
+export {
+  createEvidenceBundleStore,
+  defaultRouteEvidenceBundlePath,
+  isRouteV2EvidenceBundleEnabled,
+} from "./evidence-bundle-store.mjs";
+export {
   ROUTE_CANDIDATE_NEUTRAL_STATUSES,
   ROUTE_CANDIDATE_SCHEMA_VERSION,
   createRouteCandidateId,

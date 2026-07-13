@@ -172,10 +172,9 @@ const forbiddenDiff = execFileSync("git", [
   "diff",
   "--name-only",
   "--",
-  "src/lib/routes/route-composition-planner.mjs",
   "scripts/materialize-route-pool.mjs",
 ], { cwd: projectRoot, encoding: "utf8" }).trim();
-assert.equal(forbiddenDiff, "", "Planner or materialize files changed");
+assert.equal(forbiddenDiff, "", "materialize file changed");
 
 console.log(JSON.stringify({
   ok: true,

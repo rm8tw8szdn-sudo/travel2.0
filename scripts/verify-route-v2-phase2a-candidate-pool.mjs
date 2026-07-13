@@ -147,7 +147,6 @@ assert.equal(failureWrite.written, false, "write failure should be captured");
 assert.equal(failureWrite.reason, "candidate-write-failed");
 
 for (const file of [
-  "src/lib/routes/route-composition-planner.mjs",
   "scripts/materialize-route-pool.mjs",
   "src/lib/routes/accepted-repository.mjs",
   "src/lib/routes/discovery.mjs",
@@ -156,7 +155,7 @@ for (const file of [
   "route-detail.js",
 ]) {
   const text = fs.readFileSync(file, "utf8");
-  assert.equal(/route-candidate-pool/u.test(text), false, `${file} must not read Candidate Pool in Phase 2A`);
+  assert.equal(/route-candidate-pool/u.test(text), false, `${file} must not read Candidate Pool outside Planner sidecar phases`);
 }
 
 const realCandidateAfter = fileState(realCandidatePath);

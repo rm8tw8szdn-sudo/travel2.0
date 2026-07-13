@@ -57,17 +57,24 @@ EvidenceBundle 至少包含：
 | `intentId` | 关联 intent |
 | `generationSource` | 候选来源 |
 | `createdAt` | 记录创建时间，不参与稳定 ID |
-| `items[]` | verified / weak_signal / unknown / failed 证据项 |
+| `items[]` | verified / weak_signal 证据项 |
 | `unknowns[]` | 独立 Unknown 记录 |
 | `failures[]` | 独立 failed 记录 |
 | `summary` | 系统重新计算的结构化统计 |
 
-证据状态仅允许：
+EvidenceBundle 全局状态集合包含：
 
 - `verified`
 - `weak_signal`
 - `unknown`
 - `failed`
+
+但 `items[]` 只允许：
+
+- `verified`
+- `weak_signal`
+
+Unknown 信息只能进入 `unknowns[]`，failed 信息只能进入 `failures[]`。这样可以避免同一条 unknown / failed 同时在 `items[]` 和独立数组中被重复计算。
 
 `summary` 不信任调用方输入，始终根据 `items[]`、`unknowns[]`、`failures[]` 重新计算。
 
@@ -98,9 +105,13 @@ ID 不包含：
 - `Math.random()`
 - 当前时间
 
-专项验证中固定 EvidenceBundle ID 为：
+schema 修正后，Phase 3A 专项验证中的固定 EvidenceBundle ID 为：
 
-`eb-4634ccdd3416c89341b9`
+`eb-6d11e66892ed0f3b5662`
+
+这是因为 Phase 3A 将 unknown / failed 从 `items[]` 移到 `unknowns[]` / `failures[]` 后，EvidenceBundle 自身的规范输入发生了变化。
+
+这次 schema 修正没有改变任何旧 golden ID。
 
 现有 golden ID 仍保持不变：
 
@@ -146,7 +157,8 @@ schema 会拒绝明显来自最终 RouteRecord / 展示层的字段，包括：
 | flag true + 非法 bundle | 不写入，返回 `evidence-bundle-invalid` |
 | 写入目标不可写 | 返回 `evidence-bundle-write-failed` |
 | 读取空文件 | 返回空数组 |
-| 读取 JSONL | 每行独立解析并验证 |
+| 读取 JSONL | 每行独立解析并验证，schema 非法记录保留为诊断 |
+| `listByCandidate()` | 只返回 `ok === true`、`validation.accepted === true` 且 candidateId 匹配的记录 |
 
 本阶段没有抽象通用 JSONL store。
 
@@ -206,9 +218,14 @@ git diff --check
 - 时间变化不影响 ID。
 - 非法状态被拒绝。
 - 非法 evidence item 被拒绝。
+- `items[]` 中的 `unknown` / `failed` 被拒绝。
+- `unknown` 只能进入 `unknowns[]`，`failed` 只能进入 `failures[]`。
 - 最终 RouteRecord 字段被拒绝。
 - `summary` 数量由系统重新计算。
 - `unknown` 与 `failed` 明确分开。
+- 调用方传入的 `evidenceItemId` 会被系统重新生成，不影响 `evidenceBundleId`。
+- `readAll()` 会保留语法合法但 schema 非法的 JSONL 记录用于诊断。
+- `listByCandidate()` 不返回 schema 非法记录。
 - 真实 Candidate Pool、DecisionTrace、EvidenceBundle cache 未创建或修改。
 - 现有 golden ID 保持不变。
 

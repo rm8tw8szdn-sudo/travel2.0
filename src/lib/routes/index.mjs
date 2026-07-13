@@ -41,6 +41,7 @@ export { createProviderRegistry } from "./provider-registry.mjs";
 export { createRepositoryBuild } from "./repository-build.mjs";
 export { createAcceptedRouteRepository } from "./accepted-repository.mjs";
 export {
+  EVIDENCE_BUNDLE_ITEM_STATUSES,
   EVIDENCE_BUNDLE_SCHEMA_VERSION,
   EVIDENCE_BUNDLE_STATUSES,
   createEvidenceBundleId,

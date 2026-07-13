@@ -69,7 +69,7 @@ export function createEvidenceBundleStore({
 
   function listByCandidate(candidateId) {
     return readAll()
-      .filter((record) => record.ok && record.bundle.candidateId === candidateId)
+      .filter((record) => record.ok && record.validation?.accepted && record.bundle.candidateId === candidateId)
       .map((record) => record.bundle);
   }
 

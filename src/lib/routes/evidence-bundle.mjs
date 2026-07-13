@@ -2,6 +2,7 @@ import { cleanString, stableHash, uniqueStrings } from "./route-v2-utils.mjs";
 
 export const EVIDENCE_BUNDLE_SCHEMA_VERSION = "route-generation-v2-phase3a-evidence-bundle-v1";
 export const EVIDENCE_BUNDLE_STATUSES = new Set(["verified", "weak_signal", "unknown", "failed"]);
+export const EVIDENCE_BUNDLE_ITEM_STATUSES = new Set(["verified", "weak_signal"]);
 
 const FORBIDDEN_FINAL_ROUTE_FIELDS = new Set([
   "title",
@@ -71,7 +72,7 @@ export function createEvidenceItemId({ candidateId = "", intentId = "", item = {
 function normalizeEvidenceItem(item = {}, { candidateId = "", intentId = "", index = 0 } = {}) {
   const status = cleanString(item.status || "unknown");
   const normalized = {
-    evidenceItemId: cleanString(item.evidenceItemId),
+    evidenceItemId: "",
     status,
     sourceType: cleanString(item.sourceType),
     sourceId: normalizeNullableString(item.sourceId),
@@ -116,10 +117,10 @@ export function summarizeEvidenceBundle({ items = [], unknowns = [], failures = 
     totalFailures: Array.isArray(failures) ? failures.length : 0,
   };
   for (const item of Array.isArray(items) ? items : []) {
-    if (EVIDENCE_BUNDLE_STATUSES.has(item?.status)) summary[item.status] += 1;
+    if (item?.status === "verified" || item?.status === "weak_signal") summary[item.status] += 1;
   }
-  summary.unknown += summary.totalUnknowns;
-  summary.failed += summary.totalFailures;
+  summary.unknown = summary.totalUnknowns;
+  summary.failed = summary.totalFailures;
   summary.total = summary.verified + summary.weak_signal + summary.unknown + summary.failed;
   return summary;
 }
@@ -242,12 +243,11 @@ export function validateEvidenceBundle(input = {}) {
   for (const [index, item] of bundle.items.entries()) {
     if (!item.evidenceItemId) reasons.push(`item-${index}:evidenceItemId-required`);
     if (!EVIDENCE_BUNDLE_STATUSES.has(item.status)) reasons.push(`item-${index}:status-invalid`);
+    else if (!EVIDENCE_BUNDLE_ITEM_STATUSES.has(item.status)) reasons.push(`item-${index}:item-status-must-be-verified-or-weak_signal`);
     if (!item.evidenceCategory) reasons.push(`item-${index}:evidenceCategory-required`);
     if (!item.supportsWhichDecision.length) reasons.push(`item-${index}:supportsWhichDecision-required`);
     if ((item.status === "verified" || item.status === "weak_signal") && !item.sourceType) reasons.push(`item-${index}:sourceType-required`);
     if (item.status === "verified" && !hasObjectFacts(item.extractedFacts)) reasons.push(`item-${index}:verified-extractedFacts-required`);
-    if (item.status === "unknown" && !item.unknownReason) reasons.push(`item-${index}:unknownReason-required`);
-    if (item.status === "failed" && !item.failureReason) reasons.push(`item-${index}:failureReason-required`);
     if (item.confidence != null && (item.confidence < 0 || item.confidence > 1)) reasons.push(`item-${index}:confidence-out-of-range`);
   }
   for (const [index, unknown] of bundle.unknowns.entries()) {

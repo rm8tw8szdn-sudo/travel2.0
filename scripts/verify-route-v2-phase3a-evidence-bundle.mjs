@@ -68,28 +68,14 @@ const baseBundle = {
       confidence: 0.6,
       matchMethod: "local-heuristic",
     },
-    {
-      status: "unknown",
-      sourceType: "",
-      evidenceCategory: "transport-evidence",
-      extractedFacts: {},
-      supportsWhichDecision: ["transport-feasibility"],
-      unknownReason: "Phase 3A does not collect transport evidence.",
-    },
-    {
-      status: "failed",
-      sourceType: "web-search",
-      evidenceCategory: "seasonal-evidence",
-      extractedFacts: {},
-      supportsWhichDecision: ["season-feasibility"],
-      failureReason: "provider-not-configured",
-    },
   ],
   unknowns: [
     { field: "budgetEvidence", reason: "Phase 3A does not collect budget evidence." },
+    { field: "transportEvidence", reason: "Phase 3A does not collect transport evidence." },
   ],
   failures: [
     { field: "wikivoyageEvidence", reason: "online evidence is disabled in Phase 3A.", sourceType: "wikivoyage" },
+    { field: "seasonalEvidence", reason: "provider-not-configured", sourceType: "web-search" },
   ],
   summary: { verified: 999, weak_signal: 999, unknown: 999, failed: 999, total: 999 },
 };
@@ -101,9 +87,9 @@ assert.deepEqual(normalized.summary, {
   weak_signal: 1,
   unknown: 2,
   failed: 2,
-  totalItems: 4,
-  totalUnknowns: 1,
-  totalFailures: 1,
+  totalItems: 2,
+  totalUnknowns: 2,
+  totalFailures: 2,
   total: 6,
 }, "summary must be recomputed from items, unknowns, and failures");
 
@@ -127,8 +113,6 @@ const reorderedKeysBundle = {
       freshness: "local-snapshot",
     },
     baseBundle.items[1],
-    baseBundle.items[2],
-    baseBundle.items[3],
   ],
   generationSource: baseBundle.generationSource,
   intentId: baseBundle.intentId,
@@ -150,6 +134,23 @@ const invalidStatus = validateEvidenceBundle({
 });
 assert.equal(invalidStatus.accepted, false, "invalid evidence status should be rejected");
 assert(invalidStatus.reasons.some((reason) => reason.includes("status-invalid")));
+
+for (const status of ["unknown", "failed"]) {
+  const invalidItemStatus = validateEvidenceBundle({
+    ...baseBundle,
+    items: [{ ...baseBundle.items[0], status }],
+  });
+  assert.equal(invalidItemStatus.accepted, false, `items[] must reject ${status}`);
+  assert(invalidItemStatus.reasons.some((reason) => reason.includes("item-status-must-be-verified-or-weak_signal")));
+}
+
+const callerProvidedItemId = normalizeEvidenceBundle({
+  ...baseBundle,
+  items: [{ ...baseBundle.items[0], evidenceItemId: "ebi-caller-supplied-id" }, baseBundle.items[1]],
+}, { now: () => fixedNow });
+assert.notEqual(callerProvidedItemId.items[0].evidenceItemId, "ebi-caller-supplied-id", "normalize must regenerate evidenceItemId");
+assert.equal(callerProvidedItemId.evidenceBundleId, normalized.evidenceBundleId, "caller-provided evidenceItemId must not affect bundle ID");
+assert.equal(new Set(callerProvidedItemId.items.map((item) => item.evidenceItemId)).size, callerProvidedItemId.items.length, "evidenceItemId values must be unique inside a bundle");
 
 const invalidItem = validateEvidenceBundle({
   ...baseBundle,
@@ -219,6 +220,14 @@ assert.equal(enabledStore.listByCandidate(candidateId).length, 1, "read helper s
 for (const line of fs.readFileSync(enabledPath, "utf8").trim().split(/\r?\n/u)) {
   assert.doesNotThrow(() => JSON.parse(line), "each JSONL line should parse");
 }
+
+const schemaInvalidBundle = normalizeEvidenceBundle({ ...baseBundle, items: [] }, { now: () => fixedNow });
+fs.appendFileSync(enabledPath, `${JSON.stringify({ ...schemaInvalidBundle, items: [{ ...baseBundle.items[0], status: "unknown" }] })}\n`, "utf8");
+const recordsWithInvalid = enabledStore.readAll();
+assert.equal(recordsWithInvalid.length, 2, "readAll should keep schema-invalid JSONL records for diagnostics");
+assert.equal(recordsWithInvalid[1].ok, true, "schema-invalid JSONL line should still parse");
+assert.equal(recordsWithInvalid[1].validation.accepted, false, "schema-invalid JSONL line should be marked invalid");
+assert.equal(enabledStore.listByCandidate(candidateId).length, 1, "listByCandidate must exclude schema-invalid records");
 
 const failureDir = path.join(tempRoot, "write-failure-target");
 fs.mkdirSync(failureDir, { recursive: true });

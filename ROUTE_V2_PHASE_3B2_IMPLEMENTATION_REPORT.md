@@ -127,6 +127,28 @@ The following remain `unknown`, as required:
 
 ## Failure Degradation
 
+Each per-candidate sidecar diagnostic record now has explicit terminal state fields:
+
+- `written: boolean`
+- `skipped: boolean`
+- `failed: boolean`
+- `reason: string`
+- `error: string`
+
+For a single record, `written`, `skipped`, and `failed` are mutually exclusive. Exactly one is true for each processed candidate record.
+
+Failure reasons are separated by source:
+
+| Failure source | Diagnostic reason |
+| --- | --- |
+| `collectLocalEvidenceBundle()` throws | `local-evidence-collector-failed` |
+| `evidenceBundleValidator()` throws | `local-evidence-validation-failed` |
+| Validator returns `accepted=false` | `local-evidence-invalid` |
+| EvidenceBundle Store `append()` throws | `evidence-bundle-store-write-failed` |
+| EvidenceBundle Store returns `written=false` and `skipped=false` with no reason | `evidence-bundle-store-write-failed` |
+
+If EvidenceBundle Store returns `skipped=true`, the record is marked skipped and not failed. If it returns `written=true`, the record is marked written and not failed.
+
 EvidenceBundle Store write failure:
 
 - Planner still returns the old RouteRecord.
@@ -140,6 +162,12 @@ Collector failure or invalid bundle:
 - Valid bundles for other candidates are still written.
 - Planner does not fail.
 - RouteRecord remains unchanged.
+
+Validation failure:
+
+- A thrown validator error is separated from an invalid bundle result.
+- An invalid bundle keeps `validation.reasons` in the record.
+- Later candidates continue.
 
 ## Explicit Non-Goals
 

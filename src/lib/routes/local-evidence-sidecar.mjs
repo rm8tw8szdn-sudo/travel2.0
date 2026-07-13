@@ -15,16 +15,19 @@ function sidecarRecord({
   candidate = {},
   evidenceBundleId = null,
   result = {},
+  state = "failed",
   reason = "",
   reasons = [],
   error = null,
 } = {}) {
+  const normalizedState = ["written", "skipped", "failed"].includes(state) ? state : "failed";
   return {
     candidateId: cleanString(candidate.candidateId),
     intentId: cleanString(candidate.intentId),
     evidenceBundleId: cleanString(evidenceBundleId) || null,
-    written: Boolean(result.written),
-    skipped: Boolean(result.skipped),
+    written: normalizedState === "written",
+    skipped: normalizedState === "skipped",
+    failed: normalizedState === "failed",
     reason: cleanString(result.reason || reason),
     reasons: Array.isArray(result.reasons) ? result.reasons : reasons,
     error: cleanString(result.error || error),
@@ -65,38 +68,92 @@ export async function writeLocalEvidenceSidecarSafe({
     const candidateList = Array.isArray(candidates) ? candidates : [];
 
     for (const candidate of candidateList) {
+      let bundle;
       try {
-        const bundle = localEvidenceCollector({
+        bundle = localEvidenceCollector({
           candidate,
           kgPool,
           ...(typeof now === "function" ? { now } : {}),
         });
-        const validation = evidenceBundleValidator(bundle);
-        if (!validation.accepted) {
-          failed += 1;
-          records.push(sidecarRecord({
-            candidate,
-            evidenceBundleId: bundle?.evidenceBundleId,
-            reason: "local-evidence-invalid",
-            reasons: validation.reasons,
-          }));
-          continue;
-        }
-        const result = await evidenceBundleStore.append(bundle);
-        if (result?.written) written += 1;
-        else if (result?.skipped) skipped += 1;
-        else failed += 1;
-        records.push(sidecarRecord({
-          candidate,
-          evidenceBundleId: result?.evidenceBundleId || bundle.evidenceBundleId,
-          result,
-        }));
       } catch (error) {
         failed += 1;
         records.push(sidecarRecord({
           candidate,
+          state: "failed",
           reason: "local-evidence-collector-failed",
           error: error?.message || String(error),
+        }));
+        continue;
+      }
+
+      let validation;
+      try {
+        validation = evidenceBundleValidator(bundle);
+      } catch (error) {
+        failed += 1;
+        records.push(sidecarRecord({
+          candidate,
+          evidenceBundleId: bundle?.evidenceBundleId,
+          state: "failed",
+          reason: "local-evidence-validation-failed",
+          error: error?.message || String(error),
+        }));
+        continue;
+      }
+
+      if (!validation.accepted) {
+        failed += 1;
+        records.push(sidecarRecord({
+          candidate,
+          evidenceBundleId: bundle?.evidenceBundleId,
+          state: "failed",
+          reason: "local-evidence-invalid",
+          reasons: validation.reasons,
+        }));
+        continue;
+      }
+
+      let result;
+      try {
+        result = await evidenceBundleStore.append(bundle);
+      } catch (error) {
+        failed += 1;
+        records.push(sidecarRecord({
+          candidate,
+          evidenceBundleId: bundle?.evidenceBundleId,
+          state: "failed",
+          reason: "evidence-bundle-store-write-failed",
+          error: error?.message || String(error),
+        }));
+        continue;
+      }
+
+      if (result?.written) {
+        written += 1;
+        records.push(sidecarRecord({
+          candidate,
+          evidenceBundleId: result?.evidenceBundleId || bundle.evidenceBundleId,
+          result,
+          state: "written",
+          reason: result?.reason || "evidence-bundle-written",
+        }));
+      } else if (result?.skipped) {
+        skipped += 1;
+        records.push(sidecarRecord({
+          candidate,
+          evidenceBundleId: result?.evidenceBundleId || bundle.evidenceBundleId,
+          result,
+          state: "skipped",
+          reason: result?.reason || "evidence-bundle-store-skipped",
+        }));
+      } else {
+        failed += 1;
+        records.push(sidecarRecord({
+          candidate,
+          evidenceBundleId: result?.evidenceBundleId || bundle.evidenceBundleId,
+          result,
+          state: "failed",
+          reason: result?.reason || "evidence-bundle-store-write-failed",
         }));
       }
     }

@@ -126,6 +126,16 @@ function evidenceCategories(bundle) {
   return new Set((bundle.items || []).map((item) => item.evidenceCategory));
 }
 
+function assertTriState(record, expectedState, label) {
+  assert.equal(typeof record.written, "boolean", `${label}: written should be boolean`);
+  assert.equal(typeof record.skipped, "boolean", `${label}: skipped should be boolean`);
+  assert.equal(typeof record.failed, "boolean", `${label}: failed should be boolean`);
+  assert.equal([record.written, record.skipped, record.failed].filter(Boolean).length, 1, `${label}: written/skipped/failed must be mutually exclusive`);
+  assert.equal(record[expectedState], true, `${label}: expected ${expectedState}=true`);
+  assert.equal(typeof record.reason, "string", `${label}: reason should be string`);
+  assert.equal(typeof record.error, "string", `${label}: error should be string`);
+}
+
 const flagOffHarness = createHarness("all-flags-off", {}, {
   routeCandidateBuilder() {
     throw new Error("Candidate Builder must not run when ROUTE_V2_CANDIDATE_POOL_ENABLED=false");
@@ -226,6 +236,138 @@ const directSidecarSkipped = await writeLocalEvidenceSidecarSafe({
 });
 assert.equal(directSidecarSkipped.reason, "local-evidence-disabled", "direct sidecar should report local flag skip");
 assert.equal(directCollectorCalls, 0, "direct sidecar must not call collector unless all three flags are true");
+
+const allEnabledEnv = {
+  ROUTE_V2_CANDIDATE_POOL_ENABLED: "true",
+  ROUTE_V2_EVIDENCE_BUNDLE_ENABLED: "true",
+  ROUTE_V2_EVIDENCE_LOCAL_ENABLED: "true",
+};
+const directCandidates = writtenCandidates.slice(0, 3);
+
+let directCollectorFailureCalls = 0;
+const directCollectorFailure = await writeLocalEvidenceSidecarSafe({
+  candidates: directCandidates,
+  kgPool: JP_POOL,
+  candidatePoolStore: { enabled: () => true },
+  evidenceBundleStore: { enabled: () => true, append: (bundle) => ({ written: true, evidenceBundleId: bundle.evidenceBundleId }) },
+  env: allEnabledEnv,
+  localEvidenceCollector(args) {
+    directCollectorFailureCalls += 1;
+    if (directCollectorFailureCalls === 1) throw new Error("direct collector failure");
+    return collectLocalEvidenceBundle(args);
+  },
+});
+assert.equal(directCollectorFailure.records.length, directCandidates.length);
+assertTriState(directCollectorFailure.records[0], "failed", "collector throw record");
+assert.equal(directCollectorFailure.records[0].reason, "local-evidence-collector-failed");
+assert.equal(directCollectorFailure.records[0].error, "direct collector failure");
+assertTriState(directCollectorFailure.records[1], "written", "post-collector-failure continuation");
+assertTriState(directCollectorFailure.records[2], "written", "post-collector-failure second continuation");
+
+let directValidatorCalls = 0;
+const directValidatorFailure = await writeLocalEvidenceSidecarSafe({
+  candidates: directCandidates,
+  kgPool: JP_POOL,
+  candidatePoolStore: { enabled: () => true },
+  evidenceBundleStore: { enabled: () => true, append: (bundle) => ({ written: true, evidenceBundleId: bundle.evidenceBundleId }) },
+  env: allEnabledEnv,
+  evidenceBundleValidator(bundle) {
+    directValidatorCalls += 1;
+    if (directValidatorCalls === 1) throw new Error("direct validator failure");
+    return validateEvidenceBundle(bundle);
+  },
+});
+assertTriState(directValidatorFailure.records[0], "failed", "validator throw record");
+assert.equal(directValidatorFailure.records[0].reason, "local-evidence-validation-failed");
+assert.equal(directValidatorFailure.records[0].error, "direct validator failure");
+assertTriState(directValidatorFailure.records[1], "written", "post-validator-failure continuation");
+
+let directInvalidCalls = 0;
+const directInvalidBundle = await writeLocalEvidenceSidecarSafe({
+  candidates: directCandidates,
+  kgPool: JP_POOL,
+  candidatePoolStore: { enabled: () => true },
+  evidenceBundleStore: { enabled: () => true, append: (bundle) => ({ written: true, evidenceBundleId: bundle.evidenceBundleId }) },
+  env: allEnabledEnv,
+  localEvidenceCollector(args) {
+    directInvalidCalls += 1;
+    if (directInvalidCalls === 1) return { candidateId: args.candidate?.candidateId, intentId: args.candidate?.intentId, items: [], unknowns: [], failures: [] };
+    return collectLocalEvidenceBundle(args);
+  },
+});
+assertTriState(directInvalidBundle.records[0], "failed", "invalid bundle record");
+assert.equal(directInvalidBundle.records[0].reason, "local-evidence-invalid");
+assert(directInvalidBundle.records[0].reasons.length > 0, "invalid bundle should preserve validation reasons");
+assertTriState(directInvalidBundle.records[1], "written", "post-invalid-bundle continuation");
+
+let directStoreThrowCalls = 0;
+const directStoreThrow = await writeLocalEvidenceSidecarSafe({
+  candidates: directCandidates,
+  kgPool: JP_POOL,
+  candidatePoolStore: { enabled: () => true },
+  evidenceBundleStore: {
+    enabled: () => true,
+    append(bundle) {
+      directStoreThrowCalls += 1;
+      if (directStoreThrowCalls === 1) throw new Error("direct store throw");
+      return { written: true, evidenceBundleId: bundle.evidenceBundleId };
+    },
+  },
+  env: allEnabledEnv,
+});
+assertTriState(directStoreThrow.records[0], "failed", "store throw record");
+assert.equal(directStoreThrow.records[0].reason, "evidence-bundle-store-write-failed");
+assert.equal(directStoreThrow.records[0].error, "direct store throw");
+assertTriState(directStoreThrow.records[1], "written", "post-store-throw continuation");
+
+const directStoreReturnedFailure = await writeLocalEvidenceSidecarSafe({
+  candidates: directCandidates.slice(0, 2),
+  kgPool: JP_POOL,
+  candidatePoolStore: { enabled: () => true },
+  evidenceBundleStore: {
+    enabled: () => true,
+    append(bundle) {
+      if (bundle.candidateId === directCandidates[0].candidateId) return { written: false, skipped: false, reason: "store-returned-custom-failure" };
+      return { written: true, evidenceBundleId: bundle.evidenceBundleId };
+    },
+  },
+  env: allEnabledEnv,
+});
+assertTriState(directStoreReturnedFailure.records[0], "failed", "store returned failure record");
+assert.equal(directStoreReturnedFailure.records[0].reason, "store-returned-custom-failure");
+assertTriState(directStoreReturnedFailure.records[1], "written", "post-store-returned-failure continuation");
+
+const directStoreDefaultFailure = await writeLocalEvidenceSidecarSafe({
+  candidates: directCandidates.slice(0, 1),
+  kgPool: JP_POOL,
+  candidatePoolStore: { enabled: () => true },
+  evidenceBundleStore: { enabled: () => true, append: () => ({ written: false, skipped: false }) },
+  env: allEnabledEnv,
+});
+assertTriState(directStoreDefaultFailure.records[0], "failed", "store default failure record");
+assert.equal(directStoreDefaultFailure.records[0].reason, "evidence-bundle-store-write-failed");
+
+const directStoreSkipped = await writeLocalEvidenceSidecarSafe({
+  candidates: directCandidates.slice(0, 1),
+  kgPool: JP_POOL,
+  candidatePoolStore: { enabled: () => true },
+  evidenceBundleStore: { enabled: () => true, append: () => ({ written: false, skipped: true, reason: "test-store-skipped" }) },
+  env: allEnabledEnv,
+});
+assertTriState(directStoreSkipped.records[0], "skipped", "store skipped record");
+assert.equal(directStoreSkipped.records[0].reason, "test-store-skipped");
+
+for (const outcome of [
+  ...directCollectorFailure.records,
+  ...directValidatorFailure.records,
+  ...directInvalidBundle.records,
+  ...directStoreThrow.records,
+  ...directStoreReturnedFailure.records,
+  ...directStoreDefaultFailure.records,
+  ...directStoreSkipped.records,
+]) {
+  assert.equal([outcome.written, outcome.skipped, outcome.failed].filter(Boolean).length, 1, "all direct sidecar records must have exactly one terminal state");
+}
 
 const writeFailureHarness = createHarness("evidence-write-failure", {
   ROUTE_V2_CANDIDATE_POOL_ENABLED: "true",

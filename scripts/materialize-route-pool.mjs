@@ -3,6 +3,7 @@ import path from "node:path";
 import { routeCountryClusterKey, routeDestinationSetKey, routeTitleKey } from "../src/lib/routes/route-dedupe.mjs";
 import { validateRouteContent } from "../src/lib/routes/content-quality.mjs";
 import { buildRouteConcept, validateRouteConcept, TRAVEL_STYLE_LABEL_ZH } from "../src/lib/routes/route-planning-concept.mjs";
+import { createDecisionTraceStore } from "../src/lib/routes/decision-trace-store.mjs";
 
 const root = process.cwd();
 const targetTotal = Number.parseInt(process.env.ROUTE_POOL_TARGET || "5500", 10);
@@ -12,6 +13,7 @@ const acceptedPath = path.join(root, ".route-v2-cache", "accepted-routes.json");
 const kgPath = path.join(root, ".route-v2-cache", "knowledge-graph-pool.json");
 const countryCatalogPath = path.join(root, "data", "countries.zh.json");
 const countryTopologyPath = path.join(root, "data", "countries-50m.json");
+const decisionTraceStore = createDecisionTraceStore();
 const disabledCountries = new Set(["CN"]);
 
 const countryNames = {
@@ -378,6 +380,32 @@ function addCandidate(candidate, output, indexes) {
   return true;
 }
 
+function writeMaterializedDecisionTrace(route, profile) {
+  if (!route) return;
+  decisionTraceStore.appendLegacyRouteTrace({
+    route,
+    context: {
+      designStrategies: profile?.strategies || [],
+      bestMonths: profile?.months || [],
+      theme: profile?.theme || "",
+      travelStyle: route.travelStyle || "",
+      durationBand: route.durationBand || "",
+      countries: route.countries || [],
+      destinations: route.destinations || [],
+    },
+    source: "materialize",
+    concept: route.concept || null,
+    decisionFactors: [
+      { factor: "materialized-profile", input: profile?.key || profile?.theme || "", effect: "Selects legacy materialized route style and route template inputs." },
+      { factor: "destination-entities", input: (route.destinationEntities || []).map((item) => item.wikidataId || item.name), effect: "Determines countries, destinations, title, and summary." },
+      { factor: "planner-rules", input: route.durationBand || "", effect: "Route survived legacy concept and distance checks before materialization." },
+    ],
+    strategyEffects: (profile?.strategies || []).map((strategy) => ({ strategy, changedFields: [], evidenceIds: [] })),
+    dataSourcesUsed: [{ sourceType: "knowledge-graph-pool", ids: (route.destinationEntities || []).map((item) => item.wikidataId || item.name).filter(Boolean), usedFor: "materialized route destinations" }],
+    unknowns: [{ field: "materializedRejectedAlternatives", reason: "Legacy materialization does not persist rejected alternatives or per-route candidate pool." }],
+  });
+}
+
 function pickCrossDestinations(plan, start, gap, serial) {
   const size = 3 + ((serial + gap) % 4);
   const leftCount = Math.ceil(size / 2);
@@ -472,7 +500,9 @@ while (countCross(output) < targetCrossTotal && crossProgress) {
       if (!picked.length) continue;
       if (unique(picked.map((item) => item.wikidataId)).length !== picked.length) continue;
       const profile = profiles[(serial + gap) % (profiles.length - 1)];
-      added = addCandidate(makeRoute(picked, profile, serial++, covers), output, indexes);
+      const route = makeRoute(picked, profile, serial++, covers);
+      added = addCandidate(route, output, indexes);
+      if (added) writeMaterializedDecisionTrace(route, profile);
       if (added) plan.produced += 1;
       crossProgress = crossProgress || added;
     }
@@ -516,7 +546,9 @@ while (output.length < targetTotal && singleProgress) {
       attempted += 1;
       if (unique(picked.map((item) => item.wikidataId)).length !== picked.length) continue;
       const profile = profiles[(serial + size + step) % profiles.length];
-      added = addCandidate(makeRoute(picked, profile, serial++, covers), output, indexes);
+      const route = makeRoute(picked, profile, serial++, covers);
+      added = addCandidate(route, output, indexes);
+      if (added) writeMaterializedDecisionTrace(route, profile);
       singleProgress = singleProgress || added;
     }
   }

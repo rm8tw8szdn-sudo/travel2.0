@@ -9,6 +9,23 @@ export {
 export { createRouteDiscovery } from "./discovery.mjs";
 export { RouteDiscoveryError, asRouteDiscoveryError } from "./errors.mjs";
 export { createRouteDiscoveryHandler } from "./http.mjs";
+export {
+  DECISION_TRACE_SCHEMA_VERSION,
+  buildLegacyDecisionTrace,
+  createDecisionTraceId,
+  routeIntentSnapshot,
+  selectedCandidateSnapshot,
+  stableDecisionTraceHash,
+  validateDecisionTrace,
+} from "./decision-trace-schema.mjs";
+export {
+  createDecisionTraceStore,
+  defaultDecisionTracePath,
+  envFlag,
+  isRouteV2TraceEnabled,
+  isRouteV2TraceRequiredForAccept,
+  writeLegacyDecisionTraceSafe,
+} from "./decision-trace-store.mjs";
 export { createLiveDiscoveryProvider } from "./live-provider.mjs";
 export { createRouteMediaService } from "./media-service.mjs";
 export { createOnlineRouteStandardizer, createWikidataEntityResolver } from "./online-standardizer.mjs";

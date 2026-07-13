@@ -8,6 +8,7 @@ import { skeletonFromSuggestion } from "./route-llm-refine-shared.mjs";
 import { createWebSearchEvidenceProvider } from "./web-search-evidence-provider.mjs";
 import { createWebEvidenceExtractor } from "./web-evidence-extractor.mjs";
 import { createWebEvidenceCorroborator } from "./web-evidence-corroborator.mjs";
+import { createDecisionTraceStore, writeLegacyDecisionTraceSafe } from "./decision-trace-store.mjs";
 
 const PHASE_2A_STRATEGIES = ["Geographic", "Theme", "Season", "Transport", "Depth", "Efficiency"];
 const MAX_SEGMENT_KM = 650;
@@ -880,7 +881,7 @@ function validatePlannerCandidate(record, concept, context, strategyRegistry) {
 }
 
 // 新管线主体
-async function runPipeline({ context, knowledgeGraph, evidenceRepository, acceptedRepository, strategyRegistry, llmRefineProvider, webEvidencePipeline, limit }) {
+async function runPipeline({ context, knowledgeGraph, evidenceRepository, acceptedRepository, strategyRegistry, llmRefineProvider, webEvidencePipeline, decisionTraceStore, limit }) {
   const accepted = [];
   const rejected = [];
 
@@ -1036,6 +1037,29 @@ async function runPipeline({ context, knowledgeGraph, evidenceRepository, accept
     return { accepted, rejected, concept };
   }
 
+  const traceWrite = await writeLegacyDecisionTraceSafe(decisionTraceStore, {
+    route: record,
+    context,
+    source: "planner-pipeline",
+    concept,
+    decisionFactors: [
+      { factor: "country-context", input: countryCodesForContext(context), effect: "Limits knowledge-graph destination query." },
+      { factor: "duration", input: context.durationDays || concept.durationDays || null, effect: "Constrains generated route duration fields." },
+      { factor: "travel-style", input: context.travelStyle || concept.travelStyle || null, effect: "Influences concept, route structure, title, and summary." },
+      { factor: "knowledge-graph", input: refinedSkeleton.map((item) => item.wikidataId || item.name), effect: "Provides selected destination entities." },
+    ],
+    strategyEffects: strategies.map((strategy) => ({ strategy, changedFields: [], evidenceIds: [] })),
+    dataSourcesUsed: [
+      { sourceType: "knowledge-graph", ids: refinedSkeleton.map((item) => item.wikidataId || item.name).filter(Boolean), usedFor: "selected destinations" },
+      ...(llmRefined ? [{ sourceType: "llm", ids: [llmRefineProvider?.name || "llm-refine"], usedFor: "destination order/refinement" }] : []),
+      ...(evidenceCollect?.queries?.length ? [{ sourceType: "web-evidence", ids: evidenceCollect.queries, usedFor: "missing segment evidence check" }] : []),
+    ],
+    unknowns: [
+      { field: "completeRejectedAlternatives", reason: "Phase 1 does not persist all alternatives considered before this selected route." },
+      { field: "llmContribution", reason: llmRefined ? "LLM refine result was applied, but Phase 1 does not persist a full comparison trace." : "LLM refine did not run or did not change the skeleton." },
+    ],
+  });
+
   accepted.push({
     record,
     strategies,
@@ -1047,6 +1071,7 @@ async function runPipeline({ context, knowledgeGraph, evidenceRepository, accept
     evidenceResult,
     evidenceCollect,
     destinationSource: "knowledge-graph",
+    decisionTrace: traceWrite,
   });
 
   // limit 控制（新管线一次 context 通常产 1 条；保留 limit 语义）
@@ -1062,14 +1087,15 @@ function durationBandFromDays(days) {
   return "15d+";
 }
 
-export function createRouteCompositionPlanner({ evidenceRepository, acceptedRepository, strategyRegistry = null, knowledgeGraph = null, llmRefineProvider = null, webEvidencePipeline = null } = {}) {
+export function createRouteCompositionPlanner({ evidenceRepository, acceptedRepository, strategyRegistry = null, knowledgeGraph = null, llmRefineProvider = null, webEvidencePipeline = null, decisionTraceStore = null, env = process.env } = {}) {
   if (!evidenceRepository?.bySourceRoute) throw new Error("EVIDENCE_REPOSITORY_REQUIRED");
   if (!acceptedRepository?.list) throw new Error("ACCEPTED_REPOSITORY_REQUIRED");
+  const traceStore = decisionTraceStore || createDecisionTraceStore({ env });
   return {
     async buildCandidates({ limit = 5, context = null } = {}) {
       // 新管线模式：有 context（{durationDays, country, style, ...}）走知识图驱动（async，含 LLM 节点）
       if (context && (context.country || context.durationDays || context.travelStyle)) {
-        return runPipeline({ context, knowledgeGraph, evidenceRepository, acceptedRepository, strategyRegistry, llmRefineProvider, webEvidencePipeline, limit });
+        return runPipeline({ context, knowledgeGraph, evidenceRepository, acceptedRepository, strategyRegistry, llmRefineProvider, webEvidencePipeline, decisionTraceStore: traceStore, limit });
       }
       // 旧兼容模式：evidence 桶缝合（codex 原 buildCandidates，仅旧 verify 脚本与生产 run-route-ai-production-phase2a 走此路径）
       const existingRecords = acceptedRepository.list({ limit: 100_000 }).records;
@@ -1105,7 +1131,20 @@ export function createRouteCompositionPlanner({ evidenceRepository, acceptedRepo
           });
           continue;
         }
-        accepted.push({ record: built.record, strategies: built.strategies, score: built.score, dedupeDistance, strategyChecks });
+        const traceWrite = await writeLegacyDecisionTraceSafe(traceStore, {
+          route: built.record,
+          context: { designStrategies: built.strategies },
+          source: "planner-evidence-stitch",
+          decisionFactors: [
+            { factor: "evidence-group", input: sourceRouteId, effect: "Provides grouped evidence used to build the legacy candidate." },
+            { factor: "quality-check", input: quality.accepted, effect: "Allows or rejects the legacy candidate before acceptance." },
+            { factor: "composition-check", input: composition.accepted, effect: "Allows or rejects the legacy candidate before acceptance." },
+          ],
+          strategyEffects: built.strategies.map((strategy) => ({ strategy, changedFields: [], evidenceIds: [] })),
+          dataSourcesUsed: [{ sourceType: "evidence-repository", ids: items.map((item) => item.id || item.sourceRouteId).filter(Boolean), usedFor: "legacy evidence stitch candidate" }],
+          unknowns: [{ field: "preEvidenceCandidatePool", reason: "Phase 1 does not reconstruct alternatives before the grouped evidence candidate." }],
+        });
+        accepted.push({ record: built.record, strategies: built.strategies, score: built.score, dedupeDistance, strategyChecks, decisionTrace: traceWrite });
       }
       return { accepted, rejected };
     },

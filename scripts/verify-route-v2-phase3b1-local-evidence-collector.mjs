@@ -101,10 +101,16 @@ let allMatched;
 let crossCountry;
 let missingKg;
 let kgContradiction;
+let nameOnlyIdentity;
+let duplicateNameIdentity;
 let countryMismatch;
 let missingOrder;
 let duplicateOrder;
 let missingCoordinate;
+let blankLatitudeCoordinate;
+let blankLongitudeCoordinate;
+let nonNumericCoordinate;
+let zeroCoordinate;
 let invalidCoordinate;
 let shortTrip;
 let defaultNowA;
@@ -152,6 +158,36 @@ try {
   }));
   assertValid(missingKg, "missing KG destination scenario");
   assert([...unknownFields(missingKg)].some((field) => field.includes("destinationIdentity:Q999999")), "missing KG destination should be unknown");
+  assert(missingKg.unknowns.some((entry) => entry.reason === "stable-destination-id-not-found-in-kg-pool"));
+
+  nameOnlyIdentity = collect(candidate({
+    destinations: [
+      { name: "Tokyo", countryCode: "JP", latitude: 35.6762, longitude: 139.6503 },
+      { name: "Kyoto", countryCode: "JP", latitude: 35.0116, longitude: 135.7681 },
+      { name: "Osaka", countryCode: "JP", latitude: 34.6937, longitude: 135.5023 },
+    ],
+    proposedOrder: ["Tokyo", "Kyoto", "Osaka"],
+  }));
+  assertValid(nameOnlyIdentity, "name-only identity scenario");
+  assert.equal(countByCategory(nameOnlyIdentity, "destination-identity", "verified"), 0, "name-only destinations must not become verified identity");
+  assert(nameOnlyIdentity.unknowns.every((entry) => !entry.reason.includes("name-matched")), "name must not prove destination identity");
+  assert(nameOnlyIdentity.unknowns.some((entry) => entry.reason === "stable-destination-id-missing"));
+
+  duplicateNameIdentity = collect(candidate({
+    countries: ["JP"],
+    destinations: [
+      { name: "Springfield", countryCode: "JP", latitude: 1, longitude: 1 },
+      { id: "Q1490", wikidataId: "Q1490", countryCode: "JP", name: "Tokyo", latitude: 35.6762, longitude: 139.6503 },
+    ],
+    proposedOrder: ["Springfield", "Q1490"],
+  }), [
+    { id: "Q111", wikidataId: "Q111", countryCode: "JP", name: "Springfield", latitude: 1, longitude: 1 },
+    { id: "Q222", wikidataId: "Q222", countryCode: "US", name: "Springfield", latitude: 2, longitude: 2 },
+    ...jpKgPool,
+  ]);
+  assertValid(duplicateNameIdentity, "duplicate KG name scenario");
+  assert.equal(countByCategory(duplicateNameIdentity, "destination-identity", "verified"), 1, "duplicate names must not choose the first KG identity by name");
+  assert(duplicateNameIdentity.unknowns.some((entry) => entry.reason === "stable-destination-id-missing"));
 
   kgContradiction = collect(candidate({
     destinations: [
@@ -198,6 +234,48 @@ try {
   assert([...unknownFields(missingCoordinate)].some((field) => field.includes("coordinate:Q34600")));
   assert([...unknownFields(missingCoordinate)].some((field) => field.includes("segmentDistance:Q1490:Q34600")));
 
+  blankLatitudeCoordinate = collect(candidate({
+    destinations: [
+      { id: "Q1490", wikidataId: "Q1490", countryCode: "JP", name: "Tokyo", latitude: "", longitude: 139.6503 },
+      { id: "Q34600", wikidataId: "Q34600", countryCode: "JP", name: "Kyoto", latitude: 35.0116, longitude: 135.7681 },
+      { id: "Q35765", wikidataId: "Q35765", countryCode: "JP", name: "Osaka", latitude: 34.6937, longitude: 135.5023 },
+    ],
+  }));
+  assertValid(blankLatitudeCoordinate, "blank latitude scenario");
+  assert([...unknownFields(blankLatitudeCoordinate)].some((field) => field.includes("coordinate:Q1490")), "blank latitude should be unknown");
+  assert.equal(blankLatitudeCoordinate.items.some((item) => item.evidenceCategory === "coordinate" && item.sourceId === "Q1490" && item.extractedFacts.latitude === 0), false, "blank latitude must not become 0");
+
+  blankLongitudeCoordinate = collect(candidate({
+    destinations: [
+      { id: "Q1490", wikidataId: "Q1490", countryCode: "JP", name: "Tokyo", latitude: 35.6762, longitude: "   " },
+      { id: "Q34600", wikidataId: "Q34600", countryCode: "JP", name: "Kyoto", latitude: 35.0116, longitude: 135.7681 },
+      { id: "Q35765", wikidataId: "Q35765", countryCode: "JP", name: "Osaka", latitude: 34.6937, longitude: 135.5023 },
+    ],
+  }));
+  assertValid(blankLongitudeCoordinate, "blank longitude scenario");
+  assert([...unknownFields(blankLongitudeCoordinate)].some((field) => field.includes("coordinate:Q1490")), "blank longitude should be unknown");
+  assert.equal(blankLongitudeCoordinate.items.some((item) => item.evidenceCategory === "coordinate" && item.sourceId === "Q1490" && item.extractedFacts.longitude === 0), false, "blank longitude must not become 0");
+
+  nonNumericCoordinate = collect(candidate({
+    destinations: [
+      { id: "Q1490", wikidataId: "Q1490", countryCode: "JP", name: "Tokyo", latitude: "not-a-number", longitude: 139.6503 },
+      { id: "Q34600", wikidataId: "Q34600", countryCode: "JP", name: "Kyoto", latitude: 35.0116, longitude: 135.7681 },
+      { id: "Q35765", wikidataId: "Q35765", countryCode: "JP", name: "Osaka", latitude: 34.6937, longitude: 135.5023 },
+    ],
+  }));
+  assertValid(nonNumericCoordinate, "non-numeric coordinate scenario");
+  assert(failureReasons(nonNumericCoordinate).includes("coordinate-invalid-or-out-of-range"), "non-numeric coordinate should be failure");
+
+  zeroCoordinate = collect(candidate({
+    destinations: [
+      { id: "Q1490", wikidataId: "Q1490", countryCode: "JP", name: "Tokyo", latitude: 0, longitude: 0 },
+      { id: "Q34600", wikidataId: "Q34600", countryCode: "JP", name: "Kyoto", latitude: 35.0116, longitude: 135.7681 },
+      { id: "Q35765", wikidataId: "Q35765", countryCode: "JP", name: "Osaka", latitude: 34.6937, longitude: 135.5023 },
+    ],
+  }));
+  assertValid(zeroCoordinate, "zero coordinate scenario");
+  assert(zeroCoordinate.items.some((item) => item.evidenceCategory === "coordinate" && item.sourceId === "Q1490" && item.extractedFacts.latitude === 0 && item.extractedFacts.longitude === 0), "real 0 latitude/longitude should be verified");
+
   invalidCoordinate = collect(candidate({
     destinations: [
       { id: "Q1490", wikidataId: "Q1490", countryCode: "JP", name: "Tokyo", latitude: 35.6762, longitude: 139.6503 },
@@ -238,11 +316,17 @@ for (const bundle of [
   allMatched,
   crossCountry,
   missingKg,
+  nameOnlyIdentity,
+  duplicateNameIdentity,
   kgContradiction,
   countryMismatch,
   missingOrder,
   duplicateOrder,
   missingCoordinate,
+  blankLatitudeCoordinate,
+  blankLongitudeCoordinate,
+  nonNumericCoordinate,
+  zeroCoordinate,
   invalidCoordinate,
   shortTrip,
   defaultNowA,

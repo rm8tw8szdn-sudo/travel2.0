@@ -2,145 +2,204 @@
 
 ## Summary
 
-Phase 3B-1 已完成 Local Evidence Collector 纯函数。
+Phase 3B-1 has implemented the Local Evidence Collector as a pure function.
 
-本阶段只新增本地证据收集能力：
+This phase only adds local evidence collection:
 
-- 输入 `RouteCandidate`
-- 输入 Candidate Builder 使用过的 KG destination pool snapshot
-- 输出合法 `EvidenceBundle`
+- Input: `RouteCandidate`
+- Input: KG destination pool snapshot used by Candidate Builder
+- Optional input: fixed `now`
+- Output: valid `EvidenceBundle`
 
-本阶段没有接入 Planner，没有写 EvidenceBundle Store，没有写 JSONL，没有调用 Tavily / Wikivoyage / 网络服务，也没有修改 Candidate Pool、DecisionTrace、RouteRecord、Feed、Search、Detail、图片系统、accepted repository、bootstrap 或路线数据。
+This phase does not connect to Planner, does not write EvidenceBundle Store, does not write JSONL, does not call Tavily / Wikivoyage / network services, and does not modify Candidate Pool, DecisionTrace, RouteRecord, Feed, Search, Detail, image system, accepted repository, bootstrap, or route data.
 
-## 新增内容
+## Added Files
 
 ### `src/lib/routes/local-evidence-collector.mjs`
 
-新增：
+Adds:
 
 - `LOCAL_EVIDENCE_COLLECTOR_SOURCE`
 - `LOCAL_EVIDENCE_COLLECTOR_CREATED_AT`
 - `collectLocalEvidenceBundle()`
 
-`collectLocalEvidenceBundle()` 是纯函数：
+`collectLocalEvidenceBundle()` is a pure function:
 
-- 不读取文件
-- 不读取环境变量
-- 不读取缓存
-- 不调用网络
-- 不使用 `Math.random()`
-- 不读取当前时间，除非调用方通过 `now` 参数传入
-- 不修改 candidate 或 KG pool 输入对象
+- Does not read files
+- Does not read environment variables
+- Does not read caches
+- Does not call network services
+- Does not use `Math.random()`
+- Does not read implicit current time unless the caller passes `now`
+- Does not mutate `candidate` or KG pool input objects
 
 ### `scripts/verify-route-v2-phase3b1-local-evidence-collector.mjs`
 
-新增 Phase 3B-1 独立验证脚本，覆盖单国、跨国、KG 缺失、KG 矛盾、国家矛盾、顺序错误、坐标缺失、坐标非法、距离计算、时长弱信号、稳定性、输入不变和真实缓存不变。
+Adds isolated Phase 3B-1 verification for single-country, cross-country, missing KG identity, same-name identity ambiguity, KG contradiction, country mismatch, proposedOrder errors, missing coordinates, blank coordinates, non-numeric coordinates, valid zero coordinates, distance calculation, duration weak signal, stability, input immutability, forbidden fields, and real cache protection.
 
 ### `src/lib/routes/index.mjs`
 
-只新增最小导出。
+Only adds the minimal export for the local evidence collector.
 
-## 收集的本地证据
+## Evidence Collected
 
-### 1. 目的地身份
+### 1. Destination Identity
 
-对每个 candidate destination：
+Each candidate destination is checked against the KG pool snapshot.
 
-- 使用 `id` / `wikidataId` / `qid` / `name` 在 KG pool snapshot 中匹配。
-- 匹配且关键字段一致时，生成 `verified` item。
-- 找不到时，写入 `unknowns[]`。
-- 字段矛盾时，写入 `failures[]`。
+Verified identity now requires a stable ID match:
 
-证据项：
+- `wikidataId`
+- `qid`
+- explicit KG `id`
+
+Name-only matching is not allowed to prove identity.
+
+If a candidate destination lacks a stable ID, the collector writes an `unknowns[]` entry with:
+
+- `reason: "stable-destination-id-missing"`
+
+If a candidate has a stable ID but it is not found in the KG pool, the collector writes an `unknowns[]` entry with:
+
+- `reason: "stable-destination-id-not-found-in-kg-pool"`
+
+The destination name may still be used after a stable ID match for consistency checks and diagnostics. A name mismatch after stable ID match becomes a failure. The collector never chooses the first KG record only because the name matches.
+
+Evidence item:
 
 - `evidenceCategory: "destination-identity"`
 - `sourceType: "knowledge-graph"`
 - `supportsWhichDecision: ["destination-inclusion"]`
 
-### 2. 国家匹配
+### 2. Country Match
 
-检查 destination.countryCode 是否属于 candidate.countries：
+Checks whether `destination.countryCode` belongs to `candidate.countries`.
 
-- 匹配时生成 `verified` item。
-- 不匹配时写入 `failures[]`。
-- 不自动修正 candidate。
+- Match: `verified` item
+- Mismatch: `failures[]`
+- Candidate is never auto-corrected
 
-证据项：
+### 3. proposedOrder Integrity
 
-- `evidenceCategory: "country-match"`
-- `sourceType: "local-computation"`
-- `supportsWhichDecision: ["country-composition"]`
+Checks:
 
-### 3. proposedOrder 完整性
+- Every ID in `proposedOrder` exists in `candidate.destinations`
+- Every `candidate.destinations` entry appears in `proposedOrder`
+- `proposedOrder` has no duplicate IDs
 
-检查：
+Complete order creates a `verified` item. Missing, duplicate, or extra IDs create failures.
 
-- proposedOrder 中每个 ID 是否存在于 candidate.destinations。
-- candidate.destinations 是否都出现在 proposedOrder。
-- proposedOrder 是否有重复 ID。
+### 4. Coordinate Availability
 
-完整时生成 `verified` item；缺失、重复或额外 ID 时写入 `failures[]`。
+Each destination coordinate is checked as follows:
 
-### 4. 坐标可用性
+- `null`, `undefined`, empty string, or whitespace-only string: `unknowns[]`
+- Numeric strings: converted and checked normally
+- Non-numeric strings: `failures[]`
+- Out-of-range numbers: `failures[]`
+- Valid finite numbers: `verified` item
+- Real `0` latitude or longitude remains valid
 
-对每个 destination：
+Blank strings are never converted to `0`.
 
-- latitude / longitude 是有限数字且在合法范围内时，生成 `verified` item。
-- 坐标缺失时，写入 `unknowns[]`。
-- 坐标非法或越界时，写入 `failures[]`。
+### 5. Adjacent Segment Distance
 
-### 5. 相邻目的地距离
+Only when both adjacent destinations have valid coordinates:
 
-仅当相邻两个目的地坐标都合法时：
+- Uses local haversine calculation
+- Creates a `verified` item
+- Records `from`, `to`, and `distanceKm`
 
-- 使用本地 haversine 计算距离。
-- 生成 `verified` item。
-- 记录 `from`、`to`、`distanceKm`。
+If either coordinate is missing or invalid:
 
-坐标不足时写入 `unknowns[]`，不伪造距离，也不判断交通方式。
+- Writes `unknowns[]`
+- Does not fabricate distance
+- Does not judge transport mode
 
-### 6. 时长适配
+### 6. Duration Fit
 
-只生成 `weak_signal`：
+Only creates `weak_signal`:
 
-- durationDays
-- destinationCount
-- daysPerDestination
-- travelStyle
-- pace
+- `durationDays`
+- `destinationCount`
+- `daysPerDestination`
+- `travelStyle`
+- `pace`
 
-本地启发式不会被标记为 `verified`，也不会用于淘汰、评分或选择候选。
+This local heuristic is never marked `verified` and is not used for scoring, ranking, rejection, or candidate selection.
 
-### 7. 默认 Unknown
+### 7. Default Unknowns
 
-明确记录本阶段无法验证：
+Phase 3B-1 explicitly records these as unknown:
 
 - `transportFeasibility`
 - `seasonalFit`
 - `budgetFit`
 
-## EvidenceBundle 行为
+## EvidenceBundle Behavior
 
-输出必须通过 `validateEvidenceBundle()`。
+Output must pass `validateEvidenceBundle()`.
 
-`items[]` 中只包含：
+`items[]` only contains:
 
 - `verified`
 - `weak_signal`
 
-`unknown` 只进入 `unknowns[]`。
+`unknown` only appears in `unknowns[]`.
 
-`failed` 只进入 `failures[]`。
+`failed` only appears in `failures[]`.
 
-Phase 3B-1 all-matched fixture 的 EvidenceBundle ID：
+The Phase 3B-1 all-matched fixture EvidenceBundle ID is:
 
 `eb-c1d89ba2875b67289c97`
 
-该 ID 是 Phase 3B-1 local evidence collector 输出的 golden，不改变 Phase 3A golden，也不改变旧 V2 golden ID。
+This ID remained unchanged after the PR #9 review fixes. The fixes only tightened identity and coordinate validation and did not change the normal all-matched fixture business evidence.
 
-## 严格边界确认
+Older V2 golden IDs also remain unchanged:
 
-本阶段没有修改：
+- `traceId`
+- `candidateId`
+- `intentId`
+- `candidateShapeKey`
+
+## PR #9 Review Fixes
+
+### Destination Identity Tightening
+
+Fixed issue:
+
+- The previous implementation allowed `name` to participate in KG identity lookup.
+
+Current behavior:
+
+- Verified identity requires stable ID.
+- Name-only candidate destinations become unknown.
+- Duplicate same-name KG records are not auto-selected.
+- Stable ID matching continues to verify identity when the KG record exists.
+
+Added tests:
+
+1. Candidate has only `name`, no stable ID, and KG contains the same name. Result: identity unknown, not verified.
+2. KG contains two same-name records. Result: no first-record selection by name.
+3. Stable ID match still verifies identity.
+
+### Coordinate Blank String Tightening
+
+Fixed issue:
+
+- Blank coordinate strings could be normalized too early and become indistinguishable from missing or invalid values.
+
+Current behavior:
+
+- `latitude=""` becomes coordinate unknown.
+- `longitude="   "` becomes coordinate unknown.
+- `latitude="not-a-number"` becomes coordinate failure.
+- `latitude=0` and `longitude=0` remain verified.
+- Segment distance stays unknown when coordinates are missing.
+
+## Strict Boundary Confirmation
+
+This phase did not modify:
 
 - `route-composition-planner.mjs`
 - `materialize-route-pool.mjs`
@@ -151,42 +210,47 @@ Phase 3B-1 all-matched fixture 的 EvidenceBundle ID：
 - Feed
 - Search
 - Detail
-- 图片系统
+- Image system
 - accepted repository
-- route-feed-bootstrap.js
+- `route-feed-bootstrap.js`
 
-本阶段没有：
+This phase did not:
 
-- 写入任何 JSONL
-- 自动收集真实 Planner 候选证据
-- 调用 Tavily / Wikivoyage / 网络服务
-- 候选评分、排序、淘汰或最佳路线选择
-- 开始 Phase 3B-2 或 Phase 3C
+- Write any JSONL
+- Auto-collect real Planner candidate evidence
+- Call Tavily / Wikivoyage / network services
+- Score, sort, reject, or select candidates
+- Start Phase 3B-2 or Phase 3C
 
-## 验证场景
+## Verification Coverage
 
-专项脚本覆盖：
+The Phase 3B-1 script covers:
 
-1. 单国家三城市，全部匹配。
-2. 跨国家候选。
-3. KG 缺少一个目的地。
-4. KG 字段矛盾。
-5. 国家代码矛盾。
-6. proposedOrder 缺失目的地。
-7. proposedOrder 有重复 ID。
-8. 坐标缺失。
-9. 坐标非法。
-10. 正常计算多个相邻距离。
-11. 短行程多目的地，只产生 weak_signal。
-12. 输入对象未被修改。
-13. 相同输入输出稳定。
-14. 不产生 title、summary 文案、plannerReason、routeId 等禁止字段。
-15. 输出全部通过 EvidenceBundle schema 校验。
-16. 真实 Candidate Pool、DecisionTrace、EvidenceBundle cache 未创建或修改。
+1. Single-country three-city candidate, all evidence matched.
+2. Cross-country candidate.
+3. KG missing one destination.
+4. Candidate has only name and no stable ID.
+5. KG contains duplicate same-name destinations.
+6. Stable ID matched with KG field contradiction.
+7. Country code mismatch.
+8. proposedOrder missing destination.
+9. proposedOrder duplicate ID.
+10. Missing coordinates.
+11. Blank latitude string.
+12. Blank longitude whitespace string.
+13. Non-numeric coordinate string.
+14. Valid zero latitude and longitude.
+15. Valid adjacent distance calculation.
+16. Short trip with many destinations, duration remains weak signal.
+17. Input objects are not mutated.
+18. Same input output is stable.
+19. No forbidden RouteRecord or display fields are produced.
+20. Output passes EvidenceBundle schema validation.
+21. Real Candidate Pool, DecisionTrace, and EvidenceBundle caches are not created or modified.
 
-## 测试结果
+## Test Results
 
-已运行：
+Ran:
 
 ```text
 node scripts/verify-route-v2-phase3b1-local-evidence-collector.mjs
@@ -202,47 +266,42 @@ node scripts/verify-route-content-quality.mjs
 git diff --check
 ```
 
-结果：全部 PASS。
+Result: all PASS.
 
-## 基线完整性
+## Baseline Integrity
 
-| 项目 | 结果 |
+| Item | Result |
 | --- | --- |
 | accepted-routes hash | `AEA28BCC03EAF6CCCE5FD7453F88ECE4F0060789F135EAF837B568D9C43E7E3F` |
 | route-feed-bootstrap hash | `9F5E2B2557A9E547073DA4D299F08B5B18B6EBA38B3BD55FC995A16ADF1CD9EF` |
 | FeedReadyPoolCount all | 851 |
 | FeedReadyPoolCount cross | 357 |
 | FeedReadyPoolCount single | 494 |
-| real Candidate Pool cache | 未创建或修改 |
-| real DecisionTrace cache | 未创建或修改 |
-| real EvidenceBundle cache | 未创建或修改 |
+| real Candidate Pool cache | Not created or modified |
+| real DecisionTrace cache | Not created or modified |
+| real EvidenceBundle cache | Not created or modified |
 
-旧 golden ID 保持不变：
+## User Impact
 
-- `traceId`
-- `candidateId`
-- `intentId`
-- `candidateShapeKey`
+No user-visible impact.
 
-## 是否影响用户路线
+Reasons:
 
-不影响。
+- This phase is a pure function only.
+- It is not connected to Planner.
+- It does not write store files.
+- It does not modify any user-visible read path.
+- RouteRecord, Feed, Search, Detail, and image system do not read Local Evidence Collector.
 
-原因：
+## Recommendation
 
-- 本阶段只是纯函数。
-- 没有接入 Planner。
-- 没有写入 store。
-- 没有修改任何用户可见读取链路。
-- RouteRecord、Feed、Search、Detail、图片系统完全不读取 Local Evidence Collector。
+Recommend commit review.
 
-## 是否建议进入 commit 审查
+Reasons:
 
-建议进入 commit 审查。
-
-理由：
-
-- 改动范围符合 Phase 3B-1。
-- 所有输出均为合法 EvidenceBundle。
-- 所有测试通过。
-- 旧系统和用户路线完全不变。
+- Scope matches Phase 3B-1.
+- PR #9 review issues are fixed.
+- Output remains a valid EvidenceBundle.
+- Golden EvidenceBundle ID remains unchanged.
+- Existing V2 golden IDs remain unchanged.
+- Legacy system and user routes remain unchanged.

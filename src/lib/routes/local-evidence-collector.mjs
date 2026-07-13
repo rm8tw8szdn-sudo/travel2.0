@@ -5,6 +5,8 @@ export const LOCAL_EVIDENCE_COLLECTOR_SOURCE = "route-v2-phase3b1-local-evidence
 export const LOCAL_EVIDENCE_COLLECTOR_CREATED_AT = "1970-01-01T00:00:00.000Z";
 
 function numericOrNull(value) {
+  if (value == null) return null;
+  if (typeof value === "string" && value.trim() === "") return null;
   const number = Number(value);
   return Number.isFinite(number) ? number : null;
 }
@@ -17,14 +19,20 @@ function destinationId(destination = {}) {
   return cleanString(destination.id || destination.wikidataId || destination.qid || destination.name);
 }
 
+function stableDestinationId(destination = {}) {
+  return cleanString(destination.stableId || destination.wikidataId || destination.qid);
+}
+
 function normalizeDestination(destination = {}) {
+  const stableId = cleanString(destination.wikidataId || destination.qid || destination.id);
   return {
+    stableId,
     id: destinationId(destination),
-    wikidataId: cleanString(destination.wikidataId || destination.qid || destination.id),
+    wikidataId: stableId,
     name: cleanString(destination.name || destination.label),
     countryCode: normalizeCode(destination.countryCode || destination.country || destination.iso2),
-    latitude: numericOrNull(destination.latitude ?? destination.lat),
-    longitude: numericOrNull(destination.longitude ?? destination.lon ?? destination.lng),
+    latitude: destination.latitude ?? destination.lat,
+    longitude: destination.longitude ?? destination.lon ?? destination.lng,
     entityTypeName: cleanString(destination.entityTypeName || destination.type || "destination"),
   };
 }
@@ -34,7 +42,6 @@ function destinationAliases(destination = {}) {
     destination.id,
     destination.wikidataId,
     destination.qid,
-    destination.name,
   ]);
 }
 
@@ -52,8 +59,8 @@ function buildKgIndex(pool = []) {
 function coordinateStatus(destination = {}) {
   const latitude = numericOrNull(destination.latitude);
   const longitude = numericOrNull(destination.longitude);
-  const missingLatitude = destination.latitude == null || destination.latitude === "";
-  const missingLongitude = destination.longitude == null || destination.longitude === "";
+  const missingLatitude = destination.latitude == null || (typeof destination.latitude === "string" && destination.latitude.trim() === "");
+  const missingLongitude = destination.longitude == null || (typeof destination.longitude === "string" && destination.longitude.trim() === "");
   if (missingLatitude || missingLongitude) return { status: "missing", latitude, longitude };
   if (latitude == null || longitude == null || latitude < -90 || latitude > 90 || longitude < -180 || longitude > 180) {
     return { status: "invalid", latitude, longitude };
@@ -131,6 +138,11 @@ function destinationContradictions(candidateDestination = {}, kgDestination = {}
   return reasons;
 }
 
+function findKgDestinationByStableId(destination = {}, kgIndex) {
+  const stableId = stableDestinationId(destination);
+  return stableId ? kgIndex.get(stableId) : null;
+}
+
 function orderIntegrity(candidateDestinations = [], proposedOrder = []) {
   const canonicalByAlias = new Map();
   for (const destination of candidateDestinations) {
@@ -182,13 +194,12 @@ export function collectLocalEvidenceBundle({
   const failures = [];
 
   for (const destination of candidateDestinations) {
-    const kgDestination = destinationAliases(destination)
-      .map((alias) => kgIndex.get(alias))
-      .find(Boolean);
+    const stableId = stableDestinationId(destination);
+    const kgDestination = findKgDestinationByStableId(destination, kgIndex);
     if (!kgDestination) {
       unknowns.push(unknown({
         field: `destinationIdentity:${destination.id || destination.name}`,
-        reason: "destination-not-found-in-kg-pool",
+        reason: stableId ? "stable-destination-id-not-found-in-kg-pool" : "stable-destination-id-missing",
         sourceType: "knowledge-graph",
         evidenceCategory: "destination-identity",
         supportsWhichDecision: "destination-inclusion",

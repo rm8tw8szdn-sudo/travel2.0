@@ -1,30 +1,10 @@
-import crypto from "node:crypto";
 import fs from "node:fs";
 import path from "node:path";
-import { envFlag } from "./decision-trace-store.mjs";
+import { envFlag } from "./route-v2-env.mjs";
+import { cleanString, stableHash, uniqueStrings as unique } from "./route-v2-utils.mjs";
 
 export const ROUTE_CANDIDATE_SCHEMA_VERSION = "route-generation-v2-phase2a-candidate-v1";
 export const ROUTE_CANDIDATE_NEUTRAL_STATUSES = new Set(["generated", "pending", "pending-evidence"]);
-
-function cleanString(value) {
-  return String(value || "").trim();
-}
-
-function unique(values = []) {
-  return [...new Set(values.map(cleanString).filter(Boolean))];
-}
-
-function stableJson(value) {
-  if (Array.isArray(value)) return `[${value.map(stableJson).join(",")}]`;
-  if (value && typeof value === "object") {
-    return `{${Object.keys(value).sort().map((key) => `${JSON.stringify(key)}:${stableJson(value[key])}`).join(",")}}`;
-  }
-  return JSON.stringify(value);
-}
-
-function stableHash(value) {
-  return crypto.createHash("sha256").update(stableJson(value)).digest("hex");
-}
 
 function numericOrNull(value) {
   const number = Number(value);

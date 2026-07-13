@@ -1,8 +1,8 @@
 import assert from "node:assert/strict";
-import crypto from "node:crypto";
 import fs from "node:fs";
 import path from "node:path";
 import { execFileSync } from "node:child_process";
+import { assertStatesUnchanged, fileState } from "./lib/route-v2-test-file-state.mjs";
 import {
   ROUTE_CANDIDATE_BUILDER_CREATED_AT,
   buildRouteCandidatesFromPool,
@@ -16,28 +16,12 @@ const acceptedRepositoryPath = path.resolve(projectRoot, ".route-v2-cache", "acc
 const realCandidatePoolPath = path.resolve(projectRoot, ".route-v2-cache", "route-candidate-pool.jsonl");
 const bootstrapPath = path.resolve(projectRoot, "route-feed-bootstrap.js");
 
-function sha256IfExists(filePath) {
-  if (!fs.existsSync(filePath)) return null;
-  return crypto.createHash("sha256").update(fs.readFileSync(filePath)).digest("hex");
-}
-
-function fileState(filePath) {
-  if (!fs.existsSync(filePath)) return { exists: false };
-  const stat = fs.statSync(filePath);
-  return {
-    exists: true,
-    size: stat.size,
-    mtimeMs: stat.mtimeMs,
-    sha256: sha256IfExists(filePath),
-  };
-}
-
 function deepClone(value) {
   return JSON.parse(JSON.stringify(value));
 }
 
 function assertUnchanged(label, before, after) {
-  assert.deepEqual(after, before, `${label} changed`);
+  assertStatesUnchanged(before, after, `${label} changed`);
 }
 
 const kgPool = [

@@ -1,25 +1,9 @@
-import crypto from "node:crypto";
+import { cleanString, stableHash, uniqueStrings as unique } from "./route-v2-utils.mjs";
 
 export const DECISION_TRACE_SCHEMA_VERSION = "route-generation-v2-phase1-trace-v1";
 
-function cleanString(value) {
-  return String(value || "").trim();
-}
-
-function unique(values = []) {
-  return [...new Set(values.map(cleanString).filter(Boolean))];
-}
-
-function stableJson(value) {
-  if (Array.isArray(value)) return `[${value.map(stableJson).join(",")}]`;
-  if (value && typeof value === "object") {
-    return `{${Object.keys(value).sort().map((key) => `${JSON.stringify(key)}:${stableJson(value[key])}`).join(",")}}`;
-  }
-  return JSON.stringify(value);
-}
-
 export function stableDecisionTraceHash(value) {
-  return crypto.createHash("sha256").update(stableJson(value)).digest("hex");
+  return stableHash(value);
 }
 
 export function createDecisionTraceId({ routeId = "", candidateId = "", intentId = "", version = DECISION_TRACE_SCHEMA_VERSION } = {}) {

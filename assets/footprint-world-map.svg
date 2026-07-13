@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 330" role="img" aria-label="浅绿色世界足迹地图">
+  <defs>
+    <linearGradient id="visitedStrong" x1="0" x2="1" y1="0" y2="1">
+      <stop stop-color="#a8cc92"/>
+      <stop offset="1" stop-color="#4f8933"/>
+    </linearGradient>
+    <linearGradient id="visitedSoft" x1="0" x2="1" y1="0" y2="1">
+      <stop stop-color="#d5e7ca"/>
+      <stop offset="1" stop-color="#91bc7b"/>
+    </linearGradient>
+    <radialGradient id="mapGlow" cx="50%" cy="52%" r="64%">
+      <stop stop-color="#f9fbf5"/>
+      <stop offset=".62" stop-color="#f5f8f0"/>
+      <stop offset="1" stop-color="#ffffff"/>
+    </radialGradient>
+  </defs>
+  <rect width="680" height="330" fill="url(#mapGlow)"/>
+  <g fill="#e0e3e1" stroke="#ffffff" stroke-width="1.6" opacity=".95">
+    <path d="M56 104 96 76l66 8 45-22 83 22 29 41-22 35-58 2-30 35-62-13-31 24-59-18-29-43Z"/>
+    <path d="M179 211 215 218l30 38 25 12-11 37-34 4-31-38-28-17Z"/>
+    <path d="M304 86 349 66l48 9 39-18 60 14 37 34-20 31-59 5-35 28-66-9-37-32Z"/>
+    <path d="M361 160 408 149l48 25 20 50-32 54-49-22-32-50Z"/>
+    <path d="M454 97 531 73l91 22 42 48-22 48-76 11-48 38-70-32-34-72Z"/>
+    <path d="M519 229 584 213l63 32 21 48-78 14-60-27Z"/>
+    <path d="M606 115 652 98l20 22-18 28-43-9Z"/>
+    <path d="M278 148 306 130l34 15-13 34-36 4Z"/>
+    <path d="M389 127 426 116l28 20-16 31-40 1Z"/>
+  </g>
+  <g fill="url(#visitedSoft)" stroke="#ffffff" stroke-width="1.6">
+    <path d="M56 104 96 76l66 8 31-16 29 34-22 43-68 12-52 31-52-41Z"/>
+    <path d="M112 172 164 158l50 12-18 42-58 13-42-27Z"/>
+    <path d="M454 97 531 73l91 22 42 48-22 48-76 11-42-37 23-44Z"/>
+    <path d="M519 229 584 213l63 32 21 48-78 14-60-27Z"/>
+    <path d="M313 95 350 75l35 13-24 30-42 2Z"/>
+    <path d="M235 88 282 75l25 30-35 27-42-19Z"/>
+  </g>
+  <g fill="url(#visitedStrong)" stroke="#ffffff" stroke-width="1.6">
+    <path d="M402 105 444 92l52 22 16 43-40 39-59-16-22-47Z"/>
+    <path d="M505 128 561 117l45 25-10 37-52 11-48-27Z"/>
+    <path d="M352 79 398 58l61 19 35 37-28 34-68-8-26-37Z"/>
+    <path d="M295 144 322 131l34 16-12 34-39 3Z"/>
+    <path d="M387 145 426 133l30 22-17 34-42 2Z"/>
+  </g>
+  <g fill="#4d8426" stroke="#ffffff" stroke-width="1.4">
+    <path d="M421 116 441 111l19 10-12 18-25-4Z"/>
+    <path d="M319 140 336 134l19 8-9 19-23 1Z"/>
+    <path d="M548 127 570 121l19 13-10 20-24 3Z"/>
+    <path d="M477 147 493 142l15 9-8 16-19 2Z"/>
+  </g>
+  <g fill="#ffffff" opacity=".45">
+    <path d="M0 0h680v42H0Z"/>
+    <path d="M0 291h680v39H0Z"/>
+  </g>
+</svg>

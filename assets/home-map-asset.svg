@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 780" role="img" aria-label="旅行地图背景">
+  <defs>
+    <linearGradient id="paper" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#eef5ea"/><stop offset=".55" stop-color="#d8ebe6"/><stop offset="1" stop-color="#c6ded3"/></linearGradient>
+    <radialGradient id="glow" cx=".82" cy=".18" r=".62"><stop stop-color="#fff8d9" stop-opacity=".9"/><stop offset="1" stop-color="#fff8d9" stop-opacity="0"/></radialGradient>
+    <filter id="soft"><feGaussianBlur stdDeviation="10"/></filter>
+  </defs>
+  <rect width="1200" height="780" fill="url(#paper)"/>
+  <rect width="1200" height="780" fill="url(#glow)"/>
+  <g fill="#8ebba6" opacity=".72" filter="url(#soft)">
+    <path d="M95 250c70-100 205-118 318-69 87 38 125 116 78 186-43 63-132 72-218 51-91-22-221 13-252-55-16-36 25-93 74-113Z"/>
+    <path d="M530 173c83-54 189-41 260 20 61 53 73 136 20 180-54 45-135 10-192 46-76 47-184 20-198-58-12-65 41-116 110-188Z"/>
+    <path d="M794 426c78-51 188-44 250 8 61 51 84 142 25 184-61 44-145-9-219 15-82 27-171-31-161-101 7-46 45-86 105-106Z"/>
+  </g>
+  <g fill="none" stroke="#ffffff" stroke-width="8" stroke-linecap="round" opacity=".62">
+    <path d="M165 448C302 350 440 353 574 421s276 77 408-28" stroke-dasharray="2 24"/>
+    <path d="M358 248c105 66 190 78 314 35 96-33 162-10 224 62" stroke-dasharray="2 22"/>
+  </g>
+  <g fill="#4d8426"><circle cx="166" cy="448" r="12"/><circle cx="574" cy="421" r="12"/><circle cx="982" cy="393" r="12"/><circle cx="358" cy="248" r="10"/><circle cx="672" cy="283" r="10"/><circle cx="896" cy="345" r="10"/></g>
+  <g fill="#f8fbf5" opacity=".95"><circle cx="166" cy="448" r="5"/><circle cx="574" cy="421" r="5"/><circle cx="982" cy="393" r="5"/><circle cx="358" cy="248" r="4"/><circle cx="672" cy="283" r="4"/><circle cx="896" cy="345" r="4"/></g>
+  <path d="M0 635c201-63 371-39 516 18 168 66 315 54 501-42 82-43 148-44 183-36v205H0Z" fill="#bfd9cd" opacity=".75"/>
+</svg>

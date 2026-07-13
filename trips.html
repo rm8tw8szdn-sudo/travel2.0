@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>我的行程</title>
+    <link rel="icon" href="assets/profile-avatar-kuma-small.jpg" />
+    <link rel="stylesheet" href="mobile.css?v=route-v2-ui-polish-20260618" />
+    <script src="travel-data.js?v=route-cover-clean-20260615" defer></script>
+    <script src="travel-state.js?v=logic-state-20260607" defer></script>
+    <script src="home-components.js?v=home-next-row-20260607" defer></script>
+    <script src="trips.js?v=route-v2-ui-polish-20260618" defer></script>
+    <script src="app-shared.js?v=logic-state-20260607" defer></script>
+  </head>
+  <body>
+    <main class="home-screen trip-screen" aria-label="我的行程">
+      <header class="trip-header">
+        <h1>我的行程</h1>
+        <button type="button" data-new-trip>+ 新建行程</button>
+      </header>
+
+      <section class="trip-tabs" aria-label="行程筛选">
+        <button class="active" type="button" data-trip-tab="upcoming">待出行</button>
+        <button type="button" data-trip-tab="completed">已完成</button>
+      </section>
+
+      <label class="trip-day-search" aria-label="按天数搜索行程">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10.8 18.2a7.4 7.4 0 1 1 0-14.8 7.4 7.4 0 0 1 0 14.8ZM16.2 16.2 21 21"></path></svg>
+        <input type="search" placeholder="" data-trip-day-search />
+      </label>
+      <p class="trip-search-summary" hidden data-trip-search-summary></p>
+
+      <section class="trip-section" aria-label="待出行" data-trip-panel="upcoming">
+        <div class="trip-filter-pills" aria-label="未来行程状态筛选" data-trip-filter="upcoming">
+          <button class="active" type="button" data-trip-filter-value="all">全部 <span>0</span></button>
+          <button type="button" data-trip-filter-value="planning">规划中 <span>0</span></button>
+          <button type="button" data-trip-filter-value="confirmed">已确认 <span>0</span></button>
+        </div>
+        <div class="trip-card-list" data-trip-list="upcoming"></div>
+      </section>
+
+      <section class="trip-section trip-completed" aria-label="已完成" data-trip-panel="completed" hidden>
+        <div class="trip-filter-pills trip-filter-wide" aria-label="已完成行程筛选" data-trip-filter="completed">
+          <button class="active" type="button" data-trip-filter-value="all">全部 <span>0</span></button>
+          <button type="button" data-trip-filter-value="this-year">今年</button>
+          <button type="button" data-trip-filter-value="2024">2024</button>
+          <button type="button" data-trip-filter-value="older">2023及以前</button>
+        </div>
+        <div class="trip-card-list" data-trip-list="completed"></div>
+      </section>
+
+      <div class="trip-create-modal" hidden data-trip-modal>
+        <section class="trip-create-panel" data-trip-step="1" aria-label="行程基本信息">
+          <strong>行程基本信息</strong>
+          <label><span>行程名称（选填）</span><input type="text" placeholder="例如 日本之旅" data-trip-name-input /></label>
+          <label><span>出发日期</span><input type="text" value="2026.07.18" data-trip-start-input /></label>
+          <label><span>结束日期</span><input type="text" value="2026.07.30" data-trip-end-input /></label>
+          <label><span>备注（选填）</span><textarea rows="2" data-trip-note-input></textarea></label>
+          <div class="trip-modal-actions">
+            <button class="secondary" type="button" data-close-trip-modal>关闭</button>
+            <button type="button" data-trip-next>下一步</button>
+          </div>
+        </section>
+        <section class="trip-create-panel" data-trip-step="2" hidden aria-label="添加国家或城市">
+          <strong>添加国家 / 城市</strong>
+          <label><span>搜索国家或城市</span><input type="text" placeholder="搜索国家或城市" data-place-search /></label>
+          <div class="trip-selected-chips" aria-label="已选国家城市">
+            <button type="button" data-place-suggestion="日本">日本</button>
+            <button type="button" data-place-suggestion="东京">东京</button>
+            <button type="button" data-place-suggestion="京都">京都</button>
+            <button type="button" data-place-suggestion="大阪">大阪</button>
+            <button type="button" data-place-suggestion="挪威">挪威</button>
+            <button type="button" data-place-suggestion="冰岛">冰岛</button>
+            <button type="button" data-place-suggestion="芬兰">芬兰</button>
+          </div>
+          <button class="trip-add-more" type="button" data-add-place>+ 添加更多</button>
+          <div class="trip-selected-list"></div>
+          <div class="trip-modal-actions">
+            <button class="secondary" type="button" data-close-trip-modal>关闭</button>
+            <button class="secondary" type="button" data-trip-prev>上一步</button>
+            <button type="button" data-trip-next>下一步</button>
+          </div>
+        </section>
+        <section class="trip-create-panel" data-trip-step="3" hidden aria-label="完成确认">
+          <strong>完成确认</strong>
+          <label><span>预计预算（可跳过）</span><input type="number" inputmode="numeric" placeholder="例如 12000" data-trip-budget-input /></label>
+          <article class="trip-preview-card" data-trip-preview>
+            <img src="assets/trip-cover-placeholder.svg" alt="行程封面占位图" />
+            <span>
+              <b>新的旅行计划</b>
+              <em>目的地待选择</em>
+              <small>2026.07.18 - 07.30</small>
+              <small>12天 · 3国</small>
+            </span>
+          </article>
+          <div class="trip-modal-actions">
+            <button class="secondary" type="button" data-close-trip-modal>关闭</button>
+            <button class="secondary" type="button" data-trip-prev>上一步</button>
+            <button type="button" data-create-trip>创建行程</button>
+          </div>
+        </section>
+      </div>
+
+      <div class="trip-create-modal trip-detail-modal" hidden data-trip-detail-modal></div>
+      <div class="trip-create-modal trip-detail-modal" hidden data-trip-budget-modal></div>
+      <input type="file" accept="image/*" data-trip-cover-file hidden />
+
+      <bottom-tab-bar active="行程"></bottom-tab-bar>
+    </main>
+  </body>
+</html>

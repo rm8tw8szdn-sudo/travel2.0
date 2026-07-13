@@ -1,0 +1,1172 @@
+window.TRAVEL_COUNTRIES = [
+  {
+    "code": "AD",
+    "name": "安道尔",
+    "group": "南欧",
+    "numeric": "020"
+  },
+  {
+    "code": "AE",
+    "name": "阿联酋",
+    "group": "西亚",
+    "numeric": "784"
+  },
+  {
+    "code": "AF",
+    "name": "阿富汗",
+    "group": "南亚",
+    "numeric": "004"
+  },
+  {
+    "code": "AG",
+    "name": "安提瓜和巴布达",
+    "group": "加勒比",
+    "numeric": "028"
+  },
+  {
+    "code": "AL",
+    "name": "阿尔巴尼亚",
+    "group": "欧洲",
+    "numeric": "008"
+  },
+  {
+    "code": "AM",
+    "name": "亚美尼亚",
+    "group": "西亚",
+    "numeric": "051"
+  },
+  {
+    "code": "AO",
+    "name": "安哥拉",
+    "group": "中非",
+    "numeric": "024"
+  },
+  {
+    "code": "AR",
+    "name": "阿根廷",
+    "group": "南美洲",
+    "numeric": "032"
+  },
+  {
+    "code": "AT",
+    "name": "奥地利",
+    "group": "欧洲",
+    "numeric": "040"
+  },
+  {
+    "code": "AU",
+    "name": "澳大利亚",
+    "group": "大洋洲",
+    "numeric": "036"
+  },
+  {
+    "code": "AZ",
+    "name": "阿塞拜疆",
+    "group": "西亚",
+    "numeric": "031"
+  },
+  {
+    "code": "BA",
+    "name": "波黑",
+    "group": "欧洲",
+    "numeric": "070"
+  },
+  {
+    "code": "BB",
+    "name": "巴巴多斯",
+    "group": "加勒比",
+    "numeric": "052"
+  },
+  {
+    "code": "BD",
+    "name": "孟加拉国",
+    "group": "南亚",
+    "numeric": "050"
+  },
+  {
+    "code": "BE",
+    "name": "比利时",
+    "group": "西欧",
+    "numeric": "056"
+  },
+  {
+    "code": "BF",
+    "name": "布基纳法索",
+    "group": "西非",
+    "numeric": "854"
+  },
+  {
+    "code": "BG",
+    "name": "保加利亚",
+    "group": "欧洲",
+    "numeric": "100"
+  },
+  {
+    "code": "BH",
+    "name": "巴林",
+    "group": "西亚",
+    "numeric": "048"
+  },
+  {
+    "code": "BI",
+    "name": "布隆迪",
+    "group": "东非",
+    "numeric": "108"
+  },
+  {
+    "code": "BJ",
+    "name": "贝宁",
+    "group": "西非",
+    "numeric": "204"
+  },
+  {
+    "code": "BN",
+    "name": "文莱",
+    "group": "东南亚",
+    "numeric": "096"
+  },
+  {
+    "code": "BO",
+    "name": "玻利维亚",
+    "group": "南美洲",
+    "numeric": "068"
+  },
+  {
+    "code": "BR",
+    "name": "巴西",
+    "group": "南美洲",
+    "numeric": "076"
+  },
+  {
+    "code": "BS",
+    "name": "巴哈马",
+    "group": "加勒比",
+    "numeric": "044"
+  },
+  {
+    "code": "BT",
+    "name": "不丹",
+    "group": "南亚",
+    "numeric": "064"
+  },
+  {
+    "code": "BW",
+    "name": "博茨瓦纳",
+    "group": "南非",
+    "numeric": "072"
+  },
+  {
+    "code": "BY",
+    "name": "白俄罗斯",
+    "group": "东欧",
+    "numeric": "112"
+  },
+  {
+    "code": "BZ",
+    "name": "伯利兹",
+    "group": "中美洲",
+    "numeric": "084"
+  },
+  {
+    "code": "CA",
+    "name": "加拿大",
+    "group": "北美洲",
+    "numeric": "124"
+  },
+  {
+    "code": "CD",
+    "name": "刚果（金）",
+    "group": "中非",
+    "numeric": "180"
+  },
+  {
+    "code": "CF",
+    "name": "中非共和国",
+    "group": "中非",
+    "numeric": "140"
+  },
+  {
+    "code": "CG",
+    "name": "刚果（布）",
+    "group": "中非",
+    "numeric": "178"
+  },
+  {
+    "code": "CH",
+    "name": "瑞士",
+    "group": "西欧",
+    "numeric": "756"
+  },
+  {
+    "code": "CI",
+    "name": "科特迪瓦",
+    "group": "西非",
+    "numeric": "384"
+  },
+  {
+    "code": "CL",
+    "name": "智利",
+    "group": "南美洲",
+    "numeric": "152"
+  },
+  {
+    "code": "CM",
+    "name": "喀麦隆",
+    "group": "中非",
+    "numeric": "120"
+  },
+  {
+    "code": "CN",
+    "name": "中国",
+    "group": "东亚",
+    "numeric": "156"
+  },
+  {
+    "code": "CO",
+    "name": "哥伦比亚",
+    "group": "南美洲",
+    "numeric": "170"
+  },
+  {
+    "code": "CR",
+    "name": "哥斯达黎加",
+    "group": "中美洲",
+    "numeric": "188"
+  },
+  {
+    "code": "CU",
+    "name": "古巴",
+    "group": "加勒比",
+    "numeric": "192"
+  },
+  {
+    "code": "CV",
+    "name": "佛得角",
+    "group": "西非",
+    "numeric": "132"
+  },
+  {
+    "code": "CY",
+    "name": "塞浦路斯",
+    "group": "南欧",
+    "numeric": "196"
+  },
+  {
+    "code": "CZ",
+    "name": "捷克",
+    "group": "欧洲",
+    "numeric": "203"
+  },
+  {
+    "code": "DE",
+    "name": "德国",
+    "group": "西欧",
+    "numeric": "276"
+  },
+  {
+    "code": "DJ",
+    "name": "吉布提",
+    "group": "东非",
+    "numeric": "262"
+  },
+  {
+    "code": "DK",
+    "name": "丹麦",
+    "group": "北欧",
+    "numeric": "208"
+  },
+  {
+    "code": "DM",
+    "name": "多米尼加",
+    "group": "加勒比",
+    "numeric": "212"
+  },
+  {
+    "code": "DO",
+    "name": "多明尼加",
+    "group": "加勒比",
+    "numeric": "214"
+  },
+  {
+    "code": "DZ",
+    "name": "阿尔及利亚",
+    "group": "北非",
+    "numeric": "012"
+  },
+  {
+    "code": "EC",
+    "name": "厄瓜多尔",
+    "group": "南美洲",
+    "numeric": "218"
+  },
+  {
+    "code": "EE",
+    "name": "爱沙尼亚",
+    "group": "北欧",
+    "numeric": "233"
+  },
+  {
+    "code": "EG",
+    "name": "埃及",
+    "group": "北非",
+    "numeric": "818"
+  },
+  {
+    "code": "ER",
+    "name": "厄立特里亚",
+    "group": "东非",
+    "numeric": "232"
+  },
+  {
+    "code": "ES",
+    "name": "西班牙",
+    "group": "南欧",
+    "numeric": "724"
+  },
+  {
+    "code": "ET",
+    "name": "埃塞俄比亚",
+    "group": "东非",
+    "numeric": "231"
+  },
+  {
+    "code": "FI",
+    "name": "芬兰",
+    "group": "北欧",
+    "numeric": "246"
+  },
+  {
+    "code": "FJ",
+    "name": "斐济",
+    "group": "大洋洲",
+    "numeric": "242"
+  },
+  {
+    "code": "FM",
+    "name": "密克罗尼西亚",
+    "group": "大洋洲",
+    "numeric": "583"
+  },
+  {
+    "code": "FR",
+    "name": "法国",
+    "group": "西欧",
+    "numeric": "250"
+  },
+  {
+    "code": "GA",
+    "name": "加蓬",
+    "group": "中非",
+    "numeric": "266"
+  },
+  {
+    "code": "GB",
+    "name": "英国",
+    "group": "北欧",
+    "numeric": "826"
+  },
+  {
+    "code": "GD",
+    "name": "格林纳达",
+    "group": "加勒比",
+    "numeric": "308"
+  },
+  {
+    "code": "GE",
+    "name": "格鲁吉亚",
+    "group": "西亚",
+    "numeric": "268"
+  },
+  {
+    "code": "GH",
+    "name": "加纳",
+    "group": "西非",
+    "numeric": "288"
+  },
+  {
+    "code": "GM",
+    "name": "冈比亚",
+    "group": "西非",
+    "numeric": "270"
+  },
+  {
+    "code": "GN",
+    "name": "几内亚",
+    "group": "西非",
+    "numeric": "324"
+  },
+  {
+    "code": "GQ",
+    "name": "赤道几内亚",
+    "group": "中非",
+    "numeric": "226"
+  },
+  {
+    "code": "GR",
+    "name": "希腊",
+    "group": "南欧",
+    "numeric": "300"
+  },
+  {
+    "code": "GT",
+    "name": "危地马拉",
+    "group": "中美洲",
+    "numeric": "320"
+  },
+  {
+    "code": "GW",
+    "name": "几内亚比绍",
+    "group": "西非",
+    "numeric": "624"
+  },
+  {
+    "code": "GY",
+    "name": "圭亚那",
+    "group": "南美洲",
+    "numeric": "328"
+  },
+  {
+    "code": "HN",
+    "name": "洪都拉斯",
+    "group": "中美洲",
+    "numeric": "340"
+  },
+  {
+    "code": "HR",
+    "name": "克罗地亚",
+    "group": "欧洲",
+    "numeric": "191"
+  },
+  {
+    "code": "HT",
+    "name": "海地",
+    "group": "加勒比",
+    "numeric": "332"
+  },
+  {
+    "code": "HU",
+    "name": "匈牙利",
+    "group": "欧洲",
+    "numeric": "348"
+  },
+  {
+    "code": "ID",
+    "name": "印度尼西亚",
+    "group": "东南亚",
+    "numeric": "360"
+  },
+  {
+    "code": "IE",
+    "name": "爱尔兰",
+    "group": "北欧",
+    "numeric": "372"
+  },
+  {
+    "code": "IL",
+    "name": "以色列",
+    "group": "西亚",
+    "numeric": "376"
+  },
+  {
+    "code": "IN",
+    "name": "印度",
+    "group": "南亚",
+    "numeric": "356"
+  },
+  {
+    "code": "IQ",
+    "name": "伊拉克",
+    "group": "西亚",
+    "numeric": "368"
+  },
+  {
+    "code": "IR",
+    "name": "伊朗",
+    "group": "南亚",
+    "numeric": "364"
+  },
+  {
+    "code": "IS",
+    "name": "冰岛",
+    "group": "北欧",
+    "numeric": "352"
+  },
+  {
+    "code": "IT",
+    "name": "意大利",
+    "group": "南欧",
+    "numeric": "380"
+  },
+  {
+    "code": "JM",
+    "name": "牙买加",
+    "group": "加勒比",
+    "numeric": "388"
+  },
+  {
+    "code": "JO",
+    "name": "约旦",
+    "group": "西亚",
+    "numeric": "400"
+  },
+  {
+    "code": "JP",
+    "name": "日本",
+    "group": "东亚",
+    "numeric": "392"
+  },
+  {
+    "code": "KE",
+    "name": "肯尼亚",
+    "group": "东非",
+    "numeric": "404"
+  },
+  {
+    "code": "KG",
+    "name": "吉尔吉斯斯坦",
+    "group": "中亚",
+    "numeric": "417"
+  },
+  {
+    "code": "KH",
+    "name": "柬埔寨",
+    "group": "东南亚",
+    "numeric": "116"
+  },
+  {
+    "code": "KI",
+    "name": "基里巴斯",
+    "group": "大洋洲",
+    "numeric": "296"
+  },
+  {
+    "code": "KM",
+    "name": "科摩罗",
+    "group": "东非",
+    "numeric": "174"
+  },
+  {
+    "code": "KN",
+    "name": "圣基茨和尼维斯",
+    "group": "加勒比",
+    "numeric": "659"
+  },
+  {
+    "code": "KP",
+    "name": "朝鲜",
+    "group": "东亚",
+    "numeric": "408"
+  },
+  {
+    "code": "KR",
+    "name": "韩国",
+    "group": "东亚",
+    "numeric": "410"
+  },
+  {
+    "code": "KW",
+    "name": "科威特",
+    "group": "西亚",
+    "numeric": "414"
+  },
+  {
+    "code": "KZ",
+    "name": "哈萨克斯坦",
+    "group": "中亚",
+    "numeric": "398"
+  },
+  {
+    "code": "LA",
+    "name": "老挝",
+    "group": "东南亚",
+    "numeric": "418"
+  },
+  {
+    "code": "LB",
+    "name": "黎巴嫩",
+    "group": "西亚",
+    "numeric": "422"
+  },
+  {
+    "code": "LC",
+    "name": "圣卢西亚",
+    "group": "加勒比",
+    "numeric": "662"
+  },
+  {
+    "code": "LI",
+    "name": "列支敦士登",
+    "group": "西欧",
+    "numeric": "438"
+  },
+  {
+    "code": "LK",
+    "name": "斯里兰卡",
+    "group": "南亚",
+    "numeric": "144"
+  },
+  {
+    "code": "LR",
+    "name": "利比里亚",
+    "group": "西非",
+    "numeric": "430"
+  },
+  {
+    "code": "LS",
+    "name": "莱索托",
+    "group": "南非",
+    "numeric": "426"
+  },
+  {
+    "code": "LT",
+    "name": "立陶宛",
+    "group": "北欧",
+    "numeric": "440"
+  },
+  {
+    "code": "LU",
+    "name": "卢森堡",
+    "group": "西欧",
+    "numeric": "442"
+  },
+  {
+    "code": "LV",
+    "name": "拉脱维亚",
+    "group": "北欧",
+    "numeric": "428"
+  },
+  {
+    "code": "LY",
+    "name": "利比亚",
+    "group": "北非",
+    "numeric": "434"
+  },
+  {
+    "code": "MA",
+    "name": "摩洛哥",
+    "group": "北非",
+    "numeric": "504"
+  },
+  {
+    "code": "MC",
+    "name": "摩纳哥",
+    "group": "西欧",
+    "numeric": "492"
+  },
+  {
+    "code": "MD",
+    "name": "摩尔多瓦",
+    "group": "东欧",
+    "numeric": "498"
+  },
+  {
+    "code": "ME",
+    "name": "黑山",
+    "group": "欧洲",
+    "numeric": "499"
+  },
+  {
+    "code": "MG",
+    "name": "马达加斯加",
+    "group": "东非",
+    "numeric": "450"
+  },
+  {
+    "code": "MH",
+    "name": "马绍尔群岛",
+    "group": "大洋洲",
+    "numeric": "584"
+  },
+  {
+    "code": "MK",
+    "name": "北马其顿",
+    "group": "欧洲",
+    "numeric": "807"
+  },
+  {
+    "code": "ML",
+    "name": "马里",
+    "group": "西非",
+    "numeric": "466"
+  },
+  {
+    "code": "MM",
+    "name": "缅甸",
+    "group": "东南亚",
+    "numeric": "104"
+  },
+  {
+    "code": "MN",
+    "name": "蒙古",
+    "group": "东亚",
+    "numeric": "496"
+  },
+  {
+    "code": "MR",
+    "name": "毛里塔尼亚",
+    "group": "西非",
+    "numeric": "478"
+  },
+  {
+    "code": "MT",
+    "name": "马耳他",
+    "group": "南欧",
+    "numeric": "470"
+  },
+  {
+    "code": "MU",
+    "name": "毛里求斯",
+    "group": "东非",
+    "numeric": "480"
+  },
+  {
+    "code": "MV",
+    "name": "马尔代夫",
+    "group": "南亚",
+    "numeric": "462"
+  },
+  {
+    "code": "MW",
+    "name": "马拉维",
+    "group": "东非",
+    "numeric": "454"
+  },
+  {
+    "code": "MX",
+    "name": "墨西哥",
+    "group": "北美洲",
+    "numeric": "484"
+  },
+  {
+    "code": "MY",
+    "name": "马来西亚",
+    "group": "东南亚",
+    "numeric": "458"
+  },
+  {
+    "code": "MZ",
+    "name": "莫桑比克",
+    "group": "东非",
+    "numeric": "508"
+  },
+  {
+    "code": "NA",
+    "name": "纳米比亚",
+    "group": "南非",
+    "numeric": "516"
+  },
+  {
+    "code": "NE",
+    "name": "尼日尔",
+    "group": "西非",
+    "numeric": "562"
+  },
+  {
+    "code": "NG",
+    "name": "尼日利亚",
+    "group": "西非",
+    "numeric": "566"
+  },
+  {
+    "code": "NI",
+    "name": "尼加拉瓜",
+    "group": "中美洲",
+    "numeric": "558"
+  },
+  {
+    "code": "NL",
+    "name": "荷兰",
+    "group": "西欧",
+    "numeric": "528"
+  },
+  {
+    "code": "NO",
+    "name": "挪威",
+    "group": "北欧",
+    "numeric": "578"
+  },
+  {
+    "code": "NP",
+    "name": "尼泊尔",
+    "group": "南亚",
+    "numeric": "524"
+  },
+  {
+    "code": "NR",
+    "name": "瑙鲁",
+    "group": "大洋洲",
+    "numeric": "520"
+  },
+  {
+    "code": "NZ",
+    "name": "新西兰",
+    "group": "大洋洲",
+    "numeric": "554"
+  },
+  {
+    "code": "OM",
+    "name": "阿曼",
+    "group": "西亚",
+    "numeric": "512"
+  },
+  {
+    "code": "PA",
+    "name": "巴拿马",
+    "group": "中美洲",
+    "numeric": "591"
+  },
+  {
+    "code": "PE",
+    "name": "秘鲁",
+    "group": "南美洲",
+    "numeric": "604"
+  },
+  {
+    "code": "PG",
+    "name": "巴布亚新几内亚",
+    "group": "大洋洲",
+    "numeric": "598"
+  },
+  {
+    "code": "PH",
+    "name": "菲律宾",
+    "group": "东南亚",
+    "numeric": "608"
+  },
+  {
+    "code": "PK",
+    "name": "巴基斯坦",
+    "group": "南亚",
+    "numeric": "586"
+  },
+  {
+    "code": "PL",
+    "name": "波兰",
+    "group": "欧洲",
+    "numeric": "616"
+  },
+  {
+    "code": "PS",
+    "name": "巴勒斯坦",
+    "group": "西亚",
+    "numeric": "275"
+  },
+  {
+    "code": "PT",
+    "name": "葡萄牙",
+    "group": "南欧",
+    "numeric": "620"
+  },
+  {
+    "code": "PW",
+    "name": "帕劳",
+    "group": "大洋洲",
+    "numeric": "585"
+  },
+  {
+    "code": "PY",
+    "name": "巴拉圭",
+    "group": "南美洲",
+    "numeric": "600"
+  },
+  {
+    "code": "QA",
+    "name": "卡塔尔",
+    "group": "西亚",
+    "numeric": "634"
+  },
+  {
+    "code": "RO",
+    "name": "罗马尼亚",
+    "group": "欧洲",
+    "numeric": "642"
+  },
+  {
+    "code": "RS",
+    "name": "塞尔维亚",
+    "group": "欧洲",
+    "numeric": "688"
+  },
+  {
+    "code": "RU",
+    "name": "俄罗斯",
+    "group": "东欧",
+    "numeric": "643"
+  },
+  {
+    "code": "RW",
+    "name": "卢旺达",
+    "group": "东非",
+    "numeric": "646"
+  },
+  {
+    "code": "SA",
+    "name": "沙特阿拉伯",
+    "group": "西亚",
+    "numeric": "682"
+  },
+  {
+    "code": "SB",
+    "name": "所罗门群岛",
+    "group": "大洋洲",
+    "numeric": "090"
+  },
+  {
+    "code": "SC",
+    "name": "塞舌尔",
+    "group": "东非",
+    "numeric": "690"
+  },
+  {
+    "code": "SD",
+    "name": "苏丹",
+    "group": "北非",
+    "numeric": "729"
+  },
+  {
+    "code": "SE",
+    "name": "瑞典",
+    "group": "北欧",
+    "numeric": "752"
+  },
+  {
+    "code": "SG",
+    "name": "新加坡",
+    "group": "东南亚",
+    "numeric": "702"
+  },
+  {
+    "code": "SI",
+    "name": "斯洛文尼亚",
+    "group": "欧洲",
+    "numeric": "705"
+  },
+  {
+    "code": "SK",
+    "name": "斯洛伐克",
+    "group": "欧洲",
+    "numeric": "703"
+  },
+  {
+    "code": "SL",
+    "name": "塞拉利昂",
+    "group": "西非",
+    "numeric": "694"
+  },
+  {
+    "code": "SM",
+    "name": "圣马力诺",
+    "group": "南欧",
+    "numeric": "674"
+  },
+  {
+    "code": "SN",
+    "name": "塞内加尔",
+    "group": "西非",
+    "numeric": "686"
+  },
+  {
+    "code": "SO",
+    "name": "索马里",
+    "group": "东非",
+    "numeric": "706"
+  },
+  {
+    "code": "SR",
+    "name": "苏里南",
+    "group": "南美洲",
+    "numeric": "740"
+  },
+  {
+    "code": "SS",
+    "name": "南苏丹",
+    "group": "中非",
+    "numeric": "728"
+  },
+  {
+    "code": "ST",
+    "name": "圣多美和普林西比",
+    "group": "中非",
+    "numeric": "678"
+  },
+  {
+    "code": "SV",
+    "name": "萨尔瓦多",
+    "group": "中美洲",
+    "numeric": "222"
+  },
+  {
+    "code": "SY",
+    "name": "叙利亚",
+    "group": "西亚",
+    "numeric": "760"
+  },
+  {
+    "code": "SZ",
+    "name": "斯威士兰",
+    "group": "南非",
+    "numeric": "748"
+  },
+  {
+    "code": "TD",
+    "name": "乍得",
+    "group": "中非",
+    "numeric": "148"
+  },
+  {
+    "code": "TG",
+    "name": "多哥",
+    "group": "西非",
+    "numeric": "768"
+  },
+  {
+    "code": "TH",
+    "name": "泰国",
+    "group": "东南亚",
+    "numeric": "764"
+  },
+  {
+    "code": "TJ",
+    "name": "塔吉克斯坦",
+    "group": "中亚",
+    "numeric": "762"
+  },
+  {
+    "code": "TL",
+    "name": "东帝汶",
+    "group": "东南亚",
+    "numeric": "626"
+  },
+  {
+    "code": "TM",
+    "name": "土库曼斯坦",
+    "group": "中亚",
+    "numeric": "795"
+  },
+  {
+    "code": "TN",
+    "name": "突尼斯",
+    "group": "北非",
+    "numeric": "788"
+  },
+  {
+    "code": "TO",
+    "name": "汤加",
+    "group": "大洋洲",
+    "numeric": "776"
+  },
+  {
+    "code": "TR",
+    "name": "土耳其",
+    "group": "西亚",
+    "numeric": "792"
+  },
+  {
+    "code": "TT",
+    "name": "特立尼达和多巴哥",
+    "group": "加勒比",
+    "numeric": "780"
+  },
+  {
+    "code": "TV",
+    "name": "图瓦卢",
+    "group": "大洋洲",
+    "numeric": "798"
+  },
+  {
+    "code": "TZ",
+    "name": "坦桑尼亚",
+    "group": "东非",
+    "numeric": "834"
+  },
+  {
+    "code": "UA",
+    "name": "乌克兰",
+    "group": "东欧",
+    "numeric": "804"
+  },
+  {
+    "code": "UG",
+    "name": "乌干达",
+    "group": "东非",
+    "numeric": "800"
+  },
+  {
+    "code": "US",
+    "name": "美国",
+    "group": "北美洲",
+    "numeric": "840"
+  },
+  {
+    "code": "UY",
+    "name": "乌拉圭",
+    "group": "南美洲",
+    "numeric": "858"
+  },
+  {
+    "code": "UZ",
+    "name": "乌兹别克斯坦",
+    "group": "中亚",
+    "numeric": "860"
+  },
+  {
+    "code": "VA",
+    "name": "梵蒂冈",
+    "group": "南欧",
+    "numeric": "336"
+  },
+  {
+    "code": "VC",
+    "name": "圣文森特和格林纳丁斯",
+    "group": "加勒比",
+    "numeric": "670"
+  },
+  {
+    "code": "VE",
+    "name": "委内瑞拉",
+    "group": "南美洲",
+    "numeric": "862"
+  },
+  {
+    "code": "VN",
+    "name": "越南",
+    "group": "东南亚",
+    "numeric": "704"
+  },
+  {
+    "code": "VU",
+    "name": "瓦努阿图",
+    "group": "大洋洲",
+    "numeric": "548"
+  },
+  {
+    "code": "WS",
+    "name": "萨摩亚",
+    "group": "大洋洲",
+    "numeric": "882"
+  },
+  {
+    "code": "YE",
+    "name": "也门",
+    "group": "西亚",
+    "numeric": "887"
+  },
+  {
+    "code": "ZA",
+    "name": "南非",
+    "group": "南非",
+    "numeric": "710"
+  },
+  {
+    "code": "ZM",
+    "name": "赞比亚",
+    "group": "东非",
+    "numeric": "894"
+  },
+  {
+    "code": "ZW",
+    "name": "津巴布韦",
+    "group": "南非",
+    "numeric": "716"
+  }
+];

@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>路线库</title>
+    <link rel="icon" href="assets/profile-avatar-kuma-small.jpg" />
+    <link rel="stylesheet" href="mobile.css?v=route-feed-anchor-top-20260713" />
+    <script src="travel-data.js?v=route-cover-clean-20260615" defer></script>
+    <script src="travel-state.js?v=route-v2-favorite-snapshot-20260619" defer></script>
+    <script src="home-components.js?v=home-next-row-20260607" defer></script>
+    <script src="route-feed-bootstrap.js?v=route-feed-anchor-top-20260713" defer></script>
+    <script src="routes.js?v=route-feed-anchor-top-20260713" defer></script>
+  </head>
+  <body>
+    <main class="home-screen route-screen" aria-label="路线库">
+      <header class="route-header">
+        <h1>路线灵感库</h1>
+      </header>
+
+      <label class="atlas-search route-search">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m20 20-4.2-4.2M10.7 17a6.3 6.3 0 1 1 0-12.6 6.3 6.3 0 0 1 0 12.6Z"></path></svg>
+        <input type="search" placeholder="搜索旅行需求，例如：日本8天、冰岛冬季自驾" aria-label="搜索旅行需求" data-route-search />
+      </label>
+      <p class="route-search-summary" data-route-search-summary hidden></p>
+
+      <section class="route-tabs" aria-label="路线类型">
+        <button class="active" type="button" data-route-tab="cross">跨国路线</button>
+        <button type="button" data-route-tab="single">单国路线</button>
+      </section>
+
+      <section class="route-list" aria-label="路线发现列表" aria-live="polite" aria-busy="true" data-route-feed></section>
+      <div aria-hidden="true" data-route-feed-sentinel></div>
+
+      <bottom-tab-bar active="路线"></bottom-tab-bar>
+    </main>
+  </body>
+</html>

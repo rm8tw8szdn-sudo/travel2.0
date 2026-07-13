@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>奥斯陆 · 城市详情</title>
+    <link rel="icon" href="assets/profile-avatar-kuma-small.jpg" />
+    <link rel="stylesheet" href="mobile.css" />
+    <script src="travel-data.js?v=route-cover-clean-20260615" defer></script>
+    <script src="travel-state.js?v=logic-state-20260607" defer></script>
+    <script src="detail-enrichment.js?v=detail-cache-20260616" defer></script>
+    <script src="home-components.js?v=home-next-row-20260607" defer></script>
+    <script src="app-shared.js?v=logic-state-20260607" defer></script>
+    <script src="city-detail.js" defer></script>
+  </head>
+  <body>
+    <main class="home-screen route-detail-screen city-detail-screen" aria-label="城市详情" data-city-detail>
+      <header class="route-detail-top">
+        <a class="route-detail-icon" href="atlas.html" aria-label="返回"><svg viewBox="0 0 24 24"><path d="m15 5-7 7 7 7"></path></svg></a>
+        <div>
+          <button class="route-detail-icon" type="button" aria-label="分享城市" data-city-share><svg viewBox="0 0 24 24"><path d="M12 4v10"></path><path d="m8 8 4-4 4 4"></path><path d="M6 12v7h12v-7"></path></svg></button>
+          <button class="route-detail-icon" type="button" aria-label="收藏城市" data-city-favorite><svg viewBox="0 0 24 24"><path d="M12 19.2S5.2 15.1 5.2 9.9A3.7 3.7 0 0 1 12 7.8a3.7 3.7 0 0 1 6.8 2.1c0 5.2-6.8 9.3-6.8 9.3Z"></path></svg></button>
+        </div>
+      </header>
+      <section class="city-detail-cover">
+        <img src="assets/city-oslo-cover.svg" alt="城市封面图" data-city-cover />
+      </section>
+      <section class="route-detail-content">
+        <div class="route-detail-title">
+          <h1 data-city-name>奥斯陆</h1>
+          <p data-city-country>挪威</p>
+        </div>
+        <p class="country-intro" data-city-intro>挪威城市，适合作为北欧路线的城市起点。</p>
+        <div class="city-tag-row" data-city-tags></div>
+        <section class="city-trip-meta" aria-label="城市操作">
+          <button type="button" data-city-mark-explored>标记已探索</button>
+          <button type="button" data-city-add-trip>加入行程</button>
+          <button type="button" data-city-share>分享</button>
+        </section>
+        <section class="country-section" aria-label="代表景点">
+          <div class="country-section-head">
+            <h2>代表景点</h2>
+          </div>
+          <div class="city-spot-list" data-city-spots></div>
+        </section>
+      </section>
+      <bottom-tab-bar active="图鉴"></bottom-tab-bar>
+    </main>
+  </body>
+</html>

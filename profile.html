@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>我的</title>
+    <link rel="icon" href="assets/profile-avatar-kuma-small.jpg" />
+    <link rel="stylesheet" href="mobile.css?v=profile-footprint-empty-20260710" />
+    <script src="travel-data.js?v=route-cover-clean-20260615" defer></script>
+    <script src="travel-state.js?v=logic-state-20260607" defer></script>
+    <script src="home-components.js?v=home-next-row-20260607" defer></script>
+    <script src="world-map.js?v=profile-footprint-empty-20260710" defer></script>
+    <script src="profile.js?v=profile-footprint-empty-20260710" defer></script>
+    <script src="app-shared.js?v=logic-state-20260607" defer></script>
+  </head>
+  <body>
+    <main class="home-screen profile-screen" aria-label="我的">
+      <header class="profile-header">
+        <h1>我的</h1>
+      </header>
+
+      <section class="profile-card" aria-label="个人资料">
+        <div class="profile-person">
+          <button class="profile-avatar-button" type="button" aria-label="编辑头像" data-profile-avatar-edit>
+            <img src="assets/profile-avatar-kuma-small.jpg" alt="Ruby 的小熊头像" decoding="async" fetchpriority="high" />
+            <i aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M4 8h4l2-2h4l2 2h4v11H4Z"></path><path d="M12 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"></path></svg>
+            </i>
+          </button>
+          <button class="profile-person-copy" type="button" data-profile-edit>
+            <strong>Ruby <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h4l11-11-4-4L4 16v4Z"></path><path d="m13 7 4 4"></path></svg></strong>
+            <em>旅行是我热爱的生活方式。</em>
+          </button>
+        </div>
+
+        <div class="profile-stats" aria-label="旅行统计">
+          <span><em>已点亮国家</em><strong>11</strong></span>
+          <span><em>已点亮城市</em><strong>27</strong></span>
+          <span><em>收藏数量</em><strong>5</strong></span>
+          <span><em>探索进度</em><strong>11%</strong></span>
+        </div>
+      </section>
+
+      <section class="profile-section profile-footprint" aria-label="我的足迹">
+        <div class="profile-section-head">
+          <h2>我的足迹</h2>
+          <button type="button" data-footprint-page>查看时间轴 <span aria-hidden="true">›</span></button>
+        </div>
+        <div class="profile-map-card" aria-label="我的足迹地图与时间轴">
+          <button class="profile-map-preview" type="button" aria-label="放大查看我的足迹地图" data-profile-map-open>
+            <span class="travel-world-map travel-world-map--profile" data-world-map data-world-map-mode="preview"></span>
+          </button>
+          <div class="profile-mini-timeline" aria-label="最近足迹时间轴" data-profile-timeline></div>
+        </div>
+      </section>
+
+      <section class="profile-section profile-achievements" aria-label="我的成就">
+        <button class="profile-achievement-entry" type="button" data-profile-link="achievements">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4h10v3a5 5 0 0 1-10 0Z"></path><path d="M9 14h6M10 20h4M12 14v6"></path><path d="M7 7H4.8a3 3 0 0 0 3 3M17 7h2.2a3 3 0 0 1-3 3"></path></svg>
+          <span>成就中心</span>
+          <i aria-hidden="true">›</i>
+        </button>
+      </section>
+
+      <section class="profile-menu" aria-label="设置入口">
+        <button type="button" data-favorites-page>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19.2S5.2 15.1 5.2 9.9A3.7 3.7 0 0 1 12 7.8a3.7 3.7 0 0 1 6.8 2.1c0 5.2-6.8 9.3-6.8 9.3Z"></path></svg>
+          <span>我的收藏</span>
+          <em>›</em>
+        </button>
+        <button type="button" data-profile-link="profile">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12.1a3.8 3.8 0 1 0 0-7.6 3.8 3.8 0 0 0 0 7.6Z"></path><path d="M5.5 20c.8-3.2 3-5 6.5-5s5.7 1.8 6.5 5"></path></svg>
+          <span>个人资料</span>
+          <em>›</em>
+        </button>
+        <button type="button" data-profile-link="settings">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 8.8a3.2 3.2 0 1 0 0 6.4 3.2 3.2 0 0 0 0-6.4Z"></path><path d="M12 3.8v2M12 18.2v2M4.2 12h2M17.8 12h2M6.5 6.5l1.4 1.4M16.1 16.1l1.4 1.4M17.5 6.5l-1.4 1.4M7.9 16.1l-1.4 1.4"></path></svg>
+          <span>设置</span>
+          <em>›</em>
+        </button>
+        <button type="button" data-profile-link="backup">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5h9l3 3v11H6Z"></path><path d="M14 5v4h4M8.5 14h7M8.5 17h5"></path></svg>
+          <span>数据备份与导出</span>
+          <em>›</em>
+        </button>
+      </section>
+
+      <bottom-tab-bar active="我的"></bottom-tab-bar>
+    </main>
+  </body>
+</html>

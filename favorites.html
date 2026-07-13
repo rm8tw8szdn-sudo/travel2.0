@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>我的收藏</title>
+    <link rel="icon" href="assets/profile-avatar-kuma-small.jpg" />
+    <link rel="stylesheet" href="mobile.css?v=page-title-compact-20260613" />
+    <script src="travel-data.js?v=route-cover-clean-20260615" defer></script>
+    <script src="travel-state.js?v=route-v2-favorite-snapshot-20260619" defer></script>
+    <script src="home-components.js?v=home-next-row-20260607" defer></script>
+    <script src="favorites.js?v=route-v2-favorite-snapshot-20260619" defer></script>
+  </head>
+  <body>
+    <main class="home-screen favorites-screen" aria-label="我的收藏">
+      <header class="favorites-header">
+        <button class="favorites-back" type="button" aria-label="返回我的页" data-favorites-back>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 5-7 7 7 7"></path></svg>
+        </button>
+        <h1>我的收藏</h1>
+        <div>
+          <button type="button" aria-label="搜索">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m20 20-4.2-4.2M10.7 17a6.3 6.3 0 1 1 0-12.6 6.3 6.3 0 0 1 0 12.6Z"></path></svg>
+          </button>
+          <button type="button" aria-label="更多">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h.1M12 12h.1M19 12h.1"></path></svg>
+          </button>
+        </div>
+      </header>
+
+      <nav class="favorites-tabs" aria-label="收藏分类">
+        <button class="active" type="button" data-favorite-tab="countries">国家</button>
+        <button type="button" data-favorite-tab="cities">城市</button>
+        <button type="button" data-favorite-tab="routes">路线</button>
+      </nav>
+
+      <label class="favorites-search">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m20 20-4.2-4.2M10.7 17a6.3 6.3 0 1 1 0-12.6 6.3 6.3 0 0 1 0 12.6Z"></path></svg>
+        <input type="search" placeholder="搜索国家" aria-label="搜索收藏" data-favorite-search />
+      </label>
+
+      <section class="favorites-toolbar" aria-label="收藏列表工具栏">
+        <span data-favorite-count>全部 12</span>
+        <button type="button">最近收藏 <i aria-hidden="true">⌄</i></button>
+      </section>
+
+      <section class="favorites-grid" aria-label="收藏列表" data-favorite-grid></section>
+
+      <bottom-tab-bar active="我的"></bottom-tab-bar>
+    </main>
+  </body>
+</html>

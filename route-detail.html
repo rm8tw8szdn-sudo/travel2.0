@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>路线详情</title>
+    <link rel="icon" href="assets/profile-avatar-kuma-small.jpg" />
+    <link rel="stylesheet" href="mobile.css?v=route-detail-destination-repair-20260710" />
+    <script src="travel-data.js?v=route-cover-clean-20260615" defer></script>
+    <script src="travel-state.js?v=route-v2-favorite-snapshot-20260619" defer></script>
+    <script src="route-detail.js?v=route-detail-destination-repair-20260710" defer></script>
+  </head>
+  <body>
+    <main class="home-screen route-detail-screen" aria-label="路线详情">
+      <header class="route-detail-top">
+        <a class="route-detail-icon" href="routes.html" aria-label="返回路线列表">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 5-7 7 7 7"></path></svg>
+        </a>
+        <div>
+          <button class="route-detail-icon" type="button" aria-label="收藏路线" data-route-favorite aria-pressed="false">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19.2S5.2 15.1 5.2 9.9A3.7 3.7 0 0 1 12 7.8a3.7 3.7 0 0 1 6.8 2.1c0 5.2-6.8 9.3-6.8 9.3Z"></path></svg>
+          </button>
+        </div>
+      </header>
+
+      <section class="route-detail-content">
+        <div class="route-empty-state" data-route-detail-state="loading">
+          <p>正在加载路线详情</p>
+          <span>正在读取对应的路线记录</span>
+        </div>
+
+        <article data-route-detail-state="ready" hidden>
+          <figure class="route-detail-hero">
+            <img data-route-cover alt="路线封面图" />
+          </figure>
+
+          <header class="route-detail-title">
+            <h1 data-route-name></h1>
+            <h2 data-route-places></h2>
+            <p data-route-summary></p>
+            <p class="route-highlight-text" data-route-highlight-text></p>
+          </header>
+
+          <section class="route-detail-summary" aria-label="路线核心信息">
+            <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4v3M17 4v3M5.2 8.2h13.6"></path><rect x="4.2" y="5.8" width="15.6" height="14" rx="3"></rect></svg><em>推荐天数</em><strong data-route-recommended-days></strong></span>
+            <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 4c-7.2.4-11.4 4.6-12.6 12.6C14.4 15.4 18.6 11.2 19 4Z"></path><path d="M6.5 16.5 4 19"></path></svg><em>最佳季节</em><strong data-route-best-months></strong></span>
+            <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5v14"></path></svg><em>路线来源</em><a data-route-source target="_blank" rel="noreferrer"></a></span>
+          </section>
+
+          <section class="route-detail-actions" aria-label="路线操作">
+            <button type="button" data-route-add-trip>加入行程</button>
+          </section>
+
+          <section class="route-detail-section" aria-label="包含目的地">
+            <h2>包含目的地</h2>
+            <div class="route-city-grid" data-route-destination-grid></div>
+          </section>
+        </article>
+
+        <div class="route-empty-state" data-route-detail-state="not-found" hidden>
+          <p>404 · 未找到路线</p>
+          <span>这个 routeId 不存在，或对应路线已不可用。</span>
+          <a href="routes.html">返回路线发现</a>
+        </div>
+
+        <div class="route-empty-state" data-route-detail-state="error" hidden>
+          <p>路线详情加载失败</p>
+          <span>请稍后重试。</span>
+          <button type="button" data-route-detail-retry>重新加载</button>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

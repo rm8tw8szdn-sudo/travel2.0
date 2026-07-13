@@ -1,0 +1,47 @@
+# Environment and secrets
+.env
+.env.*
+!.env.example
+*.local
+*.key
+*.pem
+*.p12
+*.pfx
+*secret*
+*token*
+*cookie*
+*session*
+2026-*-this-session-is-being-continued-*.txt
+
+# Dependencies
+node_modules/
+
+# Build and generated output
+build/
+dist/
+output/
+coverage/
+playwright-report/
+test-results/
+
+# Logs and temporary files
+logs/
+*.log
+*.tmp
+*.temp
+*.bak
+tmp/
+temp/
+
+# OS and editor files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Runtime caches and generated route data
+.route-v2-cache/
+.cache/
+
+# Large legacy video assets kept out of regular Git
+assets/footprint-globe.mov
+assets/home-globe.mov

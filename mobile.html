@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>旅行收集册首页</title>
+    <link rel="icon" href="assets/profile-avatar-kuma-small.jpg" />
+    <link rel="stylesheet" href="mobile.css?v=mobile-load-repair-20260710" />
+    <script src="travel-data.js?v=route-cover-clean-20260615" defer></script>
+    <script src="travel-state.js?v=mobile-load-repair-20260710" defer></script>
+    <script src="home-components.js?v=mobile-load-repair-20260710" defer></script>
+    <script src="route-feed-preload.js?v=mobile-load-repair-20260710" defer></script>
+    <script src="app-shared.js?v=mobile-load-repair-20260710" defer></script>
+  </head>
+  <body>
+    <main class="home-screen" aria-label="旅行收集册首页">
+      <greeting-header>
+        <section class="home-greeting" aria-label="问候">
+          <div>
+            <h1>你好，Winnie <span aria-hidden="true">Hi</span></h1>
+            <p>正在准备你的旅行收集册</p>
+          </div>
+        </section>
+      </greeting-header>
+      <stat-card>
+        <section class="home-stat-card" aria-label="已点亮国家">
+          <div class="home-stat-copy">
+            <p>已点亮国家</p>
+            <div class="home-stat-number"><strong>0</strong><span>/ 195</span></div>
+            <p class="home-progress-label">世界探索进度</p>
+            <div class="home-progress-row">
+              <div class="home-progress-track" style="--progress-percent: 0%"><i></i></div>
+              <span>0%</span>
+            </div>
+          </div>
+        </section>
+      </stat-card>
+      <trip-preview-card>
+        <section class="home-next-section" aria-label="下一目标">
+          <h2>下一目标</h2>
+          <article class="home-next-card is-empty">
+            <span class="home-next-cover home-next-empty-cover" aria-hidden="true"></span>
+            <div class="home-next-copy">
+              <h3>正在读取行程</h3>
+              <p>稍等一下</p>
+            </div>
+          </article>
+        </section>
+      </trip-preview-card>
+      <recent-trip-card>
+        <section class="home-recent-section" aria-label="最近旅程">
+          <h2>最近旅程</h2>
+          <article class="home-recent-card is-empty">
+            <span class="home-recent-cover home-recent-empty-cover" aria-hidden="true"></span>
+            <div class="home-recent-copy">
+              <h3>正在读取足迹</h3>
+              <p>完成旅程后会显示在这里</p>
+            </div>
+          </article>
+        </section>
+      </recent-trip-card>
+      <bottom-tab-bar>
+        <nav class="home-tabbar" aria-label="底部导航">
+          <a class="active" href="mobile.html" aria-current="page">首页</a>
+          <a href="atlas.html">图鉴</a>
+          <a href="routes.html">路线</a>
+          <a href="trips.html">行程</a>
+          <a href="profile.html">我的</a>
+        </nav>
+      </bottom-tab-bar>
+    </main>
+  </body>
+</html>

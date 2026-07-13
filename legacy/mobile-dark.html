@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>脚印 手机版 · 黑绿色</title>
+    <link rel="stylesheet" href="mobile.css" />
+  </head>
+  <body class="mobile-no-map mobile-dark-green">
+    <main class="phone-shell" aria-label="地图收集首页原型">
+      <header class="topbar">
+        <div>
+          <h1 id="pageTitle">脚印</h1>
+        </div>
+        <div class="map-switch" role="tablist" aria-label="地图切换">
+          <button class="active" type="button" data-mode="world">世界地图</button>
+          <button type="button" data-mode="china">中国地图</button>
+        </div>
+      </header>
+
+      <section class="hero-panel">
+        <label class="search-box">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="m21 21-4.3-4.3M10.8 18a7.2 7.2 0 1 1 0-14.4 7.2 7.2 0 0 1 0 14.4Z" />
+          </svg>
+          <input id="placeSearch" type="search" placeholder="搜索国家" autocomplete="off" />
+        </label>
+
+        <section class="map-panel" aria-label="地图">
+          <div class="map-canvas">
+            <video
+              class="globe-video"
+              id="globeVideo"
+              src="assets/footprint-globe.mov"
+              autoplay
+              muted
+              loop
+              playsinline
+              aria-label="脚印地球动画"
+            ></video>
+            <svg id="collectionMap" class="collection-map" viewBox="0 0 820 430" role="img" aria-label="地图"></svg>
+            <div class="map-popover hidden" id="mapPopover"></div>
+            <button class="globe-toggle" type="button" id="globeToggle" aria-label="暂停地球动画">暂停</button>
+            <div class="map-controls" aria-label="地图缩放">
+              <button type="button" id="zoomIn" aria-label="放大">+</button>
+              <button type="button" id="zoomOut" aria-label="缩小">−</button>
+            </div>
+          </div>
+          <div class="map-footer">
+            <div class="map-legend" aria-label="地图状态说明">
+              <span><i class="dot visited"></i>打开景观</span>
+            </div>
+            <div class="map-status" id="mapStatus">正在加载地图...</div>
+          </div>
+        </section>
+      </section>
+
+      <section class="scoreboard" aria-label="收集进度">
+        <article>
+          <strong id="visitedCount">0</strong>
+          <span>已点亮</span>
+        </article>
+        <article>
+          <strong id="blankCount">0</strong>
+          <span>未点亮</span>
+        </article>
+        <article>
+          <strong id="totalCount">0</strong>
+          <span>总数</span>
+        </article>
+      </section>
+
+      <section class="progress-card" aria-label="点亮进度">
+        <div>
+          <span id="progressLabel">点亮进度</span>
+          <strong id="progressText">0 / 0</strong>
+        </div>
+        <div class="progress-track">
+          <i id="progressFill"></i>
+        </div>
+      </section>
+
+      <section class="collection-panel" aria-label="地点收集列表">
+        <div class="section-title">
+          <div>
+            <p id="collectionEyebrow">国家收集册</p>
+            <h2 id="listTitle">所有国家</h2>
+          </div>
+          <button class="refresh-list" type="button" id="refreshList">刷新排序</button>
+        </div>
+
+        <div class="status-tabs" role="tablist" aria-label="状态筛选">
+          <button class="active" type="button" data-filter="all">全部</button>
+          <button type="button" data-filter="visited">去过</button>
+          <button type="button" data-filter="blank">未去过</button>
+        </div>
+
+        <div class="place-grid" id="placeGrid"></div>
+      </section>
+    </main>
+
+    <script src="vendor/d3.min.js"></script>
+    <script src="vendor/topojson-client.min.js"></script>
+    <script src="mobile-app.js"></script>
+  </body>
+</html>

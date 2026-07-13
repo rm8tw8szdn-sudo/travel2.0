@@ -1,0 +1,99 @@
+{
+  "generatedAt": "2026-07-13T04:40:00Z",
+  "repositoryFile": ".route-v2-cache/accepted-routes.json",
+  "repositorySha256": "aea28bcc03eaf6ccce5fd7453f88ece4f0060789f135eaf837b568d9c43e7e3f",
+  "repositorySize": 45562416,
+  "rawRouteCount": 5500,
+  "validRouteCount": 4577,
+  "feedEligibleCount": 198,
+  "feedEligibleByType": {
+    "cross": 91,
+    "single": 107
+  },
+  "bootstrapFile": "route-feed-bootstrap.js",
+  "bootstrapSha256": "9f5e2b2557a9e547073da4d299f08b5b18b6eba38b3bd55fc995a16adf1cd9ef",
+  "bootstrapSize": 87795,
+  "bootstrapCounts": {
+    "cross": 6,
+    "single": 6
+  },
+  "currentGitBranch": null,
+  "currentGitHead": null,
+  "currentGitRemote": null,
+  "isGitRepository": false,
+  "featureFlags": {
+    "ROUTE_V2_INTENT_ENABLED": null,
+    "ROUTE_V2_CANDIDATE_POOL_ENABLED": null,
+    "ROUTE_V2_EVIDENCE_BUNDLE_ENABLED": null,
+    "ROUTE_V2_TRACE_ENABLED": null,
+    "ROUTE_V2_TRACE_REQUIRED_FOR_ACCEPT": null,
+    "ROUTE_V2_VALIDATION_ENABLED": null,
+    "ROUTE_V2_REVIEW_ENABLED": null,
+    "ROUTE_V2_READY_POOL_GATING_ENABLED": null,
+    "ROUTE_V2_FEED_ENABLED": null,
+    "SEARCH_PLANNER_TIMEOUT_MS": null,
+    "SEARCH_MAX_PLANNER_CALLS_PER_REQUEST": null,
+    "SEARCH_CACHE_TTL_DAYS": null,
+    "SEARCH_AUTO_ACCEPT_GENERATED": null
+  },
+  "runtimeVersions": {
+    "node": "v24.14.0",
+    "npm": null,
+    "pnpm": "fallback command available",
+    "yarn": null,
+    "packageJson": false,
+    "lockFiles": []
+  },
+  "smokeTests": {
+    "scripts": [
+      {
+        "command": "node scripts/verify-concept-taxonomy.mjs",
+        "status": "PASS"
+      },
+      {
+        "command": "node scripts/verify-gold-cases.mjs",
+        "status": "PASS"
+      },
+      {
+        "command": "node scripts/verify-route-content-quality.mjs",
+        "status": "PASS"
+      }
+    ],
+    "http": [
+      {
+        "check": "GET /travel-collection/routes.html",
+        "status": 200
+      },
+      {
+        "check": "GET /travel-collection/mobile.html",
+        "status": 200
+      },
+      {
+        "check": "POST /api/routes/discovery mode=feed",
+        "status": 200
+      },
+      {
+        "check": "POST /api/routes/discovery mode=search query=撒哈拉 utf8",
+        "status": 200
+      },
+      {
+        "check": "POST /api/routes/discovery mode=detail routeId=materialized-rrhzxu-43168",
+        "status": 200
+      },
+      {
+        "check": "GET /api/routes/discovery mode=detail",
+        "status": 405
+      }
+    ]
+  },
+  "sensitiveFileRisks": {
+    "highRisk": [
+      "2026-06-30-113219-this-session-is-being-continued-from-a-previous-c.txt"
+    ],
+    "largeUnscanned": [
+      "assets/footprint-globe.mov",
+      "assets/home-globe.mov"
+    ],
+    "notes": "Regex-based scan; raw secret values are not stored in this manifest."
+  }
+}

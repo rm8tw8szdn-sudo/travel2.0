@@ -56,6 +56,11 @@ export {
   isRouteV2EvidenceBundleEnabled,
 } from "./evidence-bundle-store.mjs";
 export {
+  LOCAL_EVIDENCE_COLLECTOR_CREATED_AT,
+  LOCAL_EVIDENCE_COLLECTOR_SOURCE,
+  collectLocalEvidenceBundle,
+} from "./local-evidence-collector.mjs";
+export {
   ROUTE_CANDIDATE_NEUTRAL_STATUSES,
   ROUTE_CANDIDATE_SCHEMA_VERSION,
   createRouteCandidateId,

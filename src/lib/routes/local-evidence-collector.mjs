@@ -1,4 +1,5 @@
 import { normalizeEvidenceBundle } from "./evidence-bundle.mjs";
+import { normalizeKnowledgeEntitySource } from "./knowledge-entity-normalizer.mjs";
 import { cleanString, uniqueStrings } from "./route-v2-utils.mjs";
 
 export const LOCAL_EVIDENCE_COLLECTOR_SOURCE = "route-v2-phase3b1-local-evidence-collector";
@@ -25,6 +26,7 @@ function stableDestinationId(destination = {}) {
 
 function normalizeDestination(destination = {}) {
   const stableId = cleanString(destination.wikidataId || destination.qid || destination.id);
+  const source = normalizeKnowledgeEntitySource(destination);
   return {
     stableId,
     id: destinationId(destination),
@@ -34,6 +36,10 @@ function normalizeDestination(destination = {}) {
     latitude: destination.latitude ?? destination.lat,
     longitude: destination.longitude ?? destination.lon ?? destination.lng,
     entityTypeName: cleanString(destination.entityTypeName || destination.type || "destination"),
+    entitySourceType: source.entitySourceType,
+    provenance: source.provenance,
+    confidence: source.confidence,
+    trustedForFact: source.trustedForFact,
   };
 }
 
@@ -215,22 +221,54 @@ export function collectLocalEvidenceBundle({
           supportsWhichDecision: "destination-inclusion",
         }));
       } else {
-        items.push(item({
-          status: "verified",
-          sourceType: "knowledge-graph",
-          sourceId: kgDestination.wikidataId || kgDestination.id,
-          evidenceCategory: "destination-identity",
-          extractedFacts: {
-            candidateDestinationId: destination.id,
-            kgDestinationId: kgDestination.id,
-            wikidataId: kgDestination.wikidataId,
-            name: kgDestination.name,
-            countryCode: kgDestination.countryCode,
-          },
-          supportsWhichDecision: ["destination-inclusion"],
-          confidence: 1,
-          matchMethod: "candidate-id-to-kg-pool",
-        }));
+        const kgSource = normalizeKnowledgeEntitySource(kgDestination);
+        const baseFacts = {
+          candidateDestinationId: destination.id,
+          kgDestinationId: kgDestination.id,
+          wikidataId: kgDestination.wikidataId,
+          name: kgDestination.name,
+          countryCode: kgDestination.countryCode,
+          entitySourceType: kgSource.entitySourceType,
+        };
+        if (kgSource.trustedForFact) {
+          items.push(item({
+            status: "verified",
+            sourceType: "knowledge-graph",
+            sourceId: kgDestination.wikidataId || kgDestination.id,
+            evidenceCategory: "destination-identity",
+            extractedFacts: {
+              candidateDestinationId: destination.id,
+              kgDestinationId: kgDestination.id,
+              wikidataId: kgDestination.wikidataId,
+              name: kgDestination.name,
+              countryCode: kgDestination.countryCode,
+            },
+            supportsWhichDecision: ["destination-inclusion"],
+            confidence: 1,
+            matchMethod: "candidate-id-to-kg-pool",
+          }));
+        } else {
+          items.push(item({
+            status: "weak_signal",
+            sourceType: "knowledge-graph",
+            sourceId: kgDestination.wikidataId || kgDestination.id,
+            evidenceCategory: "destination-identity-structure",
+            extractedFacts: {
+              ...baseFacts,
+              verificationLevel: "structure-verified",
+            },
+            supportsWhichDecision: ["candidate-structure"],
+            confidence: 0.45,
+            matchMethod: "candidate-id-to-kg-pool-structure",
+          }));
+          unknowns.push(unknown({
+            field: `destinationIdentity:${destination.id || destination.name}`,
+            reason: `entity-source-not-fact-verified:${kgSource.entitySourceType}`,
+            sourceType: "knowledge-graph",
+            evidenceCategory: "destination-identity",
+            supportsWhichDecision: "destination-inclusion",
+          }));
+        }
       }
     }
 

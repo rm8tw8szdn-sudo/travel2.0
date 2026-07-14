@@ -15,7 +15,7 @@ function normalizeDestination(destination = {}) {
   const id = cleanString(destination.id || destination.wikidataId || destination.name);
   const name = cleanString(destination.name);
   const countryCode = cleanString(destination.countryCode).toUpperCase();
-  return {
+  const normalized = {
     id,
     wikidataId: cleanString(destination.wikidataId || id),
     name,
@@ -24,6 +24,11 @@ function normalizeDestination(destination = {}) {
     longitude: numericOrNull(destination.longitude),
     entityTypeName: cleanString(destination.entityTypeName || "destination"),
   };
+  if (cleanString(destination.entitySourceType)) normalized.entitySourceType = cleanString(destination.entitySourceType);
+  if (destination.provenance && typeof destination.provenance === "object") normalized.provenance = { ...destination.provenance };
+  if (Number.isFinite(Number(destination.confidence))) normalized.confidence = Number(destination.confidence);
+  if (typeof destination.trustedForFact === "boolean") normalized.trustedForFact = destination.trustedForFact;
+  return normalized;
 }
 
 export function createRouteCandidateId({

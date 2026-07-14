@@ -66,6 +66,17 @@ export {
   writeLocalEvidenceSidecarSafe,
 } from "./local-evidence-sidecar.mjs";
 export {
+  ONLINE_EVIDENCE_ADAPTER_SOURCE,
+  ROUTE_V2_EVIDENCE_ONLINE_FLAG,
+  ROUTE_V2_TAVILY_EVIDENCE_FLAG,
+  ROUTE_V2_WIKIVOYAGE_EVIDENCE_FLAG,
+  buildOnlineEvidenceQueries,
+  enrichEvidenceBundleWithOnlineEvidence,
+  isRouteV2EvidenceOnlineEnabled,
+  isRouteV2TavilyEvidenceEnabled,
+  isRouteV2WikivoyageEvidenceEnabled,
+} from "./evidence-bundle-online-adapter.mjs";
+export {
   ROUTE_CANDIDATE_NEUTRAL_STATUSES,
   ROUTE_CANDIDATE_SCHEMA_VERSION,
   createRouteCandidateId,

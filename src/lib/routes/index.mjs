@@ -137,6 +137,16 @@ export { createDeepSeekLlmRefineProvider, createConfiguredLlmRefineProvider } fr
 export { buildLlmRefineMessages, parseLlmRefineSuggestion, refineSuggestionIssues } from "./route-llm-refine-shared.mjs";
 export { runRouteRepositoryWarmup } from "./repository-warmup-runner.mjs";
 export { createWebSearchEvidenceProvider } from "./web-search-evidence-provider.mjs";
+export {
+  ROUTE_V2_EVIDENCE_ONLINE_MAX_QUERIES,
+  ROUTE_V2_EVIDENCE_ONLINE_MAX_RETRIES,
+  ROUTE_V2_EVIDENCE_ONLINE_TIMEOUT_MS,
+  ROUTE_V2_ONLINE_EVIDENCE_FAILURES,
+  createRouteV2TavilyEvidenceProvider,
+  createRouteV2WikivoyageEvidenceProvider,
+  routeV2OnlineEvidenceConfig,
+  searchRouteV2OnlineEvidence,
+} from "./route-v2-online-evidence-provider.mjs";
 export { scoreWebSearchSource } from "./web-source-scorer.mjs";
 export { createWebEvidenceExtractor } from "./web-evidence-extractor.mjs";
 export { createWebEvidenceCorroborator } from "./web-evidence-corroborator.mjs";

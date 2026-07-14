@@ -56,6 +56,24 @@ export {
   isRouteV2EvidenceBundleEnabled,
 } from "./evidence-bundle-store.mjs";
 export {
+  KNOWLEDGE_ENTITY_SOURCE_TYPES,
+  KNOWLEDGE_RELATIONSHIP_TYPES,
+  createKnowledgeFactId,
+  isTrustedKnowledgeEntitySource,
+  normalizeKnowledgeEntity,
+  normalizeKnowledgeFact,
+  normalizeKnowledgeRelationship,
+  validateKnowledgeEntity,
+  validateKnowledgeFact,
+  validateKnowledgeRelationship,
+} from "./knowledge-repository-schema.mjs";
+export {
+  annotateKnowledgeEntity,
+  classifyKnowledgeEntitySource,
+  confidenceForEntitySourceType,
+  normalizeKnowledgeEntitySource,
+} from "./knowledge-entity-normalizer.mjs";
+export {
   LOCAL_EVIDENCE_COLLECTOR_CREATED_AT,
   LOCAL_EVIDENCE_COLLECTOR_SOURCE,
   collectLocalEvidenceBundle,

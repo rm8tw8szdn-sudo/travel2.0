@@ -3,6 +3,7 @@ import {
   normalizeRouteCandidate,
   validateRouteCandidate,
 } from "./route-candidate-pool.mjs";
+import { annotateKnowledgeEntity } from "./knowledge-entity-normalizer.mjs";
 import { cleanString, stableHash, uniqueStrings as unique } from "./route-v2-utils.mjs";
 
 export const ROUTE_CANDIDATE_BUILDER_DEFAULT_TARGET = 8;
@@ -21,6 +22,7 @@ function normalizeCode(value) {
 }
 
 function normalizeDestination(destination = {}) {
+  const annotated = annotateKnowledgeEntity(destination);
   const id = cleanString(destination.id || destination.wikidataId || destination.qid || destination.name);
   const name = cleanString(destination.name || destination.label || destination.title);
   const countryCode = normalizeCode(destination.countryCode || destination.country || destination.iso2);
@@ -33,6 +35,10 @@ function normalizeDestination(destination = {}) {
     latitude: numericOrNull(destination.latitude ?? destination.lat),
     longitude: numericOrNull(destination.longitude ?? destination.lon ?? destination.lng),
     entityTypeName: cleanString(destination.entityTypeName || destination.type || "destination"),
+    entitySourceType: annotated.entitySourceType,
+    provenance: annotated.provenance,
+    confidence: annotated.confidence,
+    trustedForFact: annotated.trustedForFact,
   };
 }
 
@@ -231,6 +237,7 @@ function candidateDraft({ destinations, intentId, durationDays, travelStyle, met
       supportingSignal("candidate-builder-seed", cleanString(seed)),
       supportingSignal("destination-count", normalizedDestinations.length),
       supportingSignal("country-count", countries.length),
+      supportingSignal("entity-source-types", unique(normalizedDestinations.map((item) => item.entitySourceType)).filter(Boolean).sort()),
       supportingSignal("durationDays", durationDays),
       supportingSignal("travelStyle", travelStyle),
     ],

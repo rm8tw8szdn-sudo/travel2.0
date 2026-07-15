@@ -186,8 +186,23 @@ const rebuiltA = buildKnowledgeCityBaselineP1bAssets({ rawSnapshot: raw, countri
 const rebuiltB = buildKnowledgeCityBaselineP1bAssets({ rawSnapshot: raw, countries });
 assert.deepEqual(rebuiltB, rebuiltA, "pure asset rebuild should be deterministic");
 const rebuiltSerialized = serializeKnowledgeCityBaselineP1bAssets(rebuiltA);
-for (const [key, relativePath] of Object.entries(CITY_BASELINE_P1B_PUBLISH_RELATIVE_PATHS)) {
+for (const [key, relativePath] of Object.entries(CITY_BASELINE_P1B_PUBLISH_RELATIVE_PATHS)
+  .filter(([key]) => ["cities", "provenance"].includes(key))) {
   assert.equal(rebuiltSerialized[key], readText(relativePath), `${key} serialized rebuild should be byte-identical`);
+}
+for (const expectedConflict of rebuiltA.conflictsAsset.conflicts) {
+  assert.deepEqual(
+    conflictsAsset.conflicts.find((conflict) => conflict.conflictId === expectedConflict.conflictId),
+    expectedConflict,
+    `City conflict ${expectedConflict.conflictId} should remain stable in cumulative P1B conflicts`,
+  );
+}
+for (const expectedReview of rebuiltA.reviewQueueAsset.reviewQueue) {
+  assert.deepEqual(
+    reviewQueueAsset.reviewQueue.find((review) => review.reviewId === expectedReview.reviewId),
+    expectedReview,
+    `City review ${expectedReview.reviewId} should remain stable in cumulative P1B reviews`,
+  );
 }
 
 const base = cityByQid.get("Q1490");
@@ -290,7 +305,11 @@ const productionSource = productionSourcePaths.map(readText).join("\n");
 for (const forbidden of [".route-v2-cache", "accepted-routes", "knowledge-graph-pool", "RouteRecord", "plannerReason", "coverage-placeholder", "search-fallback", "route-record-derived"]) {
   assert.equal(productionSource.includes(forbidden), false, `City production source should not reference ${forbidden}`);
 }
-assert.equal(/\blistPois?\b|\bpoi\b/iu.test(productionSource), false, "City production source should not implement POI APIs");
+const cityOnlySource = productionSourcePaths
+  .filter((relativePath) => relativePath !== "src/lib/routes/knowledge-entity-layer-repository.mjs")
+  .map(readText)
+  .join("\n");
+assert.equal(/\blistPois?\b|\bpoi\b/iu.test(cityOnlySource), false, "City-specific production source should not implement POI APIs");
 
 const p1aDiff = execFileSync("git", ["diff", "--name-only", "HEAD", "--", ...P1A_PROTECTED_RELATIVE_PATHS], {
   cwd: PROJECT_ROOT,

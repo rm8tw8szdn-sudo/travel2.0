@@ -120,6 +120,16 @@ export {
 } from "./knowledge-city-baseline-schema.mjs";
 export { normalizeKnowledgeCityBaseline } from "./knowledge-city-baseline-normalizer.mjs";
 export { dedupeKnowledgeCityEntities } from "./knowledge-city-baseline-deduper.mjs";
+export {
+  KNOWLEDGE_POI_BASELINE_SCHEMA_VERSION,
+  KNOWLEDGE_POI_ENTITY_TYPE,
+  KNOWLEDGE_POI_PROVENANCE_FIELDS,
+  KNOWLEDGE_POI_PROVENANCE_SOURCE_TYPES,
+  validateKnowledgePoiEntity,
+  validateKnowledgePoiEntitySet,
+} from "./knowledge-poi-baseline-schema.mjs";
+export { normalizeKnowledgePoiBaseline } from "./knowledge-poi-baseline-normalizer.mjs";
+export { dedupeKnowledgePoiEntities } from "./knowledge-poi-baseline-deduper.mjs";
 export { createKnowledgeEntityLayerRepository } from "./knowledge-entity-layer-repository.mjs";
 export {
   LOCAL_EVIDENCE_COLLECTOR_CREATED_AT,

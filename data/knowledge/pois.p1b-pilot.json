@@ -1,0 +1,1995 @@
+{
+  "schemaVersion": "route-v2-poi-baseline-p1b-pilot",
+  "generatedFrom": "data/knowledge/raw/pois-p1b-pilot.wikidata.json",
+  "poiCount": 15,
+  "pois": [
+    {
+      "schemaVersion": "route-v2-poi-baseline-p1b",
+      "entityId": "poi-09f2974076dbfb55",
+      "entityType": "poi",
+      "parentCityEntityId": "city-5a21732f861ff7f1",
+      "wikidataId": "Q287165",
+      "canonicalNameZh": "明治神宫",
+      "canonicalNameEn": "Meiji Jingū",
+      "aliases": [
+        "Meiji Grand Shrine",
+        "Meiji Jingū Shrine",
+        "Meiji Shrine",
+        "Meiji Tapınağı",
+        "明治神宮"
+      ],
+      "coordinates": {
+        "latitude": 35.676111111111,
+        "longitude": 139.69916666667
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-07-15T03:26:50.585Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 P1B POI Pilot schema",
+          "sourceUrl": "",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "poi-09f2974076dbfb55"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 P1B POI Pilot schema",
+          "sourceUrl": "",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "poi"
+        },
+        "parentCityEntityId": {
+          "field": "parentCityEntityId",
+          "sourceType": "repository-reference",
+          "source": "Route V2 P1B City Entity Foundation",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1490",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "city-5a21732f861ff7f1"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q287165",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "Q287165"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q287165",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "明治神宫"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q287165",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "Meiji Jingū"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q287165",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": [
+            "Meiji Grand Shrine",
+            "Meiji Jingū Shrine",
+            "Meiji Shrine",
+            "Meiji Tapınağı",
+            "明治神宮"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q287165",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": {
+            "latitude": 35.676111111111,
+            "longitude": 139.69916666667
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 P1B POI Pilot schema",
+          "sourceUrl": "",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 P1B POI Pilot schema",
+          "sourceUrl": "",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q287165",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "2026-07-15T03:26:50.585Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-poi-baseline-p1b",
+      "entityId": "poi-78c9ea631fbbb381",
+      "entityType": "poi",
+      "parentCityEntityId": "city-5a21732f861ff7f1",
+      "wikidataId": "Q615183",
+      "canonicalNameZh": "浅草寺",
+      "canonicalNameEn": "Sensō-ji Temple",
+      "aliases": [
+        "Asakusa Kannon",
+        "Senso ji",
+        "Senso-ji",
+        "Sensō-ji",
+        "Sensoji Temple",
+        "伝法院",
+        "天台宗聖観音宗",
+        "浅草観音",
+        "淺草寺",
+        "聖観音宗",
+        "金竜山浅草寺",
+        "金龍山浅草寺",
+        "金龍山淺草寺",
+        "雷門"
+      ],
+      "coordinates": {
+        "latitude": 35.714555555556,
+        "longitude": 139.79663888889
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-07-15T03:26:50.585Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 P1B POI Pilot schema",
+          "sourceUrl": "",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "poi-78c9ea631fbbb381"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 P1B POI Pilot schema",
+          "sourceUrl": "",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "poi"
+        },
+        "parentCityEntityId": {
+          "field": "parentCityEntityId",
+          "sourceType": "repository-reference",
+          "source": "Route V2 P1B City Entity Foundation",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1490",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "city-5a21732f861ff7f1"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q615183",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "Q615183"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q615183",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "浅草寺"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q615183",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "Sensō-ji Temple"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q615183",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": [
+            "Asakusa Kannon",
+            "Senso ji",
+            "Senso-ji",
+            "Sensō-ji",
+            "Sensoji Temple",
+            "伝法院",
+            "天台宗聖観音宗",
+            "浅草観音",
+            "淺草寺",
+            "聖観音宗",
+            "金竜山浅草寺",
+            "金龍山浅草寺",
+            "金龍山淺草寺",
+            "雷門"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q615183",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": {
+            "latitude": 35.714555555556,
+            "longitude": 139.79663888889
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 P1B POI Pilot schema",
+          "sourceUrl": "",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 P1B POI Pilot schema",
+          "sourceUrl": "",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q615183",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "2026-07-15T03:26:50.585Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-poi-baseline-p1b",
+      "entityId": "poi-1a67173097b2931a",
+      "entityType": "poi",
+      "parentCityEntityId": "city-5a21732f861ff7f1",
+      "wikidataId": "Q183536",
+      "canonicalNameZh": "东京铁塔",
+      "canonicalNameEn": "Tokyo Tower",
+      "aliases": [
+        "Menara Tokyo",
+        "Menara Tōkyō",
+        "Tokyo Kulesi",
+        "Tōkyō Tower",
+        "தோக்கியோ கோபுரம்",
+        "东京塔",
+        "东京铁塔海贼王主题乐园",
+        "日本電波塔",
+        "東京タワー",
+        "東京塔",
+        "東京鐵塔"
+      ],
+      "coordinates": {
+        "latitude": 35.658611111111114,
+        "longitude": 139.74555555555557
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-07-15T03:26:50.585Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 P1B POI Pilot schema",
+          "sourceUrl": "",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "poi-1a67173097b2931a"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 P1B POI Pilot schema",
+          "sourceUrl": "",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "poi"
+        },
+        "parentCityEntityId": {
+          "field": "parentCityEntityId",
+          "sourceType": "repository-reference",
+          "source": "Route V2 P1B City Entity Foundation",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1490",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "city-5a21732f861ff7f1"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q183536",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "Q183536"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q183536",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "东京铁塔"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q183536",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "Tokyo Tower"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q183536",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": [
+            "Menara Tokyo",
+            "Menara Tōkyō",
+            "Tokyo Kulesi",
+            "Tōkyō Tower",
+            "தோக்கியோ கோபுரம்",
+            "东京塔",
+            "东京铁塔海贼王主题乐园",
+            "日本電波塔",
+            "東京タワー",
+            "東京塔",
+            "東京鐵塔"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q183536",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": {
+            "latitude": 35.658611111111114,
+            "longitude": 139.74555555555557
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 P1B POI Pilot schema",
+          "sourceUrl": "",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 P1B POI Pilot schema",
+          "sourceUrl": "",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q183536",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "2026-07-15T03:26:50.585Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-poi-baseline-p1b",
+      "entityId": "poi-5d85a755073d8224",
+      "entityType": "poi",
+      "parentCityEntityId": "city-8acaf08893e5abf1",
+      "wikidataId": "Q714828",
+      "canonicalNameZh": "伏见稻荷大社",
+      "canonicalNameEn": "Fushimi Inari-taisha",
+      "aliases": [
+        "Fushimi Inari Grand Shrine",
+        "Fushimi inari tapınağı",
+        "Inarino Shrine",
+        "புசிமி இனாரி தையிசா",
+        "ふしみいなりたいしゃ",
+        "伏見稲荷",
+        "伏見稲荷大社",
+        "伏見稲荷神社",
+        "伏見稻荷大社",
+        "稲荷神社",
+        "稲荷神社 三座"
+      ],
+      "coordinates": {
+        "latitude": 34.967202,
+        "longitude": 135.773386
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-07-15T03:26:50.585Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 P1B POI Pilot schema",
+          "sourceUrl": "",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "poi-5d85a755073d8224"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 P1B POI Pilot schema",
+          "sourceUrl": "",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "poi"
+        },
+        "parentCityEntityId": {
+          "field": "parentCityEntityId",
+          "sourceType": "repository-reference",
+          "source": "Route V2 P1B City Entity Foundation",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q34600",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "city-8acaf08893e5abf1"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q714828",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "Q714828"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q714828",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "伏见稻荷大社"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q714828",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "Fushimi Inari-taisha"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q714828",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": [
+            "Fushimi Inari Grand Shrine",
+            "Fushimi inari tapınağı",
+            "Inarino Shrine",
+            "புசிமி இனாரி தையிசா",
+            "ふしみいなりたいしゃ",
+            "伏見稲荷",
+            "伏見稲荷大社",
+            "伏見稲荷神社",
+            "伏見稻荷大社",
+            "稲荷神社",
+            "稲荷神社 三座"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q714828",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": {
+            "latitude": 34.967202,
+            "longitude": 135.773386
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 P1B POI Pilot schema",
+          "sourceUrl": "",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 P1B POI Pilot schema",
+          "sourceUrl": "",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q714828",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "2026-07-15T03:26:50.585Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-poi-baseline-p1b",
+      "entityId": "poi-4e6edb0d3a559ad5",
+      "entityType": "poi",
+      "parentCityEntityId": "city-8acaf08893e5abf1",
+      "wikidataId": "Q270983",
+      "canonicalNameZh": "鹿苑寺",
+      "canonicalNameEn": "Kinkaku-ji Temple",
+      "aliases": [
+        "Kinkaku-ji",
+        "Rokuon-ji",
+        "கிங்காகு ஜி",
+        "京都鹿苑寺",
+        "北山鹿苑禅寺",
+        "日本金閣寺",
+        "金閣寺",
+        "金阁寺"
+      ],
+      "coordinates": {
+        "latitude": 35.0395,
+        "longitude": 135.7285
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-07-15T03:26:50.585Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 P1B POI Pilot schema",
+          "sourceUrl": "",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "poi-4e6edb0d3a559ad5"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 P1B POI Pilot schema",
+          "sourceUrl": "",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "poi"
+        },
+        "parentCityEntityId": {
+          "field": "parentCityEntityId",
+          "sourceType": "repository-reference",
+          "source": "Route V2 P1B City Entity Foundation",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q34600",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "city-8acaf08893e5abf1"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q270983",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "Q270983"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q270983",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "鹿苑寺"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q270983",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "Kinkaku-ji Temple"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q270983",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": [
+            "Kinkaku-ji",
+            "Rokuon-ji",
+            "கிங்காகு ஜி",
+            "京都鹿苑寺",
+            "北山鹿苑禅寺",
+            "日本金閣寺",
+            "金閣寺",
+            "金阁寺"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q270983",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": {
+            "latitude": 35.0395,
+            "longitude": 135.7285
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 P1B POI Pilot schema",
+          "sourceUrl": "",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 P1B POI Pilot schema",
+          "sourceUrl": "",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q270983",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "2026-07-15T03:26:50.585Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-poi-baseline-p1b",
+      "entityId": "poi-d35c2b4470add6c2",
+      "entityType": "poi",
+      "parentCityEntityId": "city-8acaf08893e5abf1",
+      "wikidataId": "Q221716",
+      "canonicalNameZh": "清水寺",
+      "canonicalNameEn": "Kiyomizu-dera Temple",
+      "aliases": [
+        "Kiyomizu",
+        "Kiyomizu Tapınağı",
+        "Kiyomizu Temple",
+        "Kiyomizu-dera",
+        "கியோமிசு கோயில்",
+        "கியோமிசு-டேரா",
+        "清水観音",
+        "清水觀音"
+      ],
+      "coordinates": {
+        "latitude": 34.994830555556,
+        "longitude": 135.78500277778
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-07-15T03:26:50.585Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 P1B POI Pilot schema",
+          "sourceUrl": "",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "poi-d35c2b4470add6c2"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 P1B POI Pilot schema",
+          "sourceUrl": "",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "poi"
+        },
+        "parentCityEntityId": {
+          "field": "parentCityEntityId",
+          "sourceType": "repository-reference",
+          "source": "Route V2 P1B City Entity Foundation",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q34600",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "city-8acaf08893e5abf1"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q221716",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "Q221716"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q221716",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "清水寺"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q221716",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "Kiyomizu-dera Temple"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q221716",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": [
+            "Kiyomizu",
+            "Kiyomizu Tapınağı",
+            "Kiyomizu Temple",
+            "Kiyomizu-dera",
+            "கியோமிசு கோயில்",
+            "கியோமிசு-டேரா",
+            "清水観音",
+            "清水觀音"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q221716",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": {
+            "latitude": 34.994830555556,
+            "longitude": 135.78500277778
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 P1B POI Pilot schema",
+          "sourceUrl": "",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 P1B POI Pilot schema",
+          "sourceUrl": "",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q221716",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "2026-07-15T03:26:50.585Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-poi-baseline-p1b",
+      "entityId": "poi-85f5ccba3f115856",
+      "entityType": "poi",
+      "parentCityEntityId": "city-d6f6bf7d2fca5cb4",
+      "wikidataId": "Q615404",
+      "canonicalNameZh": "凱末爾陵寢",
+      "canonicalNameEn": "Anıtkabir",
+      "aliases": [
+        "Anitkabir, Mausoleum of Atatürk",
+        "Anıttepe",
+        "Atatürk'ün ebedi istirahatgâhı",
+        "Rasattepe",
+        "アタチュルク廟",
+        "アタテュルク廟",
+        "アヌトゥカビル",
+        "凯末尔紀念館",
+        "凯末尔陵墓博物馆",
+        "凱末爾紀念館",
+        "阿塔蒂尔克纪念陵墓"
+      ],
+      "coordinates": {
+        "latitude": 39.925,
+        "longitude": 32.83694444444444
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-07-15T03:26:50.585Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 P1B POI Pilot schema",
+          "sourceUrl": "",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "poi-85f5ccba3f115856"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 P1B POI Pilot schema",
+          "sourceUrl": "",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "poi"
+        },
+        "parentCityEntityId": {
+          "field": "parentCityEntityId",
+          "sourceType": "repository-reference",
+          "source": "Route V2 P1B City Entity Foundation",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q3640",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "city-d6f6bf7d2fca5cb4"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q615404",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "Q615404"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q615404",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "凱末爾陵寢"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q615404",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "Anıtkabir"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q615404",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": [
+            "Anitkabir, Mausoleum of Atatürk",
+            "Anıttepe",
+            "Atatürk'ün ebedi istirahatgâhı",
+            "Rasattepe",
+            "アタチュルク廟",
+            "アタテュルク廟",
+            "アヌトゥカビル",
+            "凯末尔紀念館",
+            "凯末尔陵墓博物馆",
+            "凱末爾紀念館",
+            "阿塔蒂尔克纪念陵墓"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q615404",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": {
+            "latitude": 39.925,
+            "longitude": 32.83694444444444
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 P1B POI Pilot schema",
+          "sourceUrl": "",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 P1B POI Pilot schema",
+          "sourceUrl": "",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q615404",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "2026-07-15T03:26:50.585Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-poi-baseline-p1b",
+      "entityId": "poi-88530140534e7031",
+      "entityType": "poi",
+      "parentCityEntityId": "city-d6f6bf7d2fca5cb4",
+      "wikidataId": "Q206225",
+      "canonicalNameZh": "安卡拉城堡",
+      "canonicalNameEn": "Ankara Castle",
+      "aliases": [
+        "Ankara Kalesi",
+        "アンカラ城"
+      ],
+      "coordinates": {
+        "latitude": 39.94166667,
+        "longitude": 32.865
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-07-15T03:26:50.585Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 P1B POI Pilot schema",
+          "sourceUrl": "",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "poi-88530140534e7031"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 P1B POI Pilot schema",
+          "sourceUrl": "",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "poi"
+        },
+        "parentCityEntityId": {
+          "field": "parentCityEntityId",
+          "sourceType": "repository-reference",
+          "source": "Route V2 P1B City Entity Foundation",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q3640",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "city-d6f6bf7d2fca5cb4"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q206225",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "Q206225"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q206225",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "安卡拉城堡"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q206225",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "Ankara Castle"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q206225",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": [
+            "Ankara Kalesi",
+            "アンカラ城"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q206225",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": {
+            "latitude": 39.94166667,
+            "longitude": 32.865
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 P1B POI Pilot schema",
+          "sourceUrl": "",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 P1B POI Pilot schema",
+          "sourceUrl": "",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q206225",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "2026-07-15T03:26:50.585Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-poi-baseline-p1b",
+      "entityId": "poi-0f7dce481508edf9",
+      "entityType": "poi",
+      "parentCityEntityId": "city-d6f6bf7d2fca5cb4",
+      "wikidataId": "Q754322",
+      "canonicalNameZh": "安納托利亞文明博物館",
+      "canonicalNameEn": "Museum of Anatolian Civilizations",
+      "aliases": [
+        "Anadolu Medeniyetleri Müzesi",
+        "Ankara Anadolu Medeniyetleri Müzesi",
+        "アナトリア文明博物館"
+      ],
+      "coordinates": {
+        "latitude": 39.938333,
+        "longitude": 32.861944
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-07-15T03:26:50.585Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 P1B POI Pilot schema",
+          "sourceUrl": "",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "poi-0f7dce481508edf9"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 P1B POI Pilot schema",
+          "sourceUrl": "",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "poi"
+        },
+        "parentCityEntityId": {
+          "field": "parentCityEntityId",
+          "sourceType": "repository-reference",
+          "source": "Route V2 P1B City Entity Foundation",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q3640",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "city-d6f6bf7d2fca5cb4"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q754322",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "Q754322"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q754322",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "安納托利亞文明博物館"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q754322",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "Museum of Anatolian Civilizations"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q754322",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": [
+            "Anadolu Medeniyetleri Müzesi",
+            "Ankara Anadolu Medeniyetleri Müzesi",
+            "アナトリア文明博物館"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q754322",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": {
+            "latitude": 39.938333,
+            "longitude": 32.861944
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 P1B POI Pilot schema",
+          "sourceUrl": "",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 P1B POI Pilot schema",
+          "sourceUrl": "",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q754322",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "2026-07-15T03:26:50.585Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-poi-baseline-p1b",
+      "entityId": "poi-893318c8ec655c93",
+      "entityType": "poi",
+      "parentCityEntityId": "city-dde074f983b42cfd",
+      "wikidataId": "Q630135",
+      "canonicalNameZh": "滨海湾公园",
+      "canonicalNameEn": "Gardens by the Bay",
+      "aliases": [
+        "Garden by the Bay",
+        "Garden by the Bay Singapore",
+        "Gardens by the Bay Singapore",
+        "Taman di Persisiran",
+        "ガーデンズ・バイ・ザ・ベイ",
+        "濱海灣花園",
+        "花穹"
+      ],
+      "coordinates": {
+        "latitude": 1.283319,
+        "longitude": 103.86527
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-07-15T03:26:50.585Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 P1B POI Pilot schema",
+          "sourceUrl": "",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "poi-893318c8ec655c93"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 P1B POI Pilot schema",
+          "sourceUrl": "",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "poi"
+        },
+        "parentCityEntityId": {
+          "field": "parentCityEntityId",
+          "sourceType": "repository-reference",
+          "source": "Route V2 P1B City Entity Foundation",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q334",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "city-dde074f983b42cfd"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q630135",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "Q630135"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q630135",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "滨海湾公园"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q630135",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "Gardens by the Bay"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q630135",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": [
+            "Garden by the Bay",
+            "Garden by the Bay Singapore",
+            "Gardens by the Bay Singapore",
+            "Taman di Persisiran",
+            "ガーデンズ・バイ・ザ・ベイ",
+            "濱海灣花園",
+            "花穹"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q630135",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": {
+            "latitude": 1.283319,
+            "longitude": 103.86527
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 P1B POI Pilot schema",
+          "sourceUrl": "",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 P1B POI Pilot schema",
+          "sourceUrl": "",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q630135",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "2026-07-15T03:26:50.585Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-poi-baseline-p1b",
+      "entityId": "poi-97b3fb8961728198",
+      "entityType": "poi",
+      "parentCityEntityId": "city-dde074f983b42cfd",
+      "wikidataId": "Q6819812",
+      "canonicalNameZh": "鱼尾狮公园",
+      "canonicalNameEn": "Merlion Park",
+      "aliases": [
+        "Taman Merlion",
+        "மெர்லயன் பூங்கா",
+        "マーライオン公園"
+      ],
+      "coordinates": {
+        "latitude": 1.28683,
+        "longitude": 103.855
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-07-15T03:26:50.585Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 P1B POI Pilot schema",
+          "sourceUrl": "",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "poi-97b3fb8961728198"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 P1B POI Pilot schema",
+          "sourceUrl": "",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "poi"
+        },
+        "parentCityEntityId": {
+          "field": "parentCityEntityId",
+          "sourceType": "repository-reference",
+          "source": "Route V2 P1B City Entity Foundation",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q334",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "city-dde074f983b42cfd"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q6819812",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "Q6819812"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q6819812",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "鱼尾狮公园"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q6819812",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "Merlion Park"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q6819812",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": [
+            "Taman Merlion",
+            "மெர்லயன் பூங்கா",
+            "マーライオン公園"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q6819812",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": {
+            "latitude": 1.28683,
+            "longitude": 103.855
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 P1B POI Pilot schema",
+          "sourceUrl": "",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 P1B POI Pilot schema",
+          "sourceUrl": "",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q6819812",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "2026-07-15T03:26:50.585Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-poi-baseline-p1b",
+      "entityId": "poi-9147c8702fa4b568",
+      "entityType": "poi",
+      "parentCityEntityId": "city-dde074f983b42cfd",
+      "wikidataId": "Q632689",
+      "canonicalNameZh": "新加坡国家博物馆",
+      "canonicalNameEn": "National Museum of Singapore",
+      "aliases": [
+        "Muzium Negara Singapura",
+        "Raffles Library and Museum",
+        "சிங்கப்பூரின் தேசிய அருங்காட்சியகம்",
+        "シンガポール国立博物館",
+        "新加坡国家博物院",
+        "新加坡國家博物院",
+        "新加坡生活畫廊"
+      ],
+      "coordinates": {
+        "latitude": 1.29672,
+        "longitude": 103.84864
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-07-15T03:26:50.585Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 P1B POI Pilot schema",
+          "sourceUrl": "",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "poi-9147c8702fa4b568"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 P1B POI Pilot schema",
+          "sourceUrl": "",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "poi"
+        },
+        "parentCityEntityId": {
+          "field": "parentCityEntityId",
+          "sourceType": "repository-reference",
+          "source": "Route V2 P1B City Entity Foundation",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q334",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "city-dde074f983b42cfd"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q632689",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "Q632689"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q632689",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "新加坡国家博物馆"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q632689",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "National Museum of Singapore"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q632689",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": [
+            "Muzium Negara Singapura",
+            "Raffles Library and Museum",
+            "சிங்கப்பூரின் தேசிய அருங்காட்சியகம்",
+            "シンガポール国立博物館",
+            "新加坡国家博物院",
+            "新加坡國家博物院",
+            "新加坡生活畫廊"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q632689",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": {
+            "latitude": 1.29672,
+            "longitude": 103.84864
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 P1B POI Pilot schema",
+          "sourceUrl": "",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 P1B POI Pilot schema",
+          "sourceUrl": "",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q632689",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "2026-07-15T03:26:50.585Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-poi-baseline-p1b",
+      "entityId": "poi-9a98993feb59f773",
+      "entityType": "poi",
+      "parentCityEntityId": "city-fc91a9c6c7b389cf",
+      "wikidataId": "Q12506",
+      "canonicalNameZh": "阿亚索菲亚",
+      "canonicalNameEn": "Hagia Sophia",
+      "aliases": [
+        "Aya Sofya",
+        "Aya Sophia",
+        "Ayasofya",
+        "Ayasofya Bazilikası",
+        "Ayasofya Camii",
+        "Ayasofya Katedrali",
+        "Ayasofya Kilisesi",
+        "Ayasofya Müzesi",
+        "Ayasofya-i Kebîr Câmi-i Şerîfi",
+        "Ayasofya-i Kebir Camii",
+        "Ayasofyayı Kebir Camii Şerifi",
+        "Azize Sofya Kilisesi",
+        "Büyük Ayasofya Camii",
+        "Church of Saint Sophia",
+        "Church of the Holy Wisdom",
+        "Great Church",
+        "Hagia Sophia Grand Mosque",
+        "Hagia Sophia Mosque",
+        "Kalın Minareler",
+        "Kutsal Bilgelik Kilisesi",
+        "Santa Sophia",
+        "St. Sophia Basilica",
+        "ஹேகியா சோபியா",
+        "アヤソフィア",
+        "圣索菲亚"
+      ],
+      "coordinates": {
+        "latitude": 41.00833333333333,
+        "longitude": 28.98
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-07-15T03:26:50.585Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 P1B POI Pilot schema",
+          "sourceUrl": "",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "poi-9a98993feb59f773"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 P1B POI Pilot schema",
+          "sourceUrl": "",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "poi"
+        },
+        "parentCityEntityId": {
+          "field": "parentCityEntityId",
+          "sourceType": "repository-reference",
+          "source": "Route V2 P1B City Entity Foundation",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q406",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "city-fc91a9c6c7b389cf"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q12506",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "Q12506"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q12506",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "阿亚索菲亚"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q12506",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "Hagia Sophia"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q12506",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": [
+            "Aya Sofya",
+            "Aya Sophia",
+            "Ayasofya",
+            "Ayasofya Bazilikası",
+            "Ayasofya Camii",
+            "Ayasofya Katedrali",
+            "Ayasofya Kilisesi",
+            "Ayasofya Müzesi",
+            "Ayasofya-i Kebîr Câmi-i Şerîfi",
+            "Ayasofya-i Kebir Camii",
+            "Ayasofyayı Kebir Camii Şerifi",
+            "Azize Sofya Kilisesi",
+            "Büyük Ayasofya Camii",
+            "Church of Saint Sophia",
+            "Church of the Holy Wisdom",
+            "Great Church",
+            "Hagia Sophia Grand Mosque",
+            "Hagia Sophia Mosque",
+            "Kalın Minareler",
+            "Kutsal Bilgelik Kilisesi",
+            "Santa Sophia",
+            "St. Sophia Basilica",
+            "ஹேகியா சோபியா",
+            "アヤソフィア",
+            "圣索菲亚"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q12506",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": {
+            "latitude": 41.00833333333333,
+            "longitude": 28.98
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 P1B POI Pilot schema",
+          "sourceUrl": "",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 P1B POI Pilot schema",
+          "sourceUrl": "",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q12506",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "2026-07-15T03:26:50.585Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-poi-baseline-p1b",
+      "entityId": "poi-a8c1f0a18a8713de",
+      "entityType": "poi",
+      "parentCityEntityId": "city-fc91a9c6c7b389cf",
+      "wikidataId": "Q80541",
+      "canonicalNameZh": "苏丹艾哈迈德清真寺",
+      "canonicalNameEn": "Sultan Ahmed Mosque",
+      "aliases": [
+        "Blue Mosque",
+        "Masjid Sultan Ahmed",
+        "Sultan Ahmed Camii",
+        "Sultan Ahmed I Mosque",
+        "Sultan Ahmet Camii",
+        "Sultan Ahmet Camisi",
+        "Sultanahmet Cami",
+        "Sultanahmet Camii",
+        "Sultanahmet Camisi",
+        "The Blue Mosque",
+        "சுல்தான் அகமது பள்ளிவாசல்",
+        "スルターンアフメット・ジャーミー",
+        "スルターンアフメット・モスク",
+        "スルタンアフメット・モスク",
+        "スルタンアフメト・ジャーミイ",
+        "スルタンアフメト・モスク",
+        "ブルーモスク",
+        "艾哈邁德蘇丹清真寺",
+        "蘇丹艾哈邁德清真寺"
+      ],
+      "coordinates": {
+        "latitude": 41.0053851,
+        "longitude": 28.9768247
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-07-15T03:26:50.585Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 P1B POI Pilot schema",
+          "sourceUrl": "",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "poi-a8c1f0a18a8713de"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 P1B POI Pilot schema",
+          "sourceUrl": "",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "poi"
+        },
+        "parentCityEntityId": {
+          "field": "parentCityEntityId",
+          "sourceType": "repository-reference",
+          "source": "Route V2 P1B City Entity Foundation",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q406",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "city-fc91a9c6c7b389cf"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q80541",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "Q80541"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q80541",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "苏丹艾哈迈德清真寺"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q80541",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "Sultan Ahmed Mosque"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q80541",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": [
+            "Blue Mosque",
+            "Masjid Sultan Ahmed",
+            "Sultan Ahmed Camii",
+            "Sultan Ahmed I Mosque",
+            "Sultan Ahmet Camii",
+            "Sultan Ahmet Camisi",
+            "Sultanahmet Cami",
+            "Sultanahmet Camii",
+            "Sultanahmet Camisi",
+            "The Blue Mosque",
+            "சுல்தான் அகமது பள்ளிவாசல்",
+            "スルターンアフメット・ジャーミー",
+            "スルターンアフメット・モスク",
+            "スルタンアフメット・モスク",
+            "スルタンアフメト・ジャーミイ",
+            "スルタンアフメト・モスク",
+            "ブルーモスク",
+            "艾哈邁德蘇丹清真寺",
+            "蘇丹艾哈邁德清真寺"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q80541",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": {
+            "latitude": 41.0053851,
+            "longitude": 28.9768247
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 P1B POI Pilot schema",
+          "sourceUrl": "",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 P1B POI Pilot schema",
+          "sourceUrl": "",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q80541",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "2026-07-15T03:26:50.585Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-poi-baseline-p1b",
+      "entityId": "poi-68a616f4d254dfe4",
+      "entityType": "poi",
+      "parentCityEntityId": "city-fc91a9c6c7b389cf",
+      "wikidataId": "Q170495",
+      "canonicalNameZh": "托普卡帕宫",
+      "canonicalNameEn": "Topkapı Palace",
+      "aliases": [
+        "Istana Topkapi",
+        "Istana Topkapı",
+        "porco demone",
+        "Saray-ı Cedide-i Amire",
+        "Saray-ı Hümayun",
+        "Topkapi",
+        "Topkapi Museum",
+        "Topkapi Palace Museum",
+        "Topkapı",
+        "Topkapı Museum",
+        "Topkapı Müzesi",
+        "Topkapı Palace Museum",
+        "Topkapı Sarayı",
+        "Topkapı Sarayı Müzesi",
+        "தொப்காப்பி மாளிகை",
+        "トプカプ",
+        "トプカプ宮殿",
+        "托普卡普宫",
+        "托普卡珀宫",
+        "杜普卡柏皇宮"
+      ],
+      "coordinates": {
+        "latitude": 41.013,
+        "longitude": 28.984
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-07-15T03:26:50.585Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 P1B POI Pilot schema",
+          "sourceUrl": "",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "poi-68a616f4d254dfe4"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 P1B POI Pilot schema",
+          "sourceUrl": "",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "poi"
+        },
+        "parentCityEntityId": {
+          "field": "parentCityEntityId",
+          "sourceType": "repository-reference",
+          "source": "Route V2 P1B City Entity Foundation",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q406",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "city-fc91a9c6c7b389cf"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q170495",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "Q170495"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q170495",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "托普卡帕宫"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q170495",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "Topkapı Palace"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q170495",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": [
+            "Istana Topkapi",
+            "Istana Topkapı",
+            "porco demone",
+            "Saray-ı Cedide-i Amire",
+            "Saray-ı Hümayun",
+            "Topkapi",
+            "Topkapi Museum",
+            "Topkapi Palace Museum",
+            "Topkapı",
+            "Topkapı Museum",
+            "Topkapı Müzesi",
+            "Topkapı Palace Museum",
+            "Topkapı Sarayı",
+            "Topkapı Sarayı Müzesi",
+            "தொப்காப்பி மாளிகை",
+            "トプカプ",
+            "トプカプ宮殿",
+            "托普卡普宫",
+            "托普卡珀宫",
+            "杜普卡柏皇宮"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q170495",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": {
+            "latitude": 41.013,
+            "longitude": 28.984
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 P1B POI Pilot schema",
+          "sourceUrl": "",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 P1B POI Pilot schema",
+          "sourceUrl": "",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q170495",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "2026-07-15T03:26:50.585Z"
+        }
+      }
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 {
   "schemaVersion": "route-v2-city-baseline-review-p1b-pilot",
-  "reviewCount": 2,
+  "reviewCount": 13,
   "reviewQueue": [
     {
       "reviewId": "review-0c208bcb4a53b559",
@@ -14,6 +14,124 @@
       "message": "Istanbul spans Europe and Asia; no canonical continent field is assigned in P1B."
     },
     {
+      "reviewId": "review-3fda2e5165468bfa",
+      "type": "multiple-wikidata-poi-types",
+      "severity": "manual-review",
+      "relatedEntityIds": [
+        "city-fc91a9c6c7b389cf",
+        "poi-a8c1f0a18a8713de"
+      ],
+      "field": "wikidataInstanceOf",
+      "message": "Wikidata supplies multiple active instance-of values for this POI; identity remains QID-based and no canonical POI type is published in P1B.",
+      "wikidataId": "Q80541",
+      "wikidataTypeIds": [
+        "Q32815",
+        "Q35112127"
+      ]
+    },
+    {
+      "reviewId": "review-4ec791757b98ae2b",
+      "type": "multiple-wikidata-poi-types",
+      "severity": "manual-review",
+      "relatedEntityIds": [
+        "city-5a21732f861ff7f1",
+        "poi-09f2974076dbfb55"
+      ],
+      "field": "wikidataInstanceOf",
+      "message": "Wikidata supplies multiple active instance-of values for this POI; identity remains QID-based and no canonical POI type is published in P1B.",
+      "wikidataId": "Q287165",
+      "wikidataTypeIds": [
+        "Q120680118",
+        "Q175288",
+        "Q845945"
+      ]
+    },
+    {
+      "reviewId": "review-500dc3114c5f8958",
+      "type": "multiple-wikidata-poi-types",
+      "severity": "manual-review",
+      "relatedEntityIds": [
+        "city-d6f6bf7d2fca5cb4",
+        "poi-85f5ccba3f115856"
+      ],
+      "field": "wikidataInstanceOf",
+      "message": "Wikidata supplies multiple active instance-of values for this POI; identity remains QID-based and no canonical POI type is published in P1B.",
+      "wikidataId": "Q615404",
+      "wikidataTypeIds": [
+        "Q162875",
+        "Q17431399",
+        "Q5003624"
+      ]
+    },
+    {
+      "reviewId": "review-6566b28483d731c9",
+      "type": "multiple-wikidata-poi-types",
+      "severity": "manual-review",
+      "relatedEntityIds": [
+        "city-dde074f983b42cfd",
+        "poi-9147c8702fa4b568"
+      ],
+      "field": "wikidataInstanceOf",
+      "message": "Wikidata supplies multiple active instance-of values for this POI; identity remains QID-based and no canonical POI type is published in P1B.",
+      "wikidataId": "Q632689",
+      "wikidataTypeIds": [
+        "Q16735822",
+        "Q17431399"
+      ]
+    },
+    {
+      "reviewId": "review-709245308ecc73c0",
+      "type": "multiple-wikidata-poi-types",
+      "severity": "manual-review",
+      "relatedEntityIds": [
+        "city-fc91a9c6c7b389cf",
+        "poi-9a98993feb59f773"
+      ],
+      "field": "wikidataInstanceOf",
+      "message": "Wikidata supplies multiple active instance-of values for this POI; identity remains QID-based and no canonical POI type is published in P1B.",
+      "wikidataId": "Q12506",
+      "wikidataTypeIds": [
+        "Q16970",
+        "Q32815",
+        "Q33506",
+        "Q35112127",
+        "Q48356",
+        "Q811979",
+        "Q96371632",
+        "Q96440023",
+        "Q97588309"
+      ]
+    },
+    {
+      "reviewId": "review-8860516734c82b1f",
+      "type": "multiple-wikidata-poi-types",
+      "severity": "manual-review",
+      "relatedEntityIds": [
+        "city-8acaf08893e5abf1",
+        "poi-4e6edb0d3a559ad5"
+      ],
+      "field": "wikidataInstanceOf",
+      "message": "Wikidata supplies multiple active instance-of values for this POI; identity remains QID-based and no canonical POI type is published in P1B.",
+      "wikidataId": "Q270983",
+      "wikidataTypeIds": [
+        "Q15835",
+        "Q5393308"
+      ]
+    },
+    {
+      "reviewId": "review-958d06ddaa1adf82",
+      "type": "wikidata-zh-label-curated-selection",
+      "severity": "manual-review",
+      "relatedEntityIds": [
+        "city-fc91a9c6c7b389cf",
+        "poi-a8c1f0a18a8713de"
+      ],
+      "field": "canonicalNameZh",
+      "message": "The Wikidata zh-hans label is inconsistent with the entity; a correct Chinese alias from the same raw record is selected canonically.",
+      "rawCanonicalNameZh": "苏丹艾哈迈德墓一号",
+      "selectedCanonicalNameZh": "苏丹艾哈迈德清真寺"
+    },
+    {
       "reviewId": "review-c1b15455ffb7e1bf",
       "type": "cross-type-qid-overlap",
       "severity": "manual-review",
@@ -23,6 +141,77 @@
       ],
       "field": "wikidataId",
       "message": "A City and Country intentionally share the same Wikidata QID; typed entity IDs keep them distinct."
+    },
+    {
+      "reviewId": "review-cad815dbf94fd055",
+      "type": "multiple-wikidata-poi-types",
+      "severity": "manual-review",
+      "relatedEntityIds": [
+        "city-8acaf08893e5abf1",
+        "poi-5d85a755073d8224"
+      ],
+      "field": "wikidataInstanceOf",
+      "message": "Wikidata supplies multiple active instance-of values for this POI; identity remains QID-based and no canonical POI type is published in P1B.",
+      "wikidataId": "Q714828",
+      "wikidataTypeIds": [
+        "Q11438310",
+        "Q134917286",
+        "Q135009132",
+        "Q135419779",
+        "Q514480",
+        "Q845945"
+      ]
+    },
+    {
+      "reviewId": "review-cf50553e5c62f011",
+      "type": "multiple-wikidata-poi-types",
+      "severity": "manual-review",
+      "relatedEntityIds": [
+        "city-5a21732f861ff7f1",
+        "poi-1a67173097b2931a"
+      ],
+      "field": "wikidataInstanceOf",
+      "message": "Wikidata supplies multiple active instance-of values for this POI; identity remains QID-based and no canonical POI type is published in P1B.",
+      "wikidataId": "Q183536",
+      "wikidataTypeIds": [
+        "Q1068623",
+        "Q1440300",
+        "Q1440476",
+        "Q2319498"
+      ]
+    },
+    {
+      "reviewId": "review-e34516ddaee3125a",
+      "type": "multiple-wikidata-poi-types",
+      "severity": "manual-review",
+      "relatedEntityIds": [
+        "city-fc91a9c6c7b389cf",
+        "poi-68a616f4d254dfe4"
+      ],
+      "field": "wikidataInstanceOf",
+      "message": "Wikidata supplies multiple active instance-of values for this POI; identity remains QID-based and no canonical POI type is published in P1B.",
+      "wikidataId": "Q170495",
+      "wikidataTypeIds": [
+        "Q12377751",
+        "Q16560",
+        "Q33506"
+      ]
+    },
+    {
+      "reviewId": "review-f162a99cc54bc1c1",
+      "type": "multiple-wikidata-poi-types",
+      "severity": "manual-review",
+      "relatedEntityIds": [
+        "city-d6f6bf7d2fca5cb4",
+        "poi-0f7dce481508edf9"
+      ],
+      "field": "wikidataInstanceOf",
+      "message": "Wikidata supplies multiple active instance-of values for this POI; identity remains QID-based and no canonical POI type is published in P1B.",
+      "wikidataId": "Q754322",
+      "wikidataTypeIds": [
+        "Q17431399",
+        "Q3329412"
+      ]
     }
   ]
 }

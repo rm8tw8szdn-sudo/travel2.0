@@ -99,6 +99,29 @@ export {
 } from "./knowledge-country-baseline-normalizer.mjs";
 export { dedupeCountryEntities } from "./knowledge-country-baseline-deduper.mjs";
 export {
+  canonicalizeEntityLayerAliases,
+  createEntityLayerIssueId,
+  createEntityLayerProvenanceEntry,
+  createTypedEntityId,
+  entityLayerDistanceKm,
+  isValidEntityLayerQid,
+  normalizeEntityLayerCoordinates,
+  normalizeEntityLayerNameKey,
+  normalizeEntityLayerText,
+  validateEntityLayerProvenanceEntry,
+} from "./knowledge-entity-layer-primitives.mjs";
+export {
+  KNOWLEDGE_CITY_BASELINE_SCHEMA_VERSION,
+  KNOWLEDGE_CITY_ENTITY_TYPE,
+  KNOWLEDGE_CITY_PROVENANCE_FIELDS,
+  KNOWLEDGE_CITY_PROVENANCE_SOURCE_TYPES,
+  validateKnowledgeCityEntity,
+  validateKnowledgeCityEntitySet,
+} from "./knowledge-city-baseline-schema.mjs";
+export { normalizeKnowledgeCityBaseline } from "./knowledge-city-baseline-normalizer.mjs";
+export { dedupeKnowledgeCityEntities } from "./knowledge-city-baseline-deduper.mjs";
+export { createKnowledgeEntityLayerRepository } from "./knowledge-entity-layer-repository.mjs";
+export {
   LOCAL_EVIDENCE_COLLECTOR_CREATED_AT,
   LOCAL_EVIDENCE_COLLECTOR_SOURCE,
   collectLocalEvidenceBundle,

@@ -1,0 +1,28 @@
+{
+  "schemaVersion": "route-v2-city-baseline-review-p1b-pilot",
+  "reviewCount": 2,
+  "reviewQueue": [
+    {
+      "reviewId": "review-0c208bcb4a53b559",
+      "type": "cross-continent-city-metadata",
+      "severity": "manual-review",
+      "relatedEntityIds": [
+        "city-fc91a9c6c7b389cf",
+        "country-03919f1fd24fd3dc"
+      ],
+      "field": "geographic-region-metadata",
+      "message": "Istanbul spans Europe and Asia; no canonical continent field is assigned in P1B."
+    },
+    {
+      "reviewId": "review-c1b15455ffb7e1bf",
+      "type": "cross-type-qid-overlap",
+      "severity": "manual-review",
+      "relatedEntityIds": [
+        "city-dde074f983b42cfd",
+        "country-e0a550ef5a59c6f9"
+      ],
+      "field": "wikidataId",
+      "message": "A City and Country intentionally share the same Wikidata QID; typed entity IDs keep them distinct."
+    }
+  ]
+}

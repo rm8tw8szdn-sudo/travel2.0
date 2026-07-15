@@ -74,6 +74,31 @@ export {
   normalizeKnowledgeEntitySource,
 } from "./knowledge-entity-normalizer.mjs";
 export {
+  COUNTRY_BASELINE_ALLOWED_SOURCE_TYPES,
+  COUNTRY_BASELINE_ENTITY_TYPE,
+  COUNTRY_BASELINE_FORBIDDEN_SOURCE_TYPES,
+  COUNTRY_BASELINE_SCHEMA_VERSION,
+  canonicalizeCountryAliases,
+  createCountryEntityId,
+  isValidIsoAlpha2,
+  isValidIsoAlpha3,
+  isValidIsoNumeric,
+  isValidQid,
+  normalizeCountryCoordinates,
+  normalizeIsoAlpha2,
+  normalizeIsoAlpha3,
+  normalizeIsoNumeric,
+  requiredCountryProvenanceFields,
+  sourceEntry,
+  validateCountryEntity,
+  validateCountryEntitySet,
+} from "./knowledge-country-baseline-schema.mjs";
+export {
+  aggregateWikidataCountryRows,
+  normalizeCountryBaseline,
+} from "./knowledge-country-baseline-normalizer.mjs";
+export { dedupeCountryEntities } from "./knowledge-country-baseline-deduper.mjs";
+export {
   LOCAL_EVIDENCE_COLLECTOR_CREATED_AT,
   LOCAL_EVIDENCE_COLLECTOR_SOURCE,
   collectLocalEvidenceBundle,

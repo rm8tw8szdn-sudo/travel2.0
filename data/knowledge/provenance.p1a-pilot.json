@@ -1,0 +1,988 @@
+{
+  "schemaVersion": "route-v2-country-baseline-provenance-p1a-pilot",
+  "generatedFrom": "data/knowledge/raw/countries-p1a-pilot.wikidata.json",
+  "countryCount": 5,
+  "provenance": {
+    "country-3aaf873c348833f5": {
+      "entityId": [
+        {
+          "sourceType": "iso",
+          "source": "P1A pilot ISO seed",
+          "field": "isoAlpha2",
+          "sourceUrl": "",
+          "retrievedAt": "2026-07-14T08:35:47.018Z",
+          "value": "AD"
+        },
+        {
+          "sourceType": "wikidata",
+          "source": "Wikidata SPARQL",
+          "field": "wikidataId",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q228",
+          "retrievedAt": "2026-07-14T08:35:47.018Z",
+          "value": "Q228"
+        }
+      ],
+      "isoAlpha2": [
+        {
+          "sourceType": "iso",
+          "source": "P1A pilot ISO seed",
+          "field": "isoAlpha2",
+          "sourceUrl": "",
+          "retrievedAt": "2026-07-14T08:35:47.018Z",
+          "value": "AD"
+        }
+      ],
+      "isoAlpha3": [
+        {
+          "sourceType": "iso",
+          "source": "P1A pilot ISO seed",
+          "field": "isoAlpha3",
+          "sourceUrl": "",
+          "retrievedAt": "2026-07-14T08:35:47.018Z",
+          "value": "AND"
+        },
+        {
+          "sourceType": "wikidata",
+          "source": "Wikidata SPARQL",
+          "field": "P298",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q228",
+          "retrievedAt": "2026-07-14T08:35:47.018Z",
+          "value": "AND"
+        }
+      ],
+      "isoNumeric": [
+        {
+          "sourceType": "iso",
+          "source": "P1A pilot ISO seed",
+          "field": "isoNumeric",
+          "sourceUrl": "",
+          "retrievedAt": "2026-07-14T08:35:47.018Z",
+          "value": "020"
+        },
+        {
+          "sourceType": "wikidata",
+          "source": "Wikidata SPARQL",
+          "field": "P299",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q228",
+          "retrievedAt": "2026-07-14T08:35:47.018Z",
+          "value": "020"
+        }
+      ],
+      "wikidataId": [
+        {
+          "sourceType": "wikidata",
+          "source": "Wikidata SPARQL",
+          "field": "country",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q228",
+          "retrievedAt": "2026-07-14T08:35:47.018Z",
+          "value": "Q228"
+        }
+      ],
+      "canonicalNameZh": [
+        {
+          "sourceType": "project-country-catalog",
+          "source": "data/countries.zh.json",
+          "field": "name",
+          "sourceUrl": "",
+          "retrievedAt": "2026-07-14T08:35:47.018Z",
+          "value": "安道尔"
+        }
+      ],
+      "canonicalNameEn": [
+        {
+          "sourceType": "wikidata",
+          "source": "Wikidata SPARQL",
+          "field": "rdfs:label@en",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q228",
+          "retrievedAt": "2026-07-14T08:35:47.018Z",
+          "value": "Andorra"
+        }
+      ],
+      "aliases": [
+        {
+          "sourceType": "wikidata",
+          "source": "Wikidata SPARQL",
+          "field": "skos:altLabel",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q228",
+          "retrievedAt": "2026-07-14T08:35:47.018Z",
+          "value": [
+            "Principality of Andorra",
+            "Principality of the Valleys of Andorra",
+            "安道尔公国"
+          ]
+        }
+      ],
+      "continent": [
+        {
+          "sourceType": "wikidata",
+          "source": "Wikidata SPARQL",
+          "field": "P30",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q228",
+          "retrievedAt": "2026-07-14T08:35:47.018Z",
+          "value": {
+            "selected": {
+              "wikidataId": "Q46",
+              "canonicalNameZh": "欧洲",
+              "canonicalNameEn": "Europe"
+            },
+            "candidates": [
+              {
+                "wikidataId": "Q46",
+                "canonicalNameZh": "欧洲",
+                "canonicalNameEn": "Europe",
+                "sourceUrl": "https://www.wikidata.org/wiki/Q46",
+                "source": "Wikidata P30",
+                "semanticNote": "Wikidata P30 can represent continent, macro-region, or a special geographic region."
+              }
+            ],
+            "semanticNote": "Wikidata P30 can represent continent, macro-region, or a special geographic region."
+          }
+        }
+      ],
+      "region": [
+        {
+          "sourceType": "project-country-catalog",
+          "source": "data/countries.zh.json",
+          "field": "group",
+          "sourceUrl": "",
+          "retrievedAt": "2026-07-14T08:35:47.018Z",
+          "value": "南欧"
+        }
+      ],
+      "subregion": [
+        {
+          "sourceType": "project-country-catalog",
+          "source": "data/countries.zh.json",
+          "field": "subregion",
+          "sourceUrl": "",
+          "retrievedAt": "2026-07-14T08:35:47.018Z",
+          "value": "Southern Europe"
+        }
+      ],
+      "capital": [
+        {
+          "sourceType": "wikidata",
+          "source": "Wikidata SPARQL",
+          "field": "P36",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q228",
+          "retrievedAt": "2026-07-14T08:35:47.018Z",
+          "value": {
+            "wikidataId": "Q1863",
+            "canonicalNameZh": "安道尔城",
+            "canonicalNameEn": "Andorra la Vella",
+            "aliases": []
+          }
+        }
+      ],
+      "coordinates": [
+        {
+          "sourceType": "wikidata",
+          "source": "Wikidata SPARQL",
+          "field": "P625",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q228",
+          "retrievedAt": "2026-07-14T08:35:47.018Z",
+          "value": {
+            "latitude": 42.558333333,
+            "longitude": 1.555277777
+          }
+        }
+      ]
+    },
+    "country-8f3f01ba690c4b42": {
+      "entityId": [
+        {
+          "sourceType": "iso",
+          "source": "P1A pilot ISO seed",
+          "field": "isoAlpha2",
+          "sourceUrl": "",
+          "retrievedAt": "2026-07-14T08:35:47.018Z",
+          "value": "MA"
+        },
+        {
+          "sourceType": "wikidata",
+          "source": "Wikidata SPARQL",
+          "field": "wikidataId",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1028",
+          "retrievedAt": "2026-07-14T08:35:47.018Z",
+          "value": "Q1028"
+        }
+      ],
+      "isoAlpha2": [
+        {
+          "sourceType": "iso",
+          "source": "P1A pilot ISO seed",
+          "field": "isoAlpha2",
+          "sourceUrl": "",
+          "retrievedAt": "2026-07-14T08:35:47.018Z",
+          "value": "MA"
+        }
+      ],
+      "isoAlpha3": [
+        {
+          "sourceType": "iso",
+          "source": "P1A pilot ISO seed",
+          "field": "isoAlpha3",
+          "sourceUrl": "",
+          "retrievedAt": "2026-07-14T08:35:47.018Z",
+          "value": "MAR"
+        },
+        {
+          "sourceType": "wikidata",
+          "source": "Wikidata SPARQL",
+          "field": "P298",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1028",
+          "retrievedAt": "2026-07-14T08:35:47.018Z",
+          "value": "MAR"
+        }
+      ],
+      "isoNumeric": [
+        {
+          "sourceType": "iso",
+          "source": "P1A pilot ISO seed",
+          "field": "isoNumeric",
+          "sourceUrl": "",
+          "retrievedAt": "2026-07-14T08:35:47.018Z",
+          "value": "504"
+        },
+        {
+          "sourceType": "wikidata",
+          "source": "Wikidata SPARQL",
+          "field": "P299",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1028",
+          "retrievedAt": "2026-07-14T08:35:47.018Z",
+          "value": "504"
+        }
+      ],
+      "wikidataId": [
+        {
+          "sourceType": "wikidata",
+          "source": "Wikidata SPARQL",
+          "field": "country",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1028",
+          "retrievedAt": "2026-07-14T08:35:47.018Z",
+          "value": "Q1028"
+        }
+      ],
+      "canonicalNameZh": [
+        {
+          "sourceType": "project-country-catalog",
+          "source": "data/countries.zh.json",
+          "field": "name",
+          "sourceUrl": "",
+          "retrievedAt": "2026-07-14T08:35:47.018Z",
+          "value": "摩洛哥"
+        }
+      ],
+      "canonicalNameEn": [
+        {
+          "sourceType": "wikidata",
+          "source": "Wikidata SPARQL",
+          "field": "rdfs:label@en",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1028",
+          "retrievedAt": "2026-07-14T08:35:47.018Z",
+          "value": "Morocco"
+        }
+      ],
+      "aliases": [
+        {
+          "sourceType": "wikidata",
+          "source": "Wikidata SPARQL",
+          "field": "skos:altLabel",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1028",
+          "retrievedAt": "2026-07-14T08:35:47.018Z",
+          "value": [
+            "al-Maġrib",
+            "Kingdom of Morocco",
+            "Lmaġrib",
+            "Maroc",
+            "Marocco",
+            "摩洛哥王國",
+            "菲兹王國"
+          ]
+        }
+      ],
+      "continent": [
+        {
+          "sourceType": "wikidata",
+          "source": "Wikidata SPARQL",
+          "field": "P30",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1028",
+          "retrievedAt": "2026-07-14T08:35:47.018Z",
+          "value": {
+            "selected": {
+              "wikidataId": "Q15",
+              "canonicalNameZh": "非洲",
+              "canonicalNameEn": "Africa"
+            },
+            "candidates": [
+              {
+                "wikidataId": "Q15",
+                "canonicalNameZh": "非洲",
+                "canonicalNameEn": "Africa",
+                "sourceUrl": "https://www.wikidata.org/wiki/Q15",
+                "source": "Wikidata P30",
+                "semanticNote": "Wikidata P30 can represent continent, macro-region, or a special geographic region."
+              }
+            ],
+            "semanticNote": "Wikidata P30 can represent continent, macro-region, or a special geographic region."
+          }
+        }
+      ],
+      "region": [
+        {
+          "sourceType": "project-country-catalog",
+          "source": "data/countries.zh.json",
+          "field": "group",
+          "sourceUrl": "",
+          "retrievedAt": "2026-07-14T08:35:47.018Z",
+          "value": "北非"
+        }
+      ],
+      "subregion": [
+        {
+          "sourceType": "project-country-catalog",
+          "source": "data/countries.zh.json",
+          "field": "subregion",
+          "sourceUrl": "",
+          "retrievedAt": "2026-07-14T08:35:47.018Z",
+          "value": "Northern Africa"
+        }
+      ],
+      "capital": [
+        {
+          "sourceType": "wikidata",
+          "source": "Wikidata SPARQL",
+          "field": "P36",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1028",
+          "retrievedAt": "2026-07-14T08:35:47.018Z",
+          "value": {
+            "wikidataId": "Q3551",
+            "canonicalNameZh": "拉巴特",
+            "canonicalNameEn": "Rabat",
+            "aliases": [
+              "Rabbat"
+            ]
+          }
+        }
+      ],
+      "coordinates": [
+        {
+          "sourceType": "wikidata",
+          "source": "Wikidata SPARQL",
+          "field": "P625",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1028",
+          "retrievedAt": "2026-07-14T08:35:47.018Z",
+          "value": {
+            "latitude": 32,
+            "longitude": -6
+          }
+        }
+      ]
+    },
+    "country-a0509b9eab0ea9ce": {
+      "entityId": [
+        {
+          "sourceType": "iso",
+          "source": "P1A pilot ISO seed",
+          "field": "isoAlpha2",
+          "sourceUrl": "",
+          "retrievedAt": "2026-07-14T08:35:47.018Z",
+          "value": "JP"
+        },
+        {
+          "sourceType": "wikidata",
+          "source": "Wikidata SPARQL",
+          "field": "wikidataId",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q17",
+          "retrievedAt": "2026-07-14T08:35:47.018Z",
+          "value": "Q17"
+        }
+      ],
+      "isoAlpha2": [
+        {
+          "sourceType": "iso",
+          "source": "P1A pilot ISO seed",
+          "field": "isoAlpha2",
+          "sourceUrl": "",
+          "retrievedAt": "2026-07-14T08:35:47.018Z",
+          "value": "JP"
+        }
+      ],
+      "isoAlpha3": [
+        {
+          "sourceType": "iso",
+          "source": "P1A pilot ISO seed",
+          "field": "isoAlpha3",
+          "sourceUrl": "",
+          "retrievedAt": "2026-07-14T08:35:47.018Z",
+          "value": "JPN"
+        },
+        {
+          "sourceType": "wikidata",
+          "source": "Wikidata SPARQL",
+          "field": "P298",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q17",
+          "retrievedAt": "2026-07-14T08:35:47.018Z",
+          "value": "JPN"
+        }
+      ],
+      "isoNumeric": [
+        {
+          "sourceType": "iso",
+          "source": "P1A pilot ISO seed",
+          "field": "isoNumeric",
+          "sourceUrl": "",
+          "retrievedAt": "2026-07-14T08:35:47.018Z",
+          "value": "392"
+        },
+        {
+          "sourceType": "wikidata",
+          "source": "Wikidata SPARQL",
+          "field": "P299",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q17",
+          "retrievedAt": "2026-07-14T08:35:47.018Z",
+          "value": "392"
+        }
+      ],
+      "wikidataId": [
+        {
+          "sourceType": "wikidata",
+          "source": "Wikidata SPARQL",
+          "field": "country",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q17",
+          "retrievedAt": "2026-07-14T08:35:47.018Z",
+          "value": "Q17"
+        }
+      ],
+      "canonicalNameZh": [
+        {
+          "sourceType": "project-country-catalog",
+          "source": "data/countries.zh.json",
+          "field": "name",
+          "sourceUrl": "",
+          "retrievedAt": "2026-07-14T08:35:47.018Z",
+          "value": "日本"
+        }
+      ],
+      "canonicalNameEn": [
+        {
+          "sourceType": "wikidata",
+          "source": "Wikidata SPARQL",
+          "field": "rdfs:label@en",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q17",
+          "retrievedAt": "2026-07-14T08:35:47.018Z",
+          "value": "Japan"
+        }
+      ],
+      "aliases": [
+        {
+          "sourceType": "wikidata",
+          "source": "Wikidata SPARQL",
+          "field": "skos:altLabel",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q17",
+          "retrievedAt": "2026-07-14T08:35:47.018Z",
+          "value": [
+            "Iapan",
+            "Iapon",
+            "Land of Rising Sun",
+            "Land of the Rising Sun",
+            "Nihon-koku",
+            "Nippon-koku",
+            "State of Japan",
+            "扶桑",
+            "扶桑國",
+            "日"
+          ]
+        }
+      ],
+      "continent": [
+        {
+          "sourceType": "wikidata",
+          "source": "Wikidata SPARQL",
+          "field": "P30",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q17",
+          "retrievedAt": "2026-07-14T08:35:47.018Z",
+          "value": {
+            "selected": {
+              "wikidataId": "Q48",
+              "canonicalNameZh": "亞洲",
+              "canonicalNameEn": "Asia"
+            },
+            "candidates": [
+              {
+                "wikidataId": "Q48",
+                "canonicalNameZh": "亞洲",
+                "canonicalNameEn": "Asia",
+                "sourceUrl": "https://www.wikidata.org/wiki/Q48",
+                "source": "Wikidata P30",
+                "semanticNote": "Wikidata P30 can represent continent, macro-region, or a special geographic region."
+              }
+            ],
+            "semanticNote": "Wikidata P30 can represent continent, macro-region, or a special geographic region."
+          }
+        }
+      ],
+      "region": [
+        {
+          "sourceType": "project-country-catalog",
+          "source": "data/countries.zh.json",
+          "field": "group",
+          "sourceUrl": "",
+          "retrievedAt": "2026-07-14T08:35:47.018Z",
+          "value": "东亚"
+        }
+      ],
+      "subregion": [
+        {
+          "sourceType": "project-country-catalog",
+          "source": "data/countries.zh.json",
+          "field": "subregion",
+          "sourceUrl": "",
+          "retrievedAt": "2026-07-14T08:35:47.018Z",
+          "value": "East Asia"
+        }
+      ],
+      "capital": [
+        {
+          "sourceType": "wikidata",
+          "source": "Wikidata SPARQL",
+          "field": "P36",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q17",
+          "retrievedAt": "2026-07-14T08:35:47.018Z",
+          "value": {
+            "wikidataId": "Q1490",
+            "canonicalNameZh": "東京都",
+            "canonicalNameEn": "Tokyo",
+            "aliases": [
+              "Edo",
+              "Jedo",
+              "Tokei",
+              "Tokio",
+              "Tôkyô",
+              "Tokyo (Japan)",
+              "Tokyo Metropolis",
+              "Tokyo Metropolitan prefecture",
+              "Tokyo Prefecture",
+              "Tokyo-to",
+              "Tôkyô-to",
+              "Tōkyō-to",
+              "Tokyo, Japan",
+              "Yedo",
+              "东京",
+              "东京都",
+              "日本东京",
+              "日本東京",
+              "東京"
+            ]
+          }
+        }
+      ],
+      "coordinates": [
+        {
+          "sourceType": "wikidata",
+          "source": "Wikidata SPARQL",
+          "field": "P625",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q17",
+          "retrievedAt": "2026-07-14T08:35:47.018Z",
+          "value": {
+            "latitude": 35,
+            "longitude": 136
+          }
+        }
+      ]
+    },
+    "country-a92fca116b30edfe": {
+      "entityId": [
+        {
+          "sourceType": "iso",
+          "source": "P1A pilot ISO seed",
+          "field": "isoAlpha2",
+          "sourceUrl": "",
+          "retrievedAt": "2026-07-14T08:35:47.018Z",
+          "value": "FJ"
+        },
+        {
+          "sourceType": "wikidata",
+          "source": "Wikidata SPARQL",
+          "field": "wikidataId",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q712",
+          "retrievedAt": "2026-07-14T08:35:47.018Z",
+          "value": "Q712"
+        }
+      ],
+      "isoAlpha2": [
+        {
+          "sourceType": "iso",
+          "source": "P1A pilot ISO seed",
+          "field": "isoAlpha2",
+          "sourceUrl": "",
+          "retrievedAt": "2026-07-14T08:35:47.018Z",
+          "value": "FJ"
+        }
+      ],
+      "isoAlpha3": [
+        {
+          "sourceType": "iso",
+          "source": "P1A pilot ISO seed",
+          "field": "isoAlpha3",
+          "sourceUrl": "",
+          "retrievedAt": "2026-07-14T08:35:47.018Z",
+          "value": "FJI"
+        },
+        {
+          "sourceType": "wikidata",
+          "source": "Wikidata SPARQL",
+          "field": "P298",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q712",
+          "retrievedAt": "2026-07-14T08:35:47.018Z",
+          "value": "FJI"
+        }
+      ],
+      "isoNumeric": [
+        {
+          "sourceType": "iso",
+          "source": "P1A pilot ISO seed",
+          "field": "isoNumeric",
+          "sourceUrl": "",
+          "retrievedAt": "2026-07-14T08:35:47.018Z",
+          "value": "242"
+        },
+        {
+          "sourceType": "wikidata",
+          "source": "Wikidata SPARQL",
+          "field": "P299",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q712",
+          "retrievedAt": "2026-07-14T08:35:47.018Z",
+          "value": "242"
+        }
+      ],
+      "wikidataId": [
+        {
+          "sourceType": "wikidata",
+          "source": "Wikidata SPARQL",
+          "field": "country",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q712",
+          "retrievedAt": "2026-07-14T08:35:47.018Z",
+          "value": "Q712"
+        }
+      ],
+      "canonicalNameZh": [
+        {
+          "sourceType": "project-country-catalog",
+          "source": "data/countries.zh.json",
+          "field": "name",
+          "sourceUrl": "",
+          "retrievedAt": "2026-07-14T08:35:47.018Z",
+          "value": "斐济"
+        }
+      ],
+      "canonicalNameEn": [
+        {
+          "sourceType": "wikidata",
+          "source": "Wikidata SPARQL",
+          "field": "rdfs:label@en",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q712",
+          "retrievedAt": "2026-07-14T08:35:47.018Z",
+          "value": "Fiji"
+        }
+      ],
+      "aliases": [
+        {
+          "sourceType": "wikidata",
+          "source": "Wikidata SPARQL",
+          "field": "skos:altLabel",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q712",
+          "retrievedAt": "2026-07-14T08:35:47.018Z",
+          "value": [
+            "Fijī",
+            "Fijī Gaṇarājya",
+            "fj",
+            "Matanitu Tugalala o Viti",
+            "Republic of Fiji",
+            "Republic of the Fiji Islands",
+            "Viti",
+            "斐濟"
+          ]
+        }
+      ],
+      "continent": [
+        {
+          "sourceType": "wikidata",
+          "source": "Wikidata SPARQL",
+          "field": "P30",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q712",
+          "retrievedAt": "2026-07-14T08:35:47.018Z",
+          "value": {
+            "selected": {
+              "wikidataId": "Q538",
+              "canonicalNameZh": "太平洋岛国",
+              "canonicalNameEn": "Insular Oceania"
+            },
+            "candidates": [
+              {
+                "wikidataId": "Q538",
+                "canonicalNameZh": "太平洋岛国",
+                "canonicalNameEn": "Insular Oceania",
+                "sourceUrl": "https://www.wikidata.org/wiki/Q538",
+                "source": "Wikidata P30",
+                "semanticNote": "Wikidata P30 can represent continent, macro-region, or a special geographic region."
+              }
+            ],
+            "semanticNote": "Wikidata P30 can represent continent, macro-region, or a special geographic region."
+          }
+        }
+      ],
+      "region": [
+        {
+          "sourceType": "project-country-catalog",
+          "source": "data/countries.zh.json",
+          "field": "group",
+          "sourceUrl": "",
+          "retrievedAt": "2026-07-14T08:35:47.018Z",
+          "value": "大洋洲"
+        }
+      ],
+      "subregion": [
+        {
+          "sourceType": "project-country-catalog",
+          "source": "data/countries.zh.json",
+          "field": "subregion",
+          "sourceUrl": "",
+          "retrievedAt": "2026-07-14T08:35:47.018Z",
+          "value": "Melanesia"
+        }
+      ],
+      "capital": [
+        {
+          "sourceType": "wikidata",
+          "source": "Wikidata SPARQL",
+          "field": "P36",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q712",
+          "retrievedAt": "2026-07-14T08:35:47.018Z",
+          "value": {
+            "wikidataId": "Q38807",
+            "canonicalNameZh": "蘇瓦",
+            "canonicalNameEn": "Suva",
+            "aliases": [
+              "苏瓦"
+            ]
+          }
+        }
+      ],
+      "coordinates": [
+        {
+          "sourceType": "wikidata",
+          "source": "Wikidata SPARQL",
+          "field": "P625",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q712",
+          "retrievedAt": "2026-07-14T08:35:47.018Z",
+          "value": {
+            "latitude": -18,
+            "longitude": 178
+          }
+        }
+      ]
+    },
+    "country-b1748e19e61983f8": {
+      "entityId": [
+        {
+          "sourceType": "iso",
+          "source": "P1A pilot ISO seed",
+          "field": "isoAlpha2",
+          "sourceUrl": "",
+          "retrievedAt": "2026-07-14T08:35:47.018Z",
+          "value": "CD"
+        },
+        {
+          "sourceType": "wikidata",
+          "source": "Wikidata SPARQL",
+          "field": "wikidataId",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q974",
+          "retrievedAt": "2026-07-14T08:35:47.018Z",
+          "value": "Q974"
+        }
+      ],
+      "isoAlpha2": [
+        {
+          "sourceType": "iso",
+          "source": "P1A pilot ISO seed",
+          "field": "isoAlpha2",
+          "sourceUrl": "",
+          "retrievedAt": "2026-07-14T08:35:47.018Z",
+          "value": "CD"
+        }
+      ],
+      "isoAlpha3": [
+        {
+          "sourceType": "iso",
+          "source": "P1A pilot ISO seed",
+          "field": "isoAlpha3",
+          "sourceUrl": "",
+          "retrievedAt": "2026-07-14T08:35:47.018Z",
+          "value": "COD"
+        },
+        {
+          "sourceType": "wikidata",
+          "source": "Wikidata SPARQL",
+          "field": "P298",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q974",
+          "retrievedAt": "2026-07-14T08:35:47.018Z",
+          "value": "COD"
+        }
+      ],
+      "isoNumeric": [
+        {
+          "sourceType": "iso",
+          "source": "P1A pilot ISO seed",
+          "field": "isoNumeric",
+          "sourceUrl": "",
+          "retrievedAt": "2026-07-14T08:35:47.018Z",
+          "value": "180"
+        },
+        {
+          "sourceType": "wikidata",
+          "source": "Wikidata SPARQL",
+          "field": "P299",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q974",
+          "retrievedAt": "2026-07-14T08:35:47.018Z",
+          "value": "180"
+        }
+      ],
+      "wikidataId": [
+        {
+          "sourceType": "wikidata",
+          "source": "Wikidata SPARQL",
+          "field": "country",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q974",
+          "retrievedAt": "2026-07-14T08:35:47.018Z",
+          "value": "Q974"
+        }
+      ],
+      "canonicalNameZh": [
+        {
+          "sourceType": "project-country-catalog",
+          "source": "data/countries.zh.json",
+          "field": "name",
+          "sourceUrl": "",
+          "retrievedAt": "2026-07-14T08:35:47.018Z",
+          "value": "刚果（金）"
+        }
+      ],
+      "canonicalNameEn": [
+        {
+          "sourceType": "wikidata",
+          "source": "Wikidata SPARQL",
+          "field": "rdfs:label@en",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q974",
+          "retrievedAt": "2026-07-14T08:35:47.018Z",
+          "value": "Democratic Republic of the Congo"
+        }
+      ],
+      "aliases": [
+        {
+          "sourceType": "wikidata",
+          "source": "Wikidata SPARQL",
+          "field": "skos:altLabel",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q974",
+          "retrievedAt": "2026-07-14T08:35:47.018Z",
+          "value": [
+            "cd",
+            "COD",
+            "Congo (Kinshasa)",
+            "D.R.C.",
+            "Dem. Rep. Congo",
+            "Dem. Republic of Congo",
+            "Dem. Republic of the Congo",
+            "Democratic Republic of Congo",
+            "DR Congo",
+            "DRC",
+            "刚果民主共和国",
+            "剛果民主共和國",
+            "民主剛果"
+          ]
+        }
+      ],
+      "continent": [
+        {
+          "sourceType": "wikidata",
+          "source": "Wikidata SPARQL",
+          "field": "P30",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q974",
+          "retrievedAt": "2026-07-14T08:35:47.018Z",
+          "value": {
+            "selected": {
+              "wikidataId": "Q15",
+              "canonicalNameZh": "非洲",
+              "canonicalNameEn": "Africa"
+            },
+            "candidates": [
+              {
+                "wikidataId": "Q15",
+                "canonicalNameZh": "非洲",
+                "canonicalNameEn": "Africa",
+                "sourceUrl": "https://www.wikidata.org/wiki/Q15",
+                "source": "Wikidata P30",
+                "semanticNote": "Wikidata P30 can represent continent, macro-region, or a special geographic region."
+              }
+            ],
+            "semanticNote": "Wikidata P30 can represent continent, macro-region, or a special geographic region."
+          }
+        }
+      ],
+      "region": [
+        {
+          "sourceType": "project-country-catalog",
+          "source": "data/countries.zh.json",
+          "field": "group",
+          "sourceUrl": "",
+          "retrievedAt": "2026-07-14T08:35:47.018Z",
+          "value": "中非"
+        }
+      ],
+      "subregion": [
+        {
+          "sourceType": "project-country-catalog",
+          "source": "data/countries.zh.json",
+          "field": "subregion",
+          "sourceUrl": "",
+          "retrievedAt": "2026-07-14T08:35:47.018Z",
+          "value": "Middle Africa"
+        }
+      ],
+      "capital": [
+        {
+          "sourceType": "wikidata",
+          "source": "Wikidata SPARQL",
+          "field": "P36",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q974",
+          "retrievedAt": "2026-07-14T08:35:47.018Z",
+          "value": {
+            "wikidataId": "Q3838",
+            "canonicalNameZh": "金沙萨",
+            "canonicalNameEn": "Kinshasa",
+            "aliases": [
+              "Leopoldstad",
+              "Leopoldville",
+              "Léopoldville",
+              "利奥波德维尔",
+              "金夏沙"
+            ]
+          }
+        }
+      ],
+      "coordinates": [
+        {
+          "sourceType": "wikidata",
+          "source": "Wikidata SPARQL",
+          "field": "P625",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q974",
+          "retrievedAt": "2026-07-14T08:35:47.018Z",
+          "value": {
+            "latitude": -2.88,
+            "longitude": 23.656111111
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,154 @@
+{
+  "schemaVersion": "route-v2-country-baseline-review-p1a-batch01",
+  "reviewCount": 5,
+  "reviewQueue": [
+    {
+      "reviewId": "review-19046eee7029f660",
+      "isoAlpha2": "DE",
+      "entityId": "country-9bef984affea20d8",
+      "severity": "manual-review",
+      "type": "multiple-country-labels",
+      "labels": {
+        "zh": [
+          "德国",
+          "德國"
+        ],
+        "en": [
+          "Germany"
+        ]
+      }
+    },
+    {
+      "reviewId": "review-7295cd8a41af86f8",
+      "isoAlpha2": "FR",
+      "entityId": "country-a20e4bab95389730",
+      "severity": "manual-review",
+      "type": "multiple-country-labels",
+      "labels": {
+        "zh": [
+          "法国",
+          "法國"
+        ],
+        "en": [
+          "France"
+        ]
+      }
+    },
+    {
+      "reviewId": "review-bca1c85ad96eb66b",
+      "isoAlpha2": "TR",
+      "entityId": "country-03919f1fd24fd3dc",
+      "severity": "manual-review",
+      "type": "multiple-continent-candidates",
+      "selected": {
+        "wikidataId": "Q46",
+        "canonicalNameZh": "欧洲",
+        "canonicalNameEn": "Europe"
+      },
+      "candidates": [
+        {
+          "wikidataId": "Q46",
+          "canonicalNameZh": "欧洲",
+          "canonicalNameEn": "Europe",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q46",
+          "source": "Wikidata P30",
+          "semanticNote": "Wikidata P30 can represent continent, macro-region, or a special geographic region."
+        },
+        {
+          "wikidataId": "Q48",
+          "canonicalNameZh": "亞洲",
+          "canonicalNameEn": "Asia",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q48",
+          "source": "Wikidata P30",
+          "semanticNote": "Wikidata P30 can represent continent, macro-region, or a special geographic region."
+        }
+      ],
+      "sourceField": "Wikidata P30",
+      "semanticNote": "Wikidata P30 can represent continent, macro-region, or a special geographic region."
+    },
+    {
+      "reviewId": "review-3649b45d7a7a3eb0",
+      "isoAlpha2": "US",
+      "entityId": "country-193916ed8681a5f9",
+      "severity": "manual-review",
+      "type": "multiple-country-labels",
+      "labels": {
+        "zh": [
+          "美国",
+          "美國"
+        ],
+        "en": [
+          "United States"
+        ]
+      }
+    },
+    {
+      "reviewId": "review-e9ac47e7d47b8076",
+      "isoAlpha2": "ZA",
+      "entityId": "country-890663956f349c30",
+      "severity": "manual-review",
+      "type": "multiple-capital-candidates",
+      "selected": {
+        "wikidataId": "Q37701",
+        "canonicalNameZh": "布隆方丹",
+        "canonicalNameEn": "Bloemfontein",
+        "aliases": [
+          "布隆泉"
+        ]
+      },
+      "candidates": [
+        {
+          "wikidataId": "Q37701",
+          "canonicalNameZh": "布隆方丹",
+          "canonicalNameEn": "Bloemfontein",
+          "aliases": [
+            "布隆泉"
+          ],
+          "sourceUrl": "https://www.wikidata.org/wiki/Q37701",
+          "source": "Wikidata P36"
+        },
+        {
+          "wikidataId": "Q3926",
+          "canonicalNameZh": "比勒陀利亚",
+          "canonicalNameEn": "Pretoria",
+          "aliases": [
+            "Pretoria, Gauteng",
+            "Pretoria, Gauteng, South Africa",
+            "Pretoria, S Africa",
+            "Pretoria, S. Africa",
+            "Pretoria, South Africa",
+            "斐京",
+            "普利托利亞",
+            "普利托里亞",
+            "普勒多利亞",
+            "普勒托利亞",
+            "普里托利亞",
+            "比勒陀里亞",
+            "茨瓦内",
+            "茨瓦尼",
+            "茨瓦納"
+          ],
+          "sourceUrl": "https://www.wikidata.org/wiki/Q3926",
+          "source": "Wikidata P36"
+        },
+        {
+          "wikidataId": "Q5465",
+          "canonicalNameZh": "开普敦",
+          "canonicalNameEn": "Cape Town",
+          "aliases": [
+            "Cape",
+            "Cape Town, South Africa",
+            "iKapa",
+            "Kaap",
+            "Mother City",
+            "Tavern of the Seas",
+            "West side"
+          ],
+          "sourceUrl": "https://www.wikidata.org/wiki/Q5465",
+          "source": "Wikidata P36"
+        }
+      ],
+      "sourceField": "Wikidata P36"
+    }
+  ]
+}

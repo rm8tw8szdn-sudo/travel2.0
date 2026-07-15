@@ -1,0 +1,3758 @@
+{
+  "schemaVersion": "route-v2-country-baseline-p1a-batch03",
+  "generatedFrom": "data/knowledge/raw/countries-p1a-batch03.wikidata.json",
+  "countryCount": 15,
+  "countries": [
+    {
+      "schemaVersion": "route-v2-country-baseline-p1a",
+      "entityId": "country-0ac53b7955d0cc26",
+      "entityType": "country",
+      "isoAlpha2": "AT",
+      "isoAlpha3": "AUT",
+      "isoNumeric": "040",
+      "wikidataId": "Q40",
+      "canonicalNameZh": "奥地利",
+      "canonicalNameEn": "Austria",
+      "aliases": [
+        "Republic of Austria",
+        "奥地利共和国",
+        "奧地利",
+        "奧地利共和國"
+      ],
+      "continent": {
+        "wikidataId": "Q46",
+        "canonicalNameZh": "欧洲",
+        "canonicalNameEn": "Europe"
+      },
+      "region": "欧洲",
+      "subregion": "Western Europe",
+      "capital": {
+        "wikidataId": "Q1741",
+        "canonicalNameZh": "维也纳",
+        "canonicalNameEn": "Vienna",
+        "aliases": [
+          "Vienna, Austria"
+        ]
+      },
+      "coordinates": {
+        "latitude": 48,
+        "longitude": 14
+      },
+      "entitySourceType": "wikidata",
+      "provenance": {
+        "entityId": [
+          {
+            "sourceType": "iso",
+            "source": "P1A batch03 ISO seed",
+            "field": "isoAlpha2",
+            "sourceUrl": "",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "AT"
+          },
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "wikidataId",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q40",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "Q40"
+          }
+        ],
+        "isoAlpha2": [
+          {
+            "sourceType": "iso",
+            "source": "P1A batch03 ISO seed",
+            "field": "isoAlpha2",
+            "sourceUrl": "",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "AT"
+          }
+        ],
+        "isoAlpha3": [
+          {
+            "sourceType": "iso",
+            "source": "P1A batch03 ISO seed",
+            "field": "isoAlpha3",
+            "sourceUrl": "",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "AUT"
+          },
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "P298",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q40",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "AUT"
+          }
+        ],
+        "isoNumeric": [
+          {
+            "sourceType": "iso",
+            "source": "P1A batch03 ISO seed",
+            "field": "isoNumeric",
+            "sourceUrl": "",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "040"
+          },
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "P299",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q40",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "040"
+          }
+        ],
+        "wikidataId": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "country",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q40",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "Q40"
+          }
+        ],
+        "canonicalNameZh": [
+          {
+            "sourceType": "project-country-catalog",
+            "source": "data/countries.zh.json",
+            "field": "name",
+            "sourceUrl": "",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "奥地利"
+          }
+        ],
+        "canonicalNameEn": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "rdfs:label@en",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q40",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "Austria"
+          }
+        ],
+        "aliases": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "skos:altLabel",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q40",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": [
+              "Republic of Austria",
+              "奥地利共和国",
+              "奧地利",
+              "奧地利共和國"
+            ]
+          }
+        ],
+        "continent": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "P30",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q40",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": {
+              "selected": {
+                "wikidataId": "Q46",
+                "canonicalNameZh": "欧洲",
+                "canonicalNameEn": "Europe"
+              },
+              "candidates": [
+                {
+                  "wikidataId": "Q46",
+                  "canonicalNameZh": "欧洲",
+                  "canonicalNameEn": "Europe",
+                  "sourceUrl": "https://www.wikidata.org/wiki/Q46",
+                  "source": "Wikidata P30",
+                  "semanticNote": "Wikidata P30 can represent continent, macro-region, or a special geographic region."
+                }
+              ],
+              "semanticNote": "Wikidata P30 can represent continent, macro-region, or a special geographic region."
+            }
+          }
+        ],
+        "region": [
+          {
+            "sourceType": "project-country-catalog",
+            "source": "data/countries.zh.json",
+            "field": "group",
+            "sourceUrl": "",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "欧洲"
+          }
+        ],
+        "subregion": [
+          {
+            "sourceType": "project-country-catalog",
+            "source": "data/countries.zh.json",
+            "field": "subregion",
+            "sourceUrl": "",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "Western Europe"
+          }
+        ],
+        "capital": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "P36",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q40",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": {
+              "selected": {
+                "wikidataId": "Q1741",
+                "canonicalNameZh": "维也纳",
+                "canonicalNameEn": "Vienna",
+                "aliases": [
+                  "Vienna, Austria"
+                ]
+              },
+              "candidates": [
+                {
+                  "wikidataId": "Q1741",
+                  "canonicalNameZh": "维也纳",
+                  "canonicalNameEn": "Vienna",
+                  "aliases": [
+                    "Vienna, Austria"
+                  ],
+                  "sourceUrl": "https://www.wikidata.org/wiki/Q1741",
+                  "source": "Wikidata P36"
+                }
+              ]
+            }
+          }
+        ],
+        "coordinates": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "P625",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q40",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": {
+              "latitude": 48,
+              "longitude": 14
+            }
+          }
+        ]
+      },
+      "confidence": 0.95,
+      "retrievedAt": "2026-07-15T07:08:36.639Z"
+    },
+    {
+      "schemaVersion": "route-v2-country-baseline-p1a",
+      "entityId": "country-0af9aaa99cc658c3",
+      "entityType": "country",
+      "isoAlpha2": "BE",
+      "isoAlpha3": "BEL",
+      "isoNumeric": "056",
+      "wikidataId": "Q31",
+      "canonicalNameZh": "比利时",
+      "canonicalNameEn": "Belgium",
+      "aliases": [
+        "Kingdom of Belgium",
+        "比利时王国",
+        "比利時",
+        "比利時王國"
+      ],
+      "continent": {
+        "wikidataId": "Q46",
+        "canonicalNameZh": "欧洲",
+        "canonicalNameEn": "Europe"
+      },
+      "region": "西欧",
+      "subregion": "Western Europe",
+      "capital": {
+        "wikidataId": "Q239",
+        "canonicalNameZh": "布鲁塞尔",
+        "canonicalNameEn": "Brussels",
+        "aliases": [
+          "Brussels (municipality)",
+          "Brussels City",
+          "City of Brussels",
+          "布鲁塞尔城",
+          "布鲁塞尔市"
+        ]
+      },
+      "coordinates": {
+        "latitude": 50.641111111,
+        "longitude": 4.668055555
+      },
+      "entitySourceType": "wikidata",
+      "provenance": {
+        "entityId": [
+          {
+            "sourceType": "iso",
+            "source": "P1A batch03 ISO seed",
+            "field": "isoAlpha2",
+            "sourceUrl": "",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "BE"
+          },
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "wikidataId",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q31",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "Q31"
+          }
+        ],
+        "isoAlpha2": [
+          {
+            "sourceType": "iso",
+            "source": "P1A batch03 ISO seed",
+            "field": "isoAlpha2",
+            "sourceUrl": "",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "BE"
+          }
+        ],
+        "isoAlpha3": [
+          {
+            "sourceType": "iso",
+            "source": "P1A batch03 ISO seed",
+            "field": "isoAlpha3",
+            "sourceUrl": "",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "BEL"
+          },
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "P298",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q31",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "BEL"
+          }
+        ],
+        "isoNumeric": [
+          {
+            "sourceType": "iso",
+            "source": "P1A batch03 ISO seed",
+            "field": "isoNumeric",
+            "sourceUrl": "",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "056"
+          },
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "P299",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q31",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "056"
+          }
+        ],
+        "wikidataId": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "country",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q31",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "Q31"
+          }
+        ],
+        "canonicalNameZh": [
+          {
+            "sourceType": "project-country-catalog",
+            "source": "data/countries.zh.json",
+            "field": "name",
+            "sourceUrl": "",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "比利时"
+          }
+        ],
+        "canonicalNameEn": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "rdfs:label@en",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q31",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "Belgium"
+          }
+        ],
+        "aliases": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "skos:altLabel",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q31",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": [
+              "Kingdom of Belgium",
+              "比利时王国",
+              "比利時",
+              "比利時王國"
+            ]
+          }
+        ],
+        "continent": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "P30",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q31",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": {
+              "selected": {
+                "wikidataId": "Q46",
+                "canonicalNameZh": "欧洲",
+                "canonicalNameEn": "Europe"
+              },
+              "candidates": [
+                {
+                  "wikidataId": "Q46",
+                  "canonicalNameZh": "欧洲",
+                  "canonicalNameEn": "Europe",
+                  "sourceUrl": "https://www.wikidata.org/wiki/Q46",
+                  "source": "Wikidata P30",
+                  "semanticNote": "Wikidata P30 can represent continent, macro-region, or a special geographic region."
+                }
+              ],
+              "semanticNote": "Wikidata P30 can represent continent, macro-region, or a special geographic region."
+            }
+          }
+        ],
+        "region": [
+          {
+            "sourceType": "project-country-catalog",
+            "source": "data/countries.zh.json",
+            "field": "group",
+            "sourceUrl": "",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "西欧"
+          }
+        ],
+        "subregion": [
+          {
+            "sourceType": "project-country-catalog",
+            "source": "data/countries.zh.json",
+            "field": "subregion",
+            "sourceUrl": "",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "Western Europe"
+          }
+        ],
+        "capital": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "P36",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q31",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": {
+              "selected": {
+                "wikidataId": "Q239",
+                "canonicalNameZh": "布鲁塞尔",
+                "canonicalNameEn": "Brussels",
+                "aliases": [
+                  "Brussels (municipality)",
+                  "Brussels City",
+                  "City of Brussels",
+                  "布鲁塞尔城",
+                  "布鲁塞尔市"
+                ]
+              },
+              "candidates": [
+                {
+                  "wikidataId": "Q239",
+                  "canonicalNameZh": "布鲁塞尔",
+                  "canonicalNameEn": "Brussels",
+                  "aliases": [
+                    "Brussels (municipality)",
+                    "Brussels City",
+                    "City of Brussels",
+                    "布鲁塞尔城",
+                    "布鲁塞尔市"
+                  ],
+                  "sourceUrl": "https://www.wikidata.org/wiki/Q239",
+                  "source": "Wikidata P36"
+                }
+              ]
+            }
+          }
+        ],
+        "coordinates": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "P625",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q31",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": {
+              "latitude": 50.641111111,
+              "longitude": 4.668055555
+            }
+          }
+        ]
+      },
+      "confidence": 0.95,
+      "retrievedAt": "2026-07-15T07:08:36.639Z"
+    },
+    {
+      "schemaVersion": "route-v2-country-baseline-p1a",
+      "entityId": "country-692506398f24fe6c",
+      "entityType": "country",
+      "isoAlpha2": "CL",
+      "isoAlpha3": "CHL",
+      "isoNumeric": "152",
+      "wikidataId": "Q298",
+      "canonicalNameZh": "智利",
+      "canonicalNameEn": "Chile",
+      "aliases": [
+        "CHI",
+        "Republic of Chile",
+        "智利共和国"
+      ],
+      "continent": {
+        "wikidataId": "Q18",
+        "canonicalNameZh": "南美洲",
+        "canonicalNameEn": "South America"
+      },
+      "region": "南美洲",
+      "subregion": "South America",
+      "capital": {
+        "wikidataId": "Q2887",
+        "canonicalNameZh": "圣地亚哥",
+        "canonicalNameEn": "Santiago",
+        "aliases": [
+          "Greater Santiago",
+          "Santiago, Chile"
+        ]
+      },
+      "coordinates": {
+        "latitude": -33,
+        "longitude": -71
+      },
+      "entitySourceType": "wikidata",
+      "provenance": {
+        "entityId": [
+          {
+            "sourceType": "iso",
+            "source": "P1A batch03 ISO seed",
+            "field": "isoAlpha2",
+            "sourceUrl": "",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "CL"
+          },
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "wikidataId",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q298",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "Q298"
+          }
+        ],
+        "isoAlpha2": [
+          {
+            "sourceType": "iso",
+            "source": "P1A batch03 ISO seed",
+            "field": "isoAlpha2",
+            "sourceUrl": "",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "CL"
+          }
+        ],
+        "isoAlpha3": [
+          {
+            "sourceType": "iso",
+            "source": "P1A batch03 ISO seed",
+            "field": "isoAlpha3",
+            "sourceUrl": "",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "CHL"
+          },
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "P298",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q298",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "CHL"
+          }
+        ],
+        "isoNumeric": [
+          {
+            "sourceType": "iso",
+            "source": "P1A batch03 ISO seed",
+            "field": "isoNumeric",
+            "sourceUrl": "",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "152"
+          },
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "P299",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q298",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "152"
+          }
+        ],
+        "wikidataId": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "country",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q298",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "Q298"
+          }
+        ],
+        "canonicalNameZh": [
+          {
+            "sourceType": "project-country-catalog",
+            "source": "data/countries.zh.json",
+            "field": "name",
+            "sourceUrl": "",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "智利"
+          }
+        ],
+        "canonicalNameEn": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "rdfs:label@en",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q298",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "Chile"
+          }
+        ],
+        "aliases": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "skos:altLabel",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q298",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": [
+              "CHI",
+              "Republic of Chile",
+              "智利共和国"
+            ]
+          }
+        ],
+        "continent": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "P30",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q298",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": {
+              "selected": {
+                "wikidataId": "Q18",
+                "canonicalNameZh": "南美洲",
+                "canonicalNameEn": "South America"
+              },
+              "candidates": [
+                {
+                  "wikidataId": "Q18",
+                  "canonicalNameZh": "南美洲",
+                  "canonicalNameEn": "South America",
+                  "sourceUrl": "https://www.wikidata.org/wiki/Q18",
+                  "source": "Wikidata P30",
+                  "semanticNote": "Wikidata P30 can represent continent, macro-region, or a special geographic region."
+                }
+              ],
+              "semanticNote": "Wikidata P30 can represent continent, macro-region, or a special geographic region."
+            }
+          }
+        ],
+        "region": [
+          {
+            "sourceType": "project-country-catalog",
+            "source": "data/countries.zh.json",
+            "field": "group",
+            "sourceUrl": "",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "南美洲"
+          }
+        ],
+        "subregion": [
+          {
+            "sourceType": "project-country-catalog",
+            "source": "data/countries.zh.json",
+            "field": "subregion",
+            "sourceUrl": "",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "South America"
+          }
+        ],
+        "capital": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "P36",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q298",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": {
+              "selected": {
+                "wikidataId": "Q2887",
+                "canonicalNameZh": "圣地亚哥",
+                "canonicalNameEn": "Santiago",
+                "aliases": [
+                  "Greater Santiago",
+                  "Santiago, Chile"
+                ]
+              },
+              "candidates": [
+                {
+                  "wikidataId": "Q2887",
+                  "canonicalNameZh": "圣地亚哥",
+                  "canonicalNameEn": "Santiago",
+                  "aliases": [
+                    "Greater Santiago",
+                    "Santiago, Chile"
+                  ],
+                  "sourceUrl": "https://www.wikidata.org/wiki/Q2887",
+                  "source": "Wikidata P36"
+                }
+              ]
+            }
+          }
+        ],
+        "coordinates": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "P625",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q298",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": {
+              "latitude": -33,
+              "longitude": -71
+            }
+          }
+        ]
+      },
+      "confidence": 0.95,
+      "retrievedAt": "2026-07-15T07:08:36.639Z"
+    },
+    {
+      "schemaVersion": "route-v2-country-baseline-p1a",
+      "entityId": "country-1f698d9652d363bd",
+      "entityType": "country",
+      "isoAlpha2": "CO",
+      "isoAlpha3": "COL",
+      "isoNumeric": "170",
+      "wikidataId": "Q739",
+      "canonicalNameZh": "哥伦比亚",
+      "canonicalNameEn": "Colombia",
+      "aliases": [
+        "Colombiá",
+        "Republic of Colombia",
+        "The Republic of Colombia"
+      ],
+      "continent": {
+        "wikidataId": "Q18",
+        "canonicalNameZh": "南美洲",
+        "canonicalNameEn": "South America"
+      },
+      "region": "南美洲",
+      "subregion": "South America",
+      "capital": {
+        "wikidataId": "Q2841",
+        "canonicalNameZh": "波哥大",
+        "canonicalNameEn": "Bogotá",
+        "aliases": [
+          "Bogota, Colombia",
+          "Bogotá, D.C.",
+          "Santafé de Bogotá"
+        ]
+      },
+      "coordinates": {
+        "latitude": 4,
+        "longitude": -73.25
+      },
+      "entitySourceType": "wikidata",
+      "provenance": {
+        "entityId": [
+          {
+            "sourceType": "iso",
+            "source": "P1A batch03 ISO seed",
+            "field": "isoAlpha2",
+            "sourceUrl": "",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "CO"
+          },
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "wikidataId",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q739",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "Q739"
+          }
+        ],
+        "isoAlpha2": [
+          {
+            "sourceType": "iso",
+            "source": "P1A batch03 ISO seed",
+            "field": "isoAlpha2",
+            "sourceUrl": "",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "CO"
+          }
+        ],
+        "isoAlpha3": [
+          {
+            "sourceType": "iso",
+            "source": "P1A batch03 ISO seed",
+            "field": "isoAlpha3",
+            "sourceUrl": "",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "COL"
+          },
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "P298",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q739",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "COL"
+          }
+        ],
+        "isoNumeric": [
+          {
+            "sourceType": "iso",
+            "source": "P1A batch03 ISO seed",
+            "field": "isoNumeric",
+            "sourceUrl": "",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "170"
+          },
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "P299",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q739",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "170"
+          }
+        ],
+        "wikidataId": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "country",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q739",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "Q739"
+          }
+        ],
+        "canonicalNameZh": [
+          {
+            "sourceType": "project-country-catalog",
+            "source": "data/countries.zh.json",
+            "field": "name",
+            "sourceUrl": "",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "哥伦比亚"
+          }
+        ],
+        "canonicalNameEn": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "rdfs:label@en",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q739",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "Colombia"
+          }
+        ],
+        "aliases": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "skos:altLabel",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q739",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": [
+              "Colombiá",
+              "Republic of Colombia",
+              "The Republic of Colombia"
+            ]
+          }
+        ],
+        "continent": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "P30",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q739",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": {
+              "selected": {
+                "wikidataId": "Q18",
+                "canonicalNameZh": "南美洲",
+                "canonicalNameEn": "South America"
+              },
+              "candidates": [
+                {
+                  "wikidataId": "Q18",
+                  "canonicalNameZh": "南美洲",
+                  "canonicalNameEn": "South America",
+                  "sourceUrl": "https://www.wikidata.org/wiki/Q18",
+                  "source": "Wikidata P30",
+                  "semanticNote": "Wikidata P30 can represent continent, macro-region, or a special geographic region."
+                }
+              ],
+              "semanticNote": "Wikidata P30 can represent continent, macro-region, or a special geographic region."
+            }
+          }
+        ],
+        "region": [
+          {
+            "sourceType": "project-country-catalog",
+            "source": "data/countries.zh.json",
+            "field": "group",
+            "sourceUrl": "",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "南美洲"
+          }
+        ],
+        "subregion": [
+          {
+            "sourceType": "project-country-catalog",
+            "source": "data/countries.zh.json",
+            "field": "subregion",
+            "sourceUrl": "",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "South America"
+          }
+        ],
+        "capital": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "P36",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q739",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": {
+              "selected": {
+                "wikidataId": "Q2841",
+                "canonicalNameZh": "波哥大",
+                "canonicalNameEn": "Bogotá",
+                "aliases": [
+                  "Bogota, Colombia",
+                  "Bogotá, D.C.",
+                  "Santafé de Bogotá"
+                ]
+              },
+              "candidates": [
+                {
+                  "wikidataId": "Q2841",
+                  "canonicalNameZh": "波哥大",
+                  "canonicalNameEn": "Bogotá",
+                  "aliases": [
+                    "Bogota, Colombia",
+                    "Bogotá, D.C.",
+                    "Santafé de Bogotá"
+                  ],
+                  "sourceUrl": "https://www.wikidata.org/wiki/Q2841",
+                  "source": "Wikidata P36"
+                }
+              ]
+            }
+          }
+        ],
+        "coordinates": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "P625",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q739",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": {
+              "latitude": 4,
+              "longitude": -73.25
+            }
+          }
+        ]
+      },
+      "confidence": 0.95,
+      "retrievedAt": "2026-07-15T07:08:36.639Z"
+    },
+    {
+      "schemaVersion": "route-v2-country-baseline-p1a",
+      "entityId": "country-a43bbd8228ebbdea",
+      "entityType": "country",
+      "isoAlpha2": "CZ",
+      "isoAlpha3": "CZE",
+      "isoNumeric": "203",
+      "wikidataId": "Q213",
+      "canonicalNameZh": "捷克",
+      "canonicalNameEn": "Czechia",
+      "aliases": [
+        "Czech Republic",
+        "捷克共和國"
+      ],
+      "continent": {
+        "wikidataId": "Q46",
+        "canonicalNameZh": "欧洲",
+        "canonicalNameEn": "Europe"
+      },
+      "region": "欧洲",
+      "subregion": "Eastern Europe",
+      "capital": {
+        "wikidataId": "Q1085",
+        "canonicalNameZh": "布拉格",
+        "canonicalNameEn": "Prague",
+        "aliases": [
+          "City of Prague",
+          "Hlavní město Praha"
+        ]
+      },
+      "coordinates": {
+        "latitude": 50,
+        "longitude": 15
+      },
+      "entitySourceType": "wikidata",
+      "provenance": {
+        "entityId": [
+          {
+            "sourceType": "iso",
+            "source": "P1A batch03 ISO seed",
+            "field": "isoAlpha2",
+            "sourceUrl": "",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "CZ"
+          },
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "wikidataId",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q213",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "Q213"
+          }
+        ],
+        "isoAlpha2": [
+          {
+            "sourceType": "iso",
+            "source": "P1A batch03 ISO seed",
+            "field": "isoAlpha2",
+            "sourceUrl": "",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "CZ"
+          }
+        ],
+        "isoAlpha3": [
+          {
+            "sourceType": "iso",
+            "source": "P1A batch03 ISO seed",
+            "field": "isoAlpha3",
+            "sourceUrl": "",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "CZE"
+          },
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "P298",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q213",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "CZE"
+          }
+        ],
+        "isoNumeric": [
+          {
+            "sourceType": "iso",
+            "source": "P1A batch03 ISO seed",
+            "field": "isoNumeric",
+            "sourceUrl": "",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "203"
+          },
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "P299",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q213",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "203"
+          }
+        ],
+        "wikidataId": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "country",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q213",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "Q213"
+          }
+        ],
+        "canonicalNameZh": [
+          {
+            "sourceType": "project-country-catalog",
+            "source": "data/countries.zh.json",
+            "field": "name",
+            "sourceUrl": "",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "捷克"
+          }
+        ],
+        "canonicalNameEn": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "rdfs:label@en",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q213",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "Czechia"
+          }
+        ],
+        "aliases": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "skos:altLabel",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q213",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": [
+              "Czech Republic",
+              "捷克共和國"
+            ]
+          }
+        ],
+        "continent": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "P30",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q213",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": {
+              "selected": {
+                "wikidataId": "Q46",
+                "canonicalNameZh": "欧洲",
+                "canonicalNameEn": "Europe"
+              },
+              "candidates": [
+                {
+                  "wikidataId": "Q46",
+                  "canonicalNameZh": "欧洲",
+                  "canonicalNameEn": "Europe",
+                  "sourceUrl": "https://www.wikidata.org/wiki/Q46",
+                  "source": "Wikidata P30",
+                  "semanticNote": "Wikidata P30 can represent continent, macro-region, or a special geographic region."
+                }
+              ],
+              "semanticNote": "Wikidata P30 can represent continent, macro-region, or a special geographic region."
+            }
+          }
+        ],
+        "region": [
+          {
+            "sourceType": "project-country-catalog",
+            "source": "data/countries.zh.json",
+            "field": "group",
+            "sourceUrl": "",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "欧洲"
+          }
+        ],
+        "subregion": [
+          {
+            "sourceType": "project-country-catalog",
+            "source": "data/countries.zh.json",
+            "field": "subregion",
+            "sourceUrl": "",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "Eastern Europe"
+          }
+        ],
+        "capital": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "P36",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q213",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": {
+              "selected": {
+                "wikidataId": "Q1085",
+                "canonicalNameZh": "布拉格",
+                "canonicalNameEn": "Prague",
+                "aliases": [
+                  "City of Prague",
+                  "Hlavní město Praha"
+                ]
+              },
+              "candidates": [
+                {
+                  "wikidataId": "Q1085",
+                  "canonicalNameZh": "布拉格",
+                  "canonicalNameEn": "Prague",
+                  "aliases": [
+                    "City of Prague",
+                    "Hlavní město Praha"
+                  ],
+                  "sourceUrl": "https://www.wikidata.org/wiki/Q1085",
+                  "source": "Wikidata P36"
+                }
+              ]
+            }
+          }
+        ],
+        "coordinates": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "P625",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q213",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": {
+              "latitude": 50,
+              "longitude": 15
+            }
+          }
+        ]
+      },
+      "confidence": 0.95,
+      "retrievedAt": "2026-07-15T07:08:36.639Z"
+    },
+    {
+      "schemaVersion": "route-v2-country-baseline-p1a",
+      "entityId": "country-3b1d93bcf117948b",
+      "entityType": "country",
+      "isoAlpha2": "DK",
+      "isoAlpha3": "DNK",
+      "isoNumeric": "208",
+      "wikidataId": "Q35",
+      "canonicalNameZh": "丹麦",
+      "canonicalNameEn": "Denmark",
+      "aliases": [
+        "Danemark",
+        "Dania",
+        "Danmark",
+        "Denmark proper",
+        "dk",
+        "metropolitan Denmark",
+        "TAN",
+        "丹麥"
+      ],
+      "continent": {
+        "wikidataId": "Q46",
+        "canonicalNameZh": "欧洲",
+        "canonicalNameEn": "Europe"
+      },
+      "region": "北欧",
+      "subregion": "Northern Europe",
+      "capital": {
+        "wikidataId": "Q1748",
+        "canonicalNameZh": "哥本哈根",
+        "canonicalNameEn": "Copenhagen",
+        "aliases": [
+          "Copenhagen, Denmark",
+          "CPH",
+          "Hafn",
+          "KBH",
+          "Kbh.",
+          "Kobenhavn",
+          "Köbenhavn",
+          "Kopenhagen"
+        ]
+      },
+      "coordinates": {
+        "latitude": 56,
+        "longitude": 10
+      },
+      "entitySourceType": "wikidata",
+      "provenance": {
+        "entityId": [
+          {
+            "sourceType": "iso",
+            "source": "P1A batch03 ISO seed",
+            "field": "isoAlpha2",
+            "sourceUrl": "",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "DK"
+          },
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "wikidataId",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q35",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "Q35"
+          }
+        ],
+        "isoAlpha2": [
+          {
+            "sourceType": "iso",
+            "source": "P1A batch03 ISO seed",
+            "field": "isoAlpha2",
+            "sourceUrl": "",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "DK"
+          }
+        ],
+        "isoAlpha3": [
+          {
+            "sourceType": "iso",
+            "source": "P1A batch03 ISO seed",
+            "field": "isoAlpha3",
+            "sourceUrl": "",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "DNK"
+          },
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "P298",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q35",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "DNK"
+          }
+        ],
+        "isoNumeric": [
+          {
+            "sourceType": "iso",
+            "source": "P1A batch03 ISO seed",
+            "field": "isoNumeric",
+            "sourceUrl": "",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "208"
+          },
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "P299",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q35",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "208"
+          }
+        ],
+        "wikidataId": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "country",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q35",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "Q35"
+          }
+        ],
+        "canonicalNameZh": [
+          {
+            "sourceType": "project-country-catalog",
+            "source": "data/countries.zh.json",
+            "field": "name",
+            "sourceUrl": "",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "丹麦"
+          }
+        ],
+        "canonicalNameEn": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "rdfs:label@en",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q35",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "Denmark"
+          }
+        ],
+        "aliases": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "skos:altLabel",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q35",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": [
+              "Danemark",
+              "Dania",
+              "Danmark",
+              "Denmark proper",
+              "dk",
+              "metropolitan Denmark",
+              "TAN",
+              "丹麥"
+            ]
+          }
+        ],
+        "continent": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "P30",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q35",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": {
+              "selected": {
+                "wikidataId": "Q46",
+                "canonicalNameZh": "欧洲",
+                "canonicalNameEn": "Europe"
+              },
+              "candidates": [
+                {
+                  "wikidataId": "Q46",
+                  "canonicalNameZh": "欧洲",
+                  "canonicalNameEn": "Europe",
+                  "sourceUrl": "https://www.wikidata.org/wiki/Q46",
+                  "source": "Wikidata P30",
+                  "semanticNote": "Wikidata P30 can represent continent, macro-region, or a special geographic region."
+                }
+              ],
+              "semanticNote": "Wikidata P30 can represent continent, macro-region, or a special geographic region."
+            }
+          }
+        ],
+        "region": [
+          {
+            "sourceType": "project-country-catalog",
+            "source": "data/countries.zh.json",
+            "field": "group",
+            "sourceUrl": "",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "北欧"
+          }
+        ],
+        "subregion": [
+          {
+            "sourceType": "project-country-catalog",
+            "source": "data/countries.zh.json",
+            "field": "subregion",
+            "sourceUrl": "",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "Northern Europe"
+          }
+        ],
+        "capital": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "P36",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q35",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": {
+              "selected": {
+                "wikidataId": "Q1748",
+                "canonicalNameZh": "哥本哈根",
+                "canonicalNameEn": "Copenhagen",
+                "aliases": [
+                  "Copenhagen, Denmark",
+                  "CPH",
+                  "Hafn",
+                  "KBH",
+                  "Kbh.",
+                  "Kobenhavn",
+                  "Köbenhavn",
+                  "Kopenhagen"
+                ]
+              },
+              "candidates": [
+                {
+                  "wikidataId": "Q1748",
+                  "canonicalNameZh": "哥本哈根",
+                  "canonicalNameEn": "Copenhagen",
+                  "aliases": [
+                    "Copenhagen, Denmark",
+                    "CPH",
+                    "Hafn",
+                    "KBH",
+                    "Kbh.",
+                    "Kobenhavn",
+                    "Köbenhavn",
+                    "Kopenhagen"
+                  ],
+                  "sourceUrl": "https://www.wikidata.org/wiki/Q1748",
+                  "source": "Wikidata P36"
+                }
+              ]
+            }
+          }
+        ],
+        "coordinates": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "P625",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q35",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": {
+              "latitude": 56,
+              "longitude": 10
+            }
+          }
+        ]
+      },
+      "confidence": 0.95,
+      "retrievedAt": "2026-07-15T07:08:36.639Z"
+    },
+    {
+      "schemaVersion": "route-v2-country-baseline-p1a",
+      "entityId": "country-4521f3e0908e41e0",
+      "entityType": "country",
+      "isoAlpha2": "FI",
+      "isoAlpha3": "FIN",
+      "isoNumeric": "246",
+      "wikidataId": "Q33",
+      "canonicalNameZh": "芬兰",
+      "canonicalNameEn": "Finland",
+      "aliases": [
+        "fi",
+        "Finnia",
+        "Land of Thousand Lakes",
+        "Republic of Finland",
+        "Republiken Finland",
+        "Suomen tasavalta",
+        "Suomi",
+        "芬兰共和国",
+        "芬蘭",
+        "芬蘭共和國"
+      ],
+      "continent": {
+        "wikidataId": "Q46",
+        "canonicalNameZh": "欧洲",
+        "canonicalNameEn": "Europe"
+      },
+      "region": "北欧",
+      "subregion": "Northern Europe",
+      "capital": {
+        "wikidataId": "Q1757",
+        "canonicalNameZh": "赫尔辛基",
+        "canonicalNameEn": "Helsinki",
+        "aliases": [
+          "Helsingia",
+          "Helsingin kaupunki",
+          "Hesa",
+          "Stadi"
+        ]
+      },
+      "coordinates": {
+        "latitude": 65,
+        "longitude": 27
+      },
+      "entitySourceType": "wikidata",
+      "provenance": {
+        "entityId": [
+          {
+            "sourceType": "iso",
+            "source": "P1A batch03 ISO seed",
+            "field": "isoAlpha2",
+            "sourceUrl": "",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "FI"
+          },
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "wikidataId",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q33",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "Q33"
+          }
+        ],
+        "isoAlpha2": [
+          {
+            "sourceType": "iso",
+            "source": "P1A batch03 ISO seed",
+            "field": "isoAlpha2",
+            "sourceUrl": "",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "FI"
+          }
+        ],
+        "isoAlpha3": [
+          {
+            "sourceType": "iso",
+            "source": "P1A batch03 ISO seed",
+            "field": "isoAlpha3",
+            "sourceUrl": "",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "FIN"
+          },
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "P298",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q33",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "FIN"
+          }
+        ],
+        "isoNumeric": [
+          {
+            "sourceType": "iso",
+            "source": "P1A batch03 ISO seed",
+            "field": "isoNumeric",
+            "sourceUrl": "",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "246"
+          },
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "P299",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q33",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "246"
+          }
+        ],
+        "wikidataId": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "country",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q33",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "Q33"
+          }
+        ],
+        "canonicalNameZh": [
+          {
+            "sourceType": "project-country-catalog",
+            "source": "data/countries.zh.json",
+            "field": "name",
+            "sourceUrl": "",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "芬兰"
+          }
+        ],
+        "canonicalNameEn": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "rdfs:label@en",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q33",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "Finland"
+          }
+        ],
+        "aliases": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "skos:altLabel",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q33",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": [
+              "fi",
+              "Finnia",
+              "Land of Thousand Lakes",
+              "Republic of Finland",
+              "Republiken Finland",
+              "Suomen tasavalta",
+              "Suomi",
+              "芬兰共和国",
+              "芬蘭",
+              "芬蘭共和國"
+            ]
+          }
+        ],
+        "continent": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "P30",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q33",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": {
+              "selected": {
+                "wikidataId": "Q46",
+                "canonicalNameZh": "欧洲",
+                "canonicalNameEn": "Europe"
+              },
+              "candidates": [
+                {
+                  "wikidataId": "Q46",
+                  "canonicalNameZh": "欧洲",
+                  "canonicalNameEn": "Europe",
+                  "sourceUrl": "https://www.wikidata.org/wiki/Q46",
+                  "source": "Wikidata P30",
+                  "semanticNote": "Wikidata P30 can represent continent, macro-region, or a special geographic region."
+                }
+              ],
+              "semanticNote": "Wikidata P30 can represent continent, macro-region, or a special geographic region."
+            }
+          }
+        ],
+        "region": [
+          {
+            "sourceType": "project-country-catalog",
+            "source": "data/countries.zh.json",
+            "field": "group",
+            "sourceUrl": "",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "北欧"
+          }
+        ],
+        "subregion": [
+          {
+            "sourceType": "project-country-catalog",
+            "source": "data/countries.zh.json",
+            "field": "subregion",
+            "sourceUrl": "",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "Northern Europe"
+          }
+        ],
+        "capital": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "P36",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q33",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": {
+              "selected": {
+                "wikidataId": "Q1757",
+                "canonicalNameZh": "赫尔辛基",
+                "canonicalNameEn": "Helsinki",
+                "aliases": [
+                  "Helsingia",
+                  "Helsingin kaupunki",
+                  "Hesa",
+                  "Stadi"
+                ]
+              },
+              "candidates": [
+                {
+                  "wikidataId": "Q1757",
+                  "canonicalNameZh": "赫尔辛基",
+                  "canonicalNameEn": "Helsinki",
+                  "aliases": [
+                    "Helsingia",
+                    "Helsingin kaupunki",
+                    "Hesa",
+                    "Stadi"
+                  ],
+                  "sourceUrl": "https://www.wikidata.org/wiki/Q1757",
+                  "source": "Wikidata P36"
+                }
+              ]
+            }
+          }
+        ],
+        "coordinates": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "P625",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q33",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": {
+              "latitude": 65,
+              "longitude": 27
+            }
+          }
+        ]
+      },
+      "confidence": 0.95,
+      "retrievedAt": "2026-07-15T07:08:36.639Z"
+    },
+    {
+      "schemaVersion": "route-v2-country-baseline-p1a",
+      "entityId": "country-57e636ae72145ddb",
+      "entityType": "country",
+      "isoAlpha2": "IE",
+      "isoAlpha3": "IRL",
+      "isoNumeric": "372",
+      "wikidataId": "Q27",
+      "canonicalNameZh": "爱尔兰",
+      "canonicalNameEn": "Ireland",
+      "aliases": [
+        "Hibernia",
+        "Irish Republic",
+        "Southern Ireland",
+        "愛爾蘭",
+        "愛爾蘭共和國",
+        "爱尔兰共和国"
+      ],
+      "continent": {
+        "wikidataId": "Q46",
+        "canonicalNameZh": "欧洲",
+        "canonicalNameEn": "Europe"
+      },
+      "region": "北欧",
+      "subregion": "Northern Europe",
+      "capital": {
+        "wikidataId": "Q1761",
+        "canonicalNameZh": "都柏林",
+        "canonicalNameEn": "Dublin",
+        "aliases": [
+          "City of Dublin",
+          "Dublin city",
+          "Dublin, Ireland"
+        ]
+      },
+      "coordinates": {
+        "latitude": 53,
+        "longitude": -8
+      },
+      "entitySourceType": "wikidata",
+      "provenance": {
+        "entityId": [
+          {
+            "sourceType": "iso",
+            "source": "P1A batch03 ISO seed",
+            "field": "isoAlpha2",
+            "sourceUrl": "",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "IE"
+          },
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "wikidataId",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q27",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "Q27"
+          }
+        ],
+        "isoAlpha2": [
+          {
+            "sourceType": "iso",
+            "source": "P1A batch03 ISO seed",
+            "field": "isoAlpha2",
+            "sourceUrl": "",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "IE"
+          }
+        ],
+        "isoAlpha3": [
+          {
+            "sourceType": "iso",
+            "source": "P1A batch03 ISO seed",
+            "field": "isoAlpha3",
+            "sourceUrl": "",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "IRL"
+          },
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "P298",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q27",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "IRL"
+          }
+        ],
+        "isoNumeric": [
+          {
+            "sourceType": "iso",
+            "source": "P1A batch03 ISO seed",
+            "field": "isoNumeric",
+            "sourceUrl": "",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "372"
+          },
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "P299",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q27",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "372"
+          }
+        ],
+        "wikidataId": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "country",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q27",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "Q27"
+          }
+        ],
+        "canonicalNameZh": [
+          {
+            "sourceType": "project-country-catalog",
+            "source": "data/countries.zh.json",
+            "field": "name",
+            "sourceUrl": "",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "爱尔兰"
+          }
+        ],
+        "canonicalNameEn": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "rdfs:label@en",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q27",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "Ireland"
+          }
+        ],
+        "aliases": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "skos:altLabel",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q27",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": [
+              "Hibernia",
+              "Irish Republic",
+              "Southern Ireland",
+              "愛爾蘭",
+              "愛爾蘭共和國",
+              "爱尔兰共和国"
+            ]
+          }
+        ],
+        "continent": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "P30",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q27",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": {
+              "selected": {
+                "wikidataId": "Q46",
+                "canonicalNameZh": "欧洲",
+                "canonicalNameEn": "Europe"
+              },
+              "candidates": [
+                {
+                  "wikidataId": "Q46",
+                  "canonicalNameZh": "欧洲",
+                  "canonicalNameEn": "Europe",
+                  "sourceUrl": "https://www.wikidata.org/wiki/Q46",
+                  "source": "Wikidata P30",
+                  "semanticNote": "Wikidata P30 can represent continent, macro-region, or a special geographic region."
+                }
+              ],
+              "semanticNote": "Wikidata P30 can represent continent, macro-region, or a special geographic region."
+            }
+          }
+        ],
+        "region": [
+          {
+            "sourceType": "project-country-catalog",
+            "source": "data/countries.zh.json",
+            "field": "group",
+            "sourceUrl": "",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "北欧"
+          }
+        ],
+        "subregion": [
+          {
+            "sourceType": "project-country-catalog",
+            "source": "data/countries.zh.json",
+            "field": "subregion",
+            "sourceUrl": "",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "Northern Europe"
+          }
+        ],
+        "capital": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "P36",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q27",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": {
+              "selected": {
+                "wikidataId": "Q1761",
+                "canonicalNameZh": "都柏林",
+                "canonicalNameEn": "Dublin",
+                "aliases": [
+                  "City of Dublin",
+                  "Dublin city",
+                  "Dublin, Ireland"
+                ]
+              },
+              "candidates": [
+                {
+                  "wikidataId": "Q1761",
+                  "canonicalNameZh": "都柏林",
+                  "canonicalNameEn": "Dublin",
+                  "aliases": [
+                    "City of Dublin",
+                    "Dublin city",
+                    "Dublin, Ireland"
+                  ],
+                  "sourceUrl": "https://www.wikidata.org/wiki/Q1761",
+                  "source": "Wikidata P36"
+                }
+              ]
+            }
+          }
+        ],
+        "coordinates": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "P625",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q27",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": {
+              "latitude": 53,
+              "longitude": -8
+            }
+          }
+        ]
+      },
+      "confidence": 0.95,
+      "retrievedAt": "2026-07-15T07:08:36.639Z"
+    },
+    {
+      "schemaVersion": "route-v2-country-baseline-p1a",
+      "entityId": "country-1d655675b493e2e2",
+      "entityType": "country",
+      "isoAlpha2": "IL",
+      "isoAlpha3": "ISR",
+      "isoNumeric": "376",
+      "wikidataId": "Q801",
+      "canonicalNameZh": "以色列",
+      "canonicalNameEn": "Israel",
+      "aliases": [
+        "il",
+        "ISR",
+        "State of Israel",
+        "Yisrael"
+      ],
+      "continent": {
+        "wikidataId": "Q48",
+        "canonicalNameZh": "亚洲",
+        "canonicalNameEn": "Asia"
+      },
+      "region": "西亚",
+      "subregion": "Western Asia",
+      "capital": {
+        "wikidataId": "Q1218",
+        "canonicalNameZh": "耶路撒冷",
+        "canonicalNameEn": "Jerusalem",
+        "aliases": [
+          "Aelia Capitolina",
+          "J'lem",
+          "Mint of Aelia Capitolina",
+          "以色列的首都"
+        ]
+      },
+      "coordinates": {
+        "latitude": 31,
+        "longitude": 35
+      },
+      "entitySourceType": "wikidata",
+      "provenance": {
+        "entityId": [
+          {
+            "sourceType": "iso",
+            "source": "P1A batch03 ISO seed",
+            "field": "isoAlpha2",
+            "sourceUrl": "",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "IL"
+          },
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "wikidataId",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q801",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "Q801"
+          }
+        ],
+        "isoAlpha2": [
+          {
+            "sourceType": "iso",
+            "source": "P1A batch03 ISO seed",
+            "field": "isoAlpha2",
+            "sourceUrl": "",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "IL"
+          }
+        ],
+        "isoAlpha3": [
+          {
+            "sourceType": "iso",
+            "source": "P1A batch03 ISO seed",
+            "field": "isoAlpha3",
+            "sourceUrl": "",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "ISR"
+          },
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "P298",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q801",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "ISR"
+          }
+        ],
+        "isoNumeric": [
+          {
+            "sourceType": "iso",
+            "source": "P1A batch03 ISO seed",
+            "field": "isoNumeric",
+            "sourceUrl": "",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "376"
+          },
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "P299",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q801",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "376"
+          }
+        ],
+        "wikidataId": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "country",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q801",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "Q801"
+          }
+        ],
+        "canonicalNameZh": [
+          {
+            "sourceType": "project-country-catalog",
+            "source": "data/countries.zh.json",
+            "field": "name",
+            "sourceUrl": "",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "以色列"
+          }
+        ],
+        "canonicalNameEn": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "rdfs:label@en",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q801",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "Israel"
+          }
+        ],
+        "aliases": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "skos:altLabel",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q801",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": [
+              "il",
+              "ISR",
+              "State of Israel",
+              "Yisrael"
+            ]
+          }
+        ],
+        "continent": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "P30",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q801",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": {
+              "selected": {
+                "wikidataId": "Q48",
+                "canonicalNameZh": "亚洲",
+                "canonicalNameEn": "Asia"
+              },
+              "candidates": [
+                {
+                  "wikidataId": "Q48",
+                  "canonicalNameZh": "亚洲",
+                  "canonicalNameEn": "Asia",
+                  "sourceUrl": "https://www.wikidata.org/wiki/Q48",
+                  "source": "Wikidata P30",
+                  "semanticNote": "Wikidata P30 can represent continent, macro-region, or a special geographic region."
+                }
+              ],
+              "semanticNote": "Wikidata P30 can represent continent, macro-region, or a special geographic region."
+            }
+          }
+        ],
+        "region": [
+          {
+            "sourceType": "project-country-catalog",
+            "source": "data/countries.zh.json",
+            "field": "group",
+            "sourceUrl": "",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "西亚"
+          }
+        ],
+        "subregion": [
+          {
+            "sourceType": "project-country-catalog",
+            "source": "data/countries.zh.json",
+            "field": "subregion",
+            "sourceUrl": "",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "Western Asia"
+          }
+        ],
+        "capital": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "P36",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q801",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": {
+              "selected": {
+                "wikidataId": "Q1218",
+                "canonicalNameZh": "耶路撒冷",
+                "canonicalNameEn": "Jerusalem",
+                "aliases": [
+                  "Aelia Capitolina",
+                  "J'lem",
+                  "Mint of Aelia Capitolina",
+                  "以色列的首都"
+                ]
+              },
+              "candidates": [
+                {
+                  "wikidataId": "Q1218",
+                  "canonicalNameZh": "耶路撒冷",
+                  "canonicalNameEn": "Jerusalem",
+                  "aliases": [
+                    "Aelia Capitolina",
+                    "J'lem",
+                    "Mint of Aelia Capitolina",
+                    "以色列的首都"
+                  ],
+                  "sourceUrl": "https://www.wikidata.org/wiki/Q1218",
+                  "source": "Wikidata P36"
+                }
+              ]
+            }
+          }
+        ],
+        "coordinates": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "P625",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q801",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": {
+              "latitude": 31,
+              "longitude": 35
+            }
+          }
+        ]
+      },
+      "confidence": 0.95,
+      "retrievedAt": "2026-07-15T07:08:36.639Z"
+    },
+    {
+      "schemaVersion": "route-v2-country-baseline-p1a",
+      "entityId": "country-febe99ab26ea41f0",
+      "entityType": "country",
+      "isoAlpha2": "NL",
+      "isoAlpha3": "NLD",
+      "isoNumeric": "528",
+      "wikidataId": "Q55",
+      "canonicalNameZh": "荷兰",
+      "canonicalNameEn": "Netherlands",
+      "aliases": [
+        "de Nederlanden",
+        "Holland",
+        "Nederland",
+        "Nederlanden",
+        "NL",
+        "NLD",
+        "the Netherlands",
+        "和蘭",
+        "尼德兰",
+        "尼德兰王国",
+        "尼德蘭",
+        "尼德蘭王國",
+        "紅毛蕃",
+        "荷蘭"
+      ],
+      "continent": {
+        "wikidataId": "Q46",
+        "canonicalNameZh": "欧洲",
+        "canonicalNameEn": "Europe"
+      },
+      "region": "西欧",
+      "subregion": "Western Europe",
+      "capital": {
+        "wikidataId": "Q727",
+        "canonicalNameZh": "阿姆斯特丹",
+        "canonicalNameEn": "Amsterdam",
+        "aliases": [
+          "A'dam",
+          "Amsterdam, Netherlands",
+          "Amsterdam, NL",
+          "Amsterdam, North Holland",
+          "Mokum",
+          "荷京"
+        ]
+      },
+      "coordinates": {
+        "latitude": 52.316666666,
+        "longitude": 5.55
+      },
+      "entitySourceType": "wikidata",
+      "provenance": {
+        "entityId": [
+          {
+            "sourceType": "iso",
+            "source": "P1A batch03 ISO seed",
+            "field": "isoAlpha2",
+            "sourceUrl": "",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "NL"
+          },
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "wikidataId",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q55",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "Q55"
+          }
+        ],
+        "isoAlpha2": [
+          {
+            "sourceType": "iso",
+            "source": "p1a-batch03-approved-country-seed",
+            "field": "isoAlpha2",
+            "sourceUrl": "",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "NL"
+          }
+        ],
+        "isoAlpha3": [
+          {
+            "sourceType": "iso",
+            "source": "p1a-batch03-approved-country-seed",
+            "field": "isoAlpha3",
+            "sourceUrl": "",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "NLD"
+          }
+        ],
+        "isoNumeric": [
+          {
+            "sourceType": "iso",
+            "source": "p1a-batch03-approved-country-seed",
+            "field": "isoNumeric",
+            "sourceUrl": "",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "528"
+          }
+        ],
+        "wikidataId": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "country",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q55",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "Q55"
+          }
+        ],
+        "canonicalNameZh": [
+          {
+            "sourceType": "project-country-catalog",
+            "source": "data/countries.zh.json",
+            "field": "name",
+            "sourceUrl": "",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "荷兰"
+          }
+        ],
+        "canonicalNameEn": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "rdfs:label@en",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q55",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "Netherlands"
+          }
+        ],
+        "aliases": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "skos:altLabel",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q55",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": [
+              "de Nederlanden",
+              "Holland",
+              "Nederland",
+              "Nederlanden",
+              "NL",
+              "NLD",
+              "the Netherlands",
+              "和蘭",
+              "尼德兰",
+              "尼德兰王国",
+              "尼德蘭",
+              "尼德蘭王國",
+              "紅毛蕃",
+              "荷蘭"
+            ]
+          }
+        ],
+        "continent": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "P30",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q55",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": {
+              "selected": {
+                "wikidataId": "Q46",
+                "canonicalNameZh": "欧洲",
+                "canonicalNameEn": "Europe"
+              },
+              "candidates": [
+                {
+                  "wikidataId": "Q46",
+                  "canonicalNameZh": "欧洲",
+                  "canonicalNameEn": "Europe",
+                  "sourceUrl": "https://www.wikidata.org/wiki/Q46",
+                  "source": "Wikidata P30",
+                  "semanticNote": "Wikidata P30 can represent continent, macro-region, or a special geographic region."
+                }
+              ],
+              "semanticNote": "Wikidata P30 can represent continent, macro-region, or a special geographic region."
+            }
+          }
+        ],
+        "region": [
+          {
+            "sourceType": "project-country-catalog",
+            "source": "data/countries.zh.json",
+            "field": "group",
+            "sourceUrl": "",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "西欧"
+          }
+        ],
+        "subregion": [
+          {
+            "sourceType": "project-country-catalog",
+            "source": "data/countries.zh.json",
+            "field": "subregion",
+            "sourceUrl": "",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "Western Europe"
+          }
+        ],
+        "capital": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "P36",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q55",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": {
+              "selected": {
+                "wikidataId": "Q727",
+                "canonicalNameZh": "阿姆斯特丹",
+                "canonicalNameEn": "Amsterdam",
+                "aliases": [
+                  "A'dam",
+                  "Amsterdam, Netherlands",
+                  "Amsterdam, NL",
+                  "Amsterdam, North Holland",
+                  "Mokum",
+                  "荷京"
+                ]
+              },
+              "candidates": [
+                {
+                  "wikidataId": "Q727",
+                  "canonicalNameZh": "阿姆斯特丹",
+                  "canonicalNameEn": "Amsterdam",
+                  "aliases": [
+                    "A'dam",
+                    "Amsterdam, Netherlands",
+                    "Amsterdam, NL",
+                    "Amsterdam, North Holland",
+                    "Mokum",
+                    "荷京"
+                  ],
+                  "sourceUrl": "https://www.wikidata.org/wiki/Q727",
+                  "source": "Wikidata P36"
+                }
+              ]
+            }
+          }
+        ],
+        "coordinates": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "P625",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q55",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": {
+              "latitude": 52.316666666,
+              "longitude": 5.55
+            }
+          }
+        ]
+      },
+      "confidence": 0.95,
+      "retrievedAt": "2026-07-15T07:08:36.639Z"
+    },
+    {
+      "schemaVersion": "route-v2-country-baseline-p1a",
+      "entityId": "country-ba50a94b6db70521",
+      "entityType": "country",
+      "isoAlpha2": "NO",
+      "isoAlpha3": "NOR",
+      "isoNumeric": "578",
+      "wikidataId": "Q20",
+      "canonicalNameZh": "挪威",
+      "canonicalNameEn": "Norway",
+      "aliases": [
+        "Kingdom of Norway",
+        "挪威王国"
+      ],
+      "continent": {
+        "wikidataId": "Q46",
+        "canonicalNameZh": "欧洲",
+        "canonicalNameEn": "Europe"
+      },
+      "region": "北欧",
+      "subregion": "Northern Europe",
+      "capital": {
+        "wikidataId": "Q585",
+        "canonicalNameZh": "奥斯陆",
+        "canonicalNameEn": "Oslo",
+        "aliases": [
+          "NOOSL",
+          "Oslo, Norway",
+          "奥斯陆郡"
+        ]
+      },
+      "coordinates": {
+        "latitude": 59.933333333,
+        "longitude": 10.683333333
+      },
+      "entitySourceType": "wikidata",
+      "provenance": {
+        "entityId": [
+          {
+            "sourceType": "iso",
+            "source": "P1A batch03 ISO seed",
+            "field": "isoAlpha2",
+            "sourceUrl": "",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "NO"
+          },
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "wikidataId",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q20",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "Q20"
+          }
+        ],
+        "isoAlpha2": [
+          {
+            "sourceType": "iso",
+            "source": "P1A batch03 ISO seed",
+            "field": "isoAlpha2",
+            "sourceUrl": "",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "NO"
+          }
+        ],
+        "isoAlpha3": [
+          {
+            "sourceType": "iso",
+            "source": "P1A batch03 ISO seed",
+            "field": "isoAlpha3",
+            "sourceUrl": "",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "NOR"
+          },
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "P298",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q20",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "NOR"
+          }
+        ],
+        "isoNumeric": [
+          {
+            "sourceType": "iso",
+            "source": "P1A batch03 ISO seed",
+            "field": "isoNumeric",
+            "sourceUrl": "",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "578"
+          },
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "P299",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q20",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "578"
+          }
+        ],
+        "wikidataId": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "country",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q20",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "Q20"
+          }
+        ],
+        "canonicalNameZh": [
+          {
+            "sourceType": "project-country-catalog",
+            "source": "data/countries.zh.json",
+            "field": "name",
+            "sourceUrl": "",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "挪威"
+          }
+        ],
+        "canonicalNameEn": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "rdfs:label@en",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q20",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "Norway"
+          }
+        ],
+        "aliases": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "skos:altLabel",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q20",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": [
+              "Kingdom of Norway",
+              "挪威王国"
+            ]
+          }
+        ],
+        "continent": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "P30",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q20",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": {
+              "selected": {
+                "wikidataId": "Q46",
+                "canonicalNameZh": "欧洲",
+                "canonicalNameEn": "Europe"
+              },
+              "candidates": [
+                {
+                  "wikidataId": "Q46",
+                  "canonicalNameZh": "欧洲",
+                  "canonicalNameEn": "Europe",
+                  "sourceUrl": "https://www.wikidata.org/wiki/Q46",
+                  "source": "Wikidata P30",
+                  "semanticNote": "Wikidata P30 can represent continent, macro-region, or a special geographic region."
+                }
+              ],
+              "semanticNote": "Wikidata P30 can represent continent, macro-region, or a special geographic region."
+            }
+          }
+        ],
+        "region": [
+          {
+            "sourceType": "project-country-catalog",
+            "source": "data/countries.zh.json",
+            "field": "group",
+            "sourceUrl": "",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "北欧"
+          }
+        ],
+        "subregion": [
+          {
+            "sourceType": "project-country-catalog",
+            "source": "data/countries.zh.json",
+            "field": "subregion",
+            "sourceUrl": "",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "Northern Europe"
+          }
+        ],
+        "capital": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "P36",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q20",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": {
+              "selected": {
+                "wikidataId": "Q585",
+                "canonicalNameZh": "奥斯陆",
+                "canonicalNameEn": "Oslo",
+                "aliases": [
+                  "NOOSL",
+                  "Oslo, Norway",
+                  "奥斯陆郡"
+                ]
+              },
+              "candidates": [
+                {
+                  "wikidataId": "Q585",
+                  "canonicalNameZh": "奥斯陆",
+                  "canonicalNameEn": "Oslo",
+                  "aliases": [
+                    "NOOSL",
+                    "Oslo, Norway",
+                    "奥斯陆郡"
+                  ],
+                  "sourceUrl": "https://www.wikidata.org/wiki/Q585",
+                  "source": "Wikidata P36"
+                }
+              ]
+            }
+          }
+        ],
+        "coordinates": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "P625",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q20",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": {
+              "latitude": 59.933333333,
+              "longitude": 10.683333333
+            }
+          }
+        ]
+      },
+      "confidence": 0.95,
+      "retrievedAt": "2026-07-15T07:08:36.639Z"
+    },
+    {
+      "schemaVersion": "route-v2-country-baseline-p1a",
+      "entityId": "country-bf07c0afb4ca3ef8",
+      "entityType": "country",
+      "isoAlpha2": "PE",
+      "isoAlpha3": "PER",
+      "isoNumeric": "604",
+      "wikidataId": "Q419",
+      "canonicalNameZh": "秘鲁",
+      "canonicalNameEn": "Peru",
+      "aliases": [
+        "pe",
+        "per",
+        "Republic of Peru",
+        "Republica del Peru",
+        "祕魯",
+        "祕魯共和國",
+        "秘魯",
+        "秘鲁共和国"
+      ],
+      "continent": {
+        "wikidataId": "Q18",
+        "canonicalNameZh": "南美洲",
+        "canonicalNameEn": "South America"
+      },
+      "region": "南美洲",
+      "subregion": "South America",
+      "capital": {
+        "wikidataId": "Q2868",
+        "canonicalNameZh": "利马",
+        "canonicalNameEn": "Lima",
+        "aliases": [
+          "City of the Kings"
+        ]
+      },
+      "coordinates": {
+        "latitude": -9.4,
+        "longitude": -76
+      },
+      "entitySourceType": "wikidata",
+      "provenance": {
+        "entityId": [
+          {
+            "sourceType": "iso",
+            "source": "P1A batch03 ISO seed",
+            "field": "isoAlpha2",
+            "sourceUrl": "",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "PE"
+          },
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "wikidataId",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q419",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "Q419"
+          }
+        ],
+        "isoAlpha2": [
+          {
+            "sourceType": "iso",
+            "source": "P1A batch03 ISO seed",
+            "field": "isoAlpha2",
+            "sourceUrl": "",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "PE"
+          }
+        ],
+        "isoAlpha3": [
+          {
+            "sourceType": "iso",
+            "source": "P1A batch03 ISO seed",
+            "field": "isoAlpha3",
+            "sourceUrl": "",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "PER"
+          },
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "P298",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q419",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "PER"
+          }
+        ],
+        "isoNumeric": [
+          {
+            "sourceType": "iso",
+            "source": "P1A batch03 ISO seed",
+            "field": "isoNumeric",
+            "sourceUrl": "",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "604"
+          },
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "P299",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q419",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "604"
+          }
+        ],
+        "wikidataId": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "country",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q419",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "Q419"
+          }
+        ],
+        "canonicalNameZh": [
+          {
+            "sourceType": "project-country-catalog",
+            "source": "data/countries.zh.json",
+            "field": "name",
+            "sourceUrl": "",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "秘鲁"
+          }
+        ],
+        "canonicalNameEn": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "rdfs:label@en",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q419",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "Peru"
+          }
+        ],
+        "aliases": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "skos:altLabel",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q419",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": [
+              "pe",
+              "per",
+              "Republic of Peru",
+              "Republica del Peru",
+              "祕魯",
+              "祕魯共和國",
+              "秘魯",
+              "秘鲁共和国"
+            ]
+          }
+        ],
+        "continent": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "P30",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q419",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": {
+              "selected": {
+                "wikidataId": "Q18",
+                "canonicalNameZh": "南美洲",
+                "canonicalNameEn": "South America"
+              },
+              "candidates": [
+                {
+                  "wikidataId": "Q18",
+                  "canonicalNameZh": "南美洲",
+                  "canonicalNameEn": "South America",
+                  "sourceUrl": "https://www.wikidata.org/wiki/Q18",
+                  "source": "Wikidata P30",
+                  "semanticNote": "Wikidata P30 can represent continent, macro-region, or a special geographic region."
+                }
+              ],
+              "semanticNote": "Wikidata P30 can represent continent, macro-region, or a special geographic region."
+            }
+          }
+        ],
+        "region": [
+          {
+            "sourceType": "project-country-catalog",
+            "source": "data/countries.zh.json",
+            "field": "group",
+            "sourceUrl": "",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "南美洲"
+          }
+        ],
+        "subregion": [
+          {
+            "sourceType": "project-country-catalog",
+            "source": "data/countries.zh.json",
+            "field": "subregion",
+            "sourceUrl": "",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "South America"
+          }
+        ],
+        "capital": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "P36",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q419",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": {
+              "selected": {
+                "wikidataId": "Q2868",
+                "canonicalNameZh": "利马",
+                "canonicalNameEn": "Lima",
+                "aliases": [
+                  "City of the Kings"
+                ]
+              },
+              "candidates": [
+                {
+                  "wikidataId": "Q2868",
+                  "canonicalNameZh": "利马",
+                  "canonicalNameEn": "Lima",
+                  "aliases": [
+                    "City of the Kings"
+                  ],
+                  "sourceUrl": "https://www.wikidata.org/wiki/Q2868",
+                  "source": "Wikidata P36"
+                }
+              ]
+            }
+          }
+        ],
+        "coordinates": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "P625",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q419",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": {
+              "latitude": -9.4,
+              "longitude": -76
+            }
+          }
+        ]
+      },
+      "confidence": 0.95,
+      "retrievedAt": "2026-07-15T07:08:36.639Z"
+    },
+    {
+      "schemaVersion": "route-v2-country-baseline-p1a",
+      "entityId": "country-29a769e74eb52b4a",
+      "entityType": "country",
+      "isoAlpha2": "PH",
+      "isoAlpha3": "PHL",
+      "isoNumeric": "608",
+      "wikidataId": "Q928",
+      "canonicalNameZh": "菲律宾",
+      "canonicalNameEn": "Philippines",
+      "aliases": [
+        "Philippine Islands",
+        "Republic of the Philippines",
+        "RP",
+        "The Philippines",
+        "比島",
+        "菲律宾共和国",
+        "菲律賓",
+        "菲律賓共和國"
+      ],
+      "continent": {
+        "wikidataId": "Q48",
+        "canonicalNameZh": "亚洲",
+        "canonicalNameEn": "Asia"
+      },
+      "region": "东南亚",
+      "subregion": "South-eastern Asia",
+      "capital": {
+        "wikidataId": "Q1461",
+        "canonicalNameZh": "马尼拉",
+        "canonicalNameEn": "Manila",
+        "aliases": [
+          "City of Manila",
+          "Pearl of the Orient",
+          "Queen City of the Pacific and others",
+          "馬尼剌",
+          "马尼刺",
+          "马尼拉"
+        ]
+      },
+      "coordinates": {
+        "latitude": 12,
+        "longitude": 123
+      },
+      "entitySourceType": "wikidata",
+      "provenance": {
+        "entityId": [
+          {
+            "sourceType": "iso",
+            "source": "P1A batch03 ISO seed",
+            "field": "isoAlpha2",
+            "sourceUrl": "",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "PH"
+          },
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "wikidataId",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q928",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "Q928"
+          }
+        ],
+        "isoAlpha2": [
+          {
+            "sourceType": "iso",
+            "source": "P1A batch03 ISO seed",
+            "field": "isoAlpha2",
+            "sourceUrl": "",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "PH"
+          }
+        ],
+        "isoAlpha3": [
+          {
+            "sourceType": "iso",
+            "source": "P1A batch03 ISO seed",
+            "field": "isoAlpha3",
+            "sourceUrl": "",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "PHL"
+          },
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "P298",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q928",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "PHL"
+          }
+        ],
+        "isoNumeric": [
+          {
+            "sourceType": "iso",
+            "source": "P1A batch03 ISO seed",
+            "field": "isoNumeric",
+            "sourceUrl": "",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "608"
+          },
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "P299",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q928",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "608"
+          }
+        ],
+        "wikidataId": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "country",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q928",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "Q928"
+          }
+        ],
+        "canonicalNameZh": [
+          {
+            "sourceType": "project-country-catalog",
+            "source": "data/countries.zh.json",
+            "field": "name",
+            "sourceUrl": "",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "菲律宾"
+          }
+        ],
+        "canonicalNameEn": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "rdfs:label@en",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q928",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "Philippines"
+          }
+        ],
+        "aliases": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "skos:altLabel",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q928",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": [
+              "Philippine Islands",
+              "Republic of the Philippines",
+              "RP",
+              "The Philippines",
+              "比島",
+              "菲律宾共和国",
+              "菲律賓",
+              "菲律賓共和國"
+            ]
+          }
+        ],
+        "continent": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "P30",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q928",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": {
+              "selected": {
+                "wikidataId": "Q48",
+                "canonicalNameZh": "亚洲",
+                "canonicalNameEn": "Asia"
+              },
+              "candidates": [
+                {
+                  "wikidataId": "Q48",
+                  "canonicalNameZh": "亚洲",
+                  "canonicalNameEn": "Asia",
+                  "sourceUrl": "https://www.wikidata.org/wiki/Q48",
+                  "source": "Wikidata P30",
+                  "semanticNote": "Wikidata P30 can represent continent, macro-region, or a special geographic region."
+                }
+              ],
+              "semanticNote": "Wikidata P30 can represent continent, macro-region, or a special geographic region."
+            }
+          }
+        ],
+        "region": [
+          {
+            "sourceType": "project-country-catalog",
+            "source": "data/countries.zh.json",
+            "field": "group",
+            "sourceUrl": "",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "东南亚"
+          }
+        ],
+        "subregion": [
+          {
+            "sourceType": "project-country-catalog",
+            "source": "data/countries.zh.json",
+            "field": "subregion",
+            "sourceUrl": "",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "South-eastern Asia"
+          }
+        ],
+        "capital": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "P36",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q928",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": {
+              "selected": {
+                "wikidataId": "Q1461",
+                "canonicalNameZh": "马尼拉",
+                "canonicalNameEn": "Manila",
+                "aliases": [
+                  "City of Manila",
+                  "Pearl of the Orient",
+                  "Queen City of the Pacific and others",
+                  "馬尼剌",
+                  "马尼刺",
+                  "马尼拉"
+                ]
+              },
+              "candidates": [
+                {
+                  "wikidataId": "Q1461",
+                  "canonicalNameZh": "马尼拉",
+                  "canonicalNameEn": "Manila",
+                  "aliases": [
+                    "City of Manila",
+                    "Pearl of the Orient",
+                    "Queen City of the Pacific and others",
+                    "馬尼剌",
+                    "马尼刺",
+                    "马尼拉"
+                  ],
+                  "sourceUrl": "https://www.wikidata.org/wiki/Q1461",
+                  "source": "Wikidata P36"
+                }
+              ]
+            }
+          }
+        ],
+        "coordinates": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "P625",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q928",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": {
+              "latitude": 12,
+              "longitude": 123
+            }
+          }
+        ]
+      },
+      "confidence": 0.95,
+      "retrievedAt": "2026-07-15T07:08:36.639Z"
+    },
+    {
+      "schemaVersion": "route-v2-country-baseline-p1a",
+      "entityId": "country-5a2eabd86d1a1bb1",
+      "entityType": "country",
+      "isoAlpha2": "PL",
+      "isoAlpha3": "POL",
+      "isoNumeric": "616",
+      "wikidataId": "Q36",
+      "canonicalNameZh": "波兰",
+      "canonicalNameEn": "Poland",
+      "aliases": [
+        "Republic of Poland",
+        "波兰共和国",
+        "波蘭"
+      ],
+      "continent": {
+        "wikidataId": "Q46",
+        "canonicalNameZh": "欧洲",
+        "canonicalNameEn": "Europe"
+      },
+      "region": "欧洲",
+      "subregion": "Eastern Europe",
+      "capital": {
+        "wikidataId": "Q270",
+        "canonicalNameZh": "华沙",
+        "canonicalNameEn": "Warsaw",
+        "aliases": [
+          "洼尔搜未",
+          "華沙"
+        ]
+      },
+      "coordinates": {
+        "latitude": 52,
+        "longitude": 19
+      },
+      "entitySourceType": "wikidata",
+      "provenance": {
+        "entityId": [
+          {
+            "sourceType": "iso",
+            "source": "P1A batch03 ISO seed",
+            "field": "isoAlpha2",
+            "sourceUrl": "",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "PL"
+          },
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "wikidataId",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q36",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "Q36"
+          }
+        ],
+        "isoAlpha2": [
+          {
+            "sourceType": "iso",
+            "source": "P1A batch03 ISO seed",
+            "field": "isoAlpha2",
+            "sourceUrl": "",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "PL"
+          }
+        ],
+        "isoAlpha3": [
+          {
+            "sourceType": "iso",
+            "source": "P1A batch03 ISO seed",
+            "field": "isoAlpha3",
+            "sourceUrl": "",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "POL"
+          },
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "P298",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q36",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "POL"
+          }
+        ],
+        "isoNumeric": [
+          {
+            "sourceType": "iso",
+            "source": "P1A batch03 ISO seed",
+            "field": "isoNumeric",
+            "sourceUrl": "",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "616"
+          },
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "P299",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q36",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "616"
+          }
+        ],
+        "wikidataId": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "country",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q36",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "Q36"
+          }
+        ],
+        "canonicalNameZh": [
+          {
+            "sourceType": "project-country-catalog",
+            "source": "data/countries.zh.json",
+            "field": "name",
+            "sourceUrl": "",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "波兰"
+          }
+        ],
+        "canonicalNameEn": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "rdfs:label@en",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q36",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "Poland"
+          }
+        ],
+        "aliases": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "skos:altLabel",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q36",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": [
+              "Republic of Poland",
+              "波兰共和国",
+              "波蘭"
+            ]
+          }
+        ],
+        "continent": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "P30",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q36",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": {
+              "selected": {
+                "wikidataId": "Q46",
+                "canonicalNameZh": "欧洲",
+                "canonicalNameEn": "Europe"
+              },
+              "candidates": [
+                {
+                  "wikidataId": "Q46",
+                  "canonicalNameZh": "欧洲",
+                  "canonicalNameEn": "Europe",
+                  "sourceUrl": "https://www.wikidata.org/wiki/Q46",
+                  "source": "Wikidata P30",
+                  "semanticNote": "Wikidata P30 can represent continent, macro-region, or a special geographic region."
+                }
+              ],
+              "semanticNote": "Wikidata P30 can represent continent, macro-region, or a special geographic region."
+            }
+          }
+        ],
+        "region": [
+          {
+            "sourceType": "project-country-catalog",
+            "source": "data/countries.zh.json",
+            "field": "group",
+            "sourceUrl": "",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "欧洲"
+          }
+        ],
+        "subregion": [
+          {
+            "sourceType": "project-country-catalog",
+            "source": "data/countries.zh.json",
+            "field": "subregion",
+            "sourceUrl": "",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "Eastern Europe"
+          }
+        ],
+        "capital": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "P36",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q36",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": {
+              "selected": {
+                "wikidataId": "Q270",
+                "canonicalNameZh": "华沙",
+                "canonicalNameEn": "Warsaw",
+                "aliases": [
+                  "洼尔搜未",
+                  "華沙"
+                ]
+              },
+              "candidates": [
+                {
+                  "wikidataId": "Q270",
+                  "canonicalNameZh": "华沙",
+                  "canonicalNameEn": "Warsaw",
+                  "aliases": [
+                    "洼尔搜未",
+                    "華沙"
+                  ],
+                  "sourceUrl": "https://www.wikidata.org/wiki/Q270",
+                  "source": "Wikidata P36"
+                }
+              ]
+            }
+          }
+        ],
+        "coordinates": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "P625",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q36",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": {
+              "latitude": 52,
+              "longitude": 19
+            }
+          }
+        ]
+      },
+      "confidence": 0.95,
+      "retrievedAt": "2026-07-15T07:08:36.639Z"
+    },
+    {
+      "schemaVersion": "route-v2-country-baseline-p1a",
+      "entityId": "country-1f0b323f39f6befd",
+      "entityType": "country",
+      "isoAlpha2": "PT",
+      "isoAlpha3": "PRT",
+      "isoNumeric": "620",
+      "wikidataId": "Q45",
+      "canonicalNameZh": "葡萄牙",
+      "canonicalNameEn": "Portugal",
+      "aliases": [
+        "POR",
+        "Portuguese Republic",
+        "PRT",
+        "葡国",
+        "葡國",
+        "葡萄牙共和国"
+      ],
+      "continent": {
+        "wikidataId": "Q46",
+        "canonicalNameZh": "欧洲",
+        "canonicalNameEn": "Europe"
+      },
+      "region": "南欧",
+      "subregion": "Southern Europe",
+      "capital": {
+        "wikidataId": "Q597",
+        "canonicalNameZh": "里斯本",
+        "canonicalNameEn": "Lisbon",
+        "aliases": []
+      },
+      "coordinates": {
+        "latitude": 38.7,
+        "longitude": -9.183333333
+      },
+      "entitySourceType": "wikidata",
+      "provenance": {
+        "entityId": [
+          {
+            "sourceType": "iso",
+            "source": "P1A batch03 ISO seed",
+            "field": "isoAlpha2",
+            "sourceUrl": "",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "PT"
+          },
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "wikidataId",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q45",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "Q45"
+          }
+        ],
+        "isoAlpha2": [
+          {
+            "sourceType": "iso",
+            "source": "P1A batch03 ISO seed",
+            "field": "isoAlpha2",
+            "sourceUrl": "",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "PT"
+          }
+        ],
+        "isoAlpha3": [
+          {
+            "sourceType": "iso",
+            "source": "P1A batch03 ISO seed",
+            "field": "isoAlpha3",
+            "sourceUrl": "",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "PRT"
+          },
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "P298",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q45",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "PRT"
+          }
+        ],
+        "isoNumeric": [
+          {
+            "sourceType": "iso",
+            "source": "P1A batch03 ISO seed",
+            "field": "isoNumeric",
+            "sourceUrl": "",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "620"
+          },
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "P299",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q45",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "620"
+          }
+        ],
+        "wikidataId": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "country",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q45",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "Q45"
+          }
+        ],
+        "canonicalNameZh": [
+          {
+            "sourceType": "project-country-catalog",
+            "source": "data/countries.zh.json",
+            "field": "name",
+            "sourceUrl": "",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "葡萄牙"
+          }
+        ],
+        "canonicalNameEn": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "rdfs:label@en",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q45",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "Portugal"
+          }
+        ],
+        "aliases": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "skos:altLabel",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q45",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": [
+              "POR",
+              "Portuguese Republic",
+              "PRT",
+              "葡国",
+              "葡國",
+              "葡萄牙共和国"
+            ]
+          }
+        ],
+        "continent": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "P30",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q45",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": {
+              "selected": {
+                "wikidataId": "Q46",
+                "canonicalNameZh": "欧洲",
+                "canonicalNameEn": "Europe"
+              },
+              "candidates": [
+                {
+                  "wikidataId": "Q46",
+                  "canonicalNameZh": "欧洲",
+                  "canonicalNameEn": "Europe",
+                  "sourceUrl": "https://www.wikidata.org/wiki/Q46",
+                  "source": "Wikidata P30",
+                  "semanticNote": "Wikidata P30 can represent continent, macro-region, or a special geographic region."
+                }
+              ],
+              "semanticNote": "Wikidata P30 can represent continent, macro-region, or a special geographic region."
+            }
+          }
+        ],
+        "region": [
+          {
+            "sourceType": "project-country-catalog",
+            "source": "data/countries.zh.json",
+            "field": "group",
+            "sourceUrl": "",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "南欧"
+          }
+        ],
+        "subregion": [
+          {
+            "sourceType": "project-country-catalog",
+            "source": "data/countries.zh.json",
+            "field": "subregion",
+            "sourceUrl": "",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": "Southern Europe"
+          }
+        ],
+        "capital": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "P36",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q45",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": {
+              "selected": {
+                "wikidataId": "Q597",
+                "canonicalNameZh": "里斯本",
+                "canonicalNameEn": "Lisbon",
+                "aliases": []
+              },
+              "candidates": [
+                {
+                  "wikidataId": "Q597",
+                  "canonicalNameZh": "里斯本",
+                  "canonicalNameEn": "Lisbon",
+                  "aliases": [],
+                  "sourceUrl": "https://www.wikidata.org/wiki/Q597",
+                  "source": "Wikidata P36"
+                }
+              ]
+            }
+          }
+        ],
+        "coordinates": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata SPARQL",
+            "field": "P625",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q45",
+            "retrievedAt": "2026-07-15T07:08:36.639Z",
+            "value": {
+              "latitude": 38.7,
+              "longitude": -9.183333333
+            }
+          }
+        ]
+      },
+      "confidence": 0.95,
+      "retrievedAt": "2026-07-15T07:08:36.639Z"
+    }
+  ]
+}

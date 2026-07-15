@@ -530,3 +530,146 @@ Batch 02 verification covers:
 - no accepted route, RouteRecord, or old evidence source use
 
 The full regression suite passed after Batch 02. User-facing systems remain unchanged.
+
+## Batch 03 Expansion
+
+Batch 03 imported 15 additional countries with the existing Country schema, normalizer, validator, deduper, provenance model, conflict model, and review queue model. The importer now anchors canonical entity refreshes to the complete approved QID seed set when a batch supplies QIDs. ISO properties validate the anchored entity instead of selecting the entity in reverse.
+
+Batch 03 countries:
+
+- AT: Austria
+- BE: Belgium
+- CL: Chile
+- CO: Colombia
+- CZ: Czechia
+- DK: Denmark
+- FI: Finland
+- IE: Ireland
+- IL: Israel
+- NL: Netherlands
+- NO: Norway
+- PE: Peru
+- PH: Philippines
+- PL: Poland
+- PT: Portugal
+
+Batch 03 raw snapshot:
+
+- `data/knowledge/raw/countries-p1a-batch03.wikidata.json`
+- Provider: Wikidata SPARQL
+- Canonical entity anchor: approved Wikidata QID seed
+- Retrieved at: `2026-07-15T07:08:36.639Z`
+- Canonical record count: 15
+- Binding count: 116
+- Size: 277323 bytes
+- SHA-256: `ceaee488f414d5b000cfec3c21f84eed286d74ab2351962ff440bcbd52db6d6b`
+- HTTP requests: 1
+- Retries: 0
+
+Batch 03 published assets:
+
+- `data/knowledge/batches/countries.p1a-batch03.json`
+- `data/knowledge/batches/provenance.p1a-batch03.json`
+- `data/knowledge/batches/conflicts.p1a-batch03.json`
+- `data/knowledge/batches/review-queue.p1a-batch03.json`
+
+The Pilot, Batch 01, and Batch 02 assets remain unchanged. Batch 03 assets are independent and do not publish a cumulative 50-country file or the final `countries.v1.json`.
+
+## Batch 03 Results
+
+Batch 03 coverage:
+
+- Country count: 15 / 15
+- ISO alpha-2 coverage: 15 / 15
+- ISO alpha-3 coverage: 15 / 15
+- ISO numeric coverage: 15 / 15
+- QID coverage: 15 / 15
+- Chinese canonical name coverage: 15 / 15
+- English canonical name coverage: 15 / 15
+- Capital coverage: 15 / 15
+- Coordinate coverage: 15 / 15
+- Continent coverage: 15 / 15
+- Provenance coverage: 15 / 15
+- Inline and sidecar provenance matches: 15 / 15
+- Orphan provenance: 0
+
+Batch 03 conflicts:
+
+- Total: 0
+- Blocking: 0
+
+Batch 03 review queue:
+
+- Total: 9
+- Low-value multilingual label reviews: 8
+  - AT, BE, DK, FI, IE, NL, PH, PL: `multiple-country-labels`
+- Source-gap reviews: 1
+  - NL: `wikidata-iso-identifiers-missing`
+- High-value capital or continent reviews: 0
+
+Special handling:
+
+- Netherlands is published as `Q55` / Netherlands, not `Q29999` / Kingdom of the Netherlands.
+- The approved-QID query returns Q55 canonical name, aliases, capital Q727 Amsterdam, P625 coordinates, and P30 Europe from Q55 itself.
+- Wikidata Q55 currently returns no P297, P298, or P299 values. The approved Batch 03 seed supplies `NL`, `NLD`, and `528` using the existing `iso` provenance source type and source `p1a-batch03-approved-country-seed`.
+- Missing Wikidata ISO properties are not represented as Wikidata facts. One deterministic, non-blocking `wikidata-iso-identifiers-missing` review preserves the missing properties, selected seed values, Q55 source URL, and raw snapshot retrieval time.
+- The seed-backed ISO rule is generic: an exact approved QID is required, missing ISO properties may use a complete approved seed, and any returned ISO value that conflicts with the seed remains blocking.
+- Czechia is published as `Q213` / Czechia. `Czech Republic` remains a source alias.
+- Ireland is published as country `Q27`; island entity `Q22890` is not published.
+- Denmark is published as country `Q35`; a broader kingdom entity is not substituted.
+- Philippines is published as country `Q928` with capital Q1461 Manila; Metro Manila is not substituted.
+- Israel is published as `Q801`. Its snapshot has one P36 candidate, Q1218 Jerusalem, and one P30 candidate, Q48 Asia. Both remain source-attributed Wikidata facts with field-level provenance.
+
+## Batch 03 Merge Compatibility
+
+Pilot + Batch 01 + Batch 02 + Batch 03 in-memory merge verification:
+
+- Merged country count: 50
+- ISO alpha-2 unique: true
+- ISO alpha-3 unique: true
+- ISO numeric unique: true
+- QID unique: true
+- entityId unique: true
+- Shared deduper conflicts: 0
+- Provenance remains one-to-one: 50 / 50
+- Sort order remains stable by ISO alpha-2
+- No cumulative 50-country publish file was created
+- P1B parent countries JP, TR, and SG retain their prior QIDs and entityIds
+
+Current P1A coverage:
+
+- Pilot: 5
+- Batch 01: 15
+- Batch 02: 15
+- Batch 03: 15
+- Cumulative: 50 / 195 countries
+- Remaining: 145 countries
+- P1A global 195-country coverage is not complete
+- Final `countries.v1.json` has not been published
+
+The separately verified P1B Pilot demonstrates the Country-to-City-to-POI Entity Layer for three Pilot Country parents, five Cities, and fifteen POIs. Batch 03 does not modify P1B assets, code, verification, audit, or implementation conclusions.
+
+## Batch 03 Tests
+
+Focused Batch 03 checks:
+
+- `node scripts/verify-knowledge-country-baseline-p1a-batch03.mjs`: PASS
+- `node scripts/audit-knowledge-country-baseline-batch03.mjs`: PASS
+
+Batch 03 verification covers:
+
+- exact 15-country membership and approved QID anchors
+- 14 Wikidata-confirmed ISO records and one approved-seed-backed ISO record
+- cumulative 50-country identity uniqueness
+- 100% inline and sidecar provenance coverage
+- zero conflicts and zero blocking conflicts
+- Netherlands Q55 canonical identity, seed-backed ISO provenance, and one missing-property review
+- absence of Q29999 from canonical raw records, published countries, and canonical provenance
+- deterministic normalization and pure building
+- byte-identical serialized rebuilds
+- no network calls from the pure builder or verifier
+- generic synthetic fixtures for missing ISO properties, partial missing properties, ISO conflicts, wrong QIDs, missing seeds, duplicates, invalid fields, provenance drift, review generation, and deterministic review IDs
+
+Batch 03 has not been committed in this working tree. No new checkpoint SHA is recorded here, and previously recorded checkpoint SHAs are unchanged.
+
+The complete offline P1A, P1B, Route Generation V2, taxonomy, gold-case, and route-content-quality regression matrix passed after Batch 03. Accepted routes, bootstrap data, Planner behavior, P1B assets, and user-facing systems remain unchanged.

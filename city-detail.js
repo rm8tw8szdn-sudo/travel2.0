@@ -1,4 +1,12 @@
 const cityId = decodeURIComponent(window.location.hash.replace(/^#/, "")) || "NO-OSL";
+const localOnlyMode = new URLSearchParams(window.location.search).get("localOnly") === "1";
+const localOnlyPlaceholderCover = "assets/route-city-oslo.svg";
+const localOnlyDiagnostics = localOnlyMode ? { requests: [], blockedRequests: [] } : null;
+if (localOnlyDiagnostics) {
+  window.CityDetailLocalOnlyDiagnostics = localOnlyDiagnostics;
+  document.documentElement.dataset.cityDetailLocalOnly = "1";
+  syncLocalOnlyDiagnostics();
+}
 const cityName = document.querySelector("[data-city-name]");
 const cityCountry = document.querySelector("[data-city-country]");
 const cityIntro = document.querySelector("[data-city-intro]");
@@ -9,6 +17,36 @@ const favoriteButton = document.querySelector("[data-city-favorite]");
 const markExploredButton = document.querySelector("[data-city-mark-explored]");
 const addTripButton = document.querySelector("[data-city-add-trip]");
 let activeCityDetail = null;
+let activeKnowledgeCityId = "";
+
+function syncLocalOnlyDiagnostics() {
+  if (!localOnlyDiagnostics) return;
+  document.documentElement.dataset.cityDetailLocalOnlyDiagnostics = JSON.stringify(localOnlyDiagnostics);
+}
+
+function localOnlyCover(cover) {
+  if (!localOnlyMode || !/^https?:\/\//i.test(String(cover || ""))) return cover;
+  return localOnlyPlaceholderCover;
+}
+
+async function localOnlyKnowledgeFetch(input, init) {
+  const url = new URL(String(input), window.location.href);
+  const allowed = url.origin === window.location.origin
+    && url.pathname.startsWith("/api/knowledge-entities/");
+  if (!allowed) {
+    localOnlyDiagnostics.blockedRequests.push(url.href);
+    syncLocalOnlyDiagnostics();
+    throw new Error("localOnly blocked a non-Knowledge Entity Layer request");
+  }
+  const response = await window.fetch(url.href, init);
+  localOnlyDiagnostics.requests.push({
+    method: init?.method || "GET",
+    url: `${url.pathname}${url.search}`,
+    status: response.status,
+  });
+  syncLocalOnlyDiagnostics();
+  return response;
+}
 
 function readState() {
   return window.TravelState?.readTravelState?.() || {};
@@ -43,6 +81,77 @@ function setDetailStatus(message) {
   node.hidden = !message;
 }
 
+function knowledgePoiSection() {
+  let section = document.querySelector("[data-knowledge-poi-section]");
+  if (section) return section;
+  const legacySpotsSection = citySpots?.closest(".country-section");
+  if (!legacySpotsSection) return null;
+  section = document.createElement("section");
+  section.className = "country-section";
+  section.hidden = true;
+  section.setAttribute("data-knowledge-poi-section", "");
+  section.innerHTML = `
+    <div class="country-section-head"><h2>附近景点</h2></div>
+    <p class="detail-enrichment-status" data-knowledge-poi-status hidden></p>
+    <div class="city-spot-list" data-knowledge-poi-list></div>
+  `;
+  legacySpotsSection.insertAdjacentElement("afterend", section);
+  return section;
+}
+
+function renderKnowledgePois(result) {
+  const section = knowledgePoiSection();
+  if (!section) return;
+  const status = section.querySelector("[data-knowledge-poi-status]");
+  const list = section.querySelector("[data-knowledge-poi-list]");
+  list.replaceChildren();
+  section.removeAttribute("data-knowledge-city-id");
+
+  if (result.status === "unmatched") {
+    section.hidden = true;
+    return;
+  }
+
+  section.hidden = false;
+  if (result.status !== "ready") {
+    status.textContent = result.status === "loading" ? "正在加载附近景点…" : "附近景点暂时不可用，其他城市信息不受影响。";
+    status.hidden = false;
+    return;
+  }
+
+  status.hidden = true;
+  section.setAttribute("data-knowledge-city-id", result.city.entityId);
+  for (const poi of result.pois) {
+    const item = document.createElement("span");
+    const preferredName = poi.canonicalNameZh || poi.canonicalNameEn || "景点";
+    const englishName = poi.canonicalNameEn && poi.canonicalNameEn !== preferredName ? poi.canonicalNameEn : "";
+    item.textContent = [preferredName, englishName, "景点"].filter(Boolean).join(" · ");
+    item.setAttribute("data-knowledge-poi", poi.entityId);
+    item.setAttribute("data-knowledge-poi-qid", poi.wikidataId);
+    list.append(item);
+  }
+}
+
+async function loadKnowledgePoisForCurrentCity() {
+  const state = readState();
+  const city = currentCity(state);
+  const country = state.countriesById?.[city?.countryId];
+  if (!city || !country || !window.KnowledgeCityDetail?.loadKnowledgeCityPois) {
+    renderKnowledgePois({ status: "unmatched", pois: [] });
+    return;
+  }
+
+  activeKnowledgeCityId = city.id;
+  renderKnowledgePois({ status: "loading", pois: [] });
+  const result = await window.KnowledgeCityDetail.loadKnowledgeCityPois({
+    legacyCity: city,
+    legacyCountry: country,
+    ...(localOnlyMode ? { fetchImpl: localOnlyKnowledgeFetch } : {}),
+  });
+  if (activeKnowledgeCityId !== city.id) return;
+  renderKnowledgePois(result);
+}
+
 function renderCity() {
   const state = readState();
   const city = currentCity(state);
@@ -52,7 +161,7 @@ function renderCity() {
   if (cityCountry) cityCountry.textContent = country.name || "";
   if (cityIntro) cityIntro.textContent = detail.description || city.intro || "";
   if (cityCover) {
-    cityCover.src = detail.coverImage || city.cover || country.cover || "assets/route-city-oslo.svg";
+    cityCover.src = localOnlyCover(detail.coverImage || city.cover || country.cover || "assets/route-city-oslo.svg");
     cityCover.alt = `${city.name}封面图`;
   }
   if (cityTags) {
@@ -121,6 +230,8 @@ document.querySelectorAll("[data-city-share]").forEach((button) => {
 
 async function initCityDetail() {
   renderCity();
+  void loadKnowledgePoisForCurrentCity();
+  if (localOnlyMode) return;
   const state = readState();
   const city = currentCity(state);
   if (!city || !window.DetailEnrichment?.ensureDetailData) return;

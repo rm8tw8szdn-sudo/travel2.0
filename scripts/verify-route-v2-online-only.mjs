@@ -85,17 +85,29 @@ const asset = (id, scope) => ({
     {
       ...base,
       id: "wikivoyage-103",
+      name: "悉尼铁路城市线",
+      canonicalTitle: "悉尼铁路城市线",
       source: source("Australian_rail_journey"),
       destinationEntities: [{ wikidataId: "Q3130", name: "悉尼", countryCode: "AU" }],
+      destinations: ["悉尼"],
+      destinationAssets: [asset("sydney", "destination")],
     },
     {
       ...base,
       id: "wikivoyage-104",
+      name: "澳大利亚铁路纵贯线",
       canonicalTitle: "澳大利亚铁路纵贯线",
       source: source("Australian_train_crossing"),
+      destinationEntities: [
+        { wikidataId: "Q3141", name: "墨尔本", countryCode: "AU" },
+        { wikidataId: "Q5112", name: "阿德莱德", countryCode: "AU" },
+      ],
+      destinations: ["墨尔本", "阿德莱德"],
+      destinationAssets: [asset("melbourne", "destination"), asset("adelaide", "destination")],
     },
   ], 20);
-  assert.equal(records.length, 3, "Only genuinely duplicate routes should collapse; different source/version records remain distinct");
+  assert.deepEqual(records.map((record) => record.id), ["wikivoyage-100", "wikivoyage-103", "wikivoyage-104"]);
+  assert.equal(records.length, 3, "Only routes with distinct source, title, and destination skeletons should remain");
   assert.equal(records[0].coverAsset.assetId, "route-banner");
   assert.equal(records[0].destinationAssets.length, records[0].destinationEntities.length);
 }

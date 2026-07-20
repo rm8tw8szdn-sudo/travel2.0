@@ -31,6 +31,19 @@ const coverAsset = {
   discoveredVia: "route-pageimage",
 };
 
+const onlineCoverAsset = {
+  ...coverAsset,
+  title: "Kansai, Japan",
+  imageCountryCodes: ["JP"],
+  status: "verified",
+  semanticStatus: "verified",
+  coverStatus: "verified",
+  matchEvidence: "JP",
+  imageDedupeKey: "kansai-route.jpg",
+  dedupeKey: "kansai-route.jpg",
+  verifiedAt: "2026-07-20T00:00:00.000Z",
+};
+
 function route(overrides = {}) {
   const days = overrides.recommendedDays || "5-7天";
   return {
@@ -55,6 +68,10 @@ function route(overrides = {}) {
     tags: ["古都", "文化旅行"],
     highlights: ["漫步京都寺院街区", "体验大阪城市风味", "探访奈良古迹"],
     coverAsset,
+    onlineCoverAsset: overrides.onlineCoverAsset === undefined ? onlineCoverAsset : overrides.onlineCoverAsset,
+    feedReady: overrides.feedReady ?? true,
+    feedReadyAt: overrides.feedReadyAt || "2026-07-20T00:00:00.000Z",
+    coverStatus: overrides.coverStatus || "verified",
     source: { name: "Wikivoyage", url: overrides.sourceUrl || "https://en.wikivoyage.org/wiki/Kansai" },
     enrichmentStatus: overrides.enrichmentStatus || "enriched",
     contentQualityStatus: overrides.contentQualityStatus || "accepted",
@@ -139,11 +156,11 @@ const sameRoute = dedupeRouteRecords([
   route({ id: "b", sourceUrl: "https://en.wikivoyage.org/wiki/Kansai" }),
 ]);
 assert.equal(sameRoute.length, 1);
-const versions = dedupeRouteRecords([
+const durationVariants = dedupeRouteRecords([
   route({ id: "kansai-5", recommendedDays: "5-7天", sourceUrl: "https://example.org/kansai-5" }),
   route({ id: "kansai-10", recommendedDays: "10天", sourceUrl: "https://example.org/kansai-10" }),
 ]);
-assert.equal(versions.length, 2, "Different duration versions must remain separate routes");
+assert.equal(durationVariants.length, 1, "Routes with the same title and destination skeleton must collapse even when duration differs");
 
 const dashscope = createDashScopeTextEnrichmentProvider({
   apiKey: "test",

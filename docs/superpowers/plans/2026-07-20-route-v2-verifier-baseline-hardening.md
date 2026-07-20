@@ -148,7 +148,7 @@ Read the stored record with the repository inspection boundary:
 const all = repo.list({ limit: 100_000 });
 ```
 
-Then retain all existing planner-record assertions and add a strict-feed assertion using `repo.list({ limit: 100 })` that confirms the record without a verified `onlineCoverAsset` is excluded. Update nearby comments and the final summary so they claim repository persistence plus strict-feed protection, not unconditional feed visibility.
+Then retain all existing planner-record assertions and add a strict-feed assertion using `repo.list({ limit: 100 })` that confirms the record without a verified `onlineCoverAsset` is excluded. Use the inspection boundary for the degrade-path persistence assertion too. Update the feed-focused synthetic fixtures with explicit verified `onlineCoverAsset` metadata so their feed assertions continue to test current production eligibility rules. Update nearby comments and the final summary so they claim repository persistence plus strict-feed protection, not unconditional feed visibility.
 
 - [ ] **Step 3: Run the warmup verifier**
 
@@ -194,6 +194,8 @@ Change the expected normalized request to:
 ```
 
 Do not change `src/lib/routes/contracts.mjs` or its `MAX_LIMIT`.
+
+The foundation feed fixture must also declare a verified `onlineCoverAsset` with matching `imageCountryCodes`, because the fixture explicitly expects the route to be returned by strict feed. Feed pagination fixtures and the search-built fixture must use distinct destination sets so the current repository deduper keeps them as separate routes. These changes affect test setup only, not repository behavior.
 
 - [ ] **Step 3: Run the foundation verifier**
 

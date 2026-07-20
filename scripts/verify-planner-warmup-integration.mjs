@@ -110,7 +110,7 @@ function makeMockFetchImpl() {
 
   // 取 accepted 记录验证字段
   const repo = createAcceptedRouteRepository({ storagePath });
-  const all = repo.list({ limit: 100 });
+  const all = repo.list({ limit: 100_000 });
   const allRecords = all.records || all;
   const plannerRecord = allRecords.find((r) => r.sourceType === "planner-designed");
   assert.ok(plannerRecord, `repository must contain a planner-designed record, got types: ${JSON.stringify(allRecords.map((r) => r.sourceType))}`);
@@ -119,7 +119,15 @@ function makeMockFetchImpl() {
   assert.equal(plannerRecord.contentQualityStatus, "accepted", `contentQualityStatus must be accepted, got ${plannerRecord.contentQualityStatus}`);
   assert.ok(["enriched", "needsEvidence"].includes(plannerRecord.enrichmentStatus), `enrichmentStatus set, got ${plannerRecord.enrichmentStatus}`);
 
-  console.log(`[1/6] happy: accepted=${phase.accepted} rejected=${phase.rejected} contexts=${JSON.stringify(phase.contexts)} record.id=${plannerRecord.id} cover=${Boolean(plannerRecord.coverAsset?.imageUrl)}`);
+  const strictFeed = repo.list({ limit: 100 });
+  const strictFeedRecords = strictFeed.records || strictFeed;
+  assert.equal(
+    strictFeedRecords.some((record) => record.id === plannerRecord.id),
+    false,
+    "strict feed must exclude planner records without a verified onlineCoverAsset",
+  );
+
+  console.log(`[1/6] happy: accepted=${phase.accepted} rejected=${phase.rejected} contexts=${JSON.stringify(phase.contexts)} record.id=${plannerRecord.id} cover=${Boolean(plannerRecord.coverAsset?.imageUrl)} strictFeedHidden=true`);
 }
 
 // ─── 2. 策略 seam：注入 spy strategy → runPlannerPhase 真用其返回值 ──────────
@@ -205,7 +213,7 @@ function makeMockFetchImpl() {
   assert.ok(phase.quotaUsage.planner >= 1, `degrade consumed at least 1 planner slot, got ${phase.quotaUsage.planner}`);
   // 降级无 evidence 采集 → 停 needsEvidence
   const repo = createAcceptedRouteRepository({ storagePath });
-  const rec = (repo.list({ limit: 100 }).records || []).find((r) => r.sourceType === "planner-designed");
+  const rec = (repo.list({ limit: 100_000 }).records || []).find((r) => r.sourceType === "planner-designed");
   assert.ok(rec, "degrade path must still upsert a planner-designed record");
   assert.equal(rec.enrichmentStatus, "needsEvidence", `degrade → needsEvidence, got ${rec.enrichmentStatus}`);
 
@@ -402,12 +410,30 @@ function makeMockFetchImpl() {
   console.log(`[6/6] frontend AC: feed reads repo only; search miss→pending+enqueue (no on-site gen); cursor stable (${JSON.stringify(ids)}); detail reads repo; 404 on miss. discoverFeed has no synchronous planner path.`);
 }
 
-console.log("\nPhase 5 planner-warmup integration verified: planner phase wired into runRouteRepositoryWarmup (scheduled + admin CLI), records enter acceptedRepository with cover, feed-visible. Strategy seam swappable (spy override ≠ seed). Degrade switch works (no keys → deterministic skeleton + needsEvidence). Frontend AC: Feed/Detail read repo, legacy feed search miss enqueues not generates, cursor/sort stable, discoverFeed has no synchronous planner path.");
+console.log("\nPhase 5 planner-warmup integration verified: planner phase wired into runRouteRepositoryWarmup (scheduled + admin CLI), records enter acceptedRepository with cover, and strict feed still requires verified online media. Strategy seam swappable (spy override ≠ seed). Degrade switch works (no keys → deterministic skeleton + needsEvidence). Frontend AC: Feed/Detail read repo, legacy feed search miss enqueues not generates, cursor/sort stable, discoverFeed has no synchronous planner path.");
 
 // helper：构造一条能通过 upsert 门槛（coverAsset.imageUrl 非空）的 planner-designed 记录
 function makePlannerAcceptedRecord(id, anchorName, acceptedAtMs) {
   // name/canonicalTitle 纯中文：content-quality 的 UNTRANSLATED 正则会拒 3+ 连续拉丁字母，故 id 不进 name
   const nameByAnchor = { "东京": "东京京都大阪初访经典行程", "大阪": "关西都市美食文化环线", "京都": "古都奈良京都深度漫游" }[anchorName] || "日本经典初访行程";
+  const destinationsByAnchor = {
+    "东京": [
+      { wikidataId: "Q1490", name: "东京", countryCode: "JP" },
+      { wikidataId: "Q34600", name: "京都", countryCode: "JP" },
+      { wikidataId: "Q35765", name: "大阪", countryCode: "JP" },
+    ],
+    "大阪": [
+      { wikidataId: "Q35765", name: "大阪", countryCode: "JP" },
+      { wikidataId: "Q169134", name: "奈良", countryCode: "JP" },
+      { wikidataId: "Q39231", name: "富士山", countryCode: "JP" },
+    ],
+    "京都": [
+      { wikidataId: "Q34600", name: "京都", countryCode: "JP" },
+      { wikidataId: "Q169134", name: "奈良", countryCode: "JP" },
+      { wikidataId: "Q1490", name: "东京", countryCode: "JP" },
+    ],
+  };
+  const destinationEntities = destinationsByAnchor[anchorName] || destinationsByAnchor["东京"];
   return {
     id,
     name: nameByAnchor,
@@ -416,13 +442,9 @@ function makePlannerAcceptedRecord(id, anchorName, acceptedAtMs) {
     summary: "串联东京、富士山、京都、奈良、大阪的均衡第一印象路线，覆盖都市自然古都美食。",
     recommendationText: "首次访日旅客推荐此路线，节奏均衡不折腾。",
     countryEntities: [{ name: "日本", countryCode: "JP" }],
-    destinationEntities: [
-      { wikidataId: "Q1490", name: "东京", countryCode: "JP" },
-      { wikidataId: "Q34600", name: "京都", countryCode: "JP" },
-      { wikidataId: "Q35765", name: "大阪", countryCode: "JP" },
-    ],
+    destinationEntities,
     countries: ["JP"],
-    destinations: ["东京", "京都", "大阪"],
+    destinations: destinationEntities.map((destination) => destination.name),
     recommendedDays: "8天",
     durationDays: 8,
     bestMonths: ["4月", "5月", "10月", "11月"],
@@ -430,6 +452,19 @@ function makePlannerAcceptedRecord(id, anchorName, acceptedAtMs) {
     tags: ["first-trip", "classic"],
     highlights: ["东京都市夜景", "京都古寺", "大阪美食"],
     coverAsset: { provider: "wikimedia-commons", assetId: `${id}-cover.jpg`, sourceUrl: "https://commons.wikimedia.org/x", imageUrl: `https://example.com/${id}-cover.jpg` },
+    feedReady: true,
+    onlineCoverAsset: {
+      provider: "wikimedia-commons",
+      assetId: `${id}-verified-cover.jpg`,
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:verified-cover.jpg",
+      imageUrl: `https://upload.wikimedia.org/${id}-verified-cover.jpg`,
+      author: "Verifier",
+      license: "CC BY-SA 4.0",
+      imageCountryCodes: ["JP"],
+      status: "verified",
+      semanticStatus: "verified",
+      imageDedupeKey: `${id}-verified-cover`,
+    },
     source: { name: "planner", url: "" },
     enrichmentStatus: "needsEvidence",
     contentQualityStatus: "accepted",

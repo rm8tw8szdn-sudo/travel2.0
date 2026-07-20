@@ -65,6 +65,122 @@ function sendJson(response, status, payload) {
   send(response, status, JSON.stringify(payload), { "content-type": "application/json; charset=utf-8" });
 }
 
+function publicKnowledgeEntity(entity) {
+  const value = {
+    entityId: entity.entityId,
+    entityType: entity.entityType,
+    wikidataId: entity.wikidataId,
+    canonicalNameZh: entity.canonicalNameZh,
+    canonicalNameEn: entity.canonicalNameEn,
+    aliases: [...entity.aliases],
+    coordinates: entity.coordinates ? { ...entity.coordinates } : null,
+  };
+
+  if (entity.entityType === "country") {
+    return {
+      ...value,
+      isoAlpha2: entity.isoAlpha2,
+      isoAlpha3: entity.isoAlpha3,
+      isoNumeric: entity.isoNumeric,
+      continent: entity.continent ? { ...entity.continent } : null,
+      region: entity.region,
+      subregion: entity.subregion,
+      capital: entity.capital ? {
+        ...entity.capital,
+        aliases: [...entity.capital.aliases],
+      } : null,
+    };
+  }
+
+  if (entity.entityType === "city") {
+    return { ...value, parentCountryEntityId: entity.parentCountryEntityId };
+  }
+
+  return { ...value, parentCityEntityId: entity.parentCityEntityId };
+}
+
+function knowledgeEntityLayerSummary(repository) {
+  const countries = repository.listCountries().length;
+  const cities = repository.listCities().length;
+  const pois = repository.listPois().length;
+  return { countries, cities, pois, total: countries + cities + pois };
+}
+
+function knowledgeEntityError(response, status, code, message) {
+  sendJson(response, status, { error: { code, message } });
+}
+
+function handleKnowledgeEntityLayerRequest(request, response, url, repository) {
+  const prefix = "/api/knowledge-entities";
+  if (url.pathname !== prefix && !url.pathname.startsWith(`${prefix}/`)) return false;
+
+  if (request.method !== "GET") {
+    response.setHeader("allow", "GET");
+    knowledgeEntityError(response, 405, "method_not_allowed", "Knowledge Entity Layer endpoints are read-only.");
+    return true;
+  }
+
+  if (url.pathname === `${prefix}/summary`) {
+    sendJson(response, 200, knowledgeEntityLayerSummary(repository));
+    return true;
+  }
+
+  if (url.pathname === `${prefix}/countries`) {
+    sendJson(response, 200, { countries: repository.listCountries().map(publicKnowledgeEntity) });
+    return true;
+  }
+
+  const countryCitiesMatch = url.pathname.match(/^\/api\/knowledge-entities\/countries\/([^/]+)\/cities$/);
+  if (countryCitiesMatch) {
+    const country = repository.getEntity(decodeURIComponent(countryCitiesMatch[1]));
+    if (!country) {
+      knowledgeEntityError(response, 404, "entity_not_found", "Country entity was not found.");
+      return true;
+    }
+    if (country.entityType !== "country") {
+      knowledgeEntityError(response, 400, "invalid_parent_type", "The requested parent entity is not a country.");
+      return true;
+    }
+    sendJson(response, 200, {
+      country: publicKnowledgeEntity(country),
+      cities: repository.listCitiesByCountry(country.entityId).map(publicKnowledgeEntity),
+    });
+    return true;
+  }
+
+  const cityPoisMatch = url.pathname.match(/^\/api\/knowledge-entities\/cities\/([^/]+)\/pois$/);
+  if (cityPoisMatch) {
+    const city = repository.getEntity(decodeURIComponent(cityPoisMatch[1]));
+    if (!city) {
+      knowledgeEntityError(response, 404, "entity_not_found", "City entity was not found.");
+      return true;
+    }
+    if (city.entityType !== "city") {
+      knowledgeEntityError(response, 400, "invalid_parent_type", "The requested parent entity is not a city.");
+      return true;
+    }
+    sendJson(response, 200, {
+      city: publicKnowledgeEntity(city),
+      pois: repository.listPoisByCity(city.entityId).map(publicKnowledgeEntity),
+    });
+    return true;
+  }
+
+  const entityMatch = url.pathname.match(/^\/api\/knowledge-entities\/entities\/([^/]+)$/);
+  if (entityMatch) {
+    const entity = repository.getEntity(decodeURIComponent(entityMatch[1]));
+    if (!entity) {
+      knowledgeEntityError(response, 404, "entity_not_found", "Knowledge entity was not found.");
+      return true;
+    }
+    sendJson(response, 200, { entity: publicKnowledgeEntity(entity) });
+    return true;
+  }
+
+  knowledgeEntityError(response, 404, "endpoint_not_found", "Knowledge Entity Layer endpoint was not found.");
+  return true;
+}
+
 function proxiedImageDiskPaths(cacheKey) {
   const hash = crypto.createHash("sha256").update(cacheKey).digest("hex");
   return {
@@ -1325,15 +1441,19 @@ async function resolveOnlineRouteImage(route, signal) {
   return null;
 }
 
-async function createDiscoveryHandler() {
+async function loadRouteLibrary() {
   const routesUrl = pathToFileURL(path.join(root, "src", "lib", "routes", "index.mjs")).href;
+  return import(routesUrl);
+}
+
+async function createDiscoveryHandler(routeLibrary) {
   const {
     createAcceptedRouteRepository,
     createRouteFeedRefillWorker,
     createRouteDiscovery,
     createRouteDiscoveryHandler,
     createRouteJobStore,
-  } = await import(routesUrl);
+  } = routeLibrary;
   const acceptedRepository = createAcceptedRouteRepository({
     storagePath: process.env.ROUTE_ACCEPTED_REPOSITORY_PATH || path.join(root, ".route-v2-cache", "accepted-routes.json"),
   });
@@ -1352,10 +1472,15 @@ async function createDiscoveryHandler() {
 }
 
 async function main() {
-  const discoveryHandler = await createDiscoveryHandler();
+  const routeLibrary = await loadRouteLibrary();
+  const knowledgeEntityLayerRepository = routeLibrary.createPublishedKnowledgeEntityLayerRepository({ projectRoot: root });
+  const knowledgeEntitySummary = knowledgeEntityLayerSummary(knowledgeEntityLayerRepository);
+  const discoveryHandler = await createDiscoveryHandler(routeLibrary);
   const server = http.createServer(async (request, response) => {
     try {
       const url = new URL(request.url || "/", `http://${request.headers.host || `${host}:${port}`}`);
+      if (handleKnowledgeEntityLayerRequest(request, response, url, knowledgeEntityLayerRepository)) return;
+
       if (url.pathname === "/api/routes/image-search") {
         const abortController = new AbortController();
         request.on("aborted", () => abortController.abort());
@@ -1414,6 +1539,7 @@ async function main() {
   });
 
   server.listen(port, host, () => {
+    console.log(`Knowledge Entity Layer: ${knowledgeEntitySummary.countries} countries, ${knowledgeEntitySummary.cities} cities, ${knowledgeEntitySummary.pois} POIs`);
     console.log(`Travel Collection preview: http://${host}:${port}/travel-collection/`);
     console.log(`Routes/Search page: http://${host}:${port}/travel-collection/routes.html`);
   });

@@ -1,0 +1,129 @@
+{
+  "schemaVersion": "route-v2-country-baseline-review-p1a-batch02",
+  "reviewCount": 5,
+  "reviewQueue": [
+    {
+      "reviewId": "review-61ee6fdbcebfc86d",
+      "isoAlpha2": "MY",
+      "entityId": "country-356e21f073b0d7cb",
+      "severity": "manual-review",
+      "type": "multiple-country-labels",
+      "labels": {
+        "zh": [
+          "馬來西亞",
+          "马来西亚"
+        ],
+        "en": [
+          "Malaysia"
+        ]
+      }
+    },
+    {
+      "reviewId": "review-cd5f7d2387995aa0",
+      "isoAlpha2": "NG",
+      "entityId": "country-0e903b500e2d1639",
+      "severity": "manual-review",
+      "type": "capital-curated-override",
+      "selected": {
+        "wikidataId": "Q3787",
+        "canonicalNameZh": "阿布贾",
+        "canonicalNameEn": "Abuja",
+        "aliases": [
+          "阿布加",
+          "阿布賈"
+        ]
+      },
+      "candidates": [
+        {
+          "wikidataId": "Q3787",
+          "canonicalNameZh": "阿布贾",
+          "canonicalNameEn": "",
+          "aliases": [
+            "阿布加",
+            "阿布賈"
+          ],
+          "sourceUrl": "https://www.wikidata.org/wiki/Q3787",
+          "source": "Wikidata P36"
+        }
+      ],
+      "override": {
+        "wikidataId": "Q3787",
+        "canonicalNameEn": "Abuja",
+        "source": "P1A batch02 curated capital label override: Wikidata Q3787 lacks an English rdfs:label in the raw snapshot."
+      },
+      "sourceField": "Wikidata P36"
+    },
+    {
+      "reviewId": "review-4b09a3685346af0b",
+      "isoAlpha2": "NG",
+      "entityId": "country-0e903b500e2d1639",
+      "severity": "manual-review",
+      "type": "multiple-country-labels",
+      "labels": {
+        "zh": [
+          "奈及利亞",
+          "尼日利亚"
+        ],
+        "en": [
+          "Nigeria"
+        ]
+      }
+    },
+    {
+      "reviewId": "review-676b698f946af59f",
+      "isoAlpha2": "RU",
+      "entityId": "country-660490f9baa960fd",
+      "severity": "manual-review",
+      "type": "multiple-continent-candidates",
+      "selected": {
+        "wikidataId": "Q46",
+        "canonicalNameZh": "欧洲",
+        "canonicalNameEn": "Europe"
+      },
+      "candidates": [
+        {
+          "wikidataId": "Q46",
+          "canonicalNameZh": "欧洲",
+          "canonicalNameEn": "Europe",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q46",
+          "source": "Wikidata P30",
+          "semanticNote": "Wikidata P30 can represent continent, macro-region, or a special geographic region."
+        },
+        {
+          "wikidataId": "Q48",
+          "canonicalNameZh": "亞洲",
+          "canonicalNameEn": "Asia",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q48",
+          "source": "Wikidata P30",
+          "semanticNote": "Wikidata P30 can represent continent, macro-region, or a special geographic region."
+        },
+        {
+          "wikidataId": "Q5401",
+          "canonicalNameZh": "歐亞大陸",
+          "canonicalNameEn": "Eurasia",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q5401",
+          "source": "Wikidata P30",
+          "semanticNote": "Wikidata P30 can represent continent, macro-region, or a special geographic region."
+        }
+      ],
+      "sourceField": "Wikidata P30",
+      "semanticNote": "Wikidata P30 can represent continent, macro-region, or a special geographic region."
+    },
+    {
+      "reviewId": "review-3af3eb7d2d5e18f6",
+      "isoAlpha2": "TH",
+      "entityId": "country-c3fe14f3610d3a77",
+      "severity": "manual-review",
+      "type": "multiple-country-labels",
+      "labels": {
+        "zh": [
+          "泰国",
+          "泰國"
+        ],
+        "en": [
+          "Thailand"
+        ]
+      }
+    }
+  ]
+}

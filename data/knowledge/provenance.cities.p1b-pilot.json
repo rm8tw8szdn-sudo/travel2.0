@@ -1,0 +1,553 @@
+{
+  "schemaVersion": "route-v2-city-baseline-provenance-p1b-pilot",
+  "generatedFrom": "data/knowledge/raw/cities-p1b-pilot.wikidata.json",
+  "cityCount": 5,
+  "provenance": {
+    "city-d6f6bf7d2fca5cb4": {
+      "entityId": {
+        "field": "entityId",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B City Entity Foundation schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-15T02:45:40.745Z",
+        "value": "city-d6f6bf7d2fca5cb4"
+      },
+      "entityType": {
+        "field": "entityType",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B City Entity Foundation schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-15T02:45:40.745Z",
+        "value": "city"
+      },
+      "parentCountryEntityId": {
+        "field": "parentCountryEntityId",
+        "sourceType": "repository-reference",
+        "source": "Route V2 P1A Country Baseline",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q43",
+        "retrievedAt": "2026-07-15T02:45:40.745Z",
+        "value": "country-03919f1fd24fd3dc"
+      },
+      "wikidataId": {
+        "field": "wikidataId",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q3640",
+        "retrievedAt": "2026-07-15T02:45:40.745Z",
+        "value": "Q3640"
+      },
+      "canonicalNameZh": {
+        "field": "canonicalNameZh",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q3640",
+        "retrievedAt": "2026-07-15T02:45:40.745Z",
+        "value": "安卡拉"
+      },
+      "canonicalNameEn": {
+        "field": "canonicalNameEn",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q3640",
+        "retrievedAt": "2026-07-15T02:45:40.745Z",
+        "value": "Ankara"
+      },
+      "aliases": {
+        "field": "aliases",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q3640",
+        "retrievedAt": "2026-07-15T02:45:40.745Z",
+        "value": [
+          "Ankara, Türkiye",
+          "அங்காரா",
+          "அன்கரா",
+          "アンカラ",
+          "アンキュラ"
+        ]
+      },
+      "coordinates": {
+        "field": "coordinates",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q3640",
+        "retrievedAt": "2026-07-15T02:45:40.745Z",
+        "value": {
+          "latitude": 39.93576,
+          "longitude": 32.83869
+        }
+      },
+      "entitySourceType": {
+        "field": "entitySourceType",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B City Entity Foundation schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-15T02:45:40.745Z",
+        "value": "wikidata"
+      },
+      "confidence": {
+        "field": "confidence",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B City Entity Foundation schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-15T02:45:40.745Z",
+        "value": 0.95
+      },
+      "retrievedAt": {
+        "field": "retrievedAt",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q3640",
+        "retrievedAt": "2026-07-15T02:45:40.745Z",
+        "value": "2026-07-15T02:45:40.745Z"
+      }
+    },
+    "city-fc91a9c6c7b389cf": {
+      "entityId": {
+        "field": "entityId",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B City Entity Foundation schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-15T02:45:40.745Z",
+        "value": "city-fc91a9c6c7b389cf"
+      },
+      "entityType": {
+        "field": "entityType",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B City Entity Foundation schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-15T02:45:40.745Z",
+        "value": "city"
+      },
+      "parentCountryEntityId": {
+        "field": "parentCountryEntityId",
+        "sourceType": "repository-reference",
+        "source": "Route V2 P1A Country Baseline",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q43",
+        "retrievedAt": "2026-07-15T02:45:40.745Z",
+        "value": "country-03919f1fd24fd3dc"
+      },
+      "wikidataId": {
+        "field": "wikidataId",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q406",
+        "retrievedAt": "2026-07-15T02:45:40.745Z",
+        "value": "Q406"
+      },
+      "canonicalNameZh": {
+        "field": "canonicalNameZh",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q406",
+        "retrievedAt": "2026-07-15T02:45:40.745Z",
+        "value": "伊斯坦布尔"
+      },
+      "canonicalNameEn": {
+        "field": "canonicalNameEn",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q406",
+        "retrievedAt": "2026-07-15T02:45:40.745Z",
+        "value": "Istanbul"
+      },
+      "aliases": {
+        "field": "aliases",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q406",
+        "retrievedAt": "2026-07-15T02:45:40.745Z",
+        "value": [
+          "İstanbul",
+          "Setambul",
+          "இசுதான்புல்",
+          "இஸ்தான்புல்",
+          "イスタンブール",
+          "イスタンブール市",
+          "イスタンブル",
+          "伊斯坦堡",
+          "伊斯坦布爾"
+        ]
+      },
+      "coordinates": {
+        "field": "coordinates",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q406",
+        "retrievedAt": "2026-07-15T02:45:40.745Z",
+        "value": {
+          "latitude": 41.01,
+          "longitude": 28.960277777778
+        }
+      },
+      "entitySourceType": {
+        "field": "entitySourceType",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B City Entity Foundation schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-15T02:45:40.745Z",
+        "value": "wikidata"
+      },
+      "confidence": {
+        "field": "confidence",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B City Entity Foundation schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-15T02:45:40.745Z",
+        "value": 0.95
+      },
+      "retrievedAt": {
+        "field": "retrievedAt",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q406",
+        "retrievedAt": "2026-07-15T02:45:40.745Z",
+        "value": "2026-07-15T02:45:40.745Z"
+      }
+    },
+    "city-8acaf08893e5abf1": {
+      "entityId": {
+        "field": "entityId",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B City Entity Foundation schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-15T02:45:40.745Z",
+        "value": "city-8acaf08893e5abf1"
+      },
+      "entityType": {
+        "field": "entityType",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B City Entity Foundation schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-15T02:45:40.745Z",
+        "value": "city"
+      },
+      "parentCountryEntityId": {
+        "field": "parentCountryEntityId",
+        "sourceType": "repository-reference",
+        "source": "Route V2 P1A Country Baseline",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q17",
+        "retrievedAt": "2026-07-15T02:45:40.745Z",
+        "value": "country-a0509b9eab0ea9ce"
+      },
+      "wikidataId": {
+        "field": "wikidataId",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q34600",
+        "retrievedAt": "2026-07-15T02:45:40.745Z",
+        "value": "Q34600"
+      },
+      "canonicalNameZh": {
+        "field": "canonicalNameZh",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q34600",
+        "retrievedAt": "2026-07-15T02:45:40.745Z",
+        "value": "京都市"
+      },
+      "canonicalNameEn": {
+        "field": "canonicalNameEn",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q34600",
+        "retrievedAt": "2026-07-15T02:45:40.745Z",
+        "value": "Kyoto"
+      },
+      "aliases": {
+        "field": "aliases",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q34600",
+        "retrievedAt": "2026-07-15T02:45:40.745Z",
+        "value": [
+          "Kyoto City",
+          "Meacum",
+          "Meako",
+          "கியோட்டோ",
+          "கியோத்தோ",
+          "上方",
+          "京",
+          "京の都",
+          "京都",
+          "千年の都",
+          "千年余りの都",
+          "古都",
+          "洛中"
+        ]
+      },
+      "coordinates": {
+        "field": "coordinates",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q34600",
+        "retrievedAt": "2026-07-15T02:45:40.745Z",
+        "value": {
+          "latitude": 35.01161111111111,
+          "longitude": 135.76811111111112
+        }
+      },
+      "entitySourceType": {
+        "field": "entitySourceType",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B City Entity Foundation schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-15T02:45:40.745Z",
+        "value": "wikidata"
+      },
+      "confidence": {
+        "field": "confidence",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B City Entity Foundation schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-15T02:45:40.745Z",
+        "value": 0.95
+      },
+      "retrievedAt": {
+        "field": "retrievedAt",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q34600",
+        "retrievedAt": "2026-07-15T02:45:40.745Z",
+        "value": "2026-07-15T02:45:40.745Z"
+      }
+    },
+    "city-5a21732f861ff7f1": {
+      "entityId": {
+        "field": "entityId",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B City Entity Foundation schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-15T02:45:40.745Z",
+        "value": "city-5a21732f861ff7f1"
+      },
+      "entityType": {
+        "field": "entityType",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B City Entity Foundation schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-15T02:45:40.745Z",
+        "value": "city"
+      },
+      "parentCountryEntityId": {
+        "field": "parentCountryEntityId",
+        "sourceType": "repository-reference",
+        "source": "Route V2 P1A Country Baseline",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q17",
+        "retrievedAt": "2026-07-15T02:45:40.745Z",
+        "value": "country-a0509b9eab0ea9ce"
+      },
+      "wikidataId": {
+        "field": "wikidataId",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q1490",
+        "retrievedAt": "2026-07-15T02:45:40.745Z",
+        "value": "Q1490"
+      },
+      "canonicalNameZh": {
+        "field": "canonicalNameZh",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q1490",
+        "retrievedAt": "2026-07-15T02:45:40.745Z",
+        "value": "东京都"
+      },
+      "canonicalNameEn": {
+        "field": "canonicalNameEn",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q1490",
+        "retrievedAt": "2026-07-15T02:45:40.745Z",
+        "value": "Tokyo"
+      },
+      "aliases": {
+        "field": "aliases",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q1490",
+        "retrievedAt": "2026-07-15T02:45:40.745Z",
+        "value": [
+          "Edo",
+          "Jedo",
+          "Tokei",
+          "Tokio",
+          "Tôkyô",
+          "Tokyo (Japan)",
+          "Tokyo Metropolis",
+          "Tokyo Metropolitan prefecture",
+          "Tokyo Prefecture",
+          "Tokyo-to",
+          "Tôkyô-to",
+          "Tōkyō-to",
+          "Tokyo, Japan",
+          "Yedo",
+          "டோக்கியோ",
+          "டோக்யோ",
+          "தோக்கியோ",
+          "东京",
+          "日本东京",
+          "日本東京",
+          "東京",
+          "東京都"
+        ]
+      },
+      "coordinates": {
+        "field": "coordinates",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q1490",
+        "retrievedAt": "2026-07-15T02:45:40.745Z",
+        "value": {
+          "latitude": 35.68944444444445,
+          "longitude": 139.69166666666666
+        }
+      },
+      "entitySourceType": {
+        "field": "entitySourceType",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B City Entity Foundation schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-15T02:45:40.745Z",
+        "value": "wikidata"
+      },
+      "confidence": {
+        "field": "confidence",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B City Entity Foundation schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-15T02:45:40.745Z",
+        "value": 0.95
+      },
+      "retrievedAt": {
+        "field": "retrievedAt",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q1490",
+        "retrievedAt": "2026-07-15T02:45:40.745Z",
+        "value": "2026-07-15T02:45:40.745Z"
+      }
+    },
+    "city-dde074f983b42cfd": {
+      "entityId": {
+        "field": "entityId",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B City Entity Foundation schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-15T02:45:40.745Z",
+        "value": "city-dde074f983b42cfd"
+      },
+      "entityType": {
+        "field": "entityType",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B City Entity Foundation schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-15T02:45:40.745Z",
+        "value": "city"
+      },
+      "parentCountryEntityId": {
+        "field": "parentCountryEntityId",
+        "sourceType": "repository-reference",
+        "source": "Route V2 P1A Country Baseline",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q334",
+        "retrievedAt": "2026-07-15T02:45:40.745Z",
+        "value": "country-e0a550ef5a59c6f9"
+      },
+      "wikidataId": {
+        "field": "wikidataId",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q334",
+        "retrievedAt": "2026-07-15T02:45:40.745Z",
+        "value": "Q334"
+      },
+      "canonicalNameZh": {
+        "field": "canonicalNameZh",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q334",
+        "retrievedAt": "2026-07-15T02:45:40.745Z",
+        "value": "新加坡"
+      },
+      "canonicalNameEn": {
+        "field": "canonicalNameEn",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q334",
+        "retrievedAt": "2026-07-15T02:45:40.745Z",
+        "value": "Singapore"
+      },
+      "aliases": {
+        "field": "aliases",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q334",
+        "retrievedAt": "2026-07-15T02:45:40.745Z",
+        "value": [
+          "🇸🇬",
+          "Garden City",
+          "Lion City",
+          "Republic of Singapore",
+          "Republik Singapura",
+          "S'pore",
+          "SG",
+          "SGP",
+          "SIN",
+          "Singapore City",
+          "Singapur",
+          "Singapura",
+          "சிங்கப்பூர்",
+          "சிங்கை",
+          "ஸிங்கபூர்",
+          "シンガポール",
+          "シンガポール共和国",
+          "新加坡共和国",
+          "新嘉坡",
+          "新国",
+          "星",
+          "星加坡",
+          "星国",
+          "星洲",
+          "星港",
+          "昭南",
+          "狮城"
+        ]
+      },
+      "coordinates": {
+        "field": "coordinates",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q334",
+        "retrievedAt": "2026-07-15T02:45:40.745Z",
+        "value": {
+          "latitude": 1.3,
+          "longitude": 103.8
+        }
+      },
+      "entitySourceType": {
+        "field": "entitySourceType",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B City Entity Foundation schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-15T02:45:40.745Z",
+        "value": "wikidata"
+      },
+      "confidence": {
+        "field": "confidence",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B City Entity Foundation schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-15T02:45:40.745Z",
+        "value": 0.95
+      },
+      "retrievedAt": {
+        "field": "retrievedAt",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q334",
+        "retrievedAt": "2026-07-15T02:45:40.745Z",
+        "value": "2026-07-15T02:45:40.745Z"
+      }
+    }
+  }
+}

@@ -74,6 +74,69 @@ export {
   normalizeKnowledgeEntitySource,
 } from "./knowledge-entity-normalizer.mjs";
 export {
+  COUNTRY_BASELINE_ALLOWED_SOURCE_TYPES,
+  COUNTRY_BASELINE_ENTITY_TYPE,
+  COUNTRY_BASELINE_FORBIDDEN_SOURCE_TYPES,
+  COUNTRY_BASELINE_SCHEMA_VERSION,
+  canonicalizeCountryAliases,
+  createCountryEntityId,
+  isValidIsoAlpha2,
+  isValidIsoAlpha3,
+  isValidIsoNumeric,
+  isValidQid,
+  normalizeCountryCoordinates,
+  normalizeIsoAlpha2,
+  normalizeIsoAlpha3,
+  normalizeIsoNumeric,
+  requiredCountryProvenanceFields,
+  sourceEntry,
+  validateCountryEntity,
+  validateCountryEntitySet,
+} from "./knowledge-country-baseline-schema.mjs";
+export {
+  aggregateWikidataCountryRows,
+  normalizeCountryBaseline,
+} from "./knowledge-country-baseline-normalizer.mjs";
+export { dedupeCountryEntities } from "./knowledge-country-baseline-deduper.mjs";
+export {
+  canonicalizeEntityLayerAliases,
+  createEntityLayerIssueId,
+  createEntityLayerProvenanceEntry,
+  createTypedEntityId,
+  entityLayerDistanceKm,
+  isValidEntityLayerQid,
+  normalizeEntityLayerCoordinates,
+  normalizeEntityLayerNameKey,
+  normalizeEntityLayerText,
+  validateEntityLayerProvenanceEntry,
+} from "./knowledge-entity-layer-primitives.mjs";
+export {
+  KNOWLEDGE_CITY_BASELINE_SCHEMA_VERSION,
+  KNOWLEDGE_CITY_ENTITY_TYPE,
+  KNOWLEDGE_CITY_PROVENANCE_FIELDS,
+  KNOWLEDGE_CITY_PROVENANCE_SOURCE_TYPES,
+  validateKnowledgeCityEntity,
+  validateKnowledgeCityEntitySet,
+} from "./knowledge-city-baseline-schema.mjs";
+export { normalizeKnowledgeCityBaseline } from "./knowledge-city-baseline-normalizer.mjs";
+export { dedupeKnowledgeCityEntities } from "./knowledge-city-baseline-deduper.mjs";
+export {
+  KNOWLEDGE_POI_BASELINE_SCHEMA_VERSION,
+  KNOWLEDGE_POI_ENTITY_TYPE,
+  KNOWLEDGE_POI_PROVENANCE_FIELDS,
+  KNOWLEDGE_POI_PROVENANCE_SOURCE_TYPES,
+  validateKnowledgePoiEntity,
+  validateKnowledgePoiEntitySet,
+} from "./knowledge-poi-baseline-schema.mjs";
+export { normalizeKnowledgePoiBaseline } from "./knowledge-poi-baseline-normalizer.mjs";
+export { dedupeKnowledgePoiEntities } from "./knowledge-poi-baseline-deduper.mjs";
+export { createKnowledgeEntityLayerRepository } from "./knowledge-entity-layer-repository.mjs";
+export {
+  KNOWLEDGE_ENTITY_LAYER_PUBLISHED_ASSETS,
+  KNOWLEDGE_ENTITY_LAYER_PUBLISHED_TOTALS,
+  createPublishedKnowledgeEntityLayerRepository,
+} from "./knowledge-entity-layer-published-assets.mjs";
+export {
   LOCAL_EVIDENCE_COLLECTOR_CREATED_AT,
   LOCAL_EVIDENCE_COLLECTOR_SOURCE,
   collectLocalEvidenceBundle,

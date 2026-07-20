@@ -1,0 +1,155 @@
+{
+  "schemaVersion": "route-v2-country-baseline-review-p1a-batch03",
+  "reviewCount": 9,
+  "reviewQueue": [
+    {
+      "reviewId": "review-e965a7dfe5921c29",
+      "isoAlpha2": "AT",
+      "entityId": "country-0ac53b7955d0cc26",
+      "severity": "manual-review",
+      "type": "multiple-country-labels",
+      "labels": {
+        "zh": [
+          "奥地利",
+          "奧地利"
+        ],
+        "en": [
+          "Austria"
+        ]
+      }
+    },
+    {
+      "reviewId": "review-6b9776f0f7564143",
+      "isoAlpha2": "BE",
+      "entityId": "country-0af9aaa99cc658c3",
+      "severity": "manual-review",
+      "type": "multiple-country-labels",
+      "labels": {
+        "zh": [
+          "比利时",
+          "比利時"
+        ],
+        "en": [
+          "Belgium"
+        ]
+      }
+    },
+    {
+      "reviewId": "review-bbc60219befaa74c",
+      "isoAlpha2": "DK",
+      "entityId": "country-3b1d93bcf117948b",
+      "severity": "manual-review",
+      "type": "multiple-country-labels",
+      "labels": {
+        "zh": [
+          "丹麥",
+          "丹麦"
+        ],
+        "en": [
+          "Denmark"
+        ]
+      }
+    },
+    {
+      "reviewId": "review-374fa844f6c7829c",
+      "isoAlpha2": "FI",
+      "entityId": "country-4521f3e0908e41e0",
+      "severity": "manual-review",
+      "type": "multiple-country-labels",
+      "labels": {
+        "zh": [
+          "芬兰",
+          "芬蘭"
+        ],
+        "en": [
+          "Finland"
+        ]
+      }
+    },
+    {
+      "reviewId": "review-db534bed5a2dd22d",
+      "isoAlpha2": "IE",
+      "entityId": "country-57e636ae72145ddb",
+      "severity": "manual-review",
+      "type": "multiple-country-labels",
+      "labels": {
+        "zh": [
+          "愛爾蘭共和國",
+          "爱尔兰"
+        ],
+        "en": [
+          "Ireland"
+        ]
+      }
+    },
+    {
+      "reviewId": "review-9ff958972e504e1d",
+      "isoAlpha2": "NL",
+      "entityId": "country-febe99ab26ea41f0",
+      "severity": "manual-review",
+      "type": "multiple-country-labels",
+      "labels": {
+        "zh": [
+          "荷兰",
+          "荷蘭"
+        ],
+        "en": [
+          "Netherlands"
+        ]
+      }
+    },
+    {
+      "reviewId": "review-f68eaea29a3416c8",
+      "isoAlpha2": "NL",
+      "entityId": "country-febe99ab26ea41f0",
+      "severity": "manual-review",
+      "type": "wikidata-iso-identifiers-missing",
+      "missingProperties": [
+        "P297",
+        "P298",
+        "P299"
+      ],
+      "selected": {
+        "isoAlpha2": "NL",
+        "isoAlpha3": "NLD",
+        "isoNumeric": "528"
+      },
+      "candidates": [],
+      "sourceField": "P297,P298,P299",
+      "sourceUrl": "https://www.wikidata.org/wiki/Q55",
+      "retrievedAt": "2026-07-15T07:08:36.639Z"
+    },
+    {
+      "reviewId": "review-60a21224c4875993",
+      "isoAlpha2": "PH",
+      "entityId": "country-29a769e74eb52b4a",
+      "severity": "manual-review",
+      "type": "multiple-country-labels",
+      "labels": {
+        "zh": [
+          "菲律宾",
+          "菲律賓"
+        ],
+        "en": [
+          "Philippines"
+        ]
+      }
+    },
+    {
+      "reviewId": "review-5402fa14c8e9dead",
+      "isoAlpha2": "PL",
+      "entityId": "country-5a2eabd86d1a1bb1",
+      "severity": "manual-review",
+      "type": "multiple-country-labels",
+      "labels": {
+        "zh": [
+          "波兰",
+          "波蘭"
+        ],
+        "en": [
+          "Poland"
+        ]
+      }
+    }
+  ]
+}

@@ -15,13 +15,13 @@ const mobileCss = read("mobile.css");
 
 assert.match(feedHtml, /data-route-search/);
 assert.match(feedHtml, /data-route-tab="cross"[^>]*>跨国路线/);
-assert.match(feedHtml, /data-route-tab="single"[^>]*>单国城市路线/);
+assert.match(feedHtml, /data-route-tab="single"[^>]*>单国路线/);
 assert.match(feedJs, /record\.countryEntities/);
 assert.match(feedJs, /query:\s*feedState\.query/);
 assert.match(feedJs, /data-route-add-trip/);
 assert.match(feedJs, /data-route-favorite/);
 assert.doesNotMatch(feedHtml + feedJs, /data-route-save|保存路线|isRouteSaved|saveRouteSnapshot/);
-assert.doesNotMatch(feedJs, /FALLBACK_COVER|route-placeholder/);
+assert.match(feedJs, /const FALLBACK_ROUTE_COVER = "assets\/trip-cover-placeholder\.svg"/);
 assert.doesNotMatch(feedJs, /天数灵活|季节灵活/);
 
 assert.match(detailHtml, /data-route-places/);

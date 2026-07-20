@@ -23,6 +23,7 @@ import {
   loadBatchCountries,
   serializeJson,
 } from "./import-knowledge-country-baseline-pilot.mjs";
+import { normalizeKnowledgeBaselineText } from "./lib/knowledge-baseline-text.mjs";
 import { assertStatesUnchanged, statesFor } from "./lib/route-v2-test-file-state.mjs";
 
 const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
@@ -293,7 +294,11 @@ for (const [assetName, relativePath] of Object.entries({
   conflicts: "data/knowledge/batches/conflicts.p1a-batch03.json",
   reviewQueue: "data/knowledge/batches/review-queue.p1a-batch03.json",
 })) {
-  assert.equal(serializeJson(rebuiltA.assets[assetName]), readText(relativePath), `${assetName} serialized rebuild should be byte-identical`);
+  assert.equal(
+    normalizeKnowledgeBaselineText(serializeJson(rebuiltA.assets[assetName])),
+    normalizeKnowledgeBaselineText(readText(relativePath)),
+    `${assetName} serialized rebuild should be canonical-text-identical`,
+  );
 }
 
 const allMissingSeed = fixtureSeed();

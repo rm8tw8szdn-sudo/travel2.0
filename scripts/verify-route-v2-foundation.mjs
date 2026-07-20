@@ -8,7 +8,7 @@ import {
 } from "../src/lib/routes/index.mjs";
 
 assert.deepEqual(normalizeDiscoveryRequest({ mode: "feed", query: "  日本  ", limit: 99, excludeIds: ["one", "one"], routeType: "single" }), {
-  mode: "feed", query: "日本", locale: "zh-CN", limit: 20, cursor: null, sessionId: null, excludeIds: ["one"], routeType: "single",
+  mode: "feed", query: "日本", locale: "zh-CN", limit: 60, cursor: null, sessionId: null, excludeIds: ["one"], excludeClusters: [], routeType: "single",
 });
 
 const coverAsset = {
@@ -44,6 +44,15 @@ const record = {
   tags: ["单国路线"],
   highlights: ["东京城市街区", "京都古都寺院", "大阪饮食文化"],
   coverAsset,
+  feedReady: true,
+  onlineCoverAsset: {
+    ...coverAsset,
+    assetId: "route-verified",
+    imageCountryCodes: ["JP"],
+    status: "verified",
+    semanticStatus: "verified",
+    imageDedupeKey: "route-verified-cover",
+  },
   source: { name: "Wikivoyage", url: "https://en.wikivoyage.org/wiki/Japan_itinerary" },
   enrichmentStatus: "enriched",
   contentQualityStatus: "accepted",
@@ -101,8 +110,14 @@ const searchBuiltRecord = {
   id: "wikivoyage-search-built",
   name: "冷门不存在路线测试行程",
   canonicalTitle: "冷门不存在路线测试行程",
-  summary: "串联东京、京都和大阪，验证搜索后台任务写入后的路线回流。",
+  summary: "串联东京、京都和奈良，验证搜索后台任务写入后的路线回流。",
   recommendationText: "搜索后台任务完成后，这条合格路线可以被再次搜索直接命中。",
+  destinationEntities: [
+    { wikidataId: "Q1490", name: "东京", countryCode: "JP" },
+    { wikidataId: "Q34600", name: "京都", countryCode: "JP" },
+    { wikidataId: "Q169134", name: "奈良", countryCode: "JP" },
+  ],
+  destinations: ["东京", "京都", "奈良"],
   source: { name: "Wikivoyage", url: "https://en.wikivoyage.org/wiki/Search_built_route" },
 };
 assert.equal(repository.upsert(searchBuiltRecord).accepted, true);

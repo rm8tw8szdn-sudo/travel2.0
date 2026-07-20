@@ -1,4 +1,3 @@
-import crypto from "node:crypto";
 import { mkdir, readFile, rename, rm, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
@@ -18,6 +17,10 @@ import {
   KNOWLEDGE_POI_REVIEW_POLICY_P1B_VERSION,
   classifyKnowledgePoiReviewEvidence,
 } from "./lib/knowledge-poi-review-policy-p1b.mjs";
+import {
+  normalizeKnowledgeBaselineText,
+  sha256KnowledgeBaselineText,
+} from "./lib/knowledge-baseline-text.mjs";
 
 const SCRIPT_DIRECTORY = path.dirname(fileURLToPath(import.meta.url));
 const REPOSITORY_ROOT = path.resolve(SCRIPT_DIRECTORY, "..");
@@ -72,10 +75,6 @@ function clone(value) {
 
 function serializeJson(value) {
   return `${JSON.stringify(value, null, 2)}\n`;
-}
-
-function sha256(contents) {
-  return crypto.createHash("sha256").update(contents).digest("hex");
 }
 
 function stableUnique(values = []) {
@@ -549,11 +548,11 @@ async function readJson(relativePath) {
 
 export async function loadKnowledgePoiBaselineP1bBatch01Inputs() {
   const selectionContents = await readFile(path.resolve(REPOSITORY_ROOT, POI_BASELINE_P1B_BATCH01_SELECTION_RELATIVE_PATH), "utf8");
-  if (sha256(selectionContents) !== POI_BASELINE_P1B_BATCH01_SELECTION_SHA256) throw new Error("selection-sha256-mismatch");
+  if (sha256KnowledgeBaselineText(selectionContents) !== POI_BASELINE_P1B_BATCH01_SELECTION_SHA256) throw new Error("selection-sha256-mismatch");
   const sourceRaws = {};
   for (const [round, source] of Object.entries(POI_BASELINE_P1B_BATCH01_SOURCE_RAWS)) {
     const contents = await readFile(path.resolve(REPOSITORY_ROOT, source.relativePath), "utf8");
-    const actualHash = sha256(contents);
+    const actualHash = sha256KnowledgeBaselineText(contents);
     if (actualHash !== source.sha256) throw new Error(`source-raw-sha256-mismatch:${round}:${actualHash}`);
     sourceRaws[round] = { raw: JSON.parse(contents), sha256: actualHash };
   }
@@ -572,6 +571,12 @@ export async function loadKnowledgePoiBaselineP1bBatch01Inputs() {
 
 async function writeTextAtomic(filePath, contents) {
   await mkdir(path.dirname(filePath), { recursive: true });
+  try {
+    const existingContents = await readFile(filePath, "utf8");
+    if (normalizeKnowledgeBaselineText(existingContents) === normalizeKnowledgeBaselineText(contents)) return;
+  } catch (error) {
+    if (error?.code !== "ENOENT") throw error;
+  }
   const temporaryPath = `${filePath}.${process.pid}.tmp`;
   try {
     await writeFile(temporaryPath, contents, "utf8");

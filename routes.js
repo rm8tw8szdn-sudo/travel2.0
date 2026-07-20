@@ -4,19 +4,21 @@ const routeSearch = document.querySelector("[data-route-search]");
 const routeSearchSummary = document.querySelector("[data-route-search-summary]");
 const routeTabs = [...document.querySelectorAll("[data-route-tab]")];
 const routeScrollRoot = document.querySelector(".route-screen");
+let routeFeedObserver = null;
+let routeFeedObserverActive = false;
+let routeFeedSentinelNear = false;
 
 const API_ENDPOINT = "/api/routes/discovery";
 const IMAGE_ENDPOINT = "/api/routes/image-search";
-const FEED_PAGE_SIZE = 6;
+const BATCH_SIZE = 6;
+const FEED_PAGE_SIZE = BATCH_SIZE;
 const FEED_CANDIDATE_PAGE_SIZE = FEED_PAGE_SIZE * 20;
-const SEARCH_PAGE_SIZE = 20;
+const SEARCH_PAGE_SIZE = BATCH_SIZE;
 const FEED_DEDUPE_WINDOW = 50;
 const FEED_CLUSTER_COOLDOWN_WINDOW = 12;
 const FEED_IMAGE_CANDIDATE_LIMIT = 24;
-const FEED_PAGE_CADENCE_MS = 850;
-const FEED_CARD_IMAGE_TIMEOUT_MS = 900;
-const FEED_RENDERED_IMAGE_TIMEOUT_MS = 1_600;
-const FEED_COVER_PREPARE_DEADLINE_MS = 1_800;
+const FEED_CARD_IMAGE_TIMEOUT_MS = 2_000;
+const FEED_COVER_PREPARE_DEADLINE_MS = 2_000;
 const FEED_BACKFILL_HOP_LIMIT = 8;
 const FEED_LOAD_WATCHDOG_MS = 8_000;
 const ROUTE_FEED_SESSION_KEY = "travelCollection.routeFeedSession";
@@ -427,12 +429,15 @@ const feedState = {
   prefetchedFeedPage: null,
   prefetchAbortController: null,
   prefetching: false,
+  prefetchPromise: null,
   lastLoadDebug: null,
   skippedRouteIds: new Set(),
   nextRenderBatchId: 1,
   pendingBatchAnchorId: "",
   loadingStartedAt: 0,
   lastVisibleBatchAt: 0,
+  searchResolved: false,
+  searchResultCount: 0,
 };
 
 if ("scrollRestoration" in history) history.scrollRestoration = "manual";
@@ -477,6 +482,7 @@ function invalidateFeedPrefetch() {
   feedState.prefetchAbortController = null;
   feedState.prefetchedFeedPage = null;
   feedState.prefetching = false;
+  feedState.prefetchPromise = null;
 }
 
 function timeoutSignal(timeoutMs) {
@@ -526,15 +532,6 @@ function stableTextHash(value) {
   return hash >>> 0;
 }
 
-async function waitForFeedPageCadence(startedAt, minimumMs = FEED_PAGE_CADENCE_MS) {
-  const requestRemaining = minimumMs - (Date.now() - startedAt);
-  const batchRemaining = feedState.lastVisibleBatchAt
-    ? minimumMs - (Date.now() - feedState.lastVisibleBatchAt)
-    : 0;
-  const remaining = Math.max(requestRemaining, batchRemaining, 0);
-  if (remaining > 0) await delay(remaining);
-}
-
 function routeKind(record) {
   const entityCodes = (record.countryEntities || []).map((item) => item.countryCode).filter(Boolean);
   const fallbackCountries = (record.countries || []).filter(Boolean);
@@ -543,9 +540,9 @@ function routeKind(record) {
 }
 
 function visibleRecords() {
-  const readyRecords = feedState.records.filter(hasReadyRouteCover);
-  if (!feedState.feedRouteType) return readyRecords;
-  return readyRecords.filter((record) => routeKind(record) === feedState.activeTab);
+  const records = feedState.records.filter((record) => record?.id);
+  if (feedState.query || !feedState.feedRouteType) return records;
+  return records.filter((record) => routeKind(record) === feedState.activeTab);
 }
 
 function coverUrl(record) {
@@ -721,6 +718,13 @@ function routeImageAllowed(record = {}, imageUrl = "") {
   const routeCodes = routeCountryCodes(record);
   const imageCodes = imageCountryCodesForUrl(record, text);
   return routeCodes.length > 0 && imageCodes.some((code) => routeCodes.includes(code));
+}
+
+function routeImageAllowedForAsset(record = {}, image = {}) {
+  return Boolean(
+    image?.imageUrl
+      && routeImageAllowed({ ...record, onlineCoverAsset: image }, image.imageUrl),
+  );
 }
 
 function isSafeWikimediaFallbackCover(imageUrl = "") {
@@ -909,54 +913,89 @@ function proxiedRouteImageUrl(imageUrl) {
   return /^https?:\/\//i.test(text) ? `/api/routes/image-proxy?url=${encodeURIComponent(text)}` : text;
 }
 
-async function warmProxiedImage(imageUrl, signal, timeoutMs = 800) {
+function shouldPermanentlyRejectRouteImage(outcome = {}) {
+  return (typeof outcome === "string" ? outcome : outcome.status) === "error";
+}
+
+async function warmProxiedImage(imageUrl, signal, timeoutMs = FEED_CARD_IMAGE_TIMEOUT_MS, onLateResult) {
   const proxiedUrl = proxiedRouteImageUrl(imageUrl);
-  if (!proxiedUrl) return false;
+  if (!proxiedUrl) return { status: "missing", imageUrl: "", proxiedUrl: "" };
   return new Promise((resolve) => {
-    if (signal?.aborted) return resolve(false);
+    if (signal?.aborted) return resolve({ status: "aborted", imageUrl, proxiedUrl });
     const image = new Image();
-    let settled = false;
+    let initialSettled = false;
+    let terminalSettled = false;
     const cleanup = () => {
       clearTimeout(timer);
       signal?.removeEventListener?.("abort", onAbort);
       image.onload = null;
       image.onerror = null;
     };
-    const finish = (value) => {
-      if (settled) return;
-      settled = true;
-      cleanup();
-      resolve(value);
+    const settleInitial = (outcome) => {
+      if (initialSettled) return false;
+      initialSettled = true;
+      clearTimeout(timer);
+      resolve(outcome);
+      return true;
     };
-    const onAbort = () => finish(false);
-    const timer = setTimeout(() => finish(false), timeoutMs);
+    const finish = (status) => {
+      if (terminalSettled) return;
+      terminalSettled = true;
+      const outcome = { status, imageUrl, proxiedUrl };
+      const wasInitial = settleInitial(outcome);
+      cleanup();
+      if (!wasInitial) onLateResult?.(outcome);
+    };
+    const onAbort = () => finish("aborted");
+    const timer = setTimeout(() => {
+      settleInitial({ status: "timeout", imageUrl, proxiedUrl });
+    }, Math.max(0, timeoutMs));
     signal?.addEventListener?.("abort", onAbort, { once: true });
-    image.onload = () => finish(Boolean(image.naturalWidth));
-    image.onerror = () => finish(false);
+    image.onload = () => finish(image.naturalWidth >= 20 ? "ready" : "error");
+    image.onerror = () => finish("error");
     image.decoding = "async";
     image.src = proxiedUrl;
   });
+}
+
+function applyRouteImageOutcome(record, imageUrl, outcome = {}, { late = false } = {}) {
+  if (!record) return outcome.status || "missing";
+  const status = outcome.status || "missing";
+  const imageKey = coverIdentity(imageUrl);
+  record._coverLoadStatus = status;
+  record._coverLoadUrl = imageUrl || "";
+  if (status === "ready") {
+    markRouteCoverReady(record, imageUrl);
+  } else if (shouldPermanentlyRejectRouteImage(outcome)) {
+    if (imageKey) badRuntimeImageUrls.add(imageKey);
+    record.coverSearchFailed = true;
+    clearRouteCover(record);
+  }
+  if (late) updateRenderedRouteImage(record);
+  return status;
 }
 
 async function ensureRecordCoverReady(record, signal, usedImageUrls = new Set()) {
   const current = displayCoverUrl(record);
   const currentKey = coverIdentity(current);
   if (currentKey && !usedImageUrls.has(currentKey) && !badRuntimeImageUrls.has(currentKey)) {
-    const ready = await warmProxiedImage(current, signal, FEED_CARD_IMAGE_TIMEOUT_MS).catch(() => false);
-    if (ready) {
+    const outcome = await warmProxiedImage(current, signal, FEED_CARD_IMAGE_TIMEOUT_MS, (lateOutcome) => {
+      applyRouteImageOutcome(record, current, lateOutcome, { late: true });
+    }).catch(() => ({ status: "aborted" }));
+    applyRouteImageOutcome(record, current, outcome);
+    if (outcome.status === "ready") {
       markRouteCoverReady(record, current);
       usedImageUrls.add(currentKey);
       return true;
     }
-    badRuntimeImageUrls.add(currentKey);
-    clearRouteCover(record);
+    if (outcome.status === "timeout" || outcome.status === "aborted") return false;
   }
 
   const image = await requestOnlineCover(record, signal, {
     excludeImageUrls: [...usedImageUrls],
     excludeImageTitles: [],
   }).catch(() => null);
-  if (!image?.imageUrl || !routeImageAllowed({ ...record, onlineCoverAsset: image }, image.imageUrl)) {
+  if (!routeImageAllowedForAsset(record, image)) {
     clearRouteCover(record);
     record.coverSearchFailed = true;
     return false;
@@ -972,10 +1011,11 @@ async function ensureRecordCoverReady(record, signal, usedImageUrls = new Set())
     return false;
   }
   applyOnlineCover(record, image);
-  const ready = await warmProxiedImage(image.imageUrl, signal, FEED_CARD_IMAGE_TIMEOUT_MS).catch(() => false);
-  if (!ready) {
-    badRuntimeImageUrls.add(key);
-    clearRouteCover(record);
+  const outcome = await warmProxiedImage(image.imageUrl, signal, FEED_CARD_IMAGE_TIMEOUT_MS, (lateOutcome) => {
+    applyRouteImageOutcome(record, image.imageUrl, lateOutcome, { late: true });
+  }).catch(() => ({ status: "aborted" }));
+  applyRouteImageOutcome(record, image.imageUrl, outcome);
+  if (outcome.status !== "ready") {
     return false;
   }
   markRouteCoverReady(record, image.imageUrl);
@@ -1188,72 +1228,45 @@ function recentFeedVisualClusters(records = feedState.records) {
     .filter(Boolean));
 }
 
-function selectAppendableRecords(records, limit = FEED_PAGE_SIZE, comparisonRecords = feedState.records) {
-  const stableRecords = cacheRouteRecords(records || []).filter(hasReadyRouteCover);
-  const recentComparisonRecords = feedState.query
-    ? comparisonRecords
-    : comparisonRecords.slice(-FEED_DEDUPE_WINDOW);
-  const knownIds = new Set(recentComparisonRecords.map((record) => record.id));
-  const knownTitles = new Set(recentComparisonRecords.map((record) => record.canonicalTitle || record.name));
-  const knownImageKeys = new Set(comparisonRecords.slice(-FEED_DEDUPE_WINDOW)
-    .map((record) => routeImageDedupeKey(record) || coverIdentity(displayCoverUrl(record)))
+function stableRouteBatch(records = [], comparisonRecords = [], limit = BATCH_SIZE) {
+  const knownIds = new Set(comparisonRecords.map((record) => record?.id).filter(Boolean));
+  const knownTitles = new Set(comparisonRecords
+    .map((record) => record?.canonicalTitle || record?.name)
     .filter(Boolean));
-  const recentVisualClusters = feedState.query ? new Set() : recentFeedVisualClusters(comparisonRecords);
-  const insertedRecords = [];
-  const consumedIds = new Set();
-  const isEligible = (record) => {
-    const title = record.canonicalTitle || record.name;
-    const imageKey = routeImageDedupeKey(record) || coverIdentity(displayCoverUrl(record));
-    const visualCluster = !feedState.query ? routeVisualClusterKey(record) : "";
-    return Boolean(
-      record?.id
-      && !consumedIds.has(record.id)
-      && !knownIds.has(record.id)
-      && !knownTitles.has(title)
-      && imageKey
-      && !knownImageKeys.has(imageKey)
-      && (!visualCluster || !recentVisualClusters.has(visualCluster))
-    );
-  };
-  const appendRecord = (record) => {
-    const title = record.canonicalTitle || record.name;
-    const imageKey = routeImageDedupeKey(record) || coverIdentity(displayCoverUrl(record));
-    const visualCluster = !feedState.query ? routeVisualClusterKey(record) : "";
-    consumedIds.add(record.id);
-    knownIds.add(record.id);
-    knownTitles.add(title);
-    knownImageKeys.add(imageKey);
-    if (visualCluster) recentVisualClusters.add(visualCluster);
-    insertedRecords.push(record);
-  };
-  while (insertedRecords.length < limit) {
-    const previous = insertedRecords.length
-      ? insertedRecords[insertedRecords.length - 1]
-      : comparisonRecords[comparisonRecords.length - 1];
-    const previousContinent = previous ? routeContinentBucket(previous) : "";
-    const preferred = stableRecords.find((record) => isEligible(record) && (!previousContinent || routeContinentBucket(record) !== previousContinent));
-    const fallback = preferred || stableRecords.find(isEligible);
-    if (!fallback) break;
-    appendRecord(fallback);
+  const selected = [];
+  for (const record of records) {
+    const id = record?.id;
+    const title = record?.canonicalTitle || record?.name || "";
+    if (!id || knownIds.has(id) || (title && knownTitles.has(title))) continue;
+    selected.push(record);
+    knownIds.add(id);
+    if (title) knownTitles.add(title);
+    if (selected.length >= limit) break;
   }
-  return insertedRecords;
+  return selected;
 }
 
-function appendRecords(records, limit = FEED_PAGE_SIZE, { revealImmediately = false } = {}) {
+function selectAppendableRecords(records, limit = FEED_PAGE_SIZE, comparisonRecords = feedState.records) {
+  const stableRecords = cacheRouteRecords(records || []);
+  return stableRouteBatch(stableRecords, comparisonRecords, limit);
+}
+
+function appendRecords(records, limit = FEED_PAGE_SIZE, { revealImmediately = true } = {}) {
   const insertedRecords = selectAppendableRecords(records, limit, feedState.records);
   const batchId = `batch-${feedState.nextRenderBatchId++}`;
   const preparedRecords = feedState.query
     ? insertedRecords.map((record) => ({
       ...record,
       _feedBatchId: batchId,
-      _renderedImageReady: revealImmediately,
+      _renderedImageReady: true,
     }))
     : insertedRecords.map((record, index) => ({
       ...record,
       _feedInstanceId: `${record.id}::${feedState.records.length + index}`,
       _feedBatchId: batchId,
-      _renderedImageReady: revealImmediately,
+      _renderedImageReady: true,
     }));
+  void revealImmediately;
   feedState.records.push(...preparedRecords);
   return preparedRecords;
 }
@@ -1467,7 +1480,7 @@ async function hydrateOnlineCovers(records, signal, existingRecords = [], option
         excludeImageUrls: [...usedImageUrls],
         excludeImageTitles: [...usedImageTitles],
       }).catch(() => null);
-      if (!image?.imageUrl || !routeImageAllowed(record, image.imageUrl)) break;
+      if (!routeImageAllowedForAsset(record, image)) break;
       if (!isUsedCoverImage(image, usedImageUrls, usedImageTitles)) break;
       usedImageUrls.add(coverIdentity(image.imageUrl));
       if (image.title) usedImageTitles.add(String(image.title).trim().toLowerCase());
@@ -1510,7 +1523,7 @@ async function hydrateFeedOnlineCovers(records, signal, existingRecords = []) {
       excludeImageUrls: [...usedImageUrls, currentUrl].filter(Boolean),
       excludeImageTitles: [...usedImageTitles],
     }).catch(() => null);
-    if (!image?.imageUrl || !routeImageAllowed(record, image.imageUrl) || isUsedCoverImage(image, usedImageKeys, usedImageTitles)) return;
+    if (!routeImageAllowedForAsset(record, image) || isUsedCoverImage(image, usedImageKeys, usedImageTitles)) return;
     applyOnlineCover(record, image);
     usedImageUrls.add(image.imageUrl);
     usedImageKeys.add(coverIdentity(image.imageUrl));
@@ -1518,130 +1531,135 @@ async function hydrateFeedOnlineCovers(records, signal, existingRecords = []) {
   }));
 }
 
-async function prepareFeedPageCovers(pageRecords = [], previousRecords = [], controller) {
-  const workRecords = pageRecords.slice(0, FEED_CANDIDATE_PAGE_SIZE);
-  const targetReadyCount = feedState.query ? SEARCH_PAGE_SIZE : FEED_PAGE_SIZE;
-  const usedImages = new Set();
-  for (const record of previousRecords.slice(-FEED_DEDUPE_WINDOW)) {
+async function prepareRouteImageBatch(pageRecords = [], previousRecords = [], signal, timeoutMs = FEED_COVER_PREPARE_DEADLINE_MS) {
+  const batch = pageRecords.slice(0, BATCH_SIZE);
+  const usedImages = new Set(previousRecords
+    .slice(-FEED_DEDUPE_WINDOW)
+    .map((record) => routeImageDedupeKey(record) || coverIdentity(displayCoverUrl(record)))
+    .filter(Boolean));
+  const outcomes = await Promise.all(batch.map(async (record) => {
     const imageUrl = displayCoverUrl(record);
     const imageKey = routeImageDedupeKey(record) || coverIdentity(imageUrl);
-    if (imageUrl) usedImages.add(coverIdentity(imageUrl));
-    if (imageKey) usedImages.add(imageKey);
-  }
-  let readyCount = workRecords.filter(hasReadyRouteCover).length;
-  const pending = workRecords.filter((record) => !hasReadyRouteCover(record));
-  let index = 0;
-  async function warmNext() {
-    while (index < pending.length && readyCount < targetReadyCount) {
-      const current = pending[index];
-      index += 1;
-      const record = current;
-      if (controller?.signal?.aborted) return;
-      if (!record?.id) continue;
-      if (hasReadyRouteCover(record)) {
-        readyCount += 1;
-        continue;
-      }
-      const imageUrl = displayCoverUrl(record);
-      const imageIdentityKey = coverIdentity(imageUrl);
-      const imageKey = routeImageDedupeKey(record) || imageIdentityKey;
-      if (
-        !imageUrl
-        || !imageIdentityKey
-        || !imageKey
-        || usedImages.has(imageIdentityKey)
-        || usedImages.has(imageKey)
-        || !routeImageAllowed(record, imageUrl)
-      ) {
-        clearRouteCover(record);
-        continue;
-      }
-      usedImages.add(imageIdentityKey);
-      usedImages.add(imageKey);
-      const ready = await warmProxiedImage(imageUrl, controller?.signal, FEED_CARD_IMAGE_TIMEOUT_MS).catch(() => false);
-      if (!ready) {
-        usedImages.delete(imageIdentityKey);
-        usedImages.delete(imageKey);
-        badRuntimeImageUrls.add(imageIdentityKey);
-        clearRouteCover(record);
-        continue;
-      }
-      markRouteCoverReady(record, imageUrl);
-      readyCount += 1;
+    if (!imageUrl || !imageKey || !routeImageAllowed(record, imageUrl)) {
+      record._coverLoadStatus = "missing";
+      record._coverLoadUrl = "";
+      return { status: "missing", routeId: record.id, imageUrl: "" };
     }
-  }
-  await Promise.all(Array.from({ length: Math.min(8, Math.max(1, pending.length)) }, warmNext));
-}
-
-async function prepareFeedPageCoversWithinDeadline(pageRecords = [], previousRecords = [], parentController, timeoutMs = 2_500) {
-  const imageController = new AbortController();
-  const abortImages = () => imageController.abort();
-  parentController?.signal?.addEventListener?.("abort", abortImages, { once: true });
-  try {
-    return await Promise.race([
-      prepareFeedPageCovers(pageRecords, previousRecords, imageController).then(() => true),
-      delay(timeoutMs).then(() => {
-        imageController.abort();
-        return false;
-      }),
-    ]);
-  } finally {
-    parentController?.signal?.removeEventListener?.("abort", abortImages);
-  }
+    if (usedImages.has(imageKey)) {
+      record._coverLoadStatus = "duplicate";
+      record._coverLoadUrl = imageUrl;
+      clearRouteCover(record);
+      return { status: "duplicate", routeId: record.id, imageUrl };
+    }
+    if (badRuntimeImageUrls.has(coverIdentity(imageUrl))) {
+      record._coverLoadStatus = "error";
+      record._coverLoadUrl = imageUrl;
+      clearRouteCover(record);
+      return { status: "error", routeId: record.id, imageUrl };
+    }
+    usedImages.add(imageKey);
+    if (hasReadyRouteCover(record)) {
+      record._coverLoadStatus = "ready";
+      record._coverLoadUrl = imageUrl;
+      return { status: "ready", routeId: record.id, imageUrl };
+    }
+    const outcome = await warmProxiedImage(imageUrl, signal, timeoutMs, (lateOutcome) => {
+      applyRouteImageOutcome(record, imageUrl, lateOutcome, { late: true });
+    }).catch(() => ({ status: "aborted", imageUrl }));
+    applyRouteImageOutcome(record, imageUrl, outcome);
+    return { ...outcome, routeId: record.id };
+  }));
+  return {
+    records: batch,
+    outcomes,
+    ready: outcomes.filter((outcome) => outcome.status === "ready").length,
+    placeholders: outcomes.filter((outcome) => outcome.status !== "ready").length,
+  };
 }
 
 async function prefetchNextFeedPage() {
   if (
-    feedState.query
-      || feedState.status === "loading"
+    feedState.status === "loading"
       || feedState.prefetching
       || feedState.prefetchedFeedPage
       || !feedState.hasMore
       || !feedState.cursor
-      || !hasUserScrolled
   ) return;
   const controller = new AbortController();
   feedState.prefetchAbortController = controller;
   feedState.prefetching = true;
   const snapshot = {
+    query: feedState.query,
     cursor: feedState.cursor,
     sessionId: feedState.sessionId,
     routeType: feedState.feedRouteType,
     excludeIds: feedExcludeIdsForRequest(),
   };
-  try {
+  const task = (async () => {
+    try {
     const payload = await requestDiscoveryPage({
-      query: "",
+      query: snapshot.query,
       cursor: snapshot.cursor,
       sessionId: snapshot.sessionId,
       excludeIds: snapshot.excludeIds,
       routeType: snapshot.routeType,
       signal: requestSignal(controller, 4_000),
     });
-    const pageRecords = payload.records || [];
-    await prepareFeedPageCoversWithinDeadline(pageRecords, feedState.records, controller, FEED_COVER_PREPARE_DEADLINE_MS);
+    const candidates = snapshot.query ? unseenRecords(payload.records) : (payload.records || []);
+    const pageRecords = selectAppendableRecords(candidates, BATCH_SIZE, feedState.records);
+    const imageBatch = await prepareRouteImageBatch(pageRecords, feedState.records, controller.signal, FEED_COVER_PREPARE_DEADLINE_MS);
     if (controller.signal.aborted) return;
-    const readyPageRecords = pageRecords.filter(hasReadyRouteCover).slice(0, FEED_PAGE_SIZE);
-    if (readyPageRecords.length < FEED_PAGE_SIZE) return;
+    if (!pageRecords.length) return;
     feedState.prefetchedFeedPage = {
       ...snapshot,
       payload,
-      pageRecords: readyPageRecords,
+      pageRecords,
+      imageBatch,
     };
-  } catch {
-    // Prefetch is opportunistic; foreground loading still handles failures.
-  } finally {
-    if (feedState.prefetchAbortController === controller) feedState.prefetchAbortController = null;
-    feedState.prefetching = false;
-  }
+    } catch {
+      // Prefetch is opportunistic; foreground loading still handles failures.
+    } finally {
+      if (feedState.prefetchAbortController === controller) feedState.prefetchAbortController = null;
+      feedState.prefetching = false;
+    }
+  })();
+  feedState.prefetchPromise = task;
+  await task;
+  if (feedState.prefetchPromise === task) feedState.prefetchPromise = null;
 }
 
 function routeCardImageMarkup(record, index = 3) {
   void index;
   const imageUrl = displayCoverUrl(record);
-  return imageUrl
-    ? `<img src="${escapeHtml(proxiedRouteImageUrl(imageUrl))}" alt="${escapeHtml(record.name)}封面图" loading="eager" decoding="sync" />`
-    : "";
+  const imageReady = Boolean(imageUrl && (
+    record._coverLoadStatus === "ready"
+      || (!record._coverLoadStatus && hasReadyRouteCover(record))
+  ));
+  const source = imageReady ? proxiedRouteImageUrl(imageUrl) : FALLBACK_ROUTE_COVER;
+  const state = imageReady ? "ready" : "placeholder";
+  return `<img src="${escapeHtml(source)}" alt="${escapeHtml(record.name)}封面图" loading="eager" decoding="async" data-route-cover-state="${state}" />`;
+}
+
+function updateRenderedRouteImage(record, card = null) {
+  if (!record || !routeFeed) return;
+  const storedRecord = feedState.records.find((item) => routeRenderKey(item) === routeRenderKey(record))
+    || feedState.records.find((item) => item.id === record.id);
+  if (storedRecord && storedRecord !== record) {
+    storedRecord._coverLoadStatus = record._coverLoadStatus;
+    storedRecord._coverLoadUrl = record._coverLoadUrl;
+    if (record._coverReadyUrl) storedRecord._coverReadyUrl = record._coverReadyUrl;
+    if (record._coverLoadStatus === "error") clearRouteCover(storedRecord);
+  }
+  const targetRecord = storedRecord || record;
+  const targetCard = card || [...routeFeed.querySelectorAll("[data-route-card]")]
+    .find((candidate) => candidate.dataset.routeCard === routeRenderKey(targetRecord));
+  const image = targetCard?.querySelector("img");
+  if (!image) return;
+  const imageUrl = displayCoverUrl(targetRecord);
+  const ready = targetRecord._coverLoadStatus === "ready" && Boolean(imageUrl);
+  const nextSource = ready ? proxiedRouteImageUrl(imageUrl) : FALLBACK_ROUTE_COVER;
+  image.dataset.routeCoverState = ready ? "ready" : "placeholder";
+  if (image.getAttribute("src") !== nextSource) image.src = nextSource;
 }
 
 function repairDuplicateRecordCovers(records = []) {
@@ -1659,9 +1677,8 @@ function renderRouteCard(record, index) {
     if (record.searchQueryId) detailParams.set("queryId", record.searchQueryId);
   }
   const dayText = record.recommendedDays || (record.durationDays ? `${record.durationDays}天` : "");
-  const awaitingImageClass = record._renderedImageReady === false ? " route-card-awaiting-image" : "";
   return `
-    <article class="route-card route-inspiration-card${awaitingImageClass}" data-route-card="${escapeHtml(routeRenderKey(record))}" data-route-id="${escapeHtml(record.id)}" data-feed-batch="${escapeHtml(record._feedBatchId || "")}">
+    <article class="route-card route-inspiration-card" data-route-card="${escapeHtml(routeRenderKey(record))}" data-route-id="${escapeHtml(record.id)}" data-feed-batch="${escapeHtml(record._feedBatchId || "")}">
       <a class="route-card-main" href="route-detail.html?${detailParams.toString()}" data-route-open="${escapeHtml(record.id)}" aria-label="查看${escapeHtml(record.name)}详情">
         ${routeCardImageMarkup(record, index)}
         <span class="route-copy">
@@ -1681,87 +1698,23 @@ function renderRouteCard(record, index) {
     </article>`;
 }
 
-function revealRenderedImageBatch(batchId) {
-  if (!batchId || !routeFeed) return;
-  const batchRecords = visibleRecords().filter((record) => record._feedBatchId === batchId);
-  if (!batchRecords.length || batchRecords.some((record) => record._renderedImageReady === false)) return;
-  const scrollAnchor = captureScrollAnchor();
-  const anchorRecord = feedState.pendingBatchAnchorId
-    ? batchRecords.find((record) => record.id === feedState.pendingBatchAnchorId)
-    : null;
-  if (anchorRecord) feedState.pendingBatchAnchorId = "";
-  routeFeed.querySelectorAll(`[data-feed-batch="${CSS.escape(batchId)}"]`).forEach((card) => {
-    card.classList.remove("route-card-awaiting-image");
-  });
-  feedState.lastVisibleBatchAt = Date.now();
-  restoreScrollAnchor(scrollAnchor);
-  alignInsertedBatchStart(anchorRecord);
-}
-
-function markRenderedImageReady(card) {
-  const record = feedState.records.find((item) => routeRenderKey(item) === card.dataset.routeCard)
-    || feedState.records.find((item) => item.id === card.dataset.routeId);
-  if (!record) return;
-  record._renderedImageReady = true;
-  revealRenderedImageBatch(record._feedBatchId || card.dataset.feedBatch || "");
-}
-
-function discardAwaitingImageBatch(batchId = "") {
-  if (!batchId) return false;
-  const batchRecords = feedState.records.filter((record) => record._feedBatchId === batchId);
-  if (!batchRecords.length) return false;
-  const scrollAnchor = captureScrollAnchor();
-  for (const record of batchRecords) {
-    if (record?.id) feedState.skippedRouteIds.add(record.id);
-    clearRouteCover(record);
-  }
-  feedState.records = feedState.records.filter((record) => record._feedBatchId !== batchId);
-  routeFeed?.querySelectorAll(`[data-feed-batch="${CSS.escape(batchId)}"]`).forEach((card) => card.remove());
-  restoreScrollAnchor(scrollAnchor);
-  if (feedState.hasMore && feedState.status !== "loading") {
-    window.setTimeout(() => loadFeed(), 0);
-  } else {
-    scheduleContinuationCheck();
-  }
-  return true;
-}
-
 function bindRenderedImageReadiness() {
   if (!routeFeed) return;
-  routeFeed.querySelectorAll(".route-card-awaiting-image").forEach((card) => {
+  routeFeed.querySelectorAll("[data-route-card]").forEach((card) => {
     if (card.dataset.imageReadinessBound === "1") return;
     card.dataset.imageReadinessBound = "1";
     const image = card.querySelector("img");
     const record = feedState.records.find((item) => routeRenderKey(item) === card.dataset.routeCard)
       || feedState.records.find((item) => item.id === card.dataset.routeId);
-    if (!image || !record) {
-      removeUnavailableRouteCard(record, card);
-      return;
-    }
-    const batchId = record._feedBatchId || card.dataset.feedBatch || "";
-    const failBatch = () => {
-      if (!card.classList.contains("route-card-awaiting-image")) return;
-      if (!discardAwaitingImageBatch(batchId)) removeUnavailableRouteCard(record, card);
-    };
-    const readyTimer = window.setTimeout(failBatch, FEED_RENDERED_IMAGE_TIMEOUT_MS);
+    if (!image || !record || image.dataset.routeCoverState !== "ready") return;
     const markReady = () => {
-      window.clearTimeout(readyTimer);
-      if (!image.naturalWidth || image.naturalWidth < 20) {
-        failBatch();
-        return;
-      }
-      markRenderedImageReady(card);
+      if (image.naturalWidth >= 20) record._renderedImageReady = true;
     };
     if (image.complete && image.naturalWidth >= 20) {
-      window.clearTimeout(readyTimer);
-      markRenderedImageReady(card);
+      record._renderedImageReady = true;
       return;
     }
     image.addEventListener("load", markReady, { once: true });
-    image.addEventListener("error", () => {
-      window.clearTimeout(readyTimer);
-      failBatch();
-    }, { once: true });
   });
 }
 
@@ -1774,7 +1727,9 @@ function repairRenderedDuplicateImages() {
     const key = record ? routeImageDedupeKey(record) : "";
     if (!record || !key) return;
     if (used.has(key)) {
-      removeUnavailableRouteCard(record, card);
+      record._coverLoadStatus = "duplicate";
+      clearRouteCover(record);
+      updateRenderedRouteImage(record, card);
       return;
     }
     used.add(key);
@@ -1794,15 +1749,19 @@ function suggestionsMarkup() {
 function stateMarkup() {
   const visible = visibleRecords();
   if (feedState.status === "loading") {
-    return `<div class="route-empty-state" data-route-feed-state="loading"><p>${visible.length ? "正在加载更多路线" : "正在发现路线"}</p><span>${visible.length ? "正在准备下一组封面和路线" : feedState.query ? "正在解析旅行需求" : "正在读取路线库"}</span></div>`;
+    const title = visible.length || feedState.searchResolved ? "正在加载更多路线…" : "正在发现路线…";
+    const detail = visible.length || feedState.searchResolved
+      ? "正在并行准备下一批封面"
+      : feedState.query ? "正在解析旅行需求" : "正在读取路线库";
+    return `<div class="route-empty-state" data-route-feed-state="loading"><p>${title}</p><span>${detail}</span></div>`;
   }
   if (feedState.status === "error") {
     return `<div class="route-empty-state" data-route-feed-state="error"><p>${visible.length ? "稍后重试" : "路线加载失败"}</p><span>当前请求没有成功完成</span><button type="button" ${visible.length ? "data-route-feed-more" : "data-route-feed-refresh"}>${visible.length ? "继续加载" : "重新加载"}</button></div>`;
   }
   if (!visible.length) {
-    return `<div class="route-empty-state" data-route-feed-state="empty"><p>${feedState.query ? "暂时没有搜到路线" : "暂时没有发现路线"}</p>${suggestionsMarkup() || "<span>可以换一个旅行需求再试</span>"}${feedState.hasMore ? `<button type="button" data-route-feed-more>继续搜索</button>` : ""}</div>`;
+    return `<div class="route-empty-state" data-route-feed-state="empty"><p>${feedState.query ? "暂时没有搜到路线" : "暂时没有发现路线"}</p>${suggestionsMarkup() || "<span>可以换一个旅行需求再试</span>"}</div>`;
   }
-  if (!feedState.hasMore && feedState.query) return `<div class="route-empty-state" data-route-feed-state="complete"><p>搜索结果已到底</p></div>`;
+  if (!feedState.hasMore) return `<div class="route-empty-state" data-route-feed-state="complete"><p>${feedState.query ? "搜索结果已到底" : "已经到底了"}</p></div>`;
   return "";
 }
 
@@ -1862,10 +1821,6 @@ function schedulePendingBatchAnchor(retry = 0) {
     const card = [...routeFeed.querySelectorAll("[data-route-id]")]
       .find((candidate) => candidate.dataset.routeId === anchorId);
     if (!card) return;
-    if (card.classList.contains("route-card-awaiting-image") && retry < 20) {
-      schedulePendingBatchAnchor(retry + 1);
-      return;
-    }
     const record = visibleRecords().find((item) => item.id === anchorId);
     if (!record) return;
     feedState.pendingBatchAnchorId = "";
@@ -1878,7 +1833,15 @@ function renderSearchSummary() {
   routeSearchSummary.hidden = !feedState.query;
   if (!feedState.query) return;
   const count = visibleRecords().length;
-  routeSearchSummary.textContent = count ? `已为“${feedState.query}”找到 ${count} 条路线` : `正在搜索“${feedState.query}”`;
+  if (count) {
+    routeSearchSummary.textContent = `已为“${feedState.query}”找到 ${count} 条路线`;
+  } else if (!feedState.searchResolved) {
+    routeSearchSummary.textContent = `正在搜索“${feedState.query}”`;
+  } else if (feedState.searchResultCount) {
+    routeSearchSummary.textContent = `已找到 ${feedState.searchResultCount} 条路线，正在准备首批卡片`;
+  } else {
+    routeSearchSummary.textContent = `没有找到“${feedState.query}”的路线`;
+  }
 }
 function renderFeed({ incremental = false } = {}) {
   if (!routeFeed) return;
@@ -1901,9 +1864,7 @@ function renderFeed({ incremental = false } = {}) {
         card.remove();
         return;
       }
-      const image = card.querySelector("img");
-      const imageUrl = proxiedRouteImageUrl(displayCoverUrl(record));
-      if (image && imageUrl && image.getAttribute("src") !== imageUrl) image.src = imageUrl;
+      updateRenderedRouteImage(record, card);
     });
     const renderedIds = new Set([...routeFeed.querySelectorAll("[data-route-card]")].map((card) => card.dataset.routeCard));
     const nextCards = visible.filter((record) => !renderedIds.has(routeRenderKey(record)));
@@ -1914,10 +1875,11 @@ function renderFeed({ incremental = false } = {}) {
   bindRenderedImageReadiness();
   repairRenderedDuplicateImages();
   renderSearchSummary();
-  if (feedState.query) schedulePendingCoverHydration();
+  schedulePendingCoverHydration();
   restoreScrollAnchor(scrollAnchor);
   schedulePendingBatchAnchor();
   scheduleContinuationCheck();
+  updateRouteFeedObserver();
 }
 
 function schedulePendingCoverHydration() {
@@ -1932,17 +1894,15 @@ function schedulePendingCoverHydration() {
     if (!pending.length) return;
     pendingCoverHydrating = true;
     const usedImages = new Set(visible.map((record) => coverIdentity(displayCoverUrl(record))).filter(Boolean));
-    let changed = false;
     try {
       await Promise.all(pending.map(async (record) => {
         record._coverHydrationAttempts = Number(record._coverHydrationAttempts || 0) + 1;
-        const ready = await ensureRecordCoverReady(record, timeoutSignal(3_500), usedImages);
-        changed = ready || changed || Boolean(displayCoverUrl(record));
+        await ensureRecordCoverReady(record, timeoutSignal(3_500), usedImages);
+        updateRenderedRouteImage(record);
       }));
     } finally {
       pendingCoverHydrating = false;
     }
-    if (changed) renderFeed();
   }, 80);
 }
 
@@ -1981,6 +1941,7 @@ function readBootstrappedRouteFeed(routeType = "cross") {
 function activateFeedScroll() {
   requestAnimationFrame(() => {
     hasUserScrolled = false;
+    routeFeedBatchTriggerConsumed = false;
     feedReadyForScroll = true;
     if (!continuationPoller) {
       continuationPoller = setInterval(forceContinuationIfNeeded, 700);
@@ -2002,6 +1963,8 @@ function usePreloadedRouteFeed(payload) {
     suggestions: [],
     skippedRouteIds: new Set(),
     lastVisibleBatchAt: 0,
+    searchResolved: false,
+    searchResultCount: 0,
   });
   if (payload.sessionId) sessionStorage.setItem(ROUTE_FEED_SESSION_KEY, payload.sessionId);
   appendRecords(payload.records, FEED_PAGE_SIZE, { revealImmediately: Boolean(payload.revealImmediately) });
@@ -2009,6 +1972,7 @@ function usePreloadedRouteFeed(payload) {
   window.scrollTo(0, 0);
   if (routeScrollRoot) routeScrollRoot.scrollTo?.(0, 0);
   activateFeedScroll();
+  void prefetchNextFeedPage();
 }
 
 async function loadFeed({ refresh = false, emptyPageHops = 0 } = {}) {
@@ -2022,11 +1986,13 @@ async function loadFeed({ refresh = false, emptyPageHops = 0 } = {}) {
       hasMore: true,
       pendingMore: false,
       pendingRetryAt: 0,
-      feedRouteType: feedState.activeTab,
+      feedRouteType: feedState.query ? "" : feedState.activeTab,
       sessionId: createSessionId(),
       suggestions: [],
       skippedRouteIds: new Set(),
       lastVisibleBatchAt: 0,
+      searchResolved: false,
+      searchResultCount: 0,
     });
   }
   const token = ++feedState.requestToken;
@@ -2049,6 +2015,7 @@ async function loadFeed({ refresh = false, emptyPageHops = 0 } = {}) {
     feedState.requestToken += 1;
     if (feedState.activeAbortController === controller) feedState.activeAbortController = null;
     feedState.status = feedState.records.length ? "ready" : "error";
+    if (feedState.query) feedState.searchResolved = true;
     feedState.loadingStartedAt = 0;
     feedState.hasMore = true;
     renderFeed({ incremental: feedState.records.length > 0 });
@@ -2056,13 +2023,15 @@ async function loadFeed({ refresh = false, emptyPageHops = 0 } = {}) {
   }, FEED_LOAD_WATCHDOG_MS);
 
   try {
-    const prefetched = !requested.query
-      && feedState.prefetchedFeedPage
+    if (feedState.prefetchPromise) await feedState.prefetchPromise;
+    if (token !== feedState.requestToken) return;
+    const prefetched = feedState.prefetchedFeedPage
+      && feedState.prefetchedFeedPage.query === requested.query
       && feedState.prefetchedFeedPage.cursor === requested.cursor
       && feedState.prefetchedFeedPage.sessionId === requested.sessionId
       && feedState.prefetchedFeedPage.routeType === requested.routeType
       && Array.isArray(feedState.prefetchedFeedPage.pageRecords)
-      && feedState.prefetchedFeedPage.pageRecords.length >= FEED_PAGE_SIZE
+      && feedState.prefetchedFeedPage.pageRecords.length > 0
       ? feedState.prefetchedFeedPage
       : null;
     if (prefetched) feedState.prefetchedFeedPage = null;
@@ -2074,20 +2043,22 @@ async function loadFeed({ refresh = false, emptyPageHops = 0 } = {}) {
     let pageRecords = prefetched?.pageRecords || (requested.query ? unseenRecords(payload.records) : (payload.records || []));
     let returnedCount = Array.isArray(payload.records) ? payload.records.length : 0;
     let insertedRecords = [];
+    let imageBatch = prefetched?.imageBatch || null;
     if (requested.query) {
-      const imageSignal = requestSignal(controller, 2_800);
-      await hydrateOnlineCovers(pageRecords, imageSignal, previousRecords);
-      await prepareFeedPageCoversWithinDeadline(pageRecords, previousRecords, controller, FEED_COVER_PREPARE_DEADLINE_MS);
+      feedState.searchResolved = true;
+      feedState.searchResultCount = returnedCount;
+      renderSearchSummary();
+      const batchRecords = selectAppendableRecords(pageRecords, BATCH_SIZE, previousRecords);
+      if (!prefetched) {
+        imageBatch = await prepareRouteImageBatch(batchRecords, previousRecords, controller.signal, FEED_COVER_PREPARE_DEADLINE_MS);
+      }
       if (token !== feedState.requestToken) return;
-      await waitForFeedPageCadence(pageLoadStartedAt);
-      insertedRecords = appendRecords(pageRecords.filter(hasReadyRouteCover).slice(0, SEARCH_PAGE_SIZE));
+      insertedRecords = appendRecords(batchRecords, SEARCH_PAGE_SIZE);
     } else {
-      if (!prefetched) await prepareFeedPageCoversWithinDeadline(pageRecords, previousRecords, controller, FEED_COVER_PREPARE_DEADLINE_MS);
-      if (token !== feedState.requestToken) return;
       let workingCursor = payload.nextCursor || null;
       let workingRouteType = requested.routeType || "";
       let backfillHops = emptyPageHops;
-      let appendableFeedRecords = selectAppendableRecords(pageRecords.filter(hasReadyRouteCover), FEED_PAGE_SIZE, previousRecords);
+      let appendableFeedRecords = selectAppendableRecords(pageRecords, FEED_PAGE_SIZE, previousRecords);
       while (
         appendableFeedRecords.length < FEED_PAGE_SIZE
         && backfillHops < FEED_BACKFILL_HOP_LIMIT
@@ -2116,37 +2087,26 @@ async function loadFeed({ refresh = false, emptyPageHops = 0 } = {}) {
         const moreRecords = (backfillPayload.records || [])
           .filter((record) => record?.id && !localIds.has(record.id));
         if (moreRecords.length) {
-          await prepareFeedPageCoversWithinDeadline(moreRecords, [...previousRecords, ...pageRecords], controller, FEED_COVER_PREPARE_DEADLINE_MS);
-          if (token !== feedState.requestToken) return;
           pageRecords = [...pageRecords, ...moreRecords];
-          appendableFeedRecords = selectAppendableRecords(pageRecords.filter(hasReadyRouteCover), FEED_PAGE_SIZE, previousRecords);
+          appendableFeedRecords = selectAppendableRecords(pageRecords, FEED_PAGE_SIZE, previousRecords);
         }
         payload = backfillPayload;
         workingCursor = backfillPayload.nextCursor || null;
         backfillHops += 1;
         if (!moreRecords.length && !workingCursor && !workingRouteType) break;
       }
-      const readyFeedRecords = appendableFeedRecords;
-      await waitForFeedPageCadence(pageLoadStartedAt);
-      insertedRecords = appendRecords(readyFeedRecords);
-      const insertedIds = new Set(insertedRecords.map((record) => record.id));
-      void insertedIds;
-      if (insertedRecords.length > 0 && insertedRecords.length < FEED_PAGE_SIZE) {
-        const partialIds = new Set(insertedRecords.map((record) => record.id).filter(Boolean));
-        feedState.records = feedState.records.filter((record) => !partialIds.has(record.id));
-        feedState.cursor = payload.nextCursor || null;
-        feedState.hasMore = true;
-        feedState.status = "ready";
-        if (feedState.activeAbortController === controller) feedState.activeAbortController = null;
-        if (emptyPageHops < FEED_BACKFILL_HOP_LIMIT) return loadFeed({ emptyPageHops: emptyPageHops + 1 });
-        insertedRecords = [];
+      if (!prefetched) {
+        imageBatch = await prepareRouteImageBatch(appendableFeedRecords, previousRecords, controller.signal, FEED_COVER_PREPARE_DEADLINE_MS);
       }
+      if (token !== feedState.requestToken) return;
+      insertedRecords = appendRecords(appendableFeedRecords);
     }
     feedState.lastLoadDebug = {
       returned: returnedCount,
       selected: pageRecords.length,
-      ready: pageRecords.filter(hasReadyRouteCover).length,
-      appendable: !requested.query ? selectAppendableRecords(pageRecords.filter(hasReadyRouteCover), FEED_PAGE_SIZE, previousRecords).length : undefined,
+      ready: imageBatch?.ready || 0,
+      placeholders: imageBatch?.placeholders || 0,
+      appendable: selectAppendableRecords(pageRecords, FEED_PAGE_SIZE, previousRecords).length,
       inserted: insertedRecords.length,
       prev: previousCount,
       next: feedState.records.length,
@@ -2154,40 +2114,35 @@ async function loadFeed({ refresh = false, emptyPageHops = 0 } = {}) {
       routeType: requested.routeType || "",
       skipped: feedState.skippedRouteIds.size,
       selectedCodes: pageRecords.slice(0, 12).map((record) => routeCountryCodes(record).join(".")),
-      readyCodes: pageRecords.filter(hasReadyRouteCover).slice(0, 12).map((record) => routeCountryCodes(record).join(".")),
+      readyCodes: (imageBatch?.outcomes || [])
+        .filter((outcome) => outcome.status === "ready")
+        .map((outcome) => outcome.routeId),
       insertedCodes: insertedRecords.map((record) => routeCountryCodes(record).join(".")),
     };
     const emptyPendingPage = !requested.query && insertedRecords.length === 0;
-    feedState.cursor = payload.nextCursor || null;
     const tabPoolExhausted = !requested.query
       && requested.routeType
       && !payload.hasMore
       && !payload.nextCursor;
     feedState.pendingMore = emptyPendingPage;
     feedState.pendingRetryAt = emptyPendingPage ? Date.now() + 1_500 : 0;
-    feedState.hasMore = requested.query
-      ? !emptyPendingPage && Boolean(payload.hasMore && payload.nextCursor)
-      : true;
     feedState.suggestions = payload.suggestions || [];
     if (tabPoolExhausted) {
       feedState.feedRouteType = "";
       feedState.cursor = null;
+      feedState.hasMore = true;
     } else {
-      feedState.cursor = payload.nextCursor || (payload.pending ? null : null);
+      feedState.cursor = payload.nextCursor || null;
+      feedState.hasMore = Boolean(payload.hasMore && payload.nextCursor);
+      if (payload.pending && emptyPendingPage) feedState.hasMore = true;
     }
     feedState.status = "ready";
     feedState.loadingStartedAt = 0;
     if (feedState.activeAbortController === controller) feedState.activeAbortController = null;
-    feedState.pendingBatchAnchorId = previousCount > 0 && insertedRecords.length
-      ? insertedRecords[0].id
-      : "";
-    if (insertedRecords.length) hasUserScrolled = false;
+    feedState.pendingBatchAnchorId = "";
     renderFeed({ incremental: previousCount > 0 });
-    prefetchNextFeedPage();
+    void prefetchNextFeedPage();
     if (!emptyPendingPage && feedState.records.length === previousCount && feedState.hasMore && emptyPageHops < FEED_BACKFILL_HOP_LIMIT) {
-      return loadFeed({ emptyPageHops: emptyPageHops + 1 });
-    }
-    if (!emptyPendingPage && !feedState.query && insertedRecords.length < FEED_PAGE_SIZE && feedState.hasMore && emptyPageHops < FEED_BACKFILL_HOP_LIMIT) {
       return loadFeed({ emptyPageHops: emptyPageHops + 1 });
     }
   } catch (error) {
@@ -2195,12 +2150,14 @@ async function loadFeed({ refresh = false, emptyPageHops = 0 } = {}) {
     if (error?.name === "AbortError" || error?.name === "TimeoutError") {
       if (feedState.activeAbortController === controller) feedState.activeAbortController = null;
       feedState.status = feedState.records.length ? "ready" : "error";
+      if (feedState.query) feedState.searchResolved = true;
       feedState.loadingStartedAt = 0;
       renderFeed({ incremental: feedState.records.length > 0 });
       return;
     }
     console.error("Route Discovery load failed", error);
     feedState.status = "error";
+    if (feedState.query) feedState.searchResolved = true;
     feedState.loadingStartedAt = 0;
     if (feedState.activeAbortController === controller) feedState.activeAbortController = null;
     renderFeed({ incremental: feedState.records.length > 0 });
@@ -2268,43 +2225,26 @@ routeFeed?.addEventListener("click", (event) => {
   }
 });
 
-function removeUnavailableRouteCard(record, card) {
-  const batchId = record?._feedBatchId || card?.dataset.feedBatch || "";
-  if (batchId && card?.classList?.contains("route-card-awaiting-image") && discardAwaitingImageBatch(batchId)) return;
-  if (record) {
-    record.coverSearchFailed = true;
-    clearRouteCover(record);
-  }
-  const renderKey = card?.dataset.routeCard || (record ? routeRenderKey(record) : "");
-  const routeId = card?.dataset.routeId || record?.id || "";
-  const beforeCount = feedState.records.length;
-  feedState.records = feedState.records.filter((item) => {
-    if (renderKey && routeRenderKey(item) === renderKey) return false;
-    if (routeId && item.id === routeId) return false;
-    return true;
-  });
-  if (feedState.records.length !== beforeCount) renderFeed({ incremental: false });
-  else card?.remove();
-  if (hasUserScrolled && feedState.hasMore && feedState.status !== "loading") {
-    window.setTimeout(() => loadFeed(), 0);
-  } else {
-    scheduleContinuationCheck();
-  }
-}
-
 routeFeed?.addEventListener("error", async (event) => {
   if (!(event.target instanceof HTMLImageElement)) return;
+  if (event.target.dataset.routeCoverState !== "ready") return;
   const card = event.target.closest("[data-route-card]");
   const record = feedState.records.find((item) => routeRenderKey(item) === card?.dataset.routeCard)
     || feedState.records.find((item) => item.id === card?.dataset.routeId);
-  console.warn("Route cover failed; retrying fallback", card?.dataset.routeCard, event.target.src);
   const failedUrl = new URL(event.target.src, window.location.href).searchParams.get("url") || event.target.src;
-  badRuntimeImageUrls.add(coverIdentity(failedUrl));
-  removeUnavailableRouteCard(record, card);
+  if (record) {
+    applyRouteImageOutcome(record, failedUrl, { status: "error" }, { late: true });
+    schedulePendingCoverHydration();
+  }
+  else {
+    event.target.dataset.routeCoverState = "placeholder";
+    event.target.src = FALLBACK_ROUTE_COVER;
+  }
 }, true);
 
 let hasUserScrolled = false;
 let feedReadyForScroll = false;
+let routeFeedBatchTriggerConsumed = false;
 let continuationTimer = 0;
 let continuationPoller = 0;
 let bottomBackfillTimer = 0;
@@ -2326,23 +2266,28 @@ const shouldAutofillFeed = () => visibleRecords().length < FEED_PAGE_SIZE
   || (isRootScrollable() && routeScrollRoot.scrollHeight <= routeScrollRoot.clientHeight + 24);
 const canContinueFeed = () => hasUserScrolled;
 const canRequestMoreFeed = () => {
-  if (feedState.query) return feedState.hasMore;
+  if (!feedState.hasMore) return false;
   if (feedState.pendingMore && Date.now() < feedState.pendingRetryAt) return false;
   return true;
 };
 const canReactToFeedScroll = () => feedReadyForScroll || feedState.records.length >= FEED_PAGE_SIZE;
+function triggerNextFeedBatch() {
+  if (routeFeedBatchTriggerConsumed || feedState.status === "loading" || !canRequestMoreFeed()) return;
+  routeFeedBatchTriggerConsumed = true;
+  void loadFeed();
+}
 function scheduleContinuationCheck() {
   clearTimeout(continuationTimer);
   continuationTimer = setTimeout(() => {
     if (!canReactToFeedScroll() || !canContinueFeed() || feedState.status === "loading" || !canRequestMoreFeed()) return;
-    if (isNearFeedEnd()) loadFeed();
+    if (isNearFeedEnd()) triggerNextFeedBatch();
   }, 120);
 }
-function scheduleBottomBackfill(delayMs = FEED_PAGE_CADENCE_MS) {
+function scheduleBottomBackfill(delayMs = 120) {
   clearTimeout(bottomBackfillTimer);
   bottomBackfillTimer = setTimeout(() => {
     if (!hasUserScrolled || !canReactToFeedScroll() || feedState.status === "loading" || !canRequestMoreFeed()) return;
-    if (isNearFeedEnd()) loadFeed();
+    if (isNearFeedEnd()) triggerNextFeedBatch();
   }, delayMs);
 }
 function forceContinuationIfNeeded() {
@@ -2358,12 +2303,13 @@ function forceContinuationIfNeeded() {
     renderFeed({ incremental: feedState.records.length > 0 });
   }
   if (!hasUserScrolled || !canReactToFeedScroll() || !canRequestMoreFeed()) return;
-  if (isNearFeedEnd()) loadFeed();
+  if (isNearFeedEnd()) triggerNextFeedBatch();
 }
 const armPagination = () => {
   if (!canReactToFeedScroll()) return;
   hasUserScrolled = true;
-  if (isNearFeedEnd()) loadFeed();
+  if (feedState.status !== "loading") routeFeedBatchTriggerConsumed = false;
+  if (routeFeedSentinelNear || isNearFeedEnd()) triggerNextFeedBatch();
   else scheduleContinuationCheck();
 };
 window.addEventListener("wheel", armPagination, { passive: true });
@@ -2372,17 +2318,31 @@ window.addEventListener("keydown", (event) => {
   if (["PageDown", "End", "ArrowDown", " "].includes(event.key)) armPagination();
 });
 window.addEventListener("scroll", () => {
-  if (canReactToFeedScroll() && canContinueFeed() && isNearFeedEnd()) loadFeed();
+  if (canReactToFeedScroll() && canContinueFeed() && isNearFeedEnd()) triggerNextFeedBatch();
   else scheduleContinuationCheck();
 }, { passive: true });
 routeScrollRoot?.addEventListener("scroll", () => {
-  if (canReactToFeedScroll() && canContinueFeed() && isNearFeedEnd()) loadFeed();
+  if (canReactToFeedScroll() && canContinueFeed() && isNearFeedEnd()) triggerNextFeedBatch();
   else scheduleContinuationCheck();
 }, { passive: true });
+function updateRouteFeedObserver() {
+  if (!routeFeedObserver || !routeFeedSentinel) return;
+  if (feedState.hasMore && !routeFeedObserverActive) {
+    routeFeedObserver.observe(routeFeedSentinel);
+    routeFeedObserverActive = true;
+  } else if (!feedState.hasMore && routeFeedObserverActive) {
+    routeFeedObserver.disconnect();
+    routeFeedObserverActive = false;
+    routeFeedSentinelNear = false;
+  }
+}
+
 if (routeFeedSentinel && "IntersectionObserver" in window) {
-  new IntersectionObserver((entries) => {
-    if (canReactToFeedScroll() && canContinueFeed() && entries.some((entry) => entry.isIntersecting)) loadFeed();
-  }, { rootMargin: "240px 0px" }).observe(routeFeedSentinel);
+  routeFeedObserver = new IntersectionObserver((entries) => {
+    routeFeedSentinelNear = entries.some((entry) => entry.isIntersecting);
+    if (canReactToFeedScroll() && canContinueFeed() && routeFeedSentinelNear) triggerNextFeedBatch();
+  }, { rootMargin: "800px 0px" });
+  updateRouteFeedObserver();
 }
 if (!continuationPoller) {
   continuationPoller = setInterval(forceContinuationIfNeeded, 700);
@@ -2402,6 +2362,9 @@ window.__routeFeedDebug = () => ({
   canContinue: canContinueFeed(),
   nearEnd: isNearFeedEnd(),
   shouldAutofill: shouldAutofillFeed(),
+  prefetching: feedState.prefetching,
+  prefetched: Boolean(feedState.prefetchedFeedPage),
+  lastLoad: feedState.lastLoadDebug,
   scrollY: window.scrollY,
   viewportHeight: window.innerHeight,
   documentHeight: document.documentElement.scrollHeight,

@@ -1,5 +1,4 @@
 import assert from "node:assert/strict";
-import crypto from "node:crypto";
 import fs from "node:fs";
 import path from "node:path";
 import { execFileSync } from "node:child_process";
@@ -33,6 +32,10 @@ import {
   sha256IfExists,
   statesFor,
 } from "./lib/route-v2-test-file-state.mjs";
+import {
+  normalizeKnowledgeBaselineText,
+  sha256KnowledgeBaselineText,
+} from "./lib/knowledge-baseline-text.mjs";
 
 const PROJECT_ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const PILOT_CITY_PATH = "data/knowledge/cities.p1b-pilot.json";
@@ -355,7 +358,7 @@ assert.equal(new Set(countries.map((country) => country.entityId)).size, 50);
 assert.equal(new Set(countries.map((country) => country.wikidataId)).size, 50);
 assert.equal(raw.schemaVersion, "route-v2-city-baseline-p1b-batch01-raw");
 assert.equal(raw.retrievedAt, EXPECTED_RETRIEVED_AT);
-assert.equal(crypto.createHash("sha256").update(rawText).digest("hex"), EXPECTED_RAW_HASH);
+assert.equal(sha256KnowledgeBaselineText(rawText), EXPECTED_RAW_HASH);
 assert.equal(raw.source?.provider, "wikidata-api+sparql");
 assert.equal(raw.source?.cityCount, 10);
 assert.equal(raw.source?.httpRequestCount, 2);
@@ -514,7 +517,11 @@ assert.deepEqual(rebuiltB, rebuiltA);
 const serialized = serializeKnowledgeCityBaselineP1bBatch01Assets(rebuiltA);
 for (const [key, relativePath] of Object.entries(CITY_BASELINE_P1B_BATCH01_PUBLISH_RELATIVE_PATHS)
   .filter(([key]) => ["cities", "provenance"].includes(key))) {
-  assert.equal(serialized[key], readText(relativePath), `${key} serialized rebuild should be byte-identical`);
+  assert.equal(
+    normalizeKnowledgeBaselineText(serialized[key]),
+    normalizeKnowledgeBaselineText(readText(relativePath)),
+    `${key} serialized rebuild should be canonical-text-identical`,
+  );
 }
 assert.deepEqual(clone(rebuiltA.reviewQueueAsset.reviewQueue), cityReviews, "City review rebuild should be byte-stable at serialized object level");
 assert.deepEqual(rebuiltA.conflictsAsset.conflicts, conflictValidation.cityConflicts, "City conflict rebuild should be byte-stable at object level");

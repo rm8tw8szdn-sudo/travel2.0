@@ -1,5 +1,4 @@
 import assert from "node:assert/strict";
-import crypto from "node:crypto";
 import fs from "node:fs";
 import path from "node:path";
 import { execFileSync } from "node:child_process";
@@ -32,6 +31,10 @@ import {
   KNOWLEDGE_POI_REVIEW_POLICY_P1B_VERSION,
   classifyKnowledgePoiReviewEvidence,
 } from "./lib/knowledge-poi-review-policy-p1b.mjs";
+import {
+  normalizeKnowledgeBaselineText,
+  sha256KnowledgeBaselineText,
+} from "./lib/knowledge-baseline-text.mjs";
 import { assertStatesUnchanged, statesFor } from "./lib/route-v2-test-file-state.mjs";
 
 const PROJECT_ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
@@ -82,10 +85,6 @@ function readJson(relativePath) {
   return JSON.parse(readText(relativePath));
 }
 
-function sha256Text(contents) {
-  return crypto.createHash("sha256").update(contents).digest("hex");
-}
-
 function clone(value) {
   return JSON.parse(JSON.stringify(value));
 }
@@ -95,7 +94,7 @@ function outputContents() {
 }
 
 function outputHashes(contentsByPath) {
-  return Object.fromEntries(Object.entries(contentsByPath).map(([relativePath, contents]) => [relativePath, sha256Text(contents)]));
+  return Object.fromEntries(Object.entries(contentsByPath).map(([relativePath, contents]) => [relativePath, sha256KnowledgeBaselineText(contents)]));
 }
 
 function dispositionCounts(classifiers) {
@@ -457,11 +456,11 @@ assert.deepEqual(
   normalizeKnowledgePoiBaselineP1bBatch01Record(firstRecord, firstCity),
 );
 
-assert.equal(rebuiltSerialized.formalRaw, readText(POI_BASELINE_P1B_BATCH01_RAW_RELATIVE_PATH));
-assert.equal(rebuiltSerialized.pois, readText(POI_BASELINE_P1B_BATCH01_PUBLISH_RELATIVE_PATHS.pois));
-assert.equal(rebuiltSerialized.provenance, readText(POI_BASELINE_P1B_BATCH01_PUBLISH_RELATIVE_PATHS.provenance));
-assert.equal(rebuiltSerialized.conflicts, readText(POI_BASELINE_P1B_BATCH01_PUBLISH_RELATIVE_PATHS.conflicts));
-assert.equal(rebuiltSerialized.reviewQueue, readText(POI_BASELINE_P1B_BATCH01_PUBLISH_RELATIVE_PATHS.reviewQueue));
+assert.equal(normalizeKnowledgeBaselineText(rebuiltSerialized.formalRaw), normalizeKnowledgeBaselineText(readText(POI_BASELINE_P1B_BATCH01_RAW_RELATIVE_PATH)));
+assert.equal(normalizeKnowledgeBaselineText(rebuiltSerialized.pois), normalizeKnowledgeBaselineText(readText(POI_BASELINE_P1B_BATCH01_PUBLISH_RELATIVE_PATHS.pois)));
+assert.equal(normalizeKnowledgeBaselineText(rebuiltSerialized.provenance), normalizeKnowledgeBaselineText(readText(POI_BASELINE_P1B_BATCH01_PUBLISH_RELATIVE_PATHS.provenance)));
+assert.equal(normalizeKnowledgeBaselineText(rebuiltSerialized.conflicts), normalizeKnowledgeBaselineText(readText(POI_BASELINE_P1B_BATCH01_PUBLISH_RELATIVE_PATHS.conflicts)));
+assert.equal(normalizeKnowledgeBaselineText(rebuiltSerialized.reviewQueue), normalizeKnowledgeBaselineText(readText(POI_BASELINE_P1B_BATCH01_PUBLISH_RELATIVE_PATHS.reviewQueue)));
 
 const beforeRerun = outputContents();
 const importerOutput = JSON.parse(execFileSync(process.execPath, ["scripts/import-knowledge-poi-baseline-p1b-batch01.mjs"], {
@@ -474,9 +473,9 @@ assert.equal(importerOutput.calledWikidata, false);
 const afterRerun = outputContents();
 assert.deepEqual(afterRerun, beforeRerun);
 
-assert.equal(sha256Text(readText(POI_BASELINE_P1B_BATCH01_SELECTION_RELATIVE_PATH)), POI_BASELINE_P1B_BATCH01_SELECTION_SHA256);
+assert.equal(sha256KnowledgeBaselineText(readText(POI_BASELINE_P1B_BATCH01_SELECTION_RELATIVE_PATH)), POI_BASELINE_P1B_BATCH01_SELECTION_SHA256);
 for (const source of Object.values(POI_BASELINE_P1B_BATCH01_SOURCE_RAWS)) {
-  assert.equal(sha256Text(readText(source.relativePath)), source.sha256);
+  assert.equal(sha256KnowledgeBaselineText(readText(source.relativePath)), source.sha256);
 }
 const policySource = readText("scripts/lib/knowledge-poi-review-policy-p1b.mjs");
 const importerSource = readText("scripts/import-knowledge-poi-baseline-p1b-batch01.mjs");

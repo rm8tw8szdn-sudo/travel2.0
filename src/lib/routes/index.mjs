@@ -137,6 +137,10 @@ export {
   createPublishedKnowledgeEntityLayerRepository,
 } from "./knowledge-entity-layer-published-assets.mjs";
 export {
+  createKnowledgeEntityLayerPlannerAdapter,
+  createKnowledgeEntityLayerSearchIntentCatalog,
+} from "./knowledge-entity-layer-planner-adapter.mjs";
+export {
   LOCAL_EVIDENCE_COLLECTOR_CREATED_AT,
   LOCAL_EVIDENCE_COLLECTOR_SOURCE,
   collectLocalEvidenceBundle,

@@ -17,6 +17,11 @@ import { createRouteCompositionPlanner } from "./route-composition-planner.mjs";
 import { createConfiguredLlmRefineProvider } from "./route-llm-refine-provider.mjs";
 import { createCacheBackedKnowledgeGraph, readKnowledgeGraphCache } from "./wikidata-sparql-knowledge-graph.mjs";
 import { mergeSearchKnowledgeGraphFallbacks } from "./search-knowledge-graph-fallbacks.mjs";
+import { createPublishedKnowledgeEntityLayerRepository } from "./knowledge-entity-layer-published-assets.mjs";
+import {
+  createKnowledgeEntityLayerPlannerAdapter,
+  createKnowledgeEntityLayerSearchIntentCatalog,
+} from "./knowledge-entity-layer-planner-adapter.mjs";
 
 const DETAIL_MEDIA_JOB_BUDGET_MS = 60_000;
 
@@ -42,21 +47,31 @@ function emptyDiagnostics(source = "accepted-repository") {
   };
 }
 
-function createDefaultSearchPlanner(acceptedRepository) {
+function createDefaultSearchPlannerContext(acceptedRepository, {
+  includePlanner = true,
+  knowledgeEntityLayerRepository = null,
+} = {}) {
   try {
+    const repository = knowledgeEntityLayerRepository || createPublishedKnowledgeEntityLayerRepository();
+    const intentCatalog = createKnowledgeEntityLayerSearchIntentCatalog({ repository });
+    if (!includePlanner) return { planner: null, intentCatalog };
     const root = process.cwd();
     const evidenceRepository = createEvidenceRepository({ storagePath: path.join(root, ".route-v2-cache", "route-evidence.json") });
-    const knowledgeGraph = createCacheBackedKnowledgeGraph({
+    const fallbackKnowledgeGraph = createCacheBackedKnowledgeGraph({
       pool: mergeSearchKnowledgeGraphFallbacks(readKnowledgeGraphCache(path.join(root, ".route-v2-cache", "knowledge-graph-pool.json"))),
     });
-    return createRouteCompositionPlanner({
-      evidenceRepository,
-      acceptedRepository,
-      knowledgeGraph,
-      llmRefineProvider: createConfiguredLlmRefineProvider(process.env),
-    });
+    const knowledgeGraph = createKnowledgeEntityLayerPlannerAdapter({ repository, fallbackKnowledgeGraph });
+    return {
+      planner: createRouteCompositionPlanner({
+        evidenceRepository,
+        acceptedRepository,
+        knowledgeGraph,
+        llmRefineProvider: createConfiguredLlmRefineProvider(process.env),
+      }),
+      intentCatalog,
+    };
   } catch {
-    return null;
+    return { planner: null, intentCatalog: null };
   }
 }
 
@@ -102,6 +117,7 @@ export function createRouteDiscovery({
   searchAnalytics = createRouteSearchAnalytics(),
   searchPlanner = null,
   searchService = null,
+  knowledgeEntityLayerRepository = null,
   feedRefillWorker = null,
   jobStore = createRouteJobStore(),
   requestId = defaultRequestId,
@@ -109,11 +125,18 @@ export function createRouteDiscovery({
   if (typeof requestId !== "function") throw new RouteDiscoveryError("INVALID_REQUEST_ID_FACTORY", "A request ID factory is required.");
   const acceptedFeedBuffer = feedBuffer || createFeedBuffer({ repository: acceptedRepository, targetSize: 40 });
   const acceptedSearchIndex = searchIndex || createSearchIndex({ repository: acceptedRepository });
+  const defaultSearchContext = searchService
+    ? null
+    : createDefaultSearchPlannerContext(acceptedRepository, {
+      includePlanner: !searchPlanner,
+      knowledgeEntityLayerRepository,
+    });
   const routeSearchService = searchService || createRouteSearchService({
     acceptedRepository,
     searchCache,
     analytics: searchAnalytics,
-    planner: searchPlanner || createDefaultSearchPlanner(acceptedRepository),
+    planner: searchPlanner || defaultSearchContext?.planner || null,
+    intentCatalog: defaultSearchContext?.intentCatalog || null,
   });
   const runningDestinationJobs = new Set();
 

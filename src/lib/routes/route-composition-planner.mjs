@@ -113,6 +113,9 @@ function destinationTerms(destination = {}) {
     destination.name,
     destination.sourceTitle,
     destination.canonicalTitle,
+    destination.canonicalNameZh,
+    destination.canonicalNameEn,
+    ...(Array.isArray(destination.aliases) ? destination.aliases : []),
   ].map((value) => clean(value).toLocaleLowerCase("en-US")).filter(Boolean);
 }
 
@@ -136,11 +139,23 @@ function countryEntityForCode(code, context = {}) {
 }
 
 function countryEntitiesForRecord(context = {}, destinationEntities = []) {
+  const embeddedByCode = new Map(destinationEntities
+    .map((destination) => destination?.countryEntity)
+    .filter((country) => country && typeof country === "object")
+    .map((country) => [clean(country.countryCode || country.isoAlpha2).toUpperCase(), country]));
   return unique([
     ...countryCodesForContext(context),
     ...destinationEntities.map((destination) => destination.countryCode),
   ].map((value) => clean(value).toUpperCase()))
-    .map((code) => countryEntityForCode(code, context));
+    .map((code) => {
+      const embedded = embeddedByCode.get(code);
+      if (!embedded) return countryEntityForCode(code, context);
+      return {
+        ...structuredClone(embedded),
+        countryCode: code,
+        name: clean(embedded.name || embedded.canonicalNameZh || embedded.canonicalNameEn || code),
+      };
+    });
 }
 
 function normalizeBestMonths(values = [], fallback = ["3-5月", "10-11月"]) {
@@ -214,10 +229,15 @@ function routeWithinConceptLimits(destinations, concept) {
 }
 
 function anchorsForContext(concept = {}, context = {}) {
+  const requestedCities = unique([
+    ...(Array.isArray(context.cities) ? context.cities : []),
+    ...(Array.isArray(context.normalizedCities) ? context.normalizedCities : []),
+  ]);
   const country = clean(context.country || context.countryCode || countryCodesForContext(context).join("/")).toUpperCase();
   const styleKey = `${country}:${concept.travelStyle}`;
-  if (STYLE_ANCHORS[styleKey]) return STYLE_ANCHORS[styleKey];
-  return concept.travelStyle === "classic-first-trip" ? (FIRST_TRIP_ANCHORS[country] || []) : [];
+  const styleAnchors = STYLE_ANCHORS[styleKey]
+    || (concept.travelStyle === "classic-first-trip" ? (FIRST_TRIP_ANCHORS[country] || []) : []);
+  return unique([...requestedCities, ...styleAnchors]);
 }
 
 function entityId(value) {
@@ -646,9 +666,11 @@ function buildRouteSkeleton(pool, concept, context = {}) {
     const anchoredSkeleton = anchored.slice(0, maxDestinations);
     if (routeWithinConceptLimits(anchoredSkeleton, concept)) return anchoredSkeleton;
   }
-  const start = withCoords[0];
+  const start = anchors.length
+    ? withCoords.slice().sort((left, right) => anchorIndex(left, anchors) - anchorIndex(right, anchors))[0]
+    : withCoords[0];
   const visited = [start];
-  const remaining = withCoords.slice(1);
+  const remaining = withCoords.filter((destination) => destination !== start);
   while (remaining.length && visited.length < maxDestinations) {
     const last = visited[visited.length - 1];
     let nearestIdx = 0;
@@ -815,17 +837,50 @@ async function collectMissingSegmentEvidence(missing, { webEvidencePipeline, evi
   return { collected: allExtracted.length, written, queries };
 }
 
+function plannerDestinationSource(destinations = []) {
+  const hasEntityLayer = destinations.some((destination) => destination?.destinationSource === "knowledge-entity-layer");
+  const hasKnowledgeGraph = destinations.some((destination) => destination?.destinationSource !== "knowledge-entity-layer");
+  if (hasEntityLayer && hasKnowledgeGraph) return "knowledge-entity-layer+knowledge-graph";
+  return hasEntityLayer ? "knowledge-entity-layer" : "knowledge-graph";
+}
+
+function destinationSourceLabel(destinationSource) {
+  if (destinationSource === "knowledge-entity-layer") return "知识实体层";
+  if (destinationSource === "knowledge-entity-layer+knowledge-graph") return "知识实体层与知识图";
+  return "知识图";
+}
+
+function destinationSourceProviders(destinationSource) {
+  if (destinationSource === "knowledge-entity-layer") return [{ providerId: "knowledge-entity-layer", url: "" }];
+  if (destinationSource === "knowledge-entity-layer+knowledge-graph") {
+    return [
+      { providerId: "knowledge-entity-layer", url: "" },
+      { providerId: "knowledge-graph", url: "" },
+    ];
+  }
+  return [{ providerId: "knowledge-graph", url: "" }];
+}
+
 // 候选 record 构造（sourceType = planner-designed，绕过 composition-validator 旧桶校验）
 function buildPlannerRecord({ concept, skeleton, context, evidenceResult, strategies, score, goldCase, llmPlannerReason = null, llmRefined = false, llmConfidence = null, llmRefineError = null, llmProviderName = "" } = {}) {
-  const destinationEntities = skeleton.map((d) => ({
-    wikidataId: d.wikidataId || "",
-    countryCode: d.countryCode || context.countryCode || "",
-    name: d.name,
-    entityTypeName: d.entityTypeName || "city",
-    latitude: d.latitude ?? null,
-    longitude: d.longitude ?? null,
+  const countryEntities = countryEntitiesForRecord(context, skeleton);
+  const destinationEntities = skeleton.map((destination) => ({
+    ...(destination.entityId ? { entityId: clean(destination.entityId) } : {}),
+    ...(destination.parentCountryEntityId ? { parentCountryEntityId: clean(destination.parentCountryEntityId) } : {}),
+    wikidataId: clean(destination.wikidataId),
+    countryCode: clean(destination.countryCode || context.countryCode),
+    name: clean(destination.name),
+    ...(destination.canonicalNameZh ? { canonicalNameZh: clean(destination.canonicalNameZh) } : {}),
+    ...(destination.canonicalNameEn ? { canonicalNameEn: clean(destination.canonicalNameEn) } : {}),
+    ...(Array.isArray(destination.aliases) ? { aliases: unique(destination.aliases) } : {}),
+    entityTypeName: clean(destination.entityTypeName || "city"),
+    latitude: destination.latitude ?? null,
+    longitude: destination.longitude ?? null,
+    ...(Array.isArray(destination.poiEntities) ? { poiEntities: structuredClone(destination.poiEntities) } : {}),
+    ...(destination.destinationSource ? { destinationSource: clean(destination.destinationSource) } : {}),
   }));
-  const countryEntities = countryEntitiesForRecord(context, destinationEntities);
+  const destinationSource = plannerDestinationSource(skeleton);
+  const sourceLabel = destinationSourceLabel(destinationSource);
   const countryName = countryEntities.map((country) => country.name).filter(Boolean).join("、");
   const places = destinationEntities.map((d) => d.name);
   const styleLabel = TRAVEL_STYLE_LABEL[concept.travelStyle] || concept.travelStyle;
@@ -838,7 +893,7 @@ function buildPlannerRecord({ concept, skeleton, context, evidenceResult, strate
   const deterministicReason = [
     { text: `时长=${concept.durationBand}(${concept.recommendedDays})：${concept.whyThisDurationFits}`, strategy: "Geographic", evidenceIds: [] },
     { text: `旅行风格=${styleLabelZh}：${concept.travelValue}`, strategy: "Theme", evidenceIds: [] },
-    { text: `骨架由知识图候选池经最近邻排序生成，目的地来源=知识图。`, strategy: "Efficiency", evidenceIds: [] },
+    { text: `骨架由${sourceLabel}候选池经最近邻排序生成，目的地来源=${sourceLabel}。`, strategy: "Efficiency", evidenceIds: [] },
   ];
   // LLM 节点产出叙事（每条 {text,strategy}）→ 转成 record.plannerReason 形态（补 evidenceIds:[]）
   const llmReason = Array.isArray(llmPlannerReason)
@@ -850,7 +905,7 @@ function buildPlannerRecord({ concept, skeleton, context, evidenceResult, strate
     name,
     canonicalTitle: name,
     sourceTitle: `Planner designed (${styleLabel})`,
-    summary: `围绕${styleLabelZh}，由知识图候选池设计，串联${places.slice(0, 4).join("、")}${places.length > 4 ? "等" : ""}。`,
+    summary: `围绕${styleLabelZh}，由${sourceLabel}候选池设计，串联${places.slice(0, 4).join("、")}${places.length > 4 ? "等" : ""}。`,
     recommendationText: concept.travelValue,
     travelStyle: concept.travelStyle,
     travelStyleConceptKey: concept.travelStyle,
@@ -867,12 +922,12 @@ function buildPlannerRecord({ concept, skeleton, context, evidenceResult, strate
     tags: [styleLabelZh, countryEntities.length > 1 ? "跨国路线" : "单国路线"].filter(Boolean),
     highlights: [
       `${places.slice(0, 3).join("、")}构成${styleLabelZh}骨架`,
-      `目的地来自知识图${(evidenceResult?.missingSegments || []).length ? "，部分段待补证据" : "，段段有证据"}`,
+      `目的地来自${sourceLabel}${(evidenceResult?.missingSegments || []).length ? "，部分段待补证据" : "，段段有证据"}`,
       concept.targetTraveler,
     ],
     source: { name: "Planner", url: "" },
     sourceType: "planner-designed",
-    destinationSource: "knowledge-graph",
+    destinationSource,
     designStrategies: strategies,
     compositionScore: score,
     coverageContribution: {
@@ -883,7 +938,7 @@ function buildPlannerRecord({ concept, skeleton, context, evidenceResult, strate
     },
     plannerReason,
     provenance: {
-      sources: [{ providerId: "knowledge-graph", url: "" }],
+      sources: destinationSourceProviders(destinationSource),
       evidence: evidenceResult?.evidenceRefs || [],
       strategyEvidence: strategies.map((s) => ({ strategy: s, evidenceIds: [] })),
       concept: { travelStyle: concept.travelStyle, durationBand: concept.durationBand, routeStructure: concept.routeStructure },
@@ -1109,11 +1164,19 @@ async function runPipeline({ context, knowledgeGraph, evidenceRepository, accept
       { factor: "country-context", input: countryCodesForContext(context), effect: "Limits knowledge-graph destination query." },
       { factor: "duration", input: context.durationDays || concept.durationDays || null, effect: "Constrains generated route duration fields." },
       { factor: "travel-style", input: context.travelStyle || concept.travelStyle || null, effect: "Influences concept, route structure, title, and summary." },
-      { factor: "knowledge-graph", input: refinedSkeleton.map((item) => item.wikidataId || item.name), effect: "Provides selected destination entities." },
+      {
+        factor: record.destinationSource,
+        input: refinedSkeleton.map((item) => item.entityId || item.wikidataId || item.name),
+        effect: "Provides selected destination entities.",
+      },
     ],
     strategyEffects: strategies.map((strategy) => ({ strategy, changedFields: [], evidenceIds: [] })),
     dataSourcesUsed: [
-      { sourceType: "knowledge-graph", ids: refinedSkeleton.map((item) => item.wikidataId || item.name).filter(Boolean), usedFor: "selected destinations" },
+      {
+        sourceType: record.destinationSource,
+        ids: refinedSkeleton.map((item) => item.entityId || item.wikidataId || item.name).filter(Boolean),
+        usedFor: "selected destinations",
+      },
       ...(llmRefined ? [{ sourceType: "llm", ids: [llmRefineProvider?.name || "llm-refine"], usedFor: "destination order/refinement" }] : []),
       ...(evidenceCollect?.queries?.length ? [{ sourceType: "web-evidence", ids: evidenceCollect.queries, usedFor: "missing segment evidence check" }] : []),
     ],
@@ -1133,7 +1196,7 @@ async function runPipeline({ context, knowledgeGraph, evidenceRepository, accept
     decisionTests,
     evidenceResult,
     evidenceCollect,
-    destinationSource: "knowledge-graph",
+    destinationSource: record.destinationSource,
     decisionTrace: traceWrite,
   });
 

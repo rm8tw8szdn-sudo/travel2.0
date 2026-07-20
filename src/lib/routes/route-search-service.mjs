@@ -352,6 +352,8 @@ function plannerContextFromIntent(intent, deadlineAt, abortSignal = null) {
     country: intent.countryCode,
     countryCode: intent.countryCode,
     countryName: intent.country,
+    cities: Array.isArray(intent.cities) ? [...intent.cities] : [],
+    normalizedCities: Array.isArray(intent.normalizedCities) ? [...intent.normalizedCities] : [],
     durationDays: intent.durationDays || undefined,
     durationBand: intent.durationBand || undefined,
     travelStyle: intent.travelStyle || undefined,
@@ -376,6 +378,7 @@ export function createRouteSearchService({
   searchCache,
   analytics = null,
   planner = null,
+  intentCatalog = null,
   now = () => Date.now(),
   env = process.env,
   rankingWeights = DEFAULT_RANKING_WEIGHTS,
@@ -390,7 +393,10 @@ export function createRouteSearchService({
     const startedAt = now();
     const queryId = context.requestId || `search-${startedAt}-${Math.random().toString(36).slice(2)}`;
     const acceptedSnapshot = acceptedRepository.list({ limit: 100_000 }).records;
-    const intent = parseSearchIntent(request.query, { acceptedRoutes: acceptedSnapshot });
+    const intent = parseSearchIntent(request.query, {
+      acceptedRoutes: acceptedSnapshot,
+      catalogs: intentCatalog,
+    });
     let acceptedHit = false;
     let cacheHit = false;
     let plannerCalled = false;

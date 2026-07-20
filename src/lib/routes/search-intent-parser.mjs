@@ -13,7 +13,15 @@ function unique(values) {
 }
 
 function includesAny(haystack, aliases = []) {
-  return aliases.some((alias) => alias && haystack.includes(normalizeText(alias)));
+  return aliases.some((alias) => {
+    const normalizedAlias = normalizeText(alias);
+    if (!normalizedAlias) return false;
+    if (/^[a-z0-9]{1,3}$/u.test(normalizedAlias)) {
+      const tokens = haystack.split(/[^a-z0-9]+/u).filter(Boolean);
+      return tokens.includes(normalizedAlias);
+    }
+    return haystack.includes(normalizedAlias);
+  });
 }
 
 const COUNTRY_CATALOG = [
@@ -104,6 +112,19 @@ function firstMatch(query, catalog) {
   return matchesFromCatalog(query, catalog)[0] || null;
 }
 
+function mergeCatalog(base = [], additions = [], identity) {
+  const merged = [];
+  const seen = new Set();
+  for (const item of [...base, ...(Array.isArray(additions) ? additions : [])]) {
+    if (!item || typeof item !== "object") continue;
+    const key = clean(identity(item));
+    if (!key || seen.has(key)) continue;
+    seen.add(key);
+    merged.push(item);
+  }
+  return merged;
+}
+
 function parseDuration(query) {
   const compact = query.replace(/\s+/g, "");
   const match = compact.match(/(\d{1,2})(?:天|日|days?|day|d)/iu);
@@ -172,15 +193,17 @@ export function hashIntentKey(intentKey) {
   return crypto.createHash("sha256").update(String(intentKey || "")).digest("hex").slice(0, 24);
 }
 
-export function createSearchSuggestions({ query = "", acceptedRoutes = [] } = {}) {
+export function createSearchSuggestions({ query = "", acceptedRoutes = [], catalogs = null } = {}) {
   const normalized = normalizeText(query);
+  const countryCatalog = mergeCatalog(COUNTRY_CATALOG, catalogs?.countries, (item) => item.code);
+  const cityCatalog = mergeCatalog(CITY_CATALOG, catalogs?.cities, (item) => `${item.countryCode}:${item.normalizedLabel}`);
   const candidates = [
     "撒哈拉", "撒哈拉沙漠", "摩洛哥撒哈拉", "西撒哈拉骑行",
     "日本", "日本第一次", "日本经典", "日本铁路", "日本自驾", "日本樱花",
     "冰岛", "冰岛自驾", "冰岛极光", "冰岛黄金圈",
     "土耳其", "土耳其热气球摄影", "卡帕多奇亚热气球",
-    ...COUNTRY_CATALOG.filter((item) => item.code !== "CN").map((item) => item.label),
-    ...CITY_CATALOG.map((item) => item.label),
+    ...countryCatalog.filter((item) => item.code !== "CN").map((item) => item.label),
+    ...cityCatalog.map((item) => item.label),
     ...REGION_CATALOG.map((item) => item.label),
     ...STYLE_CATALOG.map((item) => item.label),
     ...THEME_CATALOG.map((item) => item.label),
@@ -202,18 +225,23 @@ export function createSearchSuggestions({ query = "", acceptedRoutes = [] } = {}
   return matches.length ? matches : uniqueCandidates.slice(0, 8);
 }
 
-export function parseSearchIntent(query, { acceptedRoutes = [] } = {}) {
+export function parseSearchIntent(query, { acceptedRoutes = [], catalogs = null } = {}) {
   const rawQuery = clean(query);
   const normalizedQuery = normalizeText(rawQuery);
   const durationDays = parseDuration(normalizedQuery);
-  const matchedCities = matchesFromCatalog(normalizedQuery, CITY_CATALOG);
+  const countryCatalog = mergeCatalog(COUNTRY_CATALOG, catalogs?.countries, (item) => item.code);
+  const cityCatalog = mergeCatalog(CITY_CATALOG, catalogs?.cities, (item) => `${item.countryCode}:${item.normalizedLabel}`);
+  let matchedCities = matchesFromCatalog(normalizedQuery, cityCatalog);
   const matchedRegion = firstMatch(normalizedQuery, REGION_CATALOG);
-  let matchedCountry = firstMatch(normalizedQuery, COUNTRY_CATALOG);
+  let matchedCountry = firstMatch(normalizedQuery, countryCatalog);
+  if (matchedCountry && matchedCities.length) {
+    matchedCities = matchedCities.filter((item) => item.countryCode === matchedCountry.code);
+  }
   if (!matchedCountry && matchedCities.length) {
-    matchedCountry = COUNTRY_CATALOG.find((item) => item.code === matchedCities[0].countryCode) || null;
+    matchedCountry = countryCatalog.find((item) => item.code === matchedCities[0].countryCode) || null;
   }
   if (!matchedCountry && matchedRegion?.countryCode) {
-    matchedCountry = COUNTRY_CATALOG.find((item) => item.code === matchedRegion.countryCode) || null;
+    matchedCountry = countryCatalog.find((item) => item.code === matchedRegion.countryCode) || null;
   }
   const style = firstMatch(normalizedQuery, STYLE_CATALOG);
   const theme = firstMatch(normalizedQuery, THEME_CATALOG);
@@ -250,7 +278,7 @@ export function parseSearchIntent(query, { acceptedRoutes = [] } = {}) {
   intent.isChinaBlocked = intent.countryCode === "CN";
   intent.parseSuccess = Boolean(intent.constraintCount > 0 && !intent.isChinaBlocked);
   intent.canGenerate = Boolean(intent.parseSuccess && intent.countryCode && !intent.isChinaBlocked);
-  intent.suggestions = createSearchSuggestions({ query: rawQuery, acceptedRoutes });
+  intent.suggestions = createSearchSuggestions({ query: rawQuery, acceptedRoutes, catalogs });
   return intent;
 }
 

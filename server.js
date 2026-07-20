@@ -1446,7 +1446,7 @@ async function loadRouteLibrary() {
   return import(routesUrl);
 }
 
-async function createDiscoveryHandler(routeLibrary) {
+async function createDiscoveryHandler(routeLibrary, knowledgeEntityLayerRepository) {
   const {
     createAcceptedRouteRepository,
     createRouteFeedRefillWorker,
@@ -1467,7 +1467,12 @@ async function createDiscoveryHandler(routeLibrary) {
       if (process.env.ROUTE_FEED_REFILL_LOG === "true") console.log(JSON.stringify({ stage: "feed-refill", ...event }));
     },
   });
-  const discovery = createRouteDiscovery({ acceptedRepository, jobStore, feedRefillWorker });
+  const discovery = createRouteDiscovery({
+    acceptedRepository,
+    jobStore,
+    feedRefillWorker,
+    knowledgeEntityLayerRepository,
+  });
   return createRouteDiscoveryHandler({ discovery });
 }
 
@@ -1475,7 +1480,7 @@ async function main() {
   const routeLibrary = await loadRouteLibrary();
   const knowledgeEntityLayerRepository = routeLibrary.createPublishedKnowledgeEntityLayerRepository({ projectRoot: root });
   const knowledgeEntitySummary = knowledgeEntityLayerSummary(knowledgeEntityLayerRepository);
-  const discoveryHandler = await createDiscoveryHandler(routeLibrary);
+  const discoveryHandler = await createDiscoveryHandler(routeLibrary, knowledgeEntityLayerRepository);
   const server = http.createServer(async (request, response) => {
     try {
       const url = new URL(request.url || "/", `http://${request.headers.host || `${host}:${port}`}`);

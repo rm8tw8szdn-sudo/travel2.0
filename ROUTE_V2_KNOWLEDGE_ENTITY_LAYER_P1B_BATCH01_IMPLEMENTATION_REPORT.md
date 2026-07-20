@@ -122,3 +122,119 @@ Focused validation confirms:
 - 0 network calls after the completed raw refresh
 
 The full required regression suite passed with exit code 0 for every command before this uncommitted checkpoint was handed off for review.
+
+## 10. P1B Batch01 POI evidence and selection checkpoint
+
+The POI implementation extends this City checkpoint without rewriting sections 1–9. Candidate evidence was acquired in four fixed historical rounds and is retained separately from canonical publication:
+
+| Round | Candidate records | Frozen SHA-256 |
+| --- | ---: | --- |
+| Base | 40 | `fe39f0f9ad4bebe31f0cbe64390744b1c3343f484968838d204d8ae431e80c1d` |
+| Supplement01 | 44 | `6de7b51427a4370d2042701dc4c78d3496046c89e556caa9c32ba3abbbceb2fd` |
+| Supplement02 | 12 | `57cb63ea4678380ef70ab522057207a9582bce28a80de8327d79419683c3480e` |
+| Supplement03 | 9 | `ad3915efdcc09bcd09f245ee9200b02eca6d65d532b7f85a493b1b6d7049e9af` |
+
+The four-round merged pool contains 85 unique candidate records and 44 usable candidates. Supplement acquisition is closed; Supplement04 was not created.
+
+The final selection uses policy `p1b-batch01-poi-selection-v1` and rule `three-primary-backup-optional`. It freezes exactly three primary candidates per City, 30 total, plus eight optional operational backups. Brno and Prague legitimately have no backup. Backup capacity is not a publish gate, does not enter canonical POI assets, receives no formal provenance, and does not count toward cumulative POI totals.
+
+Selection SHA-256: `40d7e91bddf065664a092153183c6a0a7cc9060397da3b40d0aa06af0ed3f118`.
+
+## 11. Offline formal raw and canonical publication
+
+The offline importer reconstructs a formal 30-record raw from the frozen selection plus the four source raws. It makes no HTTP request and has no refresh mode. Every record retains its candidate key, source round, selected QID, API entity, separate SPARQL truthy projections, Country evidence, approved City evidence, coordinates, complete P31 evidence, parent level, identity risk, selection rationale, raw path/index, source retrieval time, and selection policy.
+
+Formal raw distribution is Base 15, Supplement01 9, Supplement02 3, and Supplement03 3. Parent evidence comprises 22 direct, four bounded location-path, and four structured municipality-to-City records. The raw contains no backup record.
+
+Published City-to-POI scope:
+
+| Country | City | Canonical POIs |
+| --- | --- | --- |
+| Colombia | Bogotá | Bogotá Primatial Cathedral; Botero Museum; National Museum of Colombia |
+| Colombia | Medellín | Medellín Museum of Modern Art; Metropolitan Cathedral of Medellín; Museum of Antioquia |
+| Finland | Helsinki | Finnish National Theatre; Helsinki Central Library Oodi; National Museum of Finland |
+| Finland | Turku | Sibelius Museum; Turku Castle; Turku Cathedral |
+| Poland | Kraków | National Museum in Kraków; St. Mary’s Basilica; Wawel Royal Castle |
+| Poland | Warsaw | Palace of Culture and Science; Royal Castle in Warsaw; Warsaw Uprising Museum |
+| Czechia | Brno | Cathedral of St. Peter and Paul; Mahen Theatre; Špilberk Castle |
+| Czechia | Prague | Church of Our Lady before Týn; Old Town Hall with Astronomical Clock; Žižkov Television Tower |
+| Netherlands | Amsterdam | Anne Frank House; Rijksmuseum; Van Gogh Museum |
+| Netherlands | Rotterdam | Erasmus Bridge; Euromast; Maritime Museum Rotterdam |
+
+All 30 entities pass the existing POI schema. Entity IDs use the existing typed entity + QID algorithm; entity IDs and QIDs are 30/30 unique. Every POI has one approved Batch01 City parent, valid coordinates, non-empty English and Chinese names, canonical aliases, and a source retrieval time inherited from its evidence round. Four entities whose frozen API evidence lacks a Chinese label use an explicit project-schema Chinese name with project-schema provenance; the original API evidence remains unchanged in the formal raw.
+
+## 12. Review classifier policy
+
+The formal pure classifier uses policy `p1b-batch01-poi-review-v1`. It has no filesystem, network, clock, or cache dependency. The rule order is:
+
+1. exact blocking type QID;
+2. illegal identity, parent, overlap, or backup publication evidence;
+3. P31 projection difference;
+4. exact complete informational key;
+5. exact complete manual-review key;
+6. unknown or unmatched complete key defaults to manual review.
+
+P31 QIDs are deduplicated and sorted before the complete key is formed. No partial match, ignored extra QID, label substring, or search-rank decision is allowed.
+
+Actual 30-primary classifier result:
+
+| Disposition | Count |
+| --- | ---: |
+| informational | 18 |
+| manual-review | 12 |
+| blocking | 0 |
+
+Classifier coverage is 30/30. None of the eight backups is classified for publication.
+
+The existing normalizer remains unchanged. For Batch01 only, 23 generic `multiple-wikidata-poi-types` reviews are filtered after normalization and replaced by the exact numeric policy outcome. No other normalizer or deduper review was produced or discarded.
+
+## 13. Reviews, conflicts, and provenance
+
+The original 43 City review objects and review IDs are preserved byte-for-byte at object level. The POI classifier contributes 12 deterministic `poi-p31-policy-manual-review` records. The cumulative review total is therefore derived as 43 City + 12 POI + 0 additional POI = 55; the verifier does not hardcode 55 as an independent invariant.
+
+Every POI manual review retains its complete P31 key, classifier rule, rationale, candidate key, source round, raw path/index, and selection policy. Informational classifications and backups do not enter the review queue.
+
+Conflicts are 0 and blocking conflicts are 0. Any future classifier blocking result prevents publication before any asset write.
+
+Provenance coverage is 30/30 with 30/30 inline-to-sidecar equality. The sidecar adds per-entity traceability for source round, candidate key, selected QID, selection policy, classifier policy, complete P31 key, and classifier disposition. There is no orphan provenance and no backup provenance.
+
+## 14. Determinism and output hashes
+
+The classifier, per-record normalizer adapter, formal raw builder, canonical asset builder, review IDs, ordering, and serialization are deterministic. An actual importer rerun produced byte-identical raw, canonical, provenance, conflicts, and review assets.
+
+| Output | SHA-256 |
+| --- | --- |
+| `data/knowledge/raw/pois-p1b-batch01.wikidata.json` | `b3af659dff4ebc788dcbbdfd472cee057ce193993ba39eceaef9b37b85c87734` |
+| `data/knowledge/batches/pois.p1b-batch01.json` | `19bdac49327592b7fc90665e7825806347a10a7f2da4bbbac95ecc1ac7fe1348` |
+| `data/knowledge/batches/provenance.pois.p1b-batch01.json` | `2671c3095aa1e0ad0f84b368081531252c7ec7401183352e25a6a0185a0a841c` |
+| `data/knowledge/batches/conflicts.p1b-batch01.json` | `b062e2eb3a71606ca71bfec062f0dc876a4926887c8c9be905b7a22a7f058455` |
+| `data/knowledge/batches/review-queue.p1b-batch01.json` | `8a50d249b5db52471bf1bc452b4358e2e1ea132142da6ea27c995a3baa88df37` |
+
+## 15. Cumulative Entity Layer result after POI Batch01
+
+| Entity type | Count |
+| --- | ---: |
+| Countries | 50 |
+| Cities | 15 |
+| Pilot POIs | 15 |
+| Batch01 POIs | 30 |
+| POIs total | 45 |
+| Total entities | 110 |
+
+The existing repository is used through explicit in-memory injection and was not modified. It returns 15 Cities and 45 POIs with stable ordering, defensive copies, and valid parents. Orphan Cities and POIs are both zero. Entity IDs are globally unique; all 45 POI QIDs are unique. Singapore Q334 remains the only allowed Country/City QID overlap, while Country/POI and City/POI overlap counts are zero. Pilot POI parents remain unchanged.
+
+## 16. Boundaries and focused validation
+
+The POI verifier passes all 16 required synthetic fixture groups: exact informational, informational plus extra QID, exact manual, unknown QID, blocking priority, City/region/metropolitan/natural-area blocking, Pilot duplicate, Batch duplicate, Country/City overlap, wrong parent, orphan parent, backup publication, classifier determinism, review-ID determinism, Pilot review immutability, and defensive copies.
+
+Focused importer, verifier, audit, and cumulative Entity Layer checks pass. Source candidate raws, selection, Country assets, City assets, Pilot assets/reviews/report, POI schema/normalizer/deduper, repository, index, route goldens, and cache state remain protected.
+
+Planner is not connected. Region, Destination, Natural Area, and Metropolitan Area entities remain unsupported. No commit SHA is recorded because this complete POI layer remains uncommitted.
+
+## 17. Complete POI Layer QA
+
+The complete required QA matrix passed with exit code 0 for every listed command. This includes the Batch01 POI importer, POI verifier, POI audit, cumulative Entity Layer verifier, all three Batch01 City compatibility checks, City and POI Pilot verification/audit, Country Batch03 and P1A Pilot/Batch01/Batch02 verification, and the full route-v2 regression chain from repository cleanup through route content quality. `git diff --check` also passed.
+
+The legacy Batch01 City audit defines its pre-POI checkpoint by requiring the four final POI publication artifacts to be absent. For that compatibility-only run, those four files were temporarily held under verified same-repository paths, the exact unmodified City commands passed, and the files were restored before the POI importer rebuilt and reverified the final state. No compatibility hold file remains.
+
+Final protected-state checks confirm no network or refresh action, no cache mutation, no source-candidate or selection mutation, no Country/City/Pilot/Planner/schema/normalizer/deduper/repository/index/golden change, and no Supplement04, P1A Batch04, Region, Destination, Natural Area, or Planner implementation.

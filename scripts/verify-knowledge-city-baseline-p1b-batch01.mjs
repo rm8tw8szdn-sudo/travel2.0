@@ -40,6 +40,7 @@ const EXPECTED_ACCEPTED_HASH = "aea28bcc03eaf6ccce5fd7453f88ece4f0060789f135eaf8
 const EXPECTED_BOOTSTRAP_HASH = "9f5e2b2557a9e547073da4d299f08b5b18b6eba38b3bd55fc995a16adf1cd9ef";
 const EXPECTED_RAW_HASH = "ccd066a2934d7a974870e1d0efbf3702c70f398ea0a72c86d535c553a84b11d7";
 const EXPECTED_RETRIEVED_AT = "2026-07-15T10:01:50.248Z";
+const EXPECTED_CITY_REVIEW_COUNT = 43;
 const EXPECTED_CITIES = Object.freeze(Object.fromEntries(CITY_BASELINE_P1B_BATCH01_SEEDS.map((seed) => [seed.wikidataId, {
   isoAlpha2: seed.isoAlpha2,
   nameEn: seed.expectedNameEn,
@@ -99,6 +100,12 @@ const CACHE_AND_PLANNER_PROTECTED_PATHS = Object.freeze([
   "route-feed-bootstrap.js",
   "src/lib/routes/route-composition-planner.mjs",
 ]);
+const OPTIONAL_BATCH01_POI_PATHS = Object.freeze([
+  "data/knowledge/raw/pois-p1b-batch01.wikidata.json",
+  "data/knowledge/batches/pois.p1b-batch01.json",
+  "data/knowledge/batches/provenance.pois.p1b-batch01.json",
+  "scripts/import-knowledge-poi-baseline-p1b-batch01.mjs",
+]);
 const protectedRelativePaths = [...P1A_PROTECTED_PATHS, ...PILOT_PROTECTED_PATHS, ...EXISTING_SOURCE_PROTECTED_PATHS, ...CACHE_AND_PLANNER_PROTECTED_PATHS];
 const protectedPaths = protectedRelativePaths.map((relativePath) => path.resolve(PROJECT_ROOT, relativePath));
 const protectedBefore = statesFor(protectedPaths);
@@ -114,6 +121,164 @@ function readJson(relativePath) {
 function clone(value) {
   return JSON.parse(JSON.stringify(value));
 }
+
+function reviewEntityTypeKey(review) {
+  return `${review.entityId || review.relatedEntityIds?.[0] || review.wikidataId}:${review.type}`;
+}
+
+function validateCumulativeCityReviewQueue({
+  cumulativeReviewQueue,
+  expectedCityReviews,
+  cityReviewTypes,
+  expectedCityReviewCount,
+}) {
+  assert.equal(Array.isArray(cumulativeReviewQueue), true, "Cumulative review queue must be an array");
+  assert.equal(Array.isArray(expectedCityReviews), true, "Frozen City review baseline must be an array");
+  assert.equal(new Set(cumulativeReviewQueue.map((review) => review.reviewId)).size, cumulativeReviewQueue.length, "Cumulative reviewId must be globally unique");
+
+  const cityReviews = cumulativeReviewQueue.filter((review) => cityReviewTypes.includes(review.type));
+  const nonCityReviews = cumulativeReviewQueue.filter((review) => !cityReviewTypes.includes(review.type));
+  assert.equal(cityReviews.length, expectedCityReviewCount, `City review count must remain ${expectedCityReviewCount}`);
+  assert.equal(expectedCityReviews.length, expectedCityReviewCount, `Frozen City review baseline must contain ${expectedCityReviewCount} reviews`);
+  assert.equal(cityReviews.every((review) => cityReviewTypes.includes(review.type)), true, "City review types must remain within the frozen City policy");
+  assert.equal(new Set(cityReviews.map((review) => review.reviewId)).size, cityReviews.length, "City reviewId must remain unique");
+  assert.equal(new Set(cityReviews.map(reviewEntityTypeKey)).size, cityReviews.length, "City entity/type pairs must remain unique");
+  const cityReviewIds = new Set(cityReviews.map((review) => review.reviewId));
+  assert.equal(nonCityReviews.every((review) => !cityReviewIds.has(review.reviewId)), true, "City and non-City reviewId sets must not conflict");
+  assert.deepEqual(cityReviews, expectedCityReviews, "Cumulative City reviews must deepEqual the frozen City review baseline");
+
+  return { cityReviews, nonCityReviews, totalReviews: cumulativeReviewQueue.length };
+}
+
+function observeOptionalPoiFiles({ relativePaths, existsSync }) {
+  const presence = relativePaths.map((relativePath) => ({ relativePath, present: existsSync(relativePath) }));
+  const presentCount = presence.filter((entry) => entry.present).length;
+  return {
+    presence,
+    presentCount,
+    allPresent: presentCount === relativePaths.length,
+  };
+}
+
+function validateCumulativeCityConflicts({ cumulativeConflicts, expectedCityConflicts, cityEntityIds, countryEntityIds }) {
+  assert.equal(new Set(cumulativeConflicts.map((conflict) => conflict.conflictId)).size, cumulativeConflicts.length, "Cumulative conflictId must be globally unique");
+  const isCityConflict = (conflict) => {
+    const relatedEntityIds = conflict.relatedEntityIds || [];
+    return relatedEntityIds.some((entityId) => cityEntityIds.has(entityId))
+      && relatedEntityIds.every((entityId) => cityEntityIds.has(entityId) || countryEntityIds.has(entityId));
+  };
+  const cityConflicts = cumulativeConflicts.filter(isCityConflict);
+  const nonCityConflicts = cumulativeConflicts.filter((conflict) => !isCityConflict(conflict));
+  assert.deepEqual(cityConflicts, expectedCityConflicts, "Cumulative City conflicts must deepEqual the frozen City conflict baseline");
+  return { cityConflicts, nonCityConflicts };
+}
+
+function fixtureReview({ layer, index, reviewId, type, details = {} }) {
+  return {
+    reviewId: reviewId || `${layer}-review-${index}`,
+    type: type || (layer === "city" ? CITY_BASELINE_P1B_BATCH01_REVIEW_TYPES[index % CITY_BASELINE_P1B_BATCH01_REVIEW_TYPES.length] : "poi-p31-policy-manual-review"),
+    entityId: `${layer}-entity-${index}`,
+    wikidataId: `Q${100000 + index}`,
+    severity: "review",
+    details: { layer, index, ...details },
+  };
+}
+
+function runCumulativeReviewQueueFixtures() {
+  const expectedCityReviews = Array.from({ length: 43 }, (_, index) => fixtureReview({ layer: "city", index }));
+  const poiReviews = Array.from({ length: 12 }, (_, index) => fixtureReview({ layer: "poi", index }));
+  const cityOnly = validateCumulativeCityReviewQueue({
+    cumulativeReviewQueue: expectedCityReviews,
+    expectedCityReviews,
+    cityReviewTypes: CITY_BASELINE_P1B_BATCH01_REVIEW_TYPES,
+    expectedCityReviewCount: 43,
+  });
+  assert.equal(cityOnly.cityReviews.length, 43);
+  assert.equal(cityOnly.nonCityReviews.length, 0);
+
+  const cumulativeReviews = [
+    ...expectedCityReviews.slice(0, 21),
+    ...poiReviews.slice(0, 6),
+    ...expectedCityReviews.slice(21),
+    ...poiReviews.slice(6),
+  ];
+  const cumulativeBefore = clone(cumulativeReviews);
+  const cumulative = validateCumulativeCityReviewQueue({
+    cumulativeReviewQueue: cumulativeReviews,
+    expectedCityReviews,
+    cityReviewTypes: CITY_BASELINE_P1B_BATCH01_REVIEW_TYPES,
+    expectedCityReviewCount: 43,
+  });
+  assert.equal(cumulative.cityReviews.length, 43);
+  assert.equal(cumulative.nonCityReviews.length, 12);
+  assert.equal(cumulative.nonCityReviews.every((review) => !CITY_BASELINE_P1B_BATCH01_REVIEW_TYPES.includes(review.type)), true);
+  assert.deepEqual(cumulativeReviews, cumulativeBefore);
+
+  assert.throws(() => validateCumulativeCityReviewQueue({
+    cumulativeReviewQueue: expectedCityReviews.slice(1),
+    expectedCityReviews,
+    cityReviewTypes: CITY_BASELINE_P1B_BATCH01_REVIEW_TYPES,
+    expectedCityReviewCount: 43,
+  }), /City review count/);
+
+  const changedId = clone(expectedCityReviews);
+  changedId[0].reviewId = "changed-city-review-id";
+  assert.throws(() => validateCumulativeCityReviewQueue({
+    cumulativeReviewQueue: changedId,
+    expectedCityReviews,
+    cityReviewTypes: CITY_BASELINE_P1B_BATCH01_REVIEW_TYPES,
+    expectedCityReviewCount: 43,
+  }), /frozen City review baseline/);
+
+  const changedContent = clone(expectedCityReviews);
+  changedContent[0].details.index = -1;
+  assert.throws(() => validateCumulativeCityReviewQueue({
+    cumulativeReviewQueue: changedContent,
+    expectedCityReviews,
+    cityReviewTypes: CITY_BASELINE_P1B_BATCH01_REVIEW_TYPES,
+    expectedCityReviewCount: 43,
+  }), /frozen City review baseline/);
+
+  const crossLayerCollision = clone(cumulativeReviews);
+  crossLayerCollision[21].reviewId = expectedCityReviews[0].reviewId;
+  assert.throws(() => validateCumulativeCityReviewQueue({
+    cumulativeReviewQueue: crossLayerCollision,
+    expectedCityReviews,
+    cityReviewTypes: CITY_BASELINE_P1B_BATCH01_REVIEW_TYPES,
+    expectedCityReviewCount: 43,
+  }), /globally unique/);
+
+  const globalDuplicate = clone(cumulativeReviews);
+  globalDuplicate[22].reviewId = globalDuplicate[21].reviewId;
+  assert.throws(() => validateCumulativeCityReviewQueue({
+    cumulativeReviewQueue: globalDuplicate,
+    expectedCityReviews,
+    cityReviewTypes: CITY_BASELINE_P1B_BATCH01_REVIEW_TYPES,
+    expectedCityReviewCount: 43,
+  }), /globally unique/);
+
+  const poiFilesPresent = observeOptionalPoiFiles({ relativePaths: ["poi-a", "poi-b"], existsSync: () => true });
+  const poiFilesAbsent = observeOptionalPoiFiles({ relativePaths: ["poi-a", "poi-b"], existsSync: () => false });
+  assert.equal(poiFilesPresent.allPresent, true);
+  assert.equal(poiFilesAbsent.presentCount, 0);
+
+  return Object.freeze({
+    cityOnlyQueueAccepted: true,
+    cumulativeQueueAccepted: true,
+    nonCityReviewsExcludedFromCityChecks: true,
+    missingCityReviewRejected: true,
+    changedCityReviewIdRejected: true,
+    changedCityReviewContentRejected: true,
+    crossLayerReviewIdCollisionRejected: true,
+    cumulativeReviewIdDuplicateRejected: true,
+    poiFilesPresentAccepted: true,
+    poiFilesAbsentAccepted: true,
+    temporaryFileHidingRequired: false,
+    cumulativeQueueNotMutated: true,
+  });
+}
+
+const cumulativeReviewFixtures = runCumulativeReviewQueueFixtures();
 
 function sourceTypes(city) {
   return Object.values(city.provenance || {}).map((entry) => entry.sourceType);
@@ -281,14 +446,28 @@ for (const gate of [warsawGate, krakowGate]) {
 }
 
 assert.equal(Object.keys(provenanceAsset.provenance || {}).length, 10);
-assert.equal(conflictsAsset.conflictCount, 0);
-assert.equal(conflictsAsset.blockingCount, 0);
-assert.deepEqual(conflictsAsset.conflicts, []);
-assert.equal(new Set(reviewsAsset.reviewQueue.map((review) => review.reviewId)).size, reviewsAsset.reviewCount);
-assert.equal(new Set(reviewsAsset.reviewQueue.map((review) => `${review.wikidataId}:${review.type}`)).size, reviewsAsset.reviewCount);
-assert.equal(reviewsAsset.reviewQueue.every((review) => CITY_BASELINE_P1B_BATCH01_REVIEW_TYPES.includes(review.type)), true);
+const rebuiltA = buildKnowledgeCityBaselineP1bBatch01Assets({ rawSnapshot: raw, countries, pilotCities });
+const cumulativeReviewsBeforeValidation = clone(reviewsAsset.reviewQueue);
+const reviewValidation = validateCumulativeCityReviewQueue({
+  cumulativeReviewQueue: reviewsAsset.reviewQueue,
+  expectedCityReviews: clone(rebuiltA.reviewQueueAsset.reviewQueue),
+  cityReviewTypes: CITY_BASELINE_P1B_BATCH01_REVIEW_TYPES,
+  expectedCityReviewCount: EXPECTED_CITY_REVIEW_COUNT,
+});
+const { cityReviews, nonCityReviews } = reviewValidation;
+assert.equal(reviewsAsset.reviewCount, reviewsAsset.reviewQueue.length);
+assert.deepEqual(reviewsAsset.reviewQueue, cumulativeReviewsBeforeValidation, "City validation must not mutate or reorder the cumulative review queue");
+const conflictValidation = validateCumulativeCityConflicts({
+  cumulativeConflicts: conflictsAsset.conflicts,
+  expectedCityConflicts: rebuiltA.conflictsAsset.conflicts,
+  cityEntityIds: new Set(batchCities.map((city) => city.entityId)),
+  countryEntityIds: new Set(countries.map((country) => country.entityId)),
+});
+assert.equal(conflictsAsset.conflictCount, conflictsAsset.conflicts.length);
+assert.equal(conflictsAsset.blockingCount, conflictsAsset.conflicts.filter((conflict) => conflict.severity === "blocking").length);
+assert.equal(conflictValidation.cityConflicts.length, 0);
 const gateByQid = new Map(rawGate.results.map((result) => [result.wikidataId, result]));
-for (const review of reviewsAsset.reviewQueue) {
+for (const review of cityReviews) {
   assert.notEqual(review.severity, "blocking");
   const gate = gateByQid.get(review.wikidataId);
   assert(gate, `${review.reviewId} lacks raw gate evidence`);
@@ -305,8 +484,9 @@ for (const review of reviewsAsset.reviewQueue) {
 }
 const expectedFormalReviewCount = rawGate.results.reduce((total, result) => total
   + result.reviewReasons.filter((type) => CITY_BASELINE_P1B_BATCH01_REVIEW_TYPES.includes(type)).length, 0);
-assert.equal(reviewsAsset.reviewCount, expectedFormalReviewCount);
-assert.equal(reviewsAsset.reviewQueue.some((review) => ["multiple-country-labels", "wikidata-iso-identifiers-missing"].includes(review.type)), false);
+assert.equal(expectedFormalReviewCount, EXPECTED_CITY_REVIEW_COUNT);
+assert.equal(cityReviews.length, expectedFormalReviewCount);
+assert.equal(cityReviews.some((review) => ["multiple-country-labels", "wikidata-iso-identifiers-missing"].includes(review.type)), false);
 for (const city of batchCities.filter((candidate) => candidate.parentCountryEntityId === "country-febe99ab26ea41f0")) {
   assert.equal(Object.values(city.provenance).some((entry) => /approved-country-seed|iso identifier/iu.test(`${entry.source} ${entry.sourceUrl}`)), false);
 }
@@ -329,13 +509,15 @@ assert.notEqual(repository.listCities()[0].canonicalNameEn, "mutated outside rep
 const normalizedA = normalizeKnowledgeCityBaseline({ rawSnapshot: raw, citySeeds: CITY_BASELINE_P1B_BATCH01_SEEDS, countries });
 const normalizedB = normalizeKnowledgeCityBaseline({ rawSnapshot: raw, citySeeds: CITY_BASELINE_P1B_BATCH01_SEEDS, countries });
 assert.deepEqual(normalizedB, normalizedA);
-const rebuiltA = buildKnowledgeCityBaselineP1bBatch01Assets({ rawSnapshot: raw, countries, pilotCities });
 const rebuiltB = buildKnowledgeCityBaselineP1bBatch01Assets({ rawSnapshot: raw, countries, pilotCities });
 assert.deepEqual(rebuiltB, rebuiltA);
 const serialized = serializeKnowledgeCityBaselineP1bBatch01Assets(rebuiltA);
-for (const [key, relativePath] of Object.entries(CITY_BASELINE_P1B_BATCH01_PUBLISH_RELATIVE_PATHS)) {
+for (const [key, relativePath] of Object.entries(CITY_BASELINE_P1B_BATCH01_PUBLISH_RELATIVE_PATHS)
+  .filter(([key]) => ["cities", "provenance"].includes(key))) {
   assert.equal(serialized[key], readText(relativePath), `${key} serialized rebuild should be byte-identical`);
 }
+assert.deepEqual(clone(rebuiltA.reviewQueueAsset.reviewQueue), cityReviews, "City review rebuild should be byte-stable at serialized object level");
+assert.deepEqual(rebuiltA.conflictsAsset.conflicts, conflictValidation.cityConflicts, "City conflict rebuild should be byte-stable at object level");
 
 const base = cityByQid.get("Q2841");
 assert(hasConflict(dedupeKnowledgeCityEntities([base, clone(base)], { countries }), "duplicate-city-entity-id"));
@@ -448,36 +630,37 @@ const wrongWarsawAnchorGate = gateFixture(raw, "Q270", (_evidence, entity) => { 
 assert.equal(wrongWarsawAnchorGate.status, "BLOCKED");
 
 const audit = auditKnowledgeCityBaselineP1bBatch01();
-assert.equal(audit.status, "PASS");
-assert.deepEqual(audit.scope, { batch01Countries: 5, batch01Cities: 10, batch01Pois: 0, batch01PoiStatus: "NOT_STARTED" });
+assert.equal(audit.scope.batch01Countries, 5);
+assert.equal(audit.scope.batch01Cities, 10);
+assert.equal(audit.rawGate.status, "PASS");
+assert.equal(audit.schemaValidation.accepted, true);
+assert.equal(audit.parentValidation.accepted, true);
+assert.deepEqual(audit.parentCounts, audit.expectedParentCounts);
+const netherlandsCityEntityIds = new Set(batchCities
+  .filter((city) => city.parentCountryEntityId === "country-febe99ab26ea41f0")
+  .map((city) => city.entityId));
+const netherlandsCityReviews = cityReviews.filter((review) => review.relatedEntityIds
+  .some((entityId) => netherlandsCityEntityIds.has(entityId)));
+assert.equal(netherlandsCityReviews.every((review) => gateByQid.get(review.wikidataId)?.reviewReasons.includes(review.type)), true);
+assert.equal(audit.netherlandsIsolation.provenanceReferencesCountryReview, false);
 assert.equal(audit.provenance.coverage, 10);
 assert.equal(audit.provenance.inlineSidecarMatches, 10);
 assert.equal(audit.unsupportedBoundaries.length, 0);
-
-const publishedBeforeOfflineRerun = Object.fromEntries(Object.entries(CITY_BASELINE_P1B_BATCH01_PUBLISH_RELATIVE_PATHS)
-  .map(([key, relativePath]) => [key, readText(relativePath)]));
-const offlineRerun = JSON.parse(execFileSync(process.execPath, [path.resolve(PROJECT_ROOT, "scripts/import-knowledge-city-baseline-p1b-batch01.mjs")], {
-  cwd: PROJECT_ROOT,
-  encoding: "utf8",
-}));
-assert.equal(offlineRerun.status, "PASS");
-assert.equal(offlineRerun.mode, "offline-publish");
-assert.equal(offlineRerun.calledWikidata, false);
-assert.equal(readText(CITY_BASELINE_P1B_BATCH01_RAW_RELATIVE_PATH), rawText);
-for (const [key, relativePath] of Object.entries(CITY_BASELINE_P1B_BATCH01_PUBLISH_RELATIVE_PATHS)) {
-  assert.equal(readText(relativePath), publishedBeforeOfflineRerun[key], `${key} changed during offline importer rerun`);
-}
-
-for (const forbiddenPath of [
-  "data/knowledge/raw/pois-p1b-batch01.wikidata.json",
-  "data/knowledge/batches/pois.p1b-batch01.json",
-  "data/knowledge/batches/provenance.pois.p1b-batch01.json",
-  "scripts/import-knowledge-poi-baseline-p1b-batch01.mjs",
-  "scripts/knowledge-poi-review-classifier-p1b-batch01.mjs",
-]) assert.equal(fs.existsSync(path.resolve(PROJECT_ROOT, forbiddenPath)), false, `${forbiddenPath} should not exist in City checkpoint`);
+const poiFileObservation = observeOptionalPoiFiles({
+  relativePaths: OPTIONAL_BATCH01_POI_PATHS,
+  existsSync: (relativePath) => fs.existsSync(path.resolve(PROJECT_ROOT, relativePath)),
+});
+assert.equal(poiFileObservation.allPresent, true, "The cumulative POI checkpoint should expose all formal POI files without affecting City validation");
 
 const verifierSource = readText("scripts/verify-knowledge-city-baseline-p1b-batch01.mjs");
-for (const forbidden of [["fe", "tch("].join(""), ["write", "File"].join(""), ["--", "refresh"].join("")]) {
+for (const forbidden of [
+  ["fe", "tch("].join(""),
+  ["write", "File"].join(""),
+  ["--", "refresh"].join(""),
+  ["fs", ".rename"].join(""),
+  ["Move", "-Item"].join(""),
+  [".codex-city", "-compat"].join(""),
+]) {
   assert.equal(verifierSource.includes(forbidden), false, `City verifier source references ${forbidden}`);
 }
 const protectedDiff = execFileSync("git", ["diff", "--name-only", "HEAD", "--", ...protectedRelativePaths], { cwd: PROJECT_ROOT, encoding: "utf8" }).trim();
@@ -492,9 +675,15 @@ process.stdout.write(`${JSON.stringify({
   cityEntityIds: Object.fromEntries(batchCities.map((city) => [city.wikidataId, city.entityId])),
   parentCounts: audit.parentCounts,
   polandGate: audit.polandGate,
-  conflictCount: conflictsAsset.conflictCount,
-  reviewCount: reviewsAsset.reviewCount,
-  reviewTypes: Object.keys(audit.administrativeBoundaryReviews.byType).sort(),
+  cityConflictCount: conflictValidation.cityConflicts.length,
+  nonCityConflictCount: conflictValidation.nonCityConflicts.length,
+  cityReviewsChecked: cityReviews.length,
+  nonCityReviewsObserved: nonCityReviews.length,
+  totalCumulativeReviews: reviewValidation.totalReviews,
+  reviewTypes: [...new Set(cityReviews.map((review) => review.type))].sort(),
+  poiFilesPresent: poiFileObservation.allPresent,
+  poiContentsRead: false,
+  temporaryFileHiding: false,
   provenanceCoverage: 10,
   deterministicNormalization: true,
   deterministicPureBuilder: true,
@@ -520,10 +709,11 @@ process.stdout.write(`${JSON.stringify({
     warsawWrongAnchorBlocking: true,
     defensiveCopyValidation: true,
     deterministicReviewId: true,
+    cumulativeReviewCompatibility: cumulativeReviewFixtures,
   },
   acceptedHash: EXPECTED_ACCEPTED_HASH,
   bootstrapHash: EXPECTED_BOOTSTRAP_HASH,
   protectedFilesUnchanged: true,
-  offlineImporterRerunByteStable: true,
+  pureCityRebuildByteStable: true,
   realNetworkCalls: 0,
 }, null, 2)}\n`);

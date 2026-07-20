@@ -1,0 +1,2234 @@
+{
+  "policyVersion": "p1b-batch01-poi-selection-v1",
+  "createdFromRawHashes": {
+    "base": "fe39f0f9ad4bebe31f0cbe64390744b1c3343f484968838d204d8ae431e80c1d",
+    "supplement01": "6de7b51427a4370d2042701dc4c78d3496046c89e556caa9c32ba3abbbceb2fd",
+    "supplement02": "57cb63ea4678380ef70ab522057207a9582bce28a80de8327d79419683c3480e",
+    "supplement03": "ad3915efdcc09bcd09f245ee9200b02eca6d65d532b7f85a493b1b6d7049e9af"
+  },
+  "selectionRule": "three-primary-backup-optional",
+  "primaryCount": 30,
+  "backupCount": 8,
+  "cities": [
+    {
+      "city": "Bogotá",
+      "cityQid": "Q2841",
+      "primaryCandidateKeys": [
+        "Q2841::national-museum-of-colombia",
+        "Q2841::botero-museum",
+        "Q2841::bogota-primatial-cathedral"
+      ],
+      "backupCandidateKey": "Q2841::planetarium-of-bogota",
+      "backupReason": "optional-operational-reserve",
+      "publishPrimaryQuotaMet": true,
+      "backupRequiredForPublish": false
+    },
+    {
+      "city": "Medellín",
+      "cityQid": "Q48278",
+      "primaryCandidateKeys": [
+        "Q48278::museum-of-antioquia",
+        "Q48278::medellin-museum-of-modern-art",
+        "Q48278::metropolitan-cathedral-of-medellin"
+      ],
+      "backupCandidateKey": "Q48278::rafael-uribe-uribe-palace-of-culture",
+      "backupReason": "optional-operational-reserve",
+      "publishPrimaryQuotaMet": true,
+      "backupRequiredForPublish": false
+    },
+    {
+      "city": "Prague",
+      "cityQid": "Q1085",
+      "primaryCandidateKeys": [
+        "Q1085::church-of-our-lady-before-tyn",
+        "Q1085::old-town-hall-with-astronomical-clock",
+        "Q1085::zizkov-television-tower"
+      ],
+      "backupCandidateKey": null,
+      "backupReason": "no-fourth-usable-candidate",
+      "publishPrimaryQuotaMet": true,
+      "backupRequiredForPublish": false
+    },
+    {
+      "city": "Brno",
+      "cityQid": "Q14960",
+      "primaryCandidateKeys": [
+        "Q14960::spilberk-castle",
+        "Q14960::cathedral-of-st-peter-and-paul",
+        "Q14960::mahen-theatre"
+      ],
+      "backupCandidateKey": null,
+      "backupReason": "no-fourth-usable-candidate",
+      "publishPrimaryQuotaMet": true,
+      "backupRequiredForPublish": false
+    },
+    {
+      "city": "Helsinki",
+      "cityQid": "Q1757",
+      "primaryCandidateKeys": [
+        "Q1757::finnish-national-theatre",
+        "Q1757::helsinki-central-library-oodi",
+        "Q1757::national-museum-of-finland"
+      ],
+      "backupCandidateKey": "Q1757::house-of-the-estates",
+      "backupReason": "optional-operational-reserve",
+      "publishPrimaryQuotaMet": true,
+      "backupRequiredForPublish": false
+    },
+    {
+      "city": "Turku",
+      "cityQid": "Q38511",
+      "primaryCandidateKeys": [
+        "Q38511::sibelius-museum",
+        "Q38511::turku-castle",
+        "Q38511::turku-cathedral"
+      ],
+      "backupCandidateKey": "Q38511::turku-art-museum",
+      "backupReason": "optional-operational-reserve",
+      "publishPrimaryQuotaMet": true,
+      "backupRequiredForPublish": false
+    },
+    {
+      "city": "Amsterdam",
+      "cityQid": "Q727",
+      "primaryCandidateKeys": [
+        "Q727::anne-frank-house",
+        "Q727::rijksmuseum",
+        "Q727::van-gogh-museum"
+      ],
+      "backupCandidateKey": "Q727::royal-palace-of-amsterdam",
+      "backupReason": "optional-operational-reserve",
+      "publishPrimaryQuotaMet": true,
+      "backupRequiredForPublish": false
+    },
+    {
+      "city": "Rotterdam",
+      "cityQid": "Q34370",
+      "primaryCandidateKeys": [
+        "Q34370::maritime-museum-rotterdam",
+        "Q34370::euromast",
+        "Q34370::erasmus-bridge"
+      ],
+      "backupCandidateKey": "Q34370::depot-boijmans-van-beuningen",
+      "backupReason": "optional-operational-reserve",
+      "publishPrimaryQuotaMet": true,
+      "backupRequiredForPublish": false
+    },
+    {
+      "city": "Warsaw",
+      "cityQid": "Q270",
+      "primaryCandidateKeys": [
+        "Q270::warsaw-uprising-museum",
+        "Q270::palace-of-culture-and-science",
+        "Q270::royal-castle-in-warsaw"
+      ],
+      "backupCandidateKey": "Q270::polin-museum-of-the-history-of-polish-jews",
+      "backupReason": "optional-operational-reserve",
+      "publishPrimaryQuotaMet": true,
+      "backupRequiredForPublish": false
+    },
+    {
+      "city": "Kraków",
+      "cityQid": "Q31487",
+      "primaryCandidateKeys": [
+        "Q31487::national-museum-in-krakow",
+        "Q31487::wawel-royal-castle",
+        "Q31487::st-mary-s-basilica"
+      ],
+      "backupCandidateKey": "Q31487::krakow-barbican",
+      "backupReason": "optional-operational-reserve",
+      "publishPrimaryQuotaMet": true,
+      "backupRequiredForPublish": false
+    }
+  ],
+  "primaryCandidates": [
+    {
+      "candidateKey": "Q2841::national-museum-of-colombia",
+      "candidateName": "National Museum of Colombia",
+      "selectedQid": "Q671264",
+      "cityQid": "Q2841",
+      "status": "pass",
+      "sourceRound": "base",
+      "parentEvidenceLevel": "direct",
+      "P31Key": "Q17431399|Q33506",
+      "identityRisk": "low-within-frozen-evidence-gate",
+      "selectionRationale": "primary:pass-priority;complete-country-coordinate-parent-and-p31-evidence;parent-direct;city-evidence-quality-order",
+      "rawReference": {
+        "rawPath": "data/knowledge/raw/pois-p1b-batch01-candidates.wikidata.json",
+        "candidateIndex": 3,
+        "candidateKey": "Q2841::national-museum-of-colombia"
+      }
+    },
+    {
+      "candidateKey": "Q2841::botero-museum",
+      "candidateName": "Botero Museum",
+      "selectedQid": "Q3329100",
+      "cityQid": "Q2841",
+      "status": "pass",
+      "sourceRound": "supplement01",
+      "parentEvidenceLevel": "direct",
+      "P31Key": "Q207694|Q33506",
+      "identityRisk": "low-within-frozen-evidence-gate",
+      "selectionRationale": "primary:pass-priority;complete-country-coordinate-parent-and-p31-evidence;parent-direct;city-evidence-quality-order",
+      "rawReference": {
+        "rawPath": "data/knowledge/raw/pois-p1b-batch01-candidates-supplement01.wikidata.json",
+        "candidateIndex": 2,
+        "candidateKey": "Q2841::botero-museum"
+      }
+    },
+    {
+      "candidateKey": "Q2841::bogota-primatial-cathedral",
+      "candidateName": "Bogotá Primatial Cathedral",
+      "selectedQid": "Q2942872",
+      "cityQid": "Q2841",
+      "status": "pass",
+      "sourceRound": "supplement03",
+      "parentEvidenceLevel": "direct",
+      "P31Key": "Q16970|Q2977",
+      "identityRisk": "low-within-frozen-evidence-gate",
+      "selectionRationale": "primary:pass-priority;complete-country-coordinate-parent-and-p31-evidence;parent-direct;city-evidence-quality-order",
+      "rawReference": {
+        "rawPath": "data/knowledge/raw/pois-p1b-batch01-candidates-supplement03.wikidata.json",
+        "candidateIndex": 1,
+        "candidateKey": "Q2841::bogota-primatial-cathedral"
+      }
+    },
+    {
+      "candidateKey": "Q48278::museum-of-antioquia",
+      "candidateName": "Museum of Antioquia",
+      "selectedQid": "Q2377645",
+      "cityQid": "Q48278",
+      "status": "pass",
+      "sourceRound": "base",
+      "parentEvidenceLevel": "direct",
+      "P31Key": "Q33506",
+      "identityRisk": "low-within-frozen-evidence-gate",
+      "selectionRationale": "primary:pass-priority;complete-country-coordinate-parent-and-p31-evidence;parent-direct;city-evidence-quality-order",
+      "rawReference": {
+        "rawPath": "data/knowledge/raw/pois-p1b-batch01-candidates.wikidata.json",
+        "candidateIndex": 5,
+        "candidateKey": "Q48278::museum-of-antioquia"
+      }
+    },
+    {
+      "candidateKey": "Q48278::medellin-museum-of-modern-art",
+      "candidateName": "Medellín Museum of Modern Art",
+      "selectedQid": "Q3329644",
+      "cityQid": "Q48278",
+      "status": "pass",
+      "sourceRound": "base",
+      "parentEvidenceLevel": "direct",
+      "P31Key": "Q207694|Q33506",
+      "identityRisk": "low-within-frozen-evidence-gate",
+      "selectionRationale": "primary:pass-priority;complete-country-coordinate-parent-and-p31-evidence;parent-direct;city-evidence-quality-order",
+      "rawReference": {
+        "rawPath": "data/knowledge/raw/pois-p1b-batch01-candidates.wikidata.json",
+        "candidateIndex": 6,
+        "candidateKey": "Q48278::medellin-museum-of-modern-art"
+      }
+    },
+    {
+      "candidateKey": "Q48278::metropolitan-cathedral-of-medellin",
+      "candidateName": "Metropolitan Cathedral of Medellín",
+      "selectedQid": "Q1050597",
+      "cityQid": "Q48278",
+      "status": "pass",
+      "sourceRound": "base",
+      "parentEvidenceLevel": "direct",
+      "P31Key": "Q56242215",
+      "identityRisk": "low-within-frozen-evidence-gate",
+      "selectionRationale": "primary:pass-priority;complete-country-coordinate-parent-and-p31-evidence;parent-direct;city-evidence-quality-order",
+      "rawReference": {
+        "rawPath": "data/knowledge/raw/pois-p1b-batch01-candidates.wikidata.json",
+        "candidateIndex": 7,
+        "candidateKey": "Q48278::metropolitan-cathedral-of-medellin"
+      }
+    },
+    {
+      "candidateKey": "Q1085::church-of-our-lady-before-tyn",
+      "candidateName": "Church of Our Lady before Týn",
+      "selectedQid": "Q1453427",
+      "cityQid": "Q1085",
+      "status": "pass",
+      "sourceRound": "supplement01",
+      "parentEvidenceLevel": "direct",
+      "P31Key": "Q16970",
+      "identityRisk": "low-within-frozen-evidence-gate",
+      "selectionRationale": "primary:pass-priority;complete-country-coordinate-parent-and-p31-evidence;parent-direct;city-evidence-quality-order",
+      "rawReference": {
+        "rawPath": "data/knowledge/raw/pois-p1b-batch01-candidates-supplement01.wikidata.json",
+        "candidateIndex": 29,
+        "candidateKey": "Q1085::church-of-our-lady-before-tyn"
+      }
+    },
+    {
+      "candidateKey": "Q1085::old-town-hall-with-astronomical-clock",
+      "candidateName": "Old Town Hall with Astronomical Clock",
+      "selectedQid": "Q2332231",
+      "cityQid": "Q1085",
+      "status": "conditional-manual",
+      "sourceRound": "supplement03",
+      "parentEvidenceLevel": "location-path",
+      "P31Key": "Q33506|Q543654",
+      "identityRisk": "conditional-manual-evidence-boundary",
+      "selectionRationale": "primary:conditional-manual-after-pass;complete-country-coordinate-parent-and-p31-evidence;parent-location-path;city-evidence-quality-order",
+      "rawReference": {
+        "rawPath": "data/knowledge/raw/pois-p1b-batch01-candidates-supplement03.wikidata.json",
+        "candidateIndex": 5,
+        "candidateKey": "Q1085::old-town-hall-with-astronomical-clock"
+      }
+    },
+    {
+      "candidateKey": "Q1085::zizkov-television-tower",
+      "candidateName": "Žižkov Television Tower",
+      "selectedQid": "Q1413217",
+      "cityQid": "Q1085",
+      "status": "pass",
+      "sourceRound": "supplement03",
+      "parentEvidenceLevel": "location-path",
+      "P31Key": "Q11166728|Q1440300",
+      "identityRisk": "low-within-frozen-evidence-gate",
+      "selectionRationale": "primary:pass-priority;complete-country-coordinate-parent-and-p31-evidence;parent-location-path;city-evidence-quality-order",
+      "rawReference": {
+        "rawPath": "data/knowledge/raw/pois-p1b-batch01-candidates-supplement03.wikidata.json",
+        "candidateIndex": 8,
+        "candidateKey": "Q1085::zizkov-television-tower"
+      }
+    },
+    {
+      "candidateKey": "Q14960::spilberk-castle",
+      "candidateName": "Špilberk Castle",
+      "selectedQid": "Q118256",
+      "cityQid": "Q14960",
+      "status": "pass",
+      "sourceRound": "base",
+      "parentEvidenceLevel": "location-path",
+      "P31Key": "Q23413|Q57831",
+      "identityRisk": "low-within-frozen-evidence-gate",
+      "selectionRationale": "primary:pass-priority;complete-country-coordinate-parent-and-p31-evidence;parent-location-path;city-evidence-quality-order",
+      "rawReference": {
+        "rawPath": "data/knowledge/raw/pois-p1b-batch01-candidates.wikidata.json",
+        "candidateIndex": 15,
+        "candidateKey": "Q14960::spilberk-castle"
+      }
+    },
+    {
+      "candidateKey": "Q14960::cathedral-of-st-peter-and-paul",
+      "candidateName": "Cathedral of St. Peter and Paul",
+      "selectedQid": "Q45033",
+      "cityQid": "Q14960",
+      "status": "pass",
+      "sourceRound": "supplement01",
+      "parentEvidenceLevel": "location-path",
+      "P31Key": "Q16970|Q2977|Q56242215",
+      "identityRisk": "low-within-frozen-evidence-gate",
+      "selectionRationale": "primary:pass-priority;complete-country-coordinate-parent-and-p31-evidence;parent-location-path;city-evidence-quality-order",
+      "rawReference": {
+        "rawPath": "data/knowledge/raw/pois-p1b-batch01-candidates-supplement01.wikidata.json",
+        "candidateIndex": 6,
+        "candidateKey": "Q14960::cathedral-of-st-peter-and-paul"
+      }
+    },
+    {
+      "candidateKey": "Q14960::mahen-theatre",
+      "candidateName": "Mahen Theatre",
+      "selectedQid": "Q1138893",
+      "cityQid": "Q14960",
+      "status": "pass",
+      "sourceRound": "supplement02",
+      "parentEvidenceLevel": "direct",
+      "P31Key": "Q153562|Q24354",
+      "identityRisk": "low-within-frozen-evidence-gate",
+      "selectionRationale": "primary:pass-priority;complete-country-coordinate-parent-and-p31-evidence;parent-direct;city-evidence-quality-order",
+      "rawReference": {
+        "rawPath": "data/knowledge/raw/pois-p1b-batch01-candidates-supplement02.wikidata.json",
+        "candidateIndex": 5,
+        "candidateKey": "Q14960::mahen-theatre"
+      }
+    },
+    {
+      "candidateKey": "Q1757::finnish-national-theatre",
+      "candidateName": "Finnish National Theatre",
+      "selectedQid": "Q1200969",
+      "cityQid": "Q1757",
+      "status": "pass",
+      "sourceRound": "supplement02",
+      "parentEvidenceLevel": "direct",
+      "P31Key": "Q24354",
+      "identityRisk": "low-within-frozen-evidence-gate",
+      "selectionRationale": "primary:pass-priority;complete-country-coordinate-parent-and-p31-evidence;parent-direct;city-evidence-quality-order",
+      "rawReference": {
+        "rawPath": "data/knowledge/raw/pois-p1b-batch01-candidates-supplement02.wikidata.json",
+        "candidateIndex": 6,
+        "candidateKey": "Q1757::finnish-national-theatre"
+      }
+    },
+    {
+      "candidateKey": "Q1757::helsinki-central-library-oodi",
+      "candidateName": "Helsinki Central Library Oodi",
+      "selectedQid": "Q18659999",
+      "cityQid": "Q1757",
+      "status": "pass",
+      "sourceRound": "supplement02",
+      "parentEvidenceLevel": "direct",
+      "P31Key": "Q28564|Q856584",
+      "identityRisk": "low-within-frozen-evidence-gate",
+      "selectionRationale": "primary:pass-priority;complete-country-coordinate-parent-and-p31-evidence;parent-direct;city-evidence-quality-order",
+      "rawReference": {
+        "rawPath": "data/knowledge/raw/pois-p1b-batch01-candidates-supplement02.wikidata.json",
+        "candidateIndex": 7,
+        "candidateKey": "Q1757::helsinki-central-library-oodi"
+      }
+    },
+    {
+      "candidateKey": "Q1757::national-museum-of-finland",
+      "candidateName": "National Museum of Finland",
+      "selectedQid": "Q1418136",
+      "cityQid": "Q1757",
+      "status": "conditional-manual",
+      "sourceRound": "base",
+      "parentEvidenceLevel": "direct",
+      "P31Key": "Q17105874|Q17431399|Q24699794|Q33506",
+      "identityRisk": "mixed-institution-and-physical-identity",
+      "selectionRationale": "primary:conditional-manual-after-pass;complete-country-coordinate-parent-and-p31-evidence;parent-direct;city-evidence-quality-order",
+      "rawReference": {
+        "rawPath": "data/knowledge/raw/pois-p1b-batch01-candidates.wikidata.json",
+        "candidateIndex": 19,
+        "candidateKey": "Q1757::national-museum-of-finland"
+      }
+    },
+    {
+      "candidateKey": "Q38511::sibelius-museum",
+      "candidateName": "Sibelius Museum",
+      "selectedQid": "Q4306382",
+      "cityQid": "Q38511",
+      "status": "pass",
+      "sourceRound": "base",
+      "parentEvidenceLevel": "direct",
+      "P31Key": "Q17455058|Q58632302",
+      "identityRisk": "low-within-frozen-evidence-gate",
+      "selectionRationale": "primary:pass-priority;complete-country-coordinate-parent-and-p31-evidence;parent-direct;city-evidence-quality-order",
+      "rawReference": {
+        "rawPath": "data/knowledge/raw/pois-p1b-batch01-candidates.wikidata.json",
+        "candidateIndex": 23,
+        "candidateKey": "Q38511::sibelius-museum"
+      }
+    },
+    {
+      "candidateKey": "Q38511::turku-castle",
+      "candidateName": "Turku Castle",
+      "selectedQid": "Q136893",
+      "cityQid": "Q38511",
+      "status": "conditional-manual",
+      "sourceRound": "base",
+      "parentEvidenceLevel": "direct",
+      "P31Key": "Q23413|Q33506",
+      "identityRisk": "mixed-institution-and-physical-identity",
+      "selectionRationale": "primary:conditional-manual-after-pass;complete-country-coordinate-parent-and-p31-evidence;parent-direct;city-evidence-quality-order",
+      "rawReference": {
+        "rawPath": "data/knowledge/raw/pois-p1b-batch01-candidates.wikidata.json",
+        "candidateIndex": 21,
+        "candidateKey": "Q38511::turku-castle"
+      }
+    },
+    {
+      "candidateKey": "Q38511::turku-cathedral",
+      "candidateName": "Turku Cathedral",
+      "selectedQid": "Q1187606",
+      "cityQid": "Q38511",
+      "status": "conditional-manual",
+      "sourceRound": "base",
+      "parentEvidenceLevel": "direct",
+      "P31Key": "Q16970|Q2977|Q56242235",
+      "identityRisk": "conditional-manual-evidence-boundary",
+      "selectionRationale": "primary:conditional-manual-after-pass;complete-country-coordinate-parent-and-p31-evidence;parent-direct;city-evidence-quality-order",
+      "rawReference": {
+        "rawPath": "data/knowledge/raw/pois-p1b-batch01-candidates.wikidata.json",
+        "candidateIndex": 22,
+        "candidateKey": "Q38511::turku-cathedral"
+      }
+    },
+    {
+      "candidateKey": "Q727::anne-frank-house",
+      "candidateName": "Anne Frank House",
+      "selectedQid": "Q165366",
+      "cityQid": "Q727",
+      "status": "conditional-manual",
+      "sourceRound": "base",
+      "parentEvidenceLevel": "direct",
+      "P31Key": "Q2087181|Q575759",
+      "identityRisk": "mixed-institution-and-physical-identity",
+      "selectionRationale": "primary:conditional-manual-after-pass;complete-country-coordinate-parent-and-p31-evidence;parent-direct;city-evidence-quality-order",
+      "rawReference": {
+        "rawPath": "data/knowledge/raw/pois-p1b-batch01-candidates.wikidata.json",
+        "candidateIndex": 27,
+        "candidateKey": "Q727::anne-frank-house"
+      }
+    },
+    {
+      "candidateKey": "Q727::rijksmuseum",
+      "candidateName": "Rijksmuseum",
+      "selectedQid": "Q190804",
+      "cityQid": "Q727",
+      "status": "conditional-manual",
+      "sourceRound": "supplement01",
+      "parentEvidenceLevel": "municipality-city-structured-relationship",
+      "P31Key": "Q11396960|Q1172284|Q16735822|Q17431399|Q207694",
+      "identityRisk": "manual-parent-evidence:municipality-city-structured-relationship",
+      "selectionRationale": "primary:conditional-manual-after-pass;complete-country-coordinate-parent-and-p31-evidence;parent-municipality-city-structured-relationship;city-evidence-quality-order",
+      "rawReference": {
+        "rawPath": "data/knowledge/raw/pois-p1b-batch01-candidates-supplement01.wikidata.json",
+        "candidateIndex": 16,
+        "candidateKey": "Q727::rijksmuseum"
+      }
+    },
+    {
+      "candidateKey": "Q727::van-gogh-museum",
+      "candidateName": "Van Gogh Museum",
+      "selectedQid": "Q224124",
+      "cityQid": "Q727",
+      "status": "conditional-manual",
+      "sourceRound": "supplement01",
+      "parentEvidenceLevel": "municipality-city-structured-relationship",
+      "P31Key": "Q207694|Q3152824|Q33506",
+      "identityRisk": "manual-parent-evidence:municipality-city-structured-relationship",
+      "selectionRationale": "primary:conditional-manual-after-pass;complete-country-coordinate-parent-and-p31-evidence;parent-municipality-city-structured-relationship;city-evidence-quality-order",
+      "rawReference": {
+        "rawPath": "data/knowledge/raw/pois-p1b-batch01-candidates-supplement01.wikidata.json",
+        "candidateIndex": 17,
+        "candidateKey": "Q727::van-gogh-museum"
+      }
+    },
+    {
+      "candidateKey": "Q34370::maritime-museum-rotterdam",
+      "candidateName": "Maritime Museum Rotterdam",
+      "selectedQid": "Q2755458",
+      "cityQid": "Q34370",
+      "status": "pass",
+      "sourceRound": "base",
+      "parentEvidenceLevel": "direct",
+      "P31Key": "Q1863818",
+      "identityRisk": "low-within-frozen-evidence-gate",
+      "selectionRationale": "primary:pass-priority;complete-country-coordinate-parent-and-p31-evidence;parent-direct;city-evidence-quality-order",
+      "rawReference": {
+        "rawPath": "data/knowledge/raw/pois-p1b-batch01-candidates.wikidata.json",
+        "candidateIndex": 29,
+        "candidateKey": "Q34370::maritime-museum-rotterdam"
+      }
+    },
+    {
+      "candidateKey": "Q34370::euromast",
+      "candidateName": "Euromast",
+      "selectedQid": "Q969215",
+      "cityQid": "Q34370",
+      "status": "conditional-manual",
+      "sourceRound": "supplement01",
+      "parentEvidenceLevel": "municipality-city-structured-relationship",
+      "P31Key": "Q1440300",
+      "identityRisk": "manual-parent-evidence:municipality-city-structured-relationship",
+      "selectionRationale": "primary:conditional-manual-after-pass;complete-country-coordinate-parent-and-p31-evidence;parent-municipality-city-structured-relationship;city-evidence-quality-order",
+      "rawReference": {
+        "rawPath": "data/knowledge/raw/pois-p1b-batch01-candidates-supplement01.wikidata.json",
+        "candidateIndex": 11,
+        "candidateKey": "Q34370::euromast"
+      }
+    },
+    {
+      "candidateKey": "Q34370::erasmus-bridge",
+      "candidateName": "Erasmus Bridge",
+      "selectedQid": "Q1348188",
+      "cityQid": "Q34370",
+      "status": "conditional-manual",
+      "sourceRound": "supplement01",
+      "parentEvidenceLevel": "municipality-city-structured-relationship",
+      "P31Key": "Q537127|Q79007|Q911663",
+      "identityRisk": "manual-parent-evidence:municipality-city-structured-relationship",
+      "selectionRationale": "primary:conditional-manual-after-pass;complete-country-coordinate-parent-and-p31-evidence;parent-municipality-city-structured-relationship;city-evidence-quality-order",
+      "rawReference": {
+        "rawPath": "data/knowledge/raw/pois-p1b-batch01-candidates-supplement01.wikidata.json",
+        "candidateIndex": 20,
+        "candidateKey": "Q34370::erasmus-bridge"
+      }
+    },
+    {
+      "candidateKey": "Q270::warsaw-uprising-museum",
+      "candidateName": "Warsaw Uprising Museum",
+      "selectedQid": "Q574328",
+      "cityQid": "Q270",
+      "status": "pass",
+      "sourceRound": "base",
+      "parentEvidenceLevel": "direct",
+      "P31Key": "Q16735822|Q2772772|Q811979",
+      "identityRisk": "low-within-frozen-evidence-gate",
+      "selectionRationale": "primary:pass-priority;complete-country-coordinate-parent-and-p31-evidence;parent-direct;city-evidence-quality-order",
+      "rawReference": {
+        "rawPath": "data/knowledge/raw/pois-p1b-batch01-candidates.wikidata.json",
+        "candidateIndex": 34,
+        "candidateKey": "Q270::warsaw-uprising-museum"
+      }
+    },
+    {
+      "candidateKey": "Q270::palace-of-culture-and-science",
+      "candidateName": "Palace of Culture and Science",
+      "selectedQid": "Q167566",
+      "cityQid": "Q270",
+      "status": "pass",
+      "sourceRound": "supplement01",
+      "parentEvidenceLevel": "direct",
+      "P31Key": "Q11303|Q16560|Q2319498|Q5061188|Q811165",
+      "identityRisk": "low-within-frozen-evidence-gate",
+      "selectionRationale": "primary:pass-priority;complete-country-coordinate-parent-and-p31-evidence;parent-direct;city-evidence-quality-order",
+      "rawReference": {
+        "rawPath": "data/knowledge/raw/pois-p1b-batch01-candidates-supplement01.wikidata.json",
+        "candidateIndex": 8,
+        "candidateKey": "Q270::palace-of-culture-and-science"
+      }
+    },
+    {
+      "candidateKey": "Q270::royal-castle-in-warsaw",
+      "candidateName": "Royal Castle in Warsaw",
+      "selectedQid": "Q756098",
+      "cityQid": "Q270",
+      "status": "conditional-manual",
+      "sourceRound": "base",
+      "parentEvidenceLevel": "direct",
+      "P31Key": "Q23413|Q33506|Q53536964|Q811165",
+      "identityRisk": "mixed-institution-and-physical-identity",
+      "selectionRationale": "primary:conditional-manual-after-pass;complete-country-coordinate-parent-and-p31-evidence;parent-direct;city-evidence-quality-order",
+      "rawReference": {
+        "rawPath": "data/knowledge/raw/pois-p1b-batch01-candidates.wikidata.json",
+        "candidateIndex": 33,
+        "candidateKey": "Q270::royal-castle-in-warsaw"
+      }
+    },
+    {
+      "candidateKey": "Q31487::national-museum-in-krakow",
+      "candidateName": "National Museum in Kraków",
+      "selectedQid": "Q195311",
+      "cityQid": "Q31487",
+      "status": "pass",
+      "sourceRound": "base",
+      "parentEvidenceLevel": "direct",
+      "P31Key": "Q17431399|Q207694|Q2772772",
+      "identityRisk": "low-within-frozen-evidence-gate",
+      "selectionRationale": "primary:pass-priority;complete-country-coordinate-parent-and-p31-evidence;parent-direct;city-evidence-quality-order",
+      "rawReference": {
+        "rawPath": "data/knowledge/raw/pois-p1b-batch01-candidates.wikidata.json",
+        "candidateIndex": 40,
+        "candidateKey": "Q31487::national-museum-in-krakow"
+      }
+    },
+    {
+      "candidateKey": "Q31487::wawel-royal-castle",
+      "candidateName": "Wawel Royal Castle",
+      "selectedQid": "Q7975612",
+      "cityQid": "Q31487",
+      "status": "conditional-manual",
+      "sourceRound": "base",
+      "parentEvidenceLevel": "direct",
+      "P31Key": "Q33506",
+      "identityRisk": "conditional-manual-evidence-boundary",
+      "selectionRationale": "primary:conditional-manual-after-pass;complete-country-coordinate-parent-and-p31-evidence;parent-direct;city-evidence-quality-order",
+      "rawReference": {
+        "rawPath": "data/knowledge/raw/pois-p1b-batch01-candidates.wikidata.json",
+        "candidateIndex": 37,
+        "candidateKey": "Q31487::wawel-royal-castle"
+      }
+    },
+    {
+      "candidateKey": "Q31487::st-mary-s-basilica",
+      "candidateName": "St. Mary’s Basilica",
+      "selectedQid": "Q1143171",
+      "cityQid": "Q31487",
+      "status": "conditional-manual",
+      "sourceRound": "supplement01",
+      "parentEvidenceLevel": "direct",
+      "P31Key": "Q120560|Q16970|Q811165",
+      "identityRisk": "conditional-manual-evidence-boundary",
+      "selectionRationale": "primary:conditional-manual-after-pass;complete-country-coordinate-parent-and-p31-evidence;parent-direct;city-evidence-quality-order",
+      "rawReference": {
+        "rawPath": "data/knowledge/raw/pois-p1b-batch01-candidates-supplement01.wikidata.json",
+        "candidateIndex": 9,
+        "candidateKey": "Q31487::st-mary-s-basilica"
+      }
+    }
+  ],
+  "backupCandidates": [
+    {
+      "candidateKey": "Q2841::planetarium-of-bogota",
+      "candidateName": "Planetarium of Bogotá",
+      "selectedQid": "Q6077641",
+      "cityQid": "Q2841",
+      "status": "pass",
+      "sourceRound": "supplement03",
+      "parentEvidenceLevel": "direct",
+      "P31Key": "Q148319|Q588140",
+      "identityRisk": "low-within-frozen-evidence-gate",
+      "selectionRationale": "backup:pass-priority;complete-country-coordinate-parent-and-p31-evidence;parent-direct;city-evidence-quality-order",
+      "rawReference": {
+        "rawPath": "data/knowledge/raw/pois-p1b-batch01-candidates-supplement03.wikidata.json",
+        "candidateIndex": 2,
+        "candidateKey": "Q2841::planetarium-of-bogota"
+      }
+    },
+    {
+      "candidateKey": "Q48278::rafael-uribe-uribe-palace-of-culture",
+      "candidateName": "Rafael Uribe Uribe Palace of Culture",
+      "selectedQid": "Q17086626",
+      "cityQid": "Q48278",
+      "status": "conditional-manual",
+      "sourceRound": "base",
+      "parentEvidenceLevel": "direct",
+      "P31Key": "Q811979",
+      "identityRisk": "mixed-institution-and-physical-identity",
+      "selectionRationale": "backup:conditional-manual-after-pass;complete-country-coordinate-parent-and-p31-evidence;parent-direct;city-evidence-quality-order",
+      "rawReference": {
+        "rawPath": "data/knowledge/raw/pois-p1b-batch01-candidates.wikidata.json",
+        "candidateIndex": 8,
+        "candidateKey": "Q48278::rafael-uribe-uribe-palace-of-culture"
+      }
+    },
+    {
+      "candidateKey": "Q1757::house-of-the-estates",
+      "candidateName": "House of the Estates",
+      "selectedQid": "Q3279961",
+      "cityQid": "Q1757",
+      "status": "conditional-manual",
+      "sourceRound": "supplement02",
+      "parentEvidenceLevel": "direct",
+      "P31Key": "Q2519340",
+      "identityRisk": "conditional-manual-evidence-boundary",
+      "selectionRationale": "backup:conditional-manual-after-pass;complete-country-coordinate-parent-and-p31-evidence;parent-direct;city-evidence-quality-order",
+      "rawReference": {
+        "rawPath": "data/knowledge/raw/pois-p1b-batch01-candidates-supplement02.wikidata.json",
+        "candidateIndex": 8,
+        "candidateKey": "Q1757::house-of-the-estates"
+      }
+    },
+    {
+      "candidateKey": "Q38511::turku-art-museum",
+      "candidateName": "Turku Art Museum",
+      "selectedQid": "Q4502138",
+      "cityQid": "Q38511",
+      "status": "conditional-manual",
+      "sourceRound": "base",
+      "parentEvidenceLevel": "direct",
+      "P31Key": "Q207694|Q24699794",
+      "identityRisk": "mixed-institution-and-physical-identity",
+      "selectionRationale": "backup:conditional-manual-after-pass;complete-country-coordinate-parent-and-p31-evidence;parent-direct;city-evidence-quality-order",
+      "rawReference": {
+        "rawPath": "data/knowledge/raw/pois-p1b-batch01-candidates.wikidata.json",
+        "candidateIndex": 24,
+        "candidateKey": "Q38511::turku-art-museum"
+      }
+    },
+    {
+      "candidateKey": "Q727::royal-palace-of-amsterdam",
+      "candidateName": "Royal Palace of Amsterdam",
+      "selectedQid": "Q1056152",
+      "cityQid": "Q727",
+      "status": "conditional-manual",
+      "sourceRound": "supplement01",
+      "parentEvidenceLevel": "municipality-city-structured-relationship",
+      "P31Key": "Q24699794|Q25550691|Q53536964",
+      "identityRisk": "manual-parent-evidence:municipality-city-structured-relationship",
+      "selectionRationale": "backup:conditional-manual-after-pass;complete-country-coordinate-parent-and-p31-evidence;parent-municipality-city-structured-relationship;city-evidence-quality-order",
+      "rawReference": {
+        "rawPath": "data/knowledge/raw/pois-p1b-batch01-candidates-supplement01.wikidata.json",
+        "candidateIndex": 18,
+        "candidateKey": "Q727::royal-palace-of-amsterdam"
+      }
+    },
+    {
+      "candidateKey": "Q34370::depot-boijmans-van-beuningen",
+      "candidateName": "Depot Boijmans Van Beuningen",
+      "selectedQid": "Q41061028",
+      "cityQid": "Q34370",
+      "status": "conditional-manual",
+      "sourceRound": "supplement01",
+      "parentEvidenceLevel": "municipality-city-structured-relationship",
+      "P31Key": "Q1191732|Q63873440",
+      "identityRisk": "manual-parent-evidence:municipality-city-structured-relationship",
+      "selectionRationale": "backup:conditional-manual-after-pass;complete-country-coordinate-parent-and-p31-evidence;parent-municipality-city-structured-relationship;city-evidence-quality-order",
+      "rawReference": {
+        "rawPath": "data/knowledge/raw/pois-p1b-batch01-candidates-supplement01.wikidata.json",
+        "candidateIndex": 38,
+        "candidateKey": "Q34370::depot-boijmans-van-beuningen"
+      }
+    },
+    {
+      "candidateKey": "Q270::polin-museum-of-the-history-of-polish-jews",
+      "candidateName": "POLIN Museum of the History of Polish Jews",
+      "selectedQid": "Q429069",
+      "cityQid": "Q270",
+      "status": "conditional-manual",
+      "sourceRound": "base",
+      "parentEvidenceLevel": "direct",
+      "P31Key": "Q1307560|Q24699794",
+      "identityRisk": "mixed-institution-and-physical-identity",
+      "selectionRationale": "backup:conditional-manual-after-pass;complete-country-coordinate-parent-and-p31-evidence;parent-direct;city-evidence-quality-order",
+      "rawReference": {
+        "rawPath": "data/knowledge/raw/pois-p1b-batch01-candidates.wikidata.json",
+        "candidateIndex": 36,
+        "candidateKey": "Q270::polin-museum-of-the-history-of-polish-jews"
+      }
+    },
+    {
+      "candidateKey": "Q31487::krakow-barbican",
+      "candidateName": "Kraków Barbican",
+      "selectedQid": "Q807309",
+      "cityQid": "Q31487",
+      "status": "conditional-manual",
+      "sourceRound": "supplement01",
+      "parentEvidenceLevel": "direct",
+      "P31Key": "Q23394|Q811165",
+      "identityRisk": "mixed-institution-and-physical-identity",
+      "selectionRationale": "backup:conditional-manual-after-pass;complete-country-coordinate-parent-and-p31-evidence;parent-direct;city-evidence-quality-order",
+      "rawReference": {
+        "rawPath": "data/knowledge/raw/pois-p1b-batch01-candidates-supplement01.wikidata.json",
+        "candidateIndex": 42,
+        "candidateKey": "Q31487::krakow-barbican"
+      }
+    }
+  ],
+  "excludedCandidates": [
+    {
+      "candidateKey": "Q2841::gold-museum",
+      "candidateName": "Gold Museum",
+      "selectedQid": null,
+      "cityQid": "Q2841",
+      "status": "identity-ambiguous",
+      "sourceRound": "supplement01",
+      "exclusionReason": "status-not-selection-eligible:identity-ambiguous",
+      "rawReference": {
+        "rawPath": "data/knowledge/raw/pois-p1b-batch01-candidates-supplement01.wikidata.json",
+        "candidateIndex": 1,
+        "candidateKey": "Q2841::gold-museum"
+      }
+    },
+    {
+      "candidateKey": "Q2841::quinta-de-bolivar",
+      "candidateName": "Quinta de Bolívar",
+      "selectedQid": null,
+      "cityQid": "Q2841",
+      "status": "coordinate-failed",
+      "sourceRound": "base",
+      "exclusionReason": "status-not-selection-eligible:coordinate-failed",
+      "rawReference": {
+        "rawPath": "data/knowledge/raw/pois-p1b-batch01-candidates.wikidata.json",
+        "candidateIndex": 4,
+        "candidateKey": "Q2841::quinta-de-bolivar"
+      }
+    },
+    {
+      "candidateKey": "Q1085::charles-bridge",
+      "candidateName": "Charles Bridge",
+      "selectedQid": null,
+      "cityQid": "Q1085",
+      "status": "identity-ambiguous",
+      "sourceRound": "supplement01",
+      "exclusionReason": "status-not-selection-eligible:identity-ambiguous",
+      "rawReference": {
+        "rawPath": "data/knowledge/raw/pois-p1b-batch01-candidates-supplement01.wikidata.json",
+        "candidateIndex": 5,
+        "candidateKey": "Q1085::charles-bridge"
+      }
+    },
+    {
+      "candidateKey": "Q1085::municipal-house",
+      "candidateName": "Municipal House",
+      "selectedQid": null,
+      "cityQid": "Q1085",
+      "status": "identity-ambiguous",
+      "sourceRound": "supplement01",
+      "exclusionReason": "status-not-selection-eligible:identity-ambiguous",
+      "rawReference": {
+        "rawPath": "data/knowledge/raw/pois-p1b-batch01-candidates-supplement01.wikidata.json",
+        "candidateIndex": 3,
+        "candidateKey": "Q1085::municipal-house"
+      }
+    },
+    {
+      "candidateKey": "Q1085::st-vitus-cathedral",
+      "candidateName": "St. Vitus Cathedral",
+      "selectedQid": "Q5949",
+      "cityQid": "Q1085",
+      "status": "parent-failed",
+      "sourceRound": "supplement01",
+      "exclusionReason": "status-not-selection-eligible:parent-failed",
+      "rawReference": {
+        "rawPath": "data/knowledge/raw/pois-p1b-batch01-candidates-supplement01.wikidata.json",
+        "candidateIndex": 4,
+        "candidateKey": "Q1085::st-vitus-cathedral"
+      }
+    },
+    {
+      "candidateKey": "Q1085::prague-castle",
+      "candidateName": "Prague Castle",
+      "selectedQid": "Q193369",
+      "cityQid": "Q1085",
+      "status": "parent-failed",
+      "sourceRound": "supplement01",
+      "exclusionReason": "status-not-selection-eligible:parent-failed",
+      "rawReference": {
+        "rawPath": "data/knowledge/raw/pois-p1b-batch01-candidates-supplement01.wikidata.json",
+        "candidateIndex": 13,
+        "candidateKey": "Q1085::prague-castle"
+      }
+    },
+    {
+      "candidateKey": "Q14960::villa-tugendhat",
+      "candidateName": "Villa Tugendhat",
+      "selectedQid": "Q457453",
+      "cityQid": "Q14960",
+      "status": "parent-failed",
+      "sourceRound": "supplement01",
+      "exclusionReason": "status-not-selection-eligible:parent-failed",
+      "rawReference": {
+        "rawPath": "data/knowledge/raw/pois-p1b-batch01-candidates-supplement01.wikidata.json",
+        "candidateIndex": 14,
+        "candidateKey": "Q14960::villa-tugendhat"
+      }
+    },
+    {
+      "candidateKey": "Q14960::brno-ossuary",
+      "candidateName": "Brno Ossuary",
+      "selectedQid": "Q4971773",
+      "cityQid": "Q14960",
+      "status": "parent-failed",
+      "sourceRound": "supplement01",
+      "exclusionReason": "status-not-selection-eligible:parent-failed",
+      "rawReference": {
+        "rawPath": "data/knowledge/raw/pois-p1b-batch01-candidates-supplement01.wikidata.json",
+        "candidateIndex": 15,
+        "candidateKey": "Q14960::brno-ossuary"
+      }
+    },
+    {
+      "candidateKey": "Q1757::helsinki-cathedral",
+      "candidateName": "Helsinki Cathedral",
+      "selectedQid": "Q738015",
+      "cityQid": "Q1757",
+      "status": "coordinate-failed",
+      "sourceRound": "supplement01",
+      "exclusionReason": "status-not-selection-eligible:coordinate-failed",
+      "rawReference": {
+        "rawPath": "data/knowledge/raw/pois-p1b-batch01-candidates-supplement01.wikidata.json",
+        "candidateIndex": 12,
+        "candidateKey": "Q1757::helsinki-cathedral"
+      }
+    },
+    {
+      "candidateKey": "Q1757::temppeliaukio-church",
+      "candidateName": "Temppeliaukio Church",
+      "selectedQid": null,
+      "cityQid": "Q1757",
+      "status": "coordinate-failed",
+      "sourceRound": "base",
+      "exclusionReason": "status-not-selection-eligible:coordinate-failed",
+      "rawReference": {
+        "rawPath": "data/knowledge/raw/pois-p1b-batch01-candidates.wikidata.json",
+        "candidateIndex": 18,
+        "candidateKey": "Q1757::temppeliaukio-church"
+      }
+    },
+    {
+      "candidateKey": "Q1757::ateneum-art-museum",
+      "candidateName": "Ateneum Art Museum",
+      "selectedQid": null,
+      "cityQid": "Q1757",
+      "status": "identity-ambiguous",
+      "sourceRound": "supplement01",
+      "exclusionReason": "status-not-selection-eligible:identity-ambiguous",
+      "rawReference": {
+        "rawPath": "data/knowledge/raw/pois-p1b-batch01-candidates-supplement01.wikidata.json",
+        "candidateIndex": 7,
+        "candidateKey": "Q1757::ateneum-art-museum"
+      }
+    },
+    {
+      "candidateKey": "Q34370::kunsthal-rotterdam",
+      "candidateName": "Kunsthal Rotterdam",
+      "selectedQid": "Q1668856",
+      "cityQid": "Q34370",
+      "status": "parent-failed",
+      "sourceRound": "supplement01",
+      "exclusionReason": "status-not-selection-eligible:parent-failed",
+      "rawReference": {
+        "rawPath": "data/knowledge/raw/pois-p1b-batch01-candidates-supplement01.wikidata.json",
+        "candidateIndex": 19,
+        "candidateKey": "Q34370::kunsthal-rotterdam"
+      }
+    },
+    {
+      "candidateKey": "Q31487::schindler-s-factory-museum",
+      "candidateName": "Schindler’s Factory Museum",
+      "selectedQid": "Q286522",
+      "cityQid": "Q31487",
+      "status": "conditional-manual",
+      "sourceRound": "supplement01",
+      "exclusionReason": "usable-not-selected-after-city-quota-freeze",
+      "rawReference": {
+        "rawPath": "data/knowledge/raw/pois-p1b-batch01-candidates-supplement01.wikidata.json",
+        "candidateIndex": 10,
+        "candidateKey": "Q31487::schindler-s-factory-museum"
+      }
+    },
+    {
+      "candidateKey": "Q2841::iglesia-de-san-francisco",
+      "candidateName": "Iglesia de San Francisco",
+      "selectedQid": null,
+      "cityQid": "Q2841",
+      "status": "identity-ambiguous",
+      "sourceRound": "supplement01",
+      "exclusionReason": "status-not-selection-eligible:identity-ambiguous",
+      "rawReference": {
+        "rawPath": "data/knowledge/raw/pois-p1b-batch01-candidates-supplement01.wikidata.json",
+        "candidateIndex": 21,
+        "candidateKey": "Q2841::iglesia-de-san-francisco"
+      }
+    },
+    {
+      "candidateKey": "Q2841::torre-colpatria",
+      "candidateName": "Torre Colpatria",
+      "selectedQid": "Q3120855",
+      "cityQid": "Q2841",
+      "status": "conditional-manual",
+      "sourceRound": "supplement01",
+      "exclusionReason": "usable-not-selected-after-city-quota-freeze",
+      "rawReference": {
+        "rawPath": "data/knowledge/raw/pois-p1b-batch01-candidates-supplement01.wikidata.json",
+        "candidateIndex": 22,
+        "candidateKey": "Q2841::torre-colpatria"
+      }
+    },
+    {
+      "candidateKey": "Q2841::teatro-colon",
+      "candidateName": "Teatro Colón",
+      "selectedQid": null,
+      "cityQid": "Q2841",
+      "status": "identity-ambiguous",
+      "sourceRound": "supplement01",
+      "exclusionReason": "status-not-selection-eligible:identity-ambiguous",
+      "rawReference": {
+        "rawPath": "data/knowledge/raw/pois-p1b-batch01-candidates-supplement01.wikidata.json",
+        "candidateIndex": 23,
+        "candidateKey": "Q2841::teatro-colon"
+      }
+    },
+    {
+      "candidateKey": "Q1757::uspenski-cathedral",
+      "candidateName": "Uspenski Cathedral",
+      "selectedQid": null,
+      "cityQid": "Q1757",
+      "status": "country-failed",
+      "sourceRound": "supplement01",
+      "exclusionReason": "status-not-selection-eligible:country-failed",
+      "rawReference": {
+        "rawPath": "data/knowledge/raw/pois-p1b-batch01-candidates-supplement01.wikidata.json",
+        "candidateIndex": 24,
+        "candidateKey": "Q1757::uspenski-cathedral"
+      }
+    },
+    {
+      "candidateKey": "Q1757::kiasma",
+      "candidateName": "Kiasma",
+      "selectedQid": null,
+      "cityQid": "Q1757",
+      "status": "identity-ambiguous",
+      "sourceRound": "supplement01",
+      "exclusionReason": "status-not-selection-eligible:identity-ambiguous",
+      "rawReference": {
+        "rawPath": "data/knowledge/raw/pois-p1b-batch01-candidates-supplement01.wikidata.json",
+        "candidateIndex": 25,
+        "candidateKey": "Q1757::kiasma"
+      }
+    },
+    {
+      "candidateKey": "Q1757::sibelius-monument",
+      "candidateName": "Sibelius Monument",
+      "selectedQid": "Q2584017",
+      "cityQid": "Q1757",
+      "status": "conditional-manual",
+      "sourceRound": "supplement01",
+      "exclusionReason": "usable-not-selected-after-city-quota-freeze",
+      "rawReference": {
+        "rawPath": "data/knowledge/raw/pois-p1b-batch01-candidates-supplement01.wikidata.json",
+        "candidateIndex": 26,
+        "candidateKey": "Q1757::sibelius-monument"
+      }
+    },
+    {
+      "candidateKey": "Q1085::powder-tower",
+      "candidateName": "Powder Tower",
+      "selectedQid": "Q1488700",
+      "cityQid": "Q1085",
+      "status": "parent-failed",
+      "sourceRound": "supplement01",
+      "exclusionReason": "status-not-selection-eligible:parent-failed",
+      "rawReference": {
+        "rawPath": "data/knowledge/raw/pois-p1b-batch01-candidates-supplement01.wikidata.json",
+        "candidateIndex": 27,
+        "candidateKey": "Q1085::powder-tower"
+      }
+    },
+    {
+      "candidateKey": "Q1085::dancing-house",
+      "candidateName": "Dancing House",
+      "selectedQid": "Q244816",
+      "cityQid": "Q1085",
+      "status": "parent-failed",
+      "sourceRound": "supplement01",
+      "exclusionReason": "status-not-selection-eligible:parent-failed",
+      "rawReference": {
+        "rawPath": "data/knowledge/raw/pois-p1b-batch01-candidates-supplement01.wikidata.json",
+        "candidateIndex": 28,
+        "candidateKey": "Q1085::dancing-house"
+      }
+    },
+    {
+      "candidateKey": "Q1085::old-town-bridge-tower",
+      "candidateName": "Old Town Bridge Tower",
+      "selectedQid": "Q445762",
+      "cityQid": "Q1085",
+      "status": "parent-failed",
+      "sourceRound": "supplement01",
+      "exclusionReason": "status-not-selection-eligible:parent-failed",
+      "rawReference": {
+        "rawPath": "data/knowledge/raw/pois-p1b-batch01-candidates-supplement01.wikidata.json",
+        "candidateIndex": 30,
+        "candidateKey": "Q1085::old-town-bridge-tower"
+      }
+    },
+    {
+      "candidateKey": "Q14960::church-of-st-james",
+      "candidateName": "Church of St. James",
+      "selectedQid": null,
+      "cityQid": "Q14960",
+      "status": "identity-ambiguous",
+      "sourceRound": "supplement01",
+      "exclusionReason": "status-not-selection-eligible:identity-ambiguous",
+      "rawReference": {
+        "rawPath": "data/knowledge/raw/pois-p1b-batch01-candidates-supplement01.wikidata.json",
+        "candidateIndex": 31,
+        "candidateKey": "Q14960::church-of-st-james"
+      }
+    },
+    {
+      "candidateKey": "Q14960::old-town-hall",
+      "candidateName": "Old Town Hall",
+      "selectedQid": null,
+      "cityQid": "Q14960",
+      "status": "identity-ambiguous",
+      "sourceRound": "supplement01",
+      "exclusionReason": "status-not-selection-eligible:identity-ambiguous",
+      "rawReference": {
+        "rawPath": "data/knowledge/raw/pois-p1b-batch01-candidates-supplement01.wikidata.json",
+        "candidateIndex": 32,
+        "candidateKey": "Q14960::old-town-hall"
+      }
+    },
+    {
+      "candidateKey": "Q14960::villa-low-beer",
+      "candidateName": "Villa Löw-Beer",
+      "selectedQid": null,
+      "cityQid": "Q14960",
+      "status": "identity-ambiguous",
+      "sourceRound": "supplement01",
+      "exclusionReason": "status-not-selection-eligible:identity-ambiguous",
+      "rawReference": {
+        "rawPath": "data/knowledge/raw/pois-p1b-batch01-candidates-supplement01.wikidata.json",
+        "candidateIndex": 33,
+        "candidateKey": "Q14960::villa-low-beer"
+      }
+    },
+    {
+      "candidateKey": "Q727::oude-kerk",
+      "candidateName": "Oude Kerk",
+      "selectedQid": "Q110541187",
+      "cityQid": "Q727",
+      "status": "conditional-manual",
+      "sourceRound": "supplement01",
+      "exclusionReason": "usable-not-selected-after-city-quota-freeze",
+      "rawReference": {
+        "rawPath": "data/knowledge/raw/pois-p1b-batch01-candidates-supplement01.wikidata.json",
+        "candidateIndex": 34,
+        "candidateKey": "Q727::oude-kerk"
+      }
+    },
+    {
+      "candidateKey": "Q727::westerkerk",
+      "candidateName": "Westerkerk",
+      "selectedQid": null,
+      "cityQid": "Q727",
+      "status": "identity-ambiguous",
+      "sourceRound": "supplement01",
+      "exclusionReason": "status-not-selection-eligible:identity-ambiguous",
+      "rawReference": {
+        "rawPath": "data/knowledge/raw/pois-p1b-batch01-candidates-supplement01.wikidata.json",
+        "candidateIndex": 35,
+        "candidateKey": "Q727::westerkerk"
+      }
+    },
+    {
+      "candidateKey": "Q727::rembrandt-house-museum",
+      "candidateName": "Rembrandt House Museum",
+      "selectedQid": "Q277316",
+      "cityQid": "Q727",
+      "status": "conditional-manual",
+      "sourceRound": "supplement01",
+      "exclusionReason": "usable-not-selected-after-city-quota-freeze",
+      "rawReference": {
+        "rawPath": "data/knowledge/raw/pois-p1b-batch01-candidates-supplement01.wikidata.json",
+        "candidateIndex": 36,
+        "candidateKey": "Q727::rembrandt-house-museum"
+      }
+    },
+    {
+      "candidateKey": "Q34370::grote-of-sint-laurenskerk",
+      "candidateName": "Grote of Sint-Laurenskerk",
+      "selectedQid": null,
+      "cityQid": "Q34370",
+      "status": "identity-ambiguous",
+      "sourceRound": "supplement01",
+      "exclusionReason": "status-not-selection-eligible:identity-ambiguous",
+      "rawReference": {
+        "rawPath": "data/knowledge/raw/pois-p1b-batch01-candidates-supplement01.wikidata.json",
+        "candidateIndex": 37,
+        "candidateKey": "Q34370::grote-of-sint-laurenskerk"
+      }
+    },
+    {
+      "candidateKey": "Q34370::rotterdam-city-hall",
+      "candidateName": "Rotterdam City Hall",
+      "selectedQid": "Q1481214",
+      "cityQid": "Q34370",
+      "status": "conditional-manual",
+      "sourceRound": "supplement01",
+      "exclusionReason": "usable-not-selected-after-city-quota-freeze",
+      "rawReference": {
+        "rawPath": "data/knowledge/raw/pois-p1b-batch01-candidates-supplement01.wikidata.json",
+        "candidateIndex": 39,
+        "candidateKey": "Q34370::rotterdam-city-hall"
+      }
+    },
+    {
+      "candidateKey": "Q270::st-anne-s-church",
+      "candidateName": "St. Anne’s Church",
+      "selectedQid": null,
+      "cityQid": "Q270",
+      "status": "identity-ambiguous",
+      "sourceRound": "supplement01",
+      "exclusionReason": "status-not-selection-eligible:identity-ambiguous",
+      "rawReference": {
+        "rawPath": "data/knowledge/raw/pois-p1b-batch01-candidates-supplement01.wikidata.json",
+        "candidateIndex": 40,
+        "candidateKey": "Q270::st-anne-s-church"
+      }
+    },
+    {
+      "candidateKey": "Q270::warsaw-barbican",
+      "candidateName": "Warsaw Barbican",
+      "selectedQid": null,
+      "cityQid": "Q270",
+      "status": "country-failed",
+      "sourceRound": "supplement01",
+      "exclusionReason": "status-not-selection-eligible:country-failed",
+      "rawReference": {
+        "rawPath": "data/knowledge/raw/pois-p1b-batch01-candidates-supplement01.wikidata.json",
+        "candidateIndex": 41,
+        "candidateKey": "Q270::warsaw-barbican"
+      }
+    },
+    {
+      "candidateKey": "Q31487::st-florian-s-gate",
+      "candidateName": "St. Florian’s Gate",
+      "selectedQid": "Q1363724",
+      "cityQid": "Q31487",
+      "status": "parent-failed",
+      "sourceRound": "supplement01",
+      "exclusionReason": "status-not-selection-eligible:parent-failed",
+      "rawReference": {
+        "rawPath": "data/knowledge/raw/pois-p1b-batch01-candidates-supplement01.wikidata.json",
+        "candidateIndex": 43,
+        "candidateKey": "Q31487::st-florian-s-gate"
+      }
+    },
+    {
+      "candidateKey": "Q31487::mocak",
+      "candidateName": "MOCAK",
+      "selectedQid": null,
+      "cityQid": "Q31487",
+      "status": "identity-ambiguous",
+      "sourceRound": "supplement01",
+      "exclusionReason": "status-not-selection-eligible:identity-ambiguous",
+      "rawReference": {
+        "rawPath": "data/knowledge/raw/pois-p1b-batch01-candidates-supplement01.wikidata.json",
+        "candidateIndex": 44,
+        "candidateKey": "Q31487::mocak"
+      }
+    },
+    {
+      "candidateKey": "Q2841::santuario-de-monserrate",
+      "candidateName": "Santuario de Monserrate",
+      "selectedQid": null,
+      "cityQid": "Q2841",
+      "status": "country-failed",
+      "sourceRound": "supplement02",
+      "exclusionReason": "status-not-selection-eligible:country-failed",
+      "rawReference": {
+        "rawPath": "data/knowledge/raw/pois-p1b-batch01-candidates-supplement02.wikidata.json",
+        "candidateIndex": 1,
+        "candidateKey": "Q2841::santuario-de-monserrate"
+      }
+    },
+    {
+      "candidateKey": "Q2841::museo-de-arte-colonial",
+      "candidateName": "Museo de Arte Colonial",
+      "selectedQid": null,
+      "cityQid": "Q2841",
+      "status": "identity-ambiguous",
+      "sourceRound": "supplement02",
+      "exclusionReason": "status-not-selection-eligible:identity-ambiguous",
+      "rawReference": {
+        "rawPath": "data/knowledge/raw/pois-p1b-batch01-candidates-supplement02.wikidata.json",
+        "candidateIndex": 2,
+        "candidateKey": "Q2841::museo-de-arte-colonial"
+      }
+    },
+    {
+      "candidateKey": "Q14960::capuchin-crypt-in-brno",
+      "candidateName": "Capuchin Crypt in Brno",
+      "selectedQid": null,
+      "cityQid": "Q14960",
+      "status": "identity-ambiguous",
+      "sourceRound": "supplement02",
+      "exclusionReason": "status-not-selection-eligible:identity-ambiguous",
+      "rawReference": {
+        "rawPath": "data/knowledge/raw/pois-p1b-batch01-candidates-supplement02.wikidata.json",
+        "candidateIndex": 3,
+        "candidateKey": "Q14960::capuchin-crypt-in-brno"
+      }
+    },
+    {
+      "candidateKey": "Q14960::church-of-st-thomas-in-brno",
+      "candidateName": "Church of St. Thomas in Brno",
+      "selectedQid": null,
+      "cityQid": "Q14960",
+      "status": "identity-ambiguous",
+      "sourceRound": "supplement02",
+      "exclusionReason": "status-not-selection-eligible:identity-ambiguous",
+      "rawReference": {
+        "rawPath": "data/knowledge/raw/pois-p1b-batch01-candidates-supplement02.wikidata.json",
+        "candidateIndex": 4,
+        "candidateKey": "Q14960::church-of-st-thomas-in-brno"
+      }
+    },
+    {
+      "candidateKey": "Q1085::national-theatre-prague",
+      "candidateName": "National Theatre Prague",
+      "selectedQid": null,
+      "cityQid": "Q1085",
+      "status": "identity-ambiguous",
+      "sourceRound": "supplement02",
+      "exclusionReason": "status-not-selection-eligible:identity-ambiguous",
+      "rawReference": {
+        "rawPath": "data/knowledge/raw/pois-p1b-batch01-candidates-supplement02.wikidata.json",
+        "candidateIndex": 9,
+        "candidateKey": "Q1085::national-theatre-prague"
+      }
+    },
+    {
+      "candidateKey": "Q1085::clementinum",
+      "candidateName": "Clementinum",
+      "selectedQid": "Q1100429",
+      "cityQid": "Q1085",
+      "status": "parent-failed",
+      "sourceRound": "supplement02",
+      "exclusionReason": "status-not-selection-eligible:parent-failed",
+      "rawReference": {
+        "rawPath": "data/knowledge/raw/pois-p1b-batch01-candidates-supplement02.wikidata.json",
+        "candidateIndex": 10,
+        "candidateKey": "Q1085::clementinum"
+      }
+    },
+    {
+      "candidateKey": "Q1085::rudolfinum",
+      "candidateName": "Rudolfinum",
+      "selectedQid": null,
+      "cityQid": "Q1085",
+      "status": "identity-ambiguous",
+      "sourceRound": "supplement02",
+      "exclusionReason": "status-not-selection-eligible:identity-ambiguous",
+      "rawReference": {
+        "rawPath": "data/knowledge/raw/pois-p1b-batch01-candidates-supplement02.wikidata.json",
+        "candidateIndex": 11,
+        "candidateKey": "Q1085::rudolfinum"
+      }
+    },
+    {
+      "candidateKey": "Q1085::church-of-st-nicholas-old-town",
+      "candidateName": "Church of St. Nicholas, Old Town",
+      "selectedQid": null,
+      "cityQid": "Q1085",
+      "status": "identity-ambiguous",
+      "sourceRound": "supplement02",
+      "exclusionReason": "status-not-selection-eligible:identity-ambiguous",
+      "rawReference": {
+        "rawPath": "data/knowledge/raw/pois-p1b-batch01-candidates-supplement02.wikidata.json",
+        "candidateIndex": 12,
+        "candidateKey": "Q1085::church-of-st-nicholas-old-town"
+      }
+    },
+    {
+      "candidateKey": "Q14960::brno-observatory-and-planetarium",
+      "candidateName": "Brno Observatory and Planetarium",
+      "selectedQid": "Q12021065",
+      "cityQid": "Q14960",
+      "status": "parent-failed",
+      "sourceRound": "supplement03",
+      "exclusionReason": "status-not-selection-eligible:parent-failed",
+      "rawReference": {
+        "rawPath": "data/knowledge/raw/pois-p1b-batch01-candidates-supplement03.wikidata.json",
+        "candidateIndex": 3,
+        "candidateKey": "Q14960::brno-observatory-and-planetarium"
+      }
+    },
+    {
+      "candidateKey": "Q14960::janacek-theatre",
+      "candidateName": "Janáček Theatre",
+      "selectedQid": "Q3511873",
+      "cityQid": "Q14960",
+      "status": "parent-failed",
+      "sourceRound": "supplement03",
+      "exclusionReason": "status-not-selection-eligible:parent-failed",
+      "rawReference": {
+        "rawPath": "data/knowledge/raw/pois-p1b-batch01-candidates-supplement03.wikidata.json",
+        "candidateIndex": 4,
+        "candidateKey": "Q14960::janacek-theatre"
+      }
+    },
+    {
+      "candidateKey": "Q1085::spanish-synagogue",
+      "candidateName": "Spanish Synagogue",
+      "selectedQid": "Q990003",
+      "cityQid": "Q1085",
+      "status": "parent-failed",
+      "sourceRound": "supplement03",
+      "exclusionReason": "status-not-selection-eligible:parent-failed",
+      "rawReference": {
+        "rawPath": "data/knowledge/raw/pois-p1b-batch01-candidates-supplement03.wikidata.json",
+        "candidateIndex": 6,
+        "candidateKey": "Q1085::spanish-synagogue"
+      }
+    },
+    {
+      "candidateKey": "Q1085::church-of-st-ludmila",
+      "candidateName": "Church of St. Ludmila",
+      "selectedQid": null,
+      "cityQid": "Q1085",
+      "status": "identity-ambiguous",
+      "sourceRound": "supplement03",
+      "exclusionReason": "status-not-selection-eligible:identity-ambiguous",
+      "rawReference": {
+        "rawPath": "data/knowledge/raw/pois-p1b-batch01-candidates-supplement03.wikidata.json",
+        "candidateIndex": 7,
+        "candidateKey": "Q1085::church-of-st-ludmila"
+      }
+    },
+    {
+      "candidateKey": "Q1085::national-museum-main-building",
+      "candidateName": "National Museum main building",
+      "selectedQid": "Q43755714",
+      "cityQid": "Q1085",
+      "status": "parent-failed",
+      "sourceRound": "supplement03",
+      "exclusionReason": "status-not-selection-eligible:parent-failed",
+      "rawReference": {
+        "rawPath": "data/knowledge/raw/pois-p1b-batch01-candidates-supplement03.wikidata.json",
+        "candidateIndex": 9,
+        "candidateKey": "Q1085::national-museum-main-building"
+      }
+    }
+  ],
+  "P31PolicyEvidence": {
+    "classifierImplemented": false,
+    "classificationBasis": "complete-sorted-numeric-p31-key-exact-match-only",
+    "blockingPriority": true,
+    "unknownTypeDefault": "manual-review",
+    "projectionDifferenceDefault": "manual-review",
+    "knownPoiTypeQids": [
+      {
+        "qid": "Q11166728",
+        "labelEn": "television tower",
+        "descriptionEn": "television transmission tower"
+      },
+      {
+        "qid": "Q11303",
+        "labelEn": "skyscraper",
+        "descriptionEn": "very tall building"
+      },
+      {
+        "qid": "Q11396960",
+        "labelEn": "production company",
+        "descriptionEn": "company or studio that produces media"
+      },
+      {
+        "qid": "Q1172284",
+        "labelEn": "data set",
+        "descriptionEn": "collection of data, publication type"
+      },
+      {
+        "qid": "Q120560",
+        "labelEn": "minor basilica",
+        "descriptionEn": "title given to some Roman Catholic churches"
+      },
+      {
+        "qid": "Q1440300",
+        "labelEn": "observation tower",
+        "descriptionEn": "civilian structure used to view the surrounding landscape"
+      },
+      {
+        "qid": "Q153562",
+        "labelEn": "opera house",
+        "descriptionEn": "theatre building used for opera performances"
+      },
+      {
+        "qid": "Q16560",
+        "labelEn": "palace",
+        "descriptionEn": "grand residence, especially a royal or episcopal residence"
+      },
+      {
+        "qid": "Q16735822",
+        "labelEn": "history museum",
+        "descriptionEn": "museum covering the knowledge of human history"
+      },
+      {
+        "qid": "Q16970",
+        "labelEn": "church building",
+        "descriptionEn": "building for Christian worship"
+      },
+      {
+        "qid": "Q17105874",
+        "labelEn": "cultural history museum",
+        "descriptionEn": "type of museum"
+      },
+      {
+        "qid": "Q17431399",
+        "labelEn": "national museum",
+        "descriptionEn": "museum maintained by a national authority"
+      },
+      {
+        "qid": "Q17455058",
+        "labelEn": "music museum",
+        "descriptionEn": "museum specialising in the history of music and musical instruments"
+      },
+      {
+        "qid": "Q1863818",
+        "labelEn": "maritime museum",
+        "descriptionEn": "museum specializing in the display of objects relating to ships and travel on large bodies of water"
+      },
+      {
+        "qid": "Q207694",
+        "labelEn": "art museum",
+        "descriptionEn": "building or space for the exhibition of art"
+      },
+      {
+        "qid": "Q2087181",
+        "labelEn": "historic house museum",
+        "descriptionEn": "house that has been transformed into a museum"
+      },
+      {
+        "qid": "Q2319498",
+        "labelEn": "architectural landmark",
+        "descriptionEn": "geographic feature or building, that is easily recognizable and/or well known"
+      },
+      {
+        "qid": "Q23413",
+        "labelEn": "castle",
+        "descriptionEn": "type of fortified structure built in Europe, Asia and the Middle East during the Middle Ages by nobility"
+      },
+      {
+        "qid": "Q24354",
+        "labelEn": "theatre building",
+        "descriptionEn": "building for performances by actors"
+      },
+      {
+        "qid": "Q24699794",
+        "labelEn": "museum building",
+        "descriptionEn": "building housing a museum"
+      },
+      {
+        "qid": "Q2772772",
+        "labelEn": "military museum",
+        "descriptionEn": "museum of military and war"
+      },
+      {
+        "qid": "Q28564",
+        "labelEn": "public library",
+        "descriptionEn": "free community resource offering access to books, media, and information, promoting literacy and education for all ages"
+      },
+      {
+        "qid": "Q2977",
+        "labelEn": "cathedral",
+        "descriptionEn": "Christian church, which is seat of a bishop"
+      },
+      {
+        "qid": "Q3152824",
+        "labelEn": "cultural institution",
+        "descriptionEn": "organization that works for the preservation or promotion of culture"
+      },
+      {
+        "qid": "Q33506",
+        "labelEn": "museum",
+        "descriptionEn": "institution that holds artifacts and other objects of scientific, artistic, cultural, historical, or other importance"
+      },
+      {
+        "qid": "Q5061188",
+        "labelEn": "house of culture",
+        "descriptionEn": "cultural building; cultural institution especially in socialist or social democratic societies"
+      },
+      {
+        "qid": "Q53536964",
+        "labelEn": "royal palace",
+        "descriptionEn": "palace used by a royal family"
+      },
+      {
+        "qid": "Q537127",
+        "labelEn": "road bridge",
+        "descriptionEn": "bridge that carries road traffic"
+      },
+      {
+        "qid": "Q543654",
+        "labelEn": "Rathaus",
+        "descriptionEn": "municipal administration building in the German language; for a town hall use Q25550691"
+      },
+      {
+        "qid": "Q56242215",
+        "labelEn": "Catholic cathedral",
+        "descriptionEn": "church that is the seat of the bishop of a diocese of the Catholic Church"
+      },
+      {
+        "qid": "Q56242235",
+        "labelEn": "Lutheran cathedral",
+        "descriptionEn": "church that is the seat of a bishop of Lutheran confession"
+      },
+      {
+        "qid": "Q575759",
+        "labelEn": "war memorial",
+        "descriptionEn": "memorial for the victims of a war"
+      },
+      {
+        "qid": "Q57831",
+        "labelEn": "fortress",
+        "descriptionEn": "large fort"
+      },
+      {
+        "qid": "Q58632302",
+        "labelEn": "specialised museum in Finland",
+        "descriptionEn": "museum classification in Finland"
+      },
+      {
+        "qid": "Q79007",
+        "labelEn": "street",
+        "descriptionEn": "public thoroughfare in a built environment like a village or city"
+      },
+      {
+        "qid": "Q811165",
+        "labelEn": "architectural heritage monument",
+        "descriptionEn": "type of cultural heritage monuments (buildings)"
+      },
+      {
+        "qid": "Q811979",
+        "labelEn": "architectural structure",
+        "descriptionEn": "human-designed and -made structure"
+      },
+      {
+        "qid": "Q856584",
+        "labelEn": "library building",
+        "descriptionEn": "building housing a library"
+      },
+      {
+        "qid": "Q911663",
+        "labelEn": "bascule bridge",
+        "descriptionEn": "moveable bridge using a counterweight to balance a span through its upward swing to let boats move underneath"
+      }
+    ],
+    "blockingTypeQids": [
+      {
+        "qid": "Q6256",
+        "labelEn": "country",
+        "policyCategory": "country"
+      },
+      {
+        "qid": "Q515",
+        "labelEn": "city",
+        "policyCategory": "city"
+      },
+      {
+        "qid": "Q486972",
+        "labelEn": "human settlement",
+        "policyCategory": "settlement"
+      },
+      {
+        "qid": "Q149621",
+        "labelEn": "district",
+        "policyCategory": "district"
+      },
+      {
+        "qid": "Q82794",
+        "labelEn": "geographic region",
+        "policyCategory": "region"
+      },
+      {
+        "qid": "Q1907114",
+        "labelEn": "metropolitan area",
+        "policyCategory": "metropolitan-area"
+      },
+      {
+        "qid": "Q56061",
+        "labelEn": "administrative territorial entity",
+        "policyCategory": "region-or-district"
+      },
+      {
+        "qid": "Q473972",
+        "labelEn": "protected area",
+        "policyCategory": "natural-area"
+      },
+      {
+        "qid": "Q179049",
+        "labelEn": "nature reserve",
+        "policyCategory": "natural-area"
+      },
+      {
+        "qid": "Q8502",
+        "labelEn": "mountain",
+        "policyCategory": "mountain"
+      },
+      {
+        "qid": "Q23442",
+        "labelEn": "island",
+        "policyCategory": "island"
+      },
+      {
+        "qid": "Q23397",
+        "labelEn": "lake",
+        "policyCategory": "lake"
+      },
+      {
+        "qid": "Q1620908",
+        "labelEn": "historical region",
+        "policyCategory": "broad-historical-area"
+      }
+    ],
+    "informationalExactKeys": [
+      "Q11166728|Q1440300",
+      "Q1440300",
+      "Q153562|Q24354",
+      "Q16970",
+      "Q16970|Q2977",
+      "Q16970|Q2977|Q56242215",
+      "Q16970|Q2977|Q56242235",
+      "Q17431399|Q207694|Q2772772",
+      "Q17431399|Q33506",
+      "Q17455058|Q58632302",
+      "Q1863818",
+      "Q207694|Q33506",
+      "Q23413|Q57831",
+      "Q24354",
+      "Q33506",
+      "Q56242215"
+    ],
+    "manualExactKeys": [
+      "Q11303|Q16560|Q2319498|Q5061188|Q811165",
+      "Q11396960|Q1172284|Q16735822|Q17431399|Q207694",
+      "Q120560|Q16970|Q811165",
+      "Q16735822|Q2772772|Q811979",
+      "Q17105874|Q17431399|Q24699794|Q33506",
+      "Q207694|Q3152824|Q33506",
+      "Q2087181|Q575759",
+      "Q23413|Q33506",
+      "Q23413|Q33506|Q53536964|Q811165",
+      "Q28564|Q856584",
+      "Q33506|Q543654",
+      "Q537127|Q79007|Q911663"
+    ],
+    "blockingExactKeys": [],
+    "unresolvedTypeQids": [],
+    "primaryKeyAssessments": [
+      {
+        "P31Key": "Q11166728|Q1440300",
+        "classification": "informational",
+        "primaryCandidateCount": 1,
+        "sourceRounds": [
+          "supplement03"
+        ],
+        "examples": [
+          {
+            "candidateKey": "Q1085::zizkov-television-tower",
+            "selectedQid": "Q1413217",
+            "status": "pass"
+          }
+        ],
+        "projectionExactForEveryExample": true
+      },
+      {
+        "P31Key": "Q11303|Q16560|Q2319498|Q5061188|Q811165",
+        "classification": "manual-review",
+        "primaryCandidateCount": 1,
+        "sourceRounds": [
+          "supplement01"
+        ],
+        "examples": [
+          {
+            "candidateKey": "Q270::palace-of-culture-and-science",
+            "selectedQid": "Q167566",
+            "status": "pass"
+          }
+        ],
+        "projectionExactForEveryExample": true
+      },
+      {
+        "P31Key": "Q11396960|Q1172284|Q16735822|Q17431399|Q207694",
+        "classification": "manual-review",
+        "primaryCandidateCount": 1,
+        "sourceRounds": [
+          "supplement01"
+        ],
+        "examples": [
+          {
+            "candidateKey": "Q727::rijksmuseum",
+            "selectedQid": "Q190804",
+            "status": "conditional-manual"
+          }
+        ],
+        "projectionExactForEveryExample": true
+      },
+      {
+        "P31Key": "Q120560|Q16970|Q811165",
+        "classification": "manual-review",
+        "primaryCandidateCount": 1,
+        "sourceRounds": [
+          "supplement01"
+        ],
+        "examples": [
+          {
+            "candidateKey": "Q31487::st-mary-s-basilica",
+            "selectedQid": "Q1143171",
+            "status": "conditional-manual"
+          }
+        ],
+        "projectionExactForEveryExample": true
+      },
+      {
+        "P31Key": "Q1440300",
+        "classification": "informational",
+        "primaryCandidateCount": 1,
+        "sourceRounds": [
+          "supplement01"
+        ],
+        "examples": [
+          {
+            "candidateKey": "Q34370::euromast",
+            "selectedQid": "Q969215",
+            "status": "conditional-manual"
+          }
+        ],
+        "projectionExactForEveryExample": true
+      },
+      {
+        "P31Key": "Q153562|Q24354",
+        "classification": "informational",
+        "primaryCandidateCount": 1,
+        "sourceRounds": [
+          "supplement02"
+        ],
+        "examples": [
+          {
+            "candidateKey": "Q14960::mahen-theatre",
+            "selectedQid": "Q1138893",
+            "status": "pass"
+          }
+        ],
+        "projectionExactForEveryExample": true
+      },
+      {
+        "P31Key": "Q16735822|Q2772772|Q811979",
+        "classification": "manual-review",
+        "primaryCandidateCount": 1,
+        "sourceRounds": [
+          "base"
+        ],
+        "examples": [
+          {
+            "candidateKey": "Q270::warsaw-uprising-museum",
+            "selectedQid": "Q574328",
+            "status": "pass"
+          }
+        ],
+        "projectionExactForEveryExample": true
+      },
+      {
+        "P31Key": "Q16970",
+        "classification": "informational",
+        "primaryCandidateCount": 1,
+        "sourceRounds": [
+          "supplement01"
+        ],
+        "examples": [
+          {
+            "candidateKey": "Q1085::church-of-our-lady-before-tyn",
+            "selectedQid": "Q1453427",
+            "status": "pass"
+          }
+        ],
+        "projectionExactForEveryExample": true
+      },
+      {
+        "P31Key": "Q16970|Q2977",
+        "classification": "informational",
+        "primaryCandidateCount": 1,
+        "sourceRounds": [
+          "supplement03"
+        ],
+        "examples": [
+          {
+            "candidateKey": "Q2841::bogota-primatial-cathedral",
+            "selectedQid": "Q2942872",
+            "status": "pass"
+          }
+        ],
+        "projectionExactForEveryExample": true
+      },
+      {
+        "P31Key": "Q16970|Q2977|Q56242215",
+        "classification": "informational",
+        "primaryCandidateCount": 1,
+        "sourceRounds": [
+          "supplement01"
+        ],
+        "examples": [
+          {
+            "candidateKey": "Q14960::cathedral-of-st-peter-and-paul",
+            "selectedQid": "Q45033",
+            "status": "pass"
+          }
+        ],
+        "projectionExactForEveryExample": true
+      },
+      {
+        "P31Key": "Q16970|Q2977|Q56242235",
+        "classification": "informational",
+        "primaryCandidateCount": 1,
+        "sourceRounds": [
+          "base"
+        ],
+        "examples": [
+          {
+            "candidateKey": "Q38511::turku-cathedral",
+            "selectedQid": "Q1187606",
+            "status": "conditional-manual"
+          }
+        ],
+        "projectionExactForEveryExample": true
+      },
+      {
+        "P31Key": "Q17105874|Q17431399|Q24699794|Q33506",
+        "classification": "manual-review",
+        "primaryCandidateCount": 1,
+        "sourceRounds": [
+          "base"
+        ],
+        "examples": [
+          {
+            "candidateKey": "Q1757::national-museum-of-finland",
+            "selectedQid": "Q1418136",
+            "status": "conditional-manual"
+          }
+        ],
+        "projectionExactForEveryExample": true
+      },
+      {
+        "P31Key": "Q17431399|Q207694|Q2772772",
+        "classification": "informational",
+        "primaryCandidateCount": 1,
+        "sourceRounds": [
+          "base"
+        ],
+        "examples": [
+          {
+            "candidateKey": "Q31487::national-museum-in-krakow",
+            "selectedQid": "Q195311",
+            "status": "pass"
+          }
+        ],
+        "projectionExactForEveryExample": true
+      },
+      {
+        "P31Key": "Q17431399|Q33506",
+        "classification": "informational",
+        "primaryCandidateCount": 1,
+        "sourceRounds": [
+          "base"
+        ],
+        "examples": [
+          {
+            "candidateKey": "Q2841::national-museum-of-colombia",
+            "selectedQid": "Q671264",
+            "status": "pass"
+          }
+        ],
+        "projectionExactForEveryExample": true
+      },
+      {
+        "P31Key": "Q17455058|Q58632302",
+        "classification": "informational",
+        "primaryCandidateCount": 1,
+        "sourceRounds": [
+          "base"
+        ],
+        "examples": [
+          {
+            "candidateKey": "Q38511::sibelius-museum",
+            "selectedQid": "Q4306382",
+            "status": "pass"
+          }
+        ],
+        "projectionExactForEveryExample": true
+      },
+      {
+        "P31Key": "Q1863818",
+        "classification": "informational",
+        "primaryCandidateCount": 1,
+        "sourceRounds": [
+          "base"
+        ],
+        "examples": [
+          {
+            "candidateKey": "Q34370::maritime-museum-rotterdam",
+            "selectedQid": "Q2755458",
+            "status": "pass"
+          }
+        ],
+        "projectionExactForEveryExample": true
+      },
+      {
+        "P31Key": "Q207694|Q3152824|Q33506",
+        "classification": "manual-review",
+        "primaryCandidateCount": 1,
+        "sourceRounds": [
+          "supplement01"
+        ],
+        "examples": [
+          {
+            "candidateKey": "Q727::van-gogh-museum",
+            "selectedQid": "Q224124",
+            "status": "conditional-manual"
+          }
+        ],
+        "projectionExactForEveryExample": true
+      },
+      {
+        "P31Key": "Q207694|Q33506",
+        "classification": "informational",
+        "primaryCandidateCount": 2,
+        "sourceRounds": [
+          "base",
+          "supplement01"
+        ],
+        "examples": [
+          {
+            "candidateKey": "Q2841::botero-museum",
+            "selectedQid": "Q3329100",
+            "status": "pass"
+          },
+          {
+            "candidateKey": "Q48278::medellin-museum-of-modern-art",
+            "selectedQid": "Q3329644",
+            "status": "pass"
+          }
+        ],
+        "projectionExactForEveryExample": true
+      },
+      {
+        "P31Key": "Q2087181|Q575759",
+        "classification": "manual-review",
+        "primaryCandidateCount": 1,
+        "sourceRounds": [
+          "base"
+        ],
+        "examples": [
+          {
+            "candidateKey": "Q727::anne-frank-house",
+            "selectedQid": "Q165366",
+            "status": "conditional-manual"
+          }
+        ],
+        "projectionExactForEveryExample": true
+      },
+      {
+        "P31Key": "Q23413|Q33506",
+        "classification": "manual-review",
+        "primaryCandidateCount": 1,
+        "sourceRounds": [
+          "base"
+        ],
+        "examples": [
+          {
+            "candidateKey": "Q38511::turku-castle",
+            "selectedQid": "Q136893",
+            "status": "conditional-manual"
+          }
+        ],
+        "projectionExactForEveryExample": true
+      },
+      {
+        "P31Key": "Q23413|Q33506|Q53536964|Q811165",
+        "classification": "manual-review",
+        "primaryCandidateCount": 1,
+        "sourceRounds": [
+          "base"
+        ],
+        "examples": [
+          {
+            "candidateKey": "Q270::royal-castle-in-warsaw",
+            "selectedQid": "Q756098",
+            "status": "conditional-manual"
+          }
+        ],
+        "projectionExactForEveryExample": true
+      },
+      {
+        "P31Key": "Q23413|Q57831",
+        "classification": "informational",
+        "primaryCandidateCount": 1,
+        "sourceRounds": [
+          "base"
+        ],
+        "examples": [
+          {
+            "candidateKey": "Q14960::spilberk-castle",
+            "selectedQid": "Q118256",
+            "status": "pass"
+          }
+        ],
+        "projectionExactForEveryExample": true
+      },
+      {
+        "P31Key": "Q24354",
+        "classification": "informational",
+        "primaryCandidateCount": 1,
+        "sourceRounds": [
+          "supplement02"
+        ],
+        "examples": [
+          {
+            "candidateKey": "Q1757::finnish-national-theatre",
+            "selectedQid": "Q1200969",
+            "status": "pass"
+          }
+        ],
+        "projectionExactForEveryExample": true
+      },
+      {
+        "P31Key": "Q28564|Q856584",
+        "classification": "manual-review",
+        "primaryCandidateCount": 1,
+        "sourceRounds": [
+          "supplement02"
+        ],
+        "examples": [
+          {
+            "candidateKey": "Q1757::helsinki-central-library-oodi",
+            "selectedQid": "Q18659999",
+            "status": "pass"
+          }
+        ],
+        "projectionExactForEveryExample": true
+      },
+      {
+        "P31Key": "Q33506",
+        "classification": "informational",
+        "primaryCandidateCount": 2,
+        "sourceRounds": [
+          "base"
+        ],
+        "examples": [
+          {
+            "candidateKey": "Q31487::wawel-royal-castle",
+            "selectedQid": "Q7975612",
+            "status": "conditional-manual"
+          },
+          {
+            "candidateKey": "Q48278::museum-of-antioquia",
+            "selectedQid": "Q2377645",
+            "status": "pass"
+          }
+        ],
+        "projectionExactForEveryExample": true
+      },
+      {
+        "P31Key": "Q33506|Q543654",
+        "classification": "manual-review",
+        "primaryCandidateCount": 1,
+        "sourceRounds": [
+          "supplement03"
+        ],
+        "examples": [
+          {
+            "candidateKey": "Q1085::old-town-hall-with-astronomical-clock",
+            "selectedQid": "Q2332231",
+            "status": "conditional-manual"
+          }
+        ],
+        "projectionExactForEveryExample": true
+      },
+      {
+        "P31Key": "Q537127|Q79007|Q911663",
+        "classification": "manual-review",
+        "primaryCandidateCount": 1,
+        "sourceRounds": [
+          "supplement01"
+        ],
+        "examples": [
+          {
+            "candidateKey": "Q34370::erasmus-bridge",
+            "selectedQid": "Q1348188",
+            "status": "conditional-manual"
+          }
+        ],
+        "projectionExactForEveryExample": true
+      },
+      {
+        "P31Key": "Q56242215",
+        "classification": "informational",
+        "primaryCandidateCount": 1,
+        "sourceRounds": [
+          "base"
+        ],
+        "examples": [
+          {
+            "candidateKey": "Q48278::metropolitan-cathedral-of-medellin",
+            "selectedQid": "Q1050597",
+            "status": "pass"
+          }
+        ],
+        "projectionExactForEveryExample": true
+      }
+    ],
+    "primaryClassificationDistribution": {
+      "informational": 18,
+      "manual-review": 12,
+      "blocking": 0
+    }
+  },
+  "selectionReadiness": {
+    "primaryReady": true,
+    "backupRequiredForPublish": false,
+    "publishCandidateCount": 30,
+    "operationalReserveCount": 8,
+    "finalSetFrozen": true,
+    "readyForImplementationReview": true,
+    "published": false
+  }
+}

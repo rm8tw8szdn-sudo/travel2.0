@@ -1,3 +1,4 @@
+import assert from "node:assert/strict";
 import crypto from "node:crypto";
 import fs from "node:fs";
 import path from "node:path";
@@ -12,6 +13,7 @@ import {
   CITY_BASELINE_P1B_BATCH01_RAW_RELATIVE_PATH,
   CITY_BASELINE_P1B_BATCH01_REVIEW_TYPES,
   CITY_BASELINE_P1B_BATCH01_SEEDS,
+  buildKnowledgeCityBaselineP1bBatch01Assets,
   validateKnowledgeCityBaselineP1bBatch01RawSnapshot,
 } from "./import-knowledge-city-baseline-p1b-batch01.mjs";
 
@@ -23,7 +25,7 @@ const BATCH01_POI_PATHS = Object.freeze([
   "data/knowledge/batches/pois.p1b-batch01.json",
   "data/knowledge/batches/provenance.pois.p1b-batch01.json",
   "scripts/import-knowledge-poi-baseline-p1b-batch01.mjs",
-  "scripts/knowledge-poi-review-classifier-p1b-batch01.mjs",
+  "scripts/lib/knowledge-poi-review-policy-p1b.mjs",
 ]);
 const EXPECTED_PARENT_COUNTS = Object.freeze(Object.fromEntries(CITY_BASELINE_P1B_BATCH01_SEEDS
   .reduce((counts, seed) => counts.set(seed.parentCountryEntityId, (counts.get(seed.parentCountryEntityId) || 0) + 1), new Map())));
@@ -47,6 +49,202 @@ function sourceAliases(rawEntity) {
   return Object.entries(rawEntity?.aliases || {}).flatMap(([language, aliases]) => aliases.map((alias) => ({ language, value: alias.value })));
 }
 
+function reviewEntityTypeKey(review) {
+  return `${review.entityId || review.relatedEntityIds?.[0] || review.wikidataId}:${review.type}`;
+}
+
+function evaluateCumulativeCityReviews({ reviewQueue, expectedCityReviews, expectedCityReviewCount }) {
+  const cityReviews = reviewQueue.filter((review) => CITY_BASELINE_P1B_BATCH01_REVIEW_TYPES.includes(review.type));
+  const nonCityReviews = reviewQueue.filter((review) => !CITY_BASELINE_P1B_BATCH01_REVIEW_TYPES.includes(review.type));
+  const cumulativeReviewIdsUnique = new Set(reviewQueue.map((review) => review.reviewId)).size === reviewQueue.length;
+  const cityReviewIdsUnique = new Set(cityReviews.map((review) => review.reviewId)).size === cityReviews.length;
+  const uniqueCityTypePairs = new Set(cityReviews.map(reviewEntityTypeKey)).size === cityReviews.length;
+  const cityReviewsAllowedTypesOnly = cityReviews.every((review) => CITY_BASELINE_P1B_BATCH01_REVIEW_TYPES.includes(review.type));
+  const cityReviewCountMatches = cityReviews.length === expectedCityReviewCount
+    && expectedCityReviews.length === expectedCityReviewCount;
+  const cityReviewsMatchFrozenBaseline = JSON.stringify(cityReviews) === JSON.stringify(expectedCityReviews);
+  const cityReviewIds = new Set(cityReviews.map((review) => review.reviewId));
+  const crossLayerReviewIdsDisjoint = nonCityReviews.every((review) => !cityReviewIds.has(review.reviewId));
+  return {
+    accepted: cumulativeReviewIdsUnique
+      && cityReviewIdsUnique
+      && uniqueCityTypePairs
+      && cityReviewsAllowedTypesOnly
+      && cityReviewCountMatches
+      && cityReviewsMatchFrozenBaseline
+      && crossLayerReviewIdsDisjoint,
+    cityReviews,
+    nonCityReviews,
+    cityReviewTotal: cityReviews.length,
+    nonCityReviewTotal: nonCityReviews.length,
+    reviewTotal: reviewQueue.length,
+    cumulativeReviewIdsUnique,
+    cityReviewIdsUnique,
+    uniqueCityTypePairs,
+    cityReviewsAllowedTypesOnly,
+    cityReviewCountMatches,
+    cityReviewsMatchFrozenBaseline,
+    crossLayerReviewIdsDisjoint,
+    nonCityReviewsIgnoredByCityPolicy: true,
+  };
+}
+
+function evaluateCumulativeCityConflicts({ conflicts, expectedCityConflicts, cityEntityIds, countryEntityIds }) {
+  const cumulativeConflictIdsUnique = new Set(conflicts.map((conflict) => conflict.conflictId)).size === conflicts.length;
+  const isCityConflict = (conflict) => {
+    const relatedEntityIds = conflict.relatedEntityIds || [];
+    return relatedEntityIds.some((entityId) => cityEntityIds.has(entityId))
+      && relatedEntityIds.every((entityId) => cityEntityIds.has(entityId) || countryEntityIds.has(entityId));
+  };
+  const cityConflicts = conflicts.filter(isCityConflict);
+  const nonCityConflicts = conflicts.filter((conflict) => !isCityConflict(conflict));
+  const cityConflictsMatchFrozenBaseline = JSON.stringify(cityConflicts) === JSON.stringify(expectedCityConflicts);
+  return {
+    accepted: cumulativeConflictIdsUnique && cityConflictsMatchFrozenBaseline,
+    cityConflicts,
+    nonCityConflicts,
+    conflictTotal: conflicts.length,
+    cityConflictTotal: cityConflicts.length,
+    nonCityConflictTotal: nonCityConflicts.length,
+    cumulativeConflictIdsUnique,
+    cityConflictsMatchFrozenBaseline,
+    nonCityConflictsIgnoredByCityPolicy: true,
+  };
+}
+
+function observeOptionalPoiFiles({ relativePaths, existsSync }) {
+  const presence = relativePaths.map((relativePath) => ({ relativePath, present: existsSync(relativePath) }));
+  const presentCount = presence.filter((entry) => entry.present).length;
+  return { presence, presentCount, allPresent: presentCount === relativePaths.length };
+}
+
+function buildPoiPresenceAuditSummary(observation) {
+  return {
+    poiFilesPresent: observation.allPresent,
+    poiFilePresence: observation.presence,
+    poiContentsUsedForCityAudit: false,
+    poiPresenceBlocksCityAudit: false,
+    temporaryFileHiding: false,
+  };
+}
+
+function fixtureReview({ layer, index, reviewId, details = {} }) {
+  return {
+    reviewId: reviewId || `${layer}-review-${index}`,
+    type: layer === "city"
+      ? CITY_BASELINE_P1B_BATCH01_REVIEW_TYPES[index % CITY_BASELINE_P1B_BATCH01_REVIEW_TYPES.length]
+      : "poi-p31-policy-manual-review",
+    severity: "manual-review",
+    relatedEntityIds: [`${layer}-entity-${index}`],
+    wikidataId: `Q${200000 + index}`,
+    details: { layer, index, ...details },
+  };
+}
+
+function runAuditCompatibilityFixtures() {
+  const expectedCityReviews = Array.from({ length: 43 }, (_, index) => fixtureReview({ layer: "city", index }));
+  const poiReviews = Array.from({ length: 12 }, (_, index) => fixtureReview({ layer: "poi", index }));
+  const cityOnly = evaluateCumulativeCityReviews({
+    reviewQueue: expectedCityReviews,
+    expectedCityReviews,
+    expectedCityReviewCount: 43,
+  });
+  const cumulativeQueue = [...expectedCityReviews, ...poiReviews];
+  const cumulativeBefore = JSON.parse(JSON.stringify(cumulativeQueue));
+  const cumulative = evaluateCumulativeCityReviews({
+    reviewQueue: cumulativeQueue,
+    expectedCityReviews,
+    expectedCityReviewCount: 43,
+  });
+  assert.equal(cityOnly.accepted, true);
+  assert.equal(cumulative.accepted, true);
+  assert.equal(cumulative.cityReviews.length, 43);
+  assert.equal(cumulative.nonCityReviews.length, 12);
+  assert.equal(cumulative.nonCityReviewsIgnoredByCityPolicy, true);
+
+  const missingCityReview = evaluateCumulativeCityReviews({
+    reviewQueue: expectedCityReviews.slice(1),
+    expectedCityReviews,
+    expectedCityReviewCount: 43,
+  });
+  assert.equal(missingCityReview.accepted, false);
+
+  const changedContent = JSON.parse(JSON.stringify(expectedCityReviews));
+  changedContent[0].details.index = -1;
+  assert.equal(evaluateCumulativeCityReviews({
+    reviewQueue: changedContent,
+    expectedCityReviews,
+    expectedCityReviewCount: 43,
+  }).accepted, false);
+
+  const changedId = JSON.parse(JSON.stringify(expectedCityReviews));
+  changedId[0].reviewId = "changed-city-review-id";
+  assert.equal(evaluateCumulativeCityReviews({
+    reviewQueue: changedId,
+    expectedCityReviews,
+    expectedCityReviewCount: 43,
+  }).accepted, false);
+
+  const crossLayerCollision = JSON.parse(JSON.stringify(cumulativeQueue));
+  crossLayerCollision[43].reviewId = expectedCityReviews[0].reviewId;
+  assert.equal(evaluateCumulativeCityReviews({
+    reviewQueue: crossLayerCollision,
+    expectedCityReviews,
+    expectedCityReviewCount: 43,
+  }).accepted, false);
+
+  const cumulativeDuplicate = JSON.parse(JSON.stringify(cumulativeQueue));
+  cumulativeDuplicate[44].reviewId = cumulativeDuplicate[43].reviewId;
+  assert.equal(evaluateCumulativeCityReviews({
+    reviewQueue: cumulativeDuplicate,
+    expectedCityReviews,
+    expectedCityReviewCount: 43,
+  }).accepted, false);
+
+  const poiFilesPresent = observeOptionalPoiFiles({ relativePaths: ["poi-a", "poi-b"], existsSync: () => true });
+  const poiFilesAbsent = observeOptionalPoiFiles({ relativePaths: ["poi-a", "poi-b"], existsSync: () => false });
+  assert.equal(poiFilesPresent.allPresent, true);
+  assert.equal(poiFilesAbsent.presentCount, 0);
+  assert.equal(cityOnly.accepted, cumulative.accepted);
+  assert.deepEqual(cumulativeQueue, cumulativeBefore);
+
+  const nonCityConflict = { conflictId: "poi-conflict-1", type: "poi-fixture", severity: "review", relatedEntityIds: ["poi-1"] };
+  const conflictEvaluation = evaluateCumulativeCityConflicts({
+    conflicts: [nonCityConflict],
+    expectedCityConflicts: [],
+    cityEntityIds: new Set(["city-1"]),
+    countryEntityIds: new Set(["country-1"]),
+  });
+  assert.equal(conflictEvaluation.accepted, true);
+  assert.equal(conflictEvaluation.cityConflicts.length, 0);
+  assert.equal(conflictEvaluation.nonCityConflicts.length, 1);
+
+  const outputSemantics = buildPoiPresenceAuditSummary(poiFilesPresent);
+  assert.equal(outputSemantics.poiFilesPresent, true);
+  assert.equal(outputSemantics.poiContentsUsedForCityAudit, false);
+  assert.equal(outputSemantics.poiPresenceBlocksCityAudit, false);
+  assert.equal(Object.hasOwn(outputSemantics, "batch01PoiAbsent"), false);
+
+  return Object.freeze({
+    cityOnlyReviewsPass: true,
+    cumulativeReviewsPass: true,
+    nonCityReviewsExcludedFromCityPolicy: true,
+    missingCityReviewBlocked: true,
+    changedCityReviewContentBlocked: true,
+    changedCityReviewIdBlocked: true,
+    crossLayerReviewIdCollisionBlocked: true,
+    cumulativeReviewIdDuplicateBlocked: true,
+    poiFilesPresentPass: true,
+    poiFilesAbsentPass: true,
+    poiPresenceDoesNotChangeCityResult: true,
+    poiContentsNotRead: true,
+    nonCityConflictAllowed: true,
+    noBatch01PoiAbsentHardGate: true,
+  });
+}
+
+const auditCompatibilityFixtures = runAuditCompatibilityFixtures();
+
 export function auditKnowledgeCityBaselineP1bBatch01() {
   const rawText = readText(CITY_BASELINE_P1B_BATCH01_RAW_RELATIVE_PATH);
   const raw = JSON.parse(rawText);
@@ -64,11 +262,27 @@ export function auditKnowledgeCityBaselineP1bBatch01() {
   const rawGate = validateKnowledgeCityBaselineP1bBatch01RawSnapshot(raw);
   const schemaValidation = validateKnowledgeCityEntitySet(batchCities);
   const parentValidation = repository.validateParentReferences();
+  const rebuiltCityAssets = buildKnowledgeCityBaselineP1bBatch01Assets({ rawSnapshot: raw, countries, pilotCities });
+  const reviewQueue = reviewsAsset.reviewQueue || [];
+  const reviewEvaluation = evaluateCumulativeCityReviews({
+    reviewQueue,
+    expectedCityReviews: JSON.parse(JSON.stringify(rebuiltCityAssets.reviewQueueAsset.reviewQueue)),
+    expectedCityReviewCount: 43,
+  });
+  const conflicts = conflictsAsset.conflicts || [];
+  const conflictEvaluation = evaluateCumulativeCityConflicts({
+    conflicts,
+    expectedCityConflicts: JSON.parse(JSON.stringify(rebuiltCityAssets.conflictsAsset.conflicts)),
+    cityEntityIds: new Set(batchCities.map((city) => city.entityId)),
+    countryEntityIds: new Set(countries.map((country) => country.entityId)),
+  });
+  const blockingCityConflicts = conflictEvaluation.cityConflicts.filter((conflict) => conflict.severity === "blocking");
+  const cityAssetMatchesFrozenBuilder = JSON.stringify(citiesAsset) === JSON.stringify(rebuiltCityAssets.citiesAsset);
+  const provenanceMatchesFrozenBuilder = JSON.stringify(provenanceAsset) === JSON.stringify(rebuiltCityAssets.provenanceAsset);
   const provenanceCoverage = batchCities.filter((city) => provenanceAsset.provenance?.[city.entityId]).length;
   const inlineSidecarMatches = batchCities.filter((city) => JSON.stringify(city.provenance) === JSON.stringify(provenanceAsset.provenance?.[city.entityId])).length;
-  const blockingConflicts = (conflictsAsset.conflicts || []).filter((conflict) => conflict.severity === "blocking");
   const reviewsByCityId = new Map(batchCities.map((city) => [city.entityId, []]));
-  for (const review of reviewsAsset.reviewQueue || []) {
+  for (const review of reviewEvaluation.cityReviews) {
     for (const entityId of review.relatedEntityIds || []) {
       if (reviewsByCityId.has(entityId)) reviewsByCityId.get(entityId).push(review);
     }
@@ -150,17 +364,13 @@ export function auditKnowledgeCityBaselineP1bBatch01() {
     P31: result.claimProjections?.P31,
     P131: result.claimProjections?.P131,
   }));
-  const reviewQueue = reviewsAsset.reviewQueue || [];
-  const reviewTraceability = reviewQueue.filter((review) => {
+  const reviewTraceability = reviewEvaluation.cityReviews.filter((review) => {
     const gate = gateByQid.get(review.wikidataId);
     return gate
       && gate.reviewReasons.includes(review.type)
       && review.rawGateEvidence?.reviewReason === review.type
       && review.rawGateEvidence?.gateClassification === gate.gateClassification;
   }).length;
-  const reviewCityTypeKeys = reviewQueue.map((review) => `${review.wikidataId}:${review.type}`);
-  const allowedReviewTypes = reviewQueue.every((review) => CITY_BASELINE_P1B_BATCH01_REVIEW_TYPES.includes(review.type));
-  const uniqueReviewCityTypes = new Set(reviewCityTypeKeys).size === reviewCityTypeKeys.length;
   const netherlandsCities = cityDetails.filter((city) => ["Q727", "Q34370"].includes(city.wikidataId));
   const netherlandsIsolation = {
     cityCount: netherlandsCities.length,
@@ -170,7 +380,11 @@ export function auditKnowledgeCityBaselineP1bBatch01() {
     provenanceReferencesCountryReview: netherlandsCities.some((city) => Object.values(provenanceAsset.provenance?.[city.entityId] || {})
       .some((entry) => /review-queue|country-review/iu.test(`${entry.source || ""} ${entry.sourceUrl || ""}`))),
   };
-  const batch01PoiAbsent = BATCH01_POI_PATHS.every((relativePath) => !fs.existsSync(path.resolve(PROJECT_ROOT, relativePath)));
+  const poiFileObservation = observeOptionalPoiFiles({
+    relativePaths: BATCH01_POI_PATHS,
+    existsSync: (relativePath) => fs.existsSync(path.resolve(PROJECT_ROOT, relativePath)),
+  });
+  const poiCompatibility = buildPoiPresenceAuditSummary(poiFileObservation);
 
   return {
     status: countries.length === 50
@@ -180,15 +394,16 @@ export function auditKnowledgeCityBaselineP1bBatch01() {
       && rawGate.status === "PASS"
       && schemaValidation.accepted
       && parentValidation.accepted
-      && blockingConflicts.length === 0
-      && allowedReviewTypes
-      && uniqueReviewCityTypes
-      && reviewTraceability === reviewQueue.length
+      && cityAssetMatchesFrozenBuilder
+      && provenanceMatchesFrozenBuilder
+      && blockingCityConflicts.length === 0
+      && conflictEvaluation.accepted
+      && reviewEvaluation.accepted
+      && reviewTraceability === reviewEvaluation.cityReviews.length
       && provenanceCoverage === 10
       && inlineSidecarMatches === 10
       && netherlandsIsolation.reviewsDerivedOnlyFromCityRawGate
       && netherlandsIsolation.provenanceReferencesCountryReview === false
-      && batch01PoiAbsent
       && JSON.stringify(parentCounts) === JSON.stringify(EXPECTED_PARENT_COUNTS)
       ? "PASS"
       : "BLOCKED",
@@ -196,7 +411,7 @@ export function auditKnowledgeCityBaselineP1bBatch01() {
       batch01Countries: 5,
       batch01Cities: batchCities.length,
       batch01Pois: 0,
-      batch01PoiStatus: "NOT_STARTED",
+      batch01PoiContentsUsedForCityAudit: false,
     },
     source: {
       provider: raw.source?.provider,
@@ -215,13 +430,19 @@ export function auditKnowledgeCityBaselineP1bBatch01() {
     polandGate,
     administrativeBoundaryReviews: {
       allowedTypes: CITY_BASELINE_P1B_BATCH01_REVIEW_TYPES,
-      byType: summarizeByType(reviewQueue),
-      total: reviewQueue.length,
+      byType: summarizeByType(reviewEvaluation.cityReviews),
+      cityReviewTotal: reviewEvaluation.cityReviewTotal,
+      nonCityReviewTotal: reviewEvaluation.nonCityReviewTotal,
+      reviewTotal: reviewEvaluation.reviewTotal,
       traceableToRawGate: reviewTraceability,
-      uniqueCityTypePairs: uniqueReviewCityTypes,
+      uniqueCityTypePairs: reviewEvaluation.uniqueCityTypePairs,
+      cityReviewsAllowedTypesOnly: reviewEvaluation.cityReviewsAllowedTypesOnly,
+      nonCityReviewsIgnoredByCityPolicy: reviewEvaluation.nonCityReviewsIgnoredByCityPolicy,
+      cumulativeReviewIdsUnique: reviewEvaluation.cumulativeReviewIdsUnique,
+      cityReviewsMatchFrozenBaseline: reviewEvaluation.cityReviewsMatchFrozenBaseline,
     },
     netherlandsIsolation,
-    batch01PoiAbsent,
+    poiCompatibility,
     unsupportedBoundaries,
     sourceProjectionDifferences,
     schemaValidation,
@@ -231,9 +452,15 @@ export function auditKnowledgeCityBaselineP1bBatch01() {
       inlineSidecarMatches,
     },
     conflicts: {
-      total: (conflictsAsset.conflicts || []).length,
-      blocking: blockingConflicts.length,
-      byType: summarizeByType(conflictsAsset.conflicts || []),
+      conflictTotal: conflictEvaluation.conflictTotal,
+      cityConflictTotal: conflictEvaluation.cityConflictTotal,
+      nonCityConflictTotal: conflictEvaluation.nonCityConflictTotal,
+      blockingCityConflicts: blockingCityConflicts.length,
+      cumulativeConflictIdsUnique: conflictEvaluation.cumulativeConflictIdsUnique,
+      cityConflictsMatchFrozenBaseline: conflictEvaluation.cityConflictsMatchFrozenBaseline,
+      nonCityConflictsIgnoredByCityPolicy: conflictEvaluation.nonCityConflictsIgnoredByCityPolicy,
+      cityByType: summarizeByType(conflictEvaluation.cityConflicts),
+      nonCityByType: summarizeByType(conflictEvaluation.nonCityConflicts),
     },
     parentCounts,
     expectedParentCounts: EXPECTED_PARENT_COUNTS,
@@ -244,6 +471,13 @@ export function auditKnowledgeCityBaselineP1bBatch01() {
       totalEntities: countries.length + allCities.length + pilotPois.length,
       cityDistribution: cumulativeCountryCounts,
     },
+    deterministicCityBaseline: {
+      cityAssetMatchesFrozenBuilder,
+      provenanceMatchesFrozenBuilder,
+      cityReviewsMatchFrozenBuilder: reviewEvaluation.cityReviewsMatchFrozenBaseline,
+      cityConflictsMatchFrozenBuilder: conflictEvaluation.cityConflictsMatchFrozenBaseline,
+    },
+    syntheticFixtures: auditCompatibilityFixtures,
   };
 }
 

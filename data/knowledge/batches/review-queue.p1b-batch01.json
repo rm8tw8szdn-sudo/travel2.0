@@ -1,6 +1,9 @@
 {
-  "schemaVersion": "route-v2-city-baseline-review-p1b-batch01",
-  "reviewCount": 43,
+  "schemaVersion": "route-v2-entity-layer-review-p1b-batch01",
+  "reviewCount": 55,
+  "cityReviewCount": 43,
+  "poiClassifierReviewCount": 12,
+  "additionalPoiReviewCount": 0,
   "reviewQueue": [
     {
       "reviewId": "review-0223464ff39d3806",
@@ -218,6 +221,70 @@
       }
     },
     {
+      "reviewId": "review-0d141f8cd535a2b8",
+      "type": "poi-p31-policy-manual-review",
+      "severity": "manual-review",
+      "relatedEntityIds": [
+        "city-83414d1ae1a11ef2",
+        "poi-b6ab15df03c55abc"
+      ],
+      "field": "wikidataInstanceOf",
+      "message": "Complete numeric P31 key exactly matches manual-review list: Q23413|Q33506|Q53536964|Q811165.",
+      "wikidataId": "Q756098",
+      "parentCityEntityId": "city-83414d1ae1a11ef2",
+      "sourceP31Qids": [
+        "Q23413",
+        "Q33506",
+        "Q53536964",
+        "Q811165"
+      ],
+      "p31Key": "Q23413|Q33506|Q53536964|Q811165",
+      "classification": "accepted-with-review",
+      "disposition": "manual-review",
+      "policyVersion": "p1b-batch01-poi-review-v1",
+      "matchedRuleId": "exact-manual-key",
+      "rationale": "Complete numeric P31 key exactly matches manual-review list: Q23413|Q33506|Q53536964|Q811165.",
+      "unknownP31Qids": [],
+      "evidenceTrace": {
+        "candidateKey": "Q270::royal-castle-in-warsaw",
+        "sourceRound": "base",
+        "sourceRawPath": "data/knowledge/raw/pois-p1b-batch01-candidates.wikidata.json",
+        "sourceRawIndex": 33,
+        "selectionPolicyVersion": "p1b-batch01-poi-selection-v1"
+      }
+    },
+    {
+      "reviewId": "review-0f2dedee8d7a8185",
+      "type": "poi-p31-policy-manual-review",
+      "severity": "manual-review",
+      "relatedEntityIds": [
+        "city-51d172b9e24e3620",
+        "poi-36bb8bf104887a61"
+      ],
+      "field": "wikidataInstanceOf",
+      "message": "Complete numeric P31 key exactly matches manual-review list: Q23413|Q33506.",
+      "wikidataId": "Q136893",
+      "parentCityEntityId": "city-51d172b9e24e3620",
+      "sourceP31Qids": [
+        "Q23413",
+        "Q33506"
+      ],
+      "p31Key": "Q23413|Q33506",
+      "classification": "accepted-with-review",
+      "disposition": "manual-review",
+      "policyVersion": "p1b-batch01-poi-review-v1",
+      "matchedRuleId": "exact-manual-key",
+      "rationale": "Complete numeric P31 key exactly matches manual-review list: Q23413|Q33506.",
+      "unknownP31Qids": [],
+      "evidenceTrace": {
+        "candidateKey": "Q38511::turku-castle",
+        "sourceRound": "base",
+        "sourceRawPath": "data/knowledge/raw/pois-p1b-batch01-candidates.wikidata.json",
+        "sourceRawIndex": 21,
+        "selectionPolicyVersion": "p1b-batch01-poi-selection-v1"
+      }
+    },
+    {
       "reviewId": "review-1017e1b6b2682e9c",
       "type": "p31-source-projection-difference",
       "severity": "manual-review",
@@ -339,6 +406,40 @@
           "Q13539802",
           "Q707813"
         ]
+      }
+    },
+    {
+      "reviewId": "review-119f8707c2f1ce49",
+      "type": "poi-p31-policy-manual-review",
+      "severity": "manual-review",
+      "relatedEntityIds": [
+        "city-83414d1ae1a11ef2",
+        "poi-bc3b5ac8d8ce709c"
+      ],
+      "field": "wikidataInstanceOf",
+      "message": "Complete numeric P31 key exactly matches manual-review list: Q11303|Q16560|Q2319498|Q5061188|Q811165.",
+      "wikidataId": "Q167566",
+      "parentCityEntityId": "city-83414d1ae1a11ef2",
+      "sourceP31Qids": [
+        "Q11303",
+        "Q16560",
+        "Q2319498",
+        "Q5061188",
+        "Q811165"
+      ],
+      "p31Key": "Q11303|Q16560|Q2319498|Q5061188|Q811165",
+      "classification": "accepted-with-review",
+      "disposition": "manual-review",
+      "policyVersion": "p1b-batch01-poi-review-v1",
+      "matchedRuleId": "exact-manual-key",
+      "rationale": "Complete numeric P31 key exactly matches manual-review list: Q11303|Q16560|Q2319498|Q5061188|Q811165.",
+      "unknownP31Qids": [],
+      "evidenceTrace": {
+        "candidateKey": "Q270::palace-of-culture-and-science",
+        "sourceRound": "supplement01",
+        "sourceRawPath": "data/knowledge/raw/pois-p1b-batch01-candidates-supplement01.wikidata.json",
+        "sourceRawIndex": 8,
+        "selectionPolicyVersion": "p1b-batch01-poi-selection-v1"
       }
     },
     {
@@ -959,6 +1060,38 @@
       }
     },
     {
+      "reviewId": "review-388c5f13121127fa",
+      "type": "poi-p31-policy-manual-review",
+      "severity": "manual-review",
+      "relatedEntityIds": [
+        "city-bf507de627cbfc1e",
+        "poi-766a2dac0e4a7e49"
+      ],
+      "field": "wikidataInstanceOf",
+      "message": "Complete numeric P31 key exactly matches manual-review list: Q537127|Q79007|Q911663.",
+      "wikidataId": "Q1348188",
+      "parentCityEntityId": "city-bf507de627cbfc1e",
+      "sourceP31Qids": [
+        "Q537127",
+        "Q79007",
+        "Q911663"
+      ],
+      "p31Key": "Q537127|Q79007|Q911663",
+      "classification": "accepted-with-review",
+      "disposition": "manual-review",
+      "policyVersion": "p1b-batch01-poi-review-v1",
+      "matchedRuleId": "exact-manual-key",
+      "rationale": "Complete numeric P31 key exactly matches manual-review list: Q537127|Q79007|Q911663.",
+      "unknownP31Qids": [],
+      "evidenceTrace": {
+        "candidateKey": "Q34370::erasmus-bridge",
+        "sourceRound": "supplement01",
+        "sourceRawPath": "data/knowledge/raw/pois-p1b-batch01-candidates-supplement01.wikidata.json",
+        "sourceRawIndex": 20,
+        "selectionPolicyVersion": "p1b-batch01-poi-selection-v1"
+      }
+    },
+    {
       "reviewId": "review-3e71a7e3ab3397a8",
       "type": "p17-source-projection-difference",
       "severity": "manual-review",
@@ -1267,6 +1400,40 @@
       }
     },
     {
+      "reviewId": "review-499a4a0f313a24d3",
+      "type": "poi-p31-policy-manual-review",
+      "severity": "manual-review",
+      "relatedEntityIds": [
+        "city-66a343aed16e37a4",
+        "poi-62b596dbd14f54ec"
+      ],
+      "field": "wikidataInstanceOf",
+      "message": "Complete numeric P31 key exactly matches manual-review list: Q11396960|Q1172284|Q16735822|Q17431399|Q207694.",
+      "wikidataId": "Q190804",
+      "parentCityEntityId": "city-66a343aed16e37a4",
+      "sourceP31Qids": [
+        "Q11396960",
+        "Q1172284",
+        "Q16735822",
+        "Q17431399",
+        "Q207694"
+      ],
+      "p31Key": "Q11396960|Q1172284|Q16735822|Q17431399|Q207694",
+      "classification": "accepted-with-review",
+      "disposition": "manual-review",
+      "policyVersion": "p1b-batch01-poi-review-v1",
+      "matchedRuleId": "exact-manual-key",
+      "rationale": "Complete numeric P31 key exactly matches manual-review list: Q11396960|Q1172284|Q16735822|Q17431399|Q207694.",
+      "unknownP31Qids": [],
+      "evidenceTrace": {
+        "candidateKey": "Q727::rijksmuseum",
+        "sourceRound": "supplement01",
+        "sourceRawPath": "data/knowledge/raw/pois-p1b-batch01-candidates-supplement01.wikidata.json",
+        "sourceRawIndex": 16,
+        "selectionPolicyVersion": "p1b-batch01-poi-selection-v1"
+      }
+    },
+    {
       "reviewId": "review-4de8963f353bf2f2",
       "type": "multiple-city-type-candidates",
       "severity": "manual-review",
@@ -1339,6 +1506,37 @@
           "Q1852859",
           "Q486972"
         ]
+      }
+    },
+    {
+      "reviewId": "review-5342d303b229bc6a",
+      "type": "poi-p31-policy-manual-review",
+      "severity": "manual-review",
+      "relatedEntityIds": [
+        "city-f8fd54cc84a22fd5",
+        "poi-052e8c36c342e380"
+      ],
+      "field": "wikidataInstanceOf",
+      "message": "Complete numeric P31 key exactly matches manual-review list: Q28564|Q856584.",
+      "wikidataId": "Q18659999",
+      "parentCityEntityId": "city-f8fd54cc84a22fd5",
+      "sourceP31Qids": [
+        "Q28564",
+        "Q856584"
+      ],
+      "p31Key": "Q28564|Q856584",
+      "classification": "accepted-with-review",
+      "disposition": "manual-review",
+      "policyVersion": "p1b-batch01-poi-review-v1",
+      "matchedRuleId": "exact-manual-key",
+      "rationale": "Complete numeric P31 key exactly matches manual-review list: Q28564|Q856584.",
+      "unknownP31Qids": [],
+      "evidenceTrace": {
+        "candidateKey": "Q1757::helsinki-central-library-oodi",
+        "sourceRound": "supplement02",
+        "sourceRawPath": "data/knowledge/raw/pois-p1b-batch01-candidates-supplement02.wikidata.json",
+        "sourceRawIndex": 7,
+        "selectionPolicyVersion": "p1b-batch01-poi-selection-v1"
       }
     },
     {
@@ -1431,6 +1629,69 @@
           "Q1392581",
           "Q1852859"
         ]
+      }
+    },
+    {
+      "reviewId": "review-60a373e5ead5b12d",
+      "type": "poi-p31-policy-manual-review",
+      "severity": "manual-review",
+      "relatedEntityIds": [
+        "city-83414d1ae1a11ef2",
+        "poi-ff8204807176917b"
+      ],
+      "field": "wikidataInstanceOf",
+      "message": "Complete numeric P31 key exactly matches manual-review list: Q16735822|Q2772772|Q811979.",
+      "wikidataId": "Q574328",
+      "parentCityEntityId": "city-83414d1ae1a11ef2",
+      "sourceP31Qids": [
+        "Q16735822",
+        "Q2772772",
+        "Q811979"
+      ],
+      "p31Key": "Q16735822|Q2772772|Q811979",
+      "classification": "accepted-with-review",
+      "disposition": "manual-review",
+      "policyVersion": "p1b-batch01-poi-review-v1",
+      "matchedRuleId": "exact-manual-key",
+      "rationale": "Complete numeric P31 key exactly matches manual-review list: Q16735822|Q2772772|Q811979.",
+      "unknownP31Qids": [],
+      "evidenceTrace": {
+        "candidateKey": "Q270::warsaw-uprising-museum",
+        "sourceRound": "base",
+        "sourceRawPath": "data/knowledge/raw/pois-p1b-batch01-candidates.wikidata.json",
+        "sourceRawIndex": 34,
+        "selectionPolicyVersion": "p1b-batch01-poi-selection-v1"
+      }
+    },
+    {
+      "reviewId": "review-613a95c2e3a7160c",
+      "type": "poi-p31-policy-manual-review",
+      "severity": "manual-review",
+      "relatedEntityIds": [
+        "city-66a343aed16e37a4",
+        "poi-0a0ab3046b1b251f"
+      ],
+      "field": "wikidataInstanceOf",
+      "message": "Complete numeric P31 key exactly matches manual-review list: Q2087181|Q575759.",
+      "wikidataId": "Q165366",
+      "parentCityEntityId": "city-66a343aed16e37a4",
+      "sourceP31Qids": [
+        "Q2087181",
+        "Q575759"
+      ],
+      "p31Key": "Q2087181|Q575759",
+      "classification": "accepted-with-review",
+      "disposition": "manual-review",
+      "policyVersion": "p1b-batch01-poi-review-v1",
+      "matchedRuleId": "exact-manual-key",
+      "rationale": "Complete numeric P31 key exactly matches manual-review list: Q2087181|Q575759.",
+      "unknownP31Qids": [],
+      "evidenceTrace": {
+        "candidateKey": "Q727::anne-frank-house",
+        "sourceRound": "base",
+        "sourceRawPath": "data/knowledge/raw/pois-p1b-batch01-candidates.wikidata.json",
+        "sourceRawIndex": 27,
+        "selectionPolicyVersion": "p1b-batch01-poi-selection-v1"
       }
     },
     {
@@ -1847,6 +2108,37 @@
           "status": "compatible-review"
         },
         "unclassifiedCityTypeQids": []
+      }
+    },
+    {
+      "reviewId": "review-80195f7dd0520015",
+      "type": "poi-p31-policy-manual-review",
+      "severity": "manual-review",
+      "relatedEntityIds": [
+        "city-2c83bc499c1c4889",
+        "poi-434449caaad03dd9"
+      ],
+      "field": "wikidataInstanceOf",
+      "message": "Complete numeric P31 key exactly matches manual-review list: Q33506|Q543654.",
+      "wikidataId": "Q2332231",
+      "parentCityEntityId": "city-2c83bc499c1c4889",
+      "sourceP31Qids": [
+        "Q33506",
+        "Q543654"
+      ],
+      "p31Key": "Q33506|Q543654",
+      "classification": "accepted-with-review",
+      "disposition": "manual-review",
+      "policyVersion": "p1b-batch01-poi-review-v1",
+      "matchedRuleId": "exact-manual-key",
+      "rationale": "Complete numeric P31 key exactly matches manual-review list: Q33506|Q543654.",
+      "unknownP31Qids": [],
+      "evidenceTrace": {
+        "candidateKey": "Q1085::old-town-hall-with-astronomical-clock",
+        "sourceRound": "supplement03",
+        "sourceRawPath": "data/knowledge/raw/pois-p1b-batch01-candidates-supplement03.wikidata.json",
+        "sourceRawIndex": 5,
+        "selectionPolicyVersion": "p1b-batch01-poi-selection-v1"
       }
     },
     {
@@ -2931,6 +3223,39 @@
       }
     },
     {
+      "reviewId": "review-c5faa3d0935d399b",
+      "type": "poi-p31-policy-manual-review",
+      "severity": "manual-review",
+      "relatedEntityIds": [
+        "city-f8fd54cc84a22fd5",
+        "poi-2b5058f53d6ea6bb"
+      ],
+      "field": "wikidataInstanceOf",
+      "message": "Complete numeric P31 key exactly matches manual-review list: Q17105874|Q17431399|Q24699794|Q33506.",
+      "wikidataId": "Q1418136",
+      "parentCityEntityId": "city-f8fd54cc84a22fd5",
+      "sourceP31Qids": [
+        "Q17105874",
+        "Q17431399",
+        "Q24699794",
+        "Q33506"
+      ],
+      "p31Key": "Q17105874|Q17431399|Q24699794|Q33506",
+      "classification": "accepted-with-review",
+      "disposition": "manual-review",
+      "policyVersion": "p1b-batch01-poi-review-v1",
+      "matchedRuleId": "exact-manual-key",
+      "rationale": "Complete numeric P31 key exactly matches manual-review list: Q17105874|Q17431399|Q24699794|Q33506.",
+      "unknownP31Qids": [],
+      "evidenceTrace": {
+        "candidateKey": "Q1757::national-museum-of-finland",
+        "sourceRound": "base",
+        "sourceRawPath": "data/knowledge/raw/pois-p1b-batch01-candidates.wikidata.json",
+        "sourceRawIndex": 19,
+        "selectionPolicyVersion": "p1b-batch01-poi-selection-v1"
+      }
+    },
+    {
       "reviewId": "review-cce4305405d041d2",
       "type": "city-administrative-entity-overlap",
       "severity": "manual-review",
@@ -3346,6 +3671,70 @@
           "Q1392581",
           "Q1852859"
         ]
+      }
+    },
+    {
+      "reviewId": "review-dc645ef5ece00961",
+      "type": "poi-p31-policy-manual-review",
+      "severity": "manual-review",
+      "relatedEntityIds": [
+        "city-66a343aed16e37a4",
+        "poi-8c9d9cdead03ec4f"
+      ],
+      "field": "wikidataInstanceOf",
+      "message": "Complete numeric P31 key exactly matches manual-review list: Q207694|Q3152824|Q33506.",
+      "wikidataId": "Q224124",
+      "parentCityEntityId": "city-66a343aed16e37a4",
+      "sourceP31Qids": [
+        "Q207694",
+        "Q3152824",
+        "Q33506"
+      ],
+      "p31Key": "Q207694|Q3152824|Q33506",
+      "classification": "accepted-with-review",
+      "disposition": "manual-review",
+      "policyVersion": "p1b-batch01-poi-review-v1",
+      "matchedRuleId": "exact-manual-key",
+      "rationale": "Complete numeric P31 key exactly matches manual-review list: Q207694|Q3152824|Q33506.",
+      "unknownP31Qids": [],
+      "evidenceTrace": {
+        "candidateKey": "Q727::van-gogh-museum",
+        "sourceRound": "supplement01",
+        "sourceRawPath": "data/knowledge/raw/pois-p1b-batch01-candidates-supplement01.wikidata.json",
+        "sourceRawIndex": 17,
+        "selectionPolicyVersion": "p1b-batch01-poi-selection-v1"
+      }
+    },
+    {
+      "reviewId": "review-dc9bbce31bc754c2",
+      "type": "poi-p31-policy-manual-review",
+      "severity": "manual-review",
+      "relatedEntityIds": [
+        "city-7c5e7e54c0cc73d4",
+        "poi-8f91d08c3eef5c7b"
+      ],
+      "field": "wikidataInstanceOf",
+      "message": "Complete numeric P31 key exactly matches manual-review list: Q120560|Q16970|Q811165.",
+      "wikidataId": "Q1143171",
+      "parentCityEntityId": "city-7c5e7e54c0cc73d4",
+      "sourceP31Qids": [
+        "Q120560",
+        "Q16970",
+        "Q811165"
+      ],
+      "p31Key": "Q120560|Q16970|Q811165",
+      "classification": "accepted-with-review",
+      "disposition": "manual-review",
+      "policyVersion": "p1b-batch01-poi-review-v1",
+      "matchedRuleId": "exact-manual-key",
+      "rationale": "Complete numeric P31 key exactly matches manual-review list: Q120560|Q16970|Q811165.",
+      "unknownP31Qids": [],
+      "evidenceTrace": {
+        "candidateKey": "Q31487::st-mary-s-basilica",
+        "sourceRound": "supplement01",
+        "sourceRawPath": "data/knowledge/raw/pois-p1b-batch01-candidates-supplement01.wikidata.json",
+        "sourceRawIndex": 9,
+        "selectionPolicyVersion": "p1b-batch01-poi-selection-v1"
       }
     },
     {

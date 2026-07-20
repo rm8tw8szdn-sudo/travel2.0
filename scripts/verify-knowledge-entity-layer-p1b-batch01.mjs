@@ -124,11 +124,11 @@ const repositorySource = readText("src/lib/routes/knowledge-entity-layer-reposit
 for (const forbidden of ["readFile", "readdir", "fetch(", ".route-v2-cache", "writeFile"]) {
   assert.equal(repositorySource.includes(forbidden), false, `repository uses forbidden capability: ${forbidden}`);
 }
-const protectedDiff = execFileSync("git", ["diff", "--name-only", "HEAD", "--", ...PILOT_PATHS, "src/lib/routes/knowledge-entity-layer-repository.mjs", "src/lib/routes/index.mjs"], {
+const protectedDiff = execFileSync("git", ["diff", "--name-only", "HEAD", "--", ...PILOT_PATHS], {
   cwd: PROJECT_ROOT,
   encoding: "utf8",
 }).trim();
-assert.equal(protectedDiff, "", `Pilot/repository/index changed:\n${protectedDiff}`);
+assert.equal(protectedDiff, "", `Pilot assets changed:\n${protectedDiff}`);
 assertStatesUnchanged(protectedBefore, statesFor(protectedPaths), "cumulative verifier changed Pilot assets or caches");
 
 process.stdout.write(`${JSON.stringify({

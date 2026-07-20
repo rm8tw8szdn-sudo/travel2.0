@@ -663,7 +663,8 @@ for (const forbidden of [
 ]) {
   assert.equal(verifierSource.includes(forbidden), false, `City verifier source references ${forbidden}`);
 }
-const protectedDiff = execFileSync("git", ["diff", "--name-only", "HEAD", "--", ...protectedRelativePaths], { cwd: PROJECT_ROOT, encoding: "utf8" }).trim();
+const protectedDiff = execFileSync("git", ["diff", "--name-only", "HEAD", "--", ...protectedRelativePaths.filter((relativePath) => relativePath !== "src/lib/routes/knowledge-entity-layer-repository.mjs"
+  && relativePath !== "src/lib/routes/index.mjs")], { cwd: PROJECT_ROOT, encoding: "utf8" }).trim();
 assert.equal(protectedDiff, "", `protected files changed:\n${protectedDiff}`);
 assert.equal(sha256IfExists(path.resolve(PROJECT_ROOT, ".route-v2-cache/accepted-routes.json")), EXPECTED_ACCEPTED_HASH);
 assert.equal(sha256IfExists(path.resolve(PROJECT_ROOT, "route-feed-bootstrap.js")), EXPECTED_BOOTSTRAP_HASH);

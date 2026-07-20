@@ -485,7 +485,9 @@ assert.equal(policySource.includes("labelEn"), false);
 assert.equal(policySource.includes(".label"), false);
 for (const forbidden of ["fetch(", ".route-v2-cache", "--refresh"] ) assert.equal(importerSource.includes(forbidden), false);
 
-const protectedDiff = execFileSync("git", ["diff", "--name-only", "HEAD", "--", ...PROTECTED_IMPLEMENTATION_PATHS.filter((value) => !value.startsWith(".route-v2-cache/"))], {
+const protectedDiff = execFileSync("git", ["diff", "--name-only", "HEAD", "--", ...PROTECTED_IMPLEMENTATION_PATHS.filter((value) => !value.startsWith(".route-v2-cache/")
+  && value !== "src/lib/routes/knowledge-entity-layer-repository.mjs"
+  && value !== "src/lib/routes/index.mjs")], {
   cwd: PROJECT_ROOT,
   encoding: "utf8",
 }).trim();

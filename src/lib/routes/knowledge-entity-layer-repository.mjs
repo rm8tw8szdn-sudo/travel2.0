@@ -2,6 +2,12 @@ function clone(value) {
   return value === undefined ? undefined : JSON.parse(JSON.stringify(value));
 }
 
+function sortCountries(countries) {
+  return [...countries].sort((left, right) => left.canonicalNameEn.localeCompare(right.canonicalNameEn, "en")
+    || left.isoAlpha2.localeCompare(right.isoAlpha2, "en")
+    || left.wikidataId.localeCompare(right.wikidataId, "en"));
+}
+
 function sortCities(cities) {
   return [...cities].sort((left, right) => left.parentCountryEntityId.localeCompare(right.parentCountryEntityId, "en")
     || left.canonicalNameEn.localeCompare(right.canonicalNameEn, "en")
@@ -24,12 +30,17 @@ export function createKnowledgeEntityLayerRepository({ countries = [], cities = 
     else entityById.set(entity.entityId, clone(entity));
   }
 
+  const stableCountries = sortCountries(countries).map(clone);
   const stableCities = sortCities(cities).map(clone);
   const stablePois = sortPois(pois).map(clone);
 
   return Object.freeze({
     getEntity(entityId) {
       return clone(entityById.get(entityId));
+    },
+
+    listCountries() {
+      return stableCountries.map(clone);
     },
 
     listCities() {

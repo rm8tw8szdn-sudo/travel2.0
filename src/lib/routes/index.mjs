@@ -132,6 +132,11 @@ export { normalizeKnowledgePoiBaseline } from "./knowledge-poi-baseline-normaliz
 export { dedupeKnowledgePoiEntities } from "./knowledge-poi-baseline-deduper.mjs";
 export { createKnowledgeEntityLayerRepository } from "./knowledge-entity-layer-repository.mjs";
 export {
+  KNOWLEDGE_ENTITY_LAYER_PUBLISHED_ASSETS,
+  KNOWLEDGE_ENTITY_LAYER_PUBLISHED_TOTALS,
+  createPublishedKnowledgeEntityLayerRepository,
+} from "./knowledge-entity-layer-published-assets.mjs";
+export {
   LOCAL_EVIDENCE_COLLECTOR_CREATED_AT,
   LOCAL_EVIDENCE_COLLECTOR_SOURCE,
   collectLocalEvidenceBundle,

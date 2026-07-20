@@ -35,6 +35,9 @@ import {
 import { assertStatesUnchanged, statesFor } from "./lib/route-v2-test-file-state.mjs";
 
 const PROJECT_ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
+const CITY_REVIEW_BASELINE_COMMIT = "8046a2f";
+const CITY_REVIEW_BASELINE_RELATIVE_PATH = "data/knowledge/batches/review-queue.p1b-batch01.json";
+const CITY_REVIEW_BASELINE_COUNT = 43;
 const OUTPUT_PATHS = Object.freeze([
   POI_BASELINE_P1B_BATCH01_RAW_RELATIVE_PATH,
   ...Object.values(POI_BASELINE_P1B_BATCH01_PUBLISH_RELATIVE_PATHS),
@@ -100,6 +103,69 @@ function dispositionCounts(classifiers) {
     disposition,
     classifiers.filter((classifier) => classifier.disposition === disposition).length,
   ]));
+}
+
+function readReviewQueueAssetAtGitRef(gitRef) {
+  try {
+    return JSON.parse(execFileSync("git", ["show", `${gitRef}:${CITY_REVIEW_BASELINE_RELATIVE_PATH}`], {
+      cwd: PROJECT_ROOT,
+      encoding: "utf8",
+      stdio: ["ignore", "pipe", "pipe"],
+    }));
+  } catch (error) {
+    throw new Error(
+      `Unable to read City review baseline from ${gitRef}:${CITY_REVIEW_BASELINE_RELATIVE_PATH}`,
+      { cause: error },
+    );
+  }
+}
+
+function validateCityReviewBaselineAsset(asset, source) {
+  assert.equal(
+    asset.reviewCount,
+    CITY_REVIEW_BASELINE_COUNT,
+    `${source} City review baseline reviewCount must be ${CITY_REVIEW_BASELINE_COUNT}`,
+  );
+  assert.equal(
+    asset.reviewQueue?.length,
+    CITY_REVIEW_BASELINE_COUNT,
+    `${source} City review baseline queue length must be ${CITY_REVIEW_BASELINE_COUNT}`,
+  );
+  assert.equal(
+    asset.reviewQueue.every((review) => CITY_BASELINE_P1B_BATCH01_REVIEW_TYPES.includes(review.type)),
+    true,
+    `${source} City review baseline must contain only City review types`,
+  );
+  return asset;
+}
+
+function loadCityReviewBaseline() {
+  return validateCityReviewBaselineAsset(
+    readReviewQueueAssetAtGitRef(CITY_REVIEW_BASELINE_COMMIT),
+    CITY_REVIEW_BASELINE_COMMIT,
+  );
+}
+
+function assertCityReviewsMatchBaseline(currentReviewQueue, baselineAsset) {
+  validateCityReviewBaselineAsset(baselineAsset, CITY_REVIEW_BASELINE_COMMIT);
+  assert.equal(
+    new Set(currentReviewQueue.map((review) => review.reviewId)).size,
+    currentReviewQueue.length,
+    "current cumulative review queue contains a City/POI reviewId collision",
+  );
+  const currentCityReviews = currentReviewQueue
+    .filter((review) => CITY_BASELINE_P1B_BATCH01_REVIEW_TYPES.includes(review.type));
+  assert.equal(
+    currentCityReviews.length,
+    CITY_REVIEW_BASELINE_COUNT,
+    `current City review count must be ${CITY_REVIEW_BASELINE_COUNT}`,
+  );
+  assert.deepEqual(
+    currentCityReviews,
+    baselineAsset.reviewQueue,
+    `current City reviews must exactly match checkpoint ${CITY_REVIEW_BASELINE_COMMIT}`,
+  );
+  return currentCityReviews;
 }
 
 const inputs = await loadKnowledgePoiBaselineP1bBatch01Inputs();
@@ -224,15 +290,11 @@ assert.equal(rebuiltAssetsA.classifiers.some((classifier) => backupQids.has(clas
 assert.equal(conflictsAsset.conflictCount, 0);
 assert.equal(conflictsAsset.blockingCount, 0);
 assert.deepEqual(conflictsAsset.conflicts, []);
-const cityReviewBaseline = JSON.parse(execFileSync("git", ["show", "HEAD:data/knowledge/batches/review-queue.p1b-batch01.json"], {
-  cwd: PROJECT_ROOT,
-  encoding: "utf8",
-}));
-const cityReviews = reviewAsset.reviewQueue.filter((review) => CITY_BASELINE_P1B_BATCH01_REVIEW_TYPES.includes(review.type));
+const cityReviewBaseline = loadCityReviewBaseline();
+const cityReviews = assertCityReviewsMatchBaseline(reviewAsset.reviewQueue, cityReviewBaseline);
 const poiClassifierReviews = reviewAsset.reviewQueue.filter((review) => review.type === "poi-p31-policy-manual-review");
 const otherPoiReviews = reviewAsset.reviewQueue.filter((review) => !CITY_BASELINE_P1B_BATCH01_REVIEW_TYPES.includes(review.type)
   && review.type !== "poi-p31-policy-manual-review");
-assert.deepEqual(cityReviews, cityReviewBaseline.reviewQueue);
 assert.equal(cityReviews.length, cityReviewBaseline.reviewCount);
 assert.equal(poiClassifierReviews.length, dispositions["manual-review"]);
 assert.equal(otherPoiReviews.length, rebuiltAssetsA.reviewQueueAsset.additionalPoiReviewCount);
@@ -248,6 +310,87 @@ for (const review of poiClassifierReviews) {
 for (const classifier of rebuiltAssetsA.classifiers.filter((value) => value.disposition === "informational")) {
   assert.equal(poiClassifierReviews.some((review) => review.wikidataId === classifier.wikidataId), false);
 }
+
+const cityBaselineFixtureProtectedBefore = statesFor(protectedAbsolutePaths);
+const cityBaselineFixtureResults = [];
+assert.equal(reviewAsset.reviewCount, 55);
+assert.equal(cityReviews.length, CITY_REVIEW_BASELINE_COUNT);
+assert.equal(poiClassifierReviews.length, 12);
+cityBaselineFixtureResults.push("cumulative-55-filters-city-43");
+
+assert.notEqual(CITY_REVIEW_BASELINE_COMMIT, "HEAD");
+const currentHeadReviewAsset = readReviewQueueAssetAtGitRef("HEAD");
+assert.throws(
+  () => validateCityReviewBaselineAsset(currentHeadReviewAsset, "HEAD"),
+  /HEAD City review baseline reviewCount must be 43/,
+);
+cityBaselineFixtureResults.push("current-head-rejected-as-city-baseline");
+
+const missingCityReviewQueue = clone(reviewAsset.reviewQueue)
+  .filter((review) => review.reviewId !== cityReviews[0].reviewId);
+assert.throws(
+  () => assertCityReviewsMatchBaseline(missingCityReviewQueue, cityReviewBaseline),
+  /current City review count must be 43/,
+);
+cityBaselineFixtureResults.push("missing-city-review-rejected");
+
+const changedCityReviewQueue = clone(reviewAsset.reviewQueue);
+changedCityReviewQueue.find((review) => review.reviewId === cityReviews[0].reviewId).message += " fixture mutation";
+assert.throws(
+  () => assertCityReviewsMatchBaseline(changedCityReviewQueue, cityReviewBaseline),
+  /must exactly match checkpoint 8046a2f/,
+);
+cityBaselineFixtureResults.push("changed-city-review-content-rejected");
+
+const changedCityReviewIdQueue = clone(reviewAsset.reviewQueue);
+changedCityReviewIdQueue.find((review) => review.reviewId === cityReviews[0].reviewId).reviewId += "-fixture";
+assert.throws(
+  () => assertCityReviewsMatchBaseline(changedCityReviewIdQueue, cityReviewBaseline),
+  /must exactly match checkpoint 8046a2f/,
+);
+cityBaselineFixtureResults.push("changed-city-review-id-rejected");
+
+const poiReviewFixture = clone(poiClassifierReviews[0]);
+poiReviewFixture.reviewId = `${poiReviewFixture.reviewId}-fixture-extra`;
+assert.equal(
+  assertCityReviewsMatchBaseline([...cityReviewBaseline.reviewQueue, poiReviewFixture], cityReviewBaseline).length,
+  CITY_REVIEW_BASELINE_COUNT,
+);
+assert.equal(
+  assertCityReviewsMatchBaseline(clone(cityReviewBaseline.reviewQueue), cityReviewBaseline).length,
+  CITY_REVIEW_BASELINE_COUNT,
+);
+cityBaselineFixtureResults.push("poi-review-count-independent");
+
+const collidingPoiReview = clone(poiClassifierReviews[0]);
+collidingPoiReview.reviewId = cityReviewBaseline.reviewQueue[0].reviewId;
+assert.throws(
+  () => assertCityReviewsMatchBaseline([...cityReviewBaseline.reviewQueue, collidingPoiReview], cityReviewBaseline),
+  /City\/POI reviewId collision/,
+);
+cityBaselineFixtureResults.push("city-poi-review-id-collision-rejected");
+
+assert.throws(
+  () => readReviewQueueAssetAtGitRef("0000000000000000000000000000000000000000"),
+  /Unable to read City review baseline from 0000000000000000000000000000000000000000/,
+);
+cityBaselineFixtureResults.push("unreadable-baseline-commit-rejected");
+
+const wrongCountBaseline = clone(cityReviewBaseline);
+wrongCountBaseline.reviewCount = CITY_REVIEW_BASELINE_COUNT - 1;
+assert.throws(
+  () => validateCityReviewBaselineAsset(wrongCountBaseline, "fixture"),
+  /fixture City review baseline reviewCount must be 43/,
+);
+cityBaselineFixtureResults.push("wrong-baseline-count-rejected");
+
+assertStatesUnchanged(
+  cityBaselineFixtureProtectedBefore,
+  statesFor(protectedAbsolutePaths),
+  "City review baseline fixtures changed protected inputs",
+);
+cityBaselineFixtureResults.push("fixtures-do-not-modify-assets");
+assert.equal(cityBaselineFixtureResults.length, 10);
 
 const syntheticResults = [];
 const informationalKey = selection.P31PolicyEvidence.informationalExactKeys[0];
@@ -376,6 +519,7 @@ process.stdout.write(`${JSON.stringify({
   provenance: { coverage: 30, inlineSidecarMatches: 30, traceabilityCoverage: 30, forbiddenSourceTypes: 0 },
   classifier: { policyVersion: KNOWLEDGE_POI_REVIEW_POLICY_P1B_VERSION, coverage: 30, ...dispositions },
   reviews: {
+    cityBaselineSource: CITY_REVIEW_BASELINE_COMMIT,
     cityPreserved: cityReviews.length,
     poiClassifierManual: poiClassifierReviews.length,
     additionalPoi: otherPoiReviews.length,
@@ -390,7 +534,13 @@ process.stdout.write(`${JSON.stringify({
     importerRerunByteIdentical: true,
     outputHashes: outputHashes(afterRerun),
   },
-  syntheticFixtures: { count: syntheticResults.length, results: syntheticResults },
+  syntheticFixtures: {
+    count: syntheticResults.length + cityBaselineFixtureResults.length,
+    classifier: { count: syntheticResults.length, results: syntheticResults },
+    cityReviewBaseline: { count: cityBaselineFixtureResults.length, results: cityBaselineFixtureResults },
+  },
   immutable: { pilot: true, selection: true, sourceRaws: true, cache: true },
+  assetsModified: false,
+  calledWikidata: false,
   realNetworkCalls: 0,
 }, null, 2)}\n`);

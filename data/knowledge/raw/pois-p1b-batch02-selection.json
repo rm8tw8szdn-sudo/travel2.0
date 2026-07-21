@@ -1,0 +1,106 @@
+{
+  "schemaVersion": "route-v2-poi-baseline-p1b-batch02-selection-v1",
+  "policyVersion": "p1b-batch02-poi-selection-v1",
+  "selectionRule": "three-primary-backup-optional",
+  "createdAt": "2026-07-20T12:08:39.314Z",
+  "createdFromRawHashes": {
+    "base": "91e4297e07fa836dfc2c070f1105ee652a4024f665758bc36e416997889d7908"
+  },
+  "primaryCount": 30,
+  "backupCount": 0,
+  "cities": [
+    {
+      "city": "Paris",
+      "cityQid": "Q90",
+      "parentCityEntityId": "city-32da4cad2757df97",
+      "primaryWikidataIds": ["Q243", "Q19675", "Q23402"]
+    },
+    {
+      "city": "Lyon",
+      "cityQid": "Q456",
+      "parentCityEntityId": "city-5bba0fc2f52dc8df",
+      "primaryWikidataIds": ["Q1516", "Q8352", "Q511"]
+    },
+    {
+      "city": "Berlin",
+      "cityQid": "Q64",
+      "parentCityEntityId": "city-92d9ceba1c4a056d",
+      "primaryWikidataIds": ["Q151963", "Q82425", "Q313746"]
+    },
+    {
+      "city": "Munich",
+      "cityQid": "Q1726",
+      "parentCityEntityId": "city-6dd5cc0f5d9b27be",
+      "primaryWikidataIds": ["Q252648", "Q260223", "Q131631"]
+    },
+    {
+      "city": "Rome",
+      "cityQid": "Q220",
+      "parentCityEntityId": "city-133b155bac966dfa",
+      "primaryWikidataIds": ["Q10285", "Q99309", "Q185382"]
+    },
+    {
+      "city": "Florence",
+      "cityQid": "Q2044",
+      "parentCityEntityId": "city-d40570b2aac4850d",
+      "primaryWikidataIds": ["Q51252", "Q191739", "Q1348158"]
+    },
+    {
+      "city": "Madrid",
+      "cityQid": "Q2807",
+      "parentCityEntityId": "city-f833a342bb5b925a",
+      "primaryWikidataIds": ["Q160112", "Q171517", "Q1131807"]
+    },
+    {
+      "city": "Barcelona",
+      "cityQid": "Q1492",
+      "parentCityEntityId": "city-6e97dec8890873f7",
+      "primaryWikidataIds": ["Q48435", "Q212867", "Q461371"]
+    },
+    {
+      "city": "Seoul",
+      "cityQid": "Q8684",
+      "parentCityEntityId": "city-f485961843960f06",
+      "primaryWikidataIds": ["Q477157", "Q494407", "Q69134"]
+    },
+    {
+      "city": "Busan",
+      "cityQid": "Q16520",
+      "parentCityEntityId": "city-6fdc557c860230e3",
+      "primaryWikidataIds": ["Q16689597", "Q490777", "Q2494268"]
+    }
+  ],
+  "primaryWikidataIds": [
+    "Q243",
+    "Q19675",
+    "Q23402",
+    "Q1516",
+    "Q8352",
+    "Q511",
+    "Q151963",
+    "Q82425",
+    "Q313746",
+    "Q252648",
+    "Q260223",
+    "Q131631",
+    "Q10285",
+    "Q99309",
+    "Q185382",
+    "Q51252",
+    "Q191739",
+    "Q1348158",
+    "Q160112",
+    "Q171517",
+    "Q1131807",
+    "Q48435",
+    "Q212867",
+    "Q461371",
+    "Q477157",
+    "Q494407",
+    "Q69134",
+    "Q16689597",
+    "Q490777",
+    "Q2494268"
+  ],
+  "backupWikidataIds": []
+}

@@ -1,0 +1,4590 @@
+{
+  "schemaVersion": "route-v2-entity-layer-review-p1b-batch02",
+  "reviewCount": 56,
+  "reviewQueue": [
+    {
+      "reviewId": "review-002f9cb1e03a0e32",
+      "type": "unclassified-city-type-qids",
+      "severity": "manual-review",
+      "relatedEntityIds": [
+        "city-92d9ceba1c4a056d",
+        "country-9bef984affea20d8"
+      ],
+      "field": "wikidataInstanceOf",
+      "message": "The approved City QID includes P31 values outside the explicit City boundary policy; those QIDs are retained for manual review.",
+      "wikidataId": "Q64",
+      "wikidataTypeIds": [
+        "Q114401982",
+        "Q1221156",
+        "Q133442",
+        "Q15974307",
+        "Q1901835",
+        "Q200250",
+        "Q257391",
+        "Q42744322",
+        "Q51929311",
+        "Q67123843",
+        "Q707813"
+      ],
+      "wikidataTypeLabelsEn": {
+        "Q114401982": "independent city in Berlin",
+        "Q1221156": "federated state of Germany",
+        "Q133442": "city-state",
+        "Q15974307": "Unitary municipality in Germany",
+        "Q1901835": "seat of government",
+        "Q200250": "metropolis",
+        "Q257391": "federal capital",
+        "Q42744322": "urban municipality in Germany",
+        "Q51929311": "largest city",
+        "Q67123843": "town divided by border",
+        "Q707813": "Hanseatic city"
+      },
+      "wikidataParentIds": [
+        "Q148499",
+        "Q157367",
+        "Q161036",
+        "Q183",
+        "Q27306",
+        "Q700264",
+        "Q7318"
+      ],
+      "wikidataParentLabelsEn": {
+        "Q183": "Germany"
+      },
+      "rawGateEvidence": {
+        "reviewReason": "unclassified-city-type-qids",
+        "gateClassification": "compatible-review",
+        "typeClassification": {
+          "policy": "exact-p31-qid-v1",
+          "sourceTypeQids": [
+            "Q114401982",
+            "Q1221156",
+            "Q133442",
+            "Q15974307",
+            "Q1901835",
+            "Q200250",
+            "Q257391",
+            "Q42744322",
+            "Q51929311",
+            "Q67123843",
+            "Q707813"
+          ],
+          "compatibleCityTypeQids": [
+            "Q200250",
+            "Q51929311"
+          ],
+          "compatibleAdministrativeTypeQids": [
+            "Q1901835"
+          ],
+          "blockingMetroTypeQids": [],
+          "blockingRegionTypeQids": [],
+          "blockingStateTypeQids": [],
+          "unclassifiedTypeQids": [
+            "Q114401982",
+            "Q1221156",
+            "Q133442",
+            "Q15974307",
+            "Q257391",
+            "Q42744322",
+            "Q67123843",
+            "Q707813"
+          ],
+          "hasExplicitCityIdentity": true,
+          "blockingReasons": [],
+          "reviewReasons": [
+            "city-administrative-entity-overlap",
+            "multiple-city-type-candidates",
+            "unclassified-city-type-qids"
+          ],
+          "status": "compatible-review"
+        },
+        "unclassifiedCityTypeQids": [
+          "Q114401982",
+          "Q1221156",
+          "Q133442",
+          "Q15974307",
+          "Q257391",
+          "Q42744322",
+          "Q67123843",
+          "Q707813"
+        ]
+      }
+    },
+    {
+      "reviewId": "review-0c1d5f779ee2eb96",
+      "type": "p17-source-projection-difference",
+      "severity": "manual-review",
+      "relatedEntityIds": [
+        "city-f485961843960f06",
+        "country-6d9a5fa9dc49e5f4"
+      ],
+      "field": "wikidataCountry",
+      "message": "Wikidata API and SPARQL truthy P17 projections differ; both projections retain the approved Country anchor.",
+      "wikidataId": "Q8684",
+      "wikidataTypeIds": [
+        "Q108178728",
+        "Q174844",
+        "Q200250",
+        "Q515",
+        "Q51929311",
+        "Q7574799"
+      ],
+      "wikidataTypeLabelsEn": {
+        "Q108178728": "national capital",
+        "Q174844": "megacity",
+        "Q200250": "metropolis",
+        "Q515": "city",
+        "Q51929311": "largest city",
+        "Q7574799": "Special City of Korea"
+      },
+      "wikidataParentIds": [
+        "Q188712",
+        "Q28179",
+        "Q28233",
+        "Q626361",
+        "Q884"
+      ],
+      "wikidataParentLabelsEn": {
+        "Q884": "South Korea"
+      },
+      "rawGateEvidence": {
+        "reviewReason": "p17-source-projection-difference",
+        "gateClassification": "compatible-review",
+        "sourceProjection": {
+          "apiClaims": [
+            "Q503585",
+            "Q884"
+          ],
+          "sparqlTruthyClaims": [
+            "Q884"
+          ],
+          "unionClaims": [
+            "Q503585",
+            "Q884"
+          ],
+          "onlyInApi": [
+            "Q503585"
+          ],
+          "onlyInSparql": [],
+          "exactMatch": false
+        },
+        "typeClassification": {
+          "policy": "exact-p31-qid-v1",
+          "sourceTypeQids": [
+            "Q108178728",
+            "Q174844",
+            "Q200250",
+            "Q515",
+            "Q51929311",
+            "Q7574799"
+          ],
+          "compatibleCityTypeQids": [
+            "Q200250",
+            "Q515",
+            "Q51929311"
+          ],
+          "compatibleAdministrativeTypeQids": [
+            "Q108178728"
+          ],
+          "blockingMetroTypeQids": [],
+          "blockingRegionTypeQids": [],
+          "blockingStateTypeQids": [],
+          "unclassifiedTypeQids": [
+            "Q174844",
+            "Q7574799"
+          ],
+          "hasExplicitCityIdentity": true,
+          "blockingReasons": [],
+          "reviewReasons": [
+            "city-administrative-entity-overlap",
+            "multiple-city-type-candidates",
+            "unclassified-city-type-qids"
+          ],
+          "status": "compatible-review"
+        },
+        "unclassifiedCityTypeQids": [
+          "Q174844",
+          "Q7574799"
+        ]
+      }
+    },
+    {
+      "reviewId": "review-0c8d826244018591",
+      "type": "p17-source-projection-difference",
+      "severity": "manual-review",
+      "relatedEntityIds": [
+        "city-6dd5cc0f5d9b27be",
+        "country-9bef984affea20d8"
+      ],
+      "field": "wikidataCountry",
+      "message": "Wikidata API and SPARQL truthy P17 projections differ; both projections retain the approved Country anchor.",
+      "wikidataId": "Q1726",
+      "wikidataTypeIds": [
+        "Q1066984",
+        "Q1180262",
+        "Q1187811",
+        "Q134626",
+        "Q1418640",
+        "Q1549591",
+        "Q200250",
+        "Q42744322",
+        "Q85631896"
+      ],
+      "wikidataTypeLabelsEn": {
+        "Q1066984": "financial center",
+        "Q1180262": "residenz",
+        "Q1187811": "college town",
+        "Q134626": "district capital",
+        "Q1418640": "local government in Germany",
+        "Q1549591": "big city",
+        "Q200250": "metropolis",
+        "Q42744322": "urban municipality in Germany",
+        "Q85631896": "urban district of Bavaria"
+      },
+      "wikidataParentIds": [
+        "Q10562",
+        "Q1673724",
+        "Q19964046",
+        "Q256961"
+      ],
+      "wikidataParentLabelsEn": {
+        "Q10562": "Upper Bavaria"
+      },
+      "rawGateEvidence": {
+        "reviewReason": "p17-source-projection-difference",
+        "gateClassification": "compatible-review",
+        "sourceProjection": {
+          "apiClaims": [
+            "Q154195",
+            "Q183",
+            "Q2415901",
+            "Q256961",
+            "Q41304",
+            "Q43287",
+            "Q47261",
+            "Q713750",
+            "Q7318"
+          ],
+          "sparqlTruthyClaims": [
+            "Q183"
+          ],
+          "unionClaims": [
+            "Q154195",
+            "Q183",
+            "Q2415901",
+            "Q256961",
+            "Q41304",
+            "Q43287",
+            "Q47261",
+            "Q713750",
+            "Q7318"
+          ],
+          "onlyInApi": [
+            "Q154195",
+            "Q2415901",
+            "Q256961",
+            "Q41304",
+            "Q43287",
+            "Q47261",
+            "Q713750",
+            "Q7318"
+          ],
+          "onlyInSparql": [],
+          "exactMatch": false
+        },
+        "typeClassification": {
+          "policy": "exact-p31-qid-v1",
+          "sourceTypeQids": [
+            "Q1066984",
+            "Q1180262",
+            "Q1187811",
+            "Q134626",
+            "Q1418640",
+            "Q1549591",
+            "Q200250",
+            "Q42744322",
+            "Q85631896"
+          ],
+          "compatibleCityTypeQids": [
+            "Q1549591",
+            "Q200250"
+          ],
+          "compatibleAdministrativeTypeQids": [],
+          "blockingMetroTypeQids": [],
+          "blockingRegionTypeQids": [],
+          "blockingStateTypeQids": [],
+          "unclassifiedTypeQids": [
+            "Q1066984",
+            "Q1180262",
+            "Q1187811",
+            "Q134626",
+            "Q1418640",
+            "Q42744322",
+            "Q85631896"
+          ],
+          "hasExplicitCityIdentity": true,
+          "blockingReasons": [],
+          "reviewReasons": [
+            "multiple-city-type-candidates",
+            "unclassified-city-type-qids"
+          ],
+          "status": "compatible-review"
+        },
+        "unclassifiedCityTypeQids": [
+          "Q1066984",
+          "Q1180262",
+          "Q1187811",
+          "Q134626",
+          "Q1418640",
+          "Q42744322",
+          "Q85631896"
+        ]
+      }
+    },
+    {
+      "reviewId": "review-0f0abaece9589c3e",
+      "type": "p131-source-projection-difference",
+      "severity": "manual-review",
+      "relatedEntityIds": [
+        "city-32da4cad2757df97",
+        "country-a20e4bab95389730"
+      ],
+      "field": "wikidataAdministrativeParent",
+      "message": "Wikidata API and SPARQL truthy P131 projections differ without introducing a conflicting Country parent.",
+      "wikidataId": "Q90",
+      "wikidataTypeIds": [
+        "Q1066984",
+        "Q108178728",
+        "Q11418818",
+        "Q1187811",
+        "Q1200957",
+        "Q134445478",
+        "Q1422929",
+        "Q1549591",
+        "Q174844",
+        "Q200250",
+        "Q208511",
+        "Q2240381",
+        "Q22923920",
+        "Q484170",
+        "Q51929311"
+      ],
+      "wikidataTypeLabelsEn": {
+        "Q108178728": "national capital",
+        "Q174844": "megacity",
+        "Q200250": "metropolis",
+        "Q208511": "global city",
+        "Q22923920": "territorial collectivity of France with special status",
+        "Q51929311": "largest city"
+      },
+      "wikidataParentIds": [
+        "Q1142326",
+        "Q124881945",
+        "Q13917",
+        "Q16665915",
+        "Q2863958",
+        "Q70972"
+      ],
+      "wikidataParentLabelsEn": {
+        "Q16665915": "Grand Paris"
+      },
+      "rawGateEvidence": {
+        "reviewReason": "p131-source-projection-difference",
+        "gateClassification": "compatible-review",
+        "sourceProjection": {
+          "apiClaims": [
+            "Q1142326",
+            "Q124881945",
+            "Q13917",
+            "Q16665915",
+            "Q2863958",
+            "Q70972"
+          ],
+          "sparqlTruthyClaims": [
+            "Q16665915"
+          ],
+          "unionClaims": [
+            "Q1142326",
+            "Q124881945",
+            "Q13917",
+            "Q16665915",
+            "Q2863958",
+            "Q70972"
+          ],
+          "onlyInApi": [
+            "Q1142326",
+            "Q124881945",
+            "Q13917",
+            "Q2863958",
+            "Q70972"
+          ],
+          "onlyInSparql": [],
+          "exactMatch": false
+        },
+        "typeClassification": {
+          "policy": "exact-p31-qid-v1",
+          "sourceTypeQids": [
+            "Q1066984",
+            "Q108178728",
+            "Q11418818",
+            "Q1187811",
+            "Q1200957",
+            "Q134445478",
+            "Q1422929",
+            "Q1549591",
+            "Q174844",
+            "Q200250",
+            "Q208511",
+            "Q2240381",
+            "Q22923920",
+            "Q484170",
+            "Q51929311"
+          ],
+          "compatibleCityTypeQids": [
+            "Q1549591",
+            "Q200250",
+            "Q51929311"
+          ],
+          "compatibleAdministrativeTypeQids": [
+            "Q108178728"
+          ],
+          "blockingMetroTypeQids": [],
+          "blockingRegionTypeQids": [],
+          "blockingStateTypeQids": [],
+          "unclassifiedTypeQids": [
+            "Q1066984",
+            "Q11418818",
+            "Q1187811",
+            "Q1200957",
+            "Q134445478",
+            "Q1422929",
+            "Q174844",
+            "Q208511",
+            "Q2240381",
+            "Q22923920",
+            "Q484170"
+          ],
+          "hasExplicitCityIdentity": true,
+          "blockingReasons": [],
+          "reviewReasons": [
+            "city-administrative-entity-overlap",
+            "multiple-city-type-candidates",
+            "unclassified-city-type-qids"
+          ],
+          "status": "compatible-review"
+        },
+        "unclassifiedCityTypeQids": [
+          "Q1066984",
+          "Q11418818",
+          "Q1187811",
+          "Q1200957",
+          "Q134445478",
+          "Q1422929",
+          "Q174844",
+          "Q208511",
+          "Q2240381",
+          "Q22923920",
+          "Q484170"
+        ]
+      }
+    },
+    {
+      "reviewId": "review-15d32345c696f0f3",
+      "type": "poi-p31-policy-manual-review",
+      "severity": "manual-review",
+      "relatedEntityIds": [
+        "city-6dd5cc0f5d9b27be",
+        "poi-f45cf381e5b426f9"
+      ],
+      "field": "wikidataInstanceOf",
+      "message": "The complete numeric Wikidata P31 key is retained for manual POI review under the frozen P1B policy.",
+      "wikidataId": "Q131631",
+      "sourceP31Qids": [
+        "Q1516079",
+        "Q1686006",
+        "Q33506",
+        "Q357375",
+        "Q751876",
+        "Q79007"
+      ],
+      "classifier": {
+        "classification": "accepted-with-review",
+        "disposition": "manual-review",
+        "policyVersion": "p1b-batch01-poi-review-v1",
+        "matchedRuleId": "exact-manual-key",
+        "rationale": "Complete numeric P31 key exactly matches manual-review list: Q1516079|Q1686006|Q33506|Q357375|Q751876|Q79007.",
+        "wikidataId": "Q131631",
+        "parentCityEntityId": "city-6dd5cc0f5d9b27be",
+        "sourceP31Qids": [
+          "Q1516079",
+          "Q1686006",
+          "Q33506",
+          "Q357375",
+          "Q751876",
+          "Q79007"
+        ],
+        "unknownP31Qids": []
+      },
+      "selection": {
+        "selectionIndex": 12,
+        "policyVersion": "p1b-batch02-poi-selection-v1",
+        "sourceRawPath": "data/knowledge/raw/pois-p1b-batch02-candidates.wikidata.json"
+      }
+    },
+    {
+      "reviewId": "review-1851baddb8e6cc53",
+      "type": "poi-p31-policy-manual-review",
+      "severity": "manual-review",
+      "relatedEntityIds": [
+        "city-133b155bac966dfa",
+        "poi-c0feb2966c91a08d"
+      ],
+      "field": "wikidataInstanceOf",
+      "message": "The complete numeric Wikidata P31 key is retained for manual POI review under the frozen P1B policy.",
+      "wikidataId": "Q10285",
+      "sourceP31Qids": [
+        "Q112132522",
+        "Q112132548",
+        "Q124830411",
+        "Q133444874",
+        "Q3867560",
+        "Q483110",
+        "Q7362268",
+        "Q839954"
+      ],
+      "classifier": {
+        "classification": "accepted-with-review",
+        "disposition": "manual-review",
+        "policyVersion": "p1b-batch01-poi-review-v1",
+        "matchedRuleId": "exact-manual-key",
+        "rationale": "Complete numeric P31 key exactly matches manual-review list: Q112132522|Q112132548|Q124830411|Q133444874|Q3867560|Q483110|Q7362268|Q839954.",
+        "wikidataId": "Q10285",
+        "parentCityEntityId": "city-133b155bac966dfa",
+        "sourceP31Qids": [
+          "Q112132522",
+          "Q112132548",
+          "Q124830411",
+          "Q133444874",
+          "Q3867560",
+          "Q483110",
+          "Q7362268",
+          "Q839954"
+        ],
+        "unknownP31Qids": []
+      },
+      "selection": {
+        "selectionIndex": 13,
+        "policyVersion": "p1b-batch02-poi-selection-v1",
+        "sourceRawPath": "data/knowledge/raw/pois-p1b-batch02-candidates.wikidata.json"
+      }
+    },
+    {
+      "reviewId": "review-1b0a83b105f8fe5a",
+      "type": "p131-source-projection-difference",
+      "severity": "manual-review",
+      "relatedEntityIds": [
+        "city-6dd5cc0f5d9b27be",
+        "country-9bef984affea20d8"
+      ],
+      "field": "wikidataAdministrativeParent",
+      "message": "Wikidata API and SPARQL truthy P131 projections differ without introducing a conflicting Country parent.",
+      "wikidataId": "Q1726",
+      "wikidataTypeIds": [
+        "Q1066984",
+        "Q1180262",
+        "Q1187811",
+        "Q134626",
+        "Q1418640",
+        "Q1549591",
+        "Q200250",
+        "Q42744322",
+        "Q85631896"
+      ],
+      "wikidataTypeLabelsEn": {
+        "Q1066984": "financial center",
+        "Q1180262": "residenz",
+        "Q1187811": "college town",
+        "Q134626": "district capital",
+        "Q1418640": "local government in Germany",
+        "Q1549591": "big city",
+        "Q200250": "metropolis",
+        "Q42744322": "urban municipality in Germany",
+        "Q85631896": "urban district of Bavaria"
+      },
+      "wikidataParentIds": [
+        "Q10562",
+        "Q1673724",
+        "Q19964046",
+        "Q256961"
+      ],
+      "wikidataParentLabelsEn": {
+        "Q10562": "Upper Bavaria"
+      },
+      "rawGateEvidence": {
+        "reviewReason": "p131-source-projection-difference",
+        "gateClassification": "compatible-review",
+        "sourceProjection": {
+          "apiClaims": [
+            "Q10562",
+            "Q1673724",
+            "Q19964046",
+            "Q256961"
+          ],
+          "sparqlTruthyClaims": [
+            "Q10562"
+          ],
+          "unionClaims": [
+            "Q10562",
+            "Q1673724",
+            "Q19964046",
+            "Q256961"
+          ],
+          "onlyInApi": [
+            "Q1673724",
+            "Q19964046",
+            "Q256961"
+          ],
+          "onlyInSparql": [],
+          "exactMatch": false
+        },
+        "typeClassification": {
+          "policy": "exact-p31-qid-v1",
+          "sourceTypeQids": [
+            "Q1066984",
+            "Q1180262",
+            "Q1187811",
+            "Q134626",
+            "Q1418640",
+            "Q1549591",
+            "Q200250",
+            "Q42744322",
+            "Q85631896"
+          ],
+          "compatibleCityTypeQids": [
+            "Q1549591",
+            "Q200250"
+          ],
+          "compatibleAdministrativeTypeQids": [],
+          "blockingMetroTypeQids": [],
+          "blockingRegionTypeQids": [],
+          "blockingStateTypeQids": [],
+          "unclassifiedTypeQids": [
+            "Q1066984",
+            "Q1180262",
+            "Q1187811",
+            "Q134626",
+            "Q1418640",
+            "Q42744322",
+            "Q85631896"
+          ],
+          "hasExplicitCityIdentity": true,
+          "blockingReasons": [],
+          "reviewReasons": [
+            "multiple-city-type-candidates",
+            "unclassified-city-type-qids"
+          ],
+          "status": "compatible-review"
+        },
+        "unclassifiedCityTypeQids": [
+          "Q1066984",
+          "Q1180262",
+          "Q1187811",
+          "Q134626",
+          "Q1418640",
+          "Q42744322",
+          "Q85631896"
+        ]
+      }
+    },
+    {
+      "reviewId": "review-1b6e00237f0354ee",
+      "type": "p31-source-projection-difference",
+      "severity": "manual-review",
+      "relatedEntityIds": [
+        "city-32da4cad2757df97",
+        "country-a20e4bab95389730"
+      ],
+      "field": "wikidataInstanceOf",
+      "message": "Wikidata API and SPARQL truthy P31 projections differ; the union retains explicit City identity under the exact-QID policy.",
+      "wikidataId": "Q90",
+      "wikidataTypeIds": [
+        "Q1066984",
+        "Q108178728",
+        "Q11418818",
+        "Q1187811",
+        "Q1200957",
+        "Q134445478",
+        "Q1422929",
+        "Q1549591",
+        "Q174844",
+        "Q200250",
+        "Q208511",
+        "Q2240381",
+        "Q22923920",
+        "Q484170",
+        "Q51929311"
+      ],
+      "wikidataTypeLabelsEn": {
+        "Q108178728": "national capital",
+        "Q174844": "megacity",
+        "Q200250": "metropolis",
+        "Q208511": "global city",
+        "Q22923920": "territorial collectivity of France with special status",
+        "Q51929311": "largest city"
+      },
+      "wikidataParentIds": [
+        "Q1142326",
+        "Q124881945",
+        "Q13917",
+        "Q16665915",
+        "Q2863958",
+        "Q70972"
+      ],
+      "wikidataParentLabelsEn": {
+        "Q16665915": "Grand Paris"
+      },
+      "rawGateEvidence": {
+        "reviewReason": "p31-source-projection-difference",
+        "gateClassification": "compatible-review",
+        "sourceProjection": {
+          "apiClaims": [
+            "Q1066984",
+            "Q108178728",
+            "Q11418818",
+            "Q1187811",
+            "Q1200957",
+            "Q134445478",
+            "Q1422929",
+            "Q1549591",
+            "Q174844",
+            "Q200250",
+            "Q208511",
+            "Q2240381",
+            "Q22923920",
+            "Q484170",
+            "Q51929311"
+          ],
+          "sparqlTruthyClaims": [
+            "Q108178728",
+            "Q174844",
+            "Q200250",
+            "Q208511",
+            "Q22923920",
+            "Q51929311"
+          ],
+          "unionClaims": [
+            "Q1066984",
+            "Q108178728",
+            "Q11418818",
+            "Q1187811",
+            "Q1200957",
+            "Q134445478",
+            "Q1422929",
+            "Q1549591",
+            "Q174844",
+            "Q200250",
+            "Q208511",
+            "Q2240381",
+            "Q22923920",
+            "Q484170",
+            "Q51929311"
+          ],
+          "onlyInApi": [
+            "Q1066984",
+            "Q11418818",
+            "Q1187811",
+            "Q1200957",
+            "Q134445478",
+            "Q1422929",
+            "Q1549591",
+            "Q2240381",
+            "Q484170"
+          ],
+          "onlyInSparql": [],
+          "exactMatch": false
+        },
+        "typeClassification": {
+          "policy": "exact-p31-qid-v1",
+          "sourceTypeQids": [
+            "Q1066984",
+            "Q108178728",
+            "Q11418818",
+            "Q1187811",
+            "Q1200957",
+            "Q134445478",
+            "Q1422929",
+            "Q1549591",
+            "Q174844",
+            "Q200250",
+            "Q208511",
+            "Q2240381",
+            "Q22923920",
+            "Q484170",
+            "Q51929311"
+          ],
+          "compatibleCityTypeQids": [
+            "Q1549591",
+            "Q200250",
+            "Q51929311"
+          ],
+          "compatibleAdministrativeTypeQids": [
+            "Q108178728"
+          ],
+          "blockingMetroTypeQids": [],
+          "blockingRegionTypeQids": [],
+          "blockingStateTypeQids": [],
+          "unclassifiedTypeQids": [
+            "Q1066984",
+            "Q11418818",
+            "Q1187811",
+            "Q1200957",
+            "Q134445478",
+            "Q1422929",
+            "Q174844",
+            "Q208511",
+            "Q2240381",
+            "Q22923920",
+            "Q484170"
+          ],
+          "hasExplicitCityIdentity": true,
+          "blockingReasons": [],
+          "reviewReasons": [
+            "city-administrative-entity-overlap",
+            "multiple-city-type-candidates",
+            "unclassified-city-type-qids"
+          ],
+          "status": "compatible-review"
+        },
+        "unclassifiedCityTypeQids": [
+          "Q1066984",
+          "Q11418818",
+          "Q1187811",
+          "Q1200957",
+          "Q134445478",
+          "Q1422929",
+          "Q174844",
+          "Q208511",
+          "Q2240381",
+          "Q22923920",
+          "Q484170"
+        ]
+      }
+    },
+    {
+      "reviewId": "review-1d135c9486e69c7b",
+      "type": "poi-p31-policy-manual-review",
+      "severity": "manual-review",
+      "relatedEntityIds": [
+        "city-f485961843960f06",
+        "poi-4eab8eacb17f96cc"
+      ],
+      "field": "wikidataInstanceOf",
+      "message": "The complete numeric Wikidata P31 key is retained for manual POI review under the frozen P1B policy.",
+      "wikidataId": "Q69134",
+      "sourceP31Qids": [
+        "Q11166728",
+        "Q2319498"
+      ],
+      "classifier": {
+        "classification": "accepted-with-review",
+        "disposition": "manual-review",
+        "policyVersion": "p1b-batch01-poi-review-v1",
+        "matchedRuleId": "exact-manual-key",
+        "rationale": "Complete numeric P31 key exactly matches manual-review list: Q11166728|Q2319498.",
+        "wikidataId": "Q69134",
+        "parentCityEntityId": "city-f485961843960f06",
+        "sourceP31Qids": [
+          "Q11166728",
+          "Q2319498"
+        ],
+        "unknownP31Qids": []
+      },
+      "selection": {
+        "selectionIndex": 27,
+        "policyVersion": "p1b-batch02-poi-selection-v1",
+        "sourceRawPath": "data/knowledge/raw/pois-p1b-batch02-candidates.wikidata.json"
+      }
+    },
+    {
+      "reviewId": "review-22ac7d4c94e76138",
+      "type": "city-administrative-entity-overlap",
+      "severity": "manual-review",
+      "relatedEntityIds": [
+        "city-133b155bac966dfa",
+        "country-4df88b953a99e6a4"
+      ],
+      "field": "wikidataInstanceOf",
+      "message": "The approved City QID also has administrative-territorial semantics; P1B publishes no administrative-level field.",
+      "wikidataId": "Q220",
+      "wikidataTypeIds": [
+        "Q108178728",
+        "Q1187811",
+        "Q1200957",
+        "Q1549591",
+        "Q200250",
+        "Q3685476",
+        "Q51929311",
+        "Q747074",
+        "Q902814"
+      ],
+      "wikidataTypeLabelsEn": {
+        "Q108178728": "national capital",
+        "Q1187811": "college town",
+        "Q1200957": "tourist destination",
+        "Q1549591": "big city",
+        "Q200250": "metropolis",
+        "Q3685476": "abolished municipality in Italy",
+        "Q51929311": "largest city",
+        "Q747074": "comune of Italy",
+        "Q902814": "border city"
+      },
+      "wikidataParentIds": [
+        "Q15119",
+        "Q1558632",
+        "Q170174",
+        "Q17167",
+        "Q1747689",
+        "Q18288160",
+        "Q2277",
+        "Q3677829",
+        "Q42834"
+      ],
+      "wikidataParentLabelsEn": {
+        "Q18288160": "Metropolitan City of Rome"
+      },
+      "rawGateEvidence": {
+        "reviewReason": "city-administrative-entity-overlap",
+        "gateClassification": "compatible-review",
+        "typeClassification": {
+          "policy": "exact-p31-qid-v1",
+          "sourceTypeQids": [
+            "Q108178728",
+            "Q1187811",
+            "Q1200957",
+            "Q1549591",
+            "Q200250",
+            "Q3685476",
+            "Q51929311",
+            "Q747074",
+            "Q902814"
+          ],
+          "compatibleCityTypeQids": [
+            "Q1549591",
+            "Q200250",
+            "Q51929311"
+          ],
+          "compatibleAdministrativeTypeQids": [
+            "Q108178728"
+          ],
+          "blockingMetroTypeQids": [],
+          "blockingRegionTypeQids": [],
+          "blockingStateTypeQids": [],
+          "unclassifiedTypeQids": [
+            "Q1187811",
+            "Q1200957",
+            "Q3685476",
+            "Q747074",
+            "Q902814"
+          ],
+          "hasExplicitCityIdentity": true,
+          "blockingReasons": [],
+          "reviewReasons": [
+            "city-administrative-entity-overlap",
+            "multiple-city-type-candidates",
+            "unclassified-city-type-qids"
+          ],
+          "status": "compatible-review"
+        },
+        "unclassifiedCityTypeQids": [
+          "Q1187811",
+          "Q1200957",
+          "Q3685476",
+          "Q747074",
+          "Q902814"
+        ]
+      }
+    },
+    {
+      "reviewId": "review-25a8018d0723865a",
+      "type": "unclassified-city-type-qids",
+      "severity": "manual-review",
+      "relatedEntityIds": [
+        "city-32da4cad2757df97",
+        "country-a20e4bab95389730"
+      ],
+      "field": "wikidataInstanceOf",
+      "message": "The approved City QID includes P31 values outside the explicit City boundary policy; those QIDs are retained for manual review.",
+      "wikidataId": "Q90",
+      "wikidataTypeIds": [
+        "Q1066984",
+        "Q108178728",
+        "Q11418818",
+        "Q1187811",
+        "Q1200957",
+        "Q134445478",
+        "Q1422929",
+        "Q1549591",
+        "Q174844",
+        "Q200250",
+        "Q208511",
+        "Q2240381",
+        "Q22923920",
+        "Q484170",
+        "Q51929311"
+      ],
+      "wikidataTypeLabelsEn": {
+        "Q108178728": "national capital",
+        "Q174844": "megacity",
+        "Q200250": "metropolis",
+        "Q208511": "global city",
+        "Q22923920": "territorial collectivity of France with special status",
+        "Q51929311": "largest city"
+      },
+      "wikidataParentIds": [
+        "Q1142326",
+        "Q124881945",
+        "Q13917",
+        "Q16665915",
+        "Q2863958",
+        "Q70972"
+      ],
+      "wikidataParentLabelsEn": {
+        "Q16665915": "Grand Paris"
+      },
+      "rawGateEvidence": {
+        "reviewReason": "unclassified-city-type-qids",
+        "gateClassification": "compatible-review",
+        "typeClassification": {
+          "policy": "exact-p31-qid-v1",
+          "sourceTypeQids": [
+            "Q1066984",
+            "Q108178728",
+            "Q11418818",
+            "Q1187811",
+            "Q1200957",
+            "Q134445478",
+            "Q1422929",
+            "Q1549591",
+            "Q174844",
+            "Q200250",
+            "Q208511",
+            "Q2240381",
+            "Q22923920",
+            "Q484170",
+            "Q51929311"
+          ],
+          "compatibleCityTypeQids": [
+            "Q1549591",
+            "Q200250",
+            "Q51929311"
+          ],
+          "compatibleAdministrativeTypeQids": [
+            "Q108178728"
+          ],
+          "blockingMetroTypeQids": [],
+          "blockingRegionTypeQids": [],
+          "blockingStateTypeQids": [],
+          "unclassifiedTypeQids": [
+            "Q1066984",
+            "Q11418818",
+            "Q1187811",
+            "Q1200957",
+            "Q134445478",
+            "Q1422929",
+            "Q174844",
+            "Q208511",
+            "Q2240381",
+            "Q22923920",
+            "Q484170"
+          ],
+          "hasExplicitCityIdentity": true,
+          "blockingReasons": [],
+          "reviewReasons": [
+            "city-administrative-entity-overlap",
+            "multiple-city-type-candidates",
+            "unclassified-city-type-qids"
+          ],
+          "status": "compatible-review"
+        },
+        "unclassifiedCityTypeQids": [
+          "Q1066984",
+          "Q11418818",
+          "Q1187811",
+          "Q1200957",
+          "Q134445478",
+          "Q1422929",
+          "Q174844",
+          "Q208511",
+          "Q2240381",
+          "Q22923920",
+          "Q484170"
+        ]
+      }
+    },
+    {
+      "reviewId": "review-275459f42b82c5fa",
+      "type": "multiple-city-type-candidates",
+      "severity": "manual-review",
+      "relatedEntityIds": [
+        "city-92d9ceba1c4a056d",
+        "country-9bef984affea20d8"
+      ],
+      "field": "wikidataInstanceOf",
+      "message": "Wikidata supplies multiple compatible City instance-of values; canonical identity remains anchored to the approved QID.",
+      "wikidataId": "Q64",
+      "wikidataTypeIds": [
+        "Q114401982",
+        "Q1221156",
+        "Q133442",
+        "Q15974307",
+        "Q1901835",
+        "Q200250",
+        "Q257391",
+        "Q42744322",
+        "Q51929311",
+        "Q67123843",
+        "Q707813"
+      ],
+      "wikidataTypeLabelsEn": {
+        "Q114401982": "independent city in Berlin",
+        "Q1221156": "federated state of Germany",
+        "Q133442": "city-state",
+        "Q15974307": "Unitary municipality in Germany",
+        "Q1901835": "seat of government",
+        "Q200250": "metropolis",
+        "Q257391": "federal capital",
+        "Q42744322": "urban municipality in Germany",
+        "Q51929311": "largest city",
+        "Q67123843": "town divided by border",
+        "Q707813": "Hanseatic city"
+      },
+      "wikidataParentIds": [
+        "Q148499",
+        "Q157367",
+        "Q161036",
+        "Q183",
+        "Q27306",
+        "Q700264",
+        "Q7318"
+      ],
+      "wikidataParentLabelsEn": {
+        "Q183": "Germany"
+      },
+      "rawGateEvidence": {
+        "reviewReason": "multiple-city-type-candidates",
+        "gateClassification": "compatible-review",
+        "typeClassification": {
+          "policy": "exact-p31-qid-v1",
+          "sourceTypeQids": [
+            "Q114401982",
+            "Q1221156",
+            "Q133442",
+            "Q15974307",
+            "Q1901835",
+            "Q200250",
+            "Q257391",
+            "Q42744322",
+            "Q51929311",
+            "Q67123843",
+            "Q707813"
+          ],
+          "compatibleCityTypeQids": [
+            "Q200250",
+            "Q51929311"
+          ],
+          "compatibleAdministrativeTypeQids": [
+            "Q1901835"
+          ],
+          "blockingMetroTypeQids": [],
+          "blockingRegionTypeQids": [],
+          "blockingStateTypeQids": [],
+          "unclassifiedTypeQids": [
+            "Q114401982",
+            "Q1221156",
+            "Q133442",
+            "Q15974307",
+            "Q257391",
+            "Q42744322",
+            "Q67123843",
+            "Q707813"
+          ],
+          "hasExplicitCityIdentity": true,
+          "blockingReasons": [],
+          "reviewReasons": [
+            "city-administrative-entity-overlap",
+            "multiple-city-type-candidates",
+            "unclassified-city-type-qids"
+          ],
+          "status": "compatible-review"
+        },
+        "unclassifiedCityTypeQids": [
+          "Q114401982",
+          "Q1221156",
+          "Q133442",
+          "Q15974307",
+          "Q257391",
+          "Q42744322",
+          "Q67123843",
+          "Q707813"
+        ]
+      }
+    },
+    {
+      "reviewId": "review-2b0326b3bac592ce",
+      "type": "multiple-city-type-candidates",
+      "severity": "manual-review",
+      "relatedEntityIds": [
+        "city-6fdc557c860230e3",
+        "country-6d9a5fa9dc49e5f4"
+      ],
+      "field": "wikidataInstanceOf",
+      "message": "Wikidata supplies multiple compatible City instance-of values; canonical identity remains anchored to the approved QID.",
+      "wikidataId": "Q16520",
+      "wikidataTypeIds": [
+        "Q200250",
+        "Q2264924",
+        "Q482821",
+        "Q515"
+      ],
+      "wikidataTypeLabelsEn": {
+        "Q200250": "metropolis",
+        "Q2264924": "port city",
+        "Q482821": "metropolitan city of South Korea",
+        "Q515": "city"
+      },
+      "wikidataParentIds": [
+        "Q884"
+      ],
+      "wikidataParentLabelsEn": {
+        "Q884": "South Korea"
+      },
+      "rawGateEvidence": {
+        "reviewReason": "multiple-city-type-candidates",
+        "gateClassification": "compatible-review",
+        "typeClassification": {
+          "policy": "exact-p31-qid-v1",
+          "sourceTypeQids": [
+            "Q200250",
+            "Q2264924",
+            "Q482821",
+            "Q515"
+          ],
+          "compatibleCityTypeQids": [
+            "Q200250",
+            "Q2264924",
+            "Q515"
+          ],
+          "compatibleAdministrativeTypeQids": [],
+          "blockingMetroTypeQids": [],
+          "blockingRegionTypeQids": [],
+          "blockingStateTypeQids": [],
+          "unclassifiedTypeQids": [
+            "Q482821"
+          ],
+          "hasExplicitCityIdentity": true,
+          "blockingReasons": [],
+          "reviewReasons": [
+            "multiple-city-type-candidates",
+            "unclassified-city-type-qids"
+          ],
+          "status": "compatible-review"
+        },
+        "unclassifiedCityTypeQids": [
+          "Q482821"
+        ]
+      }
+    },
+    {
+      "reviewId": "review-3410f8f284a4dda4",
+      "type": "poi-p31-policy-manual-review",
+      "severity": "manual-review",
+      "relatedEntityIds": [
+        "city-d40570b2aac4850d",
+        "poi-9817020572dc4608"
+      ],
+      "field": "wikidataInstanceOf",
+      "message": "The complete numeric Wikidata P31 key is retained for manual POI review under the frozen P1B policy.",
+      "wikidataId": "Q191739",
+      "sourceP31Qids": [
+        "Q120560",
+        "Q2977",
+        "Q33506"
+      ],
+      "classifier": {
+        "classification": "accepted-with-review",
+        "disposition": "manual-review",
+        "policyVersion": "p1b-batch01-poi-review-v1",
+        "matchedRuleId": "exact-manual-key",
+        "rationale": "Complete numeric P31 key exactly matches manual-review list: Q120560|Q2977|Q33506.",
+        "wikidataId": "Q191739",
+        "parentCityEntityId": "city-d40570b2aac4850d",
+        "sourceP31Qids": [
+          "Q120560",
+          "Q2977",
+          "Q33506"
+        ],
+        "unknownP31Qids": []
+      },
+      "selection": {
+        "selectionIndex": 17,
+        "policyVersion": "p1b-batch02-poi-selection-v1",
+        "sourceRawPath": "data/knowledge/raw/pois-p1b-batch02-candidates.wikidata.json"
+      }
+    },
+    {
+      "reviewId": "review-392a8c0a5ae4ff66",
+      "type": "multiple-city-type-candidates",
+      "severity": "manual-review",
+      "relatedEntityIds": [
+        "city-133b155bac966dfa",
+        "country-4df88b953a99e6a4"
+      ],
+      "field": "wikidataInstanceOf",
+      "message": "Wikidata supplies multiple compatible City instance-of values; canonical identity remains anchored to the approved QID.",
+      "wikidataId": "Q220",
+      "wikidataTypeIds": [
+        "Q108178728",
+        "Q1187811",
+        "Q1200957",
+        "Q1549591",
+        "Q200250",
+        "Q3685476",
+        "Q51929311",
+        "Q747074",
+        "Q902814"
+      ],
+      "wikidataTypeLabelsEn": {
+        "Q108178728": "national capital",
+        "Q1187811": "college town",
+        "Q1200957": "tourist destination",
+        "Q1549591": "big city",
+        "Q200250": "metropolis",
+        "Q3685476": "abolished municipality in Italy",
+        "Q51929311": "largest city",
+        "Q747074": "comune of Italy",
+        "Q902814": "border city"
+      },
+      "wikidataParentIds": [
+        "Q15119",
+        "Q1558632",
+        "Q170174",
+        "Q17167",
+        "Q1747689",
+        "Q18288160",
+        "Q2277",
+        "Q3677829",
+        "Q42834"
+      ],
+      "wikidataParentLabelsEn": {
+        "Q18288160": "Metropolitan City of Rome"
+      },
+      "rawGateEvidence": {
+        "reviewReason": "multiple-city-type-candidates",
+        "gateClassification": "compatible-review",
+        "typeClassification": {
+          "policy": "exact-p31-qid-v1",
+          "sourceTypeQids": [
+            "Q108178728",
+            "Q1187811",
+            "Q1200957",
+            "Q1549591",
+            "Q200250",
+            "Q3685476",
+            "Q51929311",
+            "Q747074",
+            "Q902814"
+          ],
+          "compatibleCityTypeQids": [
+            "Q1549591",
+            "Q200250",
+            "Q51929311"
+          ],
+          "compatibleAdministrativeTypeQids": [
+            "Q108178728"
+          ],
+          "blockingMetroTypeQids": [],
+          "blockingRegionTypeQids": [],
+          "blockingStateTypeQids": [],
+          "unclassifiedTypeQids": [
+            "Q1187811",
+            "Q1200957",
+            "Q3685476",
+            "Q747074",
+            "Q902814"
+          ],
+          "hasExplicitCityIdentity": true,
+          "blockingReasons": [],
+          "reviewReasons": [
+            "city-administrative-entity-overlap",
+            "multiple-city-type-candidates",
+            "unclassified-city-type-qids"
+          ],
+          "status": "compatible-review"
+        },
+        "unclassifiedCityTypeQids": [
+          "Q1187811",
+          "Q1200957",
+          "Q3685476",
+          "Q747074",
+          "Q902814"
+        ]
+      }
+    },
+    {
+      "reviewId": "review-444946ada5c7ec76",
+      "type": "multiple-city-type-candidates",
+      "severity": "manual-review",
+      "relatedEntityIds": [
+        "city-32da4cad2757df97",
+        "country-a20e4bab95389730"
+      ],
+      "field": "wikidataInstanceOf",
+      "message": "Wikidata supplies multiple compatible City instance-of values; canonical identity remains anchored to the approved QID.",
+      "wikidataId": "Q90",
+      "wikidataTypeIds": [
+        "Q1066984",
+        "Q108178728",
+        "Q11418818",
+        "Q1187811",
+        "Q1200957",
+        "Q134445478",
+        "Q1422929",
+        "Q1549591",
+        "Q174844",
+        "Q200250",
+        "Q208511",
+        "Q2240381",
+        "Q22923920",
+        "Q484170",
+        "Q51929311"
+      ],
+      "wikidataTypeLabelsEn": {
+        "Q108178728": "national capital",
+        "Q174844": "megacity",
+        "Q200250": "metropolis",
+        "Q208511": "global city",
+        "Q22923920": "territorial collectivity of France with special status",
+        "Q51929311": "largest city"
+      },
+      "wikidataParentIds": [
+        "Q1142326",
+        "Q124881945",
+        "Q13917",
+        "Q16665915",
+        "Q2863958",
+        "Q70972"
+      ],
+      "wikidataParentLabelsEn": {
+        "Q16665915": "Grand Paris"
+      },
+      "rawGateEvidence": {
+        "reviewReason": "multiple-city-type-candidates",
+        "gateClassification": "compatible-review",
+        "typeClassification": {
+          "policy": "exact-p31-qid-v1",
+          "sourceTypeQids": [
+            "Q1066984",
+            "Q108178728",
+            "Q11418818",
+            "Q1187811",
+            "Q1200957",
+            "Q134445478",
+            "Q1422929",
+            "Q1549591",
+            "Q174844",
+            "Q200250",
+            "Q208511",
+            "Q2240381",
+            "Q22923920",
+            "Q484170",
+            "Q51929311"
+          ],
+          "compatibleCityTypeQids": [
+            "Q1549591",
+            "Q200250",
+            "Q51929311"
+          ],
+          "compatibleAdministrativeTypeQids": [
+            "Q108178728"
+          ],
+          "blockingMetroTypeQids": [],
+          "blockingRegionTypeQids": [],
+          "blockingStateTypeQids": [],
+          "unclassifiedTypeQids": [
+            "Q1066984",
+            "Q11418818",
+            "Q1187811",
+            "Q1200957",
+            "Q134445478",
+            "Q1422929",
+            "Q174844",
+            "Q208511",
+            "Q2240381",
+            "Q22923920",
+            "Q484170"
+          ],
+          "hasExplicitCityIdentity": true,
+          "blockingReasons": [],
+          "reviewReasons": [
+            "city-administrative-entity-overlap",
+            "multiple-city-type-candidates",
+            "unclassified-city-type-qids"
+          ],
+          "status": "compatible-review"
+        },
+        "unclassifiedCityTypeQids": [
+          "Q1066984",
+          "Q11418818",
+          "Q1187811",
+          "Q1200957",
+          "Q134445478",
+          "Q1422929",
+          "Q174844",
+          "Q208511",
+          "Q2240381",
+          "Q22923920",
+          "Q484170"
+        ]
+      }
+    },
+    {
+      "reviewId": "review-460ea00da486a1be",
+      "type": "p17-source-projection-difference",
+      "severity": "manual-review",
+      "relatedEntityIds": [
+        "city-32da4cad2757df97",
+        "country-a20e4bab95389730"
+      ],
+      "field": "wikidataCountry",
+      "message": "Wikidata API and SPARQL truthy P17 projections differ; both projections retain the approved Country anchor.",
+      "wikidataId": "Q90",
+      "wikidataTypeIds": [
+        "Q1066984",
+        "Q108178728",
+        "Q11418818",
+        "Q1187811",
+        "Q1200957",
+        "Q134445478",
+        "Q1422929",
+        "Q1549591",
+        "Q174844",
+        "Q200250",
+        "Q208511",
+        "Q2240381",
+        "Q22923920",
+        "Q484170",
+        "Q51929311"
+      ],
+      "wikidataTypeLabelsEn": {
+        "Q108178728": "national capital",
+        "Q174844": "megacity",
+        "Q200250": "metropolis",
+        "Q208511": "global city",
+        "Q22923920": "territorial collectivity of France with special status",
+        "Q51929311": "largest city"
+      },
+      "wikidataParentIds": [
+        "Q1142326",
+        "Q124881945",
+        "Q13917",
+        "Q16665915",
+        "Q2863958",
+        "Q70972"
+      ],
+      "wikidataParentLabelsEn": {
+        "Q16665915": "Grand Paris"
+      },
+      "rawGateEvidence": {
+        "reviewReason": "p17-source-projection-difference",
+        "gateClassification": "compatible-review",
+        "sourceProjection": {
+          "apiClaims": [
+            "Q142",
+            "Q146246",
+            "Q2748708",
+            "Q58296",
+            "Q70972",
+            "Q71084"
+          ],
+          "sparqlTruthyClaims": [
+            "Q142"
+          ],
+          "unionClaims": [
+            "Q142",
+            "Q146246",
+            "Q2748708",
+            "Q58296",
+            "Q70972",
+            "Q71084"
+          ],
+          "onlyInApi": [
+            "Q146246",
+            "Q2748708",
+            "Q58296",
+            "Q70972",
+            "Q71084"
+          ],
+          "onlyInSparql": [],
+          "exactMatch": false
+        },
+        "typeClassification": {
+          "policy": "exact-p31-qid-v1",
+          "sourceTypeQids": [
+            "Q1066984",
+            "Q108178728",
+            "Q11418818",
+            "Q1187811",
+            "Q1200957",
+            "Q134445478",
+            "Q1422929",
+            "Q1549591",
+            "Q174844",
+            "Q200250",
+            "Q208511",
+            "Q2240381",
+            "Q22923920",
+            "Q484170",
+            "Q51929311"
+          ],
+          "compatibleCityTypeQids": [
+            "Q1549591",
+            "Q200250",
+            "Q51929311"
+          ],
+          "compatibleAdministrativeTypeQids": [
+            "Q108178728"
+          ],
+          "blockingMetroTypeQids": [],
+          "blockingRegionTypeQids": [],
+          "blockingStateTypeQids": [],
+          "unclassifiedTypeQids": [
+            "Q1066984",
+            "Q11418818",
+            "Q1187811",
+            "Q1200957",
+            "Q134445478",
+            "Q1422929",
+            "Q174844",
+            "Q208511",
+            "Q2240381",
+            "Q22923920",
+            "Q484170"
+          ],
+          "hasExplicitCityIdentity": true,
+          "blockingReasons": [],
+          "reviewReasons": [
+            "city-administrative-entity-overlap",
+            "multiple-city-type-candidates",
+            "unclassified-city-type-qids"
+          ],
+          "status": "compatible-review"
+        },
+        "unclassifiedCityTypeQids": [
+          "Q1066984",
+          "Q11418818",
+          "Q1187811",
+          "Q1200957",
+          "Q134445478",
+          "Q1422929",
+          "Q174844",
+          "Q208511",
+          "Q2240381",
+          "Q22923920",
+          "Q484170"
+        ]
+      }
+    },
+    {
+      "reviewId": "review-4ab1bfdb7aee1eb9",
+      "type": "unclassified-city-type-qids",
+      "severity": "manual-review",
+      "relatedEntityIds": [
+        "city-f833a342bb5b925a",
+        "country-ab252ee38e8cdf81"
+      ],
+      "field": "wikidataInstanceOf",
+      "message": "The approved City QID includes P31 values outside the explicit City boundary policy; those QIDs are retained for manual review.",
+      "wikidataId": "Q2807",
+      "wikidataTypeIds": [
+        "Q1200957",
+        "Q200250",
+        "Q2074737"
+      ],
+      "wikidataTypeLabelsEn": {
+        "Q1200957": "tourist destination",
+        "Q200250": "metropolis",
+        "Q2074737": "municipality of Spain"
+      },
+      "wikidataParentIds": [
+        "Q24004405",
+        "Q28769526",
+        "Q5756"
+      ],
+      "wikidataParentLabelsEn": {
+        "Q5756": "Community of Madrid"
+      },
+      "rawGateEvidence": {
+        "reviewReason": "unclassified-city-type-qids",
+        "gateClassification": "compatible-review",
+        "typeClassification": {
+          "policy": "exact-p31-qid-v1",
+          "sourceTypeQids": [
+            "Q1200957",
+            "Q200250",
+            "Q2074737"
+          ],
+          "compatibleCityTypeQids": [
+            "Q200250"
+          ],
+          "compatibleAdministrativeTypeQids": [],
+          "blockingMetroTypeQids": [],
+          "blockingRegionTypeQids": [],
+          "blockingStateTypeQids": [],
+          "unclassifiedTypeQids": [
+            "Q1200957",
+            "Q2074737"
+          ],
+          "hasExplicitCityIdentity": true,
+          "blockingReasons": [],
+          "reviewReasons": [
+            "unclassified-city-type-qids"
+          ],
+          "status": "compatible-review"
+        },
+        "unclassifiedCityTypeQids": [
+          "Q1200957",
+          "Q2074737"
+        ]
+      }
+    },
+    {
+      "reviewId": "review-4f842f633bcd2179",
+      "type": "p131-source-projection-difference",
+      "severity": "manual-review",
+      "relatedEntityIds": [
+        "city-92d9ceba1c4a056d",
+        "country-9bef984affea20d8"
+      ],
+      "field": "wikidataAdministrativeParent",
+      "message": "Wikidata API and SPARQL truthy P131 projections differ without introducing a conflicting Country parent.",
+      "wikidataId": "Q64",
+      "wikidataTypeIds": [
+        "Q114401982",
+        "Q1221156",
+        "Q133442",
+        "Q15974307",
+        "Q1901835",
+        "Q200250",
+        "Q257391",
+        "Q42744322",
+        "Q51929311",
+        "Q67123843",
+        "Q707813"
+      ],
+      "wikidataTypeLabelsEn": {
+        "Q114401982": "independent city in Berlin",
+        "Q1221156": "federated state of Germany",
+        "Q133442": "city-state",
+        "Q15974307": "Unitary municipality in Germany",
+        "Q1901835": "seat of government",
+        "Q200250": "metropolis",
+        "Q257391": "federal capital",
+        "Q42744322": "urban municipality in Germany",
+        "Q51929311": "largest city",
+        "Q67123843": "town divided by border",
+        "Q707813": "Hanseatic city"
+      },
+      "wikidataParentIds": [
+        "Q148499",
+        "Q157367",
+        "Q161036",
+        "Q183",
+        "Q27306",
+        "Q700264",
+        "Q7318"
+      ],
+      "wikidataParentLabelsEn": {
+        "Q183": "Germany"
+      },
+      "rawGateEvidence": {
+        "reviewReason": "p131-source-projection-difference",
+        "gateClassification": "compatible-review",
+        "sourceProjection": {
+          "apiClaims": [
+            "Q148499",
+            "Q157367",
+            "Q161036",
+            "Q183",
+            "Q27306",
+            "Q700264",
+            "Q7318"
+          ],
+          "sparqlTruthyClaims": [
+            "Q183"
+          ],
+          "unionClaims": [
+            "Q148499",
+            "Q157367",
+            "Q161036",
+            "Q183",
+            "Q27306",
+            "Q700264",
+            "Q7318"
+          ],
+          "onlyInApi": [
+            "Q148499",
+            "Q157367",
+            "Q161036",
+            "Q27306",
+            "Q700264",
+            "Q7318"
+          ],
+          "onlyInSparql": [],
+          "exactMatch": false
+        },
+        "typeClassification": {
+          "policy": "exact-p31-qid-v1",
+          "sourceTypeQids": [
+            "Q114401982",
+            "Q1221156",
+            "Q133442",
+            "Q15974307",
+            "Q1901835",
+            "Q200250",
+            "Q257391",
+            "Q42744322",
+            "Q51929311",
+            "Q67123843",
+            "Q707813"
+          ],
+          "compatibleCityTypeQids": [
+            "Q200250",
+            "Q51929311"
+          ],
+          "compatibleAdministrativeTypeQids": [
+            "Q1901835"
+          ],
+          "blockingMetroTypeQids": [],
+          "blockingRegionTypeQids": [],
+          "blockingStateTypeQids": [],
+          "unclassifiedTypeQids": [
+            "Q114401982",
+            "Q1221156",
+            "Q133442",
+            "Q15974307",
+            "Q257391",
+            "Q42744322",
+            "Q67123843",
+            "Q707813"
+          ],
+          "hasExplicitCityIdentity": true,
+          "blockingReasons": [],
+          "reviewReasons": [
+            "city-administrative-entity-overlap",
+            "multiple-city-type-candidates",
+            "unclassified-city-type-qids"
+          ],
+          "status": "compatible-review"
+        },
+        "unclassifiedCityTypeQids": [
+          "Q114401982",
+          "Q1221156",
+          "Q133442",
+          "Q15974307",
+          "Q257391",
+          "Q42744322",
+          "Q67123843",
+          "Q707813"
+        ]
+      }
+    },
+    {
+      "reviewId": "review-4fa157c1f513c849",
+      "type": "poi-p31-policy-manual-review",
+      "severity": "manual-review",
+      "relatedEntityIds": [
+        "city-f833a342bb5b925a",
+        "poi-40ca158eae634f04"
+      ],
+      "field": "wikidataInstanceOf",
+      "message": "The complete numeric Wikidata P31 key is retained for manual POI review under the frozen P1B policy.",
+      "wikidataId": "Q160112",
+      "sourceP31Qids": [
+        "Q1200957",
+        "Q17431399",
+        "Q207694",
+        "Q43229"
+      ],
+      "classifier": {
+        "classification": "accepted-with-review",
+        "disposition": "manual-review",
+        "policyVersion": "p1b-batch01-poi-review-v1",
+        "matchedRuleId": "exact-manual-key",
+        "rationale": "Complete numeric P31 key exactly matches manual-review list: Q1200957|Q17431399|Q207694|Q43229.",
+        "wikidataId": "Q160112",
+        "parentCityEntityId": "city-f833a342bb5b925a",
+        "sourceP31Qids": [
+          "Q1200957",
+          "Q17431399",
+          "Q207694",
+          "Q43229"
+        ],
+        "unknownP31Qids": []
+      },
+      "selection": {
+        "selectionIndex": 19,
+        "policyVersion": "p1b-batch02-poi-selection-v1",
+        "sourceRawPath": "data/knowledge/raw/pois-p1b-batch02-candidates.wikidata.json"
+      }
+    },
+    {
+      "reviewId": "review-50720b7d9a62c3e1",
+      "type": "p131-source-projection-difference",
+      "severity": "manual-review",
+      "relatedEntityIds": [
+        "city-d40570b2aac4850d",
+        "country-4df88b953a99e6a4"
+      ],
+      "field": "wikidataAdministrativeParent",
+      "message": "Wikidata API and SPARQL truthy P131 projections differ without introducing a conflicting Country parent.",
+      "wikidataId": "Q2044",
+      "wikidataTypeIds": [
+        "Q1549591",
+        "Q4115680",
+        "Q747074"
+      ],
+      "wikidataTypeLabelsEn": {
+        "Q1549591": "big city",
+        "Q4115680": "Italian city-state",
+        "Q747074": "comune of Italy"
+      },
+      "wikidataParentIds": [
+        "Q16172",
+        "Q18288148"
+      ],
+      "wikidataParentLabelsEn": {
+        "Q18288148": "Metropolitan City of Florence"
+      },
+      "rawGateEvidence": {
+        "reviewReason": "p131-source-projection-difference",
+        "gateClassification": "compatible-review",
+        "sourceProjection": {
+          "apiClaims": [
+            "Q16172",
+            "Q18288148"
+          ],
+          "sparqlTruthyClaims": [
+            "Q18288148"
+          ],
+          "unionClaims": [
+            "Q16172",
+            "Q18288148"
+          ],
+          "onlyInApi": [
+            "Q16172"
+          ],
+          "onlyInSparql": [],
+          "exactMatch": false
+        },
+        "typeClassification": {
+          "policy": "exact-p31-qid-v1",
+          "sourceTypeQids": [
+            "Q1549591",
+            "Q4115680",
+            "Q747074"
+          ],
+          "compatibleCityTypeQids": [
+            "Q1549591"
+          ],
+          "compatibleAdministrativeTypeQids": [],
+          "blockingMetroTypeQids": [],
+          "blockingRegionTypeQids": [],
+          "blockingStateTypeQids": [],
+          "unclassifiedTypeQids": [
+            "Q4115680",
+            "Q747074"
+          ],
+          "hasExplicitCityIdentity": true,
+          "blockingReasons": [],
+          "reviewReasons": [
+            "unclassified-city-type-qids"
+          ],
+          "status": "compatible-review"
+        },
+        "unclassifiedCityTypeQids": [
+          "Q4115680",
+          "Q747074"
+        ]
+      }
+    },
+    {
+      "reviewId": "review-541a46c8ed2e3b1e",
+      "type": "unclassified-city-type-qids",
+      "severity": "manual-review",
+      "relatedEntityIds": [
+        "city-f485961843960f06",
+        "country-6d9a5fa9dc49e5f4"
+      ],
+      "field": "wikidataInstanceOf",
+      "message": "The approved City QID includes P31 values outside the explicit City boundary policy; those QIDs are retained for manual review.",
+      "wikidataId": "Q8684",
+      "wikidataTypeIds": [
+        "Q108178728",
+        "Q174844",
+        "Q200250",
+        "Q515",
+        "Q51929311",
+        "Q7574799"
+      ],
+      "wikidataTypeLabelsEn": {
+        "Q108178728": "national capital",
+        "Q174844": "megacity",
+        "Q200250": "metropolis",
+        "Q515": "city",
+        "Q51929311": "largest city",
+        "Q7574799": "Special City of Korea"
+      },
+      "wikidataParentIds": [
+        "Q188712",
+        "Q28179",
+        "Q28233",
+        "Q626361",
+        "Q884"
+      ],
+      "wikidataParentLabelsEn": {
+        "Q884": "South Korea"
+      },
+      "rawGateEvidence": {
+        "reviewReason": "unclassified-city-type-qids",
+        "gateClassification": "compatible-review",
+        "typeClassification": {
+          "policy": "exact-p31-qid-v1",
+          "sourceTypeQids": [
+            "Q108178728",
+            "Q174844",
+            "Q200250",
+            "Q515",
+            "Q51929311",
+            "Q7574799"
+          ],
+          "compatibleCityTypeQids": [
+            "Q200250",
+            "Q515",
+            "Q51929311"
+          ],
+          "compatibleAdministrativeTypeQids": [
+            "Q108178728"
+          ],
+          "blockingMetroTypeQids": [],
+          "blockingRegionTypeQids": [],
+          "blockingStateTypeQids": [],
+          "unclassifiedTypeQids": [
+            "Q174844",
+            "Q7574799"
+          ],
+          "hasExplicitCityIdentity": true,
+          "blockingReasons": [],
+          "reviewReasons": [
+            "city-administrative-entity-overlap",
+            "multiple-city-type-candidates",
+            "unclassified-city-type-qids"
+          ],
+          "status": "compatible-review"
+        },
+        "unclassifiedCityTypeQids": [
+          "Q174844",
+          "Q7574799"
+        ]
+      }
+    },
+    {
+      "reviewId": "review-5480036dd222200f",
+      "type": "poi-p31-policy-manual-review",
+      "severity": "manual-review",
+      "relatedEntityIds": [
+        "city-6e97dec8890873f7",
+        "poi-b36cbeac023bedca"
+      ],
+      "field": "wikidataInstanceOf",
+      "message": "The complete numeric Wikidata P31 key is retained for manual POI review under the frozen P1B policy.",
+      "wikidataId": "Q212867",
+      "sourceP31Qids": [
+        "Q1759852",
+        "Q22698"
+      ],
+      "classifier": {
+        "classification": "accepted-with-review",
+        "disposition": "manual-review",
+        "policyVersion": "p1b-batch01-poi-review-v1",
+        "matchedRuleId": "exact-manual-key",
+        "rationale": "Complete numeric P31 key exactly matches manual-review list: Q1759852|Q22698.",
+        "wikidataId": "Q212867",
+        "parentCityEntityId": "city-6e97dec8890873f7",
+        "sourceP31Qids": [
+          "Q1759852",
+          "Q22698"
+        ],
+        "unknownP31Qids": []
+      },
+      "selection": {
+        "selectionIndex": 23,
+        "policyVersion": "p1b-batch02-poi-selection-v1",
+        "sourceRawPath": "data/knowledge/raw/pois-p1b-batch02-candidates.wikidata.json"
+      }
+    },
+    {
+      "reviewId": "review-5cf2421d5795a433",
+      "type": "poi-p31-policy-manual-review",
+      "severity": "manual-review",
+      "relatedEntityIds": [
+        "city-f833a342bb5b925a",
+        "poi-cff501905af55222"
+      ],
+      "field": "wikidataInstanceOf",
+      "message": "The complete numeric Wikidata P31 key is retained for manual POI review under the frozen P1B policy.",
+      "wikidataId": "Q171517",
+      "sourceP31Qids": [
+        "Q15848826",
+        "Q16560",
+        "Q33506",
+        "Q481289",
+        "Q53536964",
+        "Q907116"
+      ],
+      "classifier": {
+        "classification": "accepted-with-review",
+        "disposition": "manual-review",
+        "policyVersion": "p1b-batch01-poi-review-v1",
+        "matchedRuleId": "exact-manual-key",
+        "rationale": "Complete numeric P31 key exactly matches manual-review list: Q15848826|Q16560|Q33506|Q481289|Q53536964|Q907116.",
+        "wikidataId": "Q171517",
+        "parentCityEntityId": "city-f833a342bb5b925a",
+        "sourceP31Qids": [
+          "Q15848826",
+          "Q16560",
+          "Q33506",
+          "Q481289",
+          "Q53536964",
+          "Q907116"
+        ],
+        "unknownP31Qids": []
+      },
+      "selection": {
+        "selectionIndex": 20,
+        "policyVersion": "p1b-batch02-poi-selection-v1",
+        "sourceRawPath": "data/knowledge/raw/pois-p1b-batch02-candidates.wikidata.json"
+      }
+    },
+    {
+      "reviewId": "review-6c59636879aeccff",
+      "type": "p17-source-projection-difference",
+      "severity": "manual-review",
+      "relatedEntityIds": [
+        "city-d40570b2aac4850d",
+        "country-4df88b953a99e6a4"
+      ],
+      "field": "wikidataCountry",
+      "message": "Wikidata API and SPARQL truthy P17 projections differ; both projections retain the approved Country anchor.",
+      "wikidataId": "Q2044",
+      "wikidataTypeIds": [
+        "Q1549591",
+        "Q4115680",
+        "Q747074"
+      ],
+      "wikidataTypeLabelsEn": {
+        "Q1549591": "big city",
+        "Q4115680": "Italian city-state",
+        "Q747074": "comune of Italy"
+      },
+      "wikidataParentIds": [
+        "Q16172",
+        "Q18288148"
+      ],
+      "wikidataParentLabelsEn": {
+        "Q18288148": "Metropolitan City of Florence"
+      },
+      "rawGateEvidence": {
+        "reviewReason": "p17-source-projection-difference",
+        "gateClassification": "compatible-review",
+        "sourceProjection": {
+          "apiClaims": [
+            "Q142",
+            "Q148540",
+            "Q154849",
+            "Q172579",
+            "Q1867844",
+            "Q223793",
+            "Q2252973",
+            "Q2268597",
+            "Q2577303",
+            "Q38"
+          ],
+          "sparqlTruthyClaims": [
+            "Q38"
+          ],
+          "unionClaims": [
+            "Q142",
+            "Q148540",
+            "Q154849",
+            "Q172579",
+            "Q1867844",
+            "Q223793",
+            "Q2252973",
+            "Q2268597",
+            "Q2577303",
+            "Q38"
+          ],
+          "onlyInApi": [
+            "Q142",
+            "Q148540",
+            "Q154849",
+            "Q172579",
+            "Q1867844",
+            "Q223793",
+            "Q2252973",
+            "Q2268597",
+            "Q2577303"
+          ],
+          "onlyInSparql": [],
+          "exactMatch": false
+        },
+        "typeClassification": {
+          "policy": "exact-p31-qid-v1",
+          "sourceTypeQids": [
+            "Q1549591",
+            "Q4115680",
+            "Q747074"
+          ],
+          "compatibleCityTypeQids": [
+            "Q1549591"
+          ],
+          "compatibleAdministrativeTypeQids": [],
+          "blockingMetroTypeQids": [],
+          "blockingRegionTypeQids": [],
+          "blockingStateTypeQids": [],
+          "unclassifiedTypeQids": [
+            "Q4115680",
+            "Q747074"
+          ],
+          "hasExplicitCityIdentity": true,
+          "blockingReasons": [],
+          "reviewReasons": [
+            "unclassified-city-type-qids"
+          ],
+          "status": "compatible-review"
+        },
+        "unclassifiedCityTypeQids": [
+          "Q4115680",
+          "Q747074"
+        ]
+      }
+    },
+    {
+      "reviewId": "review-7f9351bf2edd0341",
+      "type": "unclassified-city-type-qids",
+      "severity": "manual-review",
+      "relatedEntityIds": [
+        "city-d40570b2aac4850d",
+        "country-4df88b953a99e6a4"
+      ],
+      "field": "wikidataInstanceOf",
+      "message": "The approved City QID includes P31 values outside the explicit City boundary policy; those QIDs are retained for manual review.",
+      "wikidataId": "Q2044",
+      "wikidataTypeIds": [
+        "Q1549591",
+        "Q4115680",
+        "Q747074"
+      ],
+      "wikidataTypeLabelsEn": {
+        "Q1549591": "big city",
+        "Q4115680": "Italian city-state",
+        "Q747074": "comune of Italy"
+      },
+      "wikidataParentIds": [
+        "Q16172",
+        "Q18288148"
+      ],
+      "wikidataParentLabelsEn": {
+        "Q18288148": "Metropolitan City of Florence"
+      },
+      "rawGateEvidence": {
+        "reviewReason": "unclassified-city-type-qids",
+        "gateClassification": "compatible-review",
+        "typeClassification": {
+          "policy": "exact-p31-qid-v1",
+          "sourceTypeQids": [
+            "Q1549591",
+            "Q4115680",
+            "Q747074"
+          ],
+          "compatibleCityTypeQids": [
+            "Q1549591"
+          ],
+          "compatibleAdministrativeTypeQids": [],
+          "blockingMetroTypeQids": [],
+          "blockingRegionTypeQids": [],
+          "blockingStateTypeQids": [],
+          "unclassifiedTypeQids": [
+            "Q4115680",
+            "Q747074"
+          ],
+          "hasExplicitCityIdentity": true,
+          "blockingReasons": [],
+          "reviewReasons": [
+            "unclassified-city-type-qids"
+          ],
+          "status": "compatible-review"
+        },
+        "unclassifiedCityTypeQids": [
+          "Q4115680",
+          "Q747074"
+        ]
+      }
+    },
+    {
+      "reviewId": "review-86124f01af7a96e5",
+      "type": "city-administrative-entity-overlap",
+      "severity": "manual-review",
+      "relatedEntityIds": [
+        "city-32da4cad2757df97",
+        "country-a20e4bab95389730"
+      ],
+      "field": "wikidataInstanceOf",
+      "message": "The approved City QID also has administrative-territorial semantics; P1B publishes no administrative-level field.",
+      "wikidataId": "Q90",
+      "wikidataTypeIds": [
+        "Q1066984",
+        "Q108178728",
+        "Q11418818",
+        "Q1187811",
+        "Q1200957",
+        "Q134445478",
+        "Q1422929",
+        "Q1549591",
+        "Q174844",
+        "Q200250",
+        "Q208511",
+        "Q2240381",
+        "Q22923920",
+        "Q484170",
+        "Q51929311"
+      ],
+      "wikidataTypeLabelsEn": {
+        "Q108178728": "national capital",
+        "Q174844": "megacity",
+        "Q200250": "metropolis",
+        "Q208511": "global city",
+        "Q22923920": "territorial collectivity of France with special status",
+        "Q51929311": "largest city"
+      },
+      "wikidataParentIds": [
+        "Q1142326",
+        "Q124881945",
+        "Q13917",
+        "Q16665915",
+        "Q2863958",
+        "Q70972"
+      ],
+      "wikidataParentLabelsEn": {
+        "Q16665915": "Grand Paris"
+      },
+      "rawGateEvidence": {
+        "reviewReason": "city-administrative-entity-overlap",
+        "gateClassification": "compatible-review",
+        "typeClassification": {
+          "policy": "exact-p31-qid-v1",
+          "sourceTypeQids": [
+            "Q1066984",
+            "Q108178728",
+            "Q11418818",
+            "Q1187811",
+            "Q1200957",
+            "Q134445478",
+            "Q1422929",
+            "Q1549591",
+            "Q174844",
+            "Q200250",
+            "Q208511",
+            "Q2240381",
+            "Q22923920",
+            "Q484170",
+            "Q51929311"
+          ],
+          "compatibleCityTypeQids": [
+            "Q1549591",
+            "Q200250",
+            "Q51929311"
+          ],
+          "compatibleAdministrativeTypeQids": [
+            "Q108178728"
+          ],
+          "blockingMetroTypeQids": [],
+          "blockingRegionTypeQids": [],
+          "blockingStateTypeQids": [],
+          "unclassifiedTypeQids": [
+            "Q1066984",
+            "Q11418818",
+            "Q1187811",
+            "Q1200957",
+            "Q134445478",
+            "Q1422929",
+            "Q174844",
+            "Q208511",
+            "Q2240381",
+            "Q22923920",
+            "Q484170"
+          ],
+          "hasExplicitCityIdentity": true,
+          "blockingReasons": [],
+          "reviewReasons": [
+            "city-administrative-entity-overlap",
+            "multiple-city-type-candidates",
+            "unclassified-city-type-qids"
+          ],
+          "status": "compatible-review"
+        },
+        "unclassifiedCityTypeQids": [
+          "Q1066984",
+          "Q11418818",
+          "Q1187811",
+          "Q1200957",
+          "Q134445478",
+          "Q1422929",
+          "Q174844",
+          "Q208511",
+          "Q2240381",
+          "Q22923920",
+          "Q484170"
+        ]
+      }
+    },
+    {
+      "reviewId": "review-86ba7bf00735c969",
+      "type": "city-administrative-entity-overlap",
+      "severity": "manual-review",
+      "relatedEntityIds": [
+        "city-92d9ceba1c4a056d",
+        "country-9bef984affea20d8"
+      ],
+      "field": "wikidataInstanceOf",
+      "message": "The approved City QID also has administrative-territorial semantics; P1B publishes no administrative-level field.",
+      "wikidataId": "Q64",
+      "wikidataTypeIds": [
+        "Q114401982",
+        "Q1221156",
+        "Q133442",
+        "Q15974307",
+        "Q1901835",
+        "Q200250",
+        "Q257391",
+        "Q42744322",
+        "Q51929311",
+        "Q67123843",
+        "Q707813"
+      ],
+      "wikidataTypeLabelsEn": {
+        "Q114401982": "independent city in Berlin",
+        "Q1221156": "federated state of Germany",
+        "Q133442": "city-state",
+        "Q15974307": "Unitary municipality in Germany",
+        "Q1901835": "seat of government",
+        "Q200250": "metropolis",
+        "Q257391": "federal capital",
+        "Q42744322": "urban municipality in Germany",
+        "Q51929311": "largest city",
+        "Q67123843": "town divided by border",
+        "Q707813": "Hanseatic city"
+      },
+      "wikidataParentIds": [
+        "Q148499",
+        "Q157367",
+        "Q161036",
+        "Q183",
+        "Q27306",
+        "Q700264",
+        "Q7318"
+      ],
+      "wikidataParentLabelsEn": {
+        "Q183": "Germany"
+      },
+      "rawGateEvidence": {
+        "reviewReason": "city-administrative-entity-overlap",
+        "gateClassification": "compatible-review",
+        "typeClassification": {
+          "policy": "exact-p31-qid-v1",
+          "sourceTypeQids": [
+            "Q114401982",
+            "Q1221156",
+            "Q133442",
+            "Q15974307",
+            "Q1901835",
+            "Q200250",
+            "Q257391",
+            "Q42744322",
+            "Q51929311",
+            "Q67123843",
+            "Q707813"
+          ],
+          "compatibleCityTypeQids": [
+            "Q200250",
+            "Q51929311"
+          ],
+          "compatibleAdministrativeTypeQids": [
+            "Q1901835"
+          ],
+          "blockingMetroTypeQids": [],
+          "blockingRegionTypeQids": [],
+          "blockingStateTypeQids": [],
+          "unclassifiedTypeQids": [
+            "Q114401982",
+            "Q1221156",
+            "Q133442",
+            "Q15974307",
+            "Q257391",
+            "Q42744322",
+            "Q67123843",
+            "Q707813"
+          ],
+          "hasExplicitCityIdentity": true,
+          "blockingReasons": [],
+          "reviewReasons": [
+            "city-administrative-entity-overlap",
+            "multiple-city-type-candidates",
+            "unclassified-city-type-qids"
+          ],
+          "status": "compatible-review"
+        },
+        "unclassifiedCityTypeQids": [
+          "Q114401982",
+          "Q1221156",
+          "Q133442",
+          "Q15974307",
+          "Q257391",
+          "Q42744322",
+          "Q67123843",
+          "Q707813"
+        ]
+      }
+    },
+    {
+      "reviewId": "review-88993ef241acdbf9",
+      "type": "multiple-city-type-candidates",
+      "severity": "manual-review",
+      "relatedEntityIds": [
+        "city-f485961843960f06",
+        "country-6d9a5fa9dc49e5f4"
+      ],
+      "field": "wikidataInstanceOf",
+      "message": "Wikidata supplies multiple compatible City instance-of values; canonical identity remains anchored to the approved QID.",
+      "wikidataId": "Q8684",
+      "wikidataTypeIds": [
+        "Q108178728",
+        "Q174844",
+        "Q200250",
+        "Q515",
+        "Q51929311",
+        "Q7574799"
+      ],
+      "wikidataTypeLabelsEn": {
+        "Q108178728": "national capital",
+        "Q174844": "megacity",
+        "Q200250": "metropolis",
+        "Q515": "city",
+        "Q51929311": "largest city",
+        "Q7574799": "Special City of Korea"
+      },
+      "wikidataParentIds": [
+        "Q188712",
+        "Q28179",
+        "Q28233",
+        "Q626361",
+        "Q884"
+      ],
+      "wikidataParentLabelsEn": {
+        "Q884": "South Korea"
+      },
+      "rawGateEvidence": {
+        "reviewReason": "multiple-city-type-candidates",
+        "gateClassification": "compatible-review",
+        "typeClassification": {
+          "policy": "exact-p31-qid-v1",
+          "sourceTypeQids": [
+            "Q108178728",
+            "Q174844",
+            "Q200250",
+            "Q515",
+            "Q51929311",
+            "Q7574799"
+          ],
+          "compatibleCityTypeQids": [
+            "Q200250",
+            "Q515",
+            "Q51929311"
+          ],
+          "compatibleAdministrativeTypeQids": [
+            "Q108178728"
+          ],
+          "blockingMetroTypeQids": [],
+          "blockingRegionTypeQids": [],
+          "blockingStateTypeQids": [],
+          "unclassifiedTypeQids": [
+            "Q174844",
+            "Q7574799"
+          ],
+          "hasExplicitCityIdentity": true,
+          "blockingReasons": [],
+          "reviewReasons": [
+            "city-administrative-entity-overlap",
+            "multiple-city-type-candidates",
+            "unclassified-city-type-qids"
+          ],
+          "status": "compatible-review"
+        },
+        "unclassifiedCityTypeQids": [
+          "Q174844",
+          "Q7574799"
+        ]
+      }
+    },
+    {
+      "reviewId": "review-8b4457f158be21f4",
+      "type": "poi-p31-policy-manual-review",
+      "severity": "manual-review",
+      "relatedEntityIds": [
+        "city-d40570b2aac4850d",
+        "poi-0bd83f5543263f9b"
+      ],
+      "field": "wikidataInstanceOf",
+      "message": "The complete numeric Wikidata P31 key is retained for manual POI review under the frozen P1B policy.",
+      "wikidataId": "Q51252",
+      "sourceP31Qids": [
+        "Q16560",
+        "Q207694",
+        "Q24699794"
+      ],
+      "classifier": {
+        "classification": "accepted-with-review",
+        "disposition": "manual-review",
+        "policyVersion": "p1b-batch01-poi-review-v1",
+        "matchedRuleId": "exact-manual-key",
+        "rationale": "Complete numeric P31 key exactly matches manual-review list: Q16560|Q207694|Q24699794.",
+        "wikidataId": "Q51252",
+        "parentCityEntityId": "city-d40570b2aac4850d",
+        "sourceP31Qids": [
+          "Q16560",
+          "Q207694",
+          "Q24699794"
+        ],
+        "unknownP31Qids": []
+      },
+      "selection": {
+        "selectionIndex": 16,
+        "policyVersion": "p1b-batch02-poi-selection-v1",
+        "sourceRawPath": "data/knowledge/raw/pois-p1b-batch02-candidates.wikidata.json"
+      }
+    },
+    {
+      "reviewId": "review-8bf4989561097eeb",
+      "type": "p131-source-projection-difference",
+      "severity": "manual-review",
+      "relatedEntityIds": [
+        "city-5bba0fc2f52dc8df",
+        "country-a20e4bab95389730"
+      ],
+      "field": "wikidataAdministrativeParent",
+      "message": "Wikidata API and SPARQL truthy P131 projections differ without introducing a conflicting Country parent.",
+      "wikidataId": "Q456",
+      "wikidataTypeIds": [
+        "Q1187811",
+        "Q1549591",
+        "Q22927616",
+        "Q484170"
+      ],
+      "wikidataTypeLabelsEn": {
+        "Q1187811": "college town",
+        "Q1549591": "big city",
+        "Q22927616": "commune of France with specific status",
+        "Q484170": "commune of France"
+      },
+      "wikidataParentIds": [
+        "Q10971",
+        "Q16665897",
+        "Q18914778",
+        "Q2874",
+        "Q46130",
+        "Q535140"
+      ],
+      "wikidataParentLabelsEn": {
+        "Q16665897": "Metropolis of Lyon"
+      },
+      "rawGateEvidence": {
+        "reviewReason": "p131-source-projection-difference",
+        "gateClassification": "compatible-review",
+        "sourceProjection": {
+          "apiClaims": [
+            "Q10971",
+            "Q16665897",
+            "Q18914778",
+            "Q2874",
+            "Q46130",
+            "Q535140"
+          ],
+          "sparqlTruthyClaims": [
+            "Q16665897"
+          ],
+          "unionClaims": [
+            "Q10971",
+            "Q16665897",
+            "Q18914778",
+            "Q2874",
+            "Q46130",
+            "Q535140"
+          ],
+          "onlyInApi": [
+            "Q10971",
+            "Q18914778",
+            "Q2874",
+            "Q46130",
+            "Q535140"
+          ],
+          "onlyInSparql": [],
+          "exactMatch": false
+        },
+        "typeClassification": {
+          "policy": "exact-p31-qid-v1",
+          "sourceTypeQids": [
+            "Q1187811",
+            "Q1549591",
+            "Q22927616",
+            "Q484170"
+          ],
+          "compatibleCityTypeQids": [
+            "Q1549591"
+          ],
+          "compatibleAdministrativeTypeQids": [],
+          "blockingMetroTypeQids": [],
+          "blockingRegionTypeQids": [],
+          "blockingStateTypeQids": [],
+          "unclassifiedTypeQids": [
+            "Q1187811",
+            "Q22927616",
+            "Q484170"
+          ],
+          "hasExplicitCityIdentity": true,
+          "blockingReasons": [],
+          "reviewReasons": [
+            "unclassified-city-type-qids"
+          ],
+          "status": "compatible-review"
+        },
+        "unclassifiedCityTypeQids": [
+          "Q1187811",
+          "Q22927616",
+          "Q484170"
+        ]
+      }
+    },
+    {
+      "reviewId": "review-9dc11b7562a2bda6",
+      "type": "unclassified-city-type-qids",
+      "severity": "manual-review",
+      "relatedEntityIds": [
+        "city-6dd5cc0f5d9b27be",
+        "country-9bef984affea20d8"
+      ],
+      "field": "wikidataInstanceOf",
+      "message": "The approved City QID includes P31 values outside the explicit City boundary policy; those QIDs are retained for manual review.",
+      "wikidataId": "Q1726",
+      "wikidataTypeIds": [
+        "Q1066984",
+        "Q1180262",
+        "Q1187811",
+        "Q134626",
+        "Q1418640",
+        "Q1549591",
+        "Q200250",
+        "Q42744322",
+        "Q85631896"
+      ],
+      "wikidataTypeLabelsEn": {
+        "Q1066984": "financial center",
+        "Q1180262": "residenz",
+        "Q1187811": "college town",
+        "Q134626": "district capital",
+        "Q1418640": "local government in Germany",
+        "Q1549591": "big city",
+        "Q200250": "metropolis",
+        "Q42744322": "urban municipality in Germany",
+        "Q85631896": "urban district of Bavaria"
+      },
+      "wikidataParentIds": [
+        "Q10562",
+        "Q1673724",
+        "Q19964046",
+        "Q256961"
+      ],
+      "wikidataParentLabelsEn": {
+        "Q10562": "Upper Bavaria"
+      },
+      "rawGateEvidence": {
+        "reviewReason": "unclassified-city-type-qids",
+        "gateClassification": "compatible-review",
+        "typeClassification": {
+          "policy": "exact-p31-qid-v1",
+          "sourceTypeQids": [
+            "Q1066984",
+            "Q1180262",
+            "Q1187811",
+            "Q134626",
+            "Q1418640",
+            "Q1549591",
+            "Q200250",
+            "Q42744322",
+            "Q85631896"
+          ],
+          "compatibleCityTypeQids": [
+            "Q1549591",
+            "Q200250"
+          ],
+          "compatibleAdministrativeTypeQids": [],
+          "blockingMetroTypeQids": [],
+          "blockingRegionTypeQids": [],
+          "blockingStateTypeQids": [],
+          "unclassifiedTypeQids": [
+            "Q1066984",
+            "Q1180262",
+            "Q1187811",
+            "Q134626",
+            "Q1418640",
+            "Q42744322",
+            "Q85631896"
+          ],
+          "hasExplicitCityIdentity": true,
+          "blockingReasons": [],
+          "reviewReasons": [
+            "multiple-city-type-candidates",
+            "unclassified-city-type-qids"
+          ],
+          "status": "compatible-review"
+        },
+        "unclassifiedCityTypeQids": [
+          "Q1066984",
+          "Q1180262",
+          "Q1187811",
+          "Q134626",
+          "Q1418640",
+          "Q42744322",
+          "Q85631896"
+        ]
+      }
+    },
+    {
+      "reviewId": "review-aa9f124c062a5a58",
+      "type": "poi-p31-policy-manual-review",
+      "severity": "manual-review",
+      "relatedEntityIds": [
+        "city-6dd5cc0f5d9b27be",
+        "poi-ab59dc4db1348ba7"
+      ],
+      "field": "wikidataInstanceOf",
+      "message": "The complete numeric Wikidata P31 key is retained for manual POI review under the frozen P1B policy.",
+      "wikidataId": "Q252648",
+      "sourceP31Qids": [
+        "Q174782",
+        "Q369730",
+        "Q79007"
+      ],
+      "classifier": {
+        "classification": "accepted-with-review",
+        "disposition": "manual-review",
+        "policyVersion": "p1b-batch01-poi-review-v1",
+        "matchedRuleId": "exact-manual-key",
+        "rationale": "Complete numeric P31 key exactly matches manual-review list: Q174782|Q369730|Q79007.",
+        "wikidataId": "Q252648",
+        "parentCityEntityId": "city-6dd5cc0f5d9b27be",
+        "sourceP31Qids": [
+          "Q174782",
+          "Q369730",
+          "Q79007"
+        ],
+        "unknownP31Qids": []
+      },
+      "selection": {
+        "selectionIndex": 10,
+        "policyVersion": "p1b-batch02-poi-selection-v1",
+        "sourceRawPath": "data/knowledge/raw/pois-p1b-batch02-candidates.wikidata.json"
+      }
+    },
+    {
+      "reviewId": "review-aaf804d53691b5f0",
+      "type": "poi-p31-policy-manual-review",
+      "severity": "manual-review",
+      "relatedEntityIds": [
+        "city-6e97dec8890873f7",
+        "poi-f487afdb54891eff"
+      ],
+      "field": "wikidataInstanceOf",
+      "message": "The complete numeric Wikidata P31 key is retained for manual POI review under the frozen P1B policy.",
+      "wikidataId": "Q48435",
+      "sourceP31Qids": [
+        "Q120560",
+        "Q133747929"
+      ],
+      "classifier": {
+        "classification": "accepted-with-review",
+        "disposition": "manual-review",
+        "policyVersion": "p1b-batch01-poi-review-v1",
+        "matchedRuleId": "exact-manual-key",
+        "rationale": "Complete numeric P31 key exactly matches manual-review list: Q120560|Q133747929.",
+        "wikidataId": "Q48435",
+        "parentCityEntityId": "city-6e97dec8890873f7",
+        "sourceP31Qids": [
+          "Q120560",
+          "Q133747929"
+        ],
+        "unknownP31Qids": []
+      },
+      "selection": {
+        "selectionIndex": 22,
+        "policyVersion": "p1b-batch02-poi-selection-v1",
+        "sourceRawPath": "data/knowledge/raw/pois-p1b-batch02-candidates.wikidata.json"
+      }
+    },
+    {
+      "reviewId": "review-ac5c89d8a5fa7637",
+      "type": "city-administrative-entity-overlap",
+      "severity": "manual-review",
+      "relatedEntityIds": [
+        "city-f485961843960f06",
+        "country-6d9a5fa9dc49e5f4"
+      ],
+      "field": "wikidataInstanceOf",
+      "message": "The approved City QID also has administrative-territorial semantics; P1B publishes no administrative-level field.",
+      "wikidataId": "Q8684",
+      "wikidataTypeIds": [
+        "Q108178728",
+        "Q174844",
+        "Q200250",
+        "Q515",
+        "Q51929311",
+        "Q7574799"
+      ],
+      "wikidataTypeLabelsEn": {
+        "Q108178728": "national capital",
+        "Q174844": "megacity",
+        "Q200250": "metropolis",
+        "Q515": "city",
+        "Q51929311": "largest city",
+        "Q7574799": "Special City of Korea"
+      },
+      "wikidataParentIds": [
+        "Q188712",
+        "Q28179",
+        "Q28233",
+        "Q626361",
+        "Q884"
+      ],
+      "wikidataParentLabelsEn": {
+        "Q884": "South Korea"
+      },
+      "rawGateEvidence": {
+        "reviewReason": "city-administrative-entity-overlap",
+        "gateClassification": "compatible-review",
+        "typeClassification": {
+          "policy": "exact-p31-qid-v1",
+          "sourceTypeQids": [
+            "Q108178728",
+            "Q174844",
+            "Q200250",
+            "Q515",
+            "Q51929311",
+            "Q7574799"
+          ],
+          "compatibleCityTypeQids": [
+            "Q200250",
+            "Q515",
+            "Q51929311"
+          ],
+          "compatibleAdministrativeTypeQids": [
+            "Q108178728"
+          ],
+          "blockingMetroTypeQids": [],
+          "blockingRegionTypeQids": [],
+          "blockingStateTypeQids": [],
+          "unclassifiedTypeQids": [
+            "Q174844",
+            "Q7574799"
+          ],
+          "hasExplicitCityIdentity": true,
+          "blockingReasons": [],
+          "reviewReasons": [
+            "city-administrative-entity-overlap",
+            "multiple-city-type-candidates",
+            "unclassified-city-type-qids"
+          ],
+          "status": "compatible-review"
+        },
+        "unclassifiedCityTypeQids": [
+          "Q174844",
+          "Q7574799"
+        ]
+      }
+    },
+    {
+      "reviewId": "review-b0fd583c785db184",
+      "type": "unclassified-city-type-qids",
+      "severity": "manual-review",
+      "relatedEntityIds": [
+        "city-6e97dec8890873f7",
+        "country-ab252ee38e8cdf81"
+      ],
+      "field": "wikidataInstanceOf",
+      "message": "The approved City QID includes P31 values outside the explicit City boundary policy; those QIDs are retained for manual review.",
+      "wikidataId": "Q1492",
+      "wikidataTypeIds": [
+        "Q33146843",
+        "Q515"
+      ],
+      "wikidataTypeLabelsEn": {
+        "Q33146843": "municipality of Catalonia",
+        "Q515": "city"
+      },
+      "wikidataParentIds": [
+        "Q15348",
+        "Q81949"
+      ],
+      "wikidataParentLabelsEn": {
+        "Q15348": "Barcelonès"
+      },
+      "rawGateEvidence": {
+        "reviewReason": "unclassified-city-type-qids",
+        "gateClassification": "compatible-review",
+        "typeClassification": {
+          "policy": "exact-p31-qid-v1",
+          "sourceTypeQids": [
+            "Q33146843",
+            "Q515"
+          ],
+          "compatibleCityTypeQids": [
+            "Q515"
+          ],
+          "compatibleAdministrativeTypeQids": [],
+          "blockingMetroTypeQids": [],
+          "blockingRegionTypeQids": [],
+          "blockingStateTypeQids": [],
+          "unclassifiedTypeQids": [
+            "Q33146843"
+          ],
+          "hasExplicitCityIdentity": true,
+          "blockingReasons": [],
+          "reviewReasons": [
+            "unclassified-city-type-qids"
+          ],
+          "status": "compatible-review"
+        },
+        "unclassifiedCityTypeQids": [
+          "Q33146843"
+        ]
+      }
+    },
+    {
+      "reviewId": "review-ba8d90a684938a58",
+      "type": "poi-p31-policy-manual-review",
+      "severity": "manual-review",
+      "relatedEntityIds": [
+        "city-133b155bac966dfa",
+        "poi-e0800253efd9c07d"
+      ],
+      "field": "wikidataInstanceOf",
+      "message": "The complete numeric Wikidata P31 key is retained for manual POI review under the frozen P1B policy.",
+      "wikidataId": "Q99309",
+      "sourceP31Qids": [
+        "Q112132522",
+        "Q112132548",
+        "Q120560",
+        "Q124830411",
+        "Q14752696",
+        "Q21752084",
+        "Q3867560",
+        "Q867143",
+        "Q92755865",
+        "Q96376684"
+      ],
+      "classifier": {
+        "classification": "accepted-with-review",
+        "disposition": "manual-review",
+        "policyVersion": "p1b-batch01-poi-review-v1",
+        "matchedRuleId": "exact-manual-key",
+        "rationale": "Complete numeric P31 key exactly matches manual-review list: Q112132522|Q112132548|Q120560|Q124830411|Q14752696|Q21752084|Q3867560|Q867143|Q92755865|Q96376684.",
+        "wikidataId": "Q99309",
+        "parentCityEntityId": "city-133b155bac966dfa",
+        "sourceP31Qids": [
+          "Q112132522",
+          "Q112132548",
+          "Q120560",
+          "Q124830411",
+          "Q14752696",
+          "Q21752084",
+          "Q3867560",
+          "Q867143",
+          "Q92755865",
+          "Q96376684"
+        ],
+        "unknownP31Qids": []
+      },
+      "selection": {
+        "selectionIndex": 14,
+        "policyVersion": "p1b-batch02-poi-selection-v1",
+        "sourceRawPath": "data/knowledge/raw/pois-p1b-batch02-candidates.wikidata.json"
+      }
+    },
+    {
+      "reviewId": "review-be9b0f33fe003aac",
+      "type": "p131-source-projection-difference",
+      "severity": "manual-review",
+      "relatedEntityIds": [
+        "city-133b155bac966dfa",
+        "country-4df88b953a99e6a4"
+      ],
+      "field": "wikidataAdministrativeParent",
+      "message": "Wikidata API and SPARQL truthy P131 projections differ without introducing a conflicting Country parent.",
+      "wikidataId": "Q220",
+      "wikidataTypeIds": [
+        "Q108178728",
+        "Q1187811",
+        "Q1200957",
+        "Q1549591",
+        "Q200250",
+        "Q3685476",
+        "Q51929311",
+        "Q747074",
+        "Q902814"
+      ],
+      "wikidataTypeLabelsEn": {
+        "Q108178728": "national capital",
+        "Q1187811": "college town",
+        "Q1200957": "tourist destination",
+        "Q1549591": "big city",
+        "Q200250": "metropolis",
+        "Q3685476": "abolished municipality in Italy",
+        "Q51929311": "largest city",
+        "Q747074": "comune of Italy",
+        "Q902814": "border city"
+      },
+      "wikidataParentIds": [
+        "Q15119",
+        "Q1558632",
+        "Q170174",
+        "Q17167",
+        "Q1747689",
+        "Q18288160",
+        "Q2277",
+        "Q3677829",
+        "Q42834"
+      ],
+      "wikidataParentLabelsEn": {
+        "Q18288160": "Metropolitan City of Rome"
+      },
+      "rawGateEvidence": {
+        "reviewReason": "p131-source-projection-difference",
+        "gateClassification": "compatible-review",
+        "sourceProjection": {
+          "apiClaims": [
+            "Q15119",
+            "Q1558632",
+            "Q170174",
+            "Q17167",
+            "Q1747689",
+            "Q18288160",
+            "Q2277",
+            "Q3677829",
+            "Q42834"
+          ],
+          "sparqlTruthyClaims": [
+            "Q18288160"
+          ],
+          "unionClaims": [
+            "Q15119",
+            "Q1558632",
+            "Q170174",
+            "Q17167",
+            "Q1747689",
+            "Q18288160",
+            "Q2277",
+            "Q3677829",
+            "Q42834"
+          ],
+          "onlyInApi": [
+            "Q15119",
+            "Q1558632",
+            "Q170174",
+            "Q17167",
+            "Q1747689",
+            "Q2277",
+            "Q3677829",
+            "Q42834"
+          ],
+          "onlyInSparql": [],
+          "exactMatch": false
+        },
+        "typeClassification": {
+          "policy": "exact-p31-qid-v1",
+          "sourceTypeQids": [
+            "Q108178728",
+            "Q1187811",
+            "Q1200957",
+            "Q1549591",
+            "Q200250",
+            "Q3685476",
+            "Q51929311",
+            "Q747074",
+            "Q902814"
+          ],
+          "compatibleCityTypeQids": [
+            "Q1549591",
+            "Q200250",
+            "Q51929311"
+          ],
+          "compatibleAdministrativeTypeQids": [
+            "Q108178728"
+          ],
+          "blockingMetroTypeQids": [],
+          "blockingRegionTypeQids": [],
+          "blockingStateTypeQids": [],
+          "unclassifiedTypeQids": [
+            "Q1187811",
+            "Q1200957",
+            "Q3685476",
+            "Q747074",
+            "Q902814"
+          ],
+          "hasExplicitCityIdentity": true,
+          "blockingReasons": [],
+          "reviewReasons": [
+            "city-administrative-entity-overlap",
+            "multiple-city-type-candidates",
+            "unclassified-city-type-qids"
+          ],
+          "status": "compatible-review"
+        },
+        "unclassifiedCityTypeQids": [
+          "Q1187811",
+          "Q1200957",
+          "Q3685476",
+          "Q747074",
+          "Q902814"
+        ]
+      }
+    },
+    {
+      "reviewId": "review-c2675d3b8b851306",
+      "type": "poi-p31-policy-manual-review",
+      "severity": "manual-review",
+      "relatedEntityIds": [
+        "city-32da4cad2757df97",
+        "poi-f0e8a72a34d82e0a"
+      ],
+      "field": "wikidataInstanceOf",
+      "message": "The complete numeric Wikidata P31 key is retained for manual POI review under the frozen P1B policy.",
+      "wikidataId": "Q243",
+      "sourceP31Qids": [
+        "Q1440300",
+        "Q1440476",
+        "Q2319498"
+      ],
+      "classifier": {
+        "classification": "accepted-with-review",
+        "disposition": "manual-review",
+        "policyVersion": "p1b-batch01-poi-review-v1",
+        "matchedRuleId": "exact-manual-key",
+        "rationale": "Complete numeric P31 key exactly matches manual-review list: Q1440300|Q1440476|Q2319498.",
+        "wikidataId": "Q243",
+        "parentCityEntityId": "city-32da4cad2757df97",
+        "sourceP31Qids": [
+          "Q1440300",
+          "Q1440476",
+          "Q2319498"
+        ],
+        "unknownP31Qids": []
+      },
+      "selection": {
+        "selectionIndex": 1,
+        "policyVersion": "p1b-batch02-poi-selection-v1",
+        "sourceRawPath": "data/knowledge/raw/pois-p1b-batch02-candidates.wikidata.json"
+      }
+    },
+    {
+      "reviewId": "review-c8bb14e3c796e205",
+      "type": "p17-source-projection-difference",
+      "severity": "manual-review",
+      "relatedEntityIds": [
+        "city-5bba0fc2f52dc8df",
+        "country-a20e4bab95389730"
+      ],
+      "field": "wikidataCountry",
+      "message": "Wikidata API and SPARQL truthy P17 projections differ; both projections retain the approved Country anchor.",
+      "wikidataId": "Q456",
+      "wikidataTypeIds": [
+        "Q1187811",
+        "Q1549591",
+        "Q22927616",
+        "Q484170"
+      ],
+      "wikidataTypeLabelsEn": {
+        "Q1187811": "college town",
+        "Q1549591": "big city",
+        "Q22927616": "commune of France with specific status",
+        "Q484170": "commune of France"
+      },
+      "wikidataParentIds": [
+        "Q10971",
+        "Q16665897",
+        "Q18914778",
+        "Q2874",
+        "Q46130",
+        "Q535140"
+      ],
+      "wikidataParentLabelsEn": {
+        "Q16665897": "Metropolis of Lyon"
+      },
+      "rawGateEvidence": {
+        "reviewReason": "p17-source-projection-difference",
+        "gateClassification": "compatible-review",
+        "sourceProjection": {
+          "apiClaims": [
+            "Q13590051",
+            "Q142",
+            "Q146246",
+            "Q17167",
+            "Q2277",
+            "Q42834",
+            "Q46370",
+            "Q58296",
+            "Q69808",
+            "Q70972",
+            "Q71084"
+          ],
+          "sparqlTruthyClaims": [
+            "Q142"
+          ],
+          "unionClaims": [
+            "Q13590051",
+            "Q142",
+            "Q146246",
+            "Q17167",
+            "Q2277",
+            "Q42834",
+            "Q46370",
+            "Q58296",
+            "Q69808",
+            "Q70972",
+            "Q71084"
+          ],
+          "onlyInApi": [
+            "Q13590051",
+            "Q146246",
+            "Q17167",
+            "Q2277",
+            "Q42834",
+            "Q46370",
+            "Q58296",
+            "Q69808",
+            "Q70972",
+            "Q71084"
+          ],
+          "onlyInSparql": [],
+          "exactMatch": false
+        },
+        "typeClassification": {
+          "policy": "exact-p31-qid-v1",
+          "sourceTypeQids": [
+            "Q1187811",
+            "Q1549591",
+            "Q22927616",
+            "Q484170"
+          ],
+          "compatibleCityTypeQids": [
+            "Q1549591"
+          ],
+          "compatibleAdministrativeTypeQids": [],
+          "blockingMetroTypeQids": [],
+          "blockingRegionTypeQids": [],
+          "blockingStateTypeQids": [],
+          "unclassifiedTypeQids": [
+            "Q1187811",
+            "Q22927616",
+            "Q484170"
+          ],
+          "hasExplicitCityIdentity": true,
+          "blockingReasons": [],
+          "reviewReasons": [
+            "unclassified-city-type-qids"
+          ],
+          "status": "compatible-review"
+        },
+        "unclassifiedCityTypeQids": [
+          "Q1187811",
+          "Q22927616",
+          "Q484170"
+        ]
+      }
+    },
+    {
+      "reviewId": "review-cffde5dbd1a339ef",
+      "type": "p131-source-projection-difference",
+      "severity": "manual-review",
+      "relatedEntityIds": [
+        "city-f833a342bb5b925a",
+        "country-ab252ee38e8cdf81"
+      ],
+      "field": "wikidataAdministrativeParent",
+      "message": "Wikidata API and SPARQL truthy P131 projections differ without introducing a conflicting Country parent.",
+      "wikidataId": "Q2807",
+      "wikidataTypeIds": [
+        "Q1200957",
+        "Q200250",
+        "Q2074737"
+      ],
+      "wikidataTypeLabelsEn": {
+        "Q1200957": "tourist destination",
+        "Q200250": "metropolis",
+        "Q2074737": "municipality of Spain"
+      },
+      "wikidataParentIds": [
+        "Q24004405",
+        "Q28769526",
+        "Q5756"
+      ],
+      "wikidataParentLabelsEn": {
+        "Q5756": "Community of Madrid"
+      },
+      "rawGateEvidence": {
+        "reviewReason": "p131-source-projection-difference",
+        "gateClassification": "compatible-review",
+        "sourceProjection": {
+          "apiClaims": [
+            "Q24004405",
+            "Q28769526",
+            "Q5756"
+          ],
+          "sparqlTruthyClaims": [
+            "Q5756"
+          ],
+          "unionClaims": [
+            "Q24004405",
+            "Q28769526",
+            "Q5756"
+          ],
+          "onlyInApi": [
+            "Q24004405",
+            "Q28769526"
+          ],
+          "onlyInSparql": [],
+          "exactMatch": false
+        },
+        "typeClassification": {
+          "policy": "exact-p31-qid-v1",
+          "sourceTypeQids": [
+            "Q1200957",
+            "Q200250",
+            "Q2074737"
+          ],
+          "compatibleCityTypeQids": [
+            "Q200250"
+          ],
+          "compatibleAdministrativeTypeQids": [],
+          "blockingMetroTypeQids": [],
+          "blockingRegionTypeQids": [],
+          "blockingStateTypeQids": [],
+          "unclassifiedTypeQids": [
+            "Q1200957",
+            "Q2074737"
+          ],
+          "hasExplicitCityIdentity": true,
+          "blockingReasons": [],
+          "reviewReasons": [
+            "unclassified-city-type-qids"
+          ],
+          "status": "compatible-review"
+        },
+        "unclassifiedCityTypeQids": [
+          "Q1200957",
+          "Q2074737"
+        ]
+      }
+    },
+    {
+      "reviewId": "review-d33fcbe8d7db0317",
+      "type": "poi-p31-policy-manual-review",
+      "severity": "manual-review",
+      "relatedEntityIds": [
+        "city-6e97dec8890873f7",
+        "poi-2c87151b3be6eca2"
+      ],
+      "field": "wikidataInstanceOf",
+      "message": "The complete numeric Wikidata P31 key is retained for manual POI review under the frozen P1B policy.",
+      "wikidataId": "Q461371",
+      "sourceP31Qids": [
+        "Q11755880",
+        "Q1498804"
+      ],
+      "classifier": {
+        "classification": "accepted-with-review",
+        "disposition": "manual-review",
+        "policyVersion": "p1b-batch01-poi-review-v1",
+        "matchedRuleId": "exact-manual-key",
+        "rationale": "Complete numeric P31 key exactly matches manual-review list: Q11755880|Q1498804.",
+        "wikidataId": "Q461371",
+        "parentCityEntityId": "city-6e97dec8890873f7",
+        "sourceP31Qids": [
+          "Q11755880",
+          "Q1498804"
+        ],
+        "unknownP31Qids": []
+      },
+      "selection": {
+        "selectionIndex": 24,
+        "policyVersion": "p1b-batch02-poi-selection-v1",
+        "sourceRawPath": "data/knowledge/raw/pois-p1b-batch02-candidates.wikidata.json"
+      }
+    },
+    {
+      "reviewId": "review-d65a4caae6e15a0e",
+      "type": "p17-source-projection-difference",
+      "severity": "manual-review",
+      "relatedEntityIds": [
+        "city-92d9ceba1c4a056d",
+        "country-9bef984affea20d8"
+      ],
+      "field": "wikidataCountry",
+      "message": "Wikidata API and SPARQL truthy P17 projections differ; both projections retain the approved Country anchor.",
+      "wikidataId": "Q64",
+      "wikidataTypeIds": [
+        "Q114401982",
+        "Q1221156",
+        "Q133442",
+        "Q15974307",
+        "Q1901835",
+        "Q200250",
+        "Q257391",
+        "Q42744322",
+        "Q51929311",
+        "Q67123843",
+        "Q707813"
+      ],
+      "wikidataTypeLabelsEn": {
+        "Q114401982": "independent city in Berlin",
+        "Q1221156": "federated state of Germany",
+        "Q133442": "city-state",
+        "Q15974307": "Unitary municipality in Germany",
+        "Q1901835": "seat of government",
+        "Q200250": "metropolis",
+        "Q257391": "federal capital",
+        "Q42744322": "urban municipality in Germany",
+        "Q51929311": "largest city",
+        "Q67123843": "town divided by border",
+        "Q707813": "Hanseatic city"
+      },
+      "wikidataParentIds": [
+        "Q148499",
+        "Q157367",
+        "Q161036",
+        "Q183",
+        "Q27306",
+        "Q700264",
+        "Q7318"
+      ],
+      "wikidataParentLabelsEn": {
+        "Q183": "Germany"
+      },
+      "rawGateEvidence": {
+        "reviewReason": "p17-source-projection-difference",
+        "gateClassification": "compatible-review",
+        "sourceProjection": {
+          "apiClaims": [
+            "Q148499",
+            "Q150981",
+            "Q157367",
+            "Q16957",
+            "Q183",
+            "Q27306",
+            "Q41304",
+            "Q43287",
+            "Q55300",
+            "Q713750",
+            "Q7318"
+          ],
+          "sparqlTruthyClaims": [
+            "Q183"
+          ],
+          "unionClaims": [
+            "Q148499",
+            "Q150981",
+            "Q157367",
+            "Q16957",
+            "Q183",
+            "Q27306",
+            "Q41304",
+            "Q43287",
+            "Q55300",
+            "Q713750",
+            "Q7318"
+          ],
+          "onlyInApi": [
+            "Q148499",
+            "Q150981",
+            "Q157367",
+            "Q16957",
+            "Q27306",
+            "Q41304",
+            "Q43287",
+            "Q55300",
+            "Q713750",
+            "Q7318"
+          ],
+          "onlyInSparql": [],
+          "exactMatch": false
+        },
+        "typeClassification": {
+          "policy": "exact-p31-qid-v1",
+          "sourceTypeQids": [
+            "Q114401982",
+            "Q1221156",
+            "Q133442",
+            "Q15974307",
+            "Q1901835",
+            "Q200250",
+            "Q257391",
+            "Q42744322",
+            "Q51929311",
+            "Q67123843",
+            "Q707813"
+          ],
+          "compatibleCityTypeQids": [
+            "Q200250",
+            "Q51929311"
+          ],
+          "compatibleAdministrativeTypeQids": [
+            "Q1901835"
+          ],
+          "blockingMetroTypeQids": [],
+          "blockingRegionTypeQids": [],
+          "blockingStateTypeQids": [],
+          "unclassifiedTypeQids": [
+            "Q114401982",
+            "Q1221156",
+            "Q133442",
+            "Q15974307",
+            "Q257391",
+            "Q42744322",
+            "Q67123843",
+            "Q707813"
+          ],
+          "hasExplicitCityIdentity": true,
+          "blockingReasons": [],
+          "reviewReasons": [
+            "city-administrative-entity-overlap",
+            "multiple-city-type-candidates",
+            "unclassified-city-type-qids"
+          ],
+          "status": "compatible-review"
+        },
+        "unclassifiedCityTypeQids": [
+          "Q114401982",
+          "Q1221156",
+          "Q133442",
+          "Q15974307",
+          "Q257391",
+          "Q42744322",
+          "Q67123843",
+          "Q707813"
+        ]
+      }
+    },
+    {
+      "reviewId": "review-dc585aad5c2ed965",
+      "type": "multiple-city-type-candidates",
+      "severity": "manual-review",
+      "relatedEntityIds": [
+        "city-6dd5cc0f5d9b27be",
+        "country-9bef984affea20d8"
+      ],
+      "field": "wikidataInstanceOf",
+      "message": "Wikidata supplies multiple compatible City instance-of values; canonical identity remains anchored to the approved QID.",
+      "wikidataId": "Q1726",
+      "wikidataTypeIds": [
+        "Q1066984",
+        "Q1180262",
+        "Q1187811",
+        "Q134626",
+        "Q1418640",
+        "Q1549591",
+        "Q200250",
+        "Q42744322",
+        "Q85631896"
+      ],
+      "wikidataTypeLabelsEn": {
+        "Q1066984": "financial center",
+        "Q1180262": "residenz",
+        "Q1187811": "college town",
+        "Q134626": "district capital",
+        "Q1418640": "local government in Germany",
+        "Q1549591": "big city",
+        "Q200250": "metropolis",
+        "Q42744322": "urban municipality in Germany",
+        "Q85631896": "urban district of Bavaria"
+      },
+      "wikidataParentIds": [
+        "Q10562",
+        "Q1673724",
+        "Q19964046",
+        "Q256961"
+      ],
+      "wikidataParentLabelsEn": {
+        "Q10562": "Upper Bavaria"
+      },
+      "rawGateEvidence": {
+        "reviewReason": "multiple-city-type-candidates",
+        "gateClassification": "compatible-review",
+        "typeClassification": {
+          "policy": "exact-p31-qid-v1",
+          "sourceTypeQids": [
+            "Q1066984",
+            "Q1180262",
+            "Q1187811",
+            "Q134626",
+            "Q1418640",
+            "Q1549591",
+            "Q200250",
+            "Q42744322",
+            "Q85631896"
+          ],
+          "compatibleCityTypeQids": [
+            "Q1549591",
+            "Q200250"
+          ],
+          "compatibleAdministrativeTypeQids": [],
+          "blockingMetroTypeQids": [],
+          "blockingRegionTypeQids": [],
+          "blockingStateTypeQids": [],
+          "unclassifiedTypeQids": [
+            "Q1066984",
+            "Q1180262",
+            "Q1187811",
+            "Q134626",
+            "Q1418640",
+            "Q42744322",
+            "Q85631896"
+          ],
+          "hasExplicitCityIdentity": true,
+          "blockingReasons": [],
+          "reviewReasons": [
+            "multiple-city-type-candidates",
+            "unclassified-city-type-qids"
+          ],
+          "status": "compatible-review"
+        },
+        "unclassifiedCityTypeQids": [
+          "Q1066984",
+          "Q1180262",
+          "Q1187811",
+          "Q134626",
+          "Q1418640",
+          "Q42744322",
+          "Q85631896"
+        ]
+      }
+    },
+    {
+      "reviewId": "review-de34b581915aa8ef",
+      "type": "poi-p31-policy-manual-review",
+      "severity": "manual-review",
+      "relatedEntityIds": [
+        "city-133b155bac966dfa",
+        "poi-6c809e186dd291f4"
+      ],
+      "field": "wikidataInstanceOf",
+      "message": "The complete numeric Wikidata P31 key is retained for manual POI review under the frozen P1B policy.",
+      "wikidataId": "Q185382",
+      "sourceP31Qids": [
+        "Q483453",
+        "Q860861"
+      ],
+      "classifier": {
+        "classification": "accepted-with-review",
+        "disposition": "manual-review",
+        "policyVersion": "p1b-batch01-poi-review-v1",
+        "matchedRuleId": "exact-manual-key",
+        "rationale": "Complete numeric P31 key exactly matches manual-review list: Q483453|Q860861.",
+        "wikidataId": "Q185382",
+        "parentCityEntityId": "city-133b155bac966dfa",
+        "sourceP31Qids": [
+          "Q483453",
+          "Q860861"
+        ],
+        "unknownP31Qids": []
+      },
+      "selection": {
+        "selectionIndex": 15,
+        "policyVersion": "p1b-batch02-poi-selection-v1",
+        "sourceRawPath": "data/knowledge/raw/pois-p1b-batch02-candidates.wikidata.json"
+      }
+    },
+    {
+      "reviewId": "review-df2357750d883f4b",
+      "type": "unclassified-city-type-qids",
+      "severity": "manual-review",
+      "relatedEntityIds": [
+        "city-6fdc557c860230e3",
+        "country-6d9a5fa9dc49e5f4"
+      ],
+      "field": "wikidataInstanceOf",
+      "message": "The approved City QID includes P31 values outside the explicit City boundary policy; those QIDs are retained for manual review.",
+      "wikidataId": "Q16520",
+      "wikidataTypeIds": [
+        "Q200250",
+        "Q2264924",
+        "Q482821",
+        "Q515"
+      ],
+      "wikidataTypeLabelsEn": {
+        "Q200250": "metropolis",
+        "Q2264924": "port city",
+        "Q482821": "metropolitan city of South Korea",
+        "Q515": "city"
+      },
+      "wikidataParentIds": [
+        "Q884"
+      ],
+      "wikidataParentLabelsEn": {
+        "Q884": "South Korea"
+      },
+      "rawGateEvidence": {
+        "reviewReason": "unclassified-city-type-qids",
+        "gateClassification": "compatible-review",
+        "typeClassification": {
+          "policy": "exact-p31-qid-v1",
+          "sourceTypeQids": [
+            "Q200250",
+            "Q2264924",
+            "Q482821",
+            "Q515"
+          ],
+          "compatibleCityTypeQids": [
+            "Q200250",
+            "Q2264924",
+            "Q515"
+          ],
+          "compatibleAdministrativeTypeQids": [],
+          "blockingMetroTypeQids": [],
+          "blockingRegionTypeQids": [],
+          "blockingStateTypeQids": [],
+          "unclassifiedTypeQids": [
+            "Q482821"
+          ],
+          "hasExplicitCityIdentity": true,
+          "blockingReasons": [],
+          "reviewReasons": [
+            "multiple-city-type-candidates",
+            "unclassified-city-type-qids"
+          ],
+          "status": "compatible-review"
+        },
+        "unclassifiedCityTypeQids": [
+          "Q482821"
+        ]
+      }
+    },
+    {
+      "reviewId": "review-eb897104dce11ba0",
+      "type": "poi-p31-policy-manual-review",
+      "severity": "manual-review",
+      "relatedEntityIds": [
+        "city-92d9ceba1c4a056d",
+        "poi-552fe6b142714524"
+      ],
+      "field": "wikidataInstanceOf",
+      "message": "The complete numeric Wikidata P31 key is retained for manual POI review under the frozen P1B policy.",
+      "wikidataId": "Q313746",
+      "sourceP31Qids": [
+        "Q1541532",
+        "Q207694"
+      ],
+      "classifier": {
+        "classification": "accepted-with-review",
+        "disposition": "manual-review",
+        "policyVersion": "p1b-batch01-poi-review-v1",
+        "matchedRuleId": "exact-manual-key",
+        "rationale": "Complete numeric P31 key exactly matches manual-review list: Q1541532|Q207694.",
+        "wikidataId": "Q313746",
+        "parentCityEntityId": "city-92d9ceba1c4a056d",
+        "sourceP31Qids": [
+          "Q1541532",
+          "Q207694"
+        ],
+        "unknownP31Qids": []
+      },
+      "selection": {
+        "selectionIndex": 9,
+        "policyVersion": "p1b-batch02-poi-selection-v1",
+        "sourceRawPath": "data/knowledge/raw/pois-p1b-batch02-candidates.wikidata.json"
+      }
+    },
+    {
+      "reviewId": "review-ed85e04474c6f18b",
+      "type": "poi-p31-policy-manual-review",
+      "severity": "manual-review",
+      "relatedEntityIds": [
+        "city-92d9ceba1c4a056d",
+        "poi-712f538a30de741b"
+      ],
+      "field": "wikidataInstanceOf",
+      "message": "The complete numeric Wikidata P31 key is retained for manual POI review under the frozen P1B policy.",
+      "wikidataId": "Q82425",
+      "sourceP31Qids": [
+        "Q1128637",
+        "Q143912",
+        "Q2319498",
+        "Q757292",
+        "Q82117"
+      ],
+      "classifier": {
+        "classification": "accepted-with-review",
+        "disposition": "manual-review",
+        "policyVersion": "p1b-batch01-poi-review-v1",
+        "matchedRuleId": "exact-manual-key",
+        "rationale": "Complete numeric P31 key exactly matches manual-review list: Q1128637|Q143912|Q2319498|Q757292|Q82117.",
+        "wikidataId": "Q82425",
+        "parentCityEntityId": "city-92d9ceba1c4a056d",
+        "sourceP31Qids": [
+          "Q1128637",
+          "Q143912",
+          "Q2319498",
+          "Q757292",
+          "Q82117"
+        ],
+        "unknownP31Qids": []
+      },
+      "selection": {
+        "selectionIndex": 8,
+        "policyVersion": "p1b-batch02-poi-selection-v1",
+        "sourceRawPath": "data/knowledge/raw/pois-p1b-batch02-candidates.wikidata.json"
+      }
+    },
+    {
+      "reviewId": "review-edba44bb7206a15c",
+      "type": "p17-source-projection-difference",
+      "severity": "manual-review",
+      "relatedEntityIds": [
+        "city-133b155bac966dfa",
+        "country-4df88b953a99e6a4"
+      ],
+      "field": "wikidataCountry",
+      "message": "Wikidata API and SPARQL truthy P17 projections differ; both projections retain the approved Country anchor.",
+      "wikidataId": "Q220",
+      "wikidataTypeIds": [
+        "Q108178728",
+        "Q1187811",
+        "Q1200957",
+        "Q1549591",
+        "Q200250",
+        "Q3685476",
+        "Q51929311",
+        "Q747074",
+        "Q902814"
+      ],
+      "wikidataTypeLabelsEn": {
+        "Q108178728": "national capital",
+        "Q1187811": "college town",
+        "Q1200957": "tourist destination",
+        "Q1549591": "big city",
+        "Q200250": "metropolis",
+        "Q3685476": "abolished municipality in Italy",
+        "Q51929311": "largest city",
+        "Q747074": "comune of Italy",
+        "Q902814": "border city"
+      },
+      "wikidataParentIds": [
+        "Q15119",
+        "Q1558632",
+        "Q170174",
+        "Q17167",
+        "Q1747689",
+        "Q18288160",
+        "Q2277",
+        "Q3677829",
+        "Q42834"
+      ],
+      "wikidataParentLabelsEn": {
+        "Q18288160": "Metropolitan City of Rome"
+      },
+      "rawGateEvidence": {
+        "reviewReason": "p17-source-projection-difference",
+        "gateClassification": "compatible-review",
+        "sourceProjection": {
+          "apiClaims": [
+            "Q12544",
+            "Q170174",
+            "Q17167",
+            "Q172579",
+            "Q201038",
+            "Q2277",
+            "Q237",
+            "Q3755547",
+            "Q38",
+            "Q42834",
+            "Q583038"
+          ],
+          "sparqlTruthyClaims": [
+            "Q38"
+          ],
+          "unionClaims": [
+            "Q12544",
+            "Q170174",
+            "Q17167",
+            "Q172579",
+            "Q201038",
+            "Q2277",
+            "Q237",
+            "Q3755547",
+            "Q38",
+            "Q42834",
+            "Q583038"
+          ],
+          "onlyInApi": [
+            "Q12544",
+            "Q170174",
+            "Q17167",
+            "Q172579",
+            "Q201038",
+            "Q2277",
+            "Q237",
+            "Q3755547",
+            "Q42834",
+            "Q583038"
+          ],
+          "onlyInSparql": [],
+          "exactMatch": false
+        },
+        "typeClassification": {
+          "policy": "exact-p31-qid-v1",
+          "sourceTypeQids": [
+            "Q108178728",
+            "Q1187811",
+            "Q1200957",
+            "Q1549591",
+            "Q200250",
+            "Q3685476",
+            "Q51929311",
+            "Q747074",
+            "Q902814"
+          ],
+          "compatibleCityTypeQids": [
+            "Q1549591",
+            "Q200250",
+            "Q51929311"
+          ],
+          "compatibleAdministrativeTypeQids": [
+            "Q108178728"
+          ],
+          "blockingMetroTypeQids": [],
+          "blockingRegionTypeQids": [],
+          "blockingStateTypeQids": [],
+          "unclassifiedTypeQids": [
+            "Q1187811",
+            "Q1200957",
+            "Q3685476",
+            "Q747074",
+            "Q902814"
+          ],
+          "hasExplicitCityIdentity": true,
+          "blockingReasons": [],
+          "reviewReasons": [
+            "city-administrative-entity-overlap",
+            "multiple-city-type-candidates",
+            "unclassified-city-type-qids"
+          ],
+          "status": "compatible-review"
+        },
+        "unclassifiedCityTypeQids": [
+          "Q1187811",
+          "Q1200957",
+          "Q3685476",
+          "Q747074",
+          "Q902814"
+        ]
+      }
+    },
+    {
+      "reviewId": "review-ef17b7ca42cff1f6",
+      "type": "unclassified-city-type-qids",
+      "severity": "manual-review",
+      "relatedEntityIds": [
+        "city-5bba0fc2f52dc8df",
+        "country-a20e4bab95389730"
+      ],
+      "field": "wikidataInstanceOf",
+      "message": "The approved City QID includes P31 values outside the explicit City boundary policy; those QIDs are retained for manual review.",
+      "wikidataId": "Q456",
+      "wikidataTypeIds": [
+        "Q1187811",
+        "Q1549591",
+        "Q22927616",
+        "Q484170"
+      ],
+      "wikidataTypeLabelsEn": {
+        "Q1187811": "college town",
+        "Q1549591": "big city",
+        "Q22927616": "commune of France with specific status",
+        "Q484170": "commune of France"
+      },
+      "wikidataParentIds": [
+        "Q10971",
+        "Q16665897",
+        "Q18914778",
+        "Q2874",
+        "Q46130",
+        "Q535140"
+      ],
+      "wikidataParentLabelsEn": {
+        "Q16665897": "Metropolis of Lyon"
+      },
+      "rawGateEvidence": {
+        "reviewReason": "unclassified-city-type-qids",
+        "gateClassification": "compatible-review",
+        "typeClassification": {
+          "policy": "exact-p31-qid-v1",
+          "sourceTypeQids": [
+            "Q1187811",
+            "Q1549591",
+            "Q22927616",
+            "Q484170"
+          ],
+          "compatibleCityTypeQids": [
+            "Q1549591"
+          ],
+          "compatibleAdministrativeTypeQids": [],
+          "blockingMetroTypeQids": [],
+          "blockingRegionTypeQids": [],
+          "blockingStateTypeQids": [],
+          "unclassifiedTypeQids": [
+            "Q1187811",
+            "Q22927616",
+            "Q484170"
+          ],
+          "hasExplicitCityIdentity": true,
+          "blockingReasons": [],
+          "reviewReasons": [
+            "unclassified-city-type-qids"
+          ],
+          "status": "compatible-review"
+        },
+        "unclassifiedCityTypeQids": [
+          "Q1187811",
+          "Q22927616",
+          "Q484170"
+        ]
+      }
+    },
+    {
+      "reviewId": "review-f14872a6acbf3e47",
+      "type": "p131-source-projection-difference",
+      "severity": "manual-review",
+      "relatedEntityIds": [
+        "city-f485961843960f06",
+        "country-6d9a5fa9dc49e5f4"
+      ],
+      "field": "wikidataAdministrativeParent",
+      "message": "Wikidata API and SPARQL truthy P131 projections differ without introducing a conflicting Country parent.",
+      "wikidataId": "Q8684",
+      "wikidataTypeIds": [
+        "Q108178728",
+        "Q174844",
+        "Q200250",
+        "Q515",
+        "Q51929311",
+        "Q7574799"
+      ],
+      "wikidataTypeLabelsEn": {
+        "Q108178728": "national capital",
+        "Q174844": "megacity",
+        "Q200250": "metropolis",
+        "Q515": "city",
+        "Q51929311": "largest city",
+        "Q7574799": "Special City of Korea"
+      },
+      "wikidataParentIds": [
+        "Q188712",
+        "Q28179",
+        "Q28233",
+        "Q626361",
+        "Q884"
+      ],
+      "wikidataParentLabelsEn": {
+        "Q884": "South Korea"
+      },
+      "rawGateEvidence": {
+        "reviewReason": "p131-source-projection-difference",
+        "gateClassification": "compatible-review",
+        "sourceProjection": {
+          "apiClaims": [
+            "Q188712",
+            "Q28179",
+            "Q28233",
+            "Q626361",
+            "Q884"
+          ],
+          "sparqlTruthyClaims": [
+            "Q884"
+          ],
+          "unionClaims": [
+            "Q188712",
+            "Q28179",
+            "Q28233",
+            "Q626361",
+            "Q884"
+          ],
+          "onlyInApi": [
+            "Q188712",
+            "Q28179",
+            "Q28233",
+            "Q626361"
+          ],
+          "onlyInSparql": [],
+          "exactMatch": false
+        },
+        "typeClassification": {
+          "policy": "exact-p31-qid-v1",
+          "sourceTypeQids": [
+            "Q108178728",
+            "Q174844",
+            "Q200250",
+            "Q515",
+            "Q51929311",
+            "Q7574799"
+          ],
+          "compatibleCityTypeQids": [
+            "Q200250",
+            "Q515",
+            "Q51929311"
+          ],
+          "compatibleAdministrativeTypeQids": [
+            "Q108178728"
+          ],
+          "blockingMetroTypeQids": [],
+          "blockingRegionTypeQids": [],
+          "blockingStateTypeQids": [],
+          "unclassifiedTypeQids": [
+            "Q174844",
+            "Q7574799"
+          ],
+          "hasExplicitCityIdentity": true,
+          "blockingReasons": [],
+          "reviewReasons": [
+            "city-administrative-entity-overlap",
+            "multiple-city-type-candidates",
+            "unclassified-city-type-qids"
+          ],
+          "status": "compatible-review"
+        },
+        "unclassifiedCityTypeQids": [
+          "Q174844",
+          "Q7574799"
+        ]
+      }
+    },
+    {
+      "reviewId": "review-f168f74d4b09bfcc",
+      "type": "poi-p31-policy-manual-review",
+      "severity": "manual-review",
+      "relatedEntityIds": [
+        "city-32da4cad2757df97",
+        "poi-98e69389bef1f0f8"
+      ],
+      "field": "wikidataInstanceOf",
+      "message": "The complete numeric Wikidata P31 key is retained for manual POI review under the frozen P1B policy.",
+      "wikidataId": "Q19675",
+      "sourceP31Qids": [
+        "Q11396960",
+        "Q17431399",
+        "Q207694",
+        "Q3329412",
+        "Q570116"
+      ],
+      "classifier": {
+        "classification": "accepted-with-review",
+        "disposition": "manual-review",
+        "policyVersion": "p1b-batch01-poi-review-v1",
+        "matchedRuleId": "exact-manual-key",
+        "rationale": "Complete numeric P31 key exactly matches manual-review list: Q11396960|Q17431399|Q207694|Q3329412|Q570116.",
+        "wikidataId": "Q19675",
+        "parentCityEntityId": "city-32da4cad2757df97",
+        "sourceP31Qids": [
+          "Q11396960",
+          "Q17431399",
+          "Q207694",
+          "Q3329412",
+          "Q570116"
+        ],
+        "unknownP31Qids": []
+      },
+      "selection": {
+        "selectionIndex": 2,
+        "policyVersion": "p1b-batch02-poi-selection-v1",
+        "sourceRawPath": "data/knowledge/raw/pois-p1b-batch02-candidates.wikidata.json"
+      }
+    },
+    {
+      "reviewId": "review-f1ccbd5e20d28281",
+      "type": "p131-source-projection-difference",
+      "severity": "manual-review",
+      "relatedEntityIds": [
+        "city-6e97dec8890873f7",
+        "country-ab252ee38e8cdf81"
+      ],
+      "field": "wikidataAdministrativeParent",
+      "message": "Wikidata API and SPARQL truthy P131 projections differ without introducing a conflicting Country parent.",
+      "wikidataId": "Q1492",
+      "wikidataTypeIds": [
+        "Q33146843",
+        "Q515"
+      ],
+      "wikidataTypeLabelsEn": {
+        "Q33146843": "municipality of Catalonia",
+        "Q515": "city"
+      },
+      "wikidataParentIds": [
+        "Q15348",
+        "Q81949"
+      ],
+      "wikidataParentLabelsEn": {
+        "Q15348": "Barcelonès"
+      },
+      "rawGateEvidence": {
+        "reviewReason": "p131-source-projection-difference",
+        "gateClassification": "compatible-review",
+        "sourceProjection": {
+          "apiClaims": [
+            "Q15348",
+            "Q81949"
+          ],
+          "sparqlTruthyClaims": [
+            "Q15348"
+          ],
+          "unionClaims": [
+            "Q15348",
+            "Q81949"
+          ],
+          "onlyInApi": [
+            "Q81949"
+          ],
+          "onlyInSparql": [],
+          "exactMatch": false
+        },
+        "typeClassification": {
+          "policy": "exact-p31-qid-v1",
+          "sourceTypeQids": [
+            "Q33146843",
+            "Q515"
+          ],
+          "compatibleCityTypeQids": [
+            "Q515"
+          ],
+          "compatibleAdministrativeTypeQids": [],
+          "blockingMetroTypeQids": [],
+          "blockingRegionTypeQids": [],
+          "blockingStateTypeQids": [],
+          "unclassifiedTypeQids": [
+            "Q33146843"
+          ],
+          "hasExplicitCityIdentity": true,
+          "blockingReasons": [],
+          "reviewReasons": [
+            "unclassified-city-type-qids"
+          ],
+          "status": "compatible-review"
+        },
+        "unclassifiedCityTypeQids": [
+          "Q33146843"
+        ]
+      }
+    },
+    {
+      "reviewId": "review-f2f6c175da339e4e",
+      "type": "poi-p31-policy-manual-review",
+      "severity": "manual-review",
+      "relatedEntityIds": [
+        "city-32da4cad2757df97",
+        "poi-fd1a9ae181a2f28c"
+      ],
+      "field": "wikidataInstanceOf",
+      "message": "The complete numeric Wikidata P31 key is retained for manual POI review under the frozen P1B policy.",
+      "wikidataId": "Q23402",
+      "sourceP31Qids": [
+        "Q11396960",
+        "Q17431399",
+        "Q207694"
+      ],
+      "classifier": {
+        "classification": "accepted-with-review",
+        "disposition": "manual-review",
+        "policyVersion": "p1b-batch01-poi-review-v1",
+        "matchedRuleId": "exact-manual-key",
+        "rationale": "Complete numeric P31 key exactly matches manual-review list: Q11396960|Q17431399|Q207694.",
+        "wikidataId": "Q23402",
+        "parentCityEntityId": "city-32da4cad2757df97",
+        "sourceP31Qids": [
+          "Q11396960",
+          "Q17431399",
+          "Q207694"
+        ],
+        "unknownP31Qids": []
+      },
+      "selection": {
+        "selectionIndex": 3,
+        "policyVersion": "p1b-batch02-poi-selection-v1",
+        "sourceRawPath": "data/knowledge/raw/pois-p1b-batch02-candidates.wikidata.json"
+      }
+    },
+    {
+      "reviewId": "review-f48c4131dd413b38",
+      "type": "poi-p31-policy-manual-review",
+      "severity": "manual-review",
+      "relatedEntityIds": [
+        "city-f833a342bb5b925a",
+        "poi-b14a600e2be7f744"
+      ],
+      "field": "wikidataInstanceOf",
+      "message": "The complete numeric Wikidata P31 key is retained for manual POI review under the frozen P1B policy.",
+      "wikidataId": "Q1131807",
+      "sourceP31Qids": [
+        "Q1200957",
+        "Q1329623",
+        "Q14946335",
+        "Q22698",
+        "Q22746"
+      ],
+      "classifier": {
+        "classification": "accepted-with-review",
+        "disposition": "manual-review",
+        "policyVersion": "p1b-batch01-poi-review-v1",
+        "matchedRuleId": "exact-manual-key",
+        "rationale": "Complete numeric P31 key exactly matches manual-review list: Q1200957|Q1329623|Q14946335|Q22698|Q22746.",
+        "wikidataId": "Q1131807",
+        "parentCityEntityId": "city-f833a342bb5b925a",
+        "sourceP31Qids": [
+          "Q1200957",
+          "Q1329623",
+          "Q14946335",
+          "Q22698",
+          "Q22746"
+        ],
+        "unknownP31Qids": []
+      },
+      "selection": {
+        "selectionIndex": 21,
+        "policyVersion": "p1b-batch02-poi-selection-v1",
+        "sourceRawPath": "data/knowledge/raw/pois-p1b-batch02-candidates.wikidata.json"
+      }
+    },
+    {
+      "reviewId": "review-f73faebdbfb856c0",
+      "type": "unclassified-city-type-qids",
+      "severity": "manual-review",
+      "relatedEntityIds": [
+        "city-133b155bac966dfa",
+        "country-4df88b953a99e6a4"
+      ],
+      "field": "wikidataInstanceOf",
+      "message": "The approved City QID includes P31 values outside the explicit City boundary policy; those QIDs are retained for manual review.",
+      "wikidataId": "Q220",
+      "wikidataTypeIds": [
+        "Q108178728",
+        "Q1187811",
+        "Q1200957",
+        "Q1549591",
+        "Q200250",
+        "Q3685476",
+        "Q51929311",
+        "Q747074",
+        "Q902814"
+      ],
+      "wikidataTypeLabelsEn": {
+        "Q108178728": "national capital",
+        "Q1187811": "college town",
+        "Q1200957": "tourist destination",
+        "Q1549591": "big city",
+        "Q200250": "metropolis",
+        "Q3685476": "abolished municipality in Italy",
+        "Q51929311": "largest city",
+        "Q747074": "comune of Italy",
+        "Q902814": "border city"
+      },
+      "wikidataParentIds": [
+        "Q15119",
+        "Q1558632",
+        "Q170174",
+        "Q17167",
+        "Q1747689",
+        "Q18288160",
+        "Q2277",
+        "Q3677829",
+        "Q42834"
+      ],
+      "wikidataParentLabelsEn": {
+        "Q18288160": "Metropolitan City of Rome"
+      },
+      "rawGateEvidence": {
+        "reviewReason": "unclassified-city-type-qids",
+        "gateClassification": "compatible-review",
+        "typeClassification": {
+          "policy": "exact-p31-qid-v1",
+          "sourceTypeQids": [
+            "Q108178728",
+            "Q1187811",
+            "Q1200957",
+            "Q1549591",
+            "Q200250",
+            "Q3685476",
+            "Q51929311",
+            "Q747074",
+            "Q902814"
+          ],
+          "compatibleCityTypeQids": [
+            "Q1549591",
+            "Q200250",
+            "Q51929311"
+          ],
+          "compatibleAdministrativeTypeQids": [
+            "Q108178728"
+          ],
+          "blockingMetroTypeQids": [],
+          "blockingRegionTypeQids": [],
+          "blockingStateTypeQids": [],
+          "unclassifiedTypeQids": [
+            "Q1187811",
+            "Q1200957",
+            "Q3685476",
+            "Q747074",
+            "Q902814"
+          ],
+          "hasExplicitCityIdentity": true,
+          "blockingReasons": [],
+          "reviewReasons": [
+            "city-administrative-entity-overlap",
+            "multiple-city-type-candidates",
+            "unclassified-city-type-qids"
+          ],
+          "status": "compatible-review"
+        },
+        "unclassifiedCityTypeQids": [
+          "Q1187811",
+          "Q1200957",
+          "Q3685476",
+          "Q747074",
+          "Q902814"
+        ]
+      }
+    }
+  ]
+}

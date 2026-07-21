@@ -78,10 +78,10 @@ const adapter = createKnowledgeEntityLayerPlannerAdapter({ repository, fallbackK
 const catalogs = createKnowledgeEntityLayerSearchIntentCatalog({ repository });
 
 assert.equal(repository.listCountries().length, 50);
-assert.equal(repository.listCities().length, 15);
-assert.equal(repository.listPois().length, 45);
+assert.equal(repository.listCities().length, 25);
+assert.equal(repository.listPois().length, 75);
 assert.equal(catalogs.countries.length, 50);
-assert.equal(catalogs.cities.length, 15);
+assert.equal(catalogs.cities.length, 25);
 
 for (const country of repository.listCountries()) {
   const intent = parseSearchIntent(country.canonicalNameEn, { catalogs });
@@ -100,8 +100,8 @@ const adapterCities = repository.listCountries().flatMap((country) => adapter.qu
   country: country.isoAlpha2,
   limit: 100,
 }).filter((destination) => destination.destinationSource === "knowledge-entity-layer"));
-assert.equal(adapterCities.length, 15);
-assert.equal(adapterCities.flatMap((city) => city.poiEntities).length, 45);
+assert.equal(adapterCities.length, 25);
+assert.equal(adapterCities.flatMap((city) => city.poiEntities).length, 75);
 assert.ok(adapterCities.every((city) => city.poiEntities.length === 3));
 
 const expectedCities = new Map([
@@ -109,9 +109,24 @@ const expectedCities = new Map([
   ["Bogotá", ["Bogotá Primatial Cathedral", "Botero Museum", "National Museum of Colombia"]],
   ["Prague", ["Church of Our Lady before Týn", "Old Town Hall with Astronomical Clock", "Žižkov Television Tower"]],
   ["Tokyo", ["Meiji Jingū", "Sensō-ji Temple", "Tokyo Tower"]],
+  ["Paris", ["Eiffel Tower", "Louvre Museum", "Musée d'Orsay"]],
+  ["Berlin", ["Brandenburg Gate", "East Side Gallery", "Museum Island"]],
+  ["Rome", ["Colosseum", "Pantheon", "Trevi Fountain"]],
+  ["Madrid", ["El Retiro Park", "Museo del Prado", "Royal Palace of Madrid"]],
+  ["Seoul", ["Changdeokgung", "Namsan Seoul Tower", "National Museum of Korea"]],
 ]);
 
-for (const [countryCode, cityName] of [["NL", "Amsterdam"], ["CO", "Bogotá"], ["CZ", "Prague"], ["JP", "Tokyo"]]) {
+for (const [countryCode, cityName] of [
+  ["NL", "Amsterdam"],
+  ["CO", "Bogotá"],
+  ["CZ", "Prague"],
+  ["JP", "Tokyo"],
+  ["FR", "Paris"],
+  ["DE", "Berlin"],
+  ["IT", "Rome"],
+  ["ES", "Madrid"],
+  ["KR", "Seoul"],
+]) {
   const destinations = adapter.queryDestinations({ country: countryCode, limit: 20 });
   const city = destinations.find((item) => item.canonicalNameEn === cityName);
   assert.ok(city, `${cityName} should be available through the Planner adapter`);
@@ -142,6 +157,10 @@ const colombiaIntent = parseSearchIntent("Colombia Bogotá", { catalogs });
 assert.equal(colombiaIntent.countryCode, "CO");
 assert.deepEqual(colombiaIntent.normalizedCities, ["bogota"]);
 assert.equal(colombiaIntent.canGenerate, true);
+const franceIntent = parseSearchIntent("France Paris 4 days", { catalogs });
+assert.equal(franceIntent.countryCode, "FR");
+assert.deepEqual(franceIntent.normalizedCities, ["paris"]);
+assert.equal(franceIntent.canGenerate, true);
 assert.deepEqual(parseSearchIntent("Netherlands Prague", { catalogs }).cities, [], "a City from another Country must not leak into the intent");
 assert.equal(parseSearchIntent("online itinerary", { catalogs }).countryCode, "", "short ISO aliases must match complete tokens only");
 
@@ -208,6 +227,7 @@ assert.equal(entityPlannerRecord.provenance.sources[0].providerId, "knowledge-en
 for (const requested of [
   { countryCode: "CZ", countryName: "Czechia", city: "Prague", normalizedCity: "prague" },
   { countryCode: "CO", countryName: "Colombia", city: "Bogotá", normalizedCity: "bogota" },
+  { countryCode: "FR", countryName: "France", city: "Paris", normalizedCity: "paris" },
 ]) {
   const result = await entityPlanner.buildCandidates({
     limit: 1,

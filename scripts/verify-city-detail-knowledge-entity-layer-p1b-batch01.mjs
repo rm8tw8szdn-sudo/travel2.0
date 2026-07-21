@@ -81,6 +81,11 @@ assert.equal(normalizeKnowledgeName("Bogotá"), "bogotá");
 const amsterdam = await expectThreePois("Amsterdam");
 const prague = await expectThreePois("Prague");
 const tokyo = await expectThreePois("Tokyo");
+const paris = await expectThreePois("Paris");
+const berlin = await expectThreePois("Berlin");
+const rome = await expectThreePois("Rome");
+const madrid = await expectThreePois("Madrid");
+const seoul = await expectThreePois("Seoul");
 const bogota = await loadKnowledgeCityPois({
   legacyCity: { id: "CO-BOG", name: "波哥大", englishName: "Bogotá", countryId: "CO" },
   legacyCountry: { id: "CO", name: "哥伦比亚", englishName: "Colombia" },
@@ -129,7 +134,7 @@ const conflicting = resolveKnowledgeCity({
 assert.equal(conflicting.country.entityId, "country-bb");
 assert.equal(conflicting.city.entityId, "city-bb");
 
-for (const result of [amsterdam, bogota, prague, tokyo]) {
+for (const result of [amsterdam, bogota, prague, tokyo, paris, berlin, rome, madrid, seoul]) {
   const serialized = JSON.stringify(result.pois);
   for (const forbidden of ["provenance", "review", "candidate", "evidence", "sourceUrl"]) {
     assert.equal(serialized.includes(forbidden), false, `UI POI payload includes ${forbidden}`);
@@ -154,6 +159,11 @@ process.stdout.write(`${JSON.stringify({
     Bogotá: bogota.pois.map((poi) => poi.canonicalNameEn),
     Prague: prague.pois.map((poi) => poi.canonicalNameEn),
     Tokyo: tokyo.pois.map((poi) => poi.canonicalNameEn),
+    Paris: paris.pois.map((poi) => poi.canonicalNameEn),
+    Berlin: berlin.pois.map((poi) => poi.canonicalNameEn),
+    Rome: rome.pois.map((poi) => poi.canonicalNameEn),
+    Madrid: madrid.pois.map((poi) => poi.canonicalNameEn),
+    Seoul: seoul.pois.map((poi) => poi.canonicalNameEn),
   },
   compatibility: {
     unmatchedLegacyCity: unmatched.status,

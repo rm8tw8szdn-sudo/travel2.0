@@ -1,0 +1,3187 @@
+{
+  "schemaVersion": "route-v2-poi-baseline-provenance-p1b-batch02",
+  "generatedFrom": "data/knowledge/raw/pois-p1b-batch02.wikidata.json",
+  "poiCount": 30,
+  "provenance": {
+    "poi-c0feb2966c91a08d": {
+      "entityId": {
+        "field": "entityId",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B POI Pilot schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "poi-c0feb2966c91a08d"
+      },
+      "entityType": {
+        "field": "entityType",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B POI Pilot schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "poi"
+      },
+      "parentCityEntityId": {
+        "field": "parentCityEntityId",
+        "sourceType": "repository-reference",
+        "source": "Route V2 P1B City Entity Foundation",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q220",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "city-133b155bac966dfa"
+      },
+      "wikidataId": {
+        "field": "wikidataId",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q10285",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "Q10285"
+      },
+      "canonicalNameZh": {
+        "field": "canonicalNameZh",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q10285",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "罗马斗兽场"
+      },
+      "canonicalNameEn": {
+        "field": "canonicalNameEn",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q10285",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "Colosseum"
+      },
+      "aliases": {
+        "field": "aliases",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q10285",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": [
+          "Coliseum",
+          "Flavian Amphitheater",
+          "Flavian Amphitheatre",
+          "Flavius amphitheatre",
+          "Roman Coliseum",
+          "Roman Colosseum",
+          "古罗马大竞技场",
+          "古罗马斗兽场",
+          "哥罗塞姆",
+          "大競技場",
+          "科洛西姆",
+          "科罗赛姆",
+          "科里色姆斗兽场",
+          "罗马大角斗场",
+          "罗马角斗场",
+          "羅馬競技場",
+          "羅馬鬥獸場"
+        ]
+      },
+      "coordinates": {
+        "field": "coordinates",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q10285",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": {
+          "latitude": 41.890277777778,
+          "longitude": 12.492222222222
+        }
+      },
+      "entitySourceType": {
+        "field": "entitySourceType",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B POI Pilot schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "wikidata"
+      },
+      "confidence": {
+        "field": "confidence",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B POI Pilot schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": 0.95
+      },
+      "retrievedAt": {
+        "field": "retrievedAt",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q10285",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "2026-07-20T12:08:39.314Z"
+      },
+      "selection": {
+        "policyVersion": "p1b-batch02-poi-selection-v1",
+        "sourceRawPath": "data/knowledge/raw/pois-p1b-batch02-candidates.wikidata.json",
+        "sourceRawSha256": "91e4297e07fa836dfc2c070f1105ee652a4024f665758bc36e416997889d7908",
+        "selectionPath": "data/knowledge/raw/pois-p1b-batch02-selection.json",
+        "selectionSha256": "6e0918b3f84ece5770d74d9d4b7c3e9d26644e330fb6628f99c598b0ad956753",
+        "disposition": "manual-review"
+      }
+    },
+    "poi-e0800253efd9c07d": {
+      "entityId": {
+        "field": "entityId",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B POI Pilot schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "poi-e0800253efd9c07d"
+      },
+      "entityType": {
+        "field": "entityType",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B POI Pilot schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "poi"
+      },
+      "parentCityEntityId": {
+        "field": "parentCityEntityId",
+        "sourceType": "repository-reference",
+        "source": "Route V2 P1B City Entity Foundation",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q220",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "city-133b155bac966dfa"
+      },
+      "wikidataId": {
+        "field": "wikidataId",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q99309",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "Q99309"
+      },
+      "canonicalNameZh": {
+        "field": "canonicalNameZh",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q99309",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "万神庙"
+      },
+      "canonicalNameEn": {
+        "field": "canonicalNameEn",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q99309",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "Pantheon"
+      },
+      "aliases": {
+        "field": "aliases",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q99309",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": [
+          "Basilica of Our Lady of the Martyrs",
+          "Basilica of Santa Maria",
+          "Basilica of Santa Maria ad Martyres",
+          "church of Santa Maria ad Martyres",
+          "Pantheon (Rome, Italy)",
+          "Santa Maria ad Martyres"
+        ]
+      },
+      "coordinates": {
+        "field": "coordinates",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q99309",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": {
+          "latitude": 41.89861111111111,
+          "longitude": 12.476944444444445
+        }
+      },
+      "entitySourceType": {
+        "field": "entitySourceType",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B POI Pilot schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "wikidata"
+      },
+      "confidence": {
+        "field": "confidence",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B POI Pilot schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": 0.95
+      },
+      "retrievedAt": {
+        "field": "retrievedAt",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q99309",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "2026-07-20T12:08:39.314Z"
+      },
+      "selection": {
+        "policyVersion": "p1b-batch02-poi-selection-v1",
+        "sourceRawPath": "data/knowledge/raw/pois-p1b-batch02-candidates.wikidata.json",
+        "sourceRawSha256": "91e4297e07fa836dfc2c070f1105ee652a4024f665758bc36e416997889d7908",
+        "selectionPath": "data/knowledge/raw/pois-p1b-batch02-selection.json",
+        "selectionSha256": "6e0918b3f84ece5770d74d9d4b7c3e9d26644e330fb6628f99c598b0ad956753",
+        "disposition": "manual-review"
+      }
+    },
+    "poi-6c809e186dd291f4": {
+      "entityId": {
+        "field": "entityId",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B POI Pilot schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "poi-6c809e186dd291f4"
+      },
+      "entityType": {
+        "field": "entityType",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B POI Pilot schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "poi"
+      },
+      "parentCityEntityId": {
+        "field": "parentCityEntityId",
+        "sourceType": "repository-reference",
+        "source": "Route V2 P1B City Entity Foundation",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q220",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "city-133b155bac966dfa"
+      },
+      "wikidataId": {
+        "field": "wikidataId",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q185382",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "Q185382"
+      },
+      "canonicalNameZh": {
+        "field": "canonicalNameZh",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q185382",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "特莱维喷泉"
+      },
+      "canonicalNameEn": {
+        "field": "canonicalNameEn",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q185382",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "Trevi Fountain"
+      },
+      "aliases": {
+        "field": "aliases",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q185382",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": [
+          "Fontana di Trevi",
+          "特萊維噴泉"
+        ]
+      },
+      "coordinates": {
+        "field": "coordinates",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q185382",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": {
+          "latitude": 41.90083333333333,
+          "longitude": 12.483055555555556
+        }
+      },
+      "entitySourceType": {
+        "field": "entitySourceType",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B POI Pilot schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "wikidata"
+      },
+      "confidence": {
+        "field": "confidence",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B POI Pilot schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": 0.95
+      },
+      "retrievedAt": {
+        "field": "retrievedAt",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q185382",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "2026-07-20T12:08:39.314Z"
+      },
+      "selection": {
+        "policyVersion": "p1b-batch02-poi-selection-v1",
+        "sourceRawPath": "data/knowledge/raw/pois-p1b-batch02-candidates.wikidata.json",
+        "sourceRawSha256": "91e4297e07fa836dfc2c070f1105ee652a4024f665758bc36e416997889d7908",
+        "selectionPath": "data/knowledge/raw/pois-p1b-batch02-selection.json",
+        "selectionSha256": "6e0918b3f84ece5770d74d9d4b7c3e9d26644e330fb6628f99c598b0ad956753",
+        "disposition": "manual-review"
+      }
+    },
+    "poi-f0e8a72a34d82e0a": {
+      "entityId": {
+        "field": "entityId",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B POI Pilot schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "poi-f0e8a72a34d82e0a"
+      },
+      "entityType": {
+        "field": "entityType",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B POI Pilot schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "poi"
+      },
+      "parentCityEntityId": {
+        "field": "parentCityEntityId",
+        "sourceType": "repository-reference",
+        "source": "Route V2 P1B City Entity Foundation",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q90",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "city-32da4cad2757df97"
+      },
+      "wikidataId": {
+        "field": "wikidataId",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q243",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "Q243"
+      },
+      "canonicalNameZh": {
+        "field": "canonicalNameZh",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q243",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "埃菲尔铁塔"
+      },
+      "canonicalNameEn": {
+        "field": "canonicalNameEn",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q243",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "Eiffel Tower"
+      },
+      "aliases": {
+        "field": "aliases",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q243",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": [
+          "埃菲爾鐵塔",
+          "艾菲爾鐵塔"
+        ]
+      },
+      "coordinates": {
+        "field": "coordinates",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q243",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": {
+          "latitude": 48.858296,
+          "longitude": 2.294479
+        }
+      },
+      "entitySourceType": {
+        "field": "entitySourceType",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B POI Pilot schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "wikidata"
+      },
+      "confidence": {
+        "field": "confidence",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B POI Pilot schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": 0.95
+      },
+      "retrievedAt": {
+        "field": "retrievedAt",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q243",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "2026-07-20T12:08:39.314Z"
+      },
+      "selection": {
+        "policyVersion": "p1b-batch02-poi-selection-v1",
+        "sourceRawPath": "data/knowledge/raw/pois-p1b-batch02-candidates.wikidata.json",
+        "sourceRawSha256": "91e4297e07fa836dfc2c070f1105ee652a4024f665758bc36e416997889d7908",
+        "selectionPath": "data/knowledge/raw/pois-p1b-batch02-selection.json",
+        "selectionSha256": "6e0918b3f84ece5770d74d9d4b7c3e9d26644e330fb6628f99c598b0ad956753",
+        "disposition": "manual-review"
+      }
+    },
+    "poi-98e69389bef1f0f8": {
+      "entityId": {
+        "field": "entityId",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B POI Pilot schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "poi-98e69389bef1f0f8"
+      },
+      "entityType": {
+        "field": "entityType",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B POI Pilot schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "poi"
+      },
+      "parentCityEntityId": {
+        "field": "parentCityEntityId",
+        "sourceType": "repository-reference",
+        "source": "Route V2 P1B City Entity Foundation",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q90",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "city-32da4cad2757df97"
+      },
+      "wikidataId": {
+        "field": "wikidataId",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q19675",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "Q19675"
+      },
+      "canonicalNameZh": {
+        "field": "canonicalNameZh",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q19675",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "卢浮宫博物馆"
+      },
+      "canonicalNameEn": {
+        "field": "canonicalNameEn",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q19675",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "Louvre Museum"
+      },
+      "aliases": {
+        "field": "aliases",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q19675",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": [
+          "France. Musee du Louvre Paris",
+          "France. Musée du Louvre Paris",
+          "Musee Napoleon",
+          "Musée Napoléon",
+          "Musee national du Louvre",
+          "Musée national du Louvre",
+          "The Louvre",
+          "The Louvre Museum",
+          "卢浮宫",
+          "法國國家博物館",
+          "盧浮宮",
+          "罗浮宫",
+          "羅浮宮",
+          "羅浮宮博物館"
+        ]
+      },
+      "coordinates": {
+        "field": "coordinates",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q19675",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": {
+          "latitude": 48.861111111111114,
+          "longitude": 2.3358333333333334
+        }
+      },
+      "entitySourceType": {
+        "field": "entitySourceType",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B POI Pilot schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "wikidata"
+      },
+      "confidence": {
+        "field": "confidence",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B POI Pilot schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": 0.95
+      },
+      "retrievedAt": {
+        "field": "retrievedAt",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q19675",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "2026-07-20T12:08:39.314Z"
+      },
+      "selection": {
+        "policyVersion": "p1b-batch02-poi-selection-v1",
+        "sourceRawPath": "data/knowledge/raw/pois-p1b-batch02-candidates.wikidata.json",
+        "sourceRawSha256": "91e4297e07fa836dfc2c070f1105ee652a4024f665758bc36e416997889d7908",
+        "selectionPath": "data/knowledge/raw/pois-p1b-batch02-selection.json",
+        "selectionSha256": "6e0918b3f84ece5770d74d9d4b7c3e9d26644e330fb6628f99c598b0ad956753",
+        "disposition": "manual-review"
+      }
+    },
+    "poi-fd1a9ae181a2f28c": {
+      "entityId": {
+        "field": "entityId",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B POI Pilot schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "poi-fd1a9ae181a2f28c"
+      },
+      "entityType": {
+        "field": "entityType",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B POI Pilot schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "poi"
+      },
+      "parentCityEntityId": {
+        "field": "parentCityEntityId",
+        "sourceType": "repository-reference",
+        "source": "Route V2 P1B City Entity Foundation",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q90",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "city-32da4cad2757df97"
+      },
+      "wikidataId": {
+        "field": "wikidataId",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q23402",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "Q23402"
+      },
+      "canonicalNameZh": {
+        "field": "canonicalNameZh",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q23402",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "奥赛博物馆"
+      },
+      "canonicalNameEn": {
+        "field": "canonicalNameEn",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q23402",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "Musée d'Orsay"
+      },
+      "aliases": {
+        "field": "aliases",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q23402",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": [
+          "D’Orsay",
+          "Musee d Orsay",
+          "Musée d Orsay",
+          "Musee D'Orsay",
+          "Musée D’Orsay",
+          "Musėe d'Orsay",
+          "Musee dOrsay",
+          "Musée dOrsay",
+          "Museum of Orsay",
+          "Orsay museum",
+          "奥塞博物馆",
+          "奥尔赛博物馆",
+          "奧塞美術館"
+        ]
+      },
+      "coordinates": {
+        "field": "coordinates",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q23402",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": {
+          "latitude": 48.859972,
+          "longitude": 2.326527
+        }
+      },
+      "entitySourceType": {
+        "field": "entitySourceType",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B POI Pilot schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "wikidata"
+      },
+      "confidence": {
+        "field": "confidence",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B POI Pilot schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": 0.95
+      },
+      "retrievedAt": {
+        "field": "retrievedAt",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q23402",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "2026-07-20T12:08:39.314Z"
+      },
+      "selection": {
+        "policyVersion": "p1b-batch02-poi-selection-v1",
+        "sourceRawPath": "data/knowledge/raw/pois-p1b-batch02-candidates.wikidata.json",
+        "sourceRawSha256": "91e4297e07fa836dfc2c070f1105ee652a4024f665758bc36e416997889d7908",
+        "selectionPath": "data/knowledge/raw/pois-p1b-batch02-selection.json",
+        "selectionSha256": "6e0918b3f84ece5770d74d9d4b7c3e9d26644e330fb6628f99c598b0ad956753",
+        "disposition": "manual-review"
+      }
+    },
+    "poi-b6b05705097c6bb1": {
+      "entityId": {
+        "field": "entityId",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B POI Pilot schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "poi-b6b05705097c6bb1"
+      },
+      "entityType": {
+        "field": "entityType",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B POI Pilot schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "poi"
+      },
+      "parentCityEntityId": {
+        "field": "parentCityEntityId",
+        "sourceType": "repository-reference",
+        "source": "Route V2 P1B City Entity Foundation",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q456",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "city-5bba0fc2f52dc8df"
+      },
+      "wikidataId": {
+        "field": "wikidataId",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q1516",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "Q1516"
+      },
+      "canonicalNameZh": {
+        "field": "canonicalNameZh",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q1516",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "富维耶圣母院"
+      },
+      "canonicalNameEn": {
+        "field": "canonicalNameEn",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q1516",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "Basilica of Notre-Dame de Fourvière"
+      },
+      "aliases": {
+        "field": "aliases",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q1516",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": [
+          "Basilica of Notre-Dame de Fourviere"
+        ]
+      },
+      "coordinates": {
+        "field": "coordinates",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q1516",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": {
+          "latitude": 45.762291666667,
+          "longitude": 4.8225555555556
+        }
+      },
+      "entitySourceType": {
+        "field": "entitySourceType",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B POI Pilot schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "wikidata"
+      },
+      "confidence": {
+        "field": "confidence",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B POI Pilot schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": 0.95
+      },
+      "retrievedAt": {
+        "field": "retrievedAt",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q1516",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "2026-07-20T12:08:39.314Z"
+      },
+      "selection": {
+        "policyVersion": "p1b-batch02-poi-selection-v1",
+        "sourceRawPath": "data/knowledge/raw/pois-p1b-batch02-candidates.wikidata.json",
+        "sourceRawSha256": "91e4297e07fa836dfc2c070f1105ee652a4024f665758bc36e416997889d7908",
+        "selectionPath": "data/knowledge/raw/pois-p1b-batch02-selection.json",
+        "selectionSha256": "6e0918b3f84ece5770d74d9d4b7c3e9d26644e330fb6628f99c598b0ad956753",
+        "disposition": "informational"
+      }
+    },
+    "poi-aab3c735a11bb40c": {
+      "entityId": {
+        "field": "entityId",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B POI Pilot schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "poi-aab3c735a11bb40c"
+      },
+      "entityType": {
+        "field": "entityType",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B POI Pilot schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "poi"
+      },
+      "parentCityEntityId": {
+        "field": "parentCityEntityId",
+        "sourceType": "repository-reference",
+        "source": "Route V2 P1B City Entity Foundation",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q456",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "city-5bba0fc2f52dc8df"
+      },
+      "wikidataId": {
+        "field": "wikidataId",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q8352",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "Q8352"
+      },
+      "canonicalNameZh": {
+        "field": "canonicalNameZh",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q8352",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "汇流博物馆"
+      },
+      "canonicalNameEn": {
+        "field": "canonicalNameEn",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q8352",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "Musée des Confluences"
+      },
+      "aliases": {
+        "field": "aliases",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q8352",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": [
+          "Musee des Confluences"
+        ]
+      },
+      "coordinates": {
+        "field": "coordinates",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q8352",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": {
+          "latitude": 45.732355,
+          "longitude": 4.817923
+        }
+      },
+      "entitySourceType": {
+        "field": "entitySourceType",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B POI Pilot schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "wikidata"
+      },
+      "confidence": {
+        "field": "confidence",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B POI Pilot schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": 0.95
+      },
+      "retrievedAt": {
+        "field": "retrievedAt",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q8352",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "2026-07-20T12:08:39.314Z"
+      },
+      "selection": {
+        "policyVersion": "p1b-batch02-poi-selection-v1",
+        "sourceRawPath": "data/knowledge/raw/pois-p1b-batch02-candidates.wikidata.json",
+        "sourceRawSha256": "91e4297e07fa836dfc2c070f1105ee652a4024f665758bc36e416997889d7908",
+        "selectionPath": "data/knowledge/raw/pois-p1b-batch02-selection.json",
+        "selectionSha256": "6e0918b3f84ece5770d74d9d4b7c3e9d26644e330fb6628f99c598b0ad956753",
+        "disposition": "informational"
+      }
+    },
+    "poi-cf35643c04dd06f1": {
+      "entityId": {
+        "field": "entityId",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B POI Pilot schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "poi-cf35643c04dd06f1"
+      },
+      "entityType": {
+        "field": "entityType",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B POI Pilot schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "poi"
+      },
+      "parentCityEntityId": {
+        "field": "parentCityEntityId",
+        "sourceType": "repository-reference",
+        "source": "Route V2 P1B City Entity Foundation",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q456",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "city-5bba0fc2f52dc8df"
+      },
+      "wikidataId": {
+        "field": "wikidataId",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q511",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "Q511"
+      },
+      "canonicalNameZh": {
+        "field": "canonicalNameZh",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q511",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "里昂美术馆"
+      },
+      "canonicalNameEn": {
+        "field": "canonicalNameEn",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q511",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "Museum of Fine Arts of Lyon"
+      },
+      "aliases": {
+        "field": "aliases",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q511",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": [
+          "musee des Beaux-Arts de Lyon",
+          "musée des Beaux-Arts de Lyon"
+        ]
+      },
+      "coordinates": {
+        "field": "coordinates",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q511",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": {
+          "latitude": 45.766944444444,
+          "longitude": 4.8336111111111
+        }
+      },
+      "entitySourceType": {
+        "field": "entitySourceType",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B POI Pilot schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "wikidata"
+      },
+      "confidence": {
+        "field": "confidence",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B POI Pilot schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": 0.95
+      },
+      "retrievedAt": {
+        "field": "retrievedAt",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q511",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "2026-07-20T12:08:39.314Z"
+      },
+      "selection": {
+        "policyVersion": "p1b-batch02-poi-selection-v1",
+        "sourceRawPath": "data/knowledge/raw/pois-p1b-batch02-candidates.wikidata.json",
+        "sourceRawSha256": "91e4297e07fa836dfc2c070f1105ee652a4024f665758bc36e416997889d7908",
+        "selectionPath": "data/knowledge/raw/pois-p1b-batch02-selection.json",
+        "selectionSha256": "6e0918b3f84ece5770d74d9d4b7c3e9d26644e330fb6628f99c598b0ad956753",
+        "disposition": "informational"
+      }
+    },
+    "poi-40c800c098a9320d": {
+      "entityId": {
+        "field": "entityId",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B POI Pilot schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "poi-40c800c098a9320d"
+      },
+      "entityType": {
+        "field": "entityType",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B POI Pilot schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "poi"
+      },
+      "parentCityEntityId": {
+        "field": "parentCityEntityId",
+        "sourceType": "repository-reference",
+        "source": "Route V2 P1B City Entity Foundation",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q1726",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "city-6dd5cc0f5d9b27be"
+      },
+      "wikidataId": {
+        "field": "wikidataId",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q260223",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "Q260223"
+      },
+      "canonicalNameZh": {
+        "field": "canonicalNameZh",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q260223",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "英国花园"
+      },
+      "canonicalNameEn": {
+        "field": "canonicalNameEn",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q260223",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "Englischer Garten"
+      },
+      "aliases": {
+        "field": "aliases",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q260223",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": []
+      },
+      "coordinates": {
+        "field": "coordinates",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q260223",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": {
+          "latitude": 48.152777777778,
+          "longitude": 11.591944444444
+        }
+      },
+      "entitySourceType": {
+        "field": "entitySourceType",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B POI Pilot schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "wikidata"
+      },
+      "confidence": {
+        "field": "confidence",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B POI Pilot schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": 0.95
+      },
+      "retrievedAt": {
+        "field": "retrievedAt",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q260223",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "2026-07-20T12:08:39.314Z"
+      },
+      "selection": {
+        "policyVersion": "p1b-batch02-poi-selection-v1",
+        "sourceRawPath": "data/knowledge/raw/pois-p1b-batch02-candidates.wikidata.json",
+        "sourceRawSha256": "91e4297e07fa836dfc2c070f1105ee652a4024f665758bc36e416997889d7908",
+        "selectionPath": "data/knowledge/raw/pois-p1b-batch02-selection.json",
+        "selectionSha256": "6e0918b3f84ece5770d74d9d4b7c3e9d26644e330fb6628f99c598b0ad956753",
+        "disposition": "informational"
+      }
+    },
+    "poi-ab59dc4db1348ba7": {
+      "entityId": {
+        "field": "entityId",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B POI Pilot schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "poi-ab59dc4db1348ba7"
+      },
+      "entityType": {
+        "field": "entityType",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B POI Pilot schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "poi"
+      },
+      "parentCityEntityId": {
+        "field": "parentCityEntityId",
+        "sourceType": "repository-reference",
+        "source": "Route V2 P1B City Entity Foundation",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q1726",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "city-6dd5cc0f5d9b27be"
+      },
+      "wikidataId": {
+        "field": "wikidataId",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q252648",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "Q252648"
+      },
+      "canonicalNameZh": {
+        "field": "canonicalNameZh",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q252648",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "玛利亚广场"
+      },
+      "canonicalNameEn": {
+        "field": "canonicalNameEn",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q252648",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "Marienplatz"
+      },
+      "aliases": {
+        "field": "aliases",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q252648",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": []
+      },
+      "coordinates": {
+        "field": "coordinates",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q252648",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": {
+          "latitude": 48.137222222222,
+          "longitude": 11.575277777778
+        }
+      },
+      "entitySourceType": {
+        "field": "entitySourceType",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B POI Pilot schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "wikidata"
+      },
+      "confidence": {
+        "field": "confidence",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B POI Pilot schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": 0.95
+      },
+      "retrievedAt": {
+        "field": "retrievedAt",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q252648",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "2026-07-20T12:08:39.314Z"
+      },
+      "selection": {
+        "policyVersion": "p1b-batch02-poi-selection-v1",
+        "sourceRawPath": "data/knowledge/raw/pois-p1b-batch02-candidates.wikidata.json",
+        "sourceRawSha256": "91e4297e07fa836dfc2c070f1105ee652a4024f665758bc36e416997889d7908",
+        "selectionPath": "data/knowledge/raw/pois-p1b-batch02-selection.json",
+        "selectionSha256": "6e0918b3f84ece5770d74d9d4b7c3e9d26644e330fb6628f99c598b0ad956753",
+        "disposition": "manual-review"
+      }
+    },
+    "poi-f45cf381e5b426f9": {
+      "entityId": {
+        "field": "entityId",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B POI Pilot schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "poi-f45cf381e5b426f9"
+      },
+      "entityType": {
+        "field": "entityType",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B POI Pilot schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "poi"
+      },
+      "parentCityEntityId": {
+        "field": "parentCityEntityId",
+        "sourceType": "repository-reference",
+        "source": "Route V2 P1B City Entity Foundation",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q1726",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "city-6dd5cc0f5d9b27be"
+      },
+      "wikidataId": {
+        "field": "wikidataId",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q131631",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "Q131631"
+      },
+      "canonicalNameZh": {
+        "field": "canonicalNameZh",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q131631",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "宁芬堡宫"
+      },
+      "canonicalNameEn": {
+        "field": "canonicalNameEn",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q131631",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "Nymphenburg Palace"
+      },
+      "aliases": {
+        "field": "aliases",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q131631",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": [
+          "Schloss Nymphenburg",
+          "宁芬堡",
+          "纽芬堡",
+          "纽芬堡宫"
+        ]
+      },
+      "coordinates": {
+        "field": "coordinates",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q131631",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": {
+          "latitude": 48.158056,
+          "longitude": 11.503611
+        }
+      },
+      "entitySourceType": {
+        "field": "entitySourceType",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B POI Pilot schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "wikidata"
+      },
+      "confidence": {
+        "field": "confidence",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B POI Pilot schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": 0.95
+      },
+      "retrievedAt": {
+        "field": "retrievedAt",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q131631",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "2026-07-20T12:08:39.314Z"
+      },
+      "selection": {
+        "policyVersion": "p1b-batch02-poi-selection-v1",
+        "sourceRawPath": "data/knowledge/raw/pois-p1b-batch02-candidates.wikidata.json",
+        "sourceRawSha256": "91e4297e07fa836dfc2c070f1105ee652a4024f665758bc36e416997889d7908",
+        "selectionPath": "data/knowledge/raw/pois-p1b-batch02-selection.json",
+        "selectionSha256": "6e0918b3f84ece5770d74d9d4b7c3e9d26644e330fb6628f99c598b0ad956753",
+        "disposition": "manual-review"
+      }
+    },
+    "poi-f487afdb54891eff": {
+      "entityId": {
+        "field": "entityId",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B POI Pilot schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "poi-f487afdb54891eff"
+      },
+      "entityType": {
+        "field": "entityType",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B POI Pilot schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "poi"
+      },
+      "parentCityEntityId": {
+        "field": "parentCityEntityId",
+        "sourceType": "repository-reference",
+        "source": "Route V2 P1B City Entity Foundation",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q1492",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "city-6e97dec8890873f7"
+      },
+      "wikidataId": {
+        "field": "wikidataId",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q48435",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "Q48435"
+      },
+      "canonicalNameZh": {
+        "field": "canonicalNameZh",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q48435",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "圣家堂"
+      },
+      "canonicalNameEn": {
+        "field": "canonicalNameEn",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q48435",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "Basilica and Expiatory Church of the Holy Family"
+      },
+      "aliases": {
+        "field": "aliases",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q48435",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": [
+          "Expiatory Temple of the Holy Family",
+          "Holy Family",
+          "La Sagrada Familia",
+          "Sagrada Familia",
+          "Sagrada Família",
+          "Temple Expiatori de la Sagrada Família",
+          "Temple of the Holy Family",
+          "圣家大教堂",
+          "神圣家族堂",
+          "神圣家族大教堂",
+          "神圣家族教堂",
+          "神聖家族教堂",
+          "聖家堂",
+          "聖家宗座聖殿暨贖罪殿"
+        ]
+      },
+      "coordinates": {
+        "field": "coordinates",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q48435",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": {
+          "latitude": 41.40369,
+          "longitude": 2.17433
+        }
+      },
+      "entitySourceType": {
+        "field": "entitySourceType",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B POI Pilot schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "wikidata"
+      },
+      "confidence": {
+        "field": "confidence",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B POI Pilot schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": 0.95
+      },
+      "retrievedAt": {
+        "field": "retrievedAt",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q48435",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "2026-07-20T12:08:39.314Z"
+      },
+      "selection": {
+        "policyVersion": "p1b-batch02-poi-selection-v1",
+        "sourceRawPath": "data/knowledge/raw/pois-p1b-batch02-candidates.wikidata.json",
+        "sourceRawSha256": "91e4297e07fa836dfc2c070f1105ee652a4024f665758bc36e416997889d7908",
+        "selectionPath": "data/knowledge/raw/pois-p1b-batch02-selection.json",
+        "selectionSha256": "6e0918b3f84ece5770d74d9d4b7c3e9d26644e330fb6628f99c598b0ad956753",
+        "disposition": "manual-review"
+      }
+    },
+    "poi-2c87151b3be6eca2": {
+      "entityId": {
+        "field": "entityId",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B POI Pilot schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "poi-2c87151b3be6eca2"
+      },
+      "entityType": {
+        "field": "entityType",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B POI Pilot schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "poi"
+      },
+      "parentCityEntityId": {
+        "field": "parentCityEntityId",
+        "sourceType": "repository-reference",
+        "source": "Route V2 P1B City Entity Foundation",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q1492",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "city-6e97dec8890873f7"
+      },
+      "wikidataId": {
+        "field": "wikidataId",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q461371",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "Q461371"
+      },
+      "canonicalNameZh": {
+        "field": "canonicalNameZh",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q461371",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "巴特略之家"
+      },
+      "canonicalNameEn": {
+        "field": "canonicalNameEn",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q461371",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "Casa Batlló"
+      },
+      "aliases": {
+        "field": "aliases",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q461371",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": [
+          "巴特婁之家",
+          "巴特尤公寓",
+          "巴特洛住宅",
+          "巴特洛公寓",
+          "巴特略住宅",
+          "巴特略公寓"
+        ]
+      },
+      "coordinates": {
+        "field": "coordinates",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q461371",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": {
+          "latitude": 41.39158,
+          "longitude": 2.16492
+        }
+      },
+      "entitySourceType": {
+        "field": "entitySourceType",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B POI Pilot schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "wikidata"
+      },
+      "confidence": {
+        "field": "confidence",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B POI Pilot schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": 0.95
+      },
+      "retrievedAt": {
+        "field": "retrievedAt",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q461371",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "2026-07-20T12:08:39.314Z"
+      },
+      "selection": {
+        "policyVersion": "p1b-batch02-poi-selection-v1",
+        "sourceRawPath": "data/knowledge/raw/pois-p1b-batch02-candidates.wikidata.json",
+        "sourceRawSha256": "91e4297e07fa836dfc2c070f1105ee652a4024f665758bc36e416997889d7908",
+        "selectionPath": "data/knowledge/raw/pois-p1b-batch02-selection.json",
+        "selectionSha256": "6e0918b3f84ece5770d74d9d4b7c3e9d26644e330fb6628f99c598b0ad956753",
+        "disposition": "manual-review"
+      }
+    },
+    "poi-b36cbeac023bedca": {
+      "entityId": {
+        "field": "entityId",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B POI Pilot schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "poi-b36cbeac023bedca"
+      },
+      "entityType": {
+        "field": "entityType",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B POI Pilot schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "poi"
+      },
+      "parentCityEntityId": {
+        "field": "parentCityEntityId",
+        "sourceType": "repository-reference",
+        "source": "Route V2 P1B City Entity Foundation",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q1492",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "city-6e97dec8890873f7"
+      },
+      "wikidataId": {
+        "field": "wikidataId",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q212867",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "Q212867"
+      },
+      "canonicalNameZh": {
+        "field": "canonicalNameZh",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q212867",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "桂尔公园"
+      },
+      "canonicalNameEn": {
+        "field": "canonicalNameEn",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q212867",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "Park Güell"
+      },
+      "aliases": {
+        "field": "aliases",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q212867",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": [
+          "Park Guell",
+          "桂爾公園"
+        ]
+      },
+      "coordinates": {
+        "field": "coordinates",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q212867",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": {
+          "latitude": 41.41361111111111,
+          "longitude": 2.1527777777777777
+        }
+      },
+      "entitySourceType": {
+        "field": "entitySourceType",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B POI Pilot schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "wikidata"
+      },
+      "confidence": {
+        "field": "confidence",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B POI Pilot schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": 0.95
+      },
+      "retrievedAt": {
+        "field": "retrievedAt",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q212867",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "2026-07-20T12:08:39.314Z"
+      },
+      "selection": {
+        "policyVersion": "p1b-batch02-poi-selection-v1",
+        "sourceRawPath": "data/knowledge/raw/pois-p1b-batch02-candidates.wikidata.json",
+        "sourceRawSha256": "91e4297e07fa836dfc2c070f1105ee652a4024f665758bc36e416997889d7908",
+        "selectionPath": "data/knowledge/raw/pois-p1b-batch02-selection.json",
+        "selectionSha256": "6e0918b3f84ece5770d74d9d4b7c3e9d26644e330fb6628f99c598b0ad956753",
+        "disposition": "manual-review"
+      }
+    },
+    "poi-f3b267d3f934380c": {
+      "entityId": {
+        "field": "entityId",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B POI Pilot schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "poi-f3b267d3f934380c"
+      },
+      "entityType": {
+        "field": "entityType",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B POI Pilot schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "poi"
+      },
+      "parentCityEntityId": {
+        "field": "parentCityEntityId",
+        "sourceType": "repository-reference",
+        "source": "Route V2 P1B City Entity Foundation",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q16520",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "city-6fdc557c860230e3"
+      },
+      "wikidataId": {
+        "field": "wikidataId",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q16689597",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "Q16689597"
+      },
+      "canonicalNameZh": {
+        "field": "canonicalNameZh",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q16689597",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "釜山博物馆"
+      },
+      "canonicalNameEn": {
+        "field": "canonicalNameEn",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q16689597",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "Busan Museum"
+      },
+      "aliases": {
+        "field": "aliases",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q16689597",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": [
+          "Busan Metropolitan Museum"
+        ]
+      },
+      "coordinates": {
+        "field": "coordinates",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q16689597",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": {
+          "latitude": 35.12959,
+          "longitude": 129.09405
+        }
+      },
+      "entitySourceType": {
+        "field": "entitySourceType",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B POI Pilot schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "wikidata"
+      },
+      "confidence": {
+        "field": "confidence",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B POI Pilot schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": 0.95
+      },
+      "retrievedAt": {
+        "field": "retrievedAt",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q16689597",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "2026-07-20T12:08:39.314Z"
+      },
+      "selection": {
+        "policyVersion": "p1b-batch02-poi-selection-v1",
+        "sourceRawPath": "data/knowledge/raw/pois-p1b-batch02-candidates.wikidata.json",
+        "sourceRawSha256": "91e4297e07fa836dfc2c070f1105ee652a4024f665758bc36e416997889d7908",
+        "selectionPath": "data/knowledge/raw/pois-p1b-batch02-selection.json",
+        "selectionSha256": "6e0918b3f84ece5770d74d9d4b7c3e9d26644e330fb6628f99c598b0ad956753",
+        "disposition": "informational"
+      }
+    },
+    "poi-8c8d8ddf70782e3f": {
+      "entityId": {
+        "field": "entityId",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B POI Pilot schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "poi-8c8d8ddf70782e3f"
+      },
+      "entityType": {
+        "field": "entityType",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B POI Pilot schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "poi"
+      },
+      "parentCityEntityId": {
+        "field": "parentCityEntityId",
+        "sourceType": "repository-reference",
+        "source": "Route V2 P1B City Entity Foundation",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q16520",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "city-6fdc557c860230e3"
+      },
+      "wikidataId": {
+        "field": "wikidataId",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q490777",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "Q490777"
+      },
+      "canonicalNameZh": {
+        "field": "canonicalNameZh",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q490777",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "釜山塔"
+      },
+      "canonicalNameEn": {
+        "field": "canonicalNameEn",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q490777",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "Diamond Tower"
+      },
+      "aliases": {
+        "field": "aliases",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q490777",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": [
+          "Busan Diamond Tower",
+          "Busan Tower"
+        ]
+      },
+      "coordinates": {
+        "field": "coordinates",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q490777",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": {
+          "latitude": 35.101222222222,
+          "longitude": 129.03230555556
+        }
+      },
+      "entitySourceType": {
+        "field": "entitySourceType",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B POI Pilot schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "wikidata"
+      },
+      "confidence": {
+        "field": "confidence",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B POI Pilot schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": 0.95
+      },
+      "retrievedAt": {
+        "field": "retrievedAt",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q490777",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "2026-07-20T12:08:39.314Z"
+      },
+      "selection": {
+        "policyVersion": "p1b-batch02-poi-selection-v1",
+        "sourceRawPath": "data/knowledge/raw/pois-p1b-batch02-candidates.wikidata.json",
+        "sourceRawSha256": "91e4297e07fa836dfc2c070f1105ee652a4024f665758bc36e416997889d7908",
+        "selectionPath": "data/knowledge/raw/pois-p1b-batch02-selection.json",
+        "selectionSha256": "6e0918b3f84ece5770d74d9d4b7c3e9d26644e330fb6628f99c598b0ad956753",
+        "disposition": "informational"
+      }
+    },
+    "poi-1e6269daf2168b42": {
+      "entityId": {
+        "field": "entityId",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B POI Pilot schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "poi-1e6269daf2168b42"
+      },
+      "entityType": {
+        "field": "entityType",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B POI Pilot schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "poi"
+      },
+      "parentCityEntityId": {
+        "field": "parentCityEntityId",
+        "sourceType": "repository-reference",
+        "source": "Route V2 P1B City Entity Foundation",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q16520",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "city-6fdc557c860230e3"
+      },
+      "wikidataId": {
+        "field": "wikidataId",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q2494268",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "Q2494268"
+      },
+      "canonicalNameZh": {
+        "field": "canonicalNameZh",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q2494268",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "海东龙宫寺"
+      },
+      "canonicalNameEn": {
+        "field": "canonicalNameEn",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q2494268",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "Haedong Yonggungsa"
+      },
+      "aliases": {
+        "field": "aliases",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q2494268",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": [
+          "Haedong Yonggung temple",
+          "Haedong Yonggungsa Temple",
+          "龙宫寺"
+        ]
+      },
+      "coordinates": {
+        "field": "coordinates",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q2494268",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": {
+          "latitude": 35.18833333333333,
+          "longitude": 129.22333333333333
+        }
+      },
+      "entitySourceType": {
+        "field": "entitySourceType",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B POI Pilot schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "wikidata"
+      },
+      "confidence": {
+        "field": "confidence",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B POI Pilot schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": 0.95
+      },
+      "retrievedAt": {
+        "field": "retrievedAt",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q2494268",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "2026-07-20T12:08:39.314Z"
+      },
+      "selection": {
+        "policyVersion": "p1b-batch02-poi-selection-v1",
+        "sourceRawPath": "data/knowledge/raw/pois-p1b-batch02-candidates.wikidata.json",
+        "sourceRawSha256": "91e4297e07fa836dfc2c070f1105ee652a4024f665758bc36e416997889d7908",
+        "selectionPath": "data/knowledge/raw/pois-p1b-batch02-selection.json",
+        "selectionSha256": "6e0918b3f84ece5770d74d9d4b7c3e9d26644e330fb6628f99c598b0ad956753",
+        "disposition": "informational"
+      }
+    },
+    "poi-712f538a30de741b": {
+      "entityId": {
+        "field": "entityId",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B POI Pilot schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "poi-712f538a30de741b"
+      },
+      "entityType": {
+        "field": "entityType",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B POI Pilot schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "poi"
+      },
+      "parentCityEntityId": {
+        "field": "parentCityEntityId",
+        "sourceType": "repository-reference",
+        "source": "Route V2 P1B City Entity Foundation",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q64",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "city-92d9ceba1c4a056d"
+      },
+      "wikidataId": {
+        "field": "wikidataId",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q82425",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "Q82425"
+      },
+      "canonicalNameZh": {
+        "field": "canonicalNameZh",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q82425",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "勃兰登堡门"
+      },
+      "canonicalNameEn": {
+        "field": "canonicalNameEn",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q82425",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "Brandenburg Gate"
+      },
+      "aliases": {
+        "field": "aliases",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q82425",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": [
+          "Brandenburger Tor",
+          "布蘭登堡門"
+        ]
+      },
+      "coordinates": {
+        "field": "coordinates",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q82425",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": {
+          "latitude": 52.516272222222,
+          "longitude": 13.377722222222
+        }
+      },
+      "entitySourceType": {
+        "field": "entitySourceType",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B POI Pilot schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "wikidata"
+      },
+      "confidence": {
+        "field": "confidence",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B POI Pilot schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": 0.95
+      },
+      "retrievedAt": {
+        "field": "retrievedAt",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q82425",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "2026-07-20T12:08:39.314Z"
+      },
+      "selection": {
+        "policyVersion": "p1b-batch02-poi-selection-v1",
+        "sourceRawPath": "data/knowledge/raw/pois-p1b-batch02-candidates.wikidata.json",
+        "sourceRawSha256": "91e4297e07fa836dfc2c070f1105ee652a4024f665758bc36e416997889d7908",
+        "selectionPath": "data/knowledge/raw/pois-p1b-batch02-selection.json",
+        "selectionSha256": "6e0918b3f84ece5770d74d9d4b7c3e9d26644e330fb6628f99c598b0ad956753",
+        "disposition": "manual-review"
+      }
+    },
+    "poi-552fe6b142714524": {
+      "entityId": {
+        "field": "entityId",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B POI Pilot schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "poi-552fe6b142714524"
+      },
+      "entityType": {
+        "field": "entityType",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B POI Pilot schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "poi"
+      },
+      "parentCityEntityId": {
+        "field": "parentCityEntityId",
+        "sourceType": "repository-reference",
+        "source": "Route V2 P1B City Entity Foundation",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q64",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "city-92d9ceba1c4a056d"
+      },
+      "wikidataId": {
+        "field": "wikidataId",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q313746",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "Q313746"
+      },
+      "canonicalNameZh": {
+        "field": "canonicalNameZh",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q313746",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "东边画廊"
+      },
+      "canonicalNameEn": {
+        "field": "canonicalNameEn",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q313746",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "East Side Gallery"
+      },
+      "aliases": {
+        "field": "aliases",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q313746",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": []
+      },
+      "coordinates": {
+        "field": "coordinates",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q313746",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": {
+          "latitude": 52.503055555556,
+          "longitude": 13.444722222222
+        }
+      },
+      "entitySourceType": {
+        "field": "entitySourceType",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B POI Pilot schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "wikidata"
+      },
+      "confidence": {
+        "field": "confidence",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B POI Pilot schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": 0.95
+      },
+      "retrievedAt": {
+        "field": "retrievedAt",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q313746",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "2026-07-20T12:08:39.314Z"
+      },
+      "selection": {
+        "policyVersion": "p1b-batch02-poi-selection-v1",
+        "sourceRawPath": "data/knowledge/raw/pois-p1b-batch02-candidates.wikidata.json",
+        "sourceRawSha256": "91e4297e07fa836dfc2c070f1105ee652a4024f665758bc36e416997889d7908",
+        "selectionPath": "data/knowledge/raw/pois-p1b-batch02-selection.json",
+        "selectionSha256": "6e0918b3f84ece5770d74d9d4b7c3e9d26644e330fb6628f99c598b0ad956753",
+        "disposition": "manual-review"
+      }
+    },
+    "poi-d406ad37b4ddadbc": {
+      "entityId": {
+        "field": "entityId",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B POI Pilot schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "poi-d406ad37b4ddadbc"
+      },
+      "entityType": {
+        "field": "entityType",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B POI Pilot schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "poi"
+      },
+      "parentCityEntityId": {
+        "field": "parentCityEntityId",
+        "sourceType": "repository-reference",
+        "source": "Route V2 P1B City Entity Foundation",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q64",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "city-92d9ceba1c4a056d"
+      },
+      "wikidataId": {
+        "field": "wikidataId",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q151963",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "Q151963"
+      },
+      "canonicalNameZh": {
+        "field": "canonicalNameZh",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q151963",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "博物馆岛"
+      },
+      "canonicalNameEn": {
+        "field": "canonicalNameEn",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q151963",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "Museum Island"
+      },
+      "aliases": {
+        "field": "aliases",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q151963",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": [
+          "博物館島",
+          "柏林博物館島"
+        ]
+      },
+      "coordinates": {
+        "field": "coordinates",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q151963",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": {
+          "latitude": 52.521388888889,
+          "longitude": 13.395555555556
+        }
+      },
+      "entitySourceType": {
+        "field": "entitySourceType",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B POI Pilot schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "wikidata"
+      },
+      "confidence": {
+        "field": "confidence",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B POI Pilot schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": 0.95
+      },
+      "retrievedAt": {
+        "field": "retrievedAt",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q151963",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "2026-07-20T12:08:39.314Z"
+      },
+      "selection": {
+        "policyVersion": "p1b-batch02-poi-selection-v1",
+        "sourceRawPath": "data/knowledge/raw/pois-p1b-batch02-candidates.wikidata.json",
+        "sourceRawSha256": "91e4297e07fa836dfc2c070f1105ee652a4024f665758bc36e416997889d7908",
+        "selectionPath": "data/knowledge/raw/pois-p1b-batch02-selection.json",
+        "selectionSha256": "6e0918b3f84ece5770d74d9d4b7c3e9d26644e330fb6628f99c598b0ad956753",
+        "disposition": "informational"
+      }
+    },
+    "poi-9817020572dc4608": {
+      "entityId": {
+        "field": "entityId",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B POI Pilot schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "poi-9817020572dc4608"
+      },
+      "entityType": {
+        "field": "entityType",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B POI Pilot schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "poi"
+      },
+      "parentCityEntityId": {
+        "field": "parentCityEntityId",
+        "sourceType": "repository-reference",
+        "source": "Route V2 P1B City Entity Foundation",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q2044",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "city-d40570b2aac4850d"
+      },
+      "wikidataId": {
+        "field": "wikidataId",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q191739",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "Q191739"
+      },
+      "canonicalNameZh": {
+        "field": "canonicalNameZh",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q191739",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "圣母百花圣殿"
+      },
+      "canonicalNameEn": {
+        "field": "canonicalNameEn",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q191739",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "Florence Cathedral"
+      },
+      "aliases": {
+        "field": "aliases",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q191739",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": [
+          "Cathedral of Our Lady of the Flower, Duomo in Florence",
+          "Duomo di Firenze",
+          "圣母百花大教堂",
+          "百花大教堂",
+          "聖母百花大教堂",
+          "聖母百花聖殿"
+        ]
+      },
+      "coordinates": {
+        "field": "coordinates",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q191739",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": {
+          "latitude": 43.77305555555556,
+          "longitude": 11.256944444444445
+        }
+      },
+      "entitySourceType": {
+        "field": "entitySourceType",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B POI Pilot schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "wikidata"
+      },
+      "confidence": {
+        "field": "confidence",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B POI Pilot schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": 0.95
+      },
+      "retrievedAt": {
+        "field": "retrievedAt",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q191739",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "2026-07-20T12:08:39.314Z"
+      },
+      "selection": {
+        "policyVersion": "p1b-batch02-poi-selection-v1",
+        "sourceRawPath": "data/knowledge/raw/pois-p1b-batch02-candidates.wikidata.json",
+        "sourceRawSha256": "91e4297e07fa836dfc2c070f1105ee652a4024f665758bc36e416997889d7908",
+        "selectionPath": "data/knowledge/raw/pois-p1b-batch02-selection.json",
+        "selectionSha256": "6e0918b3f84ece5770d74d9d4b7c3e9d26644e330fb6628f99c598b0ad956753",
+        "disposition": "manual-review"
+      }
+    },
+    "poi-b2ac3803901f5d44": {
+      "entityId": {
+        "field": "entityId",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B POI Pilot schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "poi-b2ac3803901f5d44"
+      },
+      "entityType": {
+        "field": "entityType",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B POI Pilot schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "poi"
+      },
+      "parentCityEntityId": {
+        "field": "parentCityEntityId",
+        "sourceType": "repository-reference",
+        "source": "Route V2 P1B City Entity Foundation",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q2044",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "city-d40570b2aac4850d"
+      },
+      "wikidataId": {
+        "field": "wikidataId",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q1348158",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "Q1348158"
+      },
+      "canonicalNameZh": {
+        "field": "canonicalNameZh",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q1348158",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "米开朗基罗广场"
+      },
+      "canonicalNameEn": {
+        "field": "canonicalNameEn",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q1348158",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "piazzale Michelangelo"
+      },
+      "aliases": {
+        "field": "aliases",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q1348158",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": []
+      },
+      "coordinates": {
+        "field": "coordinates",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q1348158",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": {
+          "latitude": 43.76292,
+          "longitude": 11.26516
+        }
+      },
+      "entitySourceType": {
+        "field": "entitySourceType",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B POI Pilot schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "wikidata"
+      },
+      "confidence": {
+        "field": "confidence",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B POI Pilot schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": 0.95
+      },
+      "retrievedAt": {
+        "field": "retrievedAt",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q1348158",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "2026-07-20T12:08:39.314Z"
+      },
+      "selection": {
+        "policyVersion": "p1b-batch02-poi-selection-v1",
+        "sourceRawPath": "data/knowledge/raw/pois-p1b-batch02-candidates.wikidata.json",
+        "sourceRawSha256": "91e4297e07fa836dfc2c070f1105ee652a4024f665758bc36e416997889d7908",
+        "selectionPath": "data/knowledge/raw/pois-p1b-batch02-selection.json",
+        "selectionSha256": "6e0918b3f84ece5770d74d9d4b7c3e9d26644e330fb6628f99c598b0ad956753",
+        "disposition": "informational"
+      }
+    },
+    "poi-0bd83f5543263f9b": {
+      "entityId": {
+        "field": "entityId",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B POI Pilot schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "poi-0bd83f5543263f9b"
+      },
+      "entityType": {
+        "field": "entityType",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B POI Pilot schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "poi"
+      },
+      "parentCityEntityId": {
+        "field": "parentCityEntityId",
+        "sourceType": "repository-reference",
+        "source": "Route V2 P1B City Entity Foundation",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q2044",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "city-d40570b2aac4850d"
+      },
+      "wikidataId": {
+        "field": "wikidataId",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q51252",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "Q51252"
+      },
+      "canonicalNameZh": {
+        "field": "canonicalNameZh",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q51252",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "烏菲茲美術館"
+      },
+      "canonicalNameEn": {
+        "field": "canonicalNameEn",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q51252",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "Uffizi Gallery"
+      },
+      "aliases": {
+        "field": "aliases",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q51252",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": [
+          "Galleria degli Uffizi",
+          "Uffizi"
+        ]
+      },
+      "coordinates": {
+        "field": "coordinates",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q51252",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": {
+          "latitude": 43.76833333333333,
+          "longitude": 11.255277777777778
+        }
+      },
+      "entitySourceType": {
+        "field": "entitySourceType",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B POI Pilot schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "wikidata"
+      },
+      "confidence": {
+        "field": "confidence",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B POI Pilot schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": 0.95
+      },
+      "retrievedAt": {
+        "field": "retrievedAt",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q51252",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "2026-07-20T12:08:39.314Z"
+      },
+      "selection": {
+        "policyVersion": "p1b-batch02-poi-selection-v1",
+        "sourceRawPath": "data/knowledge/raw/pois-p1b-batch02-candidates.wikidata.json",
+        "sourceRawSha256": "91e4297e07fa836dfc2c070f1105ee652a4024f665758bc36e416997889d7908",
+        "selectionPath": "data/knowledge/raw/pois-p1b-batch02-selection.json",
+        "selectionSha256": "6e0918b3f84ece5770d74d9d4b7c3e9d26644e330fb6628f99c598b0ad956753",
+        "disposition": "manual-review"
+      }
+    },
+    "poi-91d002b53815a57e": {
+      "entityId": {
+        "field": "entityId",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B POI Pilot schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "poi-91d002b53815a57e"
+      },
+      "entityType": {
+        "field": "entityType",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B POI Pilot schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "poi"
+      },
+      "parentCityEntityId": {
+        "field": "parentCityEntityId",
+        "sourceType": "repository-reference",
+        "source": "Route V2 P1B City Entity Foundation",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q8684",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "city-f485961843960f06"
+      },
+      "wikidataId": {
+        "field": "wikidataId",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q477157",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "Q477157"
+      },
+      "canonicalNameZh": {
+        "field": "canonicalNameZh",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q477157",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "昌德宫"
+      },
+      "canonicalNameEn": {
+        "field": "canonicalNameEn",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q477157",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "Changdeokgung"
+      },
+      "aliases": {
+        "field": "aliases",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q477157",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": [
+          "Ch'angdŏkkung",
+          "Changdeok Palace",
+          "Changdeokgung Palace",
+          "Changdok-kung Palace",
+          "Chʻangdŏkkung Palace",
+          "昌德宮"
+        ]
+      },
+      "coordinates": {
+        "field": "coordinates",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q477157",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": {
+          "latitude": 37.579444444444,
+          "longitude": 126.99166666667
+        }
+      },
+      "entitySourceType": {
+        "field": "entitySourceType",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B POI Pilot schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "wikidata"
+      },
+      "confidence": {
+        "field": "confidence",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B POI Pilot schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": 0.95
+      },
+      "retrievedAt": {
+        "field": "retrievedAt",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q477157",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "2026-07-20T12:08:39.314Z"
+      },
+      "selection": {
+        "policyVersion": "p1b-batch02-poi-selection-v1",
+        "sourceRawPath": "data/knowledge/raw/pois-p1b-batch02-candidates.wikidata.json",
+        "sourceRawSha256": "91e4297e07fa836dfc2c070f1105ee652a4024f665758bc36e416997889d7908",
+        "selectionPath": "data/knowledge/raw/pois-p1b-batch02-selection.json",
+        "selectionSha256": "6e0918b3f84ece5770d74d9d4b7c3e9d26644e330fb6628f99c598b0ad956753",
+        "disposition": "informational"
+      }
+    },
+    "poi-4eab8eacb17f96cc": {
+      "entityId": {
+        "field": "entityId",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B POI Pilot schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "poi-4eab8eacb17f96cc"
+      },
+      "entityType": {
+        "field": "entityType",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B POI Pilot schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "poi"
+      },
+      "parentCityEntityId": {
+        "field": "parentCityEntityId",
+        "sourceType": "repository-reference",
+        "source": "Route V2 P1B City Entity Foundation",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q8684",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "city-f485961843960f06"
+      },
+      "wikidataId": {
+        "field": "wikidataId",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q69134",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "Q69134"
+      },
+      "canonicalNameZh": {
+        "field": "canonicalNameZh",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q69134",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "N首尔塔"
+      },
+      "canonicalNameEn": {
+        "field": "canonicalNameEn",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q69134",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "Namsan Seoul Tower"
+      },
+      "aliases": {
+        "field": "aliases",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q69134",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": [
+          "N Seoul Tower",
+          "Namsan Tower",
+          "Seoul Tower",
+          "YTN Seoul Tower",
+          "首爾塔"
+        ]
+      },
+      "coordinates": {
+        "field": "coordinates",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q69134",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": {
+          "latitude": 37.551216,
+          "longitude": 126.988276
+        }
+      },
+      "entitySourceType": {
+        "field": "entitySourceType",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B POI Pilot schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "wikidata"
+      },
+      "confidence": {
+        "field": "confidence",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B POI Pilot schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": 0.95
+      },
+      "retrievedAt": {
+        "field": "retrievedAt",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q69134",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "2026-07-20T12:08:39.314Z"
+      },
+      "selection": {
+        "policyVersion": "p1b-batch02-poi-selection-v1",
+        "sourceRawPath": "data/knowledge/raw/pois-p1b-batch02-candidates.wikidata.json",
+        "sourceRawSha256": "91e4297e07fa836dfc2c070f1105ee652a4024f665758bc36e416997889d7908",
+        "selectionPath": "data/knowledge/raw/pois-p1b-batch02-selection.json",
+        "selectionSha256": "6e0918b3f84ece5770d74d9d4b7c3e9d26644e330fb6628f99c598b0ad956753",
+        "disposition": "manual-review"
+      }
+    },
+    "poi-7c1da2b49a68f9b0": {
+      "entityId": {
+        "field": "entityId",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B POI Pilot schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "poi-7c1da2b49a68f9b0"
+      },
+      "entityType": {
+        "field": "entityType",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B POI Pilot schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "poi"
+      },
+      "parentCityEntityId": {
+        "field": "parentCityEntityId",
+        "sourceType": "repository-reference",
+        "source": "Route V2 P1B City Entity Foundation",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q8684",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "city-f485961843960f06"
+      },
+      "wikidataId": {
+        "field": "wikidataId",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q494407",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "Q494407"
+      },
+      "canonicalNameZh": {
+        "field": "canonicalNameZh",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q494407",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "韩国国立中央博物馆"
+      },
+      "canonicalNameEn": {
+        "field": "canonicalNameEn",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q494407",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "National Museum of Korea"
+      },
+      "aliases": {
+        "field": "aliases",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q494407",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": [
+          "韓國國立中央博物館"
+        ]
+      },
+      "coordinates": {
+        "field": "coordinates",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q494407",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": {
+          "latitude": 37.52388888888889,
+          "longitude": 126.98027777777777
+        }
+      },
+      "entitySourceType": {
+        "field": "entitySourceType",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B POI Pilot schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "wikidata"
+      },
+      "confidence": {
+        "field": "confidence",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B POI Pilot schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": 0.95
+      },
+      "retrievedAt": {
+        "field": "retrievedAt",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q494407",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "2026-07-20T12:08:39.314Z"
+      },
+      "selection": {
+        "policyVersion": "p1b-batch02-poi-selection-v1",
+        "sourceRawPath": "data/knowledge/raw/pois-p1b-batch02-candidates.wikidata.json",
+        "sourceRawSha256": "91e4297e07fa836dfc2c070f1105ee652a4024f665758bc36e416997889d7908",
+        "selectionPath": "data/knowledge/raw/pois-p1b-batch02-selection.json",
+        "selectionSha256": "6e0918b3f84ece5770d74d9d4b7c3e9d26644e330fb6628f99c598b0ad956753",
+        "disposition": "informational"
+      }
+    },
+    "poi-b14a600e2be7f744": {
+      "entityId": {
+        "field": "entityId",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B POI Pilot schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "poi-b14a600e2be7f744"
+      },
+      "entityType": {
+        "field": "entityType",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B POI Pilot schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "poi"
+      },
+      "parentCityEntityId": {
+        "field": "parentCityEntityId",
+        "sourceType": "repository-reference",
+        "source": "Route V2 P1B City Entity Foundation",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q2807",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "city-f833a342bb5b925a"
+      },
+      "wikidataId": {
+        "field": "wikidataId",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q1131807",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "Q1131807"
+      },
+      "canonicalNameZh": {
+        "field": "canonicalNameZh",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q1131807",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "丽池公园"
+      },
+      "canonicalNameEn": {
+        "field": "canonicalNameEn",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q1131807",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "El Retiro Park"
+      },
+      "aliases": {
+        "field": "aliases",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q1131807",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": [
+          "Parco del Buen Retiro",
+          "Parque del Buen Retiro",
+          "Parque del Retiro",
+          "Retiro park"
+        ]
+      },
+      "coordinates": {
+        "field": "coordinates",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q1131807",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": {
+          "latitude": 40.415,
+          "longitude": -3.6838888888888888
+        }
+      },
+      "entitySourceType": {
+        "field": "entitySourceType",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B POI Pilot schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "wikidata"
+      },
+      "confidence": {
+        "field": "confidence",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B POI Pilot schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": 0.95
+      },
+      "retrievedAt": {
+        "field": "retrievedAt",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q1131807",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "2026-07-20T12:08:39.314Z"
+      },
+      "selection": {
+        "policyVersion": "p1b-batch02-poi-selection-v1",
+        "sourceRawPath": "data/knowledge/raw/pois-p1b-batch02-candidates.wikidata.json",
+        "sourceRawSha256": "91e4297e07fa836dfc2c070f1105ee652a4024f665758bc36e416997889d7908",
+        "selectionPath": "data/knowledge/raw/pois-p1b-batch02-selection.json",
+        "selectionSha256": "6e0918b3f84ece5770d74d9d4b7c3e9d26644e330fb6628f99c598b0ad956753",
+        "disposition": "manual-review"
+      }
+    },
+    "poi-40ca158eae634f04": {
+      "entityId": {
+        "field": "entityId",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B POI Pilot schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "poi-40ca158eae634f04"
+      },
+      "entityType": {
+        "field": "entityType",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B POI Pilot schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "poi"
+      },
+      "parentCityEntityId": {
+        "field": "parentCityEntityId",
+        "sourceType": "repository-reference",
+        "source": "Route V2 P1B City Entity Foundation",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q2807",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "city-f833a342bb5b925a"
+      },
+      "wikidataId": {
+        "field": "wikidataId",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q160112",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "Q160112"
+      },
+      "canonicalNameZh": {
+        "field": "canonicalNameZh",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q160112",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "普拉多博物馆"
+      },
+      "canonicalNameEn": {
+        "field": "canonicalNameEn",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q160112",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "Museo del Prado"
+      },
+      "aliases": {
+        "field": "aliases",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q160112",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": [
+          "Prado Museum",
+          "Prado National Museum",
+          "普拉多美術館"
+        ]
+      },
+      "coordinates": {
+        "field": "coordinates",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q160112",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": {
+          "latitude": 40.41388888888889,
+          "longitude": -3.692222222222222
+        }
+      },
+      "entitySourceType": {
+        "field": "entitySourceType",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B POI Pilot schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "wikidata"
+      },
+      "confidence": {
+        "field": "confidence",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B POI Pilot schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": 0.95
+      },
+      "retrievedAt": {
+        "field": "retrievedAt",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q160112",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "2026-07-20T12:08:39.314Z"
+      },
+      "selection": {
+        "policyVersion": "p1b-batch02-poi-selection-v1",
+        "sourceRawPath": "data/knowledge/raw/pois-p1b-batch02-candidates.wikidata.json",
+        "sourceRawSha256": "91e4297e07fa836dfc2c070f1105ee652a4024f665758bc36e416997889d7908",
+        "selectionPath": "data/knowledge/raw/pois-p1b-batch02-selection.json",
+        "selectionSha256": "6e0918b3f84ece5770d74d9d4b7c3e9d26644e330fb6628f99c598b0ad956753",
+        "disposition": "manual-review"
+      }
+    },
+    "poi-cff501905af55222": {
+      "entityId": {
+        "field": "entityId",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B POI Pilot schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "poi-cff501905af55222"
+      },
+      "entityType": {
+        "field": "entityType",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B POI Pilot schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "poi"
+      },
+      "parentCityEntityId": {
+        "field": "parentCityEntityId",
+        "sourceType": "repository-reference",
+        "source": "Route V2 P1B City Entity Foundation",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q2807",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "city-f833a342bb5b925a"
+      },
+      "wikidataId": {
+        "field": "wikidataId",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q171517",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "Q171517"
+      },
+      "canonicalNameZh": {
+        "field": "canonicalNameZh",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q171517",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "马德里王宫"
+      },
+      "canonicalNameEn": {
+        "field": "canonicalNameEn",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q171517",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "Royal Palace of Madrid"
+      },
+      "aliases": {
+        "field": "aliases",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q171517",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": [
+          "Palacio Nueva",
+          "Palacio Real de Madrid",
+          "馬德里皇宮"
+        ]
+      },
+      "coordinates": {
+        "field": "coordinates",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q171517",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": {
+          "latitude": 40.417955,
+          "longitude": -3.714312
+        }
+      },
+      "entitySourceType": {
+        "field": "entitySourceType",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B POI Pilot schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "wikidata"
+      },
+      "confidence": {
+        "field": "confidence",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B POI Pilot schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": 0.95
+      },
+      "retrievedAt": {
+        "field": "retrievedAt",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q171517",
+        "retrievedAt": "2026-07-20T12:08:39.314Z",
+        "value": "2026-07-20T12:08:39.314Z"
+      },
+      "selection": {
+        "policyVersion": "p1b-batch02-poi-selection-v1",
+        "sourceRawPath": "data/knowledge/raw/pois-p1b-batch02-candidates.wikidata.json",
+        "sourceRawSha256": "91e4297e07fa836dfc2c070f1105ee652a4024f665758bc36e416997889d7908",
+        "selectionPath": "data/knowledge/raw/pois-p1b-batch02-selection.json",
+        "selectionSha256": "6e0918b3f84ece5770d74d9d4b7c3e9d26644e330fb6628f99c598b0ad956753",
+        "disposition": "manual-review"
+      }
+    }
+  }
+}

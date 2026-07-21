@@ -66,6 +66,7 @@ export {
   EVIDENCE_BUNDLE_LEG_FEASIBILITY_STATUSES,
   EVIDENCE_BUNDLE_LIFECYCLE_SCHEMA_VERSION,
   EVIDENCE_BUNDLE_LIFECYCLE_STATUSES,
+  EVIDENCE_BUNDLE_REFERENCE_MODES,
   buildEvidenceBundleLifecycle,
   candidateDestinationOrder,
   createEvidenceBundleLifecycleId,
@@ -74,6 +75,51 @@ export {
   validateEvidenceBundleLifecycle,
 } from "./evidence-bundle-schema.mjs";
 export { writeEvidenceBundleLifecycleSidecarSafe } from "./evidence-bundle-lifecycle-sidecar.mjs";
+export {
+  ROUTE_LEG_EVIDENCE_SCHEMA_VERSION,
+  ROUTE_LEG_FEASIBILITY_STATUSES,
+  ROUTE_LEG_FRESHNESS_STATUSES,
+  buildMissingRouteLegEvidence,
+  createRouteLegEvidenceId,
+  normalizeRouteLegEvidence,
+  normalizeRouteLegTransportMode,
+  routeLegEvidenceKey,
+  validateRouteLegEvidence,
+} from "./route-leg-evidence-schema.mjs";
+export {
+  ROUTE_V2_LOCAL_EVIDENCE_INDEX_FLAG,
+  createRouteLegEvidenceStore,
+  defaultRouteLegEvidencePath,
+  isRouteV2LocalEvidenceIndexEnabled,
+} from "./route-leg-evidence-store.mjs";
+export {
+  SEASON_EVIDENCE_SCHEMA_VERSION,
+  SEASON_FRESHNESS_STATUSES,
+  SEASON_SUITABILITY_STATUSES,
+  buildMissingSeasonEvidence,
+  createSeasonEvidenceId,
+  normalizeEvidenceMonth,
+  normalizeSeasonEvidence,
+  seasonEvidenceKey,
+  validateSeasonEvidence,
+} from "./season-evidence-schema.mjs";
+export { createSeasonEvidenceStore, defaultSeasonEvidencePath } from "./season-evidence-store.mjs";
+export {
+  MISSING_EVIDENCE_MANIFEST_SCHEMA_VERSION,
+  MISSING_EVIDENCE_STATUSES,
+  MISSING_EVIDENCE_TYPES,
+  buildMissingEvidenceManifestItem,
+  computeMissingEvidencePriority,
+  createMissingEvidenceId,
+  normalizeMissingEvidenceManifestItem,
+  validateMissingEvidenceManifestItem,
+} from "./missing-evidence-manifest-schema.mjs";
+export {
+  createMissingEvidenceManifestStore,
+  defaultMissingEvidenceManifestPath,
+} from "./missing-evidence-manifest-store.mjs";
+export { createLocalEvidenceIndex } from "./local-evidence-index.mjs";
+export { createLocalEvidenceRepository } from "./local-evidence-repository.mjs";
 export {
   KNOWLEDGE_ENTITY_SOURCE_TYPES,
   KNOWLEDGE_RELATIONSHIP_TYPES,

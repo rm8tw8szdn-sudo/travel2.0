@@ -15,6 +15,7 @@ export const EVIDENCE_BUNDLE_LEG_FEASIBILITY_STATUSES = new Set([
   "infeasible",
 ]);
 export const EVIDENCE_BUNDLE_AREA_STATUSES = new Set(["unknown", "needs-evidence", "supported", "contradicted"]);
+export const EVIDENCE_BUNDLE_REFERENCE_MODES = new Set(["embedded-compatibility", "public-evidence-references"]);
 
 function clone(value) {
   return structuredClone(value);
@@ -138,8 +139,12 @@ export function normalizeEvidenceBundleLifecycle(input = {}, { now = () => new D
     createdAt: clean(input.createdAt) || timestamp,
     updatedAt: clean(input.updatedAt) || timestamp,
     status: clean(input.status || "pending"),
+    evidenceReferenceMode: clean(input.evidenceReferenceMode || "embedded-compatibility"),
     destinationOrder: uniqueStrings(Array.isArray(input.destinationOrder) ? input.destinationOrder.map(clean) : []),
     legs: (Array.isArray(input.legs) ? input.legs : []).map(normalizeLeg),
+    legEvidenceRefs: uniqueStrings(Array.isArray(input.legEvidenceRefs) ? input.legEvidenceRefs : []),
+    seasonEvidenceRefs: uniqueStrings(Array.isArray(input.seasonEvidenceRefs) ? input.seasonEvidenceRefs : []),
+    missingEvidenceRefs: uniqueStrings(Array.isArray(input.missingEvidenceRefs) ? input.missingEvidenceRefs : []),
     seasonality: normalizeEvidenceArea(input.seasonality, "unknown"),
     geography: normalizeEvidenceArea(input.geography, "needs-evidence"),
     routePacing: normalizeEvidenceArea(input.routePacing, "needs-evidence"),
@@ -224,6 +229,7 @@ export function buildEvidenceBundleLifecycle({
     createdAt: timestamp,
     updatedAt: timestamp,
     status,
+    evidenceReferenceMode: "embedded-compatibility",
     destinationOrder,
     legs: destinationOrder.slice(0, -1).map((fromEntityId, index) => ({
       fromEntityId,
@@ -234,6 +240,9 @@ export function buildEvidenceBundleLifecycle({
       evidenceRefs: [],
       unknowns: [{ field: "transport", reason: "No transport source has been collected for this leg." }],
     })),
+    legEvidenceRefs: [],
+    seasonEvidenceRefs: [],
+    missingEvidenceRefs: [],
     seasonality: {
       status: requestedSeason ? "needs-evidence" : "unknown",
       ...(requestedSeason ? { requestedSeason } : {}),
@@ -288,6 +297,7 @@ export function validateEvidenceBundleLifecycle(input = {}, expected = {}) {
   const expectedId = createEvidenceBundleLifecycleId(bundle);
   if (bundle.evidenceBundleId !== expectedId) reasons.push("evidenceBundleId-mismatch");
   if (!EVIDENCE_BUNDLE_LIFECYCLE_STATUSES.has(bundle.status)) reasons.push("status-invalid");
+  if (!EVIDENCE_BUNDLE_REFERENCE_MODES.has(bundle.evidenceReferenceMode)) reasons.push("evidenceReferenceMode-invalid");
   if (!Array.isArray(input.destinationOrder) || bundle.destinationOrder.length < 2) reasons.push("destinationOrder-minimum-two");
   if (bundle.destinationOrder.length !== (Array.isArray(input.destinationOrder) ? input.destinationOrder.map(clean).filter(Boolean).length : 0)) reasons.push("destinationOrder-duplicate-or-empty");
   if (!Array.isArray(input.legs)) reasons.push("legs-array-required");
@@ -314,6 +324,16 @@ export function validateEvidenceBundleLifecycle(input = {}, expected = {}) {
   for (const field of ["unknowns", "conflicts", "sources", "diagnostics"]) {
     if (!Array.isArray(input[field])) reasons.push(`${field}-array-required`);
   }
+  for (const field of ["legEvidenceRefs", "seasonEvidenceRefs", "missingEvidenceRefs"]) {
+    if (input[field] !== undefined && !Array.isArray(input[field])) reasons.push(`${field}-array-required`);
+  }
+  if (bundle.legEvidenceRefs.length > 0 && bundle.legEvidenceRefs.length !== bundle.legs.length) {
+    reasons.push("legEvidenceRefs-legs-length-mismatch");
+  }
+  if (bundle.evidenceReferenceMode === "public-evidence-references") {
+    if (bundle.legEvidenceRefs.length !== bundle.legs.length) reasons.push("public-reference-mode-requires-all-leg-refs");
+    if (bundle.missingEvidenceRefs.length === 0) reasons.push("public-reference-mode-requires-missing-refs");
+  }
   for (const [index, unknown] of bundle.unknowns.entries()) {
     if (!unknown.field || !unknown.reason) reasons.push(`unknown-${index}:field-and-reason-required`);
   }
@@ -331,6 +351,7 @@ export function validateEvidenceBundleLifecycle(input = {}, expected = {}) {
     if (source.confidence == null || source.confidence < 0 || source.confidence > 1) reasons.push(`source-${index}:confidence-invalid`);
   }
   if (bundle.status === "complete" && (bundle.sources.length === 0 || bundle.unknowns.length > 0 || bundle.conflicts.length > 0)) reasons.push("complete-status-requires-resolved-evidence");
+  if (bundle.status === "complete" && bundle.missingEvidenceRefs.length > 0) reasons.push("complete-status-requires-no-missing-evidence");
   if (bundle.status === "failed" && !bundle.failureReason) reasons.push("failed-status-requires-failureReason");
   if (bundle.status !== "failed" && bundle.failureReason) reasons.push("failureReason-only-valid-for-failed-status");
 

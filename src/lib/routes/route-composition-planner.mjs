@@ -19,6 +19,7 @@ import {
 import { createEvidenceBundleStore } from "./evidence-bundle-store.mjs";
 import { writeLocalEvidenceSidecarSafe } from "./local-evidence-sidecar.mjs";
 import { writeEvidenceBundleLifecycleSidecarSafe } from "./evidence-bundle-lifecycle-sidecar.mjs";
+import { createLocalEvidenceRepository } from "./local-evidence-repository.mjs";
 
 const PHASE_2A_STRATEGIES = ["Geographic", "Theme", "Season", "Transport", "Depth", "Efficiency"];
 const MAX_SEGMENT_KM = 650;
@@ -1239,7 +1240,7 @@ function validatePlannerCandidateSafe(record, concept, context, strategyRegistry
 }
 
 // 新管线主体
-async function runPipeline({ context, knowledgeGraph, evidenceRepository, acceptedRepository, strategyRegistry, llmRefineProvider, webEvidencePipeline, decisionTraceStore, candidatePoolStore, evidenceBundleStore, routeCandidateBuilder, localEvidenceSidecar, localEvidenceCollector, env, limit }) {
+async function runPipeline({ context, knowledgeGraph, evidenceRepository, acceptedRepository, strategyRegistry, llmRefineProvider, webEvidencePipeline, decisionTraceStore, candidatePoolStore, evidenceBundleStore, localEvidenceRepository, routeCandidateBuilder, localEvidenceSidecar, localEvidenceCollector, env, limit }) {
   const accepted = [];
   const rejected = [];
   const v2IntentEnabled = isRouteV2IntentEnabled(env);
@@ -1709,6 +1710,7 @@ async function runPipeline({ context, knowledgeGraph, evidenceRepository, accept
       routeRecord: record,
       decisionTraceWrite: traceWrite,
       context,
+      localEvidenceRepository,
     });
     if (evidenceBundleLifecycle.persisted === true && evidenceBundleLifecycle.failed !== true) {
       record.evidenceBundleId = evidenceBundleLifecycle.evidenceBundleId;
@@ -1745,17 +1747,18 @@ function durationBandFromDays(days) {
   return "15d+";
 }
 
-export function createRouteCompositionPlanner({ evidenceRepository, acceptedRepository, strategyRegistry = null, knowledgeGraph = null, llmRefineProvider = null, webEvidencePipeline = null, decisionTraceStore = null, candidatePoolStore = null, evidenceBundleStore = null, routeCandidateBuilder = buildRouteCandidatesFromPool, localEvidenceSidecar = writeLocalEvidenceSidecarSafe, localEvidenceCollector = null, env = process.env } = {}) {
+export function createRouteCompositionPlanner({ evidenceRepository, acceptedRepository, strategyRegistry = null, knowledgeGraph = null, llmRefineProvider = null, webEvidencePipeline = null, decisionTraceStore = null, candidatePoolStore = null, evidenceBundleStore = null, localEvidenceRepository = null, routeCandidateBuilder = buildRouteCandidatesFromPool, localEvidenceSidecar = writeLocalEvidenceSidecarSafe, localEvidenceCollector = null, env = process.env } = {}) {
   if (!evidenceRepository?.bySourceRoute) throw new Error("EVIDENCE_REPOSITORY_REQUIRED");
   if (!acceptedRepository?.list) throw new Error("ACCEPTED_REPOSITORY_REQUIRED");
   const traceStore = decisionTraceStore || createDecisionTraceStore({ env });
   const sidecarCandidatePoolStore = candidatePoolStore || createRouteCandidatePoolStore({ env });
   const sidecarEvidenceBundleStore = evidenceBundleStore || createEvidenceBundleStore({ env });
+  const sidecarLocalEvidenceRepository = localEvidenceRepository || createLocalEvidenceRepository({ env });
   return {
     async buildCandidates({ limit = 5, context = null } = {}) {
       // 新管线模式：有 context（{durationDays, country, style, ...}）走知识图驱动（async，含 LLM 节点）
       if (context && (context.country || context.durationDays || context.travelStyle)) {
-        return runPipeline({ context, knowledgeGraph, evidenceRepository, acceptedRepository, strategyRegistry, llmRefineProvider, webEvidencePipeline, decisionTraceStore: traceStore, candidatePoolStore: sidecarCandidatePoolStore, evidenceBundleStore: sidecarEvidenceBundleStore, routeCandidateBuilder, localEvidenceSidecar, localEvidenceCollector, env, limit });
+        return runPipeline({ context, knowledgeGraph, evidenceRepository, acceptedRepository, strategyRegistry, llmRefineProvider, webEvidencePipeline, decisionTraceStore: traceStore, candidatePoolStore: sidecarCandidatePoolStore, evidenceBundleStore: sidecarEvidenceBundleStore, localEvidenceRepository: sidecarLocalEvidenceRepository, routeCandidateBuilder, localEvidenceSidecar, localEvidenceCollector, env, limit });
       }
       // 旧兼容模式：evidence 桶缝合（codex 原 buildCandidates，仅旧 verify 脚本与生产 run-route-ai-production-phase2a 走此路径）
       const existingRecords = acceptedRepository.list({ limit: 100_000 }).records;

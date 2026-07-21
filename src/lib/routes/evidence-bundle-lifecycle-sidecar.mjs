@@ -16,6 +16,7 @@ function result({
   bundle = null,
   diagnostics = [],
   error = "",
+  localEvidence = null,
 } = {}) {
   return {
     enabled,
@@ -28,6 +29,7 @@ function result({
     bundle: bundle ? structuredClone(bundle) : null,
     diagnostics: Array.isArray(diagnostics) ? structuredClone(diagnostics) : [],
     error: clean(error),
+    localEvidence: localEvidence ? structuredClone(localEvidence) : null,
   };
 }
 
@@ -39,6 +41,7 @@ export async function writeEvidenceBundleLifecycleSidecarSafe({
   decisionTraceWrite = null,
   context = {},
   now = null,
+  localEvidenceRepository = null,
 } = {}) {
   try {
     if (!evidenceBundleStore?.enabled || !evidenceBundleStore?.upsertLifecycle) {
@@ -79,16 +82,31 @@ export async function writeEvidenceBundleLifecycleSidecarSafe({
       return result({ failed: true, reason: built.reason || "evidence-bundle-build-failed", diagnostics: built.reasons || [] });
     }
 
+    let bundleToPersist = built.bundle;
+    if (built.bundle.status !== "failed" && evidenceBundleStore?.getLifecycleByCandidate) {
+      const existingBundle = evidenceBundleStore.getLifecycleByCandidate(built.bundle.candidateId);
+      if (existingBundle?.evidenceBundleId === built.bundle.evidenceBundleId
+        && existingBundle?.evidenceReferenceMode === "public-evidence-references") {
+        bundleToPersist = {
+          ...built.bundle,
+          evidenceReferenceMode: existingBundle.evidenceReferenceMode,
+          legEvidenceRefs: structuredClone(existingBundle.legEvidenceRefs || []),
+          seasonEvidenceRefs: structuredClone(existingBundle.seasonEvidenceRefs || []),
+          missingEvidenceRefs: structuredClone(existingBundle.missingEvidenceRefs || []),
+        };
+      }
+    }
+
     let write;
     try {
-      write = await evidenceBundleStore.upsertLifecycle(built.bundle);
+      write = await evidenceBundleStore.upsertLifecycle(bundleToPersist);
     } catch (error) {
       return result({
         failed: true,
         reason: "evidence-bundle-write-failed",
-        evidenceBundleId: built.bundle.evidenceBundleId,
-        status: built.bundle.status,
-        bundle: built.bundle,
+        evidenceBundleId: bundleToPersist.evidenceBundleId,
+        status: bundleToPersist.status,
+        bundle: bundleToPersist,
         error: error?.message || String(error),
       });
     }
@@ -96,9 +114,9 @@ export async function writeEvidenceBundleLifecycleSidecarSafe({
       return result({
         failed: true,
         reason: write?.reason || "evidence-bundle-write-failed",
-        evidenceBundleId: built.bundle.evidenceBundleId,
-        status: built.bundle.status,
-        bundle: built.bundle,
+        evidenceBundleId: bundleToPersist.evidenceBundleId,
+        status: bundleToPersist.status,
+        bundle: bundleToPersist,
         diagnostics: write?.diagnostics || write?.reasons || [],
         error: write?.error || "",
       });
@@ -114,13 +132,42 @@ export async function writeEvidenceBundleLifecycleSidecarSafe({
         diagnostics: built.bundle.diagnostics,
       });
     }
+    let persistedBundle = bundleToPersist;
+    let localEvidence = null;
+    if (localEvidenceRepository?.linkEvidenceBundle) {
+      try {
+        localEvidence = await localEvidenceRepository.linkEvidenceBundle({
+          bundle: bundleToPersist,
+          routeRecord,
+          evidenceBundleStore,
+          context,
+        });
+        if (localEvidence?.persisted === true && localEvidence?.bundle) persistedBundle = localEvidence.bundle;
+      } catch (error) {
+        localEvidence = {
+          enabled: true,
+          persisted: false,
+          failed: true,
+          reason: "local-evidence-index-sidecar-failed",
+          error: error?.message || String(error),
+        };
+      }
+    }
     return result({
       persisted: true,
       reason: write?.skipped ? "evidence-bundle-unchanged" : "evidence-bundle-persisted",
-      evidenceBundleId: write.evidenceBundleId || built.bundle.evidenceBundleId,
-      status: built.bundle.status,
-      bundle: built.bundle,
-      diagnostics: write?.diagnostics || [],
+      evidenceBundleId: write.evidenceBundleId || persistedBundle.evidenceBundleId,
+      status: persistedBundle.status,
+      bundle: persistedBundle,
+      diagnostics: [
+        ...(write?.diagnostics || []),
+        ...(localEvidence?.failed ? [{
+          stage: "local-evidence-index",
+          code: localEvidence.reason || "local-evidence-index-failed",
+          message: localEvidence.error || "Local evidence index failed without blocking the planner.",
+        }] : []),
+      ],
+      localEvidence,
     });
   } catch (error) {
     return result({ failed: true, reason: "evidence-bundle-sidecar-failed", error: error?.message || String(error) });

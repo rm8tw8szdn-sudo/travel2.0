@@ -70,15 +70,7 @@ function feedVarietyKey(record) {
   return [...codes].sort().slice(0, 2).join("|") || feedClusterKey(record);
 }
 
-const COUNTRY_CONTINENT_SETS = {
-  africa: new Set(["DZ", "AO", "BJ", "BW", "BF", "BI", "CV", "CM", "CF", "TD", "KM", "CG", "CD", "CI", "DJ", "EG", "GQ", "ER", "SZ", "ET", "GA", "GM", "GH", "GN", "GW", "KE", "LS", "LR", "LY", "MG", "MW", "ML", "MR", "MU", "MA", "MZ", "NA", "NE", "NG", "RW", "ST", "SN", "SC", "SL", "SO", "ZA", "SS", "SD", "TZ", "TG", "TN", "UG", "ZM", "ZW"]),
-  americas: new Set(["AG", "AR", "BS", "BB", "BZ", "BO", "BR", "CA", "CL", "CO", "CR", "CU", "DM", "DO", "EC", "SV", "GD", "GT", "GY", "HT", "HN", "JM", "MX", "NI", "PA", "PY", "PE", "KN", "LC", "VC", "SR", "TT", "US", "UY", "VE"]),
-  asia: new Set(["AF", "AM", "AZ", "BH", "BD", "BT", "BN", "KH", "CY", "GE", "IN", "ID", "IR", "IQ", "IL", "JP", "JO", "KZ", "KW", "KG", "LA", "LB", "MY", "MV", "MN", "MM", "NP", "KP", "OM", "PK", "PS", "PH", "QA", "SA", "SG", "KR", "LK", "SY", "TW", "TJ", "TH", "TL", "TR", "TM", "AE", "UZ", "VN", "YE"]),
-  europe: new Set(["AD", "AL", "AT", "BA", "BE", "BG", "BY", "CH", "CZ", "DE", "DK", "EE", "ES", "FI", "FR", "GB", "GR", "HR", "HU", "IE", "IS", "IT", "LI", "LT", "LU", "LV", "MC", "MD", "ME", "MK", "MT", "NL", "NO", "PL", "PT", "RO", "RS", "RU", "SE", "SI", "SK", "SM", "UA", "VA", "XK"]),
-  oceania: new Set(["AU", "FJ", "FM", "KI", "MH", "NR", "NZ", "PW", "PG", "WS", "SB", "TO", "TV", "VU"]),
-};
-
-const FEED_CONTINENT_ORDER = ["asia", "europe", "africa", "americas", "oceania", "other"];
+const FEED_ORDER_VERSION = 3;
 
 function feedCountryCodes(record) {
   return [...new Set([
@@ -91,25 +83,11 @@ function feedCountryCluster(record) {
   return feedCountryCodes(record).sort().join("|");
 }
 
-function countryContinentKey(code) {
-  const normalized = String(code || "").toUpperCase();
-  for (const [continent, codes] of Object.entries(COUNTRY_CONTINENT_SETS)) {
-    if (codes.has(normalized)) return continent;
-  }
-  return "other";
-}
-
-function feedContinentBucket(record) {
-  const continents = [...new Set(feedCountryCodes(record).map(countryContinentKey))].filter(Boolean);
-  if (!continents.length) return "other";
-  if (continents.length === 1) return continents[0];
-  return continents[stableHash(`${record?.id || record?.name || ""}:continent`) % continents.length] || "other";
-}
-
-function rotatedContinentOrder(sessionId, feedCycle) {
-  const order = [...FEED_CONTINENT_ORDER];
-  const offset = stableHash(`${sessionId}:${feedCycle}:continent-cycle`) % order.length;
-  return [...order.slice(offset), ...order.slice(0, offset)];
+function stableSessionFeedOrder(pool, { sessionId = "" } = {}) {
+  return pool.slice().sort((left, right) => compareSessionFeedKeys(
+    feedSessionSortKey(left, { sessionId }),
+    feedSessionSortKey(right, { sessionId }),
+  ));
 }
 
 function maxClusterSize(record) {
@@ -249,16 +227,16 @@ function stableHash(value) {
   return hash >>> 0;
 }
 
-function feedRandomSortKey(record, { sessionId = "", latestAcceptedMs = 0 } = {}) {
-  const acceptedMs = Date.parse(record?.acceptedAt || "") || 0;
-  const recentWindowMs = 14 * 24 * 60 * 60 * 1000;
+function feedSessionSortKey(record, { sessionId = "" } = {}) {
   return {
-    feedReadyBucket: hasVerifiedFeedCover(record) ? 0 : 1,
-    freshnessBucket: acceptedMs && latestAcceptedMs && latestAcceptedMs - acceptedMs <= recentWindowMs ? 0 : 1,
     randomRank: stableHash(`${sessionId}:${record?.id || ""}`),
-    acceptedAt: String(record?.acceptedAt || ""),
     id: String(record?.id || ""),
   };
+}
+
+function compareSessionFeedKeys(left, right) {
+  if (left.randomRank !== right.randomRank) return left.randomRank - right.randomRank;
+  return String(left.id || "").localeCompare(String(right.id || ""));
 }
 
 function compareFeedKeys(left, right) {
@@ -303,11 +281,6 @@ function feedAnchorFromCursor(decoded) {
     acceptedAt: String(decoded?.acceptedAt || ""),
     id: String(decoded.id),
   };
-}
-
-function feedCycleFromCursor(decoded) {
-  const cycle = Number(decoded?.feedCycle || 0);
-  return Number.isFinite(cycle) && cycle > 0 ? Math.floor(cycle) : 0;
 }
 
 function legacyCursorFilter(record, anchorAcceptedAt, anchorId) {
@@ -515,38 +488,91 @@ export function createAcceptedRouteRepository({
     const allPool = [...records.values()]
       .filter((record) => !needle || searchable(record).includes(needle));
     const typedPool = allPool.filter((record) => !requestedKind || routeKind(record) === requestedKind);
-    const typedIds = new Set(typedPool.map((record) => record.id));
     const randomizedFeed = !needle && Boolean(sessionId);
     const strictFeed = !needle && limit < 100_000;
     const feedReadyPool = strictFeed ? typedPool.filter(hasVerifiedFeedCover) : [];
     const basePool = strictFeed ? feedReadyPool : typedPool;
-    const initialFeedCycle = randomizedFeed && decodedCursor ? feedCycleFromCursor(decodedCursor) : 0;
-    const latestAcceptedMs = randomizedFeed
-      ? Math.max(0, ...basePool.map((record) => Date.parse(record.acceptedAt || "") || 0))
-      : 0;
-    const sortKeyForCycle = (feedCycle) => (randomizedFeed
-      ? (record) => feedRandomSortKey(record, { sessionId: `${sessionId}:${feedCycle}`, latestAcceptedMs })
-      : feedSortKey);
-    const sortKeyForRecord = randomizedFeed
-      ? sortKeyForCycle(initialFeedCycle)
-      : feedSortKey;
-    const pool = basePool.sort((left, right) => {
-      if (randomizedFeed && requestedKind) {
-        const leftPriority = routeKind(left) === requestedKind ? 0 : 1;
-        const rightPriority = routeKind(right) === requestedKind ? 0 : 1;
-        if (leftPriority !== rightPriority) return leftPriority - rightPriority;
+    if (randomizedFeed) {
+      const orderedPool = stableSessionFeedOrder(basePool, { sessionId });
+      const orderIdentity = {
+        orderVersion: FEED_ORDER_VERSION,
+        sessionHash: stableHash(sessionId),
+        filterHash: stableHash(JSON.stringify({ query: needle, routeType: requestedKind, strictFeed })),
+      };
+      const cursorRandomRank = decodedCursor?.randomRank;
+      const cursorId = decodedCursor?.id;
+      const cursorMatches = decodedCursor?.provider === "accepted-repository"
+        && decodedCursor?.orderVersion === orderIdentity.orderVersion
+        && decodedCursor?.sessionHash === orderIdentity.sessionHash
+        && decodedCursor?.filterHash === orderIdentity.filterHash
+        && typeof cursorRandomRank === "number"
+        && Number.isInteger(cursorRandomRank)
+        && cursorRandomRank >= 0
+        && cursorRandomRank <= 0xffff_ffff
+        && typeof cursorId === "string"
+        && cursorId.length > 0
+        && cursorId.trim() === cursorId
+        && cursorRandomRank === stableHash(`${sessionId}:${cursorId}`);
+      if (cursor && !cursorMatches) {
+        return {
+          records: [],
+          nextCursor: null,
+          hasMore: false,
+          returnedCount: 0,
+          remainingCount: 0,
+          total: orderedPool.length,
+          paginationStatus: "cursor-mismatch",
+          repositoryVersion: version(),
+        };
       }
-      return compareFeedKeys(sortKeyForRecord(left), sortKeyForRecord(right));
-    });
-    const afterAnchor = randomizedFeed
-      ? (anchorKey ? pool.filter((record) => compareFeedKeys(sortKeyForRecord(record), anchorKey) > 0) : pool)
-      : anchorKey
+      const anchorKey = cursorMatches
+        ? { randomRank: cursorRandomRank, id: cursorId }
+        : null;
+      let nextIndex = anchorKey
+        ? orderedPool.findIndex((record) => compareSessionFeedKeys(
+          feedSessionSortKey(record, { sessionId }),
+          anchorKey,
+        ) > 0)
+        : 0;
+      if (nextIndex < 0) nextIndex = orderedPool.length;
+      const page = [];
+      while (nextIndex < orderedPool.length && page.length < limit) {
+        const record = orderedPool[nextIndex];
+        nextIndex += 1;
+        if (excluded.has(record.id)) continue;
+        page.push(record);
+      }
+      const remainingCount = orderedPool
+        .slice(nextIndex)
+        .filter((record) => !excluded.has(record.id))
+        .length;
+      const hasMore = remainingCount > 0;
+      const last = page.at(-1) || null;
+      return {
+        records: page.map(publicFeedRecord),
+        nextCursor: hasMore && last
+          ? encodeDiscoveryCursor({
+            provider: "accepted-repository",
+            ...orderIdentity,
+            ...feedSessionSortKey(last, { sessionId }),
+          })
+          : null,
+        hasMore,
+        returnedCount: page.length,
+        remainingCount,
+        total: orderedPool.length,
+        paginationStatus: hasMore ? "ready" : "exhausted",
+        repositoryVersion: version(),
+      };
+    }
+    const sortKeyForRecord = feedSortKey;
+    const pool = basePool.sort((left, right) => compareFeedKeys(sortKeyForRecord(left), sortKeyForRecord(right)));
+    const afterAnchor = anchorKey
       ? pool.filter((record) => compareFeedKeys(sortKeyForRecord(record), anchorKey) > 0)
       : anchorAcceptedAt == null
         ? pool
         : pool.filter((record) => legacyCursorFilter(record, anchorAcceptedAt, anchorId));
     const page = [];
-    let lastFeedCycle = initialFeedCycle;
     const clusters = new Set();
     const varietyKeys = new Set();
     const alreadyPaged = new Set();
@@ -577,49 +603,7 @@ export function createAcceptedRouteRepository({
         addRecord(record, options);
       }
     };
-    const pushContinentCycle = (candidates, options = {}) => {
-      const buckets = new Map(FEED_CONTINENT_ORDER.map((key) => [key, []]));
-      for (const record of candidates) {
-        if (excluded.has(record.id) || alreadyPaged.has(record.id)) continue;
-        const bucket = feedContinentBucket(record);
-        if (!buckets.has(bucket)) buckets.set(bucket, []);
-        buckets.get(bucket).push(record);
-      }
-      const order = rotatedContinentOrder(sessionId, lastFeedCycle);
-      let added = true;
-      while (page.length < limit && added) {
-        added = false;
-        for (const bucketKey of order) {
-          const bucket = buckets.get(bucketKey) || [];
-          while (bucket.length && page.length < limit) {
-            if (addRecord(bucket.shift(), options)) {
-              added = true;
-              break;
-            }
-          }
-        }
-      }
-    };
-    if (randomizedFeed) pushContinentCycle(afterAnchor, { strictCluster: true, strictVariety: true });
-    else pushDiverse(afterAnchor, { strictCluster: false });
-    if (randomizedFeed && page.length < limit) pushDiverse(afterAnchor, { strictCluster: true, strictVariety: false });
-    if (randomizedFeed && page.length < limit && basePool.length) {
-      lastFeedCycle = initialFeedCycle + 1;
-      const nextSortKey = sortKeyForCycle(lastFeedCycle);
-      const nextPool = basePool
-        .slice()
-        .sort((left, right) => {
-          if (requestedKind) {
-            const leftPriority = routeKind(left) === requestedKind ? 0 : 1;
-            const rightPriority = routeKind(right) === requestedKind ? 0 : 1;
-            if (leftPriority !== rightPriority) return leftPriority - rightPriority;
-          }
-          return compareFeedKeys(nextSortKey(left), nextSortKey(right));
-        });
-      pushContinentCycle(nextPool, { strictCluster: true, strictVariety: true });
-      if (page.length < limit) pushDiverse(nextPool, { strictCluster: true, strictVariety: false });
-      if (page.length < limit) pushDiverse(nextPool, { strictCluster: false, strictVariety: false, allowMaterializedCentralRepeat: true });
-    }
+    pushDiverse(afterAnchor, { strictCluster: false });
     const last = page.length ? page[page.length - 1] : null;
     const remaining = afterAnchor.length - page.length;
     const nextRecentIds = [...cursorRecentIds, ...page.map((record) => String(record.id || "")).filter(Boolean)].slice(-50);
@@ -627,22 +611,20 @@ export function createAcceptedRouteRepository({
       ...cursorRecentImageKeys,
       ...page.map((record) => hasVerifiedFeedCover(record) ? feedImageRecentKey(record.onlineCoverAsset) : "").filter(Boolean),
     ].slice(-50);
-    const hasMore = randomizedFeed
-      ? basePool.length > 0
-      : remaining > 0 || (page.length === 0 && pool.length > 0 && (anchorKey != null || anchorAcceptedAt != null));
-    const lastSortKey = randomizedFeed ? sortKeyForCycle(lastFeedCycle) : sortKeyForRecord;
+    const hasMore = remaining > 0 || (page.length === 0 && pool.length > 0 && (anchorKey != null || anchorAcceptedAt != null));
     return {
       records: page.map(publicFeedRecord),
       nextCursor: last && hasMore
         ? encodeDiscoveryCursor({
           provider: "accepted-repository",
-          ...lastSortKey(last),
-          feedCycle: lastFeedCycle,
+          ...sortKeyForRecord(last),
           recentIds: nextRecentIds,
           recentImageKeys: nextRecentImageKeys,
         })
         : null,
       hasMore,
+      returnedCount: page.length,
+      remainingCount: Math.max(0, remaining),
       total: pool.length,
       repositoryVersion: version(),
     };

@@ -150,6 +150,8 @@ export function createRouteDiscovery({
 
   function response(result, cacheStatus, id) {
     const status = poolStatus();
+    const nextCursor = result.nextCursor || null;
+    const hasMore = Boolean(result.hasMore && nextCursor);
     const diagnostics = {
       ...emptyDiagnostics(),
       ...(result.diagnostics || {}),
@@ -159,8 +161,15 @@ export function createRouteDiscovery({
     return {
       ok: true,
       records: clone(result.records || []),
-      nextCursor: result.nextCursor || null,
-      hasMore: Boolean(result.hasMore),
+      nextCursor: hasMore ? nextCursor : null,
+      hasMore,
+      returnedCount: Number.isFinite(result.returnedCount)
+        ? result.returnedCount
+        : (result.records || []).length,
+      remainingCount: Number.isFinite(result.remainingCount)
+        ? result.remainingCount
+        : null,
+      paginationStatus: result.paginationStatus || (hasMore ? "ready" : "exhausted"),
       pending: Boolean(result.pending),
       pendingSearchJobId: result.pendingSearchJobId || null,
       pendingJobIds: pendingJobs().map((job) => job.id),
@@ -374,7 +383,10 @@ export function createRouteDiscovery({
     return response({
       records: page.records,
       nextCursor: page.nextCursor,
-      hasMore: Boolean(page.hasMore || (!request.query && needsRefill)),
+      hasMore: page.hasMore,
+      returnedCount: page.returnedCount,
+      remainingCount: page.remainingCount,
+      paginationStatus: page.paginationStatus,
       pending,
       pendingSearchJobId,
       diagnostics,

@@ -19,7 +19,6 @@ const FEED_CLUSTER_COOLDOWN_WINDOW = 12;
 const FEED_IMAGE_CANDIDATE_LIMIT = 24;
 const FEED_CARD_IMAGE_TIMEOUT_MS = 2_000;
 const FEED_COVER_PREPARE_DEADLINE_MS = 2_000;
-const FEED_BACKFILL_HOP_LIMIT = 8;
 const FEED_LOAD_WATCHDOG_MS = 8_000;
 const ROUTE_FEED_SESSION_KEY = "travelCollection.routeFeedSession";
 const ROUTE_FEED_PRELOAD_KEY = "travelCollection.routeFeedPreload.v2";
@@ -438,6 +437,7 @@ const feedState = {
   lastVisibleBatchAt: 0,
   searchResolved: false,
   searchResultCount: 0,
+  consecutiveEmptyPages: 0,
 };
 
 if ("scrollRestoration" in history) history.scrollRestoration = "manual";
@@ -1355,7 +1355,7 @@ async function requestDiscoveryPage({ query, cursor, sessionId, excludeIds, rout
     body: JSON.stringify({
       mode: isSearch ? "search" : "feed",
       query,
-      limit: isSearch ? SEARCH_PAGE_SIZE : FEED_PAGE_SIZE * 20,
+      limit: isSearch ? SEARCH_PAGE_SIZE : FEED_PAGE_SIZE,
       cursor,
       sessionId,
       excludeIds,
@@ -1582,6 +1582,7 @@ async function prefetchNextFeedPage() {
     feedState.status === "loading"
       || feedState.prefetching
       || feedState.prefetchedFeedPage
+      || feedState.pendingMore
       || !feedState.hasMore
       || !feedState.cursor
   ) return;
@@ -1609,7 +1610,6 @@ async function prefetchNextFeedPage() {
     const pageRecords = selectAppendableRecords(candidates, BATCH_SIZE, feedState.records);
     const imageBatch = await prepareRouteImageBatch(pageRecords, feedState.records, controller.signal, FEED_COVER_PREPARE_DEADLINE_MS);
     if (controller.signal.aborted) return;
-    if (!pageRecords.length) return;
     feedState.prefetchedFeedPage = {
       ...snapshot,
       payload,
@@ -1906,6 +1906,32 @@ function schedulePendingCoverHydration() {
   }, 80);
 }
 
+function isStableFeedCursor(cursor) {
+  try {
+    const encoded = String(cursor || "").trim();
+    if (!encoded || !/^[A-Za-z0-9_-]+$/u.test(encoded)) return false;
+    const normalized = encoded.replaceAll("-", "+").replaceAll("_", "/");
+    const padded = normalized + "=".repeat((4 - (normalized.length % 4)) % 4);
+    const binary = atob(padded);
+    const bytes = Uint8Array.from(binary, (character) => character.charCodeAt(0));
+    const payload = JSON.parse(new TextDecoder().decode(bytes));
+    const validHash = (value) => Number.isSafeInteger(value) && value >= 0;
+    const validRandomRank = Number.isInteger(payload?.randomRank)
+      && payload.randomRank >= 0
+      && payload.randomRank <= 0xFFFFFFFF;
+    return payload?.version === 1
+      && payload.provider === "accepted-repository"
+      && payload.orderVersion === 3
+      && validHash(payload.sessionHash)
+      && validHash(payload.filterHash)
+      && validRandomRank
+      && typeof payload.id === "string"
+      && Boolean(payload.id.trim());
+  } catch {
+    return false;
+  }
+}
+
 function readPreloadedRouteFeed() {
   try {
     const payload = JSON.parse(sessionStorage.getItem(ROUTE_FEED_PRELOAD_KEY) || "null");
@@ -1914,6 +1940,7 @@ function readPreloadedRouteFeed() {
     if (!payload?.createdAt || Date.now() - payload.createdAt > ROUTE_FEED_PRELOAD_TTL_MS) return null;
     if (!Array.isArray(payload.records) || payload.records.length < FEED_PAGE_SIZE) return null;
     if (!payload.hasMore || !payload.nextCursor) return null;
+    if (!isStableFeedCursor(payload.nextCursor)) return null;
     if (payload.records.some((record) => !displayCoverUrl(record))) return null;
     payload.records.forEach((record) => markRouteCoverReady(record));
     return payload;
@@ -1926,6 +1953,7 @@ function normalizeBootstrappedFeed(payload) {
   if (!payload || payload.cacheVersion !== "route-bootstrap-v1") return null;
   if (!Array.isArray(payload.records) || payload.records.length < FEED_PAGE_SIZE) return null;
   if (!payload.hasMore || !payload.nextCursor) return null;
+  if (!isStableFeedCursor(payload.nextCursor)) return null;
   if (payload.records.some((record) => !displayCoverUrl(record))) return null;
   payload.records.forEach((record) => markRouteCoverReady(record));
   return payload;
@@ -1965,6 +1993,7 @@ function usePreloadedRouteFeed(payload) {
     lastVisibleBatchAt: 0,
     searchResolved: false,
     searchResultCount: 0,
+    consecutiveEmptyPages: 0,
   });
   if (payload.sessionId) sessionStorage.setItem(ROUTE_FEED_SESSION_KEY, payload.sessionId);
   appendRecords(payload.records, FEED_PAGE_SIZE, { revealImmediately: Boolean(payload.revealImmediately) });
@@ -1975,9 +2004,47 @@ function usePreloadedRouteFeed(payload) {
   void prefetchNextFeedPage();
 }
 
-async function loadFeed({ refresh = false, emptyPageHops = 0 } = {}) {
+function resolveFeedContinuation({ insertedCount, serverHasMore, nextCursor, previousEmptyCount }) {
+  if (insertedCount > 0) {
+    const hasMore = Boolean(serverHasMore && nextCursor);
+    return {
+      hasMore,
+      cursor: hasMore ? nextCursor : null,
+      consecutiveEmptyPages: 0,
+      retry: false,
+      reason: hasMore ? "continue" : "exhausted",
+    };
+  }
+  if (!serverHasMore || !nextCursor) {
+    return {
+      hasMore: false,
+      cursor: null,
+      consecutiveEmptyPages: 0,
+      retry: false,
+      reason: "exhausted",
+    };
+  }
+  const consecutiveEmptyPages = Number(previousEmptyCount || 0) + 1;
+  if (consecutiveEmptyPages >= 2) {
+    return {
+      hasMore: false,
+      cursor: null,
+      consecutiveEmptyPages,
+      retry: false,
+      reason: "empty-page-guard",
+    };
+  }
+  return {
+    hasMore: true,
+    cursor: nextCursor,
+    consecutiveEmptyPages,
+    retry: true,
+    reason: "empty-page-confirmation",
+  };
+}
+
+async function loadFeed({ refresh = false } = {}) {
   if (!routeFeed || feedState.status === "loading" || (!refresh && !canRequestMoreFeed())) return;
-  const pageLoadStartedAt = Date.now();
   if (refresh) {
     abortActiveRequest();
     Object.assign(feedState, {
@@ -1993,6 +2060,7 @@ async function loadFeed({ refresh = false, emptyPageHops = 0 } = {}) {
       lastVisibleBatchAt: 0,
       searchResolved: false,
       searchResultCount: 0,
+      consecutiveEmptyPages: 0,
     });
   }
   const token = ++feedState.requestToken;
@@ -2031,7 +2099,6 @@ async function loadFeed({ refresh = false, emptyPageHops = 0 } = {}) {
       && feedState.prefetchedFeedPage.sessionId === requested.sessionId
       && feedState.prefetchedFeedPage.routeType === requested.routeType
       && Array.isArray(feedState.prefetchedFeedPage.pageRecords)
-      && feedState.prefetchedFeedPage.pageRecords.length > 0
       ? feedState.prefetchedFeedPage
       : null;
     if (prefetched) feedState.prefetchedFeedPage = null;
@@ -2041,7 +2108,9 @@ async function loadFeed({ refresh = false, emptyPageHops = 0 } = {}) {
     const previousCount = feedState.records.length;
     const previousRecords = feedState.records.slice();
     let pageRecords = prefetched?.pageRecords || (requested.query ? unseenRecords(payload.records) : (payload.records || []));
-    let returnedCount = Array.isArray(payload.records) ? payload.records.length : 0;
+    const returnedCount = Number.isFinite(payload.returnedCount)
+      ? payload.returnedCount
+      : (Array.isArray(payload.records) ? payload.records.length : 0);
     let insertedRecords = [];
     let imageBatch = prefetched?.imageBatch || null;
     if (requested.query) {
@@ -2055,54 +2124,23 @@ async function loadFeed({ refresh = false, emptyPageHops = 0 } = {}) {
       if (token !== feedState.requestToken) return;
       insertedRecords = appendRecords(batchRecords, SEARCH_PAGE_SIZE);
     } else {
-      let workingCursor = payload.nextCursor || null;
-      let workingRouteType = requested.routeType || "";
-      let backfillHops = emptyPageHops;
-      let appendableFeedRecords = selectAppendableRecords(pageRecords, FEED_PAGE_SIZE, previousRecords);
-      while (
-        appendableFeedRecords.length < FEED_PAGE_SIZE
-        && backfillHops < FEED_BACKFILL_HOP_LIMIT
-        && Date.now() - pageLoadStartedAt < FEED_LOAD_WATCHDOG_MS - 1_500
-      ) {
-        if (!workingCursor && workingRouteType) {
-          workingRouteType = "";
-          feedState.feedRouteType = "";
-        } else if (!workingCursor) {
-          break;
-        }
-        const localIds = new Set(pageRecords.map((record) => record.id).filter(Boolean));
-        const backfillPayload = await requestDiscoveryPage({
-          ...requested,
-          cursor: workingCursor,
-          routeType: workingRouteType,
-          excludeIds: [
-            ...feedExcludeIdsForRequest(),
-            ...feedState.skippedRouteIds,
-            ...localIds,
-          ],
-          signal: requestSignal(controller, 4_800),
-        });
-        if (token !== feedState.requestToken) return;
-        returnedCount += Array.isArray(backfillPayload.records) ? backfillPayload.records.length : 0;
-        const moreRecords = (backfillPayload.records || [])
-          .filter((record) => record?.id && !localIds.has(record.id));
-        if (moreRecords.length) {
-          pageRecords = [...pageRecords, ...moreRecords];
-          appendableFeedRecords = selectAppendableRecords(pageRecords, FEED_PAGE_SIZE, previousRecords);
-        }
-        payload = backfillPayload;
-        workingCursor = backfillPayload.nextCursor || null;
-        backfillHops += 1;
-        if (!moreRecords.length && !workingCursor && !workingRouteType) break;
-      }
+      const appendableFeedRecords = selectAppendableRecords(pageRecords, FEED_PAGE_SIZE, previousRecords);
       if (!prefetched) {
         imageBatch = await prepareRouteImageBatch(appendableFeedRecords, previousRecords, controller.signal, FEED_COVER_PREPARE_DEADLINE_MS);
       }
       if (token !== feedState.requestToken) return;
       insertedRecords = appendRecords(appendableFeedRecords);
     }
+    const continuation = resolveFeedContinuation({
+      insertedCount: insertedRecords.length,
+      serverHasMore: payload.hasMore === true,
+      nextCursor: payload.nextCursor || null,
+      previousEmptyCount: feedState.consecutiveEmptyPages,
+    });
     feedState.lastLoadDebug = {
       returned: returnedCount,
+      returnedCount,
+      remainingCount: Number.isFinite(payload.remainingCount) ? payload.remainingCount : null,
       selected: pageRecords.length,
       ready: imageBatch?.ready || 0,
       placeholders: imageBatch?.placeholders || 0,
@@ -2118,33 +2156,22 @@ async function loadFeed({ refresh = false, emptyPageHops = 0 } = {}) {
         .filter((outcome) => outcome.status === "ready")
         .map((outcome) => outcome.routeId),
       insertedCodes: insertedRecords.map((record) => routeCountryCodes(record).join(".")),
+      paginationReason: continuation.reason,
+      consecutiveEmptyPages: continuation.consecutiveEmptyPages,
     };
-    const emptyPendingPage = !requested.query && insertedRecords.length === 0;
-    const tabPoolExhausted = !requested.query
-      && requested.routeType
-      && !payload.hasMore
-      && !payload.nextCursor;
-    feedState.pendingMore = emptyPendingPage;
-    feedState.pendingRetryAt = emptyPendingPage ? Date.now() + 1_500 : 0;
+    feedState.pendingMore = continuation.retry;
+    feedState.pendingRetryAt = continuation.retry ? Date.now() + 1_500 : 0;
     feedState.suggestions = payload.suggestions || [];
-    if (tabPoolExhausted) {
-      feedState.feedRouteType = "";
-      feedState.cursor = null;
-      feedState.hasMore = true;
-    } else {
-      feedState.cursor = payload.nextCursor || null;
-      feedState.hasMore = Boolean(payload.hasMore && payload.nextCursor);
-      if (payload.pending && emptyPendingPage) feedState.hasMore = true;
-    }
+    feedState.cursor = continuation.cursor;
+    feedState.hasMore = continuation.hasMore;
+    feedState.consecutiveEmptyPages = continuation.consecutiveEmptyPages;
+    if (!continuation.hasMore) invalidateFeedPrefetch();
     feedState.status = "ready";
     feedState.loadingStartedAt = 0;
     if (feedState.activeAbortController === controller) feedState.activeAbortController = null;
     feedState.pendingBatchAnchorId = "";
     renderFeed({ incremental: previousCount > 0 });
     void prefetchNextFeedPage();
-    if (!emptyPendingPage && feedState.records.length === previousCount && feedState.hasMore && emptyPageHops < FEED_BACKFILL_HOP_LIMIT) {
-      return loadFeed({ emptyPageHops: emptyPageHops + 1 });
-    }
   } catch (error) {
     if (token !== feedState.requestToken) return;
     if (error?.name === "AbortError" || error?.name === "TimeoutError") {
@@ -2364,6 +2391,9 @@ window.__routeFeedDebug = () => ({
   shouldAutofill: shouldAutofillFeed(),
   prefetching: feedState.prefetching,
   prefetched: Boolean(feedState.prefetchedFeedPage),
+  observerActive: routeFeedObserverActive,
+  pendingMore: feedState.pendingMore,
+  consecutiveEmptyPages: feedState.consecutiveEmptyPages,
   lastLoad: feedState.lastLoadDebug,
   scrollY: window.scrollY,
   viewportHeight: window.innerHeight,

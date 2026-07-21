@@ -292,7 +292,32 @@ function decorateRecord(record, { status, matchReason, queryId, intentHash }) {
   };
 }
 
+function isRouteGenerationV2Record(record = {}) {
+  return clean(record.generationVersion).startsWith("route-generation-v2-")
+    || clean(record.v2PublicationStatus) === "v2-not-publishable-yet";
+}
+
+function preserveGenerationMetadata(record, source = {}) {
+  if (!record) return null;
+  const generationVersion = clean(source.generationVersion);
+  const selectedCandidateId = clean(source.selectedCandidateId);
+  const decisionTraceId = clean(source.decisionTraceId);
+  const intentId = clean(source.intentId);
+  const v2Record = generationVersion.startsWith("route-generation-v2-");
+  return {
+    ...record,
+    ...(generationVersion ? { generationVersion } : {}),
+    ...(selectedCandidateId ? { selectedCandidateId } : {}),
+    ...(decisionTraceId ? { decisionTraceId } : {}),
+    ...(intentId ? { intentId } : {}),
+    ...(v2Record || clean(source.v2PublicationStatus) === "v2-not-publishable-yet"
+      ? { v2PublicationStatus: "v2-not-publishable-yet" }
+      : {}),
+  };
+}
+
 function generatedStatus(record, autoAcceptGenerated) {
+  if (isRouteGenerationV2Record(record)) return "needs-review";
   if (autoAcceptGenerated) return "accepted";
   if (record?.enrichmentStatus === "needsEvidence" || record?.contentQualityStatus !== "accepted") return "needs-review";
   return "search-generated";
@@ -349,16 +374,21 @@ function withTimeout(task, timeoutMs, abortSignal = null) {
 
 function plannerContextFromIntent(intent, deadlineAt, abortSignal = null) {
   return {
+    intentId: intent.intentHash,
     country: intent.countryCode,
     countryCode: intent.countryCode,
     countryName: intent.country,
     cities: Array.isArray(intent.cities) ? [...intent.cities] : [],
     normalizedCities: Array.isArray(intent.normalizedCities) ? [...intent.normalizedCities] : [],
+    targetCities: Array.isArray(intent.normalizedCities) ? [...intent.normalizedCities] : [],
     durationDays: intent.durationDays || undefined,
     durationBand: intent.durationBand || undefined,
     travelStyle: intent.travelStyle || undefined,
     theme: intent.theme || undefined,
     season: intent.season || undefined,
+    transport: intent.transport || undefined,
+    transportPreference: intent.transport ? [intent.transport] : [],
+    budgetConstraint: intent.budget || null,
     region: intent.region || undefined,
     designStrategies: [
       "Geographic",
@@ -507,9 +537,11 @@ export function createRouteSearchService({
       if (cacheItem) {
         generatedRecords = (cacheItem.records || [])
           .map((record) => {
-            const normalized = normalizeDiscoveredRoute(record);
+            const normalized = preserveGenerationMetadata(normalizeDiscoveredRoute(record), record);
             if (!normalized) return null;
-            const status = record.searchStatus === "accepted" ? "accepted" : generatedStatus(normalized, false);
+            const status = isRouteGenerationV2Record(normalized)
+              ? "needs-review"
+              : record.searchStatus === "accepted" ? "accepted" : generatedStatus(normalized, false);
             return { ...normalized, searchStatus: status || cacheItem.status || "search-generated" };
           })
           .filter(Boolean);
@@ -526,7 +558,7 @@ export function createRouteSearchService({
         plannerError = clean(result.error?.message || result.error || "");
         if (!plannerTimeout && !plannerAborted && result.result?.accepted?.length) {
           generatedRecords = result.result.accepted
-            .map((item) => normalizeDiscoveredRoute(item.record))
+            .map((item) => preserveGenerationMetadata(normalizeDiscoveredRoute(item.record), item.record))
             .filter(Boolean)
             .map((record) => {
               const status = generatedStatus(record, autoAcceptGenerated);
@@ -534,6 +566,7 @@ export function createRouteSearchService({
                 ...record,
                 searchStatus: status,
                 contentQualityStatus: record.contentQualityStatus || "accepted",
+                ...(isRouteGenerationV2Record(record) ? { v2PublicationStatus: "v2-not-publishable-yet" } : {}),
               });
             });
         } else if (!plannerTimeout && !plannerAborted && !result.error) {
@@ -541,21 +574,36 @@ export function createRouteSearchService({
           generatedRecords = fallback ? [ensureSearchGeneratedMedia({ ...fallback, searchStatus: "needs-review" })] : [];
         }
         if (generatedRecords.length) {
+            const v2BlockedRecords = generatedRecords.filter(isRouteGenerationV2Record);
+            const cacheStatus = generatedRecords.some((record) => record.searchStatus === "needs-review")
+              ? "needs-review"
+              : generatedRecords.every((record) => record.searchStatus === "accepted") ? "accepted" : "search-generated";
             searchCache.put({
               intent,
               records: generatedRecords,
               sourceQuery: request.query,
-              status: generatedRecords.some((record) => record.searchStatus === "needs-review") ? "needs-review" : (autoAcceptGenerated ? "accepted" : "search-generated"),
-              plannerMeta: { timeoutMs: plannerTimeoutMs, autoAcceptGenerated },
+              status: cacheStatus,
+              plannerMeta: {
+                timeoutMs: plannerTimeoutMs,
+                autoAcceptGenerated,
+                ...(v2BlockedRecords.length ? { v2PromotionBlocked: v2BlockedRecords.length, v2PromotionReason: "v2-not-publishable-yet" } : {}),
+              },
             });
             searchCache.appendReviewCandidates({
               intent,
               records: generatedRecords,
               queryId,
-              plannerMeta: { timeoutMs: plannerTimeoutMs, autoAcceptGenerated },
+              plannerMeta: {
+                timeoutMs: plannerTimeoutMs,
+                autoAcceptGenerated,
+                ...(v2BlockedRecords.length ? { v2PromotionBlocked: v2BlockedRecords.length, v2PromotionReason: "v2-not-publishable-yet" } : {}),
+              },
             });
             if (autoAcceptGenerated) {
-              for (const record of generatedRecords) acceptedRepository.upsert?.(record);
+              for (const record of generatedRecords) {
+                if (isRouteGenerationV2Record(record)) continue;
+                acceptedRepository.upsert?.(record);
+              }
             }
         }
       } else if (intent.canGenerate && !context.abortSignal?.aborted) {

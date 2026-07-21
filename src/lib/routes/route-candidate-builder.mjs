@@ -124,13 +124,30 @@ function deriveTravelStyle(context = {}, concept = {}) {
 function deriveIntentId(context = {}, concept = {}, pool = []) {
   return cleanString(context.intentId || concept.intentId) || `intent-${stableHash({
     context: {
-      countries: context.countries,
-      countryCodes: context.countryCodes,
+      countries: unique([
+        context.country,
+        context.countryCode,
+        ...(Array.isArray(context.countries) ? context.countries : []),
+        ...(Array.isArray(context.countryCodes) ? context.countryCodes : []),
+      ]).map(normalizeCode).sort(),
+      cities: unique([
+        ...(Array.isArray(context.cities) ? context.cities : []),
+        ...(Array.isArray(context.normalizedCities) ? context.normalizedCities : []),
+        ...(Array.isArray(context.targetCities) ? context.targetCities : []),
+        ...(Array.isArray(context.destinations) ? context.destinations : []),
+      ]).map(cleanString),
       durationDays: context.durationDays,
       durationBand: context.durationBand,
       travelStyle: context.travelStyle,
       theme: context.theme,
       season: context.season,
+      seasonHardConstraint: Boolean(context.seasonHardConstraint),
+      transport: cleanString(context.transport),
+      transportPreference: unique(Array.isArray(context.transportPreference) ? context.transportPreference : []).map(cleanString),
+      budgetConstraint: context.budgetConstraint ?? context.budget ?? null,
+      noveltyTarget: context.noveltyTarget ?? null,
+      coverageGoal: context.coverageGoal ?? null,
+      exclusions: context.exclusions ?? null,
     },
     concept: {
       key: concept.key,
@@ -241,10 +258,10 @@ function candidateDraft({ destinations, intentId, durationDays, travelStyle, met
       supportingSignal("durationDays", durationDays),
       supportingSignal("travelStyle", travelStyle),
     ],
-    status: "generated",
+    status: "pending",
     rejectionReasons: [],
     unknowns: [
-      unknown("candidateComparison", "Phase 2B-1 builds independent candidates only; it does not select, reject, score, or rank candidates."),
+      unknown("candidateComparison", "Candidate is pending deterministic selection; no evidence-backed score is available in Phase 1."),
       unknown("externalEvidence", "Phase 2B-1 does not call Tavily, Wikivoyage, LLM, or other external evidence providers."),
     ],
     createdAt: ROUTE_CANDIDATE_BUILDER_CREATED_AT,

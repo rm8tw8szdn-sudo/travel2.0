@@ -11,9 +11,14 @@ export { RouteDiscoveryError, asRouteDiscoveryError } from "./errors.mjs";
 export { createRouteDiscoveryHandler } from "./http.mjs";
 export {
   DECISION_TRACE_SCHEMA_VERSION,
+  DECISION_TRACE_OUTCOMES,
+  DECISION_TRACE_PHASES,
+  ROUTE_V2_INTENT_FLAG,
+  buildFailureDecisionTrace,
   buildLegacyDecisionTrace,
   createDecisionTraceId,
   routeIntentSnapshot,
+  isRouteV2IntentEnabled,
   selectedCandidateSnapshot,
   stableDecisionTraceHash,
   validateDecisionTrace,
@@ -24,6 +29,7 @@ export {
   envFlag,
   isRouteV2TraceEnabled,
   isRouteV2TraceRequiredForAccept,
+  writeFailureDecisionTraceSafe,
   writeLegacyDecisionTraceSafe,
 } from "./decision-trace-store.mjs";
 export { createLiveDiscoveryProvider } from "./live-provider.mjs";
@@ -163,6 +169,7 @@ export {
 } from "./evidence-bundle-online-adapter.mjs";
 export {
   ROUTE_CANDIDATE_NEUTRAL_STATUSES,
+  ROUTE_CANDIDATE_STATUSES,
   ROUTE_CANDIDATE_SCHEMA_VERSION,
   createRouteCandidateId,
   createRouteCandidatePoolStore,
@@ -182,6 +189,10 @@ export {
   candidateShapeKey,
   clampCandidateTarget,
 } from "./route-candidate-builder.mjs";
+export {
+  ROUTE_CANDIDATE_SELECTION_TARGET,
+  selectRouteCandidates,
+} from "./route-candidate-selection.mjs";
 export { createRouteJobStore } from "./route-job-store.mjs";
 export { dedupeRouteRecords, isDuplicateRoute, routeDedupeFingerprint } from "./route-dedupe.mjs";
 export { createFeedBuffer } from "./feed-buffer.mjs";

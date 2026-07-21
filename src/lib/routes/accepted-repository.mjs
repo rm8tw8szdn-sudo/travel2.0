@@ -379,6 +379,7 @@ export function createAcceptedRouteRepository({
 
   const storedItems = readStoredRecords(storagePath);
   for (const item of storedItems) {
+    if (isUnpublishableRouteGenerationV2(item)) continue;
     const record = normalizeDiscoveredRoute(item);
     const quality = validateRouteContent(record);
     const composition = validateCompositionRecord(record);
@@ -413,6 +414,9 @@ export function createAcceptedRouteRepository({
   if (storedItems.length !== records.size) persist();
 
   function upsert(input) {
+    if (isUnpublishableRouteGenerationV2(input)) {
+      return { accepted: false, reasons: ["v2-not-publishable-yet"] };
+    }
     const record = normalizeDiscoveredRoute(input);
     const quality = validateRouteContent(record);
     const composition = validateCompositionRecord(record);
@@ -634,6 +638,7 @@ export function createAcceptedRouteRepository({
     const current = records.get(routeId);
     if (!current) return null;
     const next = { ...current, ...patch };
+    if (isUnpublishableRouteGenerationV2(next)) return null;
     records.set(routeId, clone(next));
     persist();
     return clone(next);
@@ -662,4 +667,8 @@ export function createAcceptedRouteRepository({
   }
 
   return { upsert, get, list, mark, status, version };
+}
+function isUnpublishableRouteGenerationV2(record = {}) {
+  return String(record?.generationVersion || "").trim().startsWith("route-generation-v2-")
+    || String(record?.v2PublicationStatus || "").trim() === "v2-not-publishable-yet";
 }

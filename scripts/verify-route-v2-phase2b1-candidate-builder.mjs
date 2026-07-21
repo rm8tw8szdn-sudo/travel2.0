@@ -98,7 +98,7 @@ assert(firstRun.every((candidate) => candidate.createdAt === ROUTE_CANDIDATE_BUI
 for (const candidate of firstRun) {
   const validation = validateRouteCandidate(candidate);
   assert.equal(validation.accepted, true, `candidate failed Phase 2A schema: ${validation.reasons.join(", ")}`);
-  assert.equal(candidate.status, "generated", "Phase 2B-1 should only emit generated status");
+  assert.equal(candidate.status, "pending", "Phase 2B-1 should emit the unified pending lifecycle state");
   assert.deepEqual(candidate.rejectionReasons, [], "Phase 2B-1 must not invent rejection reasons");
   assert(!("selected" in candidate), "Phase 2B-1 must not mark selected candidates");
   assert(!("rejected" in candidate), "Phase 2B-1 must not mark rejected candidates");

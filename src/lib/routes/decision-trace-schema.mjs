@@ -1,6 +1,7 @@
 import { cleanString, stableHash, uniqueStrings as unique } from "./route-v2-utils.mjs";
 import { envFlag } from "./route-v2-env.mjs";
 import { validateRouteCandidate } from "./route-candidate-pool.mjs";
+import { normalizeTimeIntent } from "./search-intent-parser.mjs";
 
 export const DECISION_TRACE_SCHEMA_VERSION = "route-generation-v2-phase1-trace-v1";
 export const ROUTE_V2_INTENT_FLAG = "ROUTE_V2_INTENT_ENABLED";
@@ -72,6 +73,28 @@ export function routeIntentSnapshot(input = {}) {
       seasonLabel: cleanString(context.season) || null,
       hardConstraint: Boolean(context.seasonHardConstraint),
     },
+    ...(context.timeIntent && typeof context.timeIntent === "object"
+      ? { timeIntent: normalizeTimeIntent(context.timeIntent) }
+      : {}),
+    ...(cleanString(context.intentMode) ? { intentMode: cleanString(context.intentMode) } : {}),
+    ...(cleanString(context.rawQuery) ? { rawQuery: cleanString(context.rawQuery) } : {}),
+    ...(context.destinationSuggestion && typeof context.destinationSuggestion === "object"
+      ? {
+        destinationSuggestion: {
+          mode: cleanString(context.destinationSuggestion.mode),
+          seed: cleanString(context.destinationSuggestion.seed),
+          countryCode: cleanString(context.destinationSuggestion.countryCode).toUpperCase(),
+          countryName: cleanString(context.destinationSuggestion.countryName),
+          cities: unique(context.destinationSuggestion.cities || []),
+          source: cleanString(context.destinationSuggestion.source),
+          sourceRouteId: cleanString(context.destinationSuggestion.sourceRouteId) || null,
+          seasonEvidencePending: Boolean(context.destinationSuggestion.seasonEvidencePending),
+          diagnostics: Array.isArray(context.destinationSuggestion.diagnostics)
+            ? clone(context.destinationSuggestion.diagnostics)
+            : [],
+        },
+      }
+      : {}),
     theme: {
       themeKey: cleanString(context.theme) || cleanString(route.themes?.[0]) || null,
       themeLabel: cleanString(context.themeLabel) || cleanString(route.themes?.[0]) || null,

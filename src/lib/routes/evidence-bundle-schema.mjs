@@ -1,4 +1,5 @@
 import { cleanString, stableHash, uniqueStrings } from "./route-v2-utils.mjs";
+import { normalizeTimeIntent } from "./search-intent-parser.mjs";
 
 export const EVIDENCE_BUNDLE_LIFECYCLE_SCHEMA_VERSION = "route-generation-v2-evidence-3a-lifecycle-v1";
 export const EVIDENCE_BUNDLE_LIFECYCLE_STATUSES = new Set([
@@ -92,11 +93,15 @@ function normalizeLeg(leg = {}) {
 }
 
 function normalizeEvidenceArea(area = {}, fallbackStatus = "unknown") {
+  const requestedMonths = [...new Set((Array.isArray(area.requestedMonths) ? area.requestedMonths : [])
+    .map(Number)
+    .filter((month) => Number.isInteger(month) && month >= 1 && month <= 12))];
   return {
     status: clean(area.status || fallbackStatus),
     evidenceRefs: uniqueStrings(Array.isArray(area.evidenceRefs) ? area.evidenceRefs : []),
     unknowns: (Array.isArray(area.unknowns) ? area.unknowns : []).map(normalizeUnknown),
     ...(nullableString(area.requestedSeason) ? { requestedSeason: nullableString(area.requestedSeason) } : {}),
+    ...(requestedMonths.length ? { requestedMonths } : {}),
   };
 }
 
@@ -211,15 +216,33 @@ export function buildEvidenceBundleLifecycle({
   if (destinationOrder.length < 2) return { created: false, reason: "selected-candidate-order-invalid" };
   const consistency = consistencyFailures({ selectedCandidate, routeRecord, decisionTrace });
   const hardSeasonConstraint = Boolean(context.seasonHardConstraint);
-  const requestedSeason = nullableString(context.season || context.bestMonths?.[0]);
+  const timeIntent = context.timeIntent && typeof context.timeIntent === "object"
+    ? normalizeTimeIntent(context.timeIntent)
+    : null;
+  const requestedMonths = timeIntent && ["single-month", "month-range"].includes(timeIntent.type)
+    ? timeIntent.months
+    : [];
+  const requestedSeason = timeIntent?.type === "season-only"
+    ? nullableString(timeIntent.season)
+    : timeIntent
+      ? null
+      : nullableString(context.season || context.bestMonths?.[0]);
+  const invalidTimeIntent = timeIntent?.type === "invalid";
+  const timeEvidenceRequested = requestedMonths.length > 0 || Boolean(requestedSeason);
+  const requiresTimeReview = hardSeasonConstraint
+    || requestedMonths.length > 0
+    || timeIntent?.type === "season-only"
+    || invalidTimeIntent;
   const unknowns = [
     { field: "transport", reason: "Transport feasibility and duration require external evidence." },
     { field: "geography", reason: "Geographic relationship evidence has not been collected." },
     { field: "routePacing", reason: "Route pacing has not been evidence-validated." },
-    ...(requestedSeason ? [{ field: "seasonality", reason: `Season evidence for ${requestedSeason} has not been collected.` }] : []),
+    ...(requestedMonths.length ? [{ field: "seasonality", reason: `Season evidence for month${requestedMonths.length > 1 ? "s" : ""} ${requestedMonths.join(", ")} has not been collected.` }] : []),
+    ...(requestedSeason ? [{ field: "seasonality", reason: `Season evidence for ${requestedSeason} has not been collected without a local month mapping.` }] : []),
+    ...(invalidTimeIntent ? [{ field: "seasonality", reason: "Season evidence was not created because the time intent is invalid." }] : []),
   ];
   const conflicts = consistency.map(conflictFor);
-  const status = consistency.length ? "failed" : hardSeasonConstraint ? "needs-review" : "pending";
+  const status = consistency.length ? "failed" : requiresTimeReview ? "needs-review" : "pending";
   const bundle = normalizeEvidenceBundleLifecycle({
     schemaVersion: EVIDENCE_BUNDLE_LIFECYCLE_SCHEMA_VERSION,
     intentId: selectedCandidate.intentId,
@@ -244,10 +267,15 @@ export function buildEvidenceBundleLifecycle({
     seasonEvidenceRefs: [],
     missingEvidenceRefs: [],
     seasonality: {
-      status: requestedSeason ? "needs-evidence" : "unknown",
+      status: timeEvidenceRequested || invalidTimeIntent ? "needs-evidence" : "unknown",
       ...(requestedSeason ? { requestedSeason } : {}),
+      ...(requestedMonths.length ? { requestedMonths } : {}),
       evidenceRefs: [],
-      unknowns: [{ field: "seasonality", reason: "No seasonality source has been collected." }],
+      unknowns: timeIntent
+        ? timeEvidenceRequested || invalidTimeIntent
+          ? [{ field: "seasonality", reason: invalidTimeIntent ? "Invalid time intent cannot be linked to season evidence." : "No seasonality source has been collected." }]
+          : []
+        : [{ field: "seasonality", reason: "No seasonality source has been collected." }],
     },
     geography: {
       status: "needs-evidence",
@@ -262,7 +290,14 @@ export function buildEvidenceBundleLifecycle({
     unknowns,
     conflicts,
     sources: [],
-    diagnostics: consistency.map((code) => ({ stage: "consistency", code, message: `Evidence lifecycle consistency check failed: ${code}.` })),
+    diagnostics: [
+      ...consistency.map((code) => ({ stage: "consistency", code, message: `Evidence lifecycle consistency check failed: ${code}.` })),
+      ...(invalidTimeIntent ? timeIntent.diagnostics.map((diagnostic) => ({
+        stage: "time-intent",
+        code: diagnostic.code || "invalid-time-intent",
+        message: diagnostic.message || "Time intent is invalid.",
+      })) : []),
+    ],
     failureReason: consistency[0] || null,
   }, { now });
   const validation = validateEvidenceBundleLifecycle(bundle, { selectedCandidate, routeRecord, decisionTrace });

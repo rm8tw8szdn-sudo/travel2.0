@@ -11,6 +11,7 @@ import {
 import { buildMissingSeasonEvidence, normalizeEvidenceMonth, seasonEvidenceKey } from "./season-evidence-schema.mjs";
 import { createSeasonEvidenceStore } from "./season-evidence-store.mjs";
 import { cleanString, uniqueStrings } from "./route-v2-utils.mjs";
+import { normalizeTimeIntent } from "./search-intent-parser.mjs";
 
 function clean(value) {
   return cleanString(value);
@@ -30,10 +31,16 @@ function routeOrder(routeRecord = {}) {
     .filter(Boolean);
 }
 
-function contextMonth(context = {}) {
+function contextMonths(context = {}) {
+  if (context.timeIntent && typeof context.timeIntent === "object") {
+    const timeIntent = normalizeTimeIntent(context.timeIntent);
+    if (!["single-month", "month-range"].includes(timeIntent.type)) return [];
+    return timeIntent.months;
+  }
   const explicit = context.month ?? context.travelMonth ?? context.departureMonth
     ?? context.season ?? (Array.isArray(context.bestMonths) ? context.bestMonths[0] : null);
-  return normalizeEvidenceMonth(explicit);
+  const month = normalizeEvidenceMonth(explicit);
+  return month ? [month] : [];
 }
 
 function failed(reason, diagnostics = [], error = "") {
@@ -108,13 +115,15 @@ export function createLocalEvidenceRepository({
       const legWrite = legs.upsertMany(legRecords);
       if (legWrite.persisted !== true) return failed(legWrite.reason || "route-leg-evidence-write-failed", legWrite.reasons || legWrite.diagnostics || [], legWrite.error);
 
-      const month = contextMonth(context);
+      const months = contextMonths(context);
       const seasonRecords = [];
-      if (month) {
+      if (months.length) {
         for (const entityId of destinationOrder) {
-          const built = buildMissingSeasonEvidence({ entityId, month }, { now });
-          if (!built.created) return failed(built.reason || "season-evidence-build-failed", built.reasons || []);
-          seasonRecords.push(built.record);
+          for (const month of months) {
+            const built = buildMissingSeasonEvidence({ entityId, month }, { now });
+            if (!built.created) return failed(built.reason || "season-evidence-build-failed", built.reasons || []);
+            seasonRecords.push(built.record);
+          }
         }
         const seasonWrite = seasons.upsertMany(seasonRecords);
         if (seasonWrite.persisted !== true) return failed(seasonWrite.reason || "season-evidence-write-failed", seasonWrite.reasons || seasonWrite.diagnostics || [], seasonWrite.error);

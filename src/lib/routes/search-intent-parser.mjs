@@ -1,4 +1,20 @@
 import crypto from "node:crypto";
+import { envFlag } from "./route-v2-env.mjs";
+
+export const ROUTE_V2_TIME_INTENT_FLAG = "ROUTE_V2_TIME_INTENT_ENABLED";
+export const ROUTE_V2_TIME_INTENT_TYPES = new Set([
+  "unspecified",
+  "single-month",
+  "month-range",
+  "season-only",
+  "invalid",
+]);
+export const ROUTE_V2_INTENT_MODES = new Set([
+  "specified-destination",
+  "destination-suggestion",
+  "invalid-time-intent",
+  "insufficient-intent",
+]);
 
 function clean(value) {
   return String(value || "").trim().replace(/\s+/g, " ");
@@ -97,6 +113,168 @@ const SEASON_CATALOG = [
   { key: "winter", label: "冬季", aliases: ["冬季", "冬天", "雪", "极光", "winter"] },
 ];
 
+const ENGLISH_MONTHS = new Map([
+  ["january", 1], ["jan", 1],
+  ["february", 2], ["feb", 2],
+  ["march", 3], ["mar", 3],
+  ["april", 4], ["apr", 4],
+  ["may", 5],
+  ["june", 6], ["jun", 6],
+  ["july", 7], ["jul", 7],
+  ["august", 8], ["aug", 8],
+  ["september", 9], ["sep", 9], ["sept", 9],
+  ["october", 10], ["oct", 10],
+  ["november", 11], ["nov", 11],
+  ["december", 12], ["dec", 12],
+]);
+const ENGLISH_MONTH_PATTERN = [...ENGLISH_MONTHS.keys()]
+  .sort((left, right) => right.length - left.length)
+  .join("|");
+
+function timeDiagnostic(entry = {}) {
+  return {
+    code: clean(entry.code),
+    message: clean(entry.message),
+    rawValue: clean(entry.rawValue),
+  };
+}
+
+function validMonth(value) {
+  const month = Number(value);
+  return Number.isInteger(month) && month >= 1 && month <= 12 ? month : null;
+}
+
+function monthSpan(from, to) {
+  const start = validMonth(from);
+  const end = validMonth(to);
+  if (!start || !end) return [];
+  const months = [start];
+  let current = start;
+  while (current !== end && months.length < 12) {
+    current = current === 12 ? 1 : current + 1;
+    months.push(current);
+  }
+  return months;
+}
+
+export function normalizeTimeIntent(input = {}) {
+  const requestedType = clean(input.type || "unspecified");
+  const diagnostics = (Array.isArray(input.diagnostics) ? input.diagnostics : []).map(timeDiagnostic);
+  const rawMonths = Array.isArray(input.months) ? input.months : [];
+  const invalidMonths = rawMonths.filter((value) => validMonth(value) == null);
+  const months = [...new Set(rawMonths.map(validMonth).filter(Boolean))];
+  if (!ROUTE_V2_TIME_INTENT_TYPES.has(requestedType) || invalidMonths.length) {
+    return {
+      type: "invalid",
+      months: [],
+      season: null,
+      rawText: clean(input.rawText),
+      diagnostics: [
+        ...diagnostics,
+        ...(!ROUTE_V2_TIME_INTENT_TYPES.has(requestedType)
+          ? [timeDiagnostic({ code: "invalid-time-intent-type", message: "Time intent type is not supported.", rawValue: requestedType })]
+          : []),
+        ...(invalidMonths.length
+          ? [timeDiagnostic({ code: "invalid-month", message: "Month must be between 1 and 12.", rawValue: invalidMonths.join(",") })]
+          : []),
+      ],
+    };
+  }
+  if (requestedType === "single-month" && months.length !== 1) {
+    return normalizeTimeIntent({ type: "invalid", rawText: input.rawText, diagnostics: [...diagnostics, { code: "single-month-cardinality", message: "Single-month intent requires exactly one month." }] });
+  }
+  if (requestedType === "month-range" && months.length < 2) {
+    return normalizeTimeIntent({ type: "invalid", rawText: input.rawText, diagnostics: [...diagnostics, { code: "month-range-cardinality", message: "Month-range intent requires at least two months." }] });
+  }
+  if (["unspecified", "season-only", "invalid"].includes(requestedType)) months.length = 0;
+  return {
+    type: requestedType,
+    months,
+    season: requestedType === "season-only" ? clean(input.season) || null : null,
+    rawText: clean(input.rawText),
+    diagnostics,
+  };
+}
+
+export function parseTimeIntent(value = "") {
+  const rawQuery = clean(value);
+  const normalizedQuery = normalizeText(rawQuery);
+  const chineseMonthTokens = [...rawQuery.matchAll(/(?<!\d)(\d{1,2})\s*月/gu)];
+  const invalidChineseMonth = chineseMonthTokens.find((match) => validMonth(match[1]) == null);
+  if (invalidChineseMonth) {
+    return normalizeTimeIntent({
+      type: "invalid",
+      rawText: invalidChineseMonth[0],
+      diagnostics: [{
+        code: "invalid-month",
+        message: "Month must be between 1 and 12.",
+        rawValue: invalidChineseMonth[0],
+      }],
+    });
+  }
+
+  const chineseRange = rawQuery.match(/(?<!\d)(\d{1,2})\s*月\s*(?:至|到|[-–—])\s*(\d{1,2})\s*月/u);
+  if (chineseRange) {
+    return normalizeTimeIntent({
+      type: "month-range",
+      months: monthSpan(chineseRange[1], chineseRange[2]),
+      rawText: chineseRange[0],
+      diagnostics: [],
+    });
+  }
+
+  const englishRangePattern = new RegExp(`\\b(${ENGLISH_MONTH_PATTERN})\\b\\s*(?:to|through|[-–—])\\s*\\b(${ENGLISH_MONTH_PATTERN})\\b`, "iu");
+  const englishRange = rawQuery.match(englishRangePattern);
+  if (englishRange) {
+    return normalizeTimeIntent({
+      type: "month-range",
+      months: monthSpan(ENGLISH_MONTHS.get(englishRange[1].toLocaleLowerCase("en-US")), ENGLISH_MONTHS.get(englishRange[2].toLocaleLowerCase("en-US"))),
+      rawText: englishRange[0],
+      diagnostics: [],
+    });
+  }
+
+  const explicitChineseMonths = chineseMonthTokens.map((match) => validMonth(match[1])).filter(Boolean);
+  if (explicitChineseMonths.length) {
+    const months = [...new Set(explicitChineseMonths)];
+    return normalizeTimeIntent({
+      type: months.length === 1 ? "single-month" : "month-range",
+      months,
+      rawText: chineseMonthTokens.map((match) => match[0]).join(" "),
+      diagnostics: [],
+    });
+  }
+
+  const englishMonthPattern = new RegExp(`\\b(${ENGLISH_MONTH_PATTERN})\\b`, "giu");
+  const englishMonthTokens = [...rawQuery.matchAll(englishMonthPattern)];
+  if (englishMonthTokens.length) {
+    const months = [...new Set(englishMonthTokens.map((match) => ENGLISH_MONTHS.get(match[1].toLocaleLowerCase("en-US"))).filter(Boolean))];
+    return normalizeTimeIntent({
+      type: months.length === 1 ? "single-month" : "month-range",
+      months,
+      rawText: englishMonthTokens.map((match) => match[0]).join(" "),
+      diagnostics: [],
+    });
+  }
+
+  const season = firstMatch(normalizedQuery, SEASON_CATALOG);
+  if (season) {
+    const rawSeason = season.aliases.find((alias) => includesAny(normalizedQuery, [alias])) || season.label;
+    return normalizeTimeIntent({
+      type: "season-only",
+      months: [],
+      season: season.key,
+      rawText: rawSeason,
+      diagnostics: [],
+    });
+  }
+  return normalizeTimeIntent({ type: "unspecified", months: [], season: null, rawText: "", diagnostics: [] });
+}
+
+export function isRouteV2TimeIntentEnabled(env = process.env) {
+  return envFlag(env, ROUTE_V2_TIME_INTENT_FLAG, false);
+}
+
 const TRANSPORT_CATALOG = [
   { key: "self-drive", label: "自驾", aliases: ["自驾", "租车", "开车", "road trip", "drive", "driving"] },
   { key: "rail", label: "铁路", aliases: ["铁路", "火车", "列车", "rail", "train"] },
@@ -125,9 +303,10 @@ function mergeCatalog(base = [], additions = [], identity) {
   return merged;
 }
 
-function parseDuration(query) {
+function parseDuration(query, { allowBareNumber = false } = {}) {
   const compact = query.replace(/\s+/g, "");
-  const match = compact.match(/(\d{1,2})(?:天|日|days?|day|d)/iu);
+  const match = compact.match(/(\d{1,2})(?:天|日|days?|day|d)/iu)
+    || (allowBareNumber ? compact.match(/^(\d{1,2})$/u) : null);
   if (!match) return null;
   const days = Number.parseInt(match[1], 10);
   return Number.isFinite(days) && days > 0 && days <= 60 ? days : null;
@@ -155,7 +334,7 @@ function constraintCount(intent) {
     intent.region,
     intent.cities.length ? "city" : "",
     intent.durationDays,
-    intent.season,
+    intent.timeIntent && intent.timeIntent.type !== "unspecified" ? intent.timeIntent.type : intent.season,
     intent.theme,
     intent.travelStyle,
     intent.transport,
@@ -174,6 +353,7 @@ export function targetResultCountForConstraintLevel(count) {
 
 export function normalizeIntentKey(intent = {}) {
   const payload = {
+    ...(intent.intentMode ? { intentMode: clean(intent.intentMode) } : {}),
     countryCode: clean(intent.countryCode),
     region: clean(intent.normalizedRegion || intent.region),
     cities: unique(intent.normalizedCities || intent.cities).sort(),
@@ -185,6 +365,14 @@ export function normalizeIntentKey(intent = {}) {
     transport: clean(intent.transport),
     pace: clean(intent.pace),
     budget: clean(intent.budget),
+    ...(intent.timeIntent ? {
+      timeIntent: {
+        type: clean(intent.timeIntent.type),
+        months: [...(Array.isArray(intent.timeIntent.months) ? intent.timeIntent.months : [])],
+        season: clean(intent.timeIntent.season),
+        ...(intent.timeIntent.type === "invalid" ? { rawText: clean(intent.timeIntent.rawText) } : {}),
+      },
+    } : {}),
   };
   return JSON.stringify(payload);
 }
@@ -225,10 +413,10 @@ export function createSearchSuggestions({ query = "", acceptedRoutes = [], catal
   return matches.length ? matches : uniqueCandidates.slice(0, 8);
 }
 
-export function parseSearchIntent(query, { acceptedRoutes = [], catalogs = null } = {}) {
+export function parseSearchIntent(query, { acceptedRoutes = [], catalogs = null, timeIntentEnabled = false } = {}) {
   const rawQuery = clean(query);
   const normalizedQuery = normalizeText(rawQuery);
-  const durationDays = parseDuration(normalizedQuery);
+  const durationDays = parseDuration(normalizedQuery, { allowBareNumber: timeIntentEnabled });
   const countryCatalog = mergeCatalog(COUNTRY_CATALOG, catalogs?.countries, (item) => item.code);
   const cityCatalog = mergeCatalog(CITY_CATALOG, catalogs?.cities, (item) => `${item.countryCode}:${item.normalizedLabel}`);
   let matchedCities = matchesFromCatalog(normalizedQuery, cityCatalog);
@@ -247,6 +435,7 @@ export function parseSearchIntent(query, { acceptedRoutes = [], catalogs = null 
   const theme = firstMatch(normalizedQuery, THEME_CATALOG);
   const season = firstMatch(normalizedQuery, SEASON_CATALOG);
   const transport = firstMatch(normalizedQuery, TRANSPORT_CATALOG);
+  const timeIntent = timeIntentEnabled ? parseTimeIntent(rawQuery) : null;
   const intent = {
     rawQuery,
     normalizedQuery,
@@ -270,14 +459,37 @@ export function parseSearchIntent(query, { acceptedRoutes = [], catalogs = null 
     transportLabel: transport?.label || "",
     pace: includesAny(normalizedQuery, ["慢", "慢游", "relaxed"]) ? "relaxed" : "",
     budget: "",
+    ...(timeIntentEnabled ? { timeIntent } : {}),
   };
   intent.constraintCount = constraintCount(intent);
   intent.targetResultCount = targetResultCountForConstraintLevel(intent.constraintCount);
+  intent.isChinaBlocked = intent.countryCode === "CN";
+  if (timeIntentEnabled) {
+    const destinationSpecified = Boolean(intent.countryCode || intent.region || intent.cities.length);
+    const invalidTime = timeIntent.type === "invalid";
+    const hasUsableCondition = intent.constraintCount > 0;
+    intent.destinationUnspecified = !destinationSpecified;
+    intent.intentMode = invalidTime
+      ? "invalid-time-intent"
+      : !hasUsableCondition
+        ? "insufficient-intent"
+        : destinationSpecified
+          ? "specified-destination"
+          : "destination-suggestion";
+    intent.insufficientDestination = intent.intentMode === "insufficient-intent" && !destinationSpecified;
+    intent.failureReason = intent.intentMode === "invalid-time-intent"
+      ? "invalid-time-intent"
+      : intent.intentMode === "insufficient-intent"
+        ? "insufficient-intent"
+        : "";
+    intent.parseSuccess = Boolean(!intent.isChinaBlocked && !["invalid-time-intent", "insufficient-intent"].includes(intent.intentMode));
+    intent.canGenerate = intent.parseSuccess;
+  } else {
+    intent.parseSuccess = Boolean(intent.constraintCount > 0 && !intent.isChinaBlocked);
+    intent.canGenerate = Boolean(intent.parseSuccess && intent.countryCode && !intent.isChinaBlocked);
+  }
   intent.intentKey = normalizeIntentKey(intent);
   intent.intentHash = hashIntentKey(intent.intentKey);
-  intent.isChinaBlocked = intent.countryCode === "CN";
-  intent.parseSuccess = Boolean(intent.constraintCount > 0 && !intent.isChinaBlocked);
-  intent.canGenerate = Boolean(intent.parseSuccess && intent.countryCode && !intent.isChinaBlocked);
   intent.suggestions = createSearchSuggestions({ query: rawQuery, acceptedRoutes, catalogs });
   return intent;
 }

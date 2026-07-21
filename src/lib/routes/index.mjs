@@ -261,7 +261,17 @@ export { createRouteSearchAnalytics } from "./route-search-analytics.mjs";
 export { createRouteSearchCache } from "./route-search-cache.mjs";
 export { createRouteSearchService } from "./route-search-service.mjs";
 export {
+  buildRouteDestinationSuggestion,
+  maxSuggestedDestinationsForDuration,
+} from "./route-destination-suggestion.mjs";
+export {
   parseSearchIntent,
+  parseTimeIntent,
+  normalizeTimeIntent,
+  isRouteV2TimeIntentEnabled,
+  ROUTE_V2_TIME_INTENT_FLAG,
+  ROUTE_V2_TIME_INTENT_TYPES,
+  ROUTE_V2_INTENT_MODES,
   normalizeIntentKey,
   hashIntentKey,
   targetResultCountForConstraintLevel,

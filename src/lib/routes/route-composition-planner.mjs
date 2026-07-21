@@ -590,7 +590,7 @@ function goldCaseForConcept(concept) {
 function selectDestinationPool(concept, context, knowledgeGraph) {
   if (!knowledgeGraph?.queryDestinations) return [];
   const anchors = anchorsForContext(concept, context);
-  const pool = countryCodesForContext(context).flatMap((country) => knowledgeGraph.queryDestinations({
+  const rawPool = countryCodesForContext(context).flatMap((country) => knowledgeGraph.queryDestinations({
     country,
     region: context.region || "",
     theme: context.theme || "",
@@ -598,6 +598,15 @@ function selectDestinationPool(concept, context, knowledgeGraph) {
     season: context.season || "",
     limit: anchors.length ? 40 : 12,
   }) || []);
+  const suggestionIds = new Set(
+    Array.isArray(context.destinationSuggestion?.destinationIds)
+      ? context.destinationSuggestion.destinationIds.map(clean).filter(Boolean)
+      : [],
+  );
+  const suggestionPool = suggestionIds.size
+    ? rawPool.filter((destination) => destinationIdentityKeys(destination).some((key) => suggestionIds.has(key)))
+    : [];
+  const pool = suggestionPool.length >= ROUTE_CANDIDATE_SELECTION_TARGET ? suggestionPool : rawPool;
   if (!anchors.length) return pool;
   return pool.slice().sort((a, b) => {
     const ai = anchorIndex(a, anchors);
@@ -647,16 +656,48 @@ async function writeCandidatePoolSidecarSafe({
       return { enabled: false, generated: 0, written: 0, skipped: true, reason: "candidate-pool-disabled" };
     }
     const selectionEnabled = isRouteV2IntentEnabled(env);
-    const builtCandidates = routeCandidateBuilder({
+    const strictSuggestionCapacity = context?.intentMode === "destination-suggestion"
+      ? maxDestinationsForConcept(concept)
+      : null;
+    let builtCandidates = routeCandidateBuilder({
       context,
       concept,
       pool,
-      targetCount: selectionEnabled ? ROUTE_CANDIDATE_SELECTION_TARGET : Number(context?.candidateTargetCount) || 8,
+      targetCount: selectionEnabled && strictSuggestionCapacity
+        ? 12
+        : selectionEnabled
+          ? ROUTE_CANDIDATE_SELECTION_TARGET
+          : Number(context?.candidateTargetCount) || 8,
       seed: context?.candidateSeed || context?.intentId || "",
     });
-    const candidates = selectionEnabled
-      ? builtCandidates.slice(0, ROUTE_CANDIDATE_SELECTION_TARGET)
+    if (selectionEnabled && strictSuggestionCapacity) {
+      const suggestionShape = (candidate) => JSON.stringify([...(candidate.proposedOrder || [])].sort());
+      const byShape = new Map(builtCandidates.map((candidate) => [suggestionShape(candidate), candidate]));
+      for (let attempt = 1; attempt <= 6; attempt += 1) {
+        const capacitySafeCount = [...byShape.values()]
+          .filter((candidate) => candidate.destinations.length <= strictSuggestionCapacity)
+          .length;
+        if (capacitySafeCount >= ROUTE_CANDIDATE_SELECTION_TARGET) break;
+        const retrySeed = `${context?.candidateSeed || context?.intentId || ""}:capacity:${attempt}`;
+        for (const candidate of routeCandidateBuilder({
+          context,
+          concept,
+          pool,
+          targetCount: 12,
+          seed: retrySeed,
+        })) {
+          const shape = suggestionShape(candidate);
+          if (!byShape.has(shape)) byShape.set(shape, candidate);
+        }
+      }
+      builtCandidates = [...byShape.values()];
+    }
+    const capacitySafeCandidates = strictSuggestionCapacity
+      ? builtCandidates.filter((candidate) => candidate.destinations.length <= strictSuggestionCapacity)
       : builtCandidates;
+    const candidates = selectionEnabled
+      ? capacitySafeCandidates.slice(0, ROUTE_CANDIDATE_SELECTION_TARGET)
+      : capacitySafeCandidates;
     const failures = [];
     const generatedCandidates = candidates.map((candidate) => ({
       ...candidate,
@@ -1125,6 +1166,7 @@ function buildPlannerRecord({ concept, skeleton, context, evidenceResult, strate
   const styleLabelZh = TRAVEL_STYLE_LABEL_ZH[concept.travelStyle] || concept.travelStyle;
   const days = numberOrNull(String(concept.recommendedDays).match(/\d+/u)?.[0] || concept.durationDays);
   const durationLabel = days ? `${days}天` : String(concept.recommendedDays || "");
+  const recordDurationLabel = context.timeIntent ? durationLabel : concept.recommendedDays;
   const shapeLabel = days && days <= 6 ? "精简" : days && days >= 9 ? "延展" : "经典";
   const anchorLabel = places[0] ? `：${places[0]}` : "";
   const name = `${countryName}${durationLabel}${shapeLabel}${styleLabelZh}${anchorLabel}`;
@@ -1139,7 +1181,7 @@ function buildPlannerRecord({ concept, skeleton, context, evidenceResult, strate
     : null;
   const plannerReason = (llmRefined && llmReason && llmReason.length) ? llmReason : deterministicReason;
   return {
-    id: `planner-designed-${routeDedupeFingerprint({ destinationEntities, recommendedDays: concept.recommendedDays, themes: [styleLabel] })}`,
+    id: `planner-designed-${routeDedupeFingerprint({ destinationEntities, recommendedDays: recordDurationLabel, themes: [styleLabel] })}`,
     name,
     canonicalTitle: name,
     sourceTitle: `Planner designed (${styleLabel})`,
@@ -1153,7 +1195,7 @@ function buildPlannerRecord({ concept, skeleton, context, evidenceResult, strate
     countryEntities,
     destinations: places,
     destinationEntities,
-    recommendedDays: concept.recommendedDays,
+    recommendedDays: recordDurationLabel,
     durationDays: days,
     bestMonths: normalizeBestMonths(context.bestMonths),
     themes: [styleLabelZh],
@@ -1414,6 +1456,11 @@ async function runPipeline({ context, knowledgeGraph, evidenceRepository, accept
     selectedResolution = null;
   }
   let usingV2SelectedCandidate = Boolean(selectedCandidate && selectedResolution?.ok);
+  if (usingV2SelectedCandidate && Number(selectedCandidate.durationDays) > 0) {
+    concept.durationDays = Number(selectedCandidate.durationDays);
+    concept.durationBand = durationBandFromDays(concept.durationDays);
+    concept.recommendedDays = `${concept.durationDays}天`;
+  }
   const skeleton = usingV2SelectedCandidate
     ? selectedResolution.skeleton
     : buildRouteSkeleton(pool, concept, context);

@@ -1,7 +1,8 @@
 import { decodeDiscoveryCursor, encodeDiscoveryCursor } from "./cursor.mjs";
 import { normalizeDiscoveredRoute } from "./contracts.mjs";
 import { routeDedupeFingerprint, routeTitleKey } from "./route-dedupe.mjs";
-import { parseSearchIntent } from "./search-intent-parser.mjs";
+import { buildRouteDestinationSuggestion } from "./route-destination-suggestion.mjs";
+import { isRouteV2TimeIntentEnabled, parseSearchIntent } from "./search-intent-parser.mjs";
 import { ensureSearchGeneratedMedia } from "./search-generated-media.mjs";
 import { buildSearchGeneratedFallbackRoute } from "./search-generated-route-builder.mjs";
 
@@ -372,20 +373,36 @@ function withTimeout(task, timeoutMs, abortSignal = null) {
   });
 }
 
-function plannerContextFromIntent(intent, deadlineAt, abortSignal = null) {
+function plannerContextFromIntent(intent, deadlineAt, abortSignal = null, { destinationSuggestion = null } = {}) {
+  const suggested = destinationSuggestion && typeof destinationSuggestion === "object" ? destinationSuggestion : null;
+  const countryCode = suggested?.countryCode || intent.countryCode;
+  const countryName = suggested?.countryName || intent.country;
+  const cities = suggested?.cities || (Array.isArray(intent.cities) ? intent.cities : []);
+  const normalizedCities = suggested?.normalizedCities || (Array.isArray(intent.normalizedCities) ? intent.normalizedCities : []);
+  const travelStyle = intent.intentMode && !intent.travelStyle && Number(intent.durationDays) > 0 && Number(intent.durationDays) <= 3
+    ? "city-break"
+    : intent.travelStyle || undefined;
   return {
-    intentId: intent.intentHash,
-    country: intent.countryCode,
-    countryCode: intent.countryCode,
-    countryName: intent.country,
-    cities: Array.isArray(intent.cities) ? [...intent.cities] : [],
-    normalizedCities: Array.isArray(intent.normalizedCities) ? [...intent.normalizedCities] : [],
-    targetCities: Array.isArray(intent.normalizedCities) ? [...intent.normalizedCities] : [],
+    intentId: suggested ? `${intent.intentHash}-${suggested.seed.slice(0, 12)}` : intent.intentHash,
+    baseIntentId: intent.intentHash,
+    intentMode: intent.intentMode || "",
+    rawQuery: intent.rawQuery || "",
+    country: countryCode,
+    countryCode,
+    countryName,
+    cities: [...cities],
+    normalizedCities: [...normalizedCities],
+    targetCities: suggested ? [] : [...normalizedCities],
+    ...(suggested ? {
+      candidateSeed: suggested.seed,
+      destinationSuggestion: structuredClone(suggested),
+    } : {}),
     durationDays: intent.durationDays || undefined,
     durationBand: intent.durationBand || undefined,
-    travelStyle: intent.travelStyle || undefined,
+    travelStyle,
     theme: intent.theme || undefined,
     season: intent.season || undefined,
+    ...(intent.timeIntent ? { timeIntent: structuredClone(intent.timeIntent) } : {}),
     transport: intent.transport || undefined,
     transportPreference: intent.transport ? [intent.transport] : [],
     budgetConstraint: intent.budget || null,
@@ -426,7 +443,27 @@ export function createRouteSearchService({
     const intent = parseSearchIntent(request.query, {
       acceptedRoutes: acceptedSnapshot,
       catalogs: intentCatalog,
+      timeIntentEnabled: isRouteV2TimeIntentEnabled(env),
     });
+    const destinationSuggestionResult = intent.intentMode === "destination-suggestion"
+      ? buildRouteDestinationSuggestion({
+        intent,
+        sessionId: request.sessionId || intent.intentHash,
+        acceptedRoutes: acceptedRepository.list({
+          limit: 99_999,
+          sessionId: request.sessionId || intent.intentHash,
+          routeType: request.routeType || "",
+        }).records,
+        intentCatalog,
+      })
+      : null;
+    const destinationSuggestion = destinationSuggestionResult?.ready
+      ? destinationSuggestionResult.suggestion
+      : null;
+    if (destinationSuggestionResult) {
+      intent.destinationSuggestionStatus = destinationSuggestionResult.reason;
+      intent.destinationSuggestion = destinationSuggestion ? structuredClone(destinationSuggestion) : null;
+    }
     let acceptedHit = false;
     let cacheHit = false;
     let plannerCalled = false;
@@ -438,7 +475,9 @@ export function createRouteSearchService({
     let ranked = [];
 
     if (!intent.parseSuccess) {
-      const keywordRanked = dedupeRanked(rankKeywordAcceptedRoutes(acceptedSnapshot, request.query, {
+      const keywordRanked = intent.intentMode
+        ? []
+        : dedupeRanked(rankKeywordAcceptedRoutes(acceptedSnapshot, request.query, {
         routeType: request.routeType,
         now,
       })).slice(0, intent.targetResultCount || 10);
@@ -489,7 +528,9 @@ export function createRouteSearchService({
           cacheStatus: "REPOSITORY",
         };
       }
-      const diagnostics = { reason: intent.isChinaBlocked ? "china-blocked" : "intent-parse-failed" };
+      const diagnostics = {
+        reason: intent.isChinaBlocked ? "china-blocked" : intent.failureReason || "intent-parse-failed",
+      };
       analytics?.logSearch?.({
         query: request.query || "",
         normalizedIntent: intent,
@@ -531,8 +572,17 @@ export function createRouteSearchService({
     }
     acceptedHit = ranked.length > 0;
 
-    if (ranked.length < intent.targetResultCount) {
-      cacheItem = searchCache.get(intent.intentHash);
+    const destinationSuggestionMode = intent.intentMode === "destination-suggestion";
+    const plannerEligible = intent.canGenerate && (!destinationSuggestionMode || Boolean(destinationSuggestion));
+    const cacheIntent = destinationSuggestion
+      ? {
+        ...intent,
+        intentHash: `${intent.intentHash}-${destinationSuggestion.seed.slice(0, 12)}`,
+        intentKey: `${intent.intentKey}|session:${destinationSuggestion.seed.slice(0, 12)}`,
+      }
+      : intent;
+    if (destinationSuggestionMode || ranked.length < intent.targetResultCount) {
+      cacheItem = destinationSuggestionMode ? null : searchCache.get(cacheIntent.intentHash);
       cacheHit = Boolean(cacheItem);
       if (cacheItem) {
         generatedRecords = (cacheItem.records || [])
@@ -545,11 +595,14 @@ export function createRouteSearchService({
             return { ...normalized, searchStatus: status || cacheItem.status || "search-generated" };
           })
           .filter(Boolean);
-      } else if (intent.canGenerate && planner?.buildCandidates && maxPlannerCalls > 0 && !context.abortSignal?.aborted) {
+      } else if (plannerEligible && planner?.buildCandidates && maxPlannerCalls > 0 && !context.abortSignal?.aborted) {
         plannerCalled = true;
         const deadlineAt = now() + plannerTimeoutMs;
         const result = await withTimeout(
-          () => planner.buildCandidates({ limit: 1, context: plannerContextFromIntent(intent, deadlineAt, context.abortSignal || null) }),
+          () => planner.buildCandidates({
+            limit: 1,
+            context: plannerContextFromIntent(intent, deadlineAt, context.abortSignal || null, { destinationSuggestion }),
+          }),
           plannerTimeoutMs,
           context.abortSignal || null,
         );
@@ -569,7 +622,7 @@ export function createRouteSearchService({
                 ...(isRouteGenerationV2Record(record) ? { v2PublicationStatus: "v2-not-publishable-yet" } : {}),
               });
             });
-        } else if (!plannerTimeout && !plannerAborted && !result.error) {
+        } else if (!destinationSuggestionMode && !plannerTimeout && !plannerAborted && !result.error) {
           const fallback = normalizeDiscoveredRoute(buildSearchGeneratedFallbackRoute(intent));
           generatedRecords = fallback ? [ensureSearchGeneratedMedia({ ...fallback, searchStatus: "needs-review" })] : [];
         }
@@ -579,7 +632,7 @@ export function createRouteSearchService({
               ? "needs-review"
               : generatedRecords.every((record) => record.searchStatus === "accepted") ? "accepted" : "search-generated";
             searchCache.put({
-              intent,
+              intent: cacheIntent,
               records: generatedRecords,
               sourceQuery: request.query,
               status: cacheStatus,
@@ -590,7 +643,7 @@ export function createRouteSearchService({
               },
             });
             searchCache.appendReviewCandidates({
-              intent,
+              intent: cacheIntent,
               records: generatedRecords,
               queryId,
               plannerMeta: {
@@ -606,7 +659,7 @@ export function createRouteSearchService({
               }
             }
         }
-      } else if (intent.canGenerate && !context.abortSignal?.aborted) {
+      } else if (plannerEligible && !destinationSuggestionMode && !context.abortSignal?.aborted) {
         const fallback = normalizeDiscoveredRoute(buildSearchGeneratedFallbackRoute(intent));
         generatedRecords = fallback ? [ensureSearchGeneratedMedia({ ...fallback, searchStatus: "needs-review" })] : [];
         if (generatedRecords.length) {
@@ -679,6 +732,7 @@ export function createRouteSearchService({
         plannerTimeout,
         plannerAborted,
         plannerError,
+        destinationSuggestion: destinationSuggestion ? structuredClone(destinationSuggestion) : null,
         targetResultCount: intent.targetResultCount,
         durationMs: now() - startedAt,
       },

@@ -139,8 +139,11 @@ assert.match(success.results[0].sourceContentHash, /^[a-f0-9]{64}$/u);
 assert(success.results[0].sourceSnippet.length <= 1_200);
 assert.equal(success.results[0].sourceSnippet.includes("Discovery snippet must not be persisted"), false);
 assert.equal(JSON.stringify(success).includes("BODY_SENTINEL_MUST_NOT_BE_RETURNED"), false, "full page body must not be returned");
+assert.equal(success.results[0].sourceFactText, "", "a source without an explicit locator must not invent an exact fact text");
+assert(success.results[0].sourceFactLocator.length <= 240);
+assert.deepEqual(success.results[0].sourceDirection, { fromEntityId: "Q1490", toEntityId: "Q34600" });
 assert.deepEqual(Object.keys(success.results[0]).sort(), [
-  "retrievedAt", "sourceContentHash", "sourceHttpStatus", "sourcePublisher", "sourceSnippet", "sourceTitle", "sourceType", "sourceUrl",
+  "retrievedAt", "sourceContentHash", "sourceDirection", "sourceFactLocator", "sourceFactText", "sourceHttpStatus", "sourcePublisher", "sourceSnippet", "sourceTitle", "sourceType", "sourceUrl",
 ].sort());
 
 const disabledProvider = createRouteV2LiveEvidenceCanaryProvider({

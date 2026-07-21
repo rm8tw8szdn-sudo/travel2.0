@@ -160,6 +160,18 @@ export {
   createRouteV2LiveEvidenceCanaryProvider,
 } from "./live-evidence-canary-provider.mjs";
 export {
+  ROUTE_V2_JAPAN_EVIDENCE_PILOT_BUNDLE_ID,
+  ROUTE_V2_JAPAN_EVIDENCE_PILOT_ID,
+  ROUTE_V2_JAPAN_EVIDENCE_PILOT_STORAGE_ROOT,
+  ROUTE_V2_JAPAN_EVIDENCE_PILOT_ENTITIES,
+  ROUTE_V2_JAPAN_EVIDENCE_PILOT_TARGETS,
+  createJapanEvidencePilotProvider,
+  createJapanEvidencePilotSourceDiscovery,
+  planJapanEvidencePilot,
+  seedJapanEvidencePilot,
+  summarizeJapanEvidencePilot,
+} from "./japan-evidence-validation-pilot.mjs";
+export {
   KNOWLEDGE_ENTITY_SOURCE_TYPES,
   KNOWLEDGE_RELATIONSHIP_TYPES,
   createKnowledgeFactId,

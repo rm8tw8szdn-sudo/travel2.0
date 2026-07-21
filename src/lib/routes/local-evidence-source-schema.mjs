@@ -77,6 +77,8 @@ export function normalizeLocalEvidenceSource(input = {}) {
     supports: uniqueStrings(Array.isArray(input.supports) ? input.supports : []),
     confidence: Number(input.confidence),
     contentHash: clean(input.contentHash),
+    factLocator: clean(input.factLocator).slice(0, 240),
+    factExcerpt: clean(input.factExcerpt).slice(0, 600),
   };
   normalized.sourceId = normalized.sourceId || createLocalEvidenceSourceId(normalized);
   return normalized;
@@ -98,6 +100,8 @@ export function validateLocalEvidenceSource(input = {}) {
   if (!source.supports.length) reasons.push("local-evidence-supports-required");
   if (!Number.isFinite(source.confidence) || source.confidence < 0 || source.confidence > 1) reasons.push("local-evidence-confidence-invalid");
   if (!/^[a-f0-9]{64}$/u.test(source.contentHash)) reasons.push("local-evidence-contentHash-invalid");
+  if (source.factLocator && source.factLocator.length > 240) reasons.push("local-evidence-factLocator-too-long");
+  if (source.factExcerpt && source.factExcerpt.length > 600) reasons.push("local-evidence-factExcerpt-too-long");
   if (source.sourceId !== createLocalEvidenceSourceId(source)) reasons.push("local-evidence-sourceId-mismatch");
   return { accepted: reasons.length === 0, reasons, source: structuredClone(source) };
 }

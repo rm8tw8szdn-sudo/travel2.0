@@ -107,6 +107,18 @@ function boundedWindow(text, start, end, { before = 220, after = 780 } = {}) {
   return clean(text.slice(from, to)).slice(0, 1_200);
 }
 
+function escapePattern(value) {
+  return String(value || "").replace(/[.*+?^${}()|[\]\\]/gu, "\\$&");
+}
+
+function matchedSpan(text, patterns = []) {
+  for (const pattern of patterns) {
+    const match = pattern.exec(text);
+    if (match?.index >= 0) return { start: match.index, end: match.index + match[0].length };
+  }
+  return null;
+}
+
 function directedRouteSpan(text, fromAliases = [], toAliases = []) {
   const normalized = normalizeText(text);
   for (const from of fromAliases.map(normalizeText)) {
@@ -123,9 +135,54 @@ function directedRouteSpan(text, fromAliases = [], toAliases = []) {
         const index = normalized.indexOf(phrase);
         if (index >= 0) return { start: index, end: index + phrase.length };
       }
+      const escapedFrom = escapePattern(from);
+      const escapedTo = escapePattern(to);
+      const explicit = matchedSpan(normalized, [
+        new RegExp(`\\b(?:arrive|arrives|arriving|reach|reaches|reaching)\\s+(?:in\\s+)?${escapedTo}\\b.{0,80}\\bfrom\\s+${escapedFrom}\\b`, "iu"),
+        new RegExp(`\\b${escapedTo}\\b.{0,180}\\b(?:accessible|reached|reach|travel)\\b.{0,120}\\bfrom\\s+${escapedFrom}\\b`, "iu"),
+        new RegExp(`\\bfrom\\s+${escapedFrom}\\b.{0,500}\\b${escapedTo}\\b`, "iu"),
+        new RegExp(`\\b${escapedTo}\\b.{0,180}\\bfrom\\s+${escapedFrom}\\b`, "iu"),
+        new RegExp(`\\b${escapedFrom}\\b.{0,520}\\b(?:connects?|service|train|rail|bus|shinkansen)\\b.{0,180}\\b${escapedTo}\\b`, "iu"),
+      ]);
+      if (explicit) return explicit;
     }
   }
   return null;
+}
+
+function allIndexes(text, token) {
+  const indexes = [];
+  let cursor = 0;
+  while (token && cursor < text.length) {
+    const index = text.indexOf(token, cursor);
+    if (index < 0) break;
+    indexes.push(index);
+    cursor = index + Math.max(1, token.length);
+  }
+  return indexes;
+}
+
+function seasonEvidenceSpan(text, entityAliases = [], monthName = "") {
+  const normalized = normalizeText(text);
+  const entityIndexes = entityAliases.flatMap((alias) => allIndexes(normalized, normalizeText(alias)));
+  const monthIndexes = [monthName, monthName.slice(0, 3)]
+    .map(normalizeText)
+    .filter((value) => value.length >= 3)
+    .flatMap((month) => allIndexes(normalized, month));
+  const candidates = [];
+  for (const entityIndex of entityIndexes) {
+    for (const monthIndex of monthIndexes) {
+      if (Math.abs(entityIndex - monthIndex) > 1_800) continue;
+      const excerpt = boundedWindow(text, entityIndex, monthIndex, { before: 320, after: 1_000 });
+      const normalizedAlias = entityAliases.map(normalizeText).find((alias) => normalizeText(excerpt).includes(alias)) || "";
+      const escapedAlias = escapePattern(normalizedAlias);
+      const directRisk = escapedAlias && new RegExp(`(?:snow|snowfall|icy|ice-covered|freezing|blizzard|closure|closed|suspension|通行止|積雪).{0,120}${escapedAlias}|${escapedAlias}.{0,120}(?:snow|snowfall|icy|ice-covered|freezing|blizzard|closure|closed|suspension|通行止|積雪)`, "iu").test(normalizeText(excerpt));
+      const riskScore = directRisk ? 0 : /snow|snowfall|icy|ice-covered|freezing|blizzard|closure|closed|suspension|通行止|積雪/iu.test(excerpt) ? 1 : 2;
+      candidates.push({ start: entityIndex, end: monthIndex, riskScore, distance: Math.abs(entityIndex - monthIndex) });
+    }
+  }
+  candidates.sort((left, right) => left.riskScore - right.riskScore || left.distance - right.distance || left.start - right.start);
+  return candidates[0] || null;
 }
 
 function relevantSnippet(text, context = {}) {
@@ -134,12 +191,27 @@ function relevantSnippet(text, context = {}) {
     return span ? boundedWindow(text, span.start, span.end) : "";
   }
   if (context.record?.entityId && context.record?.month) {
-    const entityIndex = firstIndex(text, aliases(context.entity));
     const monthName = MONTH_NAMES[Number(context.record.month)] || "";
-    const monthIndex = monthName ? firstIndex(text, [monthName, monthName.slice(0, 3)]) : -1;
-    return entityIndex < 0 || monthIndex < 0 ? "" : boundedWindow(text, entityIndex, monthIndex, { before: 300, after: 900 });
+    const span = monthName ? seasonEvidenceSpan(text, aliases(context.entity), monthName) : null;
+    return span ? boundedWindow(text, span.start, span.end, { before: 320, after: 1_000 }) : "";
   }
   return "";
+}
+
+function explicitLocatorSnippet(text, locator) {
+  const value = typeof locator === "string" ? locator : locator?.text;
+  const locatorText = clean(value);
+  if (!locatorText) return { requested: false, snippet: "", factText: "", locator: "" };
+  const index = text.toLocaleLowerCase("en-US").indexOf(locatorText.toLocaleLowerCase("en-US"));
+  if (index < 0) return { requested: true, snippet: "", factText: "", locator: locatorText };
+  const before = Math.min(500, Math.max(0, Number(locator?.before) || 120));
+  const after = Math.min(700, Math.max(80, Number(locator?.after) || 320));
+  return {
+    requested: true,
+    snippet: boundedWindow(text, index, index + locatorText.length, { before, after }),
+    factText: clean(text.slice(index, index + locatorText.length)),
+    locator: locatorText,
+  };
 }
 
 function sha256(value) {
@@ -205,8 +277,13 @@ async function fetchOfficialPage({ result, context, fetchImpl, timeoutMs, signal
     if (!clean(html)) return { ok: false, attempted: true, diagnostic: diagnostic({ reason: "source-empty-content", url: finalUrl, status: response.status }) };
     const text = htmlToText(html.slice(0, 2_000_000));
     if (text.length < 80) return { ok: false, attempted: true, diagnostic: diagnostic({ reason: "source-parse-failed", url: finalUrl, status: response.status }) };
-    const snippet = relevantSnippet(text, context);
-    if (!snippet) return { ok: false, attempted: true, diagnostic: diagnostic({ reason: "source-content-irrelevant", url: finalUrl, status: response.status }) };
+    const directionallyRelevantSnippet = relevantSnippet(text, context);
+    if (!directionallyRelevantSnippet) return { ok: false, attempted: true, diagnostic: diagnostic({ reason: "source-content-irrelevant", url: finalUrl, status: response.status }) };
+    const located = explicitLocatorSnippet(text, result.sourceLocator);
+    if (located.requested && !located.snippet) {
+      return { ok: false, attempted: true, diagnostic: diagnostic({ reason: "source-locator-not-found", url: finalUrl, status: response.status }) };
+    }
+    const snippet = located.snippet || directionallyRelevantSnippet;
     const classification = classifyLocalEvidenceSource(finalUrl);
     return {
       ok: true,
@@ -215,10 +292,16 @@ async function fetchOfficialPage({ result, context, fetchImpl, timeoutMs, signal
         sourceUrl: finalUrl,
         sourceTitle: htmlTitle(html).slice(0, 240),
         sourceSnippet: snippet,
+        sourceFactText: located.factText || "",
         sourcePublisher: classification.publisher,
         sourceType: classification.sourceType,
         sourceHttpStatus: response.status,
         sourceContentHash: sha256(text),
+        sourceFactLocator: (located.locator || htmlTitle(html)).slice(0, 240),
+        sourceDirection: context.record?.fromEntityId && context.record?.toEntityId ? {
+          fromEntityId: clean(context.record.fromEntityId),
+          toEntityId: clean(context.record.toEntityId),
+        } : null,
         retrievedAt: now(),
       },
     };
@@ -252,18 +335,18 @@ export function createRouteV2LiveEvidenceCanaryProvider({
       evidenceSource: true,
       realtimeUserRequest: false,
       producesRouteRecord: false,
-      requiresApiKey: true,
+      requiresApiKey: discoveryProvider?.capabilities?.requiresApiKey !== false,
       configured,
       fetchesOfficialPages: true,
     },
-    async searchEvidence({ query = "", limit = 5, signal = null, context = {}, timeoutMs: requestTimeoutMs = null, maxRetries = null } = {}) {
+    async searchEvidence({ query = "", limit = 5, signal = null, task = null, context = {}, timeoutMs: requestTimeoutMs = null, maxRetries = null } = {}) {
       if (!configured) {
         return {
           ok: false, configured: false, attempted: false, provider: ROUTE_V2_LIVE_EVIDENCE_CANARY_PROVIDER_ID,
           query: clean(query), results: [], failure: "provider-not-configured", diagnostics: [], attempts: 0, retrievedAt: now(),
         };
       }
-      const discovered = await discoveryProvider.searchEvidence({ query, limit, signal, timeoutMs: requestTimeoutMs, maxRetries });
+      const discovered = await discoveryProvider.searchEvidence({ query, limit, signal, task, context, timeoutMs: requestTimeoutMs, maxRetries });
       if (!discovered?.ok) {
         return { ...discovered, provider: ROUTE_V2_LIVE_EVIDENCE_CANARY_PROVIDER_ID, results: [] };
       }

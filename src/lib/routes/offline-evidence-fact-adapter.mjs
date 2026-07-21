@@ -43,6 +43,12 @@ function sourceText(result = {}) {
 }
 
 function sourceSnippet(result = {}) {
+  return clean(result.sourceDirection && result.sourceFactText
+    ? result.sourceFactText
+    : result.sourceSnippet || result.snippet || result.content);
+}
+
+function sourceExcerpt(result = {}) {
   return clean(result.sourceSnippet || result.snippet || result.content);
 }
 
@@ -54,11 +60,11 @@ function addDuration(values, hours, minutes = 0) {
 function durationValues(text) {
   const normalized = normalizeText(text);
   const values = new Set();
-  let remaining = normalized.replace(/(\d+(?:\.\d+)?)\s*(?:hours?|hrs?)\s*(?:(\d+)\s*(?:minutes?|mins?))?/gu, (_match, hours, minutes) => {
+  let remaining = normalized.replace(/(\d+(?:\.\d+)?)\s*(?:hours?|hrs?|h)\s*(?:(\d+)\s*(?:minutes?|mins?|min))?/gu, (_match, hours, minutes) => {
     addDuration(values, hours, minutes);
     return " ";
   });
-  remaining = remaining.replace(/(\d+(?:\.\d+)?)\s*(?:minutes?|mins?)/gu, (_match, minutes) => {
+  remaining = remaining.replace(/(\d+(?:\.\d+)?)\s*(?:minutes?|mins?|min)/gu, (_match, minutes) => {
     addDuration(values, 0, minutes);
     return " ";
   });
@@ -108,6 +114,8 @@ function sourceForResult(result, supports, retrievedAt) {
     contentHash: /^[a-f0-9]{64}$/u.test(clean(result.sourceContentHash))
       ? clean(result.sourceContentHash)
       : sha256EvidenceContent(content),
+    factLocator: clean(result.sourceFactLocator || result.sourceTitle || result.title).slice(0, 240),
+    factExcerpt: sourceExcerpt(result).slice(0, 600),
   });
   const validation = validateLocalEvidenceSource(source);
   return validation.accepted ? validation.source : null;
@@ -164,16 +172,21 @@ function relevantRouteLegResult(result, context = {}) {
   const snippet = sourceSnippet(result);
   const fromIndex = firstAliasIndex(snippet, aliasesFor(context.from));
   const toIndex = firstAliasIndex(snippet, aliasesFor(context.to));
-  if (snippet.length < 24 || fromIndex < 0 || toIndex < 0 || fromIndex >= toIndex) return null;
+  const verifiedDirection = clean(result.sourceDirection?.fromEntityId) === clean(context.record?.fromEntityId)
+    && clean(result.sourceDirection?.toEntityId) === clean(context.record?.toEntityId);
+  if (snippet.length < 24 || (!verifiedDirection && (fromIndex < 0 || toIndex < 0 || fromIndex >= toIndex))) return null;
   const explicitlyUnavailable = /no (?:direct )?(?:service|connection)|not connected|service (?:is )?(?:suspended|closed)/iu.test(snippet);
-  const explicitlyConnected = /connects?|connected|service between|travel(?:ing)? (?:from|between)|reach|runs? between|shinkansen|train|rail|ferry|bus|nozomi|hikari|kodama/iu.test(snippet);
+  const explicitlyConnected = /connects?|connected|service between|rapid service|express|travel(?:ing)? (?:from|between)|reach|arriv(?:e|es|ing)|runs? between|shinkansen|train|rail|ferry|bus|nozomi|hikari|kodama/iu.test(snippet)
+    || (verifiedDirection && /\baccess\b/iu.test(snippet));
   if (!explicitlyUnavailable && !explicitlyConnected) return null;
-  const extractor = createWebEvidenceExtractor({ now: () => context.retrievedAt });
-  const extracted = extractor.extract({ query: context.query, results: [result], retrievedAt: context.retrievedAt });
-  const extractedDurations = extracted.evidence
-    .filter((item) => item.evidenceType === "segment-metric")
-    .map((item) => Number(item.value?.durationMinutes))
-    .filter((value) => Number.isFinite(value) && value > 0);
+  const extractedDurations = result.sourceFactText ? [] : (() => {
+    const extractor = createWebEvidenceExtractor({ now: () => context.retrievedAt });
+    const extracted = extractor.extract({ query: context.query, results: [result], retrievedAt: context.retrievedAt });
+    return extracted.evidence
+      .filter((item) => item.evidenceType === "segment-metric")
+      .map((item) => Number(item.value?.durationMinutes))
+      .filter((value) => Number.isFinite(value) && value > 0);
+  })();
   const durations = [...new Set([...durationValues(snippet), ...extractedDurations])].sort((left, right) => left - right);
   return {
     result,
@@ -286,7 +299,7 @@ function relevantSeasonResult(result, context = {}) {
   const weather = [];
   const transport = [];
   const closure = [];
-  if (/heavy snow|snowfall|snow can fall|icy|ice-covered|freezing|blizzard|大雪|積雪/iu.test(snippet)) weather.push("snow-or-ice-risk");
+  if (/heavy snow|plenty of snow|snowfall|snow can fall|snow-covered|snowy|icy|ice-covered|freezing|blizzard|大雪|積雪/iu.test(snippet)) weather.push("snow-or-ice-risk");
   if (/delay|speed restriction|winter tires?|snow chains?|service suspension|suspended service|preventive road closure|通行止|速度規制/iu.test(snippet)) transport.push("winter-transport-disruption-risk");
   if (/seasonal(?:ly)? closed|winter closure|closed (?:in|during)|closure|通行止/iu.test(snippet)) closure.push("seasonal-or-weather-closure-risk");
   const openYearRound = /open year[- ]round|remains open|no (?:seasonal )?closure/iu.test(snippet);

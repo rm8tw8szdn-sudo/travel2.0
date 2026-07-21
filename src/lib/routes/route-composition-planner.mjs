@@ -15,7 +15,12 @@ import { createRouteCandidatePoolStore, validateRouteCandidate } from "./route-c
 import {
   ROUTE_CANDIDATE_SELECTION_TARGET,
   selectRouteCandidates,
+  selectRouteCandidatesWithEvidence,
 } from "./route-candidate-selection.mjs";
+import {
+  isRouteV2EvidenceValidationEnabled,
+  validateRouteForUse,
+} from "./route-candidate-evidence-validation.mjs";
 import { createEvidenceBundleStore } from "./evidence-bundle-store.mjs";
 import { writeLocalEvidenceSidecarSafe } from "./local-evidence-sidecar.mjs";
 import { writeEvidenceBundleLifecycleSidecarSafe } from "./evidence-bundle-lifecycle-sidecar.mjs";
@@ -625,7 +630,9 @@ async function writeCandidatePoolSidecarSafe({
   concept,
   pool,
   candidatePoolStore,
+  localEvidenceRepository = null,
   routeCandidateBuilder = buildRouteCandidatesFromPool,
+  candidateEvidenceValidator = validateRouteForUse,
   env = process.env,
 } = {}) {
   async function persistBatch(intentId, candidates) {
@@ -790,7 +797,15 @@ async function writeCandidatePoolSidecarSafe({
       };
     }
 
-    const selection = selectRouteCandidates({ candidates: pendingCandidates, context, intentId });
+    const selection = isRouteV2EvidenceValidationEnabled(env)
+      ? selectRouteCandidatesWithEvidence({
+        candidates: pendingCandidates,
+        context,
+        intentId,
+        evidenceRepository: localEvidenceRepository,
+        validator: candidateEvidenceValidator,
+      })
+      : selectRouteCandidates({ candidates: pendingCandidates, context, intentId });
     if (!selection?.ready) {
       const failedCandidates = selection?.candidatePool?.length ? selection.candidatePool : pendingCandidates.map((candidate) => ({
         ...candidate,
@@ -807,6 +822,8 @@ async function writeCandidatePoolSidecarSafe({
         persistedCandidates: failedCandidates,
         writtenCandidates: failedCandidates,
         selection: null,
+        failedSelection: selection,
+        validationResults: structuredClone(selection?.validationResults || []),
         persistenceReady: false,
         failureStage: "candidate-selection",
         failureReason: selection?.reason || "candidate-selection-failed",
@@ -1282,7 +1299,7 @@ function validatePlannerCandidateSafe(record, concept, context, strategyRegistry
 }
 
 // 新管线主体
-async function runPipeline({ context, knowledgeGraph, evidenceRepository, acceptedRepository, strategyRegistry, llmRefineProvider, webEvidencePipeline, decisionTraceStore, candidatePoolStore, evidenceBundleStore, localEvidenceRepository, routeCandidateBuilder, localEvidenceSidecar, localEvidenceCollector, env, limit }) {
+async function runPipeline({ context, knowledgeGraph, evidenceRepository, acceptedRepository, strategyRegistry, llmRefineProvider, webEvidencePipeline, decisionTraceStore, candidatePoolStore, evidenceBundleStore, localEvidenceRepository, routeCandidateBuilder, candidateEvidenceValidator, localEvidenceSidecar, localEvidenceCollector, env, limit }) {
   const accepted = [];
   const rejected = [];
   const v2IntentEnabled = isRouteV2IntentEnabled(env);
@@ -1297,7 +1314,7 @@ async function runPipeline({ context, knowledgeGraph, evidenceRepository, accept
   }
   const v2Attempted = v2IntentEnabled && (candidatePoolEnabled || Boolean(candidatePoolInitializationFailure));
   let v2Failure = null;
-  async function recordV2Failure({ stage, reason, candidates = [], unknowns = [], legacyFallback = true } = {}) {
+  async function recordV2Failure({ stage, reason, candidates = [], candidateValidations = [], decisionFactors = [], candidateSelectionMode = "", unknowns = [], legacyFallback = true } = {}) {
     if (!v2Attempted) return null;
     if (v2Failure) return v2Failure;
     const failureCode = clean(reason) || "v2-planner-failed";
@@ -1328,9 +1345,12 @@ async function runPipeline({ context, knowledgeGraph, evidenceRepository, accept
       context,
       intentId: context?.intentId || "",
       candidatePool: failure.candidates,
+      candidateValidations,
+      candidateSelectionMode,
       failureStage: failure.stage,
       failureReason: failure.reason,
       source: "planner-pipeline",
+      decisionFactors,
       unknowns: [
         ...unknowns,
         ...(failedCandidates.length ? [{
@@ -1406,12 +1426,24 @@ async function runPipeline({ context, knowledgeGraph, evidenceRepository, accept
         failureStage: "candidate-persistence",
         failureReason: "candidate-store-initialization-failed",
       }
-    : await writeCandidatePoolSidecarSafe({ context, concept, pool, candidatePoolStore, routeCandidateBuilder, env });
+    : await writeCandidatePoolSidecarSafe({
+      context,
+      concept,
+      pool,
+      candidatePoolStore,
+      localEvidenceRepository,
+      routeCandidateBuilder,
+      candidateEvidenceValidator,
+      env,
+    });
   if (candidateSidecar?.failureStage) {
     await recordV2Failure({
       stage: candidateSidecar.failureStage,
       reason: candidateSidecar.failureReason,
       candidates: candidateSidecar.generatedCandidates || [],
+      candidateValidations: candidateSidecar.validationResults || [],
+      candidateSelectionMode: candidateSidecar.failedSelection?.selectionMode || "",
+      decisionFactors: candidateSidecar.failedSelection?.decisionFactors || [],
       unknowns: [{ field: "candidatePersistence", reason: (candidateSidecar.failures || []).join(",") || candidateSidecar.failureReason }],
       legacyFallback: true,
     });
@@ -1607,6 +1639,11 @@ async function runPipeline({ context, knowledgeGraph, evidenceRepository, accept
     record.generationVersion = ROUTE_GENERATION_V2_PHASE1;
     record.intentId = candidateSidecar.selection.inputIntentSnapshot.intentId;
     record.selectedCandidateId = selectedCandidate.candidateId;
+    if (candidateSidecar.selection.selectedValidationId) {
+      record.evidenceValidationId = candidateSidecar.selection.selectedValidationId;
+      record.evidenceValidationStatus = candidateSidecar.selection.selectedValidationStatus;
+      record.evidenceSelectionMode = candidateSidecar.selection.selectionMode;
+    }
     record.v2PublicationStatus = V2_NOT_PUBLISHABLE_YET;
   } else if (v2Failure) {
     record.generationVersion = "route-generation-v2-fallback";
@@ -1777,6 +1814,9 @@ async function runPipeline({ context, knowledgeGraph, evidenceRepository, accept
     evidenceCollect,
     destinationSource: record.destinationSource,
     decisionTrace: traceWrite,
+    ...(candidateSidecar?.selection?.validationResults?.length
+      ? { candidateEvidenceValidations: structuredClone(candidateSidecar.selection.validationResults) }
+      : {}),
     ...(evidenceBundleLifecycle?.enabled === true ? { evidenceBundleLifecycle } : {}),
     ...(v2Failure ? { v2Failure } : {}),
   });
@@ -1794,7 +1834,7 @@ function durationBandFromDays(days) {
   return "15d+";
 }
 
-export function createRouteCompositionPlanner({ evidenceRepository, acceptedRepository, strategyRegistry = null, knowledgeGraph = null, llmRefineProvider = null, webEvidencePipeline = null, decisionTraceStore = null, candidatePoolStore = null, evidenceBundleStore = null, localEvidenceRepository = null, routeCandidateBuilder = buildRouteCandidatesFromPool, localEvidenceSidecar = writeLocalEvidenceSidecarSafe, localEvidenceCollector = null, env = process.env } = {}) {
+export function createRouteCompositionPlanner({ evidenceRepository, acceptedRepository, strategyRegistry = null, knowledgeGraph = null, llmRefineProvider = null, webEvidencePipeline = null, decisionTraceStore = null, candidatePoolStore = null, evidenceBundleStore = null, localEvidenceRepository = null, routeCandidateBuilder = buildRouteCandidatesFromPool, candidateEvidenceValidator = validateRouteForUse, localEvidenceSidecar = writeLocalEvidenceSidecarSafe, localEvidenceCollector = null, env = process.env } = {}) {
   if (!evidenceRepository?.bySourceRoute) throw new Error("EVIDENCE_REPOSITORY_REQUIRED");
   if (!acceptedRepository?.list) throw new Error("ACCEPTED_REPOSITORY_REQUIRED");
   const traceStore = decisionTraceStore || createDecisionTraceStore({ env });
@@ -1805,7 +1845,7 @@ export function createRouteCompositionPlanner({ evidenceRepository, acceptedRepo
     async buildCandidates({ limit = 5, context = null } = {}) {
       // 新管线模式：有 context（{durationDays, country, style, ...}）走知识图驱动（async，含 LLM 节点）
       if (context && (context.country || context.durationDays || context.travelStyle)) {
-        return runPipeline({ context, knowledgeGraph, evidenceRepository, acceptedRepository, strategyRegistry, llmRefineProvider, webEvidencePipeline, decisionTraceStore: traceStore, candidatePoolStore: sidecarCandidatePoolStore, evidenceBundleStore: sidecarEvidenceBundleStore, localEvidenceRepository: sidecarLocalEvidenceRepository, routeCandidateBuilder, localEvidenceSidecar, localEvidenceCollector, env, limit });
+        return runPipeline({ context, knowledgeGraph, evidenceRepository, acceptedRepository, strategyRegistry, llmRefineProvider, webEvidencePipeline, decisionTraceStore: traceStore, candidatePoolStore: sidecarCandidatePoolStore, evidenceBundleStore: sidecarEvidenceBundleStore, localEvidenceRepository: sidecarLocalEvidenceRepository, routeCandidateBuilder, candidateEvidenceValidator, localEvidenceSidecar, localEvidenceCollector, env, limit });
       }
       // 旧兼容模式：evidence 桶缝合（codex 原 buildCandidates，仅旧 verify 脚本与生产 run-route-ai-production-phase2a 走此路径）
       const existingRecords = acceptedRepository.list({ limit: 100_000 }).records;

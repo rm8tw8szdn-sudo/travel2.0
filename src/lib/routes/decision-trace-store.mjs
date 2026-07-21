@@ -130,13 +130,15 @@ export function createDecisionTraceStore({
     }
   }
 
-  function appendFailureTrace({ context = {}, intentId = context.intentId || "", candidatePool = [], failureStage = "planner", failureReason = "v2-planner-failed", source = "planner-pipeline", decisionFactors = [], unknowns = [], legacyFallback = true } = {}) {
+  function appendFailureTrace({ context = {}, intentId = context.intentId || "", candidatePool = [], candidateValidations = [], candidateSelectionMode = "", failureStage = "planner", failureReason = "v2-planner-failed", source = "planner-pipeline", decisionFactors = [], unknowns = [], legacyFallback = true } = {}) {
     if (!enabled()) return { written: false, skipped: true, reason: "trace-disabled" };
     try {
       const trace = buildFailureDecisionTrace({
         context,
         intentId,
         candidatePool,
+        candidateValidations,
+        candidateSelectionMode,
         failureStage,
         failureReason,
         source,

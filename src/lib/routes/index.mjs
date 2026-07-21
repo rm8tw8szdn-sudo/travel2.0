@@ -121,6 +121,13 @@ export {
 export { createLocalEvidenceIndex } from "./local-evidence-index.mjs";
 export { createLocalEvidenceRepository } from "./local-evidence-repository.mjs";
 export {
+  ROUTE_V2_EVIDENCE_VALIDATION_FLAG,
+  ROUTE_V2_EVIDENCE_VALIDATION_STATUSES,
+  ROUTE_V2_EVIDENCE_VALIDATOR_VERSION,
+  isRouteV2EvidenceValidationEnabled,
+  validateRouteForUse,
+} from "./route-candidate-evidence-validation.mjs";
+export {
   LOCAL_EVIDENCE_SOURCE_TYPES,
   classifyLocalEvidenceSource,
   createLocalEvidenceSourceId,
@@ -283,6 +290,7 @@ export {
 export {
   ROUTE_CANDIDATE_SELECTION_TARGET,
   selectRouteCandidates,
+  selectRouteCandidatesWithEvidence,
 } from "./route-candidate-selection.mjs";
 export { createRouteJobStore } from "./route-job-store.mjs";
 export { dedupeRouteRecords, isDuplicateRoute, routeDedupeFingerprint } from "./route-dedupe.mjs";

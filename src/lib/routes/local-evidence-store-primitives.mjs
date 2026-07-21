@@ -178,6 +178,11 @@ export function createAtomicJsonlEvidenceStore({
     return clone(readSnapshot().diagnostics);
   }
 
+  function snapshot() {
+    if (!isEnabled()) return { records: [], entries: [], diagnostics: [] };
+    return clone(readSnapshot());
+  }
+
   return {
     storagePath,
     enabled: isEnabled,
@@ -186,6 +191,7 @@ export function createAtomicJsonlEvidenceStore({
     list,
     get,
     diagnostics,
+    snapshot,
     revision: () => revision,
     parseCount: () => parseCount,
   };

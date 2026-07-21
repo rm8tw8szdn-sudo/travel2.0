@@ -186,6 +186,12 @@ export function buildLegacyDecisionTrace({
   const rejectedCandidates = hasCandidateSelection
     ? clone(candidateSelection.rejectedCandidates)
     : [];
+  const candidateValidations = hasCandidateSelection && Array.isArray(candidateSelection.validationResults)
+    ? clone(candidateSelection.validationResults)
+    : [];
+  const selectedCandidateValidation = candidateValidations.find((validation) => (
+    cleanString(validation?.candidateId) === cleanString(selectedCandidate.candidateId)
+  )) || null;
   return {
     traceId,
     routeId: route.id,
@@ -199,6 +205,13 @@ export function buildLegacyDecisionTrace({
     rejectionReasons: hasCandidateSelection
       ? clone(candidateSelection.rejectionReasons)
       : [],
+    ...(candidateValidations.length
+      ? {
+        candidateValidations,
+        selectedCandidateValidation: clone(selectedCandidateValidation),
+        candidateSelectionMode: cleanString(candidateSelection.selectionMode),
+      }
+      : {}),
     decisionFactors: [
       ...(hasCandidateSelection ? candidateSelection.decisionFactors : []),
       ...decisionFactors,
@@ -238,6 +251,8 @@ export function buildFailureDecisionTrace({
   context = {},
   intentId = context.intentId || "",
   candidatePool = [],
+  candidateValidations = [],
+  candidateSelectionMode = "",
   failureStage = "planner",
   failureReason = "v2-planner-failed",
   source = "planner-pipeline",
@@ -262,6 +277,13 @@ export function buildFailureDecisionTrace({
     inputContext,
     inputIntentSnapshot: clone(inputContext),
     candidatePool: failedCandidates,
+    ...(Array.isArray(candidateValidations) && candidateValidations.length
+      ? {
+        candidateValidations: clone(candidateValidations),
+        selectedCandidateValidation: null,
+        candidateSelectionMode: cleanString(candidateSelectionMode),
+      }
+      : {}),
     selectedCandidate: null,
     rejectedCandidates: clone(failedCandidates),
     rejectionReasons: failedCandidates.map((candidate) => ({
@@ -302,6 +324,32 @@ export function validateDecisionTrace(trace = {}) {
     if (!Array.isArray(trace[field])) missing.push(`${field}-array-required`);
   }
   const candidatePool = Array.isArray(trace.candidatePool) ? trace.candidatePool : [];
+  const candidateValidations = Array.isArray(trace.candidateValidations) ? trace.candidateValidations : [];
+  const evidenceAware = candidateValidations.length > 0;
+  if (trace.candidateValidations != null && !Array.isArray(trace.candidateValidations)) missing.push("candidateValidations-array-required");
+  const validationIds = new Set();
+  const validationCandidateIds = new Set();
+  for (const validation of candidateValidations) {
+    const validationId = cleanString(validation?.validationId);
+    const candidateId = cleanString(validation?.candidateId);
+    if (!validationId) missing.push("candidateValidation-validationId-required");
+    if (!candidateId) missing.push("candidateValidation-candidateId-required");
+    if (validationIds.has(validationId)) missing.push(`candidateValidation-validationId-duplicate:${validationId}`);
+    if (validationCandidateIds.has(candidateId)) missing.push(`candidateValidation-candidateId-duplicate:${candidateId}`);
+    validationIds.add(validationId);
+    validationCandidateIds.add(candidateId);
+    if (!new Set(["ready", "needs-evidence", "rejected"]).has(cleanString(validation?.status))) {
+      missing.push(`candidateValidation-status:${candidateId}`);
+    }
+    for (const field of ["reasonCodes", "legResults", "seasonResults", "criticalMissingEvidenceIds", "conflictEvidenceIds", "staleEvidenceIds"]) {
+      if (!Array.isArray(validation?.[field])) missing.push(`candidateValidation-${field}:${candidateId}`);
+    }
+    if (!validation?.pacingResult || typeof validation.pacingResult !== "object" || Array.isArray(validation.pacingResult)) {
+      missing.push(`candidateValidation-pacingResult:${candidateId}`);
+    }
+    if (!cleanString(validation?.validatedAt)) missing.push(`candidateValidation-validatedAt:${candidateId}`);
+    if (!cleanString(validation?.validatorVersion)) missing.push(`candidateValidation-validatorVersion:${candidateId}`);
+  }
   const candidateIds = new Set();
   for (const candidate of candidatePool) {
     const candidateId = cleanString(candidate?.candidateId);
@@ -350,13 +398,16 @@ export function validateDecisionTrace(trace = {}) {
       if (selectedInPool && JSON.stringify(selectedInPool.destinations || []) !== JSON.stringify(trace.selectedCandidate?.destinations || [])) {
         missing.push("selectedCandidate-candidatePool-destinations-mismatch");
       }
-      const expectedRejectedIds = new Set(candidatePool.filter((candidate) => candidate.status === "rejected").map((candidate) => candidate.candidateId));
+      const expectedRejectedIds = new Set(candidatePool.filter((candidate) => cleanString(candidate.candidateId) !== cleanString(trace.candidateId)).map((candidate) => candidate.candidateId));
       const rejectedIds = new Set((trace.rejectedCandidates || []).map((candidate) => cleanString(candidate?.candidateId)).filter(Boolean));
       if (expectedRejectedIds.size !== 2 || rejectedIds.size !== 2 || [...expectedRejectedIds].some((id) => !rejectedIds.has(id))) {
         missing.push("rejectedCandidates-cover-non-selected");
       }
       for (const candidate of trace.rejectedCandidates || []) {
-        if (candidate?.status !== "rejected") missing.push(`rejectedCandidate-status:${cleanString(candidate?.candidateId)}`);
+        const allowedStatus = evidenceAware
+          ? ["rejected", "needs-evidence"]
+          : ["rejected"];
+        if (!allowedStatus.includes(candidate?.status)) missing.push(`rejectedCandidate-status:${cleanString(candidate?.candidateId)}`);
         if (!Array.isArray(candidate?.rejectionReasons) || candidate.rejectionReasons.length === 0) missing.push(`rejectedCandidate-reason:${cleanString(candidate?.candidateId)}`);
       }
       if ((trace.rejectionReasons || []).length !== 2) missing.push("rejectionReasons-cover-rejectedCandidates");
@@ -382,6 +433,26 @@ export function validateDecisionTrace(trace = {}) {
       if (JSON.stringify(selectedCountries) !== JSON.stringify(routeCountries)) missing.push("selectedCandidate-route-countries-mismatch");
       if (Number(trace.selectedCandidate?.durationDays) !== Number(trace.routeSnapshot?.durationDays)) missing.push("selectedCandidate-route-duration-mismatch");
       if (cleanString(trace.selectedCandidate?.travelStyle) !== cleanString(trace.routeSnapshot?.travelStyle)) missing.push("selectedCandidate-route-travelStyle-mismatch");
+      if (evidenceAware) {
+        if (candidateValidations.length !== candidatePool.length) missing.push("candidateValidations-cover-candidatePool");
+        if (candidatePool.some((candidate) => !validationCandidateIds.has(cleanString(candidate.candidateId)))) {
+          missing.push("candidateValidations-candidatePool-mismatch");
+        }
+        if (!trace.selectedCandidateValidation || typeof trace.selectedCandidateValidation !== "object") {
+          missing.push("selectedCandidateValidation-required");
+        } else {
+          if (cleanString(trace.selectedCandidateValidation.candidateId) !== cleanString(trace.candidateId)) {
+            missing.push("selectedCandidateValidation-candidateId-mismatch");
+          }
+          const expectedValidation = candidateValidations.find((validation) => cleanString(validation.candidateId) === cleanString(trace.candidateId));
+          if (!expectedValidation || cleanString(expectedValidation.validationId) !== cleanString(trace.selectedCandidateValidation.validationId)) {
+            missing.push("selectedCandidateValidation-validationId-mismatch");
+          }
+        }
+        if (!new Set(["evidence-ready", "needs-evidence-preview"]).has(cleanString(trace.candidateSelectionMode))) {
+          missing.push("candidateSelectionMode-invalid");
+        }
+      }
     }
   }
 
@@ -396,6 +467,16 @@ export function validateDecisionTrace(trace = {}) {
     if (typeof trace.legacyFallback !== "boolean") missing.push("legacyFallback-boolean-required");
     if (candidatePool.some((candidate) => candidate.status === "selected")) missing.push("failure-candidatePool-must-not-select");
     if (candidatePool.some((candidate) => !["failed", "rejected", "needs-evidence"].includes(candidate.status))) missing.push("failure-candidatePool-status-invalid");
+    if (evidenceAware) {
+      if (candidateValidations.length !== candidatePool.length) missing.push("failure-candidateValidations-cover-candidatePool");
+      if (candidatePool.some((candidate) => !validationCandidateIds.has(cleanString(candidate.candidateId)))) {
+        missing.push("failure-candidateValidations-candidatePool-mismatch");
+      }
+      if (trace.selectedCandidateValidation != null) missing.push("failure-selectedCandidateValidation-must-be-null");
+      if (!new Set(["evidence-aware-rejected", "evidence-aware-failed"]).has(cleanString(trace.candidateSelectionMode))) {
+        missing.push("failure-candidateSelectionMode-invalid");
+      }
+    }
   }
   return { accepted: missing.length === 0, missing };
 }

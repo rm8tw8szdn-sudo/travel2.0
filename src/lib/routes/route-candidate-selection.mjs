@@ -1,4 +1,5 @@
 import { routeIntentSnapshot } from "./decision-trace-schema.mjs";
+import { validateRouteForUse } from "./route-candidate-evidence-validation.mjs";
 import { validateRouteCandidate } from "./route-candidate-pool.mjs";
 import { cleanString, uniqueStrings as unique } from "./route-v2-utils.mjs";
 
@@ -139,5 +140,205 @@ export function selectRouteCandidates({
         reason: "The minimal selection records deterministic generation order only; evidence-backed quality ranking is not implemented.",
       },
     ],
+  };
+}
+
+function validationReasons(validation = {}, fallbackCode = "candidate-evidence-validation-incomplete") {
+  const codes = Array.isArray(validation.reasonCodes) && validation.reasonCodes.length
+    ? validation.reasonCodes
+    : [fallbackCode];
+  return codes.map((code) => ({
+    code: cleanString(code),
+    reason: cleanString(code),
+    validationId: cleanString(validation.validationId) || null,
+    validationStatus: cleanString(validation.status) || "needs-evidence",
+  }));
+}
+
+export function selectRouteCandidatesWithEvidence({
+  candidates = [],
+  context = {},
+  intentId = context.intentId || "",
+  evidenceRepository = null,
+  validator = validateRouteForUse,
+  now = () => new Date().toISOString(),
+} = {}) {
+  const stableSelection = selectRouteCandidates({ candidates, context, intentId });
+  if (!stableSelection?.ready) {
+    return {
+      ...stableSelection,
+      selectionMode: "evidence-aware",
+      validationResults: [],
+    };
+  }
+  const pendingCandidates = stableSelection.candidatePool.map((candidate) => ({
+    ...structuredClone(candidate),
+    status: "pending",
+    rejectionReasons: [],
+  }));
+  let validationResults;
+  try {
+    validationResults = pendingCandidates.map((candidate) => validator(candidate, context, evidenceRepository, { now }));
+  } catch (error) {
+    const reason = cleanString(error?.message || String(error)) || "candidate-evidence-validator-exception";
+    return {
+      ready: false,
+      reason: "candidate-evidence-validator-exception",
+      inputIntentSnapshot: stableSelection.inputIntentSnapshot,
+      candidatePool: pendingCandidates.map((candidate) => ({
+        ...candidate,
+        status: "failed",
+        rejectionReasons: [{ code: "candidate-evidence-validator-exception", reason }],
+      })),
+      selectedCandidate: null,
+      rejectedCandidates: [],
+      rejectionReasons: [],
+      decisionFactors: [],
+      unknowns: [{ field: "candidateEvidenceValidation", reason }],
+      selectionMode: "evidence-aware-failed",
+      validationResults: [],
+    };
+  }
+  const malformedValidation = validationResults.some((validation, index) => (
+    !validation
+    || cleanString(validation.candidateId) !== pendingCandidates[index].candidateId
+    || !["ready", "needs-evidence", "rejected"].includes(cleanString(validation.status))
+    || !cleanString(validation.validationId)
+  ));
+  if (malformedValidation) {
+    return {
+      ready: false,
+      reason: "candidate-evidence-validation-invalid",
+      inputIntentSnapshot: stableSelection.inputIntentSnapshot,
+      candidatePool: pendingCandidates.map((candidate) => ({
+        ...candidate,
+        status: "failed",
+        rejectionReasons: [{ code: "candidate-evidence-validation-invalid", reason: "Candidate validator returned an invalid result contract." }],
+      })),
+      selectedCandidate: null,
+      rejectedCandidates: [],
+      rejectionReasons: [],
+      decisionFactors: [],
+      unknowns: [{ field: "candidateEvidenceValidation", reason: "Candidate validator returned an invalid result contract." }],
+      selectionMode: "evidence-aware-failed",
+      validationResults: [],
+    };
+  }
+  const validationById = new Map(validationResults.map((validation) => [validation.candidateId, validation]));
+  const readyCandidate = pendingCandidates.find((candidate) => validationById.get(candidate.candidateId)?.status === "ready");
+  const previewCandidate = readyCandidate || pendingCandidates.find((candidate) => validationById.get(candidate.candidateId)?.status === "needs-evidence");
+  if (!previewCandidate) {
+    const candidatePool = pendingCandidates.map((candidate) => {
+      const validation = validationById.get(candidate.candidateId);
+      return {
+        ...candidate,
+        status: "rejected",
+        rejectionReasons: validationReasons(validation, "candidate-evidence-rejected"),
+      };
+    });
+    return {
+      ready: false,
+      reason: "candidate-evidence-all-rejected",
+      inputIntentSnapshot: stableSelection.inputIntentSnapshot,
+      candidatePool,
+      selectedCandidate: null,
+      rejectedCandidates: structuredClone(candidatePool),
+      rejectionReasons: candidatePool.map((candidate) => ({ candidateId: candidate.candidateId, ...candidate.rejectionReasons[0] })),
+      decisionFactors: [{
+        factor: "local-evidence-validation",
+        input: validationResults.map((validation) => ({ candidateId: validation.candidateId, status: validation.status })),
+        effect: "Rejects selection because every stable candidate violates a deterministic evidence or pacing rule.",
+      }],
+      unknowns: [],
+      selectionMode: "evidence-aware-rejected",
+      validationResults: structuredClone(validationResults),
+    };
+  }
+
+  const selectedValidation = validationById.get(previewCandidate.candidateId);
+  const selectedCandidate = {
+    ...structuredClone(previewCandidate),
+    status: "selected",
+    rejectionReasons: [],
+  };
+  const nonSelectedCandidates = pendingCandidates.filter((candidate) => candidate.candidateId !== selectedCandidate.candidateId);
+  const rejectedCandidates = nonSelectedCandidates.map((candidate) => {
+    const validation = validationById.get(candidate.candidateId);
+    if (validation?.status === "needs-evidence") {
+      return {
+        ...structuredClone(candidate),
+        status: "needs-evidence",
+        rejectionReasons: [{
+          code: "candidate-needs-evidence-not-selected",
+          reason: readyCandidate
+            ? "A ready candidate takes precedence over this evidence-incomplete candidate."
+            : "Another evidence-incomplete candidate appears first in the existing stable order for preview.",
+          selectedCandidateId: selectedCandidate.candidateId,
+          validationId: validation.validationId,
+          validationStatus: validation.status,
+        }],
+      };
+    }
+    if (validation?.status === "rejected") {
+      return {
+        ...structuredClone(candidate),
+        status: "rejected",
+        rejectionReasons: validationReasons(validation, "candidate-evidence-rejected"),
+      };
+    }
+    return {
+      ...structuredClone(candidate),
+      status: "rejected",
+      rejectionReasons: [{
+        code: "ready-candidate-not-selected-by-stable-order",
+        reason: `Candidate remained after ${selectedCandidate.candidateId} in the existing deterministic order.`,
+        selectedCandidateId: selectedCandidate.candidateId,
+        validationId: validation?.validationId || null,
+        validationStatus: validation?.status || "ready",
+      }],
+    };
+  });
+  const candidatesById = new Map([
+    [selectedCandidate.candidateId, selectedCandidate],
+    ...rejectedCandidates.map((candidate) => [candidate.candidateId, candidate]),
+  ]);
+  const candidatePool = pendingCandidates.map((candidate) => structuredClone(candidatesById.get(candidate.candidateId)));
+  const selectionMode = selectedValidation.status === "ready"
+    ? "evidence-ready"
+    : "needs-evidence-preview";
+  return {
+    ready: true,
+    inputIntentSnapshot: stableSelection.inputIntentSnapshot,
+    candidatePool,
+    selectedCandidate,
+    rejectedCandidates,
+    rejectionReasons: rejectedCandidates.map((candidate) => ({
+      candidateId: candidate.candidateId,
+      ...candidate.rejectionReasons[0],
+    })),
+    decisionFactors: [
+      {
+        factor: "local-evidence-validation",
+        input: validationResults.map((validation) => ({ candidateId: validation.candidateId, status: validation.status, validationId: validation.validationId })),
+        effect: readyCandidate
+          ? `Selects ${selectedCandidate.candidateId} as the first ready candidate in the existing stable order.`
+          : `Selects ${selectedCandidate.candidateId} only as a non-publishable needs-evidence preview because no ready candidate exists.`,
+      },
+      {
+        factor: "stable-generation-order",
+        input: candidatePool.map((candidate) => candidate.candidateId),
+        effect: "Preserves the pre-existing deterministic order without adding random drift.",
+      },
+    ],
+    unknowns: selectedValidation.status === "ready"
+      ? []
+      : [{
+        field: "candidateEvidenceValidation",
+        reason: "No ready candidate exists; the selected route is an explicit needs-evidence preview and remains non-publishable.",
+      }],
+    selectionMode,
+    selectedValidationId: selectedValidation.validationId,
+    selectedValidationStatus: selectedValidation.status,
+    validationResults: structuredClone(validationResults),
   };
 }

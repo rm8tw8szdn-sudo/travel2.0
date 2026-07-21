@@ -1,3 +1,4 @@
+import path from "node:path";
 import { pathToFileURL } from "node:url";
 
 import {
@@ -6,9 +7,12 @@ import {
   createLocalEvidenceRepository,
   createOfflineEvidenceEntityResolver,
   createPublishedKnowledgeEntityLayerRepository,
+  createRouteV2LiveEvidenceCanaryProvider,
   createRouteV2TavilyEvidenceProvider,
   parseOfflineEvidenceCollectorArgs,
 } from "../src/lib/routes/index.mjs";
+
+export const ROUTE_V2_LIVE_CANARY_STORAGE_ROOT = ".route-v2-local-evidence-canary";
 
 export const ROUTE_V2_EVIDENCE_3B_JAPAN_PILOT_ENTITIES = Object.freeze([
   Object.freeze({ wikidataId: "Q1490", countryCode: "JP", name: "东京", sourceTitle: "Tokyo" }),
@@ -25,6 +29,7 @@ export async function runRouteV2LocalEvidenceCollector({
   env = process.env,
   fetchImpl = globalThis.fetch,
   storageRoot = null,
+  providerOverride = null,
   now = () => new Date().toISOString(),
   clock = () => Date.now(),
 } = {}) {
@@ -37,8 +42,15 @@ export async function runRouteV2LocalEvidenceCollector({
       JP: ROUTE_V2_EVIDENCE_3B_JAPAN_PILOT_ENTITIES,
     },
   });
-  const repository = createLocalEvidenceRepository({ env, storageRoot, now });
-  const provider = createRouteV2TavilyEvidenceProvider({ env, fetchImpl, now });
+  const effectiveStorageRoot = storageRoot || (options.canary ? path.resolve(ROUTE_V2_LIVE_CANARY_STORAGE_ROOT) : null);
+  const providerEnv = !env.ROUTE_WEB_SEARCH_API_KEY && env.SEARCH_PROVIDER_API_KEY
+    ? { ...env, ROUTE_WEB_SEARCH_API_KEY: env.SEARCH_PROVIDER_API_KEY }
+    : env;
+  const repository = createLocalEvidenceRepository({ env, storageRoot: effectiveStorageRoot, now });
+  const discoveryProvider = createRouteV2TavilyEvidenceProvider({ env: providerEnv, fetchImpl, now });
+  const provider = providerOverride || (options.canary
+    ? createRouteV2LiveEvidenceCanaryProvider({ discoveryProvider, fetchImpl, now })
+    : discoveryProvider);
   return collectOfflineEvidenceBatch({
     repository,
     provider,

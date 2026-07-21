@@ -105,7 +105,9 @@ function sourceForResult(result, supports, retrievedAt) {
     retrievedAt,
     supports,
     confidence: 0.9,
-    contentHash: sha256EvidenceContent(content),
+    contentHash: /^[a-f0-9]{64}$/u.test(clean(result.sourceContentHash))
+      ? clean(result.sourceContentHash)
+      : sha256EvidenceContent(content),
   });
   const validation = validateLocalEvidenceSource(source);
   return validation.accepted ? validation.source : null;

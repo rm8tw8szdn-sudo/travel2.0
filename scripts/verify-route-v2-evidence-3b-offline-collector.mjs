@@ -76,6 +76,7 @@ assert.deepEqual(parseOfflineEvidenceCollectorArgs([]), {
   country: "",
   dryRun: false,
   resume: false,
+  canary: false,
 });
 assert.deepEqual(parseOfflineEvidenceCollectorArgs(["--limit", "7", "--type", "season", "--country", "JP", "--dry-run", "--resume"]), {
   limit: 7,
@@ -83,6 +84,7 @@ assert.deepEqual(parseOfflineEvidenceCollectorArgs(["--limit", "7", "--type", "s
   country: "JP",
   dryRun: true,
   resume: true,
+  canary: false,
 });
 assert.throws(() => parseOfflineEvidenceCollectorArgs(["--limit", "31"]), /between 1 and 30/u);
 assert.throws(() => parseOfflineEvidenceCollectorArgs(["--type", "invalid"]), /route-leg, season, or all/u);

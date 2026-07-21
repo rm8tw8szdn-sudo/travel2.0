@@ -74,6 +74,7 @@ export function createMissingEvidenceManifestStore({
     status,
     attempted = false,
     diagnostic = null,
+    diagnostics = [],
   } = {}) {
     if (!core.enabled()) return { written: false, persisted: false, skipped: true, reason: "missing-evidence-manifest-disabled" };
     const existing = core.get(missingEvidenceId);
@@ -83,10 +84,11 @@ export function createMissingEvidenceManifestStore({
       `${cleanString(entry.code)}|${cleanString(entry.message)}`,
       entry,
     ]));
-    if (diagnostic && typeof diagnostic === "object") {
+    for (const candidate of [diagnostic, ...(Array.isArray(diagnostics) ? diagnostics : [])]) {
+      if (!candidate || typeof candidate !== "object") continue;
       const entry = {
-        code: cleanString(diagnostic.code || diagnostic.type),
-        message: cleanString(diagnostic.message || diagnostic.reason || diagnostic.error),
+        code: cleanString(candidate.code || candidate.type || candidate.reason),
+        message: cleanString(candidate.message || candidate.reason || candidate.error),
       };
       if (entry.code || entry.message) diagnosticsByKey.set(`${entry.code}|${entry.message}`, entry);
     }

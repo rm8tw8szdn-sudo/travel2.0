@@ -32,11 +32,12 @@ function requiredValue(args, index, option) {
 }
 
 export function parseOfflineEvidenceCollectorArgs(args = []) {
-  const parsed = { limit: OFFLINE_EVIDENCE_DEFAULT_LIMIT, type: "all", country: "", dryRun: false, resume: false };
+  const parsed = { limit: OFFLINE_EVIDENCE_DEFAULT_LIMIT, type: "all", country: "", dryRun: false, resume: false, canary: false };
   for (let index = 0; index < args.length; index += 1) {
     const arg = String(args[index]);
     if (arg === "--dry-run") parsed.dryRun = true;
     else if (arg === "--resume") parsed.resume = true;
+    else if (arg === "--canary") parsed.canary = true;
     else if (arg === "--limit") {
       const value = Number(requiredValue(args, index, arg));
       if (!Number.isInteger(value) || value < 1 || value > OFFLINE_EVIDENCE_MAX_LIMIT) {
@@ -254,12 +255,25 @@ function emptyStats() {
   };
 }
 
-function transition(repository, task, status, { attempted = false, code = "", message = "" } = {}) {
+function transition(repository, task, status, { attempted = false, code = "", message = "", diagnostics = [] } = {}) {
   return repository.missingEvidenceStore.updateCollectionState(task.missingEvidenceId, {
     status,
     attempted,
     diagnostic: { code, message },
+    diagnostics,
   });
+}
+
+function normalizedProviderDiagnostics(values = []) {
+  return (Array.isArray(values) ? values : []).slice(0, 20).map((entry) => {
+    const reason = clean(entry?.reason || entry?.code || "provider-diagnostic");
+    const url = clean(entry?.sourceUrl || entry?.url);
+    const status = Number.isInteger(entry?.httpStatus) ? ` HTTP ${entry.httpStatus}` : "";
+    return {
+      code: reason,
+      message: clean(`${reason}${status}${url ? ` (${url})` : ""}`).slice(0, 500),
+    };
+  }).filter((entry) => entry.code || entry.message);
 }
 
 function providerConfigured(provider) {
@@ -345,6 +359,8 @@ export async function collectOfflineEvidenceBatch({
         limit: 5,
         timeoutMs,
         maxRetries,
+        task: structuredClone(task),
+        context: structuredClone(context),
       });
     } catch (error) {
       providerResult = { ok: false, configured: true, attempted: true, attempts: 1, failure: /timeout/iu.test(error?.message || "") ? "timeout" : "provider-error", results: [], retrievedAt: now() };
@@ -353,7 +369,11 @@ export async function collectOfflineEvidenceBatch({
     if (!providerResult?.ok) {
       const failure = clean(providerResult?.failure || "provider-error");
       const status = RETRYABLE_FAILURES.has(failure) ? "pending" : "failed";
-      const failureTransition = transition(repository, task, status, { code: failure, message: `Evidence provider failed: ${failure}.` });
+      const failureTransition = transition(repository, task, status, {
+        code: failure,
+        message: `Evidence provider failed: ${failure}.`,
+        diagnostics: normalizedProviderDiagnostics(providerResult?.diagnostics),
+      });
       if (failureTransition?.persisted !== true) {
         stats.permanentFailures += 1;
         results[resultIndex] = sanitizedTaskResult(task, "failed", failureTransition?.reason || "manifest-failure-transition-failed");
@@ -372,6 +392,7 @@ export async function collectOfflineEvidenceBatch({
       const pendingTransition = transition(repository, task, "pending", {
         code: adapted.reason,
         message: `No reliable source was persisted: ${adapted.reason}.`,
+        diagnostics: normalizedProviderDiagnostics(providerResult?.diagnostics),
       });
       if (pendingTransition?.persisted !== true) {
         stats.permanentFailures += 1;
@@ -386,6 +407,7 @@ export async function collectOfflineEvidenceBatch({
       const adaptedTransition = transition(repository, task, adapted.outcome === "needs-review" ? "needs-review" : "failed", {
         code: adapted.reason,
         message: `Evidence extraction did not produce a publishable local fact: ${adapted.reason}.`,
+        diagnostics: normalizedProviderDiagnostics(providerResult?.diagnostics),
       });
       if (adaptedTransition?.persisted !== true) {
         stats.permanentFailures += 1;
@@ -401,6 +423,7 @@ export async function collectOfflineEvidenceBatch({
       const noFactTransition = transition(repository, task, "needs-review", {
         code: adapted.reason,
         message: `No qualified fact was persisted: ${adapted.reason}.`,
+        diagnostics: normalizedProviderDiagnostics(providerResult?.diagnostics),
       });
       if (noFactTransition?.persisted !== true) {
         stats.permanentFailures += 1;
@@ -432,7 +455,11 @@ export async function collectOfflineEvidenceBatch({
     else if (task.evidenceType === "route-leg") stats.routeLegEvidenceWritten += 1;
     else stats.seasonEvidenceWritten += 1;
     const finalStatus = adapted.outcome === "resolved" ? "resolved" : "needs-review";
-    const finalTransition = transition(repository, task, finalStatus, { code: adapted.reason, message: `Offline evidence collection completed with status ${finalStatus}.` });
+    const finalTransition = transition(repository, task, finalStatus, {
+      code: adapted.reason,
+      message: `Offline evidence collection completed with status ${finalStatus}.`,
+      diagnostics: normalizedProviderDiagnostics(providerResult?.diagnostics),
+    });
     if (finalTransition?.persisted !== true) {
       stats.permanentFailures += 1;
       results[resultIndex] = sanitizedTaskResult(task, "failed", finalTransition?.reason || "manifest-final-transition-failed");

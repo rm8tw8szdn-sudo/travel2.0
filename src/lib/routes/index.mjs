@@ -147,6 +147,12 @@ export {
   selectOfflineEvidenceTasks,
 } from "./offline-evidence-collector.mjs";
 export {
+  LIVE_EVIDENCE_CANARY_DEFAULT_TIMEOUT_MS,
+  LIVE_EVIDENCE_CANARY_MAX_SOURCES_PER_TASK,
+  ROUTE_V2_LIVE_EVIDENCE_CANARY_PROVIDER_ID,
+  createRouteV2LiveEvidenceCanaryProvider,
+} from "./live-evidence-canary-provider.mjs";
+export {
   KNOWLEDGE_ENTITY_SOURCE_TYPES,
   KNOWLEDGE_RELATIONSHIP_TYPES,
   createKnowledgeFactId,

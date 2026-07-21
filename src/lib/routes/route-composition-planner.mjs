@@ -18,6 +18,7 @@ import {
 } from "./route-candidate-selection.mjs";
 import { createEvidenceBundleStore } from "./evidence-bundle-store.mjs";
 import { writeLocalEvidenceSidecarSafe } from "./local-evidence-sidecar.mjs";
+import { writeEvidenceBundleLifecycleSidecarSafe } from "./evidence-bundle-lifecycle-sidecar.mjs";
 
 const PHASE_2A_STRATEGIES = ["Geographic", "Theme", "Season", "Transport", "Depth", "Efficiency"];
 const MAX_SEGMENT_KM = 650;
@@ -1699,6 +1700,22 @@ async function runPipeline({ context, knowledgeGraph, evidenceRepository, accept
     record.decisionTraceId = traceWrite.traceId;
   }
 
+  let evidenceBundleLifecycle = null;
+  if (usingV2SelectedCandidate) {
+    evidenceBundleLifecycle = await writeEvidenceBundleLifecycleSidecarSafe({
+      evidenceBundleStore,
+      selectedCandidate,
+      persistedCandidates: candidateSidecar.persistedCandidates || [],
+      routeRecord: record,
+      decisionTraceWrite: traceWrite,
+      context,
+    });
+    if (evidenceBundleLifecycle.persisted === true && evidenceBundleLifecycle.failed !== true) {
+      record.evidenceBundleId = evidenceBundleLifecycle.evidenceBundleId;
+      record.evidenceStatus = evidenceBundleLifecycle.status;
+    }
+  }
+
   accepted.push({
     record,
     strategies,
@@ -1711,6 +1728,7 @@ async function runPipeline({ context, knowledgeGraph, evidenceRepository, accept
     evidenceCollect,
     destinationSource: record.destinationSource,
     decisionTrace: traceWrite,
+    ...(evidenceBundleLifecycle?.enabled === true ? { evidenceBundleLifecycle } : {}),
     ...(v2Failure ? { v2Failure } : {}),
   });
 

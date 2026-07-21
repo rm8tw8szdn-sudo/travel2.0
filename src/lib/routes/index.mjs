@@ -62,6 +62,19 @@ export {
   isRouteV2EvidenceBundleEnabled,
 } from "./evidence-bundle-store.mjs";
 export {
+  EVIDENCE_BUNDLE_AREA_STATUSES,
+  EVIDENCE_BUNDLE_LEG_FEASIBILITY_STATUSES,
+  EVIDENCE_BUNDLE_LIFECYCLE_SCHEMA_VERSION,
+  EVIDENCE_BUNDLE_LIFECYCLE_STATUSES,
+  buildEvidenceBundleLifecycle,
+  candidateDestinationOrder,
+  createEvidenceBundleLifecycleId,
+  normalizeEvidenceBundleLifecycle,
+  routeRecordDestinationOrder,
+  validateEvidenceBundleLifecycle,
+} from "./evidence-bundle-schema.mjs";
+export { writeEvidenceBundleLifecycleSidecarSafe } from "./evidence-bundle-lifecycle-sidecar.mjs";
+export {
   KNOWLEDGE_ENTITY_SOURCE_TYPES,
   KNOWLEDGE_RELATIONSHIP_TYPES,
   createKnowledgeFactId,

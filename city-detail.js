@@ -161,8 +161,11 @@ function renderCity() {
   if (cityCountry) cityCountry.textContent = country.name || "";
   if (cityIntro) cityIntro.textContent = detail.description || city.intro || "";
   if (cityCover) {
-    cityCover.src = localOnlyCover(detail.coverImage || city.cover || country.cover || "assets/route-city-oslo.svg");
+    const pilotCover = globalThis.RouteV2ImageAssets?.resolvePilotCityCover(city.id);
+    cityCover.src = localOnlyCover(pilotCover?.url || detail.coverImage || city.cover || country.cover || "assets/route-city-oslo.svg");
     cityCover.alt = `${city.name}封面图`;
+    if (pilotCover?.key) cityCover.dataset.coverImageKey = pilotCover.key;
+    cityCover.dataset.coverSource = pilotCover ? (pilotCover.isFallback ? "local-placeholder" : "fixed-asset") : "legacy";
   }
   if (cityTags) {
     cityTags.innerHTML = (detail.tags || city.tags || []).map((tag) => `<span>${tag}</span>`).join("");

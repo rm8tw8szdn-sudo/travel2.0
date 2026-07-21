@@ -24,6 +24,8 @@ const ROUTE_FEED_SESSION_KEY = "travelCollection.routeFeedSession";
 const ROUTE_FEED_PRELOAD_KEY = "travelCollection.routeFeedPreload.v2";
 const ROUTE_FEED_PRELOAD_TTL_MS = 5 * 60 * 1000;
 const FALLBACK_ROUTE_COVER = "assets/trip-cover-placeholder.svg";
+const routeImageAssets = globalThis.RouteV2ImageAssets || null;
+const runtimeImageSearchEnabled = routeImageAssets?.isRuntimeImageSearchEnabled?.() === true;
 const IMAGE_READY_COUNTRY_CODES = new Set([
   "AT", "BE", "FI", "FR", "GB", "HR", "HU", "IN", "IS", "IT", "JP", "KH", "LU", "MA", "NL", "SK", "TH", "TR", "US", "VN", "ZA",
   "AR", "CH", "CL", "CZ", "DE", "ES", "GR", "NO", "NP", "PL", "PT", "SE", "SI",
@@ -545,7 +547,19 @@ function visibleRecords() {
   return records.filter((record) => routeKind(record) === feedState.activeTab);
 }
 
+function fixedPilotRouteCover(record = {}) {
+  const resolved = routeImageAssets?.resolvePilotRouteCover(record.id);
+  if (!resolved) return null;
+  record.coverImageKey = resolved.key;
+  if (!resolved.isFallback && badRuntimeImageUrls.has(coverIdentity(resolved.url))) {
+    return routeImageAssets.resolvePilotRouteCover(record.id, { assetBaseUrl: "" });
+  }
+  return resolved;
+}
+
 function coverUrl(record) {
+  const fixedCover = fixedPilotRouteCover(record);
+  if (fixedCover) return fixedCover.url;
   if (
     isVerifiedRouteImageAsset(record, record.onlineCoverAsset)
       && !isPlannerFallbackCover(record.onlineCoverAsset)
@@ -669,6 +683,8 @@ function routeCountryCodes(record = {}) {
 }
 
 function routeImageDedupeKey(record = {}) {
+  const fixedCover = fixedPilotRouteCover(record);
+  if (fixedCover?.key) return `asset-key:${fixedCover.key}`;
   return record.onlineCoverAsset?.imageDedupeKey
     || record.onlineCoverAsset?.dedupeKey
     || record.coverAsset?.imageDedupeKey
@@ -910,6 +926,7 @@ function normalizedRemoteImageUrl(imageUrl) {
 
 function proxiedRouteImageUrl(imageUrl) {
   const text = normalizedRemoteImageUrl(imageUrl);
+  if (routeImageAssets?.isConfiguredAssetUrl(text)) return text;
   return /^https?:\/\//i.test(text) ? `/api/routes/image-proxy?url=${encodeURIComponent(text)}` : text;
 }
 
@@ -989,6 +1006,12 @@ async function ensureRecordCoverReady(record, signal, usedImageUrls = new Set())
       return true;
     }
     if (outcome.status === "timeout" || outcome.status === "aborted") return false;
+  }
+
+  if (!runtimeImageSearchEnabled) {
+    clearRouteCover(record);
+    record.coverSearchFailed = true;
+    return false;
   }
 
   const image = await requestOnlineCover(record, signal, {
@@ -1449,6 +1472,7 @@ async function requestOnlineCover(record, signal, exclusions = {}) {
 }
 
 async function hydrateOnlineCovers(records, signal, existingRecords = [], options = {}) {
+  if (!runtimeImageSearchEnabled) return records;
   const pageRecords = records || [];
   const usedImageUrls = new Set();
   const usedImageTitles = new Set();
@@ -1500,6 +1524,7 @@ async function hydrateOnlineCovers(records, signal, existingRecords = [], option
 }
 
 async function hydrateFeedOnlineCovers(records, signal, existingRecords = []) {
+  if (!runtimeImageSearchEnabled) return;
   const pageRecords = records || [];
   const recentRecords = (existingRecords || []).slice(-FEED_DEDUPE_WINDOW);
   const usedImageUrls = new Set(recentRecords.map(displayCoverUrl).filter(Boolean));
@@ -1539,8 +1564,9 @@ async function prepareRouteImageBatch(pageRecords = [], previousRecords = [], si
     .filter(Boolean));
   const outcomes = await Promise.all(batch.map(async (record) => {
     const imageUrl = displayCoverUrl(record);
+    const hasFixedAssetKey = Boolean(String(record.coverImageKey || "").trim());
     const imageKey = routeImageDedupeKey(record) || coverIdentity(imageUrl);
-    if (!imageUrl || !imageKey || !routeImageAllowed(record, imageUrl)) {
+    if (!imageUrl || !imageKey || (!hasFixedAssetKey && !routeImageAllowed(record, imageUrl))) {
       record._coverLoadStatus = "missing";
       record._coverLoadUrl = "";
       return { status: "missing", routeId: record.id, imageUrl: "" };
@@ -1630,14 +1656,15 @@ async function prefetchNextFeedPage() {
 
 function routeCardImageMarkup(record, index = 3) {
   void index;
+  const fixedCover = fixedPilotRouteCover(record);
   const imageUrl = displayCoverUrl(record);
   const imageReady = Boolean(imageUrl && (
     record._coverLoadStatus === "ready"
       || (!record._coverLoadStatus && hasReadyRouteCover(record))
   ));
   const source = imageReady ? proxiedRouteImageUrl(imageUrl) : FALLBACK_ROUTE_COVER;
-  const state = imageReady ? "ready" : "placeholder";
-  return `<img src="${escapeHtml(source)}" alt="${escapeHtml(record.name)}封面图" loading="eager" decoding="async" data-route-cover-state="${state}" />`;
+  const state = imageReady && !fixedCover?.isFallback ? "ready" : "placeholder";
+  return `<img src="${escapeHtml(source)}" alt="${escapeHtml(record.name)}封面图" loading="eager" decoding="async" data-route-cover-state="${state}"${fixedCover?.key ? ` data-cover-image-key="${escapeHtml(fixedCover.key)}"` : ""} />`;
 }
 
 function updateRenderedRouteImage(record, card = null) {
@@ -1655,10 +1682,12 @@ function updateRenderedRouteImage(record, card = null) {
     .find((candidate) => candidate.dataset.routeCard === routeRenderKey(targetRecord));
   const image = targetCard?.querySelector("img");
   if (!image) return;
+  const fixedCover = fixedPilotRouteCover(targetRecord);
   const imageUrl = displayCoverUrl(targetRecord);
   const ready = targetRecord._coverLoadStatus === "ready" && Boolean(imageUrl);
   const nextSource = ready ? proxiedRouteImageUrl(imageUrl) : FALLBACK_ROUTE_COVER;
-  image.dataset.routeCoverState = ready ? "ready" : "placeholder";
+  image.dataset.routeCoverState = ready && !fixedCover?.isFallback ? "ready" : "placeholder";
+  if (fixedCover?.key) image.dataset.coverImageKey = fixedCover.key;
   if (image.getAttribute("src") !== nextSource) image.src = nextSource;
 }
 
@@ -1883,6 +1912,7 @@ function renderFeed({ incremental = false } = {}) {
 }
 
 function schedulePendingCoverHydration() {
+  if (!runtimeImageSearchEnabled) return;
   if (pendingCoverHydrationTimer || pendingCoverHydrating) return;
   pendingCoverHydrationTimer = window.setTimeout(async () => {
     pendingCoverHydrationTimer = 0;

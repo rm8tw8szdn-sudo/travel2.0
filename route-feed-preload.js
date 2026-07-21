@@ -3,6 +3,8 @@
   const PRELOAD_KEY = "travelCollection.routeFeedPreload.v2";
   const DEBUG_KEY = "travelCollection.routeFeedPreload.debug";
   const FEED_LIMIT = 6;
+  const imageAssets = globalThis.RouteV2ImageAssets || null;
+  const runtimeImageSearchEnabled = imageAssets?.isRuntimeImageSearchEnabled?.() === true;
 
   function mark(status, extra = {}) {
     try {
@@ -25,7 +27,12 @@
 
   function proxyImageUrl(imageUrl) {
     const text = String(imageUrl || "");
+    if (imageAssets?.isConfiguredAssetUrl(text)) return text;
     return /^https?:\/\//i.test(text) ? `/api/routes/image-proxy?url=${encodeURIComponent(text)}` : text;
+  }
+
+  function fixedPilotCover(record = {}) {
+    return imageAssets?.resolvePilotRouteCover(record.id) || null;
   }
 
   function routeText(record = {}) {
@@ -137,24 +144,32 @@
       const records = [];
       let imagesReady = true;
       for (const record of payload.records) {
-        let image = await requestCover(record, usedImageUrls).catch(() => null);
-        let imageUrl = image?.imageUrl || record.coverAsset?.imageUrl || record.coverImage || fallbackCover(record, usedImageUrls);
+        const fixedCover = fixedPilotCover(record);
+        let image = null;
+        if (!fixedCover && runtimeImageSearchEnabled) image = await requestCover(record, usedImageUrls).catch(() => null);
+        let imageUrl = fixedCover?.url || image?.imageUrl || record.coverAsset?.imageUrl || record.coverImage || fallbackCover(record, usedImageUrls);
         let imageReady = await warmImage(imageUrl);
         if (!imageReady) {
           image = null;
           usedImageUrls.add(String(imageUrl).toLowerCase());
-          imageUrl = fallbackCover(record, usedImageUrls);
+          imageUrl = fixedCover
+            ? imageAssets.resolvePilotRouteCover(record.id, { assetBaseUrl: "" }).url
+            : fallbackCover(record, usedImageUrls);
           imageReady = await warmImage(imageUrl, 1800);
         }
         imagesReady = imagesReady && imageReady;
         usedImageUrls.add(String(imageUrl).toLowerCase());
+        const coverProvider = fixedCover
+          ? (imageUrl === fixedCover.url && !fixedCover.isFallback ? "fixed-asset-pilot" : "fixed-asset-placeholder")
+          : (image?.provider || "preload-fallback");
         records.push({
           ...record,
+          ...(fixedCover?.key ? { coverImageKey: fixedCover.key } : {}),
           coverSearchFailed: !image?.imageUrl && !imageReady,
-          onlineCoverAsset: image || { provider: "preload-fallback", imageUrl },
+          onlineCoverAsset: image || { provider: coverProvider, imageUrl },
           coverAsset: {
             ...(record.coverAsset || {}),
-            provider: image?.provider || "preload-fallback",
+            provider: coverProvider,
             imageUrl,
             sourceUrl: image?.sourceUrl || "",
             title: image?.title || "",

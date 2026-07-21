@@ -1,4 +1,5 @@
 import { cleanString, stableHash, uniqueStrings } from "./route-v2-utils.mjs";
+import { normalizeLocalEvidenceSources, validateLocalEvidenceSources } from "./local-evidence-source-schema.mjs";
 
 export const ROUTE_LEG_EVIDENCE_SCHEMA_VERSION = "route-generation-v2-evidence-3a2-route-leg-v1";
 export const ROUTE_LEG_FEASIBILITY_STATUSES = new Set(["unknown", "needs-evidence", "feasible", "infeasible"]);
@@ -58,6 +59,7 @@ export function normalizeRouteLegEvidence(input = {}, { now = () => new Date().t
     transferCount: nullableNumber(input.transferCount),
     frequencyLevel: clean(input.frequencyLevel || "unknown"),
     sourceRefs: uniqueStrings(Array.isArray(input.sourceRefs) ? input.sourceRefs : []),
+    sources: normalizeLocalEvidenceSources(input.sources),
     confidence: nullableNumber(input.confidence),
     freshnessStatus: clean(input.freshnessStatus || "unknown"),
     retrievedAt: nullableString(input.retrievedAt),
@@ -88,6 +90,11 @@ export function validateRouteLegEvidence(input = {}) {
   for (const field of ["sourceRefs", "unknowns", "conflicts", "diagnostics"]) {
     if (!Array.isArray(input[field])) reasons.push(`${field}-array-required`);
   }
+  const sourceValidation = validateLocalEvidenceSources(Array.isArray(input.sources) ? input.sources : []);
+  if (!sourceValidation.accepted) reasons.push(...sourceValidation.reasons);
+  const sourceIds = new Set(record.sources.map((source) => source.sourceId));
+  if (record.sourceRefs.some((sourceId) => !sourceIds.has(sourceId))) reasons.push("sourceRefs-must-reference-embedded-sources");
+  if (record.sources.some((source) => !record.sourceRefs.includes(source.sourceId))) reasons.push("embedded-source-must-be-referenced");
   for (const [field, value] of [["durationMinMinutes", record.durationMinMinutes], ["durationMaxMinutes", record.durationMaxMinutes], ["transferCount", record.transferCount]]) {
     if (value != null && (!Number.isFinite(value) || value < 0)) reasons.push(`${field}-invalid`);
   }
@@ -119,6 +126,7 @@ export function buildMissingRouteLegEvidence(input = {}, { now = () => new Date(
     transferCount: null,
     frequencyLevel: "unknown",
     sourceRefs: [],
+    sources: [],
     confidence: null,
     freshnessStatus: "unknown",
     retrievedAt: null,

@@ -7,7 +7,7 @@ import {
   validateMissingEvidenceManifestItem,
 } from "./missing-evidence-manifest-schema.mjs";
 import { isRouteV2LocalEvidenceIndexEnabled } from "./route-leg-evidence-store.mjs";
-import { uniqueStrings } from "./route-v2-utils.mjs";
+import { cleanString, uniqueStrings } from "./route-v2-utils.mjs";
 
 export function defaultMissingEvidenceManifestPath(env = process.env) {
   return env.ROUTE_V2_MISSING_EVIDENCE_MANIFEST_PATH
@@ -70,9 +70,51 @@ export function createMissingEvidenceManifestStore({
     return { ...result, recordId: result.recordIds?.[0] || null };
   }
 
+  function updateCollectionState(missingEvidenceId, {
+    status,
+    attempted = false,
+    diagnostic = null,
+  } = {}) {
+    if (!core.enabled()) return { written: false, persisted: false, skipped: true, reason: "missing-evidence-manifest-disabled" };
+    const existing = core.get(missingEvidenceId);
+    if (!existing) return { written: false, persisted: false, skipped: false, reason: "missing-evidence-manifest-not-found" };
+    const timestamp = now();
+    const diagnosticsByKey = new Map((existing.diagnostics || []).map((entry) => [
+      `${cleanString(entry.code)}|${cleanString(entry.message)}`,
+      entry,
+    ]));
+    if (diagnostic && typeof diagnostic === "object") {
+      const entry = {
+        code: cleanString(diagnostic.code || diagnostic.type),
+        message: cleanString(diagnostic.message || diagnostic.reason || diagnostic.error),
+      };
+      if (entry.code || entry.message) diagnosticsByKey.set(`${entry.code}|${entry.message}`, entry);
+    }
+    const next = normalizeMissingEvidenceManifestItem({
+      ...existing,
+      status: cleanString(status || existing.status),
+      attemptCount: existing.attemptCount + (attempted ? 1 : 0),
+      lastSeenAt: timestamp,
+      diagnostics: [...diagnosticsByKey.values()].slice(-50),
+      updatedAt: timestamp,
+    }, { now });
+    const validation = validateMissingEvidenceManifestItem(next);
+    if (!validation.accepted) {
+      return {
+        written: false,
+        persisted: false,
+        skipped: false,
+        reason: "missing-evidence-manifest-transition-invalid",
+        reasons: validation.reasons,
+      };
+    }
+    return core.upsert(validation.record);
+  }
+
   return {
     ...core,
     aggregate,
     aggregateMany,
+    updateCollectionState,
   };
 }

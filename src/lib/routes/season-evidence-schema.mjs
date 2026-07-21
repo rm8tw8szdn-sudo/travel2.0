@@ -1,4 +1,5 @@
 import { cleanString, stableHash, uniqueStrings } from "./route-v2-utils.mjs";
+import { normalizeLocalEvidenceSources, validateLocalEvidenceSources } from "./local-evidence-source-schema.mjs";
 
 export const SEASON_EVIDENCE_SCHEMA_VERSION = "route-generation-v2-evidence-3a2-season-v1";
 export const SEASON_SUITABILITY_STATUSES = new Set(["unknown", "needs-evidence", "suitable", "unsuitable"]);
@@ -68,6 +69,7 @@ export function normalizeSeasonEvidence(input = {}, { now = () => new Date().toI
     closureRisks: uniqueStrings(Array.isArray(input.closureRisks) ? input.closureRisks : []),
     recommendedBufferMinutes: nullableNumber(input.recommendedBufferMinutes),
     sourceRefs: uniqueStrings(Array.isArray(input.sourceRefs) ? input.sourceRefs : []),
+    sources: normalizeLocalEvidenceSources(input.sources),
     confidence: nullableNumber(input.confidence),
     freshnessStatus: clean(input.freshnessStatus || "unknown"),
     retrievedAt: nullableString(input.retrievedAt),
@@ -97,6 +99,11 @@ export function validateSeasonEvidence(input = {}) {
   for (const field of ["weatherRisks", "transportRisks", "closureRisks", "sourceRefs", "unknowns", "conflicts", "diagnostics"]) {
     if (!Array.isArray(input[field])) reasons.push(`${field}-array-required`);
   }
+  const sourceValidation = validateLocalEvidenceSources(Array.isArray(input.sources) ? input.sources : []);
+  if (!sourceValidation.accepted) reasons.push(...sourceValidation.reasons);
+  const sourceIds = new Set(record.sources.map((source) => source.sourceId));
+  if (record.sourceRefs.some((sourceId) => !sourceIds.has(sourceId))) reasons.push("sourceRefs-must-reference-embedded-sources");
+  if (record.sources.some((source) => !record.sourceRefs.includes(source.sourceId))) reasons.push("embedded-source-must-be-referenced");
   if (record.recommendedBufferMinutes != null && (!Number.isFinite(record.recommendedBufferMinutes) || record.recommendedBufferMinutes < 0)) reasons.push("recommendedBufferMinutes-invalid");
   if (record.confidence != null && (record.confidence < 0 || record.confidence > 1)) reasons.push("confidence-invalid");
   if (record.sourceRefs.length === 0) {
@@ -124,6 +131,7 @@ export function buildMissingSeasonEvidence(input = {}, { now = () => new Date().
     closureRisks: [],
     recommendedBufferMinutes: null,
     sourceRefs: [],
+    sources: [],
     confidence: null,
     freshnessStatus: "unknown",
     retrievedAt: null,

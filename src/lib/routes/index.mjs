@@ -121,6 +121,32 @@ export {
 export { createLocalEvidenceIndex } from "./local-evidence-index.mjs";
 export { createLocalEvidenceRepository } from "./local-evidence-repository.mjs";
 export {
+  LOCAL_EVIDENCE_SOURCE_TYPES,
+  classifyLocalEvidenceSource,
+  createLocalEvidenceSourceId,
+  normalizeLocalEvidenceSource,
+  normalizeLocalEvidenceSources,
+  sha256EvidenceContent,
+  validateLocalEvidenceSource,
+  validateLocalEvidenceSources,
+} from "./local-evidence-source-schema.mjs";
+export {
+  adaptRouteLegEvidenceResults,
+  adaptSeasonEvidenceResults,
+} from "./offline-evidence-fact-adapter.mjs";
+export {
+  OFFLINE_EVIDENCE_DEFAULT_CONCURRENCY,
+  OFFLINE_EVIDENCE_DEFAULT_LIMIT,
+  OFFLINE_EVIDENCE_DEFAULT_MAX_ATTEMPTS,
+  OFFLINE_EVIDENCE_MAX_LIMIT,
+  ROUTE_V2_OFFLINE_EVIDENCE_COLLECTION_FLAG,
+  collectOfflineEvidenceBatch,
+  createOfflineEvidenceEntityResolver,
+  isRouteV2OfflineEvidenceCollectionEnabled,
+  parseOfflineEvidenceCollectorArgs,
+  selectOfflineEvidenceTasks,
+} from "./offline-evidence-collector.mjs";
+export {
   KNOWLEDGE_ENTITY_SOURCE_TYPES,
   KNOWLEDGE_RELATIONSHIP_TYPES,
   createKnowledgeFactId,

@@ -764,7 +764,11 @@ async function writeCandidatePoolSidecarSafe({
       };
     }
     if (selectionEnabled && pendingCandidates.length < ROUTE_CANDIDATE_SELECTION_TARGET) {
-      const failureReason = pendingCandidates.length === 0 ? "candidate-pool-empty" : "candidate-pool-insufficient";
+      const failureReason = pendingCandidates.length === 0 && context?.requiredDestinationIds?.length
+        ? "required-destination-not-in-pool"
+        : pendingCandidates.length === 0
+          ? "candidate-pool-empty"
+          : "candidate-pool-insufficient";
       return {
         enabled: true,
         generated: pendingCandidates.length,

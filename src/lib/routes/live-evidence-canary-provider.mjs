@@ -142,7 +142,7 @@ function directedRouteSpan(text, fromAliases = [], toAliases = []) {
         new RegExp(`\\b${escapedTo}\\b.{0,180}\\b(?:accessible|reached|reach|travel)\\b.{0,120}\\bfrom\\s+${escapedFrom}\\b`, "iu"),
         new RegExp(`\\bfrom\\s+${escapedFrom}\\b.{0,500}\\b${escapedTo}\\b`, "iu"),
         new RegExp(`\\b${escapedTo}\\b.{0,180}\\bfrom\\s+${escapedFrom}\\b`, "iu"),
-        new RegExp(`\\b${escapedFrom}\\b.{0,520}\\b(?:connects?|service|train|rail|bus|shinkansen)\\b.{0,180}\\b${escapedTo}\\b`, "iu"),
+        new RegExp(`\\b${escapedFrom}\\b.{0,520}\\b(?:connects?|service|train|rail|bus|shinkansen|jr\\s+[\\p{L}\\p{N}\\s-]{1,80}\\s+line)\\b.{0,180}\\b${escapedTo}\\b`, "iu"),
       ]);
       if (explicit) return explicit;
     }

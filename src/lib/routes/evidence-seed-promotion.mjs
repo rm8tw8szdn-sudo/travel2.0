@@ -252,8 +252,11 @@ export function planEvidenceSeedPromotion({
 
 export function promoteEvidenceSeed(options = {}) {
   const plan = planEvidenceSeedPromotion(options);
-  if (options.dryRun) return { ...plan, dryRun: true, written: false, changed: false };
-  if (!plan.ok || plan.conflicts.length) return { ...plan, dryRun: false, written: false, changed: false };
+  const updateAccepted = options.acceptUpdate === true;
+  if (options.dryRun) return { ...plan, dryRun: true, written: false, changed: false, updateAccepted: false };
+  if (!plan.ok || (plan.conflicts.length && !updateAccepted)) {
+    return { ...plan, dryRun: false, written: false, changed: false, updateAccepted: false };
+  }
   if (plan.unchanged) return { ...plan, dryRun: false, written: false, changed: false };
   fs.mkdirSync(plan.outputRoot, { recursive: true });
   const tempPaths = [];
@@ -281,5 +284,5 @@ export function promoteEvidenceSeed(options = {}) {
     for (const item of tempPaths) if (fs.existsSync(item.temp)) fs.rmSync(item.temp, { force: true });
     for (const item of tempPaths) if (fs.existsSync(item.backup)) fs.rmSync(item.backup, { force: true });
   }
-  return { ...plan, dryRun: false, written: true, changed: true };
+  return { ...plan, dryRun: false, written: true, changed: true, updateAccepted };
 }

@@ -36,6 +36,37 @@ function destinationOrder(candidate = {}) {
     .filter(Boolean);
 }
 
+function requiredDestinationConstraint(candidate = {}, context = {}) {
+  const snapshot = candidate?.inputIntentSnapshot && typeof candidate.inputIntentSnapshot === "object"
+    ? candidate.inputIntentSnapshot
+    : {};
+  const contextIds = uniqueStrings(context.requiredDestinationIds || []).map(clean);
+  const contextOrderMode = clean(context.destinationOrderMode);
+  return {
+    ids: contextIds.length
+      ? contextIds
+      : uniqueStrings(snapshot.requiredDestinationIds || []).map(clean),
+    orderMode: contextOrderMode && contextOrderMode !== "unspecified"
+      ? contextOrderMode
+      : clean(snapshot.destinationOrderMode || "unspecified"),
+  };
+}
+
+function validateRequiredDestinationConstraint(candidate = {}, context = {}) {
+  const order = destinationOrder(candidate);
+  const constraint = requiredDestinationConstraint(candidate, context);
+  if (!constraint.ids.length) return { status: "ready", reasonCodes: [] };
+  const orderSet = new Set(order);
+  const missing = constraint.ids.filter((id) => !orderSet.has(id));
+  const reasons = missing.length ? ["required-destination-missing"] : [];
+  if (constraint.orderMode === "fixed" && !missing.length) {
+    if (constraint.ids.some((id, index) => order[index] !== id)) {
+      reasons.push("required-destination-order-mismatch");
+    }
+  }
+  return { status: reasons.length ? "rejected" : "ready", reasonCodes: reasons };
+}
+
 function requiredTransportModes(context = {}) {
   return uniqueStrings([
     context.transport,
@@ -145,7 +176,7 @@ function validatePacing(candidate, legResults) {
     reasonCodes.push("pacing-duration-invalid");
   } else if (order.length > maxDestinationsForDuration(durationDays)) {
     status = "rejected";
-    reasonCodes.push("pacing-too-many-destinations-for-duration");
+    reasonCodes.push("pacing-too-many-destinations-for-duration", "duration-capacity-conflict");
   }
   const completeDurations = legResults.length === Math.max(0, order.length - 1)
     && legResults.every((leg) => leg.durationMinMinutes != null && leg.durationMaxMinutes != null);
@@ -249,6 +280,9 @@ export function validateRouteForUse(candidate, context = {}, evidenceRepository 
   const index = evidenceIndex(evidenceRepository);
   const order = destinationOrder(candidate);
   const requiredModes = requiredTransportModes(context);
+  const requiredConstraint = validateRequiredDestinationConstraint(candidate, context);
+  status = statusMax([status, requiredConstraint.status]);
+  reasonCodes.push(...requiredConstraint.reasonCodes);
 
   try {
     if (!index?.getRouteLegsByEndpoints || !index?.getSeason) {

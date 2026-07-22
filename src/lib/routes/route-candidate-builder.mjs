@@ -136,6 +136,8 @@ function deriveIntentId(context = {}, concept = {}, pool = []) {
         ...(Array.isArray(context.targetCities) ? context.targetCities : []),
         ...(Array.isArray(context.destinations) ? context.destinations : []),
       ]).map(cleanString),
+      requiredDestinationIds: unique(context.requiredDestinationIds || []).map(cleanString),
+      destinationOrderMode: cleanString(context.destinationOrderMode),
       durationDays: context.durationDays,
       durationBand: context.durationBand,
       travelStyle: context.travelStyle,
@@ -235,7 +237,7 @@ function unknown(field, reason) {
   return { field, reason };
 }
 
-function candidateDraft({ destinations, intentId, durationDays, travelStyle, method, seed, poolSize }) {
+function candidateDraft({ destinations, intentId, durationDays, travelStyle, method, seed, poolSize, requiredConstraint = null }) {
   const normalizedDestinations = dedupeDestinations(destinations);
   if (normalizedDestinations.length < 2) return null;
   const countries = unique(normalizedDestinations.map((item) => item.countryCode)).map(normalizeCode);
@@ -257,6 +259,13 @@ function candidateDraft({ destinations, intentId, durationDays, travelStyle, met
       supportingSignal("entity-source-types", unique(normalizedDestinations.map((item) => item.entitySourceType)).filter(Boolean).sort()),
       supportingSignal("durationDays", durationDays),
       supportingSignal("travelStyle", travelStyle),
+      ...(requiredConstraint?.ids?.length ? [
+        supportingSignal("required-destination-constraint", {
+          ids: [...requiredConstraint.ids],
+          names: [...(requiredConstraint.names || [])],
+          orderMode: requiredConstraint.orderMode,
+        }),
+      ] : []),
     ],
     status: "pending",
     rejectionReasons: [],
@@ -300,6 +309,98 @@ function candidateSequences(pool = [], maxDestinations = 4, seed = "") {
   ];
 }
 
+function destinationKeys(destination = {}) {
+  return unique([
+    destination.id,
+    destination.wikidataId,
+    destination.qid,
+    destination.name,
+  ]).map(cleanString);
+}
+
+function resolveRequiredDestinations(context = {}, pool = []) {
+  const ids = unique(context.requiredDestinationIds || []).map(cleanString);
+  if (!ids.length) return { ids: [], names: [], destinations: [], missingIds: [], orderMode: "unspecified" };
+  const poolByKey = new Map();
+  for (const destination of pool) {
+    for (const key of destinationKeys(destination)) if (!poolByKey.has(key)) poolByKey.set(key, destination);
+  }
+  const destinations = [];
+  const missingIds = [];
+  for (const id of ids) {
+    const destination = poolByKey.get(id);
+    if (destination) destinations.push(destination);
+    else missingIds.push(id);
+  }
+  return {
+    ids,
+    names: unique(context.requiredDestinationNames || []).map(cleanString),
+    destinations,
+    missingIds,
+    orderMode: cleanString(context.destinationOrderMode) === "fixed" ? "fixed" : "flexible",
+  };
+}
+
+function requiredCandidateSequences(pool, maxDestinations, seed, requiredConstraint) {
+  const required = dedupeDestinations(requiredConstraint.destinations);
+  const requiredIds = new Set(required.flatMap(destinationKeys));
+  const optional = stableSortDestinations(pool.filter((destination) => (
+    !destinationKeys(destination).some((key) => requiredIds.has(key))
+  )), `${seed}:optional`);
+  const capacity = Math.max(required.length, maxDestinations);
+  const appendOptional = (base, offset = 0) => {
+    const remaining = Math.max(0, capacity - base.length);
+    return [...base, ...deterministicRotate(optional, offset).slice(0, remaining)];
+  };
+  if (requiredConstraint.orderMode === "fixed") {
+    return [
+      { method: "required-fixed-order", destinations: required },
+      { method: "required-fixed-order-optional-a", destinations: appendOptional(required, 0) },
+      { method: "required-fixed-order-optional-b", destinations: appendOptional(required, 1) },
+      ...optional.map((_, index) => ({
+        method: `required-fixed-order-optional-${index + 3}`,
+        destinations: appendOptional(required, index + 2),
+      })),
+    ];
+  }
+  const stableRequired = stableSortDestinations(required, `${seed}:required`);
+  const insertionVariants = optional.flatMap((destination) => (
+    Array.from({ length: required.length + 1 }, (_, index) => {
+      const destinations = [...required];
+      destinations.splice(index, 0, destination);
+      const distance = routeDistanceSummary(destinations);
+      return {
+        method: `required-flexible-nearby-insertion-${index + 1}`,
+        destinations,
+        totalKm: distance.totalKm,
+        maxSegmentKm: distance.maxSegmentKm ?? Number.POSITIVE_INFINITY,
+        destinationId: destination.id,
+        insertionIndex: index,
+      };
+    })
+  )).sort((left, right) => (
+    left.totalKm - right.totalKm
+      || left.maxSegmentKm - right.maxSegmentKm
+      || left.destinationId.localeCompare(right.destinationId, "en")
+      || left.insertionIndex - right.insertionIndex
+  ));
+  const orders = [
+    required,
+    stableRequired,
+    deterministicRotate(required, 1),
+    deterministicRotate(required, 2),
+    [...required].reverse(),
+  ];
+  return [
+    { method: "required-flexible-input-order", destinations: required },
+    ...insertionVariants,
+    ...orders.flatMap((order, index) => [
+      { method: `required-flexible-order-${index + 1}`, destinations: order },
+      { method: `required-flexible-order-${index + 1}-optional`, destinations: appendOptional(order, index) },
+    ]),
+  ];
+}
+
 export function buildRouteCandidatesFromPool({
   context = {},
   concept = {},
@@ -316,7 +417,12 @@ export function buildRouteCandidatesFromPool({
   const intentId = deriveIntentId(context, concept, normalizedPool);
   const requestedTarget = clampCandidateTarget(targetCount);
   const maxDestinations = Math.min(maxDestinationsForDuration(durationDays), normalizedPool.length);
-  const sequences = candidateSequences(normalizedPool, maxDestinations, cleanString(seed || context.seed || concept.seed));
+  const candidateSeed = cleanString(seed || context.seed || concept.seed);
+  const requiredConstraint = resolveRequiredDestinations(context, normalizedPool);
+  if (requiredConstraint.missingIds.length) return [];
+  const sequences = requiredConstraint.ids.length
+    ? requiredCandidateSequences(normalizedPool, maxDestinations, candidateSeed, requiredConstraint)
+    : candidateSequences(normalizedPool, maxDestinations, candidateSeed);
   const candidates = [];
   const seenShapes = new Set();
 
@@ -330,6 +436,7 @@ export function buildRouteCandidatesFromPool({
       method: sequence.method,
       seed,
       poolSize: normalizedPool.length,
+      requiredConstraint,
     });
     if (!draft) continue;
     const candidate = normalizeRouteCandidate({ ...draft, createdAt }, { now: () => createdAt });

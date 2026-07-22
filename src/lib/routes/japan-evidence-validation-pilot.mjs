@@ -72,6 +72,17 @@ const NARA_FROM_OSAKA = source(
   "Nara Access - From Osaka About 55 min.",
   { before: 80, after: 100 },
 );
+const KANSAI_TRIO = "https://www.japan.travel/en/itineraries/the-kansai-trio-kyoto-nara-and-osaka/";
+const NARA_FROM_KYOTO = source(
+  KANSAI_TRIO,
+  "1 hour 4 minutes Walk to Shijo Station and take the Karasuma Line to Kyoto Station. Change to the JR Miyakoji Rapid Service.",
+  { before: 100, after: 160 },
+);
+const OSAKA_FROM_NARA = source(
+  KANSAI_TRIO,
+  "1 hour 3 minutes Walk 15 minutes to Nara Station and take the JR Yamatoji Line to Osaka Castle Station.",
+  { before: 100, after: 160 },
+);
 const MATSUMOTO_ACCESS = "https://www.japan.travel/en/destinations/hokuriku-shinetsu/nagano/matsumoto-and-around/";
 const TOKYO_MATSUMOTO = source(
   MATSUMOTO_ACCESS,
@@ -134,8 +145,10 @@ export const ROUTE_V2_JAPAN_EVIDENCE_PILOT_TARGETS = Object.freeze([
   leg(CITY.Kyoto, CITY.Tokyo, "rail"),
   leg(CITY.Kyoto, CITY.Osaka, "rail"),
   leg(CITY.Osaka, CITY.Kyoto, "rail", [KYOTO_FROM_OSAKA]),
+  leg(CITY.Kyoto, CITY.Nara, "rail", [NARA_FROM_KYOTO]),
+  leg(CITY.Nara, CITY.Kyoto, "rail"),
   leg(CITY.Osaka, CITY.Nara, "rail", [NARA_FROM_OSAKA]),
-  leg(CITY.Nara, CITY.Osaka, "rail"),
+  leg(CITY.Nara, CITY.Osaka, "rail", [OSAKA_FROM_NARA]),
   leg(CITY.Tokyo, CITY.Matsumoto, "rail", [TOKYO_MATSUMOTO]),
   leg(CITY.Matsumoto, CITY.Tokyo, "rail"),
   leg(CITY.Matsumoto, CITY.Takayama, "road", [MATSUMOTO_TAKAYAMA]),

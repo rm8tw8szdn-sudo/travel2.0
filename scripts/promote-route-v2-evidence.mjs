@@ -4,10 +4,11 @@ import { pathToFileURL } from "node:url";
 import { promoteEvidenceSeed, ROUTE_V2_EVIDENCE_SEED_ROOT } from "../src/lib/routes/evidence-seed-promotion.mjs";
 
 function parseArgs(args = process.argv.slice(2)) {
-  const options = { sourceRoot: "", outputRoot: ROUTE_V2_EVIDENCE_SEED_ROOT, country: "", type: "all", dryRun: false };
+  const options = { sourceRoot: "", outputRoot: ROUTE_V2_EVIDENCE_SEED_ROOT, country: "", type: "all", dryRun: false, acceptUpdate: false };
   for (let index = 0; index < args.length; index += 1) {
     const token = args[index];
     if (token === "--dry-run") options.dryRun = true;
+    else if (token === "--accept-update") options.acceptUpdate = true;
     else if (token === "--source") options.sourceRoot = path.resolve(args[++index] || "");
     else if (token === "--output") options.outputRoot = path.resolve(args[++index] || "");
     else if (token === "--country") options.country = String(args[++index] || "").toUpperCase();
@@ -29,10 +30,11 @@ if (invokedPath === import.meta.url) {
   try {
     const result = runEvidencePromotionCli();
     process.stdout.write(`${JSON.stringify({
-      ok: result.ok && result.conflicts.length === 0,
+      ok: result.ok && (result.conflicts.length === 0 || result.updateAccepted === true),
       dryRun: result.dryRun,
       written: result.written,
       changed: result.changed,
+      updateAccepted: result.updateAccepted === true,
       sourceRoot: result.sourceRoot,
       outputRoot: result.outputRoot,
       stats: result.stats,
@@ -41,7 +43,7 @@ if (invokedPath === import.meta.url) {
       conflicts: result.conflicts,
       diagnostics: result.diagnostics,
     }, null, 2)}\n`);
-    if (!result.ok || result.conflicts.length) process.exitCode = 2;
+    if (!result.ok || (result.conflicts.length && result.updateAccepted !== true)) process.exitCode = 2;
   } catch (error) {
     process.stderr.write(`${JSON.stringify({ ok: false, error: String(error?.message || error) }, null, 2)}\n`);
     process.exitCode = 1;

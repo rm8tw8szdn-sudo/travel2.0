@@ -396,6 +396,13 @@ function plannerContextFromIntent(intent, deadlineAt, abortSignal = null, { dest
     cities: [...cities],
     normalizedCities: [...normalizedCities],
     targetCities: suggested ? [] : [...normalizedCities],
+    ...(Array.isArray(intent.requiredDestinationIds) ? {
+      requiredDestinationIds: [...intent.requiredDestinationIds],
+      requiredDestinationNames: [...(intent.requiredDestinationNames || [])],
+      requiredDestinationRaw: [...(intent.requiredDestinationRaw || [])],
+      destinationOrderMode: intent.destinationOrderMode || "unspecified",
+      destinationDiagnostics: structuredClone(intent.destinationDiagnostics || []),
+    } : {}),
     ...(suggested ? {
       candidateSeed: suggested.seed,
       destinationSuggestion: structuredClone(suggested),

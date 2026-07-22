@@ -71,6 +71,12 @@ function durationValues(text) {
   return [...values].sort((left, right) => left - right);
 }
 
+function supportedDurationValues(result = {}, snippet = "") {
+  const factText = clean(result.sourceFactText);
+  const leadingAggregate = factText.match(/^\d+(?:\.\d+)?\s*(?:hours?|hrs?|h)(?:\s*\d+\s*(?:minutes?|mins?|min))?/iu);
+  return durationValues(leadingAggregate?.[0] || snippet);
+}
+
 function transportMode(text, fallback = "unknown") {
   if (/shinkansen|rail|train|limited express|nozomi|hikari|kodama/iu.test(text)) return "rail";
   if (/ferry|boat/iu.test(text)) return "ferry";
@@ -176,9 +182,6 @@ function relevantRouteLegResult(result, context = {}) {
     && clean(result.sourceDirection?.toEntityId) === clean(context.record?.toEntityId);
   if (snippet.length < 24 || (!verifiedDirection && (fromIndex < 0 || toIndex < 0 || fromIndex >= toIndex))) return null;
   const explicitlyUnavailable = /no (?:direct )?(?:service|connection)|not connected|service (?:is )?(?:suspended|closed)/iu.test(snippet);
-  const explicitlyConnected = /connects?|connected|service between|rapid service|express|travel(?:ing)? (?:from|between)|reach|arriv(?:e|es|ing)|runs? between|shinkansen|train|rail|ferry|bus|nozomi|hikari|kodama/iu.test(snippet)
-    || (verifiedDirection && /\baccess\b/iu.test(snippet));
-  if (!explicitlyUnavailable && !explicitlyConnected) return null;
   const extractedDurations = result.sourceFactText ? [] : (() => {
     const extractor = createWebEvidenceExtractor({ now: () => context.retrievedAt });
     const extracted = extractor.extract({ query: context.query, results: [result], retrievedAt: context.retrievedAt });
@@ -187,12 +190,17 @@ function relevantRouteLegResult(result, context = {}) {
       .map((item) => Number(item.value?.durationMinutes))
       .filter((value) => Number.isFinite(value) && value > 0);
   })();
-  const durations = [...new Set([...durationValues(snippet), ...extractedDurations])].sort((left, right) => left - right);
+  const durations = [...new Set([...supportedDurationValues(result, snippet), ...extractedDurations])].sort((left, right) => left - right);
+  const supportedMode = transportMode(snippet, context.transportMode);
+  const explicitlyConnected = /connects?|connected|service between|rapid service|express|travel(?:ing)? (?:from|between)|reach|arriv(?:e|es|ing)|runs? between|shinkansen|train|rail|ferry|bus|nozomi|hikari|kodama/iu.test(snippet)
+    || (verifiedDirection && /\baccess\b/iu.test(snippet))
+    || (verifiedDirection && durations.length > 0 && supportedMode !== "unknown");
+  if (!explicitlyUnavailable && !explicitlyConnected) return null;
   return {
     result,
     feasible: !explicitlyUnavailable,
     durations,
-    transportMode: transportMode(snippet, context.transportMode),
+    transportMode: supportedMode,
     transferCount: transferCount(snippet),
     frequencyLevel: frequencyLevel(snippet),
   };

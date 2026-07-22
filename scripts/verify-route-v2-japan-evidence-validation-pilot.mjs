@@ -64,6 +64,14 @@ function sha256File(filePath) {
 
 function responseForUrl(url) {
   const matchingTargets = ROUTE_V2_JAPAN_EVIDENCE_PILOT_TARGETS.filter((target) => target.sources.some((source) => source.sourceUrl === url));
+  if (url.includes("the-kansai-trio-kyoto-nara-and-osaka")) {
+    return new Response(`<html><head><title>Official Japan pilot source</title></head><body>${matchingTargets.map((target) => (
+      target.sources.find((source) => source.sourceUrl === url)?.sourceLocator?.text || ""
+    )).join(" ")}</body></html>`, {
+      status: 200,
+      headers: { "content-type": "text/html; charset=utf-8" },
+    });
+  }
   const body = matchingTargets.map((target) => {
     const locator = target.sources.find((source) => source.sourceUrl === url)?.sourceLocator?.text || "";
     if (target.evidenceType === "route-leg") {
@@ -90,20 +98,20 @@ async function fixtureFetch(url) {
 const dryRoot = path.join(tempRoot, "dry-run");
 let dryFetches = 0;
 const dryRun = await runPilot({
-  args: ["--limit", "21", "--type", "all", "--country", "JP", "--dry-run"],
+  args: ["--limit", "23", "--type", "all", "--country", "JP", "--dry-run"],
   env,
   storageRoot: dryRoot,
   fetchImpl: async () => { dryFetches += 1; throw new Error("DRY_RUN_NETWORK_FORBIDDEN"); },
 });
 assert.equal(dryRun.ok, true);
-assert.equal(dryRun.tasks.length, 21);
+assert.equal(dryRun.tasks.length, 23);
 assert.equal(dryRun.stats.networkRequests, 0);
 assert.equal(dryFetches, 0);
 assert.equal(fs.existsSync(dryRoot), false, "dry-run must not create a storage root");
 
 const targets = ROUTE_V2_JAPAN_EVIDENCE_PILOT_TARGETS;
-assert.equal(targets.length, 21);
-assert.equal(targets.filter((target) => target.evidenceType === "route-leg").length, 14);
+assert.equal(targets.length, 23);
+assert.equal(targets.filter((target) => target.evidenceType === "route-leg").length, 16);
 assert.equal(targets.filter((target) => target.evidenceType === "season").length, 7);
 const forwardIds = new Set(targets.filter((target) => target.evidenceType === "route-leg").map((target) => target.pilotTargetId));
 for (const target of targets.filter((item) => item.evidenceType === "route-leg")) {
@@ -112,7 +120,7 @@ for (const target of targets.filter((item) => item.evidenceType === "route-leg")
 
 const fixtureRoot = path.join(tempRoot, "fixture-pilot");
 const first = await runPilot({
-  args: ["--limit", "21", "--type", "all", "--country", "JP"],
+  args: ["--limit", "23", "--type", "all", "--country", "JP"],
   env,
   storageRoot: fixtureRoot,
   fetchImpl: fixtureFetch,
@@ -120,15 +128,15 @@ const first = await runPilot({
   clock: (() => { let value = 1_000; return () => (value += 10); })(),
 });
 assert.equal(first.ok, true);
-assert.equal(first.seeded.targetCount, 21);
-assert.equal(first.stats.claimed, 21);
+assert.equal(first.seeded.targetCount, 23);
+assert.equal(first.stats.claimed, 23);
 assert.equal(first.stats.permanentFailures, 0);
-assert.equal(first.repository.manifestCount, 21);
-assert(first.repository.routeLegCount >= 6);
+assert.equal(first.repository.manifestCount, 23);
+assert(first.repository.routeLegCount >= 8);
 assert(first.repository.seasonCount >= 5);
-assert(first.repository.statusCounts.resolved >= 11);
+assert(first.repository.statusCounts.resolved >= 13);
 assert(first.repository.statusCounts.pending >= 7);
-assert.equal(fixtureNetworkRequests, 14, "only targets with an official seed URL may fetch");
+assert.equal(fixtureNetworkRequests, 16, "only targets with an official seed URL may fetch");
 
 const evidenceFiles = {
   legs: path.join(fixtureRoot, "route-leg-evidence.jsonl"),
@@ -136,21 +144,21 @@ const evidenceFiles = {
 };
 const firstHashes = { legs: sha256File(evidenceFiles.legs), seasons: sha256File(evidenceFiles.seasons) };
 await runPilot({
-  args: ["--limit", "21", "--type", "all", "--country", "JP", "--resume"],
+  args: ["--limit", "23", "--type", "all", "--country", "JP", "--resume"],
   env,
   storageRoot: fixtureRoot,
   fetchImpl: fixtureFetch,
   now: () => fixedNow,
 });
 await runPilot({
-  args: ["--limit", "21", "--type", "all", "--country", "JP", "--resume"],
+  args: ["--limit", "23", "--type", "all", "--country", "JP", "--resume"],
   env,
   storageRoot: fixtureRoot,
   fetchImpl: fixtureFetch,
   now: () => fixedNow,
 });
 const noWorkRetry = await runPilot({
-  args: ["--limit", "21", "--type", "all", "--country", "JP", "--resume"],
+  args: ["--limit", "23", "--type", "all", "--country", "JP", "--resume"],
   env,
   storageRoot: fixtureRoot,
   fetchImpl: fixtureFetch,
@@ -174,6 +182,9 @@ const forwardTokyoKyoto = fixtureRepository.index.getRouteLeg({ fromEntityId: "Q
 const reverseKyotoTokyo = fixtureRepository.index.getRouteLeg({ fromEntityId: "Q34600", toEntityId: "Q1490", transportMode: "rail" });
 assert.equal(forwardTokyoKyoto.durationMinMinutes, 120);
 assert.equal(reverseKyotoTokyo.durationMinMinutes, null, "directed evidence must not leak to reverse target");
+assert.equal(fixtureRepository.index.getRouteLeg({ fromEntityId: "Q34600", toEntityId: "Q169134", transportMode: "rail" }).durationMinMinutes, 64);
+assert.equal(fixtureRepository.index.getRouteLeg({ fromEntityId: "Q169134", toEntityId: "Q35765", transportMode: "rail" }).durationMinMinutes, 63);
+assert.equal(fixtureRepository.index.getRouteLeg({ fromEntityId: "Q169134", toEntityId: "Q34600", transportMode: "rail" }).durationMinMinutes, null, "Kyoto -> Nara must not populate the reverse direction");
 assert.equal(fixtureRepository.index.getSeason({ entityId: "Q200516", month: 2 }), null, "Japan pilot evidence must not bind to Iceland Vík's QID");
 
 function candidate(intentId, order, durationDays = 7) {
@@ -308,7 +319,7 @@ assert.equal(isRouteV2LocalEvidenceIndexEnabled({}), false, "local evidence must
 console.log(JSON.stringify({
   status: "PASS",
   targetCount: targets.length,
-  routeLegTargets: 14,
+  routeLegTargets: targets.filter((target) => target.evidenceType === "route-leg").length,
   seasonTargets: 7,
   fixtureCollection: first.stats,
   idempotent: {

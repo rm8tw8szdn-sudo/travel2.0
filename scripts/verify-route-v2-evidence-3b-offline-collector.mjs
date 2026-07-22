@@ -77,17 +77,20 @@ assert.deepEqual(parseOfflineEvidenceCollectorArgs([]), {
   dryRun: false,
   resume: false,
   canary: false,
+  maxAttempts: 3,
 });
-assert.deepEqual(parseOfflineEvidenceCollectorArgs(["--limit", "7", "--type", "season", "--country", "JP", "--dry-run", "--resume"]), {
+assert.deepEqual(parseOfflineEvidenceCollectorArgs(["--limit", "7", "--type", "season", "--country", "JP", "--dry-run", "--resume", "--max-attempts", "5"]), {
   limit: 7,
   type: "season",
   country: "JP",
   dryRun: true,
   resume: true,
   canary: false,
+  maxAttempts: 5,
 });
 assert.throws(() => parseOfflineEvidenceCollectorArgs(["--limit", "31"]), /between 1 and 30/u);
 assert.throws(() => parseOfflineEvidenceCollectorArgs(["--type", "invalid"]), /route-leg, season, or all/u);
+assert.throws(() => parseOfflineEvidenceCollectorArgs(["--max-attempts", "11"]), /between 1 and 10/u);
 assert.throws(() => parseOfflineEvidenceCollectorArgs(["--unknown"]), /Unknown option/u);
 assert.equal(isRouteV2OfflineEvidenceCollectionEnabled({}), false);
 assert.equal(isRouteV2OfflineEvidenceCollectionEnabled({ ROUTE_V2_OFFLINE_EVIDENCE_COLLECTION_ENABLED: "true" }), true);

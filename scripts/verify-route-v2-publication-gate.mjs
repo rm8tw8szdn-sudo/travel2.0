@@ -27,6 +27,7 @@ import { createRouteV2ReadyPool, isRouteV2ReadyPoolEnabled } from "../src/lib/ro
 const fixedNow = "2026-07-22T00:00:00.000Z";
 const root = fs.mkdtempSync(path.join(os.tmpdir(), "route-v2-publication-gate-"));
 const formalSeedRoot = path.resolve("data", "route-v2", "evidence-seed");
+const formalSeedManifest = JSON.parse(fs.readFileSync(path.join(formalSeedRoot, "evidence-seed-manifest.json"), "utf8"));
 const enabledEnv = {
   ROUTE_V2_LOCAL_EVIDENCE_INDEX_ENABLED: "true",
   ROUTE_V2_EVIDENCE_VALIDATION_ENABLED: "true",
@@ -348,7 +349,7 @@ async function runActualSearchSample(query, label) {
 }
 
 const actualSearchSamples = [];
-for (const [index, query] of ["日本7天", "2月去日本7天", "日本2天", "东京→京都"].entries()) {
+for (const [index, query] of ["日本7天", "2月去日本7天", "日本2天", "东京京都大阪7天"].entries()) {
   actualSearchSamples.push(await runActualSearchSample(query, String(index + 1)));
 }
 
@@ -450,7 +451,7 @@ console.log(JSON.stringify({
   verifier: "route-v2-publication-gate",
   passed: true,
   flagsDefaultOff: true,
-  seedCounts: { routeLeg: 6, season: 6, total: 12 },
+  seedCounts: formalSeedManifest.counts,
   samples: sampleReport,
   actualSearchSamples,
   readyPoolPublished: 1,

@@ -110,7 +110,7 @@ const before = protectedSnapshot();
 const realCanaryExistedBefore = fs.existsSync(realCanaryRoot);
 
 assert.deepEqual(parseOfflineEvidenceCollectorArgs(["--canary"]), {
-  limit: 20, type: "all", country: "", dryRun: false, resume: false, canary: true,
+  limit: 20, type: "all", country: "", dryRun: false, resume: false, canary: true, maxAttempts: 3,
 });
 assert.equal(parseOfflineEvidenceCollectorArgs([]).canary, false);
 assert.match(fs.readFileSync(path.join(PROJECT_ROOT, ".gitignore"), "utf8"), /^\.route-v2-local-evidence-canary\/$/mu);

@@ -32,7 +32,7 @@ function requiredValue(args, index, option) {
 }
 
 export function parseOfflineEvidenceCollectorArgs(args = []) {
-  const parsed = { limit: OFFLINE_EVIDENCE_DEFAULT_LIMIT, type: "all", country: "", dryRun: false, resume: false, canary: false };
+  const parsed = { limit: OFFLINE_EVIDENCE_DEFAULT_LIMIT, type: "all", country: "", dryRun: false, resume: false, canary: false, maxAttempts: OFFLINE_EVIDENCE_DEFAULT_MAX_ATTEMPTS };
   for (let index = 0; index < args.length; index += 1) {
     const arg = String(args[index]);
     if (arg === "--dry-run") parsed.dryRun = true;
@@ -52,6 +52,11 @@ export function parseOfflineEvidenceCollectorArgs(args = []) {
       index += 1;
     } else if (arg === "--country") {
       parsed.country = clean(requiredValue(args, index, arg));
+      index += 1;
+    } else if (arg === "--max-attempts") {
+      const value = Number(requiredValue(args, index, arg));
+      if (!Number.isInteger(value) || value < 1 || value > 10) throw new Error("--max-attempts must be an integer between 1 and 10");
+      parsed.maxAttempts = value;
       index += 1;
     } else {
       throw new Error(`Unknown option: ${arg}`);

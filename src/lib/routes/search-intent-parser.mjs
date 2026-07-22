@@ -61,11 +61,11 @@ const COUNTRY_CATALOG = [
 ];
 
 const CITY_CATALOG = [
-  { label: "东京", normalizedLabel: "tokyo", countryCode: "JP", aliases: ["东京", "東京", "tokyo"] },
-  { label: "大阪", normalizedLabel: "osaka", countryCode: "JP", aliases: ["大阪", "osaka"] },
-  { label: "京都", normalizedLabel: "kyoto", countryCode: "JP", aliases: ["京都", "kyoto"] },
-  { label: "奈良", normalizedLabel: "nara", countryCode: "JP", aliases: ["奈良", "nara"] },
-  { label: "富士山", normalizedLabel: "mount fuji", countryCode: "JP", aliases: ["富士山", "mt fuji", "mount fuji", "fuji"] },
+  { label: "东京", normalizedLabel: "tokyo", countryCode: "JP", aliases: ["东京", "東京", "tokyo"], wikidataId: "Q1490" },
+  { label: "大阪", normalizedLabel: "osaka", countryCode: "JP", aliases: ["大阪", "osaka"], wikidataId: "Q35765" },
+  { label: "京都", normalizedLabel: "kyoto", countryCode: "JP", aliases: ["京都", "kyoto"], wikidataId: "Q34600" },
+  { label: "奈良", normalizedLabel: "nara", countryCode: "JP", aliases: ["奈良", "nara"], wikidataId: "Q169134" },
+  { label: "富士山", normalizedLabel: "mount fuji", countryCode: "JP", aliases: ["富士山", "mt fuji", "mount fuji", "fuji"], wikidataId: "Q39231" },
   { label: "雷克雅未克", normalizedLabel: "reykjavik", countryCode: "IS", aliases: ["雷克雅未克", "reykjavik", "reykjavík"] },
   { label: "黄金圈", normalizedLabel: "golden circle", countryCode: "IS", aliases: ["黄金圈", "golden circle"] },
   { label: "卡帕多奇亚", normalizedLabel: "cappadocia", countryCode: "TR", aliases: ["卡帕多奇亚", "cappadocia"] },
@@ -286,6 +286,114 @@ function matchesFromCatalog(query, catalog) {
   return catalog.filter((item) => includesAny(query, item.aliases));
 }
 
+function escapeRegExp(value) {
+  return String(value || "").replace(/[.*+?^${}()|[\]\\]/gu, "\\$&");
+}
+
+function cityIdentity(city = {}) {
+  return clean(city.wikidataId || city.entityId)
+    || `${clean(city.countryCode).toUpperCase()}:${clean(city.normalizedLabel || city.label).toLocaleLowerCase("en-US")}`;
+}
+
+function aliasOccurrences(query, alias) {
+  const normalizedQuery = normalizeText(query);
+  const normalizedAlias = normalizeText(alias);
+  if (!normalizedAlias) return [];
+  if (/^[a-z0-9][a-z0-9\s.-]*$/u.test(normalizedAlias)) {
+    const pattern = new RegExp(`(?<![a-z0-9])${escapeRegExp(normalizedAlias)}(?![a-z0-9])`, "giu");
+    return [...normalizedQuery.matchAll(pattern)].map((match) => ({
+      index: match.index,
+      end: Number(match.index) + match[0].length,
+      rawValue: match[0],
+    }));
+  }
+  const occurrences = [];
+  let index = normalizedQuery.indexOf(normalizedAlias);
+  while (index >= 0) {
+    occurrences.push({ index, end: index + normalizedAlias.length, rawValue: normalizedQuery.slice(index, index + normalizedAlias.length) });
+    index = normalizedQuery.indexOf(normalizedAlias, index + normalizedAlias.length);
+  }
+  return occurrences;
+}
+
+function hasFixedDestinationOrderSyntax(query, requiredCount) {
+  if (requiredCount < 2) return false;
+  const normalized = normalizeText(query);
+  return /(?:→|->|⇒|➜)/u.test(query)
+    || /先.+(?:然后|再去|再到).+(?:最后|然后|再去|再到)/u.test(query)
+    || /到.+(?:再去|然后|再到)/u.test(query)
+    || /\bto\b.+\bthen\b/iu.test(normalized);
+}
+
+function unknownCityTokenDiagnostics(query, occurrences, cityCatalog, countryCatalog) {
+  const hasExplicitSeparator = /(?:、|，|,|→|->|⇒|➜|\s|到|再去|再到|然后|最后|先|\bto\b|\bthen\b)/iu.test(query);
+  if (!hasExplicitSeparator || occurrences.length === 0) return [];
+  let residual = clean(query)
+    .replace(/\d{1,2}\s*(?:天|日|days?|day|d)\b/giu, " ")
+    .replace(/\d{1,2}\s*月/gu, " ");
+  const knownAliases = [
+    ...cityCatalog.flatMap((city) => city.aliases || []),
+    ...countryCatalog.flatMap((country) => country.aliases || []),
+  ].map(clean).filter(Boolean).sort((left, right) => right.length - left.length);
+  for (const alias of knownAliases) residual = residual.replace(new RegExp(escapeRegExp(alias), "giu"), " ");
+  const tokens = residual
+    .split(/(?:、|，|,|→|->|⇒|➜|\s+|到|再去|再到|然后|最后|先|\bto\b|\bthen\b)/iu)
+    .map((token) => clean(token).replace(/^(?:去|游|旅行|路线)+|(?:去|游|旅行|路线)+$/gu, ""))
+    .filter((token) => token.length >= 2 && /[\p{L}\p{Script=Han}]/u.test(token));
+  return unique(tokens).map((rawValue) => ({
+    code: "unknown-city-token",
+    message: "Explicit destination token did not match the known city catalog.",
+    rawValue,
+  }));
+}
+
+function extractRequiredDestinations(query, cityCatalog, countryCatalog) {
+  const rawOccurrences = [];
+  for (const city of cityCatalog) {
+    for (const alias of unique([city.label, city.normalizedLabel, ...(city.aliases || [])])) {
+      for (const occurrence of aliasOccurrences(query, alias)) {
+        rawOccurrences.push({ ...occurrence, city, identity: cityIdentity(city), alias: clean(alias) });
+      }
+    }
+  }
+  rawOccurrences.sort((left, right) => left.index - right.index
+    || (right.end - right.index) - (left.end - left.index)
+    || left.identity.localeCompare(right.identity, "en"));
+  const occurrenceKeys = new Set();
+  const occurrences = rawOccurrences.filter((entry) => {
+    const key = `${entry.identity}:${entry.index}:${entry.end}`;
+    if (occurrenceKeys.has(key)) return false;
+    occurrenceKeys.add(key);
+    return true;
+  });
+  const byIdentity = new Map();
+  const diagnostics = [];
+  for (const occurrence of occurrences) {
+    const existing = byIdentity.get(occurrence.identity);
+    if (existing) {
+      if (existing.index !== occurrence.index) {
+        diagnostics.push({
+          code: "duplicate-required-destination",
+          message: "Duplicate required city was removed while preserving its first occurrence.",
+          rawValue: occurrence.rawValue,
+          destinationId: occurrence.identity,
+        });
+      }
+      continue;
+    }
+    byIdentity.set(occurrence.identity, occurrence);
+  }
+  const required = [...byIdentity.values()].sort((left, right) => left.index - right.index);
+  diagnostics.push(...unknownCityTokenDiagnostics(query, required, cityCatalog, countryCatalog));
+  return {
+    required,
+    diagnostics,
+    destinationOrderMode: required.length >= 2
+      ? hasFixedDestinationOrderSyntax(query, required.length) ? "fixed" : "flexible"
+      : "unspecified",
+  };
+}
+
 function firstMatch(query, catalog) {
   return matchesFromCatalog(query, catalog)[0] || null;
 }
@@ -357,6 +465,10 @@ export function normalizeIntentKey(intent = {}) {
     countryCode: clean(intent.countryCode),
     region: clean(intent.normalizedRegion || intent.region),
     cities: unique(intent.normalizedCities || intent.cities).sort(),
+    ...((intent.requiredDestinationIds || []).length ? {
+      requiredDestinationIds: unique(intent.requiredDestinationIds),
+      destinationOrderMode: clean(intent.destinationOrderMode || "unspecified"),
+    } : {}),
     durationDays: intent.durationDays || null,
     season: clean(intent.seasonKey || intent.season),
     theme: clean(intent.themeKey || intent.theme),
@@ -419,10 +531,16 @@ export function parseSearchIntent(query, { acceptedRoutes = [], catalogs = null,
   const durationDays = parseDuration(normalizedQuery, { allowBareNumber: timeIntentEnabled });
   const countryCatalog = mergeCatalog(COUNTRY_CATALOG, catalogs?.countries, (item) => item.code);
   const cityCatalog = mergeCatalog(CITY_CATALOG, catalogs?.cities, (item) => `${item.countryCode}:${item.normalizedLabel}`);
-  let matchedCities = matchesFromCatalog(normalizedQuery, cityCatalog);
+  const extractedDestinations = timeIntentEnabled
+    ? extractRequiredDestinations(rawQuery, cityCatalog, countryCatalog)
+    : { required: [], diagnostics: [] };
+  let requiredOccurrences = extractedDestinations.required;
+  let matchedCities = timeIntentEnabled
+    ? requiredOccurrences.map((entry) => entry.city)
+    : matchesFromCatalog(normalizedQuery, cityCatalog);
   const matchedRegion = firstMatch(normalizedQuery, REGION_CATALOG);
   let matchedCountry = firstMatch(normalizedQuery, countryCatalog);
-  if (matchedCountry && matchedCities.length) {
+  if (matchedCountry && matchedCities.length && !timeIntentEnabled) {
     matchedCities = matchedCities.filter((item) => item.countryCode === matchedCountry.code);
   }
   if (!matchedCountry && matchedCities.length) {
@@ -446,6 +564,15 @@ export function parseSearchIntent(query, { acceptedRoutes = [], catalogs = null,
     normalizedRegion: matchedRegion?.normalizedLabel || "",
     cities: unique(matchedCities.map((item) => item.label)),
     normalizedCities: unique(matchedCities.map((item) => item.normalizedLabel)),
+    ...(timeIntentEnabled ? {
+      requiredDestinationIds: requiredOccurrences.map((entry) => clean(entry.city.wikidataId || entry.city.entityId || entry.identity)),
+      requiredDestinationNames: requiredOccurrences.map((entry) => clean(entry.city.label || entry.city.normalizedLabel)),
+      requiredDestinationRaw: requiredOccurrences.map((entry) => clean(entry.rawValue)),
+      destinationOrderMode: requiredOccurrences.length >= 2
+        ? hasFixedDestinationOrderSyntax(rawQuery, requiredOccurrences.length) ? "fixed" : "flexible"
+        : "unspecified",
+      destinationDiagnostics: extractedDestinations.diagnostics,
+    } : {}),
     durationDays,
     durationBand: durationBand(durationDays),
     travelStyle: style?.key || "",

@@ -78,6 +78,15 @@ export function routeIntentSnapshot(input = {}) {
       : {}),
     ...(cleanString(context.intentMode) ? { intentMode: cleanString(context.intentMode) } : {}),
     ...(cleanString(context.rawQuery) ? { rawQuery: cleanString(context.rawQuery) } : {}),
+    ...(Array.isArray(context.requiredDestinationIds) ? {
+      requiredDestinationIds: unique(context.requiredDestinationIds),
+      requiredDestinationNames: unique(context.requiredDestinationNames || []),
+      requiredDestinationRaw: unique(context.requiredDestinationRaw || []),
+      destinationOrderMode: cleanString(context.destinationOrderMode || "unspecified"),
+      destinationDiagnostics: Array.isArray(context.destinationDiagnostics)
+        ? clone(context.destinationDiagnostics)
+        : [],
+    } : {}),
     ...(context.destinationSuggestion && typeof context.destinationSuggestion === "object"
       ? {
         destinationSuggestion: {

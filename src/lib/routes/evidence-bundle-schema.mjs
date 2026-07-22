@@ -367,7 +367,6 @@ export function validateEvidenceBundleLifecycle(input = {}, expected = {}) {
   }
   if (bundle.evidenceReferenceMode === "public-evidence-references") {
     if (bundle.legEvidenceRefs.length !== bundle.legs.length) reasons.push("public-reference-mode-requires-all-leg-refs");
-    if (bundle.missingEvidenceRefs.length === 0) reasons.push("public-reference-mode-requires-missing-refs");
   }
   for (const [index, unknown] of bundle.unknowns.entries()) {
     if (!unknown.field || !unknown.reason) reasons.push(`unknown-${index}:field-and-reason-required`);

@@ -342,6 +342,27 @@ export { createRouteDesignStrategyRegistry } from "./route-design-strategy.mjs";
 export { buildRouteConcept, validateRouteConcept, TRAVEL_STYLE_KEYS, TRAVEL_STYLE_LABEL, TRAVEL_STYLE_LABEL_ZH } from "./route-planning-concept.mjs";
 export { createRouteCompositionPlanner } from "./route-composition-planner.mjs";
 export {
+  ROUTE_V2_PUBLICATION_GATE_FLAG,
+  ROUTE_V2_PUBLICATION_GATE_VERSION,
+  ROUTE_V2_PUBLICATION_STATUSES,
+  evaluateRouteV2Publication,
+  isRouteV2PublicationGateEnabled,
+} from "./route-publication-gate.mjs";
+export {
+  ROUTE_V2_READY_POOL_FLAG,
+  createRouteV2ReadyPool,
+  defaultRouteV2ReadyPoolPath,
+  isRouteV2ReadyPoolEnabled,
+} from "./route-v2-ready-pool.mjs";
+export { buildRouteV2MissingEvidenceReport } from "./route-evidence-missing-report.mjs";
+export { createLocalEvidenceSeedOverlay, compareLocalEvidenceQuality } from "./local-evidence-seed-overlay.mjs";
+export {
+  ROUTE_V2_EVIDENCE_SEED_ROOT,
+  ROUTE_V2_EVIDENCE_SEED_SCHEMA_VERSION,
+  planEvidenceSeedPromotion,
+  promoteEvidenceSeed,
+} from "./evidence-seed-promotion.mjs";
+export {
   COUNTRY_CODE_TO_QID,
   fetchCountryQid,
   fetchSparqlDestinations,

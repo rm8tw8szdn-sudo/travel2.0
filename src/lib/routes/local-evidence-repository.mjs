@@ -1,6 +1,7 @@
 import path from "node:path";
 import { validateEvidenceBundleLifecycle } from "./evidence-bundle-schema.mjs";
 import { createLocalEvidenceIndex } from "./local-evidence-index.mjs";
+import { createLocalEvidenceSeedOverlay } from "./local-evidence-seed-overlay.mjs";
 import { createMissingEvidenceManifestStore } from "./missing-evidence-manifest-store.mjs";
 import { buildMissingRouteLegEvidence, routeLegEvidenceKey } from "./route-leg-evidence-schema.mjs";
 import {
@@ -60,25 +61,49 @@ export { ROUTE_V2_LOCAL_EVIDENCE_INDEX_FLAG, isRouteV2LocalEvidenceIndexEnabled 
 export function createLocalEvidenceRepository({
   env = process.env,
   storageRoot = null,
+  seedRoot = null,
   routeLegStore = null,
   seasonStore = null,
+  seedRouteLegStore = null,
+  seedSeasonStore = null,
   missingEvidenceStore = null,
   index = null,
   now = () => new Date().toISOString(),
 } = {}) {
   const root = storageRoot || path.resolve(".route-v2-local-evidence");
+  const publishedSeedRoot = seedRoot
+    || env.ROUTE_V2_EVIDENCE_SEED_ROOT
+    || (storageRoot ? path.join(root, "evidence-seed") : path.resolve("data", "route-v2", "evidence-seed"));
   const legs = routeLegStore || createRouteLegEvidenceStore({
     storagePath: path.join(root, "route-leg-evidence.jsonl"), env, now,
   });
   const seasons = seasonStore || createSeasonEvidenceStore({
     storagePath: path.join(root, "season-evidence.jsonl"), env, now,
   });
+  const seedLegs = seedRouteLegStore || createRouteLegEvidenceStore({
+    storagePath: path.join(publishedSeedRoot, "route-leg-evidence.jsonl"), env, now,
+  });
+  const seedSeasons = seedSeasonStore || createSeasonEvidenceStore({
+    storagePath: path.join(publishedSeedRoot, "season-evidence.jsonl"), env, now,
+  });
+  const mergedLegs = createLocalEvidenceSeedOverlay({
+    seedStore: seedLegs,
+    runtimeStore: legs,
+    idField: "legEvidenceId",
+    recordType: "route-leg-evidence",
+  });
+  const mergedSeasons = createLocalEvidenceSeedOverlay({
+    seedStore: seedSeasons,
+    runtimeStore: seasons,
+    idField: "seasonEvidenceId",
+    recordType: "season-evidence",
+  });
   const missing = missingEvidenceStore || createMissingEvidenceManifestStore({
     storagePath: path.join(root, "missing-evidence-manifest.jsonl"), env, now,
   });
   const evidenceIndex = index || createLocalEvidenceIndex({
-    routeLegStore: legs,
-    seasonStore: seasons,
+    routeLegStore: mergedLegs,
+    seasonStore: mergedSeasons,
     missingEvidenceStore: missing,
   });
 
@@ -102,31 +127,50 @@ export function createLocalEvidenceRepository({
       }
       if (new Set(destinationOrder).size !== destinationOrder.length) return failed("local-evidence-destination-order-duplicate");
 
+      const validationResult = context.validationResult && typeof context.validationResult === "object"
+        ? context.validationResult
+        : null;
       const legRecords = [];
+      const legEvidenceRefs = [];
       for (let indexPosition = 0; indexPosition < destinationOrder.length - 1; indexPosition += 1) {
+        const validatedLeg = validationResult?.legResults?.[indexPosition] || null;
         const built = buildMissingRouteLegEvidence({
           fromEntityId: destinationOrder[indexPosition],
           toEntityId: destinationOrder[indexPosition + 1],
-          transportMode: bundle.legs?.[indexPosition]?.transportMode || "unknown",
+          transportMode: validatedLeg?.transportMode || bundle.legs?.[indexPosition]?.transportMode || "unknown",
         }, { now });
         if (!built.created) return failed(built.reason || "route-leg-evidence-build-failed", built.reasons || []);
-        legRecords.push(built.record);
+        if (clean(validatedLeg?.evidenceId)) legEvidenceRefs.push(clean(validatedLeg.evidenceId));
+        else {
+          legRecords.push(built.record);
+          legEvidenceRefs.push(built.record.legEvidenceId);
+        }
       }
-      const legWrite = legs.upsertMany(legRecords);
-      if (legWrite.persisted !== true) return failed(legWrite.reason || "route-leg-evidence-write-failed", legWrite.reasons || legWrite.diagnostics || [], legWrite.error);
+      if (legRecords.length) {
+        const legWrite = legs.upsertMany(legRecords);
+        if (legWrite.persisted !== true) return failed(legWrite.reason || "route-leg-evidence-write-failed", legWrite.reasons || legWrite.diagnostics || [], legWrite.error);
+      }
 
       const months = contextMonths(context);
       const seasonRecords = [];
+      const seasonEvidenceRefs = [];
       if (months.length) {
         for (const entityId of destinationOrder) {
           for (const month of months) {
+            const validatedSeason = validationResult?.seasonResults?.find((result) => clean(result?.entityId) === entityId && Number(result?.month) === Number(month)) || null;
             const built = buildMissingSeasonEvidence({ entityId, month }, { now });
             if (!built.created) return failed(built.reason || "season-evidence-build-failed", built.reasons || []);
-            seasonRecords.push(built.record);
+            if (clean(validatedSeason?.evidenceId)) seasonEvidenceRefs.push(clean(validatedSeason.evidenceId));
+            else {
+              seasonRecords.push(built.record);
+              seasonEvidenceRefs.push(built.record.seasonEvidenceId);
+            }
           }
         }
-        const seasonWrite = seasons.upsertMany(seasonRecords);
-        if (seasonWrite.persisted !== true) return failed(seasonWrite.reason || "season-evidence-write-failed", seasonWrite.reasons || seasonWrite.diagnostics || [], seasonWrite.error);
+        if (seasonRecords.length) {
+          const seasonWrite = seasons.upsertMany(seasonRecords);
+          if (seasonWrite.persisted !== true) return failed(seasonWrite.reason || "season-evidence-write-failed", seasonWrite.reasons || seasonWrite.diagnostics || [], seasonWrite.error);
+        }
       }
 
       const missingInputs = [
@@ -156,8 +200,6 @@ export function createLocalEvidenceRepository({
         const item = evidenceIndex.getMissingByTarget(input.evidenceType, input.targetKey);
         return item?.missingEvidenceId;
       }).filter(Boolean);
-      const legEvidenceRefs = legRecords.map((record) => record.legEvidenceId);
-      const seasonEvidenceRefs = seasonRecords.map((record) => record.seasonEvidenceId);
       const normalizedMissingEvidenceRefs = uniqueStrings(missingEvidenceRefs);
       const referencesUnchanged = bundle.evidenceReferenceMode === "public-evidence-references"
         && sameOrder(bundle.legEvidenceRefs || [], legEvidenceRefs)
@@ -211,6 +253,10 @@ export function createLocalEvidenceRepository({
     linkEvidenceBundle,
     routeLegStore: legs,
     seasonStore: seasons,
+    seedRouteLegStore: seedLegs,
+    seedSeasonStore: seedSeasons,
+    mergedRouteLegStore: mergedLegs,
+    mergedSeasonStore: mergedSeasons,
     missingEvidenceStore: missing,
     index: evidenceIndex,
   };

@@ -295,7 +295,9 @@ function decorateRecord(record, { status, matchReason, queryId, intentHash }) {
 
 function isRouteGenerationV2Record(record = {}) {
   return clean(record.generationVersion).startsWith("route-generation-v2-")
-    || clean(record.v2PublicationStatus) === "v2-not-publishable-yet";
+    || clean(record.v2PublicationStatus).startsWith("blocked-")
+    || clean(record.v2PublicationStatus) === "v2-not-publishable-yet"
+    || clean(record.v2PublicationStatus) === "ready-for-display";
 }
 
 function preserveGenerationMetadata(record, source = {}) {
@@ -305,20 +307,21 @@ function preserveGenerationMetadata(record, source = {}) {
   const decisionTraceId = clean(source.decisionTraceId);
   const intentId = clean(source.intentId);
   const v2Record = generationVersion.startsWith("route-generation-v2-");
+  const v2PublicationStatus = clean(source.v2PublicationStatus);
   return {
     ...record,
     ...(generationVersion ? { generationVersion } : {}),
     ...(selectedCandidateId ? { selectedCandidateId } : {}),
     ...(decisionTraceId ? { decisionTraceId } : {}),
     ...(intentId ? { intentId } : {}),
-    ...(v2Record || clean(source.v2PublicationStatus) === "v2-not-publishable-yet"
-      ? { v2PublicationStatus: "v2-not-publishable-yet" }
+    ...(v2Record || v2PublicationStatus
+      ? { v2PublicationStatus: v2PublicationStatus || "v2-not-publishable-yet" }
       : {}),
   };
 }
 
 function generatedStatus(record, autoAcceptGenerated) {
-  if (isRouteGenerationV2Record(record)) return "needs-review";
+  if (isRouteGenerationV2Record(record)) return clean(record.v2PublicationStatus) === "ready-for-display" ? "ready-for-display" : "needs-review";
   if (autoAcceptGenerated) return "accepted";
   if (record?.enrichmentStatus === "needsEvidence" || record?.contentQualityStatus !== "accepted") return "needs-review";
   return "search-generated";
@@ -619,7 +622,7 @@ export function createRouteSearchService({
                 ...record,
                 searchStatus: status,
                 contentQualityStatus: record.contentQualityStatus || "accepted",
-                ...(isRouteGenerationV2Record(record) ? { v2PublicationStatus: "v2-not-publishable-yet" } : {}),
+                ...(isRouteGenerationV2Record(record) ? { v2PublicationStatus: record.v2PublicationStatus || "v2-not-publishable-yet" } : {}),
               });
             });
         } else if (!destinationSuggestionMode && !plannerTimeout && !plannerAborted && !result.error) {
@@ -627,7 +630,7 @@ export function createRouteSearchService({
           generatedRecords = fallback ? [ensureSearchGeneratedMedia({ ...fallback, searchStatus: "needs-review" })] : [];
         }
         if (generatedRecords.length) {
-            const v2BlockedRecords = generatedRecords.filter(isRouteGenerationV2Record);
+            const v2BlockedRecords = generatedRecords.filter((record) => isRouteGenerationV2Record(record) && record.v2PublicationStatus !== "ready-for-display");
             const cacheStatus = generatedRecords.some((record) => record.searchStatus === "needs-review")
               ? "needs-review"
               : generatedRecords.every((record) => record.searchStatus === "accepted") ? "accepted" : "search-generated";

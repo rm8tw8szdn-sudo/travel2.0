@@ -7,6 +7,8 @@ const routeSearchStatus = detailParams.get("status")?.trim() || "";
 const routeSearchSessionId = detailParams.get("searchSessionId")?.trim() || "";
 const routeSearchQueryId = detailParams.get("queryId")?.trim() || "";
 const FALLBACK_ROUTE_COVER = "assets/trip-cover-placeholder.svg";
+const routeImageAssets = globalThis.RouteV2ImageAssets || null;
+const runtimeImageSearchEnabled = routeImageAssets?.isRuntimeImageSearchEnabled?.() === true;
 
 let activeRouteRecord = null;
 let destinationHydrationToken = 0;
@@ -170,6 +172,7 @@ function updateDestinationCard(destination, asset, status = "ready") {
 }
 
 async function hydrateDestinationImages(record, destinations, initialAssets) {
+  if (!runtimeImageSearchEnabled) return;
   const token = ++destinationHydrationToken;
   const usedImageUrls = new Set(
     [
@@ -221,7 +224,9 @@ function renderDestinations(record, diagnostics = {}) {
   const missing = [];
   const destinations = uniqueDestinations(record);
   const cards = destinations.map((destination) => {
-    const asset = assets.get(destination.wikidataId) || assets.get(destination.name);
+    const asset = runtimeImageSearchEnabled
+      ? (assets.get(destination.wikidataId) || assets.get(destination.name))
+      : routeImageAssets?.resolveLocalDestinationCover?.(destination, record);
     if (!asset?.imageUrl) {
       missing.push(destination.name);
       return destinationCardMarkup(record, destination, null);
@@ -234,13 +239,15 @@ function renderDestinations(record, diagnostics = {}) {
 }
 
 function renderRoute(record, diagnostics = {}) {
-  if (!record.coverAsset?.imageUrl && !record.coverImage) throw new Error("路线封面缺失");
   activeRouteRecord = record;
   document.title = `${record.name} · 路线详情`;
   document.querySelector(".route-detail-screen")?.setAttribute("aria-label", `${record.name}路线详情`);
   const cover = document.querySelector("[data-route-cover]");
   if (cover) {
-    cover.src = record.coverAsset?.imageUrl || record.coverImage;
+    const localCover = routeImageAssets?.resolveLocalRouteCover?.(record)?.url || FALLBACK_ROUTE_COVER;
+    cover.src = runtimeImageSearchEnabled
+      ? (record.coverAsset?.imageUrl || record.coverImage || localCover)
+      : localCover;
     cover.alt = `${record.name}路线封面图`;
   }
   setText("[data-route-name]", record.name);
@@ -311,16 +318,23 @@ async function loadRouteDetail() {
 document.querySelector("[data-route-detail-retry]")?.addEventListener("click", loadRouteDetail);
 document.querySelector("[data-route-cover]")?.addEventListener("error", () => {
   const image = document.querySelector("[data-route-cover]");
-  console.error("Route cover asset failed", routeId, image?.src);
   if (image && !image.src.endsWith(FALLBACK_ROUTE_COVER)) {
     image.src = FALLBACK_ROUTE_COVER;
     return;
   }
-  showState("error");
 });
+
 document.querySelector("[data-route-destination-grid]")?.addEventListener("error", async (event) => {
-  const image = event.target;
+  const image = event.target instanceof HTMLImageElement ? event.target : null;
+  if (!image) return;
   const card = image.closest("[data-route-destination]");
+  if (!runtimeImageSearchEnabled) {
+    if (image.dataset.routeFallbackApplied === "true") return;
+    image.dataset.routeFallbackApplied = "true";
+    image.src = routeImageAssets?.DEFAULT_CITY_PLACEHOLDER || FALLBACK_ROUTE_COVER;
+    card?.setAttribute("data-route-destination-media", "fallback");
+    return;
+  }
   console.warn("Destination asset failed; searching replacement", image.alt, image.src);
   const destination = findDestinationForCard(card);
   const attempts = Number(card?.dataset.routeDestinationRepairAttempts || 0);

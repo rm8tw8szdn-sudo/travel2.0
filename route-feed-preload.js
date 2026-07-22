@@ -28,11 +28,14 @@
   function proxyImageUrl(imageUrl) {
     const text = String(imageUrl || "");
     if (imageAssets?.isConfiguredAssetUrl(text)) return text;
+    if (!runtimeImageSearchEnabled && /^https?:\/\//i.test(text)) return imageAssets?.DEFAULT_ROUTE_PLACEHOLDER || "assets/trip-cover-placeholder.svg";
     return /^https?:\/\//i.test(text) ? `/api/routes/image-proxy?url=${encodeURIComponent(text)}` : text;
   }
 
   function fixedPilotCover(record = {}) {
-    return imageAssets?.resolvePilotRouteCover(record.id) || null;
+    return imageAssets?.resolveLocalRouteCover?.(record)
+      || imageAssets?.resolvePilotRouteCover(record.id)
+      || { url: "assets/trip-cover-placeholder.svg", source: "local-placeholder", isFallback: true };
   }
 
   function routeText(record = {}) {
@@ -146,15 +149,15 @@
       for (const record of payload.records) {
         const fixedCover = fixedPilotCover(record);
         let image = null;
-        if (!fixedCover && runtimeImageSearchEnabled) image = await requestCover(record, usedImageUrls).catch(() => null);
-        let imageUrl = fixedCover?.url || image?.imageUrl || record.coverAsset?.imageUrl || record.coverImage || fallbackCover(record, usedImageUrls);
+        if (fixedCover?.isFallback && runtimeImageSearchEnabled) image = await requestCover(record, usedImageUrls).catch(() => null);
+        let imageUrl = (!fixedCover?.isFallback ? fixedCover?.url : "")
+          || image?.imageUrl
+          || (runtimeImageSearchEnabled ? (record.coverAsset?.imageUrl || record.coverImage || fallbackCover(record, usedImageUrls)) : "assets/trip-cover-placeholder.svg");
         let imageReady = await warmImage(imageUrl);
         if (!imageReady) {
           image = null;
           usedImageUrls.add(String(imageUrl).toLowerCase());
-          imageUrl = fixedCover
-            ? imageAssets.resolvePilotRouteCover(record.id, { assetBaseUrl: "" }).url
-            : fallbackCover(record, usedImageUrls);
+          imageUrl = fixedCover?.url || "assets/trip-cover-placeholder.svg";
           imageReady = await warmImage(imageUrl, 1800);
         }
         imagesReady = imagesReady && imageReady;

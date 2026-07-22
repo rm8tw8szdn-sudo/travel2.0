@@ -70,7 +70,7 @@ export function createLocalEvidenceRepository({
   index = null,
   now = () => new Date().toISOString(),
 } = {}) {
-  const root = storageRoot || path.resolve(".route-v2-local-evidence");
+  const root = storageRoot || env.ROUTE_V2_LOCAL_EVIDENCE_ROOT || path.resolve(".route-v2-local-evidence");
   const publishedSeedRoot = seedRoot
     || env.ROUTE_V2_EVIDENCE_SEED_ROOT
     || (storageRoot ? path.join(root, "evidence-seed") : path.resolve("data", "route-v2", "evidence-seed"));

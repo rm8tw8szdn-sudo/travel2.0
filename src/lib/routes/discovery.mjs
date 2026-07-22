@@ -279,8 +279,6 @@ export function createRouteDiscovery({
     const diagnostics = emptyDiagnostics("accepted-repository");
     const record = normalizeDiscoveredRoutes(acceptedRepository.get(request.routeId) ? [acceptedRepository.get(request.routeId)] : [], 1)[0];
     if (!record) throw new RouteDiscoveryError("ROUTE_NOT_FOUND", `Route ${request.routeId} was not found in Accepted Repository.`, { status: 404 });
-    if (!record.coverAsset?.imageUrl) throw new RouteDiscoveryError("ROUTE_MEDIA_INCOMPLETE", "Route cover is unavailable.", { status: 422 });
-
     const missing = missingDestinations(record);
     diagnostics.missingDestinations = missing;
     diagnostics.partial = missing.length > 0;
@@ -308,7 +306,6 @@ export function createRouteDiscovery({
     const diagnostics = emptyDiagnostics("search-v1-cache");
     const record = routeSearchService.getSearchRoute(request.routeId);
     if (!record) throw new RouteDiscoveryError("ROUTE_NOT_FOUND", `Route ${request.routeId} was not found in Search Cache.`, { status: 404 });
-    if (!record.coverAsset?.imageUrl) throw new RouteDiscoveryError("ROUTE_MEDIA_INCOMPLETE", "Route cover is unavailable.", { status: 422 });
     searchAnalytics?.logDetailClick?.({
       routeId: request.routeId,
       routeStatus: record.searchStatus || "search-generated",

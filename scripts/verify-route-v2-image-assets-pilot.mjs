@@ -104,6 +104,23 @@ assert.equal(imageAssets.resolveAssetUrl("../secret.webp", { assetBaseUrl: TEST_
 assert.equal(imageAssets.resolveAssetUrl("https://other.example/image.webp", { assetBaseUrl: TEST_ASSET_BASE_URL, fallbackUrl: "local.svg" }), "local.svg");
 assert.equal(imageAssets.isConfiguredAssetUrl(`${TEST_ASSET_BASE_URL}routes/italy-first-trip.webp`, { assetBaseUrl: TEST_ASSET_BASE_URL }), true);
 assert.equal(imageAssets.isConfiguredAssetUrl("https://images.unsplash.com/photo-test", { assetBaseUrl: TEST_ASSET_BASE_URL }), false);
+assert.equal(imageAssets.resolveLocalRouteCover({ id: "gold-case-accepted-gold-1-jp-first-trip" }).url, "assets/route-japan-classic-cover.svg");
+assert.equal(imageAssets.resolveLocalRouteCover({
+  id: "local-city-route",
+  destinationEntities: [{ name: "Tokyo", countryCode: "JP" }],
+  countryEntities: [{ countryCode: "JP", name: "Japan" }],
+}).url, "assets/city-tokyo-cover.svg");
+assert.equal(imageAssets.resolveLocalRouteCover({
+  id: "local-country-route",
+  countryEntities: [{ countryCode: "FI", name: "Finland" }],
+}).url, "assets/country-landmark-finland.png");
+assert.equal(imageAssets.resolveLocalRouteCover({ id: "unknown-local-route" }).url, "assets/trip-cover-placeholder.svg");
+assert.equal(imageAssets.resolveLocalDestinationCover({ name: "Kyoto", countryCode: "JP" }).url, "assets/city-kyoto-cover.svg");
+assert.equal(imageAssets.resolveLocalDestinationCover({ name: "Unknown", countryCode: "ZZ" }).url, "assets/route-city-oslo.svg");
+assert.equal(
+  imageAssets.resolveLocalRouteCover({ id: "gold-case-accepted-gold-2-it-first-trip" }, { assetBaseUrl: TEST_ASSET_BASE_URL }).url,
+  `${TEST_ASSET_BASE_URL}routes/italy-first-trip.webp`,
+);
 
 const routesHtml = read("routes.html");
 const mobileHtml = read("mobile.html");
@@ -111,7 +128,11 @@ const cityHtml = read("city-oslo.html");
 const routesSource = read("routes.js");
 const preloadSource = read("route-feed-preload.js");
 const citySource = read("city-detail.js");
+const detailHtml = read("route-detail.html");
+const detailSource = read("route-detail.js");
+const discoverySource = read("src/lib/routes/discovery.mjs");
 const moduleSource = read("route-v2-image-assets.js");
+const serverSource = read("server.js");
 const travelDataSource = read("travel-data.js");
 const plannerStatisticsLines = read("PLANNER_STRATEGY_STATISTICS.csv").split(/\r?\n/u);
 
@@ -126,12 +147,27 @@ assert.match(routesSource, /fixedPilotRouteCover/u);
 assert.match(routesSource, /const runtimeImageSearchEnabled = routeImageAssets\?\.isRuntimeImageSearchEnabled\?\.\(\) === true;/u);
 assert.match(routesSource, /if \(!runtimeImageSearchEnabled\) \{\s*clearRouteCover\(record\);/u);
 assert.match(routesSource, /function schedulePendingCoverHydration\(\) \{\s*if \(!runtimeImageSearchEnabled\) return;/u);
+assert.match(routesSource, /if \(!runtimeImageSearchEnabled && \/\^https\?:/u);
 assert.match(preloadSource, /resolvePilotRouteCover/u);
-assert.match(preloadSource, /if \(!fixedCover && runtimeImageSearchEnabled\) image = await requestCover/u);
+assert.match(preloadSource, /if \(fixedCover\?\.isFallback && runtimeImageSearchEnabled\) image = await requestCover/u);
+assert.match(preloadSource, /if \(!runtimeImageSearchEnabled && \/\^https\?:/u);
 assert.match(citySource, /resolvePilotCityCover/u);
 assert.match(citySource, /cityCover\.alt = `\$\{city\.name\}封面图`/u);
+assert.ok(detailHtml.indexOf("route-v2-image-assets.js") < detailHtml.indexOf("route-detail.js"));
+assert.match(detailSource, /resolveLocalRouteCover/u);
+assert.match(detailSource, /resolveLocalDestinationCover/u);
+assert.match(detailSource, /if \(!runtimeImageSearchEnabled\) return;/u);
+assert.match(detailSource, /if \(!runtimeImageSearchEnabled\) \{[\s\S]*routeFallbackApplied[\s\S]*DEFAULT_CITY_PLACEHOLDER[\s\S]*return;/u);
+assert.doesNotMatch(detailSource, /console\.error\("Route cover asset failed"/u);
+assert.doesNotMatch(discoverySource, /if \(!record\.coverAsset\?\.imageUrl\) throw new RouteDiscoveryError\("ROUTE_MEDIA_INCOMPLETE"/u);
+assert.match(serverSource, /process\.env\.ROUTE_IMAGE_CACHE_PATH/u);
+assert.match(serverSource, /process\.env\.ROUTE_IMAGE_PROXY_CACHE_DIR/u);
+assert.match(serverSource, /const acceptedRoutesPath = process\.env\.ROUTE_ACCEPTED_REPOSITORY_PATH/u);
 assert.doesNotMatch(moduleSource, /fetch\(|XMLHttpRequest|node:fs|\.route-v2-cache/u);
 assert.equal((moduleSource.match(/https?:\/\//gu) || []).length, 0, "Production image module must not contain a hostname");
+for (const assetPath of new Set([...moduleSource.matchAll(/["'](assets\/[^"']+)["']/gu)].map((match) => match[1]))) {
+  assert.equal(fs.existsSync(path.join(PROJECT_ROOT, assetPath)), true, `Local image asset must exist: ${assetPath}`);
+}
 
 for (const cityId of Object.keys(EXPECTED_CITY_KEYS)) {
   assert.ok(travelDataSource.includes(`["${cityId}",`), `Pilot City must already exist: ${cityId}`);

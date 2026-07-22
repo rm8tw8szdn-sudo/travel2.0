@@ -7,6 +7,13 @@ const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "
 const html = fs.readFileSync(path.join(projectRoot, "routes.html"), "utf8");
 const routesSource = fs.readFileSync(path.join(projectRoot, "routes.js"), "utf8");
 const css = fs.readFileSync(path.join(projectRoot, "mobile.css"), "utf8");
+const imageAssetsSource = fs.readFileSync(path.join(projectRoot, "route-v2-image-assets.js"), "utf8");
+const preloadSource = fs.readFileSync(path.join(projectRoot, "route-feed-preload.js"), "utf8");
+const detailHtml = fs.readFileSync(path.join(projectRoot, "route-detail.html"), "utf8");
+const detailSource = fs.readFileSync(path.join(projectRoot, "route-detail.js"), "utf8");
+const discoverySource = fs.readFileSync(path.join(projectRoot, "src/lib/routes/discovery.mjs"), "utf8");
+const localEvidenceSource = fs.readFileSync(path.join(projectRoot, "src/lib/routes/local-evidence-repository.mjs"), "utf8");
+const serverSource = fs.readFileSync(path.join(projectRoot, "server.js"), "utf8");
 const searchServiceSource = fs.readFileSync(path.join(projectRoot, "src", "lib", "routes", "route-search-service.mjs"), "utf8");
 const candidateBuilderSource = fs.readFileSync(path.join(projectRoot, "src", "lib", "routes", "route-candidate-builder.mjs"), "utf8");
 const compositionPlannerSource = fs.readFileSync(path.join(projectRoot, "src", "lib", "routes", "route-composition-planner.mjs"), "utf8");
@@ -38,7 +45,21 @@ assert.match(routesSource, /<small>\$\{escapeHtml\(routeFeatureIntroV2\(record\)
 assert.match(routesSource, /record\.searchStatus === "needs-review"[\s\S]*"证据待验证"/u);
 assert.match(css, /\.route-copy small:last-child\s*\{[\s\S]*-webkit-line-clamp: 2/u);
 assert.match(css, /@media \(max-width: 430px\)\s*\{[\s\S]*\.route-copy small:last-child\s*\{[\s\S]*-webkit-line-clamp: 3/u);
+assert.match(css, /\.route-copy strong\s*\{[^}]*text-overflow: ellipsis;[^}]*white-space: nowrap;/u);
+assert.match(css, /@media \(max-width: 430px\)\s*\{\s*\.route-copy strong\s*\{[^}]*-webkit-line-clamp: 2;[^}]*white-space: normal;/u);
 assert.match(css, /\.route-card img\s*\{[\s\S]*width: 104px;[\s\S]*height: 86px;/u);
+assert.doesNotMatch(imageAssetsSource, /fetch\(|XMLHttpRequest/u);
+assert.match(routesSource, /if \(!runtimeImageSearchEnabled && \/\^https\?:/u);
+assert.match(preloadSource, /if \(!runtimeImageSearchEnabled && \/\^https\?:/u);
+assert.ok(detailHtml.indexOf("route-v2-image-assets.js") < detailHtml.indexOf("route-detail.js"));
+assert.match(detailSource, /if \(!runtimeImageSearchEnabled\) return;/u);
+assert.match(detailSource, /resolveLocalRouteCover/u);
+assert.match(detailSource, /resolveLocalDestinationCover/u);
+assert.doesNotMatch(discoverySource, /if \(!record\.coverAsset\?\.imageUrl\) throw new RouteDiscoveryError\("ROUTE_MEDIA_INCOMPLETE"/u);
+assert.match(serverSource, /process\.env\.ROUTE_IMAGE_CACHE_PATH/u);
+assert.match(serverSource, /process\.env\.ROUTE_IMAGE_PROXY_CACHE_DIR/u);
+assert.match(serverSource, /const acceptedRoutesPath = process\.env\.ROUTE_ACCEPTED_REPOSITORY_PATH/u);
+assert.match(localEvidenceSource, /env\.ROUTE_V2_LOCAL_EVIDENCE_ROOT/u);
 assert.match(searchServiceSource, /const ownersByKey = new Map\(\);/u);
 assert.match(searchServiceSource, /const duplicateIndex = duplicateIndexFor\(keys\);/u);
 assert.doesNotMatch(searchServiceSource, /accepted\.findIndex\(\(existing\) => isStrongSearchDuplicate/u);
@@ -144,6 +165,21 @@ if (configuredBaseUrl) {
   assert(flexibleSearch.result.records.every((record) => ["东京", "京都", "大阪"].every((city) => (
     (record.destinations || []).some((destination) => String(destination).includes(city) || city.includes(String(destination)))
   ))));
+  const flexibleDetailResponse = await fetch(discoveryUrl, {
+    method: "POST",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify({
+      mode: "search-detail",
+      routeId: flexibleSearch.result.records[0].id,
+      source: "search",
+      searchSessionId: "prelaunch-flexible-cities",
+      queryId: flexibleSearch.result.queryId,
+    }),
+  });
+  const flexibleDetailPayload = await flexibleDetailResponse.json();
+  assert.equal(flexibleDetailResponse.status, 200, "a generated route without remote cover media must remain openable through the local fallback chain");
+  assert.equal(flexibleDetailPayload.ok, true);
+  assert.equal(flexibleDetailPayload.record?.id, flexibleSearch.result.records[0].id);
 
   const fixedThreeSearch = await postSearch("东京→京都→大阪7天", "prelaunch-fixed-three-cities");
   assert.equal(fixedThreeSearch.response.status, 200);
@@ -212,6 +248,7 @@ if (configuredBaseUrl) {
     februarySearchRecords: februarySearch.result.records.length,
     flexibleSearchMs: Number(flexibleSearch.durationMs.toFixed(3)),
     flexibleSearchRecords: flexibleSearch.result.records.length,
+    flexibleDetailStatus: flexibleDetailResponse.status,
     fixedThreeSearchMs: Number(fixedThreeSearch.durationMs.toFixed(3)),
     fixedThreeSearchRecords: fixedThreeSearch.result.records.length,
     fixedSearchMs: Number(fixedSearch.durationMs.toFixed(3)),
@@ -236,7 +273,9 @@ console.log(JSON.stringify({
   emptyBatchGuard: 2,
   summaryLineClamp: 2,
   mobileSummaryLineClamp: 3,
+  mobileTitleLineClamp: 2,
   imageBox: "104x86",
+  defaultRouteImagesLocalOnly: true,
   indexedSearchDedupe: true,
   structuredAcceptedCompatibility: true,
   evidenceBackedBridgeInsertion: true,

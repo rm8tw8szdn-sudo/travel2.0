@@ -550,18 +550,19 @@ function visibleRecords() {
 }
 
 function fixedPilotRouteCover(record = {}) {
-  const resolved = routeImageAssets?.resolvePilotRouteCover(record.id);
-  if (!resolved) return null;
-  record.coverImageKey = resolved.key;
+  const resolved = routeImageAssets?.resolveLocalRouteCover?.(record)
+    || routeImageAssets?.resolvePilotRouteCover(record.id);
+  if (!resolved) return { url: FALLBACK_ROUTE_COVER, source: "local-placeholder", isFallback: true };
+  if (resolved.key) record.coverImageKey = resolved.key;
   if (!resolved.isFallback && badRuntimeImageUrls.has(coverIdentity(resolved.url))) {
-    return routeImageAssets.resolvePilotRouteCover(record.id, { assetBaseUrl: "" });
+    return { url: FALLBACK_ROUTE_COVER, source: "local-placeholder", isFallback: true };
   }
   return resolved;
 }
 
 function coverUrl(record) {
   const fixedCover = fixedPilotRouteCover(record);
-  if (fixedCover) return fixedCover.url;
+  if (!runtimeImageSearchEnabled || (fixedCover && !fixedCover.isFallback)) return fixedCover?.url || FALLBACK_ROUTE_COVER;
   if (
     isVerifiedRouteImageAsset(record, record.onlineCoverAsset)
       && !isPlannerFallbackCover(record.onlineCoverAsset)
@@ -572,7 +573,7 @@ function coverUrl(record) {
   if (isPlannerPlaceholderCover(record)) return "";
   const remoteCover = record.coverAsset?.imageUrl || record.coverImage || "";
   if (remoteCover && isVerifiedRouteImageAsset(record, record.coverAsset) && routeImageAllowed(record, remoteCover)) return remoteCover;
-  return "";
+  return fixedCover?.url || FALLBACK_ROUTE_COVER;
 }
 
 function displayCoverUrl(record) {
@@ -929,6 +930,7 @@ function normalizedRemoteImageUrl(imageUrl) {
 function proxiedRouteImageUrl(imageUrl) {
   const text = normalizedRemoteImageUrl(imageUrl);
   if (routeImageAssets?.isConfiguredAssetUrl(text)) return text;
+  if (!runtimeImageSearchEnabled && /^https?:\/\//i.test(text)) return FALLBACK_ROUTE_COVER;
   return /^https?:\/\//i.test(text) ? `/api/routes/image-proxy?url=${encodeURIComponent(text)}` : text;
 }
 
@@ -1050,6 +1052,8 @@ async function ensureRecordCoverReady(record, signal, usedImageUrls = new Set())
 }
 
 function localCoverForRoute(record = {}) {
+  const resolved = routeImageAssets?.resolveLocalRouteCover?.(record);
+  if (resolved?.url) return resolved.url;
   const routeCover = LOCAL_COVER_BY_ROUTE_ID[record.id];
   if (routeCover) return routeCover;
   const text = routeSearchText(record);

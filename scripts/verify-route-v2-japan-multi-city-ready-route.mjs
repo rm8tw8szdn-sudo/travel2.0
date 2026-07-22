@@ -128,8 +128,9 @@ async function runQuery(query, label) {
   const trace = decisionTraceStore.list()[0] || null;
   const candidates = trace ? candidatePoolStore.listByIntent(trace.intentId) : [];
   const acceptedItem = plannerOutput?.accepted?.[0] || null;
+  const cachedResponse = await service.search({ query, limit: 6, sessionId: `japan-ready-${label}` }, { requestId: `japan-ready-${label}-cached` });
   assert.equal(fs.existsSync(acceptedPath), false, `${query}: V2 must not write accepted repository`);
-  return { query, parsedIntent, response, trace, candidates, acceptedItem, readyPool, plannerOutput };
+  return { query, parsedIntent, response, cachedResponse, trace, candidates, acceptedItem, readyPool, plannerOutput };
 }
 
 try {
@@ -153,6 +154,9 @@ try {
   assert.deepEqual(flexible.trace.inputIntentSnapshot.requiredDestinationIds, requiredIds);
   assert.equal(flexible.trace.inputIntentSnapshot.destinationOrderMode, "flexible");
   assert.equal(flexible.acceptedItem.publicationGate.status, "ready-for-display");
+  const readyRouteId = flexible.acceptedItem.record.id;
+  assert.equal(flexible.response.records.find((record) => record.id === readyRouteId)?.searchStatus, "ready-for-display");
+  assert.equal(flexible.cachedResponse.records.find((record) => record.id === readyRouteId)?.searchStatus, "ready-for-display");
   assert.equal(flexible.readyPool.list().length, 1);
   assert(flexible.plannerOutput.elapsedMs < 200, `three-Candidate validation and Gate took ${flexible.plannerOutput.elapsedMs.toFixed(3)}ms`);
 

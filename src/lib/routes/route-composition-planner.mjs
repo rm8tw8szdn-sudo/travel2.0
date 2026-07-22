@@ -686,8 +686,14 @@ async function writeCandidatePoolSidecarSafe({
     const strictSuggestionCapacity = context?.intentMode === "destination-suggestion"
       ? maxDestinationsForConcept(concept)
       : null;
+    const evidenceBridgeInsertions = selectionEnabled && isRouteV2EvidenceValidationEnabled(env)
+      ? preferredEvidenceBridgeInsertions(context, pool, localEvidenceRepository)
+      : [];
+    const candidateContext = evidenceBridgeInsertions.length
+      ? { ...context, preferredEvidenceBridgeInsertions: evidenceBridgeInsertions }
+      : context;
     let builtCandidates = routeCandidateBuilder({
-      context,
+      context: candidateContext,
       concept,
       pool,
       targetCount: selectionEnabled && strictSuggestionCapacity
@@ -707,7 +713,7 @@ async function writeCandidatePoolSidecarSafe({
         if (capacitySafeCount >= ROUTE_CANDIDATE_SELECTION_TARGET) break;
         const retrySeed = `${context?.candidateSeed || context?.intentId || ""}:capacity:${attempt}`;
         for (const candidate of routeCandidateBuilder({
-          context,
+          context: candidateContext,
           concept,
           pool,
           targetCount: 12,
@@ -957,6 +963,46 @@ function destinationIdentityKeys(destination = {}) {
     destination.qid,
     destination.name,
   ]).map((value) => clean(value));
+}
+
+function reusableLegEvidence(index, fromEntityId, toEntityId) {
+  if (!index?.getRouteLegsByEndpoints) return [];
+  return index.getRouteLegsByEndpoints({ fromEntityId, toEntityId }).filter((record) => (
+    clean(record?.feasibilityStatus) === "feasible"
+    && clean(record?.freshnessStatus) === "fresh"
+    && Array.isArray(record?.sources)
+    && record.sources.length > 0
+    && Array.isArray(record?.sourceRefs)
+    && record.sourceRefs.length > 0
+    && Number.isFinite(Number(record?.durationMinMinutes))
+    && Number.isFinite(Number(record?.durationMaxMinutes))
+    && (!record?.expiresAt || Date.parse(record.expiresAt) > Date.now())
+    && (!Array.isArray(record?.conflicts) || record.conflicts.length === 0)
+  ));
+}
+
+function preferredEvidenceBridgeInsertions(context = {}, pool = [], localEvidenceRepository = null) {
+  if (clean(context.destinationOrderMode) !== "flexible") return [];
+  const requiredIds = unique(context.requiredDestinationIds || []).map(clean);
+  if (requiredIds.length < 2) return [];
+  const requiredSet = new Set(requiredIds);
+  const index = localEvidenceRepository?.index || localEvidenceRepository;
+  const bridges = [];
+  for (const destination of pool) {
+    const destinationId = destinationIdentityKeys(destination).find((key) => !requiredSet.has(key));
+    if (!destinationId) continue;
+    for (let pairIndex = 0; pairIndex < requiredIds.length - 1; pairIndex += 1) {
+      const inbound = reusableLegEvidence(index, requiredIds[pairIndex], destinationId);
+      const outbound = reusableLegEvidence(index, destinationId, requiredIds[pairIndex + 1]);
+      if (!inbound.length || !outbound.length) continue;
+      const durationMinutes = Math.min(...inbound.map((record) => Number(record.durationMaxMinutes)))
+        + Math.min(...outbound.map((record) => Number(record.durationMaxMinutes)));
+      bridges.push({ destinationId, insertionIndex: pairIndex + 1, durationMinutes });
+    }
+  }
+  return bridges.sort((left, right) => left.durationMinutes - right.durationMinutes
+    || left.destinationId.localeCompare(right.destinationId, "en")
+    || left.insertionIndex - right.insertionIndex);
 }
 
 function skeletonFromSelectedCandidate(selectedCandidate, pool = []) {

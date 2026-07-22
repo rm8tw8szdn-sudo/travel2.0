@@ -276,7 +276,7 @@ const searchService = createRouteSearchService({
 const searchResult = await searchService.search({ query: "日本2天", limit: 6, sessionId: "publication-gate-search" }, { requestId: "publication-gate-search" });
 assert(searchResult.records.length > 0, JSON.stringify(searchResult));
 assert.equal(searchResult.records[0].v2PublicationStatus, "ready-for-display");
-assert.equal(searchResult.records[0].searchStatus, "search-generated");
+assert.equal(searchResult.records[0].searchStatus, "ready-for-display");
 assert.equal(fs.existsSync(integrationAcceptedPath), false, "ready V2 Search results must remain outside legacy accepted storage");
 
 const actualSearchValidations = [];

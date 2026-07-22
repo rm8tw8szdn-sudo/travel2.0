@@ -1141,49 +1141,74 @@ function routeFeatureIntroV2(record = {}) {
   const text = routeSearchText(record);
   const style = String(record.travelStyleConceptKey || record.travelStyle || record.concept?.travelStyle || "").toLowerCase();
   const days = Number.parseInt(record.durationDays || record.recommendedDays, 10);
+  const destinations = routeDestinations(record);
+  const theme = uniqueList([...(record.themes || []), ...(record.tags || [])])[0] || "";
   const countryCount = uniqueList([
     ...(record.countries || []),
     ...(record.countryEntities || []).map((item) => item.countryCode || item.name),
   ]).length;
-  const destinationCount = routeDestinations(record).length;
+  const destinationCount = destinations.length;
   const has = (pattern) => pattern.test(text);
 
-  let feature = "由差异明显的停留点组成，重点看城市气质、自然景观和体验层次的变化";
-  if (style === "road-trip" || has(/自驾|road|drive|coast|highway|rockies|patagonia|garden route|南岛|加州|落基|公路/i)) {
-    feature = "公路移动是体验核心，适合把观景停车、短步道和小镇停留排进同一天";
+  let feature = theme
+    ? "围绕自然、餐桌或文化主题"
+    : "突出城市与自然体验层次";
+  if (has(/知识图候选池|顺路关系|planner designed/i)) {
+    feature = "按顺路关系组织经典首访";
+  } else if (style === "road-trip" || has(/自驾|road|drive|coast|highway|rockies|patagonia|garden route|南岛|加州|落基|公路/i)) {
+    feature = "以公路串起观景、短步道与小镇停留";
   } else if (style === "rail-journey" || has(/铁路|火车|rail|train|景观铁路|列车/i)) {
-    feature = "铁路换城为主，重点是沿线景观、车站停靠和少搬运行李";
+    feature = "以铁路换城并兼顾沿线景观";
   } else if (style === "transport-journey") {
-    feature = "移动路线本身有体验价值，适合关注沿线停靠、换乘节奏和城市切换";
+    feature = "强调沿线停靠与换乘节奏";
   } else if (style === "theme" || has(/wine|葡萄酒|美食|food|market|自然主题|theme/i)) {
-    feature = "主题体验更集中，适合围绕自然、餐桌、市场或文化线索慢慢展开";
+    feature = "围绕餐桌、市场或文化主题";
   } else if (style === "deep-dive") {
-    feature = "区域深度更强，适合减少打卡感，把时间留给街区、日常和周边小城";
+    feature = "减少打卡，留时间给街区日常";
   } else if (style === "seasonal") {
-    feature = "季节窗口是核心，早晚时段、天气和花期会明显影响体验质量";
+    feature = "季节适配仍以证据为准";
   } else if (style === "city-break") {
-    feature = "城市停留占比高，适合短假里安排街区散步、餐厅和一两个重点展馆";
+    feature = "集中安排街区、餐厅和展馆";
   } else if (style === "country-hopper" || countryCount >= 3 || has(/多国|跨国|hopper|balkan|baltic|benelux|中欧/i)) {
-    feature = "跨国切换明显，亮点在城市气质、饮食和文化节奏的对照";
+    feature = "对照各地文化与饮食节奏";
   } else if (has(/沙漠|desert|sahara|撒哈拉|wadi|dune/i)) {
-    feature = "沙漠和边缘城镇是主角，日出日落、补给节奏和长距离路段都要留余量";
+    feature = "为沙漠补给和长距离路段留余量";
   } else if (has(/海岛|跳岛|island|beach|azores|hawaii|palawan|croatia/i)) {
-    feature = "海岸和岛屿停留占比高，适合把水上体验、老城散步和休息日分开安排";
+    feature = "分开安排海岸、老城和休息日";
   } else if (has(/pilgrimage|camino|francigena|朝圣|巡礼|熊野|四国/i)) {
-    feature = "路径本身就是旅行内容，步行段落和沿途住宿比单个景点更重要";
+    feature = "以路径串起步行段落与沿途住宿";
   } else if (has(/safari|wildlife|自然|野生|动物|冰川|峡湾|极光|aurora/i)) {
-    feature = "自然景观占比高，早晚时段和天气窗口会直接影响体验质量";
+    feature = "侧重自然景观并为天气留余量";
   } else if (has(/unesco|heritage|temple|cathedral|古城|遗产|文明|城堡|教堂/i)) {
-    feature = "文化密度高，适合围绕历史街区、遗产建筑和博物馆安排慢游";
+    feature = "围绕历史街区、遗产建筑和博物馆";
   }
 
-  let rhythm = "节奏中等，适合每天保留一个主要体验";
+  let rhythm = "日均一个主要体验";
   if (Number.isFinite(days)) {
-    if (days <= 5) rhythm = destinationCount >= 4 ? "短线偏紧，建议只保留最想看的体验" : "短假友好，适合轻装完成";
-    else if (days >= 14) rhythm = "长线慢走，适合预留洗衣、休息和临时改线时间";
-    else if (destinationCount >= 6) rhythm = "停留点较多，建议提前锁定最关键的两三个体验";
+    if (days <= 5) rhythm = destinationCount >= 4 ? `${days}天偏紧，只保留关键体验` : `${days}天适合短假`;
+    else if (days >= 14) rhythm = `${days}天预留休息与改线时间`;
+    else if (destinationCount >= 6) rhythm = `${days}天停留点多，先锁定重点`;
+    else rhythm = `${days}天日均一个主要体验`;
   }
-  return `${feature}。${rhythm}。`;
+  const first = destinations[0] || "";
+  const last = destinations.at(-1) || "";
+  const middle = destinations.length > 2 ? destinations[Math.floor((destinations.length - 1) / 2)] : "";
+  const compactPlace = (value) => String(value || "")
+    .replace(/(?:区域风景带|自然腹地|门户城市|地方生活区|历史城区|文化停留区)$/u, "")
+    .trim() || String(value || "");
+  const compactFirst = compactPlace(first);
+  const compactLastCandidate = compactPlace(last);
+  const compactLast = compactLastCandidate === compactFirst ? last : compactLastCandidate;
+  const compactMiddle = compactPlace(middle);
+  const middleAnchor = compactMiddle
+    && compactMiddle !== compactFirst
+    && compactMiddle !== compactLast
+    ? `经${compactMiddle}`
+    : "";
+  const anchor = first && last && first !== last
+    ? `从${first}${middleAnchor}到${compactLast}`
+    : first ? `以${first}为核心` : "围绕沿途停留点";
+  return `${anchor}，${feature}；${rhythm}。`;
 }
 function cacheRouteRecords(records) {
   if (!window.TravelState?.cacheRouteMedia) return records;

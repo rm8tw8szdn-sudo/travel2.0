@@ -320,7 +320,7 @@ function destinationKeys(destination = {}) {
 
 function resolveRequiredDestinations(context = {}, pool = []) {
   const ids = unique(context.requiredDestinationIds || []).map(cleanString);
-  if (!ids.length) return { ids: [], names: [], destinations: [], missingIds: [], orderMode: "unspecified" };
+  if (!ids.length) return { ids: [], names: [], destinations: [], missingIds: [], orderMode: "unspecified", preferredBridgeInsertions: [] };
   const poolByKey = new Map();
   for (const destination of pool) {
     for (const key of destinationKeys(destination)) if (!poolByKey.has(key)) poolByKey.set(key, destination);
@@ -338,6 +338,12 @@ function resolveRequiredDestinations(context = {}, pool = []) {
     destinations,
     missingIds,
     orderMode: cleanString(context.destinationOrderMode) === "fixed" ? "fixed" : "flexible",
+    preferredBridgeInsertions: (Array.isArray(context.preferredEvidenceBridgeInsertions) ? context.preferredEvidenceBridgeInsertions : [])
+      .map((entry) => ({
+        destinationId: cleanString(entry?.destinationId),
+        insertionIndex: Number(entry?.insertionIndex),
+      }))
+      .filter((entry) => entry.destinationId && Number.isInteger(entry.insertionIndex)),
   };
 }
 
@@ -364,6 +370,10 @@ function requiredCandidateSequences(pool, maxDestinations, seed, requiredConstra
     ];
   }
   const stableRequired = stableSortDestinations(required, `${seed}:required`);
+  const preferredBridgeRanks = new Map(requiredConstraint.preferredBridgeInsertions.map((entry, index) => [
+    `${entry.destinationId}:${entry.insertionIndex}`,
+    index,
+  ]));
   const insertionVariants = optional.flatMap((destination) => (
     Array.from({ length: required.length + 1 }, (_, index) => {
       const destinations = [...required];
@@ -376,10 +386,12 @@ function requiredCandidateSequences(pool, maxDestinations, seed, requiredConstra
         maxSegmentKm: distance.maxSegmentKm ?? Number.POSITIVE_INFINITY,
         destinationId: destination.id,
         insertionIndex: index,
+        preferredBridgeRank: preferredBridgeRanks.get(`${destination.id}:${index}`) ?? Number.POSITIVE_INFINITY,
       };
     })
   )).sort((left, right) => (
-    left.totalKm - right.totalKm
+    left.preferredBridgeRank - right.preferredBridgeRank
+      || left.totalKm - right.totalKm
       || left.maxSegmentKm - right.maxSegmentKm
       || left.destinationId.localeCompare(right.destinationId, "en")
       || left.insertionIndex - right.insertionIndex

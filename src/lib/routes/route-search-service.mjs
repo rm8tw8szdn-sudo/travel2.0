@@ -139,6 +139,61 @@ function hasRegion(intent, record) {
   return aliases.some((alias) => alias && text.includes(alias));
 }
 
+function recordDurationDays(record) {
+  return number(record?.durationDays || String(record?.recommendedDays || "").match(/\d+/u)?.[0], 0);
+}
+
+function hasCompatibleDuration(intent, record) {
+  if (!intent.durationDays) return true;
+  const days = recordDurationDays(record);
+  if (!days) return false;
+  const tolerance = Math.max(1, Math.ceil(Number(intent.durationDays) * 0.35));
+  return Math.abs(days - Number(intent.durationDays)) <= tolerance;
+}
+
+function destinationIdentityTokens(destination = {}, fallbackName = "") {
+  return unique([
+    destination?.wikidataId,
+    destination?.entityId,
+    destination?.id,
+    destination?.name,
+    destination?.label,
+    destination?.sourceTitle,
+    fallbackName,
+  ]).map(lower);
+}
+
+function requiredDestinationMatches(intent, record) {
+  const requiredIds = list(intent.requiredDestinationIds).map(lower);
+  const requiredNames = list(intent.requiredDestinationNames).map(lower);
+  const requiredCount = Math.max(requiredIds.length, requiredNames.length);
+  if (!requiredCount) return true;
+
+  const recordNames = list(record?.destinations);
+  const recordEntities = Array.isArray(record?.destinationEntities) ? record.destinationEntities : [];
+  const destinationTokens = Array.from(
+    { length: Math.max(recordNames.length, recordEntities.length) },
+    (_, index) => destinationIdentityTokens(recordEntities[index], recordNames[index]),
+  );
+  const requiredTokens = Array.from({ length: requiredCount }, (_, index) => unique([
+    requiredIds[index],
+    requiredNames[index],
+  ]).map(lower));
+
+  const matchedIndexes = [];
+  for (const tokens of requiredTokens) {
+    const index = destinationTokens.findIndex((candidateTokens) => (
+      tokens.some((token) => candidateTokens.includes(token))
+    ));
+    if (index < 0) return false;
+    matchedIndexes.push(index);
+  }
+  if (intent.destinationOrderMode === "fixed") {
+    return matchedIndexes.every((index, position) => position === 0 || index > matchedIndexes[position - 1]);
+  }
+  return new Set(matchedIndexes).size === matchedIndexes.length;
+}
+
 function cityMatches(intent, text) {
   return list(intent.cities).filter((city) => text.includes(lower(city))).length;
 }
@@ -264,6 +319,8 @@ function rankAcceptedRoutes(records, intent, { routeType = "", weights, now }) {
     .filter((record) => !routeType || routeKind(record) === routeType)
     .filter((record) => !intent.countryCode || hasCountry(intent, record))
     .filter((record) => hasRegion(intent, record))
+    .filter((record) => hasCompatibleDuration(intent, record))
+    .filter((record) => requiredDestinationMatches(intent, record))
     .map((record) => rankRecord(record, intent, weights, now))
     .filter((item) => item.intentScore > 0)
     .sort((left, right) => right.score - left.score || String(left.record.id).localeCompare(String(right.record.id)));
@@ -271,14 +328,62 @@ function rankAcceptedRoutes(records, intent, { routeType = "", weights, now }) {
 
 function dedupeRanked(items) {
   const accepted = [];
+  const keysByIndex = [];
+  const ownersByKey = new Map();
+
+  const duplicateKeys = (record) => {
+    const source = searchSourceKey(record);
+    const computedFingerprint = routeDedupeFingerprint(record);
+    const title = routeTitleKey(record);
+    return [
+      record?.id ? `id:${record.id}` : "",
+      source ? `source:${source}` : "",
+      record?.dedupeFingerprint ? `declared:${record.dedupeFingerprint}` : "",
+      computedFingerprint ? `computed:${computedFingerprint}` : "",
+      title ? `title:${title}` : "",
+    ].filter(Boolean);
+  };
+
+  const addOwner = (key, index) => {
+    const owners = ownersByKey.get(key) || new Set();
+    owners.add(index);
+    ownersByKey.set(key, owners);
+  };
+
+  const removeOwner = (key, index) => {
+    const owners = ownersByKey.get(key);
+    if (!owners) return;
+    owners.delete(index);
+    if (!owners.size) ownersByKey.delete(key);
+  };
+
+  const duplicateIndexFor = (keys) => {
+    let duplicateIndex = -1;
+    for (const key of keys) {
+      for (const index of ownersByKey.get(key) || []) {
+        if (duplicateIndex < 0 || index < duplicateIndex) duplicateIndex = index;
+      }
+    }
+    return duplicateIndex;
+  };
+
   for (const item of items) {
     if (!item?.record?.id) continue;
-    const duplicateIndex = accepted.findIndex((existing) => isStrongSearchDuplicate(existing.record, item.record));
+    const keys = duplicateKeys(item.record);
+    const duplicateIndex = duplicateIndexFor(keys);
     if (duplicateIndex >= 0) {
-      if (item.score > accepted[duplicateIndex].score) accepted[duplicateIndex] = item;
+      if (item.score > accepted[duplicateIndex].score) {
+        for (const key of keysByIndex[duplicateIndex] || []) removeOwner(key, duplicateIndex);
+        accepted[duplicateIndex] = item;
+        keysByIndex[duplicateIndex] = keys;
+        for (const key of keys) addOwner(key, duplicateIndex);
+      }
       continue;
     }
+    const index = accepted.length;
     accepted.push(item);
+    keysByIndex.push(keys);
+    for (const key of keys) addOwner(key, index);
   }
   return accepted;
 }
@@ -600,7 +705,7 @@ export function createRouteSearchService({
             const normalized = preserveGenerationMetadata(normalizeDiscoveredRoute(record), record);
             if (!normalized) return null;
             const status = isRouteGenerationV2Record(normalized)
-              ? "needs-review"
+              ? clean(normalized.v2PublicationStatus) === "ready-for-display" ? "ready-for-display" : "needs-review"
               : record.searchStatus === "accepted" ? "accepted" : generatedStatus(normalized, false);
             return { ...normalized, searchStatus: status || cacheItem.status || "search-generated" };
           })
@@ -692,7 +797,11 @@ export function createRouteSearchService({
 
     const generatedRanked = generatedRecords.map((record) => ({
       ...rankRecord(record, intent, rankingWeights, now),
-      status: record.searchStatus === "needs-review" ? "needs-review" : record.searchStatus === "accepted" ? "accepted" : "search-generated",
+      status: record.searchStatus === "ready-for-display"
+        ? "ready-for-display"
+        : record.searchStatus === "needs-review"
+          ? "needs-review"
+          : record.searchStatus === "accepted" ? "accepted" : "search-generated",
     }));
     const acceptedRanked = ranked.map((item) => ({ ...item, status: "accepted" }));
     const merged = dedupeRanked([...acceptedRanked, ...generatedRanked])

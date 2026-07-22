@@ -35,16 +35,17 @@ assert.match(routesSource, /prepareRouteImageBatch\([\s\S]*FEED_COVER_PREPARE_DE
 assert.match(routesSource, /if \(outcome\.status === "timeout" \|\| outcome\.status === "aborted"\) return false;/u);
 assert.match(routesSource, /event\.target\.src = FALLBACK_ROUTE_COVER/u);
 assert.match(routesSource, /<small>\$\{escapeHtml\(routeFeatureIntroV2\(record\)\)\}<\/small>/u);
+assert.match(routesSource, /record\.searchStatus === "needs-review"[\s\S]*"证据待验证"/u);
 assert.match(css, /\.route-copy small:last-child\s*\{[\s\S]*-webkit-line-clamp: 2/u);
 assert.match(css, /@media \(max-width: 430px\)\s*\{[\s\S]*\.route-copy small:last-child\s*\{[\s\S]*-webkit-line-clamp: 3/u);
 assert.match(css, /\.route-card img\s*\{[\s\S]*width: 104px;[\s\S]*height: 86px;/u);
 assert.match(searchServiceSource, /const ownersByKey = new Map\(\);/u);
 assert.match(searchServiceSource, /const duplicateIndex = duplicateIndexFor\(keys\);/u);
 assert.doesNotMatch(searchServiceSource, /accepted\.findIndex\(\(existing\) => isStrongSearchDuplicate/u);
-assert.match(searchServiceSource, /function hasCompatibleDuration\(intent, record\)/u);
-assert.match(searchServiceSource, /function requiredDestinationMatches\(intent, record\)/u);
-assert.match(searchServiceSource, /\.filter\(\(record\) => hasCompatibleDuration\(intent, record\)\)/u);
-assert.match(searchServiceSource, /\.filter\(\(record\) => requiredDestinationMatches\(intent, record\)\)/u);
+assert.match(searchServiceSource, /validateFallbackRouteAgainstIntent/u);
+assert.match(searchServiceSource, /constrainRecords\(generatedRecords, "generated-final-gate"\)/u);
+assert.match(searchServiceSource, /validateRecord\(item\.record, "final-search-response"\)/u);
+assert.match(routesSource, /data-route-feed-state="constraint-conflict"[\s\S]*请增加行程天数或减少城市/u);
 assert.match(searchServiceSource, /clean\(record\.v2PublicationStatus\) === "ready-for-display" \? "ready-for-display" : "needs-review"/u);
 assert.match(candidateBuilderSource, /preferredEvidenceBridgeInsertions/u);
 assert.match(compositionPlannerSource, /function preferredEvidenceBridgeInsertions\(/u);
@@ -123,10 +124,45 @@ if (configuredBaseUrl) {
   assert(shortSearch.result.records.length > 0, "a valid short-trip request must return a readable result");
   assert(shortSearch.result.records.every((record) => Number(record.durationDays) >= 1 && Number(record.durationDays) <= 3), "a two-day request must not be filled with long accepted routes");
 
+  const februarySearch = await postSearch("2月去日本2天", "prelaunch-february-trip");
+  assert.equal(februarySearch.response.status, 200);
+  assert.equal(februarySearch.result.ok, true);
+  assert.deepEqual(februarySearch.result.intent?.timeIntent?.months, [2]);
+  assert(februarySearch.result.records.length > 0, "a February two-day request must keep a readable review-only result");
+  assert(februarySearch.result.records.every((record) => Number(record.durationDays) === 2));
+  assert(februarySearch.result.records.every((record) => record.searchStatus === "needs-review"));
+  assert.equal(
+    februarySearch.result.records.some((record) => record.id === "gold-case-accepted-gold-7-jp-autumn-seasonal"),
+    false,
+    "an explicitly autumn route must not be presented for a February request",
+  );
+
+  const flexibleSearch = await postSearch("东京京都大阪7天", "prelaunch-flexible-cities");
+  assert.equal(flexibleSearch.response.status, 200);
+  assert.equal(flexibleSearch.result.ok, true);
+  assert(flexibleSearch.result.records.length > 0, "a valid flexible multi-city request must return a readable result");
+  assert(flexibleSearch.result.records.every((record) => ["东京", "京都", "大阪"].every((city) => (
+    (record.destinations || []).some((destination) => String(destination).includes(city) || city.includes(String(destination)))
+  ))));
+
+  const fixedThreeSearch = await postSearch("东京→京都→大阪7天", "prelaunch-fixed-three-cities");
+  assert.equal(fixedThreeSearch.response.status, 200);
+  assert.equal(fixedThreeSearch.result.ok, true);
+  assert(fixedThreeSearch.result.records.length > 0, "a valid fixed three-city request must return a readable result");
+  for (const record of fixedThreeSearch.result.records) {
+    const destinations = (record.destinations || []).map((value) => String(value));
+    let previousIndex = -1;
+    for (const requiredCity of ["东京", "京都", "大阪"]) {
+      const index = destinations.findIndex((destination, candidateIndex) => candidateIndex > previousIndex && (destination.includes(requiredCity) || requiredCity.includes(destination)));
+      assert(index > previousIndex, `fixed destination ${requiredCity} must remain present and ordered`);
+      previousIndex = index;
+    }
+  }
+
   const fixedSearch = await postSearch("东京→京都→奈良→大阪7天", "prelaunch-fixed-cities");
   assert.equal(fixedSearch.response.status, 200);
   assert.equal(fixedSearch.result.ok, true);
-  assert(fixedSearch.result.records.length > 0, "a valid fixed multi-city request must return a readable result");
+  assert(fixedSearch.result.records.length > 0, `a valid fixed multi-city request must return a readable result; diagnostics=${JSON.stringify(fixedSearch.result.diagnostics)} intent=${JSON.stringify(fixedSearch.result.intent)}`);
   const requiredCities = ["东京", "京都", "奈良", "大阪"];
   for (const record of fixedSearch.result.records) {
     const destinations = (record.destinations || []).map((value) => String(value));
@@ -137,6 +173,29 @@ if (configuredBaseUrl) {
       previousIndex = index;
     }
   }
+  const impossibleFourSearch = await postSearch("东京京都大阪奈良1天", "prelaunch-impossible-four-capacity");
+  assert.equal(impossibleFourSearch.response.status, 200);
+  assert.equal(impossibleFourSearch.result.ok, true);
+  assert.equal(impossibleFourSearch.result.records.length, 0);
+  assert.equal(impossibleFourSearch.result.hasMore, false);
+  assert.equal(impossibleFourSearch.result.nextCursor, null);
+  assert.equal(impossibleFourSearch.result.diagnostics?.reason, "constraint-conflict");
+
+  const impossibleFixedSearch = await postSearch("东京→京都→大阪1天", "prelaunch-impossible-fixed-capacity");
+  assert.equal(impossibleFixedSearch.response.status, 200);
+  assert.equal(impossibleFixedSearch.result.ok, true);
+  assert.equal(impossibleFixedSearch.result.records.length, 0);
+  assert.equal(impossibleFixedSearch.result.hasMore, false);
+  assert.equal(impossibleFixedSearch.result.nextCursor, null);
+  assert.equal(impossibleFixedSearch.result.diagnostics?.reason, "constraint-conflict");
+
+  const impossibleSearch = await postSearch("东京京都大阪奈良金泽1天", "prelaunch-impossible-capacity");
+  assert.equal(impossibleSearch.response.status, 200);
+  assert.equal(impossibleSearch.result.ok, true);
+  assert.equal(impossibleSearch.result.records.length, 0, "an impossible one-day multi-city request must fail closed instead of deleting required cities");
+  assert.equal(impossibleSearch.result.hasMore, false);
+  assert.equal(impossibleSearch.result.nextCursor, null);
+  assert.equal(impossibleSearch.result.diagnostics?.reason, "constraint-conflict");
   liveProbe = {
     routePageStatus: pageResponse.status,
     routePageMs: Number(pageMs.toFixed(3)),
@@ -149,8 +208,20 @@ if (configuredBaseUrl) {
     broadSearchRecords: broadSearchPayload.records.length,
     shortSearchMs: Number(shortSearch.durationMs.toFixed(3)),
     shortSearchRecords: shortSearch.result.records.length,
+    februarySearchMs: Number(februarySearch.durationMs.toFixed(3)),
+    februarySearchRecords: februarySearch.result.records.length,
+    flexibleSearchMs: Number(flexibleSearch.durationMs.toFixed(3)),
+    flexibleSearchRecords: flexibleSearch.result.records.length,
+    fixedThreeSearchMs: Number(fixedThreeSearch.durationMs.toFixed(3)),
+    fixedThreeSearchRecords: fixedThreeSearch.result.records.length,
     fixedSearchMs: Number(fixedSearch.durationMs.toFixed(3)),
     fixedSearchRecords: fixedSearch.result.records.length,
+    impossibleFourSearchMs: Number(impossibleFourSearch.durationMs.toFixed(3)),
+    impossibleFourSearchRecords: impossibleFourSearch.result.records.length,
+    impossibleFixedSearchMs: Number(impossibleFixedSearch.durationMs.toFixed(3)),
+    impossibleFixedSearchRecords: impossibleFixedSearch.result.records.length,
+    impossibleSearchMs: Number(impossibleSearch.durationMs.toFixed(3)),
+    impossibleSearchRecords: impossibleSearch.result.records.length,
   };
 }
 

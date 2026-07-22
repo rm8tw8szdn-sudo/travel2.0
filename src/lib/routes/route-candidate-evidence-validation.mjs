@@ -154,7 +154,7 @@ function selectLegEvaluation(records = [], options = {}) {
   return evaluated[0] || null;
 }
 
-function maxDestinationsForDuration(durationDays) {
+export function maxDestinationsForDuration(durationDays) {
   if (durationDays <= 2) return 2;
   if (durationDays <= 4) return 3;
   if (durationDays <= 7) return 4;

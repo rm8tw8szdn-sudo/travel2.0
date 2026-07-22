@@ -439,6 +439,8 @@ const feedState = {
   lastVisibleBatchAt: 0,
   searchResolved: false,
   searchResultCount: 0,
+  searchFailureReason: "",
+  searchFailureCodes: [],
   consecutiveEmptyPages: 0,
 };
 
@@ -1210,6 +1212,12 @@ function routeFeatureIntroV2(record = {}) {
     : first ? `以${first}为核心` : "围绕沿途停留点";
   return `${anchor}，${feature}；${rhythm}。`;
 }
+
+function routeDisplayTitleV2(record = {}) {
+  return String(record.canonicalTitle || record.name || "")
+    .replace(/(经典|精简|延展|深度|铁路|公路)\1/gu, "$1")
+    .trim();
+}
 function cacheRouteRecords(records) {
   if (!window.TravelState?.cacheRouteMedia) return records;
   const state = records.reduce((current, record) => (
@@ -1689,7 +1697,7 @@ function routeCardImageMarkup(record, index = 3) {
   ));
   const source = imageReady ? proxiedRouteImageUrl(imageUrl) : FALLBACK_ROUTE_COVER;
   const state = imageReady && !fixedCover?.isFallback ? "ready" : "placeholder";
-  return `<img src="${escapeHtml(source)}" alt="${escapeHtml(record.name)}封面图" loading="eager" decoding="async" data-route-cover-state="${state}"${fixedCover?.key ? ` data-cover-image-key="${escapeHtml(fixedCover.key)}"` : ""} />`;
+  return `<img src="${escapeHtml(source)}" alt="${escapeHtml(routeDisplayTitleV2(record))}封面图" loading="eager" decoding="async" data-route-cover-state="${state}"${fixedCover?.key ? ` data-cover-image-key="${escapeHtml(fixedCover.key)}"` : ""} />`;
 }
 
 function updateRenderedRouteImage(record, card = null) {
@@ -1731,23 +1739,27 @@ function renderRouteCard(record, index) {
     if (record.searchQueryId) detailParams.set("queryId", record.searchQueryId);
   }
   const dayText = record.recommendedDays || (record.durationDays ? `${record.durationDays}天` : "");
+  const monthText = record.searchStatus === "needs-review"
+    ? "证据待验证"
+    : (record.bestMonths || []).join(" / ");
+  const displayTitle = routeDisplayTitleV2(record);
   return `
     <article class="route-card route-inspiration-card" data-route-card="${escapeHtml(routeRenderKey(record))}" data-route-id="${escapeHtml(record.id)}" data-feed-batch="${escapeHtml(record._feedBatchId || "")}">
-      <a class="route-card-main" href="route-detail.html?${detailParams.toString()}" data-route-open="${escapeHtml(record.id)}" aria-label="查看${escapeHtml(record.name)}详情">
+      <a class="route-card-main" href="route-detail.html?${detailParams.toString()}" data-route-open="${escapeHtml(record.id)}" aria-label="查看${escapeHtml(displayTitle)}详情">
         ${routeCardImageMarkup(record, index)}
         <span class="route-copy">
-          <strong>${escapeHtml(record.name)}</strong>
+          <strong>${escapeHtml(displayTitle)}</strong>
           <em>${escapeHtml(geographySummary(record))}</em>
           <small>${escapeHtml(routeFeatureIntroV2(record))}</small>
         </span>
       </a>
       <div class="route-card-meta">
         <span>${escapeHtml(dayText)}</span>
-        <span>${escapeHtml((record.bestMonths || []).join(" / "))}</span>
+        <span>${escapeHtml(monthText)}</span>
       </div>
       <div class="route-card-actions">
         <button type="button" data-route-add-trip="${escapeHtml(record.id)}">加入行程</button>
-        <button class="${favorite ? "favorited" : ""}" type="button" data-route-favorite="${escapeHtml(record.id)}" aria-label="${favorite ? "取消收藏" : "收藏"}${escapeHtml(record.name)}" aria-pressed="${favorite}">♥</button>
+        <button class="${favorite ? "favorited" : ""}" type="button" data-route-favorite="${escapeHtml(record.id)}" aria-label="${favorite ? "取消收藏" : "收藏"}${escapeHtml(displayTitle)}" aria-pressed="${favorite}">♥</button>
       </div>
     </article>`;
 }
@@ -1813,6 +1825,9 @@ function stateMarkup() {
     return `<div class="route-empty-state" data-route-feed-state="error"><p>${visible.length ? "稍后重试" : "路线加载失败"}</p><span>当前请求没有成功完成</span><button type="button" ${visible.length ? "data-route-feed-more" : "data-route-feed-refresh"}>${visible.length ? "继续加载" : "重新加载"}</button></div>`;
   }
   if (!visible.length) {
+    if (feedState.query && feedState.searchFailureReason === "constraint-conflict") {
+      return `<div class="route-empty-state" data-route-feed-state="constraint-conflict"><p>这些条件暂时无法同时满足</p><span>请增加行程天数或减少城市后再试</span></div>`;
+    }
     return `<div class="route-empty-state" data-route-feed-state="empty"><p>${feedState.query ? "暂时没有搜到路线" : "暂时没有发现路线"}</p>${suggestionsMarkup() || "<span>可以换一个旅行需求再试</span>"}</div>`;
   }
   if (!feedState.hasMore) return `<div class="route-empty-state" data-route-feed-state="complete"><p>${feedState.query ? "搜索结果已到底" : "已经到底了"}</p></div>`;
@@ -1893,6 +1908,8 @@ function renderSearchSummary() {
     routeSearchSummary.textContent = `正在搜索“${feedState.query}”`;
   } else if (feedState.searchResultCount) {
     routeSearchSummary.textContent = `已找到 ${feedState.searchResultCount} 条路线，正在准备首批卡片`;
+  } else if (feedState.searchFailureReason === "constraint-conflict") {
+    routeSearchSummary.textContent = `“${feedState.query}”的条件无法同时满足，请增加天数或减少城市`;
   } else {
     routeSearchSummary.textContent = `没有找到“${feedState.query}”的路线`;
   }
@@ -2048,6 +2065,8 @@ function usePreloadedRouteFeed(payload) {
     lastVisibleBatchAt: 0,
     searchResolved: false,
     searchResultCount: 0,
+    searchFailureReason: "",
+    searchFailureCodes: [],
     consecutiveEmptyPages: 0,
   });
   if (payload.sessionId) sessionStorage.setItem(ROUTE_FEED_SESSION_KEY, payload.sessionId);
@@ -2115,6 +2134,8 @@ async function loadFeed({ refresh = false } = {}) {
       lastVisibleBatchAt: 0,
       searchResolved: false,
       searchResultCount: 0,
+      searchFailureReason: "",
+      searchFailureCodes: [],
       consecutiveEmptyPages: 0,
     });
   }
@@ -2171,6 +2192,10 @@ async function loadFeed({ refresh = false } = {}) {
     if (requested.query) {
       feedState.searchResolved = true;
       feedState.searchResultCount = returnedCount;
+      feedState.searchFailureReason = String(payload.diagnostics?.reason || "");
+      feedState.searchFailureCodes = Array.isArray(payload.diagnostics?.constraintConflict?.reasonCodes)
+        ? payload.diagnostics.constraintConflict.reasonCodes.map(String)
+        : [];
       renderSearchSummary();
       const batchRecords = selectAppendableRecords(pageRecords, BATCH_SIZE, previousRecords);
       if (!prefetched) {

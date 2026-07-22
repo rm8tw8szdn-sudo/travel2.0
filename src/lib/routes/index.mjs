@@ -355,6 +355,7 @@ export {
   isRouteV2ReadyPoolEnabled,
 } from "./route-v2-ready-pool.mjs";
 export { buildRouteV2MissingEvidenceReport } from "./route-evidence-missing-report.mjs";
+export { validateFallbackRouteAgainstIntent } from "./route-fallback-constraint-validator.mjs";
 export { createLocalEvidenceSeedOverlay, compareLocalEvidenceQuality } from "./local-evidence-seed-overlay.mjs";
 export {
   ROUTE_V2_EVIDENCE_SEED_ROOT,

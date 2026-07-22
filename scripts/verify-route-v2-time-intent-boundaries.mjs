@@ -243,6 +243,7 @@ function summarizeExecution(query, sessionId, harness, searchResult) {
       routeId: finalRoute.id,
       durationDays: finalRoute.durationDays,
       destinations: finalRoute.destinations,
+      bestMonths: finalRoute.bestMonths,
       destinationOrder: destinationOrderForRoute(finalRoute),
       selectedCandidateId: finalRoute.selectedCandidateId,
       publicationStatus: finalRoute.v2PublicationStatus,
@@ -289,7 +290,7 @@ async function executeThroughSearch(query, label, sessionId = `session-${label}`
   assert.deepEqual(summary.selectedOrder, summary.finalRoute.destinationOrder, `${query}: selected and final order must match`);
   assert.equal(summary.finalRoute.publicationStatus, "v2-not-publishable-yet");
   assert.equal(summary.sources, 0, `${query}: no evidence source may be fabricated`);
-  assert.equal(summary.responseRecords, 1, `${query}: Search must expose the generated text route`);
+  assert.equal(summary.responseRecords, 1, `${query}: Search must expose the generated text route; route=${JSON.stringify(summary.finalRoute)} diagnostics=${JSON.stringify(summary.searchDiagnostics)}`);
   assert.deepEqual(summary.responseStatuses, ["needs-review"], `${query}: suggestion remains review-only`);
   assert.equal(fs.existsSync(harness.acceptedPath), false, `${query}: V2 auto-accept gate must keep accepted repository untouched`);
   return { harness, searchResult, summary };

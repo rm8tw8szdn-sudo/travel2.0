@@ -5,6 +5,7 @@ import { buildRouteConcept, validateRouteConcept, TRAVEL_STYLE_LABEL, TRAVEL_STY
 import { runAllDecisionTests } from "./route-decision-tests.mjs";
 import { listCases, asFewShotReasoning } from "./route-gold-cases.mjs";
 import { skeletonFromSuggestion } from "./route-llm-refine-shared.mjs";
+import { validateFallbackRouteAgainstIntent } from "./route-fallback-constraint-validator.mjs";
 import { createWebSearchEvidenceProvider } from "./web-search-evidence-provider.mjs";
 import { createWebEvidenceExtractor } from "./web-evidence-extractor.mjs";
 import { createWebEvidenceCorroborator } from "./web-evidence-corroborator.mjs";
@@ -19,6 +20,7 @@ import {
 } from "./route-candidate-selection.mjs";
 import {
   isRouteV2EvidenceValidationEnabled,
+  maxDestinationsForDuration,
   validateRouteForUse,
 } from "./route-candidate-evidence-validation.mjs";
 import { createEvidenceBundleStore } from "./evidence-bundle-store.mjs";
@@ -918,8 +920,33 @@ async function writeCandidatePoolSidecarSafe({
 }
 
 function buildRouteSkeleton(pool, concept, context = {}) {
+  const requiredIds = Array.isArray(context.requiredDestinationIds) ? context.requiredDestinationIds.map(clean).filter(Boolean) : [];
+  const requiredNames = Array.isArray(context.requiredDestinationNames) ? context.requiredDestinationNames.map(clean).filter(Boolean) : [];
+  const requiredCount = Math.max(requiredIds.length, requiredNames.length);
+  if (requiredCount) {
+    const selected = [];
+    const used = new Set();
+    for (let index = 0; index < requiredCount; index += 1) {
+      const requiredId = requiredIds[index] || "";
+      const requiredName = requiredNames[index] || "";
+      const matchIndex = pool.findIndex((destination, poolIndex) => {
+        if (used.has(poolIndex)) return false;
+        const keys = destinationIdentityKeys(destination);
+        if (requiredId) return keys.includes(requiredId);
+        return requiredName ? destinationTerms(destination).includes(requiredName.toLocaleLowerCase("en-US")) : false;
+      });
+      if (matchIndex < 0) return [];
+      used.add(matchIndex);
+      selected.push(pool[matchIndex]);
+    }
+    return selected;
+  }
   const withCoords = pool.filter((d) => coordinate(d));
-  const maxDestinations = maxDestinationsForConcept(concept);
+  const requestedDurationDays = Number(context.durationDays || concept.durationDays);
+  const durationCapacity = Number.isInteger(requestedDurationDays) && requestedDurationDays > 0
+    ? maxDestinationsForDuration(requestedDurationDays)
+    : Infinity;
+  const maxDestinations = Math.min(maxDestinationsForConcept(concept), durationCapacity);
   const limits = routeDistanceLimits(concept);
   if (withCoords.length < 2) return pool.slice(0, maxDestinations);
   const anchors = anchorsForContext(concept, context);
@@ -1256,7 +1283,8 @@ function buildPlannerRecord({ concept, skeleton, context, evidenceResult, strate
   const recordDurationLabel = context.timeIntent ? durationLabel : concept.recommendedDays;
   const shapeLabel = days && days <= 6 ? "精简" : days && days >= 9 ? "延展" : "经典";
   const anchorLabel = places[0] ? `：${places[0]}` : "";
-  const name = `${countryName}${durationLabel}${shapeLabel}${styleLabelZh}${anchorLabel}`;
+  const shapedStyleLabel = styleLabelZh.includes(shapeLabel) ? styleLabelZh : `${shapeLabel}${styleLabelZh}`;
+  const name = `${countryName}${durationLabel}${shapedStyleLabel}${anchorLabel}`;
   const deterministicReason = [
     { text: `时长=${concept.durationBand}(${concept.recommendedDays})：${concept.whyThisDurationFits}`, strategy: "Geographic", evidenceIds: [] },
     { text: `旅行风格=${styleLabelZh}：${concept.travelValue}`, strategy: "Theme", evidenceIds: [] },
@@ -1353,6 +1381,17 @@ function validatePlannerCandidate(record, concept, context, strategyRegistry) {
     }
   }
   return { accepted: reasons.length === 0, reasons, strategyChecks };
+}
+
+function preserveExplicitTimeIntent(record, context = {}) {
+  if (!record || !context.timeIntent || typeof context.timeIntent !== "object") return record;
+  const timeIntent = structuredClone(context.timeIntent);
+  const explicitTime = ["single-month", "month-range", "season-only"].includes(clean(timeIntent.type));
+  return {
+    ...record,
+    timeIntent,
+    ...(explicitTime ? { bestMonths: [] } : {}),
+  };
 }
 
 function validatePlannerCandidateSafe(record, concept, context, strategyRegistry) {
@@ -1736,6 +1775,19 @@ async function runPipeline({ context, knowledgeGraph, evidenceRepository, accept
     rejected.push({ context, reason: validation.reasons.join(","), strategyChecks: validation.strategyChecks });
     return { accepted, rejected, concept, v2Failure: failureTrace };
   }
+  record = preserveExplicitTimeIntent(record, context);
+  const fallbackConstraintValidation = validateFallbackRouteAgainstIntent(record, context);
+  if (!fallbackConstraintValidation.matched) {
+    const failureTrace = await recordV2Failure({
+      stage: "fallback-hard-constraints",
+      reason: fallbackConstraintValidation.reasonCodes.join(",") || "fallback-hard-constraint-mismatch",
+      candidates: candidateSidecar?.persistedCandidates || candidateSidecar?.generatedCandidates || [],
+      unknowns: [{ field: "fallbackConstraintValidation", reason: JSON.stringify(fallbackConstraintValidation) }],
+      legacyFallback: false,
+    });
+    rejected.push({ context, reason: "fallback-hard-constraint-mismatch", constraintValidation: fallbackConstraintValidation });
+    return { accepted, rejected, concept, v2Failure: failureTrace };
+  }
 
   // [8] duplicateDistance
   const existingRecords = acceptedRepository.list({ limit: 100_000 }).records;
@@ -1839,6 +1891,12 @@ async function runPipeline({ context, knowledgeGraph, evidenceRepository, accept
     validation = validatePlannerCandidateSafe(record, concept, context, strategyRegistry);
     if (!validation.accepted) {
       rejected.push({ context, reason: validation.reasons.join(",") || "legacy-fallback-validator-rejected", strategyChecks: validation.strategyChecks });
+      return { accepted, rejected, concept, v2Failure };
+    }
+    record = preserveExplicitTimeIntent(record, context);
+    const fallbackConstraintValidation = validateFallbackRouteAgainstIntent(record, context);
+    if (!fallbackConstraintValidation.matched) {
+      rejected.push({ context, reason: "legacy-fallback-hard-constraint-mismatch", constraintValidation: fallbackConstraintValidation });
       return { accepted, rejected, concept, v2Failure };
     }
     dedupeDistance = duplicateDistance(record, existingRecords);

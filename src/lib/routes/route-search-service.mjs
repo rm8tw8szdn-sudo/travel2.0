@@ -2,6 +2,7 @@ import { decodeDiscoveryCursor, encodeDiscoveryCursor } from "./cursor.mjs";
 import { normalizeDiscoveredRoute } from "./contracts.mjs";
 import { routeDedupeFingerprint, routeTitleKey } from "./route-dedupe.mjs";
 import { buildRouteDestinationSuggestion } from "./route-destination-suggestion.mjs";
+import { validateFallbackRouteAgainstIntent } from "./route-fallback-constraint-validator.mjs";
 import { isRouteV2TimeIntentEnabled, parseSearchIntent } from "./search-intent-parser.mjs";
 import { ensureSearchGeneratedMedia } from "./search-generated-media.mjs";
 import { buildSearchGeneratedFallbackRoute } from "./search-generated-route-builder.mjs";
@@ -119,79 +120,6 @@ function durationMatchScore(intent, record) {
 function hasCountry(intent, record) {
   if (!intent.countryCode) return false;
   return (record?.countryEntities || []).some((item) => clean(item.countryCode).toUpperCase() === intent.countryCode);
-}
-
-function hasRegion(intent, record) {
-  if (!intent.region && !intent.normalizedRegion) return true;
-  const text = recordText(record);
-  const aliasesByRegion = {
-    sahara: ["撒哈拉", "西撒哈拉", "sahara", "western sahara"],
-    kansai: ["关西", "kansai"],
-    hokkaido: ["北海道", "hokkaido"],
-    "golden circle": ["黄金圈", "golden circle"],
-    cappadocia: ["卡帕多奇亚", "cappadocia"],
-  };
-  const aliases = unique([
-    intent.region,
-    intent.normalizedRegion,
-    ...(aliasesByRegion[clean(intent.normalizedRegion)] || []),
-  ]).map(lower);
-  return aliases.some((alias) => alias && text.includes(alias));
-}
-
-function recordDurationDays(record) {
-  return number(record?.durationDays || String(record?.recommendedDays || "").match(/\d+/u)?.[0], 0);
-}
-
-function hasCompatibleDuration(intent, record) {
-  if (!intent.durationDays) return true;
-  const days = recordDurationDays(record);
-  if (!days) return false;
-  const tolerance = Math.max(1, Math.ceil(Number(intent.durationDays) * 0.35));
-  return Math.abs(days - Number(intent.durationDays)) <= tolerance;
-}
-
-function destinationIdentityTokens(destination = {}, fallbackName = "") {
-  return unique([
-    destination?.wikidataId,
-    destination?.entityId,
-    destination?.id,
-    destination?.name,
-    destination?.label,
-    destination?.sourceTitle,
-    fallbackName,
-  ]).map(lower);
-}
-
-function requiredDestinationMatches(intent, record) {
-  const requiredIds = list(intent.requiredDestinationIds).map(lower);
-  const requiredNames = list(intent.requiredDestinationNames).map(lower);
-  const requiredCount = Math.max(requiredIds.length, requiredNames.length);
-  if (!requiredCount) return true;
-
-  const recordNames = list(record?.destinations);
-  const recordEntities = Array.isArray(record?.destinationEntities) ? record.destinationEntities : [];
-  const destinationTokens = Array.from(
-    { length: Math.max(recordNames.length, recordEntities.length) },
-    (_, index) => destinationIdentityTokens(recordEntities[index], recordNames[index]),
-  );
-  const requiredTokens = Array.from({ length: requiredCount }, (_, index) => unique([
-    requiredIds[index],
-    requiredNames[index],
-  ]).map(lower));
-
-  const matchedIndexes = [];
-  for (const tokens of requiredTokens) {
-    const index = destinationTokens.findIndex((candidateTokens) => (
-      tokens.some((token) => candidateTokens.includes(token))
-    ));
-    if (index < 0) return false;
-    matchedIndexes.push(index);
-  }
-  if (intent.destinationOrderMode === "fixed") {
-    return matchedIndexes.every((index, position) => position === 0 || index > matchedIndexes[position - 1]);
-  }
-  return new Set(matchedIndexes).size === matchedIndexes.length;
 }
 
 function cityMatches(intent, text) {
@@ -314,16 +242,50 @@ function rankRecord(record, intent, weights, now) {
   };
 }
 
-function rankAcceptedRoutes(records, intent, { routeType = "", weights, now }) {
+function rankAcceptedRoutes(records, intent, { routeType = "", weights, now, validateRecord }) {
   return records
     .filter((record) => !routeType || routeKind(record) === routeType)
-    .filter((record) => !intent.countryCode || hasCountry(intent, record))
-    .filter((record) => hasRegion(intent, record))
-    .filter((record) => hasCompatibleDuration(intent, record))
-    .filter((record) => requiredDestinationMatches(intent, record))
-    .map((record) => rankRecord(record, intent, weights, now))
+    .map((record) => ({
+      record,
+      constraintValidation: validateRecord(record, "accepted"),
+    }))
+    .filter((item) => item.constraintValidation.matched)
+    .map((item) => ({
+      ...rankRecord(item.record, intent, weights, now),
+      constraintValidation: item.constraintValidation,
+    }))
     .filter((item) => item.intentScore > 0)
     .sort((left, right) => right.score - left.score || String(left.record.id).localeCompare(String(right.record.id)));
+}
+
+function constraintConflictDiagnostics(intent, rejections, resultCount) {
+  if (resultCount > 0) return null;
+  const failures = Array.isArray(rejections) ? rejections : [];
+  const reasonCodes = unique(failures.flatMap((item) => item.validation?.reasonCodes || []));
+  const rejectedSources = failures.reduce((counts, item) => ({
+    ...counts,
+    [item.source]: Number(counts[item.source] || 0) + 1,
+  }), {});
+  if (!reasonCodes.length && !intent?.parseSuccess) return null;
+  return {
+    reasonCodes: reasonCodes.length ? reasonCodes : ["no-valid-route"],
+    missingRequiredDestinationIds: unique(failures.flatMap((item) => item.validation?.missingRequiredDestinationIds || [])),
+    missingRequiredDestinationNames: unique(failures.flatMap((item) => item.validation?.missingRequiredDestinationNames || [])),
+    orderMismatch: failures.some((item) => item.validation?.orderMismatch),
+    durationConflict: failures.some((item) => item.validation?.durationConflict),
+    capacityConflict: failures.some((item) => item.validation?.capacityConflict),
+    timeConstraintConflict: failures.some((item) => item.validation?.timeConstraintConflict),
+    destinationConflict: failures.some((item) => item.validation?.destinationConflict),
+    countryConflict: failures.some((item) => item.validation?.countryConflict),
+    regionConflict: failures.some((item) => item.validation?.regionConflict),
+    rejectedFallbackCount: failures.length,
+    rejectedSources,
+    examples: failures.slice(0, 12).map((item) => ({
+      routeId: item.routeId,
+      source: item.source,
+      reasonCodes: item.validation?.reasonCodes || [],
+    })),
+  };
 }
 
 function dedupeRanked(items) {
@@ -585,9 +547,30 @@ export function createRouteSearchService({
     let plannerTimeout = false;
     let plannerAborted = false;
     let plannerError = "";
+    let plannerRejected = [];
     let cacheItem = null;
     let generatedRecords = [];
     let ranked = [];
+    const constraintRejections = [];
+    const validateRecord = (record, source) => {
+      const validation = validateFallbackRouteAgainstIntent(record, intent);
+      if (!validation.matched) {
+        constraintRejections.push({
+          routeId: clean(record?.id),
+          source,
+          validation,
+        });
+      }
+      return validation;
+    };
+    const constrainRecords = (records, source) => (records || []).flatMap((record) => {
+      const validation = validateRecord(record, source);
+      if (!validation.matched) return [];
+      return [validation.requiresEvidence
+        ? { ...record, searchStatus: "needs-review" }
+        : record];
+    });
+    const constrainRanked = (items, source) => (items || []).filter((item) => validateRecord(item.record, source).matched);
 
     if (!intent.parseSuccess) {
       const keywordRanked = intent.intentMode
@@ -678,12 +661,13 @@ export function createRouteSearchService({
       routeType: request.routeType,
       weights: rankingWeights,
       now,
+      validateRecord,
     });
     if (!ranked.length) {
-      ranked = dedupeRanked(rankKeywordAcceptedRoutes(acceptedSnapshot, request.query, {
+      ranked = constrainRanked(dedupeRanked(rankKeywordAcceptedRoutes(acceptedSnapshot, request.query, {
         routeType: request.routeType,
         now,
-      }));
+      })), "accepted-keyword-fallback");
     }
     acceptedHit = ranked.length > 0;
 
@@ -724,6 +708,9 @@ export function createRouteSearchService({
         plannerTimeout = Boolean(result.timedOut);
         plannerAborted = Boolean(result.aborted);
         plannerError = clean(result.error?.message || result.error || "");
+        plannerRejected = Array.isArray(result.result?.rejected)
+          ? result.result.rejected.slice(0, 10).map((item) => ({ reason: clean(item?.reason) }))
+          : [];
         if (!plannerTimeout && !plannerAborted && result.result?.accepted?.length) {
           generatedRecords = result.result.accepted
             .map((item) => preserveGenerationMetadata(normalizeDiscoveredRoute(item.record), item.record))
@@ -741,6 +728,7 @@ export function createRouteSearchService({
           const fallback = normalizeDiscoveredRoute(buildSearchGeneratedFallbackRoute(intent));
           generatedRecords = fallback ? [ensureSearchGeneratedMedia({ ...fallback, searchStatus: "needs-review" })] : [];
         }
+        generatedRecords = constrainRecords(generatedRecords, "planner-or-generated-fallback");
         if (generatedRecords.length) {
             const v2BlockedRecords = generatedRecords.filter((record) => isRouteGenerationV2Record(record) && record.v2PublicationStatus !== "ready-for-display");
             const cacheStatus = generatedRecords.some((record) => record.searchStatus === "needs-review")
@@ -769,7 +757,7 @@ export function createRouteSearchService({
             });
             if (autoAcceptGenerated) {
               for (const record of generatedRecords) {
-                if (isRouteGenerationV2Record(record)) continue;
+                if (isRouteGenerationV2Record(record) || record.searchStatus !== "accepted") continue;
                 acceptedRepository.upsert?.(record);
               }
             }
@@ -777,6 +765,7 @@ export function createRouteSearchService({
       } else if (plannerEligible && !destinationSuggestionMode && !context.abortSignal?.aborted) {
         const fallback = normalizeDiscoveredRoute(buildSearchGeneratedFallbackRoute(intent));
         generatedRecords = fallback ? [ensureSearchGeneratedMedia({ ...fallback, searchStatus: "needs-review" })] : [];
+        generatedRecords = constrainRecords(generatedRecords, "legacy-fallback");
         if (generatedRecords.length) {
           searchCache.put({
             intent,
@@ -795,18 +784,35 @@ export function createRouteSearchService({
       }
     }
 
-    const generatedRanked = generatedRecords.map((record) => ({
-      ...rankRecord(record, intent, rankingWeights, now),
-      status: record.searchStatus === "ready-for-display"
-        ? "ready-for-display"
-        : record.searchStatus === "needs-review"
-          ? "needs-review"
-          : record.searchStatus === "accepted" ? "accepted" : "search-generated",
+    generatedRecords = constrainRecords(generatedRecords, "generated-final-gate");
+
+    const generatedRanked = generatedRecords.map((record) => {
+      const constraintValidation = validateRecord(record, "generated-ranking");
+      const status = constraintValidation.requiresEvidence
+        ? "needs-review"
+        : record.searchStatus === "ready-for-display"
+          ? "ready-for-display"
+          : record.searchStatus === "needs-review"
+            ? "needs-review"
+            : record.searchStatus === "accepted" ? "accepted" : "search-generated";
+      return {
+        ...rankRecord(record, intent, rankingWeights, now),
+        constraintValidation,
+        status,
+        fallbackPriority: status === "ready-for-display" ? 0 : 2,
+      };
+    });
+    const acceptedRanked = ranked.map((item) => ({
+      ...item,
+      status: item.constraintValidation?.requiresEvidence ? "needs-review" : "accepted",
+      fallbackPriority: item.constraintValidation?.requiresEvidence ? 2 : 1,
     }));
-    const acceptedRanked = ranked.map((item) => ({ ...item, status: "accepted" }));
     const merged = dedupeRanked([...acceptedRanked, ...generatedRanked])
-      .sort((left, right) => right.score - left.score || String(left.record.id).localeCompare(String(right.record.id)))
+      .sort((left, right) => left.fallbackPriority - right.fallbackPriority
+        || right.score - left.score
+        || String(left.record.id).localeCompare(String(right.record.id)))
       .slice(0, intent.targetResultCount)
+      .filter((item) => validateRecord(item.record, "final-search-response").matched)
       .map((item) => decorateRecord(item.record, {
         status: item.status,
         matchReason: item.matchReason,
@@ -818,6 +824,7 @@ export function createRouteSearchService({
       limit: request.limit || 20,
       intentHash: intent.intentHash,
     });
+    const constraintConflict = constraintConflictDiagnostics(intent, constraintRejections, merged.length);
     analytics?.logSearch?.({
       query: request.query || "",
       normalizedIntent: intent,
@@ -844,6 +851,7 @@ export function createRouteSearchService({
       intent,
       queryId,
       diagnostics: {
+        ...(constraintConflict ? { reason: "constraint-conflict", constraintConflict } : {}),
         source: plannerCalled ? "search-v1-planner" : cacheHit ? "search-v1-cache" : "search-v1-accepted",
         acceptedHit,
         cacheHit,
@@ -851,6 +859,7 @@ export function createRouteSearchService({
         plannerTimeout,
         plannerAborted,
         plannerError,
+        plannerRejected,
         destinationSuggestion: destinationSuggestion ? structuredClone(destinationSuggestion) : null,
         targetResultCount: intent.targetResultCount,
         durationMs: now() - startedAt,

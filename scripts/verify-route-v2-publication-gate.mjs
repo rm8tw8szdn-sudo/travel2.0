@@ -4,7 +4,7 @@ import os from "node:os";
 import path from "node:path";
 import { performance } from "node:perf_hooks";
 
-import { buildLegacyDecisionTrace, validateDecisionTrace } from "../src/lib/routes/decision-trace-schema.mjs";
+import { buildLegacyDecisionTrace, routeIntentSnapshot, validateDecisionTrace } from "../src/lib/routes/decision-trace-schema.mjs";
 import { buildEvidenceBundleLifecycle, validateEvidenceBundleLifecycle } from "../src/lib/routes/evidence-bundle-schema.mjs";
 import { createLocalEvidenceRepository } from "../src/lib/routes/local-evidence-repository.mjs";
 import { createAcceptedRouteRepository } from "../src/lib/routes/accepted-repository.mjs";
@@ -23,6 +23,7 @@ import {
   isRouteV2PublicationGateEnabled,
 } from "../src/lib/routes/route-publication-gate.mjs";
 import { createRouteV2ReadyPool, isRouteV2ReadyPoolEnabled } from "../src/lib/routes/route-v2-ready-pool.mjs";
+import { finalizeRouteResult } from "../src/lib/routes/route-intent-invariant-gate.mjs";
 
 const fixedNow = "2026-07-22T00:00:00.000Z";
 const root = fs.mkdtempSync(path.join(os.tmpdir(), "route-v2-publication-gate-"));
@@ -120,11 +121,23 @@ function buildArtifacts({ label, query, durationDays = 7, months = [], preferred
     transportPreference: ["rail"],
     timeIntent: timeIntent(months),
   };
-  const candidates = candidatesFor(intentId, { durationDays, months, preferred });
+  const inputIntentSnapshot = routeIntentSnapshot({ context, intentId, source: "publication-gate-verifier" });
+  const candidates = candidatesFor(intentId, { durationDays, months, preferred }).map((entry) => normalizeRouteCandidate({
+    ...entry,
+    routeIntentFingerprintVersion: inputIntentSnapshot.routeIntentFingerprintVersion,
+    routeIntentFingerprint: inputIntentSnapshot.routeIntentFingerprint,
+    normalizedRouteIntent: inputIntentSnapshot.normalizedRouteIntent,
+    inputIntentSnapshot,
+  }, { now: () => fixedNow }));
   const selection = selectRouteCandidatesWithEvidence({ candidates, context, intentId, evidenceRepository: repository, now: () => fixedNow });
   assert.equal(selection.ready, true);
   const validation = selection.validationResults.find((item) => item.candidateId === selection.selectedCandidate.candidateId);
-  const routeRecord = routeFor(selection.selectedCandidate, validation, label);
+  const finalizedRoute = finalizeRouteResult(routeFor(selection.selectedCandidate, validation, label), context, {
+    source: "publication-gate-verifier",
+    claimedSuccess: true,
+  });
+  assert.equal(finalizedRoute.matched, true);
+  const routeRecord = finalizedRoute.record;
   const decisionTrace = buildLegacyDecisionTrace({
     route: routeRecord,
     context,

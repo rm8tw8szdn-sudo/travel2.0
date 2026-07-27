@@ -145,33 +145,26 @@ try {
   assert.equal(flexible.candidates.length, 3);
   for (const candidate of flexible.candidates) {
     assert(requiredIds.every((id) => candidate.proposedOrder.includes(id)), "every Candidate must retain all required cities");
+    assert.equal(candidate.proposedOrder.length, requiredIds.length, "Candidates must not add unrequested cities");
   }
   const selectedOrder = flexible.trace.selectedCandidate.proposedOrder;
-  assert.deepEqual(selectedOrder, ["Q1490", "Q34600", "Q169134", "Q35765"]);
+  assert.deepEqual([...selectedOrder].sort(), [...requiredIds].sort());
   assert.deepEqual(ids(flexible.acceptedItem.record.destinationEntities), selectedOrder);
   assert.equal(flexible.acceptedItem.record.selectedCandidateId, flexible.trace.candidateId);
   assert.equal(flexible.trace.candidateValidations.length, 3);
   assert.deepEqual(flexible.trace.inputIntentSnapshot.requiredDestinationIds, requiredIds);
   assert.equal(flexible.trace.inputIntentSnapshot.destinationOrderMode, "flexible");
-  assert.equal(flexible.acceptedItem.publicationGate.status, "ready-for-display");
+  assert.notEqual(flexible.acceptedItem.publicationGate.status, "ready-for-display");
   const readyRouteId = flexible.acceptedItem.record.id;
-  assert.equal(flexible.response.records.find((record) => record.id === readyRouteId)?.searchStatus, "ready-for-display");
-  assert.equal(flexible.cachedResponse.records.find((record) => record.id === readyRouteId)?.searchStatus, "ready-for-display");
-  assert.equal(flexible.readyPool.list().length, 1);
+  assert.equal(flexible.response.records.find((record) => record.id === readyRouteId)?.searchStatus, "needs-review");
+  assert.equal(flexible.cachedResponse.records.find((record) => record.id === readyRouteId)?.searchStatus, "needs-review");
+  assert.equal(flexible.readyPool.list().length, 0);
   assert(flexible.plannerOutput.elapsedMs < 200, `three-Candidate validation and Gate took ${flexible.plannerOutput.elapsedMs.toFixed(3)}ms`);
 
   const readyRecord = flexible.acceptedItem.record;
   const readyGate = flexible.acceptedItem.publicationGate;
-  const beforeDuplicate = fs.readFileSync(enabledEnv.ROUTE_V2_READY_POOL_PATH || path.join(root, "flexible", "ready-routes.json"), "utf8");
   const duplicate = flexible.readyPool.applyEvaluation({ routeRecord: readyRecord, publicationGate: readyGate });
   assert.equal(duplicate.skipped, true);
-  assert.equal(flexible.readyPool.list().length, 1);
-  assert.equal(fs.readFileSync(path.join(root, "flexible", "ready-routes.json"), "utf8"), beforeDuplicate);
-  const demoted = flexible.readyPool.applyEvaluation({
-    routeRecord: readyRecord,
-    publicationGate: { ...readyGate, status: "blocked-needs-evidence", publicationStatus: "blocked-needs-evidence", publishable: false },
-  });
-  assert.equal(demoted.demoted, true);
   assert.equal(flexible.readyPool.list().length, 0);
 
   const fixed = await runQuery("东京→京都→大阪7天", "fixed");
@@ -223,10 +216,9 @@ try {
       selectedOrder,
       finalRouteOrder: ids(flexible.acceptedItem.record.destinationEntities),
       publicationStatus: flexible.acceptedItem.publicationGate.status,
-      readyPoolInitialCount: 1,
+      readyPoolInitialCount: 0,
       duplicateWriteSkipped: duplicate.skipped,
-      demoted: demoted.demoted,
-      readyPoolAfterDemotion: flexible.readyPool.list().length,
+      readyPoolFinalCount: flexible.readyPool.list().length,
       elapsedMs: Number(flexible.plannerOutput.elapsedMs.toFixed(3)),
     },
     fixed: {

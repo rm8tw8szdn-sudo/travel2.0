@@ -104,8 +104,8 @@ assert.equal(startupGateRepository.list({ limit: 100 }).records.length, 0, "star
 
 const legacyHarness = createService("legacy", route({ id: "generated-iceland-legacy" }));
 const legacyResult = await legacyHarness.search.search({ query: "\u51b0\u5c9b\u51ac\u5b63\u81ea\u9a7e", limit: 10 });
-assert.equal(legacyResult.records[0].searchStatus, "accepted", "legacy auto-accept behavior must remain unchanged");
-assert.equal(legacyHarness.acceptedRepository.stats().upsertCalls, 1);
+assert.equal(legacyResult.records[0].searchStatus, "needs-review", "legacy generation must not auto-accept a season claim without structured evidence");
+assert.equal(legacyHarness.acceptedRepository.stats().upsertCalls, 0);
 
 console.log(JSON.stringify({
   status: "PASS",

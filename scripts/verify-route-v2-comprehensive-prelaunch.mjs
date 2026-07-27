@@ -176,6 +176,11 @@ try {
 
   stage = "static-verifiers";
   const staticVerifiers = [
+    "scripts/verify-route-v2-route-intent-model.mjs",
+    "scripts/verify-route-v2-route-intent-oracle.mjs",
+    "scripts/verify-route-v2-intent-generative.mjs",
+    "scripts/verify-route-v2-intent-boundaries.mjs",
+    "scripts/verify-route-v2-intent-mutations.mjs",
     "scripts/verify-route-v2-route-summary-quality.mjs",
     "scripts/verify-route-v2-image-assets-pilot.mjs",
     "scripts/verify-route-v2-image-proxy-network-boundary.mjs",
@@ -198,6 +203,12 @@ try {
   const liveOutput = runVerifier("scripts/verify-route-v2-prelaunch-browser.mjs", {
     ...isolatedEnv,
     ROUTE_V2_PRELAUNCH_BASE_URL: baseUrl,
+  });
+
+  stage = "performance-verifier";
+  const performanceOutput = runVerifier("scripts/verify-route-v2-intent-performance.mjs", {
+    ...isolatedEnv,
+    ROUTE_V2_PERFORMANCE_BASE_URL: baseUrl,
   });
 
   stage = "stop-preview";
@@ -230,8 +241,12 @@ try {
       performance: true,
       filesCreated: isolatedFiles.length,
     },
-    verifiers: staticVerifiers.map(({ relativePath }) => relativePath).concat("scripts/verify-route-v2-prelaunch-browser.mjs"),
+    verifiers: staticVerifiers.map(({ relativePath }) => relativePath).concat(
+      "scripts/verify-route-v2-prelaunch-browser.mjs",
+      "scripts/verify-route-v2-intent-performance.mjs",
+    ),
     liveProbe: JSON.parse(liveOutput),
+    performance: JSON.parse(performanceOutput),
     realAssetsUnchanged: true,
     buildContract: {
       packageManifest: fs.existsSync(path.join(projectRoot, "package.json")),

@@ -17,6 +17,8 @@ const serverSource = fs.readFileSync(path.join(projectRoot, "server.js"), "utf8"
 const searchServiceSource = fs.readFileSync(path.join(projectRoot, "src", "lib", "routes", "route-search-service.mjs"), "utf8");
 const candidateBuilderSource = fs.readFileSync(path.join(projectRoot, "src", "lib", "routes", "route-candidate-builder.mjs"), "utf8");
 const compositionPlannerSource = fs.readFileSync(path.join(projectRoot, "src", "lib", "routes", "route-composition-planner.mjs"), "utf8");
+const routeIntentGateSource = fs.readFileSync(path.join(projectRoot, "src", "lib", "routes", "route-intent-invariant-gate.mjs"), "utf8");
+const routeIntentModelSource = fs.readFileSync(path.join(projectRoot, "src", "lib", "routes", "route-intent-model.mjs"), "utf8");
 
 function occurrenceCount(value, pattern) {
   return [...value.matchAll(pattern)].length;
@@ -63,12 +65,20 @@ assert.match(localEvidenceSource, /env\.ROUTE_V2_LOCAL_EVIDENCE_ROOT/u);
 assert.match(searchServiceSource, /const ownersByKey = new Map\(\);/u);
 assert.match(searchServiceSource, /const duplicateIndex = duplicateIndexFor\(keys\);/u);
 assert.doesNotMatch(searchServiceSource, /accepted\.findIndex\(\(existing\) => isStrongSearchDuplicate/u);
-assert.match(searchServiceSource, /validateFallbackRouteAgainstIntent/u);
+assert.match(searchServiceSource, /finalizeRouteResult/u);
 assert.match(searchServiceSource, /constrainRecords\(generatedRecords, "generated-final-gate"\)/u);
-assert.match(searchServiceSource, /validateRecord\(item\.record, "final-search-response"\)/u);
+assert.match(searchServiceSource, /finalizeRecord\(record, source\)/u);
+assert.match(routeIntentGateSource, /export function validateRouteIntentInvariants/u);
+assert.match(routeIntentGateSource, /export function validateEmbeddedRouteIntent/u);
+assert.match(routeIntentModelSource, /export function createRouteIntentFingerprint/u);
+assert.match(routesSource, /const ROUTE_FEED_QUERY_PARAM = "q"/u);
+assert.match(routesSource, /query:\s*readRouteQueryFromUrl\(\)/u);
+assert.match(routesSource, /persistRouteQueryInUrl\(feedState\.query\)/u);
+assert.match(routesSource, /feedState\.query \? null : \(readBootstrappedRouteFeed/u);
 assert.match(routesSource, /data-route-feed-state="constraint-conflict"[\s\S]*请增加行程天数或减少城市/u);
 assert.match(searchServiceSource, /clean\(record\.v2PublicationStatus\) === "ready-for-display" \? "ready-for-display" : "needs-review"/u);
-assert.match(candidateBuilderSource, /preferredEvidenceBridgeInsertions/u);
+assert.match(candidateBuilderSource, /function requiredCandidateSequences/u);
+assert.match(candidateBuilderSource, /void pool;[\s\S]*void maxDestinations;/u);
 assert.match(compositionPlannerSource, /function preferredEvidenceBridgeInsertions\(/u);
 assert.match(compositionPlannerSource, /preferredEvidenceBridgeInsertions: evidenceBridgeInsertions/u);
 
@@ -165,6 +175,7 @@ if (configuredBaseUrl) {
   assert(flexibleSearch.result.records.every((record) => ["东京", "京都", "大阪"].every((city) => (
     (record.destinations || []).some((destination) => String(destination).includes(city) || city.includes(String(destination)))
   ))));
+  assert(flexibleSearch.result.records.every((record) => (record.destinations || []).length === 3), "explicit flexible requests must not gain undeclared cities");
   const flexibleDetailResponse = await fetch(discoveryUrl, {
     method: "POST",
     headers: { "content-type": "application/json" },
@@ -187,6 +198,7 @@ if (configuredBaseUrl) {
   assert(fixedThreeSearch.result.records.length > 0, "a valid fixed three-city request must return a readable result");
   for (const record of fixedThreeSearch.result.records) {
     const destinations = (record.destinations || []).map((value) => String(value));
+    assert.equal(destinations.length, 3, "a fixed three-city request must contain exactly three cities");
     let previousIndex = -1;
     for (const requiredCity of ["东京", "京都", "大阪"]) {
       const index = destinations.findIndex((destination, candidateIndex) => candidateIndex > previousIndex && (destination.includes(requiredCity) || requiredCity.includes(destination)));
@@ -202,6 +214,7 @@ if (configuredBaseUrl) {
   const requiredCities = ["东京", "京都", "奈良", "大阪"];
   for (const record of fixedSearch.result.records) {
     const destinations = (record.destinations || []).map((value) => String(value));
+    assert.equal(destinations.length, requiredCities.length, "a fixed request must not add or delete cities");
     let previousIndex = -1;
     for (const requiredCity of requiredCities) {
       const index = destinations.findIndex((destination, candidateIndex) => candidateIndex > previousIndex && (destination.includes(requiredCity) || requiredCity.includes(destination)));
@@ -278,7 +291,7 @@ console.log(JSON.stringify({
   defaultRouteImagesLocalOnly: true,
   indexedSearchDedupe: true,
   structuredAcceptedCompatibility: true,
-  evidenceBackedBridgeInsertion: true,
+  strictRequiredCitySet: true,
   readyStatusPreserved: true,
   liveProbe,
 }, null, 2));

@@ -4,6 +4,7 @@ import { normalizeRouteLegTransportMode, routeLegEvidenceKey } from "./route-leg
 import { normalizeTimeIntent } from "./search-intent-parser.mjs";
 import { seasonEvidenceKey } from "./season-evidence-schema.mjs";
 import { cleanString, stableHash, uniqueStrings } from "./route-v2-utils.mjs";
+import { maxDestinationsForRouteIntentDays } from "./route-intent-model.mjs";
 
 export const ROUTE_V2_EVIDENCE_VALIDATION_FLAG = "ROUTE_V2_EVIDENCE_VALIDATION_ENABLED";
 export const ROUTE_V2_EVIDENCE_VALIDATOR_VERSION = "route-v2-evidence-validation-mvp-v1";
@@ -155,11 +156,7 @@ function selectLegEvaluation(records = [], options = {}) {
 }
 
 export function maxDestinationsForDuration(durationDays) {
-  if (durationDays <= 2) return 2;
-  if (durationDays <= 4) return 3;
-  if (durationDays <= 7) return 4;
-  if (durationDays <= 10) return 5;
-  return 6;
+  return maxDestinationsForRouteIntentDays(Number(durationDays)) || 6;
 }
 
 function validatePacing(candidate, legResults) {

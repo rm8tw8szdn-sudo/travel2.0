@@ -2,6 +2,11 @@ import { cleanString, stableHash, uniqueStrings as unique } from "./route-v2-uti
 import { envFlag } from "./route-v2-env.mjs";
 import { validateRouteCandidate } from "./route-candidate-pool.mjs";
 import { normalizeTimeIntent } from "./search-intent-parser.mjs";
+import {
+  ROUTE_INTENT_FINGERPRINT_VERSION,
+  ROUTE_INTENT_SCHEMA_VERSION,
+  createRouteIntentFingerprint,
+} from "./route-intent-model.mjs";
 
 export const DECISION_TRACE_SCHEMA_VERSION = "route-generation-v2-phase1-trace-v1";
 export const ROUTE_V2_INTENT_FLAG = "ROUTE_V2_INTENT_ENABLED";
@@ -57,6 +62,7 @@ export function routeIntentSnapshot(input = {}) {
     ...(Array.isArray(route.destinations) ? route.destinations : []),
     ...(Array.isArray(route.destinationEntities) ? route.destinationEntities.map((item) => item?.name) : []),
   ]);
+  const fingerprint = createRouteIntentFingerprint(context.normalizedRouteIntent || context);
   return {
     intentId: cleanString(input.intentId) || `legacy-intent-${stableDecisionTraceHash({ countries, destinations, travelStyle: context.travelStyle || route.travelStyle || "", duration: context.durationDays || route.durationDays || "" }).slice(0, 16)}`,
     strategyType: cleanString(context.strategyType) || cleanString(route.designStrategies?.[0]) || "Legacy",
@@ -115,6 +121,10 @@ export function routeIntentSnapshot(input = {}) {
     noveltyTarget: context.noveltyTarget == null ? null : clone(context.noveltyTarget),
     coverageGoal: context.coverageGoal == null ? null : clone(context.coverageGoal),
     exclusions: context.exclusions == null ? null : clone(context.exclusions),
+    routeIntentSchemaVersion: ROUTE_INTENT_SCHEMA_VERSION,
+    routeIntentFingerprintVersion: ROUTE_INTENT_FINGERPRINT_VERSION,
+    routeIntentFingerprint: fingerprint.value,
+    normalizedRouteIntent: fingerprint.normalizedIntent,
     source: cleanString(input.source) || cleanString(route.sourceType) || "legacy",
     createdAt: cleanString(input.createdAt) || cleanString(route.acceptedAt) || null,
   };
@@ -206,6 +216,9 @@ export function buildLegacyDecisionTrace({
     routeId: route.id,
     candidateId: selectedCandidate.candidateId,
     intentId: inputContext.intentId,
+    routeIntentSchemaVersion: cleanString(inputContext.routeIntentSchemaVersion),
+    routeIntentFingerprintVersion: cleanString(inputContext.routeIntentFingerprintVersion),
+    routeIntentFingerprint: cleanString(inputContext.routeIntentFingerprint),
     inputContext,
     ...(hasCandidateSelection ? { inputIntentSnapshot: clone(selectionIntent) } : {}),
     candidatePool,
@@ -283,6 +296,9 @@ export function buildFailureDecisionTrace({
     routeId: null,
     candidateId: null,
     intentId: inputContext.intentId,
+    routeIntentSchemaVersion: cleanString(inputContext.routeIntentSchemaVersion),
+    routeIntentFingerprintVersion: cleanString(inputContext.routeIntentFingerprintVersion),
+    routeIntentFingerprint: cleanString(inputContext.routeIntentFingerprint),
     inputContext,
     inputIntentSnapshot: clone(inputContext),
     candidatePool: failedCandidates,
@@ -329,6 +345,9 @@ export function validateDecisionTrace(trace = {}) {
   if (!DECISION_TRACE_OUTCOMES.has(cleanString(trace.outcome))) missing.push("outcome-unsupported");
   if (!trace.inputContext || typeof trace.inputContext !== "object" || Array.isArray(trace.inputContext)) missing.push("inputContext-object-required");
   if (cleanString(trace.inputContext?.intentId) !== cleanString(trace.intentId)) missing.push("inputContext-intentId-mismatch");
+  if (cleanString(trace.routeIntentSchemaVersion) !== cleanString(trace.inputContext?.routeIntentSchemaVersion)) missing.push("routeIntentSchemaVersion-inputContext-mismatch");
+  if (cleanString(trace.routeIntentFingerprintVersion) !== cleanString(trace.inputContext?.routeIntentFingerprintVersion)) missing.push("routeIntentFingerprintVersion-inputContext-mismatch");
+  if (cleanString(trace.routeIntentFingerprint) !== cleanString(trace.inputContext?.routeIntentFingerprint)) missing.push("routeIntentFingerprint-inputContext-mismatch");
   for (const field of ["candidatePool", "rejectedCandidates", "rejectionReasons", "decisionFactors", "strategyEffects", "dataSourcesUsed", "unknowns"]) {
     if (!Array.isArray(trace[field])) missing.push(`${field}-array-required`);
   }

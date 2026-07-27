@@ -2,6 +2,11 @@ import fs from "node:fs";
 import path from "node:path";
 import { envFlag } from "./route-v2-env.mjs";
 import { cleanString, stableHash } from "./route-v2-utils.mjs";
+import { validateEmbeddedRouteIntent } from "./route-intent-invariant-gate.mjs";
+import {
+  ROUTE_INTENT_FINGERPRINT_VERSION,
+  ROUTE_INTENT_SCHEMA_VERSION,
+} from "./route-intent-model.mjs";
 
 export const ROUTE_V2_READY_POOL_FLAG = "ROUTE_V2_READY_POOL_ENABLED";
 
@@ -44,6 +49,24 @@ export function createRouteV2ReadyPool({
       const records = parsed.records.filter((record) => {
         const routeId = clean(record?.routeRecord?.id);
         if (!routeId || record?.publicationGate?.status !== "ready-for-display" || seen.has(routeId)) return false;
+        const invariant = validateEmbeddedRouteIntent(record.routeRecord, {
+          source: "ready-pool-read",
+          allowLegacyUnbound: false,
+        });
+        const entryFingerprintMatches = clean(record.routeIntentSchemaVersion) === ROUTE_INTENT_SCHEMA_VERSION
+          && clean(record.routeIntentFingerprintVersion) === ROUTE_INTENT_FINGERPRINT_VERSION
+          && clean(record.routeIntentFingerprint) === clean(record.routeRecord?.routeIntentFingerprint);
+        if (!invariant.matched || !entryFingerprintMatches) {
+          diagnostics.push({
+            type: "ready-pool-route-intent-invalid",
+            routeId,
+            reasonCodes: [
+              ...invariant.reasonCodes,
+              ...(!entryFingerprintMatches ? ["ready-pool-route-intent-fingerprint-mismatch"] : []),
+            ],
+          });
+          return false;
+        }
         seen.add(routeId);
         return true;
       });
@@ -86,8 +109,29 @@ export function createRouteV2ReadyPool({
         || clean(routeRecord?.v2PublicationStatus) !== "ready-for-display") {
         return { persisted: false, skipped: false, routeId, reason: "ready-pool-publication-gate-mismatch" };
       }
+      const invariant = validateEmbeddedRouteIntent(routeRecord, {
+        source: "ready-pool-write",
+        allowLegacyUnbound: false,
+      });
+      if (!invariant.matched) {
+        diagnostics.push({
+          type: "ready-pool-route-intent-invalid",
+          routeId,
+          reasonCodes: invariant.reasonCodes,
+        });
+        return {
+          persisted: false,
+          skipped: false,
+          routeId,
+          reason: "ready-pool-route-intent-invalid",
+          reasonCodes: invariant.reasonCodes,
+        };
+      }
       const entry = {
         readyPoolId: `rrp-${stableHash({ routeId }).slice(0, 20)}`,
+        routeIntentSchemaVersion: routeRecord.routeIntentSchemaVersion,
+        routeIntentFingerprintVersion: routeRecord.routeIntentFingerprintVersion,
+        routeIntentFingerprint: routeRecord.routeIntentFingerprint,
         routeRecord: clone(routeRecord),
         publicationGate: clone(publicationGate),
         publishedAt: previous?.publishedAt || now(),

@@ -1,5 +1,15 @@
 import fs from "node:fs";
 import path from "node:path";
+import {
+  ROUTE_INTENT_FINGERPRINT_VERSION,
+  createRouteIntentFingerprint,
+} from "./route-intent-model.mjs";
+import {
+  finalizeRouteResult,
+  validateEmbeddedRouteIntent,
+} from "./route-intent-invariant-gate.mjs";
+
+const ROUTE_SEARCH_CACHE_SCHEMA_VERSION = 2;
 
 function clone(value) {
   return structuredClone(value);
@@ -47,29 +57,50 @@ export function createRouteSearchCache({
   const ttlMs = Math.max(1, Number(ttlDays) || 30) * 24 * 60 * 60 * 1000;
 
   function readStore() {
-    const payload = readJson(storagePath, { schemaVersion: 1, items: {} });
+    const payload = readJson(storagePath, { schemaVersion: ROUTE_SEARCH_CACHE_SCHEMA_VERSION, items: {} });
     return {
-      schemaVersion: 1,
+      schemaVersion: ROUTE_SEARCH_CACHE_SCHEMA_VERSION,
       items: payload?.items && typeof payload.items === "object" ? payload.items : {},
     };
   }
 
   function writeStore(store) {
-    writeJson(storagePath, { schemaVersion: 1, items: store.items || {} });
+    writeJson(storagePath, { schemaVersion: ROUTE_SEARCH_CACHE_SCHEMA_VERSION, items: store.items || {} });
   }
 
   function isFresh(item) {
     return Boolean(item?.expiresAt && Date.parse(item.expiresAt) > now());
   }
 
-  function get(intentHash) {
-    const key = clean(intentHash);
+  function intentFingerprint(intent) {
+    if (!intent || typeof intent !== "object") return "";
+    const fingerprint = createRouteIntentFingerprint(intent);
+    return clean(fingerprint.value);
+  }
+
+  function get(intent) {
+    const key = intentFingerprint(intent);
     if (!key) return null;
     const store = readStore();
     const item = store.items[key];
-    if (!item || !isFresh(item)) return null;
+    if (!item
+      || Number(item.schemaVersion) !== ROUTE_SEARCH_CACHE_SCHEMA_VERSION
+      || clean(item.routeIntentFingerprintVersion) !== ROUTE_INTENT_FINGERPRINT_VERSION
+      || clean(item.routeIntentFingerprint) !== key
+      || !isFresh(item)) {
+      return null;
+    }
+    const records = (item.records || []).filter((record) => {
+      const validation = validateEmbeddedRouteIntent(record, {
+        source: "search-cache-read",
+        allowLegacyUnbound: false,
+      });
+      return validation.matched && clean(validation.fingerprint) === key;
+    });
+    if (records.length !== (item.records || []).length) return null;
     const next = {
       ...item,
+      records,
       lastAccess: new Date(now()).toISOString(),
       hitCount: Number(item.hitCount || 0) + 1,
     };
@@ -79,18 +110,31 @@ export function createRouteSearchCache({
   }
 
   function put({ intent, records = [], sourceQuery = "", status = "search-generated", plannerMeta = {} } = {}) {
-    if (!intent?.intentHash) return null;
+    const fingerprint = createRouteIntentFingerprint(intent || {});
+    const key = clean(fingerprint.value);
+    if (!key) return null;
+    const finalizedRecords = [];
+    for (const record of records || []) {
+      const finalized = finalizeRouteResult(record, intent, {
+        source: "search-cache-write",
+        claimedSuccess: true,
+      });
+      if (!finalized.matched || !finalized.record) return null;
+      finalizedRecords.push(finalized.record);
+    }
     const store = readStore();
     const createdAt = new Date(now()).toISOString();
-    const existing = store.items[intent.intentHash] || {};
+    const existing = store.items[key] || {};
     const sourceQuerySamples = unique([...(existing.sourceQuerySamples || []), sourceQuery || intent.rawQuery]).slice(-8);
     const item = {
-      schemaVersion: 1,
-      intentHash: intent.intentHash,
+      schemaVersion: ROUTE_SEARCH_CACHE_SCHEMA_VERSION,
+      intentHash: intent.intentHash || "",
       intentKey: intent.intentKey,
-      normalizedIntent: clone(intent),
+      routeIntentFingerprintVersion: fingerprint.version,
+      routeIntentFingerprint: key,
+      normalizedIntent: clone(fingerprint.normalizedIntent),
       status,
-      records: clone(records),
+      records: clone(finalizedRecords),
       createdAt: existing.createdAt || createdAt,
       updatedAt: createdAt,
       expiresAt: new Date(now() + ttlMs).toISOString(),
@@ -101,7 +145,7 @@ export function createRouteSearchCache({
       stale: false,
       plannerMeta: clone(plannerMeta),
     };
-    store.items[intent.intentHash] = item;
+    store.items[key] = item;
     writeStore(store);
     return clone(item);
   }
@@ -111,9 +155,21 @@ export function createRouteSearchCache({
     if (!id) return null;
     const store = readStore();
     for (const item of Object.values(store.items)) {
-      if (!isFresh(item)) continue;
+      if (!isFresh(item)
+        || Number(item?.schemaVersion) !== ROUTE_SEARCH_CACHE_SCHEMA_VERSION
+        || clean(item?.routeIntentFingerprintVersion) !== ROUTE_INTENT_FINGERPRINT_VERSION) {
+        continue;
+      }
       const record = (item.records || []).find((candidate) => clean(candidate?.id) === id);
-      if (record) return { item: clone(item), record: clone(record) };
+      if (!record) continue;
+      const validation = validateEmbeddedRouteIntent(record, {
+        source: "search-cache-route-detail",
+        allowLegacyUnbound: false,
+      });
+      if (validation.matched
+        && clean(validation.fingerprint) === clean(item.routeIntentFingerprint)) {
+        return { item: clone(item), record: clone(record) };
+      }
     }
     return null;
   }

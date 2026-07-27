@@ -80,11 +80,22 @@ const pureCases = {
     intent(requiredFour, { durationDays: 1 }),
   ),
   monthCompatible: validateFallbackRouteAgainstIntent(
-    route("month-compatible", [CITY.tokyo, CITY.kyoto], { durationDays: 2, recommendedDays: "2天", bestMonths: ["1-3月"] }),
+    route("month-compatible", [CITY.tokyo, CITY.kyoto], {
+      durationDays: 2,
+      recommendedDays: "2天",
+      bestMonths: ["1-3月"],
+      timeIntent: { type: "single-month", months: [2], season: null },
+      evidenceValidationStatus: "ready",
+    }),
     intent([], { durationDays: 2, timeIntent: { type: "single-month", months: [2], season: null } }),
   ),
   monthConflict: validateFallbackRouteAgainstIntent(
-    route("month-conflict", [CITY.tokyo, CITY.kyoto], { durationDays: 2, recommendedDays: "2天", bestMonths: ["10-11月"] }),
+    route("month-conflict", [CITY.tokyo, CITY.kyoto], {
+      durationDays: 2,
+      recommendedDays: "2天",
+      bestMonths: ["10-11月"],
+      timeIntent: { type: "single-month", months: [10], season: null },
+    }),
     intent([], { durationDays: 2, timeIntent: { type: "single-month", months: [2], season: null } }),
   ),
   monthNeedsEvidence: validateFallbackRouteAgainstIntent(
@@ -92,7 +103,12 @@ const pureCases = {
     intent([], { durationDays: 2, timeIntent: { type: "single-month", months: [2], season: null } }),
   ),
   seasonConflict: validateFallbackRouteAgainstIntent(
-    route("season-conflict", [CITY.tokyo, CITY.kyoto], { name: "日本秋季红叶路线", durationDays: 2, recommendedDays: "2天" }),
+    route("season-conflict", [CITY.tokyo, CITY.kyoto], {
+      name: "日本秋季红叶路线",
+      seasons: ["autumn"],
+      durationDays: 2,
+      recommendedDays: "2天",
+    }),
     intent([], { durationDays: 2, timeIntent: { type: "season-only", months: [], season: "winter" } }),
   ),
   countryConflict: validateFallbackRouteAgainstIntent(
@@ -254,6 +270,7 @@ const februaryTwoDays = await searchScenario({
       durationDays: 2,
       recommendedDays: "2天",
       bestMonths: ["10-11月"],
+      timeIntent: { type: "month-range", months: [10, 11], season: null },
     }),
   ],
 });

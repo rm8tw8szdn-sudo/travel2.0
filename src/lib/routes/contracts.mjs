@@ -185,6 +185,13 @@ export function normalizeDiscoveredRoute(value) {
         : ""
     ),
     bestMonths: uniqueTextList(value.bestMonths),
+    timeIntent: value.timeIntent && typeof value.timeIntent === "object" ? structuredClone(value.timeIntent) : null,
+    routeTimeIntent: value.routeTimeIntent && typeof value.routeTimeIntent === "object" ? structuredClone(value.routeTimeIntent) : null,
+    season: cleanText(value.season),
+    seasons: uniqueTextList(value.seasons),
+    region: cleanText(value.region),
+    regionEntityId: cleanText(value.regionEntityId),
+    regions: uniqueTextList(value.regions),
     themes: uniqueTextList(value.themes),
     highlights: uniqueTextList(value.highlights),
     coverAsset: imageAsset(value.coverAsset),
@@ -217,6 +224,25 @@ export function normalizeDiscoveredRoute(value) {
     mediaReadyAt: cleanText(value.mediaReadyAt),
     classification: cleanText(value.classification),
     contentEvidence: value.contentEvidence && typeof value.contentEvidence === "object" ? structuredClone(value.contentEvidence) : {},
+    routeIntentSchemaVersion: cleanText(value.routeIntentSchemaVersion),
+    routeIntentFingerprintVersion: cleanText(value.routeIntentFingerprintVersion),
+    routeIntentFingerprint: cleanText(value.routeIntentFingerprint),
+    normalizedRouteIntent: value.normalizedRouteIntent && typeof value.normalizedRouteIntent === "object"
+      ? structuredClone(value.normalizedRouteIntent)
+      : null,
+    routeIntentInvariantStatus: value.routeIntentInvariantStatus && typeof value.routeIntentInvariantStatus === "object"
+      ? structuredClone(value.routeIntentInvariantStatus)
+      : null,
+    generationVersion: cleanText(value.generationVersion),
+    intentId: cleanText(value.intentId),
+    selectedCandidateId: cleanText(value.selectedCandidateId),
+    decisionTraceId: cleanText(value.decisionTraceId),
+    evidenceBundleId: cleanText(value.evidenceBundleId),
+    evidenceStatus: cleanText(value.evidenceStatus),
+    evidenceValidationId: cleanText(value.evidenceValidationId),
+    evidenceValidationStatus: cleanText(value.evidenceValidationStatus),
+    evidenceSelectionMode: cleanText(value.evidenceSelectionMode),
+    v2PublicationStatus: cleanText(value.v2PublicationStatus),
   };
 
   const sourceName = cleanText(value.source?.name);

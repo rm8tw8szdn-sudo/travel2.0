@@ -2,7 +2,8 @@ import { decodeDiscoveryCursor, encodeDiscoveryCursor } from "./cursor.mjs";
 import { normalizeDiscoveredRoute } from "./contracts.mjs";
 import { routeDedupeFingerprint, routeTitleKey } from "./route-dedupe.mjs";
 import { buildRouteDestinationSuggestion } from "./route-destination-suggestion.mjs";
-import { validateFallbackRouteAgainstIntent } from "./route-fallback-constraint-validator.mjs";
+import { finalizeRouteResult } from "./route-intent-invariant-gate.mjs";
+import { compareRouteIntentShadow } from "./route-intent-shadow-validation.mjs";
 import { isRouteV2TimeIntentEnabled, parseSearchIntent } from "./search-intent-parser.mjs";
 import { ensureSearchGeneratedMedia } from "./search-generated-media.mjs";
 import { buildSearchGeneratedFallbackRoute } from "./search-generated-route-builder.mjs";
@@ -455,6 +456,10 @@ function plannerContextFromIntent(intent, deadlineAt, abortSignal = null, { dest
   return {
     intentId: suggested ? `${intent.intentHash}-${suggested.seed.slice(0, 12)}` : intent.intentHash,
     baseIntentId: intent.intentHash,
+    routeIntentSchemaVersion: intent.routeIntentSchemaVersion,
+    routeIntentFingerprintVersion: intent.routeIntentFingerprintVersion,
+    routeIntentFingerprint: intent.routeIntentFingerprint,
+    normalizedRouteIntent: structuredClone(intent.normalizedRouteIntent || null),
     intentMode: intent.intentMode || "",
     rawQuery: intent.rawQuery || "",
     country: countryCode,
@@ -552,23 +557,52 @@ export function createRouteSearchService({
     let generatedRecords = [];
     let ranked = [];
     const constraintRejections = [];
-    const validateRecord = (record, source) => {
-      const validation = validateFallbackRouteAgainstIntent(record, intent);
-      if (!validation.matched) {
+    const finalizeRecord = (record, source) => {
+      const finalized = finalizeRouteResult(record, intent, {
+        source,
+        claimedSuccess: true,
+      });
+      const shadow = compareRouteIntentShadow({
+        route: finalized.record || record,
+        intent,
+        productionResult: finalized.validation,
+        source,
+        env,
+      });
+      const matched = finalized.matched && shadow.matched !== false;
+      const validation = matched
+        ? finalized.validation
+        : finalized.matched
+          ? {
+              ...finalized.validation,
+              matched: false,
+              reasonCodes: ["route-intent-oracle-disagreement"],
+              shadow,
+            }
+          : finalized.validation;
+      if (!matched) {
         constraintRejections.push({
           routeId: clean(record?.id),
           source,
           validation,
         });
       }
-      return validation;
+      return {
+        matched,
+        record: matched ? finalized.record : null,
+        validation,
+        shadow,
+      };
+    };
+    const validateRecord = (record, source) => {
+      return finalizeRecord(record, source).validation;
     };
     const constrainRecords = (records, source) => (records || []).flatMap((record) => {
-      const validation = validateRecord(record, source);
-      if (!validation.matched) return [];
-      return [validation.requiresEvidence
-        ? { ...record, searchStatus: "needs-review" }
-        : record];
+      const finalized = finalizeRecord(record, source);
+      if (!finalized.matched) return [];
+      return [finalized.validation.requiresEvidence
+        ? { ...finalized.record, searchStatus: "needs-review" }
+        : finalized.record];
     });
     const constrainRanked = (items, source) => (items || []).filter((item) => validateRecord(item.record, source).matched);
 
@@ -580,12 +614,19 @@ export function createRouteSearchService({
         now,
       })).slice(0, intent.targetResultCount || 10);
       if (keywordRanked.length && !intent.isChinaBlocked) {
-        const merged = keywordRanked.map((item) => decorateRecord(item.record, {
-          status: "accepted",
-          matchReason: item.matchReason,
-          queryId,
-          intentHash: intent.intentHash,
-        }));
+        const merged = keywordRanked.flatMap((item) => {
+          const finalized = finalizeRouteResult(item.record, intent, {
+            source: "keyword-fallback-success",
+            claimedSuccess: true,
+          });
+          if (!finalized.matched || !finalized.record) return [];
+          return [decorateRecord(finalized.record, {
+            status: finalized.validation.requiresEvidence ? "needs-review" : "accepted",
+            matchReason: item.matchReason,
+            queryId,
+            intentHash: intent.intentHash,
+          })];
+        });
         const page = pageFromSnapshot(merged, {
           cursor: request.cursor,
           limit: request.limit || 20,
@@ -681,7 +722,7 @@ export function createRouteSearchService({
       }
       : intent;
     if (destinationSuggestionMode || ranked.length < intent.targetResultCount) {
-      cacheItem = destinationSuggestionMode ? null : searchCache.get(cacheIntent.intentHash);
+      cacheItem = destinationSuggestionMode ? null : searchCache.get(cacheIntent);
       cacheHit = Boolean(cacheItem);
       if (cacheItem) {
         generatedRecords = (cacheItem.records || [])
@@ -812,13 +853,16 @@ export function createRouteSearchService({
         || right.score - left.score
         || String(left.record.id).localeCompare(String(right.record.id)))
       .slice(0, intent.targetResultCount)
-      .filter((item) => validateRecord(item.record, "final-search-response").matched)
-      .map((item) => decorateRecord(item.record, {
-        status: item.status,
-        matchReason: item.matchReason,
-        queryId,
-        intentHash: intent.intentHash,
-      }));
+      .flatMap((item) => {
+        const finalized = finalizeRecord(item.record, "final-search-response");
+        if (!finalized.matched) return [];
+        return [decorateRecord(finalized.record, {
+          status: finalized.validation.requiresEvidence ? "needs-review" : item.status,
+          matchReason: item.matchReason,
+          queryId,
+          intentHash: intent.intentHash,
+        })];
+      });
     const page = pageFromSnapshot(merged, {
       cursor: request.cursor,
       limit: request.limit || 20,

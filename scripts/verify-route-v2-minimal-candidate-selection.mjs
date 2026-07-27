@@ -180,6 +180,11 @@ assert.equal(enabledResult.record.selectedCandidateId, trace.selectedCandidate.c
 assert.equal(enabledResult.record.decisionTraceId, trace.traceId);
 assert.deepEqual(routeOrder(enabledResult.record), trace.selectedCandidate.proposedOrder, "selected Candidate must drive the final RouteRecord order");
 assert.deepEqual(enabledResult.record.countries, trace.selectedCandidate.countries, "selected Candidate countries must drive the final RouteRecord");
+if (enabledResult.record.travelStyle === "classic-first-trip") {
+  const displayCount = String(enabledResult.record.recommendationText || "").match(/保留(\d+)个目的地/u);
+  assert(displayCount, "classic route display copy must state its destination count");
+  assert.equal(Number(displayCount[1]), enabledResult.record.destinations.length, "display copy must use the selected Candidate destination count");
+}
 assert.equal(trace.rejectedCandidates.length, 2);
 assert.equal(trace.rejectionReasons.length, 2);
 assert(trace.rejectedCandidates.every((candidate) => candidate.status === "rejected"), "every non-selected candidate must be marked rejected in the trace");
@@ -280,7 +285,7 @@ for (const file of [
 }
 
 const selectionSource = fs.readFileSync(path.resolve(projectRoot, "src/lib/routes/route-candidate-selection.mjs"), "utf8");
-assert.equal(/from\s+["'][^"']*(?:evidence|provider)|fetch\s*\(|https?:\/\//iu.test(selectionSource), false, "candidate selector must be evidence-free and offline");
+assert.equal(/from\s+["'][^"']*provider|fetch\s*\(|https?:\/\//iu.test(selectionSource), false, "candidate selector may use local validation but must remain free of network providers");
 assertStatesUnchanged(protectedBefore, statesFor(realProtectedPaths));
 
 console.log(JSON.stringify({

@@ -125,6 +125,8 @@ function lifecycleIdSeed(input = {}) {
     candidateId: clean(input.candidateId),
     decisionTraceId: clean(input.decisionTraceId),
     routeRecordId: clean(input.routeRecordId),
+    routeIntentFingerprintVersion: clean(input.routeIntentFingerprintVersion),
+    routeIntentFingerprint: clean(input.routeIntentFingerprint),
   };
 }
 
@@ -141,6 +143,8 @@ export function normalizeEvidenceBundleLifecycle(input = {}, { now = () => new D
     candidateId: clean(input.candidateId),
     decisionTraceId: clean(input.decisionTraceId),
     routeRecordId: clean(input.routeRecordId),
+    routeIntentFingerprintVersion: clean(input.routeIntentFingerprintVersion),
+    routeIntentFingerprint: clean(input.routeIntentFingerprint),
     createdAt: clean(input.createdAt) || timestamp,
     updatedAt: clean(input.updatedAt) || timestamp,
     status: clean(input.status || "pending"),
@@ -175,6 +179,13 @@ function consistencyFailures({ selectedCandidate = {}, routeRecord = {}, decisio
   const traceCandidateId = clean(decisionTrace.selectedCandidate?.candidateId);
   const routeIntentId = clean(routeRecord.intentId);
   const traceIntentId = clean(decisionTrace.intentId || decisionTrace.inputIntent?.intentId);
+  const candidateFingerprint = clean(selectedCandidate.routeIntentFingerprint || selectedCandidate.inputIntentSnapshot?.routeIntentFingerprint);
+  const routeFingerprint = clean(routeRecord.routeIntentFingerprint);
+  const traceFingerprint = clean(
+    decisionTrace.routeIntentFingerprint
+      || decisionTrace.inputIntentSnapshot?.routeIntentFingerprint
+      || decisionTrace.inputContext?.routeIntentFingerprint,
+  );
   const candidateOrder = candidateDestinationOrder(selectedCandidate);
   const routeOrder = routeRecordDestinationOrder(routeRecord);
   const selectedTraceOrder = traceDestinationOrder(decisionTrace);
@@ -184,6 +195,10 @@ function consistencyFailures({ selectedCandidate = {}, routeRecord = {}, decisio
   if (candidateId !== traceCandidateId) failures.push("candidate-trace-id-mismatch");
   if (intentId && routeIntentId && intentId !== routeIntentId) failures.push("candidate-route-intent-mismatch");
   if (intentId && traceIntentId && intentId !== traceIntentId) failures.push("candidate-trace-intent-mismatch");
+  if (candidateFingerprint || routeFingerprint || traceFingerprint) {
+    if (!candidateFingerprint || !routeFingerprint || !traceFingerprint) failures.push("route-intent-fingerprint-missing");
+    else if (candidateFingerprint !== routeFingerprint || candidateFingerprint !== traceFingerprint) failures.push("route-intent-fingerprint-mismatch");
+  }
   if (clean(decisionTrace.outcome) !== "success") failures.push("decision-trace-not-success");
   if (!sameOrder(candidateOrder, routeOrder)) failures.push("candidate-route-destination-order-mismatch");
   if (!sameOrder(candidateOrder, selectedTraceOrder)) failures.push("candidate-trace-destination-order-mismatch");
@@ -249,6 +264,8 @@ export function buildEvidenceBundleLifecycle({
     candidateId: selectedCandidate.candidateId,
     decisionTraceId: decisionTrace.traceId,
     routeRecordId: routeRecord.id,
+    routeIntentFingerprintVersion: routeRecord.routeIntentFingerprintVersion || selectedCandidate.routeIntentFingerprintVersion,
+    routeIntentFingerprint: routeRecord.routeIntentFingerprint || selectedCandidate.routeIntentFingerprint,
     createdAt: timestamp,
     updatedAt: timestamp,
     status,
@@ -398,6 +415,26 @@ export function validateEvidenceBundleLifecycle(input = {}, expected = {}) {
     }
     const expectedOrder = candidateDestinationOrder(expected.selectedCandidate || {});
     if (expectedOrder.length && !sameOrder(bundle.destinationOrder, expectedOrder)) reasons.push("bundle-candidate-destination-order-mismatch");
+    const expectedFingerprint = clean(
+      expected.selectedCandidate?.routeIntentFingerprint
+        || expected.selectedCandidate?.inputIntentSnapshot?.routeIntentFingerprint
+        || expected.routeRecord?.routeIntentFingerprint
+        || expected.decisionTrace?.routeIntentFingerprint,
+    );
+    const expectedFingerprintVersion = clean(
+      expected.selectedCandidate?.routeIntentFingerprintVersion
+        || expected.selectedCandidate?.inputIntentSnapshot?.routeIntentFingerprintVersion
+        || expected.routeRecord?.routeIntentFingerprintVersion
+        || expected.decisionTrace?.routeIntentFingerprintVersion,
+    );
+    if (expectedFingerprint) {
+      if (!bundle.routeIntentFingerprint) reasons.push("bundle-route-intent-fingerprint-required");
+      else if (bundle.routeIntentFingerprint !== expectedFingerprint) reasons.push("bundle-route-intent-fingerprint-mismatch");
+    }
+    if (expectedFingerprintVersion) {
+      if (!bundle.routeIntentFingerprintVersion) reasons.push("bundle-route-intent-fingerprint-version-required");
+      else if (bundle.routeIntentFingerprintVersion !== expectedFingerprintVersion) reasons.push("bundle-route-intent-fingerprint-version-mismatch");
+    }
   }
 
   return { accepted: reasons.length === 0, reasons, bundle: clone(bundle), expectedEvidenceBundleId: expectedId };

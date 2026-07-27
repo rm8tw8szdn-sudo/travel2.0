@@ -1,0 +1,283 @@
+{
+  "schemaVersion": "route-v2-permanent-intent-corpus-v1",
+  "cases": [
+    {
+      "id": "four-cities-one-day-conflict",
+      "intent": {
+        "requiredDestinationIds": ["Q1490", "Q34600", "Q35765", "Q169134"],
+        "requiredDestinationNames": ["Tokyo", "Kyoto", "Osaka", "Nara"],
+        "destinationOrderMode": "flexible",
+        "durationDays": 1,
+        "countryCode": "JP"
+      },
+      "route": {
+        "id": "corpus-four-cities-one-day",
+        "destinationEntities": [
+          {"wikidataId": "Q1490", "name": "Tokyo", "countryCode": "JP"},
+          {"wikidataId": "Q34600", "name": "Kyoto", "countryCode": "JP"},
+          {"wikidataId": "Q35765", "name": "Osaka", "countryCode": "JP"},
+          {"wikidataId": "Q169134", "name": "Nara", "countryCode": "JP"}
+        ],
+        "durationDays": 1,
+        "countryEntities": [{"countryCode": "JP"}]
+      },
+      "expected": "constraint-conflict",
+      "reasonCode": "duration-capacity-conflict"
+    },
+    {
+      "id": "fixed-order-valid",
+      "intent": {
+        "requiredDestinationIds": ["Q1490", "Q34600", "Q35765"],
+        "requiredDestinationNames": ["Tokyo", "Kyoto", "Osaka"],
+        "destinationOrderMode": "fixed",
+        "durationDays": 7,
+        "countryCode": "JP"
+      },
+      "route": {
+        "id": "corpus-fixed-order-valid",
+        "destinationEntities": [
+          {"wikidataId": "Q1490", "name": "Tokyo", "countryCode": "JP"},
+          {"wikidataId": "Q34600", "name": "Kyoto", "countryCode": "JP"},
+          {"wikidataId": "Q35765", "name": "Osaka", "countryCode": "JP"}
+        ],
+        "durationDays": 7,
+        "countryEntities": [{"countryCode": "JP"}]
+      },
+      "expected": "success"
+    },
+    {
+      "id": "fixed-order-mutated",
+      "intent": {
+        "requiredDestinationIds": ["Q1490", "Q34600", "Q35765"],
+        "requiredDestinationNames": ["Tokyo", "Kyoto", "Osaka"],
+        "destinationOrderMode": "fixed",
+        "durationDays": 7,
+        "countryCode": "JP"
+      },
+      "route": {
+        "id": "corpus-fixed-order-mutated",
+        "destinationEntities": [
+          {"wikidataId": "Q1490", "name": "Tokyo", "countryCode": "JP"},
+          {"wikidataId": "Q35765", "name": "Osaka", "countryCode": "JP"},
+          {"wikidataId": "Q34600", "name": "Kyoto", "countryCode": "JP"}
+        ],
+        "durationDays": 7,
+        "countryEntities": [{"countryCode": "JP"}]
+      },
+      "expected": "constraint-conflict",
+      "reasonCode": "fixed-order-mismatch"
+    },
+    {
+      "id": "required-city-deleted",
+      "intent": {
+        "requiredDestinationIds": ["Q1490", "Q34600", "Q35765"],
+        "destinationOrderMode": "flexible",
+        "durationDays": 7,
+        "countryCode": "JP"
+      },
+      "route": {
+        "id": "corpus-required-city-deleted",
+        "destinationEntities": [
+          {"wikidataId": "Q1490", "name": "Tokyo", "countryCode": "JP"},
+          {"wikidataId": "Q34600", "name": "Kyoto", "countryCode": "JP"}
+        ],
+        "durationDays": 7,
+        "countryEntities": [{"countryCode": "JP"}]
+      },
+      "expected": "constraint-conflict",
+      "reasonCode": "required-city-missing"
+    },
+    {
+      "id": "unexpected-city-added",
+      "intent": {
+        "requiredDestinationIds": ["Q1490", "Q34600"],
+        "destinationOrderMode": "flexible",
+        "durationDays": 7,
+        "countryCode": "JP"
+      },
+      "route": {
+        "id": "corpus-unexpected-city-added",
+        "destinationEntities": [
+          {"wikidataId": "Q1490", "name": "Tokyo", "countryCode": "JP"},
+          {"wikidataId": "Q34600", "name": "Kyoto", "countryCode": "JP"},
+          {"wikidataId": "Q35765", "name": "Osaka", "countryCode": "JP"}
+        ],
+        "durationDays": 7,
+        "countryEntities": [{"countryCode": "JP"}]
+      },
+      "expected": "constraint-conflict",
+      "reasonCode": "unexpected-city-added"
+    },
+    {
+      "id": "exact-days-mutated",
+      "intent": {
+        "requiredDestinationIds": ["Q1490", "Q34600"],
+        "durationDays": 7,
+        "countryCode": "JP"
+      },
+      "route": {
+        "id": "corpus-exact-days-mutated",
+        "destinationEntities": [
+          {"wikidataId": "Q1490", "name": "Tokyo", "countryCode": "JP"},
+          {"wikidataId": "Q34600", "name": "Kyoto", "countryCode": "JP"}
+        ],
+        "durationDays": 8,
+        "countryEntities": [{"countryCode": "JP"}]
+      },
+      "expected": "constraint-conflict",
+      "reasonCode": "exact-days-mismatch"
+    },
+    {
+      "id": "february-two-days-needs-evidence",
+      "intent": {
+        "durationDays": 2,
+        "countryCode": "JP",
+        "timeIntent": {"type": "single-month", "months": [2], "season": null}
+      },
+      "route": {
+        "id": "corpus-february-two-days",
+        "destinationEntities": [
+          {"wikidataId": "Q1490", "name": "Tokyo", "countryCode": "JP"},
+          {"wikidataId": "Q34600", "name": "Kyoto", "countryCode": "JP"}
+        ],
+        "durationDays": 2,
+        "countryEntities": [{"countryCode": "JP"}]
+      },
+      "expected": "needs-evidence"
+    },
+    {
+      "id": "month-conflict",
+      "intent": {
+        "durationDays": 2,
+        "countryCode": "JP",
+        "timeIntent": {"type": "single-month", "months": [2], "season": null}
+      },
+      "route": {
+        "id": "corpus-month-conflict",
+        "destinationEntities": [
+          {"wikidataId": "Q1490", "name": "Tokyo", "countryCode": "JP"},
+          {"wikidataId": "Q34600", "name": "Kyoto", "countryCode": "JP"}
+        ],
+        "durationDays": 2,
+        "countryEntities": [{"countryCode": "JP"}],
+        "timeIntent": {"type": "single-month", "months": [10], "season": null}
+      },
+      "expected": "constraint-conflict",
+      "reasonCode": "month-conflict"
+    },
+    {
+      "id": "season-missing-needs-evidence",
+      "intent": {
+        "durationDays": 4,
+        "countryCode": "JP",
+        "timeIntent": {"type": "season-only", "months": [], "season": "winter"}
+      },
+      "route": {
+        "id": "corpus-season-missing",
+        "destinationEntities": [
+          {"wikidataId": "Q1490", "name": "Tokyo", "countryCode": "JP"},
+          {"wikidataId": "Q34600", "name": "Kyoto", "countryCode": "JP"}
+        ],
+        "durationDays": 4,
+        "countryEntities": [{"countryCode": "JP"}]
+      },
+      "expected": "needs-evidence"
+    },
+    {
+      "id": "season-conflict",
+      "intent": {
+        "durationDays": 4,
+        "countryCode": "JP",
+        "timeIntent": {"type": "season-only", "months": [], "season": "winter"}
+      },
+      "route": {
+        "id": "corpus-season-conflict",
+        "destinationEntities": [
+          {"wikidataId": "Q1490", "name": "Tokyo", "countryCode": "JP"},
+          {"wikidataId": "Q34600", "name": "Kyoto", "countryCode": "JP"}
+        ],
+        "durationDays": 4,
+        "countryEntities": [{"countryCode": "JP"}],
+        "seasons": ["summer"]
+      },
+      "expected": "constraint-conflict",
+      "reasonCode": "season-conflict"
+    },
+    {
+      "id": "country-replaced",
+      "intent": {
+        "durationDays": 4,
+        "countryCode": "JP"
+      },
+      "route": {
+        "id": "corpus-country-replaced",
+        "destinationEntities": [
+          {"wikidataId": "Q1490", "name": "Tokyo", "countryCode": "NL"},
+          {"wikidataId": "Q34600", "name": "Kyoto", "countryCode": "NL"}
+        ],
+        "durationDays": 4,
+        "countryEntities": [{"countryCode": "NL"}]
+      },
+      "expected": "constraint-conflict",
+      "reasonCode": "country-mismatch"
+    },
+    {
+      "id": "region-replaced",
+      "intent": {
+        "durationDays": 4,
+        "countryCode": "JP",
+        "region": "Kansai"
+      },
+      "route": {
+        "id": "corpus-region-replaced",
+        "destinationEntities": [
+          {"wikidataId": "Q1490", "name": "Tokyo", "countryCode": "JP", "region": "Kanto"},
+          {"wikidataId": "Q34600", "name": "Kyoto", "countryCode": "JP", "region": "Kanto"}
+        ],
+        "durationDays": 4,
+        "countryEntities": [{"countryCode": "JP"}],
+        "regions": ["Kanto"]
+      },
+      "expected": "constraint-conflict",
+      "reasonCode": "region-mismatch"
+    },
+    {
+      "id": "duplicate-city",
+      "intent": {
+        "durationDays": 4,
+        "countryCode": "JP"
+      },
+      "route": {
+        "id": "corpus-duplicate-city",
+        "destinationEntities": [
+          {"wikidataId": "Q1490", "name": "Tokyo", "countryCode": "JP"},
+          {"wikidataId": "Q1490", "name": "Tokyo", "countryCode": "JP"}
+        ],
+        "durationDays": 4,
+        "countryEntities": [{"countryCode": "JP"}]
+      },
+      "expected": "constraint-conflict",
+      "reasonCode": "duplicate-route-city"
+    },
+    {
+      "id": "rejected-repackaged",
+      "intent": {
+        "durationDays": 4,
+        "countryCode": "JP"
+      },
+      "route": {
+        "id": "corpus-rejected-repackaged",
+        "destinationEntities": [
+          {"wikidataId": "Q1490", "name": "Tokyo", "countryCode": "JP"},
+          {"wikidataId": "Q34600", "name": "Kyoto", "countryCode": "JP"}
+        ],
+        "durationDays": 4,
+        "countryEntities": [{"countryCode": "JP"}],
+        "status": "rejected",
+        "accepted": true
+      },
+      "expected": "constraint-conflict",
+      "reasonCode": "rejected-result-repackaged-as-success"
+    }
+  ]
+}

@@ -23,6 +23,7 @@ const FEED_LOAD_WATCHDOG_MS = 8_000;
 const ROUTE_FEED_SESSION_KEY = "travelCollection.routeFeedSession";
 const ROUTE_FEED_PRELOAD_KEY = "travelCollection.routeFeedPreload.v2";
 const ROUTE_FEED_PRELOAD_TTL_MS = 5 * 60 * 1000;
+const ROUTE_FEED_QUERY_PARAM = "q";
 const FALLBACK_ROUTE_COVER = "assets/trip-cover-placeholder.svg";
 const routeImageAssets = globalThis.RouteV2ImageAssets || null;
 const runtimeImageSearchEnabled = routeImageAssets?.isRuntimeImageSearchEnabled?.() === true;
@@ -417,7 +418,7 @@ const feedState = {
   cursor: null,
   hasMore: true,
   status: "idle",
-  query: "",
+  query: readRouteQueryFromUrl(),
   activeTab: "cross",
   feedRouteType: "cross",
   sessionId: createSessionId(),
@@ -558,6 +559,22 @@ function fixedPilotRouteCover(record = {}) {
     return { url: FALLBACK_ROUTE_COVER, source: "local-placeholder", isFallback: true };
   }
   return resolved;
+}
+
+function readRouteQueryFromUrl() {
+  try {
+    return new URL(window.location.href).searchParams.get(ROUTE_FEED_QUERY_PARAM)?.trim() || "";
+  } catch {
+    return "";
+  }
+}
+
+function persistRouteQueryInUrl(query) {
+  const url = new URL(window.location.href);
+  const normalized = String(query || "").trim();
+  if (normalized) url.searchParams.set(ROUTE_FEED_QUERY_PARAM, normalized);
+  else url.searchParams.delete(ROUTE_FEED_QUERY_PARAM);
+  window.history.replaceState(window.history.state, "", url);
 }
 
 function coverUrl(record) {
@@ -2313,6 +2330,7 @@ routeSearch?.addEventListener("input", () => {
   clearTimeout(searchTimer);
   searchTimer = setTimeout(() => {
     feedState.query = routeSearch.value.trim();
+    persistRouteQueryInUrl(feedState.query);
     resetDiscovery();
   }, 300);
 });
@@ -2485,7 +2503,8 @@ window.__routeFeedDebug = () => ({
 });
 window.__routeForceLoadFeed = () => loadFeed();
 
-const preloadedRouteFeed = readBootstrappedRouteFeed("cross") || readPreloadedRouteFeed();
+if (routeSearch && feedState.query) routeSearch.value = feedState.query;
+const preloadedRouteFeed = feedState.query ? null : (readBootstrappedRouteFeed("cross") || readPreloadedRouteFeed());
 if (preloadedRouteFeed) {
   usePreloadedRouteFeed(preloadedRouteFeed);
 } else {

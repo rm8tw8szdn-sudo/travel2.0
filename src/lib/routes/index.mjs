@@ -356,6 +356,26 @@ export {
 } from "./route-v2-ready-pool.mjs";
 export { buildRouteV2MissingEvidenceReport } from "./route-evidence-missing-report.mjs";
 export { validateFallbackRouteAgainstIntent } from "./route-fallback-constraint-validator.mjs";
+export {
+  finalizeRouteResult,
+  validateEmbeddedRouteIntent,
+  validateRouteIntentInvariants,
+} from "./route-intent-invariant-gate.mjs";
+export { evaluateRouteIntentOracle } from "./route-intent-model-oracle.mjs";
+export {
+  compareRouteIntentShadow,
+  isRouteIntentShadowValidationEnabled,
+  runRouteIntentShadowValidation,
+} from "./route-intent-shadow-validation.mjs";
+export {
+  ROUTE_INTENT_FINGERPRINT_VERSION,
+  ROUTE_INTENT_SCHEMA_VERSION,
+  attachRouteIntentEnvelope,
+  createRouteIntentFingerprint,
+  maxDestinationsForRouteIntentDays,
+  normalizeRouteIntent,
+  readRouteIntentEnvelope,
+} from "./route-intent-model.mjs";
 export { createLocalEvidenceSeedOverlay, compareLocalEvidenceQuality } from "./local-evidence-seed-overlay.mjs";
 export {
   ROUTE_V2_EVIDENCE_SEED_ROOT,

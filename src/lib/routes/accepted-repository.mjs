@@ -12,6 +12,7 @@ import {
 } from "./route-dedupe.mjs";
 import { acceptedPoolWatermarks } from "./route-pool-watermarks.mjs";
 import { encodeDiscoveryCursor, decodeDiscoveryCursor } from "./cursor.mjs";
+import { validateEmbeddedRouteIntent } from "./route-intent-invariant-gate.mjs";
 
 function clone(value) {
   return structuredClone(value);
@@ -191,6 +192,19 @@ function publicFeedRecord(record = {}) {
     imageCountryCodes: asset.imageCountryCodes || [],
     imageDedupeKey: feedImageDedupeKey(asset),
     imageMatchReason: feedImageMatchReason(asset),
+  });
+}
+
+function validateBoundRouteIntent(record, source) {
+  const isBound = Boolean(
+    record?.routeIntentFingerprint
+      || record?.routeIntentFingerprintVersion
+      || record?.normalizedRouteIntent,
+  );
+  if (!isBound) return { matched: true, legacyUnbound: true, reasonCodes: [] };
+  return validateEmbeddedRouteIntent(record, {
+    source,
+    allowLegacyUnbound: false,
   });
 }
 
@@ -381,6 +395,8 @@ export function createAcceptedRouteRepository({
   for (const item of storedItems) {
     if (isUnpublishableRouteGenerationV2(item)) continue;
     const record = normalizeDiscoveredRoute(item);
+    const routeIntentValidation = validateBoundRouteIntent(record, "accepted-repository-load");
+    if (!routeIntentValidation.matched) continue;
     const quality = validateRouteContent(record);
     const composition = validateCompositionRecord(record);
     if (record?.contentQualityStatus === "accepted" && quality.accepted && composition.accepted && record.coverAsset?.imageUrl) {
@@ -418,6 +434,13 @@ export function createAcceptedRouteRepository({
       return { accepted: false, reasons: ["v2-not-publishable-yet"] };
     }
     const record = normalizeDiscoveredRoute(input);
+    const routeIntentValidation = validateBoundRouteIntent(record, "accepted-repository-upsert");
+    if (!routeIntentValidation.matched) {
+      return {
+        accepted: false,
+        reasons: ["route-intent-invariant-failed", ...(routeIntentValidation.reasonCodes || [])],
+      };
+    }
     const quality = validateRouteContent(record);
     const composition = validateCompositionRecord(record);
     if (!record || record.contentQualityStatus !== "accepted" || !quality.accepted || !composition.accepted || !record.coverAsset?.imageUrl) {
@@ -639,6 +662,8 @@ export function createAcceptedRouteRepository({
     if (!current) return null;
     const next = { ...current, ...patch };
     if (isUnpublishableRouteGenerationV2(next)) return null;
+    const routeIntentValidation = validateBoundRouteIntent(next, "accepted-repository-mark");
+    if (!routeIntentValidation.matched) return null;
     records.set(routeId, clone(next));
     persist();
     return clone(next);

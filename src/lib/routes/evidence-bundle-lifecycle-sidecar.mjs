@@ -69,6 +69,12 @@ export async function writeEvidenceBundleLifecycleSidecarSafe({
       traceId: clean(decisionTraceWrite.traceId),
       intentId: clean(persistedSelected.intentId),
       outcome: "success",
+      routeIntentFingerprintVersion: clean(
+        persistedSelected.routeIntentFingerprintVersion || routeRecord.routeIntentFingerprintVersion,
+      ),
+      routeIntentFingerprint: clean(
+        persistedSelected.routeIntentFingerprint || routeRecord.routeIntentFingerprint,
+      ),
       selectedCandidate: structuredClone(persistedSelected),
     };
     const built = buildEvidenceBundleLifecycle({

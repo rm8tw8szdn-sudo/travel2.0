@@ -1,5 +1,9 @@
 import crypto from "node:crypto";
 import { envFlag } from "./route-v2-env.mjs";
+import {
+  ROUTE_INTENT_FINGERPRINT_VERSION,
+  createRouteIntentFingerprint,
+} from "./route-intent-model.mjs";
 
 export const ROUTE_V2_TIME_INTENT_FLAG = "ROUTE_V2_TIME_INTENT_ENABLED";
 export const ROUTE_V2_TIME_INTENT_TYPES = new Set([
@@ -617,6 +621,10 @@ export function parseSearchIntent(query, { acceptedRoutes = [], catalogs = null,
   }
   intent.intentKey = normalizeIntentKey(intent);
   intent.intentHash = hashIntentKey(intent.intentKey);
+  const routeIntentFingerprint = createRouteIntentFingerprint(intent);
+  intent.normalizedRouteIntent = routeIntentFingerprint.normalizedIntent;
+  intent.routeIntentFingerprint = routeIntentFingerprint.value;
+  intent.routeIntentFingerprintVersion = ROUTE_INTENT_FINGERPRINT_VERSION;
   intent.suggestions = createSearchSuggestions({ query: rawQuery, acceptedRoutes, catalogs });
   return intent;
 }

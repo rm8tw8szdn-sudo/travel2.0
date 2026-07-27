@@ -223,6 +223,18 @@ function summarizeExecution(query, sessionId, harness, searchResult) {
   const plannerResult = harness.lastPlannerResult();
   const finalRoute = plannerResult?.accepted?.[0]?.record || null;
   const selectedCandidate = candidates.find((candidate) => candidate.status === "selected") || null;
+  const routeIntentFingerprints = {
+    candidate: selectedCandidate?.routeIntentFingerprint || null,
+    route: finalRoute?.routeIntentFingerprint || null,
+    trace: traces[0]?.routeIntentFingerprint || null,
+    evidence: bundles[0]?.routeIntentFingerprint || null,
+  };
+  if (selectedCandidate && finalRoute && traces[0] && bundles[0]) {
+    assert.ok(routeIntentFingerprints.candidate, `${query}: selected Candidate must retain the RouteIntent fingerprint`);
+    assert.equal(routeIntentFingerprints.route, routeIntentFingerprints.candidate, `${query}: RouteRecord fingerprint must match the selected Candidate`);
+    assert.equal(routeIntentFingerprints.trace, routeIntentFingerprints.candidate, `${query}: DecisionTrace fingerprint must match the selected Candidate`);
+    assert.equal(routeIntentFingerprints.evidence, routeIntentFingerprints.candidate, `${query}: EvidenceBundle fingerprint must match the selected Candidate`);
+  }
   return {
     query,
     sessionId,
@@ -254,6 +266,9 @@ function summarizeExecution(query, sessionId, harness, searchResult) {
     traceOutcome: traces[0]?.outcome || null,
     evidenceBundles: bundles.length,
     evidenceStatus: bundles[0]?.status || null,
+    evidenceFailureReason: bundles[0]?.failureReason || null,
+    evidenceDiagnostics: bundles[0]?.diagnostics || [],
+    routeIntentFingerprints,
     destinationCount: bundles[0]?.destinationOrder?.length || 0,
     seasonEvidenceRefs: bundles[0]?.seasonEvidenceRefs?.length || 0,
     seasonMonths: [...new Set(seasonRecords.map((record) => record.month))].sort((left, right) => left - right),
@@ -327,7 +342,7 @@ for (const query of ["2月去日本7天", "February Japan 7 days", "Feb Japan 7 
   assert.equal(result.seasonEvidenceRefs, result.destinationCount, `${query}: one February reference per destination`);
   assert.equal(result.seasonMissing, result.destinationCount, `${query}: one February missing item per destination`);
   assert.deepEqual(result.seasonMonths, [2]);
-  assert.equal(result.evidenceStatus, "needs-review");
+  assert.equal(result.evidenceStatus, "needs-review", `${query}: ${JSON.stringify(result)}`);
 }
 
 const monthRange = resultFor("3月至4月去日本");
@@ -341,7 +356,7 @@ for (const query of ["冬天去日本", "冬天"]) {
   assert.equal(result.seasonEvidenceRefs, 0);
   assert.equal(result.seasonMissing, 0);
   assert.deepEqual(result.seasonMonths, []);
-  assert.equal(result.evidenceStatus, "needs-review");
+  assert.equal(result.evidenceStatus, "needs-review", `${query}: ${JSON.stringify(result)}`);
 }
 
 const februaryOnly = resultFor("2月");

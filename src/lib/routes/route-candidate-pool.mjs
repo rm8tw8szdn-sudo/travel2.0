@@ -2,6 +2,10 @@ import fs from "node:fs";
 import path from "node:path";
 import { envFlag } from "./route-v2-env.mjs";
 import { cleanString, stableHash, uniqueStrings as unique } from "./route-v2-utils.mjs";
+import {
+  ROUTE_INTENT_FINGERPRINT_VERSION,
+  createRouteIntentFingerprint,
+} from "./route-intent-model.mjs";
 
 export const ROUTE_CANDIDATE_SCHEMA_VERSION = "route-generation-v2-phase2a-candidate-v1";
 export const ROUTE_CANDIDATE_STATUSES = new Set(["pending", "selected", "rejected", "needs-evidence", "failed"]);
@@ -50,10 +54,12 @@ export function createRouteCandidateId({
   proposedOrder = [],
   durationDays = null,
   travelStyle = "",
+  candidateVariant = "",
   generationSource = "",
   version = ROUTE_CANDIDATE_SCHEMA_VERSION,
 } = {}) {
   const destinationIds = destinations.map((item) => cleanString(item?.id || item?.wikidataId || item?.name)).filter(Boolean);
+  const normalizedVariant = cleanString(candidateVariant);
   const hash = stableHash({
     intentId: cleanString(intentId),
     countries: unique(countries).map((code) => code.toUpperCase()).sort(),
@@ -61,6 +67,7 @@ export function createRouteCandidateId({
     proposedOrder: proposedOrder.map(cleanString).filter(Boolean),
     durationDays: Number(durationDays) || null,
     travelStyle: cleanString(travelStyle),
+    ...(normalizedVariant ? { candidateVariant: normalizedVariant } : {}),
     generationSource: cleanString(generationSource),
     version,
   }).slice(0, 20);
@@ -86,6 +93,7 @@ export function normalizeRouteCandidate(input = {}, { now = () => new Date().toI
     proposedOrder,
     durationDays: Number.isFinite(durationDays) ? durationDays : null,
     travelStyle: input.travelStyle,
+    candidateVariant: input.candidateVariant,
     generationSource: input.generationSource,
     version: input.version || ROUTE_CANDIDATE_SCHEMA_VERSION,
   };
@@ -97,12 +105,20 @@ export function normalizeRouteCandidate(input = {}, { now = () => new Date().toI
     proposedOrder,
     durationDays: Number.isFinite(durationDays) ? durationDays : null,
     travelStyle: cleanString(input.travelStyle),
+    ...(cleanString(input.candidateVariant) ? { candidateVariant: cleanString(input.candidateVariant) } : {}),
     generationSource: cleanString(input.generationSource),
     ...(cleanString(input.initialReason) ? { initialReason: cleanString(input.initialReason) } : {}),
     supportingSignals: Array.isArray(input.supportingSignals) ? input.supportingSignals.map((item) => ({ ...item })) : [],
     status: normalizedStatus(input.status),
     rejectionReasons: Array.isArray(input.rejectionReasons) ? clone(input.rejectionReasons) : [],
     unknowns: Array.isArray(input.unknowns) ? clone(input.unknowns) : [],
+    ...(cleanString(input.routeIntentFingerprint) ? {
+      routeIntentFingerprint: cleanString(input.routeIntentFingerprint),
+      routeIntentFingerprintVersion: cleanString(input.routeIntentFingerprintVersion),
+      normalizedRouteIntent: input.normalizedRouteIntent && typeof input.normalizedRouteIntent === "object"
+        ? clone(input.normalizedRouteIntent)
+        : null,
+    } : {}),
     createdAt: cleanString(input.createdAt) || now(),
     version: cleanString(input.version || ROUTE_CANDIDATE_SCHEMA_VERSION),
   };
@@ -143,6 +159,22 @@ export function validateRouteCandidate(candidate = {}) {
       const snapshotIntentId = cleanString(candidate.inputIntentSnapshot.intentId);
       if (!snapshotIntentId) reasons.push("inputIntentSnapshot-intentId-required");
       if (snapshotIntentId && snapshotIntentId !== cleanString(candidate.intentId)) reasons.push("inputIntentSnapshot-intentId-mismatch");
+      if (candidate.routeIntentFingerprint
+        && cleanString(candidate.inputIntentSnapshot.routeIntentFingerprint) !== cleanString(candidate.routeIntentFingerprint)) {
+        reasons.push("inputIntentSnapshot-fingerprint-mismatch");
+      }
+    }
+  }
+  if (candidate.routeIntentFingerprint
+    && cleanString(candidate.routeIntentFingerprintVersion) !== ROUTE_INTENT_FINGERPRINT_VERSION) {
+    reasons.push("routeIntentFingerprintVersion-invalid");
+  }
+  if (candidate.routeIntentFingerprint && (!candidate.normalizedRouteIntent || typeof candidate.normalizedRouteIntent !== "object")) {
+    reasons.push("normalizedRouteIntent-required");
+  } else if (candidate.routeIntentFingerprint) {
+    const recomputed = createRouteIntentFingerprint(candidate.normalizedRouteIntent);
+    if (cleanString(recomputed.value) !== cleanString(candidate.routeIntentFingerprint)) {
+      reasons.push("routeIntentFingerprint-content-mismatch");
     }
   }
 

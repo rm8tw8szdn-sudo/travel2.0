@@ -5,7 +5,11 @@ import { buildRouteConcept, validateRouteConcept, TRAVEL_STYLE_LABEL, TRAVEL_STY
 import { runAllDecisionTests } from "./route-decision-tests.mjs";
 import { listCases, asFewShotReasoning } from "./route-gold-cases.mjs";
 import { skeletonFromSuggestion } from "./route-llm-refine-shared.mjs";
-import { validateFallbackRouteAgainstIntent } from "./route-fallback-constraint-validator.mjs";
+import {
+  finalizeRouteResult,
+  validateEmbeddedRouteIntent,
+} from "./route-intent-invariant-gate.mjs";
+import { compareRouteIntentShadow } from "./route-intent-shadow-validation.mjs";
 import { createWebSearchEvidenceProvider } from "./web-search-evidence-provider.mjs";
 import { createWebEvidenceExtractor } from "./web-evidence-extractor.mjs";
 import { createWebEvidenceCorroborator } from "./web-evidence-corroborator.mjs";
@@ -750,6 +754,9 @@ async function writeCandidatePoolSidecarSafe({
     });
     const pendingCandidates = generatedCandidates.map((candidate) => ({
       ...candidate,
+      routeIntentFingerprintVersion: inputIntentSnapshot.routeIntentFingerprintVersion,
+      routeIntentFingerprint: inputIntentSnapshot.routeIntentFingerprint,
+      normalizedRouteIntent: structuredClone(inputIntentSnapshot.normalizedRouteIntent),
       inputIntentSnapshot,
     }));
     const invalidCandidates = pendingCandidates
@@ -1276,6 +1283,15 @@ function buildPlannerRecord({ concept, skeleton, context, evidenceResult, strate
   const sourceLabel = destinationSourceLabel(destinationSource);
   const countryName = countryEntities.map((country) => country.name).filter(Boolean).join("、");
   const places = destinationEntities.map((d) => d.name);
+  const displayTravelValue = concept.travelStyle === "classic-first-trip"
+    ? `在给定天数内保留${places.length}个目的地之间的顺路关系和清晰主题。`
+    : concept.travelValue;
+  const displayConcept = {
+    ...concept,
+    cityCount: places.length,
+    hotelChangeEstimate: Math.max(0, places.length - 1),
+    travelValue: displayTravelValue,
+  };
   const styleLabel = TRAVEL_STYLE_LABEL[concept.travelStyle] || concept.travelStyle;
   const styleLabelZh = TRAVEL_STYLE_LABEL_ZH[concept.travelStyle] || concept.travelStyle;
   const days = numberOrNull(String(concept.recommendedDays).match(/\d+/u)?.[0] || concept.durationDays);
@@ -1287,7 +1303,7 @@ function buildPlannerRecord({ concept, skeleton, context, evidenceResult, strate
   const name = `${countryName}${durationLabel}${shapedStyleLabel}${anchorLabel}`;
   const deterministicReason = [
     { text: `时长=${concept.durationBand}(${concept.recommendedDays})：${concept.whyThisDurationFits}`, strategy: "Geographic", evidenceIds: [] },
-    { text: `旅行风格=${styleLabelZh}：${concept.travelValue}`, strategy: "Theme", evidenceIds: [] },
+    { text: `旅行风格=${styleLabelZh}：${displayTravelValue}`, strategy: "Theme", evidenceIds: [] },
     { text: `骨架由${sourceLabel}候选池经最近邻排序生成，目的地来源=${sourceLabel}。`, strategy: "Efficiency", evidenceIds: [] },
   ];
   // LLM 节点产出叙事（每条 {text,strategy}）→ 转成 record.plannerReason 形态（补 evidenceIds:[]）
@@ -1301,11 +1317,11 @@ function buildPlannerRecord({ concept, skeleton, context, evidenceResult, strate
     canonicalTitle: name,
     sourceTitle: `Planner designed (${styleLabel})`,
     summary: `围绕${styleLabelZh}，由${sourceLabel}候选池设计，串联${places.slice(0, 4).join("、")}${places.length > 4 ? "等" : ""}。`,
-    recommendationText: concept.travelValue,
+    recommendationText: displayTravelValue,
     travelStyle: concept.travelStyle,
     travelStyleConceptKey: concept.travelStyle,
     durationBand: concept.durationBand,
-    concept,
+    concept: displayConcept,
     countries: countryEntities.map((country) => country.countryCode),
     countryEntities,
     destinations: places,
@@ -1776,18 +1792,37 @@ async function runPipeline({ context, knowledgeGraph, evidenceRepository, accept
     return { accepted, rejected, concept, v2Failure: failureTrace };
   }
   record = preserveExplicitTimeIntent(record, context);
-  const fallbackConstraintValidation = validateFallbackRouteAgainstIntent(record, context);
-  if (!fallbackConstraintValidation.matched) {
+  const routeIntentFinalization = finalizeRouteResult(record, context, {
+    source: "planner-final-route",
+    claimedSuccess: true,
+  });
+  const routeIntentShadow = compareRouteIntentShadow({
+    route: routeIntentFinalization.record || record,
+    intent: context,
+    productionResult: routeIntentFinalization.validation,
+    source: "planner-final-route",
+    env,
+  });
+  if (!routeIntentFinalization.matched || routeIntentShadow.matched === false) {
+    const invariantFailure = routeIntentFinalization.matched
+      ? {
+          ...routeIntentFinalization.validation,
+          matched: false,
+          reasonCodes: ["route-intent-oracle-disagreement"],
+          shadow: routeIntentShadow,
+        }
+      : routeIntentFinalization.validation;
     const failureTrace = await recordV2Failure({
       stage: "fallback-hard-constraints",
-      reason: fallbackConstraintValidation.reasonCodes.join(",") || "fallback-hard-constraint-mismatch",
+      reason: invariantFailure.reasonCodes.join(",") || "fallback-hard-constraint-mismatch",
       candidates: candidateSidecar?.persistedCandidates || candidateSidecar?.generatedCandidates || [],
-      unknowns: [{ field: "fallbackConstraintValidation", reason: JSON.stringify(fallbackConstraintValidation) }],
+      unknowns: [{ field: "routeIntentInvariantValidation", reason: JSON.stringify(invariantFailure) }],
       legacyFallback: false,
     });
-    rejected.push({ context, reason: "fallback-hard-constraint-mismatch", constraintValidation: fallbackConstraintValidation });
+    rejected.push({ context, reason: "fallback-hard-constraint-mismatch", constraintValidation: invariantFailure });
     return { accepted, rejected, concept, v2Failure: failureTrace };
   }
+  record = routeIntentFinalization.record;
 
   // [8] duplicateDistance
   const existingRecords = acceptedRepository.list({ limit: 100_000 }).records;
@@ -1894,11 +1929,30 @@ async function runPipeline({ context, knowledgeGraph, evidenceRepository, accept
       return { accepted, rejected, concept, v2Failure };
     }
     record = preserveExplicitTimeIntent(record, context);
-    const fallbackConstraintValidation = validateFallbackRouteAgainstIntent(record, context);
-    if (!fallbackConstraintValidation.matched) {
-      rejected.push({ context, reason: "legacy-fallback-hard-constraint-mismatch", constraintValidation: fallbackConstraintValidation });
+    const legacyRouteIntentFinalization = finalizeRouteResult(record, context, {
+      source: "planner-legacy-fallback",
+      claimedSuccess: true,
+    });
+    const legacyRouteIntentShadow = compareRouteIntentShadow({
+      route: legacyRouteIntentFinalization.record || record,
+      intent: context,
+      productionResult: legacyRouteIntentFinalization.validation,
+      source: "planner-legacy-fallback",
+      env,
+    });
+    if (!legacyRouteIntentFinalization.matched || legacyRouteIntentShadow.matched === false) {
+      const invariantFailure = legacyRouteIntentFinalization.matched
+        ? {
+            ...legacyRouteIntentFinalization.validation,
+            matched: false,
+            reasonCodes: ["route-intent-oracle-disagreement"],
+            shadow: legacyRouteIntentShadow,
+          }
+        : legacyRouteIntentFinalization.validation;
+      rejected.push({ context, reason: "legacy-fallback-hard-constraint-mismatch", constraintValidation: invariantFailure });
       return { accepted, rejected, concept, v2Failure };
     }
+    record = legacyRouteIntentFinalization.record;
     dedupeDistance = duplicateDistance(record, existingRecords);
     if (countryClusterSaturated(record, existingRecords, Number(context.maxAcceptedPerCountryCluster) || Infinity)) {
       rejected.push({ context, reason: "legacy-fallback-route-cluster-saturated", dedupeDistance });
@@ -1934,6 +1988,25 @@ async function runPipeline({ context, knowledgeGraph, evidenceRepository, accept
 
   let publicationGate = null;
   let readyPoolWrite = null;
+  const finalEmbeddedIntentValidation = validateEmbeddedRouteIntent(record, {
+    source: "planner-success-exit",
+    allowLegacyUnbound: false,
+  });
+  if (!finalEmbeddedIntentValidation.matched) {
+    const failureTrace = await recordV2Failure({
+      stage: "final-route-intent-invariant",
+      reason: finalEmbeddedIntentValidation.reasonCodes.join(",") || "final-route-intent-invariant-failed",
+      candidates: candidateSidecar?.persistedCandidates || candidateSidecar?.generatedCandidates || [],
+      unknowns: [{ field: "routeIntentInvariantValidation", reason: JSON.stringify(finalEmbeddedIntentValidation) }],
+      legacyFallback: false,
+    });
+    rejected.push({
+      context,
+      reason: "final-route-intent-invariant-failed",
+      constraintValidation: finalEmbeddedIntentValidation,
+    });
+    return { accepted, rejected, concept, v2Failure: failureTrace };
+  }
   if (usingV2SelectedCandidate && isRouteV2PublicationGateEnabled(env)) {
     record = ensureV2PublicationCover(record);
     try {

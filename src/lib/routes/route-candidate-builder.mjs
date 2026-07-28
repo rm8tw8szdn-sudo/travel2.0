@@ -372,6 +372,13 @@ function requiredCandidateSequences(pool, maxDestinations, seed, requiredConstra
     ];
   }
   const stableRequired = stableSortDestinations(required, `${seed}:required`);
+  if (required.length === 2) {
+    return [
+      { method: "required-flexible-balanced", candidateVariant: "balanced", destinations: required },
+      { method: "required-flexible-low-transfer", candidateVariant: "low-transfer", destinations: stableRequired },
+      { method: "required-flexible-depth", candidateVariant: "depth", destinations: [...required].reverse() },
+    ];
+  }
   const orders = [
     required,
     stableRequired,
@@ -385,6 +392,20 @@ function requiredCandidateSequences(pool, maxDestinations, seed, requiredConstra
       method: `required-flexible-order-${index + 1}`,
       destinations: order,
     })),
+  ];
+}
+
+function citywalkCandidateSequences(pool, seed, requiredConstraint) {
+  const city = dedupeDestinations(requiredConstraint.destinations)[0];
+  if (!city) return [];
+  const cityId = destinationIdentity(city);
+  const poiStops = dedupeDestinations(pool).filter((destination) => destinationIdentity(destination) !== cityId);
+  if (!poiStops.length) return [];
+  const stablePois = stableSortDestinations(poiStops, `${seed}:citywalk`);
+  return [
+    { method: "citywalk-balanced", candidateVariant: "balanced", destinations: [city, ...poiStops] },
+    { method: "citywalk-low-transfer", candidateVariant: "low-transfer", destinations: [city, ...stablePois] },
+    { method: "citywalk-depth", candidateVariant: "depth", destinations: [city, ...stablePois].slice(0, 1).concat([...stablePois].reverse()) },
   ];
 }
 
@@ -403,12 +424,23 @@ export function buildRouteCandidatesFromPool({
   const travelStyle = deriveTravelStyle(context, concept);
   const intentId = deriveIntentId(context, concept, normalizedPool);
   const requestedTarget = clampCandidateTarget(targetCount);
-  const maxDestinations = Math.min(maxDestinationsForRouteIntentDays(durationDays) || 4, normalizedPool.length);
+  const citywalkReference = cleanString(context.routeReferenceMode) === "citywalk";
+  const maxDestinations = citywalkReference
+    ? normalizedPool.length
+    : Math.min(maxDestinationsForRouteIntentDays(durationDays) || 4, normalizedPool.length);
   const candidateSeed = cleanString(seed || context.seed || concept.seed);
   const requiredConstraint = resolveRequiredDestinations(context, normalizedPool);
   if (requiredConstraint.missingIds.length) return [];
-  const sequences = requiredConstraint.ids.length
+  const sequences = citywalkReference
+    ? citywalkCandidateSequences(normalizedPool, candidateSeed, requiredConstraint)
+    : requiredConstraint.ids.length
     ? requiredCandidateSequences(normalizedPool, maxDestinations, candidateSeed, requiredConstraint)
+    : normalizedPool.length === 2
+      ? [
+          { method: "two-destination-balanced", candidateVariant: "balanced", destinations: normalizedPool },
+          { method: "two-destination-low-transfer", candidateVariant: "low-transfer", destinations: stableSortDestinations(normalizedPool, `${candidateSeed}:two-destination`) },
+          { method: "two-destination-depth", candidateVariant: "depth", destinations: [...normalizedPool].reverse() },
+        ]
     : candidateSequences(normalizedPool, maxDestinations, candidateSeed);
   const candidates = [];
   const seenShapes = new Set();

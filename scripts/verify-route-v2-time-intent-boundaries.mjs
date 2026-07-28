@@ -212,16 +212,16 @@ function destinationOrderForRoute(route = {}) {
 }
 
 function summarizeExecution(query, sessionId, harness, searchResult) {
-  const effectiveIntentId = searchResult.intent.destinationSuggestion
+  const plannerResult = harness.lastPlannerResult();
+  const finalRoute = plannerResult?.accepted?.[0]?.record || null;
+  const effectiveIntentId = finalRoute?.intentId || (searchResult.intent.destinationSuggestion
     ? `${searchResult.intent.intentHash}-${searchResult.intent.destinationSuggestion.seed.slice(0, 12)}`
-    : searchResult.intent.intentHash;
+    : searchResult.intent.intentHash);
   const candidates = harness.candidatePoolStore.listByIntent(effectiveIntentId);
   const traces = harness.decisionTraceStore.list().filter((trace) => trace.intentId === effectiveIntentId);
   const bundles = harness.evidenceBundleStore.listLifecycle().filter((bundle) => bundle.intentId === effectiveIntentId);
   const seasonRecords = harness.localEvidenceRepository.seasonStore.list();
   const seasonMissing = harness.localEvidenceRepository.missingEvidenceStore.list().filter((item) => item.evidenceType === "season");
-  const plannerResult = harness.lastPlannerResult();
-  const finalRoute = plannerResult?.accepted?.[0]?.record || null;
   const selectedCandidate = candidates.find((candidate) => candidate.status === "selected") || null;
   const routeIntentFingerprints = {
     candidate: selectedCandidate?.routeIntentFingerprint || null,

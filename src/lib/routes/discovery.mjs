@@ -51,6 +51,7 @@ function emptyDiagnostics(source = "accepted-repository") {
 function createDefaultSearchPlannerContext(acceptedRepository, {
   includePlanner = true,
   knowledgeEntityLayerRepository = null,
+  env = process.env,
 } = {}) {
   try {
     const repository = knowledgeEntityLayerRepository || createPublishedKnowledgeEntityLayerRepository();
@@ -67,7 +68,8 @@ function createDefaultSearchPlannerContext(acceptedRepository, {
         evidenceRepository,
         acceptedRepository,
         knowledgeGraph,
-        llmRefineProvider: createConfiguredLlmRefineProvider(process.env),
+        llmRefineProvider: createConfiguredLlmRefineProvider(env),
+        env,
       }),
       intentCatalog,
     };
@@ -122,6 +124,7 @@ export function createRouteDiscovery({
   feedRefillWorker = null,
   jobStore = createRouteJobStore(),
   requestId = defaultRequestId,
+  env = process.env,
 } = {}) {
   if (typeof requestId !== "function") throw new RouteDiscoveryError("INVALID_REQUEST_ID_FACTORY", "A request ID factory is required.");
   const acceptedFeedBuffer = feedBuffer || createFeedBuffer({ repository: acceptedRepository, targetSize: 40 });
@@ -131,6 +134,7 @@ export function createRouteDiscovery({
     : createDefaultSearchPlannerContext(acceptedRepository, {
       includePlanner: !searchPlanner,
       knowledgeEntityLayerRepository,
+      env,
     });
   const routeSearchService = searchService || createRouteSearchService({
     acceptedRepository,
@@ -138,6 +142,7 @@ export function createRouteDiscovery({
     analytics: searchAnalytics,
     planner: searchPlanner || defaultSearchContext?.planner || null,
     intentCatalog: defaultSearchContext?.intentCatalog || null,
+    env,
   });
   const runningDestinationJobs = new Set();
 

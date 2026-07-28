@@ -278,7 +278,7 @@ assert.match(indexSource, /createKnowledgeEntityLayerPlannerAdapter/u);
 assert.match(indexSource, /createKnowledgeEntityLayerSearchIntentCatalog/u);
 
 const serverSource = fs.readFileSync(new URL("../server.js", import.meta.url), "utf8");
-assert.match(serverSource, /createDiscoveryHandler\(routeLibrary, knowledgeEntityLayerRepository\)/u);
+assert.match(serverSource, /createDiscoveryHandler\(routeLibrary, knowledgeEntityLayerRepository, routeV2RuntimeEnv\)/u);
 assert.match(serverSource, /createRouteDiscovery\(\{[^}]*knowledgeEntityLayerRepository/u);
 
 const repositoryStatus = { meetsTarget: true, shortages: [], repositoryVersion: "entity-layer-planner-verifier" };

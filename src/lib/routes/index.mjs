@@ -7,6 +7,7 @@ export {
   routeDiscoveryCacheKey,
 } from "./contracts.mjs";
 export { createRouteDiscovery } from "./discovery.mjs";
+export { createRouteV2RuntimeEnvironment } from "./route-v2-runtime-environment.mjs";
 export { RouteDiscoveryError, asRouteDiscoveryError } from "./errors.mjs";
 export { createRouteDiscoveryHandler } from "./http.mjs";
 export {

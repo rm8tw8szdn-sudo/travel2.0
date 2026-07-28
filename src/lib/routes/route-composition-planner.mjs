@@ -629,15 +629,28 @@ function selectDestinationPool(concept, context, knowledgeGraph) {
     season: context.season || "",
     limit: anchors.length ? 40 : 12,
   }) || []);
+  const entityPool = rawPool.filter((destination) => clean(destination.destinationSource) === "knowledge-entity-layer");
+  const requiredIds = new Set(
+    Array.isArray(context.requiredDestinationIds)
+      ? context.requiredDestinationIds.map(clean).filter(Boolean)
+      : [],
+  );
+  if (clean(context.routeReferenceMode) === "citywalk") {
+    const citywalkPool = citywalkDestinationPool(entityPool, [...requiredIds]);
+    if (citywalkPool.length >= 2) return citywalkPool;
+  }
+  const entityKeys = new Set(entityPool.flatMap((destination) => destinationIdentityKeys(destination)));
+  const entityPoolCoversRequired = [...requiredIds].every((id) => entityKeys.has(id));
+  const groundedPool = entityPool.length >= 2 && entityPoolCoversRequired ? entityPool : rawPool;
   const suggestionIds = new Set(
     Array.isArray(context.destinationSuggestion?.destinationIds)
       ? context.destinationSuggestion.destinationIds.map(clean).filter(Boolean)
       : [],
   );
   const suggestionPool = suggestionIds.size
-    ? rawPool.filter((destination) => destinationIdentityKeys(destination).some((key) => suggestionIds.has(key)))
+    ? groundedPool.filter((destination) => destinationIdentityKeys(destination).some((key) => suggestionIds.has(key)))
     : [];
-  const pool = suggestionPool.length >= ROUTE_CANDIDATE_SELECTION_TARGET ? suggestionPool : rawPool;
+  const pool = suggestionPool.length >= 2 ? suggestionPool : groundedPool;
   if (!anchors.length) return pool;
   return pool.slice().sort((a, b) => {
     const ai = anchorIndex(a, anchors);
@@ -689,7 +702,7 @@ async function writeCandidatePoolSidecarSafe({
       return { enabled: false, generated: 0, written: 0, skipped: true, reason: "candidate-pool-disabled" };
     }
     const selectionEnabled = isRouteV2IntentEnabled(env);
-    const strictSuggestionCapacity = context?.intentMode === "destination-suggestion"
+    const strictSuggestionCapacity = context?.destinationSuggestion
       ? maxDestinationsForConcept(concept)
       : null;
     const evidenceBridgeInsertions = selectionEnabled && isRouteV2EvidenceValidationEnabled(env)
@@ -710,7 +723,10 @@ async function writeCandidatePoolSidecarSafe({
       seed: context?.candidateSeed || context?.intentId || "",
     });
     if (selectionEnabled && strictSuggestionCapacity) {
-      const suggestionShape = (candidate) => JSON.stringify([...(candidate.proposedOrder || [])].sort());
+      const suggestionShape = (candidate) => JSON.stringify({
+        destinations: [...(candidate.proposedOrder || [])].sort(),
+        variant: clean(candidate.candidateVariant || ""),
+      });
       const byShape = new Map(builtCandidates.map((candidate) => [suggestionShape(candidate), candidate]));
       for (let attempt = 1; attempt <= 6; attempt += 1) {
         const capacitySafeCount = [...byShape.values()]
@@ -999,6 +1015,35 @@ function destinationIdentityKeys(destination = {}) {
   ]).map((value) => clean(value));
 }
 
+function citywalkDestinationPool(entityPool = [], requiredIds = []) {
+  if (requiredIds.length !== 1) return [];
+  const requiredId = clean(requiredIds[0]);
+  const city = entityPool.find((destination) => (
+    clean(destination.entityTypeName) === "city"
+    && destinationIdentityKeys(destination).includes(requiredId)
+  ));
+  if (!city || !Array.isArray(city.poiEntities) || city.poiEntities.length === 0) return [];
+  const pois = city.poiEntities.map((poi) => ({
+    ...structuredClone(poi),
+    parentCountryEntityId: clean(city.parentCountryEntityId),
+    parentCityEntityId: clean(poi.parentCityEntityId || city.entityId),
+    countryCode: clean(city.countryCode),
+    name: clean(poi.canonicalNameZh || poi.canonicalNameEn || poi.name),
+    sourceTitle: clean(poi.canonicalNameEn || poi.canonicalNameZh || poi.name),
+    canonicalTitle: clean(poi.canonicalNameEn || poi.canonicalNameZh || poi.name),
+    entityTypeName: "poi",
+    destinationSource: "knowledge-entity-layer",
+    countryEntity: structuredClone(city.countryEntity || {}),
+  }));
+  const seen = new Set();
+  return [city, ...pois].filter((destination) => {
+    const id = destinationIdentityKeys(destination)[0];
+    if (!id || seen.has(id)) return false;
+    seen.add(id);
+    return true;
+  });
+}
+
 function reusableLegEvidence(index, fromEntityId, toEntityId) {
   if (!index?.getRouteLegsByEndpoints) return [];
   return index.getRouteLegsByEndpoints({ fromEntityId, toEntityId }).filter((record) => (
@@ -1261,12 +1306,89 @@ function destinationSourceProviders(destinationSource) {
   return [{ providerId: "knowledge-graph", url: "" }];
 }
 
+function plannerLiteraryTravelValue({ countryEntities = [], destinationEntities = [], concept = {} } = {}) {
+  const countryCodes = new Set(countryEntities.map((country) => clean(country.countryCode)).filter(Boolean));
+  const hasCountry = (...codes) => codes.some((code) => countryCodes.has(code));
+  const onlyCountries = (...codes) => (
+    countryCodes.size > 0
+    && [...countryCodes].every((code) => codes.includes(code))
+  );
+  const style = clean(concept.travelStyle).toLocaleLowerCase("en-US");
+  const narrative = [
+    style,
+    ...destinationEntities.flatMap((destination) => [
+      destination.name,
+      destination.canonicalNameZh,
+      destination.canonicalNameEn,
+    ]),
+  ].map(clean).filter(Boolean).join(" ");
+  if (hasCountry("KZ", "KG", "UZ", "TJ", "TM")) {
+    return "穿行丝路绿洲与旷野，让砖石穹顶和市集烟火交替展开。";
+  }
+  if (countryCodes.size >= 2 && onlyCountries("AT", "CZ", "HU", "SK")) {
+    return "沿多瑙河与帝国旧都的脉络前行，让宫殿、咖啡馆和老城夜色层层展开。";
+  }
+  if (countryCodes.size === 1 && hasCountry("JP")) {
+    return "在古都寺院、街巷日常与山海风景之间，读一段层次分明的日本。";
+  }
+  if (countryCodes.size === 1 && hasCountry("IT")) {
+    return "让教堂穹顶、文艺复兴街巷与餐桌烟火沿途相接。";
+  }
+  if (countryCodes.size === 1 && hasCountry("FR")) {
+    return "循着河岸、旧城与葡萄酒乡的光影，慢慢展开法兰西的不同侧面。";
+  }
+  if (onlyCountries("DK", "FI", "IS", "NO", "SE")) {
+    return "在港湾、森林与北地长光之间，感受城市秩序和旷野气息的交替。";
+  }
+  if (style === "classic-first-trip") {
+    return "从最具辨识度的老城与地标入手，先读懂一地的性格。";
+  }
+  if (style === "deep-dive") {
+    return "把脚步放慢，在支线街区与地方日常里读出更深一层。";
+  }
+  if (style === "country-hopper") {
+    return "在相邻国度的广场、街巷与餐桌之间，看见边界两侧的气质流转。";
+  }
+  if (style === "transport-journey") {
+    return "循着城际脉络换景，让站城、原野与地方日常自然衔接。";
+  }
+  if (style === "seasonal") {
+    return "顺应当季光线与风物，在天气变化里为旅途留出从容。";
+  }
+  if (style === "theme") {
+    return "循着一条鲜明线索，在建筑、风物与地方故事间逐层展开。";
+  }
+  if (style === "city-break") {
+    return "从晨间街市走到黄昏屋顶，在短暂停留里触到城市的脉搏。";
+  }
+  if (style === "pilgrimage") {
+    return "沿古道与信仰遗迹缓步前行，让沿途村镇成为旅程的一部分。";
+  }
+  if (style === "island-hopping") {
+    return "在海湾、港埠与离岛之间换景，把潮汐留进旅行节奏。";
+  }
+  if (style === "road-trip" || /自驾|公路|coast|highway|\broad\b|\bdrive\b/iu.test(narrative)) {
+    return "让公路、地貌和小镇日常在车窗外自然递进。";
+  }
+  if (style === "rail-journey" || /铁路|火车|列车|\brail(?:way)?\b|\btrain\b/iu.test(narrative)) {
+    return "循着铁路线换景，在站城之间收拢沿途风土。";
+  }
+  if (/古城|遗产|文明|城堡|教堂|unesco|heritage|temple|cathedral/iu.test(narrative)) {
+    return "循着古城街巷与砖石遗迹，读出不同时代留下的纹理。";
+  }
+  if (countryCodes.size >= 2) {
+    return "让几座城市的街景、历史与餐桌气息在移动中自然递进。";
+  }
+  return "从街巷、建筑到地方日常，慢慢读懂这片土地的层次。";
+}
+
 // 候选 record 构造（sourceType = planner-designed，绕过 composition-validator 旧桶校验）
 function buildPlannerRecord({ concept, skeleton, context, evidenceResult, strategies, score, goldCase, llmPlannerReason = null, llmRefined = false, llmConfidence = null, llmRefineError = null, llmProviderName = "" } = {}) {
   const countryEntities = countryEntitiesForRecord(context, skeleton);
   const destinationEntities = skeleton.map((destination) => ({
     ...(destination.entityId ? { entityId: clean(destination.entityId) } : {}),
     ...(destination.parentCountryEntityId ? { parentCountryEntityId: clean(destination.parentCountryEntityId) } : {}),
+    ...(destination.parentCityEntityId ? { parentCityEntityId: clean(destination.parentCityEntityId) } : {}),
     wikidataId: clean(destination.wikidataId),
     countryCode: clean(destination.countryCode || context.countryCode),
     name: clean(destination.name),
@@ -1283,9 +1405,11 @@ function buildPlannerRecord({ concept, skeleton, context, evidenceResult, strate
   const sourceLabel = destinationSourceLabel(destinationSource);
   const countryName = countryEntities.map((country) => country.name).filter(Boolean).join("、");
   const places = destinationEntities.map((d) => d.name);
-  const displayTravelValue = concept.travelStyle === "classic-first-trip"
-    ? `在给定天数内保留${places.length}个目的地之间的顺路关系和清晰主题。`
-    : concept.travelValue;
+  const displayTravelValue = plannerLiteraryTravelValue({
+    countryEntities,
+    destinationEntities,
+    concept,
+  });
   const displayConcept = {
     ...concept,
     cityCount: places.length,
@@ -1364,6 +1488,11 @@ function buildPlannerRecord({ concept, skeleton, context, evidenceResult, strate
     enrichmentStatus: (evidenceResult?.missingSegments || []).length ? "needsEvidence" : "enriched",
     contentQualityStatus: "accepted",
     classification: countryEntities.length > 1 ? "cross" : "single",
+    ...(clean(context.routeReferenceMode) ? {
+      routeReferenceMode: clean(context.routeReferenceMode),
+      durationPolicy: clean(context.durationPolicy),
+      requestedDurationDays: Number(context.durationDays) || null,
+    } : {}),
   };
 }
 
@@ -1381,7 +1510,14 @@ function validatePlannerCandidate(record, concept, context, strategyRegistry) {
     transportConnections: Array.from({ length: adjacentCount }, (_, index) => ({ index, modes: ["rail"] })),
   });
   if (!conceptValidation.accepted) reasons.push(...conceptValidation.reasons.map((r) => `concept:${r}`));
-  const quality = validateRouteContent(record);
+  const suggestedDestinationCount = Array.isArray(context?.destinationSuggestion?.destinationIds)
+    ? context.destinationSuggestion.destinationIds.length
+    : 0;
+  const quality = validateRouteContent(record, {
+    minimumDestinations: suggestedDestinationCount > 0
+      ? Math.min(2, suggestedDestinationCount)
+      : null,
+  });
   if (!quality.accepted) reasons.push(...quality.reasons);
   // strategyRegistry 作 Style-specific 层（每个策略的 accepted）
   const strategyChecks = [];
@@ -1407,6 +1543,49 @@ function preserveExplicitTimeIntent(record, context = {}) {
     ...record,
     timeIntent,
     ...(explicitTime ? { bestMonths: [] } : {}),
+  };
+}
+
+function decorateCitywalkReferenceRecord(record, context = {}) {
+  if (clean(context.routeReferenceMode) !== "citywalk") return record;
+  const destinations = Array.isArray(record.destinationEntities) ? record.destinationEntities : [];
+  const city = destinations.find((destination) => clean(destination.entityTypeName) === "city");
+  const pois = destinations.filter((destination) => clean(destination.entityTypeName) === "poi");
+  if (!city || !pois.length) return record;
+  const cityName = clean(city.canonicalNameZh || city.name || city.canonicalNameEn);
+  const poiNames = pois.map((poi) => clean(poi.canonicalNameZh || poi.name || poi.canonicalNameEn)).filter(Boolean);
+  const stableDestinations = [...destinations].sort((left, right) => (
+    clean(left.wikidataId || left.entityId || left.name)
+      .localeCompare(clean(right.wikidataId || right.entityId || right.name), "en")
+  ));
+  const title = `${cityName}城市漫游｜景点总览`;
+  return {
+    ...record,
+    id: `planner-citywalk-${routeDedupeFingerprint({
+      countryEntities: record.countryEntities,
+      destinationEntities: stableDestinations,
+      recommendedDays: "open-ended",
+      themes: ["citywalk"],
+    })}`,
+    name: title,
+    canonicalTitle: title,
+    sourceTitle: "Planner designed (Citywalk reference)",
+    summary: `以${cityName}为中心，汇总当前知识库中的${poiNames.join("、")}，可按兴趣拆分到任意停留天数。`,
+    recommendationText: "这是一条不限定每日固定进度的城市漫游参考；建议按街区组合景点，实际开放时间和预约要求仍需确认。",
+    recommendedDays: "不限天数",
+    requestedDurationDays: Number(context.durationDays) || null,
+    routeReferenceMode: "citywalk",
+    durationPolicy: "open-ended",
+    bestMonths: [],
+    themes: ["城市漫游"],
+    tags: unique([...(record.tags || []), "城市漫游", "景点总览"]),
+    highlights: [
+      `${cityName}作为唯一城市锚点`,
+      `当前知识库共收录${pois.length}个景点`,
+      "停留天数由用户自行安排，不删除景点",
+    ],
+    contentQualityStatus: "needs-review",
+    enrichmentStatus: "needsEvidence",
   };
 }
 
@@ -1822,7 +2001,7 @@ async function runPipeline({ context, knowledgeGraph, evidenceRepository, accept
     rejected.push({ context, reason: "fallback-hard-constraint-mismatch", constraintValidation: invariantFailure });
     return { accepted, rejected, concept, v2Failure: failureTrace };
   }
-  record = routeIntentFinalization.record;
+  record = decorateCitywalkReferenceRecord(routeIntentFinalization.record, context);
 
   // [8] duplicateDistance
   const existingRecords = acceptedRepository.list({ limit: 100_000 }).records;

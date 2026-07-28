@@ -181,9 +181,17 @@ assert.equal(enabledResult.record.decisionTraceId, trace.traceId);
 assert.deepEqual(routeOrder(enabledResult.record), trace.selectedCandidate.proposedOrder, "selected Candidate must drive the final RouteRecord order");
 assert.deepEqual(enabledResult.record.countries, trace.selectedCandidate.countries, "selected Candidate countries must drive the final RouteRecord");
 if (enabledResult.record.travelStyle === "classic-first-trip") {
-  const displayCount = String(enabledResult.record.recommendationText || "").match(/保留(\d+)个目的地/u);
-  assert(displayCount, "classic route display copy must state its destination count");
-  assert.equal(Number(displayCount[1]), enabledResult.record.destinations.length, "display copy must use the selected Candidate destination count");
+  const displayCopy = String(enabledResult.record.recommendationText || "");
+  assert.doesNotMatch(
+    displayCopy,
+    /日均一个主要体验|在给定天数内保留\d+个目的地|停留点多，先锁定重点/u,
+    "classic route display copy must not expose a mechanical capacity template",
+  );
+  assert.match(
+    displayCopy,
+    /日本|古都|寺院|街巷|山海/u,
+    "classic Japan display copy must remain concise and regionally grounded",
+  );
 }
 assert.equal(trace.rejectedCandidates.length, 2);
 assert.equal(trace.rejectionReasons.length, 2);

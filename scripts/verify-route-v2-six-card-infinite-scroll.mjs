@@ -303,6 +303,7 @@ const prepareContext = vm.createContext({
   displayCoverUrl: (record) => record.cover,
   routeImageDedupeKey: (record) => record.cover,
   coverIdentity: (value) => String(value || "").toLowerCase(),
+  isReusableLocalCover: () => false,
   routeImageAllowed: () => true,
   hasReadyRouteCover: () => false,
   applyRouteImageOutcome: (record, imageUrl, outcome) => {

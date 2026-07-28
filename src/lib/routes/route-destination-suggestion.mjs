@@ -136,17 +136,32 @@ export function maxSuggestedDestinationsForDuration(durationDays) {
   return 6;
 }
 
+function shortTripDistanceLimit(durationDays) {
+  const days = Number(durationDays);
+  if (days <= 2) return 180;
+  if (days <= 3) return 280;
+  return 520;
+}
+
+function hasGroundedShortTripPair(destinations, durationDays) {
+  const thresholdKm = shortTripDistanceLimit(durationDays);
+  return destinations.some((left, index) => destinations.slice(index + 1).some((right) => {
+    const distance = distanceKm(left, right);
+    return Number.isFinite(distance) && distance <= thresholdKm;
+  }));
+}
+
 function geographicallyBoundedPool(destinations, durationDays, seed) {
   const days = Number(durationDays);
-  if (!Number.isFinite(days) || days > 6 || destinations.length <= 4) return destinations;
-  const thresholdKm = days <= 3 ? 280 : 520;
+  if (!Number.isFinite(days) || days <= 0 || days > 6) return destinations;
+  const thresholdKm = shortTripDistanceLimit(days);
   const candidates = destinations.map((anchor) => ({
     anchor,
     nearby: destinations.filter((destination) => {
       const distance = distanceKm(anchor, destination);
-      return destination === anchor || distance == null || distance <= thresholdKm;
+      return destination === anchor || (Number.isFinite(distance) && distance <= thresholdKm);
     }),
-  })).filter((entry) => entry.nearby.length >= 3);
+  })).filter((entry) => entry.nearby.length >= 2);
   if (!candidates.length) return destinations;
   candidates.sort((left, right) => (
     right.nearby.length - left.nearby.length
@@ -198,7 +213,17 @@ function countryNameFor(code, catalog = {}) {
   return clean(country?.label || country?.canonicalNameEn || country?.canonicalNameZh || code);
 }
 
-function buildCountryEntries({ intent, acceptedRoutes, intentCatalog }) {
+function buildCountryEntries({
+  intent,
+  acceptedRoutes,
+  intentCatalog,
+  minimumDestinationCountOverride = null,
+}) {
+  const minimumDestinationCount = Number.isInteger(minimumDestinationCountOverride)
+    ? Math.max(1, minimumDestinationCountOverride)
+    : Number(intent.durationDays) > 0 && Number(intent.durationDays) <= 3
+      ? 2
+      : 3;
   const catalogCitiesByCountry = new Map();
   for (const city of intentCatalog?.cities || []) {
     const code = clean(city.countryCode).toUpperCase();
@@ -220,8 +245,9 @@ function buildCountryEntries({ intent, acceptedRoutes, intentCatalog }) {
   return codes.map((countryCode) => {
     const fallback = (SEARCH_KNOWLEDGE_GRAPH_FALLBACKS[countryCode] || [])
       .map((destination) => catalogDestination(destination, countryCode));
-    const destinations = mergeDestinations([...fallback, ...(catalogCitiesByCountry.get(countryCode) || [])]);
-    if (destinations.length < 3) return null;
+    const entityDestinations = mergeDestinations(catalogCitiesByCountry.get(countryCode) || []);
+    const destinations = mergeDestinations([...fallback, ...entityDestinations]);
+    if (destinations.length < minimumDestinationCount) return null;
     const route = representativeRoute(routesByCountry.get(countryCode) || [], intent);
     const compatibility = route ? routeCompatibility(route, intent) : {
       durationCompatible: false,
@@ -233,6 +259,8 @@ function buildCountryEntries({ intent, acceptedRoutes, intentCatalog }) {
       countryCode,
       countryName: countryNameFor(countryCode, intentCatalog),
       destinations,
+      entityDestinations,
+      entityDestinationCount: entityDestinations.length,
       route,
       compatibility,
     };
@@ -245,12 +273,33 @@ export function buildRouteDestinationSuggestion({
   acceptedRoutes = [],
   intentCatalog = null,
 } = {}) {
-  if (intent.intentMode !== "destination-suggestion" || !intent.canGenerate) {
+  const requiredDestinationIds = unique(intent.requiredDestinationIds || []);
+  const explicitCountryCodes = unique([
+    ...(Array.isArray(intent.countryCodes) ? intent.countryCodes : []),
+    intent.countryCode,
+  ].map((code) => clean(code).toUpperCase()).filter((code) => /^[A-Z]{2}$/u.test(code)));
+  const destinationSuggestionMode = intent.intentMode === "destination-suggestion";
+  const countryScopedSuggestionMode = intent.intentMode === "specified-destination"
+    && requiredDestinationIds.length === 0
+    && explicitCountryCodes.length > 0;
+  if ((!destinationSuggestionMode && !countryScopedSuggestionMode) || !intent.canGenerate) {
     return { ready: false, reason: "destination-suggestion-not-requested", suggestion: null };
   }
   const normalizedSessionId = clean(sessionId) || `intent:${clean(intent.intentHash)}`;
-  const seed = stableHash({ sessionId: normalizedSessionId, intentHash: clean(intent.intentHash), mode: intent.intentMode });
-  let entries = buildCountryEntries({ intent, acceptedRoutes, intentCatalog });
+  const suggestionMode = countryScopedSuggestionMode
+    ? "country-scoped-destination-suggestion"
+    : "destination-suggestion";
+  const seed = stableHash({ sessionId: normalizedSessionId, intentHash: clean(intent.intentHash), mode: suggestionMode });
+  let entries = buildCountryEntries({
+    intent,
+    acceptedRoutes,
+    intentCatalog,
+    minimumDestinationCountOverride: countryScopedSuggestionMode ? 2 : null,
+  });
+  if (countryScopedSuggestionMode) {
+    const allowedCountryCodes = new Set(explicitCountryCodes);
+    entries = entries.filter((entry) => allowedCountryCodes.has(entry.countryCode));
+  }
   if (!entries.length) return { ready: false, reason: "destination-suggestion-pool-empty", suggestion: null };
 
   if (Number(intent.durationDays)) {
@@ -262,17 +311,36 @@ export function buildRouteDestinationSuggestion({
     const monthMatches = entries.filter((entry) => entry.compatibility.monthCompatible);
     if (monthMatches.length >= 2) entries = monthMatches;
   }
+  if (Number(intent.durationDays) > 0 && Number(intent.durationDays) <= 3) {
+    const hasEntityCatalog = Array.isArray(intentCatalog?.cities) && intentCatalog.cities.length > 0;
+    const locallyGrounded = entries.flatMap((entry) => {
+      const shortTripDestinations = hasEntityCatalog ? entry.entityDestinations : entry.destinations;
+      return shortTripDestinations.length >= 2
+        && hasGroundedShortTripPair(shortTripDestinations, intent.durationDays)
+        ? [{ ...entry, shortTripDestinations }]
+        : [];
+    });
+    if (!locallyGrounded.length) {
+      return { ready: false, reason: "destination-suggestion-short-trip-pool-empty", suggestion: null };
+    }
+    entries = locallyGrounded;
+  }
   entries.sort((left, right) => stableHash({ seed, countryCode: left.countryCode })
     .localeCompare(stableHash({ seed, countryCode: right.countryCode })));
   const selected = entries[0];
-  const boundedPool = geographicallyBoundedPool(selected.destinations, intent.durationDays, seed);
+  const sourcePool = Number(intent.durationDays) > 0 && Number(intent.durationDays) <= 3
+    ? selected.shortTripDestinations
+    : selected.destinations;
+  const boundedPool = geographicallyBoundedPool(sourcePool, intent.durationDays, seed);
   const anchorCount = Math.min(maxSuggestedDestinationsForDuration(intent.durationDays), boundedPool.length);
   const anchors = boundedPool.slice(0, Math.max(2, anchorCount));
   const candidatePoolSize = Math.min(
     boundedPool.length,
     Math.max(3, maxSuggestedDestinationsForDuration(intent.durationDays) + 2),
   );
-  const candidateDestinations = boundedPool.slice(0, candidatePoolSize);
+  const candidateDestinations = Number(intent.durationDays) > 0 && Number(intent.durationDays) <= 3
+    ? anchors
+    : boundedPool.slice(0, candidatePoolSize);
   const routeMonthsKnown = selected.compatibility.knownMonths;
   const seasonEvidencePending = months.length > 0 && !selected.compatibility.monthCompatible;
   const diagnostics = [
@@ -296,7 +364,7 @@ export function buildRouteDestinationSuggestion({
     }] : []),
   ];
   const suggestion = {
-    mode: "destination-suggestion",
+    mode: suggestionMode,
     seed,
     sessionId: normalizedSessionId,
     eligibleCount: entries.length,

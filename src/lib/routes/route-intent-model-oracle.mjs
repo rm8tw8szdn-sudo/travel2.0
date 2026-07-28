@@ -19,6 +19,7 @@ function destinations(route = {}) {
       name: tidy(entry.name),
       country: id(entry.countryCode),
       region: tidy(entry.region || entry.regionName),
+      entityTypeName: String(entry.entityTypeName || entry.entityType || "").trim().toLocaleLowerCase("en-US"),
     }));
     if (!Array.isArray(route.proposedOrder) || !route.proposedOrder.length) return entries;
     const lookup = new Map(entries.flatMap((entry) => [[entry.id, entry], [entry.name, entry]].filter(([key]) => key)));
@@ -34,6 +35,7 @@ function destinations(route = {}) {
       name: tidy(entity.name || (typeof raw === "string" ? raw : "")),
       country: id(entity.countryCode),
       region: tidy(entity.region || entity.regionName),
+      entityTypeName: String(entity.entityTypeName || entity.entityType || "").trim().toLocaleLowerCase("en-US"),
     };
   }).filter((entry) => entry.id || entry.name);
 }
@@ -66,12 +68,15 @@ function hasTimeEvidence(route = {}) {
 export function evaluateRouteIntentOracle(normalizedIntentInput, route = {}, options = {}) {
   const intent = normalizeRouteIntent(normalizedIntentInput);
   const points = destinations(route);
+  const constraintPoints = String(route.routeReferenceMode || "").trim() === "citywalk"
+    ? points.filter((entry) => entry.entityTypeName !== "poi")
+    : points;
   const violations = [];
   const pointKeys = points.map((entry) => entry.id || entry.name).filter(Boolean);
   if (new Set(pointKeys).size !== pointKeys.length) violations.push("duplicate-route-city");
   const required = intent.hardConstraints.requiredCities;
   if (required.state === "provided") {
-    const actualKeys = points.map((entry) => entry.id || entry.name);
+    const actualKeys = constraintPoints.map((entry) => entry.id || entry.name);
     const expectedKeys = required.values.map((entry) => id(entry.id) || tidy(entry.name));
     const missing = expectedKeys.filter((key) => !actualKeys.includes(key));
     if (missing.length) violations.push("required-city-missing");
@@ -86,7 +91,7 @@ export function evaluateRouteIntentOracle(normalizedIntentInput, route = {}, opt
   const expectedDays = intent.hardConstraints.exactDays;
   if (expectedDays.state === "provided" && expectedDays.value !== days(route)) violations.push("exact-days-mismatch");
   const capacity = intent.hardConstraints.routeCapacity;
-  const capacityDemand = Math.max(points.length, required.state === "provided" ? required.values.length : 0);
+  const capacityDemand = Math.max(constraintPoints.length, required.state === "provided" ? required.values.length : 0);
   if (capacity.state === "provided" && Number.isInteger(capacity.value) && capacityDemand > capacity.value) violations.push("duration-capacity-conflict");
 
   const expectedCountry = intent.hardConstraints.country;

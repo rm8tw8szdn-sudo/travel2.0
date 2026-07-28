@@ -6,11 +6,17 @@ import os from "node:os";
 import path from "node:path";
 import { spawn, spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
+import {
+  ACCEPTED_REPOSITORY_SHA256,
+  auditRouteV2Cache,
+  verifyCacheBaselineV2,
+} from "../src/lib/routes/cache-baseline-v2.mjs";
 
 const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const realAcceptedPath = path.join(projectRoot, ".route-v2-cache", "accepted-routes.json");
 const realCacheRoot = path.join(projectRoot, ".route-v2-cache");
 const realKnowledgeRoot = path.join(projectRoot, "data", "knowledge");
+const cacheBaselineV2Path = path.join(projectRoot, "route-v2-cache-manifest-v2.json");
 const temporaryRoot = fs.mkdtempSync(path.join(os.tmpdir(), "route-v2-prelaunch-"));
 const isolation = {
   accepted: path.join(temporaryRoot, "accepted", "accepted-routes.json"),
@@ -130,6 +136,12 @@ try {
   fs.copyFileSync(realAcceptedPath, isolation.accepted);
 
   stage = "snapshot-real-assets";
+  assert.equal(sha256(realAcceptedPath), ACCEPTED_REPOSITORY_SHA256, "Accepted repository baseline hash mismatch");
+  assert(fs.existsSync(cacheBaselineV2Path), "Cache Baseline V2 manifest is required");
+  const cacheBaselineV2 = JSON.parse(fs.readFileSync(cacheBaselineV2Path, "utf8"));
+  const cacheAuditBefore = auditRouteV2Cache(realCacheRoot);
+  const cacheVerificationBefore = verifyCacheBaselineV2(cacheAuditBefore, cacheBaselineV2);
+  assert.equal(cacheVerificationBefore.ok, true, cacheVerificationBefore.errors.join("\n"));
   const assetsBefore = {
     accepted: sha256(realAcceptedPath),
     cache: snapshot(realCacheRoot),
@@ -222,6 +234,10 @@ try {
     knowledge: snapshot(realKnowledgeRoot),
   };
   assert.deepEqual(assetsAfter, assetsBefore, "real Accepted, Cache, or Knowledge assets changed");
+  const cacheAuditAfter = auditRouteV2Cache(realCacheRoot);
+  const cacheVerificationAfter = verifyCacheBaselineV2(cacheAuditAfter, cacheBaselineV2);
+  assert.equal(cacheVerificationAfter.ok, true, cacheVerificationAfter.errors.join("\n"));
+  assert.deepEqual(cacheAuditAfter, cacheAuditBefore, "Cache Runtime State changed during isolated prelaunch verification");
 
   const isolatedFiles = snapshot(temporaryRoot);
   process.stdout.write(`${JSON.stringify({
@@ -248,6 +264,27 @@ try {
     liveProbe: JSON.parse(liveOutput),
     performance: JSON.parse(performanceOutput),
     realAssetsUnchanged: true,
+    assetBaselines: {
+      accepted: {
+        sha256: assetsAfter.accepted,
+        matched: assetsAfter.accepted === ACCEPTED_REPOSITORY_SHA256,
+      },
+      cacheV2: {
+        schemaVersion: cacheAuditAfter.schemaVersion,
+        immutableFileCount: cacheAuditAfter.immutable.fileCount,
+        immutableTotalBytes: cacheAuditAfter.immutable.totalBytes,
+        immutableAggregateSha256: cacheAuditAfter.immutable.aggregateSha256,
+        runtimeFileCount: cacheAuditAfter.runtimeState.fileCount,
+        runtimeTotalBytes: cacheAuditAfter.runtimeState.totalBytes,
+        runtimeStructureAudit: cacheAuditAfter.status === "PASS",
+        runtimeUnchangedDuringTest: true,
+        historicalWholeCacheHashEnforced: false,
+      },
+      knowledge: {
+        fileCount: assetsAfter.knowledge.length,
+        unchangedDuringTest: true,
+      },
+    },
     buildContract: {
       packageManifest: fs.existsSync(path.join(projectRoot, "package.json")),
       productionBuildDefined: false,

@@ -395,6 +395,13 @@ const LOCAL_COVER_BY_COUNTRY_NAME = {
   哈萨克斯坦: LOCAL_COVER_BY_COUNTRY.KZ,
   吉尔吉斯斯坦: LOCAL_COVER_BY_COUNTRY.KG,
 };
+const LOCAL_COVER_BY_CONTINENT = {
+  africa: "assets/route-east-africa-safari-cover.svg",
+  americas: "assets/favorite-route-canada.svg",
+  asia: "assets/route-southeast-asia-cover.svg",
+  europe: "assets/route-central-asia-loop-cover.svg",
+  oceania: "assets/favorite-route-canada.svg",
+};
 const LOCAL_COVER_RULES = [
   [/湄公河|东南亚|曼谷|暹粒|金边|胡志明|seasia|southeast/i, "assets/route-southeast-asia-cover.svg"],
   [/日本|东京|京都|大阪|关西|熊野|四国|japan|kansai/i, "assets/route-japan-classic-cover.svg"],
@@ -419,8 +426,8 @@ const feedState = {
   hasMore: true,
   status: "idle",
   query: readRouteQueryFromUrl(),
-  activeTab: "cross",
-  feedRouteType: "cross",
+  activeTab: readRouteTypeFromUrl(),
+  feedRouteType: readRouteTypeFromUrl(),
   sessionId: createSessionId(),
   requestToken: 0,
   activeAbortController: null,
@@ -444,6 +451,7 @@ const feedState = {
   searchFailureCodes: [],
   consecutiveEmptyPages: 0,
 };
+activateRouteTab(feedState.activeTab);
 
 if ("scrollRestoration" in history) history.scrollRestoration = "manual";
 window.scrollTo(0, 0);
@@ -544,21 +552,48 @@ function routeKind(record) {
   return countryCount > 1 ? "cross" : "single";
 }
 
+function activateRouteTab(routeType) {
+  if (!["cross", "single"].includes(routeType)) return;
+  feedState.activeTab = routeType;
+  routeTabs.forEach((button) => {
+    const active = button.dataset.routeTab === routeType;
+    button.classList.toggle("active", active);
+    button.setAttribute("aria-pressed", String(active));
+  });
+}
+
+function autoClassifySearchResults(records = []) {
+  const firstResultType = records.map(routeKind).find((routeType) => ["cross", "single"].includes(routeType));
+  if (firstResultType) activateRouteTab(firstResultType);
+  return firstResultType || "";
+}
+
 function visibleRecords() {
   const records = feedState.records.filter((record) => record?.id);
-  if (feedState.query || !feedState.feedRouteType) return records;
+  if (feedState.query) return records.filter((record) => routeKind(record) === feedState.activeTab);
+  if (!feedState.feedRouteType) return records;
   return records.filter((record) => routeKind(record) === feedState.activeTab);
 }
 
 function fixedPilotRouteCover(record = {}) {
   const resolved = routeImageAssets?.resolveLocalRouteCover?.(record)
     || routeImageAssets?.resolvePilotRouteCover(record.id);
-  if (!resolved) return { url: FALLBACK_ROUTE_COVER, source: "local-placeholder", isFallback: true };
-  if (resolved.key) record.coverImageKey = resolved.key;
-  if (!resolved.isFallback && badRuntimeImageUrls.has(coverIdentity(resolved.url))) {
+  if (resolved?.key) record.coverImageKey = resolved.key;
+  if (resolved && !resolved.isFallback && badRuntimeImageUrls.has(coverIdentity(resolved.url))) {
     return { url: FALLBACK_ROUTE_COVER, source: "local-placeholder", isFallback: true };
   }
-  return resolved;
+  if (resolved && !resolved.isFallback) return resolved;
+  const localUrl = localCoverForRoute(record);
+  if (localUrl && localUrl !== FALLBACK_ROUTE_COVER) {
+    return {
+      url: localUrl,
+      imageUrl: localUrl,
+      source: "local-route-fallback",
+      key: `local:${localUrl}`,
+      isFallback: false,
+    };
+  }
+  return resolved || { url: FALLBACK_ROUTE_COVER, source: "local-placeholder", isFallback: true };
 }
 
 function readRouteQueryFromUrl() {
@@ -566,6 +601,15 @@ function readRouteQueryFromUrl() {
     return new URL(window.location.href).searchParams.get(ROUTE_FEED_QUERY_PARAM)?.trim() || "";
   } catch {
     return "";
+  }
+}
+
+function readRouteTypeFromUrl() {
+  try {
+    const routeType = new URL(window.location.href).searchParams.get("routeType")?.trim() || "";
+    return ["cross", "single"].includes(routeType) ? routeType : "cross";
+  } catch {
+    return "cross";
   }
 }
 
@@ -624,7 +668,8 @@ async function ensureUniqueReadyRouteCover(record, usedImages, controller, offse
   void offset;
   const currentUrl = displayCoverUrl(record);
   const currentKey = routeImageDedupeKey(record) || coverIdentity(currentUrl);
-  if (hasReadyRouteCover(record) && currentKey && !usedImages.has(currentKey)) {
+  const reusableLocalCover = isReusableLocalCover(record, currentUrl);
+  if (hasReadyRouteCover(record) && currentKey && (reusableLocalCover || !usedImages.has(currentKey))) {
     usedImages.add(currentKey);
     return true;
   }
@@ -1016,7 +1061,8 @@ function applyRouteImageOutcome(record, imageUrl, outcome = {}, { late = false }
 async function ensureRecordCoverReady(record, signal, usedImageUrls = new Set()) {
   const current = displayCoverUrl(record);
   const currentKey = coverIdentity(current);
-  if (currentKey && !usedImageUrls.has(currentKey) && !badRuntimeImageUrls.has(currentKey)) {
+  const reusableLocalCover = isReusableLocalCover(record, current);
+  if (currentKey && (reusableLocalCover || !usedImageUrls.has(currentKey)) && !badRuntimeImageUrls.has(currentKey)) {
     const outcome = await warmProxiedImage(current, signal, FEED_CARD_IMAGE_TIMEOUT_MS, (lateOutcome) => {
       applyRouteImageOutcome(record, current, lateOutcome, { late: true });
     }).catch(() => ({ status: "aborted" }));
@@ -1070,7 +1116,7 @@ async function ensureRecordCoverReady(record, signal, usedImageUrls = new Set())
 
 function localCoverForRoute(record = {}) {
   const resolved = routeImageAssets?.resolveLocalRouteCover?.(record);
-  if (resolved?.url) return resolved.url;
+  if (resolved?.url && !resolved.isFallback) return resolved.url;
   const routeCover = LOCAL_COVER_BY_ROUTE_ID[record.id];
   if (routeCover) return routeCover;
   const text = routeSearchText(record);
@@ -1087,7 +1133,11 @@ function localCoverForRoute(record = {}) {
     ...(record.countryEntities || []).map((item) => item.name),
   ].filter(Boolean);
   const nameCover = countryNames.map((name) => LOCAL_COVER_BY_COUNTRY_NAME[name]).find(Boolean);
-  return nameCover || FALLBACK_ROUTE_COVER;
+  if (nameCover) return nameCover;
+  const continentCover = countryCodes
+    .map((code) => LOCAL_COVER_BY_CONTINENT[continentForCountryCode(code)])
+    .find(Boolean);
+  return continentCover || resolved?.url || FALLBACK_ROUTE_COVER;
 }
 
 function geographySummary(record) {
@@ -1160,59 +1210,100 @@ function routeFeatureIntro(record = {}) {
     : "节奏适中";
   return `${pace}，${routeFeaturePhrase(record)}。`;
 }
+function routeLiteraryPhrase(record = {}, narrativeText = "", style = "", countryCount = 0) {
+  const countryCodes = new Set(routeCountryCodes(record));
+  const hasCountry = (...codes) => codes.some((code) => countryCodes.has(code));
+  const onlyCountries = (...codes) => (
+    countryCodes.size > 0
+    && [...countryCodes].every((code) => codes.includes(code))
+  );
+  if (hasCountry("KZ", "KG", "UZ", "TJ", "TM")) {
+    return "穿行丝路绿洲与旷野，让砖石穹顶和市集烟火交替展开";
+  }
+  if (countryCodes.size >= 2 && onlyCountries("AT", "CZ", "HU", "SK")) {
+    return "沿多瑙河与帝国旧都的脉络前行，让宫殿、咖啡馆和老城夜色层层展开";
+  }
+  if (countryCodes.size === 1 && hasCountry("JP")) {
+    return "在古都寺院、街巷日常与山海风景之间，读一段层次分明的日本";
+  }
+  if (countryCodes.size === 1 && hasCountry("IT")) {
+    return "让教堂穹顶、文艺复兴街巷与餐桌烟火沿途相接";
+  }
+  if (countryCodes.size === 1 && hasCountry("FR")) {
+    return "循着河岸、旧城与葡萄酒乡的光影，慢慢展开法兰西的不同侧面";
+  }
+  if (onlyCountries("DK", "FI", "IS", "NO", "SE")) {
+    return "在港湾、森林与北地长光之间，感受城市秩序和旷野气息的交替";
+  }
+  if (style === "classic-first-trip") {
+    return "从最具辨识度的老城与地标入手，先读懂一地的性格";
+  }
+  if (style === "deep-dive") {
+    return "把脚步放慢，在支线街区与地方日常里读出更深一层";
+  }
+  if (style === "country-hopper") {
+    return "在相邻国度的广场、街巷与餐桌之间，看见边界两侧的气质流转";
+  }
+  if (style === "transport-journey") {
+    return "循着城际脉络换景，让站城、原野与地方日常自然衔接";
+  }
+  if (style === "seasonal") {
+    return "顺应当季光线与风物，在天气变化里为旅途留出从容";
+  }
+  if (style === "theme") {
+    return "循着一条鲜明线索，在建筑、风物与地方故事间逐层展开";
+  }
+  if (style === "city-break") {
+    return "从晨间街市走到黄昏屋顶，在短暂停留里触到城市的脉搏";
+  }
+  if (style === "pilgrimage") {
+    return "沿古道与信仰遗迹缓步前行，让沿途村镇成为旅程的一部分";
+  }
+  if (style === "island-hopping") {
+    return "在海湾、港埠与离岛之间换景，把潮汐留进旅行节奏";
+  }
+  if (style === "road-trip" || /自驾|coast|highway|rockies|patagonia|garden route|公路|\broad\b|\bdrive\b/iu.test(narrativeText)) {
+    return "让公路、地貌和小镇日常在车窗外自然递进";
+  }
+  if (style === "rail-journey" || /铁路|火车|景观铁路|列车|\brail(?:way)?\b|\btrain\b/iu.test(narrativeText)) {
+    return "循着铁路线换景，在站城之间收拢沿途风土";
+  }
+  if (/unesco|heritage|temple|cathedral|古城|遗产|文明|城堡|教堂/iu.test(narrativeText)) {
+    return "循着古城街巷与砖石遗迹，读出不同时代留下的纹理";
+  }
+  if (/海岛|跳岛|island|beach|azores|hawaii|palawan|croatia/iu.test(narrativeText)) {
+    return "在海湾、老城与离岛之间换景，把潮汐留进旅行节奏";
+  }
+  if (/safari|wildlife|whale|自然|野生|动物|鲸|观鲸|冰川|峡湾|极光|aurora/iu.test(narrativeText)) {
+    return "沿地貌与野生生境前行，为天气和自然节律保留余地";
+  }
+  if (countryCount >= 2) {
+    return "让几座城市的街景、历史与餐桌气息在移动中自然递进";
+  }
+  return "从街巷、建筑到地方日常，慢慢读懂这片土地的层次";
+}
 function routeFeatureIntroV2(record = {}) {
-  const text = routeSearchText(record);
+  if (record.routeReferenceMode === "citywalk") {
+    const destinations = record.destinationEntities || [];
+    const city = destinations.find((destination) => destination.entityTypeName === "city");
+    const poiCount = destinations.filter((destination) => destination.entityTypeName === "poi").length;
+    return `以${city?.canonicalNameZh || city?.name || "当前城市"}为中心，汇总${poiCount}个现有景点；可按兴趣自由拆分，不设天数上限。`;
+  }
+  const narrativeText = [
+    record.canonicalTitle,
+    record.name,
+    record.sourceTitle,
+    record.summary,
+    record.recommendationText,
+    ...(record.highlights || []),
+  ].map((value) => String(value || "").trim()).filter(Boolean).join(" ").toLowerCase();
   const style = String(record.travelStyleConceptKey || record.travelStyle || record.concept?.travelStyle || "").toLowerCase();
-  const days = Number.parseInt(record.durationDays || record.recommendedDays, 10);
   const destinations = routeDestinations(record);
-  const theme = uniqueList([...(record.themes || []), ...(record.tags || [])])[0] || "";
   const countryCount = uniqueList([
     ...(record.countries || []),
     ...(record.countryEntities || []).map((item) => item.countryCode || item.name),
   ]).length;
-  const destinationCount = destinations.length;
-  const has = (pattern) => pattern.test(text);
 
-  let feature = theme
-    ? "围绕自然、餐桌或文化主题"
-    : "突出城市与自然体验层次";
-  if (has(/知识图候选池|顺路关系|planner designed/i)) {
-    feature = "按顺路关系组织经典首访";
-  } else if (style === "road-trip" || has(/自驾|road|drive|coast|highway|rockies|patagonia|garden route|南岛|加州|落基|公路/i)) {
-    feature = "以公路串起观景、短步道与小镇停留";
-  } else if (style === "rail-journey" || has(/铁路|火车|rail|train|景观铁路|列车/i)) {
-    feature = "以铁路换城并兼顾沿线景观";
-  } else if (style === "transport-journey") {
-    feature = "强调沿线停靠与换乘节奏";
-  } else if (style === "theme" || has(/wine|葡萄酒|美食|food|market|自然主题|theme/i)) {
-    feature = "围绕餐桌、市场或文化主题";
-  } else if (style === "deep-dive") {
-    feature = "减少打卡，留时间给街区日常";
-  } else if (style === "seasonal") {
-    feature = "季节适配仍以证据为准";
-  } else if (style === "city-break") {
-    feature = "集中安排街区、餐厅和展馆";
-  } else if (style === "country-hopper" || countryCount >= 3 || has(/多国|跨国|hopper|balkan|baltic|benelux|中欧/i)) {
-    feature = "对照各地文化与饮食节奏";
-  } else if (has(/沙漠|desert|sahara|撒哈拉|wadi|dune/i)) {
-    feature = "为沙漠补给和长距离路段留余量";
-  } else if (has(/海岛|跳岛|island|beach|azores|hawaii|palawan|croatia/i)) {
-    feature = "分开安排海岸、老城和休息日";
-  } else if (has(/pilgrimage|camino|francigena|朝圣|巡礼|熊野|四国/i)) {
-    feature = "以路径串起步行段落与沿途住宿";
-  } else if (has(/safari|wildlife|自然|野生|动物|冰川|峡湾|极光|aurora/i)) {
-    feature = "侧重自然景观并为天气留余量";
-  } else if (has(/unesco|heritage|temple|cathedral|古城|遗产|文明|城堡|教堂/i)) {
-    feature = "围绕历史街区、遗产建筑和博物馆";
-  }
-
-  let rhythm = "日均一个主要体验";
-  if (Number.isFinite(days)) {
-    if (days <= 5) rhythm = destinationCount >= 4 ? `${days}天偏紧，只保留关键体验` : `${days}天适合短假`;
-    else if (days >= 14) rhythm = `${days}天预留休息与改线时间`;
-    else if (destinationCount >= 6) rhythm = `${days}天停留点多，先锁定重点`;
-    else rhythm = `${days}天日均一个主要体验`;
-  }
   const first = destinations[0] || "";
   const last = destinations.at(-1) || "";
   const middle = destinations.length > 2 ? destinations[Math.floor((destinations.length - 1) / 2)] : "";
@@ -1231,7 +1322,8 @@ function routeFeatureIntroV2(record = {}) {
   const anchor = first && last && first !== last
     ? `从${first}${middleAnchor}到${compactLast}`
     : first ? `以${first}为核心` : "围绕沿途停留点";
-  return `${anchor}，${feature}；${rhythm}。`;
+  const literaryPhrase = routeLiteraryPhrase(record, narrativeText, style, countryCount);
+  return `${anchor}，${literaryPhrase}。`;
 }
 
 function routeDisplayTitleV2(record = {}) {
@@ -1455,6 +1547,17 @@ function coverIdentity(value) {
   return String(value || "").trim().toLowerCase();
 }
 
+function isReusableLocalCover(record = {}, imageUrl = displayCoverUrl(record)) {
+  const fixedCover = fixedPilotRouteCover(record);
+  return Boolean(
+    imageUrl
+      && fixedCover
+      && !fixedCover.isFallback
+      && !/^https?:\/\//i.test(imageUrl)
+      && imageUrl !== FALLBACK_ROUTE_COVER
+  );
+}
+
 function clearRouteCover(record) {
   if (record.onlineCoverAsset) record.onlineCoverAsset = null;
   if (record.coverAsset?.imageUrl) record.coverAsset = { ...record.coverAsset, imageUrl: "" };
@@ -1619,13 +1722,14 @@ async function prepareRouteImageBatch(pageRecords = [], previousRecords = [], si
   const outcomes = await Promise.all(batch.map(async (record) => {
     const imageUrl = displayCoverUrl(record);
     const hasFixedAssetKey = Boolean(String(record.coverImageKey || "").trim());
+    const reusableLocalCover = isReusableLocalCover(record, imageUrl);
     const imageKey = routeImageDedupeKey(record) || coverIdentity(imageUrl);
     if (!imageUrl || !imageKey || (!hasFixedAssetKey && !routeImageAllowed(record, imageUrl))) {
       record._coverLoadStatus = "missing";
       record._coverLoadUrl = "";
       return { status: "missing", routeId: record.id, imageUrl: "" };
     }
-    if (usedImages.has(imageKey)) {
+    if (usedImages.has(imageKey) && !reusableLocalCover) {
       record._coverLoadStatus = "duplicate";
       record._coverLoadUrl = imageUrl;
       clearRouteCover(record);
@@ -1712,12 +1816,21 @@ function routeCardImageMarkup(record, index = 3) {
   void index;
   const fixedCover = fixedPilotRouteCover(record);
   const imageUrl = displayCoverUrl(record);
-  const imageReady = Boolean(imageUrl && (
+  const fixedCoverKey = String(fixedCover?.key || record.coverImageKey || "");
+  const safeLocalCover = Boolean(
+    fixedCover?.url
+      && fixedCover.url !== FALLBACK_ROUTE_COVER
+      && !/^https?:\/\//i.test(fixedCover.url)
+      && (fixedCover.isFallback === false || fixedCoverKey.startsWith("local:"))
+  );
+  const imageReady = safeLocalCover || Boolean(imageUrl && (
     record._coverLoadStatus === "ready"
       || (!record._coverLoadStatus && hasReadyRouteCover(record))
   ));
-  const source = imageReady ? proxiedRouteImageUrl(imageUrl) : FALLBACK_ROUTE_COVER;
-  const state = imageReady && !fixedCover?.isFallback ? "ready" : "placeholder";
+  const source = safeLocalCover
+    ? fixedCover.url
+    : imageReady ? proxiedRouteImageUrl(imageUrl) : FALLBACK_ROUTE_COVER;
+  const state = safeLocalCover || (imageReady && !fixedCover?.isFallback) ? "ready" : "placeholder";
   return `<img src="${escapeHtml(source)}" alt="${escapeHtml(routeDisplayTitleV2(record))}封面图" loading="eager" decoding="async" data-route-cover-state="${state}"${fixedCover?.key ? ` data-cover-image-key="${escapeHtml(fixedCover.key)}"` : ""} />`;
 }
 
@@ -1738,9 +1851,12 @@ function updateRenderedRouteImage(record, card = null) {
   if (!image) return;
   const fixedCover = fixedPilotRouteCover(targetRecord);
   const imageUrl = displayCoverUrl(targetRecord);
-  const ready = targetRecord._coverLoadStatus === "ready" && Boolean(imageUrl);
-  const nextSource = ready ? proxiedRouteImageUrl(imageUrl) : FALLBACK_ROUTE_COVER;
-  image.dataset.routeCoverState = ready && !fixedCover?.isFallback ? "ready" : "placeholder";
+  const reusableLocalCover = isReusableLocalCover(targetRecord, fixedCover?.url || imageUrl);
+  const ready = reusableLocalCover || (targetRecord._coverLoadStatus === "ready" && Boolean(imageUrl));
+  const nextSource = reusableLocalCover
+    ? fixedCover.url
+    : ready ? proxiedRouteImageUrl(imageUrl) : FALLBACK_ROUTE_COVER;
+  image.dataset.routeCoverState = reusableLocalCover || (ready && !fixedCover?.isFallback) ? "ready" : "placeholder";
   if (fixedCover?.key) image.dataset.coverImageKey = fixedCover.key;
   if (image.getAttribute("src") !== nextSource) image.src = nextSource;
 }
@@ -1753,11 +1869,16 @@ function renderRouteCard(record, index) {
   const state = readRouteState();
   const favorite = window.TravelState?.isRouteFavorite?.(state, record.id) || false;
   const detailParams = new URLSearchParams({ id: record.id });
+  detailParams.set("routeType", feedState.activeTab);
   if (feedState.query) {
+    detailParams.set("q", feedState.query);
     detailParams.set("source", "search");
     detailParams.set("status", record.searchStatus || "accepted");
     detailParams.set("searchSessionId", feedState.sessionId);
     if (record.searchQueryId) detailParams.set("queryId", record.searchQueryId);
+  }
+  if (new URL(window.location.href).searchParams.get("localOnly") === "1") {
+    detailParams.set("localOnly", "1");
   }
   const dayText = record.recommendedDays || (record.durationDays ? `${record.durationDays}天` : "");
   const monthText = record.searchStatus === "needs-review"
@@ -1813,7 +1934,7 @@ function repairRenderedDuplicateImages() {
       || feedState.records.find((item) => item.id === card.dataset.routeId);
     const key = record ? routeImageDedupeKey(record) : "";
     if (!record || !key) return;
-    if (used.has(key)) {
+    if (used.has(key) && !isReusableLocalCover(record, displayCoverUrl(record))) {
       record._coverLoadStatus = "duplicate";
       clearRouteCover(record);
       updateRenderedRouteImage(record, card);
@@ -1846,8 +1967,17 @@ function stateMarkup() {
     return `<div class="route-empty-state" data-route-feed-state="error"><p>${visible.length ? "稍后重试" : "路线加载失败"}</p><span>当前请求没有成功完成</span><button type="button" ${visible.length ? "data-route-feed-more" : "data-route-feed-refresh"}>${visible.length ? "继续加载" : "重新加载"}</button></div>`;
   }
   if (!visible.length) {
+    if (feedState.query && feedState.searchFailureReason === "invalid-duration") {
+      return `<div class="route-empty-state" data-route-feed-state="invalid-duration"><p>行程天数无效</p><span>请输入大于0的整数天数，例如“巴黎4天”</span></div>`;
+    }
+    if (feedState.query && feedState.searchFailureReason === "unresolved-destination") {
+      return `<div class="route-empty-state" data-route-feed-state="unresolved-destination"><p>有城市暂时无法完整识别</p><span>请检查城市名称或换一种写法，系统不会删除城市后改推其他路线</span></div>`;
+    }
     if (feedState.query && feedState.searchFailureReason === "constraint-conflict") {
       return `<div class="route-empty-state" data-route-feed-state="constraint-conflict"><p>这些条件暂时无法同时满足</p><span>请增加行程天数或减少城市后再试</span></div>`;
+    }
+    if (feedState.query && feedState.records.length) {
+      return `<div class="route-empty-state" data-route-feed-state="empty-category"><p>这个分类暂时没有路线</p><span>可以切换到另一个路线分类查看结果</span></div>`;
     }
     return `<div class="route-empty-state" data-route-feed-state="empty"><p>${feedState.query ? "暂时没有搜到路线" : "暂时没有发现路线"}</p>${suggestionsMarkup() || "<span>可以换一个旅行需求再试</span>"}</div>`;
   }
@@ -1927,8 +2057,15 @@ function renderSearchSummary() {
     routeSearchSummary.textContent = `已为“${feedState.query}”找到 ${count} 条路线`;
   } else if (!feedState.searchResolved) {
     routeSearchSummary.textContent = `正在搜索“${feedState.query}”`;
+  } else if (feedState.records.length) {
+    const routeTypeLabel = feedState.activeTab === "cross" ? "跨国" : "单国";
+    routeSearchSummary.textContent = `“${feedState.query}”的${routeTypeLabel}分类暂时没有路线，可以切换另一分类`;
   } else if (feedState.searchResultCount) {
     routeSearchSummary.textContent = `已找到 ${feedState.searchResultCount} 条路线，正在准备首批卡片`;
+  } else if (feedState.searchFailureReason === "invalid-duration") {
+    routeSearchSummary.textContent = `“${feedState.query}”中的行程天数无效，请输入大于0的整数天数`;
+  } else if (feedState.searchFailureReason === "unresolved-destination") {
+    routeSearchSummary.textContent = `“${feedState.query}”中有城市暂时无法完整识别，请检查名称后重试`;
   } else if (feedState.searchFailureReason === "constraint-conflict") {
     routeSearchSummary.textContent = `“${feedState.query}”的条件无法同时满足，请增加天数或减少城市`;
   } else {
@@ -2078,8 +2215,8 @@ function usePreloadedRouteFeed(payload) {
     hasMore: Boolean(payload.hasMore && payload.nextCursor),
     status: "ready",
     query: "",
-    activeTab: payload.routeType || "cross",
-    feedRouteType: payload.routeType || "cross",
+    activeTab: payload.routeType || feedState.activeTab,
+    feedRouteType: payload.routeType || feedState.feedRouteType,
     sessionId: payload.sessionId || createSessionId(),
     suggestions: [],
     skippedRouteIds: new Set(),
@@ -2090,6 +2227,7 @@ function usePreloadedRouteFeed(payload) {
     searchFailureCodes: [],
     consecutiveEmptyPages: 0,
   });
+  activateRouteTab(feedState.activeTab);
   if (payload.sessionId) sessionStorage.setItem(ROUTE_FEED_SESSION_KEY, payload.sessionId);
   appendRecords(payload.records, FEED_PAGE_SIZE, { revealImmediately: Boolean(payload.revealImmediately) });
   renderFeed();
@@ -2217,6 +2355,7 @@ async function loadFeed({ refresh = false } = {}) {
       feedState.searchFailureCodes = Array.isArray(payload.diagnostics?.constraintConflict?.reasonCodes)
         ? payload.diagnostics.constraintConflict.reasonCodes.map(String)
         : [];
+      if (previousRecords.length === 0 && pageRecords.length) autoClassifySearchResults(pageRecords);
       renderSearchSummary();
       const batchRecords = selectAppendableRecords(pageRecords, BATCH_SIZE, previousRecords);
       if (!prefetched) {
@@ -2319,8 +2458,7 @@ function resetDiscovery({ preferBootstrap = false } = {}) {
 }
 
 routeTabs.forEach((button) => button.addEventListener("click", () => {
-  feedState.activeTab = button.dataset.routeTab;
-  routeTabs.forEach((item) => item.classList.toggle("active", item === button));
+  activateRouteTab(button.dataset.routeTab);
   if (!feedState.query) resetDiscovery({ preferBootstrap: true });
   else renderFeed();
 }));
@@ -2504,7 +2642,7 @@ window.__routeFeedDebug = () => ({
 window.__routeForceLoadFeed = () => loadFeed();
 
 if (routeSearch && feedState.query) routeSearch.value = feedState.query;
-const preloadedRouteFeed = feedState.query ? null : (readBootstrappedRouteFeed("cross") || readPreloadedRouteFeed());
+const preloadedRouteFeed = feedState.query ? null : (readBootstrappedRouteFeed(feedState.feedRouteType) || readPreloadedRouteFeed());
 if (preloadedRouteFeed) {
   usePreloadedRouteFeed(preloadedRouteFeed);
 } else {

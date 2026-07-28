@@ -52,6 +52,7 @@ function routeDestinations(record = {}) {
       name: semantic(name),
       countryCode: identity(rawObject.countryCode || entity.countryCode),
       region: semantic(rawObject.region || rawObject.regionName || entity.region || entity.regionName),
+      entityTypeName: clean(rawObject.entityTypeName || rawObject.entityType || entity.entityTypeName || entity.entityType).toLocaleLowerCase("en-US"),
     };
   }).filter((entry) => entry.id || entry.name);
 }
@@ -172,11 +173,14 @@ export function validateRouteIntentInvariants(record = {}, routeIntent = {}, opt
   const normalizedIntent = normalizeRouteIntent(routeIntent);
   const expectedFingerprint = createRouteIntentFingerprint(normalizedIntent);
   const destinations = routeDestinations(record);
+  const constraintDestinations = clean(record.routeReferenceMode) === "citywalk"
+    ? destinations.filter((destination) => destination.entityTypeName !== "poi")
+    : destinations;
   const violations = [];
   const diagnostics = [];
   const required = normalizedIntent.hardConstraints.requiredCities;
 
-  requestedMatches(normalizedIntent, destinations, source, violations);
+  requestedMatches(normalizedIntent, constraintDestinations, source, violations);
 
   const duplicateDestinationKeys = destinations
     .map((entry) => entry.id || entry.name)
@@ -191,7 +195,7 @@ export function validateRouteIntentInvariants(record = {}, routeIntent = {}, opt
     violations.push(violation("exact-days-mismatch", "exactDays", exactDays.value, actualDays, source));
   }
   const capacity = normalizedIntent.hardConstraints.routeCapacity;
-  const capacityDemand = Math.max(destinations.length, required.state === "provided" ? required.values.length : 0);
+  const capacityDemand = Math.max(constraintDestinations.length, required.state === "provided" ? required.values.length : 0);
   if (capacity.state === "provided" && Number.isInteger(capacity.value) && capacityDemand > capacity.value) {
     violations.push(violation("duration-capacity-conflict", "routeCapacity", capacity.value, capacityDemand, source));
   }

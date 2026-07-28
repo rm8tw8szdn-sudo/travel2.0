@@ -130,6 +130,7 @@ function cityCatalogItem(city = {}, countryCode = "") {
     ])),
     entityId: clean(city.entityId),
     wikidataId: clean(city.wikidataId),
+    ...coordinatesFor(city),
   });
 }
 

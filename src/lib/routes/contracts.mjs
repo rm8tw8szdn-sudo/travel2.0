@@ -243,6 +243,11 @@ export function normalizeDiscoveredRoute(value) {
     evidenceValidationStatus: cleanText(value.evidenceValidationStatus),
     evidenceSelectionMode: cleanText(value.evidenceSelectionMode),
     v2PublicationStatus: cleanText(value.v2PublicationStatus),
+    routeReferenceMode: cleanText(value.routeReferenceMode),
+    durationPolicy: cleanText(value.durationPolicy),
+    requestedDurationDays: Number.isFinite(Number(value.requestedDurationDays)) && Number(value.requestedDurationDays) > 0
+      ? Math.round(Number(value.requestedDurationDays))
+      : null,
   };
 
   const sourceName = cleanText(value.source?.name);

@@ -120,7 +120,20 @@ const insufficientRun = buildRouteCandidatesFromPool({
   targetCount: 8,
   seed: "phase2b1-small-pool",
 });
-assert.equal(insufficientRun.length, 1, "two valid destinations should produce one candidate rather than hard-filling target count");
+assert.equal(insufficientRun.length, 3, "two valid destinations should produce the three comparable Phase 2B candidate variants");
+assert.equal(
+  new Set(insufficientRun.map(candidateShapeKey)).size,
+  insufficientRun.length,
+  "two-destination candidate variants must keep distinct shapes",
+);
+for (let index = 0; index < insufficientRun.length; index += 1) {
+  for (let nextIndex = index + 1; nextIndex < insufficientRun.length; nextIndex += 1) {
+    assert(
+      candidateHasMeaningfulDifference(insufficientRun[index], insufficientRun[nextIndex]),
+      "two-destination candidate variants must remain meaningfully different",
+    );
+  }
+}
 
 const duplicateRun = buildRouteCandidatesFromPool({
   context: { ...context, intentId: "intent-dedupe" },

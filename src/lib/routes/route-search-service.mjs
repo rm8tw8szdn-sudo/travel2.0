@@ -7,6 +7,7 @@ import { compareRouteIntentShadow } from "./route-intent-shadow-validation.mjs";
 import { isRouteV2TimeIntentEnabled, parseSearchIntent } from "./search-intent-parser.mjs";
 import { ensureSearchGeneratedMedia } from "./search-generated-media.mjs";
 import { buildSearchGeneratedFallbackRoute } from "./search-generated-route-builder.mjs";
+import { stableHash } from "./route-v2-utils.mjs";
 
 const DEFAULT_RANKING_WEIGHTS = {
   intentMatch: 100,
@@ -446,15 +447,35 @@ function withTimeout(task, timeoutMs, abortSignal = null) {
 
 function plannerContextFromIntent(intent, deadlineAt, abortSignal = null, { destinationSuggestion = null } = {}) {
   const suggested = destinationSuggestion && typeof destinationSuggestion === "object" ? destinationSuggestion : null;
+  const rawQueryFingerprint = stableHash({ rawQuery: clean(intent.rawQuery) }).slice(0, 12);
   const countryCode = suggested?.countryCode || intent.countryCode;
   const countryName = suggested?.countryName || intent.country;
   const cities = suggested?.cities || (Array.isArray(intent.cities) ? intent.cities : []);
   const normalizedCities = suggested?.normalizedCities || (Array.isArray(intent.normalizedCities) ? intent.normalizedCities : []);
-  const travelStyle = intent.intentMode && !intent.travelStyle && Number(intent.durationDays) > 0 && Number(intent.durationDays) <= 3
-    ? "city-break"
-    : intent.travelStyle || undefined;
+  const countryCodes = suggested
+    ? [countryCode].filter(Boolean)
+    : unique([...(intent.countryCodes || []), countryCode].filter(Boolean));
+  const citywalkReference = !suggested
+    && !intent.travelStyle
+    && Array.isArray(intent.requiredDestinationIds)
+    && intent.requiredDestinationIds.length === 1
+    && cities.length === 1
+    && Number(intent.durationDays) >= 3;
+  const cityBreakByDuration = Number(intent.durationDays) > 0 && Number(intent.durationDays) <= 3;
+  const cityBreakByExplicitPair = !suggested
+    && cities.length > 0
+    && cities.length <= 2
+    && Number(intent.durationDays) > 0
+    && Number(intent.durationDays) <= 6;
+  const travelStyle = citywalkReference
+    ? "deep-dive"
+    : intent.intentMode && !intent.travelStyle && (cityBreakByDuration || cityBreakByExplicitPair)
+      ? "city-break"
+      : intent.travelStyle || undefined;
   return {
-    intentId: suggested ? `${intent.intentHash}-${suggested.seed.slice(0, 12)}` : intent.intentHash,
+    intentId: suggested
+      ? `${intent.intentHash}-${suggested.seed.slice(0, 12)}-${rawQueryFingerprint}`
+      : intent.intentHash,
     baseIntentId: intent.intentHash,
     routeIntentSchemaVersion: intent.routeIntentSchemaVersion,
     routeIntentFingerprintVersion: intent.routeIntentFingerprintVersion,
@@ -464,6 +485,8 @@ function plannerContextFromIntent(intent, deadlineAt, abortSignal = null, { dest
     rawQuery: intent.rawQuery || "",
     country: countryCode,
     countryCode,
+    countries: [...countryCodes],
+    countryCodes: [...countryCodes],
     countryName,
     cities: [...cities],
     normalizedCities: [...normalizedCities],
@@ -478,6 +501,10 @@ function plannerContextFromIntent(intent, deadlineAt, abortSignal = null, { dest
     ...(suggested ? {
       candidateSeed: suggested.seed,
       destinationSuggestion: structuredClone(suggested),
+    } : {}),
+    ...(citywalkReference ? {
+      routeReferenceMode: "citywalk",
+      durationPolicy: "open-ended",
     } : {}),
     durationDays: intent.durationDays || undefined,
     durationBand: intent.durationBand || undefined,
@@ -527,7 +554,13 @@ export function createRouteSearchService({
       catalogs: intentCatalog,
       timeIntentEnabled: isRouteV2TimeIntentEnabled(env),
     });
-    const destinationSuggestionResult = intent.intentMode === "destination-suggestion"
+    const countryScopedDestinationSuggestion = intent.intentMode === "specified-destination"
+      && !(intent.requiredDestinationIds || []).length
+      && (intent.countryCodes || []).length > 0;
+    const destinationSuggestionResult = (
+      intent.intentMode === "destination-suggestion"
+      || countryScopedDestinationSuggestion
+    )
       ? buildRouteDestinationSuggestion({
         intent,
         sessionId: request.sessionId || intent.intentHash,
@@ -714,11 +747,12 @@ export function createRouteSearchService({
 
     const destinationSuggestionMode = intent.intentMode === "destination-suggestion";
     const plannerEligible = intent.canGenerate && (!destinationSuggestionMode || Boolean(destinationSuggestion));
+    const cacheRawQueryFingerprint = stableHash({ rawQuery: clean(intent.rawQuery) }).slice(0, 12);
     const cacheIntent = destinationSuggestion
       ? {
         ...intent,
-        intentHash: `${intent.intentHash}-${destinationSuggestion.seed.slice(0, 12)}`,
-        intentKey: `${intent.intentKey}|session:${destinationSuggestion.seed.slice(0, 12)}`,
+        intentHash: `${intent.intentHash}-${destinationSuggestion.seed.slice(0, 12)}-${cacheRawQueryFingerprint}`,
+        intentKey: `${intent.intentKey}|session:${destinationSuggestion.seed.slice(0, 12)}|query:${cacheRawQueryFingerprint}`,
       }
       : intent;
     if (destinationSuggestionMode || ranked.length < intent.targetResultCount) {

@@ -1446,7 +1446,7 @@ async function loadRouteLibrary() {
   return import(routesUrl);
 }
 
-async function createDiscoveryHandler(routeLibrary, knowledgeEntityLayerRepository) {
+async function createDiscoveryHandler(routeLibrary, knowledgeEntityLayerRepository, routeV2RuntimeEnv) {
   const {
     createAcceptedRouteRepository,
     createRouteFeedRefillWorker,
@@ -1462,7 +1462,7 @@ async function createDiscoveryHandler(routeLibrary, knowledgeEntityLayerReposito
     repository: acceptedRepository,
     jobStore,
     root,
-    env: process.env,
+    env: routeV2RuntimeEnv,
     log: (event) => {
       if (process.env.ROUTE_FEED_REFILL_LOG === "true") console.log(JSON.stringify({ stage: "feed-refill", ...event }));
     },
@@ -1472,15 +1472,17 @@ async function createDiscoveryHandler(routeLibrary, knowledgeEntityLayerReposito
     jobStore,
     feedRefillWorker,
     knowledgeEntityLayerRepository,
+    env: routeV2RuntimeEnv,
   });
   return createRouteDiscoveryHandler({ discovery });
 }
 
 async function main() {
   const routeLibrary = await loadRouteLibrary();
+  const routeV2RuntimeEnv = routeLibrary.createRouteV2RuntimeEnvironment(process.env);
   const knowledgeEntityLayerRepository = routeLibrary.createPublishedKnowledgeEntityLayerRepository({ projectRoot: root });
   const knowledgeEntitySummary = knowledgeEntityLayerSummary(knowledgeEntityLayerRepository);
-  const discoveryHandler = await createDiscoveryHandler(routeLibrary, knowledgeEntityLayerRepository);
+  const discoveryHandler = await createDiscoveryHandler(routeLibrary, knowledgeEntityLayerRepository, routeV2RuntimeEnv);
   const server = http.createServer(async (request, response) => {
     try {
       const url = new URL(request.url || "/", `http://${request.headers.host || `${host}:${port}`}`);

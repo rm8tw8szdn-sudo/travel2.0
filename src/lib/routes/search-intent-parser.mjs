@@ -324,7 +324,7 @@ function hasFixedDestinationOrderSyntax(query, requiredCount) {
   if (requiredCount < 2) return false;
   const normalized = normalizeText(query);
   return /(?:→|->|⇒|➜)/u.test(query)
-    || /先.+(?:然后|再去|再到).+(?:最后|然后|再去|再到)/u.test(query)
+    || /先.+(?:然后|再(?:去|到)?).+(?:最后|然后|再(?:去|到)?)/u.test(query)
     || /到.+(?:再去|然后|再到)/u.test(query)
     || /\bto\b.+\bthen\b/iu.test(normalized);
 }
@@ -333,11 +333,16 @@ function unknownCityTokenDiagnostics(query, occurrences, cityCatalog, countryCat
   const hasExplicitSeparator = /(?:、|，|,|→|->|⇒|➜|\s|到|再去|再到|然后|最后|先|\bto\b|\bthen\b)/iu.test(query);
   if (!hasExplicitSeparator || occurrences.length === 0) return [];
   let residual = clean(query)
-    .replace(/\d{1,2}\s*(?:天|日|days?|day|d)\b/giu, " ")
+    .replace(/[+-]?\d+(?:\.\d+)?\s*(?:天|日|days?|day|d)/giu, " ")
     .replace(/\d{1,2}\s*月/gu, " ");
   const knownAliases = [
     ...cityCatalog.flatMap((city) => city.aliases || []),
     ...countryCatalog.flatMap((country) => country.aliases || []),
+    ...REGION_CATALOG.flatMap((item) => item.aliases || []),
+    ...STYLE_CATALOG.flatMap((item) => item.aliases || []),
+    ...THEME_CATALOG.flatMap((item) => item.aliases || []),
+    ...SEASON_CATALOG.flatMap((item) => item.aliases || []),
+    ...TRANSPORT_CATALOG.flatMap((item) => item.aliases || []),
   ].map(clean).filter(Boolean).sort((left, right) => right.length - left.length);
   for (const alias of knownAliases) residual = residual.replace(new RegExp(escapeRegExp(alias), "giu"), " ");
   const tokens = residual
@@ -351,10 +356,16 @@ function unknownCityTokenDiagnostics(query, occurrences, cityCatalog, countryCat
   }));
 }
 
+function isAmbiguousShortCityAlias(alias) {
+  const normalized = normalizeText(alias).replace(/\s+/gu, "");
+  return normalized.length < 2 && /[\p{Script=Han}\p{Script=Hiragana}\p{Script=Katakana}]/u.test(normalized);
+}
+
 function extractRequiredDestinations(query, cityCatalog, countryCatalog) {
   const rawOccurrences = [];
   for (const city of cityCatalog) {
     for (const alias of unique([city.label, city.normalizedLabel, ...(city.aliases || [])])) {
+      if (isAmbiguousShortCityAlias(alias)) continue;
       for (const occurrence of aliasOccurrences(query, alias)) {
         rawOccurrences.push({ ...occurrence, city, identity: cityIdentity(city), alias: clean(alias) });
       }
@@ -364,10 +375,17 @@ function extractRequiredDestinations(query, cityCatalog, countryCatalog) {
     || (right.end - right.index) - (left.end - left.index)
     || left.identity.localeCompare(right.identity, "en"));
   const occurrenceKeys = new Set();
+  const acceptedRanges = [];
   const occurrences = rawOccurrences.filter((entry) => {
     const key = `${entry.identity}:${entry.index}:${entry.end}`;
     if (occurrenceKeys.has(key)) return false;
+    if (acceptedRanges.some((accepted) => (
+      entry.index >= accepted.index
+      && entry.end <= accepted.end
+      && entry.identity !== accepted.identity
+    ))) return false;
     occurrenceKeys.add(key);
+    acceptedRanges.push(entry);
     return true;
   });
   const byIdentity = new Map();
@@ -403,25 +421,98 @@ function firstMatch(query, catalog) {
 }
 
 function mergeCatalog(base = [], additions = [], identity) {
-  const merged = [];
-  const seen = new Set();
+  const merged = new Map();
   for (const item of [...base, ...(Array.isArray(additions) ? additions : [])]) {
     if (!item || typeof item !== "object") continue;
     const key = clean(identity(item));
-    if (!key || seen.has(key)) continue;
-    seen.add(key);
-    merged.push(item);
+    if (!key) continue;
+    const current = merged.get(key);
+    merged.set(key, current
+      ? {
+          ...item,
+          ...current,
+          entityId: clean(item.entityId || current.entityId),
+          wikidataId: clean(item.wikidataId || current.wikidataId),
+          aliases: unique([...(current.aliases || []), ...(item.aliases || [])]),
+        }
+      : item);
   }
-  return merged;
+  return [...merged.values()];
+}
+
+function mergeCityCatalog(base = [], additions = []) {
+  return mergeCatalog(base, additions, (item) => `${item.countryCode}:${item.normalizedLabel}`)
+    .map((city) => ({
+      ...city,
+      aliases: unique(city.aliases || []).filter((alias) => !isAmbiguousShortCityAlias(alias)),
+    }));
+}
+
+function acceptedRouteCityCatalog(acceptedRoutes = []) {
+  const cities = new Map();
+  for (const route of Array.isArray(acceptedRoutes) ? acceptedRoutes : []) {
+    for (const entity of Array.isArray(route?.destinationEntities) ? route.destinationEntities : []) {
+      const entityType = clean(entity?.entityTypeName).toLocaleLowerCase("en-US");
+      if (!/(?:city|town|municipality|village|capital|gold-case-anchor)/u.test(entityType)) continue;
+      const wikidataId = clean(entity?.wikidataId || entity?.entityId);
+      const countryCode = clean(entity?.countryCode).toUpperCase();
+      const label = clean(entity?.canonicalNameZh || entity?.name || entity?.sourceTitle);
+      const normalizedLabel = clean(entity?.canonicalNameEn || entity?.sourceTitle || label).toLocaleLowerCase("en-US");
+      if (!/^Q\d+$/u.test(wikidataId) || !countryCode || !label || !normalizedLabel) continue;
+      const current = cities.get(wikidataId);
+      cities.set(wikidataId, {
+        ...(current || {}),
+        entityId: clean(entity?.entityId || current?.entityId),
+        wikidataId,
+        countryCode,
+        label: clean(current?.label || label),
+        normalizedLabel: clean(current?.normalizedLabel || normalizedLabel),
+        aliases: unique([
+          ...(current?.aliases || []),
+          label,
+          entity?.canonicalNameZh,
+          entity?.canonicalNameEn,
+          entity?.sourceTitle,
+        ]),
+        latitude: Number.isFinite(Number(entity?.latitude)) ? Number(entity.latitude) : current?.latitude,
+        longitude: Number.isFinite(Number(entity?.longitude)) ? Number(entity.longitude) : current?.longitude,
+      });
+    }
+  }
+  return [...cities.values()];
 }
 
 function parseDuration(query, { allowBareNumber = false } = {}) {
-  const compact = query.replace(/\s+/g, "");
-  const match = compact.match(/(\d{1,2})(?:天|日|days?|day|d)/iu)
-    || (allowBareNumber ? compact.match(/^(\d{1,2})$/u) : null);
-  if (!match) return null;
-  const days = Number.parseInt(match[1], 10);
-  return Number.isFinite(days) && days > 0 && days <= 60 ? days : null;
+  const normalized = query.replace(/\s+/g, " ").trim();
+  const compact = normalized.replace(/\s+/g, "");
+  const match = normalized.match(/(?<![a-z0-9.])([+-]?\d+(?:\.\d+)?)\s*(?:天|日|days?|day|d)/iu)
+    || (allowBareNumber ? compact.match(/^([+-]?\d+(?:\.\d+)?)$/u) : null);
+  if (!match) {
+    const malformed = normalized.match(/[+-]?\d[\da-z.,+-]*\s*(?:天|日|days?|day|d)/iu);
+    if (!malformed) return { durationDays: null, invalidDuration: false, diagnostics: [] };
+    return {
+      durationDays: null,
+      invalidDuration: true,
+      diagnostics: [{
+        code: "invalid-duration",
+        message: "Trip duration must be a positive whole number of days.",
+        rawValue: malformed[0],
+      }],
+    };
+  }
+  const days = Number(match[1]);
+  if (Number.isSafeInteger(days) && days > 0) {
+    return { durationDays: days, invalidDuration: false, diagnostics: [] };
+  }
+  return {
+    durationDays: null,
+    invalidDuration: true,
+    diagnostics: [{
+      code: "invalid-duration",
+      message: "Trip duration must be a positive whole number of days.",
+      rawValue: match[0],
+    }],
+  };
 }
 
 function durationBand(days) {
@@ -500,7 +591,10 @@ export function hashIntentKey(intentKey) {
 export function createSearchSuggestions({ query = "", acceptedRoutes = [], catalogs = null } = {}) {
   const normalized = normalizeText(query);
   const countryCatalog = mergeCatalog(COUNTRY_CATALOG, catalogs?.countries, (item) => item.code);
-  const cityCatalog = mergeCatalog(CITY_CATALOG, catalogs?.cities, (item) => `${item.countryCode}:${item.normalizedLabel}`);
+  const cityCatalog = mergeCityCatalog(CITY_CATALOG, [
+    ...(Array.isArray(catalogs?.cities) ? catalogs.cities : []),
+    ...acceptedRouteCityCatalog(acceptedRoutes),
+  ]);
   const candidates = [
     "撒哈拉", "撒哈拉沙漠", "摩洛哥撒哈拉", "西撒哈拉骑行",
     "日本", "日本第一次", "日本经典", "日本铁路", "日本自驾", "日本樱花",
@@ -532,9 +626,13 @@ export function createSearchSuggestions({ query = "", acceptedRoutes = [], catal
 export function parseSearchIntent(query, { acceptedRoutes = [], catalogs = null, timeIntentEnabled = false } = {}) {
   const rawQuery = clean(query);
   const normalizedQuery = normalizeText(rawQuery);
-  const durationDays = parseDuration(normalizedQuery, { allowBareNumber: timeIntentEnabled });
+  const duration = parseDuration(normalizedQuery, { allowBareNumber: timeIntentEnabled });
+  const durationDays = duration.durationDays;
   const countryCatalog = mergeCatalog(COUNTRY_CATALOG, catalogs?.countries, (item) => item.code);
-  const cityCatalog = mergeCatalog(CITY_CATALOG, catalogs?.cities, (item) => `${item.countryCode}:${item.normalizedLabel}`);
+  const cityCatalog = mergeCityCatalog(CITY_CATALOG, [
+    ...(Array.isArray(catalogs?.cities) ? catalogs.cities : []),
+    ...acceptedRouteCityCatalog(acceptedRoutes),
+  ]);
   const extractedDestinations = timeIntentEnabled
     ? extractRequiredDestinations(rawQuery, cityCatalog, countryCatalog)
     : { required: [], diagnostics: [] };
@@ -558,10 +656,15 @@ export function parseSearchIntent(query, { acceptedRoutes = [], catalogs = null,
   const season = firstMatch(normalizedQuery, SEASON_CATALOG);
   const transport = firstMatch(normalizedQuery, TRANSPORT_CATALOG);
   const timeIntent = timeIntentEnabled ? parseTimeIntent(rawQuery) : null;
+  const countryCodes = unique([
+    ...(matchedCountry?.code ? [matchedCountry.code] : []),
+    ...matchedCities.map((item) => item.countryCode),
+  ].map((code) => clean(code).toUpperCase()).filter(Boolean));
   const intent = {
     rawQuery,
     normalizedQuery,
     countryCode: matchedCountry?.code || "",
+    countryCodes,
     country: matchedCountry?.label || "",
     normalizedCountry: matchedCountry?.normalizedLabel || "",
     region: matchedRegion?.label || "",
@@ -579,6 +682,10 @@ export function parseSearchIntent(query, { acceptedRoutes = [], catalogs = null,
     } : {}),
     durationDays,
     durationBand: durationBand(durationDays),
+    ...(timeIntentEnabled ? {
+      invalidDuration: duration.invalidDuration,
+      durationDiagnostics: duration.diagnostics,
+    } : {}),
     travelStyle: style?.key || "",
     travelStyleLabel: style?.label || "",
     tripIntent: inferTripIntent(normalizedQuery, style),
@@ -594,26 +701,41 @@ export function parseSearchIntent(query, { acceptedRoutes = [], catalogs = null,
   };
   intent.constraintCount = constraintCount(intent);
   intent.targetResultCount = targetResultCountForConstraintLevel(intent.constraintCount);
-  intent.isChinaBlocked = intent.countryCode === "CN";
+  intent.isChinaBlocked = countryCodes.includes("CN");
   if (timeIntentEnabled) {
     const destinationSpecified = Boolean(intent.countryCode || intent.region || intent.cities.length);
     const invalidTime = timeIntent.type === "invalid";
+    const invalidDuration = intent.invalidDuration === true;
+    const unresolvedDestinations = intent.destinationDiagnostics
+      .filter((item) => item.code === "unknown-city-token")
+      .map((item) => clean(item.rawValue))
+      .filter((item) => Array.from(item).length >= 3);
+    const hasUnresolvedDestination = unresolvedDestinations.length > 0;
     const hasUsableCondition = intent.constraintCount > 0;
+    intent.unresolvedDestinationNames = unique(unresolvedDestinations);
     intent.destinationUnspecified = !destinationSpecified;
-    intent.intentMode = invalidTime
+    intent.intentMode = invalidDuration
+      ? "invalid-duration-intent"
+      : invalidTime
       ? "invalid-time-intent"
+      : hasUnresolvedDestination
+        ? "insufficient-intent"
       : !hasUsableCondition
         ? "insufficient-intent"
         : destinationSpecified
           ? "specified-destination"
           : "destination-suggestion";
     intent.insufficientDestination = intent.intentMode === "insufficient-intent" && !destinationSpecified;
-    intent.failureReason = intent.intentMode === "invalid-time-intent"
+    intent.failureReason = intent.intentMode === "invalid-duration-intent"
+      ? "invalid-duration"
+      : intent.intentMode === "invalid-time-intent"
       ? "invalid-time-intent"
+      : hasUnresolvedDestination
+        ? "unresolved-destination"
       : intent.intentMode === "insufficient-intent"
         ? "insufficient-intent"
         : "";
-    intent.parseSuccess = Boolean(!intent.isChinaBlocked && !["invalid-time-intent", "insufficient-intent"].includes(intent.intentMode));
+    intent.parseSuccess = Boolean(!intent.isChinaBlocked && !["invalid-duration-intent", "invalid-time-intent", "insufficient-intent"].includes(intent.intentMode));
     intent.canGenerate = intent.parseSuccess;
   } else {
     intent.parseSuccess = Boolean(intent.constraintCount > 0 && !intent.isChinaBlocked);

@@ -5,6 +5,7 @@ import { cleanString, stableHash, uniqueStrings as unique } from "./route-v2-uti
 import {
   ROUTE_INTENT_FINGERPRINT_VERSION,
   createRouteIntentFingerprint,
+  validateNormalizedRouteIntent,
 } from "./route-intent-model.mjs";
 
 export const ROUTE_CANDIDATE_SCHEMA_VERSION = "route-generation-v2-phase2a-candidate-v1";
@@ -128,7 +129,7 @@ export function normalizeRouteCandidate(input = {}, { now = () => new Date().toI
   return normalized;
 }
 
-export function validateRouteCandidate(candidate = {}) {
+function validateRouteCandidateUnsafe(candidate = {}) {
   const reasons = [];
   if (!candidate || typeof candidate !== "object") return { accepted: false, reasons: ["candidate-not-object"] };
   if (!cleanString(candidate.candidateId)) reasons.push("candidateId-required");
@@ -172,8 +173,15 @@ export function validateRouteCandidate(candidate = {}) {
   if (candidate.routeIntentFingerprint && (!candidate.normalizedRouteIntent || typeof candidate.normalizedRouteIntent !== "object")) {
     reasons.push("normalizedRouteIntent-required");
   } else if (candidate.routeIntentFingerprint) {
-    const recomputed = createRouteIntentFingerprint(candidate.normalizedRouteIntent);
-    if (cleanString(recomputed.value) !== cleanString(candidate.routeIntentFingerprint)) {
+    const schemaValidation = validateNormalizedRouteIntent(candidate.normalizedRouteIntent);
+    if (!schemaValidation.valid) {
+      reasons.push("route-intent-schema-invalid");
+      reasons.push(...schemaValidation.violations.map((entry) => `route-intent-schema-invalid:${entry.path}`));
+    }
+    const recomputed = schemaValidation.valid
+      ? createRouteIntentFingerprint(candidate.normalizedRouteIntent)
+      : null;
+    if (recomputed && cleanString(recomputed.value) !== cleanString(candidate.routeIntentFingerprint)) {
       reasons.push("routeIntentFingerprint-content-mismatch");
     }
   }
@@ -213,6 +221,14 @@ export function validateRouteCandidate(candidate = {}) {
     reasons.push("candidateId-content-mismatch");
   }
   return { accepted: reasons.length === 0, reasons };
+}
+
+export function validateRouteCandidate(candidate = {}) {
+  try {
+    return validateRouteCandidateUnsafe(candidate);
+  } catch {
+    return { accepted: false, reasons: ["candidate-schema-validation-failed"] };
+  }
 }
 
 export function isRouteV2CandidatePoolEnabled(env = process.env) {

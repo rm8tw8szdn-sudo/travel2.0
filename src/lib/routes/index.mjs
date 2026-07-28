@@ -370,12 +370,14 @@ export {
 } from "./route-intent-shadow-validation.mjs";
 export {
   ROUTE_INTENT_FINGERPRINT_VERSION,
+  ROUTE_INTENT_SCHEMA_INVALID_REASON,
   ROUTE_INTENT_SCHEMA_VERSION,
   attachRouteIntentEnvelope,
   createRouteIntentFingerprint,
   maxDestinationsForRouteIntentDays,
   normalizeRouteIntent,
   readRouteIntentEnvelope,
+  validateNormalizedRouteIntent,
 } from "./route-intent-model.mjs";
 export { createLocalEvidenceSeedOverlay, compareLocalEvidenceQuality } from "./local-evidence-seed-overlay.mjs";
 export {

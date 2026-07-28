@@ -1,9 +1,11 @@
 import {
   ROUTE_INTENT_FINGERPRINT_VERSION,
+  ROUTE_INTENT_SCHEMA_INVALID_REASON,
   attachRouteIntentEnvelope,
   createRouteIntentFingerprint,
   normalizeRouteIntent,
   readRouteIntentEnvelope,
+  validateNormalizedRouteIntent,
 } from "./route-intent-model.mjs";
 
 function clean(value) {
@@ -118,6 +120,43 @@ function violation(code, field, expected, actual, source) {
   return { code, field, expected, actual, source: clean(source || "route-result") };
 }
 
+function schemaFailure(schemaValidation, source) {
+  const violations = (schemaValidation?.violations || []).map((entry) => ({
+    code: ROUTE_INTENT_SCHEMA_INVALID_REASON,
+    field: entry.path,
+    path: entry.path,
+    expected: entry.expected,
+    actualType: entry.actualType,
+    detailCode: entry.code,
+    source: clean(source || "route-result"),
+  }));
+  return {
+    matched: false,
+    accepted: false,
+    success: false,
+    outcome: "constraint-conflict",
+    reasonCodes: [ROUTE_INTENT_SCHEMA_INVALID_REASON],
+    violations,
+    diagnostics: [],
+    requiresEvidence: false,
+    fingerprint: "",
+    fingerprintVersion: ROUTE_INTENT_FINGERPRINT_VERSION,
+    normalizedIntent: null,
+    routeDestinationCount: 0,
+    capacityDemand: 0,
+    requiredDestinationCount: 0,
+    missingRequiredDestinationIds: [],
+    missingRequiredDestinationNames: [],
+    orderMismatch: false,
+    durationConflict: false,
+    capacityConflict: false,
+    timeConstraintConflict: false,
+    destinationConflict: false,
+    countryConflict: false,
+    regionConflict: false,
+  };
+}
+
 function requestedMatches(normalizedIntent, destinations, source, violations) {
   const required = normalizedIntent.hardConstraints.requiredCities;
   if (required.state !== "provided" || !required.values.length) return;
@@ -171,6 +210,8 @@ function successClaim(record = {}, options = {}) {
 export function validateRouteIntentInvariants(record = {}, routeIntent = {}, options = {}) {
   const source = options.source || "route-result";
   const normalizedIntent = normalizeRouteIntent(routeIntent);
+  const schemaValidation = validateNormalizedRouteIntent(normalizedIntent);
+  if (!schemaValidation.valid) return schemaFailure(schemaValidation, source);
   const expectedFingerprint = createRouteIntentFingerprint(normalizedIntent);
   const destinations = routeDestinations(record);
   const constraintDestinations = clean(record.routeReferenceMode) === "citywalk"
@@ -247,8 +288,22 @@ export function validateRouteIntentInvariants(record = {}, routeIntent = {}, opt
 
   const envelope = readRouteIntentEnvelope(record);
   if (options.requireFingerprint !== false) {
-    if (!envelope) {
+    if (!envelope.valid) {
+      if (envelope.claimed) {
+        for (const entry of envelope.violations || []) {
+          violations.push({
+            code: ROUTE_INTENT_SCHEMA_INVALID_REASON,
+            field: entry.path,
+            path: entry.path,
+            expected: entry.expected,
+            actualType: entry.actualType,
+            detailCode: entry.code,
+            source: clean(source),
+          });
+        }
+      } else {
       violations.push(violation("route-intent-fingerprint-missing", "routeIntentFingerprint", expectedFingerprint.value, null, source));
+      }
     } else {
       if (envelope.fingerprintVersion !== ROUTE_INTENT_FINGERPRINT_VERSION) {
         violations.push(violation("route-intent-fingerprint-version-mismatch", "routeIntentFingerprintVersion", ROUTE_INTENT_FINGERPRINT_VERSION, envelope.fingerprintVersion, source));
@@ -261,8 +316,18 @@ export function validateRouteIntentInvariants(record = {}, routeIntent = {}, opt
         violations.push(violation("route-intent-envelope-tampered", "normalizedRouteIntent", envelope.fingerprint, embeddedFingerprint.value, source));
       }
     }
-  } else if (envelope && envelope.fingerprint !== expectedFingerprint.value) {
+  } else if (envelope.valid && envelope.fingerprint !== expectedFingerprint.value) {
     violations.push(violation("route-intent-fingerprint-mismatch", "routeIntentFingerprint", expectedFingerprint.value, envelope.fingerprint, source));
+  } else if (envelope.claimed && !envelope.valid) {
+    violations.push(...(envelope.violations || []).map((entry) => ({
+      code: ROUTE_INTENT_SCHEMA_INVALID_REASON,
+      field: entry.path,
+      path: entry.path,
+      expected: entry.expected,
+      actualType: entry.actualType,
+      detailCode: entry.code,
+      source: clean(source),
+    })));
   }
 
   const conflictStatus = [record.outcome, record.status, record.constraintStatus, record.publicationGate?.status]
@@ -307,8 +372,20 @@ export function validateRouteIntentInvariants(record = {}, routeIntent = {}, opt
 }
 
 export function finalizeRouteResult(record = {}, routeIntent = {}, options = {}) {
-  const attached = attachRouteIntentEnvelope(record, routeIntent);
-  const validation = validateRouteIntentInvariants(attached, routeIntent, {
+  const normalizedIntent = normalizeRouteIntent(routeIntent);
+  const schemaValidation = validateNormalizedRouteIntent(normalizedIntent);
+  if (!schemaValidation.valid) {
+    return {
+      matched: false,
+      accepted: false,
+      success: false,
+      status: "constraint-conflict",
+      record: null,
+      validation: schemaFailure(schemaValidation, options.source),
+    };
+  }
+  const attached = attachRouteIntentEnvelope(record, normalizedIntent);
+  const validation = validateRouteIntentInvariants(attached, normalizedIntent, {
     ...options,
     requireFingerprint: true,
   });
@@ -338,7 +415,12 @@ export function finalizeRouteResult(record = {}, routeIntent = {}, options = {})
 
 export function validateEmbeddedRouteIntent(record = {}, options = {}) {
   const envelope = readRouteIntentEnvelope(record);
-  if (!envelope) {
+  if (!envelope.valid) {
+    if (envelope.claimed) return schemaFailure({
+      valid: false,
+      reasonCode: ROUTE_INTENT_SCHEMA_INVALID_REASON,
+      violations: envelope.violations,
+    }, options.source);
     return options.allowLegacyUnbound === false
       ? {
         matched: false,

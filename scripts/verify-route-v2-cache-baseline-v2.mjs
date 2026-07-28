@@ -9,7 +9,11 @@ import {
   auditRouteV2Cache,
   verifyCacheBaselineV2,
 } from "../src/lib/routes/cache-baseline-v2.mjs";
-import { createRouteSearchCache } from "../src/lib/routes/route-search-cache.mjs";
+import {
+  attachRouteIntentEnvelope,
+  createRouteSearchCache,
+  normalizeRouteIntent,
+} from "../src/lib/routes/index.mjs";
 import { readKnowledgeGraphCache } from "../src/lib/routes/wikidata-sparql-knowledge-graph.mjs";
 
 const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
@@ -106,6 +110,45 @@ try {
   assert(brokenJsonl.errors.some((error) => error.includes("search-analytics.jsonl:invalid-jsonl")));
   fs.writeFileSync(analyticsPath, analyticsOriginal);
   testResults.corruptJsonlDetected = true;
+
+  const nestedIntent = normalizeRouteIntent({
+    countryCode: "JP",
+    durationDays: 7,
+    timeIntent: { type: "single-month", months: [2] },
+  });
+  const nestedRoute = attachRouteIntentEnvelope({
+    id: "cache-baseline-nested-intent",
+    countries: ["JP"],
+    countryCodes: ["JP"],
+    destinations: ["Tokyo", "Kyoto"],
+    destinationEntities: [
+      { entityId: "Q1490", countryCode: "JP" },
+      { entityId: "Q34600", countryCode: "JP" },
+    ],
+    durationDays: 7,
+    timeIntent: { type: "single-month", months: [2], evidenceStatus: "ready" },
+    evidenceStatus: "ready",
+  }, nestedIntent);
+  const copiedSearchCachePath = path.join(copyRoot, "search-cache.json");
+  const nestedSearchCache = createRouteSearchCache({
+    storagePath: copiedSearchCachePath,
+    reviewPath: path.join(temporaryRoot, "nested-review.json"),
+  });
+  assert(nestedSearchCache.put({ intent: nestedIntent, records: [nestedRoute] }));
+  const nestedSearchPayload = JSON.parse(fs.readFileSync(copiedSearchCachePath, "utf8"));
+  const nestedKey = nestedRoute.routeIntentFingerprint;
+  assert(nestedSearchPayload.items[nestedKey], "canonical nested RouteIntent cache item must exist");
+  nestedSearchPayload.items[nestedKey].records[0].normalizedRouteIntent.hardConstraints.months.values = null;
+  fs.writeFileSync(copiedSearchCachePath, JSON.stringify(nestedSearchPayload, null, 2), "utf8");
+  const nestedIntentCorruption = auditRouteV2Cache(copyRoot);
+  assert.equal(nestedIntentCorruption.status, "FAIL");
+  assert(nestedIntentCorruption.errors.some((error) => (
+    error.includes("search-cache.json:item-")
+      && error.includes(".records[0]:route-intent-schema-invalid")
+      && error.endsWith("normalizedRouteIntent.hardConstraints.months.values")
+  )));
+  restore("search-cache.json");
+  testResults.nestedRouteIntentCorruptionDetected = true;
 
   const corruptSearchCachePath = path.join(temporaryRoot, "corrupt-search-cache.json");
   fs.writeFileSync(corruptSearchCachePath, "{broken", "utf8");

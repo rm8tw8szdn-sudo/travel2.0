@@ -8,6 +8,7 @@ import {
   createRouteIntentFingerprint,
   finalizeRouteResult,
   normalizeRouteIntent,
+  validateNormalizedRouteIntent,
   validateRouteIntentInvariants,
 } from "../src/lib/routes/index.mjs";
 import { evaluateRouteIntentOracle } from "../src/lib/routes/route-intent-model-oracle.mjs";
@@ -236,6 +237,46 @@ for (let index = 0; index < FUZZ_CASES; index += 1) {
   fuzzAssertions += 3;
 }
 
+const malformedMutators = [
+  (intent) => { intent.hardConstraints.months.values = null; },
+  (intent) => { intent.hardConstraints.months.values = {}; },
+  (intent) => { intent.hardConstraints.exactDays.value = "7"; },
+  (intent) => { delete intent.hardConstraints.requiredCities.values; },
+  (intent) => { intent.hardConstraints.months.state = "future-state"; },
+  (intent) => { intent.hardConstraints.months.extra = { deep: { deeper: { value: true } } }; },
+  (intent) => { intent.softPreferences.transport.values = "rail"; },
+  (intent) => { intent.normalizedRouteIntent = { schemaVersion: "route-intent-v1", hardConstraints: {} }; },
+];
+let malformedAssertions = 0;
+const malformedBase = normalizeRouteIntent({
+  intentMode: "specified-destination",
+  requiredDestinationIds: ["Q1490", "Q34600"],
+  requiredDestinationNames: ["Tokyo", "Kyoto"],
+  destinationOrderMode: "fixed",
+  durationDays: 7,
+  timeIntent: { type: "single-month", months: [2] },
+});
+for (const [index, mutate] of malformedMutators.entries()) {
+  const subject = structuredClone(malformedBase);
+  mutate(subject);
+  let validation;
+  assert.doesNotThrow(() => { validation = validateNormalizedRouteIntent(subject); }, `malformed-${index}`);
+  assert.equal(validation.valid, false, `malformed-${index} must fail closed`);
+  const route = attachRouteIntentEnvelope({ id: `malformed-${index}` }, malformedBase);
+  route.normalizedRouteIntent = subject;
+  assert.doesNotThrow(() => validateRouteIntentInvariants(route, subject, {
+    source: `malformed-${index}`,
+    requireFingerprint: true,
+    claimedSuccess: true,
+  }));
+  assert.equal(validateRouteIntentInvariants(route, subject, {
+    source: `malformed-${index}`,
+    requireFingerprint: true,
+    claimedSuccess: true,
+  }).matched, false);
+  malformedAssertions += 4;
+}
+
 const corpus = JSON.parse(fs.readFileSync(corpusPath, "utf8"));
 assert.equal(corpus.schemaVersion, "route-v2-permanent-intent-corpus-v1");
 let corpusAssertions = 0;
@@ -268,6 +309,7 @@ console.log(JSON.stringify({
   seed: `0x${SEED.toString(16)}`,
   property: { cases: PROPERTY_CASES, assertions: propertyAssertions },
   fuzz: { cases: FUZZ_CASES, assertions: fuzzAssertions },
+  malformed: { cases: malformedMutators.length, assertions: malformedAssertions },
   metamorphic: { cases: METAMORPHIC_CASES, assertions: metamorphicAssertions },
   differential: { cases: 80 * DIFFERENTIAL_SOURCES.length, assertions: differentialAssertions, sources: DIFFERENTIAL_SOURCES },
   permanentCorpus: { cases: corpus.cases.length, assertions: corpusAssertions },

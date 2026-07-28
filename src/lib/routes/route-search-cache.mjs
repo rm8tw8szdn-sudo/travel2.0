@@ -3,6 +3,7 @@ import path from "node:path";
 import {
   ROUTE_INTENT_FINGERPRINT_VERSION,
   createRouteIntentFingerprint,
+  validateNormalizedRouteIntent,
 } from "./route-intent-model.mjs";
 import {
   finalizeRouteResult,
@@ -55,6 +56,17 @@ export function createRouteSearchCache({
   now = () => Date.now(),
 } = {}) {
   const ttlMs = Math.max(1, Number(ttlDays) || 30) * 24 * 60 * 60 * 1000;
+  const diagnostics = [];
+
+  function recordDiagnostic(type, validation = null, extra = {}) {
+    const first = validation?.violations?.[0] || {};
+    diagnostics.push({
+      type,
+      reasonCode: validation?.reasonCodes?.[0] || validation?.reasonCode || "",
+      path: first.path || first.field || "",
+      ...extra,
+    });
+  }
 
   function readStore() {
     const payload = readJson(storagePath, { schemaVersion: ROUTE_SEARCH_CACHE_SCHEMA_VERSION, items: {} });
@@ -74,45 +86,77 @@ export function createRouteSearchCache({
 
   function intentFingerprint(intent) {
     if (!intent || typeof intent !== "object") return "";
-    const fingerprint = createRouteIntentFingerprint(intent);
-    return clean(fingerprint.value);
+    try {
+      const fingerprint = createRouteIntentFingerprint(intent);
+      if (!fingerprint.valid) {
+        recordDiagnostic("search-cache-intent-invalid", fingerprint.validation);
+        return "";
+      }
+      return clean(fingerprint.value);
+    } catch {
+      recordDiagnostic("search-cache-intent-invalid");
+      return "";
+    }
   }
 
   function get(intent) {
-    const key = intentFingerprint(intent);
-    if (!key) return null;
-    const store = readStore();
-    const item = store.items[key];
-    if (!item
-      || Number(item.schemaVersion) !== ROUTE_SEARCH_CACHE_SCHEMA_VERSION
-      || clean(item.routeIntentFingerprintVersion) !== ROUTE_INTENT_FINGERPRINT_VERSION
-      || clean(item.routeIntentFingerprint) !== key
-      || !isFresh(item)) {
+    try {
+      const key = intentFingerprint(intent);
+      if (!key) return null;
+      const store = readStore();
+      const item = store.items[key];
+      if (!item
+        || Number(item.schemaVersion) !== ROUTE_SEARCH_CACHE_SCHEMA_VERSION
+        || clean(item.routeIntentFingerprintVersion) !== ROUTE_INTENT_FINGERPRINT_VERSION
+        || clean(item.routeIntentFingerprint) !== key
+        || !Array.isArray(item.records)
+        || !isFresh(item)) {
+        return null;
+      }
+      const itemIntentValidation = validateNormalizedRouteIntent(item.normalizedIntent);
+      if (!itemIntentValidation.valid) {
+        recordDiagnostic("search-cache-item-intent-invalid", itemIntentValidation);
+        return null;
+      }
+      const itemFingerprint = createRouteIntentFingerprint(item.normalizedIntent);
+      if (!itemFingerprint.valid || clean(itemFingerprint.value) !== key) {
+        recordDiagnostic("search-cache-item-intent-invalid", null, { reasonCode: "route-intent-fingerprint-mismatch" });
+        return null;
+      }
+      const records = item.records.filter((record, index) => {
+        const validation = validateEmbeddedRouteIntent(record, {
+          source: "search-cache-read",
+          allowLegacyUnbound: false,
+        });
+        if (!validation.matched || clean(validation.fingerprint) !== key) {
+          recordDiagnostic("search-cache-record-invalid", validation, { index });
+          return false;
+        }
+        return true;
+      });
+      if (records.length !== item.records.length) return null;
+      const next = {
+        ...item,
+        records,
+        lastAccess: new Date(now()).toISOString(),
+        hitCount: Number(item.hitCount || 0) + 1,
+      };
+      store.items[key] = next;
+      writeStore(store);
+      return clone(next);
+    } catch {
+      recordDiagnostic("search-cache-read-failed");
       return null;
     }
-    const records = (item.records || []).filter((record) => {
-      const validation = validateEmbeddedRouteIntent(record, {
-        source: "search-cache-read",
-        allowLegacyUnbound: false,
-      });
-      return validation.matched && clean(validation.fingerprint) === key;
-    });
-    if (records.length !== (item.records || []).length) return null;
-    const next = {
-      ...item,
-      records,
-      lastAccess: new Date(now()).toISOString(),
-      hitCount: Number(item.hitCount || 0) + 1,
-    };
-    store.items[key] = next;
-    writeStore(store);
-    return clone(next);
   }
 
   function put({ intent, records = [], sourceQuery = "", status = "search-generated", plannerMeta = {} } = {}) {
     const fingerprint = createRouteIntentFingerprint(intent || {});
     const key = clean(fingerprint.value);
-    if (!key) return null;
+    if (!fingerprint.valid || !key) {
+      recordDiagnostic("search-cache-intent-invalid", fingerprint.validation);
+      return null;
+    }
     const finalizedRecords = [];
     for (const record of records || []) {
       const finalized = finalizeRouteResult(record, intent, {
@@ -154,33 +198,67 @@ export function createRouteSearchCache({
     const id = clean(routeId);
     if (!id) return null;
     const store = readStore();
-    for (const item of Object.values(store.items)) {
+    for (const [itemKey, item] of Object.entries(store.items)) {
       if (!isFresh(item)
         || Number(item?.schemaVersion) !== ROUTE_SEARCH_CACHE_SCHEMA_VERSION
-        || clean(item?.routeIntentFingerprintVersion) !== ROUTE_INTENT_FINGERPRINT_VERSION) {
+        || clean(item?.routeIntentFingerprintVersion) !== ROUTE_INTENT_FINGERPRINT_VERSION
+        || !Array.isArray(item?.records)) {
         continue;
       }
-      const record = (item.records || []).find((candidate) => clean(candidate?.id) === id);
+      const itemIntentValidation = validateNormalizedRouteIntent(item.normalizedIntent);
+      if (!itemIntentValidation.valid) {
+        recordDiagnostic("search-cache-item-intent-invalid", itemIntentValidation, { itemKey });
+        continue;
+      }
+      const itemFingerprint = createRouteIntentFingerprint(item.normalizedIntent);
+      if (!itemFingerprint.valid || clean(itemFingerprint.value) !== clean(item.routeIntentFingerprint)) {
+        recordDiagnostic("search-cache-item-intent-invalid", null, {
+          itemKey,
+          reasonCode: "route-intent-fingerprint-mismatch",
+        });
+        continue;
+      }
+      const record = item.records.find((candidate) => clean(candidate?.id) === id);
       if (!record) continue;
-      const validation = validateEmbeddedRouteIntent(record, {
-        source: "search-cache-route-detail",
-        allowLegacyUnbound: false,
-      });
+      let validation;
+      try {
+        validation = validateEmbeddedRouteIntent(record, {
+          source: "search-cache-route-detail",
+          allowLegacyUnbound: false,
+        });
+      } catch {
+        recordDiagnostic("search-cache-record-invalid", null, { itemKey });
+        continue;
+      }
       if (validation.matched
         && clean(validation.fingerprint) === clean(item.routeIntentFingerprint)) {
         return { item: clone(item), record: clone(record) };
       }
+      recordDiagnostic("search-cache-record-invalid", validation, { itemKey });
     }
     return null;
   }
 
   function appendReviewCandidates({ intent, records = [], queryId = "", plannerMeta = {} } = {}) {
     if (!records.length) return;
+    const fingerprint = createRouteIntentFingerprint(intent || {});
+    if (!fingerprint.valid) {
+      recordDiagnostic("search-review-intent-invalid", fingerprint.validation);
+      return;
+    }
     const payload = readJson(reviewPath, { schemaVersion: 1, candidates: [] });
     const candidates = Array.isArray(payload?.candidates) ? payload.candidates : [];
     const existing = new Set(candidates.map((item) => `${item.intentHash}:${item.routeId}`));
     const createdAt = new Date(now()).toISOString();
     for (const record of records) {
+      const validation = validateEmbeddedRouteIntent(record, {
+        source: "search-review-write",
+        allowLegacyUnbound: false,
+      });
+      if (!validation.matched || clean(validation.fingerprint) !== clean(fingerprint.value)) {
+        recordDiagnostic("search-review-record-invalid", validation);
+        continue;
+      }
       const key = `${intent?.intentHash || ""}:${record?.id || ""}`;
       if (existing.has(key)) continue;
       existing.add(key);
@@ -189,7 +267,10 @@ export function createRouteSearchCache({
         queryId,
         intentHash: intent?.intentHash || "",
         intentKey: intent?.intentKey || "",
-        normalizedIntent: clone(intent || {}),
+        routeIntentSchemaVersion: fingerprint.normalizedIntent.schemaVersion,
+        routeIntentFingerprintVersion: fingerprint.version,
+        routeIntentFingerprint: fingerprint.value,
+        normalizedIntent: clone(fingerprint.normalizedIntent),
         routeId: record.id,
         status: "needs-review",
         plannerMeta: clone(plannerMeta),
@@ -207,5 +288,12 @@ export function createRouteSearchCache({
     return { removed: before - Object.keys(store.items).length, remaining: Object.keys(store.items).length };
   }
 
-  return { get, put, findRoute, appendReviewCandidates, cleanup };
+  return {
+    get,
+    put,
+    findRoute,
+    appendReviewCandidates,
+    cleanup,
+    diagnostics: () => clone(diagnostics),
+  };
 }

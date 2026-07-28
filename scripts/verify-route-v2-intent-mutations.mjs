@@ -1,12 +1,21 @@
 import assert from "node:assert/strict";
+import fs from "node:fs";
+import os from "node:os";
+import path from "node:path";
 
 import {
   attachRouteIntentEnvelope,
+  createRouteSearchCache,
   createRouteIntentFingerprint,
   finalizeRouteResult,
+  normalizeRouteCandidate,
+  normalizeRouteIntent,
   validateEmbeddedRouteIntent,
+  validateNormalizedRouteIntent,
+  validateRouteCandidate,
   validateRouteIntentInvariants,
 } from "../src/lib/routes/index.mjs";
+import { auditRouteV2Cache } from "../src/lib/routes/cache-baseline-v2.mjs";
 
 const baseIntent = {
   intentMode: "specified-destination",
@@ -35,6 +44,8 @@ const baseRoute = {
 
 const valid = finalizeRouteResult(baseRoute, baseIntent, { claimedSuccess: true, source: "mutation-base" });
 assert.equal(valid.matched, true);
+const temporaryRoot = fs.mkdtempSync(path.join(os.tmpdir(), "route-v2-intent-mutations-"));
+process.once("exit", () => fs.rmSync(temporaryRoot, { recursive: true, force: true }));
 
 const results = [];
 function kill(name, assertion, detectedBy) {
@@ -155,6 +166,94 @@ kill(
   "fingerprint-hard-constraint-sensitivity",
 );
 
+const malformedNormalizedIntent = normalizeRouteIntent(baseIntent);
+malformedNormalizedIntent.hardConstraints.months.values = null;
+let malformedValidation;
+kill(
+  "skip-months-values-type-check",
+  (() => {
+    assert.doesNotThrow(() => { malformedValidation = validateNormalizedRouteIntent(malformedNormalizedIntent); });
+    return malformedValidation.valid === false;
+  })(),
+  "strict-normalized-route-intent-schema",
+);
+kill(
+  "validator-exception-defaults-valid",
+  malformedValidation.reasonCode === "route-intent-schema-invalid",
+  "non-throwing-fail-closed-validator",
+);
+
+const malformedEnvelope = structuredClone(valid.record);
+malformedEnvelope.normalizedRouteIntent.hardConstraints.months.values = null;
+kill(
+  "candidate-schema-invalid-becomes-legacy",
+  !validateEmbeddedRouteIntent(malformedEnvelope, { allowLegacyUnbound: true }).matched,
+  "claimed-envelope-never-legacy",
+);
+
+const candidate = normalizeRouteCandidate({
+  intentId: "mutation-intent",
+  countries: ["JP"],
+  destinations: [
+    { id: "Q1490", name: "Tokyo", countryCode: "JP" },
+    { id: "Q34600", name: "Kyoto", countryCode: "JP" },
+  ],
+  proposedOrder: ["Q1490", "Q34600"],
+  durationDays: 7,
+  travelStyle: "classic",
+  generationSource: "mutation",
+  routeIntentFingerprint: valid.record.routeIntentFingerprint,
+  routeIntentFingerprintVersion: valid.record.routeIntentFingerprintVersion,
+  normalizedRouteIntent: malformedNormalizedIntent,
+  createdAt: "2026-07-28T00:00:00.000Z",
+});
+kill(
+  "candidate-skips-route-intent-schema",
+  !validateRouteCandidate(candidate).accepted,
+  "candidate-schema-gate",
+);
+
+const cachePath = path.join(temporaryRoot, "search-cache.json");
+const cache = createRouteSearchCache({
+  storagePath: cachePath,
+  reviewPath: path.join(temporaryRoot, "search-review.json"),
+});
+assert(cache.put({ intent: baseIntent, records: [valid.record] }));
+const cachePayload = JSON.parse(fs.readFileSync(cachePath, "utf8"));
+const [cacheKey] = Object.keys(cachePayload.items);
+cachePayload.items[cacheKey].records[0].normalizedRouteIntent.hardConstraints.months.values = null;
+fs.writeFileSync(cachePath, JSON.stringify(cachePayload, null, 2), "utf8");
+let cacheReplay;
+kill(
+  "search-cache-does-not-catch-schema-error",
+  (() => {
+    assert.doesNotThrow(() => { cacheReplay = cache.get(baseIntent); });
+    return cacheReplay === null;
+  })(),
+  "search-cache-safe-miss",
+);
+
+const auditRoot = path.join(temporaryRoot, "cache-audit");
+fs.mkdirSync(auditRoot, { recursive: true });
+for (const file of [
+  "accepted-routes.json",
+  "route-evidence.json",
+  "provider-sync-state.json",
+  "knowledge-graph-pool.json",
+  "search-analytics.jsonl",
+  "search-review-candidates.json",
+]) {
+  fs.copyFileSync(path.resolve(".route-v2-cache", file), path.join(auditRoot, file));
+}
+fs.copyFileSync(cachePath, path.join(auditRoot, "search-cache.json"));
+const cacheAudit = auditRouteV2Cache(auditRoot);
+kill(
+  "cache-v2-validates-only-outer-json",
+  cacheAudit.status === "FAIL"
+    && cacheAudit.errors.some((entry) => entry.includes("route-intent-schema-invalid:normalizedRouteIntent.hardConstraints.months.values")),
+  "cache-v2-deep-route-intent-audit",
+);
+
 const killed = results.filter((result) => result.killed).length;
 const survived = results.length - killed;
 const score = Number(((killed / results.length) * 100).toFixed(2));
@@ -169,3 +268,5 @@ console.log(JSON.stringify({
   mutationScore: score,
   results,
 }, null, 2));
+
+fs.rmSync(temporaryRoot, { recursive: true, force: true });

@@ -1,6 +1,15 @@
 import crypto from "node:crypto";
 import fs from "node:fs";
 import path from "node:path";
+import {
+  ROUTE_INTENT_FINGERPRINT_VERSION,
+  createRouteIntentFingerprint,
+  validateNormalizedRouteIntent,
+} from "./route-intent-model.mjs";
+import { validateEmbeddedRouteIntent } from "./route-intent-invariant-gate.mjs";
+import { validateRouteCandidate } from "./route-candidate-pool.mjs";
+import { validateDecisionTrace } from "./decision-trace-schema.mjs";
+import { validateEvidenceBundleLifecycle } from "./evidence-bundle-schema.mjs";
 
 export const CACHE_BASELINE_SCHEMA_VERSION = "cache-manifest-v2";
 export const CACHE_BASELINE_GENERATOR = Object.freeze({
@@ -138,6 +147,46 @@ function validIsoDate(value) {
   return typeof value === "string" && value.length > 0 && Number.isFinite(Date.parse(value));
 }
 
+function appendIntentSchemaErrors(errors, relativePath, recordLabel, validation) {
+  for (const violation of validation?.violations || []) {
+    errors.push([
+      relativePath,
+      recordLabel,
+      "route-intent-schema-invalid",
+      clean(violation.path || violation.field || "$"),
+    ].join(":"));
+  }
+}
+
+function validateCanonicalRouteIntent(intent, relativePath, recordLabel, errors) {
+  const validation = validateNormalizedRouteIntent(intent);
+  if (!validation.valid) appendIntentSchemaErrors(errors, relativePath, recordLabel, validation);
+  return validation;
+}
+
+function validateEmbeddedIntentRecord(record, relativePath, recordLabel, errors, { allowLegacyUnbound = true } = {}) {
+  const validation = validateEmbeddedRouteIntent(record, {
+    source: "cache-baseline-v2",
+    allowLegacyUnbound,
+  });
+  if (!validation.matched) {
+    const violations = validation.violations || [];
+    if (violations.length) {
+      for (const violation of violations) {
+        errors.push([
+          relativePath,
+          recordLabel,
+          clean(violation.code || validation.reasonCodes?.[0] || "route-intent-invalid"),
+          clean(violation.path || violation.field || "$"),
+        ].join(":"));
+      }
+    } else {
+      errors.push(`${relativePath}:${recordLabel}:${clean(validation.reasonCodes?.[0] || "route-intent-invalid")}:$`);
+    }
+  }
+  return validation;
+}
+
 function validateProviderSyncState(payload, relativePath, errors) {
   if (!plainObject(payload) || Number(payload.schemaVersion) !== 1 || !plainObject(payload.providers)) {
     errors.push(`${relativePath}:invalid-provider-sync-root`);
@@ -198,14 +247,45 @@ function validateSearchCache(payload, relativePath, errors) {
     errors.push(`${relativePath}:invalid-search-cache-root`);
     return;
   }
-  for (const [fingerprint, item] of Object.entries(payload.items)) {
+  for (const [itemIndex, [fingerprint, item]] of Object.entries(payload.items).entries()) {
     if (!fingerprint || !plainObject(item) || !Array.isArray(item.records) || !plainObject(item.normalizedIntent)) {
-      errors.push(`${relativePath}:invalid-search-cache-item:${fingerprint || "empty"}`);
+      errors.push(`${relativePath}:invalid-search-cache-item:${itemIndex}`);
       continue;
     }
-    if (item.expiresAt && !validIsoDate(item.expiresAt)) errors.push(`${relativePath}:invalid-search-cache-expiry:${fingerprint}`);
+    if (item.expiresAt && !validIsoDate(item.expiresAt)) errors.push(`${relativePath}:invalid-search-cache-expiry:${itemIndex}`);
     if (item.records.some((record) => !plainObject(record) || !clean(record.id))) {
-      errors.push(`${relativePath}:invalid-search-cache-route:${fingerprint}`);
+      errors.push(`${relativePath}:invalid-search-cache-route:${itemIndex}`);
+    }
+    const claimed = item.normalizedIntent.schemaVersion != null
+      || item.routeIntentFingerprint != null
+      || item.routeIntentFingerprintVersion != null;
+    if (!claimed) continue;
+    const schemaValidation = validateCanonicalRouteIntent(
+      item.normalizedIntent,
+      relativePath,
+      `item-${itemIndex}.normalizedIntent`,
+      errors,
+    );
+    if (clean(item.routeIntentFingerprintVersion) !== ROUTE_INTENT_FINGERPRINT_VERSION) {
+      errors.push(`${relativePath}:item-${itemIndex}:route-intent-fingerprint-version-invalid`);
+    }
+    if (schemaValidation.valid) {
+      const recomputed = createRouteIntentFingerprint(item.normalizedIntent);
+      if (clean(item.routeIntentFingerprint) !== recomputed.value || fingerprint !== recomputed.value) {
+        errors.push(`${relativePath}:item-${itemIndex}:route-intent-fingerprint-mismatch`);
+      }
+    }
+    for (const [recordIndex, record] of item.records.entries()) {
+      const embedded = validateEmbeddedIntentRecord(
+        record,
+        relativePath,
+        `item-${itemIndex}.records[${recordIndex}]`,
+        errors,
+        { allowLegacyUnbound: false },
+      );
+      if (embedded.matched && clean(embedded.fingerprint) !== clean(item.routeIntentFingerprint)) {
+        errors.push(`${relativePath}:item-${itemIndex}.records[${recordIndex}]:route-intent-fingerprint-mismatch`);
+      }
     }
   }
 }
@@ -222,6 +302,36 @@ function validateSearchReviewCandidates(payload, relativePath, errors) {
       || !plainObject(candidate.record)
       || clean(candidate.record.id) !== clean(candidate.routeId)) {
       errors.push(`${relativePath}:invalid-search-review-candidate:${index}`);
+      continue;
+    }
+    const claimed = candidate.normalizedIntent?.schemaVersion != null
+      || candidate.routeIntentFingerprint != null
+      || candidate.routeIntentFingerprintVersion != null;
+    if (!claimed) continue;
+    const schemaValidation = validateCanonicalRouteIntent(
+      candidate.normalizedIntent,
+      relativePath,
+      `candidate-${index}.normalizedIntent`,
+      errors,
+    );
+    if (clean(candidate.routeIntentFingerprintVersion) !== ROUTE_INTENT_FINGERPRINT_VERSION) {
+      errors.push(`${relativePath}:candidate-${index}:route-intent-fingerprint-version-invalid`);
+    }
+    if (schemaValidation.valid) {
+      const recomputed = createRouteIntentFingerprint(candidate.normalizedIntent);
+      if (clean(candidate.routeIntentFingerprint) !== recomputed.value) {
+        errors.push(`${relativePath}:candidate-${index}:route-intent-fingerprint-mismatch`);
+      }
+    }
+    const embedded = validateEmbeddedIntentRecord(
+      candidate.record,
+      relativePath,
+      `candidate-${index}.record`,
+      errors,
+      { allowLegacyUnbound: false },
+    );
+    if (embedded.matched && clean(embedded.fingerprint) !== clean(candidate.routeIntentFingerprint)) {
+      errors.push(`${relativePath}:candidate-${index}.record:route-intent-fingerprint-mismatch`);
     }
   }
 }
@@ -240,6 +350,13 @@ function validateAcceptedRepository(payload, relativePath, errors) {
     }
     if (routeIds.has(routeId)) errors.push(`${relativePath}:duplicate-accepted-route:${routeId}`);
     routeIds.add(routeId);
+    validateEmbeddedIntentRecord(
+      record,
+      relativePath,
+      `record-${index}`,
+      errors,
+      { allowLegacyUnbound: true },
+    );
   }
   return { routeIds };
 }
@@ -305,6 +422,57 @@ function validateCandidateJsonl(records, relativePath, errors) {
     if (!identity) errors.push(`${relativePath}:invalid-candidate-record:${index + 1}`);
     else if (identities.has(identity)) errors.push(`${relativePath}:duplicate-candidate-record:${identity}`);
     else identities.add(identity);
+    const validation = validateRouteCandidate(record);
+    if (!validation.accepted) {
+      for (const reason of validation.reasons) {
+        const [code, ...pathParts] = reason.split(":");
+        const fieldPath = code === "route-intent-schema-invalid" ? pathParts.join(":") : "";
+        errors.push(`${relativePath}:record-${index}:candidate-invalid:${code}${fieldPath ? `:${fieldPath}` : ""}`);
+      }
+    }
+  }
+}
+
+function validateSidecarJsonl(records, relativePath, errors) {
+  for (const [index, record] of records.entries()) {
+    let validation;
+    try {
+      validation = relativePath === "decision-traces.jsonl"
+        ? validateDecisionTrace(record)
+        : relativePath === "route-evidence-bundles.jsonl"
+          ? validateEvidenceBundleLifecycle(record)
+          : { accepted: true, reasons: [] };
+    } catch {
+      validation = { accepted: false, reasons: ["sidecar-schema-validation-failed"] };
+    }
+    if (!validation.accepted) {
+      for (const reason of validation.reasons || validation.missing || []) {
+        errors.push(`${relativePath}:record-${index}:sidecar-invalid:${clean(reason)}`);
+      }
+    }
+  }
+}
+
+function validateReadyPool(payload, relativePath, errors) {
+  if (!plainObject(payload) || payload.schemaVersion !== "route-v2-ready-pool-v1" || !Array.isArray(payload.records)) {
+    errors.push(`${relativePath}:invalid-ready-pool-root`);
+    return;
+  }
+  for (const [index, entry] of payload.records.entries()) {
+    if (!plainObject(entry) || !plainObject(entry.routeRecord)) {
+      errors.push(`${relativePath}:invalid-ready-pool-record:${index}`);
+      continue;
+    }
+    const validation = validateEmbeddedIntentRecord(
+      entry.routeRecord,
+      relativePath,
+      `record-${index}.routeRecord`,
+      errors,
+      { allowLegacyUnbound: false },
+    );
+    if (validation.matched && clean(entry.routeIntentFingerprint) !== clean(entry.routeRecord.routeIntentFingerprint)) {
+      errors.push(`${relativePath}:record-${index}:route-intent-fingerprint-mismatch`);
+    }
   }
 }
 
@@ -328,6 +496,7 @@ function runtimeType(relativePath) {
   if (relativePath === "destination-images.json") return "destination-images-json";
   if (relativePath === "route-image-cache.json") return "route-image-cache-json";
   if (relativePath === "route-candidate-pool.jsonl") return "candidate-pool-jsonl";
+  if (/^(?:route-v2-ready-pool|ready-routes)\.json$/u.test(relativePath)) return "ready-pool-json";
   if (/^(?:decision-traces|route-evidence-bundles)\.jsonl$/u.test(relativePath)) return "sidecar-store-jsonl";
   if (/^bulk-route-generation-.+\.jsonl$/u.test(relativePath)) return "bulk-report-jsonl";
   if (/^(?:feed-image-pool|feed-image-pool-report|feed-image-prewarm-report|feed-proxy-warm-report|image-country-audit-500)\.json$/u.test(relativePath)) {
@@ -412,7 +581,17 @@ function validateRuntimeFile({ absolutePath, path: relativePath, structureType, 
       records = parseJsonl(buffer, relativePath, errors);
       validateCandidateJsonl(records, relativePath, errors);
       break;
+    case "ready-pool-json":
+      buffer = readBytes(absolutePath, MAX_BYTES.runtimeJson, errors, relativePath);
+      validateNoSensitiveContent(buffer, relativePath, errors);
+      validateReadyPool(parseJson(buffer, relativePath, errors), relativePath, errors);
+      break;
     case "sidecar-store-jsonl":
+      buffer = readBytes(absolutePath, MAX_BYTES.runtimeJsonl, errors, relativePath);
+      validateNoSensitiveContent(buffer, relativePath, errors);
+      records = parseJsonl(buffer, relativePath, errors);
+      validateSidecarJsonl(records, relativePath, errors);
+      break;
     case "bulk-report-jsonl":
       buffer = readBytes(absolutePath, MAX_BYTES.runtimeJsonl, errors, relativePath);
       validateNoSensitiveContent(buffer, relativePath, errors);

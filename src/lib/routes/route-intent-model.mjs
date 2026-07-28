@@ -2,9 +2,51 @@ import crypto from "node:crypto";
 
 export const ROUTE_INTENT_SCHEMA_VERSION = "route-intent-v1";
 export const ROUTE_INTENT_FINGERPRINT_VERSION = "route-intent-fingerprint-v1";
+export const ROUTE_INTENT_SCHEMA_INVALID_REASON = "route-intent-schema-invalid";
 
 const hasOwn = (value, key) => Boolean(value && Object.prototype.hasOwnProperty.call(value, key));
 const clone = (value) => value == null ? value : structuredClone(value);
+const PRESENCE_STATES = new Set(["unspecified", "explicit-empty", "provided"]);
+const INTENT_MODES = new Set([
+  "specified-destination",
+  "destination-suggestion",
+  "invalid-duration-intent",
+  "invalid-time-intent",
+  "insufficient-intent",
+]);
+const TIME_TYPES = new Set(["unspecified", "single-month", "month-range", "season-only", "invalid"]);
+const TIME_EVIDENCE_STATUSES = new Set(["not-requested", "needs-evidence", "invalid"]);
+const ORDER_MODES = new Set(["unspecified", "fixed", "flexible"]);
+const NORMALIZED_ROUTE_INTENT_KEYS = new Set([
+  "schemaVersion",
+  "intentMode",
+  "hardConstraints",
+  "softPreferences",
+  "displayMetadata",
+  "evidenceStatus",
+]);
+const HARD_CONSTRAINT_KEYS = new Set([
+  "requiredCities",
+  "destinationOrderMode",
+  "exactDays",
+  "months",
+  "season",
+  "timeType",
+  "country",
+  "countries",
+  "region",
+  "routeCapacity",
+  "invalidTime",
+]);
+const SOFT_PREFERENCE_KEYS = new Set([
+  "travelStyle",
+  "theme",
+  "transport",
+  "pace",
+  "budget",
+  "tripIntent",
+  "exclusions",
+]);
 
 function clean(value) {
   return String(value ?? "").normalize("NFKC").trim().replace(/\s+/gu, " ");
@@ -34,6 +76,263 @@ function unique(values, identity = (value) => value) {
     output.push(value);
   }
   return output;
+}
+
+function actualType(value) {
+  if (value === null) return "null";
+  if (Array.isArray(value)) return "array";
+  if (typeof value === "number" && !Number.isFinite(value)) return "non-finite-number";
+  return typeof value;
+}
+
+function schemaViolation(path, expected, value, code = "invalid-type") {
+  return {
+    reasonCode: ROUTE_INTENT_SCHEMA_INVALID_REASON,
+    code,
+    path,
+    expected,
+    actualType: actualType(value),
+  };
+}
+
+function plainObject(value) {
+  return Boolean(value) && typeof value === "object" && !Array.isArray(value);
+}
+
+function validateObjectKeys(value, path, allowedKeys, violations) {
+  if (!plainObject(value)) {
+    violations.push(schemaViolation(path, "object", value));
+    return false;
+  }
+  for (const key of allowedKeys) {
+    if (!hasOwn(value, key)) {
+      violations.push(schemaViolation(`${path}.${key}`, "required field", undefined, "missing-field"));
+    }
+  }
+  for (const key of Object.keys(value)) {
+    if (!allowedKeys.has(key)) {
+      violations.push(schemaViolation(`${path}.${key}`, "no unknown field", value[key], "unknown-field"));
+    }
+  }
+  return true;
+}
+
+function validateString(value, path, violations, { allowEmpty = true } = {}) {
+  if (typeof value !== "string") {
+    violations.push(schemaViolation(path, "string", value));
+    return false;
+  }
+  if ((!allowEmpty && !clean(value)) || /[\u0000-\u001f\u007f]/u.test(value)) {
+    violations.push(schemaViolation(path, allowEmpty ? "string without control characters" : "non-empty stable string", value, "invalid-value"));
+    return false;
+  }
+  return true;
+}
+
+function validateState(value, path, violations) {
+  if (typeof value !== "string" || !PRESENCE_STATES.has(value)) {
+    violations.push(schemaViolation(path, "unspecified|explicit-empty|provided", value, "invalid-enum"));
+    return false;
+  }
+  return true;
+}
+
+function validateListPresence(value, path, violations, itemValidator) {
+  if (!validateObjectKeys(value, path, new Set(["state", "values"]), violations)) return;
+  const stateValid = validateState(value.state, `${path}.state`, violations);
+  if (!Array.isArray(value.values)) {
+    violations.push(schemaViolation(`${path}.values`, "array", value.values));
+    return;
+  }
+  if (stateValid && value.state === "provided" && value.values.length === 0) {
+    violations.push(schemaViolation(`${path}.values`, "non-empty array when state=provided", value.values, "state-value-conflict"));
+  }
+  if (stateValid && value.state !== "provided" && value.values.length !== 0) {
+    violations.push(schemaViolation(`${path}.values`, "empty array unless state=provided", value.values, "state-value-conflict"));
+  }
+  value.values.forEach((entry, index) => itemValidator(entry, `${path}.values[${index}]`, violations));
+}
+
+function validateScalarPresence(value, path, violations, {
+  provided,
+  empty,
+}) {
+  if (!validateObjectKeys(value, path, new Set(["state", "value"]), violations)) return;
+  const stateValid = validateState(value.state, `${path}.state`, violations);
+  if (!stateValid) return;
+  if (value.state === "provided") provided(value.value, `${path}.value`, violations);
+  else empty(value.value, `${path}.value`, violations);
+}
+
+function validatePositiveInteger(value, path, violations) {
+  if (!Number.isInteger(value) || value <= 0) {
+    violations.push(schemaViolation(path, "positive integer", value, "invalid-value"));
+  }
+}
+
+function validateNull(value, path, violations) {
+  if (value !== null) violations.push(schemaViolation(path, "null", value, "state-value-conflict"));
+}
+
+function validateEmptyString(value, path, violations) {
+  if (typeof value !== "string" || value !== "") {
+    violations.push(schemaViolation(path, "empty string", value, "state-value-conflict"));
+  }
+}
+
+function validateStableString(value, path, violations) {
+  validateString(value, path, violations, { allowEmpty: false });
+}
+
+function validateRequiredCity(value, path, violations) {
+  if (!validateObjectKeys(value, path, new Set(["id", "name"]), violations)) return;
+  const idValid = validateString(value.id, `${path}.id`, violations);
+  const nameValid = validateString(value.name, `${path}.name`, violations);
+  if (idValid && nameValid && !clean(value.id) && !clean(value.name)) {
+    violations.push(schemaViolation(path, "city with a non-empty id or name", value, "invalid-value"));
+  }
+}
+
+/**
+ * Strictly validates the canonical RouteIntent snapshot.
+ *
+ * This function deliberately avoids cloning, parsing, normalization, hashing, or
+ * value interpolation so callers can safely use it on untrusted JSON records.
+ */
+export function validateNormalizedRouteIntent(input) {
+  const violations = [];
+  try {
+    if (!validateObjectKeys(input, "$", NORMALIZED_ROUTE_INTENT_KEYS, violations)) {
+      return { valid: false, reasonCode: ROUTE_INTENT_SCHEMA_INVALID_REASON, violations };
+    }
+    if (input.schemaVersion !== ROUTE_INTENT_SCHEMA_VERSION) {
+      violations.push(schemaViolation("schemaVersion", ROUTE_INTENT_SCHEMA_VERSION, input.schemaVersion, "unsupported-version"));
+    }
+    if (typeof input.intentMode !== "string" || !INTENT_MODES.has(input.intentMode)) {
+      violations.push(schemaViolation("intentMode", [...INTENT_MODES].join("|"), input.intentMode, "invalid-enum"));
+    }
+
+    if (validateObjectKeys(input.hardConstraints, "hardConstraints", HARD_CONSTRAINT_KEYS, violations)) {
+      const hard = input.hardConstraints;
+      validateListPresence(hard.requiredCities, "hardConstraints.requiredCities", violations, validateRequiredCity);
+      if (Array.isArray(hard.requiredCities?.values)) {
+        const identities = hard.requiredCities.values.map((entry) => clean(entry?.id) || clean(entry?.name)).filter(Boolean);
+        if (new Set(identities).size !== identities.length) {
+          violations.push(schemaViolation("hardConstraints.requiredCities.values", "unique city identities", hard.requiredCities.values, "duplicate-value"));
+        }
+      }
+      validateScalarPresence(hard.destinationOrderMode, "hardConstraints.destinationOrderMode", violations, {
+        provided: (value, path, target) => {
+          if (typeof value !== "string" || !ORDER_MODES.has(value)) {
+            target.push(schemaViolation(path, [...ORDER_MODES].join("|"), value, "invalid-enum"));
+          }
+        },
+        empty: (value, path, target) => {
+          if (value !== "unspecified") target.push(schemaViolation(path, "unspecified", value, "state-value-conflict"));
+        },
+      });
+      validateScalarPresence(hard.exactDays, "hardConstraints.exactDays", violations, {
+        provided: validatePositiveInteger,
+        empty: validateNull,
+      });
+      validateListPresence(hard.months, "hardConstraints.months", violations, (value, path, target) => {
+        if (!Number.isInteger(value) || value < 1 || value > 12) {
+          target.push(schemaViolation(path, "integer from 1 through 12", value, "invalid-value"));
+        }
+      });
+      if (Array.isArray(hard.months?.values)
+        && new Set(hard.months.values).size !== hard.months.values.length) {
+        violations.push(schemaViolation("hardConstraints.months.values", "unique months", hard.months.values, "duplicate-value"));
+      }
+      validateScalarPresence(hard.season, "hardConstraints.season", violations, {
+        provided: validateStableString,
+        empty: validateEmptyString,
+      });
+      if (typeof hard.timeType !== "string" || !TIME_TYPES.has(hard.timeType)) {
+        violations.push(schemaViolation("hardConstraints.timeType", [...TIME_TYPES].join("|"), hard.timeType, "invalid-enum"));
+      }
+      validateScalarPresence(hard.country, "hardConstraints.country", violations, {
+        provided: validateStableString,
+        empty: validateEmptyString,
+      });
+      validateListPresence(hard.countries, "hardConstraints.countries", violations, validateStableString);
+      if (Array.isArray(hard.countries?.values)
+        && new Set(hard.countries.values).size !== hard.countries.values.length) {
+        violations.push(schemaViolation("hardConstraints.countries.values", "unique country identities", hard.countries.values, "duplicate-value"));
+      }
+      validateScalarPresence(hard.region, "hardConstraints.region", violations, {
+        provided: validateStableString,
+        empty: validateEmptyString,
+      });
+      validateScalarPresence(hard.routeCapacity, "hardConstraints.routeCapacity", violations, {
+        provided: validatePositiveInteger,
+        empty: validateNull,
+      });
+      if (typeof hard.invalidTime !== "boolean") {
+        violations.push(schemaViolation("hardConstraints.invalidTime", "boolean", hard.invalidTime));
+      } else if (TIME_TYPES.has(hard.timeType) && hard.invalidTime !== (hard.timeType === "invalid")) {
+        violations.push(schemaViolation("hardConstraints.invalidTime", `boolean matching timeType=${hard.timeType}`, hard.invalidTime, "state-value-conflict"));
+      }
+    }
+
+    if (validateObjectKeys(input.softPreferences, "softPreferences", SOFT_PREFERENCE_KEYS, violations)) {
+      for (const field of ["travelStyle", "theme", "pace", "budget", "tripIntent"]) {
+        validateString(input.softPreferences[field], `softPreferences.${field}`, violations);
+      }
+      validateListPresence(input.softPreferences.transport, "softPreferences.transport", violations, validateStableString);
+      if (!Array.isArray(input.softPreferences.exclusions)) {
+        violations.push(schemaViolation("softPreferences.exclusions", "array", input.softPreferences.exclusions));
+      } else {
+        input.softPreferences.exclusions.forEach((value, index) => validateStableString(
+          value,
+          `softPreferences.exclusions[${index}]`,
+          violations,
+        ));
+      }
+    }
+
+    if (validateObjectKeys(
+      input.displayMetadata,
+      "displayMetadata",
+      new Set(["rawQuery", "requiredDestinationNames", "countryName", "regionLabel"]),
+      violations,
+    )) {
+      for (const field of ["rawQuery", "countryName", "regionLabel"]) {
+        validateString(input.displayMetadata[field], `displayMetadata.${field}`, violations);
+      }
+      if (!Array.isArray(input.displayMetadata.requiredDestinationNames)) {
+        violations.push(schemaViolation(
+          "displayMetadata.requiredDestinationNames",
+          "array",
+          input.displayMetadata.requiredDestinationNames,
+        ));
+      } else {
+        input.displayMetadata.requiredDestinationNames.forEach((value, index) => validateString(
+          value,
+          `displayMetadata.requiredDestinationNames[${index}]`,
+          violations,
+        ));
+      }
+    }
+
+    if (validateObjectKeys(input.evidenceStatus, "evidenceStatus", new Set(["time"]), violations)) {
+      if (typeof input.evidenceStatus.time !== "string" || !TIME_EVIDENCE_STATUSES.has(input.evidenceStatus.time)) {
+        violations.push(schemaViolation(
+          "evidenceStatus.time",
+          [...TIME_EVIDENCE_STATUSES].join("|"),
+          input.evidenceStatus.time,
+          "invalid-enum",
+        ));
+      }
+    }
+  } catch {
+    violations.push(schemaViolation("$", "readable canonical RouteIntent object", input, "validation-access-failed"));
+  }
+  return {
+    valid: violations.length === 0,
+    reasonCode: violations.length ? ROUTE_INTENT_SCHEMA_INVALID_REASON : "",
+    violations,
+  };
 }
 
 function presence(provided, value, emptyValue) {
@@ -127,32 +426,22 @@ export function maxDestinationsForRouteIntentDays(days) {
 }
 
 function normalizeAlreadyNormalized(input) {
-  if (input?.schemaVersion !== ROUTE_INTENT_SCHEMA_VERSION
-    || !input?.hardConstraints
-    || !input.hardConstraints.requiredCities
-    || !Array.isArray(input.hardConstraints.requiredCities.values)
-    || !input.hardConstraints.destinationOrderMode
-    || !input.hardConstraints.exactDays
-    || !input.hardConstraints.months
-    || !input.hardConstraints.season
-    || !input.hardConstraints.country
-    || !input.hardConstraints.region
-    || !input.hardConstraints.routeCapacity) {
-    return null;
-  }
-  const normalized = clone(input);
-  if (!normalized.hardConstraints.countries) {
-    normalized.hardConstraints.countries = listPresence(false, []);
-  }
-  return normalized;
+  return validateNormalizedRouteIntent(input).valid ? clone(input) : null;
 }
 
 export function normalizeRouteIntent(input = {}) {
   input = input && typeof input === "object" && !Array.isArray(input) ? input : {};
   const authoritativeSnapshot = normalizeAlreadyNormalized(input.normalizedRouteIntent);
   if (authoritativeSnapshot) return authoritativeSnapshot;
+  if (hasOwn(input, "normalizedRouteIntent")
+    && input.normalizedRouteIntent
+    && typeof input.normalizedRouteIntent === "object"
+    && !Array.isArray(input.normalizedRouteIntent)) {
+    return clone(input.normalizedRouteIntent);
+  }
   const existing = normalizeAlreadyNormalized(input);
   if (existing) return existing;
+  if (hasOwn(input, "schemaVersion")) return clone(input);
 
   const timeIntent = input.timeIntent && typeof input.timeIntent === "object" && !Array.isArray(input.timeIntent)
     ? input.timeIntent
@@ -284,6 +573,17 @@ function stableJson(value) {
 
 export function createRouteIntentFingerprint(input = {}) {
   const normalizedIntent = normalizeRouteIntent(input);
+  const validation = validateNormalizedRouteIntent(normalizedIntent);
+  if (!validation.valid) {
+    return {
+      version: ROUTE_INTENT_FINGERPRINT_VERSION,
+      value: "",
+      canonical: "",
+      normalizedIntent,
+      valid: false,
+      validation,
+    };
+  }
   const canonical = stableJson({
     fingerprintVersion: ROUTE_INTENT_FINGERPRINT_VERSION,
     intent: fingerprintPayload(normalizedIntent),
@@ -294,6 +594,8 @@ export function createRouteIntentFingerprint(input = {}) {
     value: `rif-v1-${digest}`,
     canonical,
     normalizedIntent,
+    valid: true,
+    validation,
   };
 }
 
@@ -309,14 +611,89 @@ export function attachRouteIntentEnvelope(record = {}, input = {}) {
 }
 
 export function readRouteIntentEnvelope(record = {}) {
-  if (!record || typeof record !== "object") return null;
-  if (record.routeIntentSchemaVersion !== ROUTE_INTENT_SCHEMA_VERSION) return null;
-  if (record.routeIntentFingerprintVersion !== ROUTE_INTENT_FINGERPRINT_VERSION) return null;
-  if (!clean(record.routeIntentFingerprint) || !record.normalizedRouteIntent) return null;
-  return {
-    schemaVersion: record.routeIntentSchemaVersion,
-    fingerprintVersion: record.routeIntentFingerprintVersion,
-    fingerprint: clean(record.routeIntentFingerprint),
-    normalizedIntent: clone(record.normalizedRouteIntent),
-  };
+  const markers = [
+    "routeIntentSchemaVersion",
+    "routeIntentFingerprintVersion",
+    "routeIntentFingerprint",
+    "normalizedRouteIntent",
+  ];
+  const claimed = plainObject(record) && markers.some((field) => {
+    if (!hasOwn(record, field)) return false;
+    const value = record[field];
+    if (value == null) return false;
+    return typeof value !== "string" || value.trim().length > 0;
+  });
+  if (!claimed) {
+    return {
+      status: "legacy-unbound",
+      claimed: false,
+      valid: false,
+      reasonCode: "",
+      violations: [],
+    };
+  }
+
+  const violations = [];
+  try {
+    if (record.routeIntentSchemaVersion !== ROUTE_INTENT_SCHEMA_VERSION) {
+      violations.push(schemaViolation(
+        "routeIntentSchemaVersion",
+        ROUTE_INTENT_SCHEMA_VERSION,
+        record.routeIntentSchemaVersion,
+        "unsupported-version",
+      ));
+    }
+    if (record.routeIntentFingerprintVersion !== ROUTE_INTENT_FINGERPRINT_VERSION) {
+      violations.push(schemaViolation(
+        "routeIntentFingerprintVersion",
+        ROUTE_INTENT_FINGERPRINT_VERSION,
+        record.routeIntentFingerprintVersion,
+        "unsupported-version",
+      ));
+    }
+    if (typeof record.routeIntentFingerprint !== "string"
+      || !/^rif-v1-[a-f0-9]{64}$/u.test(record.routeIntentFingerprint)) {
+      violations.push(schemaViolation(
+        "routeIntentFingerprint",
+        "rif-v1 followed by 64 lowercase hexadecimal characters",
+        record.routeIntentFingerprint,
+        "invalid-value",
+      ));
+    }
+    const schemaValidation = validateNormalizedRouteIntent(record.normalizedRouteIntent);
+    for (const entry of schemaValidation.violations) {
+      violations.push({
+        ...entry,
+        path: entry.path === "$" ? "normalizedRouteIntent" : `normalizedRouteIntent.${entry.path}`,
+      });
+    }
+    if (violations.length) {
+      return {
+        status: "schema-invalid",
+        claimed: true,
+        valid: false,
+        reasonCode: ROUTE_INTENT_SCHEMA_INVALID_REASON,
+        violations,
+      };
+    }
+    return {
+      status: "valid",
+      claimed: true,
+      valid: true,
+      reasonCode: "",
+      violations: [],
+      schemaVersion: record.routeIntentSchemaVersion,
+      fingerprintVersion: record.routeIntentFingerprintVersion,
+      fingerprint: record.routeIntentFingerprint,
+      normalizedIntent: clone(record.normalizedRouteIntent),
+    };
+  } catch {
+    return {
+      status: "schema-invalid",
+      claimed: true,
+      valid: false,
+      reasonCode: ROUTE_INTENT_SCHEMA_INVALID_REASON,
+      violations: [schemaViolation("$", "readable RouteIntent envelope", record, "validation-access-failed")],
+    };
+  }
 }

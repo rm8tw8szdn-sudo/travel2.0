@@ -3,6 +3,7 @@ import {
   createRouteIntentFingerprint,
   normalizeRouteIntent,
   readRouteIntentEnvelope,
+  validateNormalizedRouteIntent,
 } from "./route-intent-model.mjs";
 
 const tidy = (value) => String(value ?? "").normalize("NFKC").trim().toLocaleLowerCase("en-US")
@@ -67,6 +68,16 @@ function hasTimeEvidence(route = {}) {
 
 export function evaluateRouteIntentOracle(normalizedIntentInput, route = {}, options = {}) {
   const intent = normalizeRouteIntent(normalizedIntentInput);
+  const schemaValidation = validateNormalizedRouteIntent(intent);
+  if (!schemaValidation.valid) {
+    return {
+      matched: false,
+      outcome: "constraint-conflict",
+      violationCodes: ["route-intent-schema-invalid"],
+      requiresEvidence: false,
+      fingerprint: "",
+    };
+  }
   const points = destinations(route);
   const constraintPoints = String(route.routeReferenceMode || "").trim() === "citywalk"
     ? points.filter((entry) => entry.entityTypeName !== "poi")
@@ -145,14 +156,16 @@ export function evaluateRouteIntentOracle(normalizedIntentInput, route = {}, opt
   const expectedFingerprint = createRouteIntentFingerprint(intent).value;
   const envelope = readRouteIntentEnvelope(route);
   if (options.requireFingerprint !== false) {
-    if (!envelope) violations.push("route-intent-fingerprint-missing");
+    if (!envelope.valid) violations.push(envelope.claimed ? "route-intent-schema-invalid" : "route-intent-fingerprint-missing");
     else {
       if (envelope.fingerprintVersion !== ROUTE_INTENT_FINGERPRINT_VERSION) violations.push("route-intent-fingerprint-version-mismatch");
       if (envelope.fingerprint !== expectedFingerprint) violations.push("route-intent-fingerprint-mismatch");
       if (createRouteIntentFingerprint(envelope.normalizedIntent).value !== envelope.fingerprint) violations.push("route-intent-envelope-tampered");
     }
-  } else if (envelope && envelope.fingerprint !== expectedFingerprint) {
+  } else if (envelope.valid && envelope.fingerprint !== expectedFingerprint) {
     violations.push("route-intent-fingerprint-mismatch");
+  } else if (envelope.claimed && !envelope.valid) {
+    violations.push("route-intent-schema-invalid");
   }
   const statuses = [route.outcome, route.status, route.constraintStatus, route.publicationGate?.status]
     .map((value) => String(value ?? "").trim());

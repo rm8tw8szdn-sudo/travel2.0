@@ -197,7 +197,8 @@ function publicFeedRecord(record = {}) {
 
 function validateBoundRouteIntent(record, source) {
   const isBound = Boolean(
-    record?.routeIntentFingerprint
+    record?.routeIntentSchemaVersion
+      || record?.routeIntentFingerprint
       || record?.routeIntentFingerprintVersion
       || record?.normalizedRouteIntent,
   );
@@ -394,9 +395,9 @@ export function createAcceptedRouteRepository({
   const storedItems = readStoredRecords(storagePath);
   for (const item of storedItems) {
     if (isUnpublishableRouteGenerationV2(item)) continue;
-    const record = normalizeDiscoveredRoute(item);
-    const routeIntentValidation = validateBoundRouteIntent(record, "accepted-repository-load");
+    const routeIntentValidation = validateBoundRouteIntent(item, "accepted-repository-load");
     if (!routeIntentValidation.matched) continue;
+    const record = normalizeDiscoveredRoute(item);
     const quality = validateRouteContent(record);
     const composition = validateCompositionRecord(record);
     if (record?.contentQualityStatus === "accepted" && quality.accepted && composition.accepted && record.coverAsset?.imageUrl) {
@@ -433,14 +434,14 @@ export function createAcceptedRouteRepository({
     if (isUnpublishableRouteGenerationV2(input)) {
       return { accepted: false, reasons: ["v2-not-publishable-yet"] };
     }
-    const record = normalizeDiscoveredRoute(input);
-    const routeIntentValidation = validateBoundRouteIntent(record, "accepted-repository-upsert");
+    const routeIntentValidation = validateBoundRouteIntent(input, "accepted-repository-upsert");
     if (!routeIntentValidation.matched) {
       return {
         accepted: false,
         reasons: ["route-intent-invariant-failed", ...(routeIntentValidation.reasonCodes || [])],
       };
     }
+    const record = normalizeDiscoveredRoute(input);
     const quality = validateRouteContent(record);
     const composition = validateCompositionRecord(record);
     if (!record || record.contentQualityStatus !== "accepted" || !quality.accepted || !composition.accepted || !record.coverAsset?.imageUrl) {

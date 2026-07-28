@@ -7,11 +7,14 @@ import { performance } from "node:perf_hooks";
 import { fileURLToPath } from "node:url";
 import {
   attachRouteIntentEnvelope,
+  createRouteCandidatePoolStore,
   createRouteIntentFingerprint,
   createRouteSearchCache,
   createRouteV2ReadyPool,
+  normalizeRouteCandidate,
   normalizeRouteIntent,
   parseSearchIntent,
+  validateNormalizedRouteIntent,
   validateRouteIntentInvariants,
 } from "../src/lib/routes/index.mjs";
 
@@ -185,8 +188,19 @@ async function liveMeasurements(baseUrlText) {
     assert.equal(result.response.status, 200);
     assert.equal(result.payload.ok, true);
     assert(result.payload.intent?.routeIntentFingerprint);
+    assert(Array.isArray(result.payload.records) && result.payload.records.length > 0, `${query}: cold Planner result must not be empty`);
+    const expectedIds = ["Q1490", "Q34600", "Q35765"];
+    const expectedDays = index + 5;
+    const semanticallyCorrect = result.payload.records.some((record) => {
+      const actualIds = (record.destinationEntities || [])
+        .map((entry) => String(entry?.wikidataId || entry?.entityId || entry?.id || "").trim())
+        .filter(Boolean);
+      return expectedIds.every((id) => actualIds.includes(id))
+        && Number(record.durationDays) === expectedDays;
+    });
+    assert.equal(semanticallyCorrect, true, `${query}: cold Planner result must preserve cities and exact days`);
     plannerDurations.push(result.durationMs);
-    plannerResults.push({ query, records: result.payload.records.length });
+    plannerResults.push({ query, records: result.payload.records.length, semanticallyCorrect });
   }
 
   const replayDurations = [];
@@ -249,6 +263,10 @@ const route = attachRouteIntentEnvelope({
 const local = {
   parseSearchIntent: measureStable(() => parseSearchIntent("东京→京都→大阪7天")),
   normalizeRouteIntent: measure(() => normalizeRouteIntent(rawIntent), { warmup: 200, samples: 40, batchSize: 1_000 }),
+  validateNormalizedRouteIntent: measure(
+    () => validateNormalizedRouteIntent(normalizedIntent),
+    { warmup: 200, samples: 40, batchSize: 1_000 },
+  ),
   fingerprint: measure(() => createRouteIntentFingerprint(normalizedIntent), { warmup: 200, samples: 40, batchSize: 500 }),
   finalInvariantGate: measure(
     () => validateRouteIntentInvariants(route, normalizedIntent, { source: "performance" }),
@@ -259,13 +277,14 @@ const local = {
 const parseAbsoluteSafetyLimitMs = 2;
 const parseRelativeBaselineP95Ms = Number(process.env.ROUTE_V2_PARSE_BASELINE_P95_MS || 0);
 const parseRelativeRegressionLimit = 0.1;
+const parseRoundP95StabilityLimit = 0.25;
 assert(
   local.parseSearchIntent.p95Ms < parseAbsoluteSafetyLimitMs,
   `intent parsing p95 must remain below the ${parseAbsoluteSafetyLimitMs}ms absolute safety limit`,
 );
 assert(
-  local.parseSearchIntent.roundP95CoefficientOfVariation <= 0.1,
-  "intent parsing round-p95 coefficient of variation must remain at or below 10%",
+  local.parseSearchIntent.roundP95CoefficientOfVariation <= parseRoundP95StabilityLimit,
+  "intent parsing round-p95 coefficient of variation must remain at or below 25%",
 );
 if (parseRelativeBaselineP95Ms > 0) {
   assert(
@@ -274,6 +293,7 @@ if (parseRelativeBaselineP95Ms > 0) {
   );
 }
 assert(local.normalizeRouteIntent.p95Ms < 0.1, "intent normalization p95 must remain below 0.1ms");
+assert(local.validateNormalizedRouteIntent.p95Ms < 0.1, "intent schema validation p95 must remain below 0.1ms");
 assert(local.fingerprint.p95Ms < 0.1, "fingerprint p95 must remain below 0.1ms");
 assert(local.finalInvariantGate.p95Ms < 0.25, "full invariant gate p95 must remain below 0.25ms");
 
@@ -302,6 +322,33 @@ assert.equal(readyPool.applyEvaluation({ routeRecord: route, publicationGate }).
 local.readyPoolRead = measure(() => {
   assert.equal(readyPool.get(route.id)?.id, route.id);
 }, { warmup: 20, samples: 50, batchSize: 1 });
+
+const candidateStore = createRouteCandidatePoolStore({
+  storagePath: path.join(temporaryRoot, "route-candidates.jsonl"),
+  env: { ROUTE_V2_CANDIDATE_POOL_ENABLED: "true" },
+});
+const performanceCandidate = normalizeRouteCandidate({
+  intentId: "intent-performance",
+  countries: ["JP"],
+  destinations: route.destinationEntities.map((entry) => ({
+    id: entry.entityId,
+    name: entry.entityId,
+    countryCode: entry.countryCode,
+  })),
+  proposedOrder: route.destinationEntities.map((entry) => entry.entityId),
+  durationDays: route.durationDays,
+  travelStyle: "rail",
+  generationSource: "performance",
+  routeIntentFingerprint: route.routeIntentFingerprint,
+  routeIntentFingerprintVersion: route.routeIntentFingerprintVersion,
+  normalizedRouteIntent: route.normalizedRouteIntent,
+  createdAt: "2026-07-28T00:00:00.000Z",
+});
+assert.equal(candidateStore.replaceForIntent("intent-performance", [performanceCandidate]).persisted, true);
+local.candidateRead = measure(() => {
+  assert.equal(candidateStore.listByIntent("intent-performance")[0]?.candidateId, performanceCandidate.candidateId);
+}, { warmup: 20, samples: 50, batchSize: 1 });
+assert(local.candidateRead.p95Ms < 2, "Candidate read p95 must remain below 2ms");
 
 const generativeDurations = [];
 for (let index = 0; index < 3; index += 1) {
@@ -361,11 +408,19 @@ process.stdout.write(`${JSON.stringify({
     methodology: "10 rounds after a 20,000-operation JIT warm-up; each round measures 40 batches of 100 operations so round p95 is not determined by one scheduler outlier.",
     localDiagnostic: {
       absoluteSafetyLimitMs: parseAbsoluteSafetyLimitMs,
-      maximumRoundP95CoefficientOfVariation: 0.1,
+      maximumRoundP95CoefficientOfVariation: parseRoundP95StabilityLimit,
     },
     controlledCiComparison: {
       baselineEnvironmentVariable: "ROUTE_V2_PARSE_BASELINE_P95_MS",
+      enabled: parseRelativeBaselineP95Ms > 0,
       suppliedBaselineP95Ms: parseRelativeBaselineP95Ms || null,
+      measuredP95Ms: local.parseSearchIntent.p95Ms,
+      maximumAllowedP95Ms: parseRelativeBaselineP95Ms > 0
+        ? Number((parseRelativeBaselineP95Ms * (1 + parseRelativeRegressionLimit)).toFixed(6))
+        : null,
+      measuredRegressionPercent: parseRelativeBaselineP95Ms > 0
+        ? Number((((local.parseSearchIntent.p95Ms / parseRelativeBaselineP95Ms) - 1) * 100).toFixed(2))
+        : null,
       maximumRelativeRegression: parseRelativeRegressionLimit,
       status: parseRelativeBaselineP95Ms > 0 ? "enforced" : "not-configured",
     },

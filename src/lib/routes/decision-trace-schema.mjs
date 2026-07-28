@@ -6,6 +6,7 @@ import {
   ROUTE_INTENT_FINGERPRINT_VERSION,
   ROUTE_INTENT_SCHEMA_VERSION,
   createRouteIntentFingerprint,
+  validateNormalizedRouteIntent,
 } from "./route-intent-model.mjs";
 
 export const DECISION_TRACE_SCHEMA_VERSION = "route-generation-v2-phase1-trace-v1";
@@ -348,6 +349,27 @@ export function validateDecisionTrace(trace = {}) {
   if (cleanString(trace.routeIntentSchemaVersion) !== cleanString(trace.inputContext?.routeIntentSchemaVersion)) missing.push("routeIntentSchemaVersion-inputContext-mismatch");
   if (cleanString(trace.routeIntentFingerprintVersion) !== cleanString(trace.inputContext?.routeIntentFingerprintVersion)) missing.push("routeIntentFingerprintVersion-inputContext-mismatch");
   if (cleanString(trace.routeIntentFingerprint) !== cleanString(trace.inputContext?.routeIntentFingerprint)) missing.push("routeIntentFingerprint-inputContext-mismatch");
+  if (trace.inputContext?.normalizedRouteIntent != null) {
+    const schemaValidation = validateNormalizedRouteIntent(trace.inputContext.normalizedRouteIntent);
+    if (!schemaValidation.valid) {
+      missing.push("inputContext-route-intent-schema-invalid");
+      missing.push(...schemaValidation.violations.map((entry) => `inputContext-route-intent-schema-invalid:${entry.path}`));
+    } else {
+      const fingerprint = createRouteIntentFingerprint(trace.inputContext.normalizedRouteIntent);
+      if (cleanString(fingerprint.value) !== cleanString(trace.inputContext.routeIntentFingerprint)) {
+        missing.push("inputContext-route-intent-fingerprint-content-mismatch");
+      }
+    }
+  } else if (cleanString(trace.inputContext?.routeIntentFingerprint)) {
+    missing.push("inputContext-normalizedRouteIntent-required");
+  }
+  if (trace.inputIntentSnapshot?.normalizedRouteIntent != null) {
+    const schemaValidation = validateNormalizedRouteIntent(trace.inputIntentSnapshot.normalizedRouteIntent);
+    if (!schemaValidation.valid) {
+      missing.push("inputIntentSnapshot-route-intent-schema-invalid");
+      missing.push(...schemaValidation.violations.map((entry) => `inputIntentSnapshot-route-intent-schema-invalid:${entry.path}`));
+    }
+  }
   for (const field of ["candidatePool", "rejectedCandidates", "rejectionReasons", "decisionFactors", "strategyEffects", "dataSourcesUsed", "unknowns"]) {
     if (!Array.isArray(trace[field])) missing.push(`${field}-array-required`);
   }

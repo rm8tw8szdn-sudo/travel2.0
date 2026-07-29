@@ -17,6 +17,11 @@ export const MANDATORY_PRELAUNCH_VERIFIERS = Object.freeze([
     phase: "static",
   }),
   Object.freeze({
+    name: "pr19-p1-closures",
+    relativePath: "scripts/verify-route-v2-pr19-p1-closures.mjs",
+    phase: "static",
+  }),
+  Object.freeze({
     name: "route-intent-model",
     relativePath: "scripts/verify-route-v2-route-intent-model.mjs",
     phase: "static",

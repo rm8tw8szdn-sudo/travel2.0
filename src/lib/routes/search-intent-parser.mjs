@@ -96,9 +96,9 @@ const REGION_CATALOG = [
 ];
 
 const STYLE_CATALOG = [
-  { key: "road-trip", label: "环岛自驾", aliases: ["环岛", "環島", "ring road", "island circuit"] },
+  { key: "road-trip", label: "环岛自驾", aliases: ["环岛", "環島", "ring road", "island circuit", "loop"] },
   { key: "island-hopping", label: "海岛度假", aliases: ["海岛", "海島", "跳岛", "跳島", "海岛度假", "海島度假", "island hopping", "island vacation", "island holiday", "beach vacation"] },
-  { key: "city-break", label: "城市短途", aliases: ["周末短途", "周末旅行", "城市漫游", "城市漫遊", "city walk", "citywalk", "weekend getaway", "weekend break"] },
+  { key: "city-break", label: "城市短途", aliases: ["周末短途", "周末旅行", "城市漫游", "城市漫遊", "city walk", "citywalk", "weekend trip", "weekend getaway", "weekend break"] },
   { key: "classic-first-trip", label: "第一次", aliases: ["第一次", "首次", "初次", "入门", "经典", "经典首访", "classic", "first trip", "first-time"] },
   { key: "road-trip", label: "自驾", aliases: ["自驾", "公路", "road trip", "roadtrip", "drive", "driving"] },
   { key: "rail-journey", label: "铁路", aliases: ["铁路", "火车", "列车", "rail", "train"] },
@@ -108,10 +108,10 @@ const STYLE_CATALOG = [
 ];
 
 const THEME_CATALOG = [
-  { key: "ring-road", label: "环岛", aliases: ["环岛", "環島", "ring road", "island circuit"] },
+  { key: "ring-road", label: "环岛", aliases: ["环岛", "環島", "ring road", "island circuit", "loop"] },
   { key: "self-drive", label: "自驾", aliases: ["自驾", "自駕", "租车", "租車", "road trip", "drive", "driving"] },
   { key: "island-vacation", label: "海岛度假", aliases: ["海岛", "海島", "跳岛", "跳島", "海岛度假", "海島度假", "island hopping", "island vacation", "island holiday", "beach vacation"] },
-  { key: "weekend-short-trip", label: "周末短途", aliases: ["周末短途", "周末旅行", "weekend getaway", "weekend break"] },
+  { key: "weekend-short-trip", label: "周末短途", aliases: ["周末短途", "周末旅行", "weekend trip", "weekend getaway", "weekend break"] },
   { key: "honeymoon", label: "蜜月", aliases: ["蜜月", "honeymoon"] },
   { key: "family", label: "亲子", aliases: ["亲子", "親子", "家庭旅行", "family", "family trip"] },
   { key: "hiking", label: "徒步", aliases: ["徒步", "健行", "hiking", "trekking", "trek"] },
@@ -746,6 +746,11 @@ export function createSearchSuggestions({ query = "", acceptedRoutes = [], catal
 
 const COUNTRY_TYPO_STOP_WORDS = new Set([
   "a", "an", "the", "in", "for", "to", "go", "where", "trip", "travel", "tour", "holiday", "vacation",
+  "should", "would", "could", "please", "recommend", "suggest", "somewhere", "anywhere",
+  "visit", "visiting", "place", "places", "destination", "destinations", "around", "about",
+  "best", "good", "nice", "want", "wants", "like", "looking", "plan", "planning",
+  "getaway", "break", "adventure", "experience", "experiences", "culture", "cultural",
+  "nature", "scenic", "relaxed", "relaxing", "solo", "couple", "couples", "with",
   "day", "days", "week", "weeks", "spring", "summer", "autumn", "fall", "winter",
   "island", "city", "walk", "road", "drive", "driving", "hiking", "trekking", "family", "honeymoon",
   ...ENGLISH_NUMBER_VALUES.keys(),
@@ -818,9 +823,34 @@ function countryCorrectionForQuery(query, countryCatalog) {
   };
 }
 
-function unresolvedCountryLikeTokens(query) {
-  return latinQueryTokens(query)
-    .filter((token) => /(?:land|stan|ania|eria|eria|any|aly|pan)$/u.test(token));
+function catalogLatinTokens(catalog = []) {
+  return new Set(catalog
+    .flatMap((item) => [
+      item?.label,
+      item?.normalizedLabel,
+      ...(Array.isArray(item?.aliases) ? item.aliases : []),
+    ])
+    .flatMap((value) => [...normalizeText(value).matchAll(/\b[a-z][a-z'-]{3,}\b/gu)].map((match) => match[0]))
+    .filter(Boolean));
+}
+
+const STATIC_TRAVEL_LATIN_TOKENS = new Set([
+  ...catalogLatinTokens(COUNTRY_CATALOG),
+  ...catalogLatinTokens(CITY_CATALOG),
+  ...catalogLatinTokens(REGION_CATALOG),
+  ...catalogLatinTokens(STYLE_CATALOG),
+  ...catalogLatinTokens(THEME_CATALOG),
+  ...catalogLatinTokens(SEASON_CATALOG),
+  ...catalogLatinTokens(TRANSPORT_CATALOG),
+  ...ENGLISH_MONTHS.keys(),
+]);
+
+function unresolvedLatinDestinationTokens(query, matchedDestinations = []) {
+  const matchedDestinationTokens = catalogLatinTokens(matchedDestinations);
+  return latinQueryTokens(query).filter((token) => (
+    !STATIC_TRAVEL_LATIN_TOKENS.has(token)
+    && !matchedDestinationTokens.has(token)
+  ));
 }
 
 export function parseSearchIntent(query, { acceptedRoutes = [], catalogs = null, timeIntentEnabled = false } = {}) {
@@ -855,8 +885,12 @@ export function parseSearchIntent(query, { acceptedRoutes = [], catalogs = null,
   const destinationCorrection = !matchedCountry && !matchedCities.length && !matchedRegion
     ? countryCorrectionForQuery(rawQuery, countryCatalog)
     : null;
-  const unresolvedCountryTokens = !matchedCountry && !matchedCities.length && !matchedRegion && !destinationCorrection
-    ? unresolvedCountryLikeTokens(rawQuery)
+  const unresolvedCountryTokens = !destinationCorrection
+    ? unresolvedLatinDestinationTokens(rawQuery, [
+        matchedCountry,
+        ...matchedCities,
+        matchedRegion,
+      ].filter(Boolean))
     : [];
   const style = firstMatch(normalizedQuery, STYLE_CATALOG);
   const theme = firstMatch(normalizedQuery, THEME_CATALOG);
@@ -904,6 +938,7 @@ export function parseSearchIntent(query, { acceptedRoutes = [], catalogs = null,
     seasonKey: season?.key || "",
     theme: theme?.label || "",
     themeKey: theme?.key || "",
+    themeConstraintMode: theme ? "explicit" : "preference",
     transport: transport?.key || "",
     transportLabel: transport?.label || "",
     pace: includesAny(normalizedQuery, ["慢", "慢游", "relaxed"]) ? "relaxed" : "",

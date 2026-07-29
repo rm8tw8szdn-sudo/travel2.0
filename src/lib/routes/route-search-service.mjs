@@ -299,13 +299,21 @@ function constraintConflictDiagnostics(intent, rejections, resultCount) {
   if (resultCount > 0) return null;
   const failures = Array.isArray(rejections) ? rejections : [];
   const reasonCodes = unique(failures.flatMap((item) => item.validation?.reasonCodes || []));
+  const explicitTheme = intent?.normalizedRouteIntent?.softPreferences?.themeConstraintMode === "explicit"
+    ? clean(intent.normalizedRouteIntent.softPreferences.theme)
+    : "";
+  const resolvedReasonCodes = reasonCodes.length
+    ? reasonCodes
+    : explicitTheme
+      ? ["explicit-theme-mismatch"]
+      : ["no-valid-route"];
   const rejectedSources = failures.reduce((counts, item) => ({
     ...counts,
     [item.source]: Number(counts[item.source] || 0) + 1,
   }), {});
   if (!reasonCodes.length && !intent?.parseSuccess) return null;
   return {
-    reasonCodes: reasonCodes.length ? reasonCodes : ["no-valid-route"],
+    reasonCodes: resolvedReasonCodes,
     missingRequiredDestinationIds: unique(failures.flatMap((item) => item.validation?.missingRequiredDestinationIds || [])),
     missingRequiredDestinationNames: unique(failures.flatMap((item) => item.validation?.missingRequiredDestinationNames || [])),
     orderMismatch: failures.some((item) => item.validation?.orderMismatch),
@@ -315,6 +323,8 @@ function constraintConflictDiagnostics(intent, rejections, resultCount) {
     destinationConflict: failures.some((item) => item.validation?.destinationConflict),
     countryConflict: failures.some((item) => item.validation?.countryConflict),
     regionConflict: failures.some((item) => item.validation?.regionConflict),
+    themeConflict: resolvedReasonCodes.includes("explicit-theme-mismatch")
+      || failures.some((item) => item.validation?.themeConflict),
     rejectedFallbackCount: failures.length,
     rejectedSources,
     examples: failures.slice(0, 12).map((item) => ({

@@ -41,6 +41,7 @@ const HARD_CONSTRAINT_KEYS = new Set([
 const SOFT_PREFERENCE_KEYS = new Set([
   "travelStyle",
   "theme",
+  "themeConstraintMode",
   "transport",
   "pace",
   "budget",
@@ -103,12 +104,12 @@ function plainObject(value) {
   return Boolean(value) && typeof value === "object" && !Array.isArray(value);
 }
 
-function validateObjectKeys(value, path, allowedKeys, violations) {
+function validateObjectKeys(value, path, allowedKeys, violations, { requiredKeys = allowedKeys } = {}) {
   if (!plainObject(value)) {
     violations.push(schemaViolation(path, "object", value));
     return false;
   }
-  for (const key of allowedKeys) {
+  for (const key of requiredKeys) {
     if (!hasOwn(value, key)) {
       violations.push(schemaViolation(`${path}.${key}`, "required field", undefined, "missing-field"));
     }
@@ -438,9 +439,20 @@ export function validateNormalizedRouteIntent(input) {
       }
     }
 
-    if (validateObjectKeys(input.softPreferences, "softPreferences", SOFT_PREFERENCE_KEYS, violations)) {
+    if (validateObjectKeys(input.softPreferences, "softPreferences", SOFT_PREFERENCE_KEYS, violations, {
+      requiredKeys: new Set([...SOFT_PREFERENCE_KEYS].filter((key) => key !== "themeConstraintMode")),
+    })) {
       for (const field of ["travelStyle", "theme", "pace", "budget", "tripIntent"]) {
         validateString(input.softPreferences[field], `softPreferences.${field}`, violations);
+      }
+      if (hasOwn(input.softPreferences, "themeConstraintMode")
+        && !["preference", "explicit"].includes(input.softPreferences.themeConstraintMode)) {
+        violations.push(schemaViolation(
+          "softPreferences.themeConstraintMode",
+          "preference|explicit",
+          input.softPreferences.themeConstraintMode,
+          "invalid-enum",
+        ));
       }
       validateListPresence(input.softPreferences.transport, "softPreferences.transport", violations, validateStableString);
       if (!Array.isArray(input.softPreferences.exclusions)) {
@@ -690,6 +702,7 @@ export function normalizeRouteIntent(input = {}) {
     softPreferences: {
       travelStyle: semanticText(input.travelStyle),
       theme: semanticText(input.themeKey || input.theme),
+      themeConstraintMode: input.themeConstraintMode === "explicit" ? "explicit" : "preference",
       transport: listPresence(
         hasOwn(input, "transport") || hasOwn(input, "transportPreference"),
         normalizeStringList([

@@ -222,6 +222,72 @@
       "category": "vague",
       "query": "island vacation",
       "expected": { "travelStyle": "island-hopping", "theme": "island-vacation", "intentMode": "destination-suggestion", "parseSuccess": true }
+    },
+    {
+      "id": "typo-japan-low-confidence",
+      "category": "typo",
+      "query": "Jappann 7 days",
+      "expected": { "parseSuccess": false, "failureReason": "unresolved-destination" }
+    },
+    {
+      "id": "typo-italy-low-confidence",
+      "category": "typo",
+      "query": "Italyyy 7 days",
+      "expected": { "parseSuccess": false, "failureReason": "unresolved-destination" }
+    },
+    {
+      "id": "typo-thailand-confirmation",
+      "category": "typo",
+      "query": "Thailannd 10 days",
+      "expected": { "parseSuccess": false, "failureReason": "destination-confirmation-required", "correctionCountryCode": "TH" }
+    },
+    {
+      "id": "typo-multiple-candidates",
+      "category": "typo",
+      "query": "Jappan Italyy 7 days",
+      "expected": { "parseSuccess": false, "failureReason": "unresolved-destination" }
+    },
+    {
+      "id": "typo-known-plus-unresolved-destination",
+      "category": "typo",
+      "query": "Japan Italyyy 7 days",
+      "expected": { "parseSuccess": false, "failureReason": "unresolved-destination", "countryCode": "JP" }
+    },
+    {
+      "id": "typo-unknown-latin-destination",
+      "category": "typo",
+      "query": "Atlantiss 7 days",
+      "expected": { "parseSuccess": false, "failureReason": "unresolved-destination" }
+    },
+    {
+      "id": "generic-english-question",
+      "category": "vague",
+      "query": "where should I travel for seven days",
+      "expected": { "durationDays": 7, "intentMode": "destination-suggestion", "parseSuccess": true }
+    },
+    {
+      "id": "generic-family-trip",
+      "category": "theme",
+      "query": "family trip for seven days",
+      "expected": { "durationDays": 7, "theme": "family", "tripIntent": "family", "intentMode": "destination-suggestion", "parseSuccess": true }
+    },
+    {
+      "id": "generic-summer-europe",
+      "category": "region",
+      "query": "summer trip in Europe",
+      "expected": { "region": "europe", "season": "summer", "parseSuccess": true }
+    },
+    {
+      "id": "theme-ring-road-english-loop",
+      "category": "theme",
+      "query": "Iceland loop 7 days",
+      "expected": { "countryCode": "IS", "durationDays": 7, "travelStyle": "road-trip", "theme": "ring-road", "parseSuccess": true }
+    },
+    {
+      "id": "theme-weekend-english",
+      "category": "theme",
+      "query": "weekend trip",
+      "expected": { "travelStyle": "city-break", "theme": "weekend-short-trip", "intentMode": "destination-suggestion", "parseSuccess": true }
     }
   ]
 }

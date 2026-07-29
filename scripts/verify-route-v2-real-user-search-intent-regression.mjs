@@ -98,6 +98,7 @@ function assertParserCase(testCase, intent) {
   if (Object.hasOwn(expected, "theme")) {
     assert.equal(intent.themeKey, expected.theme, label);
     assert.equal(intent.normalizedRouteIntent.softPreferences.theme, semanticIntentToken(expected.theme), label);
+    assert.equal(intent.normalizedRouteIntent.softPreferences.themeConstraintMode, "explicit", label);
   }
   if (Object.hasOwn(expected, "tripIntent")) {
     assert.equal(intent.tripIntent, expected.tripIntent, label);

@@ -13,10 +13,19 @@ import { compareRouteIntentShadow } from "./route-intent-shadow-validation.mjs";
 import { createWebSearchEvidenceProvider } from "./web-search-evidence-provider.mjs";
 import { createWebEvidenceExtractor } from "./web-evidence-extractor.mjs";
 import { createWebEvidenceCorroborator } from "./web-evidence-corroborator.mjs";
-import { createDecisionTraceStore, writeFailureDecisionTraceSafe, writeLegacyDecisionTraceSafe } from "./decision-trace-store.mjs";
+import {
+  createDecisionTraceStore,
+  isRouteV2TraceEnabled,
+  writeFailureDecisionTraceSafe,
+  writeLegacyDecisionTraceSafe,
+} from "./decision-trace-store.mjs";
 import { isRouteV2IntentEnabled, routeIntentSnapshot } from "./decision-trace-schema.mjs";
 import { buildRouteCandidatesFromPool } from "./route-candidate-builder.mjs";
-import { createRouteCandidatePoolStore, validateRouteCandidate } from "./route-candidate-pool.mjs";
+import {
+  createRouteCandidatePoolStore,
+  isRouteV2CandidatePoolEnabled,
+  validateRouteCandidate,
+} from "./route-candidate-pool.mjs";
 import {
   ROUTE_CANDIDATE_SELECTION_TARGET,
   selectRouteCandidates,
@@ -27,8 +36,14 @@ import {
   maxDestinationsForDuration,
   validateRouteForUse,
 } from "./route-candidate-evidence-validation.mjs";
-import { createEvidenceBundleStore } from "./evidence-bundle-store.mjs";
-import { writeLocalEvidenceSidecarSafe } from "./local-evidence-sidecar.mjs";
+import {
+  createEvidenceBundleStore,
+  isRouteV2EvidenceBundleEnabled,
+} from "./evidence-bundle-store.mjs";
+import {
+  isRouteV2LocalEvidenceEnabled,
+  writeLocalEvidenceSidecarSafe,
+} from "./local-evidence-sidecar.mjs";
 import { writeEvidenceBundleLifecycleSidecarSafe } from "./evidence-bundle-lifecycle-sidecar.mjs";
 import { createLocalEvidenceRepository } from "./local-evidence-repository.mjs";
 import {
@@ -36,7 +51,10 @@ import {
   evaluateRouteV2Publication,
   isRouteV2PublicationGateEnabled,
 } from "./route-publication-gate.mjs";
-import { createRouteV2ReadyPool } from "./route-v2-ready-pool.mjs";
+import {
+  createRouteV2ReadyPool,
+  isRouteV2ReadyPoolEnabled,
+} from "./route-v2-ready-pool.mjs";
 import { resolveRouteV2RuntimeDecision } from "./route-v2-runtime-environment.mjs";
 
 const PHASE_2A_STRATEGIES = ["Geographic", "Theme", "Season", "Transport", "Depth", "Efficiency"];
@@ -1608,9 +1626,17 @@ async function runPipeline({ context, knowledgeGraph, evidenceRepository, accept
   const accepted = [];
   const rejected = [];
   const v2IntentEnabled = isRouteV2IntentEnabled(env);
+  const requestAllowsV2SideEffects = context?.routeV2RuntimeDecision
+    ? context.routeV2RuntimeDecision.enabled === true && v2IntentEnabled
+    : v2IntentEnabled;
+  const candidateWritesAllowed = requestAllowsV2SideEffects && isRouteV2CandidatePoolEnabled(env);
+  const traceWritesAllowed = requestAllowsV2SideEffects && isRouteV2TraceEnabled(env);
+  const evidenceBundleWritesAllowed = requestAllowsV2SideEffects && isRouteV2EvidenceBundleEnabled(env);
+  const localEvidenceWritesAllowed = requestAllowsV2SideEffects && isRouteV2LocalEvidenceEnabled(env);
+  const readyPoolWritesAllowed = requestAllowsV2SideEffects && isRouteV2ReadyPoolEnabled(env);
   let candidatePoolEnabled = false;
   let candidatePoolInitializationFailure = "";
-  if (v2IntentEnabled && candidatePoolStore?.enabled) {
+  if (candidateWritesAllowed && candidatePoolStore?.enabled) {
     try {
       candidatePoolEnabled = Boolean(candidatePoolStore.enabled());
     } catch (error) {
@@ -1646,7 +1672,8 @@ async function runPipeline({ context, knowledgeGraph, evidenceRepository, accept
       legacyFallback: Boolean(legacyFallback),
       candidateStateWrite,
     };
-    const traceWrite = await writeFailureDecisionTraceSafe(decisionTraceStore, {
+    const traceWrite = traceWritesAllowed
+      ? await writeFailureDecisionTraceSafe(decisionTraceStore, {
       context,
       intentId: context?.intentId || "",
       candidatePool: failure.candidates,
@@ -1666,7 +1693,8 @@ async function runPipeline({ context, knowledgeGraph, evidenceRepository, accept
         }] : []),
       ],
       legacyFallback: failure.legacyFallback,
-    });
+    })
+      : { written: false, persisted: false, skipped: true, reason: "request-v2-side-effects-disabled" };
     v2Failure = { ...failure, traceWrite };
     return v2Failure;
   }
@@ -1720,7 +1748,17 @@ async function runPipeline({ context, knowledgeGraph, evidenceRepository, accept
   const v2InputConstraintFailure = v2Attempted
     && explicitRequestedDestinations.length > 0
     && explicitRequestedDestinations.length > durationCapacity;
-  const candidateSidecar = candidatePoolInitializationFailure
+  const candidateSidecar = !candidateWritesAllowed
+    ? {
+        enabled: false,
+        generated: 0,
+        written: 0,
+        skipped: true,
+        reason: "request-v2-side-effects-disabled",
+        selection: null,
+        persistenceReady: false,
+      }
+    : candidatePoolInitializationFailure
       ? {
         enabled: true,
         generated: 0,
@@ -1768,7 +1806,7 @@ async function runPipeline({ context, knowledgeGraph, evidenceRepository, accept
   const v2SelectionReady = !v2InputConstraintFailure
     && candidateSidecar?.persistenceReady === true
     && candidateSidecar?.selection?.ready === true;
-  if (!v2SelectionReady) {
+  if (localEvidenceWritesAllowed && !v2SelectionReady) {
     await localEvidenceSidecar({
       candidates: candidateSidecar?.writtenCandidates || [],
       kgPool: pool,
@@ -2028,7 +2066,8 @@ async function runPipeline({ context, knowledgeGraph, evidenceRepository, accept
     return { accepted, rejected, concept, v2Failure: failureTrace };
   }
 
-  let traceWrite = v2Failure?.traceWrite || await writeLegacyDecisionTraceSafe(decisionTraceStore, {
+  let traceWrite = v2Failure?.traceWrite || (traceWritesAllowed
+    ? await writeLegacyDecisionTraceSafe(decisionTraceStore, {
     route: record,
     context,
     source: "planner-pipeline",
@@ -2058,7 +2097,8 @@ async function runPipeline({ context, knowledgeGraph, evidenceRepository, accept
       { field: "completeRejectedAlternatives", reason: "Phase 1 persists exactly three deterministic alternatives; evidence-backed expansion is not implemented." },
       { field: "llmContribution", reason: llmRefined ? "LLM refine result was applied to the legacy path." : "LLM refine did not change the selected candidate route." },
     ],
-  });
+  })
+    : { written: false, persisted: false, skipped: true, reason: "request-v2-side-effects-disabled" });
   const successTracePersisted = traceWrite?.persisted === true && Boolean(clean(traceWrite?.traceId));
   if (usingV2SelectedCandidate && !successTracePersisted) {
     await recordV2Failure({
@@ -2148,7 +2188,7 @@ async function runPipeline({ context, knowledgeGraph, evidenceRepository, accept
   }
 
   let evidenceBundleLifecycle = null;
-  if (usingV2SelectedCandidate) {
+  if (evidenceBundleWritesAllowed && usingV2SelectedCandidate) {
     const selectedValidation = (candidateSidecar.selection.validationResults || [])
       .find((validationResult) => clean(validationResult?.candidateId) === clean(selectedCandidate?.candidateId)) || null;
     evidenceBundleLifecycle = await writeEvidenceBundleLifecycleSidecarSafe({
@@ -2187,7 +2227,7 @@ async function runPipeline({ context, knowledgeGraph, evidenceRepository, accept
     });
     return { accepted, rejected, concept, v2Failure: failureTrace };
   }
-  if (usingV2SelectedCandidate && isRouteV2PublicationGateEnabled(env)) {
+  if (requestAllowsV2SideEffects && usingV2SelectedCandidate && isRouteV2PublicationGateEnabled(env)) {
     record = ensureV2PublicationCover(record);
     try {
       const decisionTrace = decisionTraceStore?.list?.().find((trace) => clean(trace?.traceId) === clean(record.decisionTraceId)) || null;
@@ -2217,7 +2257,7 @@ async function runPipeline({ context, knowledgeGraph, evidenceRepository, accept
     }
     record.v2PublicationStatus = publicationGate.status;
     try {
-      if (readyPool?.enabled?.()) {
+      if (readyPoolWritesAllowed && readyPool?.enabled?.()) {
         readyPoolWrite = readyPool.applyEvaluation({ routeRecord: record, publicationGate });
       }
     } catch (error) {

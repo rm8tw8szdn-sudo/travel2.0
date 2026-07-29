@@ -116,6 +116,73 @@ function timeEvidenceReady(record = {}) {
     .some((value) => ["ready", "complete", "supported", "validated", "passed"].includes(value));
 }
 
+const EXPLICIT_THEME_COMPATIBILITY = new Map([
+  ["family", {
+    evidence: ["family", "familytrip", "亲子", "家庭旅行"],
+    styles: [],
+  }],
+  ["hiking", {
+    evidence: ["hiking", "trekking", "trek", "徒步", "健行"],
+    styles: ["hiking", "trekking"],
+  }],
+  ["honeymoon", {
+    evidence: ["honeymoon", "蜜月"],
+    styles: [],
+  }],
+  ["selfdrive", {
+    evidence: ["selfdrive", "roadtrip", "自驾", "公路"],
+    styles: ["roadtrip"],
+  }],
+  ["islandvacation", {
+    evidence: ["islandvacation", "islandhopping", "beachvacation", "海岛度假", "跳岛"],
+    styles: ["islandhopping"],
+  }],
+  ["ringroad", {
+    evidence: ["ringroad", "islandcircuit", "环岛"],
+    styles: ["roadtrip"],
+  }],
+  ["weekendshorttrip", {
+    evidence: ["weekendshorttrip", "weekendgetaway", "weekendbreak", "周末短途", "周末旅行"],
+    styles: ["citybreak"],
+    maxDays: 3,
+  }],
+  ["citywalk", {
+    evidence: ["citywalk", "urbanwalk", "城市漫游"],
+    styles: ["citybreak", "deepdive"],
+    routeReferenceModes: ["citywalk"],
+  }],
+]);
+
+function routeSupportsExplicitTheme(record = {}, requestedTheme = "") {
+  const normalizedTheme = semantic(requestedTheme);
+  if (!normalizedTheme) return true;
+  const rule = EXPLICIT_THEME_COMPATIBILITY.get(normalizedTheme);
+  if (!rule) return false;
+
+  const generatedFallback = clean(record.destinationSource) === "search-knowledge-graph-fallback"
+    || clean(record.contentEvidence?.provider) === "search-v1-fallback";
+  const evidenceTokens = generatedFallback
+    ? new Set()
+    : new Set([
+        ...(Array.isArray(record.themes) ? record.themes : []),
+        ...(Array.isArray(record.tags) ? record.tags : []),
+        ...(Array.isArray(record.supportedThemes) ? record.supportedThemes : []),
+        ...(Array.isArray(record.themeCompatibility) ? record.themeCompatibility : []),
+      ].map(semantic).filter(Boolean));
+  const styleTokens = new Set([
+    record.travelStyle,
+    record.travelStyleConceptKey,
+    record.contentEvidence?.travelStyle,
+    record.contentEvidence?.concept?.travelStyle,
+  ].map(semantic).filter(Boolean));
+  const routeReferenceMode = semantic(record.routeReferenceMode);
+  const evidenceMatch = rule.evidence.some((token) => evidenceTokens.has(semantic(token)));
+  const styleMatch = rule.styles.some((token) => styleTokens.has(semantic(token)));
+  const referenceMatch = (rule.routeReferenceModes || []).some((token) => semantic(token) === routeReferenceMode);
+  const durationMatch = !Number.isInteger(rule.maxDays) || (routeDays(record) != null && routeDays(record) <= rule.maxDays);
+  return durationMatch && (evidenceMatch || styleMatch || referenceMatch);
+}
+
 function violation(code, field, expected, actual, source) {
   return { code, field, expected, actual, source: clean(source || "route-result") };
 }
@@ -154,6 +221,7 @@ function schemaFailure(schemaValidation, source) {
     destinationConflict: false,
     countryConflict: false,
     regionConflict: false,
+    themeConflict: false,
   };
 }
 
@@ -299,6 +367,16 @@ export function validateRouteIntentInvariants(record = {}, routeIntent = {}, opt
     violations.push(violation("invalid-time-intent", "timeType", "valid", "invalid", source));
   }
 
+  const expectedTheme = normalizedIntent.softPreferences.theme;
+  const explicitThemeRequested = normalizedIntent.softPreferences.themeConstraintMode === "explicit";
+  if (explicitThemeRequested && expectedTheme && !routeSupportsExplicitTheme(record, expectedTheme)) {
+    violations.push(violation("explicit-theme-mismatch", "theme", expectedTheme, {
+      themes: Array.isArray(record.themes) ? record.themes : [],
+      travelStyle: clean(record.travelStyle || record.travelStyleConceptKey),
+      routeReferenceMode: clean(record.routeReferenceMode),
+    }, source));
+  }
+
   const envelope = readRouteIntentEnvelope(record);
   if (options.requireFingerprint !== false) {
     if (!envelope.valid) {
@@ -381,6 +459,7 @@ export function validateRouteIntentInvariants(record = {}, routeIntent = {}, opt
       || reasonCodes.includes("duplicate-route-city"),
     countryConflict: reasonCodes.includes("country-mismatch"),
     regionConflict: reasonCodes.includes("region-mismatch"),
+    themeConflict: reasonCodes.includes("explicit-theme-mismatch"),
   };
 }
 

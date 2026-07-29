@@ -197,7 +197,7 @@ async function runSearch(env, label) {
   });
   const result = await service.search({
     mode: "search",
-    query: "Iceland winter road trip",
+    query: "Iceland winter trip",
     limit: 6,
   }, {
     requestId: `phase2-${label}`,

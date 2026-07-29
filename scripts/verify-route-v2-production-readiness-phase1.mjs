@@ -195,7 +195,7 @@ const searchService = createRouteSearchService({
 
 const legacyResult = await searchService.search({
   mode: "search",
-  query: "Iceland winter road trip",
+  query: "Iceland winter trip",
   sessionId: "phase1-legacy-fallback-session",
   limit: 6,
 }, {

@@ -1978,6 +1978,10 @@ function stateMarkup() {
     if (feedState.query && feedState.searchFailureReason === "destination-confirmation-required") {
       return `<div class="route-empty-state" data-route-feed-state="destination-confirmation-required"><p>请确认目的地名称</p><span>系统发现了可能的拼写结果，但不会在未确认时替你选择其他目的地</span>${suggestionsMarkup()}</div>`;
     }
+    if (feedState.query && feedState.searchFailureReason === "constraint-conflict"
+      && feedState.searchFailureCodes.includes("explicit-theme-mismatch")) {
+      return `<div class="route-empty-state" data-route-feed-state="unsupported-theme"><p>暂时没有符合这个旅行主题的可靠路线</p><span>系统不会把普通路线包装成亲子、徒步、蜜月或其他主题路线</span></div>`;
+    }
     if (feedState.query && feedState.searchFailureReason === "constraint-conflict") {
       return `<div class="route-empty-state" data-route-feed-state="constraint-conflict"><p>这些条件暂时无法同时满足</p><span>请增加行程天数或减少城市后再试</span></div>`;
     }
@@ -2073,6 +2077,9 @@ function renderSearchSummary() {
     routeSearchSummary.textContent = `“${feedState.query}”中有城市暂时无法完整识别，请检查名称后重试`;
   } else if (feedState.searchFailureReason === "destination-confirmation-required") {
     routeSearchSummary.textContent = `“${feedState.query}”可能包含目的地拼写错误，请确认建议后重新搜索`;
+  } else if (feedState.searchFailureReason === "constraint-conflict"
+    && feedState.searchFailureCodes.includes("explicit-theme-mismatch")) {
+    routeSearchSummary.textContent = `暂时没有符合“${feedState.query}”主题约束的可靠路线`;
   } else if (feedState.searchFailureReason === "constraint-conflict") {
     routeSearchSummary.textContent = `“${feedState.query}”的条件无法同时满足，请增加天数或减少城市`;
   } else {

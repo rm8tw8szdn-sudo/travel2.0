@@ -66,6 +66,45 @@ function hasTimeEvidence(route = {}) {
     .some((value) => ["ready", "complete", "supported", "validated", "passed"].includes(value));
 }
 
+const EXPLICIT_THEME_RULES = new Map([
+  ["family", { labels: ["family", "familytrip", "亲子", "家庭旅行"], styles: [] }],
+  ["hiking", { labels: ["hiking", "trekking", "trek", "徒步", "健行"], styles: ["hiking", "trekking"] }],
+  ["honeymoon", { labels: ["honeymoon", "蜜月"], styles: [] }],
+  ["selfdrive", { labels: ["selfdrive", "roadtrip", "自驾", "公路"], styles: ["roadtrip"] }],
+  ["islandvacation", { labels: ["islandvacation", "islandhopping", "beachvacation", "海岛度假", "跳岛"], styles: ["islandhopping"] }],
+  ["ringroad", { labels: ["ringroad", "islandcircuit", "环岛"], styles: ["roadtrip"] }],
+  ["weekendshorttrip", { labels: ["weekendshorttrip", "weekendgetaway", "weekendbreak", "周末短途", "周末旅行"], styles: ["citybreak"], maxDays: 3 }],
+  ["citywalk", { labels: ["citywalk", "urbanwalk", "城市漫游"], styles: ["citybreak", "deepdive"], routeModes: ["citywalk"] }],
+]);
+
+function oracleThemeCompatible(route = {}, requestedTheme = "") {
+  const rule = EXPLICIT_THEME_RULES.get(tidy(requestedTheme));
+  if (!rule) return false;
+  const generatedFallback = String(route.destinationSource || "").trim() === "search-knowledge-graph-fallback"
+    || String(route.contentEvidence?.provider || "").trim() === "search-v1-fallback";
+  const labels = generatedFallback
+    ? new Set()
+    : new Set([
+        ...(Array.isArray(route.themes) ? route.themes : []),
+        ...(Array.isArray(route.tags) ? route.tags : []),
+        ...(Array.isArray(route.supportedThemes) ? route.supportedThemes : []),
+        ...(Array.isArray(route.themeCompatibility) ? route.themeCompatibility : []),
+      ].map(tidy).filter(Boolean));
+  const styles = new Set([
+    route.travelStyle,
+    route.travelStyleConceptKey,
+    route.contentEvidence?.travelStyle,
+    route.contentEvidence?.concept?.travelStyle,
+  ].map(tidy).filter(Boolean));
+  const durationCompatible = !Number.isInteger(rule.maxDays)
+    || (days(route) != null && days(route) <= rule.maxDays);
+  return durationCompatible && (
+    rule.labels.some((value) => labels.has(tidy(value)))
+    || rule.styles.some((value) => styles.has(tidy(value)))
+    || (rule.routeModes || []).some((value) => tidy(value) === tidy(route.routeReferenceMode))
+  );
+}
+
 export function evaluateRouteIntentOracle(normalizedIntentInput, route = {}, options = {}) {
   const intent = normalizeRouteIntent(normalizedIntentInput);
   const schemaValidation = validateNormalizedRouteIntent(intent);
@@ -152,6 +191,11 @@ export function evaluateRouteIntentOracle(normalizedIntentInput, route = {}, opt
     else if (!hasTimeEvidence(route)) requiresEvidence = true;
   }
   if (intent.hardConstraints.invalidTime) violations.push("invalid-time-intent");
+  if (intent.softPreferences.themeConstraintMode === "explicit"
+    && intent.softPreferences.theme
+    && !oracleThemeCompatible(route, intent.softPreferences.theme)) {
+    violations.push("explicit-theme-mismatch");
+  }
 
   const expectedFingerprint = createRouteIntentFingerprint(intent).value;
   const envelope = readRouteIntentEnvelope(route);

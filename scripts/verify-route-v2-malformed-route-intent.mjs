@@ -11,6 +11,7 @@ import {
   normalizeRouteCandidate,
   normalizeRouteIntent,
   readRouteIntentEnvelope,
+  routeIntentSnapshot,
   validateEmbeddedRouteIntent,
   validateNormalizedRouteIntent,
   validateRouteCandidate,
@@ -202,6 +203,18 @@ const validCandidate = normalizeRouteCandidate({
   routeIntentFingerprint: validRoute.routeIntentFingerprint,
   routeIntentFingerprintVersion: validRoute.routeIntentFingerprintVersion,
   normalizedRouteIntent,
+  inputIntentSnapshot: routeIntentSnapshot({
+    context: {
+      intentId: "intent-malformed-regression",
+      countryCode: "JP",
+      durationDays: 7,
+      timeIntent: { type: "single-month", months: [2], season: null },
+      normalizedRouteIntent,
+    },
+    intentId: "intent-malformed-regression",
+    source: "malformed-regression",
+    createdAt: "2026-07-28T00:00:00.000Z",
+  }),
   createdAt: "2026-07-28T00:00:00.000Z",
 });
 assert.equal(validateRouteCandidate(validCandidate).accepted, true);

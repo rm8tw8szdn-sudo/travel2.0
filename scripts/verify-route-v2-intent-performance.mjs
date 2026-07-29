@@ -14,6 +14,7 @@ import {
   normalizeRouteCandidate,
   normalizeRouteIntent,
   parseSearchIntent,
+  routeIntentSnapshot,
   validateNormalizedRouteIntent,
   validateRouteIntentInvariants,
 } from "../src/lib/routes/index.mjs";
@@ -342,9 +343,20 @@ const performanceCandidate = normalizeRouteCandidate({
   routeIntentFingerprint: route.routeIntentFingerprint,
   routeIntentFingerprintVersion: route.routeIntentFingerprintVersion,
   normalizedRouteIntent: route.normalizedRouteIntent,
+  inputIntentSnapshot: routeIntentSnapshot({
+    context: {
+      ...rawIntent,
+      intentId: "intent-performance",
+      normalizedRouteIntent: route.normalizedRouteIntent,
+    },
+    intentId: "intent-performance",
+    source: "performance",
+    createdAt: "2026-07-28T00:00:00.000Z",
+  }),
   createdAt: "2026-07-28T00:00:00.000Z",
 });
-assert.equal(candidateStore.replaceForIntent("intent-performance", [performanceCandidate]).persisted, true);
+const candidateWrite = candidateStore.replaceForIntent("intent-performance", [performanceCandidate]);
+assert.equal(candidateWrite.persisted, true, JSON.stringify(candidateWrite));
 local.candidateRead = measure(() => {
   assert.equal(candidateStore.listByIntent("intent-performance")[0]?.candidateId, performanceCandidate.candidateId);
 }, { warmup: 20, samples: 50, batchSize: 1 });

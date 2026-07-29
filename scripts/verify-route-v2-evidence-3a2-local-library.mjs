@@ -37,6 +37,7 @@ import {
   createEvidenceRepository,
   createRouteCandidatePoolStore,
   createRouteCompositionPlanner,
+  routeIntentSnapshot,
 } from "../src/lib/routes/index.mjs";
 
 const fixedNow = "2026-07-21T08:00:00.000Z";
@@ -154,6 +155,17 @@ assert.equal(localIndex.stats().loaded, false);
 assert.equal(localIndex.getRouteLegById(matsumotoKyoto.record.legEvidenceId).legEvidenceId, matsumotoKyoto.record.legEvidenceId);
 assert.equal(localIndex.stats().loadCount, 3);
 
+const baseIntentSnapshot = routeIntentSnapshot({
+  context: {
+    country: "JP",
+    durationDays: 7,
+    travelStyle: "rail-journey",
+    timeIntent: { type: "single-month", months: [2], season: null, rawText: "2月", diagnostics: [] },
+  },
+  intentId: "intent-evidence-3a2-sample",
+  source: "evidence-3a2-local-library-verifier",
+  createdAt: fixedNow,
+});
 const selectedCandidate = {
   candidateId: "rc-evidence-3a2-sample",
   intentId: "intent-evidence-3a2-sample",
@@ -167,6 +179,10 @@ const selectedCandidate = {
   proposedOrder: ["Q1490", "Q242666", "Q34600"],
   durationDays: 7,
   travelStyle: "rail-journey",
+  routeIntentFingerprintVersion: baseIntentSnapshot.routeIntentFingerprintVersion,
+  routeIntentFingerprint: baseIntentSnapshot.routeIntentFingerprint,
+  normalizedRouteIntent: structuredClone(baseIntentSnapshot.normalizedRouteIntent),
+  inputIntentSnapshot: structuredClone(baseIntentSnapshot),
 };
 const routeRecord = {
   id: "planner-designed-evidence-3a2-sample",
@@ -175,12 +191,17 @@ const routeRecord = {
   generationVersion: "route-generation-v2-phase1",
   v2PublicationStatus: "v2-not-publishable-yet",
   destinationEntities: selectedCandidate.destinations.map((destination) => structuredClone(destination)),
+  routeIntentFingerprintVersion: selectedCandidate.routeIntentFingerprintVersion,
+  routeIntentFingerprint: selectedCandidate.routeIntentFingerprint,
+  normalizedRouteIntent: structuredClone(selectedCandidate.normalizedRouteIntent),
 };
 const decisionTrace = {
   traceId: "dt-evidence-3a2-sample",
   intentId: selectedCandidate.intentId,
   outcome: "success",
   selectedCandidate: structuredClone(selectedCandidate),
+  routeIntentFingerprintVersion: selectedCandidate.routeIntentFingerprintVersion,
+  routeIntentFingerprint: selectedCandidate.routeIntentFingerprint,
 };
 const lifecycle = buildEvidenceBundleLifecycle({
   selectedCandidate,

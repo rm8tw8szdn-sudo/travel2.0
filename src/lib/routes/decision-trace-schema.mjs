@@ -64,14 +64,44 @@ export function routeIntentSnapshot(input = {}) {
     ...(Array.isArray(route.destinationEntities) ? route.destinationEntities.map((item) => item?.name) : []),
   ]);
   const fingerprint = createRouteIntentFingerprint(context.normalizedRouteIntent || context);
+  const canonicalTime = fingerprint.normalizedIntent?.hardConstraints || {};
+  const canonicalRequiredCities = canonicalTime.requiredCities?.state === "provided"
+    && Array.isArray(canonicalTime.requiredCities.values)
+    ? canonicalTime.requiredCities.values
+    : [];
+  const canonicalCountries = unique([
+    ...(canonicalTime.country?.state === "provided" ? [canonicalTime.country.value] : []),
+    ...(canonicalTime.countries?.state === "provided" && Array.isArray(canonicalTime.countries.values)
+      ? canonicalTime.countries.values
+      : []),
+  ]);
+  const canonicalRegions = canonicalTime.region?.state === "provided"
+    ? unique([canonicalTime.region.value])
+    : [];
+  const canonicalDurationDays = canonicalTime.exactDays?.state === "provided"
+    ? Number(canonicalTime.exactDays.value)
+    : null;
+  const snapshotTimeIntent = context.timeIntent && typeof context.timeIntent === "object"
+    ? normalizeTimeIntent(context.timeIntent)
+    : cleanString(canonicalTime.timeType) !== "unspecified"
+      ? normalizeTimeIntent({
+          type: canonicalTime.timeType,
+          months: canonicalTime.months?.state === "provided" ? canonicalTime.months.values : [],
+          season: canonicalTime.season?.state === "provided" ? canonicalTime.season.value : null,
+          rawText: "",
+          diagnostics: [],
+        })
+      : null;
   return {
     intentId: cleanString(input.intentId) || `legacy-intent-${stableDecisionTraceHash({ countries, destinations, travelStyle: context.travelStyle || route.travelStyle || "", duration: context.durationDays || route.durationDays || "" }).slice(0, 16)}`,
     strategyType: cleanString(context.strategyType) || cleanString(route.designStrategies?.[0]) || "Legacy",
-    targetRegions: unique([context.region, ...(Array.isArray(context.regions) ? context.regions : [])]),
-    targetCountries: countries,
+    targetRegions: canonicalRegions.length
+      ? canonicalRegions
+      : unique([context.region, ...(Array.isArray(context.regions) ? context.regions : [])]),
+    targetCountries: canonicalCountries.length ? canonicalCountries : countries,
     targetCities: destinations,
     duration: {
-      days: Number(context.durationDays || route.durationDays || 0) || null,
+      days: canonicalDurationDays || Number(context.durationDays || route.durationDays || 0) || null,
       durationBand: cleanString(context.durationBand) || cleanString(route.durationBand) || null,
       flexibility: cleanString(context.durationFlexibility) || null,
     },
@@ -80,16 +110,24 @@ export function routeIntentSnapshot(input = {}) {
       seasonLabel: cleanString(context.season) || null,
       hardConstraint: Boolean(context.seasonHardConstraint),
     },
-    ...(context.timeIntent && typeof context.timeIntent === "object"
-      ? { timeIntent: normalizeTimeIntent(context.timeIntent) }
+    ...(snapshotTimeIntent
+      ? { timeIntent: snapshotTimeIntent }
       : {}),
-    ...(cleanString(context.intentMode) ? { intentMode: cleanString(context.intentMode) } : {}),
+    ...(cleanString(fingerprint.normalizedIntent?.intentMode || context.intentMode)
+      ? { intentMode: cleanString(fingerprint.normalizedIntent?.intentMode || context.intentMode) }
+      : {}),
     ...(cleanString(context.rawQuery) ? { rawQuery: cleanString(context.rawQuery) } : {}),
-    ...(Array.isArray(context.requiredDestinationIds) ? {
-      requiredDestinationIds: unique(context.requiredDestinationIds),
-      requiredDestinationNames: unique(context.requiredDestinationNames || []),
+    ...(canonicalRequiredCities.length || Array.isArray(context.requiredDestinationIds) ? {
+      requiredDestinationIds: canonicalRequiredCities.length
+        ? canonicalRequiredCities.map((entry) => cleanString(entry?.id))
+        : unique(context.requiredDestinationIds),
+      requiredDestinationNames: canonicalRequiredCities.length
+        ? canonicalRequiredCities.map((entry) => cleanString(entry?.name))
+        : unique(context.requiredDestinationNames || []),
       requiredDestinationRaw: unique(context.requiredDestinationRaw || []),
-      destinationOrderMode: cleanString(context.destinationOrderMode || "unspecified"),
+      destinationOrderMode: canonicalTime.destinationOrderMode?.state === "provided"
+        ? cleanString(canonicalTime.destinationOrderMode.value)
+        : cleanString(context.destinationOrderMode || "unspecified"),
       destinationDiagnostics: Array.isArray(context.destinationDiagnostics)
         ? clone(context.destinationDiagnostics)
         : [],

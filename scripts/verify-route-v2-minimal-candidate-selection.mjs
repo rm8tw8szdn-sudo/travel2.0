@@ -173,6 +173,15 @@ assert.equal(trace.inputIntentSnapshot.intentId, TEST_INTENTS[0].intentId);
 assert.deepEqual(trace.inputContext, trace.inputIntentSnapshot, "DecisionTrace inputContext must be the same RouteIntent snapshot");
 assert.deepEqual(candidates[0].inputIntentSnapshot, trace.inputIntentSnapshot, "Candidate Pool and DecisionTrace must share the RouteIntent snapshot");
 assert.equal(validateRouteCandidate({ ...candidates[0], inputIntentSnapshot: { ...candidates[0].inputIntentSnapshot, intentId: "mismatched-intent" } }).accepted, false, "mismatched Candidate Pool intent snapshots must be rejected");
+const timeTamperedCandidate = structuredClone(candidates[0]);
+timeTamperedCandidate.inputIntentSnapshot.timeIntent = {
+  type: "single-month",
+  months: [2],
+  season: null,
+  rawText: "2月",
+  diagnostics: [],
+};
+assert.equal(validateRouteCandidate(timeTamperedCandidate).accepted, false, "Candidate snapshot time constraints must match the canonical RouteIntent");
 assert.equal(trace.candidatePool.length, 3);
 assert.equal(trace.selectedCandidate.status, "selected");
 assert.equal(trace.candidateId, trace.selectedCandidate.candidateId);
@@ -306,6 +315,7 @@ console.log(JSON.stringify({
   rejectionReasonsComplete: true,
   testIntents: intentResults,
   inputIntentSnapshot: true,
+  snapshotConsistency: true,
   decisionFactors: trace.decisionFactors.length,
   unknowns: trace.unknowns.length,
   externalRequests: 0,

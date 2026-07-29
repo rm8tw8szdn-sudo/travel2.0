@@ -4,6 +4,7 @@ import { envFlag } from "./route-v2-env.mjs";
 import { cleanString, stableHash, uniqueStrings as unique } from "./route-v2-utils.mjs";
 import {
   ROUTE_INTENT_FINGERPRINT_VERSION,
+  ROUTE_INTENT_SCHEMA_VERSION,
   createRouteIntentFingerprint,
   validateNormalizedRouteIntent,
 } from "./route-intent-model.mjs";
@@ -14,6 +15,138 @@ export const ROUTE_CANDIDATE_NEUTRAL_STATUSES = new Set(["pending", "needs-evide
 
 function clone(value) {
   return structuredClone(value);
+}
+
+function plainObject(value) {
+  return Boolean(value) && typeof value === "object" && !Array.isArray(value);
+}
+
+function semanticSnapshotText(value) {
+  return cleanString(value).normalize("NFKC").toLocaleLowerCase("en-US").replace(/\s+/gu, "");
+}
+
+function sameArray(left, right) {
+  return JSON.stringify(left) === JSON.stringify(right);
+}
+
+function normalizedSnapshotMonths(value) {
+  return [...new Set((Array.isArray(value) ? value : [])
+    .map(Number)
+    .filter((month) => Number.isInteger(month) && month >= 1 && month <= 12))]
+    .sort((left, right) => left - right);
+}
+
+function snapshotRequiredCityIdentities(snapshot = {}) {
+  const ids = Array.isArray(snapshot.requiredDestinationIds) ? snapshot.requiredDestinationIds : [];
+  const names = Array.isArray(snapshot.requiredDestinationNames) ? snapshot.requiredDestinationNames : [];
+  const length = Math.max(ids.length, names.length);
+  const identities = [];
+  for (let index = 0; index < length; index += 1) {
+    const identity = cleanString(ids[index]) || semanticSnapshotText(names[index]);
+    if (identity && !identities.includes(identity)) identities.push(identity);
+  }
+  return identities;
+}
+
+function canonicalRequiredCityIdentities(normalizedRouteIntent = {}) {
+  return (Array.isArray(normalizedRouteIntent?.hardConstraints?.requiredCities?.values)
+    ? normalizedRouteIntent.hardConstraints.requiredCities.values
+    : [])
+    .map((entry) => cleanString(entry?.id) || semanticSnapshotText(entry?.name))
+    .filter(Boolean);
+}
+
+function canonicalCountryIdentities(normalizedRouteIntent = {}) {
+  const hard = normalizedRouteIntent?.hardConstraints || {};
+  return [...new Set([
+    ...(hard.country?.state === "provided" ? [cleanString(hard.country.value)] : []),
+    ...(hard.countries?.state === "provided" && Array.isArray(hard.countries.values)
+      ? hard.countries.values.map(cleanString)
+      : []),
+  ].filter(Boolean))].sort((left, right) => left.localeCompare(right, "en"));
+}
+
+function validateCandidateSnapshotConsistency(candidate, reasons) {
+  const snapshot = candidate.inputIntentSnapshot;
+  const normalizedRouteIntent = candidate.normalizedRouteIntent;
+  if (!plainObject(snapshot)) {
+    reasons.push("inputIntentSnapshot-object-required");
+    return;
+  }
+  if (!plainObject(snapshot.normalizedRouteIntent)) {
+    reasons.push("inputIntentSnapshot-normalizedRouteIntent-required:inputIntentSnapshot.normalizedRouteIntent");
+    return;
+  }
+  const snapshotIntentValidation = validateNormalizedRouteIntent(snapshot.normalizedRouteIntent);
+  if (!snapshotIntentValidation.valid) {
+    reasons.push("inputIntentSnapshot-route-intent-schema-invalid");
+    reasons.push(...snapshotIntentValidation.violations.map(
+      (entry) => `inputIntentSnapshot-route-intent-schema-invalid:inputIntentSnapshot.normalizedRouteIntent.${entry.path}`,
+    ));
+    return;
+  }
+
+  if (cleanString(snapshot.routeIntentSchemaVersion) !== ROUTE_INTENT_SCHEMA_VERSION) {
+    reasons.push("inputIntentSnapshot-schema-version-invalid:inputIntentSnapshot.routeIntentSchemaVersion");
+  }
+  if (cleanString(snapshot.routeIntentFingerprintVersion) !== ROUTE_INTENT_FINGERPRINT_VERSION) {
+    reasons.push("inputIntentSnapshot-fingerprint-version-invalid:inputIntentSnapshot.routeIntentFingerprintVersion");
+  }
+  const snapshotFingerprint = createRouteIntentFingerprint(snapshot.normalizedRouteIntent);
+  if (cleanString(snapshot.routeIntentFingerprint) !== snapshotFingerprint.value) {
+    reasons.push("inputIntentSnapshot-fingerprint-content-mismatch:inputIntentSnapshot.routeIntentFingerprint");
+  }
+  if (snapshotFingerprint.value !== cleanString(candidate.routeIntentFingerprint)) {
+    reasons.push("inputIntentSnapshot-candidate-fingerprint-mismatch:inputIntentSnapshot.routeIntentFingerprint");
+  }
+  if (cleanString(snapshot.intentMode) !== cleanString(normalizedRouteIntent.intentMode)) {
+    reasons.push("inputIntentSnapshot-intent-mode-mismatch:inputIntentSnapshot.intentMode");
+  }
+
+  const hard = normalizedRouteIntent?.hardConstraints || {};
+  const snapshotTimeIntent = plainObject(snapshot.timeIntent) ? snapshot.timeIntent : null;
+  const canonicalTimeType = cleanString(hard.timeType);
+  const snapshotTimeType = cleanString(snapshotTimeIntent?.type || "unspecified");
+  const canonicalMonths = Array.isArray(hard.months?.values) ? hard.months.values : [];
+  const snapshotMonths = normalizedSnapshotMonths(snapshotTimeIntent?.months);
+  const canonicalSeason = hard.season?.state === "provided" ? semanticSnapshotText(hard.season.value) : "";
+  const snapshotSeason = semanticSnapshotText(snapshotTimeIntent?.season);
+  if (snapshotTimeType !== canonicalTimeType
+    || !sameArray(snapshotMonths, canonicalMonths)
+    || snapshotSeason !== canonicalSeason) {
+    reasons.push("inputIntentSnapshot-time-intent-mismatch:inputIntentSnapshot.timeIntent");
+  }
+
+  const canonicalRequiredCities = canonicalRequiredCityIdentities(normalizedRouteIntent);
+  const snapshotRequiredCities = snapshotRequiredCityIdentities(snapshot);
+  if ((hard.requiredCities?.state === "provided" || snapshotRequiredCities.length > 0)
+    && !sameArray(snapshotRequiredCities, canonicalRequiredCities)) {
+    reasons.push("inputIntentSnapshot-required-cities-mismatch:inputIntentSnapshot.requiredDestinationIds");
+  }
+  if (hard.destinationOrderMode?.state === "provided"
+    && cleanString(snapshot.destinationOrderMode) !== cleanString(hard.destinationOrderMode.value)) {
+    reasons.push("inputIntentSnapshot-destination-order-mismatch:inputIntentSnapshot.destinationOrderMode");
+  }
+  if (hard.exactDays?.state === "provided"
+    && Number(snapshot.duration?.days) !== Number(hard.exactDays.value)) {
+    reasons.push("inputIntentSnapshot-exact-days-mismatch:inputIntentSnapshot.duration.days");
+  }
+
+  const canonicalCountries = canonicalCountryIdentities(normalizedRouteIntent);
+  const snapshotCountries = [...new Set((Array.isArray(snapshot.targetCountries) ? snapshot.targetCountries : [])
+    .map(cleanString)
+    .filter(Boolean))]
+    .sort((left, right) => left.localeCompare(right, "en"));
+  if (canonicalCountries.length && !sameArray(snapshotCountries, canonicalCountries)) {
+    reasons.push("inputIntentSnapshot-countries-mismatch:inputIntentSnapshot.targetCountries");
+  }
+  const canonicalRegion = hard.region?.state === "provided" ? semanticSnapshotText(hard.region.value) : "";
+  const snapshotRegions = [...new Set((Array.isArray(snapshot.targetRegions) ? snapshot.targetRegions : [])
+    .map(semanticSnapshotText)
+    .filter(Boolean))];
+  if (canonicalRegion && !sameArray(snapshotRegions, [canonicalRegion])) {
+    reasons.push("inputIntentSnapshot-region-mismatch:inputIntentSnapshot.targetRegions");
+  }
 }
 
 function normalizedStatus(value) {
@@ -129,7 +262,7 @@ export function normalizeRouteCandidate(input = {}, { now = () => new Date().toI
   return normalized;
 }
 
-function validateRouteCandidateUnsafe(candidate = {}) {
+function validateRouteCandidateUnsafe(candidate = {}, { requireIntentSnapshot = true } = {}) {
   const reasons = [];
   if (!candidate || typeof candidate !== "object") return { accepted: false, reasons: ["candidate-not-object"] };
   if (!cleanString(candidate.candidateId)) reasons.push("candidateId-required");
@@ -166,6 +299,9 @@ function validateRouteCandidateUnsafe(candidate = {}) {
       }
     }
   }
+  if (requireIntentSnapshot && candidate.routeIntentFingerprint && candidate.inputIntentSnapshot == null) {
+    reasons.push("inputIntentSnapshot-required");
+  }
   if (candidate.routeIntentFingerprint
     && cleanString(candidate.routeIntentFingerprintVersion) !== ROUTE_INTENT_FINGERPRINT_VERSION) {
     reasons.push("routeIntentFingerprintVersion-invalid");
@@ -183,6 +319,9 @@ function validateRouteCandidateUnsafe(candidate = {}) {
       : null;
     if (recomputed && cleanString(recomputed.value) !== cleanString(candidate.routeIntentFingerprint)) {
       reasons.push("routeIntentFingerprint-content-mismatch");
+    }
+    if (schemaValidation.valid && candidate.inputIntentSnapshot != null) {
+      validateCandidateSnapshotConsistency(candidate, reasons);
     }
   }
 
@@ -223,9 +362,9 @@ function validateRouteCandidateUnsafe(candidate = {}) {
   return { accepted: reasons.length === 0, reasons };
 }
 
-export function validateRouteCandidate(candidate = {}) {
+export function validateRouteCandidate(candidate = {}, options = {}) {
   try {
-    return validateRouteCandidateUnsafe(candidate);
+    return validateRouteCandidateUnsafe(candidate, options);
   } catch {
     return { accepted: false, reasons: ["candidate-schema-validation-failed"] };
   }

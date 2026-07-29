@@ -1,5 +1,10 @@
 import { cleanString, stableHash, uniqueStrings } from "./route-v2-utils.mjs";
 import { normalizeTimeIntent } from "./search-intent-parser.mjs";
+import {
+  ROUTE_INTENT_FINGERPRINT_VERSION,
+  createRouteIntentFingerprint,
+  validateNormalizedRouteIntent,
+} from "./route-intent-model.mjs";
 
 export const EVIDENCE_BUNDLE_LIFECYCLE_SCHEMA_VERSION = "route-generation-v2-evidence-3a-lifecycle-v1";
 export const EVIDENCE_BUNDLE_LIFECYCLE_STATUSES = new Set([
@@ -17,6 +22,7 @@ export const EVIDENCE_BUNDLE_LEG_FEASIBILITY_STATUSES = new Set([
 ]);
 export const EVIDENCE_BUNDLE_AREA_STATUSES = new Set(["unknown", "needs-evidence", "supported", "contradicted"]);
 export const EVIDENCE_BUNDLE_REFERENCE_MODES = new Set(["embedded-compatibility", "public-evidence-references"]);
+const ROUTE_INTENT_FINGERPRINT_PATTERN = /^rif-v1-[a-f0-9]{64}$/u;
 
 function clone(value) {
   return structuredClone(value);
@@ -179,13 +185,12 @@ function consistencyFailures({ selectedCandidate = {}, routeRecord = {}, decisio
   const traceCandidateId = clean(decisionTrace.selectedCandidate?.candidateId);
   const routeIntentId = clean(routeRecord.intentId);
   const traceIntentId = clean(decisionTrace.intentId || decisionTrace.inputIntent?.intentId);
-  const candidateFingerprint = clean(selectedCandidate.routeIntentFingerprint || selectedCandidate.inputIntentSnapshot?.routeIntentFingerprint);
+  const candidateFingerprint = clean(selectedCandidate.routeIntentFingerprint);
   const routeFingerprint = clean(routeRecord.routeIntentFingerprint);
-  const traceFingerprint = clean(
-    decisionTrace.routeIntentFingerprint
-      || decisionTrace.inputIntentSnapshot?.routeIntentFingerprint
-      || decisionTrace.inputContext?.routeIntentFingerprint,
-  );
+  const traceFingerprint = clean(decisionTrace.routeIntentFingerprint);
+  const candidateFingerprintVersion = clean(selectedCandidate.routeIntentFingerprintVersion);
+  const routeFingerprintVersion = clean(routeRecord.routeIntentFingerprintVersion);
+  const traceFingerprintVersion = clean(decisionTrace.routeIntentFingerprintVersion);
   const candidateOrder = candidateDestinationOrder(selectedCandidate);
   const routeOrder = routeRecordDestinationOrder(routeRecord);
   const selectedTraceOrder = traceDestinationOrder(decisionTrace);
@@ -198,6 +203,14 @@ function consistencyFailures({ selectedCandidate = {}, routeRecord = {}, decisio
   if (candidateFingerprint || routeFingerprint || traceFingerprint) {
     if (!candidateFingerprint || !routeFingerprint || !traceFingerprint) failures.push("route-intent-fingerprint-missing");
     else if (candidateFingerprint !== routeFingerprint || candidateFingerprint !== traceFingerprint) failures.push("route-intent-fingerprint-mismatch");
+  }
+  if (candidateFingerprintVersion || routeFingerprintVersion || traceFingerprintVersion) {
+    if (!candidateFingerprintVersion || !routeFingerprintVersion || !traceFingerprintVersion) {
+      failures.push("route-intent-fingerprint-version-missing");
+    } else if (candidateFingerprintVersion !== routeFingerprintVersion
+      || candidateFingerprintVersion !== traceFingerprintVersion) {
+      failures.push("route-intent-fingerprint-version-mismatch");
+    }
   }
   if (clean(decisionTrace.outcome) !== "success") failures.push("decision-trace-not-success");
   if (!sameOrder(candidateOrder, routeOrder)) failures.push("candidate-route-destination-order-mismatch");
@@ -350,6 +363,32 @@ export function validateEvidenceBundleLifecycle(input = {}, expected = {}) {
   if (bundle.evidenceBundleId !== expectedId) reasons.push("evidenceBundleId-mismatch");
   if (!EVIDENCE_BUNDLE_LIFECYCLE_STATUSES.has(bundle.status)) reasons.push("status-invalid");
   if (!EVIDENCE_BUNDLE_REFERENCE_MODES.has(bundle.evidenceReferenceMode)) reasons.push("evidenceReferenceMode-invalid");
+  if (!clean(input.routeIntentFingerprintVersion)) {
+    reasons.push("bundle-route-intent-fingerprint-version-required:routeIntentFingerprintVersion");
+  } else if (bundle.routeIntentFingerprintVersion !== ROUTE_INTENT_FINGERPRINT_VERSION) {
+    reasons.push("bundle-route-intent-fingerprint-version-unsupported:routeIntentFingerprintVersion");
+  }
+  if (!clean(input.routeIntentFingerprint)) {
+    reasons.push("bundle-route-intent-fingerprint-required:routeIntentFingerprint");
+  } else if (!ROUTE_INTENT_FINGERPRINT_PATTERN.test(bundle.routeIntentFingerprint)) {
+    reasons.push("bundle-route-intent-fingerprint-format-invalid:routeIntentFingerprint");
+  }
+  if (input.normalizedRouteIntent !== undefined) {
+    const intentValidation = validateNormalizedRouteIntent(input.normalizedRouteIntent);
+    if (!intentValidation.valid) {
+      reasons.push(...intentValidation.violations.map(
+        (entry) => `bundle-route-intent-invalid:normalizedRouteIntent.${entry.path}`,
+      ));
+    } else {
+      const intentFingerprint = createRouteIntentFingerprint(input.normalizedRouteIntent);
+      if (intentFingerprint.value !== bundle.routeIntentFingerprint) {
+        reasons.push("bundle-normalized-route-intent-fingerprint-mismatch:normalizedRouteIntent");
+      }
+      if (clean(input.routeIntentFingerprintVersion) !== ROUTE_INTENT_FINGERPRINT_VERSION) {
+        reasons.push("bundle-normalized-route-intent-version-mismatch:routeIntentFingerprintVersion");
+      }
+    }
+  }
   if (!Array.isArray(input.destinationOrder) || bundle.destinationOrder.length < 2) reasons.push("destinationOrder-minimum-two");
   if (bundle.destinationOrder.length !== (Array.isArray(input.destinationOrder) ? input.destinationOrder.map(clean).filter(Boolean).length : 0)) reasons.push("destinationOrder-duplicate-or-empty");
   if (!Array.isArray(input.legs)) reasons.push("legs-array-required");
@@ -417,23 +456,21 @@ export function validateEvidenceBundleLifecycle(input = {}, expected = {}) {
     if (expectedOrder.length && !sameOrder(bundle.destinationOrder, expectedOrder)) reasons.push("bundle-candidate-destination-order-mismatch");
     const expectedFingerprint = clean(
       expected.selectedCandidate?.routeIntentFingerprint
-        || expected.selectedCandidate?.inputIntentSnapshot?.routeIntentFingerprint
         || expected.routeRecord?.routeIntentFingerprint
         || expected.decisionTrace?.routeIntentFingerprint,
     );
     const expectedFingerprintVersion = clean(
       expected.selectedCandidate?.routeIntentFingerprintVersion
-        || expected.selectedCandidate?.inputIntentSnapshot?.routeIntentFingerprintVersion
         || expected.routeRecord?.routeIntentFingerprintVersion
         || expected.decisionTrace?.routeIntentFingerprintVersion,
     );
     if (expectedFingerprint) {
-      if (!bundle.routeIntentFingerprint) reasons.push("bundle-route-intent-fingerprint-required");
-      else if (bundle.routeIntentFingerprint !== expectedFingerprint) reasons.push("bundle-route-intent-fingerprint-mismatch");
+      if (!bundle.routeIntentFingerprint) reasons.push("bundle-route-intent-fingerprint-required:routeIntentFingerprint");
+      else if (bundle.routeIntentFingerprint !== expectedFingerprint) reasons.push("bundle-route-intent-fingerprint-mismatch:routeIntentFingerprint");
     }
     if (expectedFingerprintVersion) {
-      if (!bundle.routeIntentFingerprintVersion) reasons.push("bundle-route-intent-fingerprint-version-required");
-      else if (bundle.routeIntentFingerprintVersion !== expectedFingerprintVersion) reasons.push("bundle-route-intent-fingerprint-version-mismatch");
+      if (!bundle.routeIntentFingerprintVersion) reasons.push("bundle-route-intent-fingerprint-version-required:routeIntentFingerprintVersion");
+      else if (bundle.routeIntentFingerprintVersion !== expectedFingerprintVersion) reasons.push("bundle-route-intent-fingerprint-version-mismatch:routeIntentFingerprintVersion");
     }
   }
 

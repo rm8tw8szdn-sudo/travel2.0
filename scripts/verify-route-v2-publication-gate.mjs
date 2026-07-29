@@ -211,6 +211,52 @@ assert.equal(samples[3].publicationGate.status, "ready-for-display");
 assert.equal(samples[4].publicationGate.status, "ready-for-display");
 assert.equal(samples[1].validation.seasonResults.length, 2);
 assert(samples[1].validation.seasonResults.every((result) => result.status === "needs-evidence"));
+const tamperedFebruaryCandidate = structuredClone(samples[1].selection.selectedCandidate);
+tamperedFebruaryCandidate.inputIntentSnapshot.timeIntent = timeIntent([]);
+const tamperedFebruaryValidation = {
+  ...structuredClone(samples[1].validation),
+  status: "ready",
+  reasonCodes: [],
+  seasonResults: [],
+  criticalMissingEvidenceIds: [],
+  conflictEvidenceIds: [],
+  staleEvidenceIds: [],
+};
+const tamperedFebruaryGate = evaluateRouteV2Publication({
+  routeRecord: samples[1].routeRecord,
+  selectedCandidate: tamperedFebruaryCandidate,
+  decisionTrace: samples[1].decisionTrace,
+  validation: tamperedFebruaryValidation,
+  evidenceBundle: {
+    ...samples[1].evidenceBundle,
+    missingEvidenceRefs: [],
+    seasonEvidenceRefs: [],
+  },
+}, { now: () => fixedNow });
+assert.equal(tamperedFebruaryGate.status, "blocked-incomplete");
+assert.equal(tamperedFebruaryGate.publishable, false);
+assert(
+  tamperedFebruaryGate.reasonCodes.some((reason) => reason.includes("candidate:inputIntentSnapshot-time-intent-mismatch")),
+  JSON.stringify(tamperedFebruaryGate.reasonCodes),
+);
+
+const wrongDurationRoute = {
+  ...structuredClone(samples[0].routeRecord),
+  durationDays: samples[0].routeRecord.durationDays + 1,
+};
+const wrongDurationGate = evaluateRouteV2Publication({
+  routeRecord: wrongDurationRoute,
+  selectedCandidate: samples[0].selection.selectedCandidate,
+  decisionTrace: samples[0].decisionTrace,
+  validation: samples[0].validation,
+  evidenceBundle: samples[0].evidenceBundle,
+}, { now: () => fixedNow });
+assert.equal(wrongDurationGate.status, "blocked-incomplete");
+assert.equal(wrongDurationGate.publishable, false);
+assert(
+  wrongDurationGate.reasonCodes.includes("route-intent:exact-days-mismatch"),
+  JSON.stringify(wrongDurationGate.reasonCodes),
+);
 
 const integrationRoot = path.join(root, "planner-integration");
 const integrationEnv = {

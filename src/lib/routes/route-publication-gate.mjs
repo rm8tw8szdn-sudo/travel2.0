@@ -3,6 +3,7 @@ import { validateRouteContent } from "./content-quality.mjs";
 import { validateDecisionTrace } from "./decision-trace-schema.mjs";
 import { validateEvidenceBundleLifecycle } from "./evidence-bundle-schema.mjs";
 import { validateRouteCandidate } from "./route-candidate-pool.mjs";
+import { validateRouteIntentInvariants } from "./route-intent-invariant-gate.mjs";
 import { envFlag } from "./route-v2-env.mjs";
 import { cleanString, stableHash, uniqueStrings } from "./route-v2-utils.mjs";
 
@@ -93,10 +94,26 @@ export function evaluateRouteV2Publication({
     if (clean(routeRecord.generationVersion).includes("fallback")) rejected.push("legacy-fallback-not-publishable");
 
     const candidateValidation = validateRouteCandidate(selectedCandidate);
-    if (!candidateValidation.accepted) incomplete.push(...candidateValidation.reasons.map((reason) => `candidate:${reason}`));
+    if (!candidateValidation.accepted) {
+      incomplete.push(...candidateValidation.reasons.map((reason) => `candidate:${reason}`));
+      return result({ status: "blocked-incomplete", reasons: incomplete, routeRecord, validation, checkedAt });
+    }
+    const authoritativeHardConstraints = selectedCandidate.normalizedRouteIntent.hardConstraints;
     if (clean(selectedCandidate.status) !== "selected") incomplete.push("candidate-not-selected");
     if (clean(routeRecord.selectedCandidateId) !== clean(selectedCandidate.candidateId)) incomplete.push("route-candidate-id-mismatch");
     if (!sameOrder(candidateOrder(selectedCandidate), routeOrder(routeRecord))) incomplete.push("route-candidate-order-mismatch");
+    const routeIntentValidation = validateRouteIntentInvariants(
+      routeRecord,
+      selectedCandidate.normalizedRouteIntent,
+      {
+        source: "route-v2-publication-gate",
+        requireFingerprint: true,
+        claimedSuccess: true,
+      },
+    );
+    if (!routeIntentValidation.matched) {
+      incomplete.push(...routeIntentValidation.reasonCodes.map((reason) => `route-intent:${reason}`));
+    }
 
     const traceValidation = validateDecisionTrace(decisionTrace);
     if (!traceValidation.accepted) incomplete.push(...(traceValidation.missing || []).map((reason) => `trace:${reason}`));
@@ -122,7 +139,9 @@ export function evaluateRouteV2Publication({
     const bundleLegRefs = new Set(evidenceBundle.legEvidenceRefs || []);
     if ((validation.legResults || []).some((leg) => clean(leg.evidenceId) && !bundleLegRefs.has(clean(leg.evidenceId)))) evidence.push("evidence-bundle-leg-reference-mismatch");
     if (!validation.pacingResult || validation.pacingResult.status !== "ready") evidence.push("route-pacing-not-ready");
-    const requestedMonths = selectedCandidate.inputIntentSnapshot?.timeIntent?.months || [];
+    const requestedMonths = authoritativeHardConstraints.months?.state === "provided"
+      ? authoritativeHardConstraints.months.values
+      : [];
     if (requestedMonths.length) {
       const expectedSeasons = candidateOrder(selectedCandidate).length * new Set(requestedMonths).size;
       if (!Array.isArray(validation.seasonResults) || validation.seasonResults.length !== expectedSeasons) evidence.push("season-validation-incomplete");

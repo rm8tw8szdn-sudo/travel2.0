@@ -95,6 +95,10 @@ function schemaViolation(path, expected, value, code = "invalid-type") {
   };
 }
 
+function semanticViolation(path, expected, value) {
+  return schemaViolation(path, expected, value, "route-intent-semantic-invalid");
+}
+
 function plainObject(value) {
   return Boolean(value) && typeof value === "object" && !Array.isArray(value);
 }
@@ -190,6 +194,165 @@ function validateRequiredCity(value, path, violations) {
   const nameValid = validateString(value.name, `${path}.name`, violations);
   if (idValid && nameValid && !clean(value.id) && !clean(value.name)) {
     violations.push(schemaViolation(path, "city with a non-empty id or name", value, "invalid-value"));
+  }
+}
+
+function validateRouteIntentSemanticConsistency(input, violations) {
+  const hard = input?.hardConstraints;
+  const evidence = input?.evidenceStatus;
+  if (!plainObject(hard) || !plainObject(evidence) || !TIME_TYPES.has(hard.timeType)) return;
+
+  const months = hard.months;
+  const season = hard.season;
+  const monthValues = Array.isArray(months?.values) ? months.values : null;
+  const monthState = PRESENCE_STATES.has(months?.state) ? months.state : "";
+  const seasonState = PRESENCE_STATES.has(season?.state) ? season.state : "";
+  const seasonValue = typeof season?.value === "string" ? clean(season.value) : null;
+  if (!monthValues || !monthState || !seasonState || seasonValue == null) return;
+
+  const monthsProvided = monthState === "provided";
+  const monthsAbsent = monthState !== "provided" && monthValues.length === 0;
+  const seasonProvided = seasonState === "provided" && Boolean(seasonValue);
+  const seasonAbsent = seasonState !== "provided" && seasonValue === "";
+
+  switch (hard.timeType) {
+    case "single-month":
+      if (!monthsProvided) {
+        violations.push(semanticViolation(
+          "hardConstraints.months.state",
+          "provided when timeType=single-month",
+          months.state,
+        ));
+      }
+      if (monthValues.length !== 1) {
+        violations.push(semanticViolation(
+          "hardConstraints.months.values",
+          "exactly one month when timeType=single-month",
+          months.values,
+        ));
+      }
+      if (!seasonAbsent) {
+        violations.push(semanticViolation(
+          "hardConstraints.season",
+          "no season when timeType=single-month",
+          season,
+        ));
+      }
+      break;
+    case "month-range":
+      if (!monthsProvided) {
+        violations.push(semanticViolation(
+          "hardConstraints.months.state",
+          "provided when timeType=month-range",
+          months.state,
+        ));
+      }
+      if (monthValues.length < 2) {
+        violations.push(semanticViolation(
+          "hardConstraints.months.values",
+          "at least two unique months when timeType=month-range",
+          months.values,
+        ));
+      }
+      if (!seasonAbsent) {
+        violations.push(semanticViolation(
+          "hardConstraints.season",
+          "no season when timeType=month-range",
+          season,
+        ));
+      }
+      break;
+    case "season-only":
+      if (!seasonProvided) {
+        violations.push(semanticViolation(
+          "hardConstraints.season",
+          "one provided non-empty season when timeType=season-only",
+          season,
+        ));
+      }
+      if (!monthsAbsent) {
+        violations.push(semanticViolation(
+          "hardConstraints.months",
+          "no explicit months when timeType=season-only",
+          months,
+        ));
+      }
+      break;
+    case "unspecified":
+      if (!monthsAbsent) {
+        violations.push(semanticViolation(
+          "hardConstraints.months",
+          "no explicit months when timeType=unspecified",
+          months,
+        ));
+      }
+      if (!seasonAbsent) {
+        violations.push(semanticViolation(
+          "hardConstraints.season",
+          "no explicit season when timeType=unspecified",
+          season,
+        ));
+      }
+      break;
+    case "invalid":
+      if (!monthsAbsent || !seasonAbsent) {
+        violations.push(semanticViolation(
+          "hardConstraints.timeType",
+          "invalid time marker without a valid month or season condition",
+          hard.timeType,
+        ));
+      }
+      break;
+    default:
+      break;
+  }
+
+  const expectedEvidenceStatus = hard.timeType === "unspecified"
+    ? "not-requested"
+    : hard.timeType === "invalid"
+      ? "invalid"
+      : "needs-evidence";
+  if (TIME_EVIDENCE_STATUSES.has(evidence.time) && evidence.time !== expectedEvidenceStatus) {
+    violations.push(semanticViolation(
+      "evidenceStatus.time",
+      `${expectedEvidenceStatus} when timeType=${hard.timeType}`,
+      evidence.time,
+    ));
+  }
+
+  if (input.intentMode === "invalid-time-intent" && hard.timeType !== "invalid") {
+    violations.push(semanticViolation(
+      "intentMode",
+      "invalid-time-intent only when hardConstraints.timeType=invalid",
+      input.intentMode,
+    ));
+  }
+  if (hard.timeType === "invalid"
+    && !["invalid-time-intent", "invalid-duration-intent"].includes(input.intentMode)) {
+    violations.push(semanticViolation(
+      "hardConstraints.timeType",
+      "invalid only with an invalid intent mode",
+      hard.timeType,
+    ));
+  }
+
+  if (input.intentMode === "insufficient-intent") {
+    const sufficientConstraint = [
+      hard.requiredCities?.state === "provided" && hard.requiredCities.values?.length > 0,
+      hard.exactDays?.state === "provided" && Number.isInteger(hard.exactDays.value) && hard.exactDays.value > 0,
+      monthsProvided && monthValues.length > 0,
+      seasonProvided,
+      hard.country?.state === "provided" && Boolean(clean(hard.country.value)),
+      hard.countries?.state === "provided" && hard.countries.values?.length > 0,
+      hard.region?.state === "provided" && Boolean(clean(hard.region.value)),
+    ].some(Boolean);
+    if (sufficientConstraint) {
+      violations.push(semanticViolation(
+        "intentMode",
+        "insufficient-intent only when no usable travel constraint is available",
+        input.intentMode,
+      ));
+    }
   }
 }
 
@@ -325,6 +488,7 @@ export function validateNormalizedRouteIntent(input) {
         ));
       }
     }
+    validateRouteIntentSemanticConsistency(input, violations);
   } catch {
     violations.push(schemaViolation("$", "readable canonical RouteIntent object", input, "validation-access-failed"));
   }
@@ -464,8 +628,18 @@ export function normalizeRouteIntent(input = {}) {
   );
 
   const months = normalizeMonths(input, timeIntent);
-  const timeType = clean(timeIntent.type || input.timeIntentType || "unspecified") || "unspecified";
   const seasonText = semanticText(timeIntent.season || input.seasonKey || input.season);
+  const explicitTimeType = hasOwn(timeIntent, "type") || hasOwn(input, "timeIntentType");
+  const requestedTimeType = clean(timeIntent.type || input.timeIntentType || "unspecified") || "unspecified";
+  const timeType = explicitTimeType
+    ? requestedTimeType
+    : months.values.length > 1
+      ? "month-range"
+      : months.values.length === 1
+        ? "single-month"
+        : seasonText
+          ? "season-only"
+          : "unspecified";
   const seasonProvided = hasOwn(timeIntent, "season")
     || hasOwn(input, "season")
     || hasOwn(input, "seasonKey")

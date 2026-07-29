@@ -6,6 +6,7 @@ import {
   createRouteIntentFingerprint,
   normalizeRouteIntent,
   readRouteIntentEnvelope,
+  validateNormalizedRouteIntent,
 } from "../src/lib/routes/route-intent-model.mjs";
 
 const base = {
@@ -111,11 +112,61 @@ assert.deepEqual(
   "derived destination suggestions must not be reinterpreted as user hard constraints",
 );
 
+const semanticContradictions = [
+  ["single-month-unspecified-empty", (value) => {
+    value.hardConstraints.months = { state: "unspecified", values: [] };
+  }],
+  ["single-month-multiple", (value) => {
+    value.hardConstraints.months = { state: "provided", values: [2, 3] };
+  }],
+  ["season-only-empty", (value) => {
+    value.hardConstraints.timeType = "season-only";
+    value.hardConstraints.months = { state: "unspecified", values: [] };
+    value.hardConstraints.season = { state: "explicit-empty", value: "" };
+  }],
+  ["unspecified-with-month", (value) => {
+    value.hardConstraints.timeType = "unspecified";
+    value.hardConstraints.months = { state: "provided", values: [2] };
+    value.evidenceStatus.time = "not-requested";
+  }],
+  ["invalid-mode-with-valid-time", (value) => {
+    value.intentMode = "invalid-time-intent";
+  }],
+  ["insufficient-mode-with-destination", (value) => {
+    value.intentMode = "insufficient-intent";
+  }],
+];
+const semanticBase = normalizeRouteIntent({
+  intentMode: "specified-destination",
+  countryCode: "JP",
+  durationDays: 7,
+  timeIntent: { type: "single-month", months: [2], season: null },
+});
+for (const [name, mutate] of semanticContradictions) {
+  const subject = structuredClone(semanticBase);
+  mutate(subject);
+  const validation = validateNormalizedRouteIntent(subject);
+  assert.equal(validation.valid, false, `${name}: contradiction must fail`);
+  assert(
+    validation.violations.some((entry) => entry.code === "route-intent-semantic-invalid" && entry.path),
+    `${name}: semantic reason and field path required`,
+  );
+}
+for (const legal of [
+  normalizeRouteIntent({ countryCode: "JP", durationDays: 7 }),
+  normalizeRouteIntent({ countryCode: "JP", durationDays: 7, timeIntent: { type: "single-month", months: [2], season: null } }),
+  normalizeRouteIntent({ countryCode: "JP", durationDays: 7, timeIntent: { type: "month-range", months: [3, 4], season: null } }),
+  normalizeRouteIntent({ countryCode: "JP", durationDays: 7, timeIntent: { type: "season-only", months: [], season: "winter" } }),
+]) {
+  assert.equal(validateNormalizedRouteIntent(legal).valid, true);
+}
+
 console.log(JSON.stringify({
   status: "PASS",
   schemaVersion: ROUTE_INTENT_SCHEMA_VERSION,
   fingerprintVersion: ROUTE_INTENT_FINGERPRINT_VERSION,
   fingerprint: fingerprint.value,
   semanticNormalization: true,
+  semanticContradictionsRejected: semanticContradictions.length,
   missingVsEmpty: true,
 }, null, 2));

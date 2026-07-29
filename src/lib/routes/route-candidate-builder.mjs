@@ -463,7 +463,7 @@ export function buildRouteCandidatesFromPool({
     });
     if (!draft) continue;
     const candidate = normalizeRouteCandidate({ ...draft, createdAt }, { now: () => createdAt });
-    const validation = validateRouteCandidate(candidate);
+    const validation = validateRouteCandidate(candidate, { requireIntentSnapshot: false });
     if (!validation.accepted) continue;
     const shapeKey = candidateShapeKey(candidate);
     if (seenShapes.has(shapeKey)) continue;

@@ -277,6 +277,50 @@ for (const [index, mutate] of malformedMutators.entries()) {
   malformedAssertions += 4;
 }
 
+const semanticMutators = [
+  ["single-month-with-empty-months", (intent) => {
+    intent.hardConstraints.months = { state: "provided", values: [] };
+  }],
+  ["single-month-with-many-months", (intent) => {
+    intent.hardConstraints.months = { state: "provided", values: [2, 3] };
+  }],
+  ["season-only-with-empty-season", (intent) => {
+    intent.hardConstraints.timeType = "season-only";
+    intent.hardConstraints.months = { state: "unspecified", values: [] };
+    intent.hardConstraints.season = { state: "explicit-empty", value: "" };
+  }],
+  ["unspecified-with-months", (intent) => {
+    intent.hardConstraints.timeType = "unspecified";
+    intent.hardConstraints.months = { state: "provided", values: [2] };
+    intent.evidenceStatus.time = "not-requested";
+  }],
+  ["invalid-mode-with-valid-time", (intent) => {
+    intent.intentMode = "invalid-time-intent";
+  }],
+  ["insufficient-mode-with-destinations", (intent) => {
+    intent.intentMode = "insufficient-intent";
+  }],
+];
+let semanticAssertions = 0;
+for (const [name, mutate] of semanticMutators) {
+  const subject = structuredClone(malformedBase);
+  mutate(subject);
+  let validation;
+  assert.doesNotThrow(() => {
+    validation = validateNormalizedRouteIntent(subject);
+  }, `${name}: semantic validator must never throw`);
+  assert.equal(validation.valid, false, `${name}: contradiction must fail closed`);
+  assert(
+    validation.violations.some((entry) => (
+      entry.code === "route-intent-semantic-invalid"
+      && typeof entry.path === "string"
+      && entry.path.length > 0
+    )),
+    `${name}: structured semantic diagnostic required`,
+  );
+  semanticAssertions += 3;
+}
+
 const corpus = JSON.parse(fs.readFileSync(corpusPath, "utf8"));
 assert.equal(corpus.schemaVersion, "route-v2-permanent-intent-corpus-v1");
 let corpusAssertions = 0;
@@ -310,6 +354,7 @@ console.log(JSON.stringify({
   property: { cases: PROPERTY_CASES, assertions: propertyAssertions },
   fuzz: { cases: FUZZ_CASES, assertions: fuzzAssertions },
   malformed: { cases: malformedMutators.length, assertions: malformedAssertions },
+  semantic: { cases: semanticMutators.length, assertions: semanticAssertions },
   metamorphic: { cases: METAMORPHIC_CASES, assertions: metamorphicAssertions },
   differential: { cases: 80 * DIFFERENTIAL_SOURCES.length, assertions: differentialAssertions, sources: DIFFERENTIAL_SOURCES },
   permanentCorpus: { cases: corpus.cases.length, assertions: corpusAssertions },

@@ -18,12 +18,23 @@ import {
   createEvidenceRepository,
   createRouteCandidatePoolStore,
   createRouteCompositionPlanner,
+  routeIntentSnapshot,
   writeEvidenceBundleLifecycleSidecarSafe,
 } from "../src/lib/routes/index.mjs";
 
 const fixedNow = "2026-07-21T00:00:00.000Z";
 const tempRoot = fs.mkdtempSync(path.join(os.tmpdir(), "route-v2-evidence-3a-foundation-"));
 
+const baseIntentSnapshot = routeIntentSnapshot({
+  context: {
+    country: "JP",
+    durationDays: 7,
+    travelStyle: "classic-first-trip",
+  },
+  intentId: "intent-evidence-foundation-sample",
+  source: "evidence-3a-foundation-verifier",
+  createdAt: fixedNow,
+});
 const selectedCandidate = {
   candidateId: "rc-evidence-foundation-sample",
   intentId: "intent-evidence-foundation-sample",
@@ -37,6 +48,10 @@ const selectedCandidate = {
   proposedOrder: ["Q1490", "Q34600", "Q35765"],
   durationDays: 7,
   travelStyle: "classic-first-trip",
+  routeIntentFingerprintVersion: baseIntentSnapshot.routeIntentFingerprintVersion,
+  routeIntentFingerprint: baseIntentSnapshot.routeIntentFingerprint,
+  normalizedRouteIntent: structuredClone(baseIntentSnapshot.normalizedRouteIntent),
+  inputIntentSnapshot: structuredClone(baseIntentSnapshot),
 };
 
 const routeRecord = {
@@ -47,6 +62,9 @@ const routeRecord = {
   v2PublicationStatus: "v2-not-publishable-yet",
   countries: ["JP"],
   destinationEntities: selectedCandidate.destinations.map((destination) => ({ ...destination })),
+  routeIntentFingerprintVersion: selectedCandidate.routeIntentFingerprintVersion,
+  routeIntentFingerprint: selectedCandidate.routeIntentFingerprint,
+  normalizedRouteIntent: structuredClone(selectedCandidate.normalizedRouteIntent),
 };
 
 const decisionTrace = {
@@ -54,6 +72,8 @@ const decisionTrace = {
   intentId: selectedCandidate.intentId,
   outcome: "success",
   selectedCandidate: structuredClone(selectedCandidate),
+  routeIntentFingerprintVersion: selectedCandidate.routeIntentFingerprintVersion,
+  routeIntentFingerprint: selectedCandidate.routeIntentFingerprint,
 };
 
 const built = buildEvidenceBundleLifecycle({
@@ -79,6 +99,29 @@ assert.equal(built.bundle.conflicts.length, 0);
 assert.equal(validateEvidenceBundleLifecycle(built.bundle).accepted, true);
 assert.equal(validateEvidenceBundleLifecycle({ ...built.bundle, status: undefined }).accepted, false);
 assert.equal(validateEvidenceBundleLifecycle({ ...built.bundle, evidenceBundleId: undefined }).accepted, false);
+for (const [name, patch] of [
+  ["empty-fingerprint", { routeIntentFingerprint: "" }],
+  ["null-fingerprint", { routeIntentFingerprint: null }],
+  ["invalid-fingerprint-format", { routeIntentFingerprint: "rif-v1-invalid" }],
+  ["empty-fingerprint-version", { routeIntentFingerprintVersion: "" }],
+  ["unknown-fingerprint-version", { routeIntentFingerprintVersion: "route-intent-fingerprint-v999" }],
+]) {
+  const malformed = { ...built.bundle, ...patch };
+  malformed.evidenceBundleId = createEvidenceBundleLifecycleId(malformed);
+  const malformedValidation = validateEvidenceBundleLifecycle(malformed);
+  assert.equal(malformedValidation.accepted, false, name);
+  assert(
+    malformedValidation.reasons.some((reason) => reason.includes("route-intent-fingerprint")),
+    `${name}: ${JSON.stringify(malformedValidation.reasons)}`,
+  );
+}
+const mismatchedFingerprintValidation = validateEvidenceBundleLifecycle(built.bundle, {
+  selectedCandidate: { ...selectedCandidate, routeIntentFingerprint: `rif-v1-${"0".repeat(64)}` },
+  routeRecord,
+  decisionTrace,
+});
+assert.equal(mismatchedFingerprintValidation.accepted, false);
+assert(mismatchedFingerprintValidation.reasons.some((reason) => reason.includes("route-intent-fingerprint-mismatch")));
 
 const stableBuilt = buildEvidenceBundleLifecycle({
   selectedCandidate: structuredClone(selectedCandidate),

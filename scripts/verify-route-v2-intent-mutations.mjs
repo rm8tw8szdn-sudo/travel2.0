@@ -5,12 +5,16 @@ import path from "node:path";
 
 import {
   attachRouteIntentEnvelope,
+  buildEvidenceBundleLifecycle,
+  createEvidenceBundleLifecycleId,
   createRouteSearchCache,
   createRouteIntentFingerprint,
   finalizeRouteResult,
   normalizeRouteCandidate,
   normalizeRouteIntent,
+  routeIntentSnapshot,
   validateEmbeddedRouteIntent,
+  validateEvidenceBundleLifecycle,
   validateNormalizedRouteIntent,
   validateRouteCandidate,
   validateRouteIntentInvariants,
@@ -211,6 +215,159 @@ kill(
   "candidate-skips-route-intent-schema",
   !validateRouteCandidate(candidate).accepted,
   "candidate-schema-gate",
+);
+
+const canonicalSnapshot = routeIntentSnapshot({
+  context: {
+    ...baseIntent,
+    intentId: "mutation-intent",
+    normalizedRouteIntent: normalizeRouteIntent(baseIntent),
+  },
+  intentId: "mutation-intent",
+  source: "intent-mutation-verifier",
+  createdAt: "2026-07-28T00:00:00.000Z",
+});
+const validCandidate = normalizeRouteCandidate({
+  intentId: "mutation-intent",
+  countries: ["JP"],
+  destinations: [
+    { id: "Q1490", wikidataId: "Q1490", name: "Tokyo", countryCode: "JP" },
+    { id: "Q34600", wikidataId: "Q34600", name: "Kyoto", countryCode: "JP" },
+  ],
+  proposedOrder: ["Q1490", "Q34600"],
+  durationDays: 7,
+  travelStyle: "classic",
+  generationSource: "mutation",
+  status: "selected",
+  routeIntentFingerprint: canonicalSnapshot.routeIntentFingerprint,
+  routeIntentFingerprintVersion: canonicalSnapshot.routeIntentFingerprintVersion,
+  normalizedRouteIntent: canonicalSnapshot.normalizedRouteIntent,
+  inputIntentSnapshot: canonicalSnapshot,
+  createdAt: "2026-07-28T00:00:00.000Z",
+});
+assert.equal(validateRouteCandidate(validCandidate).accepted, true);
+const snapshotTimeTamper = structuredClone(validCandidate);
+snapshotTimeTamper.inputIntentSnapshot.timeIntent = {
+  type: "unspecified",
+  months: [],
+  season: null,
+  rawText: "",
+  diagnostics: [],
+};
+kill(
+  "candidate-trusts-audit-snapshot-over-canonical-intent",
+  !validateRouteCandidate(snapshotTimeTamper).accepted,
+  "candidate-snapshot-consistency",
+);
+
+const semanticMutationCases = [
+  ["single-month-allows-empty-month-list", (intent) => {
+    intent.hardConstraints.months = { state: "provided", values: [] };
+  }],
+  ["single-month-allows-multiple-months", (intent) => {
+    intent.hardConstraints.months = { state: "provided", values: [2, 3] };
+  }],
+  ["season-only-allows-empty-season", (intent) => {
+    intent.hardConstraints.timeType = "season-only";
+    intent.hardConstraints.months = { state: "unspecified", values: [] };
+    intent.hardConstraints.season = { state: "explicit-empty", value: "" };
+  }],
+  ["unspecified-allows-explicit-month", (intent) => {
+    intent.hardConstraints.timeType = "unspecified";
+    intent.hardConstraints.months = { state: "provided", values: [2] };
+    intent.evidenceStatus.time = "not-requested";
+  }],
+  ["invalid-intent-allows-valid-time", (intent) => {
+    intent.intentMode = "invalid-time-intent";
+  }],
+  ["insufficient-intent-allows-destination", (intent) => {
+    intent.intentMode = "insufficient-intent";
+  }],
+];
+for (const [name, mutate] of semanticMutationCases) {
+  const subject = normalizeRouteIntent(baseIntent);
+  mutate(subject);
+  const validation = validateNormalizedRouteIntent(subject);
+  kill(
+    name,
+    validation.valid === false
+      && validation.violations.some((entry) => entry.code === "route-intent-semantic-invalid"),
+    "cross-field-semantic-validator",
+  );
+}
+
+const evidenceRouteRecord = {
+  id: "mutation-evidence-route",
+  intentId: validCandidate.intentId,
+  selectedCandidateId: validCandidate.candidateId,
+  generationVersion: "route-generation-v2-phase1",
+  routeIntentFingerprintVersion: validCandidate.routeIntentFingerprintVersion,
+  routeIntentFingerprint: validCandidate.routeIntentFingerprint,
+  normalizedRouteIntent: structuredClone(validCandidate.normalizedRouteIntent),
+  destinationEntities: validCandidate.destinations.map((entry) => structuredClone(entry)),
+};
+const evidenceTrace = {
+  traceId: "dt-mutation-evidence",
+  intentId: validCandidate.intentId,
+  outcome: "success",
+  routeIntentFingerprintVersion: validCandidate.routeIntentFingerprintVersion,
+  routeIntentFingerprint: validCandidate.routeIntentFingerprint,
+  selectedCandidate: structuredClone(validCandidate),
+};
+const evidenceBuild = buildEvidenceBundleLifecycle({
+  selectedCandidate: validCandidate,
+  routeRecord: evidenceRouteRecord,
+  decisionTrace: evidenceTrace,
+  context: {
+    ...baseIntent,
+    intentId: validCandidate.intentId,
+    normalizedRouteIntent: validCandidate.normalizedRouteIntent,
+  },
+  now: () => "2026-07-28T00:00:00.000Z",
+});
+assert.equal(evidenceBuild.created, true);
+const evidenceWithoutFingerprint = {
+  ...evidenceBuild.bundle,
+  routeIntentFingerprint: "",
+};
+evidenceWithoutFingerprint.evidenceBundleId = createEvidenceBundleLifecycleId(evidenceWithoutFingerprint);
+kill(
+  "standalone-evidence-allows-empty-fingerprint",
+  !validateEvidenceBundleLifecycle(evidenceWithoutFingerprint).accepted,
+  "standalone-evidence-association-validation",
+);
+const evidenceWithoutVersion = {
+  ...evidenceBuild.bundle,
+  routeIntentFingerprintVersion: "",
+};
+evidenceWithoutVersion.evidenceBundleId = createEvidenceBundleLifecycleId(evidenceWithoutVersion);
+kill(
+  "standalone-evidence-allows-empty-fingerprint-version",
+  !validateEvidenceBundleLifecycle(evidenceWithoutVersion).accepted,
+  "standalone-evidence-association-validation",
+);
+kill(
+  "evidence-expected-context-allows-fingerprint-mismatch",
+  !validateEvidenceBundleLifecycle(evidenceBuild.bundle, {
+    selectedCandidate: {
+      ...validCandidate,
+      routeIntentFingerprint: `rif-v1-${"0".repeat(64)}`,
+    },
+    routeRecord: evidenceRouteRecord,
+    decisionTrace: evidenceTrace,
+  }).accepted,
+  "evidence-expected-context-association-validation",
+);
+
+const publicationGateSource = fs.readFileSync(
+  path.resolve("src/lib/routes/route-publication-gate.mjs"),
+  "utf8",
+);
+kill(
+  "publication-gate-reads-months-from-audit-snapshot",
+  publicationGateSource.includes("selectedCandidate.normalizedRouteIntent.hardConstraints")
+    && !publicationGateSource.includes("inputIntentSnapshot?.timeIntent?.months"),
+  "publication-gate-canonical-hard-constraints",
 );
 
 const cachePath = path.join(temporaryRoot, "search-cache.json");

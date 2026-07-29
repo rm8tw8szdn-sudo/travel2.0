@@ -38,18 +38,21 @@ function destinationOrder(candidate = {}) {
 }
 
 function requiredDestinationConstraint(candidate = {}, context = {}) {
-  const snapshot = candidate?.inputIntentSnapshot && typeof candidate.inputIntentSnapshot === "object"
-    ? candidate.inputIntentSnapshot
-    : {};
-  const contextIds = uniqueStrings(context.requiredDestinationIds || []).map(clean);
-  const contextOrderMode = clean(context.destinationOrderMode);
+  const hasCanonicalIntent = Boolean(candidate?.normalizedRouteIntent?.hardConstraints);
+  const hardConstraints = hasCanonicalIntent ? candidate.normalizedRouteIntent.hardConstraints : {};
+  const requiredCities = hardConstraints.requiredCities?.state === "provided"
+    && Array.isArray(hardConstraints.requiredCities.values)
+    ? hardConstraints.requiredCities.values
+    : [];
   return {
-    ids: contextIds.length
-      ? contextIds
-      : uniqueStrings(snapshot.requiredDestinationIds || []).map(clean),
-    orderMode: contextOrderMode && contextOrderMode !== "unspecified"
-      ? contextOrderMode
-      : clean(snapshot.destinationOrderMode || "unspecified"),
+    ids: hasCanonicalIntent
+      ? uniqueStrings(requiredCities.map((entry) => entry?.id || entry?.name)).map(clean)
+      : uniqueStrings(context.requiredDestinationIds || []).map(clean),
+    orderMode: hasCanonicalIntent
+      ? hardConstraints.destinationOrderMode?.state === "provided"
+        ? clean(hardConstraints.destinationOrderMode.value)
+        : "unspecified"
+      : clean(context.destinationOrderMode || "unspecified"),
   };
 }
 
@@ -68,13 +71,28 @@ function validateRequiredDestinationConstraint(candidate = {}, context = {}) {
   return { status: reasons.length ? "rejected" : "ready", reasonCodes: reasons };
 }
 
-function requiredTransportModes(context = {}) {
-  return uniqueStrings([
-    context.transport,
-    ...(Array.isArray(context.transportPreference) ? context.transportPreference : []),
-  ])
+function requiredTransportModes(candidate = {}, context = {}) {
+  const transport = candidate?.normalizedRouteIntent?.softPreferences?.transport;
+  const values = candidate?.normalizedRouteIntent
+    ? transport?.state === "provided" && Array.isArray(transport.values) ? transport.values : []
+    : [context.transport, ...(Array.isArray(context.transportPreference) ? context.transportPreference : [])];
+  return uniqueStrings(values)
     .map(normalizeRouteLegTransportMode)
     .filter((mode) => mode && mode !== "unknown");
+}
+
+function authoritativeTimeIntent(candidate = {}, context = {}) {
+  const hardConstraints = candidate?.normalizedRouteIntent?.hardConstraints || {};
+  if (!candidate?.normalizedRouteIntent) return normalizeTimeIntent(context.timeIntent || {});
+  return normalizeTimeIntent({
+    type: clean(hardConstraints.timeType || "unspecified"),
+    months: hardConstraints.months?.state === "provided" && Array.isArray(hardConstraints.months.values)
+      ? hardConstraints.months.values
+      : [],
+    season: hardConstraints.season?.state === "provided" ? hardConstraints.season.value : null,
+    rawText: "",
+    diagnostics: [],
+  });
 }
 
 function evidenceIndex(repository) {
@@ -276,7 +294,7 @@ export function validateRouteForUse(candidate, context = {}, evidenceRepository 
   }
   const index = evidenceIndex(evidenceRepository);
   const order = destinationOrder(candidate);
-  const requiredModes = requiredTransportModes(context);
+  const requiredModes = requiredTransportModes(candidate, context);
   const requiredConstraint = validateRequiredDestinationConstraint(candidate, context);
   status = statusMax([status, requiredConstraint.status]);
   reasonCodes.push(...requiredConstraint.reasonCodes);
@@ -357,7 +375,7 @@ export function validateRouteForUse(candidate, context = {}, evidenceRepository 
         }
       }
 
-      const timeIntent = normalizeTimeIntent(context.timeIntent || candidate?.inputIntentSnapshot?.timeIntent || {});
+      const timeIntent = authoritativeTimeIntent(candidate, context);
       if (timeIntent.type === "invalid") {
         status = "rejected";
         reasonCodes.push("invalid-time-intent");

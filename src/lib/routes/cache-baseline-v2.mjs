@@ -149,10 +149,13 @@ function validIsoDate(value) {
 
 function appendIntentSchemaErrors(errors, relativePath, recordLabel, validation) {
   for (const violation of validation?.violations || []) {
+    const reasonCode = clean(violation.code) === "route-intent-semantic-invalid"
+      ? "route-intent-semantic-invalid"
+      : "route-intent-schema-invalid";
     errors.push([
       relativePath,
       recordLabel,
-      "route-intent-schema-invalid",
+      reasonCode,
       clean(violation.path || violation.field || "$"),
     ].join(":"));
   }
@@ -426,7 +429,7 @@ function validateCandidateJsonl(records, relativePath, errors) {
     if (!validation.accepted) {
       for (const reason of validation.reasons) {
         const [code, ...pathParts] = reason.split(":");
-        const fieldPath = code === "route-intent-schema-invalid" ? pathParts.join(":") : "";
+        const fieldPath = pathParts.join(":");
         errors.push(`${relativePath}:record-${index}:candidate-invalid:${code}${fieldPath ? `:${fieldPath}` : ""}`);
       }
     }
@@ -449,6 +452,38 @@ function validateSidecarJsonl(records, relativePath, errors) {
       for (const reason of validation.reasons || validation.missing || []) {
         errors.push(`${relativePath}:record-${index}:sidecar-invalid:${clean(reason)}`);
       }
+    }
+  }
+}
+
+function readRuntimeJsonlRecords(entry, errors) {
+  if (!entry) return [];
+  const buffer = readBytes(entry.absolutePath, MAX_BYTES.runtimeJsonl, errors, entry.path);
+  return parseJsonl(buffer, entry.path, errors);
+}
+
+function validateRuntimeIntentAssociations(runtimeEntries, errors) {
+  const candidateEntry = runtimeEntries.find((entry) => entry.path === "route-candidate-pool.jsonl");
+  const evidenceEntry = runtimeEntries.find((entry) => entry.path === "route-evidence-bundles.jsonl");
+  if (!evidenceEntry) return;
+
+  const candidates = readRuntimeJsonlRecords(candidateEntry, errors);
+  const bundles = readRuntimeJsonlRecords(evidenceEntry, errors);
+  const candidatesById = new Map(candidates
+    .map((candidate) => [clean(candidate?.candidateId), candidate])
+    .filter(([candidateId]) => candidateId));
+  for (const [index, bundle] of bundles.entries()) {
+    const candidateId = clean(bundle?.candidateId);
+    const candidate = candidatesById.get(candidateId);
+    if (!candidate) {
+      errors.push(`${evidenceEntry.path}:record-${index}:evidence-candidate-reference-missing:candidateId`);
+      continue;
+    }
+    if (clean(bundle.routeIntentFingerprint) !== clean(candidate.routeIntentFingerprint)) {
+      errors.push(`${evidenceEntry.path}:record-${index}:evidence-candidate-route-intent-fingerprint-mismatch:routeIntentFingerprint`);
+    }
+    if (clean(bundle.routeIntentFingerprintVersion) !== clean(candidate.routeIntentFingerprintVersion)) {
+      errors.push(`${evidenceEntry.path}:record-${index}:evidence-candidate-route-intent-fingerprint-version-mismatch:routeIntentFingerprintVersion`);
     }
   }
 }
@@ -689,6 +724,7 @@ export function auditRouteV2Cache(cacheRoot, { enumerationOrder = "normal" } = {
     if (!runtime.some((entry) => entry.path === requiredPath)) errors.push(`${requiredPath}:missing-required-runtime-state`);
   }
   for (const entry of runtime) validateRuntimeFile(entry, errors);
+  validateRuntimeIntentAssociations(runtime, errors);
 
   const immutableFiles = immutable
     .map(({ path: relativePath, bytes, sha256: fileSha256 }) => ({ path: relativePath, bytes, sha256: fileSha256 }))

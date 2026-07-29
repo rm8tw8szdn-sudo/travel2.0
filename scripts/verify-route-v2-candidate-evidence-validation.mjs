@@ -16,6 +16,7 @@ import {
   createSeasonEvidenceStore,
   isRouteV2EvidenceValidationEnabled,
   normalizeRouteCandidate,
+  routeIntentSnapshot,
   selectRouteCandidates,
   selectRouteCandidatesWithEvidence,
   validateRouteForUse,
@@ -241,6 +242,32 @@ const febMissing = validateRouteForUse(candidates[2], baseContext({
 assert.equal(febMissing.status, "needs-evidence");
 assert.equal(febMissing.seasonResults.length, 2);
 assert(febMissing.seasonResults.some((result) => result.entityId === "Q169134" && result.evidenceId === null));
+
+const canonicalFebruarySnapshot = routeIntentSnapshot({
+  context: baseContext({
+    timeIntent: { type: "single-month", months: [2], season: null, rawText: "February", diagnostics: [] },
+  }),
+  intentId,
+  source: "candidate-evidence-validation-authoritative-intent",
+});
+const canonicalFebruaryCandidate = normalizeRouteCandidate({
+  ...candidates[2],
+  routeIntentFingerprintVersion: canonicalFebruarySnapshot.routeIntentFingerprintVersion,
+  routeIntentFingerprint: canonicalFebruarySnapshot.routeIntentFingerprint,
+  normalizedRouteIntent: canonicalFebruarySnapshot.normalizedRouteIntent,
+  inputIntentSnapshot: canonicalFebruarySnapshot,
+}, { now: () => fixedNow });
+const canonicalFebruaryValidation = validateRouteForUse(
+  canonicalFebruaryCandidate,
+  baseContext({
+    timeIntent: { type: "unspecified", months: [], season: null, rawText: "", diagnostics: [] },
+  }),
+  febMissingHarness.repository,
+  { now: () => fixedNow },
+);
+assert.equal(canonicalFebruaryValidation.status, "needs-evidence");
+assert.equal(canonicalFebruaryValidation.seasonResults.length, 2, "canonical Candidate months must override conflicting runtime context");
+assert(canonicalFebruaryValidation.seasonResults.every((result) => result.month === 2));
 
 const hardSeasonHarness = createLocalHarness("february-hard-stop", {
   legs: [routeLeg("Q35765", "Q169134")],

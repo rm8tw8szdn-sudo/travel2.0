@@ -20,6 +20,10 @@ import {
   validateRouteIntentInvariants,
 } from "../src/lib/routes/index.mjs";
 import { auditRouteV2Cache } from "../src/lib/routes/cache-baseline-v2.mjs";
+import {
+  AUTHORIZED_SEARCH_CACHE_SEMANTIC_MIGRATION_SIGNATURES,
+  authorizeSearchCacheSemanticMigrationSignatures,
+} from "../src/lib/routes/search-cache-semantic-migration-policy.mjs";
 
 const baseIntent = {
   intentMode: "specified-destination",
@@ -409,6 +413,102 @@ kill(
   cacheAudit.status === "FAIL"
     && cacheAudit.errors.some((entry) => entry.includes("route-intent-schema-invalid:normalizedRouteIntent.hardConstraints.months.values")),
   "cache-v2-deep-route-intent-audit",
+);
+
+const authorizedMigrationSignatures = AUTHORIZED_SEARCH_CACHE_SEMANTIC_MIGRATION_SIGNATURES
+  .map((signature) => structuredClone(signature));
+const changedStableIdSignatures = authorizedMigrationSignatures.map((signature) => structuredClone(signature));
+changedStableIdSignatures[0].stableKey = `rif-v1-${"9".repeat(64)}`;
+kill(
+  "migration-removes-stable-id-check",
+  !authorizeSearchCacheSemanticMigrationSignatures(changedStableIdSignatures).authorized,
+  "migration-full-signature-authorization",
+);
+const changedItemHashSignatures = authorizedMigrationSignatures.map((signature) => structuredClone(signature));
+changedItemHashSignatures[0].itemSha256 = "1".repeat(64);
+kill(
+  "migration-removes-item-hash-check",
+  !authorizeSearchCacheSemanticMigrationSignatures(changedItemHashSignatures).authorized,
+  "migration-full-signature-authorization",
+);
+const arbitraryCountOnlySignatures = authorizedMigrationSignatures.map((signature, index) => ({
+  ...structuredClone(signature),
+  stableKey: `rif-v1-${String(index + 2).repeat(64)}`,
+}));
+kill(
+  "migration-authorizes-by-count-only",
+  !authorizeSearchCacheSemanticMigrationSignatures(arbitraryCountOnlySignatures).authorized,
+  "migration-exact-signature-set",
+);
+const extraDecoySignatures = authorizedMigrationSignatures.concat({
+  ...structuredClone(authorizedMigrationSignatures[0]),
+  stableKey: `rif-v1-${"8".repeat(64)}`,
+});
+kill(
+  "migration-ignores-decoy-record",
+  !authorizeSearchCacheSemanticMigrationSignatures(extraDecoySignatures).authorized,
+  "migration-exact-signature-set",
+);
+kill(
+  "migration-continues-with-missing-target",
+  !authorizeSearchCacheSemanticMigrationSignatures(authorizedMigrationSignatures.slice(0, 1)).authorized,
+  "migration-exact-signature-set",
+);
+
+const associationRoot = path.join(temporaryRoot, "association-audit");
+fs.mkdirSync(associationRoot, { recursive: true });
+for (const file of [
+  "accepted-routes.json",
+  "route-evidence.json",
+  "provider-sync-state.json",
+  "knowledge-graph-pool.json",
+  "search-analytics.jsonl",
+  "search-cache.json",
+  "search-review-candidates.json",
+]) {
+  fs.copyFileSync(path.resolve(".route-v2-cache", file), path.join(associationRoot, file));
+}
+fs.writeFileSync(
+  path.join(associationRoot, "route-candidate-pool.jsonl"),
+  `${JSON.stringify(validCandidate)}\n`,
+  "utf8",
+);
+fs.writeFileSync(
+  path.join(associationRoot, "route-evidence-bundles.jsonl"),
+  `${JSON.stringify(evidenceBuild.bundle)}\n`,
+  "utf8",
+);
+const associationAudit = auditRouteV2Cache(associationRoot);
+const missingTraceDetected = associationAudit.errors.some((entry) => (
+  entry.includes("evidence-decision-trace-reference-missing:decisionTraceId")
+));
+const missingRouteDetected = associationAudit.errors.some((entry) => (
+  entry.includes("association-unverifiable:routeRecordId")
+));
+kill(
+  "cache-association-skips-trace-existence",
+  missingTraceDetected,
+  "cache-v2-cross-record-association-audit",
+);
+kill(
+  "cache-association-skips-route-record",
+  missingRouteDetected,
+  "cache-v2-cross-record-association-audit",
+);
+kill(
+  "cache-association-compares-only-candidate-fingerprint",
+  missingTraceDetected && missingRouteDetected,
+  "cache-v2-cross-record-association-audit",
+);
+kill(
+  "cache-association-missing-trace-defaults-pass",
+  associationAudit.status === "FAIL" && missingTraceDetected,
+  "cache-v2-fail-closed-association-audit",
+);
+kill(
+  "cache-association-unverifiable-defaults-pass",
+  associationAudit.status === "FAIL" && missingRouteDetected,
+  "cache-v2-fail-closed-association-audit",
 );
 
 const killed = results.filter((result) => result.killed).length;

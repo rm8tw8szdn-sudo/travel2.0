@@ -4,12 +4,13 @@ import os from "node:os";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
-import { validateNormalizedRouteIntent } from "../src/lib/routes/route-intent-model.mjs";
+import {
+  authorizeSearchCacheSemanticMigrationDocument,
+  discoverSearchCacheIntentViolations,
+  SEARCH_CACHE_SEMANTIC_MIGRATION_SCHEMA_VERSION,
+} from "../src/lib/routes/search-cache-semantic-migration-policy.mjs";
 
 const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const SEMANTIC_REASON = "route-intent-semantic-invalid";
-const SEMANTIC_PATH = "hardConstraints.season";
-const EXPECTED_INVALID_ITEM_COUNT = 2;
 
 function argument(name, fallback = "") {
   const index = process.argv.indexOf(name);
@@ -37,70 +38,6 @@ function parseDocument(raw, source = "search-cache") {
     throw new Error(`${source}:items-object-required`);
   }
   return document;
-}
-
-function semanticSeasonViolation(intent) {
-  if (!intent || typeof intent !== "object") return null;
-  const validation = validateNormalizedRouteIntent(intent);
-  return validation.violations.find((entry) => (
-    entry.code === SEMANTIC_REASON && entry.path === SEMANTIC_PATH
-  )) || null;
-}
-
-function invalidItemDiagnostic(key, item, ordinal) {
-  const normalizedViolation = semanticSeasonViolation(item?.normalizedIntent);
-  const recordViolations = (Array.isArray(item?.records) ? item.records : [])
-    .map((record, recordIndex) => ({
-      recordIndex,
-      violation: semanticSeasonViolation(record?.normalizedRouteIntent),
-    }))
-    .filter((entry) => entry.violation);
-  if (!normalizedViolation || recordViolations.length === 0) return null;
-  const intentHash = String(item.intentHash || "");
-  if (!intentHash) throw new Error(`invalid-item-intent-hash-missing:${ordinal}`);
-  return {
-    ordinal,
-    stableKey: key,
-    intentHash,
-    itemSha256: sha256(JSON.stringify(item)),
-    reasonCode: SEMANTIC_REASON,
-    fieldPath: SEMANTIC_PATH,
-    normalizedIntentViolation: true,
-    affectedRecordIndexes: recordViolations.map((entry) => entry.recordIndex),
-  };
-}
-
-function discoverInvalidItems(document) {
-  return Object.entries(document.items)
-    .map(([key, item], ordinal) => invalidItemDiagnostic(key, item, ordinal))
-    .filter(Boolean);
-}
-
-function discoverInvalidIntentReferences(document) {
-  const invalid = [];
-  for (const [stableKey, item] of Object.entries(document.items)) {
-    const subjects = [
-      { scope: "normalizedIntent", intent: item?.normalizedIntent },
-      ...(Array.isArray(item?.records) ? item.records : []).map((record, recordIndex) => ({
-        scope: `records[${recordIndex}].normalizedRouteIntent`,
-        intent: record?.normalizedRouteIntent,
-      })),
-    ];
-    for (const subject of subjects) {
-      if (!subject.intent?.schemaVersion) continue;
-      const validation = validateNormalizedRouteIntent(subject.intent);
-      for (const violation of validation.violations) {
-        invalid.push({
-          stableKey,
-          intentHash: String(item.intentHash || ""),
-          scope: subject.scope,
-          reasonCode: violation.code || violation.reasonCode || "route-intent-schema-invalid",
-          fieldPath: violation.path || "",
-        });
-      }
-    }
-  }
-  return invalid;
 }
 
 function retainedEntriesAreIdentical(beforeItems, afterItems, removedKeys) {
@@ -131,7 +68,7 @@ function writeBackup({ backupRoot, raw, beforeSha256, beforeCount, diagnostics }
   const manifestPath = path.join(backupDirectory, "migration-manifest.json");
   writeFileDurably(cacheBackupPath, raw);
   const manifest = {
-    schemaVersion: "route-v2-search-cache-semantic-migration-v1",
+    schemaVersion: SEARCH_CACHE_SEMANTIC_MIGRATION_SCHEMA_VERSION,
     createdAt: new Date().toISOString(),
     sourceFile: "search-cache.json",
     sourceSha256: beforeSha256,
@@ -160,7 +97,7 @@ const document = parseDocument(raw);
 const beforeCount = Object.keys(document.items).length;
 
 if (verifyClean) {
-  const invalidReferences = discoverInvalidIntentReferences(document);
+  const invalidReferences = discoverSearchCacheIntentViolations(document);
   const output = {
     status: invalidReferences.length ? "FAIL" : "PASS",
     mode: "verify-clean",
@@ -174,17 +111,30 @@ if (verifyClean) {
   process.exit(invalidReferences.length ? 1 : 0);
 }
 
-const diagnostics = discoverInvalidItems(document);
-
-if (diagnostics.length !== EXPECTED_INVALID_ITEM_COUNT) {
-  throw new Error(`expected-${EXPECTED_INVALID_ITEM_COUNT}-invalid-items-found-${diagnostics.length}`);
+const authorization = authorizeSearchCacheSemanticMigrationDocument(document);
+if (!authorization.authorized) {
+  process.stderr.write(`${JSON.stringify({
+    status: "FAIL",
+    mode: apply ? "apply-refused" : "dry-run-refused",
+    cacheFile: path.basename(cachePath),
+    reasonCode: authorization.reasonCode,
+    migrationSchemaVersion: authorization.migrationSchemaVersion,
+    expectedCount: authorization.expectedCount,
+    actualCount: authorization.actualCount,
+    missingStableKeys: authorization.missingStableKeys,
+    unexpectedStableKeys: authorization.unexpectedStableKeys,
+    changedStableKeys: authorization.changedStableKeys,
+    unexpectedViolationCount: authorization.unexpectedViolationCount,
+  }, null, 2)}\n`);
+  process.exit(1);
 }
 
+const diagnostics = authorization.actualSignatures;
 const removedKeys = diagnostics.map((entry) => entry.stableKey);
 const migrated = structuredClone(document);
 for (const key of removedKeys) delete migrated.items[key];
 const afterCount = Object.keys(migrated.items).length;
-if (afterCount !== beforeCount - EXPECTED_INVALID_ITEM_COUNT) {
+if (afterCount !== beforeCount - authorization.expectedCount) {
   throw new Error("record-count-delta-invalid");
 }
 if (!retainedEntriesAreIdentical(document.items, migrated.items, removedKeys)) {
@@ -195,7 +145,7 @@ const reparsed = parseDocument(migratedRaw, "migrated-search-cache");
 if (!retainedEntriesAreIdentical(document.items, reparsed.items, removedKeys)) {
   throw new Error("serialized-retained-record-content-or-order-changed");
 }
-if (discoverInvalidItems(reparsed).length !== 0) {
+if (discoverSearchCacheIntentViolations(reparsed).length !== 0) {
   throw new Error("semantic-invalid-record-remains");
 }
 
@@ -227,12 +177,14 @@ if (apply) {
   if (!retainedEntriesAreIdentical(document.items, written.items, removedKeys)) {
     throw new Error("written-retained-record-content-or-order-changed");
   }
-  if (discoverInvalidItems(written).length !== 0) throw new Error("written-semantic-invalid-record-remains");
+  if (discoverSearchCacheIntentViolations(written).length !== 0) throw new Error("written-semantic-invalid-record-remains");
 }
 
 process.stdout.write(`${JSON.stringify({
   status: "PASS",
   mode: apply ? "applied" : "dry-run",
+  migrationSchemaVersion: authorization.migrationSchemaVersion,
+  authorization: authorization.reasonCode,
   cacheFile: path.basename(cachePath),
   before: {
     recordCount: beforeCount,
@@ -248,7 +200,7 @@ process.stdout.write(`${JSON.stringify({
   retainedRecordCount: afterCount,
   retainedRecordsIdentical: true,
   backup: backup ? {
-    directory: backup.backupDirectory,
+    directoryName: path.basename(backup.backupDirectory),
     sourceSha256: beforeSha256,
     readOnly: true,
   } : null,

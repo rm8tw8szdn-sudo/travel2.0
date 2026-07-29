@@ -4,13 +4,18 @@ import fs from "node:fs";
 import net from "node:net";
 import os from "node:os";
 import path from "node:path";
-import { spawn, spawnSync } from "node:child_process";
+import { spawn } from "node:child_process";
 import { fileURLToPath } from "node:url";
 import {
   ACCEPTED_REPOSITORY_SHA256,
   auditRouteV2Cache,
   verifyCacheBaselineV2,
 } from "../src/lib/routes/cache-baseline-v2.mjs";
+import {
+  MANDATORY_PRELAUNCH_VERIFIERS,
+  publicVerifierStageResult,
+  runMandatoryVerifierStage,
+} from "../src/lib/routes/prelaunch-verifier-gate.mjs";
 
 const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const realAcceptedPath = path.join(projectRoot, ".route-v2-cache", "accepted-routes.json");
@@ -42,6 +47,7 @@ let stage = "initialize";
 let preview = null;
 let port = null;
 let serverOutput = "";
+const verifierStages = [];
 
 function sha256(filePath) {
   return crypto.createHash("sha256").update(fs.readFileSync(filePath)).digest("hex");
@@ -63,19 +69,6 @@ function snapshot(root) {
     bytes: fs.statSync(absolutePath).size,
     sha256: sha256(absolutePath),
   }));
-}
-
-function runVerifier(relativePath, env) {
-  const result = spawnSync(process.execPath, [relativePath], {
-    cwd: projectRoot,
-    env,
-    encoding: "utf8",
-    timeout: 120_000,
-  });
-  if (result.status !== 0) {
-    throw new Error(`${relativePath} failed (${result.status})\n${result.stdout || ""}${result.stderr || ""}`);
-  }
-  return (result.stdout || "").trim();
 }
 
 function availablePort() {
@@ -187,16 +180,17 @@ try {
   delete isolatedEnv.SEARCH_PROVIDER_API_KEY;
 
   stage = "static-verifiers";
-  const staticVerifiers = [
-    "scripts/verify-route-v2-route-intent-model.mjs",
-    "scripts/verify-route-v2-route-intent-oracle.mjs",
-    "scripts/verify-route-v2-intent-generative.mjs",
-    "scripts/verify-route-v2-intent-boundaries.mjs",
-    "scripts/verify-route-v2-intent-mutations.mjs",
-    "scripts/verify-route-v2-route-summary-quality.mjs",
-    "scripts/verify-route-v2-image-assets-pilot.mjs",
-    "scripts/verify-route-v2-image-proxy-network-boundary.mjs",
-  ].map((relativePath) => ({ relativePath, output: runVerifier(relativePath, isolatedEnv) }));
+  const staticVerifiers = MANDATORY_PRELAUNCH_VERIFIERS
+    .filter((verifier) => verifier.phase === "static")
+    .map((verifier) => {
+      const result = runMandatoryVerifierStage({
+        stage: verifier,
+        projectRoot,
+        env: isolatedEnv,
+      });
+      verifierStages.push(result);
+      return result;
+    });
 
   stage = "start-preview";
   port = await availablePort();
@@ -212,20 +206,49 @@ try {
   await waitForPreview(baseUrl);
 
   stage = "live-prelaunch-verifier";
-  const liveOutput = runVerifier("scripts/verify-route-v2-prelaunch-browser.mjs", {
-    ...isolatedEnv,
-    ROUTE_V2_PRELAUNCH_BASE_URL: baseUrl,
+  const liveStage = runMandatoryVerifierStage({
+    stage: {
+      name: "live-prelaunch-browser",
+      relativePath: "scripts/verify-route-v2-prelaunch-browser.mjs",
+    },
+    projectRoot,
+    env: {
+      ...isolatedEnv,
+      ROUTE_V2_PRELAUNCH_BASE_URL: baseUrl,
+    },
   });
+  verifierStages.push(liveStage);
 
   stage = "performance-verifier";
-  const performanceOutput = runVerifier("scripts/verify-route-v2-intent-performance.mjs", {
-    ...isolatedEnv,
-    ROUTE_V2_PERFORMANCE_BASE_URL: baseUrl,
+  const performanceVerifier = MANDATORY_PRELAUNCH_VERIFIERS
+    .find((verifier) => verifier.phase === "performance");
+  assert(performanceVerifier, "mandatory performance verifier is required");
+  const performanceStage = runMandatoryVerifierStage({
+    stage: performanceVerifier,
+    projectRoot,
+    env: {
+      ...isolatedEnv,
+      ROUTE_V2_PERFORMANCE_BASE_URL: baseUrl,
+    },
   });
+  verifierStages.push(performanceStage);
 
   stage = "stop-preview";
   await stopPreview();
   await assertPortReleased(port);
+
+  stage = "post-performance-verifiers";
+  const postPerformanceVerifiers = MANDATORY_PRELAUNCH_VERIFIERS
+    .filter((verifier) => verifier.phase === "post-performance")
+    .map((verifier) => {
+      const result = runMandatoryVerifierStage({
+        stage: verifier,
+        projectRoot,
+        env: isolatedEnv,
+      });
+      verifierStages.push(result);
+      return result;
+    });
 
   stage = "verify-real-assets";
   const assetsAfter = {
@@ -260,9 +283,11 @@ try {
     verifiers: staticVerifiers.map(({ relativePath }) => relativePath).concat(
       "scripts/verify-route-v2-prelaunch-browser.mjs",
       "scripts/verify-route-v2-intent-performance.mjs",
+      postPerformanceVerifiers.map(({ relativePath }) => relativePath),
     ),
-    liveProbe: JSON.parse(liveOutput),
-    performance: JSON.parse(performanceOutput),
+    verifierStages: verifierStages.map(publicVerifierStageResult),
+    liveProbe: JSON.parse(liveStage.stdout),
+    performance: JSON.parse(performanceStage.stdout),
     realAssetsUnchanged: true,
     assetBaselines: {
       accepted: {
@@ -297,6 +322,8 @@ try {
     status: "FAIL",
     stage,
     error: error?.message || String(error),
+    ...(error?.stageResult ? { failingVerifier: publicVerifierStageResult(error.stageResult) } : {}),
+    completedVerifierStages: verifierStages.map(publicVerifierStageResult),
   }, null, 2)}\n`);
   process.exitCode = 1;
 } finally {

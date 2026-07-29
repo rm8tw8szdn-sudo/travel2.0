@@ -462,30 +462,342 @@ function readRuntimeJsonlRecords(entry, errors) {
   return parseJsonl(buffer, entry.path, errors);
 }
 
-function validateRuntimeIntentAssociations(runtimeEntries, errors) {
-  const candidateEntry = runtimeEntries.find((entry) => entry.path === "route-candidate-pool.jsonl");
-  const evidenceEntry = runtimeEntries.find((entry) => entry.path === "route-evidence-bundles.jsonl");
-  if (!evidenceEntry) return;
+function readJsonEntry(entry, errors) {
+  if (!entry) return null;
+  const maximum = entry.structureType === "accepted-repository-json"
+    ? MAX_BYTES.acceptedRepository
+    : entry.structureType === "accepted-repository-backup-json"
+      ? MAX_BYTES.acceptedBackup
+      : MAX_BYTES.runtimeJson;
+  return parseJson(readBytes(entry.absolutePath, maximum, errors, entry.path), entry.path, errors);
+}
 
-  const candidates = readRuntimeJsonlRecords(candidateEntry, errors);
-  const bundles = readRuntimeJsonlRecords(evidenceEntry, errors);
-  const candidatesById = new Map(candidates
-    .map((candidate) => [clean(candidate?.candidateId), candidate])
-    .filter(([candidateId]) => candidateId));
-  for (const [index, bundle] of bundles.entries()) {
-    const candidateId = clean(bundle?.candidateId);
-    const candidate = candidatesById.get(candidateId);
-    if (!candidate) {
-      errors.push(`${evidenceEntry.path}:record-${index}:evidence-candidate-reference-missing:candidateId`);
+function associationError(errors, relativePath, index, reasonCode, fieldPath) {
+  errors.push(`${relativePath}:record-${index}:${reasonCode}:${fieldPath}`);
+}
+
+function indexRecords(records, identityField, relativePath, errors) {
+  const index = new Map();
+  for (const [recordIndex, record] of records.entries()) {
+    const identity = clean(record?.[identityField]);
+    if (!identity) continue;
+    if (index.has(identity)) {
+      associationError(errors, relativePath, recordIndex, "association-duplicate-identity", identityField);
       continue;
     }
-    if (clean(bundle.routeIntentFingerprint) !== clean(candidate.routeIntentFingerprint)) {
-      errors.push(`${evidenceEntry.path}:record-${index}:evidence-candidate-route-intent-fingerprint-mismatch:routeIntentFingerprint`);
-    }
-    if (clean(bundle.routeIntentFingerprintVersion) !== clean(candidate.routeIntentFingerprintVersion)) {
-      errors.push(`${evidenceEntry.path}:record-${index}:evidence-candidate-route-intent-fingerprint-version-mismatch:routeIntentFingerprintVersion`);
+    index.set(identity, { record, recordIndex });
+  }
+  return index;
+}
+
+function routeRecordsFromEntry(entry, errors) {
+  const payload = readJsonEntry(entry, errors);
+  if (!plainObject(payload)) return [];
+  if (entry.structureType === "search-cache-json") {
+    return Object.values(plainObject(payload.items) ? payload.items : {})
+      .flatMap((item) => (Array.isArray(item?.records) ? item.records : []));
+  }
+  if (entry.structureType === "ready-pool-json") {
+    return (Array.isArray(payload.records) ? payload.records : [])
+      .map((item) => item?.routeRecord)
+      .filter(plainObject);
+  }
+  if (entry.structureType === "search-review-candidates-json") {
+    return (Array.isArray(payload.candidates) ? payload.candidates : [])
+      .map((item) => item?.routeRecord || item?.record || item)
+      .filter(plainObject);
+  }
+  if (entry.structureType === "feed-response-json"
+    || entry.structureType === "accepted-repository-json") {
+    return (Array.isArray(payload.records) ? payload.records : []).filter(plainObject);
+  }
+  return [];
+}
+
+function routeRecordIndex(entries, errors) {
+  const index = new Map();
+  let recordCount = 0;
+  for (const entry of entries) {
+    if (!new Set([
+      "search-cache-json",
+      "ready-pool-json",
+      "search-review-candidates-json",
+      "feed-response-json",
+      "accepted-repository-json",
+    ]).has(entry.structureType)) continue;
+    for (const [recordIndex, record] of routeRecordsFromEntry(entry, errors).entries()) {
+      const routeRecordId = clean(record?.id || record?.routeRecordId);
+      if (!routeRecordId) continue;
+      if (!index.has(routeRecordId)) index.set(routeRecordId, []);
+      index.get(routeRecordId).push({ record, recordIndex, relativePath: entry.path });
+      recordCount += 1;
     }
   }
+  return { index, recordCount };
+}
+
+function sameIntentContent(left, right) {
+  if (!plainObject(left) || !plainObject(right)) return false;
+  const leftValidation = validateNormalizedRouteIntent(left);
+  const rightValidation = validateNormalizedRouteIntent(right);
+  if (!leftValidation.valid || !rightValidation.valid) return false;
+  return createRouteIntentFingerprint(left).value === createRouteIntentFingerprint(right).value;
+}
+
+function associationValueMatches(errors, {
+  relativePath,
+  recordIndex,
+  reasonCode,
+  fieldPath,
+  actual,
+  expected,
+}) {
+  const matched = clean(actual) === clean(expected) && clean(expected) !== "";
+  if (!matched) associationError(errors, relativePath, recordIndex, reasonCode, fieldPath);
+  return matched;
+}
+
+function normalizedOrder(values) {
+  return (Array.isArray(values) ? values : [])
+    .map((value) => clean(
+      plainObject(value)
+        ? value.wikidataId || value.entityId || value.id || value.name
+        : value,
+    ))
+    .filter(Boolean);
+}
+
+function associationOrderMatches(errors, {
+  relativePath,
+  recordIndex,
+  reasonCode,
+  fieldPath,
+  actual,
+  expected,
+}) {
+  const matched = JSON.stringify(normalizedOrder(actual)) === JSON.stringify(normalizedOrder(expected))
+    && normalizedOrder(expected).length > 0;
+  if (!matched) associationError(errors, relativePath, recordIndex, reasonCode, fieldPath);
+  return matched;
+}
+
+function validateRuntimeIntentAssociations(entries, errors) {
+  const candidateEntry = entries.find((entry) => entry.path === "route-candidate-pool.jsonl");
+  const traceEntry = entries.find((entry) => entry.path === "decision-traces.jsonl");
+  const evidenceEntry = entries.find((entry) => entry.path === "route-evidence-bundles.jsonl");
+  if (!candidateEntry && !traceEntry && !evidenceEntry) {
+    return {
+      candidateCount: 0,
+      decisionTraceCount: 0,
+      evidenceBundleCount: 0,
+      routeRecordCount: 0,
+      associationsChecked: 0,
+    };
+  }
+
+  const candidates = readRuntimeJsonlRecords(candidateEntry, errors);
+  const traces = readRuntimeJsonlRecords(traceEntry, errors);
+  const bundles = readRuntimeJsonlRecords(evidenceEntry, errors);
+  const candidatesById = indexRecords(candidates, "candidateId", candidateEntry?.path || "route-candidate-pool.jsonl", errors);
+  const tracesById = indexRecords(traces, "traceId", traceEntry?.path || "decision-traces.jsonl", errors);
+  const { index: routesById, recordCount: routeRecordCount } = bundles.length
+    ? routeRecordIndex(entries, errors)
+    : { index: new Map(), recordCount: 0 };
+  let associationsChecked = 0;
+
+  for (const [traceIndex, trace] of traces.entries()) {
+    if (clean(trace?.outcome) !== "success") continue;
+    associationsChecked += 1;
+    const candidateId = clean(trace?.candidateId);
+    const candidateEntryRecord = candidatesById.get(candidateId);
+    if (!candidateEntryRecord) {
+      associationError(errors, traceEntry.path, traceIndex, "decision-trace-candidate-reference-missing", "candidateId");
+      continue;
+    }
+    const candidate = candidateEntryRecord.record;
+    associationValueMatches(errors, {
+      relativePath: traceEntry.path,
+      recordIndex: traceIndex,
+      reasonCode: "decision-trace-candidate-intent-mismatch",
+      fieldPath: "intentId",
+      actual: trace.intentId,
+      expected: candidate.intentId,
+    });
+    associationValueMatches(errors, {
+      relativePath: traceEntry.path,
+      recordIndex: traceIndex,
+      reasonCode: "decision-trace-candidate-fingerprint-mismatch",
+      fieldPath: "routeIntentFingerprint",
+      actual: trace.routeIntentFingerprint,
+      expected: candidate.routeIntentFingerprint,
+    });
+    associationValueMatches(errors, {
+      relativePath: traceEntry.path,
+      recordIndex: traceIndex,
+      reasonCode: "decision-trace-candidate-fingerprint-version-mismatch",
+      fieldPath: "routeIntentFingerprintVersion",
+      actual: trace.routeIntentFingerprintVersion,
+      expected: candidate.routeIntentFingerprintVersion,
+    });
+    if (!sameIntentContent(trace.inputContext?.normalizedRouteIntent, candidate.normalizedRouteIntent)) {
+      associationError(
+        errors,
+        traceEntry.path,
+        traceIndex,
+        "decision-trace-candidate-normalized-intent-mismatch",
+        "normalizedRouteIntent",
+      );
+    }
+    associationOrderMatches(errors, {
+      relativePath: traceEntry.path,
+      recordIndex: traceIndex,
+      reasonCode: "decision-trace-candidate-order-mismatch",
+      fieldPath: "selectedCandidate.proposedOrder",
+      actual: trace.selectedCandidate?.proposedOrder,
+      expected: candidate.proposedOrder,
+    });
+  }
+
+  for (const [bundleIndex, bundle] of bundles.entries()) {
+    associationsChecked += 1;
+    const candidateId = clean(bundle?.candidateId);
+    const candidateEntryRecord = candidatesById.get(candidateId);
+    if (!candidateEntryRecord) {
+      associationError(errors, evidenceEntry.path, bundleIndex, "evidence-candidate-reference-missing", "candidateId");
+    }
+    const traceEntryRecord = tracesById.get(clean(bundle?.decisionTraceId));
+    if (!traceEntryRecord) {
+      associationError(errors, evidenceEntry.path, bundleIndex, "evidence-decision-trace-reference-missing", "decisionTraceId");
+    }
+    const candidate = candidateEntryRecord?.record;
+    const trace = traceEntryRecord?.record;
+    for (const [subjectName, subject] of [["candidate", candidate], ["decision-trace", trace]]) {
+      if (!subject) continue;
+      associationValueMatches(errors, {
+        relativePath: evidenceEntry.path,
+        recordIndex: bundleIndex,
+        reasonCode: `evidence-${subjectName}-intent-mismatch`,
+        fieldPath: "intentId",
+        actual: bundle.intentId,
+        expected: subject.intentId,
+      });
+      associationValueMatches(errors, {
+        relativePath: evidenceEntry.path,
+        recordIndex: bundleIndex,
+        reasonCode: `evidence-${subjectName}-fingerprint-mismatch`,
+        fieldPath: "routeIntentFingerprint",
+        actual: bundle.routeIntentFingerprint,
+        expected: subject.routeIntentFingerprint,
+      });
+      associationValueMatches(errors, {
+        relativePath: evidenceEntry.path,
+        recordIndex: bundleIndex,
+        reasonCode: `evidence-${subjectName}-fingerprint-version-mismatch`,
+        fieldPath: "routeIntentFingerprintVersion",
+        actual: bundle.routeIntentFingerprintVersion,
+        expected: subject.routeIntentFingerprintVersion,
+      });
+    }
+    if (trace && clean(trace.candidateId) !== candidateId) {
+      associationError(errors, evidenceEntry.path, bundleIndex, "evidence-decision-trace-candidate-mismatch", "candidateId");
+    }
+    if (trace) {
+      associationValueMatches(errors, {
+        relativePath: evidenceEntry.path,
+        recordIndex: bundleIndex,
+        reasonCode: "evidence-decision-trace-route-record-mismatch",
+        fieldPath: "routeRecordId",
+        actual: bundle.routeRecordId,
+        expected: trace.routeId,
+      });
+    }
+    if (candidate) {
+      if (clean(candidate.status) !== "selected") {
+        associationError(errors, evidenceEntry.path, bundleIndex, "evidence-candidate-status-mismatch", "status");
+      }
+      associationOrderMatches(errors, {
+        relativePath: evidenceEntry.path,
+        recordIndex: bundleIndex,
+        reasonCode: "evidence-candidate-order-mismatch",
+        fieldPath: "destinationOrder",
+        actual: bundle.destinationOrder,
+        expected: candidate.proposedOrder,
+      });
+    }
+
+    const routeRecordId = clean(bundle?.routeRecordId);
+    const routeCandidates = routesById.get(routeRecordId) || [];
+    if (routeCandidates.length === 0) {
+      associationError(errors, evidenceEntry.path, bundleIndex, "association-unverifiable", "routeRecordId");
+      continue;
+    }
+    const matchingRoute = routeCandidates.find(({ record }) => (
+      clean(record?.selectedCandidateId) === candidateId
+      && clean(record?.intentId) === clean(bundle.intentId)
+      && clean(record?.routeIntentFingerprint) === clean(bundle.routeIntentFingerprint)
+      && clean(record?.routeIntentFingerprintVersion) === clean(bundle.routeIntentFingerprintVersion)
+    )) || routeCandidates[0];
+    const route = matchingRoute.record;
+    associationValueMatches(errors, {
+      relativePath: evidenceEntry.path,
+      recordIndex: bundleIndex,
+      reasonCode: "evidence-route-record-candidate-mismatch",
+      fieldPath: "selectedCandidateId",
+      actual: route.selectedCandidateId,
+      expected: candidateId,
+    });
+    associationValueMatches(errors, {
+      relativePath: evidenceEntry.path,
+      recordIndex: bundleIndex,
+      reasonCode: "evidence-route-record-intent-mismatch",
+      fieldPath: "intentId",
+      actual: route.intentId,
+      expected: bundle.intentId,
+    });
+    associationValueMatches(errors, {
+      relativePath: evidenceEntry.path,
+      recordIndex: bundleIndex,
+      reasonCode: "evidence-route-record-fingerprint-mismatch",
+      fieldPath: "routeIntentFingerprint",
+      actual: route.routeIntentFingerprint,
+      expected: bundle.routeIntentFingerprint,
+    });
+    associationValueMatches(errors, {
+      relativePath: evidenceEntry.path,
+      recordIndex: bundleIndex,
+      reasonCode: "evidence-route-record-fingerprint-version-mismatch",
+      fieldPath: "routeIntentFingerprintVersion",
+      actual: route.routeIntentFingerprintVersion,
+      expected: bundle.routeIntentFingerprintVersion,
+    });
+    if (clean(route.decisionTraceId)
+      && clean(route.decisionTraceId) !== clean(bundle.decisionTraceId)) {
+      associationError(errors, evidenceEntry.path, bundleIndex, "evidence-route-record-trace-mismatch", "decisionTraceId");
+    }
+    if (clean(route.evidenceBundleId)
+      && clean(route.evidenceBundleId) !== clean(bundle.evidenceBundleId)) {
+      associationError(errors, evidenceEntry.path, bundleIndex, "evidence-route-record-bundle-mismatch", "evidenceBundleId");
+    }
+    associationOrderMatches(errors, {
+      relativePath: evidenceEntry.path,
+      recordIndex: bundleIndex,
+      reasonCode: "evidence-route-record-order-mismatch",
+      fieldPath: "destinationOrder",
+      actual: route.destinationEntities?.length ? route.destinationEntities : route.destinations,
+      expected: bundle.destinationOrder,
+    });
+    if (!sameIntentContent(route.normalizedRouteIntent, candidate?.normalizedRouteIntent)) {
+      associationError(errors, evidenceEntry.path, bundleIndex, "evidence-route-record-normalized-intent-mismatch", "normalizedRouteIntent");
+    }
+  }
+
+  return {
+    candidateCount: candidates.length,
+    decisionTraceCount: traces.length,
+    evidenceBundleCount: bundles.length,
+    routeRecordCount,
+    associationsChecked,
+  };
 }
 
 function validateReadyPool(payload, relativePath, errors) {
@@ -724,7 +1036,7 @@ export function auditRouteV2Cache(cacheRoot, { enumerationOrder = "normal" } = {
     if (!runtime.some((entry) => entry.path === requiredPath)) errors.push(`${requiredPath}:missing-required-runtime-state`);
   }
   for (const entry of runtime) validateRuntimeFile(entry, errors);
-  validateRuntimeIntentAssociations(runtime, errors);
+  const associationAudit = validateRuntimeIntentAssociations(entries, errors);
 
   const immutableFiles = immutable
     .map(({ path: relativePath, bytes, sha256: fileSha256 }) => ({ path: relativePath, bytes, sha256: fileSha256 }))
@@ -772,6 +1084,7 @@ export function auditRouteV2Cache(cacheRoot, { enumerationOrder = "normal" } = {
       totalBytes: runtimeFiles.reduce((sum, entry) => sum + entry.bytes, 0),
       auditSha256: aggregateCacheEntries(runtimeFiles),
       files: runtimeFiles,
+      associationAudit,
     },
     externalFormal: {
       fileCount: externalFiles.length,

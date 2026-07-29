@@ -18,12 +18,38 @@ Both items declared `timeType=unspecified` while also providing a winter season.
 ## Migration method
 
 1. Parsed the complete Search Cache with the production RouteIntent validator.
-2. Located the two items by their stable object keys, intent hashes, content hashes, reason code, and field path. Array positions were recorded for audit only and were not used as deletion identities.
+2. Located the two items by their stable object keys, intent hashes, content hashes, reason code, field path, RouteIntent fingerprint, and fingerprint version. Array positions were recorded for audit only and were not used as deletion identities.
 3. Created a timestamped, repository-external, read-only backup containing the original Search Cache and a sanitized migration manifest.
 4. Removed only the two stable keys.
 5. Compared every retained item in original order using exact JSON value serialization.
 6. Wrote a sibling temporary file, flushed it, parsed and hashed it, then atomically replaced the runtime Search Cache.
 7. Confirmed no temporary migration file remained.
+
+## Versioned authorization lock
+
+The executable migration now uses authorization schema
+`route-v2-search-cache-semantic-migration-authorization-v2`. Before either a
+backup or a temporary output file is created, the complete set of invalid
+records must exactly match the two historical signatures above, including:
+
+- stable item key;
+- intent hash;
+- SHA-256 of the complete item value;
+- `route-intent-semantic-invalid` reason code;
+- `hardConstraints.season` field path;
+- RouteIntent fingerprint and `route-intent-fingerprint-v1`;
+- both expected violation scopes (`normalizedIntent` and its embedded route).
+
+Count-only matching is not authorization. A missing target, changed hash,
+changed field path, arbitrary same-type record, or additional decoy record
+causes a fail-closed refusal with no backup and no write. Running `--apply`
+against the already-migrated 22-record Search Cache also fails closed with
+`migration-already-applied-or-no-authorized-records`; it never searches for a
+new pair to delete. `--verify-clean` remains a generic read-only semantic audit.
+
+The original source remains in the timestamped, repository-external
+`~/route-v2-cache-backups/` hierarchy. No absolute workstation path is part of
+the repository.
 
 ## Before and after
 

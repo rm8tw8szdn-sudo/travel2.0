@@ -244,7 +244,18 @@ export function validateRouteIntentInvariants(record = {}, routeIntent = {}, opt
   const expectedCountry = normalizedIntent.hardConstraints.country;
   const expectedCountries = normalizedIntent.hardConstraints.countries;
   const actualCountries = routeCountryCodes(record, destinations);
-  if (expectedCountries?.state === "provided" && expectedCountries.values.length
+  const expectedRegion = normalizedIntent.hardConstraints.region;
+  const regionScopedCountrySet = expectedRegion?.state === "provided"
+    && Boolean(expectedRegion.value)
+    && expectedCountry?.state !== "provided"
+    && expectedCountries?.state === "provided"
+    && expectedCountries.values.length > 0;
+  if (regionScopedCountrySet
+    && (!actualCountries.length || actualCountries.some((country) => !expectedCountries.values.includes(country)))) {
+    violations.push(violation("region-country-mismatch", "countries", expectedCountries.values, actualCountries, source));
+  } else if (!regionScopedCountrySet
+    && expectedCountries?.state === "provided"
+    && expectedCountries.values.length
     && (expectedCountries.values.length !== actualCountries.length
       || expectedCountries.values.some((country) => !actualCountries.includes(country)))) {
     violations.push(violation("country-mismatch", "countries", expectedCountries.values, actualCountries, source));
@@ -253,9 +264,11 @@ export function validateRouteIntentInvariants(record = {}, routeIntent = {}, opt
     violations.push(violation("country-mismatch", "country", expectedCountry.value, actualCountries, source));
   }
 
-  const expectedRegion = normalizedIntent.hardConstraints.region;
   const actualRegions = routeRegions(record, destinations);
-  if (expectedRegion.state === "provided" && expectedRegion.value && !actualRegions.includes(expectedRegion.value)) {
+  if (!regionScopedCountrySet
+    && expectedRegion.state === "provided"
+    && expectedRegion.value
+    && !actualRegions.includes(expectedRegion.value)) {
     violations.push(violation("region-mismatch", "region", expectedRegion.value, actualRegions, source));
   }
 

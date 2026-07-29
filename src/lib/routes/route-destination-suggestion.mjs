@@ -278,26 +278,39 @@ export function buildRouteDestinationSuggestion({
     ...(Array.isArray(intent.countryCodes) ? intent.countryCodes : []),
     intent.countryCode,
   ].map((code) => clean(code).toUpperCase()).filter((code) => /^[A-Z]{2}$/u.test(code)));
+  const regionCountryCodes = unique((Array.isArray(intent.regionCountryCodes) ? intent.regionCountryCodes : [])
+    .map((code) => clean(code).toUpperCase())
+    .filter((code) => /^[A-Z]{2}$/u.test(code)));
   const destinationSuggestionMode = intent.intentMode === "destination-suggestion";
   const countryScopedSuggestionMode = intent.intentMode === "specified-destination"
     && requiredDestinationIds.length === 0
     && explicitCountryCodes.length > 0;
-  if ((!destinationSuggestionMode && !countryScopedSuggestionMode) || !intent.canGenerate) {
+  const regionScopedSuggestionMode = intent.intentMode === "specified-destination"
+    && requiredDestinationIds.length === 0
+    && explicitCountryCodes.length === 0
+    && regionCountryCodes.length > 0;
+  if ((!destinationSuggestionMode && !countryScopedSuggestionMode && !regionScopedSuggestionMode) || !intent.canGenerate) {
     return { ready: false, reason: "destination-suggestion-not-requested", suggestion: null };
   }
   const normalizedSessionId = clean(sessionId) || `intent:${clean(intent.intentHash)}`;
   const suggestionMode = countryScopedSuggestionMode
     ? "country-scoped-destination-suggestion"
+    : regionScopedSuggestionMode
+      ? "region-scoped-destination-suggestion"
     : "destination-suggestion";
   const seed = stableHash({ sessionId: normalizedSessionId, intentHash: clean(intent.intentHash), mode: suggestionMode });
   let entries = buildCountryEntries({
     intent,
     acceptedRoutes,
     intentCatalog,
-    minimumDestinationCountOverride: countryScopedSuggestionMode ? 2 : null,
+    minimumDestinationCountOverride: countryScopedSuggestionMode || regionScopedSuggestionMode ? 2 : null,
   });
   if (countryScopedSuggestionMode) {
     const allowedCountryCodes = new Set(explicitCountryCodes);
+    entries = entries.filter((entry) => allowedCountryCodes.has(entry.countryCode));
+  }
+  if (regionScopedSuggestionMode) {
+    const allowedCountryCodes = new Set(regionCountryCodes);
     entries = entries.filter((entry) => allowedCountryCodes.has(entry.countryCode));
   }
   if (!entries.length) return { ready: false, reason: "destination-suggestion-pool-empty", suggestion: null };

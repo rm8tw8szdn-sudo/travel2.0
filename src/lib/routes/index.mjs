@@ -7,7 +7,20 @@ export {
   routeDiscoveryCacheKey,
 } from "./contracts.mjs";
 export { createRouteDiscovery } from "./discovery.mjs";
-export { createRouteV2RuntimeEnvironment } from "./route-v2-runtime-environment.mjs";
+export {
+  ROUTE_V2_CONTROLLED_RUNTIME_FLAGS,
+  ROUTE_V2_RUNTIME_DECISION_SCHEMA_VERSION,
+  createRouteV2RuntimeEnvironment,
+  finalizeRouteV2RuntimeDecision,
+  normalizeRouteV2CanaryPercentage,
+  resolveRouteV2RuntimeDecision,
+} from "./route-v2-runtime-environment.mjs";
+export {
+  ROUTE_V2_RUNTIME_METRICS_LATENCY_BUCKETS_MS,
+  ROUTE_V2_RUNTIME_METRICS_SCHEMA_VERSION,
+  createRouteV2RuntimeMetrics,
+  validateRouteV2RuntimeMetrics,
+} from "./route-v2-runtime-metrics.mjs";
 export { RouteDiscoveryError, asRouteDiscoveryError } from "./errors.mjs";
 export { createRouteDiscoveryHandler } from "./http.mjs";
 export {
@@ -331,6 +344,10 @@ export {
   createSearchSuggestions,
   SEARCH_INTENT_CATALOGS,
 } from "./search-intent-parser.mjs";
+export {
+  createTravelRegionCatalog,
+  ROUTE_V2_TRAVEL_REGION_DEFINITIONS,
+} from "./route-search-region-taxonomy.mjs";
 export { SEARCH_KNOWLEDGE_GRAPH_FALLBACKS, mergeSearchKnowledgeGraphFallbacks } from "./search-knowledge-graph-fallbacks.mjs";
 export { ensureSearchGeneratedMedia, fallbackCoverForSearchGenerated } from "./search-generated-media.mjs";
 export { createDestinationImageRepository } from "./destination-image-repository.mjs";

@@ -153,7 +153,10 @@ function candidate(intentId, destinations, { durationDays = 7, travelStyle = "ra
 
 function createLocalHarness(name, { legs = [], seasons = [], corruptLegLine = "", invalidLegRecord = null } = {}) {
   const root = path.join(tempRoot, name);
-  const env = { ROUTE_V2_LOCAL_EVIDENCE_INDEX_ENABLED: "true" };
+  const env = {
+    ROUTE_V2_RUNTIME_ENABLED: "true",
+    ROUTE_V2_LOCAL_EVIDENCE_INDEX_ENABLED: "true",
+  };
   const routeLegPath = path.join(root, "route-leg-evidence.jsonl");
   const seasonPath = path.join(root, "season-evidence.jsonl");
   const missingPath = path.join(root, "missing-evidence-manifest.jsonl");
@@ -419,6 +422,8 @@ function plannerHarness(name, validationEnabled, validator = validateRouteForUse
   const candidatePath = path.join(root, "candidate-pool.jsonl");
   const tracePath = path.join(root, "decision-traces.jsonl");
   const env = {
+    ROUTE_V2_RUNTIME_ENABLED: "true",
+    ROUTE_V2_CANARY_PERCENTAGE: "100",
     ROUTE_V2_INTENT_ENABLED: "true",
     ROUTE_V2_CANDIDATE_POOL_ENABLED: "true",
     ROUTE_V2_TRACE_ENABLED: "true",
@@ -437,7 +442,7 @@ function plannerHarness(name, validationEnabled, validator = validateRouteForUse
     candidate(intentId, [DESTINATIONS.kyoto, DESTINATIONS.osaka, DESTINATIONS.nara]),
     candidate(intentId, [DESTINATIONS.osaka, DESTINATIONS.nara, DESTINATIONS.matsumoto]),
   ];
-  const planner = createRouteCompositionPlanner({
+  const actualPlanner = createRouteCompositionPlanner({
     acceptedRepository,
     evidenceRepository,
     candidatePoolStore,
@@ -448,6 +453,17 @@ function plannerHarness(name, validationEnabled, validator = validateRouteForUse
     knowledgeGraph: { queryDestinations() { return KG_POOL.map((item) => structuredClone(item)); } },
     env,
   });
+  const planner = {
+    buildCandidates({ context = null, ...input } = {}) {
+      return actualPlanner.buildCandidates({
+        ...input,
+        context: context ? {
+          ...context,
+          sessionId: context.sessionId || `candidate-evidence-${name}`,
+        } : context,
+      });
+    },
+  };
   return { planner, acceptedRepository, candidatePoolStore, decisionTraceStore, plannerCandidates };
 }
 

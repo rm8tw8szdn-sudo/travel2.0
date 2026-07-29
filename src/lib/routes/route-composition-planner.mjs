@@ -37,6 +37,7 @@ import {
   isRouteV2PublicationGateEnabled,
 } from "./route-publication-gate.mjs";
 import { createRouteV2ReadyPool } from "./route-v2-ready-pool.mjs";
+import { resolveRouteV2RuntimeDecision } from "./route-v2-runtime-environment.mjs";
 
 const PHASE_2A_STRATEGIES = ["Geographic", "Theme", "Season", "Transport", "Depth", "Efficiency"];
 const MAX_SEGMENT_KM = 650;
@@ -2268,9 +2269,19 @@ export function createRouteCompositionPlanner({ evidenceRepository, acceptedRepo
   const sidecarReadyPool = readyPool || createRouteV2ReadyPool({ env });
   return {
     async buildCandidates({ limit = 5, context = null } = {}) {
+      const requestRuntime = context?.routeV2RuntimeEnvironment
+        ? {
+            environment: context.routeV2RuntimeEnvironment,
+            decision: context.routeV2RuntimeDecision || null,
+          }
+        : resolveRouteV2RuntimeDecision({
+            env,
+            userId: context?.userId,
+            sessionId: context?.sessionId,
+          });
       // 新管线模式：有 context（{durationDays, country, style, ...}）走知识图驱动（async，含 LLM 节点）
       if (context && (context.country || context.durationDays || context.travelStyle)) {
-        return runPipeline({ context, knowledgeGraph, evidenceRepository, acceptedRepository, strategyRegistry, llmRefineProvider, webEvidencePipeline, decisionTraceStore: traceStore, candidatePoolStore: sidecarCandidatePoolStore, evidenceBundleStore: sidecarEvidenceBundleStore, localEvidenceRepository: sidecarLocalEvidenceRepository, publicationGateEvaluator, readyPool: sidecarReadyPool, routeCandidateBuilder, candidateEvidenceValidator, localEvidenceSidecar, localEvidenceCollector, env, limit });
+        return runPipeline({ context, knowledgeGraph, evidenceRepository, acceptedRepository, strategyRegistry, llmRefineProvider, webEvidencePipeline, decisionTraceStore: traceStore, candidatePoolStore: sidecarCandidatePoolStore, evidenceBundleStore: sidecarEvidenceBundleStore, localEvidenceRepository: sidecarLocalEvidenceRepository, publicationGateEvaluator, readyPool: sidecarReadyPool, routeCandidateBuilder, candidateEvidenceValidator, localEvidenceSidecar, localEvidenceCollector, env: requestRuntime.environment, limit });
       }
       // 旧兼容模式：evidence 桶缝合（codex 原 buildCandidates，仅旧 verify 脚本与生产 run-route-ai-production-phase2a 走此路径）
       const existingRecords = acceptedRepository.list({ limit: 100_000 }).records;

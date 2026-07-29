@@ -2,6 +2,21 @@ import { spawnSync } from "node:child_process";
 
 export const MANDATORY_PRELAUNCH_VERIFIERS = Object.freeze([
   Object.freeze({
+    name: "production-readiness-phase1-rollout-control",
+    relativePath: "scripts/verify-route-v2-production-readiness-phase1.mjs",
+    phase: "static",
+  }),
+  Object.freeze({
+    name: "production-readiness-phase2-runtime-observability",
+    relativePath: "scripts/verify-route-v2-production-readiness-phase2.mjs",
+    phase: "static",
+  }),
+  Object.freeze({
+    name: "real-user-search-intent-regression",
+    relativePath: "scripts/verify-route-v2-real-user-search-intent-regression.mjs",
+    phase: "static",
+  }),
+  Object.freeze({
     name: "route-intent-model",
     relativePath: "scripts/verify-route-v2-route-intent-model.mjs",
     phase: "static",

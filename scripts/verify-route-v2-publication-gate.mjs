@@ -30,6 +30,7 @@ const root = fs.mkdtempSync(path.join(os.tmpdir(), "route-v2-publication-gate-")
 const formalSeedRoot = path.resolve("data", "route-v2", "evidence-seed");
 const formalSeedManifest = JSON.parse(fs.readFileSync(path.join(formalSeedRoot, "evidence-seed-manifest.json"), "utf8"));
 const enabledEnv = {
+  ROUTE_V2_RUNTIME_ENABLED: "true",
   ROUTE_V2_LOCAL_EVIDENCE_INDEX_ENABLED: "true",
   ROUTE_V2_EVIDENCE_VALIDATION_ENABLED: "true",
   ROUTE_V2_PUBLICATION_GATE_ENABLED: "true",
@@ -261,6 +262,8 @@ assert(
 const integrationRoot = path.join(root, "planner-integration");
 const integrationEnv = {
   ...enabledEnv,
+  ROUTE_V2_RUNTIME_ENABLED: "true",
+  ROUTE_V2_CANARY_PERCENTAGE: "100",
   ROUTE_V2_INTENT_ENABLED: "true",
   ROUTE_V2_TIME_INTENT_ENABLED: "true",
   ROUTE_V2_CANDIDATE_POOL_ENABLED: "true",
@@ -299,6 +302,7 @@ const plannerResult = await planner.buildCandidates({
   limit: 1,
   context: {
     intentId: "intent-publication-planner-integration",
+    sessionId: "publication-planner-integration",
     country: "JP",
     countryName: "日本",
     durationDays: 2,

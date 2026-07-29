@@ -122,6 +122,8 @@ try {
   assert.equal(unresolvedDestinationIntent.parseSuccess, false);
 
   const env = {
+    ROUTE_V2_RUNTIME_ENABLED: "true",
+    ROUTE_V2_CANARY_PERCENTAGE: "100",
     ROUTE_V2_INTENT_ENABLED: "true",
     ROUTE_V2_TIME_INTENT_ENABLED: "true",
     ROUTE_V2_CANDIDATE_POOL_ENABLED: "true",

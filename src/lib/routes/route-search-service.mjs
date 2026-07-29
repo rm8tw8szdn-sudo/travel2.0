@@ -7,6 +7,10 @@ import { compareRouteIntentShadow } from "./route-intent-shadow-validation.mjs";
 import { isRouteV2TimeIntentEnabled, parseSearchIntent } from "./search-intent-parser.mjs";
 import { ensureSearchGeneratedMedia } from "./search-generated-media.mjs";
 import { buildSearchGeneratedFallbackRoute } from "./search-generated-route-builder.mjs";
+import {
+  finalizeRouteV2RuntimeDecision,
+  resolveRouteV2RuntimeDecision,
+} from "./route-v2-runtime-environment.mjs";
 import { stableHash } from "./route-v2-utils.mjs";
 
 const DEFAULT_RANKING_WEIGHTS = {
@@ -24,6 +28,37 @@ function clone(value) {
 
 function clean(value) {
   return String(value || "").trim().replace(/\s+/g, " ");
+}
+
+function metricReason(value, fallback = "unspecified") {
+  const normalized = clean(value)
+    .toLocaleLowerCase("en-US")
+    .slice(0, 80);
+  return /^[a-z0-9]+(?:[a-z0-9:_-]*[a-z0-9])?$/u.test(normalized)
+    ? normalized
+    : fallback;
+}
+
+function metricReasonCodes(values = []) {
+  const collected = [];
+  const visit = (value, depth = 0) => {
+    if (depth > 3 || value == null) return;
+    if (typeof value === "string") {
+      const reason = metricReason(value, "");
+      if (reason) collected.push(reason);
+      return;
+    }
+    if (Array.isArray(value)) {
+      for (const item of value) visit(item, depth + 1);
+      return;
+    }
+    if (typeof value !== "object") return;
+    for (const key of ["code", "reasonCode", "reason", "failureReason", "reasonCodes", "reasons"]) {
+      if (Object.hasOwn(value, key)) visit(value[key], depth + 1);
+    }
+  };
+  visit(values);
+  return collected;
 }
 
 function lower(value) {
@@ -445,7 +480,11 @@ function withTimeout(task, timeoutMs, abortSignal = null) {
   });
 }
 
-function plannerContextFromIntent(intent, deadlineAt, abortSignal = null, { destinationSuggestion = null } = {}) {
+function plannerContextFromIntent(intent, deadlineAt, abortSignal = null, {
+  destinationSuggestion = null,
+  routeV2RuntimeEnvironment = null,
+  routeV2RuntimeDecision = null,
+} = {}) {
   const suggested = destinationSuggestion && typeof destinationSuggestion === "object" ? destinationSuggestion : null;
   const rawQueryFingerprint = stableHash({ rawQuery: clean(intent.rawQuery) }).slice(0, 12);
   const countryCode = suggested?.countryCode || intent.countryCode;
@@ -525,6 +564,12 @@ function plannerContextFromIntent(intent, deadlineAt, abortSignal = null, { dest
     ].filter(Boolean),
     deadlineAt,
     abortSignal,
+    ...(routeV2RuntimeEnvironment ? {
+      routeV2RuntimeEnvironment: structuredClone(routeV2RuntimeEnvironment),
+    } : {}),
+    ...(routeV2RuntimeDecision ? {
+      routeV2RuntimeDecision: structuredClone(routeV2RuntimeDecision),
+    } : {}),
     quota: { limits: { llm: 1, planner: 1 }, usage: { llm: 0, planner: 0 } },
   };
 }
@@ -533,6 +578,7 @@ export function createRouteSearchService({
   acceptedRepository,
   searchCache,
   analytics = null,
+  runtimeMetrics = null,
   planner = null,
   intentCatalog = null,
   now = () => Date.now(),
@@ -548,18 +594,30 @@ export function createRouteSearchService({
   async function search(request = {}, context = {}) {
     const startedAt = now();
     const queryId = context.requestId || `search-${startedAt}-${Math.random().toString(36).slice(2)}`;
+    const routeV2Runtime = resolveRouteV2RuntimeDecision({
+      env,
+      userId: context.userId,
+      sessionId: request.sessionId,
+    });
+    const requestEnv = routeV2Runtime.environment;
+    const routeV2RuntimeDiagnostics = structuredClone(routeV2Runtime.decision);
     const acceptedSnapshot = acceptedRepository.list({ limit: 100_000 }).records;
     const intent = parseSearchIntent(request.query, {
       acceptedRoutes: acceptedSnapshot,
       catalogs: intentCatalog,
-      timeIntentEnabled: isRouteV2TimeIntentEnabled(env),
+      timeIntentEnabled: isRouteV2TimeIntentEnabled(requestEnv),
     });
     const countryScopedDestinationSuggestion = intent.intentMode === "specified-destination"
       && !(intent.requiredDestinationIds || []).length
       && (intent.countryCodes || []).length > 0;
+    const regionScopedDestinationSuggestion = intent.intentMode === "specified-destination"
+      && !(intent.requiredDestinationIds || []).length
+      && !(intent.countryCodes || []).length
+      && (intent.regionCountryCodes || []).length > 0;
     const destinationSuggestionResult = (
       intent.intentMode === "destination-suggestion"
       || countryScopedDestinationSuggestion
+      || regionScopedDestinationSuggestion
     )
       ? buildRouteDestinationSuggestion({
         intent,
@@ -586,10 +644,79 @@ export function createRouteSearchService({
     let plannerAborted = false;
     let plannerError = "";
     let plannerRejected = [];
+    let plannerDurationMs = 0;
+    let cacheDurationMs = 0;
+    const candidateRejectReasons = [];
+    const evidenceRejectReasons = [];
+    const publicationRejectReasons = [];
     let cacheItem = null;
     let generatedRecords = [];
     let ranked = [];
     const constraintRejections = [];
+    const timedCache = (operation) => {
+      const operationStartedAt = now();
+      try {
+        return operation();
+      } finally {
+        cacheDurationMs += Math.max(0, now() - operationStartedAt);
+      }
+    };
+    const finishRuntimeObservability = ({
+      records = [],
+      forceFallback = false,
+      fallbackReason = "",
+    } = {}) => {
+      const v2Displayed = (records || []).some((record) => isRouteGenerationV2Record(record));
+      const attempted = Boolean(routeV2RuntimeDiagnostics.enabled && plannerCalled);
+      const fallback = Boolean(
+        !routeV2RuntimeDiagnostics.enabled
+        || forceFallback
+        || (attempted && !v2Displayed),
+      );
+      const resolvedFallbackReason = fallback
+        ? !routeV2RuntimeDiagnostics.enabled
+          ? routeV2RuntimeDiagnostics.reason
+          : fallbackReason
+            || (plannerTimeout
+              ? "planner-timeout"
+              : plannerAborted
+                ? "planner-aborted"
+                : plannerError
+                  ? "planner-error"
+                  : candidateRejectReasons[0]
+                    || ((records || []).length ? "legacy-result" : "legacy-no-valid-route"))
+        : "";
+      const decision = finalizeRouteV2RuntimeDecision(routeV2RuntimeDiagnostics, {
+        attempted,
+        displayed: v2Displayed,
+        fallback,
+        fallbackReason: resolvedFallbackReason,
+      });
+      try {
+        runtimeMetrics?.record?.({
+          v2Attempted: attempted,
+          v2Displayed,
+          fallback,
+          fallbackReason: decision.fallbackReason,
+          rejectCount: candidateRejectReasons.length
+            + evidenceRejectReasons.length
+            + publicationRejectReasons.length
+            + constraintRejections.length,
+          resultCount: (records || []).length,
+          candidateRejectReasons,
+          evidenceRejectReasons,
+          publicationRejectReasons,
+          timings: {
+            searchMs: Math.max(0, now() - startedAt),
+            plannerMs: plannerDurationMs,
+            cacheMs: cacheDurationMs,
+          },
+        });
+      } catch {
+        // Operational metrics must never affect Search or legacy fallback.
+      }
+      return decision;
+    };
     const finalizeRecord = (record, source) => {
       const finalized = finalizeRouteResult(record, intent, {
         source,
@@ -600,7 +727,7 @@ export function createRouteSearchService({
         intent,
         productionResult: finalized.validation,
         source,
-        env,
+        env: requestEnv,
       });
       const matched = finalized.matched && shadow.matched !== false;
       const validation = matched
@@ -665,6 +792,11 @@ export function createRouteSearchService({
           limit: request.limit || 20,
           intentHash: intent.intentHash,
         });
+        const finalRuntimeDecision = finishRuntimeObservability({
+          records: page.records,
+          forceFallback: true,
+          fallbackReason: "keyword-fallback",
+        });
         analytics?.logSearch?.({
           query: request.query || "",
           normalizedIntent: intent,
@@ -678,6 +810,7 @@ export function createRouteSearchService({
           durationMs: now() - startedAt,
           queryId,
           searchSessionId: request.sessionId || null,
+          routeV2Runtime: finalRuntimeDecision,
           diagnostics: { reason: "keyword-fallback" },
         });
         return {
@@ -696,6 +829,7 @@ export function createRouteSearchService({
             plannerTimeout: false,
             targetResultCount: intent.targetResultCount,
             durationMs: now() - startedAt,
+            routeV2Runtime: finalRuntimeDecision,
           },
           cacheStatus: "REPOSITORY",
         };
@@ -703,6 +837,11 @@ export function createRouteSearchService({
       const diagnostics = {
         reason: intent.isChinaBlocked ? "china-blocked" : intent.failureReason || "intent-parse-failed",
       };
+      const finalRuntimeDecision = finishRuntimeObservability({
+        records: [],
+        forceFallback: !routeV2RuntimeDiagnostics.enabled,
+        fallbackReason: diagnostics.reason,
+      });
       analytics?.logSearch?.({
         query: request.query || "",
         normalizedIntent: intent,
@@ -716,6 +855,7 @@ export function createRouteSearchService({
         durationMs: now() - startedAt,
         queryId,
         searchSessionId: request.sessionId || null,
+        routeV2Runtime: finalRuntimeDecision,
         diagnostics,
       });
       return {
@@ -726,7 +866,10 @@ export function createRouteSearchService({
         suggestions: intent.suggestions,
         intent,
         queryId,
-        diagnostics,
+        diagnostics: {
+          ...diagnostics,
+          routeV2Runtime: finalRuntimeDecision,
+        },
         cacheStatus: "EMPTY",
       };
     }
@@ -756,7 +899,9 @@ export function createRouteSearchService({
       }
       : intent;
     if (destinationSuggestionMode || ranked.length < intent.targetResultCount) {
-      cacheItem = destinationSuggestionMode ? null : searchCache.get(cacheIntent);
+      cacheItem = destinationSuggestionMode
+        ? null
+        : timedCache(() => searchCache.get(cacheIntent));
       cacheHit = Boolean(cacheItem);
       if (cacheItem) {
         generatedRecords = (cacheItem.records || [])
@@ -772,20 +917,40 @@ export function createRouteSearchService({
       } else if (plannerEligible && planner?.buildCandidates && maxPlannerCalls > 0 && !context.abortSignal?.aborted) {
         plannerCalled = true;
         const deadlineAt = now() + plannerTimeoutMs;
+        const plannerStartedAt = now();
         const result = await withTimeout(
           () => planner.buildCandidates({
             limit: 1,
-            context: plannerContextFromIntent(intent, deadlineAt, context.abortSignal || null, { destinationSuggestion }),
+            context: plannerContextFromIntent(intent, deadlineAt, context.abortSignal || null, {
+              destinationSuggestion,
+              routeV2RuntimeEnvironment: requestEnv,
+              routeV2RuntimeDecision: routeV2RuntimeDiagnostics,
+            }),
           }),
           plannerTimeoutMs,
           context.abortSignal || null,
         );
+        plannerDurationMs += Math.max(0, now() - plannerStartedAt);
         plannerTimeout = Boolean(result.timedOut);
         plannerAborted = Boolean(result.aborted);
         plannerError = clean(result.error?.message || result.error || "");
         plannerRejected = Array.isArray(result.result?.rejected)
           ? result.result.rejected.slice(0, 10).map((item) => ({ reason: clean(item?.reason) }))
           : [];
+        candidateRejectReasons.push(...metricReasonCodes(result.result?.rejected));
+        for (const item of result.result?.accepted || []) {
+          evidenceRejectReasons.push(...metricReasonCodes([
+            item?.validation,
+            item?.evidenceValidation,
+            item?.selectedCandidateValidation,
+            item?.candidateValidation,
+            item?.candidateEvidenceValidations,
+            item?.evidenceResult,
+            item?.evidenceCollect,
+            item?.evidenceBundleLifecycle,
+          ]));
+          publicationRejectReasons.push(...metricReasonCodes(item?.publicationGate));
+        }
         if (!plannerTimeout && !plannerAborted && result.result?.accepted?.length) {
           generatedRecords = result.result.accepted
             .map((item) => preserveGenerationMetadata(normalizeDiscoveredRoute(item.record), item.record))
@@ -809,7 +974,7 @@ export function createRouteSearchService({
             const cacheStatus = generatedRecords.some((record) => record.searchStatus === "needs-review")
               ? "needs-review"
               : generatedRecords.every((record) => record.searchStatus === "accepted") ? "accepted" : "search-generated";
-            searchCache.put({
+            timedCache(() => searchCache.put({
               intent: cacheIntent,
               records: generatedRecords,
               sourceQuery: request.query,
@@ -819,8 +984,8 @@ export function createRouteSearchService({
                 autoAcceptGenerated,
                 ...(v2BlockedRecords.length ? { v2PromotionBlocked: v2BlockedRecords.length, v2PromotionReason: "v2-not-publishable-yet" } : {}),
               },
-            });
-            searchCache.appendReviewCandidates({
+            }));
+            timedCache(() => searchCache.appendReviewCandidates({
               intent: cacheIntent,
               records: generatedRecords,
               queryId,
@@ -829,7 +994,7 @@ export function createRouteSearchService({
                 autoAcceptGenerated,
                 ...(v2BlockedRecords.length ? { v2PromotionBlocked: v2BlockedRecords.length, v2PromotionReason: "v2-not-publishable-yet" } : {}),
               },
-            });
+            }));
             if (autoAcceptGenerated) {
               for (const record of generatedRecords) {
                 if (isRouteGenerationV2Record(record) || record.searchStatus !== "accepted") continue;
@@ -842,19 +1007,19 @@ export function createRouteSearchService({
         generatedRecords = fallback ? [ensureSearchGeneratedMedia({ ...fallback, searchStatus: "needs-review" })] : [];
         generatedRecords = constrainRecords(generatedRecords, "legacy-fallback");
         if (generatedRecords.length) {
-          searchCache.put({
+          timedCache(() => searchCache.put({
             intent,
             records: generatedRecords,
             sourceQuery: request.query,
             status: "needs-review",
             plannerMeta: { timeoutMs: plannerTimeoutMs, autoAcceptGenerated, fallbackReason: "planner-unavailable" },
-          });
-          searchCache.appendReviewCandidates({
+          }));
+          timedCache(() => searchCache.appendReviewCandidates({
             intent,
             records: generatedRecords,
             queryId,
             plannerMeta: { timeoutMs: plannerTimeoutMs, autoAcceptGenerated, fallbackReason: "planner-unavailable" },
-          });
+          }));
         }
       }
     }
@@ -903,6 +1068,14 @@ export function createRouteSearchService({
       intentHash: intent.intentHash,
     });
     const constraintConflict = constraintConflictDiagnostics(intent, constraintRejections, merged.length);
+    const finalRuntimeDecision = finishRuntimeObservability({
+      records: page.records,
+      forceFallback: Boolean(
+        constraintConflict
+        || !page.records.some((record) => isRouteGenerationV2Record(record)),
+      ),
+      fallbackReason: constraintConflict ? "constraint-conflict" : "",
+    });
     analytics?.logSearch?.({
       query: request.query || "",
       normalizedIntent: intent,
@@ -919,6 +1092,7 @@ export function createRouteSearchService({
       durationMs: now() - startedAt,
       queryId,
       searchSessionId: request.sessionId || null,
+      routeV2Runtime: finalRuntimeDecision,
     });
     return {
       records: page.records,
@@ -941,6 +1115,7 @@ export function createRouteSearchService({
         destinationSuggestion: destinationSuggestion ? structuredClone(destinationSuggestion) : null,
         targetResultCount: intent.targetResultCount,
         durationMs: now() - startedAt,
+        routeV2Runtime: finalRuntimeDecision,
       },
       cacheStatus: cacheHit ? "SEARCH_CACHE" : acceptedHit ? "REPOSITORY" : generatedRecords.length ? "SEARCH_GENERATED" : "EMPTY",
     };

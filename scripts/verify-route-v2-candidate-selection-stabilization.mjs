@@ -48,6 +48,8 @@ function createHarness(name, {
   const candidatePath = candidatePathOverride || path.join(root, "route-candidate-pool.jsonl");
   const tracePath = tracePathOverride || path.join(root, "decision-traces.jsonl");
   const env = {
+    ROUTE_V2_RUNTIME_ENABLED: "true",
+    ROUTE_V2_CANARY_PERCENTAGE: "100",
     ROUTE_V2_INTENT_ENABLED: "true",
     ROUTE_V2_CANDIDATE_POOL_ENABLED: "true",
     ROUTE_V2_TRACE_ENABLED: "true",
@@ -75,7 +77,18 @@ function createHarness(name, {
     env,
   };
   if (routeCandidateBuilder) plannerOptions.routeCandidateBuilder = routeCandidateBuilder;
-  const planner = createRouteCompositionPlanner(plannerOptions);
+  const actualPlanner = createRouteCompositionPlanner(plannerOptions);
+  const planner = {
+    buildCandidates({ context = null, ...input } = {}) {
+      return actualPlanner.buildCandidates({
+        ...input,
+        context: context ? {
+          ...context,
+          sessionId: context.sessionId || `candidate-selection-${name}`,
+        } : context,
+      });
+    },
+  };
   return { root, env, acceptedRepository, evidenceRepository, candidatePoolStore, decisionTraceStore, candidatePath, tracePath, planner };
 }
 

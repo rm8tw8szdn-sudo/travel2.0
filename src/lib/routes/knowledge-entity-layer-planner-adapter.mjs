@@ -1,3 +1,5 @@
+import { createTravelRegionCatalog } from "./route-search-region-taxonomy.mjs";
+
 function clean(value) {
   return String(value || "").trim().replace(/\s+/gu, " ");
 }
@@ -114,6 +116,11 @@ function countryCatalogItem(country = {}) {
     ])),
     entityId: clean(country.entityId),
     wikidataId: clean(country.wikidataId),
+    continent: clean(country.continent?.canonicalNameEn || country.continent?.canonicalNameZh),
+    continentNameEn: clean(country.continent?.canonicalNameEn),
+    continentNameZh: clean(country.continent?.canonicalNameZh),
+    region: clean(country.region),
+    subregion: clean(country.subregion),
   });
 }
 
@@ -178,11 +185,13 @@ export function createKnowledgeEntityLayerSearchIntentCatalog({ repository } = {
   assertPlannerRepository(repository);
   const countries = repository.listCountries();
   const countryCodeByEntityId = new Map(countries.map((country) => [country.entityId, country.isoAlpha2]));
+  const countryCatalog = countries.map(countryCatalogItem);
   return Object.freeze({
-    countries: Object.freeze(countries.map(countryCatalogItem)),
+    countries: Object.freeze(countryCatalog),
     cities: Object.freeze(repository.listCities().map((city) => cityCatalogItem(
       city,
       countryCodeByEntityId.get(city.parentCountryEntityId),
     ))),
+    regions: createTravelRegionCatalog(countryCatalog),
   });
 }

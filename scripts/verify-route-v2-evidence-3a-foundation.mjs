@@ -199,7 +199,10 @@ assert.equal(fs.existsSync(disabledPath), false);
 const enabledPath = path.join(tempRoot, "enabled", "evidence-bundles.jsonl");
 const enabledStore = createEvidenceBundleStore({
   storagePath: enabledPath,
-  env: { ROUTE_V2_EVIDENCE_BUNDLE_ENABLED: "true" },
+  env: {
+    ROUTE_V2_RUNTIME_ENABLED: "true",
+    ROUTE_V2_EVIDENCE_BUNDLE_ENABLED: "true",
+  },
   now: () => fixedNow,
 });
 const firstWrite = enabledStore.upsertLifecycle(built.bundle);
@@ -221,7 +224,10 @@ let updateNow = fixedNow;
 const updatePath = path.join(tempRoot, "atomic-update", "evidence-bundles.jsonl");
 const updateStore = createEvidenceBundleStore({
   storagePath: updatePath,
-  env: { ROUTE_V2_EVIDENCE_BUNDLE_ENABLED: "true" },
+  env: {
+    ROUTE_V2_RUNTIME_ENABLED: "true",
+    ROUTE_V2_EVIDENCE_BUNDLE_ENABLED: "true",
+  },
   now: () => updateNow,
 });
 assert.equal(updateStore.upsertLifecycle(built.bundle).persisted, true);
@@ -247,7 +253,10 @@ const failureTarget = path.join(tempRoot, "write-failure-target");
 fs.mkdirSync(failureTarget, { recursive: true });
 const failureStore = createEvidenceBundleStore({
   storagePath: failureTarget,
-  env: { ROUTE_V2_EVIDENCE_BUNDLE_ENABLED: "true" },
+  env: {
+    ROUTE_V2_RUNTIME_ENABLED: "true",
+    ROUTE_V2_EVIDENCE_BUNDLE_ENABLED: "true",
+  },
   now: () => fixedNow,
 });
 const failedWrite = failureStore.upsertLifecycle(built.bundle);
@@ -274,6 +283,8 @@ function plannerHarness(name, { evidenceEnabled = true, evidenceBundleStoreOverr
   const evidencePath = path.join(root, "evidence-bundles.jsonl");
   const acceptedPath = path.join(root, "accepted-routes.json");
   const env = {
+    ROUTE_V2_RUNTIME_ENABLED: "true",
+    ROUTE_V2_CANARY_PERCENTAGE: "100",
     ROUTE_V2_INTENT_ENABLED: "true",
     ROUTE_V2_CANDIDATE_POOL_ENABLED: "true",
     ROUTE_V2_TRACE_ENABLED: "true",
@@ -291,7 +302,7 @@ function plannerHarness(name, { evidenceEnabled = true, evidenceBundleStoreOverr
   const candidatePoolStore = createRouteCandidatePoolStore({ storagePath: candidatePath, env, now: () => fixedNow });
   const decisionTraceStore = decisionTraceStoreOverride || createDecisionTraceStore({ storagePath: tracePath, env, now: () => fixedNow });
   const evidenceBundleStore = evidenceBundleStoreOverride || createEvidenceBundleStore({ storagePath: evidencePath, env, now: () => fixedNow });
-  const planner = createRouteCompositionPlanner({
+  const actualPlanner = createRouteCompositionPlanner({
     acceptedRepository,
     evidenceRepository,
     candidatePoolStore,
@@ -304,6 +315,17 @@ function plannerHarness(name, { evidenceEnabled = true, evidenceBundleStoreOverr
     },
     env,
   });
+  const planner = {
+    buildCandidates({ context = null, ...input } = {}) {
+      return actualPlanner.buildCandidates({
+        ...input,
+        context: context ? {
+          ...context,
+          sessionId: context.sessionId || `evidence-foundation-${name}`,
+        } : context,
+      });
+    },
+  };
   return { root, env, candidatePath, tracePath, evidencePath, acceptedPath, acceptedRepository, candidatePoolStore, decisionTraceStore, evidenceBundleStore, planner };
 }
 
@@ -431,7 +453,14 @@ try {
   assert.equal(writeFailureResult.accepted[0].evidenceBundleLifecycle.reason, "injected-evidence-write-failure");
 
   const missingTracePath = path.join(tempRoot, "missing-trace-evidence.jsonl");
-  const missingTraceStore = createEvidenceBundleStore({ storagePath: missingTracePath, env: { ROUTE_V2_EVIDENCE_BUNDLE_ENABLED: "true" }, now: () => fixedNow });
+  const missingTraceStore = createEvidenceBundleStore({
+    storagePath: missingTracePath,
+    env: {
+      ROUTE_V2_RUNTIME_ENABLED: "true",
+      ROUTE_V2_EVIDENCE_BUNDLE_ENABLED: "true",
+    },
+    now: () => fixedNow,
+  });
   const missingTraceSidecar = await writeEvidenceBundleLifecycleSidecarSafe({
     evidenceBundleStore: missingTraceStore,
     selectedCandidate,
@@ -455,7 +484,14 @@ try {
   assert.equal(fs.existsSync(missingTracePath), false);
 
   const mismatchPath = path.join(tempRoot, "consistency-mismatch-evidence.jsonl");
-  const mismatchStore = createEvidenceBundleStore({ storagePath: mismatchPath, env: { ROUTE_V2_EVIDENCE_BUNDLE_ENABLED: "true" }, now: () => fixedNow });
+  const mismatchStore = createEvidenceBundleStore({
+    storagePath: mismatchPath,
+    env: {
+      ROUTE_V2_RUNTIME_ENABLED: "true",
+      ROUTE_V2_EVIDENCE_BUNDLE_ENABLED: "true",
+    },
+    now: () => fixedNow,
+  });
   const mismatchSidecar = await writeEvidenceBundleLifecycleSidecarSafe({
     evidenceBundleStore: mismatchStore,
     selectedCandidate,

@@ -228,7 +228,10 @@ const candidatePath = path.join(temporaryRoot, "route-candidate-pool.jsonl");
 fs.writeFileSync(candidatePath, `${JSON.stringify(validCandidate)}\n${JSON.stringify(malformedCandidate)}\n`, "utf8");
 const candidateStore = createRouteCandidatePoolStore({
   storagePath: candidatePath,
-  env: { ROUTE_V2_CANDIDATE_POOL_ENABLED: "true" },
+  env: {
+    ROUTE_V2_RUNTIME_ENABLED: "true",
+    ROUTE_V2_CANDIDATE_POOL_ENABLED: "true",
+  },
 });
 assert.equal(candidateStore.listByIntent(validCandidate.intentId).length, 1);
 assert(candidateStore.diagnostics().some((entry) => entry.type === "candidate-schema-invalid"));
@@ -236,7 +239,10 @@ assert(candidateStore.diagnostics().some((entry) => entry.type === "candidate-sc
 const readyPath = path.join(temporaryRoot, "ready-routes.json");
 const readyPool = createRouteV2ReadyPool({
   storagePath: readyPath,
-  env: { ROUTE_V2_READY_POOL_ENABLED: "true" },
+  env: {
+    ROUTE_V2_RUNTIME_ENABLED: "true",
+    ROUTE_V2_READY_POOL_ENABLED: "true",
+  },
   now: () => "2026-07-28T00:00:00.000Z",
 });
 const readyRoutes = ["ready-valid", "ready-malformed"].map((id) => attachRouteIntentEnvelope({

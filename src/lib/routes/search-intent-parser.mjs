@@ -16,6 +16,7 @@ export const ROUTE_V2_TIME_INTENT_TYPES = new Set([
 export const ROUTE_V2_INTENT_MODES = new Set([
   "specified-destination",
   "destination-suggestion",
+  "invalid-duration-intent",
   "invalid-time-intent",
   "insufficient-intent",
 ]);
@@ -36,7 +37,10 @@ function includesAny(haystack, aliases = []) {
   return aliases.some((alias) => {
     const normalizedAlias = normalizeText(alias);
     if (!normalizedAlias) return false;
-    if (/^[a-z0-9]{1,3}$/u.test(normalizedAlias)) {
+    if (/^[a-z0-9][a-z0-9 .'-]*$/u.test(normalizedAlias)) {
+      if (/[^a-z0-9]/u.test(normalizedAlias)) {
+        return new RegExp(`(?:^|[^a-z0-9])${escapeRegExp(normalizedAlias)}(?:$|[^a-z0-9])`, "iu").test(haystack);
+      }
       const tokens = haystack.split(/[^a-z0-9]+/u).filter(Boolean);
       return tokens.includes(normalizedAlias);
     }
@@ -92,6 +96,9 @@ const REGION_CATALOG = [
 ];
 
 const STYLE_CATALOG = [
+  { key: "road-trip", label: "环岛自驾", aliases: ["环岛", "環島", "ring road", "island circuit"] },
+  { key: "island-hopping", label: "海岛度假", aliases: ["海岛", "海島", "跳岛", "跳島", "海岛度假", "海島度假", "island hopping", "island vacation", "island holiday", "beach vacation"] },
+  { key: "city-break", label: "城市短途", aliases: ["周末短途", "周末旅行", "城市漫游", "城市漫遊", "city walk", "citywalk", "weekend getaway", "weekend break"] },
   { key: "classic-first-trip", label: "第一次", aliases: ["第一次", "首次", "初次", "入门", "经典", "经典首访", "classic", "first trip", "first-time"] },
   { key: "road-trip", label: "自驾", aliases: ["自驾", "公路", "road trip", "roadtrip", "drive", "driving"] },
   { key: "rail-journey", label: "铁路", aliases: ["铁路", "火车", "列车", "rail", "train"] },
@@ -101,6 +108,14 @@ const STYLE_CATALOG = [
 ];
 
 const THEME_CATALOG = [
+  { key: "ring-road", label: "环岛", aliases: ["环岛", "環島", "ring road", "island circuit"] },
+  { key: "self-drive", label: "自驾", aliases: ["自驾", "自駕", "租车", "租車", "road trip", "drive", "driving"] },
+  { key: "island-vacation", label: "海岛度假", aliases: ["海岛", "海島", "跳岛", "跳島", "海岛度假", "海島度假", "island hopping", "island vacation", "island holiday", "beach vacation"] },
+  { key: "weekend-short-trip", label: "周末短途", aliases: ["周末短途", "周末旅行", "weekend getaway", "weekend break"] },
+  { key: "honeymoon", label: "蜜月", aliases: ["蜜月", "honeymoon"] },
+  { key: "family", label: "亲子", aliases: ["亲子", "親子", "家庭旅行", "family", "family trip"] },
+  { key: "hiking", label: "徒步", aliases: ["徒步", "健行", "hiking", "trekking", "trek"] },
+  { key: "citywalk", label: "城市漫游", aliases: ["城市漫游", "城市漫遊", "city walk", "citywalk", "urban walk"] },
   { key: "sakura", label: "樱花", aliases: ["樱花", "sakura", "cherry blossom"] },
   { key: "aurora", label: "极光", aliases: ["极光", "aurora", "northern lights"] },
   { key: "hot-air-balloon", label: "热气球", aliases: ["热气球", "hot air balloon", "balloon"] },
@@ -482,21 +497,121 @@ function acceptedRouteCityCatalog(acceptedRoutes = []) {
   return [...cities.values()];
 }
 
-function parseDuration(query, { allowBareNumber = false } = {}) {
-  const normalized = query.replace(/\s+/g, " ").trim();
-  const compact = normalized.replace(/\s+/g, "");
-  const match = normalized.match(/(?<![a-z0-9.])([+-]?\d+(?:\.\d+)?)\s*(?:天|日|days?|day|d)/iu)
-    || (allowBareNumber ? compact.match(/^([+-]?\d+(?:\.\d+)?)$/u) : null);
-  if (!match) {
-    const malformed = normalized.match(/[+-]?\d[\da-z.,+-]*\s*(?:天|日|days?|day|d)/iu);
-    if (!malformed) return { durationDays: null, invalidDuration: false, diagnostics: [] };
+const ENGLISH_NUMBER_VALUES = new Map([
+  ["one", 1], ["two", 2], ["three", 3], ["four", 4], ["five", 5],
+  ["six", 6], ["seven", 7], ["eight", 8], ["nine", 9], ["ten", 10],
+  ["eleven", 11], ["twelve", 12], ["thirteen", 13], ["fourteen", 14], ["fifteen", 15],
+  ["sixteen", 16], ["seventeen", 17], ["eighteen", 18], ["nineteen", 19], ["twenty", 20],
+  ["thirty", 30], ["forty", 40], ["fifty", 50], ["sixty", 60],
+]);
+
+function englishNumberValue(value) {
+  const normalized = normalizeText(value).replace(/-/gu, " ");
+  if (ENGLISH_NUMBER_VALUES.has(normalized)) return ENGLISH_NUMBER_VALUES.get(normalized);
+  const parts = normalized.split(" ").filter(Boolean);
+  if (parts.length === 2
+    && ENGLISH_NUMBER_VALUES.has(parts[0])
+    && ENGLISH_NUMBER_VALUES.has(parts[1])
+    && ENGLISH_NUMBER_VALUES.get(parts[0]) >= 20
+    && ENGLISH_NUMBER_VALUES.get(parts[1]) < 10) {
+    return ENGLISH_NUMBER_VALUES.get(parts[0]) + ENGLISH_NUMBER_VALUES.get(parts[1]);
+  }
+  return null;
+}
+
+function chineseNumberValue(value) {
+  const normalized = clean(value).replace(/[兩两]/gu, "二");
+  const digits = new Map([
+    ["零", 0], ["〇", 0], ["一", 1], ["二", 2], ["三", 3], ["四", 4],
+    ["五", 5], ["六", 6], ["七", 7], ["八", 8], ["九", 9],
+  ]);
+  if (/^[零〇一二三四五六七八九]$/u.test(normalized)) return digits.get(normalized);
+  if (normalized === "十") return 10;
+  const tens = normalized.match(/^([一二三四五六七八九])?十([一二三四五六七八九])?$/u);
+  if (!tens) return null;
+  return (tens[1] ? digits.get(tens[1]) : 1) * 10 + (tens[2] ? digits.get(tens[2]) : 0);
+}
+
+function textualDuration(query) {
+  const englishCompoundDay = query.match(/\b((?:twenty|thirty|forty|fifty|sixty)\s+(?:one|two|three|four|five|six|seven|eight|nine))\s+days?\b/iu);
+  const englishDay = englishCompoundDay || query.match(/\b([a-z]+(?:-[a-z]+)?)\s+days?\b/iu);
+  if (englishDay) {
+    const days = englishNumberValue(englishDay[1]);
+    if (Number.isSafeInteger(days) && days > 0) {
+      return { durationDays: days, invalidDuration: false, diagnostics: [] };
+    }
+  }
+  const englishCompoundWeek = query.match(/\b((?:twenty|thirty|forty|fifty|sixty)\s+(?:one|two|three|four|five|six|seven|eight|nine))\s+weeks?\b/iu);
+  const englishWeek = englishCompoundWeek || query.match(/\b(a|an|[a-z]+(?:-[a-z]+)?)\s+weeks?\b/iu);
+  if (englishWeek) {
+    const weeks = /^(?:a|an)$/iu.test(englishWeek[1]) ? 1 : englishNumberValue(englishWeek[1]);
+    if (Number.isSafeInteger(weeks) && weeks > 0) {
+      return { durationDays: weeks * 7, invalidDuration: false, diagnostics: [] };
+    }
+  }
+  const chineseWeek = query.match(/([零〇一二三四五六七八九十兩两]+)\s*(?:周|週|星期)(?:左右)?/u);
+  if (chineseWeek) {
+    const weeks = chineseNumberValue(chineseWeek[1]);
+    if (Number.isSafeInteger(weeks) && weeks > 0) {
+      return { durationDays: weeks * 7, invalidDuration: false, diagnostics: [] };
+    }
+  }
+  const chineseTenish = query.match(/(十)\s*来\s*天/u);
+  if (chineseTenish) {
+    return {
+      durationDays: 10,
+      invalidDuration: false,
+      diagnostics: [{
+        code: "approximate-duration-normalized",
+        message: "Approximate duration was normalized to its stated anchor.",
+        rawValue: chineseTenish[0],
+      }],
+    };
+  }
+  const chineseDay = query.match(/([零〇一二三四五六七八九十兩两]+)\s*(?:天|日)/u);
+  if (chineseDay) {
+    const days = chineseNumberValue(chineseDay[1]);
+    if (Number.isSafeInteger(days) && days > 0) {
+      return { durationDays: days, invalidDuration: false, diagnostics: [] };
+    }
+  }
+  const hyphenatedEnglishDay = query.match(/(?<![a-z0-9.])([+-]?\d+(?:\.\d+)?)\s*-\s*days?\b/iu);
+  if (hyphenatedEnglishDay) {
+    const days = Number(hyphenatedEnglishDay[1]);
+    if (Number.isSafeInteger(days) && days > 0) {
+      return { durationDays: days, invalidDuration: false, diagnostics: [] };
+    }
     return {
       durationDays: null,
       invalidDuration: true,
       diagnostics: [{
         code: "invalid-duration",
         message: "Trip duration must be a positive whole number of days.",
-        rawValue: malformed[0],
+        rawValue: hyphenatedEnglishDay[0],
+      }],
+    };
+  }
+  return null;
+}
+
+function parseDuration(query, { allowBareNumber = false } = {}) {
+  const normalized = query.replace(/\s+/g, " ").trim();
+  const normalizedTextual = textualDuration(normalized);
+  if (normalizedTextual) return normalizedTextual;
+  const compact = normalized.replace(/\s+/g, "");
+  const match = normalized.match(/(?<![a-z0-9.])([+-]?\d+(?:\.\d+)?)\s*(?:天|日|days?|day|d)/iu)
+    || (allowBareNumber ? compact.match(/^([+-]?\d+(?:\.\d+)?)$/u) : null);
+  if (!match) {
+    const malformed = normalized.match(/[+-]?\d[\da-z.,+-]*\s*(?:天|日|days?|day|d)/iu);
+    const unsupportedTextual = normalized.match(/\b[a-z][a-z-]*\s+(?:days?|weeks?)\b/iu);
+    if (!malformed && !unsupportedTextual) return { durationDays: null, invalidDuration: false, diagnostics: [] };
+    return {
+      durationDays: null,
+      invalidDuration: true,
+      diagnostics: [{
+        code: "invalid-duration",
+        message: "Trip duration must be a positive whole number of days.",
+        rawValue: (malformed || unsupportedTextual)[0],
       }],
     };
   }
@@ -524,8 +639,10 @@ function durationBand(days) {
   return "15d+";
 }
 
-function inferTripIntent(query, style) {
+function inferTripIntent(query, style, theme) {
   if (style?.key === "classic-first-trip") return "first-trip";
+  if (theme?.key === "family") return "family";
+  if (theme?.key === "honeymoon") return "honeymoon";
   if (includesAny(query, ["亲子", "family"])) return "family";
   if (includesAny(query, ["蜜月", "honeymoon"])) return "honeymoon";
   return "";
@@ -558,6 +675,9 @@ export function normalizeIntentKey(intent = {}) {
   const payload = {
     ...(intent.intentMode ? { intentMode: clean(intent.intentMode) } : {}),
     countryCode: clean(intent.countryCode),
+    ...((intent.regionCountryCodes || []).length ? {
+      regionCountryCodes: unique(intent.regionCountryCodes).sort(),
+    } : {}),
     region: clean(intent.normalizedRegion || intent.region),
     cities: unique(intent.normalizedCities || intent.cities).sort(),
     ...((intent.requiredDestinationIds || []).length ? {
@@ -591,6 +711,7 @@ export function hashIntentKey(intentKey) {
 export function createSearchSuggestions({ query = "", acceptedRoutes = [], catalogs = null } = {}) {
   const normalized = normalizeText(query);
   const countryCatalog = mergeCatalog(COUNTRY_CATALOG, catalogs?.countries, (item) => item.code);
+  const regionCatalog = mergeCatalog(REGION_CATALOG, catalogs?.regions, (item) => item.key || item.normalizedLabel);
   const cityCatalog = mergeCityCatalog(CITY_CATALOG, [
     ...(Array.isArray(catalogs?.cities) ? catalogs.cities : []),
     ...acceptedRouteCityCatalog(acceptedRoutes),
@@ -602,7 +723,7 @@ export function createSearchSuggestions({ query = "", acceptedRoutes = [], catal
     "土耳其", "土耳其热气球摄影", "卡帕多奇亚热气球",
     ...countryCatalog.filter((item) => item.code !== "CN").map((item) => item.label),
     ...cityCatalog.map((item) => item.label),
-    ...REGION_CATALOG.map((item) => item.label),
+    ...regionCatalog.map((item) => item.label),
     ...STYLE_CATALOG.map((item) => item.label),
     ...THEME_CATALOG.map((item) => item.label),
     ...SEASON_CATALOG.map((item) => item.label),
@@ -623,12 +744,92 @@ export function createSearchSuggestions({ query = "", acceptedRoutes = [], catal
   return matches.length ? matches : uniqueCandidates.slice(0, 8);
 }
 
+const COUNTRY_TYPO_STOP_WORDS = new Set([
+  "a", "an", "the", "in", "for", "to", "go", "where", "trip", "travel", "tour", "holiday", "vacation",
+  "day", "days", "week", "weeks", "spring", "summer", "autumn", "fall", "winter",
+  "island", "city", "walk", "road", "drive", "driving", "hiking", "trekking", "family", "honeymoon",
+  ...ENGLISH_NUMBER_VALUES.keys(),
+]);
+
+function damerauLevenshteinDistance(leftValue, rightValue) {
+  const left = normalizeText(leftValue);
+  const right = normalizeText(rightValue);
+  const rows = left.length + 1;
+  const columns = right.length + 1;
+  const matrix = Array.from({ length: rows }, () => Array(columns).fill(0));
+  for (let row = 0; row < rows; row += 1) matrix[row][0] = row;
+  for (let column = 0; column < columns; column += 1) matrix[0][column] = column;
+  for (let row = 1; row < rows; row += 1) {
+    for (let column = 1; column < columns; column += 1) {
+      const substitutionCost = left[row - 1] === right[column - 1] ? 0 : 1;
+      matrix[row][column] = Math.min(
+        matrix[row - 1][column] + 1,
+        matrix[row][column - 1] + 1,
+        matrix[row - 1][column - 1] + substitutionCost,
+      );
+      if (row > 1
+        && column > 1
+        && left[row - 1] === right[column - 2]
+        && left[row - 2] === right[column - 1]) {
+        matrix[row][column] = Math.min(matrix[row][column], matrix[row - 2][column - 2] + 1);
+      }
+    }
+  }
+  return matrix[left.length][right.length];
+}
+
+function latinQueryTokens(query) {
+  return [...normalizeText(query).matchAll(/\b[a-z][a-z'-]{3,}\b/gu)]
+    .map((match) => match[0])
+    .filter((token) => !COUNTRY_TYPO_STOP_WORDS.has(token));
+}
+
+function countryCorrectionForQuery(query, countryCatalog) {
+  const aliases = countryCatalog.flatMap((country) => unique([
+    country.normalizedLabel,
+    ...(country.aliases || []),
+  ]).map(normalizeText)
+    .filter((alias) => /^[a-z][a-z'-]{3,}$/u.test(alias))
+    .map((alias) => ({ alias, country })));
+  const candidates = [];
+  for (const token of latinQueryTokens(query)) {
+    for (const entry of aliases) {
+      const distance = damerauLevenshteinDistance(token, entry.alias);
+      if (distance !== 1) continue;
+      candidates.push({ token, distance, country: entry.country, alias: entry.alias });
+    }
+  }
+  const uniqueCountries = new Map();
+  for (const candidate of candidates) {
+    const code = clean(candidate.country.code).toUpperCase();
+    if (!code || uniqueCountries.has(code)) continue;
+    uniqueCountries.set(code, candidate);
+  }
+  if (uniqueCountries.size !== 1) return null;
+  const selected = [...uniqueCountries.values()][0];
+  return {
+    countryCode: clean(selected.country.code).toUpperCase(),
+    countryName: clean(selected.country.label),
+    matchedToken: selected.token,
+    matchedAlias: selected.alias,
+    editDistance: selected.distance,
+    confidence: "high",
+    requiresConfirmation: true,
+  };
+}
+
+function unresolvedCountryLikeTokens(query) {
+  return latinQueryTokens(query)
+    .filter((token) => /(?:land|stan|ania|eria|eria|any|aly|pan)$/u.test(token));
+}
+
 export function parseSearchIntent(query, { acceptedRoutes = [], catalogs = null, timeIntentEnabled = false } = {}) {
   const rawQuery = clean(query);
   const normalizedQuery = normalizeText(rawQuery);
   const duration = parseDuration(normalizedQuery, { allowBareNumber: timeIntentEnabled });
   const durationDays = duration.durationDays;
   const countryCatalog = mergeCatalog(COUNTRY_CATALOG, catalogs?.countries, (item) => item.code);
+  const regionCatalog = mergeCatalog(REGION_CATALOG, catalogs?.regions, (item) => item.key || item.normalizedLabel);
   const cityCatalog = mergeCityCatalog(CITY_CATALOG, [
     ...(Array.isArray(catalogs?.cities) ? catalogs.cities : []),
     ...acceptedRouteCityCatalog(acceptedRoutes),
@@ -640,7 +841,7 @@ export function parseSearchIntent(query, { acceptedRoutes = [], catalogs = null,
   let matchedCities = timeIntentEnabled
     ? requiredOccurrences.map((entry) => entry.city)
     : matchesFromCatalog(normalizedQuery, cityCatalog);
-  const matchedRegion = firstMatch(normalizedQuery, REGION_CATALOG);
+  const matchedRegion = firstMatch(normalizedQuery, regionCatalog);
   let matchedCountry = firstMatch(normalizedQuery, countryCatalog);
   if (matchedCountry && matchedCities.length && !timeIntentEnabled) {
     matchedCities = matchedCities.filter((item) => item.countryCode === matchedCountry.code);
@@ -651,6 +852,12 @@ export function parseSearchIntent(query, { acceptedRoutes = [], catalogs = null,
   if (!matchedCountry && matchedRegion?.countryCode) {
     matchedCountry = countryCatalog.find((item) => item.code === matchedRegion.countryCode) || null;
   }
+  const destinationCorrection = !matchedCountry && !matchedCities.length && !matchedRegion
+    ? countryCorrectionForQuery(rawQuery, countryCatalog)
+    : null;
+  const unresolvedCountryTokens = !matchedCountry && !matchedCities.length && !matchedRegion && !destinationCorrection
+    ? unresolvedCountryLikeTokens(rawQuery)
+    : [];
   const style = firstMatch(normalizedQuery, STYLE_CATALOG);
   const theme = firstMatch(normalizedQuery, THEME_CATALOG);
   const season = firstMatch(normalizedQuery, SEASON_CATALOG);
@@ -660,6 +867,9 @@ export function parseSearchIntent(query, { acceptedRoutes = [], catalogs = null,
     ...(matchedCountry?.code ? [matchedCountry.code] : []),
     ...matchedCities.map((item) => item.countryCode),
   ].map((code) => clean(code).toUpperCase()).filter(Boolean));
+  const regionCountryCodes = unique((matchedRegion?.countryCodes || [])
+    .map((code) => clean(code).toUpperCase())
+    .filter((code) => /^[A-Z]{2}$/u.test(code)));
   const intent = {
     rawQuery,
     normalizedQuery,
@@ -669,6 +879,7 @@ export function parseSearchIntent(query, { acceptedRoutes = [], catalogs = null,
     normalizedCountry: matchedCountry?.normalizedLabel || "",
     region: matchedRegion?.label || "",
     normalizedRegion: matchedRegion?.normalizedLabel || "",
+    regionCountryCodes,
     cities: unique(matchedCities.map((item) => item.label)),
     normalizedCities: unique(matchedCities.map((item) => item.normalizedLabel)),
     ...(timeIntentEnabled ? {
@@ -688,7 +899,7 @@ export function parseSearchIntent(query, { acceptedRoutes = [], catalogs = null,
     } : {}),
     travelStyle: style?.key || "",
     travelStyleLabel: style?.label || "",
-    tripIntent: inferTripIntent(normalizedQuery, style),
+    tripIntent: inferTripIntent(normalizedQuery, style, theme),
     season: season?.label || "",
     seasonKey: season?.key || "",
     theme: theme?.label || "",
@@ -698,6 +909,7 @@ export function parseSearchIntent(query, { acceptedRoutes = [], catalogs = null,
     pace: includesAny(normalizedQuery, ["慢", "慢游", "relaxed"]) ? "relaxed" : "",
     budget: "",
     ...(timeIntentEnabled ? { timeIntent } : {}),
+    ...(destinationCorrection ? { destinationCorrection } : {}),
   };
   intent.constraintCount = constraintCount(intent);
   intent.targetResultCount = targetResultCountForConstraintLevel(intent.constraintCount);
@@ -710,14 +922,17 @@ export function parseSearchIntent(query, { acceptedRoutes = [], catalogs = null,
       .filter((item) => item.code === "unknown-city-token")
       .map((item) => clean(item.rawValue))
       .filter((item) => Array.from(item).length >= 3);
-    const hasUnresolvedDestination = unresolvedDestinations.length > 0;
+    const hasUnresolvedCountry = unresolvedCountryTokens.length > 0;
+    const hasUnresolvedDestination = unresolvedDestinations.length > 0 || hasUnresolvedCountry;
     const hasUsableCondition = intent.constraintCount > 0;
-    intent.unresolvedDestinationNames = unique(unresolvedDestinations);
+    intent.unresolvedDestinationNames = unique([...unresolvedDestinations, ...unresolvedCountryTokens]);
     intent.destinationUnspecified = !destinationSpecified;
     intent.intentMode = invalidDuration
       ? "invalid-duration-intent"
       : invalidTime
       ? "invalid-time-intent"
+      : destinationCorrection
+        ? "insufficient-intent"
       : hasUnresolvedDestination
         ? "insufficient-intent"
       : !hasUsableCondition
@@ -730,6 +945,8 @@ export function parseSearchIntent(query, { acceptedRoutes = [], catalogs = null,
       ? "invalid-duration"
       : intent.intentMode === "invalid-time-intent"
       ? "invalid-time-intent"
+      : destinationCorrection
+        ? "destination-confirmation-required"
       : hasUnresolvedDestination
         ? "unresolved-destination"
       : intent.intentMode === "insufficient-intent"
@@ -747,7 +964,12 @@ export function parseSearchIntent(query, { acceptedRoutes = [], catalogs = null,
   intent.normalizedRouteIntent = routeIntentFingerprint.normalizedIntent;
   intent.routeIntentFingerprint = routeIntentFingerprint.value;
   intent.routeIntentFingerprintVersion = ROUTE_INTENT_FINGERPRINT_VERSION;
-  intent.suggestions = createSearchSuggestions({ query: rawQuery, acceptedRoutes, catalogs });
+  intent.suggestions = destinationCorrection?.countryName
+    ? [destinationCorrection.countryName]
+    : createSearchSuggestions({ query: rawQuery, acceptedRoutes, catalogs: {
+        ...(catalogs || {}),
+        regions: regionCatalog,
+      } });
   return intent;
 }
 

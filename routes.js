@@ -20,6 +20,8 @@ const FEED_IMAGE_CANDIDATE_LIMIT = 24;
 const FEED_CARD_IMAGE_TIMEOUT_MS = 2_000;
 const FEED_COVER_PREPARE_DEADLINE_MS = 2_000;
 const FEED_LOAD_WATCHDOG_MS = 8_000;
+const SEARCH_DISCOVERY_TIMEOUT_MS = 7_000;
+const SEARCH_LOAD_WATCHDOG_MS = 10_000;
 const ROUTE_FEED_SESSION_KEY = "travelCollection.routeFeedSession";
 const ROUTE_FEED_PRELOAD_KEY = "travelCollection.routeFeedPreload.v2";
 const ROUTE_FEED_PRELOAD_TTL_MS = 5 * 60 * 1000;
@@ -1973,6 +1975,9 @@ function stateMarkup() {
     if (feedState.query && feedState.searchFailureReason === "unresolved-destination") {
       return `<div class="route-empty-state" data-route-feed-state="unresolved-destination"><p>有城市暂时无法完整识别</p><span>请检查城市名称或换一种写法，系统不会删除城市后改推其他路线</span></div>`;
     }
+    if (feedState.query && feedState.searchFailureReason === "destination-confirmation-required") {
+      return `<div class="route-empty-state" data-route-feed-state="destination-confirmation-required"><p>请确认目的地名称</p><span>系统发现了可能的拼写结果，但不会在未确认时替你选择其他目的地</span>${suggestionsMarkup()}</div>`;
+    }
     if (feedState.query && feedState.searchFailureReason === "constraint-conflict") {
       return `<div class="route-empty-state" data-route-feed-state="constraint-conflict"><p>这些条件暂时无法同时满足</p><span>请增加行程天数或减少城市后再试</span></div>`;
     }
@@ -2066,6 +2071,8 @@ function renderSearchSummary() {
     routeSearchSummary.textContent = `“${feedState.query}”中的行程天数无效，请输入大于0的整数天数`;
   } else if (feedState.searchFailureReason === "unresolved-destination") {
     routeSearchSummary.textContent = `“${feedState.query}”中有城市暂时无法完整识别，请检查名称后重试`;
+  } else if (feedState.searchFailureReason === "destination-confirmation-required") {
+    routeSearchSummary.textContent = `“${feedState.query}”可能包含目的地拼写错误，请确认建议后重新搜索`;
   } else if (feedState.searchFailureReason === "constraint-conflict") {
     routeSearchSummary.textContent = `“${feedState.query}”的条件无法同时满足，请增加天数或减少城市`;
   } else {
@@ -2323,7 +2330,7 @@ async function loadFeed({ refresh = false } = {}) {
     feedState.hasMore = true;
     renderFeed({ incremental: feedState.records.length > 0 });
     scheduleContinuationCheck();
-  }, FEED_LOAD_WATCHDOG_MS);
+  }, requested.query ? SEARCH_LOAD_WATCHDOG_MS : FEED_LOAD_WATCHDOG_MS);
 
   try {
     if (feedState.prefetchPromise) await feedState.prefetchPromise;
@@ -2337,7 +2344,7 @@ async function loadFeed({ refresh = false } = {}) {
       ? feedState.prefetchedFeedPage
       : null;
     if (prefetched) feedState.prefetchedFeedPage = null;
-    const discoverySignal = requestSignal(controller, requested.query ? 3_200 : 4_800);
+    const discoverySignal = requestSignal(controller, requested.query ? SEARCH_DISCOVERY_TIMEOUT_MS : 4_800);
     let payload = prefetched?.payload || await requestDiscoveryPage({ ...requested, signal: discoverySignal });
     if (token !== feedState.requestToken) return;
     const previousCount = feedState.records.length;

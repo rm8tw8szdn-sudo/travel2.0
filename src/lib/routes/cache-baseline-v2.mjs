@@ -10,6 +10,7 @@ import { validateEmbeddedRouteIntent } from "./route-intent-invariant-gate.mjs";
 import { validateRouteCandidate } from "./route-candidate-pool.mjs";
 import { validateDecisionTrace } from "./decision-trace-schema.mjs";
 import { validateEvidenceBundleLifecycle } from "./evidence-bundle-schema.mjs";
+import { validateRouteV2RuntimeMetrics } from "./route-v2-runtime-metrics.mjs";
 
 export const CACHE_BASELINE_SCHEMA_VERSION = "cache-manifest-v2";
 export const CACHE_BASELINE_GENERATOR = Object.freeze({
@@ -26,6 +27,7 @@ const MAX_BYTES = Object.freeze({
   runtimeJson: 24 * 1024 * 1024,
   runtimeJsonl: 24 * 1024 * 1024,
   runtimeLog: 16 * 1024 * 1024,
+  runtimeMetrics: 1024 * 1024,
   proxiedImage: 8 * 1024 * 1024,
   proxiedImageMetadata: 256 * 1024,
 });
@@ -842,6 +844,7 @@ function runtimeType(relativePath) {
   if (/^route-feed-bootstrap(?:-(?:cross|single))?-payload\.json$/u.test(relativePath)) return "feed-response-json";
   if (relativePath === "destination-images.json") return "destination-images-json";
   if (relativePath === "route-image-cache.json") return "route-image-cache-json";
+  if (/^route-v2-runtime-metrics\.json(?:\.\d+)?$/u.test(relativePath)) return "route-v2-runtime-metrics-json";
   if (relativePath === "route-candidate-pool.jsonl") return "candidate-pool-jsonl";
   if (/^(?:route-v2-ready-pool|ready-routes)\.json$/u.test(relativePath)) return "ready-pool-json";
   if (/^(?:decision-traces|route-evidence-bundles)\.jsonl$/u.test(relativePath)) return "sidecar-store-jsonl";
@@ -922,6 +925,13 @@ function validateRuntimeFile({ absolutePath, path: relativePath, structureType, 
       validateNoSensitiveContent(buffer, relativePath, errors);
       validateRouteImageCache(parseJson(buffer, relativePath, errors), relativePath, errors);
       break;
+    case "route-v2-runtime-metrics-json": {
+      buffer = readBytes(absolutePath, MAX_BYTES.runtimeMetrics, errors, relativePath);
+      validateNoSensitiveContent(buffer, relativePath, errors);
+      const validation = validateRouteV2RuntimeMetrics(parseJson(buffer, relativePath, errors));
+      for (const error of validation.errors) errors.push(`${relativePath}:${error}`);
+      break;
+    }
     case "candidate-pool-jsonl":
       buffer = readBytes(absolutePath, MAX_BYTES.runtimeJsonl, errors, relativePath);
       validateNoSensitiveContent(buffer, relativePath, errors);

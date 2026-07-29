@@ -15,7 +15,23 @@ for (const flag of [
   "ROUTE_V2_TRACE_ENABLED",
   "ROUTE_V2_EVIDENCE_BUNDLE_ENABLED",
 ]) {
-  assert.equal(defaultRuntime[flag], "true", `${flag} must be enabled by the server runtime preset`);
+  assert.equal(defaultRuntime[flag], "false", `${flag} must be safely disabled by default`);
+}
+assert.equal(defaultRuntime.ROUTE_V2_RUNTIME_ENABLED, "false");
+assert.equal(defaultRuntime.ROUTE_V2_CANARY_PERCENTAGE, "0");
+
+const fullCanaryRuntime = createRouteV2RuntimeEnvironment({
+  ROUTE_V2_RUNTIME_ENABLED: "true",
+  ROUTE_V2_CANARY_PERCENTAGE: "100",
+});
+for (const flag of [
+  "ROUTE_V2_INTENT_ENABLED",
+  "ROUTE_V2_TIME_INTENT_ENABLED",
+  "ROUTE_V2_CANDIDATE_POOL_ENABLED",
+  "ROUTE_V2_TRACE_ENABLED",
+  "ROUTE_V2_EVIDENCE_BUNDLE_ENABLED",
+]) {
+  assert.equal(fullCanaryRuntime[flag], "true", `${flag} must be available inside the enabled canary`);
 }
 for (const flag of [
   "ROUTE_V2_EVIDENCE_ONLINE_ENABLED",
@@ -27,15 +43,19 @@ for (const flag of [
 }
 
 const explicitlyDisabled = createRouteV2RuntimeEnvironment({
+  ROUTE_V2_RUNTIME_ENABLED: "true",
+  ROUTE_V2_CANARY_PERCENTAGE: "100",
   ROUTE_V2_TIME_INTENT_ENABLED: "false",
 });
 assert.equal(explicitlyDisabled.ROUTE_V2_TIME_INTENT_ENABLED, "false", "an explicit per-feature opt-out must win");
 
 const masterDisabled = createRouteV2RuntimeEnvironment({
   ROUTE_V2_RUNTIME_ENABLED: "false",
+  ROUTE_V2_INTENT_ENABLED: "true",
+  ROUTE_V2_TIME_INTENT_ENABLED: "true",
 });
-assert.equal(masterDisabled.ROUTE_V2_INTENT_ENABLED, undefined);
-assert.equal(masterDisabled.ROUTE_V2_TIME_INTENT_ENABLED, undefined);
+assert.equal(masterDisabled.ROUTE_V2_INTENT_ENABLED, "false");
+assert.equal(masterDisabled.ROUTE_V2_TIME_INTENT_ENABLED, "false");
 assert.equal(masterDisabled.SEARCH_AUTO_ACCEPT_GENERATED, "false");
 
 const twoCityPool = [
@@ -139,5 +159,10 @@ console.log(JSON.stringify({
     evidenceBundle: defaultRuntime.ROUTE_V2_EVIDENCE_BUNDLE_ENABLED,
     onlineEvidence: defaultRuntime.ROUTE_V2_EVIDENCE_ONLINE_ENABLED,
     autoAcceptGenerated: defaultRuntime.SEARCH_AUTO_ACCEPT_GENERATED,
+  },
+  fullCanaryRuntime: {
+    intent: fullCanaryRuntime.ROUTE_V2_INTENT_ENABLED,
+    timeIntent: fullCanaryRuntime.ROUTE_V2_TIME_INTENT_ENABLED,
+    percentage: fullCanaryRuntime.ROUTE_V2_CANARY_PERCENTAGE,
   },
 }, null, 2));

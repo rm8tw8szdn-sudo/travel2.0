@@ -19,12 +19,14 @@ const FEED_CLUSTER_COOLDOWN_WINDOW = 12;
 const FEED_IMAGE_CANDIDATE_LIMIT = 24;
 const FEED_CARD_IMAGE_TIMEOUT_MS = 2_000;
 const FEED_COVER_PREPARE_DEADLINE_MS = 2_000;
-const FEED_BACKFILL_HOP_LIMIT = 8;
 const FEED_LOAD_WATCHDOG_MS = 8_000;
 const ROUTE_FEED_SESSION_KEY = "travelCollection.routeFeedSession";
 const ROUTE_FEED_PRELOAD_KEY = "travelCollection.routeFeedPreload.v2";
 const ROUTE_FEED_PRELOAD_TTL_MS = 5 * 60 * 1000;
+const ROUTE_FEED_QUERY_PARAM = "q";
 const FALLBACK_ROUTE_COVER = "assets/trip-cover-placeholder.svg";
+const routeImageAssets = globalThis.RouteV2ImageAssets || null;
+const runtimeImageSearchEnabled = routeImageAssets?.isRuntimeImageSearchEnabled?.() === true;
 const IMAGE_READY_COUNTRY_CODES = new Set([
   "AT", "BE", "FI", "FR", "GB", "HR", "HU", "IN", "IS", "IT", "JP", "KH", "LU", "MA", "NL", "SK", "TH", "TR", "US", "VN", "ZA",
   "AR", "CH", "CL", "CZ", "DE", "ES", "GR", "NO", "NP", "PL", "PT", "SE", "SI",
@@ -393,6 +395,13 @@ const LOCAL_COVER_BY_COUNTRY_NAME = {
   哈萨克斯坦: LOCAL_COVER_BY_COUNTRY.KZ,
   吉尔吉斯斯坦: LOCAL_COVER_BY_COUNTRY.KG,
 };
+const LOCAL_COVER_BY_CONTINENT = {
+  africa: "assets/route-east-africa-safari-cover.svg",
+  americas: "assets/favorite-route-canada.svg",
+  asia: "assets/route-southeast-asia-cover.svg",
+  europe: "assets/route-central-asia-loop-cover.svg",
+  oceania: "assets/favorite-route-canada.svg",
+};
 const LOCAL_COVER_RULES = [
   [/湄公河|东南亚|曼谷|暹粒|金边|胡志明|seasia|southeast/i, "assets/route-southeast-asia-cover.svg"],
   [/日本|东京|京都|大阪|关西|熊野|四国|japan|kansai/i, "assets/route-japan-classic-cover.svg"],
@@ -416,9 +425,9 @@ const feedState = {
   cursor: null,
   hasMore: true,
   status: "idle",
-  query: "",
-  activeTab: "cross",
-  feedRouteType: "cross",
+  query: readRouteQueryFromUrl(),
+  activeTab: readRouteTypeFromUrl(),
+  feedRouteType: readRouteTypeFromUrl(),
   sessionId: createSessionId(),
   requestToken: 0,
   activeAbortController: null,
@@ -438,7 +447,11 @@ const feedState = {
   lastVisibleBatchAt: 0,
   searchResolved: false,
   searchResultCount: 0,
+  searchFailureReason: "",
+  searchFailureCodes: [],
+  consecutiveEmptyPages: 0,
 };
+activateRouteTab(feedState.activeTab);
 
 if ("scrollRestoration" in history) history.scrollRestoration = "manual";
 window.scrollTo(0, 0);
@@ -539,13 +552,78 @@ function routeKind(record) {
   return countryCount > 1 ? "cross" : "single";
 }
 
+function activateRouteTab(routeType) {
+  if (!["cross", "single"].includes(routeType)) return;
+  feedState.activeTab = routeType;
+  routeTabs.forEach((button) => {
+    const active = button.dataset.routeTab === routeType;
+    button.classList.toggle("active", active);
+    button.setAttribute("aria-pressed", String(active));
+  });
+}
+
+function autoClassifySearchResults(records = []) {
+  const firstResultType = records.map(routeKind).find((routeType) => ["cross", "single"].includes(routeType));
+  if (firstResultType) activateRouteTab(firstResultType);
+  return firstResultType || "";
+}
+
 function visibleRecords() {
   const records = feedState.records.filter((record) => record?.id);
-  if (feedState.query || !feedState.feedRouteType) return records;
+  if (feedState.query) return records.filter((record) => routeKind(record) === feedState.activeTab);
+  if (!feedState.feedRouteType) return records;
   return records.filter((record) => routeKind(record) === feedState.activeTab);
 }
 
+function fixedPilotRouteCover(record = {}) {
+  const resolved = routeImageAssets?.resolveLocalRouteCover?.(record)
+    || routeImageAssets?.resolvePilotRouteCover(record.id);
+  if (resolved?.key) record.coverImageKey = resolved.key;
+  if (resolved && !resolved.isFallback && badRuntimeImageUrls.has(coverIdentity(resolved.url))) {
+    return { url: FALLBACK_ROUTE_COVER, source: "local-placeholder", isFallback: true };
+  }
+  if (resolved && !resolved.isFallback) return resolved;
+  const localUrl = localCoverForRoute(record);
+  if (localUrl && localUrl !== FALLBACK_ROUTE_COVER) {
+    return {
+      url: localUrl,
+      imageUrl: localUrl,
+      source: "local-route-fallback",
+      key: `local:${localUrl}`,
+      isFallback: false,
+    };
+  }
+  return resolved || { url: FALLBACK_ROUTE_COVER, source: "local-placeholder", isFallback: true };
+}
+
+function readRouteQueryFromUrl() {
+  try {
+    return new URL(window.location.href).searchParams.get(ROUTE_FEED_QUERY_PARAM)?.trim() || "";
+  } catch {
+    return "";
+  }
+}
+
+function readRouteTypeFromUrl() {
+  try {
+    const routeType = new URL(window.location.href).searchParams.get("routeType")?.trim() || "";
+    return ["cross", "single"].includes(routeType) ? routeType : "cross";
+  } catch {
+    return "cross";
+  }
+}
+
+function persistRouteQueryInUrl(query) {
+  const url = new URL(window.location.href);
+  const normalized = String(query || "").trim();
+  if (normalized) url.searchParams.set(ROUTE_FEED_QUERY_PARAM, normalized);
+  else url.searchParams.delete(ROUTE_FEED_QUERY_PARAM);
+  window.history.replaceState(window.history.state, "", url);
+}
+
 function coverUrl(record) {
+  const fixedCover = fixedPilotRouteCover(record);
+  if (!runtimeImageSearchEnabled || (fixedCover && !fixedCover.isFallback)) return fixedCover?.url || FALLBACK_ROUTE_COVER;
   if (
     isVerifiedRouteImageAsset(record, record.onlineCoverAsset)
       && !isPlannerFallbackCover(record.onlineCoverAsset)
@@ -556,7 +634,7 @@ function coverUrl(record) {
   if (isPlannerPlaceholderCover(record)) return "";
   const remoteCover = record.coverAsset?.imageUrl || record.coverImage || "";
   if (remoteCover && isVerifiedRouteImageAsset(record, record.coverAsset) && routeImageAllowed(record, remoteCover)) return remoteCover;
-  return "";
+  return fixedCover?.url || FALLBACK_ROUTE_COVER;
 }
 
 function displayCoverUrl(record) {
@@ -590,7 +668,8 @@ async function ensureUniqueReadyRouteCover(record, usedImages, controller, offse
   void offset;
   const currentUrl = displayCoverUrl(record);
   const currentKey = routeImageDedupeKey(record) || coverIdentity(currentUrl);
-  if (hasReadyRouteCover(record) && currentKey && !usedImages.has(currentKey)) {
+  const reusableLocalCover = isReusableLocalCover(record, currentUrl);
+  if (hasReadyRouteCover(record) && currentKey && (reusableLocalCover || !usedImages.has(currentKey))) {
     usedImages.add(currentKey);
     return true;
   }
@@ -669,6 +748,8 @@ function routeCountryCodes(record = {}) {
 }
 
 function routeImageDedupeKey(record = {}) {
+  const fixedCover = fixedPilotRouteCover(record);
+  if (fixedCover?.key) return `asset-key:${fixedCover.key}`;
   return record.onlineCoverAsset?.imageDedupeKey
     || record.onlineCoverAsset?.dedupeKey
     || record.coverAsset?.imageDedupeKey
@@ -910,6 +991,8 @@ function normalizedRemoteImageUrl(imageUrl) {
 
 function proxiedRouteImageUrl(imageUrl) {
   const text = normalizedRemoteImageUrl(imageUrl);
+  if (routeImageAssets?.isConfiguredAssetUrl(text)) return text;
+  if (!runtimeImageSearchEnabled && /^https?:\/\//i.test(text)) return FALLBACK_ROUTE_COVER;
   return /^https?:\/\//i.test(text) ? `/api/routes/image-proxy?url=${encodeURIComponent(text)}` : text;
 }
 
@@ -978,7 +1061,8 @@ function applyRouteImageOutcome(record, imageUrl, outcome = {}, { late = false }
 async function ensureRecordCoverReady(record, signal, usedImageUrls = new Set()) {
   const current = displayCoverUrl(record);
   const currentKey = coverIdentity(current);
-  if (currentKey && !usedImageUrls.has(currentKey) && !badRuntimeImageUrls.has(currentKey)) {
+  const reusableLocalCover = isReusableLocalCover(record, current);
+  if (currentKey && (reusableLocalCover || !usedImageUrls.has(currentKey)) && !badRuntimeImageUrls.has(currentKey)) {
     const outcome = await warmProxiedImage(current, signal, FEED_CARD_IMAGE_TIMEOUT_MS, (lateOutcome) => {
       applyRouteImageOutcome(record, current, lateOutcome, { late: true });
     }).catch(() => ({ status: "aborted" }));
@@ -989,6 +1073,12 @@ async function ensureRecordCoverReady(record, signal, usedImageUrls = new Set())
       return true;
     }
     if (outcome.status === "timeout" || outcome.status === "aborted") return false;
+  }
+
+  if (!runtimeImageSearchEnabled) {
+    clearRouteCover(record);
+    record.coverSearchFailed = true;
+    return false;
   }
 
   const image = await requestOnlineCover(record, signal, {
@@ -1025,6 +1115,8 @@ async function ensureRecordCoverReady(record, signal, usedImageUrls = new Set())
 }
 
 function localCoverForRoute(record = {}) {
+  const resolved = routeImageAssets?.resolveLocalRouteCover?.(record);
+  if (resolved?.url && !resolved.isFallback) return resolved.url;
   const routeCover = LOCAL_COVER_BY_ROUTE_ID[record.id];
   if (routeCover) return routeCover;
   const text = routeSearchText(record);
@@ -1041,7 +1133,11 @@ function localCoverForRoute(record = {}) {
     ...(record.countryEntities || []).map((item) => item.name),
   ].filter(Boolean);
   const nameCover = countryNames.map((name) => LOCAL_COVER_BY_COUNTRY_NAME[name]).find(Boolean);
-  return nameCover || FALLBACK_ROUTE_COVER;
+  if (nameCover) return nameCover;
+  const continentCover = countryCodes
+    .map((code) => LOCAL_COVER_BY_CONTINENT[continentForCountryCode(code)])
+    .find(Boolean);
+  return continentCover || resolved?.url || FALLBACK_ROUTE_COVER;
 }
 
 function geographySummary(record) {
@@ -1114,53 +1210,126 @@ function routeFeatureIntro(record = {}) {
     : "节奏适中";
   return `${pace}，${routeFeaturePhrase(record)}。`;
 }
+function routeLiteraryPhrase(record = {}, narrativeText = "", style = "", countryCount = 0) {
+  const countryCodes = new Set(routeCountryCodes(record));
+  const hasCountry = (...codes) => codes.some((code) => countryCodes.has(code));
+  const onlyCountries = (...codes) => (
+    countryCodes.size > 0
+    && [...countryCodes].every((code) => codes.includes(code))
+  );
+  if (hasCountry("KZ", "KG", "UZ", "TJ", "TM")) {
+    return "穿行丝路绿洲与旷野，让砖石穹顶和市集烟火交替展开";
+  }
+  if (countryCodes.size >= 2 && onlyCountries("AT", "CZ", "HU", "SK")) {
+    return "沿多瑙河与帝国旧都的脉络前行，让宫殿、咖啡馆和老城夜色层层展开";
+  }
+  if (countryCodes.size === 1 && hasCountry("JP")) {
+    return "在古都寺院、街巷日常与山海风景之间，读一段层次分明的日本";
+  }
+  if (countryCodes.size === 1 && hasCountry("IT")) {
+    return "让教堂穹顶、文艺复兴街巷与餐桌烟火沿途相接";
+  }
+  if (countryCodes.size === 1 && hasCountry("FR")) {
+    return "循着河岸、旧城与葡萄酒乡的光影，慢慢展开法兰西的不同侧面";
+  }
+  if (onlyCountries("DK", "FI", "IS", "NO", "SE")) {
+    return "在港湾、森林与北地长光之间，感受城市秩序和旷野气息的交替";
+  }
+  if (style === "classic-first-trip") {
+    return "从最具辨识度的老城与地标入手，先读懂一地的性格";
+  }
+  if (style === "deep-dive") {
+    return "把脚步放慢，在支线街区与地方日常里读出更深一层";
+  }
+  if (style === "country-hopper") {
+    return "在相邻国度的广场、街巷与餐桌之间，看见边界两侧的气质流转";
+  }
+  if (style === "transport-journey") {
+    return "循着城际脉络换景，让站城、原野与地方日常自然衔接";
+  }
+  if (style === "seasonal") {
+    return "顺应当季光线与风物，在天气变化里为旅途留出从容";
+  }
+  if (style === "theme") {
+    return "循着一条鲜明线索，在建筑、风物与地方故事间逐层展开";
+  }
+  if (style === "city-break") {
+    return "从晨间街市走到黄昏屋顶，在短暂停留里触到城市的脉搏";
+  }
+  if (style === "pilgrimage") {
+    return "沿古道与信仰遗迹缓步前行，让沿途村镇成为旅程的一部分";
+  }
+  if (style === "island-hopping") {
+    return "在海湾、港埠与离岛之间换景，把潮汐留进旅行节奏";
+  }
+  if (style === "road-trip" || /自驾|coast|highway|rockies|patagonia|garden route|公路|\broad\b|\bdrive\b/iu.test(narrativeText)) {
+    return "让公路、地貌和小镇日常在车窗外自然递进";
+  }
+  if (style === "rail-journey" || /铁路|火车|景观铁路|列车|\brail(?:way)?\b|\btrain\b/iu.test(narrativeText)) {
+    return "循着铁路线换景，在站城之间收拢沿途风土";
+  }
+  if (/unesco|heritage|temple|cathedral|古城|遗产|文明|城堡|教堂/iu.test(narrativeText)) {
+    return "循着古城街巷与砖石遗迹，读出不同时代留下的纹理";
+  }
+  if (/海岛|跳岛|island|beach|azores|hawaii|palawan|croatia/iu.test(narrativeText)) {
+    return "在海湾、老城与离岛之间换景，把潮汐留进旅行节奏";
+  }
+  if (/safari|wildlife|whale|自然|野生|动物|鲸|观鲸|冰川|峡湾|极光|aurora/iu.test(narrativeText)) {
+    return "沿地貌与野生生境前行，为天气和自然节律保留余地";
+  }
+  if (countryCount >= 2) {
+    return "让几座城市的街景、历史与餐桌气息在移动中自然递进";
+  }
+  return "从街巷、建筑到地方日常，慢慢读懂这片土地的层次";
+}
 function routeFeatureIntroV2(record = {}) {
-  const text = routeSearchText(record);
+  if (record.routeReferenceMode === "citywalk") {
+    const destinations = record.destinationEntities || [];
+    const city = destinations.find((destination) => destination.entityTypeName === "city");
+    const poiCount = destinations.filter((destination) => destination.entityTypeName === "poi").length;
+    return `以${city?.canonicalNameZh || city?.name || "当前城市"}为中心，汇总${poiCount}个现有景点；可按兴趣自由拆分，不设天数上限。`;
+  }
+  const narrativeText = [
+    record.canonicalTitle,
+    record.name,
+    record.sourceTitle,
+    record.summary,
+    record.recommendationText,
+    ...(record.highlights || []),
+  ].map((value) => String(value || "").trim()).filter(Boolean).join(" ").toLowerCase();
   const style = String(record.travelStyleConceptKey || record.travelStyle || record.concept?.travelStyle || "").toLowerCase();
-  const days = Number.parseInt(record.durationDays || record.recommendedDays, 10);
+  const destinations = routeDestinations(record);
   const countryCount = uniqueList([
     ...(record.countries || []),
     ...(record.countryEntities || []).map((item) => item.countryCode || item.name),
   ]).length;
-  const destinationCount = routeDestinations(record).length;
-  const has = (pattern) => pattern.test(text);
 
-  let feature = "由差异明显的停留点组成，重点看城市气质、自然景观和体验层次的变化";
-  if (style === "road-trip" || has(/自驾|road|drive|coast|highway|rockies|patagonia|garden route|南岛|加州|落基|公路/i)) {
-    feature = "公路移动是体验核心，适合把观景停车、短步道和小镇停留排进同一天";
-  } else if (style === "rail-journey" || has(/铁路|火车|rail|train|景观铁路|列车/i)) {
-    feature = "铁路换城为主，重点是沿线景观、车站停靠和少搬运行李";
-  } else if (style === "transport-journey") {
-    feature = "移动路线本身有体验价值，适合关注沿线停靠、换乘节奏和城市切换";
-  } else if (style === "theme" || has(/wine|葡萄酒|美食|food|market|自然主题|theme/i)) {
-    feature = "主题体验更集中，适合围绕自然、餐桌、市场或文化线索慢慢展开";
-  } else if (style === "deep-dive") {
-    feature = "区域深度更强，适合减少打卡感，把时间留给街区、日常和周边小城";
-  } else if (style === "seasonal") {
-    feature = "季节窗口是核心，早晚时段、天气和花期会明显影响体验质量";
-  } else if (style === "city-break") {
-    feature = "城市停留占比高，适合短假里安排街区散步、餐厅和一两个重点展馆";
-  } else if (style === "country-hopper" || countryCount >= 3 || has(/多国|跨国|hopper|balkan|baltic|benelux|中欧/i)) {
-    feature = "跨国切换明显，亮点在城市气质、饮食和文化节奏的对照";
-  } else if (has(/沙漠|desert|sahara|撒哈拉|wadi|dune/i)) {
-    feature = "沙漠和边缘城镇是主角，日出日落、补给节奏和长距离路段都要留余量";
-  } else if (has(/海岛|跳岛|island|beach|azores|hawaii|palawan|croatia/i)) {
-    feature = "海岸和岛屿停留占比高，适合把水上体验、老城散步和休息日分开安排";
-  } else if (has(/pilgrimage|camino|francigena|朝圣|巡礼|熊野|四国/i)) {
-    feature = "路径本身就是旅行内容，步行段落和沿途住宿比单个景点更重要";
-  } else if (has(/safari|wildlife|自然|野生|动物|冰川|峡湾|极光|aurora/i)) {
-    feature = "自然景观占比高，早晚时段和天气窗口会直接影响体验质量";
-  } else if (has(/unesco|heritage|temple|cathedral|古城|遗产|文明|城堡|教堂/i)) {
-    feature = "文化密度高，适合围绕历史街区、遗产建筑和博物馆安排慢游";
-  }
+  const first = destinations[0] || "";
+  const last = destinations.at(-1) || "";
+  const middle = destinations.length > 2 ? destinations[Math.floor((destinations.length - 1) / 2)] : "";
+  const compactPlace = (value) => String(value || "")
+    .replace(/(?:区域风景带|自然腹地|门户城市|地方生活区|历史城区|文化停留区)$/u, "")
+    .trim() || String(value || "");
+  const compactFirst = compactPlace(first);
+  const compactLastCandidate = compactPlace(last);
+  const compactLast = compactLastCandidate === compactFirst ? last : compactLastCandidate;
+  const compactMiddle = compactPlace(middle);
+  const middleAnchor = compactMiddle
+    && compactMiddle !== compactFirst
+    && compactMiddle !== compactLast
+    ? `经${compactMiddle}`
+    : "";
+  const anchor = first && last && first !== last
+    ? `从${first}${middleAnchor}到${compactLast}`
+    : first ? `以${first}为核心` : "围绕沿途停留点";
+  const literaryPhrase = routeLiteraryPhrase(record, narrativeText, style, countryCount);
+  return `${anchor}，${literaryPhrase}。`;
+}
 
-  let rhythm = "节奏中等，适合每天保留一个主要体验";
-  if (Number.isFinite(days)) {
-    if (days <= 5) rhythm = destinationCount >= 4 ? "短线偏紧，建议只保留最想看的体验" : "短假友好，适合轻装完成";
-    else if (days >= 14) rhythm = "长线慢走，适合预留洗衣、休息和临时改线时间";
-    else if (destinationCount >= 6) rhythm = "停留点较多，建议提前锁定最关键的两三个体验";
-  }
-  return `${feature}。${rhythm}。`;
+function routeDisplayTitleV2(record = {}) {
+  return String(record.canonicalTitle || record.name || "")
+    .replace(/(经典|精简|延展|深度|铁路|公路)\1/gu, "$1")
+    .trim();
 }
 function cacheRouteRecords(records) {
   if (!window.TravelState?.cacheRouteMedia) return records;
@@ -1355,7 +1524,7 @@ async function requestDiscoveryPage({ query, cursor, sessionId, excludeIds, rout
     body: JSON.stringify({
       mode: isSearch ? "search" : "feed",
       query,
-      limit: isSearch ? SEARCH_PAGE_SIZE : FEED_PAGE_SIZE * 20,
+      limit: isSearch ? SEARCH_PAGE_SIZE : FEED_PAGE_SIZE,
       cursor,
       sessionId,
       excludeIds,
@@ -1376,6 +1545,17 @@ function needsOnlineCover(record) {
 
 function coverIdentity(value) {
   return String(value || "").trim().toLowerCase();
+}
+
+function isReusableLocalCover(record = {}, imageUrl = displayCoverUrl(record)) {
+  const fixedCover = fixedPilotRouteCover(record);
+  return Boolean(
+    imageUrl
+      && fixedCover
+      && !fixedCover.isFallback
+      && !/^https?:\/\//i.test(imageUrl)
+      && imageUrl !== FALLBACK_ROUTE_COVER
+  );
 }
 
 function clearRouteCover(record) {
@@ -1449,6 +1629,7 @@ async function requestOnlineCover(record, signal, exclusions = {}) {
 }
 
 async function hydrateOnlineCovers(records, signal, existingRecords = [], options = {}) {
+  if (!runtimeImageSearchEnabled) return records;
   const pageRecords = records || [];
   const usedImageUrls = new Set();
   const usedImageTitles = new Set();
@@ -1500,6 +1681,7 @@ async function hydrateOnlineCovers(records, signal, existingRecords = [], option
 }
 
 async function hydrateFeedOnlineCovers(records, signal, existingRecords = []) {
+  if (!runtimeImageSearchEnabled) return;
   const pageRecords = records || [];
   const recentRecords = (existingRecords || []).slice(-FEED_DEDUPE_WINDOW);
   const usedImageUrls = new Set(recentRecords.map(displayCoverUrl).filter(Boolean));
@@ -1539,13 +1721,15 @@ async function prepareRouteImageBatch(pageRecords = [], previousRecords = [], si
     .filter(Boolean));
   const outcomes = await Promise.all(batch.map(async (record) => {
     const imageUrl = displayCoverUrl(record);
+    const hasFixedAssetKey = Boolean(String(record.coverImageKey || "").trim());
+    const reusableLocalCover = isReusableLocalCover(record, imageUrl);
     const imageKey = routeImageDedupeKey(record) || coverIdentity(imageUrl);
-    if (!imageUrl || !imageKey || !routeImageAllowed(record, imageUrl)) {
+    if (!imageUrl || !imageKey || (!hasFixedAssetKey && !routeImageAllowed(record, imageUrl))) {
       record._coverLoadStatus = "missing";
       record._coverLoadUrl = "";
       return { status: "missing", routeId: record.id, imageUrl: "" };
     }
-    if (usedImages.has(imageKey)) {
+    if (usedImages.has(imageKey) && !reusableLocalCover) {
       record._coverLoadStatus = "duplicate";
       record._coverLoadUrl = imageUrl;
       clearRouteCover(record);
@@ -1582,6 +1766,7 @@ async function prefetchNextFeedPage() {
     feedState.status === "loading"
       || feedState.prefetching
       || feedState.prefetchedFeedPage
+      || feedState.pendingMore
       || !feedState.hasMore
       || !feedState.cursor
   ) return;
@@ -1609,7 +1794,6 @@ async function prefetchNextFeedPage() {
     const pageRecords = selectAppendableRecords(candidates, BATCH_SIZE, feedState.records);
     const imageBatch = await prepareRouteImageBatch(pageRecords, feedState.records, controller.signal, FEED_COVER_PREPARE_DEADLINE_MS);
     if (controller.signal.aborted) return;
-    if (!pageRecords.length) return;
     feedState.prefetchedFeedPage = {
       ...snapshot,
       payload,
@@ -1630,14 +1814,24 @@ async function prefetchNextFeedPage() {
 
 function routeCardImageMarkup(record, index = 3) {
   void index;
+  const fixedCover = fixedPilotRouteCover(record);
   const imageUrl = displayCoverUrl(record);
-  const imageReady = Boolean(imageUrl && (
+  const fixedCoverKey = String(fixedCover?.key || record.coverImageKey || "");
+  const safeLocalCover = Boolean(
+    fixedCover?.url
+      && fixedCover.url !== FALLBACK_ROUTE_COVER
+      && !/^https?:\/\//i.test(fixedCover.url)
+      && (fixedCover.isFallback === false || fixedCoverKey.startsWith("local:"))
+  );
+  const imageReady = safeLocalCover || Boolean(imageUrl && (
     record._coverLoadStatus === "ready"
       || (!record._coverLoadStatus && hasReadyRouteCover(record))
   ));
-  const source = imageReady ? proxiedRouteImageUrl(imageUrl) : FALLBACK_ROUTE_COVER;
-  const state = imageReady ? "ready" : "placeholder";
-  return `<img src="${escapeHtml(source)}" alt="${escapeHtml(record.name)}封面图" loading="eager" decoding="async" data-route-cover-state="${state}" />`;
+  const source = safeLocalCover
+    ? fixedCover.url
+    : imageReady ? proxiedRouteImageUrl(imageUrl) : FALLBACK_ROUTE_COVER;
+  const state = safeLocalCover || (imageReady && !fixedCover?.isFallback) ? "ready" : "placeholder";
+  return `<img src="${escapeHtml(source)}" alt="${escapeHtml(routeDisplayTitleV2(record))}封面图" loading="eager" decoding="async" data-route-cover-state="${state}"${fixedCover?.key ? ` data-cover-image-key="${escapeHtml(fixedCover.key)}"` : ""} />`;
 }
 
 function updateRenderedRouteImage(record, card = null) {
@@ -1655,10 +1849,15 @@ function updateRenderedRouteImage(record, card = null) {
     .find((candidate) => candidate.dataset.routeCard === routeRenderKey(targetRecord));
   const image = targetCard?.querySelector("img");
   if (!image) return;
+  const fixedCover = fixedPilotRouteCover(targetRecord);
   const imageUrl = displayCoverUrl(targetRecord);
-  const ready = targetRecord._coverLoadStatus === "ready" && Boolean(imageUrl);
-  const nextSource = ready ? proxiedRouteImageUrl(imageUrl) : FALLBACK_ROUTE_COVER;
-  image.dataset.routeCoverState = ready ? "ready" : "placeholder";
+  const reusableLocalCover = isReusableLocalCover(targetRecord, fixedCover?.url || imageUrl);
+  const ready = reusableLocalCover || (targetRecord._coverLoadStatus === "ready" && Boolean(imageUrl));
+  const nextSource = reusableLocalCover
+    ? fixedCover.url
+    : ready ? proxiedRouteImageUrl(imageUrl) : FALLBACK_ROUTE_COVER;
+  image.dataset.routeCoverState = reusableLocalCover || (ready && !fixedCover?.isFallback) ? "ready" : "placeholder";
+  if (fixedCover?.key) image.dataset.coverImageKey = fixedCover.key;
   if (image.getAttribute("src") !== nextSource) image.src = nextSource;
 }
 
@@ -1670,30 +1869,39 @@ function renderRouteCard(record, index) {
   const state = readRouteState();
   const favorite = window.TravelState?.isRouteFavorite?.(state, record.id) || false;
   const detailParams = new URLSearchParams({ id: record.id });
+  detailParams.set("routeType", feedState.activeTab);
   if (feedState.query) {
+    detailParams.set("q", feedState.query);
     detailParams.set("source", "search");
     detailParams.set("status", record.searchStatus || "accepted");
     detailParams.set("searchSessionId", feedState.sessionId);
     if (record.searchQueryId) detailParams.set("queryId", record.searchQueryId);
   }
+  if (new URL(window.location.href).searchParams.get("localOnly") === "1") {
+    detailParams.set("localOnly", "1");
+  }
   const dayText = record.recommendedDays || (record.durationDays ? `${record.durationDays}天` : "");
+  const monthText = record.searchStatus === "needs-review"
+    ? "证据待验证"
+    : (record.bestMonths || []).join(" / ");
+  const displayTitle = routeDisplayTitleV2(record);
   return `
     <article class="route-card route-inspiration-card" data-route-card="${escapeHtml(routeRenderKey(record))}" data-route-id="${escapeHtml(record.id)}" data-feed-batch="${escapeHtml(record._feedBatchId || "")}">
-      <a class="route-card-main" href="route-detail.html?${detailParams.toString()}" data-route-open="${escapeHtml(record.id)}" aria-label="查看${escapeHtml(record.name)}详情">
+      <a class="route-card-main" href="route-detail.html?${detailParams.toString()}" data-route-open="${escapeHtml(record.id)}" aria-label="查看${escapeHtml(displayTitle)}详情">
         ${routeCardImageMarkup(record, index)}
         <span class="route-copy">
-          <strong>${escapeHtml(record.name)}</strong>
+          <strong>${escapeHtml(displayTitle)}</strong>
           <em>${escapeHtml(geographySummary(record))}</em>
           <small>${escapeHtml(routeFeatureIntroV2(record))}</small>
         </span>
       </a>
       <div class="route-card-meta">
         <span>${escapeHtml(dayText)}</span>
-        <span>${escapeHtml((record.bestMonths || []).join(" / "))}</span>
+        <span>${escapeHtml(monthText)}</span>
       </div>
       <div class="route-card-actions">
         <button type="button" data-route-add-trip="${escapeHtml(record.id)}">加入行程</button>
-        <button class="${favorite ? "favorited" : ""}" type="button" data-route-favorite="${escapeHtml(record.id)}" aria-label="${favorite ? "取消收藏" : "收藏"}${escapeHtml(record.name)}" aria-pressed="${favorite}">♥</button>
+        <button class="${favorite ? "favorited" : ""}" type="button" data-route-favorite="${escapeHtml(record.id)}" aria-label="${favorite ? "取消收藏" : "收藏"}${escapeHtml(displayTitle)}" aria-pressed="${favorite}">♥</button>
       </div>
     </article>`;
 }
@@ -1726,7 +1934,7 @@ function repairRenderedDuplicateImages() {
       || feedState.records.find((item) => item.id === card.dataset.routeId);
     const key = record ? routeImageDedupeKey(record) : "";
     if (!record || !key) return;
-    if (used.has(key)) {
+    if (used.has(key) && !isReusableLocalCover(record, displayCoverUrl(record))) {
       record._coverLoadStatus = "duplicate";
       clearRouteCover(record);
       updateRenderedRouteImage(record, card);
@@ -1759,6 +1967,18 @@ function stateMarkup() {
     return `<div class="route-empty-state" data-route-feed-state="error"><p>${visible.length ? "稍后重试" : "路线加载失败"}</p><span>当前请求没有成功完成</span><button type="button" ${visible.length ? "data-route-feed-more" : "data-route-feed-refresh"}>${visible.length ? "继续加载" : "重新加载"}</button></div>`;
   }
   if (!visible.length) {
+    if (feedState.query && feedState.searchFailureReason === "invalid-duration") {
+      return `<div class="route-empty-state" data-route-feed-state="invalid-duration"><p>行程天数无效</p><span>请输入大于0的整数天数，例如“巴黎4天”</span></div>`;
+    }
+    if (feedState.query && feedState.searchFailureReason === "unresolved-destination") {
+      return `<div class="route-empty-state" data-route-feed-state="unresolved-destination"><p>有城市暂时无法完整识别</p><span>请检查城市名称或换一种写法，系统不会删除城市后改推其他路线</span></div>`;
+    }
+    if (feedState.query && feedState.searchFailureReason === "constraint-conflict") {
+      return `<div class="route-empty-state" data-route-feed-state="constraint-conflict"><p>这些条件暂时无法同时满足</p><span>请增加行程天数或减少城市后再试</span></div>`;
+    }
+    if (feedState.query && feedState.records.length) {
+      return `<div class="route-empty-state" data-route-feed-state="empty-category"><p>这个分类暂时没有路线</p><span>可以切换到另一个路线分类查看结果</span></div>`;
+    }
     return `<div class="route-empty-state" data-route-feed-state="empty"><p>${feedState.query ? "暂时没有搜到路线" : "暂时没有发现路线"}</p>${suggestionsMarkup() || "<span>可以换一个旅行需求再试</span>"}</div>`;
   }
   if (!feedState.hasMore) return `<div class="route-empty-state" data-route-feed-state="complete"><p>${feedState.query ? "搜索结果已到底" : "已经到底了"}</p></div>`;
@@ -1837,8 +2057,17 @@ function renderSearchSummary() {
     routeSearchSummary.textContent = `已为“${feedState.query}”找到 ${count} 条路线`;
   } else if (!feedState.searchResolved) {
     routeSearchSummary.textContent = `正在搜索“${feedState.query}”`;
+  } else if (feedState.records.length) {
+    const routeTypeLabel = feedState.activeTab === "cross" ? "跨国" : "单国";
+    routeSearchSummary.textContent = `“${feedState.query}”的${routeTypeLabel}分类暂时没有路线，可以切换另一分类`;
   } else if (feedState.searchResultCount) {
     routeSearchSummary.textContent = `已找到 ${feedState.searchResultCount} 条路线，正在准备首批卡片`;
+  } else if (feedState.searchFailureReason === "invalid-duration") {
+    routeSearchSummary.textContent = `“${feedState.query}”中的行程天数无效，请输入大于0的整数天数`;
+  } else if (feedState.searchFailureReason === "unresolved-destination") {
+    routeSearchSummary.textContent = `“${feedState.query}”中有城市暂时无法完整识别，请检查名称后重试`;
+  } else if (feedState.searchFailureReason === "constraint-conflict") {
+    routeSearchSummary.textContent = `“${feedState.query}”的条件无法同时满足，请增加天数或减少城市`;
   } else {
     routeSearchSummary.textContent = `没有找到“${feedState.query}”的路线`;
   }
@@ -1883,6 +2112,7 @@ function renderFeed({ incremental = false } = {}) {
 }
 
 function schedulePendingCoverHydration() {
+  if (!runtimeImageSearchEnabled) return;
   if (pendingCoverHydrationTimer || pendingCoverHydrating) return;
   pendingCoverHydrationTimer = window.setTimeout(async () => {
     pendingCoverHydrationTimer = 0;
@@ -1906,6 +2136,32 @@ function schedulePendingCoverHydration() {
   }, 80);
 }
 
+function isStableFeedCursor(cursor) {
+  try {
+    const encoded = String(cursor || "").trim();
+    if (!encoded || !/^[A-Za-z0-9_-]+$/u.test(encoded)) return false;
+    const normalized = encoded.replaceAll("-", "+").replaceAll("_", "/");
+    const padded = normalized + "=".repeat((4 - (normalized.length % 4)) % 4);
+    const binary = atob(padded);
+    const bytes = Uint8Array.from(binary, (character) => character.charCodeAt(0));
+    const payload = JSON.parse(new TextDecoder().decode(bytes));
+    const validHash = (value) => Number.isSafeInteger(value) && value >= 0;
+    const validRandomRank = Number.isInteger(payload?.randomRank)
+      && payload.randomRank >= 0
+      && payload.randomRank <= 0xFFFFFFFF;
+    return payload?.version === 1
+      && payload.provider === "accepted-repository"
+      && payload.orderVersion === 3
+      && validHash(payload.sessionHash)
+      && validHash(payload.filterHash)
+      && validRandomRank
+      && typeof payload.id === "string"
+      && Boolean(payload.id.trim());
+  } catch {
+    return false;
+  }
+}
+
 function readPreloadedRouteFeed() {
   try {
     const payload = JSON.parse(sessionStorage.getItem(ROUTE_FEED_PRELOAD_KEY) || "null");
@@ -1914,6 +2170,7 @@ function readPreloadedRouteFeed() {
     if (!payload?.createdAt || Date.now() - payload.createdAt > ROUTE_FEED_PRELOAD_TTL_MS) return null;
     if (!Array.isArray(payload.records) || payload.records.length < FEED_PAGE_SIZE) return null;
     if (!payload.hasMore || !payload.nextCursor) return null;
+    if (!isStableFeedCursor(payload.nextCursor)) return null;
     if (payload.records.some((record) => !displayCoverUrl(record))) return null;
     payload.records.forEach((record) => markRouteCoverReady(record));
     return payload;
@@ -1926,6 +2183,7 @@ function normalizeBootstrappedFeed(payload) {
   if (!payload || payload.cacheVersion !== "route-bootstrap-v1") return null;
   if (!Array.isArray(payload.records) || payload.records.length < FEED_PAGE_SIZE) return null;
   if (!payload.hasMore || !payload.nextCursor) return null;
+  if (!isStableFeedCursor(payload.nextCursor)) return null;
   if (payload.records.some((record) => !displayCoverUrl(record))) return null;
   payload.records.forEach((record) => markRouteCoverReady(record));
   return payload;
@@ -1957,15 +2215,19 @@ function usePreloadedRouteFeed(payload) {
     hasMore: Boolean(payload.hasMore && payload.nextCursor),
     status: "ready",
     query: "",
-    activeTab: payload.routeType || "cross",
-    feedRouteType: payload.routeType || "cross",
+    activeTab: payload.routeType || feedState.activeTab,
+    feedRouteType: payload.routeType || feedState.feedRouteType,
     sessionId: payload.sessionId || createSessionId(),
     suggestions: [],
     skippedRouteIds: new Set(),
     lastVisibleBatchAt: 0,
     searchResolved: false,
     searchResultCount: 0,
+    searchFailureReason: "",
+    searchFailureCodes: [],
+    consecutiveEmptyPages: 0,
   });
+  activateRouteTab(feedState.activeTab);
   if (payload.sessionId) sessionStorage.setItem(ROUTE_FEED_SESSION_KEY, payload.sessionId);
   appendRecords(payload.records, FEED_PAGE_SIZE, { revealImmediately: Boolean(payload.revealImmediately) });
   renderFeed();
@@ -1975,9 +2237,47 @@ function usePreloadedRouteFeed(payload) {
   void prefetchNextFeedPage();
 }
 
-async function loadFeed({ refresh = false, emptyPageHops = 0 } = {}) {
+function resolveFeedContinuation({ insertedCount, serverHasMore, nextCursor, previousEmptyCount }) {
+  if (insertedCount > 0) {
+    const hasMore = Boolean(serverHasMore && nextCursor);
+    return {
+      hasMore,
+      cursor: hasMore ? nextCursor : null,
+      consecutiveEmptyPages: 0,
+      retry: false,
+      reason: hasMore ? "continue" : "exhausted",
+    };
+  }
+  if (!serverHasMore || !nextCursor) {
+    return {
+      hasMore: false,
+      cursor: null,
+      consecutiveEmptyPages: 0,
+      retry: false,
+      reason: "exhausted",
+    };
+  }
+  const consecutiveEmptyPages = Number(previousEmptyCount || 0) + 1;
+  if (consecutiveEmptyPages >= 2) {
+    return {
+      hasMore: false,
+      cursor: null,
+      consecutiveEmptyPages,
+      retry: false,
+      reason: "empty-page-guard",
+    };
+  }
+  return {
+    hasMore: true,
+    cursor: nextCursor,
+    consecutiveEmptyPages,
+    retry: true,
+    reason: "empty-page-confirmation",
+  };
+}
+
+async function loadFeed({ refresh = false } = {}) {
   if (!routeFeed || feedState.status === "loading" || (!refresh && !canRequestMoreFeed())) return;
-  const pageLoadStartedAt = Date.now();
   if (refresh) {
     abortActiveRequest();
     Object.assign(feedState, {
@@ -1993,6 +2293,9 @@ async function loadFeed({ refresh = false, emptyPageHops = 0 } = {}) {
       lastVisibleBatchAt: 0,
       searchResolved: false,
       searchResultCount: 0,
+      searchFailureReason: "",
+      searchFailureCodes: [],
+      consecutiveEmptyPages: 0,
     });
   }
   const token = ++feedState.requestToken;
@@ -2031,7 +2334,6 @@ async function loadFeed({ refresh = false, emptyPageHops = 0 } = {}) {
       && feedState.prefetchedFeedPage.sessionId === requested.sessionId
       && feedState.prefetchedFeedPage.routeType === requested.routeType
       && Array.isArray(feedState.prefetchedFeedPage.pageRecords)
-      && feedState.prefetchedFeedPage.pageRecords.length > 0
       ? feedState.prefetchedFeedPage
       : null;
     if (prefetched) feedState.prefetchedFeedPage = null;
@@ -2041,12 +2343,19 @@ async function loadFeed({ refresh = false, emptyPageHops = 0 } = {}) {
     const previousCount = feedState.records.length;
     const previousRecords = feedState.records.slice();
     let pageRecords = prefetched?.pageRecords || (requested.query ? unseenRecords(payload.records) : (payload.records || []));
-    let returnedCount = Array.isArray(payload.records) ? payload.records.length : 0;
+    const returnedCount = Number.isFinite(payload.returnedCount)
+      ? payload.returnedCount
+      : (Array.isArray(payload.records) ? payload.records.length : 0);
     let insertedRecords = [];
     let imageBatch = prefetched?.imageBatch || null;
     if (requested.query) {
       feedState.searchResolved = true;
       feedState.searchResultCount = returnedCount;
+      feedState.searchFailureReason = String(payload.diagnostics?.reason || "");
+      feedState.searchFailureCodes = Array.isArray(payload.diagnostics?.constraintConflict?.reasonCodes)
+        ? payload.diagnostics.constraintConflict.reasonCodes.map(String)
+        : [];
+      if (previousRecords.length === 0 && pageRecords.length) autoClassifySearchResults(pageRecords);
       renderSearchSummary();
       const batchRecords = selectAppendableRecords(pageRecords, BATCH_SIZE, previousRecords);
       if (!prefetched) {
@@ -2055,54 +2364,23 @@ async function loadFeed({ refresh = false, emptyPageHops = 0 } = {}) {
       if (token !== feedState.requestToken) return;
       insertedRecords = appendRecords(batchRecords, SEARCH_PAGE_SIZE);
     } else {
-      let workingCursor = payload.nextCursor || null;
-      let workingRouteType = requested.routeType || "";
-      let backfillHops = emptyPageHops;
-      let appendableFeedRecords = selectAppendableRecords(pageRecords, FEED_PAGE_SIZE, previousRecords);
-      while (
-        appendableFeedRecords.length < FEED_PAGE_SIZE
-        && backfillHops < FEED_BACKFILL_HOP_LIMIT
-        && Date.now() - pageLoadStartedAt < FEED_LOAD_WATCHDOG_MS - 1_500
-      ) {
-        if (!workingCursor && workingRouteType) {
-          workingRouteType = "";
-          feedState.feedRouteType = "";
-        } else if (!workingCursor) {
-          break;
-        }
-        const localIds = new Set(pageRecords.map((record) => record.id).filter(Boolean));
-        const backfillPayload = await requestDiscoveryPage({
-          ...requested,
-          cursor: workingCursor,
-          routeType: workingRouteType,
-          excludeIds: [
-            ...feedExcludeIdsForRequest(),
-            ...feedState.skippedRouteIds,
-            ...localIds,
-          ],
-          signal: requestSignal(controller, 4_800),
-        });
-        if (token !== feedState.requestToken) return;
-        returnedCount += Array.isArray(backfillPayload.records) ? backfillPayload.records.length : 0;
-        const moreRecords = (backfillPayload.records || [])
-          .filter((record) => record?.id && !localIds.has(record.id));
-        if (moreRecords.length) {
-          pageRecords = [...pageRecords, ...moreRecords];
-          appendableFeedRecords = selectAppendableRecords(pageRecords, FEED_PAGE_SIZE, previousRecords);
-        }
-        payload = backfillPayload;
-        workingCursor = backfillPayload.nextCursor || null;
-        backfillHops += 1;
-        if (!moreRecords.length && !workingCursor && !workingRouteType) break;
-      }
+      const appendableFeedRecords = selectAppendableRecords(pageRecords, FEED_PAGE_SIZE, previousRecords);
       if (!prefetched) {
         imageBatch = await prepareRouteImageBatch(appendableFeedRecords, previousRecords, controller.signal, FEED_COVER_PREPARE_DEADLINE_MS);
       }
       if (token !== feedState.requestToken) return;
       insertedRecords = appendRecords(appendableFeedRecords);
     }
+    const continuation = resolveFeedContinuation({
+      insertedCount: insertedRecords.length,
+      serverHasMore: payload.hasMore === true,
+      nextCursor: payload.nextCursor || null,
+      previousEmptyCount: feedState.consecutiveEmptyPages,
+    });
     feedState.lastLoadDebug = {
       returned: returnedCount,
+      returnedCount,
+      remainingCount: Number.isFinite(payload.remainingCount) ? payload.remainingCount : null,
       selected: pageRecords.length,
       ready: imageBatch?.ready || 0,
       placeholders: imageBatch?.placeholders || 0,
@@ -2118,33 +2396,22 @@ async function loadFeed({ refresh = false, emptyPageHops = 0 } = {}) {
         .filter((outcome) => outcome.status === "ready")
         .map((outcome) => outcome.routeId),
       insertedCodes: insertedRecords.map((record) => routeCountryCodes(record).join(".")),
+      paginationReason: continuation.reason,
+      consecutiveEmptyPages: continuation.consecutiveEmptyPages,
     };
-    const emptyPendingPage = !requested.query && insertedRecords.length === 0;
-    const tabPoolExhausted = !requested.query
-      && requested.routeType
-      && !payload.hasMore
-      && !payload.nextCursor;
-    feedState.pendingMore = emptyPendingPage;
-    feedState.pendingRetryAt = emptyPendingPage ? Date.now() + 1_500 : 0;
+    feedState.pendingMore = continuation.retry;
+    feedState.pendingRetryAt = continuation.retry ? Date.now() + 1_500 : 0;
     feedState.suggestions = payload.suggestions || [];
-    if (tabPoolExhausted) {
-      feedState.feedRouteType = "";
-      feedState.cursor = null;
-      feedState.hasMore = true;
-    } else {
-      feedState.cursor = payload.nextCursor || null;
-      feedState.hasMore = Boolean(payload.hasMore && payload.nextCursor);
-      if (payload.pending && emptyPendingPage) feedState.hasMore = true;
-    }
+    feedState.cursor = continuation.cursor;
+    feedState.hasMore = continuation.hasMore;
+    feedState.consecutiveEmptyPages = continuation.consecutiveEmptyPages;
+    if (!continuation.hasMore) invalidateFeedPrefetch();
     feedState.status = "ready";
     feedState.loadingStartedAt = 0;
     if (feedState.activeAbortController === controller) feedState.activeAbortController = null;
     feedState.pendingBatchAnchorId = "";
     renderFeed({ incremental: previousCount > 0 });
     void prefetchNextFeedPage();
-    if (!emptyPendingPage && feedState.records.length === previousCount && feedState.hasMore && emptyPageHops < FEED_BACKFILL_HOP_LIMIT) {
-      return loadFeed({ emptyPageHops: emptyPageHops + 1 });
-    }
   } catch (error) {
     if (token !== feedState.requestToken) return;
     if (error?.name === "AbortError" || error?.name === "TimeoutError") {
@@ -2191,8 +2458,7 @@ function resetDiscovery({ preferBootstrap = false } = {}) {
 }
 
 routeTabs.forEach((button) => button.addEventListener("click", () => {
-  feedState.activeTab = button.dataset.routeTab;
-  routeTabs.forEach((item) => item.classList.toggle("active", item === button));
+  activateRouteTab(button.dataset.routeTab);
   if (!feedState.query) resetDiscovery({ preferBootstrap: true });
   else renderFeed();
 }));
@@ -2202,6 +2468,7 @@ routeSearch?.addEventListener("input", () => {
   clearTimeout(searchTimer);
   searchTimer = setTimeout(() => {
     feedState.query = routeSearch.value.trim();
+    persistRouteQueryInUrl(feedState.query);
     resetDiscovery();
   }, 300);
 });
@@ -2364,6 +2631,9 @@ window.__routeFeedDebug = () => ({
   shouldAutofill: shouldAutofillFeed(),
   prefetching: feedState.prefetching,
   prefetched: Boolean(feedState.prefetchedFeedPage),
+  observerActive: routeFeedObserverActive,
+  pendingMore: feedState.pendingMore,
+  consecutiveEmptyPages: feedState.consecutiveEmptyPages,
   lastLoad: feedState.lastLoadDebug,
   scrollY: window.scrollY,
   viewportHeight: window.innerHeight,
@@ -2371,7 +2641,8 @@ window.__routeFeedDebug = () => ({
 });
 window.__routeForceLoadFeed = () => loadFeed();
 
-const preloadedRouteFeed = readBootstrappedRouteFeed("cross") || readPreloadedRouteFeed();
+if (routeSearch && feedState.query) routeSearch.value = feedState.query;
+const preloadedRouteFeed = feedState.query ? null : (readBootstrappedRouteFeed(feedState.feedRouteType) || readPreloadedRouteFeed());
 if (preloadedRouteFeed) {
   usePreloadedRouteFeed(preloadedRouteFeed);
 } else {

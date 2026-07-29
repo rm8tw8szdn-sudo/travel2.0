@@ -1953,6 +1953,19 @@ bottom-tab-bar {
   -webkit-box-orient: vertical;
 }
 
+@media (max-width: 430px) {
+  .route-copy strong {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    white-space: normal;
+  }
+
+  .route-copy small:last-child {
+    -webkit-line-clamp: 3;
+  }
+}
+
 .route-card-meta,
 .route-card-actions {
   display: flex;
@@ -5699,6 +5712,16 @@ bottom-tab-bar {
 .route-detail-title .route-highlight-text {
   margin-top: 5px;
   color: #4f604d;
+  font-weight: 650;
+}
+
+.route-detail-title .route-review-notice {
+  margin-top: 10px;
+  padding: 9px 11px;
+  border: 1px solid #e7d8ad;
+  border-radius: 10px;
+  background: #fff9e8;
+  color: #765b19;
   font-weight: 650;
 }
 

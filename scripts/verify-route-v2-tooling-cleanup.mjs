@@ -90,9 +90,9 @@ const builtCandidates = buildRouteCandidatesFromPool({
 });
 
 assert.equal(builtCandidates.length, 8, "candidate builder count golden changed");
-assert.equal(builtCandidates[0].intentId, "intent-9597607952e74112300a", "derived intentId golden changed");
-assert.equal(builtCandidates[0].candidateId, "rc-927798525d27fa77dead", "builder candidateId golden changed");
-assert.equal(candidateShapeKey(builtCandidates[0]), "1d20761b71920e798fbedb88e8e676c054d9ef104307dd773dbfa65886dd2036", "candidate shape key golden changed");
+assert.equal(builtCandidates[0].intentId, "intent-07565bc6a9dd385b5cbb", "derived intentId golden changed");
+assert.equal(builtCandidates[0].candidateId, "rc-1f609c7ee26ba57bdf26", "builder candidateId golden changed");
+assert.equal(candidateShapeKey(builtCandidates[0]), "7243f30b017d3637ff3fe2be76d5a45c3b2b0ce7fe78f532adee302acd05e9b7", "candidate shape key golden changed");
 assert.deepEqual(
   builtCandidates.map((candidate) => ({
     candidateId: candidate.candidateId,
@@ -100,14 +100,14 @@ assert.deepEqual(
     order: candidate.proposedOrder,
   })),
   [
-    { candidateId: "rc-927798525d27fa77dead", method: "stable-pool-order", order: ["Q16520", "Q16990", "Q8684", "Q41164"] },
-    { candidateId: "rc-a6ea66ea12501589cdc1", method: "country-balanced-order", order: ["Q16990", "Q16520", "Q19869", "Q8684"] },
-    { candidateId: "rc-9f075c141a5f9cb964e4", method: "seed-rotated-order-a", order: ["Q34600", "Q35765", "Q8643", "Q16520"] },
-    { candidateId: "rc-2c5f6768107ad58a06b1", method: "seed-rotated-order-b", order: ["Q8643", "Q16520", "Q16990", "Q8684"] },
-    { candidateId: "rc-0471e6c6aab6ef0ecdfd", method: "entity-type-mix", order: ["Q1490", "Q8684", "Q16520", "Q19869"] },
-    { candidateId: "rc-2f3a5042bda240707a41", method: "name-order", order: ["Q16520", "Q42056", "Q41164", "Q19869"] },
-    { candidateId: "rc-0aad808ae37a6b6c812b", method: "short-structure", order: ["Q16520", "Q16990", "Q8684"] },
-    { candidateId: "rc-6481238fe771e1cd870c", method: "extended-structure", order: ["Q16520", "Q16990", "Q8684", "Q41164", "Q42056"] },
+    { candidateId: "rc-1f609c7ee26ba57bdf26", method: "stable-pool-order", order: ["Q16520", "Q16990", "Q8684", "Q41164", "Q42056"] },
+    { candidateId: "rc-55b4e6c73f69e794261c", method: "country-balanced-order", order: ["Q16990", "Q16520", "Q19869", "Q8684", "Q1490"] },
+    { candidateId: "rc-d41d5202678d1ea0b58b", method: "seed-rotated-order-a", order: ["Q34600", "Q35765", "Q8643", "Q16520", "Q16990"] },
+    { candidateId: "rc-4cd37845da53084fb49a", method: "seed-rotated-order-b", order: ["Q8643", "Q16520", "Q16990", "Q8684", "Q41164"] },
+    { candidateId: "rc-8896f0a70e67fc7bb2cc", method: "entity-type-mix", order: ["Q1490", "Q8684", "Q16520", "Q19869", "Q35765"] },
+    { candidateId: "rc-e192ed5013ea74c2b2df", method: "name-order", order: ["Q16520", "Q42056", "Q41164", "Q19869", "Q34600"] },
+    { candidateId: "rc-22f3270201437fafe4b7", method: "short-structure", order: ["Q16520", "Q16990", "Q8684", "Q41164"] },
+    { candidateId: "rc-26c5f92fa71d67784092", method: "extended-structure", order: ["Q16520", "Q16990", "Q8684", "Q41164", "Q42056", "Q19869"] },
   ],
   "candidate builder order golden changed",
 );

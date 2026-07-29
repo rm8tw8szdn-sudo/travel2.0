@@ -62,16 +62,34 @@ const visibilityContext = vm.createContext({
     feedRouteType: "cross",
   },
   hasReadyRouteCover: () => true,
+  routeTabs: [
+    {
+      dataset: { routeTab: "cross" },
+      classList: { toggle() {} },
+      setAttribute(name, value) { this[name] = value; },
+    },
+    {
+      dataset: { routeTab: "single" },
+      classList: { toggle() {} },
+      setAttribute(name, value) { this[name] = value; },
+    },
+  ],
 });
-for (const name of ["routeKind", "visibleRecords"]) {
+for (const name of ["routeKind", "activateRouteTab", "autoClassifySearchResults", "visibleRecords"]) {
   vm.runInContext(functionSource(name), visibilityContext);
 }
+assert.equal(visibilityContext.autoClassifySearchResults([record]), "single");
+assert.equal(visibilityContext.feedState.activeTab, "single");
 assert.deepEqual(
   Array.from(visibilityContext.visibleRecords(), (item) => item.id),
   [record.id],
-  "Search results must not inherit the public-feed route-type tab filter",
+  "Search results must automatically activate and remain visible under their actual route type",
 );
+assert.equal(visibilityContext.routeTabs[0]["aria-pressed"], "false");
+assert.equal(visibilityContext.routeTabs[1]["aria-pressed"], "true");
 assert.match(source, /feedRouteType:\s*feedState\.query\s*\?\s*""\s*:\s*feedState\.activeTab/u);
+assert.match(source, /previousRecords\.length\s*===\s*0\s*&&\s*pageRecords\.length\)\s*autoClassifySearchResults\(pageRecords\)/u);
+assert.match(source, /分类暂时没有路线，可以切换另一分类/u);
 assert.match(source, /if \(requested\.query\)[\s\S]*selectAppendableRecords\(pageRecords, BATCH_SIZE, previousRecords\)[\s\S]*appendRecords\(batchRecords, SEARCH_PAGE_SIZE\)/u);
 const searchBranchStart = source.indexOf("if (requested.query)");
 const searchBranch = source.slice(searchBranchStart, source.indexOf("} else {", searchBranchStart));

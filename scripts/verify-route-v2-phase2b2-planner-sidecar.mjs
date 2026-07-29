@@ -118,7 +118,7 @@ const parsedCandidates = candidateLines.map((line) => JSON.parse(line));
 for (const candidate of parsedCandidates) {
   const validation = validateRouteCandidate(candidate);
   assert.equal(validation.accepted, true, `written candidate failed schema: ${validation.reasons.join(",")}`);
-  assert.equal(candidate.status, "generated", "sidecar must not select or reject candidates");
+  assert.equal(candidate.status, "pending", "legacy sidecar mode must keep candidates pending until selection is enabled");
   assert.deepEqual(candidate.rejectionReasons, [], "sidecar must not invent rejection reasons");
   assert(!("selected" in candidate), "sidecar must not write selected");
   assert(!("rejected" in candidate), "sidecar must not write rejected");

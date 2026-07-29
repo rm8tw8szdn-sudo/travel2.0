@@ -1,0 +1,1102 @@
+{
+  "schemaVersion": "route-v2-city-baseline-provenance-p1b-batch02",
+  "generatedFrom": "data/knowledge/raw/cities-p1b-batch02.wikidata.json",
+  "cityCount": 10,
+  "provenance": {
+    "city-d40570b2aac4850d": {
+      "entityId": {
+        "field": "entityId",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B City Entity Foundation schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T11:54:57.984Z",
+        "value": "city-d40570b2aac4850d"
+      },
+      "entityType": {
+        "field": "entityType",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B City Entity Foundation schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T11:54:57.984Z",
+        "value": "city"
+      },
+      "parentCountryEntityId": {
+        "field": "parentCountryEntityId",
+        "sourceType": "repository-reference",
+        "source": "Route V2 P1A Country Baseline",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q38",
+        "retrievedAt": "2026-07-20T11:54:57.984Z",
+        "value": "country-4df88b953a99e6a4"
+      },
+      "wikidataId": {
+        "field": "wikidataId",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q2044",
+        "retrievedAt": "2026-07-20T11:54:57.984Z",
+        "value": "Q2044"
+      },
+      "canonicalNameZh": {
+        "field": "canonicalNameZh",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q2044",
+        "retrievedAt": "2026-07-20T11:54:57.984Z",
+        "value": "佛罗伦萨"
+      },
+      "canonicalNameEn": {
+        "field": "canonicalNameEn",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q2044",
+        "retrievedAt": "2026-07-20T11:54:57.984Z",
+        "value": "Florence"
+      },
+      "aliases": {
+        "field": "aliases",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q2044",
+        "retrievedAt": "2026-07-20T11:54:57.984Z",
+        "value": [
+          "Comune di Firenze",
+          "Fiorenza",
+          "Firenze",
+          "Firenze, Italia",
+          "Firenze, Toscana",
+          "Florence Municipality",
+          "Florence, Italy",
+          "Florence, Toscane",
+          "Florence, Tuscany",
+          "Florencia",
+          "Florentia",
+          "Florenz",
+          "피렌체"
+        ]
+      },
+      "coordinates": {
+        "field": "coordinates",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q2044",
+        "retrievedAt": "2026-07-20T11:54:57.984Z",
+        "value": {
+          "latitude": 43.771388888889,
+          "longitude": 11.254166666667
+        }
+      },
+      "entitySourceType": {
+        "field": "entitySourceType",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B City Entity Foundation schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T11:54:57.984Z",
+        "value": "wikidata"
+      },
+      "confidence": {
+        "field": "confidence",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B City Entity Foundation schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T11:54:57.984Z",
+        "value": 0.95
+      },
+      "retrievedAt": {
+        "field": "retrievedAt",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q2044",
+        "retrievedAt": "2026-07-20T11:54:57.984Z",
+        "value": "2026-07-20T11:54:57.984Z"
+      }
+    },
+    "city-133b155bac966dfa": {
+      "entityId": {
+        "field": "entityId",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B City Entity Foundation schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T11:54:57.984Z",
+        "value": "city-133b155bac966dfa"
+      },
+      "entityType": {
+        "field": "entityType",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B City Entity Foundation schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T11:54:57.984Z",
+        "value": "city"
+      },
+      "parentCountryEntityId": {
+        "field": "parentCountryEntityId",
+        "sourceType": "repository-reference",
+        "source": "Route V2 P1A Country Baseline",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q38",
+        "retrievedAt": "2026-07-20T11:54:57.984Z",
+        "value": "country-4df88b953a99e6a4"
+      },
+      "wikidataId": {
+        "field": "wikidataId",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q220",
+        "retrievedAt": "2026-07-20T11:54:57.984Z",
+        "value": "Q220"
+      },
+      "canonicalNameZh": {
+        "field": "canonicalNameZh",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q220",
+        "retrievedAt": "2026-07-20T11:54:57.984Z",
+        "value": "罗马"
+      },
+      "canonicalNameEn": {
+        "field": "canonicalNameEn",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q220",
+        "retrievedAt": "2026-07-20T11:54:57.984Z",
+        "value": "Rome"
+      },
+      "aliases": {
+        "field": "aliases",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q220",
+        "retrievedAt": "2026-07-20T11:54:57.984Z",
+        "value": [
+          "Capital of the World",
+          "Caput Mundi",
+          "Città dei sette colli",
+          "Città di Roma",
+          "Città eterna",
+          "City of Marble",
+          "City of Seven Hills",
+          "Die Ewige Stadt",
+          "Eternal City",
+          "l'Urbs",
+          "La Ciudad Eterna",
+          "La ville aux sept collines",
+          "La ville éternelle",
+          "RM",
+          "Rom",
+          "Roma",
+          "Rome, Italy",
+          "The Capital of the World",
+          "The City of Marble",
+          "The Eternal City",
+          "Urbe",
+          "로마"
+        ]
+      },
+      "coordinates": {
+        "field": "coordinates",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q220",
+        "retrievedAt": "2026-07-20T11:54:57.984Z",
+        "value": {
+          "latitude": 41.893055555556,
+          "longitude": 12.482777777778
+        }
+      },
+      "entitySourceType": {
+        "field": "entitySourceType",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B City Entity Foundation schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T11:54:57.984Z",
+        "value": "wikidata"
+      },
+      "confidence": {
+        "field": "confidence",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B City Entity Foundation schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T11:54:57.984Z",
+        "value": 0.95
+      },
+      "retrievedAt": {
+        "field": "retrievedAt",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q220",
+        "retrievedAt": "2026-07-20T11:54:57.984Z",
+        "value": "2026-07-20T11:54:57.984Z"
+      }
+    },
+    "city-6fdc557c860230e3": {
+      "entityId": {
+        "field": "entityId",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B City Entity Foundation schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T11:54:57.984Z",
+        "value": "city-6fdc557c860230e3"
+      },
+      "entityType": {
+        "field": "entityType",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B City Entity Foundation schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T11:54:57.984Z",
+        "value": "city"
+      },
+      "parentCountryEntityId": {
+        "field": "parentCountryEntityId",
+        "sourceType": "repository-reference",
+        "source": "Route V2 P1A Country Baseline",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q884",
+        "retrievedAt": "2026-07-20T11:54:57.984Z",
+        "value": "country-6d9a5fa9dc49e5f4"
+      },
+      "wikidataId": {
+        "field": "wikidataId",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q16520",
+        "retrievedAt": "2026-07-20T11:54:57.984Z",
+        "value": "Q16520"
+      },
+      "canonicalNameZh": {
+        "field": "canonicalNameZh",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q16520",
+        "retrievedAt": "2026-07-20T11:54:57.984Z",
+        "value": "釜山"
+      },
+      "canonicalNameEn": {
+        "field": "canonicalNameEn",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q16520",
+        "retrievedAt": "2026-07-20T11:54:57.984Z",
+        "value": "Busan"
+      },
+      "aliases": {
+        "field": "aliases",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q16520",
+        "retrievedAt": "2026-07-20T11:54:57.984Z",
+        "value": [
+          "Busan Metropolitan City",
+          "Fuzan",
+          "Pusan",
+          "Pusan Metropolitan City",
+          "Pusang",
+          "Ville métropolitaine de Busan",
+          "부산",
+          "부산광역시",
+          "부산시",
+          "釜山广域市"
+        ]
+      },
+      "coordinates": {
+        "field": "coordinates",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q16520",
+        "retrievedAt": "2026-07-20T11:54:57.984Z",
+        "value": {
+          "latitude": 35.18,
+          "longitude": 129.075
+        }
+      },
+      "entitySourceType": {
+        "field": "entitySourceType",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B City Entity Foundation schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T11:54:57.984Z",
+        "value": "wikidata"
+      },
+      "confidence": {
+        "field": "confidence",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B City Entity Foundation schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T11:54:57.984Z",
+        "value": 0.95
+      },
+      "retrievedAt": {
+        "field": "retrievedAt",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q16520",
+        "retrievedAt": "2026-07-20T11:54:57.984Z",
+        "value": "2026-07-20T11:54:57.984Z"
+      }
+    },
+    "city-f485961843960f06": {
+      "entityId": {
+        "field": "entityId",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B City Entity Foundation schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T11:54:57.984Z",
+        "value": "city-f485961843960f06"
+      },
+      "entityType": {
+        "field": "entityType",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B City Entity Foundation schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T11:54:57.984Z",
+        "value": "city"
+      },
+      "parentCountryEntityId": {
+        "field": "parentCountryEntityId",
+        "sourceType": "repository-reference",
+        "source": "Route V2 P1A Country Baseline",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q884",
+        "retrievedAt": "2026-07-20T11:54:57.984Z",
+        "value": "country-6d9a5fa9dc49e5f4"
+      },
+      "wikidataId": {
+        "field": "wikidataId",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q8684",
+        "retrievedAt": "2026-07-20T11:54:57.984Z",
+        "value": "Q8684"
+      },
+      "canonicalNameZh": {
+        "field": "canonicalNameZh",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q8684",
+        "retrievedAt": "2026-07-20T11:54:57.984Z",
+        "value": "首尔"
+      },
+      "canonicalNameEn": {
+        "field": "canonicalNameEn",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q8684",
+        "retrievedAt": "2026-07-20T11:54:57.984Z",
+        "value": "Seoul"
+      },
+      "aliases": {
+        "field": "aliases",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q8684",
+        "retrievedAt": "2026-07-20T11:54:57.984Z",
+        "value": [
+          "Città Speciale di Seoul",
+          "Città Speciale di Seul",
+          "Ciudad Especial de Seul",
+          "Ciudad Especial de Seúl",
+          "Gyeongseong",
+          "Hanseong",
+          "Hansŏng",
+          "Hanyang",
+          "Keijō",
+          "Keijou",
+          "Kenghi",
+          "Kyŏngsŏng",
+          "Namgyeong",
+          "Séoul",
+          "Seoul Special City",
+          "Seul",
+          "Seúl",
+          "Soul",
+          "Sŏul",
+          "Söul",
+          "Sŏul T'ŭkpyŏlsi",
+          "Ville spéciale de Séoul",
+          "Wiryeseong",
+          "서울",
+          "서울시",
+          "서울특별시",
+          "汉城",
+          "漢城",
+          "首尔特别市",
+          "首爾",
+          "首爾特別市"
+        ]
+      },
+      "coordinates": {
+        "field": "coordinates",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q8684",
+        "retrievedAt": "2026-07-20T11:54:57.984Z",
+        "value": {
+          "latitude": 37.56,
+          "longitude": 126.99
+        }
+      },
+      "entitySourceType": {
+        "field": "entitySourceType",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B City Entity Foundation schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T11:54:57.984Z",
+        "value": "wikidata"
+      },
+      "confidence": {
+        "field": "confidence",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B City Entity Foundation schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T11:54:57.984Z",
+        "value": 0.95
+      },
+      "retrievedAt": {
+        "field": "retrievedAt",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q8684",
+        "retrievedAt": "2026-07-20T11:54:57.984Z",
+        "value": "2026-07-20T11:54:57.984Z"
+      }
+    },
+    "city-92d9ceba1c4a056d": {
+      "entityId": {
+        "field": "entityId",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B City Entity Foundation schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T11:54:57.984Z",
+        "value": "city-92d9ceba1c4a056d"
+      },
+      "entityType": {
+        "field": "entityType",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B City Entity Foundation schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T11:54:57.984Z",
+        "value": "city"
+      },
+      "parentCountryEntityId": {
+        "field": "parentCountryEntityId",
+        "sourceType": "repository-reference",
+        "source": "Route V2 P1A Country Baseline",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q183",
+        "retrievedAt": "2026-07-20T11:54:57.984Z",
+        "value": "country-9bef984affea20d8"
+      },
+      "wikidataId": {
+        "field": "wikidataId",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q64",
+        "retrievedAt": "2026-07-20T11:54:57.984Z",
+        "value": "Q64"
+      },
+      "canonicalNameZh": {
+        "field": "canonicalNameZh",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q64",
+        "retrievedAt": "2026-07-20T11:54:57.984Z",
+        "value": "柏林"
+      },
+      "canonicalNameEn": {
+        "field": "canonicalNameEn",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q64",
+        "retrievedAt": "2026-07-20T11:54:57.984Z",
+        "value": "Berlin"
+      },
+      "aliases": {
+        "field": "aliases",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q64",
+        "retrievedAt": "2026-07-20T11:54:57.984Z",
+        "value": [
+          "BE",
+          "Berlín",
+          "Berlin (Deutschland)",
+          "Berlín, Alemania",
+          "Berlin, Deutschland",
+          "Berlin, Germany",
+          "Berlino",
+          "Bln",
+          "Bln.",
+          "Bundeshauptstadt Berlin",
+          "Ciudad de Berlín",
+          "DE-BE",
+          "Land Berlin",
+          "Stadt Berlin",
+          "베를린",
+          "柏林州",
+          "柏林市"
+        ]
+      },
+      "coordinates": {
+        "field": "coordinates",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q64",
+        "retrievedAt": "2026-07-20T11:54:57.984Z",
+        "value": {
+          "latitude": 52.516666666667,
+          "longitude": 13.383333333333
+        }
+      },
+      "entitySourceType": {
+        "field": "entitySourceType",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B City Entity Foundation schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T11:54:57.984Z",
+        "value": "wikidata"
+      },
+      "confidence": {
+        "field": "confidence",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B City Entity Foundation schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T11:54:57.984Z",
+        "value": 0.95
+      },
+      "retrievedAt": {
+        "field": "retrievedAt",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q64",
+        "retrievedAt": "2026-07-20T11:54:57.984Z",
+        "value": "2026-07-20T11:54:57.984Z"
+      }
+    },
+    "city-6dd5cc0f5d9b27be": {
+      "entityId": {
+        "field": "entityId",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B City Entity Foundation schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T11:54:57.984Z",
+        "value": "city-6dd5cc0f5d9b27be"
+      },
+      "entityType": {
+        "field": "entityType",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B City Entity Foundation schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T11:54:57.984Z",
+        "value": "city"
+      },
+      "parentCountryEntityId": {
+        "field": "parentCountryEntityId",
+        "sourceType": "repository-reference",
+        "source": "Route V2 P1A Country Baseline",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q183",
+        "retrievedAt": "2026-07-20T11:54:57.984Z",
+        "value": "country-9bef984affea20d8"
+      },
+      "wikidataId": {
+        "field": "wikidataId",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q1726",
+        "retrievedAt": "2026-07-20T11:54:57.984Z",
+        "value": "Q1726"
+      },
+      "canonicalNameZh": {
+        "field": "canonicalNameZh",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q1726",
+        "retrievedAt": "2026-07-20T11:54:57.984Z",
+        "value": "慕尼黑"
+      },
+      "canonicalNameEn": {
+        "field": "canonicalNameEn",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q1726",
+        "retrievedAt": "2026-07-20T11:54:57.984Z",
+        "value": "Munich"
+      },
+      "aliases": {
+        "field": "aliases",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q1726",
+        "retrievedAt": "2026-07-20T11:54:57.984Z",
+        "value": [
+          "Landeshauptstadt München",
+          "LH München",
+          "LHM",
+          "Monachium",
+          "Monaco",
+          "Mónaco de Baviera",
+          "Monaco di Baviera",
+          "MUC",
+          "Muenchen",
+          "München",
+          "Múnich",
+          "Münich",
+          "Munich, Germany",
+          "Muñique",
+          "Stadt München",
+          "뮌헨",
+          "明兴"
+        ]
+      },
+      "coordinates": {
+        "field": "coordinates",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q1726",
+        "retrievedAt": "2026-07-20T11:54:57.984Z",
+        "value": {
+          "latitude": 48.1375,
+          "longitude": 11.575
+        }
+      },
+      "entitySourceType": {
+        "field": "entitySourceType",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B City Entity Foundation schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T11:54:57.984Z",
+        "value": "wikidata"
+      },
+      "confidence": {
+        "field": "confidence",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B City Entity Foundation schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T11:54:57.984Z",
+        "value": 0.95
+      },
+      "retrievedAt": {
+        "field": "retrievedAt",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q1726",
+        "retrievedAt": "2026-07-20T11:54:57.984Z",
+        "value": "2026-07-20T11:54:57.984Z"
+      }
+    },
+    "city-5bba0fc2f52dc8df": {
+      "entityId": {
+        "field": "entityId",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B City Entity Foundation schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T11:54:57.984Z",
+        "value": "city-5bba0fc2f52dc8df"
+      },
+      "entityType": {
+        "field": "entityType",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B City Entity Foundation schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T11:54:57.984Z",
+        "value": "city"
+      },
+      "parentCountryEntityId": {
+        "field": "parentCountryEntityId",
+        "sourceType": "repository-reference",
+        "source": "Route V2 P1A Country Baseline",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q142",
+        "retrievedAt": "2026-07-20T11:54:57.984Z",
+        "value": "country-a20e4bab95389730"
+      },
+      "wikidataId": {
+        "field": "wikidataId",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q456",
+        "retrievedAt": "2026-07-20T11:54:57.984Z",
+        "value": "Q456"
+      },
+      "canonicalNameZh": {
+        "field": "canonicalNameZh",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q456",
+        "retrievedAt": "2026-07-20T11:54:57.984Z",
+        "value": "里昂"
+      },
+      "canonicalNameEn": {
+        "field": "canonicalNameEn",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q456",
+        "retrievedAt": "2026-07-20T11:54:57.984Z",
+        "value": "Lyon"
+      },
+      "aliases": {
+        "field": "aliases",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q456",
+        "retrievedAt": "2026-07-20T11:54:57.984Z",
+        "value": [
+          "capitale des Gaules",
+          "City of Lyon",
+          "Commune-Affranchie",
+          "Leyden",
+          "Lion",
+          "Lione",
+          "Welsch-Leyden",
+          "리옹"
+        ]
+      },
+      "coordinates": {
+        "field": "coordinates",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q456",
+        "retrievedAt": "2026-07-20T11:54:57.984Z",
+        "value": {
+          "latitude": 45.7675,
+          "longitude": 4.835
+        }
+      },
+      "entitySourceType": {
+        "field": "entitySourceType",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B City Entity Foundation schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T11:54:57.984Z",
+        "value": "wikidata"
+      },
+      "confidence": {
+        "field": "confidence",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B City Entity Foundation schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T11:54:57.984Z",
+        "value": 0.95
+      },
+      "retrievedAt": {
+        "field": "retrievedAt",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q456",
+        "retrievedAt": "2026-07-20T11:54:57.984Z",
+        "value": "2026-07-20T11:54:57.984Z"
+      }
+    },
+    "city-32da4cad2757df97": {
+      "entityId": {
+        "field": "entityId",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B City Entity Foundation schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T11:54:57.984Z",
+        "value": "city-32da4cad2757df97"
+      },
+      "entityType": {
+        "field": "entityType",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B City Entity Foundation schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T11:54:57.984Z",
+        "value": "city"
+      },
+      "parentCountryEntityId": {
+        "field": "parentCountryEntityId",
+        "sourceType": "repository-reference",
+        "source": "Route V2 P1A Country Baseline",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q142",
+        "retrievedAt": "2026-07-20T11:54:57.984Z",
+        "value": "country-a20e4bab95389730"
+      },
+      "wikidataId": {
+        "field": "wikidataId",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q90",
+        "retrievedAt": "2026-07-20T11:54:57.984Z",
+        "value": "Q90"
+      },
+      "canonicalNameZh": {
+        "field": "canonicalNameZh",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q90",
+        "retrievedAt": "2026-07-20T11:54:57.984Z",
+        "value": "巴黎"
+      },
+      "canonicalNameEn": {
+        "field": "canonicalNameEn",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q90",
+        "retrievedAt": "2026-07-20T11:54:57.984Z",
+        "value": "Paris"
+      },
+      "aliases": {
+        "field": "aliases",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q90",
+        "retrievedAt": "2026-07-20T11:54:57.984Z",
+        "value": [
+          "City of Light",
+          "City of Love",
+          "FR-75",
+          "La Ciudad de la Luz",
+          "La Ciudad del Amor",
+          "La Ciudad Luz",
+          "Lutèce",
+          "Lutetia",
+          "Lutezia",
+          "Paname",
+          "Pantruche",
+          "Parigi",
+          "París",
+          "Ville de l'Amour",
+          "Ville de Paris",
+          "Ville-Lumière",
+          "파리",
+          "巴黎省"
+        ]
+      },
+      "coordinates": {
+        "field": "coordinates",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q90",
+        "retrievedAt": "2026-07-20T11:54:57.984Z",
+        "value": {
+          "latitude": 48.85666666666667,
+          "longitude": 2.352222222222222
+        }
+      },
+      "entitySourceType": {
+        "field": "entitySourceType",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B City Entity Foundation schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T11:54:57.984Z",
+        "value": "wikidata"
+      },
+      "confidence": {
+        "field": "confidence",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B City Entity Foundation schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T11:54:57.984Z",
+        "value": 0.95
+      },
+      "retrievedAt": {
+        "field": "retrievedAt",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q90",
+        "retrievedAt": "2026-07-20T11:54:57.984Z",
+        "value": "2026-07-20T11:54:57.984Z"
+      }
+    },
+    "city-6e97dec8890873f7": {
+      "entityId": {
+        "field": "entityId",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B City Entity Foundation schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T11:54:57.984Z",
+        "value": "city-6e97dec8890873f7"
+      },
+      "entityType": {
+        "field": "entityType",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B City Entity Foundation schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T11:54:57.984Z",
+        "value": "city"
+      },
+      "parentCountryEntityId": {
+        "field": "parentCountryEntityId",
+        "sourceType": "repository-reference",
+        "source": "Route V2 P1A Country Baseline",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q29",
+        "retrievedAt": "2026-07-20T11:54:57.984Z",
+        "value": "country-ab252ee38e8cdf81"
+      },
+      "wikidataId": {
+        "field": "wikidataId",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q1492",
+        "retrievedAt": "2026-07-20T11:54:57.984Z",
+        "value": "Q1492"
+      },
+      "canonicalNameZh": {
+        "field": "canonicalNameZh",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q1492",
+        "retrievedAt": "2026-07-20T11:54:57.984Z",
+        "value": "巴塞罗那"
+      },
+      "canonicalNameEn": {
+        "field": "canonicalNameEn",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q1492",
+        "retrievedAt": "2026-07-20T11:54:57.984Z",
+        "value": "Barcelona"
+      },
+      "aliases": {
+        "field": "aliases",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q1492",
+        "retrievedAt": "2026-07-20T11:54:57.984Z",
+        "value": [
+          "B'na",
+          "Barcellona",
+          "Barcelona City",
+          "Barcelona Stadt",
+          "Barcelona, Catalonia",
+          "Barcelona, Spain",
+          "Barcelone",
+          "Barcino",
+          "Barna",
+          "Città di Barcellona",
+          "City of Barcelona",
+          "Ciudad condal",
+          "Stadt Barcelona",
+          "Ville de Barcelone",
+          "바르셀로나",
+          "巴塞羅那"
+        ]
+      },
+      "coordinates": {
+        "field": "coordinates",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q1492",
+        "retrievedAt": "2026-07-20T11:54:57.984Z",
+        "value": {
+          "latitude": 41.3825,
+          "longitude": 2.1769444444444
+        }
+      },
+      "entitySourceType": {
+        "field": "entitySourceType",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B City Entity Foundation schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T11:54:57.984Z",
+        "value": "wikidata"
+      },
+      "confidence": {
+        "field": "confidence",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B City Entity Foundation schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T11:54:57.984Z",
+        "value": 0.95
+      },
+      "retrievedAt": {
+        "field": "retrievedAt",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q1492",
+        "retrievedAt": "2026-07-20T11:54:57.984Z",
+        "value": "2026-07-20T11:54:57.984Z"
+      }
+    },
+    "city-f833a342bb5b925a": {
+      "entityId": {
+        "field": "entityId",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B City Entity Foundation schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T11:54:57.984Z",
+        "value": "city-f833a342bb5b925a"
+      },
+      "entityType": {
+        "field": "entityType",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B City Entity Foundation schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T11:54:57.984Z",
+        "value": "city"
+      },
+      "parentCountryEntityId": {
+        "field": "parentCountryEntityId",
+        "sourceType": "repository-reference",
+        "source": "Route V2 P1A Country Baseline",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q29",
+        "retrievedAt": "2026-07-20T11:54:57.984Z",
+        "value": "country-ab252ee38e8cdf81"
+      },
+      "wikidataId": {
+        "field": "wikidataId",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q2807",
+        "retrievedAt": "2026-07-20T11:54:57.984Z",
+        "value": "Q2807"
+      },
+      "canonicalNameZh": {
+        "field": "canonicalNameZh",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q2807",
+        "retrievedAt": "2026-07-20T11:54:57.984Z",
+        "value": "马德里"
+      },
+      "canonicalNameEn": {
+        "field": "canonicalNameEn",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q2807",
+        "retrievedAt": "2026-07-20T11:54:57.984Z",
+        "value": "Madrid"
+      },
+      "aliases": {
+        "field": "aliases",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q2807",
+        "retrievedAt": "2026-07-20T11:54:57.984Z",
+        "value": [
+          "Madrid (Espagne)",
+          "Madrid, Spanien",
+          "마드리드"
+        ]
+      },
+      "coordinates": {
+        "field": "coordinates",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q2807",
+        "retrievedAt": "2026-07-20T11:54:57.984Z",
+        "value": {
+          "latitude": 40.41694444444445,
+          "longitude": -3.703333333333333
+        }
+      },
+      "entitySourceType": {
+        "field": "entitySourceType",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B City Entity Foundation schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T11:54:57.984Z",
+        "value": "wikidata"
+      },
+      "confidence": {
+        "field": "confidence",
+        "sourceType": "project-schema",
+        "source": "Route V2 P1B City Entity Foundation schema",
+        "sourceUrl": "",
+        "retrievedAt": "2026-07-20T11:54:57.984Z",
+        "value": 0.95
+      },
+      "retrievedAt": {
+        "field": "retrievedAt",
+        "sourceType": "wikidata",
+        "source": "Wikidata wbgetentities",
+        "sourceUrl": "https://www.wikidata.org/wiki/Q2807",
+        "retrievedAt": "2026-07-20T11:54:57.984Z",
+        "value": "2026-07-20T11:54:57.984Z"
+      }
+    }
+  }
+}

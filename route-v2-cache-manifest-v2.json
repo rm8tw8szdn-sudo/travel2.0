@@ -1,0 +1,1741 @@
+{
+  "schemaVersion": "cache-manifest-v2",
+  "generatedBy": {
+    "name": "audit-route-v2-cache-baseline-v2",
+    "version": 1
+  },
+  "aggregateAlgorithm": {
+    "digest": "SHA-256",
+    "pathEncoding": "UTF-8 root-relative POSIX separators",
+    "ordering": "ascending Unicode code-unit path order; no locale collation",
+    "entryEncoding": "relativePath + NUL + byteLength(base10) + NUL + fileSha256(lowercase hex) + LF",
+    "metadataExcluded": [
+      "mtime",
+      "ctime",
+      "absolutePath"
+    ],
+    "contentRule": "hash original file bytes; do not reformat JSON or JSONL"
+  },
+  "classification": {
+    "includeImmutable": [
+      "route-evidence.json"
+    ],
+    "externalFormal": [
+      "accepted-routes.json"
+    ],
+    "requiredRuntimeState": [
+      {
+        "path": "provider-sync-state.json",
+        "structureType": "provider-sync-state-json"
+      },
+      {
+        "path": "knowledge-graph-pool.json",
+        "structureType": "knowledge-graph-pool-json"
+      },
+      {
+        "path": "search-analytics.jsonl",
+        "structureType": "search-analytics-jsonl"
+      },
+      {
+        "path": "search-cache.json",
+        "structureType": "search-cache-json"
+      },
+      {
+        "path": "search-review-candidates.json",
+        "structureType": "search-review-candidates-json"
+      }
+    ],
+    "runtimeRuleVersion": 1,
+    "unclassifiedCount": 0
+  },
+  "immutable": {
+    "fileCount": 1,
+    "totalBytes": 4348028,
+    "aggregateSha256": "61e243e0c0756d53513ab7205281f8c796eeb074317f484d08784cbc5fe9505c",
+    "files": [
+      {
+        "path": "route-evidence.json",
+        "bytes": 4348028,
+        "sha256": "4bb9e7b702de1c9b981f0ed53a649632e2a7149bd7f2dabedfa120dcde13c376"
+      }
+    ],
+    "integrity": {
+      "evidenceCount": 2865,
+      "externalSourceRouteReferences": [
+        "wikivoyage-150395",
+        "wikivoyage-153501",
+        "wikivoyage-206089",
+        "wikivoyage-6392"
+      ]
+    }
+  },
+  "runtimeState": {
+    "enforcement": "structure-and-test-run-stability",
+    "snapshotInformationalOnly": true,
+    "fileCount": 329,
+    "totalBytes": 1224963619,
+    "files": [
+      {
+        "path": "accepted-routes.20260630-163906.before-coverage-matrix.json",
+        "structureType": "accepted-repository-backup-json",
+        "required": false
+      },
+      {
+        "path": "accepted-routes.20260630-171501.before-prune-superseded-planner.json",
+        "structureType": "accepted-repository-backup-json",
+        "required": false
+      },
+      {
+        "path": "accepted-routes.json.2026-07-07T041629287Z.before-materialize-5000",
+        "structureType": "accepted-repository-backup-json",
+        "required": false
+      },
+      {
+        "path": "accepted-routes.json.2026-07-07T041920159Z.before-materialize-5000",
+        "structureType": "accepted-repository-backup-json",
+        "required": false
+      },
+      {
+        "path": "accepted-routes.json.2026-07-07T041941652Z.before-materialize-5000",
+        "structureType": "accepted-repository-backup-json",
+        "required": false
+      },
+      {
+        "path": "accepted-routes.json.2026-07-07T042245886Z.before-materialize-5000",
+        "structureType": "accepted-repository-backup-json",
+        "required": false
+      },
+      {
+        "path": "accepted-routes.json.2026-07-07T042826998Z.before-planner-rule-materialize",
+        "structureType": "accepted-repository-backup-json",
+        "required": false
+      },
+      {
+        "path": "accepted-routes.json.2026-07-07T042931672Z.before-planner-rule-materialize",
+        "structureType": "accepted-repository-backup-json",
+        "required": false
+      },
+      {
+        "path": "accepted-routes.json.2026-07-07T091830606Z.before-planner-rule-materialize",
+        "structureType": "accepted-repository-backup-json",
+        "required": false
+      },
+      {
+        "path": "accepted-routes.json.2026-07-07T092349511Z.before-planner-rule-materialize",
+        "structureType": "accepted-repository-backup-json",
+        "required": false
+      },
+      {
+        "path": "accepted-routes.json.2026-07-07T092839054Z.before-planner-rule-materialize",
+        "structureType": "accepted-repository-backup-json",
+        "required": false
+      },
+      {
+        "path": "accepted-routes.json.2026-07-08T023321726Z.before-planner-rule-materialize",
+        "structureType": "accepted-repository-backup-json",
+        "required": false
+      },
+      {
+        "path": "accepted-routes.json.2026-07-08T031551676Z.before-planner-rule-materialize",
+        "structureType": "accepted-repository-backup-json",
+        "required": false
+      },
+      {
+        "path": "accepted-routes.json.2026-07-08T031715338Z.before-planner-rule-materialize",
+        "structureType": "accepted-repository-backup-json",
+        "required": false
+      },
+      {
+        "path": "accepted-routes.json.2026-07-08T032746221Z.before-planner-rule-materialize",
+        "structureType": "accepted-repository-backup-json",
+        "required": false
+      },
+      {
+        "path": "accepted-routes.json.20260630134432.before-gold-case-seed.json",
+        "structureType": "accepted-repository-backup-json",
+        "required": false
+      },
+      {
+        "path": "accepted-routes.json.20260630134504.before-gold-case-seed.json",
+        "structureType": "accepted-repository-backup-json",
+        "required": false
+      },
+      {
+        "path": "accepted-routes.json.20260706102204.before-dedupe-cleanup",
+        "structureType": "accepted-repository-backup-json",
+        "required": false
+      },
+      {
+        "path": "accepted-routes.json.20260706102305.before-cross-dedupe-cleanup",
+        "structureType": "accepted-repository-backup-json",
+        "required": false
+      },
+      {
+        "path": "accepted-routes.json.20260709-111842.before-feed-image-prewarm",
+        "structureType": "accepted-repository-backup-json",
+        "required": false
+      },
+      {
+        "path": "accepted-routes.json.20260709-112422.before-feed-image-prewarm",
+        "structureType": "accepted-repository-backup-json",
+        "required": false
+      },
+      {
+        "path": "accepted-routes.json.20260709-113027.before-feed-image-prewarm",
+        "structureType": "accepted-repository-backup-json",
+        "required": false
+      },
+      {
+        "path": "accepted-routes.json.20260709-114807.before-feed-image-prewarm",
+        "structureType": "accepted-repository-backup-json",
+        "required": false
+      },
+      {
+        "path": "accepted-routes.json.20260709-121143.before-feed-image-prewarm",
+        "structureType": "accepted-repository-backup-json",
+        "required": false
+      },
+      {
+        "path": "accepted-routes.json.20260709-121212.before-feed-image-prewarm",
+        "structureType": "accepted-repository-backup-json",
+        "required": false
+      },
+      {
+        "path": "accepted-routes.json.20260709-121402.before-feed-image-prewarm",
+        "structureType": "accepted-repository-backup-json",
+        "required": false
+      },
+      {
+        "path": "accepted-routes.json.20260709-121802.before-feed-image-prewarm",
+        "structureType": "accepted-repository-backup-json",
+        "required": false
+      },
+      {
+        "path": "accepted-routes.json.20260709-122514.before-feed-image-prewarm",
+        "structureType": "accepted-repository-backup-json",
+        "required": false
+      },
+      {
+        "path": "accepted-routes.json.20260709-122935.before-feed-image-prewarm",
+        "structureType": "accepted-repository-backup-json",
+        "required": false
+      },
+      {
+        "path": "accepted-routes.json.20260709-125042.before-feed-image-prewarm",
+        "structureType": "accepted-repository-backup-json",
+        "required": false
+      },
+      {
+        "path": "accepted-routes.json.20260709-125325.before-feed-image-prewarm",
+        "structureType": "accepted-repository-backup-json",
+        "required": false
+      },
+      {
+        "path": "accepted-routes.json.20260710-021602.before-feed-image-prewarm",
+        "structureType": "accepted-repository-backup-json",
+        "required": false
+      },
+      {
+        "path": "accepted-routes.json.20260710-021727.before-feed-image-prewarm",
+        "structureType": "accepted-repository-backup-json",
+        "required": false
+      },
+      {
+        "path": "accepted-routes.json.20260710-021937.before-feed-image-prewarm",
+        "structureType": "accepted-repository-backup-json",
+        "required": false
+      },
+      {
+        "path": "accepted-routes.json.20260710-022029.before-feed-image-prewarm",
+        "structureType": "accepted-repository-backup-json",
+        "required": false
+      },
+      {
+        "path": "bulk-generate-5000.err.log",
+        "structureType": "runtime-log",
+        "required": false
+      },
+      {
+        "path": "bulk-generate-5000.out.log",
+        "structureType": "runtime-log",
+        "required": false
+      },
+      {
+        "path": "bulk-route-generation-2026-07-07T03-52-36-108Z.jsonl",
+        "structureType": "bulk-report-jsonl",
+        "required": false
+      },
+      {
+        "path": "bulk-route-generation-2026-07-07T03-59-42-976Z.jsonl",
+        "structureType": "bulk-report-jsonl",
+        "required": false
+      },
+      {
+        "path": "bulk-route-generation-2026-07-07T04-07-23-332Z.jsonl",
+        "structureType": "bulk-report-jsonl",
+        "required": false
+      },
+      {
+        "path": "destination-images.json",
+        "structureType": "destination-images-json",
+        "required": false
+      },
+      {
+        "path": "feed-image-pool-report.json",
+        "structureType": "generated-media-report-json",
+        "required": false
+      },
+      {
+        "path": "feed-image-pool.json",
+        "structureType": "generated-media-report-json",
+        "required": false
+      },
+      {
+        "path": "feed-image-prewarm-report.json",
+        "structureType": "generated-media-report-json",
+        "required": false
+      },
+      {
+        "path": "feed-proxy-warm-report.json",
+        "structureType": "generated-media-report-json",
+        "required": false
+      },
+      {
+        "path": "image-country-audit-500.json",
+        "structureType": "generated-media-report-json",
+        "required": false
+      },
+      {
+        "path": "knowledge-graph-pool.json",
+        "structureType": "knowledge-graph-pool-json",
+        "required": true
+      },
+      {
+        "path": "local-server.err.log",
+        "structureType": "runtime-log",
+        "required": false
+      },
+      {
+        "path": "local-server.out.log",
+        "structureType": "runtime-log",
+        "required": false
+      },
+      {
+        "path": "provider-sync-state.json",
+        "structureType": "provider-sync-state-json",
+        "required": true
+      },
+      {
+        "path": "proxied-images/03693890579a06b1009fd751ed3ef8893e3199384d58342b95ac5f9acd257471.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/03693890579a06b1009fd751ed3ef8893e3199384d58342b95ac5f9acd257471.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/037e4672b6a7ff34dafd48d88861cb772a7ef28fc1547b9c72e8aea72b30d52f.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/037e4672b6a7ff34dafd48d88861cb772a7ef28fc1547b9c72e8aea72b30d52f.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/057139ffdc080f84b1515399b51a545b0196760277a375b84153b8d927283c9e.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/057139ffdc080f84b1515399b51a545b0196760277a375b84153b8d927283c9e.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/05f50eb1db618bcbfa101741836091e949f6c9b59019683b9eabc4f6cdac37ab.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/05f50eb1db618bcbfa101741836091e949f6c9b59019683b9eabc4f6cdac37ab.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/080bdfc7e47043b295769d89b81ce68365415cf317b681048fb0c3a3596812ea.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/080bdfc7e47043b295769d89b81ce68365415cf317b681048fb0c3a3596812ea.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/081ea8d497ff1493131238721485d02d3dbb6238a2dbf5c35d1229ab9e024aeb.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/081ea8d497ff1493131238721485d02d3dbb6238a2dbf5c35d1229ab9e024aeb.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/08deff8cba44332b217791837da521dd81f02d9ae6f69ee58690c5dfc1ec7aa0.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/08deff8cba44332b217791837da521dd81f02d9ae6f69ee58690c5dfc1ec7aa0.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/09f004c084b60be614e0b7e17f5c9344db3a9a7232b2dfa17343b9a3bfe33223.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/09f004c084b60be614e0b7e17f5c9344db3a9a7232b2dfa17343b9a3bfe33223.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/0a1f160bd7db2f61349ba85ec7bffa67252ac0892ecc070f5feb0c3221717c97.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/0a1f160bd7db2f61349ba85ec7bffa67252ac0892ecc070f5feb0c3221717c97.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/0c8e27a4a1949db0b499ca274a83c14dcb44ffbd8641dfaef2e43764c59e08a3.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/0c8e27a4a1949db0b499ca274a83c14dcb44ffbd8641dfaef2e43764c59e08a3.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/0d2af81c70b63b86a7fca556d9c319fb35bb5345ef202b33d4f06dd32b02309c.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/0d2af81c70b63b86a7fca556d9c319fb35bb5345ef202b33d4f06dd32b02309c.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/0dcee255de35c54e602cc149769d74d2b63b02faca3961e22b0d37c303ae43a3.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/0dcee255de35c54e602cc149769d74d2b63b02faca3961e22b0d37c303ae43a3.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/105f0716912dcd7d69d9ffd26bd66fa23a2e52d7b3484d2bd1f8c7465a81ac45.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/105f0716912dcd7d69d9ffd26bd66fa23a2e52d7b3484d2bd1f8c7465a81ac45.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/1280efc3945ddfbace437f94069a33eef9d345cc53ccefc19f635d5936ca3708.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/1280efc3945ddfbace437f94069a33eef9d345cc53ccefc19f635d5936ca3708.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/1c69da3d65d32b0604ca48449c092ecebb80054f9551267027fa3e7a87b6659f.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/1c69da3d65d32b0604ca48449c092ecebb80054f9551267027fa3e7a87b6659f.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/1c8e2e8e9806a0345c779b37036d33789b2cbe7406992015685095a65171443f.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/1c8e2e8e9806a0345c779b37036d33789b2cbe7406992015685095a65171443f.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/1cdeaed673e85930d3889b6c42fd64832dda6f7188d5800d2e2541b434e70308.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/1cdeaed673e85930d3889b6c42fd64832dda6f7188d5800d2e2541b434e70308.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/1d9eb0c6beed4f65da3e6bb6e6c597cd47d0972892532706c73a76be9f656631.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/1d9eb0c6beed4f65da3e6bb6e6c597cd47d0972892532706c73a76be9f656631.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/22c8ccb7cac54112eadfc8af1120341ea6bd437eb624dcbec3aff1b6de7def57.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/22c8ccb7cac54112eadfc8af1120341ea6bd437eb624dcbec3aff1b6de7def57.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/245e3769176931f45303b65faf19f4b194a6f01979056db0eb42c4122371e4a8.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/245e3769176931f45303b65faf19f4b194a6f01979056db0eb42c4122371e4a8.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/2586a51b31fab0fd21b9924b25c7a86044d7ac796409a7837c771a03a6b7bd21.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/2586a51b31fab0fd21b9924b25c7a86044d7ac796409a7837c771a03a6b7bd21.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/272693c27f19c97d32a80cfe57fd61fa5e529c6eb7811b111ba4565238848774.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/272693c27f19c97d32a80cfe57fd61fa5e529c6eb7811b111ba4565238848774.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/289618b064f8a8c197f2493221ddca431b4251ef29dfacff23940f937f95fb50.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/289618b064f8a8c197f2493221ddca431b4251ef29dfacff23940f937f95fb50.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/2b5cb1b7df9746f223f616eed8511e609394227157b6687c7c893ba8ce23231e.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/2b5cb1b7df9746f223f616eed8511e609394227157b6687c7c893ba8ce23231e.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/2d49f99b3d813c575cbe14a53bde853e1220f7bf1de39a1f217f975730061609.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/2d49f99b3d813c575cbe14a53bde853e1220f7bf1de39a1f217f975730061609.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/2f1c3ebb5e1761aa6f52ad2a3ab912fb9d4004258ac1ef4ddba7709cefb2f50f.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/2f1c3ebb5e1761aa6f52ad2a3ab912fb9d4004258ac1ef4ddba7709cefb2f50f.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/30eba028c238f4a1b15a05c8b2685b803434145d2d6ee6ee8e36b5b79ec2c88d.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/30eba028c238f4a1b15a05c8b2685b803434145d2d6ee6ee8e36b5b79ec2c88d.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/316bbbc978334d047d6355cc9b1a4875676c5795ed6b8ea6498ba412bcd2a35c.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/316bbbc978334d047d6355cc9b1a4875676c5795ed6b8ea6498ba412bcd2a35c.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/332073c0fb87b78f9e6c8ba31a0773158efe461fcab55217c24b812aa4735cf2.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/332073c0fb87b78f9e6c8ba31a0773158efe461fcab55217c24b812aa4735cf2.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/35de241eab2c7d146fbbd93ab8ce484eb002441923423e636de7ea67e9856d43.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/35de241eab2c7d146fbbd93ab8ce484eb002441923423e636de7ea67e9856d43.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/38be0a7f7f022bb8c6d9db885831d8c5ccb93fe110b5fc179e7fcac3c9c102fa.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/38be0a7f7f022bb8c6d9db885831d8c5ccb93fe110b5fc179e7fcac3c9c102fa.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/3ae67b390b80b29c0756b244a6ec5cb4e242f26e305047b6afb0e0891ffbb7cd.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/3ae67b390b80b29c0756b244a6ec5cb4e242f26e305047b6afb0e0891ffbb7cd.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/3e0a5bea0075be9127729c932f7ab53061f5736310582387e1d721f2d0e80f35.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/3e0a5bea0075be9127729c932f7ab53061f5736310582387e1d721f2d0e80f35.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/3ea9df7fb0175373bc2b6824028daf7d67114cf4e087d56547706eda5740a05f.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/3ea9df7fb0175373bc2b6824028daf7d67114cf4e087d56547706eda5740a05f.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/42059e668f7e4762ddcfc3bcf69141bd229899ca3d8a1d8c7b64debfd8b25e4b.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/42059e668f7e4762ddcfc3bcf69141bd229899ca3d8a1d8c7b64debfd8b25e4b.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/423ef90c0587d6d8572b1894b088f8be6d3a9acb28932dd8167db4c9265afcbb.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/423ef90c0587d6d8572b1894b088f8be6d3a9acb28932dd8167db4c9265afcbb.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/45b699a19ec8b28345dec34f7c62e5db201a0d000a0c7de0dddf6764470b5bc5.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/45b699a19ec8b28345dec34f7c62e5db201a0d000a0c7de0dddf6764470b5bc5.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/4bed8e7e4d41cedbb69940a34508b265e359d674549fb0a50aa4d17aabf80019.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/4bed8e7e4d41cedbb69940a34508b265e359d674549fb0a50aa4d17aabf80019.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/4d3c0e0b89be2f9724a7f46508d118dd68a0cea8bb15ac38968048f37fa685ff.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/4d3c0e0b89be2f9724a7f46508d118dd68a0cea8bb15ac38968048f37fa685ff.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/4defedb88af95aa007a76c5cb365aa3d9dd18e71b457e9e02030afc5bc4034d9.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/4defedb88af95aa007a76c5cb365aa3d9dd18e71b457e9e02030afc5bc4034d9.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/4dfb63aa928f49369f7bfd1e6cb39fd1c848b4c39f48e151a3006cd65488b607.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/4dfb63aa928f49369f7bfd1e6cb39fd1c848b4c39f48e151a3006cd65488b607.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/50bcb575837224a408b94c58b1c70cd7a07d39af8181ed6ae6ad36007a9e542d.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/50bcb575837224a408b94c58b1c70cd7a07d39af8181ed6ae6ad36007a9e542d.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/51faa9f3b439f8272f29367cda613c7fe6aef615444ba77ba0fe7df3735c6d4f.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/51faa9f3b439f8272f29367cda613c7fe6aef615444ba77ba0fe7df3735c6d4f.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/5936ecab9640625823779a3190b6c6c7148a2034009b4bf6871262b3d6d9c948.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/5936ecab9640625823779a3190b6c6c7148a2034009b4bf6871262b3d6d9c948.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/5b6cfa0a00f34b72ad4fbd2a5a8fa4eb9772696af29abbefaffaaf38b561617e.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/5b6cfa0a00f34b72ad4fbd2a5a8fa4eb9772696af29abbefaffaaf38b561617e.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/5ce09a22fc73ad1ec690558223dbe3f44336548d72d6339e3427bde1bc2cc9b9.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/5ce09a22fc73ad1ec690558223dbe3f44336548d72d6339e3427bde1bc2cc9b9.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/5d76529687c9652b0bada3baf6c4e3e8da7b0cf9efc8eb5b9b15736b2d16926e.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/5d76529687c9652b0bada3baf6c4e3e8da7b0cf9efc8eb5b9b15736b2d16926e.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/5d8cfc94cdc929f99d2677e09c5639ef343874a0db2cd67ddf2d7dc68f3c7ee1.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/5d8cfc94cdc929f99d2677e09c5639ef343874a0db2cd67ddf2d7dc68f3c7ee1.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/5ef9c38d20432c0996797ce6cb0d969ed50905175a4277741d785ecf56ce4571.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/5ef9c38d20432c0996797ce6cb0d969ed50905175a4277741d785ecf56ce4571.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/6340c0136f77b872f4af3980edec9f772d63ca1039a97e1c176b6acd78fde64d.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/6340c0136f77b872f4af3980edec9f772d63ca1039a97e1c176b6acd78fde64d.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/64c3be0ed0cd997768f473fd32738d842256a2e6a81d6c5cea0039ab71541628.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/64c3be0ed0cd997768f473fd32738d842256a2e6a81d6c5cea0039ab71541628.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/668faf44a56197d282b5c380ff261f58272fb6543da90fb678d72826480a285b.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/668faf44a56197d282b5c380ff261f58272fb6543da90fb678d72826480a285b.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/69e91369b1082bc10fee1243bdd416dac9bc807cce89fa9f98fb8c2c8418fe9c.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/69e91369b1082bc10fee1243bdd416dac9bc807cce89fa9f98fb8c2c8418fe9c.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/6c6eecba00b8bcae6f52ebaf69ba5d88c646bff235dba98ecf57beb4f5088ef9.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/6c6eecba00b8bcae6f52ebaf69ba5d88c646bff235dba98ecf57beb4f5088ef9.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/6c8c1e056f17bf6aa33ccde273a1c0d1a06f511ce11ab993e9d0129b98a8278b.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/6c8c1e056f17bf6aa33ccde273a1c0d1a06f511ce11ab993e9d0129b98a8278b.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/75e276987ed89142b1cbbb9bcda350974088a24d5da594bd84c8abce4d0a9737.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/75e276987ed89142b1cbbb9bcda350974088a24d5da594bd84c8abce4d0a9737.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/760b02745f305e20b8e67f17acb2a32f877139cbc14aaeb1925a69d08e966f9e.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/760b02745f305e20b8e67f17acb2a32f877139cbc14aaeb1925a69d08e966f9e.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/798d52a8b10e919ddf7ad6ad7cf1e494d82ea571d829f40f1e324788d86b870f.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/798d52a8b10e919ddf7ad6ad7cf1e494d82ea571d829f40f1e324788d86b870f.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/7a51acbb2caa293a8578285699bb5e24e1253a1dd6c0aa66654d6a6ca075e43a.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/7a51acbb2caa293a8578285699bb5e24e1253a1dd6c0aa66654d6a6ca075e43a.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/7b91410c70b93148c9ec85b6d29f8bce74e27ac2b8fc6ba1f988dbc349cd62a0.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/7b91410c70b93148c9ec85b6d29f8bce74e27ac2b8fc6ba1f988dbc349cd62a0.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/7c3301478625d08096e97cbe547e725658781c4ada8b548b91bd5fa7c1890f54.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/7c3301478625d08096e97cbe547e725658781c4ada8b548b91bd5fa7c1890f54.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/7cb2cc4632fb410191b13e36121957303354d8916890c1e4e2fbfcc90a62de2e.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/7cb2cc4632fb410191b13e36121957303354d8916890c1e4e2fbfcc90a62de2e.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/7fb41fd30f33d4d88830a6ff57b9add6b9325d09650c654a77ecf5a5be8fa768.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/7fb41fd30f33d4d88830a6ff57b9add6b9325d09650c654a77ecf5a5be8fa768.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/7fef808da3be89492950f6dfd00446938982624ba6ad238b493a4051bafcb759.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/7fef808da3be89492950f6dfd00446938982624ba6ad238b493a4051bafcb759.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/81036fa2ab40d28b4b374adf8ff07bacc594433fbbd3648e4f49ea67c7e0ac5e.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/81036fa2ab40d28b4b374adf8ff07bacc594433fbbd3648e4f49ea67c7e0ac5e.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/8384b22ed79afa50145e7ddf29484aad6226308a84998a2093ba942a3c83583e.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/8384b22ed79afa50145e7ddf29484aad6226308a84998a2093ba942a3c83583e.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/86332cd77c560688262f6e4349db173b32a7187020f162c216d8b983644472bf.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/86332cd77c560688262f6e4349db173b32a7187020f162c216d8b983644472bf.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/8760d694cfe784a736de9d1fa4c797721e626ced762bc094b6aa66523d0108d7.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/8760d694cfe784a736de9d1fa4c797721e626ced762bc094b6aa66523d0108d7.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/87a0919f1b9da6be105f696098280925e4d0855d3c019899be1570f7cf743713.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/87a0919f1b9da6be105f696098280925e4d0855d3c019899be1570f7cf743713.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/887184534ac8b47e778558ced1ff658855d9fa282bffd3444cb2182e8f87796b.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/887184534ac8b47e778558ced1ff658855d9fa282bffd3444cb2182e8f87796b.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/89302d8a33557df6d2189badc2e746a0a7e758d26982345868deaec0d4965154.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/89302d8a33557df6d2189badc2e746a0a7e758d26982345868deaec0d4965154.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/8cbc1abc0638031fde688ee03455cf6ab2c2334bc37ce4d99dc84ffa06d1a24b.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/8cbc1abc0638031fde688ee03455cf6ab2c2334bc37ce4d99dc84ffa06d1a24b.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/8d633975d99fca9613161e82d60e568bb3f6b0a9fa7e6dd6048fe4255677473e.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/8d633975d99fca9613161e82d60e568bb3f6b0a9fa7e6dd6048fe4255677473e.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/8e8a35d8e444b7b6a92a08fca79dcae86022ebca5e639928c5948c976323b825.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/8e8a35d8e444b7b6a92a08fca79dcae86022ebca5e639928c5948c976323b825.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/8f85eddceaf7e5d61bce3bd15c53b398a8fd7a59d1844aac36213722c8f0e389.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/8f85eddceaf7e5d61bce3bd15c53b398a8fd7a59d1844aac36213722c8f0e389.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/90f917262cb1b08ce3a58f6fbd4c8d30b62311d32bf468c17fbeeaeaf172dd0e.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/90f917262cb1b08ce3a58f6fbd4c8d30b62311d32bf468c17fbeeaeaf172dd0e.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/9710e3667ba29d899f3305463df2ab3bcaf9f9837316c7342e1010a1b0de456e.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/9710e3667ba29d899f3305463df2ab3bcaf9f9837316c7342e1010a1b0de456e.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/99d0cb834bdc63bf20d03ec410ab5a61791ab0f625f698dad92e292cc2ba0af2.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/99d0cb834bdc63bf20d03ec410ab5a61791ab0f625f698dad92e292cc2ba0af2.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/9a1428828729178b20ade9cfd42a79c4929ff91599854fb4cd90771cf3bfb6a9.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/9a1428828729178b20ade9cfd42a79c4929ff91599854fb4cd90771cf3bfb6a9.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/9c5ccf340ab95ebed3e0e02e051e99abbc396895cbf59a8af40d8faf01f3bcb4.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/9c5ccf340ab95ebed3e0e02e051e99abbc396895cbf59a8af40d8faf01f3bcb4.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/9d6abf1c20f127c174dc87e0c368042eb07e1436802ba9e43b649f376b90207a.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/9d6abf1c20f127c174dc87e0c368042eb07e1436802ba9e43b649f376b90207a.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/9e158cd20bd34e89953c1715d26242b3ec00f56e3ad5345899d06d9073706e6f.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/9e158cd20bd34e89953c1715d26242b3ec00f56e3ad5345899d06d9073706e6f.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/9e7ed6dac44f53ad72f0c9402c23dc4269552f7c73c479e3ceed9169f2f6fe6d.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/9e7ed6dac44f53ad72f0c9402c23dc4269552f7c73c479e3ceed9169f2f6fe6d.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/a126cca3abdc8437a74948a499efd44da823a5318e3f1e536359fb335ca022f2.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/a126cca3abdc8437a74948a499efd44da823a5318e3f1e536359fb335ca022f2.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/a422ac2b5032e6a9047237c28a1d971e0cf0659ac7019f4e201bcc2fbe6d79d9.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/a422ac2b5032e6a9047237c28a1d971e0cf0659ac7019f4e201bcc2fbe6d79d9.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/a44feb21b28205ce7117bd4020092c5fd63a79860da0eeada3bc8859d03b762b.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/a44feb21b28205ce7117bd4020092c5fd63a79860da0eeada3bc8859d03b762b.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/a703c8b7de5ce6cc2f772c2308ad9ea68569d80a62b3af50bbfd1c1a912d7156.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/a703c8b7de5ce6cc2f772c2308ad9ea68569d80a62b3af50bbfd1c1a912d7156.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/a75a21328cbb7df8d87e24d560da963b302f8bfe55f97446ed30508fe235a529.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/a75a21328cbb7df8d87e24d560da963b302f8bfe55f97446ed30508fe235a529.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/a7a4e5d7ec8b179b146216ed69bd3fba9f73e504673992e37e0cac6d692ce9b0.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/a7a4e5d7ec8b179b146216ed69bd3fba9f73e504673992e37e0cac6d692ce9b0.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/a81585b0d72dc18ee8ed168bc2a035503c3dbe8901131128d2eada248770af5d.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/a81585b0d72dc18ee8ed168bc2a035503c3dbe8901131128d2eada248770af5d.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/a8dc8417aef1438cfd2a3e05502b4d0621a00d1382078d7e662b3dfe9b5ad92d.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/a8dc8417aef1438cfd2a3e05502b4d0621a00d1382078d7e662b3dfe9b5ad92d.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/adf96360785993953aee44fdc12364623022609eb16cd9331c014f124f341899.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/adf96360785993953aee44fdc12364623022609eb16cd9331c014f124f341899.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/ae957d25bb40e5240e5c0255231e0fc38d52f6c85a005e46c8fd39f18e243017.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/ae957d25bb40e5240e5c0255231e0fc38d52f6c85a005e46c8fd39f18e243017.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/af6f36eb31303dc542cb75b334e4fb7015ff97e1c7192814d7ed10c3761a746e.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/af6f36eb31303dc542cb75b334e4fb7015ff97e1c7192814d7ed10c3761a746e.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/b158fe316ccc60071f9f11fd746ea9137b58c52be78980db1c602bc0896566d5.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/b158fe316ccc60071f9f11fd746ea9137b58c52be78980db1c602bc0896566d5.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/b1f9c96fbc41b879f3eae643ffe3a2c2d27d81af1af3c3a16e96bcfd3c346b78.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/b1f9c96fbc41b879f3eae643ffe3a2c2d27d81af1af3c3a16e96bcfd3c346b78.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/b48827e59e4c03dd89d30b1e03d1a8b516f1557453df10ba2dc0da33a7f995e8.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/b48827e59e4c03dd89d30b1e03d1a8b516f1557453df10ba2dc0da33a7f995e8.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/bac2b68ea5401b868bf20001dd326087650512796db643e0fc2fb2e4c809d792.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/bac2b68ea5401b868bf20001dd326087650512796db643e0fc2fb2e4c809d792.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/c10031da02cb079e7b02e4eb052a2702da986331dee729ae9eea8174a61efd40.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/c10031da02cb079e7b02e4eb052a2702da986331dee729ae9eea8174a61efd40.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/c2b76331083973c267e903b74f9d7c16dd6719b3f9ff282a5d14aff1a4772cdd.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/c2b76331083973c267e903b74f9d7c16dd6719b3f9ff282a5d14aff1a4772cdd.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/c7f253382611202bcad953aa052f5df91a42a36adbdbec74e327fb3a5d9f3b2d.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/c7f253382611202bcad953aa052f5df91a42a36adbdbec74e327fb3a5d9f3b2d.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/c93f923522f362a30cff9a65be46d8fada39816446eacf60b32ecba7c95aec9f.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/c93f923522f362a30cff9a65be46d8fada39816446eacf60b32ecba7c95aec9f.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/cb64236fe10a98ad31a9cf196a6b660c626311ea26f547d297638e75e0eef4bc.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/cb64236fe10a98ad31a9cf196a6b660c626311ea26f547d297638e75e0eef4bc.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/cc1b34f69da3c7338bf6a5642dd7545cc3b327be1aec986ff9b542a520473252.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/cc1b34f69da3c7338bf6a5642dd7545cc3b327be1aec986ff9b542a520473252.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/ce5e61a5f8ec28572df42c0f8c5924ab297f8769ccaf40fa110b4b25098fd118.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/ce5e61a5f8ec28572df42c0f8c5924ab297f8769ccaf40fa110b4b25098fd118.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/cf109457c184bc560acc435ae627e624d07d49df372f10f846da4f99fd5e14bb.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/cf109457c184bc560acc435ae627e624d07d49df372f10f846da4f99fd5e14bb.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/d15049d0f3f581db6f423a2b7c31cce6fe598c8926a2a123baa1d7396178ac9f.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/d15049d0f3f581db6f423a2b7c31cce6fe598c8926a2a123baa1d7396178ac9f.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/d3fa02d8d285831965cd29014078c24c6919cd0f36bc956c313bd845e6c33330.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/d3fa02d8d285831965cd29014078c24c6919cd0f36bc956c313bd845e6c33330.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/d59434041c010d186bf7321a9504713505e9d990c2aee44ad3ceff15e3a1affe.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/d59434041c010d186bf7321a9504713505e9d990c2aee44ad3ceff15e3a1affe.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/da4321fb518e08c6fff48b5eab07101986f8e6a76243e96406180c4e52469443.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/da4321fb518e08c6fff48b5eab07101986f8e6a76243e96406180c4e52469443.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/dfa46ca0ff6a82d007fa219103646efd6806dc3ac90a0dcdbea2999c64e7c1e1.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/dfa46ca0ff6a82d007fa219103646efd6806dc3ac90a0dcdbea2999c64e7c1e1.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/dff74cca75bee6736266af3c7650721aec32b4e822bd3020e9573039db677e9b.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/dff74cca75bee6736266af3c7650721aec32b4e822bd3020e9573039db677e9b.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/e0ac0e34aaf7ddc42e06dccadf4084d86394072c20d26420e3762ac6196dc815.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/e0ac0e34aaf7ddc42e06dccadf4084d86394072c20d26420e3762ac6196dc815.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/e19be980cf0c3b3f1b00a215b9a9b843ff4247e51d1dbea5d6375169a606d67c.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/e19be980cf0c3b3f1b00a215b9a9b843ff4247e51d1dbea5d6375169a606d67c.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/e1bad333d2ee13103c4270f6d0a09568658665ff151bf72312304282c4396378.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/e1bad333d2ee13103c4270f6d0a09568658665ff151bf72312304282c4396378.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/e1c62f70675af952cb85262bca222fb1ca1c63305eef4b206e893f5ebd6cd3e9.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/e1c62f70675af952cb85262bca222fb1ca1c63305eef4b206e893f5ebd6cd3e9.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/e25a5cfb5e32767cd6280bfba61ac361d5ccabc1a6f9e9859363b8d53f2a14eb.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/e25a5cfb5e32767cd6280bfba61ac361d5ccabc1a6f9e9859363b8d53f2a14eb.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/e3575130a420c9e10e3bcbecf772c3056ae962e1ee5f8179f322bc3cae42eb5e.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/e3575130a420c9e10e3bcbecf772c3056ae962e1ee5f8179f322bc3cae42eb5e.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/e3df464fc42151896039777715425c600f266de6dbf193c84920d79ab81728cd.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/e3df464fc42151896039777715425c600f266de6dbf193c84920d79ab81728cd.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/e844a9fd476f57f5f32d9d24c9f9974c006a824e9a906d0953eef63631c99aa7.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/e844a9fd476f57f5f32d9d24c9f9974c006a824e9a906d0953eef63631c99aa7.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/eadff3ec4ef2430c36821145145a32c084ff6f1da855f6e904b384a610e62387.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/eadff3ec4ef2430c36821145145a32c084ff6f1da855f6e904b384a610e62387.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/eb07196e896486cd50c09c6009bdc666444d542dec0b436607c65ff2f839b876.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/eb07196e896486cd50c09c6009bdc666444d542dec0b436607c65ff2f839b876.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/eb170e7ed1e3155c9e156c6f1bda8be24e51a4b711f437fe92f36615a04bbb3c.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/eb170e7ed1e3155c9e156c6f1bda8be24e51a4b711f437fe92f36615a04bbb3c.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/eeb6a19b06123f570542b531cc7ce44f5694be03b58e87cc79168de2e11b3495.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/eeb6a19b06123f570542b531cc7ce44f5694be03b58e87cc79168de2e11b3495.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/f056b8c28779bfa35f1831b29bf20e9a779242e13c1cdf7ea6782c8e6f75b2fd.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/f056b8c28779bfa35f1831b29bf20e9a779242e13c1cdf7ea6782c8e6f75b2fd.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/f0ed7df700e797e045eddc43994dba5e60dfd7c875c6dad9701796a32cce4d3e.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/f0ed7df700e797e045eddc43994dba5e60dfd7c875c6dad9701796a32cce4d3e.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/f14c3328876daf9b0c6f09e5c3e9ac86b7de8270d1ccd0a6c4f3cebb16bcd354.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/f14c3328876daf9b0c6f09e5c3e9ac86b7de8270d1ccd0a6c4f3cebb16bcd354.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/f24c672c71fadd3ce989247cd755fc05a3b3ebf6061d7a4dd0e0b2ecb5005f38.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/f24c672c71fadd3ce989247cd755fc05a3b3ebf6061d7a4dd0e0b2ecb5005f38.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/fad7a31a86d7112c66600b9594e3b851d2af36439b76b8f00c17d45817168d29.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/fad7a31a86d7112c66600b9594e3b851d2af36439b76b8f00c17d45817168d29.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/fb44366b325488eeeeb60ca7d2903ae683c9fd5b273cac5aa2fa064edb1784eb.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/fb44366b325488eeeeb60ca7d2903ae683c9fd5b273cac5aa2fa064edb1784eb.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/fcca39a0a68682a601acae795a05941b1f52e4b24946f41585ae90ffb1a825d3.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/fcca39a0a68682a601acae795a05941b1f52e4b24946f41585ae90ffb1a825d3.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/fd613f69d7635ccf12254322d96cfc563e37c83757e87d3057cc9ae078e20f6d.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/fd613f69d7635ccf12254322d96cfc563e37c83757e87d3057cc9ae078e20f6d.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/fdff2059080e8fe9f26b9cbc68bad3a12ed06ececc33940d813a6e08d4a0e6bc.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/fdff2059080e8fe9f26b9cbc68bad3a12ed06ececc33940d813a6e08d4a0e6bc.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "proxied-images/fe9501f18fd23ddba696380a4557db39dcb0e39f3b7d24502e1107b49f015001.bin",
+        "structureType": "proxied-image-binary",
+        "required": false
+      },
+      {
+        "path": "proxied-images/fe9501f18fd23ddba696380a4557db39dcb0e39f3b7d24502e1107b49f015001.json",
+        "structureType": "proxied-image-metadata-json",
+        "required": false
+      },
+      {
+        "path": "route-candidate-pool.jsonl",
+        "structureType": "candidate-pool-jsonl",
+        "required": false
+      },
+      {
+        "path": "route-evidence.20260630-163906.before-coverage-matrix.json",
+        "structureType": "route-evidence-backup-json",
+        "required": false
+      },
+      {
+        "path": "route-feed-bootstrap-cross-payload.json",
+        "structureType": "feed-response-json",
+        "required": false
+      },
+      {
+        "path": "route-feed-bootstrap-payload.json",
+        "structureType": "feed-response-json",
+        "required": false
+      },
+      {
+        "path": "route-feed-bootstrap-single-payload.json",
+        "structureType": "feed-response-json",
+        "required": false
+      },
+      {
+        "path": "route-image-cache.json",
+        "structureType": "route-image-cache-json",
+        "required": false
+      },
+      {
+        "path": "search-analytics.jsonl",
+        "structureType": "search-analytics-jsonl",
+        "required": true
+      },
+      {
+        "path": "search-cache.json",
+        "structureType": "search-cache-json",
+        "required": true
+      },
+      {
+        "path": "search-review-candidates.json",
+        "structureType": "search-review-candidates-json",
+        "required": true
+      },
+      {
+        "path": "server.err.log",
+        "structureType": "runtime-log",
+        "required": false
+      },
+      {
+        "path": "server.out.log",
+        "structureType": "runtime-log",
+        "required": false
+      }
+    ]
+  },
+  "externalFormal": {
+    "enforcement": "independent-accepted-baseline",
+    "files": [
+      {
+        "path": "accepted-routes.json",
+        "bytes": 45562416,
+        "sha256": "aea28bcc03eaf6ccce5fd7453f88ece4f0060789f135eaf837b568d9c43e7e3f",
+        "structureType": "accepted-repository-json"
+      }
+    ]
+  },
+  "historicalWholeCacheHash": {
+    "sha256": "056d3af349b05cc7ae59620c23be26e11e91dd1d0c37a8bf2b153362834568cb",
+    "enforcement": "historical-only",
+    "reproducible": false
+  }
+}

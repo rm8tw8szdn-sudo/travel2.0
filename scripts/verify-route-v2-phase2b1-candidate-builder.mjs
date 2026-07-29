@@ -98,7 +98,7 @@ assert(firstRun.every((candidate) => candidate.createdAt === ROUTE_CANDIDATE_BUI
 for (const candidate of firstRun) {
   const validation = validateRouteCandidate(candidate);
   assert.equal(validation.accepted, true, `candidate failed Phase 2A schema: ${validation.reasons.join(", ")}`);
-  assert.equal(candidate.status, "generated", "Phase 2B-1 should only emit generated status");
+  assert.equal(candidate.status, "pending", "Phase 2B-1 should emit the unified pending lifecycle state");
   assert.deepEqual(candidate.rejectionReasons, [], "Phase 2B-1 must not invent rejection reasons");
   assert(!("selected" in candidate), "Phase 2B-1 must not mark selected candidates");
   assert(!("rejected" in candidate), "Phase 2B-1 must not mark rejected candidates");
@@ -120,7 +120,20 @@ const insufficientRun = buildRouteCandidatesFromPool({
   targetCount: 8,
   seed: "phase2b1-small-pool",
 });
-assert.equal(insufficientRun.length, 1, "two valid destinations should produce one candidate rather than hard-filling target count");
+assert.equal(insufficientRun.length, 3, "two valid destinations should produce the three comparable Phase 2B candidate variants");
+assert.equal(
+  new Set(insufficientRun.map(candidateShapeKey)).size,
+  insufficientRun.length,
+  "two-destination candidate variants must keep distinct shapes",
+);
+for (let index = 0; index < insufficientRun.length; index += 1) {
+  for (let nextIndex = index + 1; nextIndex < insufficientRun.length; nextIndex += 1) {
+    assert(
+      candidateHasMeaningfulDifference(insufficientRun[index], insufficientRun[nextIndex]),
+      "two-destination candidate variants must remain meaningfully different",
+    );
+  }
+}
 
 const duplicateRun = buildRouteCandidatesFromPool({
   context: { ...context, intentId: "intent-dedupe" },

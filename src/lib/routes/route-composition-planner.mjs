@@ -5,19 +5,45 @@ import { buildRouteConcept, validateRouteConcept, TRAVEL_STYLE_LABEL, TRAVEL_STY
 import { runAllDecisionTests } from "./route-decision-tests.mjs";
 import { listCases, asFewShotReasoning } from "./route-gold-cases.mjs";
 import { skeletonFromSuggestion } from "./route-llm-refine-shared.mjs";
+import {
+  finalizeRouteResult,
+  validateEmbeddedRouteIntent,
+} from "./route-intent-invariant-gate.mjs";
+import { compareRouteIntentShadow } from "./route-intent-shadow-validation.mjs";
 import { createWebSearchEvidenceProvider } from "./web-search-evidence-provider.mjs";
 import { createWebEvidenceExtractor } from "./web-evidence-extractor.mjs";
 import { createWebEvidenceCorroborator } from "./web-evidence-corroborator.mjs";
-import { createDecisionTraceStore, writeLegacyDecisionTraceSafe } from "./decision-trace-store.mjs";
+import { createDecisionTraceStore, writeFailureDecisionTraceSafe, writeLegacyDecisionTraceSafe } from "./decision-trace-store.mjs";
+import { isRouteV2IntentEnabled, routeIntentSnapshot } from "./decision-trace-schema.mjs";
 import { buildRouteCandidatesFromPool } from "./route-candidate-builder.mjs";
-import { createRouteCandidatePoolStore } from "./route-candidate-pool.mjs";
+import { createRouteCandidatePoolStore, validateRouteCandidate } from "./route-candidate-pool.mjs";
+import {
+  ROUTE_CANDIDATE_SELECTION_TARGET,
+  selectRouteCandidates,
+  selectRouteCandidatesWithEvidence,
+} from "./route-candidate-selection.mjs";
+import {
+  isRouteV2EvidenceValidationEnabled,
+  maxDestinationsForDuration,
+  validateRouteForUse,
+} from "./route-candidate-evidence-validation.mjs";
 import { createEvidenceBundleStore } from "./evidence-bundle-store.mjs";
 import { writeLocalEvidenceSidecarSafe } from "./local-evidence-sidecar.mjs";
+import { writeEvidenceBundleLifecycleSidecarSafe } from "./evidence-bundle-lifecycle-sidecar.mjs";
+import { createLocalEvidenceRepository } from "./local-evidence-repository.mjs";
+import {
+  ROUTE_V2_PUBLICATION_GATE_VERSION,
+  evaluateRouteV2Publication,
+  isRouteV2PublicationGateEnabled,
+} from "./route-publication-gate.mjs";
+import { createRouteV2ReadyPool } from "./route-v2-ready-pool.mjs";
 
 const PHASE_2A_STRATEGIES = ["Geographic", "Theme", "Season", "Transport", "Depth", "Efficiency"];
 const MAX_SEGMENT_KM = 650;
 const MAX_TOTAL_ROUTE_KM = 2200;
 const MAX_ROUTE_SPAN_KM = 1200;
+const ROUTE_GENERATION_V2_PHASE1 = "route-generation-v2-phase1";
+const V2_NOT_PUBLISHABLE_YET = "v2-not-publishable-yet";
 
 const FIRST_TRIP_ANCHORS = {
   JP: ["Q1490", "tokyo", "东京", "Q39231", "mount fuji", "富士山", "Q34600", "kyoto", "京都", "Q169134", "nara", "奈良", "Q35765", "osaka", "大阪"],
@@ -62,6 +88,20 @@ function clean(value) {
 
 function unique(values) {
   return [...new Set((values || []).map(clean).filter(Boolean))];
+}
+
+function ensureV2PublicationCover(record = {}) {
+  if (clean(record.coverAsset?.imageUrl || record.coverImageUrl || record.imageUrl)) return record;
+  return {
+    ...record,
+    coverAsset: {
+      provider: "local-static-fallback",
+      assetId: "trip-cover-placeholder",
+      imageUrl: "assets/trip-cover-placeholder.svg",
+      status: "placeholder",
+    },
+    coverStatus: "placeholder",
+  };
 }
 
 function limitedIds(items, limit = 12) {
@@ -581,7 +621,7 @@ function goldCaseForConcept(concept) {
 function selectDestinationPool(concept, context, knowledgeGraph) {
   if (!knowledgeGraph?.queryDestinations) return [];
   const anchors = anchorsForContext(concept, context);
-  const pool = countryCodesForContext(context).flatMap((country) => knowledgeGraph.queryDestinations({
+  const rawPool = countryCodesForContext(context).flatMap((country) => knowledgeGraph.queryDestinations({
     country,
     region: context.region || "",
     theme: context.theme || "",
@@ -589,6 +629,28 @@ function selectDestinationPool(concept, context, knowledgeGraph) {
     season: context.season || "",
     limit: anchors.length ? 40 : 12,
   }) || []);
+  const entityPool = rawPool.filter((destination) => clean(destination.destinationSource) === "knowledge-entity-layer");
+  const requiredIds = new Set(
+    Array.isArray(context.requiredDestinationIds)
+      ? context.requiredDestinationIds.map(clean).filter(Boolean)
+      : [],
+  );
+  if (clean(context.routeReferenceMode) === "citywalk") {
+    const citywalkPool = citywalkDestinationPool(entityPool, [...requiredIds]);
+    if (citywalkPool.length >= 2) return citywalkPool;
+  }
+  const entityKeys = new Set(entityPool.flatMap((destination) => destinationIdentityKeys(destination)));
+  const entityPoolCoversRequired = [...requiredIds].every((id) => entityKeys.has(id));
+  const groundedPool = entityPool.length >= 2 && entityPoolCoversRequired ? entityPool : rawPool;
+  const suggestionIds = new Set(
+    Array.isArray(context.destinationSuggestion?.destinationIds)
+      ? context.destinationSuggestion.destinationIds.map(clean).filter(Boolean)
+      : [],
+  );
+  const suggestionPool = suggestionIds.size
+    ? groundedPool.filter((destination) => destinationIdentityKeys(destination).some((key) => suggestionIds.has(key)))
+    : [];
+  const pool = suggestionPool.length >= 2 ? suggestionPool : groundedPool;
   if (!anchors.length) return pool;
   return pool.slice().sort((a, b) => {
     const ai = anchorIndex(a, anchors);
@@ -607,53 +669,307 @@ async function writeCandidatePoolSidecarSafe({
   concept,
   pool,
   candidatePoolStore,
+  localEvidenceRepository = null,
   routeCandidateBuilder = buildRouteCandidatesFromPool,
+  candidateEvidenceValidator = validateRouteForUse,
+  env = process.env,
 } = {}) {
+  async function persistBatch(intentId, candidates) {
+    if (candidatePoolStore?.replaceForIntent) {
+      return candidatePoolStore.replaceForIntent(intentId, candidates);
+    }
+    const results = [];
+    for (const candidate of candidates) {
+      try {
+        results.push(await candidatePoolStore.append(candidate));
+      } catch (error) {
+        results.push({ written: false, persisted: false, reason: clean(error?.message || String(error)) || "candidate-write-failed" });
+      }
+    }
+    const persisted = results.every((result) => result?.persisted === true || result?.written === true);
+    return {
+      written: results.some((result) => result?.written),
+      persisted,
+      count: persisted ? candidates.length : results.filter((result) => result?.persisted === true || result?.written === true).length,
+      candidateIds: persisted ? candidates.map((candidate) => candidate.candidateId) : [],
+      results,
+      reason: persisted ? "candidate-batch-persisted" : "candidate-persistence-incomplete",
+    };
+  }
+
   try {
     if (!candidatePoolStore?.enabled?.()) {
       return { enabled: false, generated: 0, written: 0, skipped: true, reason: "candidate-pool-disabled" };
     }
-    const candidates = routeCandidateBuilder({
-      context,
+    const selectionEnabled = isRouteV2IntentEnabled(env);
+    const strictSuggestionCapacity = context?.destinationSuggestion
+      ? maxDestinationsForConcept(concept)
+      : null;
+    const evidenceBridgeInsertions = selectionEnabled && isRouteV2EvidenceValidationEnabled(env)
+      ? preferredEvidenceBridgeInsertions(context, pool, localEvidenceRepository)
+      : [];
+    const candidateContext = evidenceBridgeInsertions.length
+      ? { ...context, preferredEvidenceBridgeInsertions: evidenceBridgeInsertions }
+      : context;
+    let builtCandidates = routeCandidateBuilder({
+      context: candidateContext,
       concept,
       pool,
-      targetCount: Number(context?.candidateTargetCount) || 8,
+      targetCount: selectionEnabled && strictSuggestionCapacity
+        ? 12
+        : selectionEnabled
+          ? ROUTE_CANDIDATE_SELECTION_TARGET
+          : Number(context?.candidateTargetCount) || 8,
       seed: context?.candidateSeed || context?.intentId || "",
     });
-    let written = 0;
-    const failures = [];
-    const writtenCandidates = [];
-    for (const candidate of candidates) {
-      const sidecarCandidate = {
-        ...candidate,
-        supportingSignals: [
-          ...(candidate.supportingSignals || []),
-          { type: "planner-sidecar-stage", value: "after-selectDestinationPool-before-buildRouteSkeleton" },
-        ],
-      };
-      const result = await candidatePoolStore.append(sidecarCandidate);
-      if (result?.written) {
-        written += 1;
-        writtenCandidates.push(sidecarCandidate);
-      } else if (!result?.skipped) {
-        failures.push(result?.reason || "candidate-write-failed");
+    if (selectionEnabled && strictSuggestionCapacity) {
+      const suggestionShape = (candidate) => JSON.stringify({
+        destinations: [...(candidate.proposedOrder || [])].sort(),
+        variant: clean(candidate.candidateVariant || ""),
+      });
+      const byShape = new Map(builtCandidates.map((candidate) => [suggestionShape(candidate), candidate]));
+      for (let attempt = 1; attempt <= 6; attempt += 1) {
+        const capacitySafeCount = [...byShape.values()]
+          .filter((candidate) => candidate.destinations.length <= strictSuggestionCapacity)
+          .length;
+        if (capacitySafeCount >= ROUTE_CANDIDATE_SELECTION_TARGET) break;
+        const retrySeed = `${context?.candidateSeed || context?.intentId || ""}:capacity:${attempt}`;
+        for (const candidate of routeCandidateBuilder({
+          context: candidateContext,
+          concept,
+          pool,
+          targetCount: 12,
+          seed: retrySeed,
+        })) {
+          const shape = suggestionShape(candidate);
+          if (!byShape.has(shape)) byShape.set(shape, candidate);
+        }
       }
+      builtCandidates = [...byShape.values()];
     }
-    return { enabled: true, generated: candidates.length, written, failures, writtenCandidates };
+    const capacitySafeCandidates = strictSuggestionCapacity
+      ? builtCandidates.filter((candidate) => candidate.destinations.length <= strictSuggestionCapacity)
+      : builtCandidates;
+    const candidates = selectionEnabled
+      ? capacitySafeCandidates.slice(0, ROUTE_CANDIDATE_SELECTION_TARGET)
+      : capacitySafeCandidates;
+    const failures = [];
+    const generatedCandidates = candidates.map((candidate) => ({
+      ...candidate,
+      status: "pending",
+      rejectionReasons: [],
+      supportingSignals: [
+        ...(candidate.supportingSignals || []),
+        { type: "planner-sidecar-stage", value: "after-selectDestinationPool-before-buildRouteSkeleton" },
+      ],
+    }));
+    const inputIntentSnapshot = routeIntentSnapshot({
+      context,
+      intentId: context?.intentId || generatedCandidates[0]?.intentId || "",
+      source: "planner-candidate-sidecar",
+    });
+    const pendingCandidates = generatedCandidates.map((candidate) => ({
+      ...candidate,
+      routeIntentFingerprintVersion: inputIntentSnapshot.routeIntentFingerprintVersion,
+      routeIntentFingerprint: inputIntentSnapshot.routeIntentFingerprint,
+      normalizedRouteIntent: structuredClone(inputIntentSnapshot.normalizedRouteIntent),
+      inputIntentSnapshot,
+    }));
+    const invalidCandidates = pendingCandidates
+      .map((candidate) => ({ candidate, validation: validateRouteCandidate(candidate) }))
+      .filter((entry) => !entry.validation.accepted);
+    if (selectionEnabled && invalidCandidates.length) {
+      return {
+        enabled: true,
+        generated: pendingCandidates.length,
+        written: 0,
+        failures: invalidCandidates.flatMap((entry) => entry.validation.reasons),
+        generatedCandidates: pendingCandidates.filter((candidate) => validateRouteCandidate(candidate).accepted),
+        invalidCandidates: invalidCandidates.map((entry) => ({ candidateId: entry.candidate.candidateId || "", reasons: entry.validation.reasons })),
+        persistedCandidates: [],
+        writtenCandidates: [],
+        selection: null,
+        persistenceReady: false,
+        failureStage: "candidate-schema-validation",
+        failureReason: "candidate-schema-invalid",
+      };
+    }
+    if (selectionEnabled && pendingCandidates.length < ROUTE_CANDIDATE_SELECTION_TARGET) {
+      const failureReason = pendingCandidates.length === 0 && context?.requiredDestinationIds?.length
+        ? "required-destination-not-in-pool"
+        : pendingCandidates.length === 0
+          ? "candidate-pool-empty"
+          : "candidate-pool-insufficient";
+      return {
+        enabled: true,
+        generated: pendingCandidates.length,
+        written: 0,
+        failures: [failureReason],
+        generatedCandidates: pendingCandidates,
+        persistedCandidates: [],
+        writtenCandidates: [],
+        selection: null,
+        persistenceReady: false,
+        failureStage: "candidate-generation",
+        failureReason,
+      };
+    }
+    const intentId = inputIntentSnapshot.intentId;
+    const pendingWrite = await persistBatch(intentId, pendingCandidates);
+    const pendingIds = new Set(pendingWrite?.candidateIds || []);
+    const pendingPersistenceComplete = pendingWrite?.persisted === true
+      && Number(pendingWrite?.count) === pendingCandidates.length
+      && pendingCandidates.length > 0
+      && pendingCandidates.every((candidate) => pendingIds.has(candidate.candidateId));
+    if (!pendingPersistenceComplete) {
+      failures.push(pendingWrite?.reason || "candidate-persistence-incomplete");
+      return {
+        enabled: true,
+        generated: generatedCandidates.length,
+        written: Number(pendingWrite?.count || 0),
+        failures,
+        generatedCandidates: pendingCandidates,
+        persistedCandidates: [],
+        writtenCandidates: [],
+        selection: null,
+        persistenceReady: false,
+        failureStage: "candidate-persistence",
+        failureReason: "candidate-persistence-incomplete",
+      };
+    }
+
+    if (!selectionEnabled) {
+      return {
+        enabled: true,
+        generated: generatedCandidates.length,
+        written: pendingCandidates.length,
+        failures,
+        generatedCandidates: pendingCandidates,
+        persistedCandidates: pendingCandidates,
+        writtenCandidates: pendingCandidates,
+        selection: null,
+        persistenceReady: true,
+      };
+    }
+
+    const selection = isRouteV2EvidenceValidationEnabled(env)
+      ? selectRouteCandidatesWithEvidence({
+        candidates: pendingCandidates,
+        context,
+        intentId,
+        evidenceRepository: localEvidenceRepository,
+        validator: candidateEvidenceValidator,
+      })
+      : selectRouteCandidates({ candidates: pendingCandidates, context, intentId });
+    if (!selection?.ready) {
+      const failedCandidates = selection?.candidatePool?.length ? selection.candidatePool : pendingCandidates.map((candidate) => ({
+        ...candidate,
+        status: "failed",
+        rejectionReasons: [{ code: "candidate-selection-minimum-not-met", reason: "Candidate selection did not produce exactly one selected route." }],
+      }));
+      await persistBatch(intentId, failedCandidates);
+      return {
+        enabled: true,
+        generated: generatedCandidates.length,
+        written: pendingCandidates.length,
+        failures: [selection?.reason || "candidate-selection-failed"],
+        generatedCandidates: pendingCandidates,
+        persistedCandidates: failedCandidates,
+        writtenCandidates: failedCandidates,
+        selection: null,
+        failedSelection: selection,
+        validationResults: structuredClone(selection?.validationResults || []),
+        persistenceReady: false,
+        failureStage: "candidate-selection",
+        failureReason: selection?.reason || "candidate-selection-failed",
+      };
+    }
+    const selectedById = new Map(selection.candidatePool.map((candidate) => [candidate.candidateId, candidate]));
+    const finalCandidates = pendingCandidates.map((candidate) => ({
+      ...candidate,
+      ...structuredClone(selectedById.get(candidate.candidateId)),
+      inputIntentSnapshot,
+    }));
+    const finalWrite = await persistBatch(intentId, finalCandidates);
+    const finalIds = new Set(finalWrite?.candidateIds || []);
+    const finalPersistenceComplete = finalWrite?.persisted === true
+      && Number(finalWrite?.count) === ROUTE_CANDIDATE_SELECTION_TARGET
+      && finalCandidates.length === ROUTE_CANDIDATE_SELECTION_TARGET
+      && finalCandidates.every((candidate) => finalIds.has(candidate.candidateId));
+    if (!finalPersistenceComplete) {
+      failures.push(finalWrite?.reason || "candidate-final-state-persistence-incomplete");
+      return {
+        enabled: true,
+        generated: generatedCandidates.length,
+        written: Number(finalWrite?.count || 0),
+        failures,
+        generatedCandidates: pendingCandidates,
+        persistedCandidates: pendingCandidates,
+        writtenCandidates: pendingCandidates,
+        selection: null,
+        persistenceReady: false,
+        failureStage: "candidate-final-state-persistence",
+        failureReason: "candidate-final-state-persistence-incomplete",
+      };
+    }
+    return {
+      enabled: true,
+      generated: generatedCandidates.length,
+      written: finalCandidates.length,
+      failures,
+        generatedCandidates: pendingCandidates,
+      persistedCandidates: finalCandidates,
+      writtenCandidates: finalCandidates,
+      selection,
+      persistenceReady: true,
+    };
   } catch (error) {
+    const errorMessage = clean(error?.message || String(error)) || "candidate-sidecar-failed";
     return {
       enabled: true,
       generated: 0,
       written: 0,
-      failures: [clean(error?.message || String(error))],
+      failures: [errorMessage],
+      generatedCandidates: [],
+      persistedCandidates: [],
+      writtenCandidates: [],
+      selection: null,
+      persistenceReady: false,
+      failureStage: "candidate-persistence",
+      failureReason: "candidate-sidecar-failed",
       reason: "candidate-sidecar-failed",
     };
   }
 }
 
 function buildRouteSkeleton(pool, concept, context = {}) {
+  const requiredIds = Array.isArray(context.requiredDestinationIds) ? context.requiredDestinationIds.map(clean).filter(Boolean) : [];
+  const requiredNames = Array.isArray(context.requiredDestinationNames) ? context.requiredDestinationNames.map(clean).filter(Boolean) : [];
+  const requiredCount = Math.max(requiredIds.length, requiredNames.length);
+  if (requiredCount) {
+    const selected = [];
+    const used = new Set();
+    for (let index = 0; index < requiredCount; index += 1) {
+      const requiredId = requiredIds[index] || "";
+      const requiredName = requiredNames[index] || "";
+      const matchIndex = pool.findIndex((destination, poolIndex) => {
+        if (used.has(poolIndex)) return false;
+        const keys = destinationIdentityKeys(destination);
+        if (requiredId) return keys.includes(requiredId);
+        return requiredName ? destinationTerms(destination).includes(requiredName.toLocaleLowerCase("en-US")) : false;
+      });
+      if (matchIndex < 0) return [];
+      used.add(matchIndex);
+      selected.push(pool[matchIndex]);
+    }
+    return selected;
+  }
   const withCoords = pool.filter((d) => coordinate(d));
-  const maxDestinations = maxDestinationsForConcept(concept);
+  const requestedDurationDays = Number(context.durationDays || concept.durationDays);
+  const durationCapacity = Number.isInteger(requestedDurationDays) && requestedDurationDays > 0
+    ? maxDestinationsForDuration(requestedDurationDays)
+    : Infinity;
+  const maxDestinations = Math.min(maxDestinationsForConcept(concept), durationCapacity);
   const limits = routeDistanceLimits(concept);
   if (withCoords.length < 2) return pool.slice(0, maxDestinations);
   const anchors = anchorsForContext(concept, context);
@@ -687,6 +1003,135 @@ function buildRouteSkeleton(pool, concept, context = {}) {
   }
   void concept;
   return visited;
+}
+
+function destinationIdentityKeys(destination = {}) {
+  return unique([
+    destination.entityId,
+    destination.id,
+    destination.wikidataId,
+    destination.qid,
+    destination.name,
+  ]).map((value) => clean(value));
+}
+
+function citywalkDestinationPool(entityPool = [], requiredIds = []) {
+  if (requiredIds.length !== 1) return [];
+  const requiredId = clean(requiredIds[0]);
+  const city = entityPool.find((destination) => (
+    clean(destination.entityTypeName) === "city"
+    && destinationIdentityKeys(destination).includes(requiredId)
+  ));
+  if (!city || !Array.isArray(city.poiEntities) || city.poiEntities.length === 0) return [];
+  const pois = city.poiEntities.map((poi) => ({
+    ...structuredClone(poi),
+    parentCountryEntityId: clean(city.parentCountryEntityId),
+    parentCityEntityId: clean(poi.parentCityEntityId || city.entityId),
+    countryCode: clean(city.countryCode),
+    name: clean(poi.canonicalNameZh || poi.canonicalNameEn || poi.name),
+    sourceTitle: clean(poi.canonicalNameEn || poi.canonicalNameZh || poi.name),
+    canonicalTitle: clean(poi.canonicalNameEn || poi.canonicalNameZh || poi.name),
+    entityTypeName: "poi",
+    destinationSource: "knowledge-entity-layer",
+    countryEntity: structuredClone(city.countryEntity || {}),
+  }));
+  const seen = new Set();
+  return [city, ...pois].filter((destination) => {
+    const id = destinationIdentityKeys(destination)[0];
+    if (!id || seen.has(id)) return false;
+    seen.add(id);
+    return true;
+  });
+}
+
+function reusableLegEvidence(index, fromEntityId, toEntityId) {
+  if (!index?.getRouteLegsByEndpoints) return [];
+  return index.getRouteLegsByEndpoints({ fromEntityId, toEntityId }).filter((record) => (
+    clean(record?.feasibilityStatus) === "feasible"
+    && clean(record?.freshnessStatus) === "fresh"
+    && Array.isArray(record?.sources)
+    && record.sources.length > 0
+    && Array.isArray(record?.sourceRefs)
+    && record.sourceRefs.length > 0
+    && Number.isFinite(Number(record?.durationMinMinutes))
+    && Number.isFinite(Number(record?.durationMaxMinutes))
+    && (!record?.expiresAt || Date.parse(record.expiresAt) > Date.now())
+    && (!Array.isArray(record?.conflicts) || record.conflicts.length === 0)
+  ));
+}
+
+function preferredEvidenceBridgeInsertions(context = {}, pool = [], localEvidenceRepository = null) {
+  if (clean(context.destinationOrderMode) !== "flexible") return [];
+  const requiredIds = unique(context.requiredDestinationIds || []).map(clean);
+  if (requiredIds.length < 2) return [];
+  const requiredSet = new Set(requiredIds);
+  const index = localEvidenceRepository?.index || localEvidenceRepository;
+  const bridges = [];
+  for (const destination of pool) {
+    const destinationId = destinationIdentityKeys(destination).find((key) => !requiredSet.has(key));
+    if (!destinationId) continue;
+    for (let pairIndex = 0; pairIndex < requiredIds.length - 1; pairIndex += 1) {
+      const inbound = reusableLegEvidence(index, requiredIds[pairIndex], destinationId);
+      const outbound = reusableLegEvidence(index, destinationId, requiredIds[pairIndex + 1]);
+      if (!inbound.length || !outbound.length) continue;
+      const durationMinutes = Math.min(...inbound.map((record) => Number(record.durationMaxMinutes)))
+        + Math.min(...outbound.map((record) => Number(record.durationMaxMinutes)));
+      bridges.push({ destinationId, insertionIndex: pairIndex + 1, durationMinutes });
+    }
+  }
+  return bridges.sort((left, right) => left.durationMinutes - right.durationMinutes
+    || left.destinationId.localeCompare(right.destinationId, "en")
+    || left.insertionIndex - right.insertionIndex);
+}
+
+function skeletonFromSelectedCandidate(selectedCandidate, pool = []) {
+  if (!selectedCandidate?.candidateId) return { ok: false, reason: "selected-candidate-missing" };
+  const proposedOrder = Array.isArray(selectedCandidate.proposedOrder)
+    ? selectedCandidate.proposedOrder.map(clean).filter(Boolean)
+    : [];
+  const candidateDestinations = Array.isArray(selectedCandidate.destinations) ? selectedCandidate.destinations : [];
+  if (proposedOrder.length < 2 || proposedOrder.length !== candidateDestinations.length) {
+    return { ok: false, reason: "selected-candidate-order-invalid" };
+  }
+  const poolByKey = new Map();
+  for (const destination of pool) {
+    for (const key of destinationIdentityKeys(destination)) {
+      if (!poolByKey.has(key)) poolByKey.set(key, destination);
+    }
+  }
+  const candidateByKey = new Map();
+  for (const destination of candidateDestinations) {
+    for (const key of destinationIdentityKeys(destination)) {
+      if (!candidateByKey.has(key)) candidateByKey.set(key, destination);
+    }
+  }
+  const skeleton = [];
+  const used = new Set();
+  for (const orderId of proposedOrder) {
+    const candidateDestination = candidateByKey.get(orderId);
+    if (!candidateDestination) return { ok: false, reason: `selected-candidate-order-destination-missing:${orderId}` };
+    const source = destinationIdentityKeys(candidateDestination).map((key) => poolByKey.get(key)).find(Boolean);
+    if (!source) return { ok: false, reason: `selected-candidate-pool-destination-missing:${orderId}` };
+    const sourceKey = clean(source.entityId || source.wikidataId || source.id || source.name);
+    if (used.has(sourceKey)) return { ok: false, reason: `selected-candidate-order-duplicate:${orderId}` };
+    used.add(sourceKey);
+    skeleton.push(structuredClone(source));
+  }
+  return { ok: true, skeleton, proposedOrder };
+}
+
+function recordMatchesSelectedCandidate(record, selectedCandidate) {
+  if (!record || !selectedCandidate) return false;
+  const recordOrder = (record.destinationEntities || [])
+    .map((destination) => clean(destination.wikidataId || destination.entityId || destination.id || destination.name))
+    .filter(Boolean);
+  const selectedOrder = (selectedCandidate.proposedOrder || []).map(clean).filter(Boolean);
+  const recordCountries = unique((record.countryEntities || []).map((country) => country.countryCode)).sort();
+  const selectedCountries = unique(selectedCandidate.countries || []).sort();
+  return JSON.stringify(recordOrder) === JSON.stringify(selectedOrder)
+    && JSON.stringify(recordCountries) === JSON.stringify(selectedCountries)
+    && Number(record.durationDays) === Number(selectedCandidate.durationDays)
+    && clean(record.travelStyle) === clean(selectedCandidate.travelStyle);
 }
 
 // [6] evidenceCheck：对骨架每段查 Evidence。有则引用，缺则标记 NeedsEvidence。
@@ -861,12 +1306,89 @@ function destinationSourceProviders(destinationSource) {
   return [{ providerId: "knowledge-graph", url: "" }];
 }
 
+function plannerLiteraryTravelValue({ countryEntities = [], destinationEntities = [], concept = {} } = {}) {
+  const countryCodes = new Set(countryEntities.map((country) => clean(country.countryCode)).filter(Boolean));
+  const hasCountry = (...codes) => codes.some((code) => countryCodes.has(code));
+  const onlyCountries = (...codes) => (
+    countryCodes.size > 0
+    && [...countryCodes].every((code) => codes.includes(code))
+  );
+  const style = clean(concept.travelStyle).toLocaleLowerCase("en-US");
+  const narrative = [
+    style,
+    ...destinationEntities.flatMap((destination) => [
+      destination.name,
+      destination.canonicalNameZh,
+      destination.canonicalNameEn,
+    ]),
+  ].map(clean).filter(Boolean).join(" ");
+  if (hasCountry("KZ", "KG", "UZ", "TJ", "TM")) {
+    return "穿行丝路绿洲与旷野，让砖石穹顶和市集烟火交替展开。";
+  }
+  if (countryCodes.size >= 2 && onlyCountries("AT", "CZ", "HU", "SK")) {
+    return "沿多瑙河与帝国旧都的脉络前行，让宫殿、咖啡馆和老城夜色层层展开。";
+  }
+  if (countryCodes.size === 1 && hasCountry("JP")) {
+    return "在古都寺院、街巷日常与山海风景之间，读一段层次分明的日本。";
+  }
+  if (countryCodes.size === 1 && hasCountry("IT")) {
+    return "让教堂穹顶、文艺复兴街巷与餐桌烟火沿途相接。";
+  }
+  if (countryCodes.size === 1 && hasCountry("FR")) {
+    return "循着河岸、旧城与葡萄酒乡的光影，慢慢展开法兰西的不同侧面。";
+  }
+  if (onlyCountries("DK", "FI", "IS", "NO", "SE")) {
+    return "在港湾、森林与北地长光之间，感受城市秩序和旷野气息的交替。";
+  }
+  if (style === "classic-first-trip") {
+    return "从最具辨识度的老城与地标入手，先读懂一地的性格。";
+  }
+  if (style === "deep-dive") {
+    return "把脚步放慢，在支线街区与地方日常里读出更深一层。";
+  }
+  if (style === "country-hopper") {
+    return "在相邻国度的广场、街巷与餐桌之间，看见边界两侧的气质流转。";
+  }
+  if (style === "transport-journey") {
+    return "循着城际脉络换景，让站城、原野与地方日常自然衔接。";
+  }
+  if (style === "seasonal") {
+    return "顺应当季光线与风物，在天气变化里为旅途留出从容。";
+  }
+  if (style === "theme") {
+    return "循着一条鲜明线索，在建筑、风物与地方故事间逐层展开。";
+  }
+  if (style === "city-break") {
+    return "从晨间街市走到黄昏屋顶，在短暂停留里触到城市的脉搏。";
+  }
+  if (style === "pilgrimage") {
+    return "沿古道与信仰遗迹缓步前行，让沿途村镇成为旅程的一部分。";
+  }
+  if (style === "island-hopping") {
+    return "在海湾、港埠与离岛之间换景，把潮汐留进旅行节奏。";
+  }
+  if (style === "road-trip" || /自驾|公路|coast|highway|\broad\b|\bdrive\b/iu.test(narrative)) {
+    return "让公路、地貌和小镇日常在车窗外自然递进。";
+  }
+  if (style === "rail-journey" || /铁路|火车|列车|\brail(?:way)?\b|\btrain\b/iu.test(narrative)) {
+    return "循着铁路线换景，在站城之间收拢沿途风土。";
+  }
+  if (/古城|遗产|文明|城堡|教堂|unesco|heritage|temple|cathedral/iu.test(narrative)) {
+    return "循着古城街巷与砖石遗迹，读出不同时代留下的纹理。";
+  }
+  if (countryCodes.size >= 2) {
+    return "让几座城市的街景、历史与餐桌气息在移动中自然递进。";
+  }
+  return "从街巷、建筑到地方日常，慢慢读懂这片土地的层次。";
+}
+
 // 候选 record 构造（sourceType = planner-designed，绕过 composition-validator 旧桶校验）
 function buildPlannerRecord({ concept, skeleton, context, evidenceResult, strategies, score, goldCase, llmPlannerReason = null, llmRefined = false, llmConfidence = null, llmRefineError = null, llmProviderName = "" } = {}) {
   const countryEntities = countryEntitiesForRecord(context, skeleton);
   const destinationEntities = skeleton.map((destination) => ({
     ...(destination.entityId ? { entityId: clean(destination.entityId) } : {}),
     ...(destination.parentCountryEntityId ? { parentCountryEntityId: clean(destination.parentCountryEntityId) } : {}),
+    ...(destination.parentCityEntityId ? { parentCityEntityId: clean(destination.parentCityEntityId) } : {}),
     wikidataId: clean(destination.wikidataId),
     countryCode: clean(destination.countryCode || context.countryCode),
     name: clean(destination.name),
@@ -883,16 +1405,29 @@ function buildPlannerRecord({ concept, skeleton, context, evidenceResult, strate
   const sourceLabel = destinationSourceLabel(destinationSource);
   const countryName = countryEntities.map((country) => country.name).filter(Boolean).join("、");
   const places = destinationEntities.map((d) => d.name);
+  const displayTravelValue = plannerLiteraryTravelValue({
+    countryEntities,
+    destinationEntities,
+    concept,
+  });
+  const displayConcept = {
+    ...concept,
+    cityCount: places.length,
+    hotelChangeEstimate: Math.max(0, places.length - 1),
+    travelValue: displayTravelValue,
+  };
   const styleLabel = TRAVEL_STYLE_LABEL[concept.travelStyle] || concept.travelStyle;
   const styleLabelZh = TRAVEL_STYLE_LABEL_ZH[concept.travelStyle] || concept.travelStyle;
   const days = numberOrNull(String(concept.recommendedDays).match(/\d+/u)?.[0] || concept.durationDays);
   const durationLabel = days ? `${days}天` : String(concept.recommendedDays || "");
+  const recordDurationLabel = context.timeIntent ? durationLabel : concept.recommendedDays;
   const shapeLabel = days && days <= 6 ? "精简" : days && days >= 9 ? "延展" : "经典";
   const anchorLabel = places[0] ? `：${places[0]}` : "";
-  const name = `${countryName}${durationLabel}${shapeLabel}${styleLabelZh}${anchorLabel}`;
+  const shapedStyleLabel = styleLabelZh.includes(shapeLabel) ? styleLabelZh : `${shapeLabel}${styleLabelZh}`;
+  const name = `${countryName}${durationLabel}${shapedStyleLabel}${anchorLabel}`;
   const deterministicReason = [
     { text: `时长=${concept.durationBand}(${concept.recommendedDays})：${concept.whyThisDurationFits}`, strategy: "Geographic", evidenceIds: [] },
-    { text: `旅行风格=${styleLabelZh}：${concept.travelValue}`, strategy: "Theme", evidenceIds: [] },
+    { text: `旅行风格=${styleLabelZh}：${displayTravelValue}`, strategy: "Theme", evidenceIds: [] },
     { text: `骨架由${sourceLabel}候选池经最近邻排序生成，目的地来源=${sourceLabel}。`, strategy: "Efficiency", evidenceIds: [] },
   ];
   // LLM 节点产出叙事（每条 {text,strategy}）→ 转成 record.plannerReason 形态（补 evidenceIds:[]）
@@ -901,21 +1436,21 @@ function buildPlannerRecord({ concept, skeleton, context, evidenceResult, strate
     : null;
   const plannerReason = (llmRefined && llmReason && llmReason.length) ? llmReason : deterministicReason;
   return {
-    id: `planner-designed-${routeDedupeFingerprint({ destinationEntities, recommendedDays: concept.recommendedDays, themes: [styleLabel] })}`,
+    id: `planner-designed-${routeDedupeFingerprint({ destinationEntities, recommendedDays: recordDurationLabel, themes: [styleLabel] })}`,
     name,
     canonicalTitle: name,
     sourceTitle: `Planner designed (${styleLabel})`,
     summary: `围绕${styleLabelZh}，由${sourceLabel}候选池设计，串联${places.slice(0, 4).join("、")}${places.length > 4 ? "等" : ""}。`,
-    recommendationText: concept.travelValue,
+    recommendationText: displayTravelValue,
     travelStyle: concept.travelStyle,
     travelStyleConceptKey: concept.travelStyle,
     durationBand: concept.durationBand,
-    concept,
+    concept: displayConcept,
     countries: countryEntities.map((country) => country.countryCode),
     countryEntities,
     destinations: places,
     destinationEntities,
-    recommendedDays: concept.recommendedDays,
+    recommendedDays: recordDurationLabel,
     durationDays: days,
     bestMonths: normalizeBestMonths(context.bestMonths),
     themes: [styleLabelZh],
@@ -953,6 +1488,11 @@ function buildPlannerRecord({ concept, skeleton, context, evidenceResult, strate
     enrichmentStatus: (evidenceResult?.missingSegments || []).length ? "needsEvidence" : "enriched",
     contentQualityStatus: "accepted",
     classification: countryEntities.length > 1 ? "cross" : "single",
+    ...(clean(context.routeReferenceMode) ? {
+      routeReferenceMode: clean(context.routeReferenceMode),
+      durationPolicy: clean(context.durationPolicy),
+      requestedDurationDays: Number(context.durationDays) || null,
+    } : {}),
   };
 }
 
@@ -970,7 +1510,14 @@ function validatePlannerCandidate(record, concept, context, strategyRegistry) {
     transportConnections: Array.from({ length: adjacentCount }, (_, index) => ({ index, modes: ["rail"] })),
   });
   if (!conceptValidation.accepted) reasons.push(...conceptValidation.reasons.map((r) => `concept:${r}`));
-  const quality = validateRouteContent(record);
+  const suggestedDestinationCount = Array.isArray(context?.destinationSuggestion?.destinationIds)
+    ? context.destinationSuggestion.destinationIds.length
+    : 0;
+  const quality = validateRouteContent(record, {
+    minimumDestinations: suggestedDestinationCount > 0
+      ? Math.min(2, suggestedDestinationCount)
+      : null,
+  });
   if (!quality.accepted) reasons.push(...quality.reasons);
   // strategyRegistry 作 Style-specific 层（每个策略的 accepted）
   const strategyChecks = [];
@@ -988,10 +1535,140 @@ function validatePlannerCandidate(record, concept, context, strategyRegistry) {
   return { accepted: reasons.length === 0, reasons, strategyChecks };
 }
 
+function preserveExplicitTimeIntent(record, context = {}) {
+  if (!record || !context.timeIntent || typeof context.timeIntent !== "object") return record;
+  const timeIntent = structuredClone(context.timeIntent);
+  const explicitTime = ["single-month", "month-range", "season-only"].includes(clean(timeIntent.type));
+  return {
+    ...record,
+    timeIntent,
+    ...(explicitTime ? { bestMonths: [] } : {}),
+  };
+}
+
+function decorateCitywalkReferenceRecord(record, context = {}) {
+  if (clean(context.routeReferenceMode) !== "citywalk") return record;
+  const destinations = Array.isArray(record.destinationEntities) ? record.destinationEntities : [];
+  const city = destinations.find((destination) => clean(destination.entityTypeName) === "city");
+  const pois = destinations.filter((destination) => clean(destination.entityTypeName) === "poi");
+  if (!city || !pois.length) return record;
+  const cityName = clean(city.canonicalNameZh || city.name || city.canonicalNameEn);
+  const poiNames = pois.map((poi) => clean(poi.canonicalNameZh || poi.name || poi.canonicalNameEn)).filter(Boolean);
+  const stableDestinations = [...destinations].sort((left, right) => (
+    clean(left.wikidataId || left.entityId || left.name)
+      .localeCompare(clean(right.wikidataId || right.entityId || right.name), "en")
+  ));
+  const title = `${cityName}城市漫游｜景点总览`;
+  return {
+    ...record,
+    id: `planner-citywalk-${routeDedupeFingerprint({
+      countryEntities: record.countryEntities,
+      destinationEntities: stableDestinations,
+      recommendedDays: "open-ended",
+      themes: ["citywalk"],
+    })}`,
+    name: title,
+    canonicalTitle: title,
+    sourceTitle: "Planner designed (Citywalk reference)",
+    summary: `以${cityName}为中心，汇总当前知识库中的${poiNames.join("、")}，可按兴趣拆分到任意停留天数。`,
+    recommendationText: "这是一条不限定每日固定进度的城市漫游参考；建议按街区组合景点，实际开放时间和预约要求仍需确认。",
+    recommendedDays: "不限天数",
+    requestedDurationDays: Number(context.durationDays) || null,
+    routeReferenceMode: "citywalk",
+    durationPolicy: "open-ended",
+    bestMonths: [],
+    themes: ["城市漫游"],
+    tags: unique([...(record.tags || []), "城市漫游", "景点总览"]),
+    highlights: [
+      `${cityName}作为唯一城市锚点`,
+      `当前知识库共收录${pois.length}个景点`,
+      "停留天数由用户自行安排，不删除景点",
+    ],
+    contentQualityStatus: "needs-review",
+    enrichmentStatus: "needsEvidence",
+  };
+}
+
+function validatePlannerCandidateSafe(record, concept, context, strategyRegistry) {
+  try {
+    return validatePlannerCandidate(record, concept, context, strategyRegistry);
+  } catch (error) {
+    return {
+      accepted: false,
+      reasons: [`validator-exception:${clean(error?.message || String(error)) || "unknown"}`],
+      strategyChecks: [],
+      exception: true,
+    };
+  }
+}
+
 // 新管线主体
-async function runPipeline({ context, knowledgeGraph, evidenceRepository, acceptedRepository, strategyRegistry, llmRefineProvider, webEvidencePipeline, decisionTraceStore, candidatePoolStore, evidenceBundleStore, routeCandidateBuilder, localEvidenceSidecar, localEvidenceCollector, env, limit }) {
+async function runPipeline({ context, knowledgeGraph, evidenceRepository, acceptedRepository, strategyRegistry, llmRefineProvider, webEvidencePipeline, decisionTraceStore, candidatePoolStore, evidenceBundleStore, localEvidenceRepository, publicationGateEvaluator, readyPool, routeCandidateBuilder, candidateEvidenceValidator, localEvidenceSidecar, localEvidenceCollector, env, limit }) {
   const accepted = [];
   const rejected = [];
+  const v2IntentEnabled = isRouteV2IntentEnabled(env);
+  let candidatePoolEnabled = false;
+  let candidatePoolInitializationFailure = "";
+  if (v2IntentEnabled && candidatePoolStore?.enabled) {
+    try {
+      candidatePoolEnabled = Boolean(candidatePoolStore.enabled());
+    } catch (error) {
+      candidatePoolInitializationFailure = clean(error?.message || String(error)) || "candidate-store-enabled-check-failed";
+    }
+  }
+  const v2Attempted = v2IntentEnabled && (candidatePoolEnabled || Boolean(candidatePoolInitializationFailure));
+  let v2Failure = null;
+  async function recordV2Failure({ stage, reason, candidates = [], candidateValidations = [], decisionFactors = [], candidateSelectionMode = "", unknowns = [], legacyFallback = true } = {}) {
+    if (!v2Attempted) return null;
+    if (v2Failure) return v2Failure;
+    const failureCode = clean(reason) || "v2-planner-failed";
+    const failedCandidates = structuredClone(candidates || []).map((candidate) => ({
+      ...candidate,
+      status: candidate.status === "rejected" ? "rejected" : "failed",
+      rejectionReasons: Array.isArray(candidate.rejectionReasons) && candidate.rejectionReasons.length
+        ? candidate.rejectionReasons
+        : [{ code: failureCode, reason: failureCode }],
+    }));
+    let candidateStateWrite = null;
+    const candidateIntentId = clean(failedCandidates[0]?.intentId || context?.intentId);
+    if (failedCandidates.length && candidateIntentId && candidatePoolStore?.replaceForIntent) {
+      try {
+        candidateStateWrite = await candidatePoolStore.replaceForIntent(candidateIntentId, failedCandidates);
+      } catch (error) {
+        candidateStateWrite = { written: false, persisted: false, reason: "candidate-failure-state-write-failed", error: clean(error?.message || String(error)) };
+      }
+    }
+    const failure = {
+      stage: clean(stage) || "planner",
+      reason: failureCode,
+      candidates: failedCandidates,
+      legacyFallback: Boolean(legacyFallback),
+      candidateStateWrite,
+    };
+    const traceWrite = await writeFailureDecisionTraceSafe(decisionTraceStore, {
+      context,
+      intentId: context?.intentId || "",
+      candidatePool: failure.candidates,
+      candidateValidations,
+      candidateSelectionMode,
+      failureStage: failure.stage,
+      failureReason: failure.reason,
+      source: "planner-pipeline",
+      decisionFactors,
+      unknowns: [
+        ...unknowns,
+        ...(failedCandidates.length ? [{
+          field: "candidateStatePersistence",
+          reason: candidateStateWrite?.persisted === true
+            ? "Failure lifecycle state was persisted in Candidate Pool."
+            : `Failure lifecycle state persistence was unavailable: ${candidateStateWrite?.reason || "candidate-state-store-missing"}.`,
+        }] : []),
+      ],
+      legacyFallback: failure.legacyFallback,
+    });
+    v2Failure = { ...failure, traceWrite };
+    return v2Failure;
+  }
 
   // [1] buildRouteConcept
   // 用池中目的地数驱动 concept 的 durationBand/style 推导（而非空数组，否则会落到 city-break）
@@ -1029,25 +1706,109 @@ async function runPipeline({ context, knowledgeGraph, evidenceRepository, accept
   // [2] selectDestinationPool（硬不变量：来自知识图）
   const pool = selectDestinationPool(concept, context, knowledgeGraph);
   if (!pool.length) {
+    const failureTrace = await recordV2Failure({ stage: "candidate-generation", reason: "knowledge-graph-empty-pool", legacyFallback: false });
     rejected.push({ context, reason: "knowledge-graph-empty-pool" });
-    return { accepted, rejected, concept };
+    return { accepted, rejected, concept, v2Failure: failureTrace };
   }
 
-  const candidateSidecar = await writeCandidatePoolSidecarSafe({ context, concept, pool, candidatePoolStore, routeCandidateBuilder });
-  await localEvidenceSidecar({
-    candidates: candidateSidecar?.writtenCandidates || [],
-    kgPool: pool,
-    candidatePoolStore,
-    evidenceBundleStore,
-    env,
-    ...(localEvidenceCollector ? { localEvidenceCollector } : {}),
-  });
+  const explicitRequestedDestinations = unique([
+    ...(Array.isArray(context.destinations) ? context.destinations : []),
+    ...(Array.isArray(context.targetCities) ? context.targetCities : []),
+  ]);
+  const durationCapacity = Math.max(2, Number(context.durationDays || concept.durationDays || 0) * 2);
+  const v2InputConstraintFailure = v2Attempted
+    && explicitRequestedDestinations.length > 0
+    && explicitRequestedDestinations.length > durationCapacity;
+  const candidateSidecar = candidatePoolInitializationFailure
+      ? {
+        enabled: true,
+        generated: 0,
+        written: 0,
+        failures: [candidatePoolInitializationFailure],
+        selection: null,
+        persistenceReady: false,
+        failureStage: "candidate-persistence",
+        failureReason: "candidate-store-initialization-failed",
+      }
+    : await writeCandidatePoolSidecarSafe({
+      context,
+      concept,
+      pool,
+      candidatePoolStore,
+      localEvidenceRepository,
+      routeCandidateBuilder,
+      candidateEvidenceValidator,
+      env,
+    });
+  if (candidateSidecar?.failureStage) {
+    await recordV2Failure({
+      stage: candidateSidecar.failureStage,
+      reason: candidateSidecar.failureReason,
+      candidates: candidateSidecar.generatedCandidates || [],
+      candidateValidations: candidateSidecar.validationResults || [],
+      candidateSelectionMode: candidateSidecar.failedSelection?.selectionMode || "",
+      decisionFactors: candidateSidecar.failedSelection?.decisionFactors || [],
+      unknowns: [{ field: "candidatePersistence", reason: (candidateSidecar.failures || []).join(",") || candidateSidecar.failureReason }],
+      legacyFallback: true,
+    });
+  }
+  if (v2InputConstraintFailure && !candidateSidecar?.failureStage) {
+    await recordV2Failure({
+      stage: "input-constraints",
+      reason: "duration-destination-capacity-exceeded",
+      candidates: candidateSidecar.persistedCandidates || candidateSidecar.generatedCandidates || [],
+      unknowns: [{
+        field: "requestedDestinations",
+        reason: `${explicitRequestedDestinations.length} requested destinations exceed the Phase 1 capacity ${durationCapacity}.`,
+      }],
+      legacyFallback: true,
+    });
+  }
+  const v2SelectionReady = !v2InputConstraintFailure
+    && candidateSidecar?.persistenceReady === true
+    && candidateSidecar?.selection?.ready === true;
+  if (!v2SelectionReady) {
+    await localEvidenceSidecar({
+      candidates: candidateSidecar?.writtenCandidates || [],
+      kgPool: pool,
+      candidatePoolStore,
+      evidenceBundleStore,
+      env,
+      ...(localEvidenceCollector ? { localEvidenceCollector } : {}),
+    });
+  }
 
   // [3] buildRouteSkeleton
-  const skeleton = buildRouteSkeleton(pool, concept, context);
+  let selectedCandidate = v2SelectionReady ? candidateSidecar.selection.selectedCandidate : null;
+  let selectedResolution = selectedCandidate ? skeletonFromSelectedCandidate(selectedCandidate, pool) : null;
+  if (selectedCandidate && !selectedResolution?.ok) {
+    await recordV2Failure({
+      stage: "selected-candidate-materialization",
+      reason: selectedResolution?.reason || "selected-candidate-materialization-failed",
+      candidates: candidateSidecar.persistedCandidates || candidateSidecar.generatedCandidates || [],
+      legacyFallback: true,
+    });
+    selectedCandidate = null;
+    selectedResolution = null;
+  }
+  let usingV2SelectedCandidate = Boolean(selectedCandidate && selectedResolution?.ok);
+  if (usingV2SelectedCandidate && Number(selectedCandidate.durationDays) > 0) {
+    concept.durationDays = Number(selectedCandidate.durationDays);
+    concept.durationBand = durationBandFromDays(concept.durationDays);
+    concept.recommendedDays = `${concept.durationDays}天`;
+  }
+  const skeleton = usingV2SelectedCandidate
+    ? selectedResolution.skeleton
+    : buildRouteSkeleton(pool, concept, context);
   if (skeleton.length < 2) {
+    const failureTrace = await recordV2Failure({
+      stage: "route-skeleton",
+      reason: "skeleton-too-short",
+      candidates: candidateSidecar?.persistedCandidates || candidateSidecar?.generatedCandidates || [],
+      legacyFallback: !usingV2SelectedCandidate,
+    });
     rejected.push({ context, reason: "skeleton-too-short" });
-    return { accepted, rejected, concept };
+    return { accepted, rejected, concept, v2Failure: failureTrace };
   }
 
   // [4] LLM refine 节点（Phase 3）：在确定性骨架上做选点取舍+排序优化+plannerReason 叙事
@@ -1061,7 +1822,9 @@ async function runPipeline({ context, knowledgeGraph, evidenceRepository, accept
   let llmConfidence = null;
   let llmRefineError = null;
   const quota = context.quota;
-  if (llmRefineProvider?.refine && quota && quota.limits.llm > 0 && quota.usage.llm >= quota.limits.llm) {
+  if (usingV2SelectedCandidate) {
+    llmRefineError = "v2-selected-candidate-order-locked";
+  } else if (llmRefineProvider?.refine && quota && quota.limits.llm > 0 && quota.usage.llm >= quota.limits.llm) {
     // 配额耗尽：降级到确定性骨架（不阻断管线）
     llmRefineError = "llm-quota-exhausted";
   } else if (llmRefineProvider?.refine) {
@@ -1089,14 +1852,20 @@ async function runPipeline({ context, knowledgeGraph, evidenceRepository, accept
 
   // [5] decisionTests（在 refined 骨架上跑）
   const candidate = { destinations: refinedSkeleton.map((d) => d.name), travelStyle: TRAVEL_STYLE_LABEL[concept.travelStyle] };
-  const decisionTests = runAllDecisionTests(candidate, { goldCase });
+  let decisionTests = runAllDecisionTests(candidate, { goldCase });
   if (!decisionTests.allPass) {
     // Phase 2b：决策测试失败不直接 reject，而是记录 mutations 供 Phase 3 LLM 修正
     // 但若有 high-severity 产品边界违规 → reject
     const boundaryViolation = decisionTests.mutations.some((m) => m.action === "split");
     if (boundaryViolation) {
+      const failureTrace = await recordV2Failure({
+        stage: "decision-tests",
+        reason: "product-boundary-violation",
+        candidates: candidateSidecar?.persistedCandidates || candidateSidecar?.generatedCandidates || [],
+        legacyFallback: false,
+      });
       rejected.push({ context, reason: "product-boundary-violation", mutations: decisionTests.mutations });
-      return { accepted, rejected, concept };
+      return { accepted, rejected, concept, v2Failure: failureTrace };
     }
   }
 
@@ -1105,7 +1874,7 @@ async function runPipeline({ context, knowledgeGraph, evidenceRepository, accept
   // 缺段回填：若有 webEvidencePipeline 且缺段非空，调采集器（英文标准化 query）补 transport-connection/segment-metric
   //   Evidence 作验证器——补全后重跑 evidenceCheck 更新 refs/missing，不改变骨架目的地
   let evidenceCollect = null;
-  if (evidenceResult.missingSegments.length && webEvidencePipeline) {
+  if (evidenceResult.missingSegments.length && webEvidencePipeline && !v2Attempted) {
     evidenceCollect = await collectMissingSegmentEvidence(evidenceResult.missingSegments, { webEvidencePipeline, evidenceRepository, quota });
     if (evidenceCollect.written > 0) {
       evidenceResult = evidenceCheck(refinedSkeleton, evidenceRepository);
@@ -1130,36 +1899,140 @@ async function runPipeline({ context, knowledgeGraph, evidenceRepository, accept
   };
 
   // 构造 record（用 refined 骨架 + LLM 叙事，若有）
-  const record = buildPlannerRecord({
+  let record = buildPlannerRecord({
     concept, skeleton: refinedSkeleton, context, evidenceResult, strategies, score, goldCase,
     llmPlannerReason, llmRefined, llmConfidence, llmRefineError, llmProviderName: llmRefineProvider?.name,
   });
   record.concept = concept;
+  if (usingV2SelectedCandidate && !recordMatchesSelectedCandidate(record, selectedCandidate)) {
+    await recordV2Failure({
+      stage: "final-route-consistency",
+      reason: "selected-candidate-route-record-mismatch",
+      candidates: candidateSidecar?.persistedCandidates || [],
+      legacyFallback: true,
+    });
+    usingV2SelectedCandidate = false;
+    selectedCandidate = null;
+    refinedSkeleton = buildRouteSkeleton(pool, concept, context);
+    if (refinedSkeleton.length < 2) {
+      rejected.push({ context, reason: "legacy-fallback-skeleton-too-short" });
+      return { accepted, rejected, concept, v2Failure };
+    }
+    evidenceResult = evidenceCheck(refinedSkeleton, evidenceRepository);
+    decisionTests = runAllDecisionTests({
+      destinations: refinedSkeleton.map((destination) => destination.name),
+      travelStyle: TRAVEL_STYLE_LABEL[concept.travelStyle],
+    }, { goldCase });
+    record = buildPlannerRecord({
+      concept,
+      skeleton: refinedSkeleton,
+      context,
+      evidenceResult,
+      strategies,
+      score,
+      goldCase,
+      llmPlannerReason: null,
+      llmRefined: false,
+      llmConfidence: null,
+      llmRefineError: "v2-fallback-to-legacy-skeleton",
+      llmProviderName: "",
+    });
+    record.concept = concept;
+  }
+  if (usingV2SelectedCandidate) {
+    record.generationVersion = ROUTE_GENERATION_V2_PHASE1;
+    record.intentId = candidateSidecar.selection.inputIntentSnapshot.intentId;
+    record.selectedCandidateId = selectedCandidate.candidateId;
+    if (candidateSidecar.selection.selectedValidationId) {
+      record.evidenceValidationId = candidateSidecar.selection.selectedValidationId;
+      record.evidenceValidationStatus = candidateSidecar.selection.selectedValidationStatus;
+      record.evidenceSelectionMode = candidateSidecar.selection.selectionMode;
+    }
+    record.v2PublicationStatus = V2_NOT_PUBLISHABLE_YET;
+  } else if (v2Failure) {
+    record.generationVersion = "route-generation-v2-fallback";
+    record.intentId = context?.intentId || "";
+    record.v2PublicationStatus = V2_NOT_PUBLISHABLE_YET;
+    record.v2FailureStage = v2Failure.stage;
+    record.v2FailureReason = v2Failure.reason;
+  }
 
   // [7] validate
-  const validation = validatePlannerCandidate(record, concept, context, strategyRegistry);
+  let validation = validatePlannerCandidateSafe(record, concept, context, strategyRegistry);
   if (!validation.accepted) {
+    const failureTrace = await recordV2Failure({
+      stage: "legacy-validator",
+      reason: validation.reasons.join(",") || "legacy-validator-rejected",
+      candidates: candidateSidecar?.persistedCandidates || candidateSidecar?.generatedCandidates || [],
+      unknowns: validation.strategyChecks || [],
+      legacyFallback: false,
+    });
     rejected.push({ context, reason: validation.reasons.join(","), strategyChecks: validation.strategyChecks });
-    return { accepted, rejected, concept };
+    return { accepted, rejected, concept, v2Failure: failureTrace };
   }
+  record = preserveExplicitTimeIntent(record, context);
+  const routeIntentFinalization = finalizeRouteResult(record, context, {
+    source: "planner-final-route",
+    claimedSuccess: true,
+  });
+  const routeIntentShadow = compareRouteIntentShadow({
+    route: routeIntentFinalization.record || record,
+    intent: context,
+    productionResult: routeIntentFinalization.validation,
+    source: "planner-final-route",
+    env,
+  });
+  if (!routeIntentFinalization.matched || routeIntentShadow.matched === false) {
+    const invariantFailure = routeIntentFinalization.matched
+      ? {
+          ...routeIntentFinalization.validation,
+          matched: false,
+          reasonCodes: ["route-intent-oracle-disagreement"],
+          shadow: routeIntentShadow,
+        }
+      : routeIntentFinalization.validation;
+    const failureTrace = await recordV2Failure({
+      stage: "fallback-hard-constraints",
+      reason: invariantFailure.reasonCodes.join(",") || "fallback-hard-constraint-mismatch",
+      candidates: candidateSidecar?.persistedCandidates || candidateSidecar?.generatedCandidates || [],
+      unknowns: [{ field: "routeIntentInvariantValidation", reason: JSON.stringify(invariantFailure) }],
+      legacyFallback: false,
+    });
+    rejected.push({ context, reason: "fallback-hard-constraint-mismatch", constraintValidation: invariantFailure });
+    return { accepted, rejected, concept, v2Failure: failureTrace };
+  }
+  record = decorateCitywalkReferenceRecord(routeIntentFinalization.record, context);
 
   // [8] duplicateDistance
   const existingRecords = acceptedRepository.list({ limit: 100_000 }).records;
-  const dedupeDistance = duplicateDistance(record, existingRecords);
+  let dedupeDistance = duplicateDistance(record, existingRecords);
   if (countryClusterSaturated(record, existingRecords, Number(context.maxAcceptedPerCountryCluster) || Infinity)) {
+    const failureTrace = await recordV2Failure({
+      stage: "dedupe",
+      reason: "route-cluster-saturated",
+      candidates: candidateSidecar?.persistedCandidates || candidateSidecar?.generatedCandidates || [],
+      legacyFallback: false,
+    });
     rejected.push({ context, reason: "route-cluster-saturated", dedupeDistance });
-    return { accepted, rejected, concept };
+    return { accepted, rejected, concept, v2Failure: failureTrace };
   }
   if (dedupeDistance < 0.28) {
+    const failureTrace = await recordV2Failure({
+      stage: "dedupe",
+      reason: "dedupe-distance-too-low",
+      candidates: candidateSidecar?.persistedCandidates || candidateSidecar?.generatedCandidates || [],
+      legacyFallback: false,
+    });
     rejected.push({ context, reason: "dedupe-distance-too-low", dedupeDistance });
-    return { accepted, rejected, concept };
+    return { accepted, rejected, concept, v2Failure: failureTrace };
   }
 
-  const traceWrite = await writeLegacyDecisionTraceSafe(decisionTraceStore, {
+  let traceWrite = v2Failure?.traceWrite || await writeLegacyDecisionTraceSafe(decisionTraceStore, {
     route: record,
     context,
     source: "planner-pipeline",
     concept,
+    candidateSelection: usingV2SelectedCandidate ? candidateSidecar.selection : null,
     decisionFactors: [
       { factor: "country-context", input: countryCodesForContext(context), effect: "Limits knowledge-graph destination query." },
       { factor: "duration", input: context.durationDays || concept.durationDays || null, effect: "Constrains generated route duration fields." },
@@ -1181,10 +2054,175 @@ async function runPipeline({ context, knowledgeGraph, evidenceRepository, accept
       ...(evidenceCollect?.queries?.length ? [{ sourceType: "web-evidence", ids: evidenceCollect.queries, usedFor: "missing segment evidence check" }] : []),
     ],
     unknowns: [
-      { field: "completeRejectedAlternatives", reason: "Phase 1 does not persist all alternatives considered before this selected route." },
-      { field: "llmContribution", reason: llmRefined ? "LLM refine result was applied, but Phase 1 does not persist a full comparison trace." : "LLM refine did not run or did not change the skeleton." },
+      { field: "completeRejectedAlternatives", reason: "Phase 1 persists exactly three deterministic alternatives; evidence-backed expansion is not implemented." },
+      { field: "llmContribution", reason: llmRefined ? "LLM refine result was applied to the legacy path." : "LLM refine did not change the selected candidate route." },
     ],
   });
+  const successTracePersisted = traceWrite?.persisted === true && Boolean(clean(traceWrite?.traceId));
+  if (usingV2SelectedCandidate && !successTracePersisted) {
+    await recordV2Failure({
+      stage: "decision-trace-persistence",
+      reason: traceWrite?.reason || "decision-trace-persistence-failed",
+      candidates: candidateSidecar.persistedCandidates || [],
+      legacyFallback: true,
+    });
+    usingV2SelectedCandidate = false;
+    selectedCandidate = null;
+    refinedSkeleton = buildRouteSkeleton(pool, concept, context);
+    if (refinedSkeleton.length < 2) {
+      rejected.push({ context, reason: "legacy-fallback-skeleton-too-short" });
+      return { accepted, rejected, concept, v2Failure };
+    }
+    decisionTests = runAllDecisionTests({
+      destinations: refinedSkeleton.map((destination) => destination.name),
+      travelStyle: TRAVEL_STYLE_LABEL[concept.travelStyle],
+    }, { goldCase });
+    if (!decisionTests.allPass && decisionTests.mutations.some((mutation) => mutation.action === "split")) {
+      rejected.push({ context, reason: "legacy-fallback-product-boundary-violation", mutations: decisionTests.mutations });
+      return { accepted, rejected, concept, v2Failure };
+    }
+    evidenceResult = evidenceCheck(refinedSkeleton, evidenceRepository);
+    record = buildPlannerRecord({
+      concept,
+      skeleton: refinedSkeleton,
+      context,
+      evidenceResult,
+      strategies,
+      score,
+      goldCase,
+      llmPlannerReason: null,
+      llmRefined: false,
+      llmConfidence: null,
+      llmRefineError: "v2-fallback-after-trace-persistence-failure",
+      llmProviderName: "",
+    });
+    record.concept = concept;
+    record.generationVersion = "route-generation-v2-fallback";
+    record.intentId = context?.intentId || "";
+    record.v2PublicationStatus = V2_NOT_PUBLISHABLE_YET;
+    record.v2FailureStage = v2Failure.stage;
+    record.v2FailureReason = v2Failure.reason;
+    validation = validatePlannerCandidateSafe(record, concept, context, strategyRegistry);
+    if (!validation.accepted) {
+      rejected.push({ context, reason: validation.reasons.join(",") || "legacy-fallback-validator-rejected", strategyChecks: validation.strategyChecks });
+      return { accepted, rejected, concept, v2Failure };
+    }
+    record = preserveExplicitTimeIntent(record, context);
+    const legacyRouteIntentFinalization = finalizeRouteResult(record, context, {
+      source: "planner-legacy-fallback",
+      claimedSuccess: true,
+    });
+    const legacyRouteIntentShadow = compareRouteIntentShadow({
+      route: legacyRouteIntentFinalization.record || record,
+      intent: context,
+      productionResult: legacyRouteIntentFinalization.validation,
+      source: "planner-legacy-fallback",
+      env,
+    });
+    if (!legacyRouteIntentFinalization.matched || legacyRouteIntentShadow.matched === false) {
+      const invariantFailure = legacyRouteIntentFinalization.matched
+        ? {
+            ...legacyRouteIntentFinalization.validation,
+            matched: false,
+            reasonCodes: ["route-intent-oracle-disagreement"],
+            shadow: legacyRouteIntentShadow,
+          }
+        : legacyRouteIntentFinalization.validation;
+      rejected.push({ context, reason: "legacy-fallback-hard-constraint-mismatch", constraintValidation: invariantFailure });
+      return { accepted, rejected, concept, v2Failure };
+    }
+    record = legacyRouteIntentFinalization.record;
+    dedupeDistance = duplicateDistance(record, existingRecords);
+    if (countryClusterSaturated(record, existingRecords, Number(context.maxAcceptedPerCountryCluster) || Infinity)) {
+      rejected.push({ context, reason: "legacy-fallback-route-cluster-saturated", dedupeDistance });
+      return { accepted, rejected, concept, v2Failure };
+    }
+    if (dedupeDistance < 0.28) {
+      rejected.push({ context, reason: "legacy-fallback-dedupe-distance-too-low", dedupeDistance });
+      return { accepted, rejected, concept, v2Failure };
+    }
+    traceWrite = v2Failure?.traceWrite || traceWrite;
+  } else if (usingV2SelectedCandidate && traceWrite?.traceId) {
+    record.decisionTraceId = traceWrite.traceId;
+  }
+
+  let evidenceBundleLifecycle = null;
+  if (usingV2SelectedCandidate) {
+    const selectedValidation = (candidateSidecar.selection.validationResults || [])
+      .find((validationResult) => clean(validationResult?.candidateId) === clean(selectedCandidate?.candidateId)) || null;
+    evidenceBundleLifecycle = await writeEvidenceBundleLifecycleSidecarSafe({
+      evidenceBundleStore,
+      selectedCandidate,
+      persistedCandidates: candidateSidecar.persistedCandidates || [],
+      routeRecord: record,
+      decisionTraceWrite: traceWrite,
+      context: { ...context, validationResult: selectedValidation },
+      localEvidenceRepository,
+    });
+    if (evidenceBundleLifecycle.persisted === true && evidenceBundleLifecycle.failed !== true) {
+      record.evidenceBundleId = evidenceBundleLifecycle.evidenceBundleId;
+      record.evidenceStatus = evidenceBundleLifecycle.status;
+    }
+  }
+
+  let publicationGate = null;
+  let readyPoolWrite = null;
+  const finalEmbeddedIntentValidation = validateEmbeddedRouteIntent(record, {
+    source: "planner-success-exit",
+    allowLegacyUnbound: false,
+  });
+  if (!finalEmbeddedIntentValidation.matched) {
+    const failureTrace = await recordV2Failure({
+      stage: "final-route-intent-invariant",
+      reason: finalEmbeddedIntentValidation.reasonCodes.join(",") || "final-route-intent-invariant-failed",
+      candidates: candidateSidecar?.persistedCandidates || candidateSidecar?.generatedCandidates || [],
+      unknowns: [{ field: "routeIntentInvariantValidation", reason: JSON.stringify(finalEmbeddedIntentValidation) }],
+      legacyFallback: false,
+    });
+    rejected.push({
+      context,
+      reason: "final-route-intent-invariant-failed",
+      constraintValidation: finalEmbeddedIntentValidation,
+    });
+    return { accepted, rejected, concept, v2Failure: failureTrace };
+  }
+  if (usingV2SelectedCandidate && isRouteV2PublicationGateEnabled(env)) {
+    record = ensureV2PublicationCover(record);
+    try {
+      const decisionTrace = decisionTraceStore?.list?.().find((trace) => clean(trace?.traceId) === clean(record.decisionTraceId)) || null;
+      const selectedValidation = (candidateSidecar.selection.validationResults || [])
+        .find((validationResult) => clean(validationResult?.candidateId) === clean(selectedCandidate?.candidateId)) || null;
+      publicationGate = publicationGateEvaluator({
+        routeRecord: record,
+        selectedCandidate,
+        decisionTrace,
+        validation: selectedValidation,
+        evidenceBundle: evidenceBundleLifecycle?.bundle || null,
+      });
+    } catch (error) {
+      publicationGate = {
+        gateVersion: ROUTE_V2_PUBLICATION_GATE_VERSION,
+        routeRecordId: record.id,
+        selectedCandidateId: selectedCandidate?.candidateId || null,
+        decisionTraceId: record.decisionTraceId || null,
+        validationId: record.evidenceValidationId || null,
+        status: "blocked-system-error",
+        publicationStatus: "blocked-system-error",
+        publishable: false,
+        reasons: [`publication-gate-error:${clean(error?.message || String(error))}`],
+        reasonCodes: [`publication-gate-error:${clean(error?.message || String(error))}`],
+        checkedAt: new Date().toISOString(),
+      };
+    }
+    record.v2PublicationStatus = publicationGate.status;
+    try {
+      if (readyPool?.enabled?.()) {
+        readyPoolWrite = readyPool.applyEvaluation({ routeRecord: record, publicationGate });
+      }
+    } catch (error) {
+      readyPoolWrite = { persisted: false, skipped: false, reason: "ready-pool-write-failed", error: clean(error?.message || String(error)) };
+    }
+  }
 
   accepted.push({
     record,
@@ -1198,6 +2236,13 @@ async function runPipeline({ context, knowledgeGraph, evidenceRepository, accept
     evidenceCollect,
     destinationSource: record.destinationSource,
     decisionTrace: traceWrite,
+    ...(candidateSidecar?.selection?.validationResults?.length
+      ? { candidateEvidenceValidations: structuredClone(candidateSidecar.selection.validationResults) }
+      : {}),
+    ...(evidenceBundleLifecycle?.enabled === true ? { evidenceBundleLifecycle } : {}),
+    ...(publicationGate ? { publicationGate } : {}),
+    ...(readyPoolWrite ? { readyPoolWrite } : {}),
+    ...(v2Failure ? { v2Failure } : {}),
   });
 
   // limit 控制（新管线一次 context 通常产 1 条；保留 limit 语义）
@@ -1213,17 +2258,19 @@ function durationBandFromDays(days) {
   return "15d+";
 }
 
-export function createRouteCompositionPlanner({ evidenceRepository, acceptedRepository, strategyRegistry = null, knowledgeGraph = null, llmRefineProvider = null, webEvidencePipeline = null, decisionTraceStore = null, candidatePoolStore = null, evidenceBundleStore = null, routeCandidateBuilder = buildRouteCandidatesFromPool, localEvidenceSidecar = writeLocalEvidenceSidecarSafe, localEvidenceCollector = null, env = process.env } = {}) {
+export function createRouteCompositionPlanner({ evidenceRepository, acceptedRepository, strategyRegistry = null, knowledgeGraph = null, llmRefineProvider = null, webEvidencePipeline = null, decisionTraceStore = null, candidatePoolStore = null, evidenceBundleStore = null, localEvidenceRepository = null, publicationGateEvaluator = evaluateRouteV2Publication, readyPool = null, routeCandidateBuilder = buildRouteCandidatesFromPool, candidateEvidenceValidator = validateRouteForUse, localEvidenceSidecar = writeLocalEvidenceSidecarSafe, localEvidenceCollector = null, env = process.env } = {}) {
   if (!evidenceRepository?.bySourceRoute) throw new Error("EVIDENCE_REPOSITORY_REQUIRED");
   if (!acceptedRepository?.list) throw new Error("ACCEPTED_REPOSITORY_REQUIRED");
   const traceStore = decisionTraceStore || createDecisionTraceStore({ env });
   const sidecarCandidatePoolStore = candidatePoolStore || createRouteCandidatePoolStore({ env });
   const sidecarEvidenceBundleStore = evidenceBundleStore || createEvidenceBundleStore({ env });
+  const sidecarLocalEvidenceRepository = localEvidenceRepository || createLocalEvidenceRepository({ env });
+  const sidecarReadyPool = readyPool || createRouteV2ReadyPool({ env });
   return {
     async buildCandidates({ limit = 5, context = null } = {}) {
       // 新管线模式：有 context（{durationDays, country, style, ...}）走知识图驱动（async，含 LLM 节点）
       if (context && (context.country || context.durationDays || context.travelStyle)) {
-        return runPipeline({ context, knowledgeGraph, evidenceRepository, acceptedRepository, strategyRegistry, llmRefineProvider, webEvidencePipeline, decisionTraceStore: traceStore, candidatePoolStore: sidecarCandidatePoolStore, evidenceBundleStore: sidecarEvidenceBundleStore, routeCandidateBuilder, localEvidenceSidecar, localEvidenceCollector, env, limit });
+        return runPipeline({ context, knowledgeGraph, evidenceRepository, acceptedRepository, strategyRegistry, llmRefineProvider, webEvidencePipeline, decisionTraceStore: traceStore, candidatePoolStore: sidecarCandidatePoolStore, evidenceBundleStore: sidecarEvidenceBundleStore, localEvidenceRepository: sidecarLocalEvidenceRepository, publicationGateEvaluator, readyPool: sidecarReadyPool, routeCandidateBuilder, candidateEvidenceValidator, localEvidenceSidecar, localEvidenceCollector, env, limit });
       }
       // 旧兼容模式：evidence 桶缝合（codex 原 buildCandidates，仅旧 verify 脚本与生产 run-route-ai-production-phase2a 走此路径）
       const existingRecords = acceptedRepository.list({ limit: 100_000 }).records;

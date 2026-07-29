@@ -7,13 +7,19 @@ export {
   routeDiscoveryCacheKey,
 } from "./contracts.mjs";
 export { createRouteDiscovery } from "./discovery.mjs";
+export { createRouteV2RuntimeEnvironment } from "./route-v2-runtime-environment.mjs";
 export { RouteDiscoveryError, asRouteDiscoveryError } from "./errors.mjs";
 export { createRouteDiscoveryHandler } from "./http.mjs";
 export {
   DECISION_TRACE_SCHEMA_VERSION,
+  DECISION_TRACE_OUTCOMES,
+  DECISION_TRACE_PHASES,
+  ROUTE_V2_INTENT_FLAG,
+  buildFailureDecisionTrace,
   buildLegacyDecisionTrace,
   createDecisionTraceId,
   routeIntentSnapshot,
+  isRouteV2IntentEnabled,
   selectedCandidateSnapshot,
   stableDecisionTraceHash,
   validateDecisionTrace,
@@ -24,6 +30,7 @@ export {
   envFlag,
   isRouteV2TraceEnabled,
   isRouteV2TraceRequiredForAccept,
+  writeFailureDecisionTraceSafe,
   writeLegacyDecisionTraceSafe,
 } from "./decision-trace-store.mjs";
 export { createLiveDiscoveryProvider } from "./live-provider.mjs";
@@ -55,6 +62,116 @@ export {
   defaultRouteEvidenceBundlePath,
   isRouteV2EvidenceBundleEnabled,
 } from "./evidence-bundle-store.mjs";
+export {
+  EVIDENCE_BUNDLE_AREA_STATUSES,
+  EVIDENCE_BUNDLE_LEG_FEASIBILITY_STATUSES,
+  EVIDENCE_BUNDLE_LIFECYCLE_SCHEMA_VERSION,
+  EVIDENCE_BUNDLE_LIFECYCLE_STATUSES,
+  EVIDENCE_BUNDLE_REFERENCE_MODES,
+  buildEvidenceBundleLifecycle,
+  candidateDestinationOrder,
+  createEvidenceBundleLifecycleId,
+  normalizeEvidenceBundleLifecycle,
+  routeRecordDestinationOrder,
+  validateEvidenceBundleLifecycle,
+} from "./evidence-bundle-schema.mjs";
+export { writeEvidenceBundleLifecycleSidecarSafe } from "./evidence-bundle-lifecycle-sidecar.mjs";
+export {
+  ROUTE_LEG_EVIDENCE_SCHEMA_VERSION,
+  ROUTE_LEG_FEASIBILITY_STATUSES,
+  ROUTE_LEG_FRESHNESS_STATUSES,
+  buildMissingRouteLegEvidence,
+  createRouteLegEvidenceId,
+  normalizeRouteLegEvidence,
+  normalizeRouteLegTransportMode,
+  routeLegEvidenceKey,
+  validateRouteLegEvidence,
+} from "./route-leg-evidence-schema.mjs";
+export {
+  ROUTE_V2_LOCAL_EVIDENCE_INDEX_FLAG,
+  createRouteLegEvidenceStore,
+  defaultRouteLegEvidencePath,
+  isRouteV2LocalEvidenceIndexEnabled,
+} from "./route-leg-evidence-store.mjs";
+export {
+  SEASON_EVIDENCE_SCHEMA_VERSION,
+  SEASON_FRESHNESS_STATUSES,
+  SEASON_SUITABILITY_STATUSES,
+  buildMissingSeasonEvidence,
+  createSeasonEvidenceId,
+  normalizeEvidenceMonth,
+  normalizeSeasonEvidence,
+  seasonEvidenceKey,
+  validateSeasonEvidence,
+} from "./season-evidence-schema.mjs";
+export { createSeasonEvidenceStore, defaultSeasonEvidencePath } from "./season-evidence-store.mjs";
+export {
+  MISSING_EVIDENCE_MANIFEST_SCHEMA_VERSION,
+  MISSING_EVIDENCE_STATUSES,
+  MISSING_EVIDENCE_TYPES,
+  buildMissingEvidenceManifestItem,
+  computeMissingEvidencePriority,
+  createMissingEvidenceId,
+  normalizeMissingEvidenceManifestItem,
+  validateMissingEvidenceManifestItem,
+} from "./missing-evidence-manifest-schema.mjs";
+export {
+  createMissingEvidenceManifestStore,
+  defaultMissingEvidenceManifestPath,
+} from "./missing-evidence-manifest-store.mjs";
+export { createLocalEvidenceIndex } from "./local-evidence-index.mjs";
+export { createLocalEvidenceRepository } from "./local-evidence-repository.mjs";
+export {
+  ROUTE_V2_EVIDENCE_VALIDATION_FLAG,
+  ROUTE_V2_EVIDENCE_VALIDATION_STATUSES,
+  ROUTE_V2_EVIDENCE_VALIDATOR_VERSION,
+  isRouteV2EvidenceValidationEnabled,
+  validateRouteForUse,
+} from "./route-candidate-evidence-validation.mjs";
+export {
+  LOCAL_EVIDENCE_SOURCE_TYPES,
+  classifyLocalEvidenceSource,
+  createLocalEvidenceSourceId,
+  normalizeLocalEvidenceSource,
+  normalizeLocalEvidenceSources,
+  sha256EvidenceContent,
+  validateLocalEvidenceSource,
+  validateLocalEvidenceSources,
+} from "./local-evidence-source-schema.mjs";
+export {
+  adaptRouteLegEvidenceResults,
+  adaptSeasonEvidenceResults,
+} from "./offline-evidence-fact-adapter.mjs";
+export {
+  OFFLINE_EVIDENCE_DEFAULT_CONCURRENCY,
+  OFFLINE_EVIDENCE_DEFAULT_LIMIT,
+  OFFLINE_EVIDENCE_DEFAULT_MAX_ATTEMPTS,
+  OFFLINE_EVIDENCE_MAX_LIMIT,
+  ROUTE_V2_OFFLINE_EVIDENCE_COLLECTION_FLAG,
+  collectOfflineEvidenceBatch,
+  createOfflineEvidenceEntityResolver,
+  isRouteV2OfflineEvidenceCollectionEnabled,
+  parseOfflineEvidenceCollectorArgs,
+  selectOfflineEvidenceTasks,
+} from "./offline-evidence-collector.mjs";
+export {
+  LIVE_EVIDENCE_CANARY_DEFAULT_TIMEOUT_MS,
+  LIVE_EVIDENCE_CANARY_MAX_SOURCES_PER_TASK,
+  ROUTE_V2_LIVE_EVIDENCE_CANARY_PROVIDER_ID,
+  createRouteV2LiveEvidenceCanaryProvider,
+} from "./live-evidence-canary-provider.mjs";
+export {
+  ROUTE_V2_JAPAN_EVIDENCE_PILOT_BUNDLE_ID,
+  ROUTE_V2_JAPAN_EVIDENCE_PILOT_ID,
+  ROUTE_V2_JAPAN_EVIDENCE_PILOT_STORAGE_ROOT,
+  ROUTE_V2_JAPAN_EVIDENCE_PILOT_ENTITIES,
+  ROUTE_V2_JAPAN_EVIDENCE_PILOT_TARGETS,
+  createJapanEvidencePilotProvider,
+  createJapanEvidencePilotSourceDiscovery,
+  planJapanEvidencePilot,
+  seedJapanEvidencePilot,
+  summarizeJapanEvidencePilot,
+} from "./japan-evidence-validation-pilot.mjs";
 export {
   KNOWLEDGE_ENTITY_SOURCE_TYPES,
   KNOWLEDGE_RELATIONSHIP_TYPES,
@@ -163,6 +280,7 @@ export {
 } from "./evidence-bundle-online-adapter.mjs";
 export {
   ROUTE_CANDIDATE_NEUTRAL_STATUSES,
+  ROUTE_CANDIDATE_STATUSES,
   ROUTE_CANDIDATE_SCHEMA_VERSION,
   createRouteCandidateId,
   createRouteCandidatePoolStore,
@@ -182,6 +300,11 @@ export {
   candidateShapeKey,
   clampCandidateTarget,
 } from "./route-candidate-builder.mjs";
+export {
+  ROUTE_CANDIDATE_SELECTION_TARGET,
+  selectRouteCandidates,
+  selectRouteCandidatesWithEvidence,
+} from "./route-candidate-selection.mjs";
 export { createRouteJobStore } from "./route-job-store.mjs";
 export { dedupeRouteRecords, isDuplicateRoute, routeDedupeFingerprint } from "./route-dedupe.mjs";
 export { createFeedBuffer } from "./feed-buffer.mjs";
@@ -191,7 +314,17 @@ export { createRouteSearchAnalytics } from "./route-search-analytics.mjs";
 export { createRouteSearchCache } from "./route-search-cache.mjs";
 export { createRouteSearchService } from "./route-search-service.mjs";
 export {
+  buildRouteDestinationSuggestion,
+  maxSuggestedDestinationsForDuration,
+} from "./route-destination-suggestion.mjs";
+export {
   parseSearchIntent,
+  parseTimeIntent,
+  normalizeTimeIntent,
+  isRouteV2TimeIntentEnabled,
+  ROUTE_V2_TIME_INTENT_FLAG,
+  ROUTE_V2_TIME_INTENT_TYPES,
+  ROUTE_V2_INTENT_MODES,
   normalizeIntentKey,
   hashIntentKey,
   targetResultCountForConstraintLevel,
@@ -209,6 +342,50 @@ export { createAcceptedRouteKnowledgeExtractor } from "./travel-knowledge-extrac
 export { createRouteDesignStrategyRegistry } from "./route-design-strategy.mjs";
 export { buildRouteConcept, validateRouteConcept, TRAVEL_STYLE_KEYS, TRAVEL_STYLE_LABEL, TRAVEL_STYLE_LABEL_ZH } from "./route-planning-concept.mjs";
 export { createRouteCompositionPlanner } from "./route-composition-planner.mjs";
+export {
+  ROUTE_V2_PUBLICATION_GATE_FLAG,
+  ROUTE_V2_PUBLICATION_GATE_VERSION,
+  ROUTE_V2_PUBLICATION_STATUSES,
+  evaluateRouteV2Publication,
+  isRouteV2PublicationGateEnabled,
+} from "./route-publication-gate.mjs";
+export {
+  ROUTE_V2_READY_POOL_FLAG,
+  createRouteV2ReadyPool,
+  defaultRouteV2ReadyPoolPath,
+  isRouteV2ReadyPoolEnabled,
+} from "./route-v2-ready-pool.mjs";
+export { buildRouteV2MissingEvidenceReport } from "./route-evidence-missing-report.mjs";
+export { validateFallbackRouteAgainstIntent } from "./route-fallback-constraint-validator.mjs";
+export {
+  finalizeRouteResult,
+  validateEmbeddedRouteIntent,
+  validateRouteIntentInvariants,
+} from "./route-intent-invariant-gate.mjs";
+export { evaluateRouteIntentOracle } from "./route-intent-model-oracle.mjs";
+export {
+  compareRouteIntentShadow,
+  isRouteIntentShadowValidationEnabled,
+  runRouteIntentShadowValidation,
+} from "./route-intent-shadow-validation.mjs";
+export {
+  ROUTE_INTENT_FINGERPRINT_VERSION,
+  ROUTE_INTENT_SCHEMA_INVALID_REASON,
+  ROUTE_INTENT_SCHEMA_VERSION,
+  attachRouteIntentEnvelope,
+  createRouteIntentFingerprint,
+  maxDestinationsForRouteIntentDays,
+  normalizeRouteIntent,
+  readRouteIntentEnvelope,
+  validateNormalizedRouteIntent,
+} from "./route-intent-model.mjs";
+export { createLocalEvidenceSeedOverlay, compareLocalEvidenceQuality } from "./local-evidence-seed-overlay.mjs";
+export {
+  ROUTE_V2_EVIDENCE_SEED_ROOT,
+  ROUTE_V2_EVIDENCE_SEED_SCHEMA_VERSION,
+  planEvidenceSeedPromotion,
+  promoteEvidenceSeed,
+} from "./evidence-seed-promotion.mjs";
 export {
   COUNTRY_CODE_TO_QID,
   fetchCountryQid,

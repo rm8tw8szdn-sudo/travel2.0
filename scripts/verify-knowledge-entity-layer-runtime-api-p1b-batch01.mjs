@@ -25,6 +25,18 @@ const BATCH01_CITY_NAMES = Object.freeze([
   "Turku",
   "Warsaw",
 ]);
+const BATCH02_CITY_NAMES = Object.freeze([
+  "Barcelona",
+  "Berlin",
+  "Busan",
+  "Florence",
+  "Lyon",
+  "Madrid",
+  "Munich",
+  "Paris",
+  "Rome",
+  "Seoul",
+]);
 const UI_AND_PLANNER_PATHS = Object.freeze([
   "atlas.js",
   "city-detail.js",
@@ -147,20 +159,20 @@ try {
   const countries = repository.listCountries();
   const cities = repository.listCities();
   const pois = repository.listPois();
-  const batchCities = BATCH01_CITY_NAMES.map((name) => {
+  const batchCities = [...BATCH01_CITY_NAMES, ...BATCH02_CITY_NAMES].map((name) => {
     const city = cities.find((candidate) => candidate.canonicalNameEn === name);
-    assert.ok(city, `Batch01 City missing from repository: ${name}`);
+    assert.ok(city, `Published batch City missing from repository: ${name}`);
     return city;
   });
   const batchCityIds = new Set(batchCities.map((city) => city.entityId));
   const pilotPois = pois.filter((poi) => !batchCityIds.has(poi.parentCityEntityId));
 
   assert.equal(new Set(countries.map((entity) => entity.entityId)).size, 50);
-  assert.equal(new Set(cities.map((entity) => entity.entityId)).size, 15);
-  assert.equal(new Set(pois.map((entity) => entity.entityId)).size, 45);
-  assert.equal(new Set([...countries, ...cities, ...pois].map((entity) => entity.entityId)).size, 110);
-  assert.equal(new Set(cities.map((entity) => entity.wikidataId)).size, 15);
-  assert.equal(new Set(pois.map((entity) => entity.wikidataId)).size, 45);
+  assert.equal(new Set(cities.map((entity) => entity.entityId)).size, 25);
+  assert.equal(new Set(pois.map((entity) => entity.entityId)).size, 75);
+  assert.equal(new Set([...countries, ...cities, ...pois].map((entity) => entity.entityId)).size, 150);
+  assert.equal(new Set(cities.map((entity) => entity.wikidataId)).size, 25);
+  assert.equal(new Set(pois.map((entity) => entity.wikidataId)).size, 75);
   assert.equal(pilotPois.length, 15);
   for (const city of batchCities) assert.equal(repository.listPoisByCity(city.entityId).length, 3, `${city.canonicalNameEn} POI count`);
 
@@ -270,7 +282,7 @@ try {
     assert.equal(publicPayloadText.includes(forbidden), false, `runtime API exposed forbidden detail: ${forbidden}`);
   }
   assert.ok(requestedPaths.every((relativePath) => relativePath.startsWith("/api/knowledge-entities/")));
-  assert.equal((output.stdout.match(/Knowledge Entity Layer: 50 countries, 15 cities, 45 POIs/g) || []).length, 1);
+  assert.equal((output.stdout.match(/Knowledge Entity Layer: 50 countries, 25 cities, 75 POIs/g) || []).length, 1);
   assert.equal(output.stderr, "", `server stderr was not empty:\n${output.stderr}`);
 
   result = {
@@ -281,14 +293,16 @@ try {
       citiesQueried: cities.length,
       poisQueried: pois.length,
       pilotPoisQueried: pilotPois.length,
-      batch01CitiesWithThreePois: batchCityResults.length,
+      batch01CitiesWithThreePois: batchCityResults.filter((result) => BATCH01_CITY_NAMES.includes(result.city)).length,
+      batch02CitiesWithThreePois: batchCityResults.filter((result) => BATCH02_CITY_NAMES.includes(result.city)).length,
       stableOrdering: true,
       responseIsolation: true,
       missingEntityStatus: missing.status,
       invalidParentTypeStatus: wrongCityParent.status,
       writeMethodStatus: writeAttempt.status,
     },
-    batch01: batchCityResults,
+    batch01: batchCityResults.filter((result) => BATCH01_CITY_NAMES.includes(result.city)),
+    batch02: batchCityResults.filter((result) => BATCH02_CITY_NAMES.includes(result.city)),
     sideEffects: {
       entityLayerCacheReads: 0,
       cacheWrites: 0,

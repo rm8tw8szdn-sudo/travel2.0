@@ -10,7 +10,7 @@ export function classifyRoute(entities) {
   return codes.size > 1 ? "cross" : codes.size === 1 ? "single" : "failed";
 }
 
-export function validateRouteContent(record) {
+export function validateRouteContent(record, { minimumDestinations = null } = {}) {
   const reasons = [];
   const title = String(record?.name || record?.canonicalTitle || "").trim();
   const summary = String(record?.summary || "").trim();
@@ -19,7 +19,11 @@ export function validateRouteContent(record) {
   const classification = classifyRoute(record?.countryEntities);
   const countryCodes = new Set((record?.countryEntities || []).map((item) => item?.countryCode).filter(Boolean));
   const travelStyle = String(record?.travelStyle || record?.travelStyleConceptKey || record?.concept?.travelStyle || record?.contentEvidence?.travelStyle || "").trim();
-  const minDestinations = travelStyle === "city-break" ? 2 : 3;
+  const minDestinations = Number.isInteger(minimumDestinations)
+    ? Math.max(1, minimumDestinations)
+    : travelStyle === "city-break"
+      ? 2
+      : 3;
   if (!title || !CHINESE.test(title) || GENERIC_TITLE.test(title) || /[·-]\s*\d+$/u.test(title)) reasons.push("generic-title");
   if (!summary) reasons.push("missing-summary");
   if (!recommendation) reasons.push("missing-recommendation");

@@ -1,9 +1,13 @@
 import { decodeDiscoveryCursor, encodeDiscoveryCursor } from "./cursor.mjs";
 import { normalizeDiscoveredRoute } from "./contracts.mjs";
 import { routeDedupeFingerprint, routeTitleKey } from "./route-dedupe.mjs";
-import { parseSearchIntent } from "./search-intent-parser.mjs";
+import { buildRouteDestinationSuggestion } from "./route-destination-suggestion.mjs";
+import { finalizeRouteResult } from "./route-intent-invariant-gate.mjs";
+import { compareRouteIntentShadow } from "./route-intent-shadow-validation.mjs";
+import { isRouteV2TimeIntentEnabled, parseSearchIntent } from "./search-intent-parser.mjs";
 import { ensureSearchGeneratedMedia } from "./search-generated-media.mjs";
 import { buildSearchGeneratedFallbackRoute } from "./search-generated-route-builder.mjs";
+import { stableHash } from "./route-v2-utils.mjs";
 
 const DEFAULT_RANKING_WEIGHTS = {
   intentMatch: 100,
@@ -118,24 +122,6 @@ function durationMatchScore(intent, record) {
 function hasCountry(intent, record) {
   if (!intent.countryCode) return false;
   return (record?.countryEntities || []).some((item) => clean(item.countryCode).toUpperCase() === intent.countryCode);
-}
-
-function hasRegion(intent, record) {
-  if (!intent.region && !intent.normalizedRegion) return true;
-  const text = recordText(record);
-  const aliasesByRegion = {
-    sahara: ["撒哈拉", "西撒哈拉", "sahara", "western sahara"],
-    kansai: ["关西", "kansai"],
-    hokkaido: ["北海道", "hokkaido"],
-    "golden circle": ["黄金圈", "golden circle"],
-    cappadocia: ["卡帕多奇亚", "cappadocia"],
-  };
-  const aliases = unique([
-    intent.region,
-    intent.normalizedRegion,
-    ...(aliasesByRegion[clean(intent.normalizedRegion)] || []),
-  ]).map(lower);
-  return aliases.some((alias) => alias && text.includes(alias));
 }
 
 function cityMatches(intent, text) {
@@ -258,26 +244,110 @@ function rankRecord(record, intent, weights, now) {
   };
 }
 
-function rankAcceptedRoutes(records, intent, { routeType = "", weights, now }) {
+function rankAcceptedRoutes(records, intent, { routeType = "", weights, now, validateRecord }) {
   return records
     .filter((record) => !routeType || routeKind(record) === routeType)
-    .filter((record) => !intent.countryCode || hasCountry(intent, record))
-    .filter((record) => hasRegion(intent, record))
-    .map((record) => rankRecord(record, intent, weights, now))
+    .map((record) => ({
+      record,
+      constraintValidation: validateRecord(record, "accepted"),
+    }))
+    .filter((item) => item.constraintValidation.matched)
+    .map((item) => ({
+      ...rankRecord(item.record, intent, weights, now),
+      constraintValidation: item.constraintValidation,
+    }))
     .filter((item) => item.intentScore > 0)
     .sort((left, right) => right.score - left.score || String(left.record.id).localeCompare(String(right.record.id)));
 }
 
+function constraintConflictDiagnostics(intent, rejections, resultCount) {
+  if (resultCount > 0) return null;
+  const failures = Array.isArray(rejections) ? rejections : [];
+  const reasonCodes = unique(failures.flatMap((item) => item.validation?.reasonCodes || []));
+  const rejectedSources = failures.reduce((counts, item) => ({
+    ...counts,
+    [item.source]: Number(counts[item.source] || 0) + 1,
+  }), {});
+  if (!reasonCodes.length && !intent?.parseSuccess) return null;
+  return {
+    reasonCodes: reasonCodes.length ? reasonCodes : ["no-valid-route"],
+    missingRequiredDestinationIds: unique(failures.flatMap((item) => item.validation?.missingRequiredDestinationIds || [])),
+    missingRequiredDestinationNames: unique(failures.flatMap((item) => item.validation?.missingRequiredDestinationNames || [])),
+    orderMismatch: failures.some((item) => item.validation?.orderMismatch),
+    durationConflict: failures.some((item) => item.validation?.durationConflict),
+    capacityConflict: failures.some((item) => item.validation?.capacityConflict),
+    timeConstraintConflict: failures.some((item) => item.validation?.timeConstraintConflict),
+    destinationConflict: failures.some((item) => item.validation?.destinationConflict),
+    countryConflict: failures.some((item) => item.validation?.countryConflict),
+    regionConflict: failures.some((item) => item.validation?.regionConflict),
+    rejectedFallbackCount: failures.length,
+    rejectedSources,
+    examples: failures.slice(0, 12).map((item) => ({
+      routeId: item.routeId,
+      source: item.source,
+      reasonCodes: item.validation?.reasonCodes || [],
+    })),
+  };
+}
+
 function dedupeRanked(items) {
   const accepted = [];
+  const keysByIndex = [];
+  const ownersByKey = new Map();
+
+  const duplicateKeys = (record) => {
+    const source = searchSourceKey(record);
+    const computedFingerprint = routeDedupeFingerprint(record);
+    const title = routeTitleKey(record);
+    return [
+      record?.id ? `id:${record.id}` : "",
+      source ? `source:${source}` : "",
+      record?.dedupeFingerprint ? `declared:${record.dedupeFingerprint}` : "",
+      computedFingerprint ? `computed:${computedFingerprint}` : "",
+      title ? `title:${title}` : "",
+    ].filter(Boolean);
+  };
+
+  const addOwner = (key, index) => {
+    const owners = ownersByKey.get(key) || new Set();
+    owners.add(index);
+    ownersByKey.set(key, owners);
+  };
+
+  const removeOwner = (key, index) => {
+    const owners = ownersByKey.get(key);
+    if (!owners) return;
+    owners.delete(index);
+    if (!owners.size) ownersByKey.delete(key);
+  };
+
+  const duplicateIndexFor = (keys) => {
+    let duplicateIndex = -1;
+    for (const key of keys) {
+      for (const index of ownersByKey.get(key) || []) {
+        if (duplicateIndex < 0 || index < duplicateIndex) duplicateIndex = index;
+      }
+    }
+    return duplicateIndex;
+  };
+
   for (const item of items) {
     if (!item?.record?.id) continue;
-    const duplicateIndex = accepted.findIndex((existing) => isStrongSearchDuplicate(existing.record, item.record));
+    const keys = duplicateKeys(item.record);
+    const duplicateIndex = duplicateIndexFor(keys);
     if (duplicateIndex >= 0) {
-      if (item.score > accepted[duplicateIndex].score) accepted[duplicateIndex] = item;
+      if (item.score > accepted[duplicateIndex].score) {
+        for (const key of keysByIndex[duplicateIndex] || []) removeOwner(key, duplicateIndex);
+        accepted[duplicateIndex] = item;
+        keysByIndex[duplicateIndex] = keys;
+        for (const key of keys) addOwner(key, duplicateIndex);
+      }
       continue;
     }
+    const index = accepted.length;
     accepted.push(item);
+    keysByIndex.push(keys);
+    for (const key of keys) addOwner(key, index);
   }
   return accepted;
 }
@@ -292,7 +362,35 @@ function decorateRecord(record, { status, matchReason, queryId, intentHash }) {
   };
 }
 
+function isRouteGenerationV2Record(record = {}) {
+  return clean(record.generationVersion).startsWith("route-generation-v2-")
+    || clean(record.v2PublicationStatus).startsWith("blocked-")
+    || clean(record.v2PublicationStatus) === "v2-not-publishable-yet"
+    || clean(record.v2PublicationStatus) === "ready-for-display";
+}
+
+function preserveGenerationMetadata(record, source = {}) {
+  if (!record) return null;
+  const generationVersion = clean(source.generationVersion);
+  const selectedCandidateId = clean(source.selectedCandidateId);
+  const decisionTraceId = clean(source.decisionTraceId);
+  const intentId = clean(source.intentId);
+  const v2Record = generationVersion.startsWith("route-generation-v2-");
+  const v2PublicationStatus = clean(source.v2PublicationStatus);
+  return {
+    ...record,
+    ...(generationVersion ? { generationVersion } : {}),
+    ...(selectedCandidateId ? { selectedCandidateId } : {}),
+    ...(decisionTraceId ? { decisionTraceId } : {}),
+    ...(intentId ? { intentId } : {}),
+    ...(v2Record || v2PublicationStatus
+      ? { v2PublicationStatus: v2PublicationStatus || "v2-not-publishable-yet" }
+      : {}),
+  };
+}
+
 function generatedStatus(record, autoAcceptGenerated) {
+  if (isRouteGenerationV2Record(record)) return clean(record.v2PublicationStatus) === "ready-for-display" ? "ready-for-display" : "needs-review";
   if (autoAcceptGenerated) return "accepted";
   if (record?.enrichmentStatus === "needsEvidence" || record?.contentQualityStatus !== "accepted") return "needs-review";
   return "search-generated";
@@ -347,18 +445,76 @@ function withTimeout(task, timeoutMs, abortSignal = null) {
   });
 }
 
-function plannerContextFromIntent(intent, deadlineAt, abortSignal = null) {
+function plannerContextFromIntent(intent, deadlineAt, abortSignal = null, { destinationSuggestion = null } = {}) {
+  const suggested = destinationSuggestion && typeof destinationSuggestion === "object" ? destinationSuggestion : null;
+  const rawQueryFingerprint = stableHash({ rawQuery: clean(intent.rawQuery) }).slice(0, 12);
+  const countryCode = suggested?.countryCode || intent.countryCode;
+  const countryName = suggested?.countryName || intent.country;
+  const cities = suggested?.cities || (Array.isArray(intent.cities) ? intent.cities : []);
+  const normalizedCities = suggested?.normalizedCities || (Array.isArray(intent.normalizedCities) ? intent.normalizedCities : []);
+  const countryCodes = suggested
+    ? [countryCode].filter(Boolean)
+    : unique([...(intent.countryCodes || []), countryCode].filter(Boolean));
+  const citywalkReference = !suggested
+    && !intent.travelStyle
+    && Array.isArray(intent.requiredDestinationIds)
+    && intent.requiredDestinationIds.length === 1
+    && cities.length === 1
+    && Number(intent.durationDays) >= 3;
+  const cityBreakByDuration = Number(intent.durationDays) > 0 && Number(intent.durationDays) <= 3;
+  const cityBreakByExplicitPair = !suggested
+    && cities.length > 0
+    && cities.length <= 2
+    && Number(intent.durationDays) > 0
+    && Number(intent.durationDays) <= 6;
+  const travelStyle = citywalkReference
+    ? "deep-dive"
+    : intent.intentMode && !intent.travelStyle && (cityBreakByDuration || cityBreakByExplicitPair)
+      ? "city-break"
+      : intent.travelStyle || undefined;
   return {
-    country: intent.countryCode,
-    countryCode: intent.countryCode,
-    countryName: intent.country,
-    cities: Array.isArray(intent.cities) ? [...intent.cities] : [],
-    normalizedCities: Array.isArray(intent.normalizedCities) ? [...intent.normalizedCities] : [],
+    intentId: suggested
+      ? `${intent.intentHash}-${suggested.seed.slice(0, 12)}-${rawQueryFingerprint}`
+      : intent.intentHash,
+    baseIntentId: intent.intentHash,
+    routeIntentSchemaVersion: intent.routeIntentSchemaVersion,
+    routeIntentFingerprintVersion: intent.routeIntentFingerprintVersion,
+    routeIntentFingerprint: intent.routeIntentFingerprint,
+    normalizedRouteIntent: structuredClone(intent.normalizedRouteIntent || null),
+    intentMode: intent.intentMode || "",
+    rawQuery: intent.rawQuery || "",
+    country: countryCode,
+    countryCode,
+    countries: [...countryCodes],
+    countryCodes: [...countryCodes],
+    countryName,
+    cities: [...cities],
+    normalizedCities: [...normalizedCities],
+    targetCities: suggested ? [] : [...normalizedCities],
+    ...(Array.isArray(intent.requiredDestinationIds) ? {
+      requiredDestinationIds: [...intent.requiredDestinationIds],
+      requiredDestinationNames: [...(intent.requiredDestinationNames || [])],
+      requiredDestinationRaw: [...(intent.requiredDestinationRaw || [])],
+      destinationOrderMode: intent.destinationOrderMode || "unspecified",
+      destinationDiagnostics: structuredClone(intent.destinationDiagnostics || []),
+    } : {}),
+    ...(suggested ? {
+      candidateSeed: suggested.seed,
+      destinationSuggestion: structuredClone(suggested),
+    } : {}),
+    ...(citywalkReference ? {
+      routeReferenceMode: "citywalk",
+      durationPolicy: "open-ended",
+    } : {}),
     durationDays: intent.durationDays || undefined,
     durationBand: intent.durationBand || undefined,
-    travelStyle: intent.travelStyle || undefined,
+    travelStyle,
     theme: intent.theme || undefined,
     season: intent.season || undefined,
+    ...(intent.timeIntent ? { timeIntent: structuredClone(intent.timeIntent) } : {}),
+    transport: intent.transport || undefined,
+    transportPreference: intent.transport ? [intent.transport] : [],
+    budgetConstraint: intent.budget || null,
     region: intent.region || undefined,
     designStrategies: [
       "Geographic",
@@ -396,29 +552,114 @@ export function createRouteSearchService({
     const intent = parseSearchIntent(request.query, {
       acceptedRoutes: acceptedSnapshot,
       catalogs: intentCatalog,
+      timeIntentEnabled: isRouteV2TimeIntentEnabled(env),
     });
+    const countryScopedDestinationSuggestion = intent.intentMode === "specified-destination"
+      && !(intent.requiredDestinationIds || []).length
+      && (intent.countryCodes || []).length > 0;
+    const destinationSuggestionResult = (
+      intent.intentMode === "destination-suggestion"
+      || countryScopedDestinationSuggestion
+    )
+      ? buildRouteDestinationSuggestion({
+        intent,
+        sessionId: request.sessionId || intent.intentHash,
+        acceptedRoutes: acceptedRepository.list({
+          limit: 99_999,
+          sessionId: request.sessionId || intent.intentHash,
+          routeType: request.routeType || "",
+        }).records,
+        intentCatalog,
+      })
+      : null;
+    const destinationSuggestion = destinationSuggestionResult?.ready
+      ? destinationSuggestionResult.suggestion
+      : null;
+    if (destinationSuggestionResult) {
+      intent.destinationSuggestionStatus = destinationSuggestionResult.reason;
+      intent.destinationSuggestion = destinationSuggestion ? structuredClone(destinationSuggestion) : null;
+    }
     let acceptedHit = false;
     let cacheHit = false;
     let plannerCalled = false;
     let plannerTimeout = false;
     let plannerAborted = false;
     let plannerError = "";
+    let plannerRejected = [];
     let cacheItem = null;
     let generatedRecords = [];
     let ranked = [];
+    const constraintRejections = [];
+    const finalizeRecord = (record, source) => {
+      const finalized = finalizeRouteResult(record, intent, {
+        source,
+        claimedSuccess: true,
+      });
+      const shadow = compareRouteIntentShadow({
+        route: finalized.record || record,
+        intent,
+        productionResult: finalized.validation,
+        source,
+        env,
+      });
+      const matched = finalized.matched && shadow.matched !== false;
+      const validation = matched
+        ? finalized.validation
+        : finalized.matched
+          ? {
+              ...finalized.validation,
+              matched: false,
+              reasonCodes: ["route-intent-oracle-disagreement"],
+              shadow,
+            }
+          : finalized.validation;
+      if (!matched) {
+        constraintRejections.push({
+          routeId: clean(record?.id),
+          source,
+          validation,
+        });
+      }
+      return {
+        matched,
+        record: matched ? finalized.record : null,
+        validation,
+        shadow,
+      };
+    };
+    const validateRecord = (record, source) => {
+      return finalizeRecord(record, source).validation;
+    };
+    const constrainRecords = (records, source) => (records || []).flatMap((record) => {
+      const finalized = finalizeRecord(record, source);
+      if (!finalized.matched) return [];
+      return [finalized.validation.requiresEvidence
+        ? { ...finalized.record, searchStatus: "needs-review" }
+        : finalized.record];
+    });
+    const constrainRanked = (items, source) => (items || []).filter((item) => validateRecord(item.record, source).matched);
 
     if (!intent.parseSuccess) {
-      const keywordRanked = dedupeRanked(rankKeywordAcceptedRoutes(acceptedSnapshot, request.query, {
+      const keywordRanked = intent.intentMode
+        ? []
+        : dedupeRanked(rankKeywordAcceptedRoutes(acceptedSnapshot, request.query, {
         routeType: request.routeType,
         now,
       })).slice(0, intent.targetResultCount || 10);
       if (keywordRanked.length && !intent.isChinaBlocked) {
-        const merged = keywordRanked.map((item) => decorateRecord(item.record, {
-          status: "accepted",
-          matchReason: item.matchReason,
-          queryId,
-          intentHash: intent.intentHash,
-        }));
+        const merged = keywordRanked.flatMap((item) => {
+          const finalized = finalizeRouteResult(item.record, intent, {
+            source: "keyword-fallback-success",
+            claimedSuccess: true,
+          });
+          if (!finalized.matched || !finalized.record) return [];
+          return [decorateRecord(finalized.record, {
+            status: finalized.validation.requiresEvidence ? "needs-review" : "accepted",
+            matchReason: item.matchReason,
+            queryId,
+            intentHash: intent.intentHash,
+          })];
+        });
         const page = pageFromSnapshot(merged, {
           cursor: request.cursor,
           limit: request.limit || 20,
@@ -459,7 +700,9 @@ export function createRouteSearchService({
           cacheStatus: "REPOSITORY",
         };
       }
-      const diagnostics = { reason: intent.isChinaBlocked ? "china-blocked" : "intent-parse-failed" };
+      const diagnostics = {
+        reason: intent.isChinaBlocked ? "china-blocked" : intent.failureReason || "intent-parse-failed",
+      };
       analytics?.logSearch?.({
         query: request.query || "",
         normalizedIntent: intent,
@@ -492,41 +735,60 @@ export function createRouteSearchService({
       routeType: request.routeType,
       weights: rankingWeights,
       now,
+      validateRecord,
     });
     if (!ranked.length) {
-      ranked = dedupeRanked(rankKeywordAcceptedRoutes(acceptedSnapshot, request.query, {
+      ranked = constrainRanked(dedupeRanked(rankKeywordAcceptedRoutes(acceptedSnapshot, request.query, {
         routeType: request.routeType,
         now,
-      }));
+      })), "accepted-keyword-fallback");
     }
     acceptedHit = ranked.length > 0;
 
-    if (ranked.length < intent.targetResultCount) {
-      cacheItem = searchCache.get(intent.intentHash);
+    const destinationSuggestionMode = intent.intentMode === "destination-suggestion";
+    const plannerEligible = intent.canGenerate && (!destinationSuggestionMode || Boolean(destinationSuggestion));
+    const cacheRawQueryFingerprint = stableHash({ rawQuery: clean(intent.rawQuery) }).slice(0, 12);
+    const cacheIntent = destinationSuggestion
+      ? {
+        ...intent,
+        intentHash: `${intent.intentHash}-${destinationSuggestion.seed.slice(0, 12)}-${cacheRawQueryFingerprint}`,
+        intentKey: `${intent.intentKey}|session:${destinationSuggestion.seed.slice(0, 12)}|query:${cacheRawQueryFingerprint}`,
+      }
+      : intent;
+    if (destinationSuggestionMode || ranked.length < intent.targetResultCount) {
+      cacheItem = destinationSuggestionMode ? null : searchCache.get(cacheIntent);
       cacheHit = Boolean(cacheItem);
       if (cacheItem) {
         generatedRecords = (cacheItem.records || [])
           .map((record) => {
-            const normalized = normalizeDiscoveredRoute(record);
+            const normalized = preserveGenerationMetadata(normalizeDiscoveredRoute(record), record);
             if (!normalized) return null;
-            const status = record.searchStatus === "accepted" ? "accepted" : generatedStatus(normalized, false);
+            const status = isRouteGenerationV2Record(normalized)
+              ? clean(normalized.v2PublicationStatus) === "ready-for-display" ? "ready-for-display" : "needs-review"
+              : record.searchStatus === "accepted" ? "accepted" : generatedStatus(normalized, false);
             return { ...normalized, searchStatus: status || cacheItem.status || "search-generated" };
           })
           .filter(Boolean);
-      } else if (intent.canGenerate && planner?.buildCandidates && maxPlannerCalls > 0 && !context.abortSignal?.aborted) {
+      } else if (plannerEligible && planner?.buildCandidates && maxPlannerCalls > 0 && !context.abortSignal?.aborted) {
         plannerCalled = true;
         const deadlineAt = now() + plannerTimeoutMs;
         const result = await withTimeout(
-          () => planner.buildCandidates({ limit: 1, context: plannerContextFromIntent(intent, deadlineAt, context.abortSignal || null) }),
+          () => planner.buildCandidates({
+            limit: 1,
+            context: plannerContextFromIntent(intent, deadlineAt, context.abortSignal || null, { destinationSuggestion }),
+          }),
           plannerTimeoutMs,
           context.abortSignal || null,
         );
         plannerTimeout = Boolean(result.timedOut);
         plannerAborted = Boolean(result.aborted);
         plannerError = clean(result.error?.message || result.error || "");
+        plannerRejected = Array.isArray(result.result?.rejected)
+          ? result.result.rejected.slice(0, 10).map((item) => ({ reason: clean(item?.reason) }))
+          : [];
         if (!plannerTimeout && !plannerAborted && result.result?.accepted?.length) {
           generatedRecords = result.result.accepted
-            .map((item) => normalizeDiscoveredRoute(item.record))
+            .map((item) => preserveGenerationMetadata(normalizeDiscoveredRoute(item.record), item.record))
             .filter(Boolean)
             .map((record) => {
               const status = generatedStatus(record, autoAcceptGenerated);
@@ -534,33 +796,51 @@ export function createRouteSearchService({
                 ...record,
                 searchStatus: status,
                 contentQualityStatus: record.contentQualityStatus || "accepted",
+                ...(isRouteGenerationV2Record(record) ? { v2PublicationStatus: record.v2PublicationStatus || "v2-not-publishable-yet" } : {}),
               });
             });
-        } else if (!plannerTimeout && !plannerAborted && !result.error) {
+        } else if (!destinationSuggestionMode && !plannerTimeout && !plannerAborted && !result.error) {
           const fallback = normalizeDiscoveredRoute(buildSearchGeneratedFallbackRoute(intent));
           generatedRecords = fallback ? [ensureSearchGeneratedMedia({ ...fallback, searchStatus: "needs-review" })] : [];
         }
+        generatedRecords = constrainRecords(generatedRecords, "planner-or-generated-fallback");
         if (generatedRecords.length) {
+            const v2BlockedRecords = generatedRecords.filter((record) => isRouteGenerationV2Record(record) && record.v2PublicationStatus !== "ready-for-display");
+            const cacheStatus = generatedRecords.some((record) => record.searchStatus === "needs-review")
+              ? "needs-review"
+              : generatedRecords.every((record) => record.searchStatus === "accepted") ? "accepted" : "search-generated";
             searchCache.put({
-              intent,
+              intent: cacheIntent,
               records: generatedRecords,
               sourceQuery: request.query,
-              status: generatedRecords.some((record) => record.searchStatus === "needs-review") ? "needs-review" : (autoAcceptGenerated ? "accepted" : "search-generated"),
-              plannerMeta: { timeoutMs: plannerTimeoutMs, autoAcceptGenerated },
+              status: cacheStatus,
+              plannerMeta: {
+                timeoutMs: plannerTimeoutMs,
+                autoAcceptGenerated,
+                ...(v2BlockedRecords.length ? { v2PromotionBlocked: v2BlockedRecords.length, v2PromotionReason: "v2-not-publishable-yet" } : {}),
+              },
             });
             searchCache.appendReviewCandidates({
-              intent,
+              intent: cacheIntent,
               records: generatedRecords,
               queryId,
-              plannerMeta: { timeoutMs: plannerTimeoutMs, autoAcceptGenerated },
+              plannerMeta: {
+                timeoutMs: plannerTimeoutMs,
+                autoAcceptGenerated,
+                ...(v2BlockedRecords.length ? { v2PromotionBlocked: v2BlockedRecords.length, v2PromotionReason: "v2-not-publishable-yet" } : {}),
+              },
             });
             if (autoAcceptGenerated) {
-              for (const record of generatedRecords) acceptedRepository.upsert?.(record);
+              for (const record of generatedRecords) {
+                if (isRouteGenerationV2Record(record) || record.searchStatus !== "accepted") continue;
+                acceptedRepository.upsert?.(record);
+              }
             }
         }
-      } else if (intent.canGenerate && !context.abortSignal?.aborted) {
+      } else if (plannerEligible && !destinationSuggestionMode && !context.abortSignal?.aborted) {
         const fallback = normalizeDiscoveredRoute(buildSearchGeneratedFallbackRoute(intent));
         generatedRecords = fallback ? [ensureSearchGeneratedMedia({ ...fallback, searchStatus: "needs-review" })] : [];
+        generatedRecords = constrainRecords(generatedRecords, "legacy-fallback");
         if (generatedRecords.length) {
           searchCache.put({
             intent,
@@ -579,25 +859,50 @@ export function createRouteSearchService({
       }
     }
 
-    const generatedRanked = generatedRecords.map((record) => ({
-      ...rankRecord(record, intent, rankingWeights, now),
-      status: record.searchStatus === "needs-review" ? "needs-review" : record.searchStatus === "accepted" ? "accepted" : "search-generated",
+    generatedRecords = constrainRecords(generatedRecords, "generated-final-gate");
+
+    const generatedRanked = generatedRecords.map((record) => {
+      const constraintValidation = validateRecord(record, "generated-ranking");
+      const status = constraintValidation.requiresEvidence
+        ? "needs-review"
+        : record.searchStatus === "ready-for-display"
+          ? "ready-for-display"
+          : record.searchStatus === "needs-review"
+            ? "needs-review"
+            : record.searchStatus === "accepted" ? "accepted" : "search-generated";
+      return {
+        ...rankRecord(record, intent, rankingWeights, now),
+        constraintValidation,
+        status,
+        fallbackPriority: status === "ready-for-display" ? 0 : 2,
+      };
+    });
+    const acceptedRanked = ranked.map((item) => ({
+      ...item,
+      status: item.constraintValidation?.requiresEvidence ? "needs-review" : "accepted",
+      fallbackPriority: item.constraintValidation?.requiresEvidence ? 2 : 1,
     }));
-    const acceptedRanked = ranked.map((item) => ({ ...item, status: "accepted" }));
     const merged = dedupeRanked([...acceptedRanked, ...generatedRanked])
-      .sort((left, right) => right.score - left.score || String(left.record.id).localeCompare(String(right.record.id)))
+      .sort((left, right) => left.fallbackPriority - right.fallbackPriority
+        || right.score - left.score
+        || String(left.record.id).localeCompare(String(right.record.id)))
       .slice(0, intent.targetResultCount)
-      .map((item) => decorateRecord(item.record, {
-        status: item.status,
-        matchReason: item.matchReason,
-        queryId,
-        intentHash: intent.intentHash,
-      }));
+      .flatMap((item) => {
+        const finalized = finalizeRecord(item.record, "final-search-response");
+        if (!finalized.matched) return [];
+        return [decorateRecord(finalized.record, {
+          status: finalized.validation.requiresEvidence ? "needs-review" : item.status,
+          matchReason: item.matchReason,
+          queryId,
+          intentHash: intent.intentHash,
+        })];
+      });
     const page = pageFromSnapshot(merged, {
       cursor: request.cursor,
       limit: request.limit || 20,
       intentHash: intent.intentHash,
     });
+    const constraintConflict = constraintConflictDiagnostics(intent, constraintRejections, merged.length);
     analytics?.logSearch?.({
       query: request.query || "",
       normalizedIntent: intent,
@@ -624,6 +929,7 @@ export function createRouteSearchService({
       intent,
       queryId,
       diagnostics: {
+        ...(constraintConflict ? { reason: "constraint-conflict", constraintConflict } : {}),
         source: plannerCalled ? "search-v1-planner" : cacheHit ? "search-v1-cache" : "search-v1-accepted",
         acceptedHit,
         cacheHit,
@@ -631,6 +937,8 @@ export function createRouteSearchService({
         plannerTimeout,
         plannerAborted,
         plannerError,
+        plannerRejected,
+        destinationSuggestion: destinationSuggestion ? structuredClone(destinationSuggestion) : null,
         targetResultCount: intent.targetResultCount,
         durationMs: now() - startedAt,
       },

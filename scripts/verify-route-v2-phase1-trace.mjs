@@ -8,6 +8,8 @@ import {
   createDecisionTraceStore,
   createEvidenceRepository,
   createRouteCompositionPlanner,
+  validateDecisionTrace,
+  writeLegacyDecisionTraceSafe,
 } from "../src/lib/routes/index.mjs";
 
 const fixedNow = "2026-01-01T00:00:00.000Z";
@@ -88,6 +90,11 @@ assert.equal(traceLines.length, 1, "one generated route should append one trace 
 const parsedTrace = JSON.parse(traceLines[0]);
 assert.equal(parsedTrace.routeId, onCandidate.record.id, "trace should reference generated routeId");
 assert.equal(parsedTrace.version, "route-generation-v2-phase1-trace-v1");
+assert.equal(parsedTrace.phase, "phase1-trace-only");
+assert.equal(parsedTrace.outcome, "success");
+assert.equal(parsedTrace.routeSnapshot.routeId, onCandidate.record.id);
+assert.deepEqual(parsedTrace.routeSnapshot.proposedOrder, onCandidate.record.destinationEntities.map((item) => item.wikidataId || item.entityId || item.id || item.name));
+assert.equal(validateDecisionTrace(parsedTrace).accepted, true);
 assert.ok(Array.isArray(parsedTrace.unknowns) && parsedTrace.unknowns.length >= 1, "trace must allow explicit Unknown entries");
 assert.equal(Array.isArray(parsedTrace.candidatePool), true, "Phase 1 candidatePool can be an empty array");
 assert.equal(Array.isArray(parsedTrace.rejectedCandidates), true, "Phase 1 rejectedCandidates can be an empty array");
@@ -95,6 +102,34 @@ assert.equal(Array.isArray(parsedTrace.rejectedCandidates), true, "Phase 1 rejec
 const parsedRecords = onHarness.decisionTraceStore.readAll();
 assert.equal(parsedRecords.length, 1, "readAll should return one parsed JSONL record");
 assert.equal(parsedRecords[0].ok, true, "JSONL line must parse");
+assert.equal(parsedRecords[0].validation.accepted, true, "JSONL line must pass the complete DecisionTrace schema");
+const idempotentTraceWrite = onHarness.decisionTraceStore.append(parsedTrace);
+assert.equal(idempotentTraceWrite.persisted, true);
+assert.equal(idempotentTraceWrite.written, false, "same trace retry must not append a physical duplicate");
+assert.equal(fs.readFileSync(onHarness.tracePath, "utf8").trim().split(/\r?\n/u).filter(Boolean).length, 1);
+const defensiveTrace = onHarness.decisionTraceStore.list()[0];
+defensiveTrace.inputContext.duration.days = 999;
+assert.notEqual(onHarness.decisionTraceStore.list()[0].inputContext.duration.days, 999, "Trace reads must be deep defensive copies");
+
+const mixedTracePath = path.join(tempRoot, "mixed-traces", "decision-traces.jsonl");
+fs.mkdirSync(path.dirname(mixedTracePath), { recursive: true });
+fs.writeFileSync(mixedTracePath, [
+  JSON.stringify(parsedTrace),
+  JSON.stringify({ ...parsedTrace, version: "schema-invalid-version" }),
+  JSON.stringify(parsedTrace),
+  "{not-json",
+  "",
+].join("\n"), "utf8");
+const mixedTraceStore = createDecisionTraceStore({
+  storagePath: mixedTracePath,
+  env: { ROUTE_V2_TRACE_ENABLED: "true" },
+  now: () => fixedNow,
+});
+assert.equal(mixedTraceStore.list().length, 1, "schema-invalid, duplicate, and corrupt traces must be skipped");
+assert.deepEqual(
+  new Set(mixedTraceStore.diagnostics().map((diagnostic) => diagnostic.type)),
+  new Set(["trace-schema-invalid", "trace-duplicate", "trace-corrupt-json"]),
+);
 
 const stableA = createDecisionTraceId({ routeId: "route-a", candidateId: "candidate-a", intentId: "intent-a" });
 const stableB = createDecisionTraceId({ routeId: "route-a", candidateId: "candidate-a", intentId: "intent-a" });
@@ -123,8 +158,14 @@ const failResult = await failPlanner.buildCandidates({
 });
 assert.equal(failResult.accepted.length, 1, "trace write failure must not block legacy RouteRecord generation");
 assert.equal(failResult.accepted[0].decisionTrace.written, false, "write failure should be captured as diagnostic");
-assert.equal(failResult.accepted[0].decisionTrace.reason, "trace-write-failed");
+assert.equal(failResult.accepted[0].decisionTrace.reason, "trace-read-failed");
+assert.equal(failResult.accepted[0].decisionTrace.diagnostics[0].type, "trace-read-failed");
 assert.ok(failResult.accepted[0].record.id, "legacy RouteRecord should still be returned on trace write failure");
+
+const syncFailure = await writeLegacyDecisionTraceSafe({ appendLegacyRouteTrace() { throw new Error("sync-trace-store-failure"); } }, {});
+assert.equal(syncFailure.reason, "trace-write-failed");
+const asyncFailure = await writeLegacyDecisionTraceSafe({ appendLegacyRouteTrace() { return Promise.reject(new Error("async-trace-store-failure")); } }, {});
+assert.equal(asyncFailure.reason, "trace-write-failed");
 
 const oldAcceptedDir = path.join(tempRoot, "old-accepted");
 fs.mkdirSync(oldAcceptedDir, { recursive: true });
@@ -158,6 +199,9 @@ console.log(JSON.stringify({
   tracePath: onHarness.tracePath,
   traceLines: traceLines.length,
   writeFailureDegraded: true,
+  idempotentPhysicalTrace: true,
+  invalidRecordsSkipped: true,
+  defensiveCopy: true,
   oldAcceptedAutoBackfill: false,
   feedSearchDetailTraceReads: false,
 }, null, 2));

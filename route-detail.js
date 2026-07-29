@@ -6,7 +6,19 @@ const routeDetailSource = detailParams.get("source")?.trim() || "";
 const routeSearchStatus = detailParams.get("status")?.trim() || "";
 const routeSearchSessionId = detailParams.get("searchSessionId")?.trim() || "";
 const routeSearchQueryId = detailParams.get("queryId")?.trim() || "";
+const routeReturnQuery = detailParams.get("q")?.trim() || "";
+const routeReturnLocalOnly = detailParams.get("localOnly") === "1";
+const routeReturnType = detailParams.get("routeType")?.trim() || "";
+const routeReturnUrl = new URL("routes.html", window.location.href);
+if (routeReturnQuery) routeReturnUrl.searchParams.set("q", routeReturnQuery);
+if (routeReturnLocalOnly) routeReturnUrl.searchParams.set("localOnly", "1");
+if (["cross", "single"].includes(routeReturnType)) routeReturnUrl.searchParams.set("routeType", routeReturnType);
+document.querySelectorAll("[data-route-back]").forEach((link) => {
+  link.href = `${routeReturnUrl.pathname.split("/").pop()}${routeReturnUrl.search}`;
+});
 const FALLBACK_ROUTE_COVER = "assets/trip-cover-placeholder.svg";
+const routeImageAssets = globalThis.RouteV2ImageAssets || null;
+const runtimeImageSearchEnabled = routeImageAssets?.isRuntimeImageSearchEnabled?.() === true;
 
 let activeRouteRecord = null;
 let destinationHydrationToken = 0;
@@ -146,10 +158,14 @@ function findDestinationForCard(card) {
 function destinationCardMarkup(record, destination, asset) {
   const destinationId = destination.wikidataId || destination.name;
   const countryName = (record.countryEntities || []).find((item) => item.countryCode === destination.countryCode)?.name || "";
+  const citywalkLabel = record.routeReferenceMode === "citywalk"
+    ? destination.entityTypeName === "poi" ? "景点" : "城市中心"
+    : "";
+  const destinationLabel = [countryName, citywalkLabel].filter(Boolean).join(" · ");
   if (!asset?.imageUrl) {
-    return `<article class="route-city-card route-city-card-missing" data-route-destination="${escapeHtml(destinationId)}" data-route-destination-media="loading"><span></span><strong>${escapeHtml(destination.name)}</strong><em>正在加载图片</em></article>`;
+    return `<article class="route-city-card route-city-card-missing" data-route-destination="${escapeHtml(destinationId)}" data-route-destination-media="loading"><span></span><strong>${escapeHtml(destination.name)}</strong><em>${escapeHtml(destinationLabel || "正在加载图片")}</em></article>`;
   }
-  return `<article class="route-city-card" data-route-destination="${escapeHtml(destinationId)}" data-route-destination-media="ready"><img src="${escapeHtml(asset.imageUrl)}" alt="${escapeHtml(destination.name)}目的地图" loading="lazy" decoding="async"><span></span><strong>${escapeHtml(destination.name)}</strong><em>${escapeHtml(countryName)}</em></article>`;
+  return `<article class="route-city-card" data-route-destination="${escapeHtml(destinationId)}" data-route-destination-media="ready"><img src="${escapeHtml(asset.imageUrl)}" alt="${escapeHtml(destination.name)}目的地图" loading="lazy" decoding="async"><span></span><strong>${escapeHtml(destination.name)}</strong><em>${escapeHtml(destinationLabel)}</em></article>`;
 }
 
 function updateDestinationCard(destination, asset, status = "ready") {
@@ -158,10 +174,14 @@ function updateDestinationCard(destination, asset, status = "ready") {
   const card = grid?.querySelector(`[data-route-destination="${key}"]`);
   if (!card) return;
   const countryName = (activeRouteRecord?.countryEntities || []).find((item) => item.countryCode === destination.countryCode)?.name || "";
+  const citywalkLabel = activeRouteRecord?.routeReferenceMode === "citywalk"
+    ? destination.entityTypeName === "poi" ? "景点" : "城市中心"
+    : "";
+  const destinationLabel = [countryName, citywalkLabel].filter(Boolean).join(" · ");
   if (status === "ready" && asset?.imageUrl) {
     card.classList.remove("route-city-card-missing");
     card.dataset.routeDestinationMedia = "ready";
-    card.innerHTML = `<img src="${escapeHtml(asset.imageUrl)}" alt="${escapeHtml(destination.name)}目的地图" loading="lazy" decoding="async"><span></span><strong>${escapeHtml(destination.name)}</strong><em>${escapeHtml(countryName)}</em>`;
+    card.innerHTML = `<img src="${escapeHtml(asset.imageUrl)}" alt="${escapeHtml(destination.name)}目的地图" loading="lazy" decoding="async"><span></span><strong>${escapeHtml(destination.name)}</strong><em>${escapeHtml(destinationLabel)}</em>`;
     return;
   }
   card.classList.add("route-city-card-missing");
@@ -170,6 +190,7 @@ function updateDestinationCard(destination, asset, status = "ready") {
 }
 
 async function hydrateDestinationImages(record, destinations, initialAssets) {
+  if (!runtimeImageSearchEnabled) return;
   const token = ++destinationHydrationToken;
   const usedImageUrls = new Set(
     [
@@ -221,7 +242,9 @@ function renderDestinations(record, diagnostics = {}) {
   const missing = [];
   const destinations = uniqueDestinations(record);
   const cards = destinations.map((destination) => {
-    const asset = assets.get(destination.wikidataId) || assets.get(destination.name);
+    const asset = runtimeImageSearchEnabled
+      ? (assets.get(destination.wikidataId) || assets.get(destination.name))
+      : routeImageAssets?.resolveLocalDestinationCover?.(destination, record);
     if (!asset?.imageUrl) {
       missing.push(destination.name);
       return destinationCardMarkup(record, destination, null);
@@ -233,23 +256,121 @@ function renderDestinations(record, diagnostics = {}) {
   hydrateDestinationImages(record, destinations, assets);
 }
 
+function routeDetailRecommendationText(record = {}) {
+  const current = String(record.recommendationText || record.summary || "").trim();
+  if (!/(?:在给定天数内保留\d+个目的地|日均一个主要体验|停留点多，先锁定重点|适合短假|偏紧，只保留关键体验|预留休息与改线时间)/u.test(current)) {
+    return current;
+  }
+  const countryCodes = new Set([
+    ...(record.countries || []),
+    ...(record.countryEntities || []).map((country) => country.countryCode),
+  ].map((code) => String(code || "").trim().toUpperCase()).filter(Boolean));
+  const hasCountry = (...codes) => codes.some((code) => countryCodes.has(code));
+  const onlyCountries = (...codes) => (
+    countryCodes.size > 0
+    && [...countryCodes].every((code) => codes.includes(code))
+  );
+  const narrative = [
+    record.name,
+    record.canonicalTitle,
+    record.travelStyle,
+    ...(record.themes || []),
+    ...(record.tags || []),
+  ].map((value) => String(value || "").trim()).filter(Boolean).join(" ");
+  if (hasCountry("KZ", "KG", "UZ", "TJ", "TM")) {
+    return "穿行丝路绿洲与旷野，让砖石穹顶和市集烟火交替展开。";
+  }
+  if (countryCodes.size >= 2 && onlyCountries("AT", "CZ", "HU", "SK")) {
+    return "沿多瑙河与帝国旧都的脉络前行，让宫殿、咖啡馆和老城夜色层层展开。";
+  }
+  if (countryCodes.size === 1 && hasCountry("JP")) {
+    return "在古都寺院、街巷日常与山海风景之间，读一段层次分明的日本。";
+  }
+  if (countryCodes.size === 1 && hasCountry("IT")) {
+    return "让教堂穹顶、文艺复兴街巷与餐桌烟火沿途相接。";
+  }
+  if (countryCodes.size === 1 && hasCountry("FR")) {
+    return "循着河岸、旧城与葡萄酒乡的光影，慢慢展开法兰西的不同侧面。";
+  }
+  if (onlyCountries("DK", "FI", "IS", "NO", "SE")) {
+    return "在港湾、森林与北地长光之间，感受城市秩序和旷野气息的交替。";
+  }
+  const style = String(record.travelStyleConceptKey || record.travelStyle || record.concept?.travelStyle || "")
+    .trim()
+    .toLocaleLowerCase("en-US");
+  if (style === "classic-first-trip") {
+    return "从最具辨识度的老城与地标入手，先读懂一地的性格。";
+  }
+  if (style === "deep-dive") {
+    return "把脚步放慢，在支线街区与地方日常里读出更深一层。";
+  }
+  if (style === "country-hopper") {
+    return "在相邻国度的广场、街巷与餐桌之间，看见边界两侧的气质流转。";
+  }
+  if (style === "transport-journey") {
+    return "循着城际脉络换景，让站城、原野与地方日常自然衔接。";
+  }
+  if (style === "seasonal") {
+    return "顺应当季光线与风物，在天气变化里为旅途留出从容。";
+  }
+  if (style === "theme") {
+    return "循着一条鲜明线索，在建筑、风物与地方故事间逐层展开。";
+  }
+  if (style === "city-break") {
+    return "从晨间街市走到黄昏屋顶，在短暂停留里触到城市的脉搏。";
+  }
+  if (style === "pilgrimage") {
+    return "沿古道与信仰遗迹缓步前行，让沿途村镇成为旅程的一部分。";
+  }
+  if (style === "island-hopping") {
+    return "在海湾、港埠与离岛之间换景，把潮汐留进旅行节奏。";
+  }
+  if (/自驾|公路|coast|highway|\broad\b|\bdrive\b/iu.test(narrative)) {
+    return "让公路、地貌和小镇日常在车窗外自然递进。";
+  }
+  if (/铁路|火车|列车|\brail(?:way)?\b|\btrain\b/iu.test(narrative)) {
+    return "循着铁路线换景，在站城之间收拢沿途风土。";
+  }
+  if (countryCodes.size >= 2) {
+    return "让几座城市的街景、历史与餐桌气息在移动中自然递进。";
+  }
+  return "从街巷、建筑到地方日常，慢慢读懂这片土地的层次。";
+}
+
 function renderRoute(record, diagnostics = {}) {
-  if (!record.coverAsset?.imageUrl && !record.coverImage) throw new Error("路线封面缺失");
   activeRouteRecord = record;
+  const reviewOnly = routeSearchStatus === "needs-review"
+    || record.searchStatus === "needs-review"
+    || (record.v2PublicationStatus && record.v2PublicationStatus !== "ready-for-display");
   document.title = `${record.name} · 路线详情`;
   document.querySelector(".route-detail-screen")?.setAttribute("aria-label", `${record.name}路线详情`);
   const cover = document.querySelector("[data-route-cover]");
   if (cover) {
-    cover.src = record.coverAsset?.imageUrl || record.coverImage;
+    const localCover = routeImageAssets?.resolveLocalRouteCover?.(record)?.url || FALLBACK_ROUTE_COVER;
+    cover.src = runtimeImageSearchEnabled
+      ? (record.coverAsset?.imageUrl || record.coverImage || localCover)
+      : localCover;
     cover.alt = `${record.name}路线封面图`;
   }
   setText("[data-route-name]", record.name);
   setText("[data-route-places]", (record.destinations || record.cities || []).join(" · "));
-  setText("[data-route-summary]", record.recommendationText || record.summary || "");
+  setText("[data-route-summary]", routeDetailRecommendationText(record));
   setText("[data-route-highlight-text]", (record.highlights || []).join(" · "));
+  const reviewNotice = document.querySelector("[data-route-review-notice]");
+  if (reviewNotice) {
+    reviewNotice.hidden = !reviewOnly;
+    reviewNotice.textContent = reviewOnly ? "这条路线仍在证据审核中，交通与季节建议仅供预览。" : "";
+  }
   setText("[data-route-recommended-days]", record.recommendedDays || (record.durationDays ? `${record.durationDays}天` : ""));
-  setText("[data-route-best-months]", (record.bestMonths || []).join(" / "));
-  renderSource(record.source);
+  setText("[data-route-season-label]", reviewOnly ? "季节信息" : "最佳季节");
+  setText("[data-route-best-months]", reviewOnly
+    ? "季节建议待验证"
+    : record.routeReferenceMode === "citywalk"
+      ? "待确认"
+      : (record.bestMonths || []).join(" / "));
+  renderSource(record.routeReferenceMode === "citywalk"
+    ? { name: "Route V2 城市漫游", url: "" }
+    : record.source);
   renderDestinations(record, diagnostics);
   renderRouteActions();
   showState("ready");
@@ -311,16 +432,23 @@ async function loadRouteDetail() {
 document.querySelector("[data-route-detail-retry]")?.addEventListener("click", loadRouteDetail);
 document.querySelector("[data-route-cover]")?.addEventListener("error", () => {
   const image = document.querySelector("[data-route-cover]");
-  console.error("Route cover asset failed", routeId, image?.src);
   if (image && !image.src.endsWith(FALLBACK_ROUTE_COVER)) {
     image.src = FALLBACK_ROUTE_COVER;
     return;
   }
-  showState("error");
 });
+
 document.querySelector("[data-route-destination-grid]")?.addEventListener("error", async (event) => {
-  const image = event.target;
+  const image = event.target instanceof HTMLImageElement ? event.target : null;
+  if (!image) return;
   const card = image.closest("[data-route-destination]");
+  if (!runtimeImageSearchEnabled) {
+    if (image.dataset.routeFallbackApplied === "true") return;
+    image.dataset.routeFallbackApplied = "true";
+    image.src = routeImageAssets?.DEFAULT_CITY_PLACEHOLDER || FALLBACK_ROUTE_COVER;
+    card?.setAttribute("data-route-destination-media", "fallback");
+    return;
+  }
   console.warn("Destination asset failed; searching replacement", image.alt, image.src);
   const destination = findDestinationForCard(card);
   const attempts = Number(card?.dataset.routeDestinationRepairAttempts || 0);

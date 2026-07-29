@@ -2,9 +2,159 @@ import fs from "node:fs";
 import path from "node:path";
 import { envFlag } from "./route-v2-env.mjs";
 import { cleanString, stableHash, uniqueStrings as unique } from "./route-v2-utils.mjs";
+import {
+  ROUTE_INTENT_FINGERPRINT_VERSION,
+  ROUTE_INTENT_SCHEMA_VERSION,
+  createRouteIntentFingerprint,
+  validateNormalizedRouteIntent,
+} from "./route-intent-model.mjs";
 
 export const ROUTE_CANDIDATE_SCHEMA_VERSION = "route-generation-v2-phase2a-candidate-v1";
-export const ROUTE_CANDIDATE_NEUTRAL_STATUSES = new Set(["generated", "pending", "pending-evidence"]);
+export const ROUTE_CANDIDATE_STATUSES = new Set(["pending", "selected", "rejected", "needs-evidence", "failed"]);
+export const ROUTE_CANDIDATE_NEUTRAL_STATUSES = new Set(["pending", "needs-evidence"]);
+
+function clone(value) {
+  return structuredClone(value);
+}
+
+function plainObject(value) {
+  return Boolean(value) && typeof value === "object" && !Array.isArray(value);
+}
+
+function semanticSnapshotText(value) {
+  return cleanString(value).normalize("NFKC").toLocaleLowerCase("en-US").replace(/\s+/gu, "");
+}
+
+function sameArray(left, right) {
+  return JSON.stringify(left) === JSON.stringify(right);
+}
+
+function normalizedSnapshotMonths(value) {
+  return [...new Set((Array.isArray(value) ? value : [])
+    .map(Number)
+    .filter((month) => Number.isInteger(month) && month >= 1 && month <= 12))]
+    .sort((left, right) => left - right);
+}
+
+function snapshotRequiredCityIdentities(snapshot = {}) {
+  const ids = Array.isArray(snapshot.requiredDestinationIds) ? snapshot.requiredDestinationIds : [];
+  const names = Array.isArray(snapshot.requiredDestinationNames) ? snapshot.requiredDestinationNames : [];
+  const length = Math.max(ids.length, names.length);
+  const identities = [];
+  for (let index = 0; index < length; index += 1) {
+    const identity = cleanString(ids[index]) || semanticSnapshotText(names[index]);
+    if (identity && !identities.includes(identity)) identities.push(identity);
+  }
+  return identities;
+}
+
+function canonicalRequiredCityIdentities(normalizedRouteIntent = {}) {
+  return (Array.isArray(normalizedRouteIntent?.hardConstraints?.requiredCities?.values)
+    ? normalizedRouteIntent.hardConstraints.requiredCities.values
+    : [])
+    .map((entry) => cleanString(entry?.id) || semanticSnapshotText(entry?.name))
+    .filter(Boolean);
+}
+
+function canonicalCountryIdentities(normalizedRouteIntent = {}) {
+  const hard = normalizedRouteIntent?.hardConstraints || {};
+  return [...new Set([
+    ...(hard.country?.state === "provided" ? [cleanString(hard.country.value)] : []),
+    ...(hard.countries?.state === "provided" && Array.isArray(hard.countries.values)
+      ? hard.countries.values.map(cleanString)
+      : []),
+  ].filter(Boolean))].sort((left, right) => left.localeCompare(right, "en"));
+}
+
+function validateCandidateSnapshotConsistency(candidate, reasons) {
+  const snapshot = candidate.inputIntentSnapshot;
+  const normalizedRouteIntent = candidate.normalizedRouteIntent;
+  if (!plainObject(snapshot)) {
+    reasons.push("inputIntentSnapshot-object-required");
+    return;
+  }
+  if (!plainObject(snapshot.normalizedRouteIntent)) {
+    reasons.push("inputIntentSnapshot-normalizedRouteIntent-required:inputIntentSnapshot.normalizedRouteIntent");
+    return;
+  }
+  const snapshotIntentValidation = validateNormalizedRouteIntent(snapshot.normalizedRouteIntent);
+  if (!snapshotIntentValidation.valid) {
+    reasons.push("inputIntentSnapshot-route-intent-schema-invalid");
+    reasons.push(...snapshotIntentValidation.violations.map(
+      (entry) => `inputIntentSnapshot-route-intent-schema-invalid:inputIntentSnapshot.normalizedRouteIntent.${entry.path}`,
+    ));
+    return;
+  }
+
+  if (cleanString(snapshot.routeIntentSchemaVersion) !== ROUTE_INTENT_SCHEMA_VERSION) {
+    reasons.push("inputIntentSnapshot-schema-version-invalid:inputIntentSnapshot.routeIntentSchemaVersion");
+  }
+  if (cleanString(snapshot.routeIntentFingerprintVersion) !== ROUTE_INTENT_FINGERPRINT_VERSION) {
+    reasons.push("inputIntentSnapshot-fingerprint-version-invalid:inputIntentSnapshot.routeIntentFingerprintVersion");
+  }
+  const snapshotFingerprint = createRouteIntentFingerprint(snapshot.normalizedRouteIntent);
+  if (cleanString(snapshot.routeIntentFingerprint) !== snapshotFingerprint.value) {
+    reasons.push("inputIntentSnapshot-fingerprint-content-mismatch:inputIntentSnapshot.routeIntentFingerprint");
+  }
+  if (snapshotFingerprint.value !== cleanString(candidate.routeIntentFingerprint)) {
+    reasons.push("inputIntentSnapshot-candidate-fingerprint-mismatch:inputIntentSnapshot.routeIntentFingerprint");
+  }
+  if (cleanString(snapshot.intentMode) !== cleanString(normalizedRouteIntent.intentMode)) {
+    reasons.push("inputIntentSnapshot-intent-mode-mismatch:inputIntentSnapshot.intentMode");
+  }
+
+  const hard = normalizedRouteIntent?.hardConstraints || {};
+  const snapshotTimeIntent = plainObject(snapshot.timeIntent) ? snapshot.timeIntent : null;
+  const canonicalTimeType = cleanString(hard.timeType);
+  const snapshotTimeType = cleanString(snapshotTimeIntent?.type || "unspecified");
+  const canonicalMonths = Array.isArray(hard.months?.values) ? hard.months.values : [];
+  const snapshotMonths = normalizedSnapshotMonths(snapshotTimeIntent?.months);
+  const canonicalSeason = hard.season?.state === "provided" ? semanticSnapshotText(hard.season.value) : "";
+  const snapshotSeason = semanticSnapshotText(snapshotTimeIntent?.season);
+  if (snapshotTimeType !== canonicalTimeType
+    || !sameArray(snapshotMonths, canonicalMonths)
+    || snapshotSeason !== canonicalSeason) {
+    reasons.push("inputIntentSnapshot-time-intent-mismatch:inputIntentSnapshot.timeIntent");
+  }
+
+  const canonicalRequiredCities = canonicalRequiredCityIdentities(normalizedRouteIntent);
+  const snapshotRequiredCities = snapshotRequiredCityIdentities(snapshot);
+  if ((hard.requiredCities?.state === "provided" || snapshotRequiredCities.length > 0)
+    && !sameArray(snapshotRequiredCities, canonicalRequiredCities)) {
+    reasons.push("inputIntentSnapshot-required-cities-mismatch:inputIntentSnapshot.requiredDestinationIds");
+  }
+  if (hard.destinationOrderMode?.state === "provided"
+    && cleanString(snapshot.destinationOrderMode) !== cleanString(hard.destinationOrderMode.value)) {
+    reasons.push("inputIntentSnapshot-destination-order-mismatch:inputIntentSnapshot.destinationOrderMode");
+  }
+  if (hard.exactDays?.state === "provided"
+    && Number(snapshot.duration?.days) !== Number(hard.exactDays.value)) {
+    reasons.push("inputIntentSnapshot-exact-days-mismatch:inputIntentSnapshot.duration.days");
+  }
+
+  const canonicalCountries = canonicalCountryIdentities(normalizedRouteIntent);
+  const snapshotCountries = [...new Set((Array.isArray(snapshot.targetCountries) ? snapshot.targetCountries : [])
+    .map(cleanString)
+    .filter(Boolean))]
+    .sort((left, right) => left.localeCompare(right, "en"));
+  if (canonicalCountries.length && !sameArray(snapshotCountries, canonicalCountries)) {
+    reasons.push("inputIntentSnapshot-countries-mismatch:inputIntentSnapshot.targetCountries");
+  }
+  const canonicalRegion = hard.region?.state === "provided" ? semanticSnapshotText(hard.region.value) : "";
+  const snapshotRegions = [...new Set((Array.isArray(snapshot.targetRegions) ? snapshot.targetRegions : [])
+    .map(semanticSnapshotText)
+    .filter(Boolean))];
+  if (canonicalRegion && !sameArray(snapshotRegions, [canonicalRegion])) {
+    reasons.push("inputIntentSnapshot-region-mismatch:inputIntentSnapshot.targetRegions");
+  }
+}
+
+function normalizedStatus(value) {
+  const status = cleanString(value || "pending");
+  if (status === "generated") return "pending";
+  if (status === "pending-evidence") return "needs-evidence";
+  return status;
+}
 
 function numericOrNull(value) {
   const number = Number(value);
@@ -38,10 +188,12 @@ export function createRouteCandidateId({
   proposedOrder = [],
   durationDays = null,
   travelStyle = "",
+  candidateVariant = "",
   generationSource = "",
   version = ROUTE_CANDIDATE_SCHEMA_VERSION,
 } = {}) {
   const destinationIds = destinations.map((item) => cleanString(item?.id || item?.wikidataId || item?.name)).filter(Boolean);
+  const normalizedVariant = cleanString(candidateVariant);
   const hash = stableHash({
     intentId: cleanString(intentId),
     countries: unique(countries).map((code) => code.toUpperCase()).sort(),
@@ -49,6 +201,7 @@ export function createRouteCandidateId({
     proposedOrder: proposedOrder.map(cleanString).filter(Boolean),
     durationDays: Number(durationDays) || null,
     travelStyle: cleanString(travelStyle),
+    ...(normalizedVariant ? { candidateVariant: normalizedVariant } : {}),
     generationSource: cleanString(generationSource),
     version,
   }).slice(0, 20);
@@ -74,10 +227,11 @@ export function normalizeRouteCandidate(input = {}, { now = () => new Date().toI
     proposedOrder,
     durationDays: Number.isFinite(durationDays) ? durationDays : null,
     travelStyle: input.travelStyle,
+    candidateVariant: input.candidateVariant,
     generationSource: input.generationSource,
     version: input.version || ROUTE_CANDIDATE_SCHEMA_VERSION,
   };
-  return {
+  const normalized = {
     candidateId: cleanString(input.candidateId) || createRouteCandidateId(candidateSeed),
     intentId: cleanString(input.intentId),
     countries,
@@ -85,17 +239,30 @@ export function normalizeRouteCandidate(input = {}, { now = () => new Date().toI
     proposedOrder,
     durationDays: Number.isFinite(durationDays) ? durationDays : null,
     travelStyle: cleanString(input.travelStyle),
+    ...(cleanString(input.candidateVariant) ? { candidateVariant: cleanString(input.candidateVariant) } : {}),
     generationSource: cleanString(input.generationSource),
+    ...(cleanString(input.initialReason) ? { initialReason: cleanString(input.initialReason) } : {}),
     supportingSignals: Array.isArray(input.supportingSignals) ? input.supportingSignals.map((item) => ({ ...item })) : [],
-    status: cleanString(input.status || "generated"),
-    rejectionReasons: Array.isArray(input.rejectionReasons) ? input.rejectionReasons.map((item) => ({ ...item })) : [],
-    unknowns: Array.isArray(input.unknowns) ? input.unknowns.map((item) => ({ ...item })) : [],
+    status: normalizedStatus(input.status),
+    rejectionReasons: Array.isArray(input.rejectionReasons) ? clone(input.rejectionReasons) : [],
+    unknowns: Array.isArray(input.unknowns) ? clone(input.unknowns) : [],
+    ...(cleanString(input.routeIntentFingerprint) ? {
+      routeIntentFingerprint: cleanString(input.routeIntentFingerprint),
+      routeIntentFingerprintVersion: cleanString(input.routeIntentFingerprintVersion),
+      normalizedRouteIntent: input.normalizedRouteIntent && typeof input.normalizedRouteIntent === "object"
+        ? clone(input.normalizedRouteIntent)
+        : null,
+    } : {}),
     createdAt: cleanString(input.createdAt) || now(),
     version: cleanString(input.version || ROUTE_CANDIDATE_SCHEMA_VERSION),
   };
+  if (input.inputIntentSnapshot && typeof input.inputIntentSnapshot === "object") {
+    normalized.inputIntentSnapshot = clone(input.inputIntentSnapshot);
+  }
+  return normalized;
 }
 
-export function validateRouteCandidate(candidate = {}) {
+function validateRouteCandidateUnsafe(candidate = {}, { requireIntentSnapshot = true } = {}) {
   const reasons = [];
   if (!candidate || typeof candidate !== "object") return { accepted: false, reasons: ["candidate-not-object"] };
   if (!cleanString(candidate.candidateId)) reasons.push("candidateId-required");
@@ -111,7 +278,52 @@ export function validateRouteCandidate(candidate = {}) {
   if (!Array.isArray(candidate.unknowns)) reasons.push("unknowns-array-required");
   if (!cleanString(candidate.createdAt)) reasons.push("createdAt-required");
   if (candidate.version !== ROUTE_CANDIDATE_SCHEMA_VERSION) reasons.push("version-unsupported");
-  if (!ROUTE_CANDIDATE_NEUTRAL_STATUSES.has(cleanString(candidate.status))) reasons.push("status-must-be-neutral");
+  const status = cleanString(candidate.status);
+  if (!ROUTE_CANDIDATE_STATUSES.has(status)) reasons.push("status-invalid");
+  if (status === "rejected" && (!Array.isArray(candidate.rejectionReasons) || candidate.rejectionReasons.length === 0)) {
+    reasons.push("rejected-candidate-reason-required");
+  }
+  if (status === "failed" && (!Array.isArray(candidate.rejectionReasons) || candidate.rejectionReasons.length === 0)) {
+    reasons.push("failed-candidate-reason-required");
+  }
+  if (candidate.inputIntentSnapshot != null) {
+    if (!candidate.inputIntentSnapshot || typeof candidate.inputIntentSnapshot !== "object") {
+      reasons.push("inputIntentSnapshot-object-required");
+    } else {
+      const snapshotIntentId = cleanString(candidate.inputIntentSnapshot.intentId);
+      if (!snapshotIntentId) reasons.push("inputIntentSnapshot-intentId-required");
+      if (snapshotIntentId && snapshotIntentId !== cleanString(candidate.intentId)) reasons.push("inputIntentSnapshot-intentId-mismatch");
+      if (candidate.routeIntentFingerprint
+        && cleanString(candidate.inputIntentSnapshot.routeIntentFingerprint) !== cleanString(candidate.routeIntentFingerprint)) {
+        reasons.push("inputIntentSnapshot-fingerprint-mismatch");
+      }
+    }
+  }
+  if (requireIntentSnapshot && candidate.routeIntentFingerprint && candidate.inputIntentSnapshot == null) {
+    reasons.push("inputIntentSnapshot-required");
+  }
+  if (candidate.routeIntentFingerprint
+    && cleanString(candidate.routeIntentFingerprintVersion) !== ROUTE_INTENT_FINGERPRINT_VERSION) {
+    reasons.push("routeIntentFingerprintVersion-invalid");
+  }
+  if (candidate.routeIntentFingerprint && (!candidate.normalizedRouteIntent || typeof candidate.normalizedRouteIntent !== "object")) {
+    reasons.push("normalizedRouteIntent-required");
+  } else if (candidate.routeIntentFingerprint) {
+    const schemaValidation = validateNormalizedRouteIntent(candidate.normalizedRouteIntent);
+    if (!schemaValidation.valid) {
+      reasons.push("route-intent-schema-invalid");
+      reasons.push(...schemaValidation.violations.map((entry) => `route-intent-schema-invalid:${entry.path}`));
+    }
+    const recomputed = schemaValidation.valid
+      ? createRouteIntentFingerprint(candidate.normalizedRouteIntent)
+      : null;
+    if (recomputed && cleanString(recomputed.value) !== cleanString(candidate.routeIntentFingerprint)) {
+      reasons.push("routeIntentFingerprint-content-mismatch");
+    }
+    if (schemaValidation.valid && candidate.inputIntentSnapshot != null) {
+      validateCandidateSnapshotConsistency(candidate, reasons);
+    }
+  }
 
   const forbiddenFinalFields = [
     "name",
@@ -143,7 +355,19 @@ export function validateRouteCandidate(candidate = {}) {
     if (!cleanString(destination?.name)) reasons.push("destination-name-required");
     if (!cleanString(destination?.countryCode)) reasons.push("destination-countryCode-required");
   }
+  const expectedCandidateId = createRouteCandidateId(candidate);
+  if (cleanString(candidate.candidateId) && cleanString(candidate.candidateId) !== expectedCandidateId) {
+    reasons.push("candidateId-content-mismatch");
+  }
   return { accepted: reasons.length === 0, reasons };
+}
+
+export function validateRouteCandidate(candidate = {}, options = {}) {
+  try {
+    return validateRouteCandidateUnsafe(candidate, options);
+  } catch {
+    return { accepted: false, reasons: ["candidate-schema-validation-failed"] };
+  }
 }
 
 export function isRouteV2CandidatePoolEnabled(env = process.env) {
@@ -163,6 +387,90 @@ export function createRouteCandidatePoolStore({
     return isRouteV2CandidatePoolEnabled(env);
   }
 
+  function readSnapshot() {
+    if (!fs.existsSync(storagePath)) return { records: [], entries: [], diagnostics: [] };
+    let payload;
+    try {
+      payload = fs.readFileSync(storagePath, "utf8");
+    } catch (error) {
+      const diagnostic = { type: "candidate-read-failed", error: error?.message || String(error) };
+      return { records: [], entries: [{ ok: false, index: -1, ...diagnostic }], diagnostics: [diagnostic], readFailed: true };
+    }
+    const records = [];
+    const entries = [];
+    const diagnostics = [];
+    const seenIds = new Set();
+    payload.split(/\r?\n/u).forEach((line, index) => {
+      if (!line.trim()) return;
+      let candidate;
+      try {
+        candidate = JSON.parse(line);
+      } catch (error) {
+        const diagnostic = { type: "candidate-corrupt-json", index, error: error?.message || String(error) };
+        diagnostics.push(diagnostic);
+        entries.push({ ok: false, index, ...diagnostic });
+        return;
+      }
+      const validation = validateRouteCandidate(candidate);
+      if (!validation.accepted) {
+        const diagnostic = { type: "candidate-schema-invalid", index, candidateId: cleanString(candidate?.candidateId), reasons: [...validation.reasons] };
+        diagnostics.push(diagnostic);
+        entries.push({ ok: false, index, candidate: clone(candidate), validation, ...diagnostic });
+        return;
+      }
+      if (seenIds.has(candidate.candidateId)) {
+        const diagnostic = { type: "candidate-duplicate", index, candidateId: candidate.candidateId };
+        diagnostics.push(diagnostic);
+        entries.push({ ok: false, index, candidate: clone(candidate), validation, ...diagnostic });
+        return;
+      }
+      seenIds.add(candidate.candidateId);
+      records.push(candidate);
+      entries.push({ ok: true, index, candidate: clone(candidate), validation });
+    });
+    return { records, entries, diagnostics };
+  }
+
+  function writeRecords(records) {
+    fs.mkdirSync(path.dirname(storagePath), { recursive: true });
+    const tempPath = `${storagePath}.${process.pid}.tmp`;
+    const payload = records.length ? `${records.map((candidate) => JSON.stringify(candidate)).join("\n")}\n` : "";
+    try {
+      fs.writeFileSync(tempPath, payload, "utf8");
+      fs.renameSync(tempPath, storagePath);
+    } finally {
+      if (fs.existsSync(tempPath)) fs.rmSync(tempPath, { force: true });
+    }
+  }
+
+  function validateCandidateSet(candidates) {
+    const reasons = [];
+    const ids = new Set();
+    const selectedByIntent = new Map();
+    const snapshotHashesByIntent = new Map();
+    for (const candidate of candidates) {
+      const validation = validateRouteCandidate(candidate);
+      if (!validation.accepted) reasons.push(...validation.reasons.map((reason) => `${candidate.candidateId || "unknown"}:${reason}`));
+      if (ids.has(candidate.candidateId)) reasons.push(`duplicate-candidateId:${candidate.candidateId}`);
+      ids.add(candidate.candidateId);
+      if (candidate.status === "selected") {
+        selectedByIntent.set(candidate.intentId, Number(selectedByIntent.get(candidate.intentId) || 0) + 1);
+      }
+      if (candidate.inputIntentSnapshot) {
+        const hashes = snapshotHashesByIntent.get(candidate.intentId) || new Set();
+        hashes.add(stableHash(candidate.inputIntentSnapshot));
+        snapshotHashesByIntent.set(candidate.intentId, hashes);
+      }
+    }
+    for (const [intentId, count] of selectedByIntent) {
+      if (count > 1) reasons.push(`multiple-selected:${intentId}`);
+    }
+    for (const [intentId, hashes] of snapshotHashesByIntent) {
+      if (hashes.size > 1) reasons.push(`intent-snapshot-mismatch:${intentId}`);
+    }
+    return { accepted: reasons.length === 0, reasons };
+  }
+
   function append(input) {
     if (!enabled()) return { written: false, skipped: true, reason: "candidate-pool-disabled" };
     const candidate = normalizeRouteCandidate(input, { now });
@@ -171,40 +479,105 @@ export function createRouteCandidatePoolStore({
       return { written: false, skipped: false, reason: "candidate-invalid", reasons: validation.reasons };
     }
     try {
-      fs.mkdirSync(path.dirname(storagePath), { recursive: true });
-      fs.appendFileSync(storagePath, `${JSON.stringify(candidate)}\n`, "utf8");
-      return { written: true, candidateId: candidate.candidateId, intentId: candidate.intentId, storagePath };
+      const snapshot = readSnapshot();
+      if (snapshot.readFailed) return { written: false, persisted: false, skipped: false, reason: "candidate-read-failed", diagnostics: clone(snapshot.diagnostics) };
+      const index = snapshot.records.findIndex((item) => item.candidateId === candidate.candidateId);
+      if (index >= 0 && snapshot.records[index].inputIntentSnapshot && candidate.inputIntentSnapshot
+        && stableHash(snapshot.records[index].inputIntentSnapshot) !== stableHash(candidate.inputIntentSnapshot)) {
+        return { written: false, persisted: false, skipped: false, reason: "candidate-intent-snapshot-conflict" };
+      }
+      const records = snapshot.records.map((item) => clone(item));
+      if (index >= 0) records[index] = candidate;
+      else records.push(candidate);
+      const setValidation = validateCandidateSet(records);
+      if (!setValidation.accepted) {
+        return { written: false, persisted: false, skipped: false, reason: "candidate-set-invalid", reasons: setValidation.reasons };
+      }
+      if (JSON.stringify(records) === JSON.stringify(snapshot.records)) {
+        return { written: false, persisted: true, skipped: true, reason: "candidate-unchanged", candidateId: candidate.candidateId, intentId: candidate.intentId, storagePath };
+      }
+      writeRecords(records);
+      return { written: true, persisted: true, updated: index >= 0, candidateId: candidate.candidateId, intentId: candidate.intentId, storagePath };
     } catch (error) {
-      return { written: false, skipped: false, reason: "candidate-write-failed", error: error?.message || String(error) };
+      return { written: false, persisted: false, skipped: false, reason: "candidate-write-failed", error: error?.message || String(error) };
+    }
+  }
+
+  function replaceForIntent(intentId, inputs = []) {
+    if (!enabled()) return { written: false, persisted: false, skipped: true, reason: "candidate-pool-disabled" };
+    const normalizedIntentId = cleanString(intentId);
+    const candidates = (Array.isArray(inputs) ? inputs : []).map((input) => normalizeRouteCandidate(input, { now }));
+    if (!normalizedIntentId || candidates.some((candidate) => candidate.intentId !== normalizedIntentId)) {
+      return { written: false, persisted: false, skipped: false, reason: "candidate-intent-mismatch" };
+    }
+    const validation = validateCandidateSet(candidates);
+    if (!validation.accepted) {
+      return { written: false, persisted: false, skipped: false, reason: "candidate-batch-invalid", reasons: validation.reasons };
+    }
+    try {
+      const snapshot = readSnapshot();
+      if (snapshot.readFailed) return { written: false, persisted: false, skipped: false, reason: "candidate-read-failed", diagnostics: clone(snapshot.diagnostics) };
+      const existingForIntent = snapshot.records.find((candidate) => candidate.intentId === normalizedIntentId && candidate.inputIntentSnapshot);
+      const nextWithSnapshot = candidates.find((candidate) => candidate.inputIntentSnapshot);
+      if (existingForIntent && nextWithSnapshot
+        && stableHash(existingForIntent.inputIntentSnapshot) !== stableHash(nextWithSnapshot.inputIntentSnapshot)) {
+        return { written: false, persisted: false, skipped: false, reason: "candidate-intent-snapshot-conflict" };
+      }
+      const records = [];
+      let inserted = false;
+      for (const existing of snapshot.records) {
+        if (existing.intentId === normalizedIntentId) {
+          if (!inserted) {
+            records.push(...candidates.map((candidate) => clone(candidate)));
+            inserted = true;
+          }
+          continue;
+        }
+        records.push(clone(existing));
+      }
+      if (!inserted) records.push(...candidates.map((candidate) => clone(candidate)));
+      if (JSON.stringify(records) === JSON.stringify(snapshot.records)) {
+        return {
+          written: false,
+          persisted: true,
+          skipped: true,
+          reason: "candidate-batch-unchanged",
+          count: candidates.length,
+          candidateIds: candidates.map((candidate) => candidate.candidateId),
+          diagnostics: clone(snapshot.diagnostics),
+        };
+      }
+      writeRecords(records);
+      return {
+        written: true,
+        persisted: true,
+        count: candidates.length,
+        candidateIds: candidates.map((candidate) => candidate.candidateId),
+        diagnostics: clone(snapshot.diagnostics),
+      };
+    } catch (error) {
+      return { written: false, persisted: false, skipped: false, reason: "candidate-write-failed", error: error?.message || String(error) };
     }
   }
 
   function readAll() {
-    if (!fs.existsSync(storagePath)) return [];
-    return fs.readFileSync(storagePath, "utf8")
-      .split(/\r?\n/u)
-      .filter((line) => line.trim())
-      .map((line, index) => {
-        try {
-          const candidate = JSON.parse(line);
-          return { ok: true, index, candidate, validation: validateRouteCandidate(candidate) };
-        } catch (error) {
-          return { ok: false, index, error: error?.message || String(error), line };
-        }
-      });
+    return clone(readSnapshot().entries);
   }
 
   function listByIntent(intentId) {
-    return readAll()
-      .filter((item) => item.ok && item.candidate.intentId === intentId)
-      .map((item) => item.candidate);
+    const normalizedIntentId = cleanString(intentId);
+    return readSnapshot().records
+      .filter((candidate) => candidate.intentId === normalizedIntentId)
+      .map((candidate) => clone(candidate));
   }
 
   return {
     storagePath,
     enabled,
     append,
+    replaceForIntent,
     readAll,
     listByIntent,
+    diagnostics: () => clone(readSnapshot().diagnostics),
   };
 }

@@ -7,10 +7,10 @@ const { pathToFileURL } = require("node:url");
 const root = __dirname;
 const port = Number(process.env.PORT || 4173);
 const host = process.env.HOST || "127.0.0.1";
-const routeImageCachePath = path.join(root, ".route-v2-cache", "route-image-cache.json");
+const routeImageCachePath = process.env.ROUTE_IMAGE_CACHE_PATH || path.join(root, ".route-v2-cache", "route-image-cache.json");
 const routeImageCacheVersion = "verified-country-v9";
-const acceptedRoutesPath = path.join(root, ".route-v2-cache", "accepted-routes.json");
-const proxiedImageDiskCacheDir = path.join(root, ".route-v2-cache", "proxied-images");
+const acceptedRoutesPath = process.env.ROUTE_ACCEPTED_REPOSITORY_PATH || path.join(root, ".route-v2-cache", "accepted-routes.json");
+const proxiedImageDiskCacheDir = process.env.ROUTE_IMAGE_PROXY_CACHE_DIR || path.join(root, ".route-v2-cache", "proxied-images");
 const proxiedImageCache = new Map();
 const proxiedImageMaxBytes = 16 * 1024 * 1024;
 const proxiedImageTimeoutMs = Number(process.env.ROUTE_IMAGE_PROXY_TIMEOUT_MS || 12000);
@@ -1446,7 +1446,7 @@ async function loadRouteLibrary() {
   return import(routesUrl);
 }
 
-async function createDiscoveryHandler(routeLibrary, knowledgeEntityLayerRepository) {
+async function createDiscoveryHandler(routeLibrary, knowledgeEntityLayerRepository, routeV2RuntimeEnv) {
   const {
     createAcceptedRouteRepository,
     createRouteFeedRefillWorker,
@@ -1462,7 +1462,7 @@ async function createDiscoveryHandler(routeLibrary, knowledgeEntityLayerReposito
     repository: acceptedRepository,
     jobStore,
     root,
-    env: process.env,
+    env: routeV2RuntimeEnv,
     log: (event) => {
       if (process.env.ROUTE_FEED_REFILL_LOG === "true") console.log(JSON.stringify({ stage: "feed-refill", ...event }));
     },
@@ -1472,15 +1472,17 @@ async function createDiscoveryHandler(routeLibrary, knowledgeEntityLayerReposito
     jobStore,
     feedRefillWorker,
     knowledgeEntityLayerRepository,
+    env: routeV2RuntimeEnv,
   });
   return createRouteDiscoveryHandler({ discovery });
 }
 
 async function main() {
   const routeLibrary = await loadRouteLibrary();
+  const routeV2RuntimeEnv = routeLibrary.createRouteV2RuntimeEnvironment(process.env);
   const knowledgeEntityLayerRepository = routeLibrary.createPublishedKnowledgeEntityLayerRepository({ projectRoot: root });
   const knowledgeEntitySummary = knowledgeEntityLayerSummary(knowledgeEntityLayerRepository);
-  const discoveryHandler = await createDiscoveryHandler(routeLibrary, knowledgeEntityLayerRepository);
+  const discoveryHandler = await createDiscoveryHandler(routeLibrary, knowledgeEntityLayerRepository, routeV2RuntimeEnv);
   const server = http.createServer(async (request, response) => {
     try {
       const url = new URL(request.url || "/", `http://${request.headers.host || `${host}:${port}`}`);
@@ -1550,7 +1552,11 @@ async function main() {
   });
 }
 
-main().catch((error) => {
-  console.error(error);
-  process.exit(1);
-});
+if (require.main === module) {
+  main().catch((error) => {
+    console.error(error);
+    process.exit(1);
+  });
+}
+
+module.exports = Object.freeze({ proxyRemoteImage });

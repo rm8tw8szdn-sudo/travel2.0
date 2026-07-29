@@ -6,11 +6,12 @@
     <title>路线库</title>
     <link rel="icon" href="assets/profile-avatar-kuma-small.jpg" />
     <link rel="stylesheet" href="mobile.css?v=route-feed-anchor-top-20260713" />
+    <script src="route-v2-image-assets.js?v=image-assets-pilot-20260720" defer></script>
     <script src="travel-data.js?v=route-cover-clean-20260615" defer></script>
     <script src="travel-state.js?v=route-v2-favorite-snapshot-20260619" defer></script>
     <script src="home-components.js?v=home-next-row-20260607" defer></script>
     <script src="route-feed-bootstrap.js?v=route-feed-anchor-top-20260713" defer></script>
-    <script src="routes.js?v=route-feed-anchor-top-20260713" defer></script>
+    <script src="routes.js?v=default-runtime-user-path-fixes-20260728b" defer></script>
   </head>
   <body>
     <main class="home-screen route-screen" aria-label="路线库">
@@ -25,8 +26,8 @@
       <p class="route-search-summary" data-route-search-summary hidden></p>
 
       <section class="route-tabs" aria-label="路线类型">
-        <button class="active" type="button" data-route-tab="cross">跨国路线</button>
-        <button type="button" data-route-tab="single">单国路线</button>
+        <button class="active" type="button" data-route-tab="cross" aria-pressed="true">跨国路线</button>
+        <button type="button" data-route-tab="single" aria-pressed="false">单国路线</button>
       </section>
 
       <section class="route-list" aria-label="路线发现列表" aria-live="polite" aria-busy="true" data-route-feed></section>

@@ -22,6 +22,7 @@ import {
   createKnowledgeEntityLayerPlannerAdapter,
   createKnowledgeEntityLayerSearchIntentCatalog,
 } from "./knowledge-entity-layer-planner-adapter.mjs";
+import { validateEmbeddedRouteIntent } from "./route-intent-invariant-gate.mjs";
 
 const DETAIL_MEDIA_JOB_BUDGET_MS = 60_000;
 
@@ -50,6 +51,7 @@ function emptyDiagnostics(source = "accepted-repository") {
 function createDefaultSearchPlannerContext(acceptedRepository, {
   includePlanner = true,
   knowledgeEntityLayerRepository = null,
+  env = process.env,
 } = {}) {
   try {
     const repository = knowledgeEntityLayerRepository || createPublishedKnowledgeEntityLayerRepository();
@@ -66,7 +68,8 @@ function createDefaultSearchPlannerContext(acceptedRepository, {
         evidenceRepository,
         acceptedRepository,
         knowledgeGraph,
-        llmRefineProvider: createConfiguredLlmRefineProvider(process.env),
+        llmRefineProvider: createConfiguredLlmRefineProvider(env),
+        env,
       }),
       intentCatalog,
     };
@@ -121,6 +124,7 @@ export function createRouteDiscovery({
   feedRefillWorker = null,
   jobStore = createRouteJobStore(),
   requestId = defaultRequestId,
+  env = process.env,
 } = {}) {
   if (typeof requestId !== "function") throw new RouteDiscoveryError("INVALID_REQUEST_ID_FACTORY", "A request ID factory is required.");
   const acceptedFeedBuffer = feedBuffer || createFeedBuffer({ repository: acceptedRepository, targetSize: 40 });
@@ -130,6 +134,7 @@ export function createRouteDiscovery({
     : createDefaultSearchPlannerContext(acceptedRepository, {
       includePlanner: !searchPlanner,
       knowledgeEntityLayerRepository,
+      env,
     });
   const routeSearchService = searchService || createRouteSearchService({
     acceptedRepository,
@@ -137,6 +142,7 @@ export function createRouteDiscovery({
     analytics: searchAnalytics,
     planner: searchPlanner || defaultSearchContext?.planner || null,
     intentCatalog: defaultSearchContext?.intentCatalog || null,
+    env,
   });
   const runningDestinationJobs = new Set();
 
@@ -150,6 +156,8 @@ export function createRouteDiscovery({
 
   function response(result, cacheStatus, id) {
     const status = poolStatus();
+    const nextCursor = result.nextCursor || null;
+    const hasMore = Boolean(result.hasMore && nextCursor);
     const diagnostics = {
       ...emptyDiagnostics(),
       ...(result.diagnostics || {}),
@@ -159,8 +167,15 @@ export function createRouteDiscovery({
     return {
       ok: true,
       records: clone(result.records || []),
-      nextCursor: result.nextCursor || null,
-      hasMore: Boolean(result.hasMore),
+      nextCursor: hasMore ? nextCursor : null,
+      hasMore,
+      returnedCount: Number.isFinite(result.returnedCount)
+        ? result.returnedCount
+        : (result.records || []).length,
+      remainingCount: Number.isFinite(result.remainingCount)
+        ? result.remainingCount
+        : null,
+      paginationStatus: result.paginationStatus || (hasMore ? "ready" : "exhausted"),
       pending: Boolean(result.pending),
       pendingSearchJobId: result.pendingSearchJobId || null,
       pendingJobIds: pendingJobs().map((job) => job.id),
@@ -270,8 +285,13 @@ export function createRouteDiscovery({
     const diagnostics = emptyDiagnostics("accepted-repository");
     const record = normalizeDiscoveredRoutes(acceptedRepository.get(request.routeId) ? [acceptedRepository.get(request.routeId)] : [], 1)[0];
     if (!record) throw new RouteDiscoveryError("ROUTE_NOT_FOUND", `Route ${request.routeId} was not found in Accepted Repository.`, { status: 404 });
-    if (!record.coverAsset?.imageUrl) throw new RouteDiscoveryError("ROUTE_MEDIA_INCOMPLETE", "Route cover is unavailable.", { status: 422 });
-
+    const invariant = validateEmbeddedRouteIntent(record, {
+      source: "accepted-route-detail",
+      allowLegacyUnbound: true,
+    });
+    if (!invariant.matched) {
+      throw new RouteDiscoveryError("ROUTE_NOT_FOUND", `Route ${request.routeId} failed route intent validation.`, { status: 404 });
+    }
     const missing = missingDestinations(record);
     diagnostics.missingDestinations = missing;
     diagnostics.partial = missing.length > 0;
@@ -299,7 +319,13 @@ export function createRouteDiscovery({
     const diagnostics = emptyDiagnostics("search-v1-cache");
     const record = routeSearchService.getSearchRoute(request.routeId);
     if (!record) throw new RouteDiscoveryError("ROUTE_NOT_FOUND", `Route ${request.routeId} was not found in Search Cache.`, { status: 404 });
-    if (!record.coverAsset?.imageUrl) throw new RouteDiscoveryError("ROUTE_MEDIA_INCOMPLETE", "Route cover is unavailable.", { status: 422 });
+    const invariant = validateEmbeddedRouteIntent(record, {
+      source: "search-route-detail",
+      allowLegacyUnbound: false,
+    });
+    if (!invariant.matched) {
+      throw new RouteDiscoveryError("ROUTE_NOT_FOUND", `Route ${request.routeId} failed route intent validation.`, { status: 404 });
+    }
     searchAnalytics?.logDetailClick?.({
       routeId: request.routeId,
       routeStatus: record.searchStatus || "search-generated",
@@ -334,7 +360,20 @@ export function createRouteDiscovery({
         sessionId: request.sessionId,
       });
     const diagnostics = emptyDiagnostics("accepted-repository");
-    diagnostics.cacheHit = page.records.length > 0;
+    const safeRecords = (page.records || []).filter((record) => {
+      const invariant = validateEmbeddedRouteIntent(record, {
+        source: "accepted-route-feed",
+        allowLegacyUnbound: true,
+      });
+      if (invariant.matched) return true;
+      diagnostics.deferred.push({
+        stage: "route-intent-invariant",
+        routeId: record?.id || "",
+        reasonCodes: invariant.reasonCodes,
+      });
+      return false;
+    });
+    diagnostics.cacheHit = safeRecords.length > 0;
     diagnostics.partial = Boolean(page.pending);
     diagnostics.timings.responseBuildMs = Date.now() - startedAt;
     let pendingSearchJobId = page.pendingSearchJobId || null;
@@ -372,13 +411,16 @@ export function createRouteDiscovery({
     }
 
     return response({
-      records: page.records,
+      records: safeRecords,
       nextCursor: page.nextCursor,
-      hasMore: Boolean(page.hasMore || (!request.query && needsRefill)),
+      hasMore: page.hasMore,
+      returnedCount: safeRecords.length,
+      remainingCount: page.remainingCount,
+      paginationStatus: page.paginationStatus,
       pending,
       pendingSearchJobId,
       diagnostics,
-    }, page.records.length ? "REPOSITORY" : "EMPTY", id);
+    }, safeRecords.length ? "REPOSITORY" : "EMPTY", id);
   }
 
   async function discoverSearch(request, context) {

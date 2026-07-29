@@ -46,6 +46,7 @@ const candidateInput = {
 
 const candidate = normalizeRouteCandidate(candidateInput, { now: () => fixedNow });
 assert.equal(candidate.version, ROUTE_CANDIDATE_SCHEMA_VERSION);
+assert.equal(candidate.status, "pending", "legacy generated status must normalize to the pending lifecycle state");
 assert.equal(validateRouteCandidate(candidate).accepted, true, "valid candidate should pass schema validation");
 
 const sameId = createRouteCandidateId({
@@ -79,7 +80,10 @@ assert.equal(finalFieldValidation.accepted, false, "candidate schema should reje
 assert.ok(finalFieldValidation.reasons.some((reason) => reason.startsWith("forbidden-final-field:")));
 
 const invalidSelected = { ...candidate, status: "selected" };
-assert.equal(validateRouteCandidate(invalidSelected).accepted, false, "Phase 2A should not allow selected status without real comparison");
+assert.equal(validateRouteCandidate(invalidSelected).accepted, true, "selected is a valid persisted lifecycle state");
+assert.equal(validateRouteCandidate({ ...candidate, status: "unknown-state" }).accepted, false, "unknown Candidate lifecycle states must be rejected");
+assert.equal(validateRouteCandidate({ ...candidate, status: "rejected", rejectionReasons: [] }).accepted, false, "rejected Candidates require a reason");
+assert.equal(validateRouteCandidate({ ...candidate, status: "failed", rejectionReasons: [] }).accepted, false, "failed Candidates require a reason");
 
 const disabledPath = path.join(tempRoot, "disabled", "route-candidate-pool.jsonl");
 const disabledStore = createRouteCandidatePoolStore({
@@ -99,6 +103,11 @@ const enabledStore = createRouteCandidatePoolStore({
 });
 const firstWrite = enabledStore.append(candidate);
 assert.equal(firstWrite.written, true, "valid candidate should be written when flag is enabled");
+assert.equal(firstWrite.persisted, true);
+const unchangedWrite = enabledStore.append(candidate);
+assert.equal(unchangedWrite.persisted, true, "same candidate retry must remain persisted");
+assert.equal(unchangedWrite.written, false, "same candidate retry must not append a physical duplicate");
+assert.equal(fs.readFileSync(enabledPath, "utf8").trim().split(/\r?\n/u).filter(Boolean).length, 1);
 
 const secondCandidate = normalizeRouteCandidate({
   ...candidateInput,
@@ -109,6 +118,7 @@ assert.equal(secondCandidate.intentId, candidate.intentId);
 assert.notEqual(secondCandidate.candidateId, candidate.candidateId);
 const secondWrite = enabledStore.append(secondCandidate);
 assert.equal(secondWrite.written, true, "second candidate for same intent should be written");
+assert.equal(secondWrite.persisted, true);
 
 const lines = fs.readFileSync(enabledPath, "utf8").trim().split(/\r?\n/u).filter(Boolean);
 assert.equal(lines.length, 2, "JSONL should contain one candidate per line");
@@ -120,6 +130,9 @@ const readRecords = enabledStore.readAll();
 assert.equal(readRecords.length, 2);
 assert.equal(readRecords.every((record) => record.ok && record.validation.accepted), true);
 assert.equal(enabledStore.listByIntent(candidate.intentId).length, 2, "multiple candidates should belong to the same intent");
+const defensiveCandidate = enabledStore.listByIntent(candidate.intentId)[0];
+defensiveCandidate.supportingSignals[0].value = "mutated-outside-store";
+assert.notEqual(enabledStore.listByIntent(candidate.intentId)[0].supportingSignals[0].value, "mutated-outside-store", "Candidate reads must be deep defensive copies");
 
 const invalidWrite = enabledStore.append({ ...candidate, destinations: [] });
 assert.equal(invalidWrite.written, false, "invalid candidate should not be written");
@@ -134,7 +147,56 @@ const failureStore = createRouteCandidatePoolStore({
 });
 const failureWrite = failureStore.append(candidate);
 assert.equal(failureWrite.written, false, "write failure should be captured");
-assert.equal(failureWrite.reason, "candidate-write-failed");
+assert.equal(failureWrite.reason, "candidate-read-failed", "directory storage targets must fail safely during the read-before-upsert step");
+assert.equal(failureWrite.diagnostics[0].type, "candidate-read-failed");
+
+const thirdCandidate = normalizeRouteCandidate({
+  ...candidateInput,
+  proposedOrder: ["Q35765", "Q34600", "Q1490"],
+  supportingSignals: [{ signal: "alternate-order", value: "reverse" }],
+}, { now: () => fixedNow });
+const lifecyclePath = path.join(tempRoot, "lifecycle", "route-candidate-pool.jsonl");
+const lifecycleStore = createRouteCandidatePoolStore({
+  storagePath: lifecyclePath,
+  env: { ROUTE_V2_CANDIDATE_POOL_ENABLED: "true" },
+  now: () => fixedNow,
+});
+const rejectionReason = [{ code: "not-selected", reason: "A different stable candidate was selected." }];
+const finalLifecycle = [
+  { ...candidate, status: "selected", rejectionReasons: [] },
+  { ...secondCandidate, status: "rejected", rejectionReasons: rejectionReason },
+  { ...thirdCandidate, status: "rejected", rejectionReasons: rejectionReason },
+];
+const lifecycleWrite = lifecycleStore.replaceForIntent(candidate.intentId, finalLifecycle);
+assert.equal(lifecycleWrite.persisted, true);
+assert.equal(lifecycleStore.listByIntent(candidate.intentId).filter((item) => item.status === "selected").length, 1);
+assert.equal(lifecycleStore.listByIntent(candidate.intentId).filter((item) => item.status === "rejected").length, 2);
+const lifecycleRetry = lifecycleStore.replaceForIntent(candidate.intentId, finalLifecycle);
+assert.equal(lifecycleRetry.persisted, true);
+assert.equal(lifecycleRetry.written, false, "same intent retry must update-or-ignore without adding physical Candidate records");
+assert.equal(fs.readFileSync(lifecyclePath, "utf8").trim().split(/\r?\n/u).filter(Boolean).length, 3);
+
+const mixedPath = path.join(tempRoot, "mixed", "route-candidate-pool.jsonl");
+fs.mkdirSync(path.dirname(mixedPath), { recursive: true });
+fs.writeFileSync(mixedPath, [
+  JSON.stringify(candidate),
+  JSON.stringify({ ...candidate, status: "schema-invalid" }),
+  JSON.stringify(candidate),
+  "{not-json",
+  "",
+].join("\n"), "utf8");
+const mixedStore = createRouteCandidatePoolStore({
+  storagePath: mixedPath,
+  env: { ROUTE_V2_CANDIDATE_POOL_ENABLED: "true" },
+  now: () => fixedNow,
+});
+assert.equal(mixedStore.listByIntent(candidate.intentId).length, 1, "schema-invalid, duplicate, and corrupt Candidate records must be skipped");
+assert.deepEqual(
+  new Set(mixedStore.diagnostics().map((diagnostic) => diagnostic.type)),
+  new Set(["candidate-schema-invalid", "candidate-duplicate", "candidate-corrupt-json"]),
+);
+assert.equal(mixedStore.readAll().filter((entry) => entry.ok).length, 1);
+assert.equal(fs.readdirSync(path.dirname(lifecyclePath)).some((name) => name.endsWith(".tmp")), false, "atomic Candidate writes must not leave temp files");
 
 for (const file of [
   "scripts/materialize-route-pool.mjs",
@@ -162,6 +224,9 @@ console.log(JSON.stringify({
   sameIntentCandidates: enabledStore.listByIntent(candidate.intentId).length,
   jsonlLines: lines.length,
   writeFailureDegraded: true,
+  idempotentPhysicalRecords: true,
+  invalidRecordsSkipped: true,
+  finalLifecyclePersisted: true,
   flagOffCreatedStorage: fs.existsSync(disabledPath),
   realCandidateCacheChanged: false,
   acceptedRepositoryChanged: false,

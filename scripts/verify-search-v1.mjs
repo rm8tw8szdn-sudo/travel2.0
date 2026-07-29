@@ -196,7 +196,7 @@ assert.equal(plannerCalls, 0, "accepted results should not call planner when eno
 
 const miss = await discovery.discover({ mode: "search", query: icelandRoadTrip, limit: 20, sessionId: "s1" });
 assert.equal(miss.records[0].id, "generated-iceland-roadtrip");
-assert.equal(miss.records[0].searchStatus, "search-generated");
+assert.equal(miss.records[0].searchStatus, "needs-review", "winter intent without structured season evidence must not be presented as verified");
 assert.ok(miss.records[0].coverAsset?.imageUrl, "search-generated route should receive fallback cover media");
 assert.equal(plannerCalls, 1);
 

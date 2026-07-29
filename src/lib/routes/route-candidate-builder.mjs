@@ -5,6 +5,11 @@ import {
 } from "./route-candidate-pool.mjs";
 import { annotateKnowledgeEntity } from "./knowledge-entity-normalizer.mjs";
 import { cleanString, stableHash, uniqueStrings as unique } from "./route-v2-utils.mjs";
+import {
+  ROUTE_INTENT_FINGERPRINT_VERSION,
+  createRouteIntentFingerprint,
+  maxDestinationsForRouteIntentDays,
+} from "./route-intent-model.mjs";
 
 export const ROUTE_CANDIDATE_BUILDER_DEFAULT_TARGET = 8;
 export const ROUTE_CANDIDATE_BUILDER_MIN_TARGET = 3;
@@ -97,16 +102,6 @@ function interleaveByCountry(destinations = []) {
   return result;
 }
 
-function maxDestinationsForDuration(durationDays) {
-  const days = Number(durationDays);
-  if (!Number.isFinite(days) || days <= 0) return 4;
-  if (days <= 3) return 2;
-  if (days <= 6) return 3;
-  if (days <= 10) return 4;
-  if (days <= 14) return 5;
-  return 6;
-}
-
 function deriveDurationDays(context = {}, concept = {}) {
   const direct = Number(context.durationDays ?? concept.durationDays ?? context.days ?? concept.days);
   if (Number.isFinite(direct) && direct > 0) return direct;
@@ -124,13 +119,32 @@ function deriveTravelStyle(context = {}, concept = {}) {
 function deriveIntentId(context = {}, concept = {}, pool = []) {
   return cleanString(context.intentId || concept.intentId) || `intent-${stableHash({
     context: {
-      countries: context.countries,
-      countryCodes: context.countryCodes,
+      countries: unique([
+        context.country,
+        context.countryCode,
+        ...(Array.isArray(context.countries) ? context.countries : []),
+        ...(Array.isArray(context.countryCodes) ? context.countryCodes : []),
+      ]).map(normalizeCode).sort(),
+      cities: unique([
+        ...(Array.isArray(context.cities) ? context.cities : []),
+        ...(Array.isArray(context.normalizedCities) ? context.normalizedCities : []),
+        ...(Array.isArray(context.targetCities) ? context.targetCities : []),
+        ...(Array.isArray(context.destinations) ? context.destinations : []),
+      ]).map(cleanString),
+      requiredDestinationIds: unique(context.requiredDestinationIds || []).map(cleanString),
+      destinationOrderMode: cleanString(context.destinationOrderMode),
       durationDays: context.durationDays,
       durationBand: context.durationBand,
       travelStyle: context.travelStyle,
       theme: context.theme,
       season: context.season,
+      seasonHardConstraint: Boolean(context.seasonHardConstraint),
+      transport: cleanString(context.transport),
+      transportPreference: unique(Array.isArray(context.transportPreference) ? context.transportPreference : []).map(cleanString),
+      budgetConstraint: context.budgetConstraint ?? context.budget ?? null,
+      noveltyTarget: context.noveltyTarget ?? null,
+      coverageGoal: context.coverageGoal ?? null,
+      exclusions: context.exclusions ?? null,
     },
     concept: {
       key: concept.key,
@@ -187,10 +201,12 @@ export function candidateShapeKey(candidate = {}) {
     countries: unique(candidate.countries || destinations.map((item) => item.countryCode)).map(normalizeCode).sort(),
     destinationIds,
     proposedOrder: order,
+    ...(cleanString(candidate.candidateVariant) ? { candidateVariant: cleanString(candidate.candidateVariant) } : {}),
   });
 }
 
 export function candidateHasMeaningfulDifference(left = {}, right = {}) {
+  if (cleanString(left.candidateVariant) && cleanString(left.candidateVariant) !== cleanString(right.candidateVariant)) return true;
   if (candidateShapeKey(left) === candidateShapeKey(right)) return false;
   const leftDestinations = Array.isArray(left.destinations) ? left.destinations : [];
   const rightDestinations = Array.isArray(right.destinations) ? right.destinations : [];
@@ -218,7 +234,19 @@ function unknown(field, reason) {
   return { field, reason };
 }
 
-function candidateDraft({ destinations, intentId, durationDays, travelStyle, method, seed, poolSize }) {
+function candidateDraft({
+  destinations,
+  intentId,
+  durationDays,
+  travelStyle,
+  method,
+  seed,
+  poolSize,
+  requiredConstraint = null,
+  routeIntentFingerprint,
+  normalizedRouteIntent,
+  candidateVariant = "",
+}) {
   const normalizedDestinations = dedupeDestinations(destinations);
   if (normalizedDestinations.length < 2) return null;
   const countries = unique(normalizedDestinations.map((item) => item.countryCode)).map(normalizeCode);
@@ -230,6 +258,7 @@ function candidateDraft({ destinations, intentId, durationDays, travelStyle, met
     proposedOrder: order,
     durationDays,
     travelStyle,
+    ...(cleanString(candidateVariant) ? { candidateVariant: cleanString(candidateVariant) } : {}),
     generationSource: ROUTE_CANDIDATE_BUILDER_SOURCE,
     supportingSignals: [
       supportingSignal("kg-destination-pool", { poolSize }),
@@ -240,13 +269,23 @@ function candidateDraft({ destinations, intentId, durationDays, travelStyle, met
       supportingSignal("entity-source-types", unique(normalizedDestinations.map((item) => item.entitySourceType)).filter(Boolean).sort()),
       supportingSignal("durationDays", durationDays),
       supportingSignal("travelStyle", travelStyle),
+      ...(requiredConstraint?.ids?.length ? [
+        supportingSignal("required-destination-constraint", {
+          ids: [...requiredConstraint.ids],
+          names: [...(requiredConstraint.names || [])],
+          orderMode: requiredConstraint.orderMode,
+        }),
+      ] : []),
     ],
-    status: "generated",
+    status: "pending",
     rejectionReasons: [],
     unknowns: [
-      unknown("candidateComparison", "Phase 2B-1 builds independent candidates only; it does not select, reject, score, or rank candidates."),
+      unknown("candidateComparison", "Candidate is pending deterministic selection; no evidence-backed score is available in Phase 1."),
       unknown("externalEvidence", "Phase 2B-1 does not call Tavily, Wikivoyage, LLM, or other external evidence providers."),
     ],
+    routeIntentFingerprint,
+    routeIntentFingerprintVersion: ROUTE_INTENT_FINGERPRINT_VERSION,
+    normalizedRouteIntent,
     createdAt: ROUTE_CANDIDATE_BUILDER_CREATED_AT,
     version: ROUTE_CANDIDATE_SCHEMA_VERSION,
   };
@@ -283,6 +322,93 @@ function candidateSequences(pool = [], maxDestinations = 4, seed = "") {
   ];
 }
 
+function destinationKeys(destination = {}) {
+  return unique([
+    destination.id,
+    destination.wikidataId,
+    destination.qid,
+    destination.name,
+  ]).map(cleanString);
+}
+
+function resolveRequiredDestinations(context = {}, pool = []) {
+  const ids = unique(context.requiredDestinationIds || []).map(cleanString);
+  if (!ids.length) return { ids: [], names: [], destinations: [], missingIds: [], orderMode: "unspecified", preferredBridgeInsertions: [] };
+  const poolByKey = new Map();
+  for (const destination of pool) {
+    for (const key of destinationKeys(destination)) if (!poolByKey.has(key)) poolByKey.set(key, destination);
+  }
+  const destinations = [];
+  const missingIds = [];
+  for (const id of ids) {
+    const destination = poolByKey.get(id);
+    if (destination) destinations.push(destination);
+    else missingIds.push(id);
+  }
+  return {
+    ids,
+    names: unique(context.requiredDestinationNames || []).map(cleanString),
+    destinations,
+    missingIds,
+    orderMode: cleanString(context.destinationOrderMode) === "fixed" ? "fixed" : "flexible",
+    preferredBridgeInsertions: (Array.isArray(context.preferredEvidenceBridgeInsertions) ? context.preferredEvidenceBridgeInsertions : [])
+      .map((entry) => ({
+        destinationId: cleanString(entry?.destinationId),
+        insertionIndex: Number(entry?.insertionIndex),
+      }))
+      .filter((entry) => entry.destinationId && Number.isInteger(entry.insertionIndex)),
+  };
+}
+
+function requiredCandidateSequences(pool, maxDestinations, seed, requiredConstraint) {
+  const required = dedupeDestinations(requiredConstraint.destinations);
+  void pool;
+  void maxDestinations;
+  if (requiredConstraint.orderMode === "fixed") {
+    return [
+      { method: "required-fixed-order-balanced", candidateVariant: "balanced", destinations: required },
+      { method: "required-fixed-order-low-transfer", candidateVariant: "low-transfer", destinations: required },
+      { method: "required-fixed-order-depth", candidateVariant: "depth", destinations: required },
+    ];
+  }
+  const stableRequired = stableSortDestinations(required, `${seed}:required`);
+  if (required.length === 2) {
+    return [
+      { method: "required-flexible-balanced", candidateVariant: "balanced", destinations: required },
+      { method: "required-flexible-low-transfer", candidateVariant: "low-transfer", destinations: stableRequired },
+      { method: "required-flexible-depth", candidateVariant: "depth", destinations: [...required].reverse() },
+    ];
+  }
+  const orders = [
+    required,
+    stableRequired,
+    deterministicRotate(required, 1),
+    deterministicRotate(required, 2),
+    [...required].reverse(),
+  ];
+  return [
+    { method: "required-flexible-input-order", destinations: required },
+    ...orders.map((order, index) => ({
+      method: `required-flexible-order-${index + 1}`,
+      destinations: order,
+    })),
+  ];
+}
+
+function citywalkCandidateSequences(pool, seed, requiredConstraint) {
+  const city = dedupeDestinations(requiredConstraint.destinations)[0];
+  if (!city) return [];
+  const cityId = destinationIdentity(city);
+  const poiStops = dedupeDestinations(pool).filter((destination) => destinationIdentity(destination) !== cityId);
+  if (!poiStops.length) return [];
+  const stablePois = stableSortDestinations(poiStops, `${seed}:citywalk`);
+  return [
+    { method: "citywalk-balanced", candidateVariant: "balanced", destinations: [city, ...poiStops] },
+    { method: "citywalk-low-transfer", candidateVariant: "low-transfer", destinations: [city, ...stablePois] },
+    { method: "citywalk-depth", candidateVariant: "depth", destinations: [city, ...stablePois].slice(0, 1).concat([...stablePois].reverse()) },
+  ];
+}
+
 export function buildRouteCandidatesFromPool({
   context = {},
   concept = {},
@@ -298,10 +424,27 @@ export function buildRouteCandidatesFromPool({
   const travelStyle = deriveTravelStyle(context, concept);
   const intentId = deriveIntentId(context, concept, normalizedPool);
   const requestedTarget = clampCandidateTarget(targetCount);
-  const maxDestinations = Math.min(maxDestinationsForDuration(durationDays), normalizedPool.length);
-  const sequences = candidateSequences(normalizedPool, maxDestinations, cleanString(seed || context.seed || concept.seed));
+  const citywalkReference = cleanString(context.routeReferenceMode) === "citywalk";
+  const maxDestinations = citywalkReference
+    ? normalizedPool.length
+    : Math.min(maxDestinationsForRouteIntentDays(durationDays) || 4, normalizedPool.length);
+  const candidateSeed = cleanString(seed || context.seed || concept.seed);
+  const requiredConstraint = resolveRequiredDestinations(context, normalizedPool);
+  if (requiredConstraint.missingIds.length) return [];
+  const sequences = citywalkReference
+    ? citywalkCandidateSequences(normalizedPool, candidateSeed, requiredConstraint)
+    : requiredConstraint.ids.length
+    ? requiredCandidateSequences(normalizedPool, maxDestinations, candidateSeed, requiredConstraint)
+    : normalizedPool.length === 2
+      ? [
+          { method: "two-destination-balanced", candidateVariant: "balanced", destinations: normalizedPool },
+          { method: "two-destination-low-transfer", candidateVariant: "low-transfer", destinations: stableSortDestinations(normalizedPool, `${candidateSeed}:two-destination`) },
+          { method: "two-destination-depth", candidateVariant: "depth", destinations: [...normalizedPool].reverse() },
+        ]
+    : candidateSequences(normalizedPool, maxDestinations, candidateSeed);
   const candidates = [];
   const seenShapes = new Set();
+  const routeIntentFingerprint = createRouteIntentFingerprint(context.normalizedRouteIntent || context);
 
   for (const sequence of sequences) {
     if (candidates.length >= requestedTarget) break;
@@ -313,10 +456,14 @@ export function buildRouteCandidatesFromPool({
       method: sequence.method,
       seed,
       poolSize: normalizedPool.length,
+      requiredConstraint,
+      routeIntentFingerprint: routeIntentFingerprint.value,
+      normalizedRouteIntent: routeIntentFingerprint.normalizedIntent,
+      candidateVariant: sequence.candidateVariant,
     });
     if (!draft) continue;
     const candidate = normalizeRouteCandidate({ ...draft, createdAt }, { now: () => createdAt });
-    const validation = validateRouteCandidate(candidate);
+    const validation = validateRouteCandidate(candidate, { requireIntentSnapshot: false });
     if (!validation.accepted) continue;
     const shapeKey = candidateShapeKey(candidate);
     if (seenShapes.has(shapeKey)) continue;

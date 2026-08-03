@@ -22,6 +22,11 @@ export const MANDATORY_PRELAUNCH_VERIFIERS = Object.freeze([
     phase: "static",
   }),
   Object.freeze({
+    name: "theme-evidence-trust",
+    relativePath: "scripts/verify-route-v2-theme-evidence-trust.mjs",
+    phase: "static",
+  }),
+  Object.freeze({
     name: "route-intent-model",
     relativePath: "scripts/verify-route-v2-route-intent-model.mjs",
     phase: "static",

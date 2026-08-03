@@ -186,7 +186,36 @@ function normalizeThemeEvidenceEntry(entry = {}) {
   };
 }
 
-function independentThemeEvidence(record = {}) {
+function stableRouteIdentifier(record = {}) {
+  return clean(record.id || record.routeId || record.stableRouteId || record.stableId);
+}
+
+function acceptedAssetThemeEvidence(record = {}, options = {}) {
+  const routeId = stableRouteIdentifier(record);
+  if (!routeId || typeof options.acceptedRouteResolver !== "function") return null;
+  let original = null;
+  try {
+    original = options.acceptedRouteResolver(routeId);
+  } catch {
+    return null;
+  }
+  if (!original || typeof original !== "object" || Array.isArray(original)) return null;
+  if (stableRouteIdentifier(original) !== routeId) return null;
+  const repositoryStatus = semantic(original.repositoryStatus || original.enrichmentStatus);
+  if (!["accepted", "mediaready"].includes(repositoryStatus)) return null;
+  return normalizeThemeEvidenceEntry({
+    sourceType: "accepted-asset",
+    sourceRef: routeId,
+    themes: original.themes,
+    tags: original.tags,
+    travelStyle: original.travelStyle || original.travelStyleConceptKey,
+    structureType: original.routeTopology?.type
+      || original.provenance?.concept?.routeStructure?.type,
+    routeReferenceMode: original.routeReferenceMode,
+  });
+}
+
+function independentThemeEvidence(record = {}, options = {}) {
   const explicitEntries = [
     ...(Array.isArray(record.themeEvidence) ? record.themeEvidence : []),
     ...(Array.isArray(record.provenance?.themeEvidence) ? record.provenance.themeEvidence : []),
@@ -194,31 +223,20 @@ function independentThemeEvidence(record = {}) {
     ...(Array.isArray(record.destinationEntities)
       ? record.destinationEntities.flatMap((entry) => Array.isArray(entry?.themeEvidence) ? entry.themeEvidence : [])
       : []),
-  ].map(normalizeThemeEvidenceEntry).filter(Boolean);
+  ].map(normalizeThemeEvidenceEntry)
+    .filter((entry) => entry && entry.sourceType !== "acceptedasset" && entry.sourceRef);
 
-  const repositoryStatus = semantic(record.repositoryStatus);
-  const acceptedAsset = ["accepted", "mediaready"].includes(repositoryStatus)
-    ? normalizeThemeEvidenceEntry({
-        sourceType: "accepted-asset",
-        sourceRef: record.id,
-        themes: record.themes,
-        tags: record.tags,
-        travelStyle: record.travelStyle || record.travelStyleConceptKey,
-        structureType: record.routeTopology?.type
-          || record.provenance?.concept?.routeStructure?.type,
-        routeReferenceMode: record.routeReferenceMode,
-      })
-    : null;
+  const acceptedAsset = acceptedAssetThemeEvidence(record, options);
   return acceptedAsset ? [...explicitEntries, acceptedAsset] : explicitEntries;
 }
 
-function evaluateExplicitThemeCompatibility(record = {}, requestedTheme = "") {
+function evaluateExplicitThemeCompatibility(record = {}, requestedTheme = "", options = {}) {
   const normalizedTheme = semantic(requestedTheme);
   if (!normalizedTheme) return { supported: true, requestedTheme: "", trustedEvidenceSources: [] };
   const rule = EXPLICIT_THEME_COMPATIBILITY.get(normalizedTheme);
   if (!rule) return { supported: false, requestedTheme: normalizedTheme, trustedEvidenceSources: [] };
 
-  const evidence = independentThemeEvidence(record);
+  const evidence = independentThemeEvidence(record, options);
   const evidenceMatch = evidence.some((entry) => themeTokenMatches(entry.tokens, rule.evidence));
   const structureMatch = evidence.some((entry) => themeTokenMatches(entry.structures, rule.structures || []));
   const referenceMatch = evidence.some((entry) => themeTokenMatches(
@@ -430,7 +448,7 @@ export function validateRouteIntentInvariants(record = {}, routeIntent = {}, opt
   const expectedTheme = normalizedIntent.softPreferences.theme;
   const explicitThemeRequested = normalizedIntent.softPreferences.themeConstraintMode === "explicit";
   const themeCompatibility = explicitThemeRequested && expectedTheme
-    ? evaluateExplicitThemeCompatibility(record, expectedTheme)
+    ? evaluateExplicitThemeCompatibility(record, expectedTheme, options)
     : null;
   if (themeCompatibility && !themeCompatibility.supported) {
     violations.push(violation("explicit-theme-mismatch", "theme", expectedTheme, {

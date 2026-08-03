@@ -1,7 +1,8 @@
 import { validateRouteIntentInvariants } from "./route-intent-invariant-gate.mjs";
 
-export function validateFallbackRouteAgainstIntent(record = {}, routeIntent = {}) {
+export function validateFallbackRouteAgainstIntent(record = {}, routeIntent = {}, options = {}) {
   const validation = validateRouteIntentInvariants(record, routeIntent, {
+    ...options,
     source: "fallback",
     requireFingerprint: false,
     claimedSuccess: true,

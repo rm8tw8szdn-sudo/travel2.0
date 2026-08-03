@@ -124,8 +124,10 @@ function findSession(env, expectedIncluded) {
 function buildRealService(root, env, repository) {
   const paths = {
     candidate: env.ROUTE_V2_CANDIDATE_POOL_PATH,
+    candidateEvidenceValidation: env.ROUTE_V2_CANDIDATE_POOL_PATH,
     trace: env.ROUTE_V2_TRACE_PATH,
     evidence: env.ROUTE_V2_EVIDENCE_BUNDLE_PATH,
+    publication: env.ROUTE_V2_READY_POOL_PATH,
     ready: env.ROUTE_V2_READY_POOL_PATH,
     localEvidence: env.ROUTE_V2_LOCAL_EVIDENCE_ROOT,
   };
@@ -199,21 +201,30 @@ async function runSidecarScenario(repository, name, {
     sessionId,
     limit: 6,
   });
-  const after = snapshotSidecars(paths);
+  const immediateAfter = snapshotSidecars(paths);
+  await new Promise((resolve) => setImmediate(resolve));
+  await new Promise((resolve) => setTimeout(resolve, 250));
+  const delayedAfter = snapshotSidecars(paths);
   assert(result.records.length > 0, `${name}: legacy or V2 Search must remain usable`);
   assert.equal(result.diagnostics.routeV2Runtime.enabled, included, `${name}: runtime decision`);
   if (!included) {
-    assert.deepEqual(after, before, `${name}: excluded requests must not write any V2 sidecar`);
+    assert.deepEqual(immediateAfter, before, `${name}: excluded requests must not write any V2 sidecar before returning`);
+    assert.deepEqual(delayedAfter, before, `${name}: excluded requests must not write any delayed V2 sidecar`);
     assert(result.records.every((record) => !String(record.generationVersion || "").startsWith("route-generation-v2-")));
   } else {
-    assert(after.candidate || after.trace, `${name}: included requests must retain the V2 persistence path`);
+    assert(immediateAfter.candidate || immediateAfter.trace, `${name}: included requests must retain the V2 persistence path`);
+    assert(delayedAfter.candidate || delayedAfter.trace, `${name}: included requests must retain persisted V2 sidecars`);
   }
   return {
     name,
     sessionId,
     enabled: result.diagnostics.routeV2Runtime.enabled,
     records: result.records.length,
-    changedSidecars: Object.keys(after).filter((key) => JSON.stringify(after[key]) !== JSON.stringify(before[key])),
+    immediateChangedSidecars: Object.keys(immediateAfter)
+      .filter((key) => JSON.stringify(immediateAfter[key]) !== JSON.stringify(before[key])),
+    delayedChangedSidecars: Object.keys(delayedAfter)
+      .filter((key) => JSON.stringify(delayedAfter[key]) !== JSON.stringify(before[key])),
+    delayedObservationMs: 250,
   };
 }
 

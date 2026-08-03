@@ -1635,6 +1635,16 @@ function validatePlannerCandidateSafe(record, concept, context, strategyRegistry
 async function runPipeline({ context, knowledgeGraph, evidenceRepository, acceptedRepository, strategyRegistry, llmRefineProvider, webEvidencePipeline, decisionTraceStore, candidatePoolStore, evidenceBundleStore, localEvidenceRepository, publicationGateEvaluator, readyPool, routeCandidateBuilder, candidateEvidenceValidator, localEvidenceSidecar, localEvidenceCollector, env, limit }) {
   const accepted = [];
   const rejected = [];
+  const acceptedThemeSnapshot = acceptedRepository.list({ limit: 100_000 }).records;
+  const acceptedThemeEvidenceById = new Map();
+  for (const route of acceptedThemeSnapshot) {
+    const routeId = clean(route?.id || route?.routeId || route?.stableRouteId || route?.stableId);
+    if (routeId) acceptedThemeEvidenceById.set(routeId, route);
+  }
+  const acceptedRouteResolver = (routeId) => {
+    const original = acceptedThemeEvidenceById.get(clean(routeId));
+    return original ? structuredClone(original) : null;
+  };
   const v2IntentEnabled = isRouteV2IntentEnabled(env);
   const requestAllowsV2SideEffects = context?.routeV2RuntimeDecision
     ? context.routeV2RuntimeDecision.enabled === true && v2IntentEnabled
@@ -2023,6 +2033,7 @@ async function runPipeline({ context, knowledgeGraph, evidenceRepository, accept
   const routeIntentFinalization = finalizeRouteResult(record, context, {
     source: "planner-final-route",
     claimedSuccess: true,
+    acceptedRouteResolver,
   });
   const routeIntentShadow = compareRouteIntentShadow({
     route: routeIntentFinalization.record || record,
@@ -2053,7 +2064,7 @@ async function runPipeline({ context, knowledgeGraph, evidenceRepository, accept
   record = decorateCitywalkReferenceRecord(routeIntentFinalization.record, context);
 
   // [8] duplicateDistance
-  const existingRecords = acceptedRepository.list({ limit: 100_000 }).records;
+  const existingRecords = acceptedThemeSnapshot;
   let dedupeDistance = duplicateDistance(record, existingRecords);
   if (countryClusterSaturated(record, existingRecords, Number(context.maxAcceptedPerCountryCluster) || Infinity)) {
     const failureTrace = await recordV2Failure({
@@ -2162,6 +2173,7 @@ async function runPipeline({ context, knowledgeGraph, evidenceRepository, accept
     const legacyRouteIntentFinalization = finalizeRouteResult(record, context, {
       source: "planner-legacy-fallback",
       claimedSuccess: true,
+      acceptedRouteResolver,
     });
     const legacyRouteIntentShadow = compareRouteIntentShadow({
       route: legacyRouteIntentFinalization.record || record,

@@ -615,6 +615,15 @@ export function createRouteSearchService({
     const requestEnv = routeV2Runtime.environment;
     const routeV2RuntimeDiagnostics = structuredClone(routeV2Runtime.decision);
     const acceptedSnapshot = acceptedRepository.list({ limit: 100_000 }).records;
+    const acceptedThemeEvidenceById = new Map();
+    for (const record of acceptedSnapshot) {
+      const routeId = clean(record?.id || record?.routeId || record?.stableRouteId || record?.stableId);
+      if (routeId) acceptedThemeEvidenceById.set(routeId, record);
+    }
+    const acceptedRouteResolver = (routeId) => {
+      const original = acceptedThemeEvidenceById.get(clean(routeId));
+      return original ? clone(original) : null;
+    };
     const intent = parseSearchIntent(request.query, {
       acceptedRoutes: acceptedSnapshot,
       catalogs: intentCatalog,
@@ -734,6 +743,7 @@ export function createRouteSearchService({
       const finalized = finalizeRouteResult(record, intent, {
         source,
         claimedSuccess: true,
+        acceptedRouteResolver,
       });
       const shadow = compareRouteIntentShadow({
         route: finalized.record || record,
@@ -791,6 +801,7 @@ export function createRouteSearchService({
           const finalized = finalizeRouteResult(item.record, intent, {
             source: "keyword-fallback-success",
             claimedSuccess: true,
+            acceptedRouteResolver,
           });
           if (!finalized.matched || !finalized.record) return [];
           return [decorateRecord(finalized.record, {

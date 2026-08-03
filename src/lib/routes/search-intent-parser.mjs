@@ -789,6 +789,34 @@ function latinQueryTokens(query) {
     .filter((token) => !COUNTRY_TYPO_STOP_WORDS.has(token));
 }
 
+const ENGLISH_DURATION_SLOT_PATTERN = new RegExp(
+  `\\b(?:\\d+|a|an|${[...ENGLISH_NUMBER_VALUES.keys()]
+    .sort((left, right) => right.length - left.length)
+    .map(escapeRegExp)
+    .join("|")})(?:[-\\s]+(?:${[...ENGLISH_NUMBER_VALUES.keys()]
+    .sort((left, right) => right.length - left.length)
+    .map(escapeRegExp)
+    .join("|")}))?\\s*-?\\s*(?:days?|weeks?)\\b`,
+  "iu",
+);
+
+function destinationSlotLatinTokens(query) {
+  if (!/[A-Za-z]/u.test(String(query || ""))) return [];
+  const normalized = normalizeText(query);
+  const candidates = [];
+  const explicitSlotPattern = /(?:\b(?:travel|trip|holiday|vacation|tour)\s+(?:to|in)|\b(?:go|fly|head)\s+to|\b(?:visit|visiting))\s+([a-z][a-z'-]{3,})\b/giu;
+  for (const match of normalized.matchAll(explicitSlotPattern)) candidates.push(match[1]);
+
+  const durationMatch = normalized.match(ENGLISH_DURATION_SLOT_PATTERN);
+  if (durationMatch && Number.isInteger(durationMatch.index) && durationMatch.index > 0) {
+    const leadingSegment = normalized.slice(0, durationMatch.index).trim();
+    const containsTravelGrammar = /\b(?:trip|travel|tour|holiday|vacation|where|should|with|for|in|to|visit|visiting)\b/iu
+      .test(leadingSegment);
+    if (!containsTravelGrammar) candidates.push(...latinQueryTokens(leadingSegment));
+  }
+  return unique(candidates.map(normalizeText).filter(Boolean));
+}
+
 function countryCorrectionForQuery(query, countryCatalog) {
   const aliases = countryCatalog.flatMap((country) => unique([
     country.normalizedLabel,
@@ -797,7 +825,7 @@ function countryCorrectionForQuery(query, countryCatalog) {
     .filter((alias) => /^[a-z][a-z'-]{3,}$/u.test(alias))
     .map((alias) => ({ alias, country })));
   const candidates = [];
-  for (const token of latinQueryTokens(query)) {
+  for (const token of destinationSlotLatinTokens(query)) {
     for (const entry of aliases) {
       const distance = damerauLevenshteinDistance(token, entry.alias);
       if (distance !== 1) continue;
@@ -847,7 +875,7 @@ const STATIC_TRAVEL_LATIN_TOKENS = new Set([
 
 function unresolvedLatinDestinationTokens(query, matchedDestinations = []) {
   const matchedDestinationTokens = catalogLatinTokens(matchedDestinations);
-  return latinQueryTokens(query).filter((token) => (
+  return destinationSlotLatinTokens(query).filter((token) => (
     !STATIC_TRAVEL_LATIN_TOKENS.has(token)
     && !matchedDestinationTokens.has(token)
   ));
@@ -856,6 +884,7 @@ function unresolvedLatinDestinationTokens(query, matchedDestinations = []) {
 export function parseSearchIntent(query, { acceptedRoutes = [], catalogs = null, timeIntentEnabled = false } = {}) {
   const rawQuery = clean(query);
   const normalizedQuery = normalizeText(rawQuery);
+  const containsLatinText = /[A-Za-z]/u.test(rawQuery);
   const duration = parseDuration(normalizedQuery, { allowBareNumber: timeIntentEnabled });
   const durationDays = duration.durationDays;
   const countryCatalog = mergeCatalog(COUNTRY_CATALOG, catalogs?.countries, (item) => item.code);
@@ -882,10 +911,10 @@ export function parseSearchIntent(query, { acceptedRoutes = [], catalogs = null,
   if (!matchedCountry && matchedRegion?.countryCode) {
     matchedCountry = countryCatalog.find((item) => item.code === matchedRegion.countryCode) || null;
   }
-  const destinationCorrection = !matchedCountry && !matchedCities.length && !matchedRegion
+  const destinationCorrection = containsLatinText && !matchedCountry && !matchedCities.length && !matchedRegion
     ? countryCorrectionForQuery(rawQuery, countryCatalog)
     : null;
-  const unresolvedCountryTokens = !destinationCorrection
+  const unresolvedCountryTokens = containsLatinText && !destinationCorrection
     ? unresolvedLatinDestinationTokens(rawQuery, [
         matchedCountry,
         ...matchedCities,

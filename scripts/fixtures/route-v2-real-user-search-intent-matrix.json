@@ -260,6 +260,48 @@
       "expected": { "parseSuccess": false, "failureReason": "unresolved-destination" }
     },
     {
+      "id": "typo-explicit-unknown-destination-slot",
+      "category": "typo",
+      "query": "travel to Xxxxx for seven days",
+      "expected": { "parseSuccess": false, "failureReason": "unresolved-destination" }
+    },
+    {
+      "id": "generic-friends-trip",
+      "category": "vague",
+      "query": "travel with friends for seven days",
+      "expected": { "durationDays": 7, "intentMode": "destination-suggestion", "parseSuccess": true }
+    },
+    {
+      "id": "generic-quiet-trip",
+      "category": "vague",
+      "query": "a quiet trip for seven days",
+      "expected": { "durationDays": 7, "intentMode": "destination-suggestion", "parseSuccess": true }
+    },
+    {
+      "id": "generic-budget-trip",
+      "category": "vague",
+      "query": "a budget trip for seven days",
+      "expected": { "durationDays": 7, "intentMode": "destination-suggestion", "parseSuccess": true }
+    },
+    {
+      "id": "generic-mountain-trip",
+      "category": "vague",
+      "query": "mountain trip for seven days",
+      "expected": { "durationDays": 7, "intentMode": "destination-suggestion", "parseSuccess": true }
+    },
+    {
+      "id": "generic-history-architecture-europe",
+      "category": "region",
+      "query": "history and architecture trip in Europe",
+      "expected": { "region": "europe", "parseSuccess": true }
+    },
+    {
+      "id": "generic-interest-in-architecture",
+      "category": "vague",
+      "query": "interested in architecture for seven days",
+      "expected": { "durationDays": 7, "intentMode": "destination-suggestion", "parseSuccess": true }
+    },
+    {
       "id": "generic-english-question",
       "category": "vague",
       "query": "where should I travel for seven days",

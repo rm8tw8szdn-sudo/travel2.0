@@ -325,6 +325,9 @@ function constraintConflictDiagnostics(intent, rejections, resultCount) {
     regionConflict: failures.some((item) => item.validation?.regionConflict),
     themeConflict: resolvedReasonCodes.includes("explicit-theme-mismatch")
       || failures.some((item) => item.validation?.themeConflict),
+    themeEvidenceSources: unique(failures.flatMap((item) => (
+      item.validation?.themeCompatibility?.trustedEvidenceSources || []
+    ))),
     rejectedFallbackCount: failures.length,
     rejectedSources,
     examples: failures.slice(0, 12).map((item) => ({

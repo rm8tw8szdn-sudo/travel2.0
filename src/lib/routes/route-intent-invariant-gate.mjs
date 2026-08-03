@@ -119,68 +119,128 @@ function timeEvidenceReady(record = {}) {
 const EXPLICIT_THEME_COMPATIBILITY = new Map([
   ["family", {
     evidence: ["family", "familytrip", "亲子", "家庭旅行"],
-    styles: [],
   }],
   ["hiking", {
     evidence: ["hiking", "trekking", "trek", "徒步", "健行"],
-    styles: ["hiking", "trekking"],
   }],
   ["honeymoon", {
     evidence: ["honeymoon", "蜜月"],
-    styles: [],
   }],
   ["selfdrive", {
     evidence: ["selfdrive", "roadtrip", "自驾", "公路"],
-    styles: ["roadtrip"],
+    structures: ["roadtrip", "roadcorridor", "drivingroute"],
   }],
   ["islandvacation", {
     evidence: ["islandvacation", "islandhopping", "beachvacation", "海岛度假", "跳岛"],
-    styles: ["islandhopping"],
+    structures: ["island", "islandhopping", "archipelago"],
   }],
   ["ringroad", {
     evidence: ["ringroad", "islandcircuit", "环岛"],
-    styles: ["roadtrip"],
+    structures: ["loop", "ringroad", "islandcircuit", "circularroute"],
   }],
   ["weekendshorttrip", {
     evidence: ["weekendshorttrip", "weekendgetaway", "weekendbreak", "周末短途", "周末旅行"],
-    styles: ["citybreak"],
     maxDays: 3,
   }],
   ["citywalk", {
     evidence: ["citywalk", "urbanwalk", "城市漫游"],
-    styles: ["citybreak", "deepdive"],
     routeReferenceModes: ["citywalk"],
   }],
 ]);
 
-function routeSupportsExplicitTheme(record = {}, requestedTheme = "") {
-  const normalizedTheme = semantic(requestedTheme);
-  if (!normalizedTheme) return true;
-  const rule = EXPLICIT_THEME_COMPATIBILITY.get(normalizedTheme);
-  if (!rule) return false;
+const TRUSTED_THEME_EVIDENCE_SOURCES = new Set([
+  "acceptedasset",
+  "knowledgeentity",
+  "verifiedevidence",
+]);
 
-  const generatedFallback = clean(record.destinationSource) === "search-knowledge-graph-fallback"
-    || clean(record.contentEvidence?.provider) === "search-v1-fallback";
-  const evidenceTokens = generatedFallback
-    ? new Set()
-    : new Set([
-        ...(Array.isArray(record.themes) ? record.themes : []),
-        ...(Array.isArray(record.tags) ? record.tags : []),
-        ...(Array.isArray(record.supportedThemes) ? record.supportedThemes : []),
-        ...(Array.isArray(record.themeCompatibility) ? record.themeCompatibility : []),
-      ].map(semantic).filter(Boolean));
-  const styleTokens = new Set([
-    record.travelStyle,
-    record.travelStyleConceptKey,
-    record.contentEvidence?.travelStyle,
-    record.contentEvidence?.concept?.travelStyle,
-  ].map(semantic).filter(Boolean));
-  const routeReferenceMode = semantic(record.routeReferenceMode);
-  const evidenceMatch = rule.evidence.some((token) => evidenceTokens.has(semantic(token)));
-  const styleMatch = rule.styles.some((token) => styleTokens.has(semantic(token)));
-  const referenceMatch = (rule.routeReferenceModes || []).some((token) => semantic(token) === routeReferenceMode);
+function themeTokenMatches(values = [], expected = []) {
+  const actual = values.map(semantic).filter(Boolean);
+  const wanted = expected.map(semantic).filter(Boolean);
+  return wanted.some((token) => actual.some((value) => value === token || value.includes(token)));
+}
+
+function normalizeThemeEvidenceEntry(entry = {}) {
+  if (!entry || typeof entry !== "object" || Array.isArray(entry)) return null;
+  const sourceType = semantic(entry.sourceType || entry.provenance || entry.source);
+  if (!TRUSTED_THEME_EVIDENCE_SOURCES.has(sourceType)) return null;
+  return {
+    sourceType,
+    sourceRef: clean(entry.sourceRef || entry.evidenceId || entry.entityId || entry.url),
+    tokens: unique([
+      entry.theme,
+      entry.travelStyle,
+      ...(Array.isArray(entry.themes) ? entry.themes : []),
+      ...(Array.isArray(entry.tags) ? entry.tags : []),
+    ].map(semantic).filter(Boolean)),
+    structures: unique([
+      entry.structureType,
+      entry.routeType,
+      entry.topology,
+      ...(Array.isArray(entry.structures) ? entry.structures : []),
+    ].map(semantic).filter(Boolean)),
+    routeReferenceModes: unique([
+      entry.routeReferenceMode,
+      ...(Array.isArray(entry.routeReferenceModes) ? entry.routeReferenceModes : []),
+    ].map(semantic).filter(Boolean)),
+  };
+}
+
+function independentThemeEvidence(record = {}) {
+  const explicitEntries = [
+    ...(Array.isArray(record.themeEvidence) ? record.themeEvidence : []),
+    ...(Array.isArray(record.provenance?.themeEvidence) ? record.provenance.themeEvidence : []),
+    ...(Array.isArray(record.contentEvidence?.themeEvidence) ? record.contentEvidence.themeEvidence : []),
+    ...(Array.isArray(record.destinationEntities)
+      ? record.destinationEntities.flatMap((entry) => Array.isArray(entry?.themeEvidence) ? entry.themeEvidence : [])
+      : []),
+  ].map(normalizeThemeEvidenceEntry).filter(Boolean);
+
+  const repositoryStatus = semantic(record.repositoryStatus);
+  const acceptedAsset = ["accepted", "mediaready"].includes(repositoryStatus)
+    ? normalizeThemeEvidenceEntry({
+        sourceType: "accepted-asset",
+        sourceRef: record.id,
+        themes: record.themes,
+        tags: record.tags,
+        travelStyle: record.travelStyle || record.travelStyleConceptKey,
+        structureType: record.routeTopology?.type
+          || record.provenance?.concept?.routeStructure?.type,
+        routeReferenceMode: record.routeReferenceMode,
+      })
+    : null;
+  return acceptedAsset ? [...explicitEntries, acceptedAsset] : explicitEntries;
+}
+
+function evaluateExplicitThemeCompatibility(record = {}, requestedTheme = "") {
+  const normalizedTheme = semantic(requestedTheme);
+  if (!normalizedTheme) return { supported: true, requestedTheme: "", trustedEvidenceSources: [] };
+  const rule = EXPLICIT_THEME_COMPATIBILITY.get(normalizedTheme);
+  if (!rule) return { supported: false, requestedTheme: normalizedTheme, trustedEvidenceSources: [] };
+
+  const evidence = independentThemeEvidence(record);
+  const evidenceMatch = evidence.some((entry) => themeTokenMatches(entry.tokens, rule.evidence));
+  const structureMatch = evidence.some((entry) => themeTokenMatches(entry.structures, rule.structures || []));
+  const referenceMatch = evidence.some((entry) => themeTokenMatches(
+    entry.routeReferenceModes,
+    rule.routeReferenceModes || [],
+  ));
   const durationMatch = !Number.isInteger(rule.maxDays) || (routeDays(record) != null && routeDays(record) <= rule.maxDays);
-  return durationMatch && (evidenceMatch || styleMatch || referenceMatch);
+  return {
+    supported: durationMatch && (evidenceMatch || structureMatch || referenceMatch),
+    requestedTheme: normalizedTheme,
+    trustedEvidenceSources: unique(evidence.map((entry) => entry.sourceType)),
+    trustedEvidenceRefs: unique(evidence.map((entry) => entry.sourceRef).filter(Boolean)),
+    evidenceMatch,
+    structureMatch,
+    referenceMatch,
+    durationMatch,
+    requestMetadataSources: unique([
+      record.themeMetadataProvenance?.sourceType,
+      record.contentEvidence?.themeMetadataSource,
+      record.sourceType === "planner-designed" && !record.repositoryStatus ? "planner-derived" : "",
+    ].map(semantic).filter(Boolean)),
+  };
 }
 
 function violation(code, field, expected, actual, source) {
@@ -369,11 +429,16 @@ export function validateRouteIntentInvariants(record = {}, routeIntent = {}, opt
 
   const expectedTheme = normalizedIntent.softPreferences.theme;
   const explicitThemeRequested = normalizedIntent.softPreferences.themeConstraintMode === "explicit";
-  if (explicitThemeRequested && expectedTheme && !routeSupportsExplicitTheme(record, expectedTheme)) {
+  const themeCompatibility = explicitThemeRequested && expectedTheme
+    ? evaluateExplicitThemeCompatibility(record, expectedTheme)
+    : null;
+  if (themeCompatibility && !themeCompatibility.supported) {
     violations.push(violation("explicit-theme-mismatch", "theme", expectedTheme, {
       themes: Array.isArray(record.themes) ? record.themes : [],
       travelStyle: clean(record.travelStyle || record.travelStyleConceptKey),
       routeReferenceMode: clean(record.routeReferenceMode),
+      trustedEvidenceSources: themeCompatibility.trustedEvidenceSources,
+      requestMetadataSources: themeCompatibility.requestMetadataSources,
     }, source));
   }
 
@@ -460,6 +525,7 @@ export function validateRouteIntentInvariants(record = {}, routeIntent = {}, opt
     countryConflict: reasonCodes.includes("country-mismatch"),
     regionConflict: reasonCodes.includes("region-mismatch"),
     themeConflict: reasonCodes.includes("explicit-theme-mismatch"),
+    themeCompatibility,
   };
 }
 
@@ -500,6 +566,9 @@ export function finalizeRouteResult(record = {}, routeIntent = {}, options = {})
       ...attached,
       routeIntentInvariantStatus: validation.requiresEvidence ? "needs-evidence" : "passed",
       routeIntentInvariantCheckedAt: null,
+      ...(validation.themeCompatibility ? {
+        routeThemeCompatibility: structuredClone(validation.themeCompatibility),
+      } : {}),
     },
     validation,
   };

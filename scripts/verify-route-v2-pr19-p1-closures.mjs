@@ -92,10 +92,10 @@ function runtimeEnv(root, {
     ROUTE_V2_CANDIDATE_POOL_ENABLED: "true",
     ROUTE_V2_TRACE_ENABLED: "true",
     ROUTE_V2_EVIDENCE_BUNDLE_ENABLED: "true",
-    ROUTE_V2_EVIDENCE_LOCAL_ENABLED: "false",
-    ROUTE_V2_EVIDENCE_VALIDATION_ENABLED: "false",
-    ROUTE_V2_LOCAL_EVIDENCE_INDEX_ENABLED: "false",
-    ROUTE_V2_PUBLICATION_GATE_ENABLED: "false",
+    ROUTE_V2_EVIDENCE_LOCAL_ENABLED: "true",
+    ROUTE_V2_EVIDENCE_VALIDATION_ENABLED: "true",
+    ROUTE_V2_LOCAL_EVIDENCE_INDEX_ENABLED: "true",
+    ROUTE_V2_PUBLICATION_GATE_ENABLED: "true",
     ROUTE_V2_READY_POOL_ENABLED: "true",
     ROUTE_V2_EVIDENCE_ONLINE_ENABLED: "false",
     ROUTE_V2_TAVILY_EVIDENCE_ENABLED: "false",
@@ -269,6 +269,7 @@ try {
     "Jappan Italyy 7 days",
     "Japan Italyyy 7 days",
     "Atlantiss 7 days",
+    "travel to Xxxxx for seven days",
   ];
   const unresolvedResults = [];
   for (const query of unresolvedQueries) {
@@ -287,9 +288,16 @@ try {
   }
 
   const genericQueries = [
+    "travel with friends for seven days",
+    "a quiet trip for seven days",
+    "a budget trip for seven days",
+    "mountain trip for seven days",
+    "history and architecture trip in Europe",
+    "interested in architecture for seven days",
     "where should I travel for seven days",
     "family trip for seven days",
     "summer trip in Europe",
+    "a seven day trip to Japan",
   ];
   for (const query of genericQueries) {
     const result = await service.search({
@@ -302,6 +310,10 @@ try {
   }
 
   const unsupportedThemes = [
+    "Turkey island vacation 7 days",
+    "Turkey loop 7 days",
+    "Turkey road trip 7 days",
+    "Iceland loop 7 days",
     "Japan family 7 days",
     "Japan hiking 7 days",
     "Japan honeymoon 7 days",
@@ -320,11 +332,15 @@ try {
       reasonCodes(result).includes("explicit-theme-mismatch"),
       `${query}: ${JSON.stringify(result.diagnostics.constraintConflict)}`,
     );
+    assert.deepEqual(
+      result.diagnostics.constraintConflict?.themeEvidenceSources || [],
+      [],
+      `${query}: request/planner metadata must not be reported as independent evidence`,
+    );
     themeResults.push({ query, reasonCodes: reasonCodes(result) });
   }
 
   const structuralThemes = [
-    "Iceland loop 7 days",
     "weekend trip",
     "island vacation",
   ];
@@ -334,14 +350,12 @@ try {
       sessionId: `pr19-structural-${structuralThemes.indexOf(query)}`,
       limit: 6,
     });
-    if (result.records.length === 0) {
-      assert(
-        ["constraint-conflict", "no-valid-route"].includes(result.diagnostics.reason),
-        `${query}: unsupported structural themes must fail safely: ${JSON.stringify(result.diagnostics)}`,
-      );
-    } else {
-      assert(!reasonCodes(result).includes("explicit-theme-mismatch"), query);
-    }
+    assert.equal(result.records.length, 0, `${query}: unproven structural themes must fail safely`);
+    assert(
+      ["constraint-conflict", "no-valid-route"].includes(result.diagnostics.reason),
+      `${query}: unsupported structural themes must fail safely: ${JSON.stringify(result.diagnostics)}`,
+    );
+    assert(reasonCodes(result).includes("explicit-theme-mismatch"), query);
   }
 
   const routesSource = fs.readFileSync(path.join(projectRoot, "routes.js"), "utf8");

@@ -171,6 +171,12 @@ const generated = route({
   durationDays: 8,
   travelStyle: "road-trip",
   travelStyleConceptKey: "road-trip",
+  themeEvidence: [{
+    sourceType: "verified-evidence",
+    evidenceId: "verified-iceland-road-trip",
+    theme: "self-drive",
+    structureType: "road-trip",
+  }],
   classification: "single",
   coverAsset: null,
 });

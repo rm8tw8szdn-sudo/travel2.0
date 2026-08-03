@@ -1463,6 +1463,11 @@ function buildPlannerRecord({ concept, skeleton, context, evidenceResult, strate
     recommendationText: displayTravelValue,
     travelStyle: concept.travelStyle,
     travelStyleConceptKey: concept.travelStyle,
+    themeMetadataProvenance: {
+      sourceType: "request-derived",
+      producer: "route-composition-planner",
+      requestedTheme: clean(context.themeKey || context.theme || concept.travelStyle),
+    },
     durationBand: concept.durationBand,
     concept: displayConcept,
     countries: countryEntities.map((country) => country.countryCode),
@@ -1497,7 +1502,12 @@ function buildPlannerRecord({ concept, skeleton, context, evidenceResult, strate
       strategyEvidence: strategies.map((s) => ({ strategy: s, evidenceIds: [] })),
       concept: { travelStyle: concept.travelStyle, durationBand: concept.durationBand, routeStructure: concept.routeStructure },
     },
-    contentEvidence: { provider: "phase2b-planner", travelStyle: concept.travelStyle, evidenceHash: routeDedupeFingerprint({ destinationEntities, recommendedDays: concept.recommendedDays }) },
+    contentEvidence: {
+      provider: "phase2b-planner",
+      travelStyle: concept.travelStyle,
+      themeMetadataSource: "planner-derived",
+      evidenceHash: routeDedupeFingerprint({ destinationEntities, recommendedDays: concept.recommendedDays }),
+    },
     llmRefine: {
       refined: llmRefined,
       confidence: llmConfidence,

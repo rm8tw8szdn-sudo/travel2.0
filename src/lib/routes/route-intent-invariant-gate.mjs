@@ -7,6 +7,14 @@ import {
   readRouteIntentEnvelope,
   validateNormalizedRouteIntent,
 } from "./route-intent-model.mjs";
+import {
+  ROUTE_V2_SUBNATIONAL_REGION_DEFINITIONS,
+  destinationMatchesTravelRegion,
+} from "./route-search-region-taxonomy.mjs";
+
+const LOCAL_REGION_DEFINITION_CACHE = new Map(
+  ROUTE_V2_SUBNATIONAL_REGION_DEFINITIONS.map((definition) => [definition.key, definition]),
+);
 
 function clean(value) {
   return String(value ?? "").normalize("NFKC").trim().replace(/\s+/gu, " ");
@@ -391,6 +399,9 @@ export function validateRouteIntentInvariants(record = {}, routeIntent = {}, opt
   const expectedCountries = normalizedIntent.hardConstraints.countries;
   const actualCountries = routeCountryCodes(record, destinations);
   const expectedRegion = normalizedIntent.hardConstraints.region;
+  const localRegionDefinition = expectedRegion?.state === "provided"
+    ? LOCAL_REGION_DEFINITION_CACHE.get(expectedRegion.value) || null
+    : null;
   const regionScopedCountrySet = expectedRegion?.state === "provided"
     && Boolean(expectedRegion.value)
     && expectedCountry?.state !== "provided"
@@ -411,7 +422,24 @@ export function validateRouteIntentInvariants(record = {}, routeIntent = {}, opt
   }
 
   const actualRegions = routeRegions(record, destinations);
-  if (!regionScopedCountrySet
+  if (localRegionDefinition) {
+    if (localRegionDefinition.knownDestinationIds.length === 0) {
+      violations.push(violation("unsupported-region", "region", expectedRegion.value, [], source));
+    } else {
+      const mismatchedDestinations = constraintDestinations.filter((destination) => (
+        !destinationMatchesTravelRegion(destination, localRegionDefinition)
+      ));
+      if (!constraintDestinations.length || mismatchedDestinations.length) {
+        violations.push(violation(
+          "region-mismatch",
+          "region",
+          localRegionDefinition.key,
+          mismatchedDestinations.map((destination) => destination.id || destination.name),
+          source,
+        ));
+      }
+    }
+  } else if (!regionScopedCountrySet
     && expectedRegion.state === "provided"
     && expectedRegion.value
     && !actualRegions.includes(expectedRegion.value)) {
@@ -541,7 +569,9 @@ export function validateRouteIntentInvariants(record = {}, routeIntent = {}, opt
       || reasonCodes.includes("required-city-count-mismatch")
       || reasonCodes.includes("duplicate-route-city"),
     countryConflict: reasonCodes.includes("country-mismatch"),
-    regionConflict: reasonCodes.includes("region-mismatch"),
+    regionConflict: reasonCodes.includes("region-mismatch")
+      || reasonCodes.includes("region-country-mismatch")
+      || reasonCodes.includes("unsupported-region"),
     themeConflict: reasonCodes.includes("explicit-theme-mismatch"),
     themeCompatibility,
   };

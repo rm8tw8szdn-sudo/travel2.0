@@ -564,10 +564,14 @@ function plannerContextFromIntent(intent, deadlineAt, abortSignal = null, {
     theme: intent.theme || undefined,
     season: intent.season || undefined,
     ...(intent.timeIntent ? { timeIntent: structuredClone(intent.timeIntent) } : {}),
+    ...(intent.tripCapacity ? { tripCapacity: structuredClone(intent.tripCapacity) } : {}),
     transport: intent.transport || undefined,
     transportPreference: intent.transport ? [intent.transport] : [],
     budgetConstraint: intent.budget || null,
     region: intent.region || undefined,
+    regionEntityId: intent.regionEntityId || intent.normalizedRegion || undefined,
+    regionCountryCodes: [...(intent.regionCountryCodes || [])],
+    ...(intent.regionConstraint ? { regionConstraint: structuredClone(intent.regionConstraint) } : {}),
     designStrategies: [
       "Geographic",
       intent.theme ? "Theme" : "",
@@ -629,13 +633,15 @@ export function createRouteSearchService({
       catalogs: intentCatalog,
       timeIntentEnabled: isRouteV2TimeIntentEnabled(requestEnv),
     });
+    const explicitRegionConstraint = Boolean(intent.regionEntityId || intent.normalizedRegion || intent.region);
     const countryScopedDestinationSuggestion = intent.intentMode === "specified-destination"
       && !(intent.requiredDestinationIds || []).length
+      && !explicitRegionConstraint
       && (intent.countryCodes || []).length > 0;
     const regionScopedDestinationSuggestion = intent.intentMode === "specified-destination"
       && !(intent.requiredDestinationIds || []).length
-      && !(intent.countryCodes || []).length
-      && (intent.regionCountryCodes || []).length > 0;
+      && explicitRegionConstraint
+      && ((intent.regionCountryCodes || []).length > 0 || (intent.countryCodes || []).length > 0);
     const destinationSuggestionResult = (
       intent.intentMode === "destination-suggestion"
       || countryScopedDestinationSuggestion

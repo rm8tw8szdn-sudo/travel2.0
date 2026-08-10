@@ -36,6 +36,7 @@ import {
   maxDestinationsForDuration,
   validateRouteForUse,
 } from "./route-candidate-evidence-validation.mjs";
+import { maxDestinationsForTripDays, resolveRouteTripCapacity } from "./route-trip-capacity.mjs";
 import {
   createEvidenceBundleStore,
   isRouteV2EvidenceBundleEnabled,
@@ -253,14 +254,12 @@ function anchorIndex(destination, anchors = []) {
 function maxDestinationsForConcept(concept = {}) {
   const days = Number(concept.durationDays) || Number.parseInt(concept.recommendedDays, 10) || 8;
   if (concept.travelStyle === "city-break") return 2;
-  if (days <= 3) return 2;
-  if (days <= 6) return concept.travelStyle === "country-hopper" ? 4 : 3;
-  if (days <= 10) {
-    if (["classic-first-trip", "seasonal", "theme"].includes(concept.travelStyle)) return 5;
-    return 6;
+  const durationCapacity = maxDestinationsForTripDays(days) || 4;
+  if (days <= 6 && concept.travelStyle === "country-hopper") return Math.min(4, durationCapacity);
+  if (days <= 10 && !["classic-first-trip", "seasonal", "theme"].includes(concept.travelStyle)) {
+    return Math.min(6, durationCapacity + 1);
   }
-  if (days <= 14) return ["road-trip", "rail-journey", "pilgrimage"].includes(concept.travelStyle) ? 8 : 6;
-  return 8;
+  return durationCapacity;
 }
 
 function routeDistanceLimits(concept = {}) {
@@ -1618,6 +1617,70 @@ function decorateCitywalkReferenceRecord(record, context = {}) {
   };
 }
 
+function expansionPoiCoverage(destinations = [], limit = 0) {
+  const seen = new Set();
+  const pois = [];
+  for (const city of destinations) {
+    for (const poi of city.poiEntities || []) {
+      const id = clean(poi.wikidataId || poi.entityId || poi.canonicalNameEn || poi.canonicalNameZh || poi.name);
+      if (!id || seen.has(id)) continue;
+      seen.add(id);
+      pois.push({
+        ...structuredClone(poi),
+        parentCityEntityId: clean(poi.parentCityEntityId || city.entityId),
+        countryCode: clean(city.countryCode || poi.countryCode),
+      });
+    }
+  }
+  return pois.slice(0, Math.max(0, Number(limit) || 0));
+}
+
+function decorateLongTripExpansionRecord(record, context = {}) {
+  if (!record || clean(context.routeReferenceMode) === "citywalk") return record;
+  const capacity = context.tripCapacity || resolveRouteTripCapacity(context);
+  if (!capacity.supported || !["extended", "deep-exploration"].includes(clean(capacity.mode))) return record;
+  if (clean(capacity.scope) !== "single-country") return record;
+  const destinations = Array.isArray(record.destinationEntities) ? record.destinationEntities : [];
+  const cities = destinations.filter((destination) => clean(destination.entityTypeName || "city") === "city");
+  const poiCoverage = expansionPoiCoverage(cities, capacity.targetPoiCount);
+  const countryName = (record.countryEntities || []).map((country) => clean(country.name || country.countryCode)).filter(Boolean).join("、");
+  const cityNames = cities.map((city) => clean(city.canonicalNameZh || city.name || city.canonicalNameEn)).filter(Boolean);
+  const modeLabel = capacity.mode === "deep-exploration" ? "深度探索" : "延展探索";
+  const coverageLimited = cities.length < capacity.targetCityCount || poiCoverage.length < capacity.targetPoiCount;
+  const title = `${countryName}${capacity.requestedDays}天${modeLabel}${cityNames.length ? `：${cityNames.slice(0, 3).join("、")}` : ""}`;
+  return {
+    ...record,
+    name: title,
+    canonicalTitle: title,
+    summary: `以${cityNames.join("、") || countryName}为城市骨架，覆盖当前知识库中${poiCoverage.length}个经典地点；${coverageLimited ? "现有资料尚未填满全部容量，后续可继续补充。" : "按停留天数分配更从容的区域探索。"}`,
+    recommendationText: coverageLimited
+      ? "这是一条受当前城市与景点资料容量约束的长途参考，不会用重复地点假装扩展覆盖。"
+      : "这是一条按长途旅行容量扩展的单国参考，可按区域拆分停留节奏。",
+    routeReferenceMode: "country-expansion",
+    durationPolicy: "bounded-expansion",
+    routeExpansion: {
+      version: capacity.version,
+      mode: capacity.mode,
+      requestedDays: capacity.requestedDays,
+      maxSupportedDays: capacity.maxSupportedDays,
+      maxCities: capacity.maxCities,
+      maxPois: capacity.maxPois,
+      targetCityCount: capacity.targetCityCount,
+      actualCityCount: cities.length,
+      targetPoiCount: capacity.targetPoiCount,
+      actualPoiCount: poiCoverage.length,
+      coverageStatus: coverageLimited ? "knowledge-capacity-limited" : "target-covered",
+      poiEntities: poiCoverage,
+    },
+    highlights: unique([
+      ...(record.highlights || []),
+      `${cities.length}座城市构成长途路线骨架`,
+      `${poiCoverage.length}个经典地点纳入分区参考`,
+      coverageLimited ? "当前知识容量不足的部分明确保留为待补充" : "城市与景点覆盖达到当前路线容量目标",
+    ]),
+  };
+}
+
 function validatePlannerCandidateSafe(record, concept, context, strategyRegistry) {
   try {
     return validatePlannerCandidate(record, concept, context, strategyRegistry);
@@ -2061,7 +2124,10 @@ async function runPipeline({ context, knowledgeGraph, evidenceRepository, accept
     rejected.push({ context, reason: "fallback-hard-constraint-mismatch", constraintValidation: invariantFailure });
     return { accepted, rejected, concept, v2Failure: failureTrace };
   }
-  record = decorateCitywalkReferenceRecord(routeIntentFinalization.record, context);
+  record = decorateLongTripExpansionRecord(
+    decorateCitywalkReferenceRecord(routeIntentFinalization.record, context),
+    context,
+  );
 
   // [8] duplicateDistance
   const existingRecords = acceptedThemeSnapshot;

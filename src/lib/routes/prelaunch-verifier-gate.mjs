@@ -17,8 +17,28 @@ export const MANDATORY_PRELAUNCH_VERIFIERS = Object.freeze([
     phase: "static",
   }),
   Object.freeze({
+    name: "region-island-constraint-preservation",
+    relativePath: "scripts/verify-route-v2-region-island-constraints.mjs",
+    phase: "static",
+  }),
+  Object.freeze({
     name: "pr19-p1-closures",
     relativePath: "scripts/verify-route-v2-pr19-p1-closures.mjs",
+    phase: "static",
+  }),
+  Object.freeze({
+    name: "long-trip-capacity",
+    relativePath: "scripts/verify-route-v2-long-trip-capacity.mjs",
+    phase: "static",
+  }),
+  Object.freeze({
+    name: "ui-input-image-navigation-safety",
+    relativePath: "scripts/verify-route-v2-ui-input-image-navigation.mjs",
+    phase: "static",
+  }),
+  Object.freeze({
+    name: "generated-detail-authoritative-load",
+    relativePath: "scripts/verify-route-v2-generated-detail-stability.mjs",
     phase: "static",
   }),
   Object.freeze({

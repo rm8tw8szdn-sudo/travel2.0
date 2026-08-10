@@ -23,7 +23,9 @@ export function validateFallbackRouteAgainstIntent(record = {}, routeIntent = {}
     || validation.reasonCodes.includes("season-conflict")
     || validation.reasonCodes.includes("invalid-time-intent");
   const countryConflict = validation.reasonCodes.includes("country-mismatch");
-  const regionConflict = validation.reasonCodes.includes("region-mismatch");
+  const regionConflict = validation.reasonCodes.includes("region-mismatch")
+    || validation.reasonCodes.includes("region-country-mismatch")
+    || validation.reasonCodes.includes("unsupported-region");
   const destinationConflict = missing.length > 0
     || orderMismatch
     || validation.reasonCodes.includes("unexpected-city-added")

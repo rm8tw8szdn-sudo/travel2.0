@@ -4,6 +4,8 @@ import {
   ROUTE_INTENT_FINGERPRINT_VERSION,
   createRouteIntentFingerprint,
 } from "./route-intent-model.mjs";
+import { resolveRouteTripCapacity } from "./route-trip-capacity.mjs";
+import { ROUTE_V2_SUBNATIONAL_REGION_DEFINITIONS } from "./route-search-region-taxonomy.mjs";
 
 export const ROUTE_V2_TIME_INTENT_FLAG = "ROUTE_V2_TIME_INTENT_ENABLED";
 export const ROUTE_V2_TIME_INTENT_TYPES = new Set([
@@ -33,18 +35,27 @@ function unique(values) {
   return [...new Set((values || []).map(clean).filter(Boolean))];
 }
 
+const ALIAS_MATCHER_CACHE = new Map();
+
+function aliasMatcher(alias) {
+  const cacheKey = String(alias || "");
+  if (ALIAS_MATCHER_CACHE.has(cacheKey)) return ALIAS_MATCHER_CACHE.get(cacheKey);
+  const normalizedAlias = normalizeText(cacheKey);
+  let matcher = null;
+  if (normalizedAlias) {
+    matcher = /^[a-z0-9][a-z0-9 .'-]*$/u.test(normalizedAlias)
+      ? new RegExp(`(?:^|[^a-z0-9])${escapeRegExp(normalizedAlias)}(?:$|[^a-z0-9])`, "iu")
+      : normalizedAlias;
+  }
+  ALIAS_MATCHER_CACHE.set(cacheKey, matcher);
+  return matcher;
+}
+
 function includesAny(haystack, aliases = []) {
   return aliases.some((alias) => {
-    const normalizedAlias = normalizeText(alias);
-    if (!normalizedAlias) return false;
-    if (/^[a-z0-9][a-z0-9 .'-]*$/u.test(normalizedAlias)) {
-      if (/[^a-z0-9]/u.test(normalizedAlias)) {
-        return new RegExp(`(?:^|[^a-z0-9])${escapeRegExp(normalizedAlias)}(?:$|[^a-z0-9])`, "iu").test(haystack);
-      }
-      const tokens = haystack.split(/[^a-z0-9]+/u).filter(Boolean);
-      return tokens.includes(normalizedAlias);
-    }
-    return haystack.includes(normalizedAlias);
+    const matcher = aliasMatcher(alias);
+    if (!matcher) return false;
+    return matcher instanceof RegExp ? matcher.test(haystack) : haystack.includes(matcher);
   });
 }
 
@@ -93,6 +104,13 @@ const REGION_CATALOG = [
   { label: "北海道", normalizedLabel: "hokkaido", countryCode: "JP", aliases: ["北海道", "hokkaido"] },
   { label: "黄金圈", normalizedLabel: "golden circle", countryCode: "IS", aliases: ["黄金圈", "golden circle"] },
   { label: "卡帕多奇亚", normalizedLabel: "cappadocia", countryCode: "TR", aliases: ["卡帕多奇亚", "cappadocia"] },
+  ...ROUTE_V2_SUBNATIONAL_REGION_DEFINITIONS.map((definition) => ({
+    ...definition,
+    normalizedLabel: definition.key,
+    countryCode: definition.parentCountryCode,
+    countryCodes: [definition.parentCountryCode],
+    supported: definition.knownDestinationIds.length > 0,
+  })),
 ];
 
 const STYLE_CATALOG = [
@@ -887,12 +905,21 @@ export function parseSearchIntent(query, { acceptedRoutes = [], catalogs = null,
   const containsLatinText = /[A-Za-z]/u.test(rawQuery);
   const duration = parseDuration(normalizedQuery, { allowBareNumber: timeIntentEnabled });
   const durationDays = duration.durationDays;
-  const countryCatalog = mergeCatalog(COUNTRY_CATALOG, catalogs?.countries, (item) => item.code);
-  const regionCatalog = mergeCatalog(REGION_CATALOG, catalogs?.regions, (item) => item.key || item.normalizedLabel);
-  const cityCatalog = mergeCityCatalog(CITY_CATALOG, [
+  const countryAdditions = Array.isArray(catalogs?.countries) ? catalogs.countries : [];
+  const regionAdditions = Array.isArray(catalogs?.regions) ? catalogs.regions : [];
+  const cityAdditions = [
     ...(Array.isArray(catalogs?.cities) ? catalogs.cities : []),
-    ...acceptedRouteCityCatalog(acceptedRoutes),
-  ]);
+    ...(acceptedRoutes.length ? acceptedRouteCityCatalog(acceptedRoutes) : []),
+  ];
+  const countryCatalog = countryAdditions.length
+    ? mergeCatalog(COUNTRY_CATALOG, countryAdditions, (item) => item.code)
+    : COUNTRY_CATALOG;
+  const regionCatalog = regionAdditions.length
+    ? mergeCatalog(REGION_CATALOG, regionAdditions, (item) => item.key || item.normalizedLabel)
+    : REGION_CATALOG;
+  const cityCatalog = cityAdditions.length
+    ? mergeCityCatalog(CITY_CATALOG, cityAdditions)
+    : CITY_CATALOG;
   const extractedDestinations = timeIntentEnabled
     ? extractRequiredDestinations(rawQuery, cityCatalog, countryCatalog)
     : { required: [], diagnostics: [] };
@@ -901,6 +928,14 @@ export function parseSearchIntent(query, { acceptedRoutes = [], catalogs = null,
     ? requiredOccurrences.map((entry) => entry.city)
     : matchesFromCatalog(normalizedQuery, cityCatalog);
   const matchedRegion = firstMatch(normalizedQuery, regionCatalog);
+  if (timeIntentEnabled && matchedRegion?.scope && matchedRegion.scope !== "macro-region") {
+    const regionalCityIds = new Set((matchedRegion.knownDestinationIds || []).map((value) => clean(value).toUpperCase()));
+    requiredOccurrences = requiredOccurrences.filter((entry) => {
+      const cityId = clean(entry.city.wikidataId || entry.city.entityId || entry.identity).toUpperCase();
+      return !regionalCityIds.has(cityId);
+    });
+    matchedCities = requiredOccurrences.map((entry) => entry.city);
+  }
   let matchedCountry = firstMatch(normalizedQuery, countryCatalog);
   if (matchedCountry && matchedCities.length && !timeIntentEnabled) {
     matchedCities = matchedCities.filter((item) => item.countryCode === matchedCountry.code);
@@ -930,7 +965,11 @@ export function parseSearchIntent(query, { acceptedRoutes = [], catalogs = null,
     ...(matchedCountry?.code ? [matchedCountry.code] : []),
     ...matchedCities.map((item) => item.countryCode),
   ].map((code) => clean(code).toUpperCase()).filter(Boolean));
-  const regionCountryCodes = unique((matchedRegion?.countryCodes || [])
+  const regionCountryCodes = unique([
+    ...(matchedRegion?.countryCodes || []),
+    matchedRegion?.countryCode,
+    matchedRegion?.parentCountryCode,
+  ]
     .map((code) => clean(code).toUpperCase())
     .filter((code) => /^[A-Z]{2}$/u.test(code)));
   const intent = {
@@ -941,8 +980,19 @@ export function parseSearchIntent(query, { acceptedRoutes = [], catalogs = null,
     country: matchedCountry?.label || "",
     normalizedCountry: matchedCountry?.normalizedLabel || "",
     region: matchedRegion?.label || "",
-    normalizedRegion: matchedRegion?.normalizedLabel || "",
+    normalizedRegion: matchedRegion?.key || matchedRegion?.normalizedLabel || "",
+    regionEntityId: matchedRegion?.key || matchedRegion?.normalizedLabel || "",
     regionCountryCodes,
+    ...(matchedRegion ? {
+      regionConstraint: {
+        regionId: matchedRegion.key || matchedRegion.normalizedLabel || "",
+        scope: matchedRegion.scope || "legacy-region",
+        parentCountryCode: matchedRegion.parentCountryCode || matchedRegion.countryCode || "",
+        allowedCountryCodes: [...regionCountryCodes],
+        knownDestinationIds: unique(matchedRegion.knownDestinationIds || []),
+        supported: matchedRegion.supported !== false,
+      },
+    } : {}),
     cities: unique(matchedCities.map((item) => item.label)),
     normalizedCities: unique(matchedCities.map((item) => item.normalizedLabel)),
     ...(timeIntentEnabled ? {
@@ -1021,6 +1071,12 @@ export function parseSearchIntent(query, { acceptedRoutes = [], catalogs = null,
   } else {
     intent.parseSuccess = Boolean(intent.constraintCount > 0 && !intent.isChinaBlocked);
     intent.canGenerate = Boolean(intent.parseSuccess && intent.countryCode && !intent.isChinaBlocked);
+  }
+  intent.tripCapacity = resolveRouteTripCapacity(intent);
+  if (intent.parseSuccess && !intent.tripCapacity.supported) {
+    intent.parseSuccess = false;
+    intent.canGenerate = false;
+    intent.failureReason = intent.tripCapacity.reasonCode;
   }
   intent.intentKey = normalizeIntentKey(intent);
   intent.intentHash = hashIntentKey(intent.intentKey);

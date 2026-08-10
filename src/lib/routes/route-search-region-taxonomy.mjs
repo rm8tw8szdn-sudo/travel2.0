@@ -56,6 +56,73 @@ const REGION_DEFINITIONS = Object.freeze([
   }),
 ]);
 
+const SUBNATIONAL_REGION_DEFINITIONS = Object.freeze([
+  Object.freeze({
+    key: "andalusia",
+    label: "Andalusia",
+    aliases: Object.freeze(["Andalusia", "Andalucía", "Andalucia", "安达卢西亚", "安達盧西亞"]),
+    scope: "subnational-region",
+    parentCountryCode: "ES",
+    knownDestinationIds: Object.freeze(["Q5818", "Q8810", "Q8851", "Q13153", "Q8717"]),
+  }),
+  Object.freeze({
+    key: "mallorca",
+    label: "Mallorca",
+    aliases: Object.freeze(["Mallorca", "Majorca", "马略卡", "馬略卡"]),
+    scope: "island-region",
+    parentCountryCode: "ES",
+    knownDestinationIds: Object.freeze([]),
+  }),
+  Object.freeze({
+    key: "tenerife",
+    label: "Tenerife",
+    aliases: Object.freeze(["Tenerife", "特内里费", "特內里費"]),
+    scope: "island-region",
+    parentCountryCode: "ES",
+    knownDestinationIds: Object.freeze([]),
+  }),
+  Object.freeze({
+    key: "ibiza",
+    label: "Ibiza",
+    aliases: Object.freeze(["Ibiza", "Eivissa", "伊维萨", "伊維薩"]),
+    scope: "island-region",
+    parentCountryCode: "ES",
+    knownDestinationIds: Object.freeze([]),
+  }),
+  Object.freeze({
+    key: "provence",
+    label: "Provence",
+    aliases: Object.freeze(["Provence", "普罗旺斯", "普羅旺斯"]),
+    scope: "subnational-region",
+    parentCountryCode: "FR",
+    knownDestinationIds: Object.freeze(["Q47465", "Q6397", "Q23482", "Q33959"]),
+  }),
+  Object.freeze({
+    key: "lake-como",
+    label: "Lake Como",
+    aliases: Object.freeze(["Lake Como", "Lago di Como", "科莫湖"]),
+    scope: "subnational-region",
+    parentCountryCode: "IT",
+    knownDestinationIds: Object.freeze(["Q1308"]),
+  }),
+  Object.freeze({
+    key: "dolomites",
+    label: "Dolomites",
+    aliases: Object.freeze(["Dolomites", "Dolomite Alps", "多洛米蒂", "多洛米特"]),
+    scope: "subnational-region",
+    parentCountryCode: "IT",
+    knownDestinationIds: Object.freeze([]),
+  }),
+  Object.freeze({
+    key: "jeju-island",
+    label: "Jeju Island",
+    aliases: Object.freeze(["Jeju Island", "Jeju-do", "济州岛", "濟州島"]),
+    scope: "island-region",
+    parentCountryCode: "KR",
+    knownDestinationIds: Object.freeze(["Q42142"]),
+  }),
+]);
+
 function countryMetadata(country = {}) {
   return [
     country.continent,
@@ -75,16 +142,95 @@ function definitionMatchesCountry(definition, country) {
 export function createTravelRegionCatalog(countries = []) {
   const stableCountries = (Array.isArray(countries) ? countries : [])
     .filter((country) => /^[A-Z]{2}$/u.test(clean(country?.code).toUpperCase()));
-  return Object.freeze(REGION_DEFINITIONS.map((definition) => Object.freeze({
+  const macroRegions = REGION_DEFINITIONS.map((definition) => Object.freeze({
     key: definition.key,
     label: definition.label,
     normalizedLabel: definition.key,
     aliases: definition.aliases,
+    scope: "macro-region",
     countryCodes: Object.freeze(stableCountries
       .filter((country) => definitionMatchesCountry(definition, country))
       .map((country) => clean(country.code).toUpperCase())
       .sort((left, right) => left.localeCompare(right, "en"))),
-  })).filter((region) => region.countryCodes.length > 0));
+    knownDestinationIds: Object.freeze([]),
+    supported: true,
+  })).filter((region) => region.countryCodes.length > 0);
+  const availableCountries = new Set(stableCountries.map((country) => clean(country.code).toUpperCase()));
+  const localRegions = SUBNATIONAL_REGION_DEFINITIONS
+    .filter((definition) => availableCountries.has(definition.parentCountryCode))
+    .map((definition) => Object.freeze({
+      ...definition,
+      normalizedLabel: definition.key,
+      countryCode: definition.parentCountryCode,
+      countryCodes: Object.freeze([definition.parentCountryCode]),
+      supported: definition.knownDestinationIds.length > 0,
+    }));
+  return Object.freeze([...macroRegions, ...localRegions]);
 }
 
 export const ROUTE_V2_TRAVEL_REGION_DEFINITIONS = REGION_DEFINITIONS;
+export const ROUTE_V2_SUBNATIONAL_REGION_DEFINITIONS = SUBNATIONAL_REGION_DEFINITIONS;
+
+const SUBNATIONAL_REGION_TOKEN_INDEX = new Map();
+const SUBNATIONAL_REGION_DESTINATION_INDEX = new Map();
+for (const definition of SUBNATIONAL_REGION_DEFINITIONS) {
+  for (const token of uniqueRegionTokens(definition)) {
+    SUBNATIONAL_REGION_TOKEN_INDEX.set(token, definition);
+  }
+  SUBNATIONAL_REGION_DESTINATION_INDEX.set(
+    definition.key,
+    new Set(definition.knownDestinationIds.map((identifier) => clean(identifier).toUpperCase())),
+  );
+}
+
+export function resolveTravelRegionDefinition(value, catalog = SUBNATIONAL_REGION_DEFINITIONS) {
+  const cleaned = clean(value);
+  if (!cleaned) return null;
+  if (catalog === SUBNATIONAL_REGION_DEFINITIONS && /^[a-z0-9-]+$/u.test(cleaned)) {
+    return SUBNATIONAL_REGION_TOKEN_INDEX.get(cleaned.toLowerCase()) || null;
+  }
+  const token = normalize(value);
+  const compact = token.replace(/\s+/gu, "");
+  if (catalog === SUBNATIONAL_REGION_DEFINITIONS) {
+    return SUBNATIONAL_REGION_TOKEN_INDEX.get(token)
+      || SUBNATIONAL_REGION_TOKEN_INDEX.get(compact)
+      || null;
+  }
+  return (Array.isArray(catalog) ? catalog : []).find((definition) => {
+    const tokens = uniqueRegionTokens(definition);
+    return tokens.has(token) || tokens.has(compact);
+  }) || null;
+}
+
+function uniqueRegionTokens(definition = {}) {
+  const tokens = [
+    definition.key,
+    definition.normalizedLabel,
+    definition.label,
+    ...(definition.aliases || []),
+  ].map(normalize).filter(Boolean);
+  return new Set(tokens.flatMap((token) => [token, token.replace(/\s+/gu, "")]));
+}
+
+function destinationIdentifiers(destination = {}) {
+  return new Set([
+    destination.wikidataId,
+    destination.qid,
+    destination.entityId,
+    destination.id,
+  ].map((value) => clean(value).toUpperCase()).filter(Boolean));
+}
+
+export function destinationMatchesTravelRegion(destination = {}, definition = null) {
+  if (!definition || !Array.isArray(definition.knownDestinationIds)) return false;
+  const actual = destinationIdentifiers(destination);
+  const expected = SUBNATIONAL_REGION_DESTINATION_INDEX.get(definition.key);
+  if (expected) return [...actual].some((identifier) => expected.has(identifier));
+  return definition.knownDestinationIds.some((identifier) => actual.has(clean(identifier).toUpperCase()));
+}
+
+export function filterDestinationsForTravelRegion(destinations = [], value, catalog = SUBNATIONAL_REGION_DEFINITIONS) {
+  const definition = resolveTravelRegionDefinition(value, catalog);
+  if (!definition) return [...(destinations || [])];
+  return (destinations || []).filter((destination) => destinationMatchesTravelRegion(destination, definition));
+}

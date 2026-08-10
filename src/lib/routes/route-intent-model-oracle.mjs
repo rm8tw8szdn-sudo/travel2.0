@@ -5,6 +5,7 @@ import {
   readRouteIntentEnvelope,
   validateNormalizedRouteIntent,
 } from "./route-intent-model.mjs";
+import { ROUTE_V2_SUBNATIONAL_REGION_DEFINITIONS } from "./route-search-region-taxonomy.mjs";
 
 const tidy = (value) => String(value ?? "").normalize("NFKC").trim().toLocaleLowerCase("en-US")
   .replace(/[^\p{L}\p{N}]+/gu, "");
@@ -64,6 +65,23 @@ function hasTimeEvidence(route = {}) {
     route.routeTimeIntent?.evidenceStatus,
   ].map((value) => String(value ?? "").trim().toLocaleLowerCase("en-US"))
     .some((value) => ["ready", "complete", "supported", "validated", "passed"].includes(value));
+}
+
+function oracleSubnationalRegion(value) {
+  const expected = tidy(value);
+  if (!expected) return null;
+  return ROUTE_V2_SUBNATIONAL_REGION_DEFINITIONS.find((definition) => (
+    [definition.key, definition.label, ...(definition.aliases || [])]
+      .map(tidy)
+      .filter(Boolean)
+      .includes(expected)
+  )) || null;
+}
+
+function oracleDestinationMatchesRegion(point = {}, definition = null) {
+  if (!definition) return false;
+  const known = new Set((definition.knownDestinationIds || []).map(id));
+  return Boolean(point.id) && known.has(id(point.id));
 }
 
 const EXPLICIT_THEME_RULES = new Map([
@@ -146,6 +164,12 @@ export function evaluateRouteIntentOracle(normalizedIntentInput, route = {}, opt
 
   const expectedCountry = intent.hardConstraints.country;
   const expectedCountries = intent.hardConstraints.countries;
+  const expectedRegion = intent.hardConstraints.region;
+  const regionScopedCountrySet = expectedRegion.state === "provided"
+    && expectedRegion.value
+    && expectedCountry.state !== "provided"
+    && expectedCountries?.state === "provided"
+    && expectedCountries.values.length > 0;
   const authoritativeCountries = Array.isArray(route.countryEntities) && route.countryEntities.length
     ? route.countryEntities.map((entry) => id(entry?.countryCode || entry?.entityId))
     : Array.isArray(route.countryCodes) && route.countryCodes.length
@@ -155,20 +179,33 @@ export function evaluateRouteIntentOracle(normalizedIntentInput, route = {}, opt
         : points.map((entry) => entry.country);
   const countries = new Set(authoritativeCountries.filter(Boolean));
   if (expectedCountries?.state === "provided" && expectedCountries.values.length) {
-    if (countries.size !== expectedCountries.values.length
+    if (regionScopedCountrySet) {
+      const allowed = new Set(expectedCountries.values.map(id));
+      if (!countries.size || [...countries].some((country) => !allowed.has(country))) violations.push("region-country-mismatch");
+    } else if (countries.size !== expectedCountries.values.length
       || expectedCountries.values.some((country) => !countries.has(country))) violations.push("country-mismatch");
   } else if (expectedCountry.state === "provided" && expectedCountry.value
     && (countries.size !== 1 || !countries.has(expectedCountry.value))) {
     violations.push("country-mismatch");
   }
 
-  const expectedRegion = intent.hardConstraints.region;
   const regions = new Set([
     ...points.map((entry) => entry.region),
     ...(Array.isArray(route.regions) ? route.regions.map(tidy) : []),
     tidy(route.region || route.regionEntityId),
   ].filter(Boolean));
-  if (expectedRegion.state === "provided" && expectedRegion.value && !regions.has(expectedRegion.value)) violations.push("region-mismatch");
+  if (expectedRegion.state === "provided" && expectedRegion.value) {
+    const localRegion = oracleSubnationalRegion(expectedRegion.value);
+    if (localRegion) {
+      if (!(localRegion.knownDestinationIds || []).length) violations.push("unsupported-region");
+      else if (!constraintPoints.length
+        || constraintPoints.some((point) => !oracleDestinationMatchesRegion(point, localRegion))) {
+        violations.push("region-mismatch");
+      }
+    } else if (!regionScopedCountrySet && !regions.has(expectedRegion.value)) {
+      violations.push("region-mismatch");
+    }
+  }
 
   let requiresEvidence = false;
   const expectedMonths = intent.hardConstraints.months;

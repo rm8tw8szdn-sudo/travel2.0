@@ -255,6 +255,9 @@ export function normalizeDiscoveredRoute(value) {
     requestedDurationDays: Number.isFinite(Number(value.requestedDurationDays)) && Number(value.requestedDurationDays) > 0
       ? Math.round(Number(value.requestedDurationDays))
       : null,
+    routeExpansion: value.routeExpansion && typeof value.routeExpansion === "object"
+      ? structuredClone(value.routeExpansion)
+      : null,
   };
 
   const sourceName = cleanText(value.source?.name);

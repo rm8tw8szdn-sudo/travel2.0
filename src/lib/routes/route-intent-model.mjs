@@ -1,4 +1,5 @@
 import crypto from "node:crypto";
+import { maxDestinationsForTripDays } from "./route-trip-capacity.mjs";
 
 export const ROUTE_INTENT_SCHEMA_VERSION = "route-intent-v1";
 export const ROUTE_INTENT_FINGERPRINT_VERSION = "route-intent-fingerprint-v1";
@@ -596,12 +597,7 @@ function normalizeCountryList(input) {
 }
 
 export function maxDestinationsForRouteIntentDays(days) {
-  if (!Number.isInteger(days) || days <= 0) return null;
-  if (days <= 2) return 2;
-  if (days <= 4) return 3;
-  if (days <= 7) return 4;
-  if (days <= 10) return 5;
-  return 6;
+  return maxDestinationsForTripDays(days);
 }
 
 function normalizeAlreadyNormalized(input) {

@@ -396,6 +396,12 @@ export {
   readRouteIntentEnvelope,
   validateNormalizedRouteIntent,
 } from "./route-intent-model.mjs";
+export {
+  ROUTE_TRIP_CAPACITY_LIMITS,
+  ROUTE_TRIP_CAPACITY_VERSION,
+  maxDestinationsForTripDays,
+  resolveRouteTripCapacity,
+} from "./route-trip-capacity.mjs";
 export { createLocalEvidenceSeedOverlay, compareLocalEvidenceQuality } from "./local-evidence-seed-overlay.mjs";
 export {
   ROUTE_V2_EVIDENCE_SEED_ROOT,

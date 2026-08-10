@@ -37,6 +37,99 @@ const BATCH02_CITY_NAMES = Object.freeze([
   "Rome",
   "Seoul",
 ]);
+const BATCH03_CITY_NAMES = Object.freeze([
+  "Auckland", "Bangkok", "Chiang Mai", "Lucerne", "Melbourne",
+  "Queenstown", "Reykjavík", "Sydney", "Vík í Mýrdal", "Zürich",
+]);
+const BATCH04_CITY_POI_COUNTS = Object.freeze({
+  Beppu: 3,
+  Fujikawaguchiko: 4,
+  Fukuoka: 7,
+  Hakodate: 5,
+  Hakone: 5,
+  Hiroshima: 7,
+  Kamakura: 6,
+  Kanazawa: 5,
+  Kobe: 6,
+  Kumamoto: 5,
+  Kyoto: 19,
+  Miyajima: 6,
+  Nagoya: 8,
+  Naha: 5,
+  Nara: 8,
+  "Okinawa City": 3,
+  Osaka: 15,
+  Otaru: 3,
+  Sapporo: 7,
+  Takayama: 4,
+  Tokyo: 19,
+  "Yufuin (Yufu)": 3,
+});
+const BATCH04_CITY_NAMES = Object.freeze(Object.keys(BATCH04_CITY_POI_COUNTS));
+const BATCH05_08_CITY_POI_COUNTS = Object.freeze({
+  Bologna: 5,
+  Catania: 5,
+  Como: 5,
+  Florence: 8,
+  Milan: 8,
+  Naples: 8,
+  Palermo: 8,
+  Pisa: 5,
+  Rome: 15,
+  Siena: 5,
+  Turin: 5,
+  Venice: 8,
+  Verona: 5,
+  "Aix-en-Provence": 5,
+  Annecy: 3,
+  Avignon: 5,
+  Bordeaux: 8,
+  Cannes: 3,
+  Chamonix: 3,
+  Colmar: 3,
+  Lyon: 8,
+  Marseille: 8,
+  Nice: 8,
+  Paris: 15,
+  Strasbourg: 8,
+  Toulouse: 5,
+  Barcelona: 15,
+  Bilbao: 8,
+  "Córdoba": 8,
+  Granada: 8,
+  Madrid: 15,
+  "Málaga": 5,
+  Ronda: 3,
+  Salamanca: 5,
+  "San Sebastián": 5,
+  "Santiago de Compostela": 5,
+  Seville: 8,
+  Toledo: 5,
+  Valencia: 8,
+  Andong: 3,
+  Busan: 8,
+  Daegu: 4,
+  Gangneung: 3,
+  Gyeongju: 8,
+  Incheon: 5,
+  "Jeju City": 8,
+  Jeonju: 3,
+  Seoul: 15,
+  Sokcho: 3,
+  Suwon: 3,
+  Tongyeong: 3,
+  Yeosu: 4,
+});
+const BATCH05_08_CITY_NAMES = Object.freeze(Object.keys(BATCH05_08_CITY_POI_COUNTS));
+const EXPECTED_CITY_POI_COUNTS = Object.freeze({
+  ...Object.fromEntries([
+    ...BATCH01_CITY_NAMES,
+    ...BATCH02_CITY_NAMES,
+    ...BATCH03_CITY_NAMES,
+  ].map((name) => [name, 3])),
+  ...BATCH04_CITY_POI_COUNTS,
+  ...BATCH05_08_CITY_POI_COUNTS,
+});
 const UI_AND_PLANNER_PATHS = Object.freeze([
   "atlas.js",
   "city-detail.js",
@@ -159,7 +252,14 @@ try {
   const countries = repository.listCountries();
   const cities = repository.listCities();
   const pois = repository.listPois();
-  const batchCities = [...BATCH01_CITY_NAMES, ...BATCH02_CITY_NAMES].map((name) => {
+  const batchCityNames = [...new Set([
+    ...BATCH01_CITY_NAMES,
+    ...BATCH02_CITY_NAMES,
+    ...BATCH03_CITY_NAMES,
+    ...BATCH04_CITY_NAMES,
+    ...BATCH05_08_CITY_NAMES,
+  ])];
+  const batchCities = batchCityNames.map((name) => {
     const city = cities.find((candidate) => candidate.canonicalNameEn === name);
     assert.ok(city, `Published batch City missing from repository: ${name}`);
     return city;
@@ -167,14 +267,18 @@ try {
   const batchCityIds = new Set(batchCities.map((city) => city.entityId));
   const pilotPois = pois.filter((poi) => !batchCityIds.has(poi.parentCityEntityId));
 
-  assert.equal(new Set(countries.map((entity) => entity.entityId)).size, 50);
-  assert.equal(new Set(cities.map((entity) => entity.entityId)).size, 25);
-  assert.equal(new Set(pois.map((entity) => entity.entityId)).size, 75);
-  assert.equal(new Set([...countries, ...cities, ...pois].map((entity) => entity.entityId)).size, 150);
-  assert.equal(new Set(cities.map((entity) => entity.wikidataId)).size, 25);
-  assert.equal(new Set(pois.map((entity) => entity.wikidataId)).size, 75);
-  assert.equal(pilotPois.length, 15);
-  for (const city of batchCities) assert.equal(repository.listPoisByCity(city.entityId).length, 3, `${city.canonicalNameEn} POI count`);
+  assert.equal(new Set(countries.map((entity) => entity.entityId)).size, 51);
+  assert.equal(new Set(cities.map((entity) => entity.entityId)).size, 99);
+  assert.equal(new Set(pois.map((entity) => entity.entityId)).size, 568);
+  assert.equal(new Set([...countries, ...cities, ...pois].map((entity) => entity.entityId)).size, 718);
+  assert.equal(new Set(cities.map((entity) => entity.wikidataId)).size, 99);
+  assert.equal(new Set(pois.map((entity) => entity.wikidataId)).size, 568);
+  assert.equal(pilotPois.length, 9);
+  for (const city of batchCities) {
+    const expectedCount = EXPECTED_CITY_POI_COUNTS[city.canonicalNameEn];
+    assert.ok(Number.isInteger(expectedCount), `Missing expected POI count for ${city.canonicalNameEn}`);
+    assert.equal(repository.listPoisByCity(city.entityId).length, expectedCount, `${city.canonicalNameEn} POI count`);
+  }
 
   const countriesCopy = repository.listCountries();
   countriesCopy[0].canonicalNameEn = "external mutation";
@@ -219,7 +323,7 @@ try {
 
   const countriesResponse = await request("/api/knowledge-entities/countries");
   assert.equal(countriesResponse.status, 200);
-  assert.equal(countriesResponse.payload.countries.length, 50);
+  assert.equal(countriesResponse.payload.countries.length, 51);
   const countriesAgain = await request("/api/knowledge-entities/countries");
   assert.deepEqual(countriesAgain.payload, countriesResponse.payload);
 
@@ -238,7 +342,7 @@ try {
   for (const city of batchCities) {
     const response = await request(`/api/knowledge-entities/cities/${city.entityId}/pois`);
     assert.equal(response.status, 200);
-    assert.equal(response.payload.pois.length, 3, `${city.canonicalNameEn} runtime POI count`);
+    assert.equal(response.payload.pois.length, EXPECTED_CITY_POI_COUNTS[city.canonicalNameEn], `${city.canonicalNameEn} runtime POI count`);
     assert.ok(response.payload.pois.every((poi) => poi.parentCityEntityId === city.entityId));
     const repeated = await request(`/api/knowledge-entities/cities/${city.entityId}/pois`);
     assert.deepEqual(repeated.payload, response.payload, `${city.canonicalNameEn} ordering changed`);
@@ -282,7 +386,7 @@ try {
     assert.equal(publicPayloadText.includes(forbidden), false, `runtime API exposed forbidden detail: ${forbidden}`);
   }
   assert.ok(requestedPaths.every((relativePath) => relativePath.startsWith("/api/knowledge-entities/")));
-  assert.equal((output.stdout.match(/Knowledge Entity Layer: 50 countries, 25 cities, 75 POIs/g) || []).length, 1);
+  assert.equal((output.stdout.match(/Knowledge Entity Layer: 51 countries, 99 cities, 568 POIs/g) || []).length, 1);
   assert.equal(output.stderr, "", `server stderr was not empty:\n${output.stderr}`);
 
   result = {
@@ -295,6 +399,9 @@ try {
       pilotPoisQueried: pilotPois.length,
       batch01CitiesWithThreePois: batchCityResults.filter((result) => BATCH01_CITY_NAMES.includes(result.city)).length,
       batch02CitiesWithThreePois: batchCityResults.filter((result) => BATCH02_CITY_NAMES.includes(result.city)).length,
+      batch03CitiesWithThreePois: batchCityResults.filter((result) => BATCH03_CITY_NAMES.includes(result.city)).length,
+      batch04JapanCitiesWithTieredPois: batchCityResults.filter((result) => BATCH04_CITY_NAMES.includes(result.city)).length,
+      batch05To08MultiCountryCitiesWithTieredPois: batchCityResults.filter((result) => BATCH05_08_CITY_NAMES.includes(result.city)).length,
       stableOrdering: true,
       responseIsolation: true,
       missingEntityStatus: missing.status,
@@ -303,6 +410,8 @@ try {
     },
     batch01: batchCityResults.filter((result) => BATCH01_CITY_NAMES.includes(result.city)),
     batch02: batchCityResults.filter((result) => BATCH02_CITY_NAMES.includes(result.city)),
+    batch04: batchCityResults.filter((result) => BATCH04_CITY_NAMES.includes(result.city)),
+    batch05To08: batchCityResults.filter((result) => BATCH05_08_CITY_NAMES.includes(result.city)),
     sideEffects: {
       entityLayerCacheReads: 0,
       cacheWrites: 0,

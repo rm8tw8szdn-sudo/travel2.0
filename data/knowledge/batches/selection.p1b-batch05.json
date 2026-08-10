@@ -1,0 +1,641 @@
+{
+  "schemaVersion": "route-v2-batch03a-italy-selection-v1",
+  "country": [
+    {
+      "entityId": "country-4df88b953a99e6a4",
+      "wikidataId": "Q38",
+      "canonicalNameEn": "Italy"
+    }
+  ],
+  "cities": [
+    {
+      "key": "bologna",
+      "entityId": "city-c35a51f0cb5d2021",
+      "parentCountryEntityId": "country-4df88b953a99e6a4",
+      "wikidataId": "Q1891",
+      "canonicalNameEn": "Bologna",
+      "targetPoiCount": 5,
+      "selectedPoiCount": 5
+    },
+    {
+      "key": "catania",
+      "entityId": "city-42fa7d7ec2a164f4",
+      "parentCountryEntityId": "country-4df88b953a99e6a4",
+      "wikidataId": "Q1903",
+      "canonicalNameEn": "Catania",
+      "targetPoiCount": 5,
+      "selectedPoiCount": 5
+    },
+    {
+      "key": "como",
+      "entityId": "city-df3c42866a11edba",
+      "parentCountryEntityId": "country-4df88b953a99e6a4",
+      "wikidataId": "Q1308",
+      "canonicalNameEn": "Como",
+      "targetPoiCount": 5,
+      "selectedPoiCount": 5
+    },
+    {
+      "key": "florence",
+      "entityId": "city-d40570b2aac4850d",
+      "parentCountryEntityId": "country-4df88b953a99e6a4",
+      "wikidataId": "Q2044",
+      "canonicalNameEn": "Florence",
+      "targetPoiCount": 8,
+      "selectedPoiCount": 8
+    },
+    {
+      "key": "milan",
+      "entityId": "city-c2ce5de4c930921c",
+      "parentCountryEntityId": "country-4df88b953a99e6a4",
+      "wikidataId": "Q490",
+      "canonicalNameEn": "Milan",
+      "targetPoiCount": 8,
+      "selectedPoiCount": 8
+    },
+    {
+      "key": "naples",
+      "entityId": "city-f4ab4ac7c8c65aac",
+      "parentCountryEntityId": "country-4df88b953a99e6a4",
+      "wikidataId": "Q2634",
+      "canonicalNameEn": "Naples",
+      "targetPoiCount": 8,
+      "selectedPoiCount": 8
+    },
+    {
+      "key": "palermo",
+      "entityId": "city-e8f0c07a3b186851",
+      "parentCountryEntityId": "country-4df88b953a99e6a4",
+      "wikidataId": "Q2656",
+      "canonicalNameEn": "Palermo",
+      "targetPoiCount": 8,
+      "selectedPoiCount": 8
+    },
+    {
+      "key": "pisa",
+      "entityId": "city-164dd28088aa25f4",
+      "parentCountryEntityId": "country-4df88b953a99e6a4",
+      "wikidataId": "Q13375",
+      "canonicalNameEn": "Pisa",
+      "targetPoiCount": 5,
+      "selectedPoiCount": 5
+    },
+    {
+      "key": "rome",
+      "entityId": "city-133b155bac966dfa",
+      "parentCountryEntityId": "country-4df88b953a99e6a4",
+      "wikidataId": "Q220",
+      "canonicalNameEn": "Rome",
+      "targetPoiCount": 15,
+      "selectedPoiCount": 15
+    },
+    {
+      "key": "siena",
+      "entityId": "city-b83b9960445cd188",
+      "parentCountryEntityId": "country-4df88b953a99e6a4",
+      "wikidataId": "Q2751",
+      "canonicalNameEn": "Siena",
+      "targetPoiCount": 5,
+      "selectedPoiCount": 5
+    },
+    {
+      "key": "turin",
+      "entityId": "city-0a37bf91d42410d6",
+      "parentCountryEntityId": "country-4df88b953a99e6a4",
+      "wikidataId": "Q495",
+      "canonicalNameEn": "Turin",
+      "targetPoiCount": 5,
+      "selectedPoiCount": 5
+    },
+    {
+      "key": "venice",
+      "entityId": "city-c85060ff1bf40bda",
+      "parentCountryEntityId": "country-4df88b953a99e6a4",
+      "wikidataId": "Q641",
+      "canonicalNameEn": "Venice",
+      "targetPoiCount": 8,
+      "selectedPoiCount": 8
+    },
+    {
+      "key": "verona",
+      "entityId": "city-66bc37ecc403b7eb",
+      "parentCountryEntityId": "country-4df88b953a99e6a4",
+      "wikidataId": "Q2028",
+      "canonicalNameEn": "Verona",
+      "targetPoiCount": 5,
+      "selectedPoiCount": 5
+    }
+  ],
+  "pois": [
+    {
+      "entityId": "poi-03a56811cf89ecf5",
+      "parentCityEntityId": "city-0a37bf91d42410d6",
+      "wikidataId": "Q1145261",
+      "canonicalNameEn": "Basilica of Superga"
+    },
+    {
+      "entityId": "poi-c00e1c125da066d9",
+      "parentCityEntityId": "city-0a37bf91d42410d6",
+      "wikidataId": "Q19877",
+      "canonicalNameEn": "Egyptian Museum"
+    },
+    {
+      "entityId": "poi-e18d1dab70d09838",
+      "parentCityEntityId": "city-0a37bf91d42410d6",
+      "wikidataId": "Q201902",
+      "canonicalNameEn": "Mole Antonelliana"
+    },
+    {
+      "entityId": "poi-6895b40ffc6ba72f",
+      "parentCityEntityId": "city-0a37bf91d42410d6",
+      "wikidataId": "Q19826",
+      "canonicalNameEn": "Palazzo Madama"
+    },
+    {
+      "entityId": "poi-50cb91cf33477fe8",
+      "parentCityEntityId": "city-0a37bf91d42410d6",
+      "wikidataId": "Q19824",
+      "canonicalNameEn": "Royal Palace of Turin"
+    },
+    {
+      "entityId": "poi-3c7a296248f45e88",
+      "parentCityEntityId": "city-133b155bac966dfa",
+      "wikidataId": "Q502098",
+      "canonicalNameEn": "Baths of Caracalla"
+    },
+    {
+      "entityId": "poi-63040ac4856ac2af",
+      "parentCityEntityId": "city-133b155bac966dfa",
+      "wikidataId": "Q333906",
+      "canonicalNameEn": "Capitoline Museums"
+    },
+    {
+      "entityId": "poi-7e4cf56ce867d384",
+      "parentCityEntityId": "city-133b155bac966dfa",
+      "wikidataId": "Q486382",
+      "canonicalNameEn": "Castel Sant'Angelo"
+    },
+    {
+      "entityId": "poi-4c9a852cc0d64134",
+      "parentCityEntityId": "city-133b155bac966dfa",
+      "wikidataId": "Q841506",
+      "canonicalNameEn": "Galleria Borghese"
+    },
+    {
+      "entityId": "poi-c34555bfd00021ab",
+      "parentCityEntityId": "city-133b155bac966dfa",
+      "wikidataId": "Q824997",
+      "canonicalNameEn": "Piazza del Popolo"
+    },
+    {
+      "entityId": "poi-a3147042cb74dbc8",
+      "parentCityEntityId": "city-133b155bac966dfa",
+      "wikidataId": "Q463400",
+      "canonicalNameEn": "Piazza Navona"
+    },
+    {
+      "entityId": "poi-b471d1fd2880dda2",
+      "parentCityEntityId": "city-133b155bac966dfa",
+      "wikidataId": "Q180212",
+      "canonicalNameEn": "Roman Forum"
+    },
+    {
+      "entityId": "poi-252cc1e9ec91cd9a",
+      "parentCityEntityId": "city-133b155bac966dfa",
+      "wikidataId": "Q2943",
+      "canonicalNameEn": "Sistine Chapel"
+    },
+    {
+      "entityId": "poi-fa80715f0cfea539",
+      "parentCityEntityId": "city-133b155bac966dfa",
+      "wikidataId": "Q848072",
+      "canonicalNameEn": "Spanish Steps"
+    },
+    {
+      "entityId": "poi-7f3514da5bd7b130",
+      "parentCityEntityId": "city-133b155bac966dfa",
+      "wikidataId": "Q12512",
+      "canonicalNameEn": "St. Peter's Basilica"
+    },
+    {
+      "entityId": "poi-9a712ca8e083a1dc",
+      "parentCityEntityId": "city-133b155bac966dfa",
+      "wikidataId": "Q182955",
+      "canonicalNameEn": "Vatican Museums"
+    },
+    {
+      "entityId": "poi-45b341574ee7a968",
+      "parentCityEntityId": "city-133b155bac966dfa",
+      "wikidataId": "Q678313",
+      "canonicalNameEn": "Villa Borghese Gardens"
+    },
+    {
+      "entityId": "poi-e815e038fa1e275c",
+      "parentCityEntityId": "city-164dd28088aa25f4",
+      "wikidataId": "Q39054",
+      "canonicalNameEn": "Leaning Tower of Pisa"
+    },
+    {
+      "entityId": "poi-c71addec8a9d4ee9",
+      "parentCityEntityId": "city-164dd28088aa25f4",
+      "wikidataId": "Q1784719",
+      "canonicalNameEn": "Piazza dei Cavalieri"
+    },
+    {
+      "entityId": "poi-cf77ce77a5afc073",
+      "parentCityEntityId": "city-164dd28088aa25f4",
+      "wikidataId": "Q750245",
+      "canonicalNameEn": "Piazza dei Miracoli"
+    },
+    {
+      "entityId": "poi-aef52d0eb81eca62",
+      "parentCityEntityId": "city-164dd28088aa25f4",
+      "wikidataId": "Q1278477",
+      "canonicalNameEn": "Pisa Baptistery"
+    },
+    {
+      "entityId": "poi-acabe0b1c9e6b37d",
+      "parentCityEntityId": "city-164dd28088aa25f4",
+      "wikidataId": "Q1754247",
+      "canonicalNameEn": "Pisa Cathedral"
+    },
+    {
+      "entityId": "poi-4ee9707269e92036",
+      "parentCityEntityId": "city-42fa7d7ec2a164f4",
+      "wikidataId": "Q1499188",
+      "canonicalNameEn": "Catania Cathedral"
+    },
+    {
+      "entityId": "poi-dc0808970ef35551",
+      "parentCityEntityId": "city-42fa7d7ec2a164f4",
+      "wikidataId": "Q3763848",
+      "canonicalNameEn": "Giardino Bellini"
+    },
+    {
+      "entityId": "poi-e28748c399a03f52",
+      "parentCityEntityId": "city-42fa7d7ec2a164f4",
+      "wikidataId": "Q3382260",
+      "canonicalNameEn": "Piazza del Duomo"
+    },
+    {
+      "entityId": "poi-e36312012706f1a6",
+      "parentCityEntityId": "city-42fa7d7ec2a164f4",
+      "wikidataId": "Q1429352",
+      "canonicalNameEn": "Teatro Massimo Bellini"
+    },
+    {
+      "entityId": "poi-0e042f7814974df8",
+      "parentCityEntityId": "city-42fa7d7ec2a164f4",
+      "wikidataId": "Q1048850",
+      "canonicalNameEn": "Ursino Castle"
+    },
+    {
+      "entityId": "poi-4ad08b260d2f60ef",
+      "parentCityEntityId": "city-66bc37ecc403b7eb",
+      "wikidataId": "Q1763642",
+      "canonicalNameEn": "Basilica of San Zeno"
+    },
+    {
+      "entityId": "poi-f5e60be123a63c2f",
+      "parentCityEntityId": "city-66bc37ecc403b7eb",
+      "wikidataId": "Q2518724",
+      "canonicalNameEn": "Castelvecchio Museum"
+    },
+    {
+      "entityId": "poi-a2c1d974f72cbd07",
+      "parentCityEntityId": "city-66bc37ecc403b7eb",
+      "wikidataId": "Q1056360",
+      "canonicalNameEn": "Piazza Bra"
+    },
+    {
+      "entityId": "poi-fb8f46cbd48519cf",
+      "parentCityEntityId": "city-66bc37ecc403b7eb",
+      "wikidataId": "Q2717102",
+      "canonicalNameEn": "Piazza delle Erbe"
+    },
+    {
+      "entityId": "poi-aa0b47b563850329",
+      "parentCityEntityId": "city-66bc37ecc403b7eb",
+      "wikidataId": "Q641556",
+      "canonicalNameEn": "Verona Arena"
+    },
+    {
+      "entityId": "poi-51e7dee69e898b10",
+      "parentCityEntityId": "city-b83b9960445cd188",
+      "wikidataId": "Q810075",
+      "canonicalNameEn": "Basilica of San Domenico"
+    },
+    {
+      "entityId": "poi-4721270e604c1b86",
+      "parentCityEntityId": "city-b83b9960445cd188",
+      "wikidataId": "Q1190961",
+      "canonicalNameEn": "Palazzo Pubblico"
+    },
+    {
+      "entityId": "poi-d9b7e741e3bb6fbb",
+      "parentCityEntityId": "city-b83b9960445cd188",
+      "wikidataId": "Q1061229",
+      "canonicalNameEn": "Piazza del Campo"
+    },
+    {
+      "entityId": "poi-6d59d4290de4e5d1",
+      "parentCityEntityId": "city-b83b9960445cd188",
+      "wikidataId": "Q282554",
+      "canonicalNameEn": "Siena Cathedral"
+    },
+    {
+      "entityId": "poi-c6ee79c48dd14020",
+      "parentCityEntityId": "city-b83b9960445cd188",
+      "wikidataId": "Q2472396",
+      "canonicalNameEn": "Torre del Mangia"
+    },
+    {
+      "entityId": "poi-99ca42e432383064",
+      "parentCityEntityId": "city-c2ce5de4c930921c",
+      "wikidataId": "Q1071570",
+      "canonicalNameEn": "Basilica of Sant'Ambrogio"
+    },
+    {
+      "entityId": "poi-a43550a25ccc5444",
+      "parentCityEntityId": "city-c2ce5de4c930921c",
+      "wikidataId": "Q51112",
+      "canonicalNameEn": "Galleria Vittorio Emanuele II"
+    },
+    {
+      "entityId": "poi-5168e77a763c3b01",
+      "parentCityEntityId": "city-c2ce5de4c930921c",
+      "wikidataId": "Q18068",
+      "canonicalNameEn": "Milan Cathedral"
+    },
+    {
+      "entityId": "poi-208cc082232dcec1",
+      "parentCityEntityId": "city-c2ce5de4c930921c",
+      "wikidataId": "Q261233",
+      "canonicalNameEn": "Museo del Novecento"
+    },
+    {
+      "entityId": "poi-c397b28876303db2",
+      "parentCityEntityId": "city-c2ce5de4c930921c",
+      "wikidataId": "Q150066",
+      "canonicalNameEn": "Pinacoteca di Brera"
+    },
+    {
+      "entityId": "poi-b481c44686fa5d66",
+      "parentCityEntityId": "city-c2ce5de4c930921c",
+      "wikidataId": "Q244952",
+      "canonicalNameEn": "Santa Maria delle Grazie"
+    },
+    {
+      "entityId": "poi-025a58707e725128",
+      "parentCityEntityId": "city-c2ce5de4c930921c",
+      "wikidataId": "Q23354",
+      "canonicalNameEn": "Sforza Castle"
+    },
+    {
+      "entityId": "poi-05a2b1acb125bdad",
+      "parentCityEntityId": "city-c2ce5de4c930921c",
+      "wikidataId": "Q5471",
+      "canonicalNameEn": "Teatro alla Scala"
+    },
+    {
+      "entityId": "poi-c92633bac301a6d4",
+      "parentCityEntityId": "city-c35a51f0cb5d2021",
+      "wikidataId": "Q1476981",
+      "canonicalNameEn": "Archiginnasio of Bologna"
+    },
+    {
+      "entityId": "poi-66a2a401cf9b5708",
+      "parentCityEntityId": "city-c35a51f0cb5d2021",
+      "wikidataId": "Q810103",
+      "canonicalNameEn": "Basilica of San Petronio"
+    },
+    {
+      "entityId": "poi-8d0e04d64fdd630d",
+      "parentCityEntityId": "city-c35a51f0cb5d2021",
+      "wikidataId": "Q634917",
+      "canonicalNameEn": "Piazza Maggiore"
+    },
+    {
+      "entityId": "poi-8963354930a5e7fa",
+      "parentCityEntityId": "city-c35a51f0cb5d2021",
+      "wikidataId": "Q2004104",
+      "canonicalNameEn": "Sanctuary of the Madonna of San Luca"
+    },
+    {
+      "entityId": "poi-7e62fe4e0d4820e2",
+      "parentCityEntityId": "city-c35a51f0cb5d2021",
+      "wikidataId": "Q16902146",
+      "canonicalNameEn": "Two Towers"
+    },
+    {
+      "entityId": "poi-71b4797b45fc7734",
+      "parentCityEntityId": "city-c85060ff1bf40bda",
+      "wikidataId": "Q52517",
+      "canonicalNameEn": "Bridge of Sighs"
+    },
+    {
+      "entityId": "poi-21a360ce42c8c272",
+      "parentCityEntityId": "city-c85060ff1bf40bda",
+      "wikidataId": "Q189883",
+      "canonicalNameEn": "Doge's Palace"
+    },
+    {
+      "entityId": "poi-be9ecce0ea34a3ea",
+      "parentCityEntityId": "city-c85060ff1bf40bda",
+      "wikidataId": "Q338330",
+      "canonicalNameEn": "Gallerie dell'Accademia"
+    },
+    {
+      "entityId": "poi-54655c65c8dc05d4",
+      "parentCityEntityId": "city-c85060ff1bf40bda",
+      "wikidataId": "Q309243",
+      "canonicalNameEn": "Grand Canal"
+    },
+    {
+      "entityId": "poi-6cd26918edcb6d43",
+      "parentCityEntityId": "city-c85060ff1bf40bda",
+      "wikidataId": "Q1049033",
+      "canonicalNameEn": "Peggy Guggenheim Collection"
+    },
+    {
+      "entityId": "poi-f6cc60ab85e40681",
+      "parentCityEntityId": "city-c85060ff1bf40bda",
+      "wikidataId": "Q217527",
+      "canonicalNameEn": "Piazza San Marco"
+    },
+    {
+      "entityId": "poi-1a2a7d5f931907b2",
+      "parentCityEntityId": "city-c85060ff1bf40bda",
+      "wikidataId": "Q52505",
+      "canonicalNameEn": "Rialto Bridge"
+    },
+    {
+      "entityId": "poi-44767c18947fdef0",
+      "parentCityEntityId": "city-c85060ff1bf40bda",
+      "wikidataId": "Q172988",
+      "canonicalNameEn": "St Mark's Basilica"
+    },
+    {
+      "entityId": "poi-1f03bd299a2a68e5",
+      "parentCityEntityId": "city-d40570b2aac4850d",
+      "wikidataId": "Q51177",
+      "canonicalNameEn": "Basilica of Santa Croce"
+    },
+    {
+      "entityId": "poi-a15adc179fc86792",
+      "parentCityEntityId": "city-d40570b2aac4850d",
+      "wikidataId": "Q888825",
+      "canonicalNameEn": "Boboli Gardens"
+    },
+    {
+      "entityId": "poi-b1e149487cfdcfb3",
+      "parentCityEntityId": "city-d40570b2aac4850d",
+      "wikidataId": "Q10855544",
+      "canonicalNameEn": "Galleria dell'Accademia"
+    },
+    {
+      "entityId": "poi-a84ba897170b65ff",
+      "parentCityEntityId": "city-d40570b2aac4850d",
+      "wikidataId": "Q271928",
+      "canonicalNameEn": "Palazzo Vecchio"
+    },
+    {
+      "entityId": "poi-24fefb00b507cad9",
+      "parentCityEntityId": "city-d40570b2aac4850d",
+      "wikidataId": "Q208633",
+      "canonicalNameEn": "Ponte Vecchio"
+    },
+    {
+      "entityId": "poi-164fa133c57297f3",
+      "parentCityEntityId": "city-df3c42866a11edba",
+      "wikidataId": "Q2263559",
+      "canonicalNameEn": "Basilica of Sant'Abbondio"
+    },
+    {
+      "entityId": "poi-be445ca4f6d00415",
+      "parentCityEntityId": "city-df3c42866a11edba",
+      "wikidataId": "Q1101730",
+      "canonicalNameEn": "Como Cathedral"
+    },
+    {
+      "entityId": "poi-baa9b784bf306e0f",
+      "parentCityEntityId": "city-df3c42866a11edba",
+      "wikidataId": "Q3908852",
+      "canonicalNameEn": "Porta Torre"
+    },
+    {
+      "entityId": "poi-fd669c9b994f4c6a",
+      "parentCityEntityId": "city-df3c42866a11edba",
+      "wikidataId": "Q3517634",
+      "canonicalNameEn": "Tempio Voltiano"
+    },
+    {
+      "entityId": "poi-77a6bee7749042f8",
+      "parentCityEntityId": "city-df3c42866a11edba",
+      "wikidataId": "Q1516590",
+      "canonicalNameEn": "Villa Olmo"
+    },
+    {
+      "entityId": "poi-92f0f14ad9fd096d",
+      "parentCityEntityId": "city-e8f0c07a3b186851",
+      "wikidataId": "Q1435817",
+      "canonicalNameEn": "Fontana Pretoria"
+    },
+    {
+      "entityId": "poi-abb99ef787b2ef6d",
+      "parentCityEntityId": "city-e8f0c07a3b186851",
+      "wikidataId": "Q1000054",
+      "canonicalNameEn": "La Zisa"
+    },
+    {
+      "entityId": "poi-8089d1366ff726ed",
+      "parentCityEntityId": "city-e8f0c07a3b186851",
+      "wikidataId": "Q1473825",
+      "canonicalNameEn": "Norman Palace"
+    },
+    {
+      "entityId": "poi-a2cc8a3b1449fe8a",
+      "parentCityEntityId": "city-e8f0c07a3b186851",
+      "wikidataId": "Q894656",
+      "canonicalNameEn": "Orto Botanico di Palermo"
+    },
+    {
+      "entityId": "poi-6f2973fe76fc6c55",
+      "parentCityEntityId": "city-e8f0c07a3b186851",
+      "wikidataId": "Q1255652",
+      "canonicalNameEn": "Palazzo Abatellis"
+    },
+    {
+      "entityId": "poi-10a83d4f071112bc",
+      "parentCityEntityId": "city-e8f0c07a3b186851",
+      "wikidataId": "Q1478407",
+      "canonicalNameEn": "Palermo Cathedral"
+    },
+    {
+      "entityId": "poi-521c716b94f5dca3",
+      "parentCityEntityId": "city-e8f0c07a3b186851",
+      "wikidataId": "Q1665695",
+      "canonicalNameEn": "Quattro Canti"
+    },
+    {
+      "entityId": "poi-460346de029f22a2",
+      "parentCityEntityId": "city-e8f0c07a3b186851",
+      "wikidataId": "Q261439",
+      "canonicalNameEn": "Teatro Massimo"
+    },
+    {
+      "entityId": "poi-ebb7ddb7ca14064d",
+      "parentCityEntityId": "city-f4ab4ac7c8c65aac",
+      "wikidataId": "Q645041",
+      "canonicalNameEn": "Castel dell'Ovo"
+    },
+    {
+      "entityId": "poi-cbbf60c8402ee600",
+      "parentCityEntityId": "city-f4ab4ac7c8c65aac",
+      "wikidataId": "Q781219",
+      "canonicalNameEn": "Castel Nuovo"
+    },
+    {
+      "entityId": "poi-fe1d4748d8dadb17",
+      "parentCityEntityId": "city-f4ab4ac7c8c65aac",
+      "wikidataId": "Q1007726",
+      "canonicalNameEn": "Galleria Umberto I"
+    },
+    {
+      "entityId": "poi-4a5945d6342397fb",
+      "parentCityEntityId": "city-f4ab4ac7c8c65aac",
+      "wikidataId": "Q290549",
+      "canonicalNameEn": "Museo di Capodimonte"
+    },
+    {
+      "entityId": "poi-76a70386c541e8ea",
+      "parentCityEntityId": "city-f4ab4ac7c8c65aac",
+      "wikidataId": "Q256486",
+      "canonicalNameEn": "Naples Cathedral"
+    },
+    {
+      "entityId": "poi-f4813c6be47ce311",
+      "parentCityEntityId": "city-f4ab4ac7c8c65aac",
+      "wikidataId": "Q637248",
+      "canonicalNameEn": "Naples National Archaeological Museum"
+    },
+    {
+      "entityId": "poi-48d752da74c7bcca",
+      "parentCityEntityId": "city-f4ab4ac7c8c65aac",
+      "wikidataId": "Q1047594",
+      "canonicalNameEn": "Piazza del Plebiscito"
+    },
+    {
+      "entityId": "poi-c3ab5b9f182d0c7c",
+      "parentCityEntityId": "city-f4ab4ac7c8c65aac",
+      "wikidataId": "Q426339",
+      "canonicalNameEn": "Royal Palace of Naples"
+    }
+  ],
+  "regionalReview": [
+    "Lake Como",
+    "Cinque Terre",
+    "Amalfi Coast",
+    "Dolomites"
+  ]
+}

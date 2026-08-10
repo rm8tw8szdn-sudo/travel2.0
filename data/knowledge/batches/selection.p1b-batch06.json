@@ -1,0 +1,592 @@
+{
+  "schemaVersion": "route-v2-batch03b-france-selection-v1",
+  "country": [
+    {
+      "entityId": "country-a20e4bab95389730",
+      "wikidataId": "Q142",
+      "canonicalNameEn": "France"
+    }
+  ],
+  "cities": [
+    {
+      "key": "aix-en-provence",
+      "entityId": "city-ced7cb4a11f9e3e9",
+      "parentCountryEntityId": "country-a20e4bab95389730",
+      "wikidataId": "Q47465",
+      "canonicalNameEn": "Aix-en-Provence",
+      "targetPoiCount": 5,
+      "selectedPoiCount": 5
+    },
+    {
+      "key": "annecy",
+      "entityId": "city-62c57792a6bd2f46",
+      "parentCountryEntityId": "country-a20e4bab95389730",
+      "wikidataId": "Q50189",
+      "canonicalNameEn": "Annecy",
+      "targetPoiCount": 3,
+      "selectedPoiCount": 3
+    },
+    {
+      "key": "avignon",
+      "entityId": "city-4a6737e5c37fcb6b",
+      "parentCountryEntityId": "country-a20e4bab95389730",
+      "wikidataId": "Q6397",
+      "canonicalNameEn": "Avignon",
+      "targetPoiCount": 5,
+      "selectedPoiCount": 5
+    },
+    {
+      "key": "bordeaux",
+      "entityId": "city-367a0dbc6e8792b6",
+      "parentCountryEntityId": "country-a20e4bab95389730",
+      "wikidataId": "Q1479",
+      "canonicalNameEn": "Bordeaux",
+      "targetPoiCount": 8,
+      "selectedPoiCount": 8
+    },
+    {
+      "key": "cannes",
+      "entityId": "city-c370066a6f8d9a36",
+      "parentCountryEntityId": "country-a20e4bab95389730",
+      "wikidataId": "Q39984",
+      "canonicalNameEn": "Cannes",
+      "targetPoiCount": 3,
+      "selectedPoiCount": 3
+    },
+    {
+      "key": "chamonix",
+      "entityId": "city-3b93b2804c63706e",
+      "parentCountryEntityId": "country-a20e4bab95389730",
+      "wikidataId": "Q83236",
+      "canonicalNameEn": "Chamonix",
+      "targetPoiCount": 3,
+      "selectedPoiCount": 3
+    },
+    {
+      "key": "colmar",
+      "entityId": "city-f366b4cb18028d85",
+      "parentCountryEntityId": "country-a20e4bab95389730",
+      "wikidataId": "Q130994",
+      "canonicalNameEn": "Colmar",
+      "targetPoiCount": 3,
+      "selectedPoiCount": 3
+    },
+    {
+      "key": "lyon",
+      "entityId": "city-5bba0fc2f52dc8df",
+      "parentCountryEntityId": "country-a20e4bab95389730",
+      "wikidataId": "Q456",
+      "canonicalNameEn": "Lyon",
+      "targetPoiCount": 8,
+      "selectedPoiCount": 8
+    },
+    {
+      "key": "marseille",
+      "entityId": "city-60de7be23c539c87",
+      "parentCountryEntityId": "country-a20e4bab95389730",
+      "wikidataId": "Q23482",
+      "canonicalNameEn": "Marseille",
+      "targetPoiCount": 8,
+      "selectedPoiCount": 8
+    },
+    {
+      "key": "nice",
+      "entityId": "city-d224602f49c126a0",
+      "parentCountryEntityId": "country-a20e4bab95389730",
+      "wikidataId": "Q33959",
+      "canonicalNameEn": "Nice",
+      "targetPoiCount": 8,
+      "selectedPoiCount": 8
+    },
+    {
+      "key": "paris",
+      "entityId": "city-32da4cad2757df97",
+      "parentCountryEntityId": "country-a20e4bab95389730",
+      "wikidataId": "Q90",
+      "canonicalNameEn": "Paris",
+      "targetPoiCount": 15,
+      "selectedPoiCount": 15
+    },
+    {
+      "key": "strasbourg",
+      "entityId": "city-c88b8e0a78d41f2a",
+      "parentCountryEntityId": "country-a20e4bab95389730",
+      "wikidataId": "Q6602",
+      "canonicalNameEn": "Strasbourg",
+      "targetPoiCount": 8,
+      "selectedPoiCount": 8
+    },
+    {
+      "key": "toulouse",
+      "entityId": "city-f3b90177b0da59bf",
+      "parentCountryEntityId": "country-a20e4bab95389730",
+      "wikidataId": "Q7880",
+      "canonicalNameEn": "Toulouse",
+      "targetPoiCount": 5,
+      "selectedPoiCount": 5
+    }
+  ],
+  "pois": [
+    {
+      "entityId": "poi-6a213882cc769c49",
+      "parentCityEntityId": "city-32da4cad2757df97",
+      "wikidataId": "Q64436",
+      "canonicalNameEn": "Arc de Triomphe"
+    },
+    {
+      "entityId": "poi-0fa43baa120f470e",
+      "parentCityEntityId": "city-32da4cad2757df97",
+      "wikidataId": "Q178065",
+      "canonicalNameEn": "Centre Pompidou"
+    },
+    {
+      "entityId": "poi-d67bfa99cfe00a52",
+      "parentCityEntityId": "city-32da4cad2757df97",
+      "wikidataId": "Q309458",
+      "canonicalNameEn": "Luxembourg Garden"
+    },
+    {
+      "entityId": "poi-89852fed154391ee",
+      "parentCityEntityId": "city-32da4cad2757df97",
+      "wikidataId": "Q726781",
+      "canonicalNameEn": "Musée de l'Orangerie"
+    },
+    {
+      "entityId": "poi-6ce06177a584461e",
+      "parentCityEntityId": "city-32da4cad2757df97",
+      "wikidataId": "Q2981",
+      "canonicalNameEn": "Notre-Dame de Paris"
+    },
+    {
+      "entityId": "poi-fad697a76835d645",
+      "parentCityEntityId": "city-32da4cad2757df97",
+      "wikidataId": "Q187840",
+      "canonicalNameEn": "Palais Garnier"
+    },
+    {
+      "entityId": "poi-1a79178639e7d52b",
+      "parentCityEntityId": "city-32da4cad2757df97",
+      "wikidataId": "Q188856",
+      "canonicalNameEn": "Panthéon"
+    },
+    {
+      "entityId": "poi-574ab409a3e647b0",
+      "parentCityEntityId": "city-32da4cad2757df97",
+      "wikidataId": "Q189503",
+      "canonicalNameEn": "Place de la Concorde"
+    },
+    {
+      "entityId": "poi-3e004ecba877ac89",
+      "parentCityEntityId": "city-32da4cad2757df97",
+      "wikidataId": "Q650519",
+      "canonicalNameEn": "Rodin Museum"
+    },
+    {
+      "entityId": "poi-4594bd4885183dd9",
+      "parentCityEntityId": "city-32da4cad2757df97",
+      "wikidataId": "Q28785",
+      "canonicalNameEn": "Sacré-Cœur"
+    },
+    {
+      "entityId": "poi-01affa236d2efaad",
+      "parentCityEntityId": "city-32da4cad2757df97",
+      "wikidataId": "Q193193",
+      "canonicalNameEn": "Sainte-Chapelle"
+    },
+    {
+      "entityId": "poi-ddf2c4aa11788f91",
+      "parentCityEntityId": "city-32da4cad2757df97",
+      "wikidataId": "Q818517",
+      "canonicalNameEn": "Tuileries Garden"
+    },
+    {
+      "entityId": "poi-44b0234d65db147d",
+      "parentCityEntityId": "city-367a0dbc6e8792b6",
+      "wikidataId": "Q2887024",
+      "canonicalNameEn": "Basilica of Saint Michael"
+    },
+    {
+      "entityId": "poi-82745ddbf5fe8ff3",
+      "parentCityEntityId": "city-367a0dbc6e8792b6",
+      "wikidataId": "Q656738",
+      "canonicalNameEn": "Bordeaux Cathedral"
+    },
+    {
+      "entityId": "poi-511da2526185b782",
+      "parentCityEntityId": "city-367a0dbc6e8792b6",
+      "wikidataId": "Q16964634",
+      "canonicalNameEn": "Cité du Vin"
+    },
+    {
+      "entityId": "poi-3dfd69452e27e199",
+      "parentCityEntityId": "city-367a0dbc6e8792b6",
+      "wikidataId": "Q1541186",
+      "canonicalNameEn": "Grand Théâtre de Bordeaux"
+    },
+    {
+      "entityId": "poi-1f3928f5cb5eec39",
+      "parentCityEntityId": "city-367a0dbc6e8792b6",
+      "wikidataId": "Q3329534",
+      "canonicalNameEn": "Musée d'Aquitaine"
+    },
+    {
+      "entityId": "poi-1dfd81c57a24a6cc",
+      "parentCityEntityId": "city-367a0dbc6e8792b6",
+      "wikidataId": "Q3390346",
+      "canonicalNameEn": "Place de la Bourse"
+    },
+    {
+      "entityId": "poi-f26853bf844299d6",
+      "parentCityEntityId": "city-367a0dbc6e8792b6",
+      "wikidataId": "Q1773424",
+      "canonicalNameEn": "Pont de Pierre"
+    },
+    {
+      "entityId": "poi-6ad171289c15c4b2",
+      "parentCityEntityId": "city-367a0dbc6e8792b6",
+      "wikidataId": "Q2105012",
+      "canonicalNameEn": "Porte Cailhau"
+    },
+    {
+      "entityId": "poi-e898468c16885895",
+      "parentCityEntityId": "city-3b93b2804c63706e",
+      "wikidataId": "Q404728",
+      "canonicalNameEn": "Aiguille du Midi"
+    },
+    {
+      "entityId": "poi-6b0831c4b560a644",
+      "parentCityEntityId": "city-3b93b2804c63706e",
+      "wikidataId": "Q549647",
+      "canonicalNameEn": "Bossons Glacier"
+    },
+    {
+      "entityId": "poi-3b3412a192d79fba",
+      "parentCityEntityId": "city-3b93b2804c63706e",
+      "wikidataId": "Q583591",
+      "canonicalNameEn": "Mer de Glace"
+    },
+    {
+      "entityId": "poi-3eb845a145905855",
+      "parentCityEntityId": "city-4a6737e5c37fcb6b",
+      "wikidataId": "Q1200500",
+      "canonicalNameEn": "Avignon Cathedral"
+    },
+    {
+      "entityId": "poi-fd8595cac44c15a6",
+      "parentCityEntityId": "city-4a6737e5c37fcb6b",
+      "wikidataId": "Q1142988",
+      "canonicalNameEn": "Calvet Museum"
+    },
+    {
+      "entityId": "poi-9e328764281b1bb8",
+      "parentCityEntityId": "city-4a6737e5c37fcb6b",
+      "wikidataId": "Q1664416",
+      "canonicalNameEn": "Musée du Petit Palais"
+    },
+    {
+      "entityId": "poi-c72596032fc85c9d",
+      "parentCityEntityId": "city-4a6737e5c37fcb6b",
+      "wikidataId": "Q143463",
+      "canonicalNameEn": "Palais des Papes"
+    },
+    {
+      "entityId": "poi-e91a107a5fd9fb48",
+      "parentCityEntityId": "city-4a6737e5c37fcb6b",
+      "wikidataId": "Q284444",
+      "canonicalNameEn": "Pont Saint-Bénézet"
+    },
+    {
+      "entityId": "poi-0dc07cd6faf70d9e",
+      "parentCityEntityId": "city-5bba0fc2f52dc8df",
+      "wikidataId": "Q1521",
+      "canonicalNameEn": "Lyon Cathedral"
+    },
+    {
+      "entityId": "poi-2b1d36f6e5da7e68",
+      "parentCityEntityId": "city-5bba0fc2f52dc8df",
+      "wikidataId": "Q3991",
+      "canonicalNameEn": "Parc de la Tête d'Or"
+    },
+    {
+      "entityId": "poi-0a2b5a28161dcadb",
+      "parentCityEntityId": "city-5bba0fc2f52dc8df",
+      "wikidataId": "Q614",
+      "canonicalNameEn": "Place Bellecour"
+    },
+    {
+      "entityId": "poi-a3d294156c0f6327",
+      "parentCityEntityId": "city-5bba0fc2f52dc8df",
+      "wikidataId": "Q1510",
+      "canonicalNameEn": "Roman Theatres of Fourvière"
+    },
+    {
+      "entityId": "poi-524890b346304829",
+      "parentCityEntityId": "city-5bba0fc2f52dc8df",
+      "wikidataId": "Q8399",
+      "canonicalNameEn": "Vieux Lyon"
+    },
+    {
+      "entityId": "poi-497f5a750e9e6c25",
+      "parentCityEntityId": "city-60de7be23c539c87",
+      "wikidataId": "Q1858504",
+      "canonicalNameEn": "Abbey of Saint-Victor"
+    },
+    {
+      "entityId": "poi-c7a00cc388c4a832",
+      "parentCityEntityId": "city-60de7be23c539c87",
+      "wikidataId": "Q1905802",
+      "canonicalNameEn": "Fort Saint-Jean"
+    },
+    {
+      "entityId": "poi-4eb546b7862f43be",
+      "parentCityEntityId": "city-60de7be23c539c87",
+      "wikidataId": "Q1419757",
+      "canonicalNameEn": "Marseille Cathedral"
+    },
+    {
+      "entityId": "poi-92acbada8dd047f1",
+      "parentCityEntityId": "city-60de7be23c539c87",
+      "wikidataId": "Q2808698",
+      "canonicalNameEn": "Mucem"
+    },
+    {
+      "entityId": "poi-b2cc310b826a7ccf",
+      "parentCityEntityId": "city-60de7be23c539c87",
+      "wikidataId": "Q975925",
+      "canonicalNameEn": "Notre-Dame de la Garde"
+    },
+    {
+      "entityId": "poi-7ab19c2b130f72e0",
+      "parentCityEntityId": "city-60de7be23c539c87",
+      "wikidataId": "Q437959",
+      "canonicalNameEn": "Old Port of Marseille"
+    },
+    {
+      "entityId": "poi-863635f713d9b077",
+      "parentCityEntityId": "city-60de7be23c539c87",
+      "wikidataId": "Q1619084",
+      "canonicalNameEn": "Palais Longchamp"
+    },
+    {
+      "entityId": "poi-40d9e7c5b53c8ef1",
+      "parentCityEntityId": "city-60de7be23c539c87",
+      "wikidataId": "Q2467550",
+      "canonicalNameEn": "Vallon des Auffes"
+    },
+    {
+      "entityId": "poi-0b3838f9ef1e76c9",
+      "parentCityEntityId": "city-62c57792a6bd2f46",
+      "wikidataId": "Q1083336",
+      "canonicalNameEn": "Annecy Cathedral"
+    },
+    {
+      "entityId": "poi-ddeeb474e41544cc",
+      "parentCityEntityId": "city-62c57792a6bd2f46",
+      "wikidataId": "Q2259452",
+      "canonicalNameEn": "Château d'Annecy"
+    },
+    {
+      "entityId": "poi-36b5dccb177b459e",
+      "parentCityEntityId": "city-62c57792a6bd2f46",
+      "wikidataId": "Q576704",
+      "canonicalNameEn": "Lake Annecy"
+    },
+    {
+      "entityId": "poi-4a65aa2d7f68a689",
+      "parentCityEntityId": "city-c370066a6f8d9a36",
+      "wikidataId": "Q1369366",
+      "canonicalNameEn": "Île Sainte-Marguerite"
+    },
+    {
+      "entityId": "poi-c8e904e262108c63",
+      "parentCityEntityId": "city-c370066a6f8d9a36",
+      "wikidataId": "Q1885327",
+      "canonicalNameEn": "Palais des Festivals"
+    },
+    {
+      "entityId": "poi-007b9e0a7aab0c02",
+      "parentCityEntityId": "city-c370066a6f8d9a36",
+      "wikidataId": "Q2455184",
+      "canonicalNameEn": "Promenade de la Croisette"
+    },
+    {
+      "entityId": "poi-84eeb541af60bae7",
+      "parentCityEntityId": "city-c88b8e0a78d41f2a",
+      "wikidataId": "Q565125",
+      "canonicalNameEn": "Alsatian Museum"
+    },
+    {
+      "entityId": "poi-98bc287b2464d940",
+      "parentCityEntityId": "city-c88b8e0a78d41f2a",
+      "wikidataId": "Q2885001",
+      "canonicalNameEn": "Barrage Vauban"
+    },
+    {
+      "entityId": "poi-69ee875827beaf18",
+      "parentCityEntityId": "city-c88b8e0a78d41f2a",
+      "wikidataId": "Q965606",
+      "canonicalNameEn": "Petite France"
+    },
+    {
+      "entityId": "poi-b2e20113979481d7",
+      "parentCityEntityId": "city-c88b8e0a78d41f2a",
+      "wikidataId": "Q1753950",
+      "canonicalNameEn": "Place Kléber"
+    },
+    {
+      "entityId": "poi-0a08c0d2d51d3787",
+      "parentCityEntityId": "city-c88b8e0a78d41f2a",
+      "wikidataId": "Q3397780",
+      "canonicalNameEn": "Ponts Couverts"
+    },
+    {
+      "entityId": "poi-0cff029535b499f9",
+      "parentCityEntityId": "city-c88b8e0a78d41f2a",
+      "wikidataId": "Q1561438",
+      "canonicalNameEn": "Rohan Palace"
+    },
+    {
+      "entityId": "poi-e742c5b9c8696e46",
+      "parentCityEntityId": "city-c88b8e0a78d41f2a",
+      "wikidataId": "Q745460",
+      "canonicalNameEn": "Strasbourg Cathedral"
+    },
+    {
+      "entityId": "poi-1d428d95ca062ce6",
+      "parentCityEntityId": "city-c88b8e0a78d41f2a",
+      "wikidataId": "Q845468",
+      "canonicalNameEn": "Strasbourg Museum of Modern and Contemporary Art"
+    },
+    {
+      "entityId": "poi-583870a23d8fa3be",
+      "parentCityEntityId": "city-ced7cb4a11f9e3e9",
+      "wikidataId": "Q1539168",
+      "canonicalNameEn": "Aix Cathedral"
+    },
+    {
+      "entityId": "poi-007792daf2b69d76",
+      "parentCityEntityId": "city-ced7cb4a11f9e3e9",
+      "wikidataId": "Q1137725",
+      "canonicalNameEn": "Cours Mirabeau"
+    },
+    {
+      "entityId": "poi-1093d752d5f473f1",
+      "parentCityEntityId": "city-ced7cb4a11f9e3e9",
+      "wikidataId": "Q3145788",
+      "canonicalNameEn": "Hôtel de Caumont"
+    },
+    {
+      "entityId": "poi-62da7c267183e036",
+      "parentCityEntityId": "city-ced7cb4a11f9e3e9",
+      "wikidataId": "Q965780",
+      "canonicalNameEn": "Musée Granet"
+    },
+    {
+      "entityId": "poi-a48cee6b270f2f48",
+      "parentCityEntityId": "city-ced7cb4a11f9e3e9",
+      "wikidataId": "Q2064741",
+      "canonicalNameEn": "Pavillon Vendôme"
+    },
+    {
+      "entityId": "poi-99971a568d45b2fd",
+      "parentCityEntityId": "city-d224602f49c126a0",
+      "wikidataId": "Q743147",
+      "canonicalNameEn": "Hotel Negresco"
+    },
+    {
+      "entityId": "poi-bdf08ddb27b25c07",
+      "parentCityEntityId": "city-d224602f49c126a0",
+      "wikidataId": "Q3330218",
+      "canonicalNameEn": "Musée des Beaux-Arts de Nice"
+    },
+    {
+      "entityId": "poi-33c8b8f71a150876",
+      "parentCityEntityId": "city-d224602f49c126a0",
+      "wikidataId": "Q1563354",
+      "canonicalNameEn": "Musée Matisse"
+    },
+    {
+      "entityId": "poi-4872f7be7b706930",
+      "parentCityEntityId": "city-d224602f49c126a0",
+      "wikidataId": "Q1084011",
+      "canonicalNameEn": "Nice Cathedral"
+    },
+    {
+      "entityId": "poi-3ad00b8ae3705f5c",
+      "parentCityEntityId": "city-d224602f49c126a0",
+      "wikidataId": "Q508362",
+      "canonicalNameEn": "Nice Observatory"
+    },
+    {
+      "entityId": "poi-15861c23cbaeb0dd",
+      "parentCityEntityId": "city-d224602f49c126a0",
+      "wikidataId": "Q3389982",
+      "canonicalNameEn": "Place Masséna"
+    },
+    {
+      "entityId": "poi-f7c96b8b0f4a17a1",
+      "parentCityEntityId": "city-d224602f49c126a0",
+      "wikidataId": "Q1849491",
+      "canonicalNameEn": "Promenade des Anglais"
+    },
+    {
+      "entityId": "poi-11c74b75459ee18b",
+      "parentCityEntityId": "city-d224602f49c126a0",
+      "wikidataId": "Q2205594",
+      "canonicalNameEn": "Russian Orthodox Cathedral"
+    },
+    {
+      "entityId": "poi-c90712e739da8d3e",
+      "parentCityEntityId": "city-f366b4cb18028d85",
+      "wikidataId": "Q3329085",
+      "canonicalNameEn": "Musée Bartholdi"
+    },
+    {
+      "entityId": "poi-89ceace5f915d11b",
+      "parentCityEntityId": "city-f366b4cb18028d85",
+      "wikidataId": "Q1581390",
+      "canonicalNameEn": "Saint-Martin's Church"
+    },
+    {
+      "entityId": "poi-c672d02278728a0d",
+      "parentCityEntityId": "city-f366b4cb18028d85",
+      "wikidataId": "Q1851283",
+      "canonicalNameEn": "Unterlinden Museum"
+    },
+    {
+      "entityId": "poi-55167d333e36f1a3",
+      "parentCityEntityId": "city-f3b90177b0da59bf",
+      "wikidataId": "Q1010268",
+      "canonicalNameEn": "Basilica of Saint-Sernin"
+    },
+    {
+      "entityId": "poi-24a35b762323df72",
+      "parentCityEntityId": "city-f3b90177b0da59bf",
+      "wikidataId": "Q2351013",
+      "canonicalNameEn": "Capitole de Toulouse"
+    },
+    {
+      "entityId": "poi-afdbe4768f356422",
+      "parentCityEntityId": "city-f3b90177b0da59bf",
+      "wikidataId": "Q1094325",
+      "canonicalNameEn": "Cité de l'Espace"
+    },
+    {
+      "entityId": "poi-2f18388fd7dea87b",
+      "parentCityEntityId": "city-f3b90177b0da59bf",
+      "wikidataId": "Q3162572",
+      "canonicalNameEn": "Jardin des Plantes"
+    },
+    {
+      "entityId": "poi-9d4e34ec8089ea58",
+      "parentCityEntityId": "city-f3b90177b0da59bf",
+      "wikidataId": "Q2711480",
+      "canonicalNameEn": "Musée des Augustins"
+    }
+  ],
+  "regionalReview": [
+    "Mont-Saint-Michel",
+    "Loire Valley",
+    "Provence"
+  ]
+}

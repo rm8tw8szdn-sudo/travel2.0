@@ -1,0 +1,519 @@
+{
+  "schemaVersion": "route-v2-batch03d-south-korea-selection-v1",
+  "country": [
+    {
+      "entityId": "country-6d9a5fa9dc49e5f4",
+      "wikidataId": "Q884",
+      "canonicalNameEn": "South Korea"
+    }
+  ],
+  "cities": [
+    {
+      "key": "andong",
+      "entityId": "city-6456f3aa5d07ca1e",
+      "parentCountryEntityId": "country-6d9a5fa9dc49e5f4",
+      "wikidataId": "Q42116",
+      "canonicalNameEn": "Andong",
+      "targetPoiCount": 3,
+      "selectedPoiCount": 3
+    },
+    {
+      "key": "busan",
+      "entityId": "city-6fdc557c860230e3",
+      "parentCountryEntityId": "country-6d9a5fa9dc49e5f4",
+      "wikidataId": "Q16520",
+      "canonicalNameEn": "Busan",
+      "targetPoiCount": 8,
+      "selectedPoiCount": 8
+    },
+    {
+      "key": "daegu",
+      "entityId": "city-955b93bc3404f668",
+      "parentCountryEntityId": "country-6d9a5fa9dc49e5f4",
+      "wikidataId": "Q20927",
+      "canonicalNameEn": "Daegu",
+      "targetPoiCount": 3,
+      "selectedPoiCount": 4
+    },
+    {
+      "key": "gangneung",
+      "entityId": "city-f97862dc82774ea9",
+      "parentCountryEntityId": "country-6d9a5fa9dc49e5f4",
+      "wikidataId": "Q42056",
+      "canonicalNameEn": "Gangneung",
+      "targetPoiCount": 3,
+      "selectedPoiCount": 3
+    },
+    {
+      "key": "gyeongju",
+      "entityId": "city-d886736d18965d48",
+      "parentCountryEntityId": "country-6d9a5fa9dc49e5f4",
+      "wikidataId": "Q42097",
+      "canonicalNameEn": "Gyeongju",
+      "targetPoiCount": 8,
+      "selectedPoiCount": 8
+    },
+    {
+      "key": "incheon",
+      "entityId": "city-b747cf52e4bc20f6",
+      "parentCountryEntityId": "country-6d9a5fa9dc49e5f4",
+      "wikidataId": "Q20934",
+      "canonicalNameEn": "Incheon",
+      "targetPoiCount": 5,
+      "selectedPoiCount": 5
+    },
+    {
+      "key": "jeju",
+      "entityId": "city-b2e7474b951f723e",
+      "parentCountryEntityId": "country-6d9a5fa9dc49e5f4",
+      "wikidataId": "Q42142",
+      "canonicalNameEn": "Jeju City",
+      "targetPoiCount": 8,
+      "selectedPoiCount": 8
+    },
+    {
+      "key": "jeonju",
+      "entityId": "city-f6091553326ae92e",
+      "parentCountryEntityId": "country-6d9a5fa9dc49e5f4",
+      "wikidataId": "Q42140",
+      "canonicalNameEn": "Jeonju",
+      "targetPoiCount": 3,
+      "selectedPoiCount": 3
+    },
+    {
+      "key": "seoul",
+      "entityId": "city-f485961843960f06",
+      "parentCountryEntityId": "country-6d9a5fa9dc49e5f4",
+      "wikidataId": "Q8684",
+      "canonicalNameEn": "Seoul",
+      "targetPoiCount": 15,
+      "selectedPoiCount": 15
+    },
+    {
+      "key": "sokcho",
+      "entityId": "city-8e4cd3ee52eca954",
+      "parentCountryEntityId": "country-6d9a5fa9dc49e5f4",
+      "wikidataId": "Q42109",
+      "canonicalNameEn": "Sokcho",
+      "targetPoiCount": 3,
+      "selectedPoiCount": 3
+    },
+    {
+      "key": "suwon",
+      "entityId": "city-adcc5add2dc37dc8",
+      "parentCountryEntityId": "country-6d9a5fa9dc49e5f4",
+      "wikidataId": "Q20714",
+      "canonicalNameEn": "Suwon",
+      "targetPoiCount": 3,
+      "selectedPoiCount": 3
+    },
+    {
+      "key": "tongyeong",
+      "entityId": "city-db8501edb4e1335d",
+      "parentCountryEntityId": "country-6d9a5fa9dc49e5f4",
+      "wikidataId": "Q42152",
+      "canonicalNameEn": "Tongyeong",
+      "targetPoiCount": 3,
+      "selectedPoiCount": 3
+    },
+    {
+      "key": "yeosu",
+      "entityId": "city-f204bf635ee5ea16",
+      "parentCountryEntityId": "country-6d9a5fa9dc49e5f4",
+      "wikidataId": "Q42125",
+      "canonicalNameEn": "Yeosu",
+      "targetPoiCount": 3,
+      "selectedPoiCount": 4
+    }
+  ],
+  "pois": [
+    {
+      "entityId": "poi-418aab178c4d1871",
+      "parentCityEntityId": "city-6456f3aa5d07ca1e",
+      "wikidataId": "Q623978",
+      "canonicalNameEn": "Bongjeongsa"
+    },
+    {
+      "entityId": "poi-13432ac560a4e59b",
+      "parentCityEntityId": "city-6456f3aa5d07ca1e",
+      "wikidataId": "Q625663",
+      "canonicalNameEn": "Dosan Seowon"
+    },
+    {
+      "entityId": "poi-dd0ea8f8f324bbd1",
+      "parentCityEntityId": "city-6456f3aa5d07ca1e",
+      "wikidataId": "Q45865",
+      "canonicalNameEn": "Hahoe Folk Village"
+    },
+    {
+      "entityId": "poi-8b5e85f2115504cc",
+      "parentCityEntityId": "city-6fdc557c860230e3",
+      "wikidataId": "Q487662",
+      "canonicalNameEn": "Beomeosa"
+    },
+    {
+      "entityId": "poi-8d4144297cdb2b44",
+      "parentCityEntityId": "city-6fdc557c860230e3",
+      "wikidataId": "Q18641306",
+      "canonicalNameEn": "Gamcheon Culture Village"
+    },
+    {
+      "entityId": "poi-bd629087c855c8d4",
+      "parentCityEntityId": "city-6fdc557c860230e3",
+      "wikidataId": "Q495370",
+      "canonicalNameEn": "Gwangalli Beach"
+    },
+    {
+      "entityId": "poi-a1a038b94f251aae",
+      "parentCityEntityId": "city-6fdc557c860230e3",
+      "wikidataId": "Q491203",
+      "canonicalNameEn": "Haeundae Beach"
+    },
+    {
+      "entityId": "poi-85c2e53479396c43",
+      "parentCityEntityId": "city-6fdc557c860230e3",
+      "wikidataId": "Q490809",
+      "canonicalNameEn": "Jagalchi Market"
+    },
+    {
+      "entityId": "poi-ac79c7ce38182554",
+      "parentCityEntityId": "city-8e4cd3ee52eca954",
+      "wikidataId": "Q12605227",
+      "canonicalNameEn": "Abai Village"
+    },
+    {
+      "entityId": "poi-6b1e14f290988ee9",
+      "parentCityEntityId": "city-8e4cd3ee52eca954",
+      "wikidataId": "Q482644",
+      "canonicalNameEn": "Seoraksan"
+    },
+    {
+      "entityId": "poi-6205f9aed1710d56",
+      "parentCityEntityId": "city-8e4cd3ee52eca954",
+      "wikidataId": "Q27341175",
+      "canonicalNameEn": "Sokcho Beach"
+    },
+    {
+      "entityId": "poi-d4deea46e047a7a6",
+      "parentCityEntityId": "city-955b93bc3404f668",
+      "wikidataId": "Q4782147",
+      "canonicalNameEn": "Apsan Park"
+    },
+    {
+      "entityId": "poi-101d6c6266340ec0",
+      "parentCityEntityId": "city-955b93bc3404f668",
+      "wikidataId": "Q4896382",
+      "canonicalNameEn": "Daegu National Museum"
+    },
+    {
+      "entityId": "poi-fcd64b61a49eba3d",
+      "parentCityEntityId": "city-955b93bc3404f668",
+      "wikidataId": "Q12583994",
+      "canonicalNameEn": "Gyesan Cathedral"
+    },
+    {
+      "entityId": "poi-396d453158d02179",
+      "parentCityEntityId": "city-955b93bc3404f668",
+      "wikidataId": "Q624174",
+      "canonicalNameEn": "Seomun Market"
+    },
+    {
+      "entityId": "poi-bc5ae998d496f24c",
+      "parentCityEntityId": "city-adcc5add2dc37dc8",
+      "wikidataId": "Q21031047",
+      "canonicalNameEn": "Gwanggyo Lake Park"
+    },
+    {
+      "entityId": "poi-e97d3a256ef03799",
+      "parentCityEntityId": "city-adcc5add2dc37dc8",
+      "wikidataId": "Q482423",
+      "canonicalNameEn": "Hwaseong Fortress"
+    },
+    {
+      "entityId": "poi-fbdf51482a8caac3",
+      "parentCityEntityId": "city-adcc5add2dc37dc8",
+      "wikidataId": "Q494761",
+      "canonicalNameEn": "Suwon World Cup Stadium"
+    },
+    {
+      "entityId": "poi-cd9124df7a06aa46",
+      "parentCityEntityId": "city-b2e7474b951f723e",
+      "wikidataId": "Q12593341",
+      "canonicalNameEn": "Dongmun Market"
+    },
+    {
+      "entityId": "poi-d4ed56ea008f59da",
+      "parentCityEntityId": "city-b2e7474b951f723e",
+      "wikidataId": "Q494645",
+      "canonicalNameEn": "Hallasan"
+    },
+    {
+      "entityId": "poi-9da90f75b8293fbf",
+      "parentCityEntityId": "city-b2e7474b951f723e",
+      "wikidataId": "Q139855779",
+      "canonicalNameEn": "Iho Tewoo Beach"
+    },
+    {
+      "entityId": "poi-bc24dbe84ac4c865",
+      "parentCityEntityId": "city-b2e7474b951f723e",
+      "wikidataId": "Q495590",
+      "canonicalNameEn": "Jeju Loveland"
+    },
+    {
+      "entityId": "poi-4b4854c7c3da43ae",
+      "parentCityEntityId": "city-b2e7474b951f723e",
+      "wikidataId": "Q6176560",
+      "canonicalNameEn": "Jeju National Museum"
+    },
+    {
+      "entityId": "poi-b3bddd2cd062bc16",
+      "parentCityEntityId": "city-b2e7474b951f723e",
+      "wikidataId": "Q55734281",
+      "canonicalNameEn": "Jeju Stone Park"
+    },
+    {
+      "entityId": "poi-671f6fd11527a10e",
+      "parentCityEntityId": "city-b2e7474b951f723e",
+      "wikidataId": "Q6750353",
+      "canonicalNameEn": "Manjanggul"
+    },
+    {
+      "entityId": "poi-143280ee13c51648",
+      "parentCityEntityId": "city-b2e7474b951f723e",
+      "wikidataId": "Q7410332",
+      "canonicalNameEn": "Samseonghyeol"
+    },
+    {
+      "entityId": "poi-130c5e5709f08c0e",
+      "parentCityEntityId": "city-b747cf52e4bc20f6",
+      "wikidataId": "Q6014440",
+      "canonicalNameEn": "Incheon Chinatown"
+    },
+    {
+      "entityId": "poi-5cd9eff56debe5ae",
+      "parentCityEntityId": "city-b747cf52e4bc20f6",
+      "wikidataId": "Q12613499",
+      "canonicalNameEn": "Incheon Grand Park"
+    },
+    {
+      "entityId": "poi-545c38e6a3e57fe1",
+      "parentCityEntityId": "city-b747cf52e4bc20f6",
+      "wikidataId": "Q11269377",
+      "canonicalNameEn": "Jeondeungsa"
+    },
+    {
+      "entityId": "poi-19fdadddcdebfb23",
+      "parentCityEntityId": "city-b747cf52e4bc20f6",
+      "wikidataId": "Q7561251",
+      "canonicalNameEn": "Songdo Central Park"
+    },
+    {
+      "entityId": "poi-f707db27d89547e3",
+      "parentCityEntityId": "city-b747cf52e4bc20f6",
+      "wikidataId": "Q623728",
+      "canonicalNameEn": "Wolmido"
+    },
+    {
+      "entityId": "poi-cc64bdc058f4268f",
+      "parentCityEntityId": "city-d886736d18965d48",
+      "wikidataId": "Q408318",
+      "canonicalNameEn": "Bulguksa"
+    },
+    {
+      "entityId": "poi-933c0fcec8572972",
+      "parentCityEntityId": "city-d886736d18965d48",
+      "wikidataId": "Q491069",
+      "canonicalNameEn": "Bunhwangsa"
+    },
+    {
+      "entityId": "poi-4fcc81b7ba6650ae",
+      "parentCityEntityId": "city-d886736d18965d48",
+      "wikidataId": "Q562765",
+      "canonicalNameEn": "Cheomseongdae"
+    },
+    {
+      "entityId": "poi-52ea5db2b9a27f33",
+      "parentCityEntityId": "city-d886736d18965d48",
+      "wikidataId": "Q17278215",
+      "canonicalNameEn": "Daereungwon"
+    },
+    {
+      "entityId": "poi-b0c5bc763f5302b2",
+      "parentCityEntityId": "city-d886736d18965d48",
+      "wikidataId": "Q496454",
+      "canonicalNameEn": "Donggung Palace and Wolji Pond"
+    },
+    {
+      "entityId": "poi-595b4b59f6f48b03",
+      "parentCityEntityId": "city-d886736d18965d48",
+      "wikidataId": "Q390124",
+      "canonicalNameEn": "Gyeongju National Museum"
+    },
+    {
+      "entityId": "poi-abc40974b2c47b20",
+      "parentCityEntityId": "city-d886736d18965d48",
+      "wikidataId": "Q489820",
+      "canonicalNameEn": "Seokguram"
+    },
+    {
+      "entityId": "poi-df88170f6306e307",
+      "parentCityEntityId": "city-d886736d18965d48",
+      "wikidataId": "Q495266",
+      "canonicalNameEn": "Yangdong Folk Village"
+    },
+    {
+      "entityId": "poi-730cedb51468a4e5",
+      "parentCityEntityId": "city-db8501edb4e1335d",
+      "wikidataId": "Q20444179",
+      "canonicalNameEn": "Dongpirang Village"
+    },
+    {
+      "entityId": "poi-49499ca5eda9e79a",
+      "parentCityEntityId": "city-db8501edb4e1335d",
+      "wikidataId": "Q485029",
+      "canonicalNameEn": "Hansando"
+    },
+    {
+      "entityId": "poi-8b095b9cde6cd0e7",
+      "parentCityEntityId": "city-db8501edb4e1335d",
+      "wikidataId": "Q18815644",
+      "canonicalNameEn": "Yokjido"
+    },
+    {
+      "entityId": "poi-6643001ebbb70a41",
+      "parentCityEntityId": "city-f204bf635ee5ea16",
+      "wikidataId": "Q495375",
+      "canonicalNameEn": "Expo 2012 Yeosu Korea"
+    },
+    {
+      "entityId": "poi-66ee59cd88208495",
+      "parentCityEntityId": "city-f204bf635ee5ea16",
+      "wikidataId": "Q16096104",
+      "canonicalNameEn": "Hyangiram"
+    },
+    {
+      "entityId": "poi-48131d1515f69fd6",
+      "parentCityEntityId": "city-f204bf635ee5ea16",
+      "wikidataId": "Q12606885",
+      "canonicalNameEn": "Jinnamgwan Hall"
+    },
+    {
+      "entityId": "poi-924378717a3862e5",
+      "parentCityEntityId": "city-f204bf635ee5ea16",
+      "wikidataId": "Q16181364",
+      "canonicalNameEn": "Odongdo"
+    },
+    {
+      "entityId": "poi-9dbad9683856c82b",
+      "parentCityEntityId": "city-f485961843960f06",
+      "wikidataId": "Q135709",
+      "canonicalNameEn": "Bongeunsa"
+    },
+    {
+      "entityId": "poi-bbd6159b384bb9c9",
+      "parentCityEntityId": "city-f485961843960f06",
+      "wikidataId": "Q490981",
+      "canonicalNameEn": "Bukchon Hanok Village"
+    },
+    {
+      "entityId": "poi-62caed035d242a01",
+      "parentCityEntityId": "city-f485961843960f06",
+      "wikidataId": "Q495437",
+      "canonicalNameEn": "Cheonggyecheon"
+    },
+    {
+      "entityId": "poi-c50ac0acdf366e43",
+      "parentCityEntityId": "city-f485961843960f06",
+      "wikidataId": "Q482631",
+      "canonicalNameEn": "Deoksugung"
+    },
+    {
+      "entityId": "poi-3b1c2ffdabc0db7a",
+      "parentCityEntityId": "city-f485961843960f06",
+      "wikidataId": "Q5295847",
+      "canonicalNameEn": "Dongdaemun Design Plaza"
+    },
+    {
+      "entityId": "poi-fc60c5ecff9ac84a",
+      "parentCityEntityId": "city-f485961843960f06",
+      "wikidataId": "Q482485",
+      "canonicalNameEn": "Gyeongbokgung"
+    },
+    {
+      "entityId": "poi-4b93cab101207577",
+      "parentCityEntityId": "city-f485961843960f06",
+      "wikidataId": "Q488824",
+      "canonicalNameEn": "Jogyesa"
+    },
+    {
+      "entityId": "poi-22dd46842cc62c7d",
+      "parentCityEntityId": "city-f485961843960f06",
+      "wikidataId": "Q487498",
+      "canonicalNameEn": "Leeum Museum of Art"
+    },
+    {
+      "entityId": "poi-cd1569f809c4a06a",
+      "parentCityEntityId": "city-f485961843960f06",
+      "wikidataId": "Q494895",
+      "canonicalNameEn": "Lotte World Tower"
+    },
+    {
+      "entityId": "poi-f2c6fb314916ac50",
+      "parentCityEntityId": "city-f485961843960f06",
+      "wikidataId": "Q484407",
+      "canonicalNameEn": "Myeongdong"
+    },
+    {
+      "entityId": "poi-09a045b3cf3abbc1",
+      "parentCityEntityId": "city-f485961843960f06",
+      "wikidataId": "Q486449",
+      "canonicalNameEn": "National Folk Museum of Korea"
+    },
+    {
+      "entityId": "poi-eedc2c0daab37f15",
+      "parentCityEntityId": "city-f485961843960f06",
+      "wikidataId": "Q489764",
+      "canonicalNameEn": "War Memorial of Korea"
+    },
+    {
+      "entityId": "poi-e37deb0001b8c14a",
+      "parentCityEntityId": "city-f6091553326ae92e",
+      "wikidataId": "Q2942222",
+      "canonicalNameEn": "Jeondong Cathedral"
+    },
+    {
+      "entityId": "poi-d5ed664da2165f25",
+      "parentCityEntityId": "city-f6091553326ae92e",
+      "wikidataId": "Q11269655",
+      "canonicalNameEn": "Jeonju Hanok Village"
+    },
+    {
+      "entityId": "poi-39f6625b556431f2",
+      "parentCityEntityId": "city-f6091553326ae92e",
+      "wikidataId": "Q4845795",
+      "canonicalNameEn": "Jeonju National Museum"
+    },
+    {
+      "entityId": "poi-af9a1962ad8ff1c2",
+      "parentCityEntityId": "city-f97862dc82774ea9",
+      "wikidataId": "Q5624072",
+      "canonicalNameEn": "Gangneung Ice Arena"
+    },
+    {
+      "entityId": "poi-7927eb846e60ccdb",
+      "parentCityEntityId": "city-f97862dc82774ea9",
+      "wikidataId": "Q12583922",
+      "canonicalNameEn": "Gyeongpodae"
+    },
+    {
+      "entityId": "poi-a2d88b1dba40034d",
+      "parentCityEntityId": "city-f97862dc82774ea9",
+      "wikidataId": "Q12608061",
+      "canonicalNameEn": "Ojukheon"
+    }
+  ],
+  "regionalReview": [
+    "Jeju Island",
+    "Pyeongchang County"
+  ]
+}

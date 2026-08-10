@@ -1,0 +1,1439 @@
+{
+  "schemaVersion": "route-v2-city-baseline-p1b-batch06",
+  "generatedFrom": "data/knowledge/raw/knowledge-expansion-batch03b-france.wikidata.json",
+  "cityCount": 11,
+  "cities": [
+    {
+      "schemaVersion": "route-v2-city-baseline-p1b",
+      "entityId": "city-ced7cb4a11f9e3e9",
+      "entityType": "city",
+      "parentCountryEntityId": "country-a20e4bab95389730",
+      "wikidataId": "Q47465",
+      "canonicalNameZh": "普罗旺斯地区艾克斯",
+      "canonicalNameEn": "Aix-en-Provence",
+      "aliases": [
+        "13001",
+        "Ais de Prouvènço",
+        "Aix",
+        "Aix en Provenza",
+        "Aix-en-Provenza",
+        "Aquae Sextae",
+        "Aquisextains",
+        "액상프로방스",
+        "엑상 프로방스",
+        "엑상프로방스"
+      ],
+      "coordinates": {
+        "latitude": 43.527777777778,
+        "longitude": 5.4455555555556
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-08-03T16:00:00.000Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch03b-france",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "city-ced7cb4a11f9e3e9"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch03b-france",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "city"
+        },
+        "parentCountryEntityId": {
+          "field": "parentCountryEntityId",
+          "sourceType": "repository-reference",
+          "source": "France Country Entity",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q142",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "country-a20e4bab95389730"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q47465",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "Q47465"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q47465",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "普罗旺斯地区艾克斯"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q47465",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "Aix-en-Provence"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q47465",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": [
+            "13001",
+            "Ais de Prouvènço",
+            "Aix",
+            "Aix en Provenza",
+            "Aix-en-Provenza",
+            "Aquae Sextae",
+            "Aquisextains",
+            "액상프로방스",
+            "엑상 프로방스",
+            "엑상프로방스"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q47465",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": {
+            "latitude": 43.527777777778,
+            "longitude": 5.4455555555556
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch03b-france",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch03b-france",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q47465",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "2026-08-03T16:00:00.000Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-city-baseline-p1b",
+      "entityId": "city-62c57792a6bd2f46",
+      "entityType": "city",
+      "parentCountryEntityId": "country-a20e4bab95389730",
+      "wikidataId": "Q50189",
+      "canonicalNameZh": "阿讷西",
+      "canonicalNameEn": "Annecy",
+      "aliases": [
+        "la Venise des Alpes",
+        "la Venise savoyarde",
+        "안시"
+      ],
+      "coordinates": {
+        "latitude": 45.899166666667,
+        "longitude": 6.1294444444444
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-08-03T16:00:00.000Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch03b-france",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "city-62c57792a6bd2f46"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch03b-france",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "city"
+        },
+        "parentCountryEntityId": {
+          "field": "parentCountryEntityId",
+          "sourceType": "repository-reference",
+          "source": "France Country Entity",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q142",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "country-a20e4bab95389730"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q50189",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "Q50189"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q50189",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "阿讷西"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q50189",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "Annecy"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q50189",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": [
+            "la Venise des Alpes",
+            "la Venise savoyarde",
+            "안시"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q50189",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": {
+            "latitude": 45.899166666667,
+            "longitude": 6.1294444444444
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch03b-france",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch03b-france",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q50189",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "2026-08-03T16:00:00.000Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-city-baseline-p1b",
+      "entityId": "city-4a6737e5c37fcb6b",
+      "entityType": "city",
+      "parentCountryEntityId": "country-a20e4bab95389730",
+      "wikidataId": "Q6397",
+      "canonicalNameZh": "阿维尼翁",
+      "canonicalNameEn": "Avignon",
+      "aliases": [
+        "Avignone",
+        "Avignoun",
+        "Avinhon",
+        "Aviñón",
+        "cité des papes",
+        "아비뇽",
+        "亚维农",
+        "亞維農"
+      ],
+      "coordinates": {
+        "latitude": 43.948611111111,
+        "longitude": 4.8083333333333
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-08-03T16:00:00.000Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch03b-france",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "city-4a6737e5c37fcb6b"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch03b-france",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "city"
+        },
+        "parentCountryEntityId": {
+          "field": "parentCountryEntityId",
+          "sourceType": "repository-reference",
+          "source": "France Country Entity",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q142",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "country-a20e4bab95389730"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q6397",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "Q6397"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q6397",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "阿维尼翁"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q6397",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "Avignon"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q6397",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": [
+            "Avignone",
+            "Avignoun",
+            "Avinhon",
+            "Aviñón",
+            "cité des papes",
+            "아비뇽",
+            "亚维农",
+            "亞維農"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q6397",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": {
+            "latitude": 43.948611111111,
+            "longitude": 4.8083333333333
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch03b-france",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch03b-france",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q6397",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "2026-08-03T16:00:00.000Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-city-baseline-p1b",
+      "entityId": "city-367a0dbc6e8792b6",
+      "entityType": "city",
+      "parentCountryEntityId": "country-a20e4bab95389730",
+      "wikidataId": "Q1479",
+      "canonicalNameZh": "波尔多",
+      "canonicalNameEn": "Bordeaux",
+      "aliases": [
+        "Bordele",
+        "Bordeu",
+        "Bordèu",
+        "Burdeos",
+        "Burdigala",
+        "Commune-Franklin",
+        "보르도"
+      ],
+      "coordinates": {
+        "latitude": 44.837777777778,
+        "longitude": -0.57944444444444
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-08-03T16:00:00.000Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch03b-france",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "city-367a0dbc6e8792b6"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch03b-france",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "city"
+        },
+        "parentCountryEntityId": {
+          "field": "parentCountryEntityId",
+          "sourceType": "repository-reference",
+          "source": "France Country Entity",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q142",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "country-a20e4bab95389730"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1479",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "Q1479"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1479",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "波尔多"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1479",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "Bordeaux"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1479",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": [
+            "Bordele",
+            "Bordeu",
+            "Bordèu",
+            "Burdeos",
+            "Burdigala",
+            "Commune-Franklin",
+            "보르도"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1479",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": {
+            "latitude": 44.837777777778,
+            "longitude": -0.57944444444444
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch03b-france",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch03b-france",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1479",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "2026-08-03T16:00:00.000Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-city-baseline-p1b",
+      "entityId": "city-c370066a6f8d9a36",
+      "entityType": "city",
+      "parentCountryEntityId": "country-a20e4bab95389730",
+      "wikidataId": "Q39984",
+      "canonicalNameZh": "戛纳",
+      "canonicalNameEn": "Cannes",
+      "aliases": [
+        "Canas",
+        "깐느",
+        "칸",
+        "칸느",
+        "卡内",
+        "嘎那",
+        "坎城",
+        "康城",
+        "戛納"
+      ],
+      "coordinates": {
+        "latitude": 43.5525,
+        "longitude": 7.0213888888889
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-08-03T16:00:00.000Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch03b-france",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "city-c370066a6f8d9a36"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch03b-france",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "city"
+        },
+        "parentCountryEntityId": {
+          "field": "parentCountryEntityId",
+          "sourceType": "repository-reference",
+          "source": "France Country Entity",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q142",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "country-a20e4bab95389730"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q39984",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "Q39984"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q39984",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "戛纳"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q39984",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "Cannes"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q39984",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": [
+            "Canas",
+            "깐느",
+            "칸",
+            "칸느",
+            "卡内",
+            "嘎那",
+            "坎城",
+            "康城",
+            "戛納"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q39984",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": {
+            "latitude": 43.5525,
+            "longitude": 7.0213888888889
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch03b-france",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch03b-france",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q39984",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "2026-08-03T16:00:00.000Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-city-baseline-p1b",
+      "entityId": "city-3b93b2804c63706e",
+      "entityType": "city",
+      "parentCountryEntityId": "country-a20e4bab95389730",
+      "wikidataId": "Q83236",
+      "canonicalNameZh": "沙莫尼蒙勃朗",
+      "canonicalNameEn": "Chamonix",
+      "aliases": [
+        "Argentières",
+        "Chamonix Mont Blanc",
+        "Chamonix Mont-Blanc",
+        "Chamonix-Mont-Blanc",
+        "Chamouni",
+        "Chamouny",
+        "샤모니",
+        "샤모니몽블랑",
+        "夏慕尼",
+        "沙莫尼"
+      ],
+      "coordinates": {
+        "latitude": 45.922222222222,
+        "longitude": 6.8688888888889
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-08-03T16:00:00.000Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch03b-france",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "city-3b93b2804c63706e"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch03b-france",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "city"
+        },
+        "parentCountryEntityId": {
+          "field": "parentCountryEntityId",
+          "sourceType": "repository-reference",
+          "source": "France Country Entity",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q142",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "country-a20e4bab95389730"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q83236",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "Q83236"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q83236",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "沙莫尼蒙勃朗"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q83236",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "Chamonix"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q83236",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": [
+            "Argentières",
+            "Chamonix Mont Blanc",
+            "Chamonix Mont-Blanc",
+            "Chamonix-Mont-Blanc",
+            "Chamouni",
+            "Chamouny",
+            "샤모니",
+            "샤모니몽블랑",
+            "夏慕尼",
+            "沙莫尼"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q83236",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": {
+            "latitude": 45.922222222222,
+            "longitude": 6.8688888888889
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch03b-france",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch03b-france",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q83236",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "2026-08-03T16:00:00.000Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-city-baseline-p1b",
+      "entityId": "city-f366b4cb18028d85",
+      "entityType": "city",
+      "parentCountryEntityId": "country-a20e4bab95389730",
+      "wikidataId": "Q130994",
+      "canonicalNameZh": "科尔马",
+      "canonicalNameEn": "Colmar",
+      "aliases": [
+        "Colmer",
+        "Kolmar",
+        "Kolmer",
+        "la petite Venise",
+        "la Venise alsacienne",
+        "콜마르"
+      ],
+      "coordinates": {
+        "latitude": 48.081111111111,
+        "longitude": 7.355
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-08-03T16:00:00.000Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch03b-france",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "city-f366b4cb18028d85"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch03b-france",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "city"
+        },
+        "parentCountryEntityId": {
+          "field": "parentCountryEntityId",
+          "sourceType": "repository-reference",
+          "source": "France Country Entity",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q142",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "country-a20e4bab95389730"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q130994",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "Q130994"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q130994",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "科尔马"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q130994",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "Colmar"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q130994",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": [
+            "Colmer",
+            "Kolmar",
+            "Kolmer",
+            "la petite Venise",
+            "la Venise alsacienne",
+            "콜마르"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q130994",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": {
+            "latitude": 48.081111111111,
+            "longitude": 7.355
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch03b-france",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch03b-france",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q130994",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "2026-08-03T16:00:00.000Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-city-baseline-p1b",
+      "entityId": "city-60de7be23c539c87",
+      "entityType": "city",
+      "parentCountryEntityId": "country-a20e4bab95389730",
+      "wikidataId": "Q23482",
+      "canonicalNameZh": "马赛",
+      "canonicalNameEn": "Marseille",
+      "aliases": [
+        "Cité phocéenne",
+        "City of Marseille",
+        "Marsaille",
+        "Marsailles",
+        "Marseille City",
+        "Marseille, France",
+        "Marsella",
+        "Marsielle",
+        "Marsielles",
+        "Marsiglia",
+        "Masalia",
+        "Masilia",
+        "Massaliotes",
+        "Sans-Nom",
+        "Ville-sans-Nom",
+        "마르세유",
+        "마르세이유",
+        "馬賽"
+      ],
+      "coordinates": {
+        "latitude": 43.296666666667,
+        "longitude": 5.3763888888889
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-08-03T16:00:00.000Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch03b-france",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "city-60de7be23c539c87"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch03b-france",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "city"
+        },
+        "parentCountryEntityId": {
+          "field": "parentCountryEntityId",
+          "sourceType": "repository-reference",
+          "source": "France Country Entity",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q142",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "country-a20e4bab95389730"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q23482",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "Q23482"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q23482",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "马赛"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q23482",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "Marseille"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q23482",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": [
+            "Cité phocéenne",
+            "City of Marseille",
+            "Marsaille",
+            "Marsailles",
+            "Marseille City",
+            "Marseille, France",
+            "Marsella",
+            "Marsielle",
+            "Marsielles",
+            "Marsiglia",
+            "Masalia",
+            "Masilia",
+            "Massaliotes",
+            "Sans-Nom",
+            "Ville-sans-Nom",
+            "마르세유",
+            "마르세이유",
+            "馬賽"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q23482",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": {
+            "latitude": 43.296666666667,
+            "longitude": 5.3763888888889
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch03b-france",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch03b-france",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q23482",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "2026-08-03T16:00:00.000Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-city-baseline-p1b",
+      "entityId": "city-d224602f49c126a0",
+      "entityType": "city",
+      "parentCountryEntityId": "country-a20e4bab95389730",
+      "wikidataId": "Q33959",
+      "canonicalNameZh": "尼斯",
+      "canonicalNameEn": "Nice",
+      "aliases": [
+        "Niça",
+        "Nicaea",
+        "Nice, Côte d'Azur",
+        "Nice, French Riviera",
+        "Nikaia",
+        "Nissa",
+        "Niza",
+        "Nizza",
+        "Nizza Marittima",
+        "니스",
+        "尼斯市"
+      ],
+      "coordinates": {
+        "latitude": 43.701944444444,
+        "longitude": 7.2683333333333
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-08-03T16:00:00.000Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch03b-france",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "city-d224602f49c126a0"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch03b-france",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "city"
+        },
+        "parentCountryEntityId": {
+          "field": "parentCountryEntityId",
+          "sourceType": "repository-reference",
+          "source": "France Country Entity",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q142",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "country-a20e4bab95389730"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q33959",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "Q33959"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q33959",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "尼斯"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q33959",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "Nice"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q33959",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": [
+            "Niça",
+            "Nicaea",
+            "Nice, Côte d'Azur",
+            "Nice, French Riviera",
+            "Nikaia",
+            "Nissa",
+            "Niza",
+            "Nizza",
+            "Nizza Marittima",
+            "니스",
+            "尼斯市"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q33959",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": {
+            "latitude": 43.701944444444,
+            "longitude": 7.2683333333333
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch03b-france",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch03b-france",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q33959",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "2026-08-03T16:00:00.000Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-city-baseline-p1b",
+      "entityId": "city-c88b8e0a78d41f2a",
+      "entityType": "city",
+      "parentCountryEntityId": "country-a20e4bab95389730",
+      "wikidataId": "Q6602",
+      "canonicalNameZh": "斯特拉斯堡",
+      "canonicalNameEn": "Strasbourg",
+      "aliases": [
+        "Estrasburgo",
+        "Schdroosburi",
+        "Strasburg",
+        "Strasburgo",
+        "Strosburi",
+        "Strossburig",
+        "슈트라스부르크",
+        "스트라스부르",
+        "斯堡"
+      ],
+      "coordinates": {
+        "latitude": 48.573333333333,
+        "longitude": 7.7522222222222
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-08-03T16:00:00.000Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch03b-france",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "city-c88b8e0a78d41f2a"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch03b-france",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "city"
+        },
+        "parentCountryEntityId": {
+          "field": "parentCountryEntityId",
+          "sourceType": "repository-reference",
+          "source": "France Country Entity",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q142",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "country-a20e4bab95389730"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q6602",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "Q6602"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q6602",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "斯特拉斯堡"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q6602",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "Strasbourg"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q6602",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": [
+            "Estrasburgo",
+            "Schdroosburi",
+            "Strasburg",
+            "Strasburgo",
+            "Strosburi",
+            "Strossburig",
+            "슈트라스부르크",
+            "스트라스부르",
+            "斯堡"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q6602",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": {
+            "latitude": 48.573333333333,
+            "longitude": 7.7522222222222
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch03b-france",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch03b-france",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q6602",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "2026-08-03T16:00:00.000Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-city-baseline-p1b",
+      "entityId": "city-f3b90177b0da59bf",
+      "entityType": "city",
+      "parentCountryEntityId": "country-a20e4bab95389730",
+      "wikidataId": "Q7880",
+      "canonicalNameZh": "图卢兹",
+      "canonicalNameEn": "Toulouse",
+      "aliases": [
+        "Pink City",
+        "Tolosa",
+        "Toulouse, France",
+        "Toulouse, Occitania",
+        "Ville rose",
+        "툴루즈",
+        "圖盧茲",
+        "土魯斯",
+        "玫瑰之城"
+      ],
+      "coordinates": {
+        "latitude": 43.60444444444445,
+        "longitude": 1.4433333333333334
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-08-03T16:00:00.000Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch03b-france",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "city-f3b90177b0da59bf"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch03b-france",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "city"
+        },
+        "parentCountryEntityId": {
+          "field": "parentCountryEntityId",
+          "sourceType": "repository-reference",
+          "source": "France Country Entity",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q142",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "country-a20e4bab95389730"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q7880",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "Q7880"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q7880",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "图卢兹"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q7880",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "Toulouse"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q7880",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": [
+            "Pink City",
+            "Tolosa",
+            "Toulouse, France",
+            "Toulouse, Occitania",
+            "Ville rose",
+            "툴루즈",
+            "圖盧茲",
+            "土魯斯",
+            "玫瑰之城"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q7880",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": {
+            "latitude": 43.60444444444445,
+            "longitude": 1.4433333333333334
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch03b-france",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch03b-france",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q7880",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "2026-08-03T16:00:00.000Z"
+        }
+      }
+    }
+  ]
+}

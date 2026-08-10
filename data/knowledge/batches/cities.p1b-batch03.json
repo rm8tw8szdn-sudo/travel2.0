@@ -1,0 +1,1331 @@
+{
+  "schemaVersion": "route-v2-city-baseline-p1b-batch03",
+  "generatedFrom": "data/knowledge/raw/knowledge-expansion-batch01.wikidata.json",
+  "cityCount": 10,
+  "cities": [
+    {
+      "schemaVersion": "route-v2-city-baseline-p1b",
+      "entityId": "city-08c9530e89597cdf",
+      "entityType": "city",
+      "parentCountryEntityId": "country-b6e9ffcc290e32d8",
+      "wikidataId": "Q37100",
+      "canonicalNameZh": "奥克兰",
+      "canonicalNameEn": "Auckland",
+      "aliases": [
+        "Akarana",
+        "Ākarana",
+        "Auckland, New Zealand",
+        "City of sails",
+        "Manukau",
+        "NZ-AUK",
+        "Tamaki",
+        "Tāmaki",
+        "Tamaki Makaurau",
+        "Tāmaki Makaurau",
+        "Tāmaki-makau-rau",
+        "ออกแลนด์",
+        "奥克兰都会区",
+        "奧克蘭",
+        "奧克蘭市"
+      ],
+      "coordinates": {
+        "latitude": -36.84916666666667,
+        "longitude": 174.76527777777778
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-08-03T08:00:00.000Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 01",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": "city-08c9530e89597cdf"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 01",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": "city"
+        },
+        "parentCountryEntityId": {
+          "field": "parentCountryEntityId",
+          "sourceType": "repository-reference",
+          "source": "Route V2 P1A Country Baseline",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q664",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": "country-b6e9ffcc290e32d8"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q37100",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": "Q37100"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "project-schema",
+          "source": "Curated Chinese display name for Knowledge Expansion Batch 01",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q37100",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": "奥克兰"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q37100",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": "Auckland"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q37100",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": [
+            "Akarana",
+            "Ākarana",
+            "Auckland, New Zealand",
+            "City of sails",
+            "Manukau",
+            "NZ-AUK",
+            "Tamaki",
+            "Tāmaki",
+            "Tamaki Makaurau",
+            "Tāmaki Makaurau",
+            "Tāmaki-makau-rau",
+            "ออกแลนด์",
+            "奥克兰都会区",
+            "奧克蘭",
+            "奧克蘭市"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q37100",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": {
+            "latitude": -36.84916666666667,
+            "longitude": 174.76527777777778
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 01",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 01",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q37100",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": "2026-08-03T08:00:00.000Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-city-baseline-p1b",
+      "entityId": "city-102fbf49ef872866",
+      "entityType": "city",
+      "parentCountryEntityId": "country-c3fe14f3610d3a77",
+      "wikidataId": "Q1861",
+      "canonicalNameZh": "曼谷",
+      "canonicalNameEn": "Bangkok",
+      "aliases": [
+        "Bangkok, Thailand",
+        "BKK",
+        "Krung Thep",
+        "Krung Thep Maha Nakhon",
+        "Krung Thep Mahanakhon Amon Rattanakosin Mahinthara Ayuthaya Mahadilok Phop Noppharat Ratchathani Burirom Udomratchaniwet Mahasathan Amon Piman Awatan Sathit Sakkathattiya Witsanukam Prasit",
+        "Krungthepmahanakhon Amonrattanakosin Mahintharayutthaya Mahadilokphop Noppharatratchathaniburirom Udomratchaniwetmahasathan Amonphimanawatansathit Sakkathattiyawitsanukamprasit",
+        "Sia-Yut'hia",
+        "กท.",
+        "กทม.",
+        "กรุงเทพพระมหานคร",
+        "กรุงเทพมหานคร",
+        "กรุงเทพมหานคร บวรรัตนโกสินทร์",
+        "กรุงเทพมหานคร อมรรัตนโกสินทร์ มหินทรายุธยา มหาดิลกภพ นพรัตนราชธานีบูรีรมย์ อุดมราชนิเวศน์มหาสถาน อมรพิมานอวตารสถิต สักกะทัตติยวิษณุกรรมประสิทธิ์",
+        "กรุงเทพฯ",
+        "กรุงศรีอยุธยา",
+        "นครหลวงกรุงเทพธนบุรี",
+        "บางกอก",
+        "บางมะกอก",
+        "พระนคร",
+        "恭贴",
+        "恭贴玛哈纳空",
+        "泰京"
+      ],
+      "coordinates": {
+        "latitude": 13.75,
+        "longitude": 100.51666666667
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-08-03T08:00:00.000Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 01",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": "city-102fbf49ef872866"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 01",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": "city"
+        },
+        "parentCountryEntityId": {
+          "field": "parentCountryEntityId",
+          "sourceType": "repository-reference",
+          "source": "Route V2 P1A Country Baseline",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q869",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": "country-c3fe14f3610d3a77"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1861",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": "Q1861"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "project-schema",
+          "source": "Curated Chinese display name for Knowledge Expansion Batch 01",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1861",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": "曼谷"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1861",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": "Bangkok"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1861",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": [
+            "Bangkok, Thailand",
+            "BKK",
+            "Krung Thep",
+            "Krung Thep Maha Nakhon",
+            "Krung Thep Mahanakhon Amon Rattanakosin Mahinthara Ayuthaya Mahadilok Phop Noppharat Ratchathani Burirom Udomratchaniwet Mahasathan Amon Piman Awatan Sathit Sakkathattiya Witsanukam Prasit",
+            "Krungthepmahanakhon Amonrattanakosin Mahintharayutthaya Mahadilokphop Noppharatratchathaniburirom Udomratchaniwetmahasathan Amonphimanawatansathit Sakkathattiyawitsanukamprasit",
+            "Sia-Yut'hia",
+            "กท.",
+            "กทม.",
+            "กรุงเทพพระมหานคร",
+            "กรุงเทพมหานคร",
+            "กรุงเทพมหานคร บวรรัตนโกสินทร์",
+            "กรุงเทพมหานคร อมรรัตนโกสินทร์ มหินทรายุธยา มหาดิลกภพ นพรัตนราชธานีบูรีรมย์ อุดมราชนิเวศน์มหาสถาน อมรพิมานอวตารสถิต สักกะทัตติยวิษณุกรรมประสิทธิ์",
+            "กรุงเทพฯ",
+            "กรุงศรีอยุธยา",
+            "นครหลวงกรุงเทพธนบุรี",
+            "บางกอก",
+            "บางมะกอก",
+            "พระนคร",
+            "恭贴",
+            "恭贴玛哈纳空",
+            "泰京"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1861",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": {
+            "latitude": 13.75,
+            "longitude": 100.51666666667
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 01",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 01",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1861",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": "2026-08-03T08:00:00.000Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-city-baseline-p1b",
+      "entityId": "city-2cb3e8890c6c7848",
+      "entityType": "city",
+      "parentCountryEntityId": "country-b6e9ffcc290e32d8",
+      "wikidataId": "Q613602",
+      "canonicalNameZh": "皇后镇",
+      "canonicalNameEn": "Queenstown",
+      "aliases": [
+        "Queenstown, New Zealand",
+        "Tāhuna"
+      ],
+      "coordinates": {
+        "latitude": -45.031111111111,
+        "longitude": 168.6625
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-08-03T08:00:00.000Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 01",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": "city-2cb3e8890c6c7848"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 01",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": "city"
+        },
+        "parentCountryEntityId": {
+          "field": "parentCountryEntityId",
+          "sourceType": "repository-reference",
+          "source": "Route V2 P1A Country Baseline",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q664",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": "country-b6e9ffcc290e32d8"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q613602",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": "Q613602"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "project-schema",
+          "source": "Curated Chinese display name for Knowledge Expansion Batch 01",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q613602",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": "皇后镇"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q613602",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": "Queenstown"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q613602",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": [
+            "Queenstown, New Zealand",
+            "Tāhuna"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q613602",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": {
+            "latitude": -45.031111111111,
+            "longitude": 168.6625
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 01",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 01",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q613602",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": "2026-08-03T08:00:00.000Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-city-baseline-p1b",
+      "entityId": "city-6424297f5bfd77b8",
+      "entityType": "city",
+      "parentCountryEntityId": "country-d3be2882ba68e9b0",
+      "wikidataId": "Q4191",
+      "canonicalNameZh": "卢塞恩",
+      "canonicalNameEn": "Lucerne",
+      "aliases": [
+        "Lucerne LU",
+        "Lucerne, Switzerland",
+        "Luzern",
+        "Stadt Luzern",
+        "ลูเซิร์น",
+        "琉森"
+      ],
+      "coordinates": {
+        "latitude": 47.0523,
+        "longitude": 8.3059
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-08-03T08:00:00.000Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 01",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": "city-6424297f5bfd77b8"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 01",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": "city"
+        },
+        "parentCountryEntityId": {
+          "field": "parentCountryEntityId",
+          "sourceType": "repository-reference",
+          "source": "Route V2 P1A Country Baseline",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q39",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": "country-d3be2882ba68e9b0"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q4191",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": "Q4191"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "project-schema",
+          "source": "Curated Chinese display name for Knowledge Expansion Batch 01",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q4191",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": "卢塞恩"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q4191",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": "Lucerne"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q4191",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": [
+            "Lucerne LU",
+            "Lucerne, Switzerland",
+            "Luzern",
+            "Stadt Luzern",
+            "ลูเซิร์น",
+            "琉森"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q4191",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": {
+            "latitude": 47.0523,
+            "longitude": 8.3059
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 01",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 01",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q4191",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": "2026-08-03T08:00:00.000Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-city-baseline-p1b",
+      "entityId": "city-64a359ba87706a72",
+      "entityType": "city",
+      "parentCountryEntityId": "country-d58bcebbb9283d7e",
+      "wikidataId": "Q3130",
+      "canonicalNameZh": "悉尼",
+      "canonicalNameEn": "Sydney",
+      "aliases": [
+        "Emerald City",
+        "Eora",
+        "Gadi",
+        "Gadigal",
+        "Greater Sydney",
+        "Harbour City",
+        "Pō Hākene",
+        "Poihākena",
+        "Poihākene",
+        "Port Jackson",
+        "Sydney, Australia",
+        "Sydney, Australien",
+        "Sydney, N. S. W.",
+        "Sydney, N.S.W.",
+        "Sydney, New South Wales",
+        "Sydney, New South Wales, Australia",
+        "Sydney, NSW",
+        "Sydney, NSW, Australia",
+        "Warrane",
+        "ซิดนีย์",
+        "雪梨",
+        "雪梨 (澳洲)"
+      ],
+      "coordinates": {
+        "latitude": -33.867777777777775,
+        "longitude": 151.21
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-08-03T08:00:00.000Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 01",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": "city-64a359ba87706a72"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 01",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": "city"
+        },
+        "parentCountryEntityId": {
+          "field": "parentCountryEntityId",
+          "sourceType": "repository-reference",
+          "source": "Route V2 P1A Country Baseline",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q408",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": "country-d58bcebbb9283d7e"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q3130",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": "Q3130"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "project-schema",
+          "source": "Curated Chinese display name for Knowledge Expansion Batch 01",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q3130",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": "悉尼"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q3130",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": "Sydney"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q3130",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": [
+            "Emerald City",
+            "Eora",
+            "Gadi",
+            "Gadigal",
+            "Greater Sydney",
+            "Harbour City",
+            "Pō Hākene",
+            "Poihākena",
+            "Poihākene",
+            "Port Jackson",
+            "Sydney, Australia",
+            "Sydney, Australien",
+            "Sydney, N. S. W.",
+            "Sydney, N.S.W.",
+            "Sydney, New South Wales",
+            "Sydney, New South Wales, Australia",
+            "Sydney, NSW",
+            "Sydney, NSW, Australia",
+            "Warrane",
+            "ซิดนีย์",
+            "雪梨",
+            "雪梨 (澳洲)"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q3130",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": {
+            "latitude": -33.867777777777775,
+            "longitude": 151.21
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 01",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 01",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q3130",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": "2026-08-03T08:00:00.000Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-city-baseline-p1b",
+      "entityId": "city-8dfe7b39752eceb2",
+      "entityType": "city",
+      "parentCountryEntityId": "country-d3be2882ba68e9b0",
+      "wikidataId": "Q72",
+      "canonicalNameZh": "苏黎世",
+      "canonicalNameEn": "Zürich",
+      "aliases": [
+        "City of Zurich",
+        "Stadt Zürich",
+        "Zurich",
+        "Zurich, Switzerland",
+        "ซือริช",
+        "ซูริก",
+        "蘇黎世"
+      ],
+      "coordinates": {
+        "latitude": 47.37444444444444,
+        "longitude": 8.54111111111111
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-08-03T08:00:00.000Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 01",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": "city-8dfe7b39752eceb2"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 01",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": "city"
+        },
+        "parentCountryEntityId": {
+          "field": "parentCountryEntityId",
+          "sourceType": "repository-reference",
+          "source": "Route V2 P1A Country Baseline",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q39",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": "country-d3be2882ba68e9b0"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q72",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": "Q72"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "project-schema",
+          "source": "Curated Chinese display name for Knowledge Expansion Batch 01",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q72",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": "苏黎世"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q72",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": "Zürich"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q72",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": [
+            "City of Zurich",
+            "Stadt Zürich",
+            "Zurich",
+            "Zurich, Switzerland",
+            "ซือริช",
+            "ซูริก",
+            "蘇黎世"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q72",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": {
+            "latitude": 47.37444444444444,
+            "longitude": 8.54111111111111
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 01",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 01",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q72",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": "2026-08-03T08:00:00.000Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-city-baseline-p1b",
+      "entityId": "city-922253e414d069f3",
+      "entityType": "city",
+      "parentCountryEntityId": "country-0294eb483e5c1ea1",
+      "wikidataId": "Q685369",
+      "canonicalNameZh": "维克",
+      "canonicalNameEn": "Vík í Mýrdal",
+      "aliases": [
+        "Vík",
+        "維克",
+        "维克伊米达尔"
+      ],
+      "coordinates": {
+        "latitude": 63.419444444444444,
+        "longitude": -19.009722222222223
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-08-03T08:00:00.000Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 01",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": "city-922253e414d069f3"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 01",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": "city"
+        },
+        "parentCountryEntityId": {
+          "field": "parentCountryEntityId",
+          "sourceType": "repository-reference",
+          "source": "Route V2 P1A Country Baseline",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q189",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": "country-0294eb483e5c1ea1"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q685369",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": "Q685369"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "project-schema",
+          "source": "Curated Chinese display name for Knowledge Expansion Batch 01",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q685369",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": "维克"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q685369",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": "Vík í Mýrdal"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q685369",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": [
+            "Vík",
+            "維克",
+            "维克伊米达尔"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q685369",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": {
+            "latitude": 63.419444444444444,
+            "longitude": -19.009722222222223
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 01",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 01",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q685369",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": "2026-08-03T08:00:00.000Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-city-baseline-p1b",
+      "entityId": "city-dde5b708a62ae273",
+      "entityType": "city",
+      "parentCountryEntityId": "country-c3fe14f3610d3a77",
+      "wikidataId": "Q52028",
+      "canonicalNameZh": "清迈",
+      "canonicalNameEn": "Chiang Mai",
+      "aliases": [
+        "Chiang Mai City Municipality",
+        "Chiang-Mai",
+        "เทศบาลนครเชียงใหม่",
+        "นครเชียงใหม่",
+        "清邁"
+      ],
+      "coordinates": {
+        "latitude": 18.788888888889,
+        "longitude": 98.983333333333
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-08-03T08:00:00.000Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 01",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": "city-dde5b708a62ae273"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 01",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": "city"
+        },
+        "parentCountryEntityId": {
+          "field": "parentCountryEntityId",
+          "sourceType": "repository-reference",
+          "source": "Route V2 P1A Country Baseline",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q869",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": "country-c3fe14f3610d3a77"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q52028",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": "Q52028"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "project-schema",
+          "source": "Curated Chinese display name for Knowledge Expansion Batch 01",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q52028",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": "清迈"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q52028",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": "Chiang Mai"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q52028",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": [
+            "Chiang Mai City Municipality",
+            "Chiang-Mai",
+            "เทศบาลนครเชียงใหม่",
+            "นครเชียงใหม่",
+            "清邁"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q52028",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": {
+            "latitude": 18.788888888889,
+            "longitude": 98.983333333333
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 01",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 01",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q52028",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": "2026-08-03T08:00:00.000Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-city-baseline-p1b",
+      "entityId": "city-e91b5be401efc35d",
+      "entityType": "city",
+      "parentCountryEntityId": "country-d58bcebbb9283d7e",
+      "wikidataId": "Q3141",
+      "canonicalNameZh": "墨尔本",
+      "canonicalNameEn": "Melbourne",
+      "aliases": [
+        "Greater Melbourne",
+        "Marapana",
+        "Marepana",
+        "Melbourne, AUS",
+        "Melbourne, Australia",
+        "Melbourne, VIC",
+        "Melbourne, VIC, Australia",
+        "Melbourne, Victoria",
+        "Melbourne, Victoria, Australia",
+        "Melbs",
+        "Merepana",
+        "Naarm",
+        "Narrm",
+        "Poipiripi",
+        "Poipiripiri",
+        "เมลเบิร์น"
+      ],
+      "coordinates": {
+        "latitude": -37.814166666666665,
+        "longitude": 144.96305555555554
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-08-03T08:00:00.000Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 01",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": "city-e91b5be401efc35d"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 01",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": "city"
+        },
+        "parentCountryEntityId": {
+          "field": "parentCountryEntityId",
+          "sourceType": "repository-reference",
+          "source": "Route V2 P1A Country Baseline",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q408",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": "country-d58bcebbb9283d7e"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q3141",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": "Q3141"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "project-schema",
+          "source": "Curated Chinese display name for Knowledge Expansion Batch 01",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q3141",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": "墨尔本"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q3141",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": "Melbourne"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q3141",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": [
+            "Greater Melbourne",
+            "Marapana",
+            "Marepana",
+            "Melbourne, AUS",
+            "Melbourne, Australia",
+            "Melbourne, VIC",
+            "Melbourne, VIC, Australia",
+            "Melbourne, Victoria",
+            "Melbourne, Victoria, Australia",
+            "Melbs",
+            "Merepana",
+            "Naarm",
+            "Narrm",
+            "Poipiripi",
+            "Poipiripiri",
+            "เมลเบิร์น"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q3141",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": {
+            "latitude": -37.814166666666665,
+            "longitude": 144.96305555555554
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 01",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 01",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q3141",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": "2026-08-03T08:00:00.000Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-city-baseline-p1b",
+      "entityId": "city-ec5f6eb44af88c19",
+      "entityType": "city",
+      "parentCountryEntityId": "country-0294eb483e5c1ea1",
+      "wikidataId": "Q1764",
+      "canonicalNameZh": "雷克雅未克",
+      "canonicalNameEn": "Reykjavík",
+      "aliases": [
+        "Reykjavik",
+        "Reykjavikurborg",
+        "Reykjavíkurborg",
+        "เรคยาวิก"
+      ],
+      "coordinates": {
+        "latitude": 64.1475,
+        "longitude": -21.935
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-08-03T08:00:00.000Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 01",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": "city-ec5f6eb44af88c19"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 01",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": "city"
+        },
+        "parentCountryEntityId": {
+          "field": "parentCountryEntityId",
+          "sourceType": "repository-reference",
+          "source": "Route V2 P1A Country Baseline",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q189",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": "country-0294eb483e5c1ea1"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1764",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": "Q1764"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "project-schema",
+          "source": "Curated Chinese display name for Knowledge Expansion Batch 01",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1764",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": "雷克雅未克"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1764",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": "Reykjavík"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1764",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": [
+            "Reykjavik",
+            "Reykjavikurborg",
+            "Reykjavíkurborg",
+            "เรคยาวิก"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1764",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": {
+            "latitude": 64.1475,
+            "longitude": -21.935
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 01",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 01",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1764",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": "2026-08-03T08:00:00.000Z"
+        }
+      }
+    }
+  ]
+}

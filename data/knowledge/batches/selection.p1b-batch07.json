@@ -1,0 +1,688 @@
+{
+  "schemaVersion": "route-v2-batch03c-spain-selection-v1",
+  "country": [
+    {
+      "entityId": "country-ab252ee38e8cdf81",
+      "wikidataId": "Q29",
+      "canonicalNameEn": "Spain"
+    }
+  ],
+  "cities": [
+    {
+      "key": "barcelona",
+      "entityId": "city-6e97dec8890873f7",
+      "parentCountryEntityId": "country-ab252ee38e8cdf81",
+      "wikidataId": "Q1492",
+      "canonicalNameEn": "Barcelona",
+      "targetPoiCount": 15,
+      "selectedPoiCount": 15
+    },
+    {
+      "key": "bilbao",
+      "entityId": "city-13465734fe974589",
+      "parentCountryEntityId": "country-ab252ee38e8cdf81",
+      "wikidataId": "Q8692",
+      "canonicalNameEn": "Bilbao",
+      "targetPoiCount": 8,
+      "selectedPoiCount": 8
+    },
+    {
+      "key": "cordoba",
+      "entityId": "city-b58a1f56e1537c03",
+      "parentCountryEntityId": "country-ab252ee38e8cdf81",
+      "wikidataId": "Q5818",
+      "canonicalNameEn": "Córdoba",
+      "targetPoiCount": 8,
+      "selectedPoiCount": 8
+    },
+    {
+      "key": "granada",
+      "entityId": "city-283e3d48eecca2f3",
+      "parentCountryEntityId": "country-ab252ee38e8cdf81",
+      "wikidataId": "Q8810",
+      "canonicalNameEn": "Granada",
+      "targetPoiCount": 8,
+      "selectedPoiCount": 8
+    },
+    {
+      "key": "madrid",
+      "entityId": "city-f833a342bb5b925a",
+      "parentCountryEntityId": "country-ab252ee38e8cdf81",
+      "wikidataId": "Q2807",
+      "canonicalNameEn": "Madrid",
+      "targetPoiCount": 15,
+      "selectedPoiCount": 15
+    },
+    {
+      "key": "malaga",
+      "entityId": "city-4e3642962d726a6c",
+      "parentCountryEntityId": "country-ab252ee38e8cdf81",
+      "wikidataId": "Q8851",
+      "canonicalNameEn": "Málaga",
+      "targetPoiCount": 5,
+      "selectedPoiCount": 5
+    },
+    {
+      "key": "ronda",
+      "entityId": "city-5098b736342d402d",
+      "parentCountryEntityId": "country-ab252ee38e8cdf81",
+      "wikidataId": "Q13153",
+      "canonicalNameEn": "Ronda",
+      "targetPoiCount": 3,
+      "selectedPoiCount": 3
+    },
+    {
+      "key": "salamanca",
+      "entityId": "city-3a8e93bbd8ea3695",
+      "parentCountryEntityId": "country-ab252ee38e8cdf81",
+      "wikidataId": "Q15695",
+      "canonicalNameEn": "Salamanca",
+      "targetPoiCount": 5,
+      "selectedPoiCount": 5
+    },
+    {
+      "key": "san-sebastian",
+      "entityId": "city-6a7dac50969d1f2d",
+      "parentCountryEntityId": "country-ab252ee38e8cdf81",
+      "wikidataId": "Q10313",
+      "canonicalNameEn": "San Sebastián",
+      "targetPoiCount": 5,
+      "selectedPoiCount": 5
+    },
+    {
+      "key": "santiago",
+      "entityId": "city-7cc50855c97464fe",
+      "parentCountryEntityId": "country-ab252ee38e8cdf81",
+      "wikidataId": "Q14314",
+      "canonicalNameEn": "Santiago de Compostela",
+      "targetPoiCount": 5,
+      "selectedPoiCount": 5
+    },
+    {
+      "key": "seville",
+      "entityId": "city-8ee23d7f47e3d887",
+      "parentCountryEntityId": "country-ab252ee38e8cdf81",
+      "wikidataId": "Q8717",
+      "canonicalNameEn": "Seville",
+      "targetPoiCount": 8,
+      "selectedPoiCount": 8
+    },
+    {
+      "key": "toledo",
+      "entityId": "city-8430a47b14ffd429",
+      "parentCountryEntityId": "country-ab252ee38e8cdf81",
+      "wikidataId": "Q5836",
+      "canonicalNameEn": "Toledo",
+      "targetPoiCount": 5,
+      "selectedPoiCount": 5
+    },
+    {
+      "key": "valencia",
+      "entityId": "city-b5bbb6cb608fb43d",
+      "parentCountryEntityId": "country-ab252ee38e8cdf81",
+      "wikidataId": "Q8818",
+      "canonicalNameEn": "Valencia",
+      "targetPoiCount": 8,
+      "selectedPoiCount": 8
+    }
+  ],
+  "pois": [
+    {
+      "entityId": "poi-225ba7fb8ec2c420",
+      "parentCityEntityId": "city-13465734fe974589",
+      "wikidataId": "Q3285202",
+      "canonicalNameEn": "Azkuna Zentroa"
+    },
+    {
+      "entityId": "poi-36aeed056202e344",
+      "parentCityEntityId": "city-13465734fe974589",
+      "wikidataId": "Q3297735",
+      "canonicalNameEn": "Basilica of Begoña"
+    },
+    {
+      "entityId": "poi-65fb4b46f3cdf713",
+      "parentCityEntityId": "city-13465734fe974589",
+      "wikidataId": "Q2350964",
+      "canonicalNameEn": "Bilbao Cathedral"
+    },
+    {
+      "entityId": "poi-a11769d3313c3974",
+      "parentCityEntityId": "city-13465734fe974589",
+      "wikidataId": "Q3121275",
+      "canonicalNameEn": "Casco Viejo"
+    },
+    {
+      "entityId": "poi-b08743ee7dde4f46",
+      "parentCityEntityId": "city-13465734fe974589",
+      "wikidataId": "Q179199",
+      "canonicalNameEn": "Guggenheim Museum"
+    },
+    {
+      "entityId": "poi-3680b88460000d69",
+      "parentCityEntityId": "city-13465734fe974589",
+      "wikidataId": "Q7203631",
+      "canonicalNameEn": "Plaza Nueva"
+    },
+    {
+      "entityId": "poi-e94256545907b656",
+      "parentCityEntityId": "city-13465734fe974589",
+      "wikidataId": "Q182864",
+      "canonicalNameEn": "San Mamés Stadium"
+    },
+    {
+      "entityId": "poi-08d37ed2a448fc83",
+      "parentCityEntityId": "city-13465734fe974589",
+      "wikidataId": "Q227583",
+      "canonicalNameEn": "Zubizuri"
+    },
+    {
+      "entityId": "poi-bf0a161622a18722",
+      "parentCityEntityId": "city-283e3d48eecca2f3",
+      "wikidataId": "Q576339",
+      "canonicalNameEn": "Albaicín"
+    },
+    {
+      "entityId": "poi-f13dbc4376e15c5c",
+      "parentCityEntityId": "city-283e3d48eecca2f3",
+      "wikidataId": "Q47476",
+      "canonicalNameEn": "Alhambra"
+    },
+    {
+      "entityId": "poi-ba36c8944c872684",
+      "parentCityEntityId": "city-283e3d48eecca2f3",
+      "wikidataId": "Q525811",
+      "canonicalNameEn": "Generalife"
+    },
+    {
+      "entityId": "poi-2ea10a09e1de0060",
+      "parentCityEntityId": "city-283e3d48eecca2f3",
+      "wikidataId": "Q5419362",
+      "canonicalNameEn": "Granada Cathedral"
+    },
+    {
+      "entityId": "poi-c9c7be53ec7b6849",
+      "parentCityEntityId": "city-283e3d48eecca2f3",
+      "wikidataId": "Q1955435",
+      "canonicalNameEn": "Monastery of Saint Jerome"
+    },
+    {
+      "entityId": "poi-23d67f5d17835a2c",
+      "parentCityEntityId": "city-283e3d48eecca2f3",
+      "wikidataId": "Q2046808",
+      "canonicalNameEn": "Palace of Charles V"
+    },
+    {
+      "entityId": "poi-782b3103eefbd66b",
+      "parentCityEntityId": "city-283e3d48eecca2f3",
+      "wikidataId": "Q429192",
+      "canonicalNameEn": "Royal Chapel"
+    },
+    {
+      "entityId": "poi-10ce57887f93f3ba",
+      "parentCityEntityId": "city-283e3d48eecca2f3",
+      "wikidataId": "Q2842387",
+      "canonicalNameEn": "Sacromonte"
+    },
+    {
+      "entityId": "poi-c2641ef7889d52a0",
+      "parentCityEntityId": "city-3a8e93bbd8ea3695",
+      "wikidataId": "Q1046564",
+      "canonicalNameEn": "Casa de las Conchas"
+    },
+    {
+      "entityId": "poi-2f4e6eba1daae5c3",
+      "parentCityEntityId": "city-3a8e93bbd8ea3695",
+      "wikidataId": "Q2462558",
+      "canonicalNameEn": "New Cathedral"
+    },
+    {
+      "entityId": "poi-ca73bc5c62aa4e36",
+      "parentCityEntityId": "city-3a8e93bbd8ea3695",
+      "wikidataId": "Q3047420",
+      "canonicalNameEn": "Old Cathedral"
+    },
+    {
+      "entityId": "poi-7da1faea76065959",
+      "parentCityEntityId": "city-3a8e93bbd8ea3695",
+      "wikidataId": "Q1561555",
+      "canonicalNameEn": "Plaza Mayor"
+    },
+    {
+      "entityId": "poi-ff31b9cc6cffffb0",
+      "parentCityEntityId": "city-3a8e93bbd8ea3695",
+      "wikidataId": "Q308963",
+      "canonicalNameEn": "University of Salamanca"
+    },
+    {
+      "entityId": "poi-02132d76166202a6",
+      "parentCityEntityId": "city-4e3642962d726a6c",
+      "wikidataId": "Q3127243",
+      "canonicalNameEn": "Alcazaba"
+    },
+    {
+      "entityId": "poi-768aeea98d667d98",
+      "parentCityEntityId": "city-4e3642962d726a6c",
+      "wikidataId": "Q5043601",
+      "canonicalNameEn": "Carmen Thyssen Museum"
+    },
+    {
+      "entityId": "poi-95dc867cf052c0a0",
+      "parentCityEntityId": "city-4e3642962d726a6c",
+      "wikidataId": "Q3751086",
+      "canonicalNameEn": "Gibralfaro"
+    },
+    {
+      "entityId": "poi-af50ae807cd8fdd6",
+      "parentCityEntityId": "city-4e3642962d726a6c",
+      "wikidataId": "Q1582758",
+      "canonicalNameEn": "Málaga Cathedral"
+    },
+    {
+      "entityId": "poi-e7fa69c4b43deb77",
+      "parentCityEntityId": "city-4e3642962d726a6c",
+      "wikidataId": "Q1368396",
+      "canonicalNameEn": "Picasso Museum"
+    },
+    {
+      "entityId": "poi-69d7cc7532f071fa",
+      "parentCityEntityId": "city-5098b736342d402d",
+      "wikidataId": "Q6058120",
+      "canonicalNameEn": "Palacio de Mondragón"
+    },
+    {
+      "entityId": "poi-8d814fbb8a7e9e2a",
+      "parentCityEntityId": "city-5098b736342d402d",
+      "wikidataId": "Q97633149",
+      "canonicalNameEn": "Plaza de Toros"
+    },
+    {
+      "entityId": "poi-7cfa39cba302633d",
+      "parentCityEntityId": "city-5098b736342d402d",
+      "wikidataId": "Q2004707",
+      "canonicalNameEn": "Puente Nuevo"
+    },
+    {
+      "entityId": "poi-0f705e16145eef5e",
+      "parentCityEntityId": "city-6a7dac50969d1f2d",
+      "wikidataId": "Q2842138",
+      "canonicalNameEn": "Basilica of Saint Mary of the Chorus"
+    },
+    {
+      "entityId": "poi-7456da65c37ca7d7",
+      "parentCityEntityId": "city-6a7dac50969d1f2d",
+      "wikidataId": "Q2349872",
+      "canonicalNameEn": "Kursaal Congress Centre"
+    },
+    {
+      "entityId": "poi-17c4273ffe49e228",
+      "parentCityEntityId": "city-6a7dac50969d1f2d",
+      "wikidataId": "Q2701401",
+      "canonicalNameEn": "Miramar Palace"
+    },
+    {
+      "entityId": "poi-da8901f0abcec5c5",
+      "parentCityEntityId": "city-6a7dac50969d1f2d",
+      "wikidataId": "Q2942904",
+      "canonicalNameEn": "San Sebastián Cathedral"
+    },
+    {
+      "entityId": "poi-dff74a86b51dc7d9",
+      "parentCityEntityId": "city-6a7dac50969d1f2d",
+      "wikidataId": "Q3329346",
+      "canonicalNameEn": "San Telmo Museum"
+    },
+    {
+      "entityId": "poi-4c9d59b1f473da9c",
+      "parentCityEntityId": "city-6e97dec8890873f7",
+      "wikidataId": "Q631075",
+      "canonicalNameEn": "Arc de Triomf"
+    },
+    {
+      "entityId": "poi-38571569ed1db864",
+      "parentCityEntityId": "city-6e97dec8890873f7",
+      "wikidataId": "Q17155",
+      "canonicalNameEn": "Barcelona Cathedral"
+    },
+    {
+      "entityId": "poi-98aeff37727f9324",
+      "parentCityEntityId": "city-6e97dec8890873f7",
+      "wikidataId": "Q159848",
+      "canonicalNameEn": "Camp Nou"
+    },
+    {
+      "entityId": "poi-48081e9d46274a4e",
+      "parentCityEntityId": "city-6e97dec8890873f7",
+      "wikidataId": "Q207870",
+      "canonicalNameEn": "Casa Milà"
+    },
+    {
+      "entityId": "poi-2986b7ceeddfe153",
+      "parentCityEntityId": "city-6e97dec8890873f7",
+      "wikidataId": "Q17154",
+      "canonicalNameEn": "Gothic Quarter"
+    },
+    {
+      "entityId": "poi-dc220a0b6a0740b7",
+      "parentCityEntityId": "city-6e97dec8890873f7",
+      "wikidataId": "Q1334899",
+      "canonicalNameEn": "La Boqueria"
+    },
+    {
+      "entityId": "poi-cfbc84a4bc8ad86a",
+      "parentCityEntityId": "city-6e97dec8890873f7",
+      "wikidataId": "Q850593",
+      "canonicalNameEn": "La Rambla"
+    },
+    {
+      "entityId": "poi-760267f08384a6b4",
+      "parentCityEntityId": "city-6e97dec8890873f7",
+      "wikidataId": "Q1414600",
+      "canonicalNameEn": "Magic Fountain"
+    },
+    {
+      "entityId": "poi-60c90cfce2bdf061",
+      "parentCityEntityId": "city-6e97dec8890873f7",
+      "wikidataId": "Q1122701",
+      "canonicalNameEn": "Montjuïc"
+    },
+    {
+      "entityId": "poi-a811698c1d9f7a9b",
+      "parentCityEntityId": "city-6e97dec8890873f7",
+      "wikidataId": "Q1050032",
+      "canonicalNameEn": "Museu Picasso"
+    },
+    {
+      "entityId": "poi-680057ebc6521cd2",
+      "parentCityEntityId": "city-6e97dec8890873f7",
+      "wikidataId": "Q327940",
+      "canonicalNameEn": "Palau de la Música Catalana"
+    },
+    {
+      "entityId": "poi-622619e6dfdef39e",
+      "parentCityEntityId": "city-6e97dec8890873f7",
+      "wikidataId": "Q908802",
+      "canonicalNameEn": "Santa Maria del Mar"
+    },
+    {
+      "entityId": "poi-fbf231a9efab505c",
+      "parentCityEntityId": "city-7cc50855c97464fe",
+      "wikidataId": "Q3290192",
+      "canonicalNameEn": "City of Culture of Galicia"
+    },
+    {
+      "entityId": "poi-537843f4a1f783cc",
+      "parentCityEntityId": "city-7cc50855c97464fe",
+      "wikidataId": "Q3397844",
+      "canonicalNameEn": "Galician Centre of Contemporary Art"
+    },
+    {
+      "entityId": "poi-2e1e2408a3238a91",
+      "parentCityEntityId": "city-7cc50855c97464fe",
+      "wikidataId": "Q3398340",
+      "canonicalNameEn": "Monastery of San Martiño Pinario"
+    },
+    {
+      "entityId": "poi-02aa381028d6dbad",
+      "parentCityEntityId": "city-7cc50855c97464fe",
+      "wikidataId": "Q2513127",
+      "canonicalNameEn": "Pazo de Raxoi"
+    },
+    {
+      "entityId": "poi-40d19d298154972b",
+      "parentCityEntityId": "city-7cc50855c97464fe",
+      "wikidataId": "Q205136",
+      "canonicalNameEn": "Santiago de Compostela Cathedral"
+    },
+    {
+      "entityId": "poi-1784cd70dd0484d2",
+      "parentCityEntityId": "city-8430a47b14ffd429",
+      "wikidataId": "Q1326589",
+      "canonicalNameEn": "Alcázar of Toledo"
+    },
+    {
+      "entityId": "poi-3a7d67c7ebf60057",
+      "parentCityEntityId": "city-8430a47b14ffd429",
+      "wikidataId": "Q3848124",
+      "canonicalNameEn": "El Greco Museum"
+    },
+    {
+      "entityId": "poi-b79c46c654b3813f",
+      "parentCityEntityId": "city-8430a47b14ffd429",
+      "wikidataId": "Q1289106",
+      "canonicalNameEn": "Monastery of San Juan de los Reyes"
+    },
+    {
+      "entityId": "poi-75999f0cb41d7065",
+      "parentCityEntityId": "city-8430a47b14ffd429",
+      "wikidataId": "Q1568115",
+      "canonicalNameEn": "Santa María la Blanca"
+    },
+    {
+      "entityId": "poi-3ec7436d46433c65",
+      "parentCityEntityId": "city-8430a47b14ffd429",
+      "wikidataId": "Q1123180",
+      "canonicalNameEn": "Toledo Cathedral"
+    },
+    {
+      "entityId": "poi-65276ae0af9ef60d",
+      "parentCityEntityId": "city-8ee23d7f47e3d887",
+      "wikidataId": "Q1046529",
+      "canonicalNameEn": "Casa de Pilatos"
+    },
+    {
+      "entityId": "poi-47e97d90dddc7423",
+      "parentCityEntityId": "city-8ee23d7f47e3d887",
+      "wikidataId": "Q477051",
+      "canonicalNameEn": "General Archive of the Indies"
+    },
+    {
+      "entityId": "poi-54a7a4e68fe6d7fc",
+      "parentCityEntityId": "city-8ee23d7f47e3d887",
+      "wikidataId": "Q2627907",
+      "canonicalNameEn": "María Luisa Park"
+    },
+    {
+      "entityId": "poi-b03ad5b4d53a5d33",
+      "parentCityEntityId": "city-8ee23d7f47e3d887",
+      "wikidataId": "Q3087671",
+      "canonicalNameEn": "Metropol Parasol"
+    },
+    {
+      "entityId": "poi-3f1bc6065bf648ff",
+      "parentCityEntityId": "city-8ee23d7f47e3d887",
+      "wikidataId": "Q956018",
+      "canonicalNameEn": "Plaza de España"
+    },
+    {
+      "entityId": "poi-58e85f8e0199430c",
+      "parentCityEntityId": "city-8ee23d7f47e3d887",
+      "wikidataId": "Q498261",
+      "canonicalNameEn": "Royal Alcázar"
+    },
+    {
+      "entityId": "poi-dfe52ec94bda5b59",
+      "parentCityEntityId": "city-8ee23d7f47e3d887",
+      "wikidataId": "Q231606",
+      "canonicalNameEn": "Seville Cathedral"
+    },
+    {
+      "entityId": "poi-779092a80f6fceb6",
+      "parentCityEntityId": "city-8ee23d7f47e3d887",
+      "wikidataId": "Q943873",
+      "canonicalNameEn": "Torre del Oro"
+    },
+    {
+      "entityId": "poi-66655a0bb0876462",
+      "parentCityEntityId": "city-b58a1f56e1537c03",
+      "wikidataId": "Q212625",
+      "canonicalNameEn": "Alcázar de los Reyes Cristianos"
+    },
+    {
+      "entityId": "poi-e746836e3a97ac08",
+      "parentCityEntityId": "city-b58a1f56e1537c03",
+      "wikidataId": "Q97625199",
+      "canonicalNameEn": "Calahorra Tower"
+    },
+    {
+      "entityId": "poi-31ce85cbb6b46098",
+      "parentCityEntityId": "city-b58a1f56e1537c03",
+      "wikidataId": "Q2643179",
+      "canonicalNameEn": "Córdoba Synagogue"
+    },
+    {
+      "entityId": "poi-7aab1e61f855152f",
+      "parentCityEntityId": "city-b58a1f56e1537c03",
+      "wikidataId": "Q6033464",
+      "canonicalNameEn": "Julio Romero de Torres Museum"
+    },
+    {
+      "entityId": "poi-a922cf46eed7d44e",
+      "parentCityEntityId": "city-b58a1f56e1537c03",
+      "wikidataId": "Q211252",
+      "canonicalNameEn": "Madinat al-Zahra"
+    },
+    {
+      "entityId": "poi-5cd634deec345f49",
+      "parentCityEntityId": "city-b58a1f56e1537c03",
+      "wikidataId": "Q33200",
+      "canonicalNameEn": "Mosque-Cathedral of Córdoba"
+    },
+    {
+      "entityId": "poi-bbb58af9c2e104ff",
+      "parentCityEntityId": "city-b58a1f56e1537c03",
+      "wikidataId": "Q97625652",
+      "canonicalNameEn": "Roman Bridge"
+    },
+    {
+      "entityId": "poi-9753e697ff83ecc9",
+      "parentCityEntityId": "city-b58a1f56e1537c03",
+      "wikidataId": "Q97625649",
+      "canonicalNameEn": "Roman Temple"
+    },
+    {
+      "entityId": "poi-77ad1a9c0ee5a197",
+      "parentCityEntityId": "city-b5bbb6cb608fb43d",
+      "wikidataId": "Q2197068",
+      "canonicalNameEn": "Central Market"
+    },
+    {
+      "entityId": "poi-c66d44950d6c76d8",
+      "parentCityEntityId": "city-b5bbb6cb608fb43d",
+      "wikidataId": "Q239935",
+      "canonicalNameEn": "City of Arts and Sciences"
+    },
+    {
+      "entityId": "poi-139b144b7ea3d945",
+      "parentCityEntityId": "city-b5bbb6cb608fb43d",
+      "wikidataId": "Q2447851",
+      "canonicalNameEn": "L'Oceanogràfic"
+    },
+    {
+      "entityId": "poi-7030de709d3377b5",
+      "parentCityEntityId": "city-b5bbb6cb608fb43d",
+      "wikidataId": "Q588009",
+      "canonicalNameEn": "Lonja de la Seda"
+    },
+    {
+      "entityId": "poi-de4cd068ee0b8da4",
+      "parentCityEntityId": "city-b5bbb6cb608fb43d",
+      "wikidataId": "Q1748404",
+      "canonicalNameEn": "Museum of Fine Arts"
+    },
+    {
+      "entityId": "poi-0bdeeda561ee636e",
+      "parentCityEntityId": "city-b5bbb6cb608fb43d",
+      "wikidataId": "Q2455550",
+      "canonicalNameEn": "Serranos Towers"
+    },
+    {
+      "entityId": "poi-0428acacea4c650c",
+      "parentCityEntityId": "city-b5bbb6cb608fb43d",
+      "wikidataId": "Q2713406",
+      "canonicalNameEn": "Turia Garden"
+    },
+    {
+      "entityId": "poi-7ac77a5724741516",
+      "parentCityEntityId": "city-b5bbb6cb608fb43d",
+      "wikidataId": "Q1466926",
+      "canonicalNameEn": "Valencia Cathedral"
+    },
+    {
+      "entityId": "poi-e1af6231a8050bae",
+      "parentCityEntityId": "city-f833a342bb5b925a",
+      "wikidataId": "Q849711",
+      "canonicalNameEn": "Almudena Cathedral"
+    },
+    {
+      "entityId": "poi-4ba3182e973610ce",
+      "parentCityEntityId": "city-f833a342bb5b925a",
+      "wikidataId": "Q2916187",
+      "canonicalNameEn": "El Rastro"
+    },
+    {
+      "entityId": "poi-bc3d9f3bb2d6ed7c",
+      "parentCityEntityId": "city-f833a342bb5b925a",
+      "wikidataId": "Q1324163",
+      "canonicalNameEn": "Gran Vía"
+    },
+    {
+      "entityId": "poi-a11b45a57aff96b8",
+      "parentCityEntityId": "city-f833a342bb5b925a",
+      "wikidataId": "Q6770825",
+      "canonicalNameEn": "Mercado de San Miguel"
+    },
+    {
+      "entityId": "poi-f6497d8bca13478f",
+      "parentCityEntityId": "city-f833a342bb5b925a",
+      "wikidataId": "Q1537446",
+      "canonicalNameEn": "Plaza de Cibeles"
+    },
+    {
+      "entityId": "poi-983d0d79e86bbf1e",
+      "parentCityEntityId": "city-f833a342bb5b925a",
+      "wikidataId": "Q1123493",
+      "canonicalNameEn": "Plaza Mayor"
+    },
+    {
+      "entityId": "poi-80aa5c7dd03d546a",
+      "parentCityEntityId": "city-f833a342bb5b925a",
+      "wikidataId": "Q427163",
+      "canonicalNameEn": "Puerta del Sol"
+    },
+    {
+      "entityId": "poi-9f066afe50efc2d4",
+      "parentCityEntityId": "city-f833a342bb5b925a",
+      "wikidataId": "Q460889",
+      "canonicalNameEn": "Reina Sofía Museum"
+    },
+    {
+      "entityId": "poi-17787a0cb7a1dc36",
+      "parentCityEntityId": "city-f833a342bb5b925a",
+      "wikidataId": "Q164027",
+      "canonicalNameEn": "Santiago Bernabéu Stadium"
+    },
+    {
+      "entityId": "poi-813b80010f8f7509",
+      "parentCityEntityId": "city-f833a342bb5b925a",
+      "wikidataId": "Q1592523",
+      "canonicalNameEn": "Sorolla Museum"
+    },
+    {
+      "entityId": "poi-247e8d91b45fe5b6",
+      "parentCityEntityId": "city-f833a342bb5b925a",
+      "wikidataId": "Q1140249",
+      "canonicalNameEn": "Temple of Debod"
+    },
+    {
+      "entityId": "poi-4b9f339381499888",
+      "parentCityEntityId": "city-f833a342bb5b925a",
+      "wikidataId": "Q176251",
+      "canonicalNameEn": "Thyssen-Bornemisza Museum"
+    }
+  ],
+  "regionalReview": [
+    "Mallorca",
+    "Tenerife",
+    "Ibiza"
+  ]
+}

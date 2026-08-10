@@ -78,12 +78,12 @@ async function expectPois(englishName, expectedCount = 3) {
 assert.equal(normalizeKnowledgeName("  St. Mary’s  Basilica "), "st marys basilica");
 assert.equal(normalizeKnowledgeName("Bogotá"), "bogotá");
 
-const amsterdam = await expectPois("Amsterdam");
+const amsterdam = await expectPois("Amsterdam", 15);
 const prague = await expectPois("Prague");
 const tokyo = await expectPois("Tokyo", 19);
 const osaka = await expectPois("Osaka", 15);
 const paris = await expectPois("Paris", 15);
-const berlin = await expectPois("Berlin");
+const berlin = await expectPois("Berlin", 15);
 const rome = await expectPois("Rome", 15);
 const madrid = await expectPois("Madrid", 15);
 const seoul = await expectPois("Seoul", 15);

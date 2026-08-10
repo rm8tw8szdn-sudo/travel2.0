@@ -1,0 +1,973 @@
+{
+  "schemaVersion": "route-v2-city-baseline-p1b-batch10",
+  "generatedFrom": "data/knowledge/raw/knowledge-expansion-batch04b-austria.wikidata.json",
+  "cityCount": 8,
+  "cities": [
+    {
+      "schemaVersion": "route-v2-city-baseline-p1b",
+      "entityId": "city-3f52e95430ac83e2",
+      "entityType": "city",
+      "parentCountryEntityId": "country-0ac53b7955d0cc26",
+      "wikidataId": "Q1737",
+      "canonicalNameZh": "布雷根茨",
+      "canonicalNameEn": "Bregenz",
+      "aliases": [
+        "Μπρέγκεντς"
+      ],
+      "coordinates": {
+        "latitude": 47.505,
+        "longitude": 9.7491666666667
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-08-10T12:00:00.000Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04b-austria",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "city-3f52e95430ac83e2"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04b-austria",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "city"
+        },
+        "parentCountryEntityId": {
+          "field": "parentCountryEntityId",
+          "sourceType": "repository-reference",
+          "source": "Austria Country Entity",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q40",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "country-0ac53b7955d0cc26"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1737",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "Q1737"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1737",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "布雷根茨"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1737",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "Bregenz"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1737",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": [
+            "Μπρέγκεντς"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1737",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": {
+            "latitude": 47.505,
+            "longitude": 9.7491666666667
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04b-austria",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04b-austria",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1737",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "2026-08-10T12:00:00.000Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-city-baseline-p1b",
+      "entityId": "city-e2930ffae37e9bb6",
+      "entityType": "city",
+      "parentCountryEntityId": "country-0ac53b7955d0cc26",
+      "wikidataId": "Q13298",
+      "canonicalNameZh": "格拉茨",
+      "canonicalNameEn": "Graz",
+      "aliases": [
+        "Bairisch-Grätz",
+        "Bayrisch-Grätz",
+        "Gradec",
+        "Graecia",
+        "Gratz",
+        "Grätz",
+        "Grez",
+        "Γκρατς"
+      ],
+      "coordinates": {
+        "latitude": 47.07083333333333,
+        "longitude": 15.438611111111111
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-08-10T12:00:00.000Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04b-austria",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "city-e2930ffae37e9bb6"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04b-austria",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "city"
+        },
+        "parentCountryEntityId": {
+          "field": "parentCountryEntityId",
+          "sourceType": "repository-reference",
+          "source": "Austria Country Entity",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q40",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "country-0ac53b7955d0cc26"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q13298",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "Q13298"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q13298",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "格拉茨"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q13298",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "Graz"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q13298",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": [
+            "Bairisch-Grätz",
+            "Bayrisch-Grätz",
+            "Gradec",
+            "Graecia",
+            "Gratz",
+            "Grätz",
+            "Grez",
+            "Γκρατς"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q13298",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": {
+            "latitude": 47.07083333333333,
+            "longitude": 15.438611111111111
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04b-austria",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04b-austria",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q13298",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "2026-08-10T12:00:00.000Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-city-baseline-p1b",
+      "entityId": "city-85e356e0e514f090",
+      "entityType": "city",
+      "parentCountryEntityId": "country-0ac53b7955d0cc26",
+      "wikidataId": "Q131633",
+      "canonicalNameZh": "哈尔施塔特",
+      "canonicalNameEn": "Hallstatt",
+      "aliases": [
+        "Χάλστατ",
+        "哈修塔特",
+        "哈爾施塔特"
+      ],
+      "coordinates": {
+        "latitude": 47.555833333333,
+        "longitude": 13.646666666667
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-08-10T12:00:00.000Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04b-austria",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "city-85e356e0e514f090"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04b-austria",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "city"
+        },
+        "parentCountryEntityId": {
+          "field": "parentCountryEntityId",
+          "sourceType": "repository-reference",
+          "source": "Austria Country Entity",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q40",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "country-0ac53b7955d0cc26"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q131633",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "Q131633"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q131633",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "哈尔施塔特"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q131633",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "Hallstatt"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q131633",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": [
+            "Χάλστατ",
+            "哈修塔特",
+            "哈爾施塔特"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q131633",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": {
+            "latitude": 47.555833333333,
+            "longitude": 13.646666666667
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04b-austria",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04b-austria",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q131633",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "2026-08-10T12:00:00.000Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-city-baseline-p1b",
+      "entityId": "city-6d8bfa998b2fe3e1",
+      "entityType": "city",
+      "parentCountryEntityId": "country-0ac53b7955d0cc26",
+      "wikidataId": "Q1735",
+      "canonicalNameZh": "因斯布鲁克",
+      "canonicalNameEn": "Innsbruck",
+      "aliases": [
+        "Innsbruck Stadt",
+        "Landeshauptstadt Innsbruck",
+        "Ίνσμπρουκ"
+      ],
+      "coordinates": {
+        "latitude": 47.268333333333,
+        "longitude": 11.393333333333
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-08-10T12:00:00.000Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04b-austria",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "city-6d8bfa998b2fe3e1"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04b-austria",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "city"
+        },
+        "parentCountryEntityId": {
+          "field": "parentCountryEntityId",
+          "sourceType": "repository-reference",
+          "source": "Austria Country Entity",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q40",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "country-0ac53b7955d0cc26"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1735",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "Q1735"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1735",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "因斯布鲁克"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1735",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "Innsbruck"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1735",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": [
+            "Innsbruck Stadt",
+            "Landeshauptstadt Innsbruck",
+            "Ίνσμπρουκ"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1735",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": {
+            "latitude": 47.268333333333,
+            "longitude": 11.393333333333
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04b-austria",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04b-austria",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1735",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "2026-08-10T12:00:00.000Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-city-baseline-p1b",
+      "entityId": "city-60983c289d9ce9d3",
+      "entityType": "city",
+      "parentCountryEntityId": "country-0ac53b7955d0cc26",
+      "wikidataId": "Q41329",
+      "canonicalNameZh": "林茨",
+      "canonicalNameEn": "Linz",
+      "aliases": [
+        "Linz an der Donau",
+        "Λιντς",
+        "林茲"
+      ],
+      "coordinates": {
+        "latitude": 48.30583333333333,
+        "longitude": 14.286388888888888
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-08-10T12:00:00.000Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04b-austria",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "city-60983c289d9ce9d3"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04b-austria",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "city"
+        },
+        "parentCountryEntityId": {
+          "field": "parentCountryEntityId",
+          "sourceType": "repository-reference",
+          "source": "Austria Country Entity",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q40",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "country-0ac53b7955d0cc26"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q41329",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "Q41329"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q41329",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "林茨"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q41329",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "Linz"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q41329",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": [
+            "Linz an der Donau",
+            "Λιντς",
+            "林茲"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q41329",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": {
+            "latitude": 48.30583333333333,
+            "longitude": 14.286388888888888
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04b-austria",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04b-austria",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q41329",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "2026-08-10T12:00:00.000Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-city-baseline-p1b",
+      "entityId": "city-0699df842d819ca4",
+      "entityType": "city",
+      "parentCountryEntityId": "country-0ac53b7955d0cc26",
+      "wikidataId": "Q34713",
+      "canonicalNameZh": "萨尔茨堡",
+      "canonicalNameEn": "Salzburg",
+      "aliases": [
+        "Juvavum",
+        "Salisburgo",
+        "Salzburg-Stadt",
+        "Salzburgo",
+        "Stadt Salzburg",
+        "Ζάλτσμπουργκ",
+        "Σαλτσβούργο",
+        "Σάλτσμπουργκ",
+        "薩爾斯堡",
+        "薩爾茲堡"
+      ],
+      "coordinates": {
+        "latitude": 47.8,
+        "longitude": 13.045
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-08-10T12:00:00.000Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04b-austria",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "city-0699df842d819ca4"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04b-austria",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "city"
+        },
+        "parentCountryEntityId": {
+          "field": "parentCountryEntityId",
+          "sourceType": "repository-reference",
+          "source": "Austria Country Entity",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q40",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "country-0ac53b7955d0cc26"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q34713",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "Q34713"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q34713",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "萨尔茨堡"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q34713",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "Salzburg"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q34713",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": [
+            "Juvavum",
+            "Salisburgo",
+            "Salzburg-Stadt",
+            "Salzburgo",
+            "Stadt Salzburg",
+            "Ζάλτσμπουργκ",
+            "Σαλτσβούργο",
+            "Σάλτσμπουργκ",
+            "薩爾斯堡",
+            "薩爾茲堡"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q34713",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": {
+            "latitude": 47.8,
+            "longitude": 13.045
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04b-austria",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04b-austria",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q34713",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "2026-08-10T12:00:00.000Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-city-baseline-p1b",
+      "entityId": "city-456578ab24d451ff",
+      "entityType": "city",
+      "parentCountryEntityId": "country-0ac53b7955d0cc26",
+      "wikidataId": "Q1741",
+      "canonicalNameZh": "维也纳",
+      "canonicalNameEn": "Vienna",
+      "aliases": [
+        "Viena",
+        "Vienna, Austria",
+        "Wenen",
+        "Wien",
+        "Βιέννη",
+        "維也納"
+      ],
+      "coordinates": {
+        "latitude": 48.208333333333336,
+        "longitude": 16.3725
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-08-10T12:00:00.000Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04b-austria",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "city-456578ab24d451ff"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04b-austria",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "city"
+        },
+        "parentCountryEntityId": {
+          "field": "parentCountryEntityId",
+          "sourceType": "repository-reference",
+          "source": "Austria Country Entity",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q40",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "country-0ac53b7955d0cc26"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1741",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "Q1741"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1741",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "维也纳"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1741",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "Vienna"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1741",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": [
+            "Viena",
+            "Vienna, Austria",
+            "Wenen",
+            "Wien",
+            "Βιέννη",
+            "維也納"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1741",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": {
+            "latitude": 48.208333333333336,
+            "longitude": 16.3725
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04b-austria",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04b-austria",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1741",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "2026-08-10T12:00:00.000Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-city-baseline-p1b",
+      "entityId": "city-c8106459287724ff",
+      "entityType": "city",
+      "parentCountryEntityId": "country-0ac53b7955d0cc26",
+      "wikidataId": "Q187572",
+      "canonicalNameZh": "滨湖采尔",
+      "canonicalNameEn": "Zell am See",
+      "aliases": [
+        "Zell/See"
+      ],
+      "coordinates": {
+        "latitude": 47.323333333333,
+        "longitude": 12.798055555556
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-08-10T12:00:00.000Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04b-austria",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "city-c8106459287724ff"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04b-austria",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "city"
+        },
+        "parentCountryEntityId": {
+          "field": "parentCountryEntityId",
+          "sourceType": "repository-reference",
+          "source": "Austria Country Entity",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q40",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "country-0ac53b7955d0cc26"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q187572",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "Q187572"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q187572",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "滨湖采尔"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q187572",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "Zell am See"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q187572",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": [
+            "Zell/See"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q187572",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": {
+            "latitude": 47.323333333333,
+            "longitude": 12.798055555556
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04b-austria",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04b-austria",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q187572",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "2026-08-10T12:00:00.000Z"
+        }
+      }
+    }
+  ]
+}

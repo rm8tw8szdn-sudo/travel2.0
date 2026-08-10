@@ -8,6 +8,7 @@ import {
   createRouteIntentFingerprint,
   validateNormalizedRouteIntent,
 } from "./route-intent-model.mjs";
+import { canonicalizeTravelRegionKey } from "./route-search-region-taxonomy.mjs";
 
 export const ROUTE_CANDIDATE_SCHEMA_VERSION = "route-generation-v2-phase2a-candidate-v1";
 export const ROUTE_CANDIDATE_STATUSES = new Set(["pending", "selected", "rejected", "needs-evidence", "failed"]);
@@ -140,9 +141,9 @@ function validateCandidateSnapshotConsistency(candidate, reasons) {
   if (canonicalCountries.length && !sameArray(snapshotCountries, canonicalCountries)) {
     reasons.push("inputIntentSnapshot-countries-mismatch:inputIntentSnapshot.targetCountries");
   }
-  const canonicalRegion = hard.region?.state === "provided" ? semanticSnapshotText(hard.region.value) : "";
+  const canonicalRegion = hard.region?.state === "provided" ? canonicalizeTravelRegionKey(hard.region.value) : "";
   const snapshotRegions = [...new Set((Array.isArray(snapshot.targetRegions) ? snapshot.targetRegions : [])
-    .map(semanticSnapshotText)
+    .map(canonicalizeTravelRegionKey)
     .filter(Boolean))];
   if (canonicalRegion && !sameArray(snapshotRegions, [canonicalRegion])) {
     reasons.push("inputIntentSnapshot-region-mismatch:inputIntentSnapshot.targetRegions");

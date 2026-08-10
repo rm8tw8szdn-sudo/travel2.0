@@ -1,16 +1,40 @@
 import assert from "node:assert/strict";
+import fs from "node:fs";
+import os from "node:os";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 
 import {
+  canonicalizeTravelRegionKey,
+  createAcceptedRouteRepository,
+  createDecisionTraceStore,
+  createEvidenceBundleStore,
+  createEvidenceRepository,
+  createKnowledgeEntityLayerPlannerAdapter,
   createKnowledgeEntityLayerSearchIntentCatalog,
   createPublishedKnowledgeEntityLayerRepository,
+  createRouteCandidatePoolStore,
+  createRouteCompositionPlanner,
   createRouteSearchService,
   parseSearchIntent,
+  ROUTE_V2_SUBNATIONAL_REGION_DEFINITIONS,
+  ROUTE_V2_TRAVEL_REGION_DEFINITIONS,
+  validateNormalizedRouteIntent,
 } from "../src/lib/routes/index.mjs";
 import { buildRouteDestinationSuggestion } from "../src/lib/routes/route-destination-suggestion.mjs";
 import { validateFallbackRouteAgainstIntent } from "../src/lib/routes/route-fallback-constraint-validator.mjs";
 import { evaluateRouteIntentOracle } from "../src/lib/routes/route-intent-model-oracle.mjs";
 
-const knowledgeRepository = createPublishedKnowledgeEntityLayerRepository();
+const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
+const temporaryRoot = fs.mkdtempSync(path.join(os.tmpdir(), "route-v2-region-island-"));
+const originalFetch = globalThis.fetch;
+let externalFetchCalls = 0;
+globalThis.fetch = async () => {
+  externalFetchCalls += 1;
+  throw new Error("NETWORK_DISABLED_FOR_REGION_ISLAND_VERIFIER");
+};
+
+const knowledgeRepository = createPublishedKnowledgeEntityLayerRepository({ projectRoot });
 const catalogs = createKnowledgeEntityLayerSearchIntentCatalog({ repository: knowledgeRepository });
 const parse = (query) => parseSearchIntent(query, { catalogs, timeIntentEnabled: true });
 
@@ -36,7 +60,18 @@ for (const [query, regionKey, countryCode, supported] of regionCases) {
   assert.equal(intent.countryCode, countryCode, query);
   assert.equal(intent.regionConstraint?.supported, supported, query);
   assert.equal(intent.normalizedRouteIntent.hardConstraints.region.state, "provided", query);
-  assert.equal(intent.normalizedRouteIntent.hardConstraints.region.value, regionKey.replaceAll("-", ""), query);
+  assert.equal(intent.normalizedRouteIntent.hardConstraints.region.value, regionKey, query);
+}
+
+for (const definition of [
+  ...ROUTE_V2_TRAVEL_REGION_DEFINITIONS,
+  ...ROUTE_V2_SUBNATIONAL_REGION_DEFINITIONS,
+]) {
+  assert.equal(canonicalizeTravelRegionKey(definition.key), definition.key, definition.key);
+  assert.equal(canonicalizeTravelRegionKey(definition.label), definition.key, definition.label);
+  for (const alias of definition.aliases || []) {
+    assert.equal(canonicalizeTravelRegionKey(alias), definition.key, `${definition.key}: ${alias}`);
+  }
 }
 
 assert.equal(
@@ -152,6 +187,65 @@ function memorySearchCache() {
   };
 }
 
+function runtimeEnv() {
+  return {
+    ROUTE_V2_RUNTIME_ENABLED: "true",
+    ROUTE_V2_CANARY_PERCENTAGE: "100",
+    ROUTE_V2_INTENT_ENABLED: "true",
+    ROUTE_V2_TIME_INTENT_ENABLED: "true",
+    ROUTE_V2_CANDIDATE_POOL_ENABLED: "true",
+    ROUTE_V2_TRACE_ENABLED: "true",
+    ROUTE_V2_EVIDENCE_BUNDLE_ENABLED: "true",
+    ROUTE_V2_EVIDENCE_LOCAL_ENABLED: "false",
+    ROUTE_V2_EVIDENCE_VALIDATION_ENABLED: "false",
+    ROUTE_V2_PUBLICATION_GATE_ENABLED: "false",
+    ROUTE_V2_READY_POOL_ENABLED: "false",
+    ROUTE_V2_EVIDENCE_ONLINE_ENABLED: "false",
+    ROUTE_V2_TAVILY_EVIDENCE_ENABLED: "false",
+    ROUTE_V2_WIKIVOYAGE_EVIDENCE_ENABLED: "false",
+    SEARCH_MAX_PLANNER_CALLS_PER_REQUEST: "1",
+    SEARCH_PLANNER_TIMEOUT_MS: "30000",
+    SEARCH_AUTO_ACCEPT_GENERATED: "false",
+  };
+}
+
+function createRealService(root) {
+  const env = runtimeEnv();
+  const acceptedRepository = createAcceptedRouteRepository({
+    storagePath: path.join(root, "accepted", "accepted-routes.json"),
+  });
+  const planner = createRouteCompositionPlanner({
+    acceptedRepository,
+    evidenceRepository: createEvidenceRepository({
+      storagePath: path.join(root, "runtime", "legacy-evidence.json"),
+    }),
+    candidatePoolStore: createRouteCandidatePoolStore({
+      storagePath: path.join(root, "runtime", "candidate-pool.jsonl"),
+      env,
+    }),
+    decisionTraceStore: createDecisionTraceStore({
+      storagePath: path.join(root, "runtime", "decision-traces.jsonl"),
+      env,
+    }),
+    evidenceBundleStore: createEvidenceBundleStore({
+      storagePath: path.join(root, "runtime", "evidence-bundles.jsonl"),
+      env,
+    }),
+    knowledgeGraph: createKnowledgeEntityLayerPlannerAdapter({ repository: knowledgeRepository }),
+    env,
+  });
+  return {
+    acceptedRepository,
+    service: createRouteSearchService({
+      acceptedRepository,
+      searchCache: memorySearchCache(),
+      planner,
+      intentCatalog: catalogs,
+      env,
+    }),
+  };
+}
+
 const accepted = [
   route("accepted-nz-road-trip", "NZ", [{ id: "Q37100", name: "Auckland" }, { id: "Q219416", name: "Queenstown" }], {
     durationDays: 10,
@@ -195,9 +289,72 @@ const globalResult = await service.search({ query: "island vacation", limit: 6, 
 assert(globalResult.records.length > 0, JSON.stringify(globalResult.diagnostics));
 assert(globalResult.records.some((record) => record.id === "accepted-us-island"));
 
+const real = createRealService(path.join(temporaryRoot, "real-planner"));
+const productionCases = [
+  ["Lake Como 7 days", "lake-como", "Q1308"],
+  ["Jeju Island 7 days", "jeju-island", "Q42142"],
+  ["Mallorca island vacation", "mallorca", null],
+  ["Tenerife island vacation", "tenerife", null],
+  ["Andalusia road trip", "andalusia", null],
+  ["Provence 7 days", "provence", null],
+  ["Dolomites hiking 7 days", "dolomites", null],
+];
+const productionResults = [];
+for (const [query, regionKey, requiredDestinationId] of productionCases) {
+  const result = await real.service.search({ query, limit: 6, sessionId: `region-production-${regionKey}` });
+  productionResults.push({ query, regionKey, records: result.records.length, reason: result.diagnostics.reason || "" });
+  assert.equal(result.intent.normalizedRouteIntent.hardConstraints.region.value, regionKey, query);
+  for (const record of result.records) {
+    const validation = validateFallbackRouteAgainstIntent(record, result.intent);
+    assert.equal(validation.matched, true, `${query}: ${JSON.stringify(validation)}`);
+    const oracle = evaluateRouteIntentOracle(result.intent.normalizedRouteIntent, record, { requireFingerprint: false });
+    assert.equal(oracle.matched, true, `${query}: ${JSON.stringify(oracle)}`);
+    if (requiredDestinationId) {
+      const destinationIds = (record.destinationEntities || []).flatMap((destination) => [
+        destination.wikidataId,
+        destination.entityId,
+        destination.id,
+      ]).filter(Boolean);
+      assert(destinationIds.includes(requiredDestinationId), `${query}: ${JSON.stringify(destinationIds)}`);
+    }
+  }
+  if (result.records.length === 0) {
+    assert([
+      "constraint-conflict",
+      "destination-suggestion-region-unsupported",
+      "no-valid-route",
+    ].includes(result.diagnostics.reason || result.intent.destinationSuggestionStatus), JSON.stringify(result.diagnostics));
+  }
+}
+assert.equal(real.acceptedRepository.list({ limit: 100 }).records.length, 0);
+
+const canonicalMismatchIntent = structuredClone(parsedByRegion.get("lake-como").normalizedRouteIntent);
+canonicalMismatchIntent.hardConstraints.region.value = "lake-como-stale";
+const canonicalMismatchRoute = route("lake-como-canonical-mutation", "IT", [{ id: "Q1308", name: "Como" }]);
+const canonicalMismatchValidation = validateFallbackRouteAgainstIntent(canonicalMismatchRoute, canonicalMismatchIntent);
+assert.equal(canonicalMismatchValidation.matched, false);
+assert(canonicalMismatchValidation.reasonCodes.includes("region-definition-missing"), JSON.stringify(canonicalMismatchValidation));
+const canonicalMismatchOracle = evaluateRouteIntentOracle(canonicalMismatchIntent, canonicalMismatchRoute, { requireFingerprint: false });
+assert.equal(canonicalMismatchOracle.matched, false);
+assert(canonicalMismatchOracle.violationCodes.includes("region-definition-missing"), JSON.stringify(canonicalMismatchOracle));
+
+const legacyCompactedRegionIntent = structuredClone(parsedByRegion.get("lake-como").normalizedRouteIntent);
+legacyCompactedRegionIntent.hardConstraints.region.value = "lakecomo";
+const compactedValidation = validateNormalizedRouteIntent(legacyCompactedRegionIntent);
+assert.equal(compactedValidation.valid, false);
+assert(compactedValidation.violations.some((entry) => (
+  entry.path === "hardConstraints.region.value" && entry.code === "non-canonical-value"
+)), JSON.stringify(compactedValidation));
+
+assert.equal(externalFetchCalls, 0);
+globalThis.fetch = originalFetch;
+fs.rmSync(temporaryRoot, { recursive: true, force: true });
+
 console.log(JSON.stringify({
   status: "PASS",
   regionCases: regionCases.length,
   fingerprints: new Set([...parsedByRegion.values()].map((intent) => intent.routeIntentFingerprint)).size,
   globalIslandRecords: globalResult.records.length,
+  productionResults,
+  externalFetchCalls,
 }));

@@ -345,7 +345,10 @@ export {
   SEARCH_INTENT_CATALOGS,
 } from "./search-intent-parser.mjs";
 export {
+  canonicalizeTravelRegionKey,
   createTravelRegionCatalog,
+  resolveTravelRegionDefinition,
+  ROUTE_V2_SUBNATIONAL_REGION_DEFINITIONS,
   ROUTE_V2_TRAVEL_REGION_DEFINITIONS,
 } from "./route-search-region-taxonomy.mjs";
 export { SEARCH_KNOWLEDGE_GRAPH_FALLBACKS, mergeSearchKnowledgeGraphFallbacks } from "./search-knowledge-graph-fallbacks.mjs";

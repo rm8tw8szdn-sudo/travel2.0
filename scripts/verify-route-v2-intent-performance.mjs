@@ -238,7 +238,6 @@ const rawIntent = {
   durationDays: 7,
   timeIntent: { type: "single-month", months: [2] },
   countryCode: "JP",
-  normalizedRegion: "kansai",
   travelStyle: "文化",
 };
 const normalizedIntent = normalizeRouteIntent(rawIntent);

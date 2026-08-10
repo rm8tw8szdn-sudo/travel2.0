@@ -78,7 +78,7 @@ function assertParserCase(testCase, intent) {
     assert(intent.regionCountryCodes.length > 0, `${label}: region must resolve to a bounded country set`);
     assert.equal(
       intent.normalizedRouteIntent.hardConstraints.region.value,
-      expected.region.replace(/-/gu, ""),
+      expected.region,
       label,
     );
   }

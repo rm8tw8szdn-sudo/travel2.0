@@ -32,7 +32,6 @@ const baseIntent = {
   destinationOrderMode: "fixed",
   durationDays: 7,
   countryCode: "JP",
-  region: "Japan Core",
   timeIntent: { type: "single-month", months: [2], season: null },
 };
 const baseRoute = {

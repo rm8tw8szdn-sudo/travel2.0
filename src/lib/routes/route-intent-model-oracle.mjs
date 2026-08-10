@@ -5,7 +5,12 @@ import {
   readRouteIntentEnvelope,
   validateNormalizedRouteIntent,
 } from "./route-intent-model.mjs";
-import { ROUTE_V2_SUBNATIONAL_REGION_DEFINITIONS } from "./route-search-region-taxonomy.mjs";
+import {
+  ROUTE_V2_SUBNATIONAL_REGION_DEFINITIONS,
+  ROUTE_V2_TRAVEL_REGION_DEFINITIONS,
+  canonicalizeTravelRegionKey,
+  resolveTravelRegionDefinition,
+} from "./route-search-region-taxonomy.mjs";
 
 const tidy = (value) => String(value ?? "").normalize("NFKC").trim().toLocaleLowerCase("en-US")
   .replace(/[^\p{L}\p{N}]+/gu, "");
@@ -68,14 +73,10 @@ function hasTimeEvidence(route = {}) {
 }
 
 function oracleSubnationalRegion(value) {
-  const expected = tidy(value);
-  if (!expected) return null;
-  return ROUTE_V2_SUBNATIONAL_REGION_DEFINITIONS.find((definition) => (
-    [definition.key, definition.label, ...(definition.aliases || [])]
-      .map(tidy)
-      .filter(Boolean)
-      .includes(expected)
-  )) || null;
+  return resolveTravelRegionDefinition(
+    canonicalizeTravelRegionKey(value),
+    ROUTE_V2_SUBNATIONAL_REGION_DEFINITIONS,
+  );
 }
 
 function oracleDestinationMatchesRegion(point = {}, definition = null) {
@@ -196,13 +197,19 @@ export function evaluateRouteIntentOracle(normalizedIntentInput, route = {}, opt
   ].filter(Boolean));
   if (expectedRegion.state === "provided" && expectedRegion.value) {
     const localRegion = oracleSubnationalRegion(expectedRegion.value);
-    if (localRegion) {
+    const macroRegion = resolveTravelRegionDefinition(
+      canonicalizeTravelRegionKey(expectedRegion.value),
+      ROUTE_V2_TRAVEL_REGION_DEFINITIONS,
+    );
+    if (!localRegion && !macroRegion) {
+      violations.push("region-definition-missing");
+    } else if (localRegion) {
       if (!(localRegion.knownDestinationIds || []).length) violations.push("unsupported-region");
       else if (!constraintPoints.length
         || constraintPoints.some((point) => !oracleDestinationMatchesRegion(point, localRegion))) {
         violations.push("region-mismatch");
       }
-    } else if (!regionScopedCountrySet && !regions.has(expectedRegion.value)) {
+    } else if (!regionScopedCountrySet && !regions.has(tidy(macroRegion.key))) {
       violations.push("region-mismatch");
     }
   }

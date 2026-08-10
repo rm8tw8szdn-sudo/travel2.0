@@ -25,7 +25,8 @@ export function validateFallbackRouteAgainstIntent(record = {}, routeIntent = {}
   const countryConflict = validation.reasonCodes.includes("country-mismatch");
   const regionConflict = validation.reasonCodes.includes("region-mismatch")
     || validation.reasonCodes.includes("region-country-mismatch")
-    || validation.reasonCodes.includes("unsupported-region");
+    || validation.reasonCodes.includes("unsupported-region")
+    || validation.reasonCodes.includes("region-definition-missing");
   const destinationConflict = missing.length > 0
     || orderMismatch
     || validation.reasonCodes.includes("unexpected-city-added")

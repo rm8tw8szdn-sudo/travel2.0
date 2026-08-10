@@ -123,6 +123,11 @@ const SUBNATIONAL_REGION_DEFINITIONS = Object.freeze([
   }),
 ]);
 
+const ALL_REGION_DEFINITIONS = Object.freeze([
+  ...REGION_DEFINITIONS,
+  ...SUBNATIONAL_REGION_DEFINITIONS,
+]);
+
 function countryMetadata(country = {}) {
   return [
     country.continent,
@@ -173,9 +178,18 @@ export const ROUTE_V2_SUBNATIONAL_REGION_DEFINITIONS = SUBNATIONAL_REGION_DEFINI
 
 const SUBNATIONAL_REGION_TOKEN_INDEX = new Map();
 const SUBNATIONAL_REGION_DESTINATION_INDEX = new Map();
+const MACRO_REGION_TOKEN_INDEX = new Map();
+const ALL_REGION_TOKEN_INDEX = new Map();
+for (const definition of REGION_DEFINITIONS) {
+  for (const token of uniqueRegionTokens(definition)) {
+    MACRO_REGION_TOKEN_INDEX.set(token, definition);
+    ALL_REGION_TOKEN_INDEX.set(token, definition);
+  }
+}
 for (const definition of SUBNATIONAL_REGION_DEFINITIONS) {
   for (const token of uniqueRegionTokens(definition)) {
     SUBNATIONAL_REGION_TOKEN_INDEX.set(token, definition);
+    ALL_REGION_TOKEN_INDEX.set(token, definition);
   }
   SUBNATIONAL_REGION_DESTINATION_INDEX.set(
     definition.key,
@@ -186,20 +200,27 @@ for (const definition of SUBNATIONAL_REGION_DEFINITIONS) {
 export function resolveTravelRegionDefinition(value, catalog = SUBNATIONAL_REGION_DEFINITIONS) {
   const cleaned = clean(value);
   if (!cleaned) return null;
-  if (catalog === SUBNATIONAL_REGION_DEFINITIONS && /^[a-z0-9-]+$/u.test(cleaned)) {
-    return SUBNATIONAL_REGION_TOKEN_INDEX.get(cleaned.toLowerCase()) || null;
-  }
   const token = normalize(value);
   const compact = token.replace(/\s+/gu, "");
-  if (catalog === SUBNATIONAL_REGION_DEFINITIONS) {
-    return SUBNATIONAL_REGION_TOKEN_INDEX.get(token)
-      || SUBNATIONAL_REGION_TOKEN_INDEX.get(compact)
-      || null;
-  }
+  const index = catalog === SUBNATIONAL_REGION_DEFINITIONS
+    ? SUBNATIONAL_REGION_TOKEN_INDEX
+    : catalog === REGION_DEFINITIONS
+      ? MACRO_REGION_TOKEN_INDEX
+      : catalog === ALL_REGION_DEFINITIONS
+        ? ALL_REGION_TOKEN_INDEX
+        : null;
+  if (index) return index.get(token) || index.get(compact) || null;
   return (Array.isArray(catalog) ? catalog : []).find((definition) => {
     const tokens = uniqueRegionTokens(definition);
     return tokens.has(token) || tokens.has(compact);
   }) || null;
+}
+
+export function canonicalizeTravelRegionKey(value, catalog = ALL_REGION_DEFINITIONS) {
+  if (!clean(value)) return "";
+  const definition = resolveTravelRegionDefinition(value, catalog);
+  if (definition) return definition.key;
+  return normalize(value).replace(/\s+/gu, "-");
 }
 
 function uniqueRegionTokens(definition = {}) {

@@ -9,12 +9,10 @@ import {
 } from "./route-intent-model.mjs";
 import {
   ROUTE_V2_SUBNATIONAL_REGION_DEFINITIONS,
+  ROUTE_V2_TRAVEL_REGION_DEFINITIONS,
   destinationMatchesTravelRegion,
+  resolveTravelRegionDefinition,
 } from "./route-search-region-taxonomy.mjs";
-
-const LOCAL_REGION_DEFINITION_CACHE = new Map(
-  ROUTE_V2_SUBNATIONAL_REGION_DEFINITIONS.map((definition) => [definition.key, definition]),
-);
 
 function clean(value) {
   return String(value ?? "").normalize("NFKC").trim().replace(/\s+/gu, " ");
@@ -400,7 +398,10 @@ export function validateRouteIntentInvariants(record = {}, routeIntent = {}, opt
   const actualCountries = routeCountryCodes(record, destinations);
   const expectedRegion = normalizedIntent.hardConstraints.region;
   const localRegionDefinition = expectedRegion?.state === "provided"
-    ? LOCAL_REGION_DEFINITION_CACHE.get(expectedRegion.value) || null
+    ? resolveTravelRegionDefinition(expectedRegion.value, ROUTE_V2_SUBNATIONAL_REGION_DEFINITIONS)
+    : null;
+  const macroRegionDefinition = expectedRegion?.state === "provided"
+    ? resolveTravelRegionDefinition(expectedRegion.value, ROUTE_V2_TRAVEL_REGION_DEFINITIONS)
     : null;
   const regionScopedCountrySet = expectedRegion?.state === "provided"
     && Boolean(expectedRegion.value)
@@ -422,7 +423,10 @@ export function validateRouteIntentInvariants(record = {}, routeIntent = {}, opt
   }
 
   const actualRegions = routeRegions(record, destinations);
-  if (localRegionDefinition) {
+  if (expectedRegion.state === "provided" && expectedRegion.value
+    && !localRegionDefinition && !macroRegionDefinition) {
+    violations.push(violation("region-definition-missing", "region", expectedRegion.value, actualRegions, source));
+  } else if (localRegionDefinition) {
     if (localRegionDefinition.knownDestinationIds.length === 0) {
       violations.push(violation("unsupported-region", "region", expectedRegion.value, [], source));
     } else {
@@ -440,6 +444,7 @@ export function validateRouteIntentInvariants(record = {}, routeIntent = {}, opt
       }
     }
   } else if (!regionScopedCountrySet
+    && macroRegionDefinition
     && expectedRegion.state === "provided"
     && expectedRegion.value
     && !actualRegions.includes(expectedRegion.value)) {
@@ -571,7 +576,8 @@ export function validateRouteIntentInvariants(record = {}, routeIntent = {}, opt
     countryConflict: reasonCodes.includes("country-mismatch"),
     regionConflict: reasonCodes.includes("region-mismatch")
       || reasonCodes.includes("region-country-mismatch")
-      || reasonCodes.includes("unsupported-region"),
+      || reasonCodes.includes("unsupported-region")
+      || reasonCodes.includes("region-definition-missing"),
     themeConflict: reasonCodes.includes("explicit-theme-mismatch"),
     themeCompatibility,
   };

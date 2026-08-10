@@ -1,5 +1,6 @@
 import crypto from "node:crypto";
 import { maxDestinationsForTripDays } from "./route-trip-capacity.mjs";
+import { canonicalizeTravelRegionKey } from "./route-search-region-taxonomy.mjs";
 
 export const ROUTE_INTENT_SCHEMA_VERSION = "route-intent-v1";
 export const ROUTE_INTENT_FINGERPRINT_VERSION = "route-intent-fingerprint-v1";
@@ -429,6 +430,17 @@ export function validateNormalizedRouteIntent(input) {
         provided: validateStableString,
         empty: validateEmptyString,
       });
+      if (hard.region?.state === "provided" && typeof hard.region.value === "string") {
+        const canonicalRegion = canonicalizeTravelRegionKey(hard.region.value);
+        if (canonicalRegion !== hard.region.value) {
+          violations.push(schemaViolation(
+            "hardConstraints.region.value",
+            `canonical Region key ${canonicalRegion}`,
+            hard.region.value,
+            "non-canonical-value",
+          ));
+        }
+      }
       validateScalarPresence(hard.routeCapacity, "hardConstraints.routeCapacity", violations, {
         provided: validatePositiveInteger,
         empty: validateNull,
@@ -669,7 +681,8 @@ export function normalizeRouteIntent(input = {}) {
     && (hasOwn(input, "countryCode") || hasOwn(input, "countryEntityId") || hasOwn(input, "country"));
   const country = presence(countryProvided, countryText, !countryText);
 
-  const regionText = semanticText(input.normalizedRegion || input.regionEntityId || input.region);
+  const regionInput = input.normalizedRegion || input.regionEntityId || input.region;
+  const regionText = regionInput ? canonicalizeTravelRegionKey(regionInput) : "";
   const regionProvided = hasOwn(input, "normalizedRegion") || hasOwn(input, "regionEntityId") || hasOwn(input, "region");
   const region = presence(regionProvided, regionText, !regionText);
 

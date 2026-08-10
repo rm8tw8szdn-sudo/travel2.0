@@ -238,7 +238,6 @@ const rawIntent = {
   durationDays: 7,
   timeIntent: { type: "single-month", months: [2] },
   countryCode: "JP",
-  normalizedRegion: "kansai",
   travelStyle: "文化",
 };
 const normalizedIntent = normalizeRouteIntent(rawIntent);
@@ -309,7 +308,10 @@ local.cacheReplay = measure(() => {
 }, { warmup: 10, samples: 30, batchSize: 1 });
 
 const readyPool = createRouteV2ReadyPool({
-  env: { ROUTE_V2_READY_POOL_ENABLED: "true" },
+  env: {
+    ROUTE_V2_RUNTIME_ENABLED: "true",
+    ROUTE_V2_READY_POOL_ENABLED: "true",
+  },
   storagePath: path.join(temporaryRoot, "ready-pool.json"),
 });
 const publicationGate = {
@@ -326,7 +328,10 @@ local.readyPoolRead = measure(() => {
 
 const candidateStore = createRouteCandidatePoolStore({
   storagePath: path.join(temporaryRoot, "route-candidates.jsonl"),
-  env: { ROUTE_V2_CANDIDATE_POOL_ENABLED: "true" },
+  env: {
+    ROUTE_V2_RUNTIME_ENABLED: "true",
+    ROUTE_V2_CANDIDATE_POOL_ENABLED: "true",
+  },
 });
 const performanceCandidate = normalizeRouteCandidate({
   intentId: "intent-performance",

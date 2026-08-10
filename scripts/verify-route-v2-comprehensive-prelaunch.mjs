@@ -41,6 +41,7 @@ const isolation = {
   browserProfile: path.join(temporaryRoot, "browser", "profile"),
   screenshots: path.join(temporaryRoot, "browser", "screenshots"),
   performance: path.join(temporaryRoot, "browser", "performance"),
+  runtimeMetrics: path.join(temporaryRoot, "runtime", "route-v2-runtime-metrics.json"),
 };
 
 let stage = "initialize";
@@ -161,6 +162,9 @@ try {
     ROUTE_V2_BROWSER_PROFILE_DIR: isolation.browserProfile,
     ROUTE_V2_SCREENSHOT_DIR: isolation.screenshots,
     ROUTE_V2_PERFORMANCE_DIR: isolation.performance,
+    ROUTE_V2_RUNTIME_METRICS_PATH: isolation.runtimeMetrics,
+    ROUTE_V2_RUNTIME_ENABLED: "true",
+    ROUTE_V2_CANARY_PERCENTAGE: "100",
     ROUTE_V2_INTENT_ENABLED: "true",
     ROUTE_V2_TIME_INTENT_ENABLED: "true",
     ROUTE_V2_CANDIDATE_POOL_ENABLED: "true",

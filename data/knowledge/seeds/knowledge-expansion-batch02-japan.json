@@ -1,0 +1,153 @@
+{
+  "schemaVersion": "route-v2-knowledge-expansion-batch02-japan-seed-v1",
+  "country": {
+    "isoAlpha2": "JP",
+    "wikidataId": "Q17",
+    "countryEntityId": "country-a0509b9eab0ea9ce"
+  },
+  "explicitQids": {
+    "city:nara": "Q22150",
+    "city:hakone": "Q671040",
+    "city:yufuin": "Q990455",
+    "city:okinawa-city": "Q328615",
+    "poi:osaka:Kuromon Ichiba Market": "Q10855506",
+    "poi:osaka:Expo '70 Commemorative Park": "Q4817249",
+    "poi:kawaguchiko:Mount Fuji Panoramic Ropeway": "Q7699891",
+    "poi:kawaguchiko:Kawaguchiko Music Forest Museum": "Q11553670",
+    "poi:takayama:Takayama Jinya": "Q11669454",
+    "poi:takayama:Sakurayama Hachimangu Shrine": "Q11537980",
+    "poi:yufuin:Lake Kinrin": "Q11648024",
+    "poi:kumamoto:Reigando Cave": "Q1856438",
+    "poi:hakodate:Hakodate Morning Market": "Q10896697",
+    "poi:hakodate:Kanemori Red Brick Warehouse": "Q11647285",
+    "poi:hakodate:Hakodate Orthodox Church": "Q4504662",
+    "poi:okinawa-city:Okinawa Zoo & Museum": "Q11552583",
+    "poi:okinawa-city:Koza Music Town": "Q22118212",
+    "poi:otaru:Otaru Canal": "Q10959355"
+  },
+  "cities": [
+    { "key": "tokyo", "existing": true, "wikidataId": "Q1490", "canonicalNameEn": "Tokyo", "canonicalNameZh": "东京都", "aliases": ["东京", "東京"] },
+    { "key": "kyoto", "existing": true, "wikidataId": "Q34600", "canonicalNameEn": "Kyoto", "canonicalNameZh": "京都市", "aliases": ["京都"] },
+    { "key": "osaka", "enwikiTitle": "Osaka", "canonicalNameEn": "Osaka", "canonicalNameZh": "大阪市", "aliases": ["大阪"] },
+    { "key": "nara", "enwikiTitle": "Nara, Nara", "canonicalNameEn": "Nara", "canonicalNameZh": "奈良市", "aliases": ["奈良"] },
+    { "key": "kobe", "enwikiTitle": "Kobe", "canonicalNameEn": "Kobe", "canonicalNameZh": "神户市", "aliases": ["神户", "神戶"] },
+    { "key": "nagoya", "enwikiTitle": "Nagoya", "canonicalNameEn": "Nagoya", "canonicalNameZh": "名古屋市", "aliases": ["名古屋"] },
+    { "key": "hakone", "enwikiTitle": "Hakone, Kanagawa", "canonicalNameEn": "Hakone", "canonicalNameZh": "箱根町", "aliases": ["箱根"] },
+    { "key": "kamakura", "enwikiTitle": "Kamakura", "canonicalNameEn": "Kamakura", "canonicalNameZh": "镰仓市", "aliases": ["镰仓", "鎌倉"] },
+    { "key": "kawaguchiko", "enwikiTitle": "Fujikawaguchiko", "canonicalNameEn": "Fujikawaguchiko", "canonicalNameZh": "富士河口湖町", "aliases": ["Kawaguchiko", "河口湖", "富士河口湖"] },
+    { "key": "takayama", "enwikiTitle": "Takayama, Gifu", "canonicalNameEn": "Takayama", "canonicalNameZh": "高山市", "aliases": ["高山", "飞驒高山", "飛驒高山"] },
+    { "key": "kanazawa", "enwikiTitle": "Kanazawa", "canonicalNameEn": "Kanazawa", "canonicalNameZh": "金泽市", "aliases": ["金泽", "金澤"] },
+    { "key": "hiroshima", "enwikiTitle": "Hiroshima", "canonicalNameEn": "Hiroshima", "canonicalNameZh": "广岛市", "aliases": ["广岛", "廣島"] },
+    { "key": "miyajima", "enwikiTitle": "Itsukushima", "canonicalNameEn": "Miyajima", "canonicalNameZh": "宫岛", "aliases": ["Itsukushima", "严岛", "嚴島", "宮島"] },
+    { "key": "fukuoka", "enwikiTitle": "Fukuoka", "canonicalNameEn": "Fukuoka", "canonicalNameZh": "福冈市", "aliases": ["福冈", "福岡"] },
+    { "key": "yufuin", "enwikiTitle": "Yufu", "canonicalNameEn": "Yufuin (Yufu)", "canonicalNameZh": "由布院（由布市）", "aliases": ["Yufuin", "Yufu", "由布院", "由布市", "汤布院", "湯布院", "由布院温泉"] },
+    { "key": "beppu", "enwikiTitle": "Beppu", "canonicalNameEn": "Beppu", "canonicalNameZh": "别府市", "aliases": ["别府", "別府"] },
+    { "key": "kumamoto", "enwikiTitle": "Kumamoto", "canonicalNameEn": "Kumamoto", "canonicalNameZh": "熊本市", "aliases": ["熊本"] },
+    { "key": "sapporo", "enwikiTitle": "Sapporo", "canonicalNameEn": "Sapporo", "canonicalNameZh": "札幌市", "aliases": ["札幌"] },
+    { "key": "otaru", "enwikiTitle": "Otaru", "canonicalNameEn": "Otaru", "canonicalNameZh": "小樽市", "aliases": ["小樽"] },
+    { "key": "hakodate", "enwikiTitle": "Hakodate", "canonicalNameEn": "Hakodate", "canonicalNameZh": "函馆市", "aliases": ["函馆", "函館"] },
+    { "key": "okinawa-city", "enwikiTitle": "Okinawa, Okinawa", "canonicalNameEn": "Okinawa City", "canonicalNameZh": "冲绳市", "aliases": ["Okinawa", "冲绳", "沖縄市"] },
+    { "key": "naha", "enwikiTitle": "Naha", "canonicalNameEn": "Naha", "canonicalNameZh": "那霸市", "aliases": ["那霸", "那覇"] }
+  ],
+  "poiGroups": {
+    "tokyo": [
+      ["Meiji Shrine", "Meiji Jingū", "明治神宫"], ["Sensō-ji", "Sensō-ji Temple", "浅草寺"], ["Tokyo Tower", "Tokyo Tower", "东京塔"],
+      ["Shibuya Crossing", "Shibuya Crossing", "涩谷十字路口"], ["Tokyo Skytree", "Tokyo Skytree", "东京晴空塔"], ["Tokyo Imperial Palace", "Tokyo Imperial Palace", "东京皇居"],
+      ["Ueno Park", "Ueno Park", "上野公园"], ["Tokyo National Museum", "Tokyo National Museum", "东京国立博物馆"], ["Shinjuku Gyo-en", "Shinjuku Gyo-en", "新宿御苑"],
+      ["Hama-rikyū Gardens", "Hama-rikyū Gardens", "滨离宫恩赐庭园"], ["Mori Art Museum", "Mori Art Museum", "森美术馆"], ["National Museum of Nature and Science", "National Museum of Nature and Science", "国立科学博物馆"],
+      ["Kabuki-za", "Kabuki-za", "歌舞伎座"], ["Edo-Tokyo Museum", "Edo-Tokyo Museum", "江户东京博物馆"], ["Odaiba", "Odaiba", "台场"],
+      ["Roppongi Hills", "Roppongi Hills", "六本木新城"], ["Nezu Shrine", "Nezu Shrine", "根津神社"], ["Yoyogi Park", "Yoyogi Park", "代代木公园"],
+      ["Koishikawa Kōrakuen Garden", "Koishikawa Kōrakuen", "小石川后乐园"], ["Akihabara", "Akihabara", "秋叶原"]
+    ],
+    "kyoto": [
+      ["Fushimi Inari-taisha", "Fushimi Inari-taisha", "伏见稻荷大社"], ["Kinkaku-ji", "Kinkaku-ji", "金阁寺"], ["Kiyomizu-dera", "Kiyomizu-dera", "清水寺"],
+      ["Ginkaku-ji", "Ginkaku-ji", "银阁寺"], ["Nijō Castle", "Nijō Castle", "二条城"], ["Arashiyama", "Arashiyama", "岚山"],
+      ["Togetsukyō Bridge", "Togetsukyō Bridge", "渡月桥"], ["Tenryū-ji", "Tenryū-ji", "天龙寺"], ["Ryōan-ji", "Ryōan-ji", "龙安寺"],
+      ["Kyoto Imperial Palace", "Kyoto Imperial Palace", "京都御所"], ["Nishiki Market", "Nishiki Market", "锦市场"], ["Gion", "Gion", "祇园"],
+      ["Yasaka Shrine", "Yasaka Shrine", "八坂神社"], ["Sanjūsangen-dō", "Sanjūsangen-dō", "三十三间堂"], ["Kyoto National Museum", "Kyoto National Museum", "京都国立博物馆"],
+      ["Heian Shrine", "Heian Shrine", "平安神宫"], ["Nanzen-ji", "Nanzen-ji", "南禅寺"], ["Philosopher's Walk", "Philosopher's Walk", "哲学之道"],
+      ["Tōfuku-ji", "Tōfuku-ji", "东福寺"], ["Kyoto Railway Museum", "Kyoto Railway Museum", "京都铁道博物馆"]
+    ],
+    "osaka": [
+      ["Osaka Castle", "Osaka Castle", "大阪城"], ["Dōtonbori", "Dōtonbori", "道顿堀"], ["Shitennō-ji", "Shitennō-ji", "四天王寺"],
+      ["Umeda Sky Building", "Umeda Sky Building", "梅田蓝天大厦"], ["Osaka Aquarium Kaiyukan", "Osaka Aquarium Kaiyukan", "大阪海游馆"], ["Tsūtenkaku", "Tsūtenkaku", "通天阁"],
+      ["Sumiyoshi-taisha", "Sumiyoshi-taisha", "住吉大社"], ["National Museum of Art, Osaka", "National Museum of Art, Osaka", "国立国际美术馆"], ["Osaka Museum of History", "Osaka Museum of History", "大阪历史博物馆"],
+      ["Kuromon Ichiba Market", "Kuromon Ichiba Market", "黑门市场"], ["Nakanoshima Park", "Nakanoshima Park", "中之岛公园"], ["Abeno Harukas", "Abeno Harukas", "阿倍野Harukas"],
+      ["Expo '70 Commemorative Park", "Expo '70 Commemorative Park", "万博纪念公园"], ["Shinsekai", "Shinsekai", "新世界"], ["Osaka Science Museum", "Osaka Science Museum", "大阪市立科学馆"]
+    ],
+    "nara": [
+      ["Tōdai-ji", "Tōdai-ji", "东大寺"], ["Nara Park", "Nara Park", "奈良公园"], ["Kasuga-taisha", "Kasuga-taisha", "春日大社"], ["Kōfuku-ji", "Kōfuku-ji", "兴福寺"],
+      ["Hōryū-ji", "Hōryū-ji", "法隆寺"], ["Isui-en", "Isui-en", "依水园"], ["Nara National Museum", "Nara National Museum", "奈良国立博物馆"], ["Yakushi-ji", "Yakushi-ji", "药师寺"]
+    ],
+    "kobe": [
+      ["Kobe Harborland", "Kobe Harborland", "神户港湾乐园"], ["Kobe Port Tower", "Kobe Port Tower", "神户港塔"], ["Kobe Nunobiki Herb Gardens", "Kobe Nunobiki Herb Gardens", "神户布引香草园"], ["Ikuta Shrine", "Ikuta Shrine", "生田神社"],
+      ["Kobe City Museum", "Kobe City Museum", "神户市立博物馆"], ["Kitano-chō", "Kitano-chō", "北野町"], ["Mount Rokkō", "Mount Rokkō", "六甲山"], ["Meriken Park", "Meriken Park", "美利坚公园"]
+    ],
+    "nagoya": [
+      ["Nagoya Castle", "Nagoya Castle", "名古屋城"], ["Atsuta Shrine", "Atsuta Shrine", "热田神宫"], ["Toyota Commemorative Museum of Industry and Technology", "Toyota Commemorative Museum of Industry and Technology", "丰田产业技术纪念馆"], ["SCMaglev and Railway Park", "SCMaglev and Railway Park", "磁浮铁道馆"],
+      ["Tokugawa Art Museum", "Tokugawa Art Museum", "德川美术馆"], ["Nagoya City Science Museum", "Nagoya City Science Museum", "名古屋市科学馆"], ["Ōsu Kannon", "Ōsu Kannon", "大须观音"], ["Noritake Garden", "Noritake Garden", "则武之森"]
+    ],
+    "hakone": [
+      ["Hakone Shrine", "Hakone Shrine", "箱根神社"], ["Hakone Open-Air Museum", "Hakone Open-Air Museum", "箱根雕刻之森美术馆"], ["Lake Ashi", "Lake Ashi", "芦之湖"],
+      ["Ōwakudani", "Ōwakudani", "大涌谷"], ["Hakone Ropeway", "Hakone Ropeway", "箱根空中缆车"], ["Pola Museum of Art", "Pola Museum of Art", "Pola美术馆"]
+    ],
+    "kamakura": [
+      ["Kōtoku-in", "Kōtoku-in", "高德院"], ["Tsurugaoka Hachimangū", "Tsurugaoka Hachimangū", "鹤冈八幡宫"], ["Hase-dera (Kamakura)", "Hase-dera", "长谷寺"], ["Hōkoku-ji", "Hōkoku-ji", "报国寺"],
+      ["Engaku-ji", "Engaku-ji", "圆觉寺"], ["Kenchō-ji", "Kenchō-ji", "建长寺"], ["Komachi Street", "Komachi Street", "小町通"]
+    ],
+    "kawaguchiko": [
+      ["Lake Kawaguchi", "Lake Kawaguchi", "河口湖"], ["Mount Fuji Panoramic Ropeway", "Mount Fuji Panoramic Ropeway", "富士山全景缆车"], ["Kawaguchiko Music Forest Museum", "Kawaguchiko Music Forest Museum", "河口湖音乐森林美术馆"],
+      ["Oishi Park", "Oishi Park", "大石公园"], ["Fuji-Q Highland", "Fuji-Q Highland", "富士急乐园"]
+    ],
+    "takayama": [
+      ["Takayama Jinya", "Takayama Jinya", "高山阵屋"], ["Hida Minzoku Mura Folk Village", "Hida Folk Village", "飞驒民俗村"], ["Takayama Festival", "Takayama Festival", "高山祭"],
+      ["Hida Kokubun-ji", "Hida Kokubun-ji", "飞驒国分寺"], ["Sakurayama Hachimangu Shrine", "Sakurayama Hachimangu Shrine", "樱山八幡宫"], ["Takayama Festival Floats Exhibition Hall", "Takayama Festival Floats Exhibition Hall", "高山祭屋台会馆"]
+    ],
+    "kanazawa": [
+      ["Kenroku-en", "Kenroku-en", "兼六园"], ["Kanazawa Castle", "Kanazawa Castle", "金泽城"], ["21st Century Museum of Contemporary Art, Kanazawa", "21st Century Museum of Contemporary Art, Kanazawa", "金泽21世纪美术馆"], ["Higashi Chaya District", "Higashi Chaya District", "东茶屋街"],
+      ["Ōmichō Market", "Ōmichō Market", "近江町市场"], ["Nagamachi", "Nagamachi", "长町武家屋敷迹"], ["D. T. Suzuki Museum", "D. T. Suzuki Museum", "铃木大拙馆"], ["Myōryū-ji", "Myōryū-ji", "妙立寺"]
+    ],
+    "hiroshima": [
+      ["Hiroshima Peace Memorial Park", "Hiroshima Peace Memorial Park", "广岛和平纪念公园"], ["Hiroshima Peace Memorial", "Hiroshima Peace Memorial", "原爆圆顶馆"], ["Hiroshima Peace Memorial Museum", "Hiroshima Peace Memorial Museum", "广岛和平纪念资料馆"], ["Hiroshima Castle", "Hiroshima Castle", "广岛城"],
+      ["Shukkei-en", "Shukkei-en", "缩景园"], ["Mazda Museum", "Mazda Museum", "马自达博物馆"], ["Hiroshima Orizuru Tower", "Hiroshima Orizuru Tower", "广岛折纸鹤塔"], ["Mitaki-dera", "Mitaki-dera", "三泷寺"], ["Hiroshima Museum of Art", "Hiroshima Museum of Art", "广岛美术馆"]
+    ],
+    "miyajima": [
+      ["Itsukushima Shrine", "Itsukushima Shrine", "严岛神社"], ["Mount Misen", "Mount Misen", "弥山"], ["Daishō-in", "Daishō-in", "大圣院"],
+      ["Momijidani Park", "Momijidani Park", "红叶谷公园"], ["Miyajima Public Aquarium", "Miyajima Aquarium", "宫岛水族馆"], ["Miyajima Ropeway", "Miyajima Ropeway", "宫岛缆车"]
+    ],
+    "fukuoka": [
+      ["Ōhori Park", "Ōhori Park", "大濠公园"], ["Fukuoka Castle", "Fukuoka Castle", "福冈城"], ["Kushida Shrine", "Kushida Shrine", "栉田神社"], ["Dazaifu Tenmangū", "Dazaifu Tenmangū", "太宰府天满宫"],
+      ["Fukuoka Asian Art Museum", "Fukuoka Asian Art Museum", "福冈亚洲美术馆"], ["Fukuoka Tower", "Fukuoka Tower", "福冈塔"], ["Canal City Hakata", "Canal City Hakata", "博多运河城"], ["Uminonakamichi Seaside Park", "Uminonakamichi Seaside Park", "海之中道海滨公园"]
+    ],
+    "yufuin": [
+      ["Lake Kinrin", "Lake Kinrin", "金鳞湖"], ["Yufuin Station", "Yufuin Station", "由布院站"], ["Yufuin Onsen", "Yufuin Onsen", "由布院温泉"]
+    ],
+    "beppu": [
+      ["Hells of Beppu", "Hells of Beppu", "别府地狱"], ["Beppu Onsen", "Beppu Onsen", "别府温泉"], ["Beppu Tower", "Beppu Tower", "别府塔"],
+      ["Mount Tsurumi (Ōita)", "Mount Tsurumi", "鹤见岳"], ["Oita Fragrance Museum", "Oita Fragrance Museum", "大分香味博物馆"]
+    ],
+    "kumamoto": [
+      ["Kumamoto Castle", "Kumamoto Castle", "熊本城"], ["Suizen-ji Jōju-en", "Suizen-ji Jōju-en", "水前寺成趣园"], ["Reigandō", "Reigando Cave", "灵岩洞"],
+      ["Kumamoto Prefectural Museum of Art", "Kumamoto Prefectural Museum of Art", "熊本县立美术馆"], ["Honmyō-ji", "Honmyō-ji", "本妙寺"], ["Former Hosokawa Residence", "Former Hosokawa Residence", "旧细川刑部邸"]
+    ],
+    "sapporo": [
+      ["Odori Park", "Odori Park", "大通公园"], ["Sapporo Clock Tower", "Sapporo Clock Tower", "札幌市钟楼"], ["Hokkaido Shrine", "Hokkaido Shrine", "北海道神宫"], ["Sapporo Beer Museum", "Sapporo Beer Museum", "札幌啤酒博物馆"],
+      ["Sapporo TV Tower", "Sapporo TV Tower", "札幌电视塔"], ["Mount Moiwa", "Mount Moiwa", "藻岩山"], ["Historical Village of Hokkaido", "Historical Village of Hokkaido", "北海道开拓村"], ["Moerenuma Park", "Moerenuma Park", "莫埃来沼公园"]
+    ],
+    "otaru": [
+      ["Otaru Canal", "Otaru Canal", "小樽运河"], ["Otaru City General Museum", "Otaru City General Museum", "小樽市综合博物馆"], ["Otaru Music Box Museum", "Otaru Music Box Museum", "小樽音乐盒堂"],
+      ["Temiya Line", "Former Temiya Line", "旧手宫线"], ["Mount Tengu (Otaru)", "Mount Tengu", "天狗山"], ["Bank of Japan Otaru Museum", "Bank of Japan Otaru Museum", "日本银行旧小樽支店"]
+    ],
+    "hakodate": [
+      ["Goryōkaku", "Goryōkaku", "五棱郭"], ["Mount Hakodate", "Mount Hakodate", "函馆山"], ["Hakodate Morning Market", "Hakodate Morning Market", "函馆朝市"], ["Kanemori Red Brick Warehouse", "Kanemori Red Brick Warehouse", "金森红砖仓库"],
+      ["Hakodate Orthodox Church", "Hakodate Orthodox Church", "函馆正教会"], ["Motomachi Roman Catholic Church", "Motomachi Roman Catholic Church", "元町天主教堂"], ["Old Public Hall of Hakodate Ward", "Old Public Hall of Hakodate Ward", "旧函馆区公会堂"]
+    ],
+    "okinawa-city": [
+      ["Southeast Botanical Gardens", "Southeast Botanical Gardens", "东南植物乐园"], ["Okinawa Zoo & Museum", "Okinawa Zoo & Museum", "冲绳儿童王国"], ["Koza Music Town", "Koza Music Town", "胡屋音乐城"]
+    ],
+    "naha": [
+      ["Shuri Castle", "Shuri Castle", "首里城"], ["Kokusai-dōri", "Kokusai-dōri", "国际通"], ["Okinawa Prefectural Museum", "Okinawa Prefectural Museum", "冲绳县立博物馆·美术馆"], ["Tamaudun", "Tamaudun", "玉陵"], ["Shikina-en", "Shikina-en", "识名园"],
+      ["Fukushū-en", "Fukushū-en", "福州园"], ["Naminoue Shrine", "Naminoue Shrine", "波上宫"], ["Makishi Public Market", "Makishi Public Market", "第一牧志公设市场"], ["Former Japanese Navy Underground Headquarters", "Former Japanese Navy Underground Headquarters", "旧海军司令部壕"]
+    ]
+  }
+}

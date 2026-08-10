@@ -1,0 +1,280 @@
+{
+  "schemaVersion": "route-v2-knowledge-expansion-batch03-seed-v1",
+  "countries": {
+    "IT": {
+      "label": "Italy",
+      "wikidataId": "Q38",
+      "countryEntityId": "country-4df88b953a99e6a4",
+      "batchNumber": "05",
+      "batchLabel": "batch03a-italy",
+      "regionalReview": ["Lake Como", "Cinque Terre", "Amalfi Coast", "Dolomites"],
+      "cities": [
+        { "key": "rome", "existing": true, "wikidataId": "Q220", "canonicalNameEn": "Rome", "aliases": ["Roma"], "targetPoiCount": 15 },
+        { "key": "florence", "existing": true, "wikidataId": "Q2044", "canonicalNameEn": "Florence", "aliases": ["Firenze"], "targetPoiCount": 8 },
+        { "key": "venice", "enwikiTitle": "Venice", "canonicalNameEn": "Venice", "aliases": ["Venezia"], "targetPoiCount": 8 },
+        { "key": "milan", "enwikiTitle": "Milan", "canonicalNameEn": "Milan", "aliases": ["Milano"], "targetPoiCount": 8 },
+        { "key": "naples", "enwikiTitle": "Naples", "canonicalNameEn": "Naples", "aliases": ["Napoli"], "targetPoiCount": 8 },
+        { "key": "bologna", "enwikiTitle": "Bologna", "canonicalNameEn": "Bologna", "aliases": [], "targetPoiCount": 5 },
+        { "key": "pisa", "enwikiTitle": "Pisa", "canonicalNameEn": "Pisa", "aliases": [], "targetPoiCount": 5 },
+        { "key": "verona", "enwikiTitle": "Verona", "canonicalNameEn": "Verona", "aliases": [], "targetPoiCount": 5 },
+        { "key": "turin", "enwikiTitle": "Turin", "canonicalNameEn": "Turin", "aliases": ["Torino"], "targetPoiCount": 5 },
+        { "key": "siena", "enwikiTitle": "Siena", "canonicalNameEn": "Siena", "aliases": [], "targetPoiCount": 5 },
+        { "key": "como", "enwikiTitle": "Como", "canonicalNameEn": "Como", "aliases": [], "targetPoiCount": 5 },
+        { "key": "palermo", "enwikiTitle": "Palermo", "canonicalNameEn": "Palermo", "aliases": [], "targetPoiCount": 8 },
+        { "key": "catania", "enwikiTitle": "Catania", "canonicalNameEn": "Catania", "aliases": [], "targetPoiCount": 5 }
+      ],
+      "poiGroups": {
+        "rome": [
+          ["Colosseum", "Colosseum"], ["Pantheon, Rome", "Pantheon"], ["Trevi Fountain", "Trevi Fountain"], ["Roman Forum", "Roman Forum"], ["Vatican Museums", "Vatican Museums"], ["St. Peter's Basilica", "St. Peter's Basilica"], ["Sistine Chapel", "Sistine Chapel"], ["Piazza Navona", "Piazza Navona"], ["Spanish Steps", "Spanish Steps"], ["Castel Sant'Angelo", "Castel Sant'Angelo"], ["Villa Borghese gardens", "Villa Borghese Gardens"], ["Galleria Borghese", "Galleria Borghese"], ["Capitoline Museums", "Capitoline Museums"], ["Piazza del Popolo", "Piazza del Popolo"], ["Baths of Caracalla", "Baths of Caracalla"]
+        ],
+        "florence": [
+          ["Florence Cathedral", "Florence Cathedral"], ["Uffizi", "Uffizi Gallery"], ["Piazzale Michelangelo", "Piazzale Michelangelo"], ["Ponte Vecchio", "Ponte Vecchio"], ["Palazzo Vecchio", "Palazzo Vecchio"], ["Galleria dell'Accademia", "Galleria dell'Accademia"], ["Santa Croce, Florence", "Basilica of Santa Croce"], ["Boboli Gardens", "Boboli Gardens"]
+        ],
+        "venice": [
+          ["St Mark's Basilica", "St Mark's Basilica"], ["Doge's Palace", "Doge's Palace"], ["Grand Canal (Venice)", "Grand Canal"], ["Rialto Bridge", "Rialto Bridge"], ["Piazza San Marco", "Piazza San Marco"], ["Bridge of Sighs", "Bridge of Sighs"], ["Gallerie dell'Accademia", "Gallerie dell'Accademia"], ["Peggy Guggenheim Collection", "Peggy Guggenheim Collection"]
+        ],
+        "milan": [
+          ["Milan Cathedral", "Milan Cathedral"], ["Galleria Vittorio Emanuele II", "Galleria Vittorio Emanuele II"], ["Sforza Castle", "Sforza Castle"], ["Santa Maria delle Grazie, Milan", "Santa Maria delle Grazie"], ["La Scala", "Teatro alla Scala"], ["Pinacoteca di Brera", "Pinacoteca di Brera"], ["Museo del Novecento", "Museo del Novecento"], ["Basilica of Sant'Ambrogio", "Basilica of Sant'Ambrogio"]
+        ],
+        "naples": [
+          ["National Archaeological Museum, Naples", "Naples National Archaeological Museum"], ["Castel dell'Ovo", "Castel dell'Ovo"], ["Castel Nuovo", "Castel Nuovo"], ["Royal Palace of Naples", "Royal Palace of Naples"], ["Naples Cathedral", "Naples Cathedral"], ["Museo di Capodimonte", "Museo di Capodimonte"], ["Galleria Umberto I", "Galleria Umberto I"], ["Piazza del Plebiscito", "Piazza del Plebiscito"]
+        ],
+        "bologna": [
+          ["Piazza Maggiore", "Piazza Maggiore"], ["Two Towers, Bologna", "Two Towers"], ["San Petronio, Bologna", "Basilica of San Petronio"], ["Archiginnasio of Bologna", "Archiginnasio of Bologna"], ["Madonna di San Luca, Bologna", "Sanctuary of the Madonna of San Luca"]
+        ],
+        "pisa": [
+          ["Leaning Tower of Pisa", "Leaning Tower of Pisa"], ["Pisa Cathedral", "Pisa Cathedral"], ["Pisa Baptistery", "Pisa Baptistery"], ["Piazza dei Miracoli", "Piazza dei Miracoli"], ["Piazza dei Cavalieri, Pisa", "Piazza dei Cavalieri"]
+        ],
+        "verona": [
+          ["Verona Arena", "Verona Arena"], ["Piazza Bra", "Piazza Bra"], ["Piazza delle Erbe, Verona", "Piazza delle Erbe"], ["Castelvecchio Museum", "Castelvecchio Museum"], ["Basilica of San Zeno, Verona", "Basilica of San Zeno"]
+        ],
+        "turin": [
+          ["Mole Antonelliana", "Mole Antonelliana"], ["Museo Egizio", "Egyptian Museum"], ["Royal Palace of Turin", "Royal Palace of Turin"], ["Palazzo Madama, Turin", "Palazzo Madama"], ["Basilica of Superga", "Basilica of Superga"]
+        ],
+        "siena": [
+          ["Piazza del Campo", "Piazza del Campo"], ["Siena Cathedral", "Siena Cathedral"], ["Palazzo Pubblico", "Palazzo Pubblico"], ["Torre del Mangia", "Torre del Mangia"], ["Basilica of San Domenico, Siena", "Basilica of San Domenico"]
+        ],
+        "como": [
+          ["Como Cathedral", "Como Cathedral"], ["Tempio Voltiano", "Tempio Voltiano"], ["Villa Olmo", "Villa Olmo"], ["Basilica of Sant'Abbondio", "Basilica of Sant'Abbondio"], ["Porta Torre", "Porta Torre"]
+        ],
+        "palermo": [
+          ["Palermo Cathedral", "Palermo Cathedral"], ["Palazzo dei Normanni", "Norman Palace"], ["Palazzo Abatellis", "Palazzo Abatellis"], ["Teatro Massimo", "Teatro Massimo"], ["Orto botanico di Palermo", "Orto Botanico di Palermo"], ["Quattro Canti", "Quattro Canti"], ["Zisa, Palermo", "La Zisa"], ["Fontana Pretoria", "Fontana Pretoria"]
+        ],
+        "catania": [
+          ["Catania Cathedral", "Catania Cathedral"], ["Teatro Massimo Bellini", "Teatro Massimo Bellini"], ["Castello Ursino", "Ursino Castle"], ["Piazza del Duomo, Catania", "Piazza del Duomo"], ["Giardino Bellini", "Giardino Bellini"]
+        ]
+      }
+    },
+    "FR": {
+      "label": "France",
+      "wikidataId": "Q142",
+      "countryEntityId": "country-a20e4bab95389730",
+      "batchNumber": "06",
+      "batchLabel": "batch03b-france",
+      "regionalReview": ["Mont-Saint-Michel", "Loire Valley", "Provence"],
+      "cities": [
+        { "key": "paris", "existing": true, "wikidataId": "Q90", "canonicalNameEn": "Paris", "aliases": [], "targetPoiCount": 15 },
+        { "key": "lyon", "existing": true, "wikidataId": "Q456", "canonicalNameEn": "Lyon", "aliases": [], "targetPoiCount": 8 },
+        { "key": "nice", "enwikiTitle": "Nice", "canonicalNameEn": "Nice", "aliases": [], "targetPoiCount": 8 },
+        { "key": "marseille", "enwikiTitle": "Marseille", "canonicalNameEn": "Marseille", "aliases": [], "targetPoiCount": 8 },
+        { "key": "bordeaux", "enwikiTitle": "Bordeaux", "canonicalNameEn": "Bordeaux", "aliases": [], "targetPoiCount": 8 },
+        { "key": "strasbourg", "enwikiTitle": "Strasbourg", "canonicalNameEn": "Strasbourg", "aliases": [], "targetPoiCount": 8 },
+        { "key": "toulouse", "enwikiTitle": "Toulouse", "canonicalNameEn": "Toulouse", "aliases": [], "targetPoiCount": 5 },
+        { "key": "avignon", "enwikiTitle": "Avignon", "canonicalNameEn": "Avignon", "aliases": [], "targetPoiCount": 5 },
+        { "key": "annecy", "enwikiTitle": "Annecy", "canonicalNameEn": "Annecy", "aliases": [], "targetPoiCount": 3 },
+        { "key": "colmar", "enwikiTitle": "Colmar", "canonicalNameEn": "Colmar", "aliases": [], "targetPoiCount": 3 },
+        { "key": "cannes", "enwikiTitle": "Cannes", "canonicalNameEn": "Cannes", "aliases": [], "targetPoiCount": 3 },
+        { "key": "aix-en-provence", "enwikiTitle": "Aix-en-Provence", "canonicalNameEn": "Aix-en-Provence", "aliases": ["Aix"], "targetPoiCount": 5 },
+        { "key": "chamonix", "enwikiTitle": "Chamonix", "canonicalNameEn": "Chamonix", "aliases": ["Chamonix-Mont-Blanc"], "targetPoiCount": 3 }
+      ],
+      "poiGroups": {
+        "paris": [
+          ["Eiffel Tower", "Eiffel Tower"], ["Louvre", "Louvre Museum"], ["Musée d'Orsay", "Musée d'Orsay"], ["Notre-Dame de Paris", "Notre-Dame de Paris"], ["Arc de Triomphe", "Arc de Triomphe"], ["Sacré-Cœur, Paris", "Sacré-Cœur"], ["Sainte-Chapelle", "Sainte-Chapelle"], ["Centre Pompidou", "Centre Pompidou"], ["Jardin du Luxembourg", "Luxembourg Garden"], ["Tuileries Garden", "Tuileries Garden"], ["Panthéon", "Panthéon"], ["Palais Garnier", "Palais Garnier"], ["Musée de l'Orangerie", "Musée de l'Orangerie"], ["Musée Rodin", "Rodin Museum"], ["Place de la Concorde", "Place de la Concorde"]
+        ],
+        "lyon": [
+          ["Basilica of Notre-Dame de Fourvière", "Basilica of Notre-Dame de Fourvière"], ["Musée des Confluences", "Musée des Confluences"], ["Museum of Fine Arts of Lyon", "Museum of Fine Arts of Lyon"], ["Vieux Lyon", "Vieux Lyon"], ["Parc de la Tête d'or", "Parc de la Tête d'Or"], ["Lyon Cathedral", "Lyon Cathedral"], ["Ancient Theatre of Fourvière", "Roman Theatres of Fourvière"], ["Place Bellecour", "Place Bellecour"]
+        ],
+        "nice": [
+          ["Promenade des Anglais", "Promenade des Anglais"], ["Hotel Negresco", "Hotel Negresco"], ["Musée Matisse (Nice)", "Musée Matisse"], ["Russian Orthodox Cathedral, Nice", "Russian Orthodox Cathedral"], ["Nice Observatory", "Nice Observatory"], ["Nice Cathedral", "Nice Cathedral"], ["Place Masséna", "Place Masséna"], ["Musée des Beaux-Arts de Nice", "Musée des Beaux-Arts de Nice"]
+        ],
+        "marseille": [
+          ["Old Port of Marseille", "Old Port of Marseille"], ["Notre-Dame de la Garde", "Notre-Dame de la Garde"], ["Museum of European and Mediterranean Civilisations", "Mucem"], ["Marseille Cathedral", "Marseille Cathedral"], ["Palais Longchamp", "Palais Longchamp"], ["Fort Saint-Jean (Marseille)", "Fort Saint-Jean"], ["Abbey of St Victor, Marseille", "Abbey of Saint-Victor"], ["Vallon des Auffes", "Vallon des Auffes"]
+        ],
+        "bordeaux": [
+          ["Place de la Bourse, Bordeaux", "Place de la Bourse"], ["Cité du Vin", "Cité du Vin"], ["Bordeaux Cathedral", "Bordeaux Cathedral"], ["Grand Théâtre de Bordeaux", "Grand Théâtre de Bordeaux"], ["Musée d'Aquitaine", "Musée d'Aquitaine"], ["Porte Cailhau", "Porte Cailhau"], ["Pont de pierre (Bordeaux)", "Pont de Pierre"], ["Basilica of St. Michael, Bordeaux", "Basilica of Saint Michael"]
+        ],
+        "strasbourg": [
+          ["Strasbourg Cathedral", "Strasbourg Cathedral"], ["Petite France, Strasbourg", "Petite France"], ["Palais Rohan, Strasbourg", "Rohan Palace"], ["Musée alsacien (Strasbourg)", "Alsatian Museum"], ["Barrage Vauban", "Barrage Vauban"], ["Ponts Couverts, Strasbourg", "Ponts Couverts"], ["Strasbourg Museum of Modern and Contemporary Art", "Strasbourg Museum of Modern and Contemporary Art"], ["Place Kléber", "Place Kléber"]
+        ],
+        "toulouse": [
+          ["Basilica of Saint-Sernin, Toulouse", "Basilica of Saint-Sernin"], ["Capitole de Toulouse", "Capitole de Toulouse"], ["Cité de l'espace", "Cité de l'Espace"], ["Musée des Augustins", "Musée des Augustins"], ["Jardin des Plantes, Toulouse", "Jardin des Plantes"]
+        ],
+        "avignon": [
+          ["Palais des Papes", "Palais des Papes"], ["Pont Saint-Bénézet", "Pont Saint-Bénézet"], ["Avignon Cathedral", "Avignon Cathedral"], ["Musée du Petit Palais, Avignon", "Musée du Petit Palais"], ["Calvet Museum", "Calvet Museum"]
+        ],
+        "annecy": [
+          ["Annecy Cathedral", "Annecy Cathedral"], ["Château d'Annecy", "Château d'Annecy"], ["Lake Annecy", "Lake Annecy"]
+        ],
+        "colmar": [
+          ["Unterlinden Museum", "Unterlinden Museum"], ["Musée Bartholdi", "Musée Bartholdi"], ["St Martin's Church, Colmar", "Saint-Martin's Church"]
+        ],
+        "cannes": [
+          ["Palais des Festivals et des Congrès", "Palais des Festivals"], ["Promenade de la Croisette", "Promenade de la Croisette"], ["Île Sainte-Marguerite", "Île Sainte-Marguerite"]
+        ],
+        "aix-en-provence": [
+          ["Cours Mirabeau", "Cours Mirabeau"], ["Aix Cathedral", "Aix Cathedral"], ["Musée Granet", "Musée Granet"], ["Hôtel de Caumont", "Hôtel de Caumont"], ["Pavillon Vendôme", "Pavillon Vendôme"]
+        ],
+        "chamonix": [
+          ["Aiguille du Midi", "Aiguille du Midi"], ["Mer de Glace", "Mer de Glace"], ["Bossons Glacier", "Bossons Glacier"]
+        ]
+      }
+    },
+    "ES": {
+      "label": "Spain",
+      "wikidataId": "Q29",
+      "countryEntityId": "country-ab252ee38e8cdf81",
+      "batchNumber": "07",
+      "batchLabel": "batch03c-spain",
+      "explicitQids": {
+        "poi:madrid:El Retiro Park": "Q1131807",
+        "poi:ronda:Palacio de Mondragón": "Q6058120"
+      },
+      "regionalReview": ["Mallorca", "Tenerife", "Ibiza"],
+      "cities": [
+        { "key": "madrid", "existing": true, "wikidataId": "Q2807", "canonicalNameEn": "Madrid", "aliases": [], "targetPoiCount": 15 },
+        { "key": "barcelona", "existing": true, "wikidataId": "Q1492", "canonicalNameEn": "Barcelona", "aliases": [], "targetPoiCount": 15 },
+        { "key": "seville", "enwikiTitle": "Seville", "canonicalNameEn": "Seville", "aliases": ["Sevilla"], "targetPoiCount": 8 },
+        { "key": "granada", "enwikiTitle": "Granada", "canonicalNameEn": "Granada", "aliases": [], "targetPoiCount": 8 },
+        { "key": "valencia", "enwikiTitle": "Valencia", "canonicalNameEn": "Valencia", "aliases": [], "targetPoiCount": 8 },
+        { "key": "malaga", "enwikiTitle": "Málaga", "canonicalNameEn": "Málaga", "aliases": ["Malaga"], "targetPoiCount": 5 },
+        { "key": "cordoba", "enwikiTitle": "Córdoba, Spain", "canonicalNameEn": "Córdoba", "aliases": ["Cordoba"], "targetPoiCount": 8 },
+        { "key": "bilbao", "enwikiTitle": "Bilbao", "canonicalNameEn": "Bilbao", "aliases": [], "targetPoiCount": 8 },
+        { "key": "san-sebastian", "enwikiTitle": "San Sebastián", "canonicalNameEn": "San Sebastián", "aliases": ["San Sebastian", "Donostia"], "targetPoiCount": 5 },
+        { "key": "toledo", "enwikiTitle": "Toledo, Spain", "canonicalNameEn": "Toledo", "aliases": [], "targetPoiCount": 5 },
+        { "key": "salamanca", "enwikiTitle": "Salamanca", "canonicalNameEn": "Salamanca", "aliases": [], "targetPoiCount": 5 },
+        { "key": "santiago", "enwikiTitle": "Santiago de Compostela", "canonicalNameEn": "Santiago de Compostela", "aliases": ["Santiago"], "targetPoiCount": 5 },
+        { "key": "ronda", "enwikiTitle": "Ronda", "canonicalNameEn": "Ronda", "aliases": [], "targetPoiCount": 3 }
+      ],
+      "poiGroups": {
+        "madrid": [
+          ["Museo del Prado", "Museo del Prado"], ["Royal Palace of Madrid", "Royal Palace of Madrid"], ["El Retiro Park", "El Retiro Park"], ["Plaza Mayor, Madrid", "Plaza Mayor"], ["Puerta del Sol", "Puerta del Sol"], ["Museo Nacional Centro de Arte Reina Sofía", "Reina Sofía Museum"], ["Thyssen-Bornemisza Museum", "Thyssen-Bornemisza Museum"], ["Gran Vía, Madrid", "Gran Vía"], ["Temple of Debod", "Temple of Debod"], ["Almudena Cathedral", "Almudena Cathedral"], ["Market of San Miguel", "Mercado de San Miguel"], ["Plaza de Cibeles", "Plaza de Cibeles"], ["Sorolla Museum", "Sorolla Museum"], ["Bernabéu (stadium)", "Santiago Bernabéu Stadium"], ["El Rastro", "El Rastro"]
+        ],
+        "barcelona": [
+          ["Sagrada Família", "Sagrada Família"], ["Casa Batlló", "Casa Batlló"], ["Park Güell", "Park Güell"], ["La Rambla, Barcelona", "La Rambla"], ["Gothic Quarter, Barcelona", "Gothic Quarter"], ["Casa Milà", "Casa Milà"], ["Palau de la Música Catalana", "Palau de la Música Catalana"], ["Barcelona Cathedral", "Barcelona Cathedral"], ["Montjuïc", "Montjuïc"], ["Museu Picasso", "Museu Picasso"], ["Santa Maria del Mar, Barcelona", "Santa Maria del Mar"], ["Magic Fountain of Montjuïc", "Magic Fountain"], ["Camp Nou", "Camp Nou"], ["La Boqueria", "La Boqueria"], ["Arc de Triomf", "Arc de Triomf"]
+        ],
+        "seville": [
+          ["Seville Cathedral", "Seville Cathedral"], ["Alcázar of Seville", "Royal Alcázar"], ["Plaza de España, Seville", "Plaza de España"], ["Metropol Parasol", "Metropol Parasol"], ["Torre del Oro", "Torre del Oro"], ["Parque de María Luisa", "María Luisa Park"], ["General Archive of the Indies", "General Archive of the Indies"], ["Casa de Pilatos", "Casa de Pilatos"]
+        ],
+        "granada": [
+          ["Alhambra", "Alhambra"], ["Generalife", "Generalife"], ["Granada Cathedral", "Granada Cathedral"], ["Albaicín", "Albaicín"], ["Sacromonte", "Sacromonte"], ["Royal Chapel of Granada", "Royal Chapel"], ["Palace of Charles V", "Palace of Charles V"], ["Monasterio de San Jerónimo, Granada", "Monastery of Saint Jerome"]
+        ],
+        "valencia": [
+          ["City of Arts and Sciences", "City of Arts and Sciences"], ["Valencia Cathedral", "Valencia Cathedral"], ["Mercado Central, Valencia", "Central Market"], ["Llotja de la Seda", "Lonja de la Seda"], ["Turia Garden", "Turia Garden"], ["Museu de Belles Arts de València", "Museum of Fine Arts"], ["Torres de Serranos", "Serranos Towers"], ["L'Oceanogràfic", "L'Oceanogràfic"]
+        ],
+        "malaga": [
+          ["Alcazaba of Málaga", "Alcazaba"], ["Museo Picasso Málaga", "Picasso Museum"], ["Málaga Cathedral", "Málaga Cathedral"], ["Gibralfaro", "Gibralfaro"], ["Carmen Thyssen Museum", "Carmen Thyssen Museum"]
+        ],
+        "cordoba": [
+          ["Mosque–Cathedral of Córdoba", "Mosque-Cathedral of Córdoba"], ["Alcázar de los Reyes Cristianos", "Alcázar de los Reyes Cristianos"], ["Roman bridge of Córdoba", "Roman Bridge"], ["Madinat al-Zahra", "Madinat al-Zahra"], ["Calahorra Tower", "Calahorra Tower"], ["Córdoba Synagogue", "Córdoba Synagogue"], ["Julio Romero de Torres Museum", "Julio Romero de Torres Museum"], ["Roman temple of Córdoba", "Roman Temple"]
+        ],
+        "bilbao": [
+          ["Guggenheim Museum Bilbao", "Guggenheim Museum"], ["San Mamés Stadium (2013)", "San Mamés Stadium"], ["Casco Viejo", "Casco Viejo"], ["Basilica of Begoña", "Basilica of Begoña"], ["Zubizuri", "Zubizuri"], ["Bilbao Cathedral", "Bilbao Cathedral"], ["Plaza Nueva, Bilbao", "Plaza Nueva"], ["Azkuna Zentroa", "Azkuna Zentroa"]
+        ],
+        "san-sebastian": [
+          ["San Sebastián Cathedral", "San Sebastián Cathedral"], ["Miramar Palace", "Miramar Palace"], ["San Telmo Museoa", "San Telmo Museum"], ["Kursaal Congress Centre and Auditorium", "Kursaal Congress Centre"], ["Basilica of Saint Mary of the Chorus", "Basilica of Saint Mary of the Chorus"]
+        ],
+        "toledo": [
+          ["Toledo Cathedral", "Toledo Cathedral"], ["Alcázar of Toledo", "Alcázar of Toledo"], ["Monastery of San Juan de los Reyes", "Monastery of San Juan de los Reyes"], ["Synagogue of Santa María la Blanca", "Santa María la Blanca"], ["El Greco Museum, Toledo", "El Greco Museum"]
+        ],
+        "salamanca": [
+          ["Plaza Mayor, Salamanca", "Plaza Mayor"], ["University of Salamanca", "University of Salamanca"], ["New Cathedral of Salamanca", "New Cathedral"], ["Old Cathedral of Salamanca", "Old Cathedral"], ["Casa de las Conchas", "Casa de las Conchas"]
+        ],
+        "santiago": [
+          ["Santiago de Compostela Cathedral", "Santiago de Compostela Cathedral"], ["Pazo de Raxoi", "Pazo de Raxoi"], ["Monastery of San Martiño Pinario", "Monastery of San Martiño Pinario"], ["Centro Galego de Arte Contemporánea", "Galician Centre of Contemporary Art"], ["City of Culture of Galicia", "City of Culture of Galicia"]
+        ],
+        "ronda": [
+          ["Puente Nuevo", "Puente Nuevo"], ["Plaza de Toros de Ronda", "Plaza de Toros"], ["Palacio de Mondragón", "Palacio de Mondragón"]
+        ]
+      }
+    },
+    "KR": {
+      "label": "South Korea",
+      "wikidataId": "Q884",
+      "countryEntityId": "country-6d9a5fa9dc49e5f4",
+      "batchNumber": "08",
+      "batchLabel": "batch03d-south-korea",
+      "explicitQids": {
+        "poi:seoul:N Seoul Tower": "Q69134",
+        "poi:seoul:Myeongdong": "Q484407",
+        "poi:seoul:Jogyesa": "Q488824",
+        "poi:jeju:Jeju Loveland": "Q495590",
+        "poi:jeju:Dongmun Market": "Q12593341",
+        "poi:jeju:Manjanggul": "Q6750353",
+        "poi:jeju:Jeju Stone Park": "Q55734281",
+        "poi:suwon:Suwon World Cup Stadium": "Q494761",
+        "poi:gangneung:Gyeongpodae": "Q12583922",
+        "poi:gangneung:Gangneung Ice Arena": "Q5624072",
+        "poi:sokcho:Seoraksan": "Q482644",
+        "poi:tongyeong:Hansando": "Q485029",
+        "poi:tongyeong:Yokjido": "Q18815644"
+      },
+      "regionalReview": ["Jeju Island", "Pyeongchang County"],
+      "cities": [
+        { "key": "seoul", "existing": true, "wikidataId": "Q8684", "canonicalNameEn": "Seoul", "aliases": [], "targetPoiCount": 15 },
+        { "key": "busan", "existing": true, "wikidataId": "Q16520", "canonicalNameEn": "Busan", "aliases": ["Pusan"], "targetPoiCount": 8 },
+        { "key": "jeju", "enwikiTitle": "Jeju City", "canonicalNameEn": "Jeju City", "aliases": ["Jeju-si"], "targetPoiCount": 8 },
+        { "key": "gyeongju", "enwikiTitle": "Gyeongju", "canonicalNameEn": "Gyeongju", "aliases": [], "targetPoiCount": 8 },
+        { "key": "incheon", "enwikiTitle": "Incheon", "canonicalNameEn": "Incheon", "aliases": [], "targetPoiCount": 5 },
+        { "key": "suwon", "enwikiTitle": "Suwon", "canonicalNameEn": "Suwon", "aliases": [], "targetPoiCount": 3 },
+        { "key": "jeonju", "enwikiTitle": "Jeonju", "canonicalNameEn": "Jeonju", "aliases": [], "targetPoiCount": 3 },
+        { "key": "daegu", "enwikiTitle": "Daegu", "canonicalNameEn": "Daegu", "aliases": ["Taegu"], "targetPoiCount": 3 },
+        { "key": "gangneung", "enwikiTitle": "Gangneung", "canonicalNameEn": "Gangneung", "aliases": [], "targetPoiCount": 3 },
+        { "key": "sokcho", "enwikiTitle": "Sokcho", "canonicalNameEn": "Sokcho", "aliases": [], "targetPoiCount": 3 },
+        { "key": "andong", "enwikiTitle": "Andong", "canonicalNameEn": "Andong", "aliases": [], "targetPoiCount": 3 },
+        { "key": "yeosu", "enwikiTitle": "Yeosu", "canonicalNameEn": "Yeosu", "aliases": [], "targetPoiCount": 3 },
+        { "key": "tongyeong", "enwikiTitle": "Tongyeong", "canonicalNameEn": "Tongyeong", "aliases": [], "targetPoiCount": 3 }
+      ],
+      "poiGroups": {
+        "seoul": [
+          ["Changdeokgung", "Changdeokgung"], ["N Seoul Tower", "N Seoul Tower"], ["National Museum of Korea", "National Museum of Korea"], ["Gyeongbokgung", "Gyeongbokgung"], ["Bukchon Hanok Village", "Bukchon Hanok Village"], ["Myeongdong", "Myeongdong"], ["Dongdaemun Design Plaza", "Dongdaemun Design Plaza"], ["War Memorial of Korea", "War Memorial of Korea"], ["Leeum Museum of Art", "Leeum Museum of Art"], ["National Folk Museum of Korea", "National Folk Museum of Korea"], ["Cheonggyecheon", "Cheonggyecheon"], ["Bongeunsa", "Bongeunsa"], ["Lotte World Tower", "Lotte World Tower"], ["Deoksugung", "Deoksugung"], ["Jogyesa", "Jogyesa"]
+        ],
+        "busan": [
+          ["Busan Museum", "Busan Museum"], ["Busan Tower", "Busan Tower"], ["Haedong Yonggungsa", "Haedong Yonggungsa"], ["Haeundae Beach", "Haeundae Beach"], ["Gamcheon Culture Village", "Gamcheon Culture Village"], ["Jagalchi Market", "Jagalchi Market"], ["Beomeosa", "Beomeosa"], ["Gwangalli Beach", "Gwangalli Beach"]
+        ],
+        "jeju": [
+          ["Hallasan", "Hallasan"], ["Jeju Loveland", "Jeju Loveland"], ["Jeju National Museum", "Jeju National Museum"], ["Jeju Stone Park", "Jeju Stone Park"], ["Dongmun Market", "Dongmun Market"], ["Samseonghyeol", "Samseonghyeol"], ["Manjanggul", "Manjanggul"], ["Iho Tewoo Beach", "Iho Tewoo Beach"]
+        ],
+        "gyeongju": [
+          ["Bulguksa", "Bulguksa"], ["Seokguram", "Seokguram"], ["Gyeongju National Museum", "Gyeongju National Museum"], ["Cheomseongdae", "Cheomseongdae"], ["Donggung Palace and Wolji Pond", "Donggung Palace and Wolji Pond"], ["Daereungwon", "Daereungwon"], ["Yangdong Folk Village", "Yangdong Folk Village"], ["Bunhwangsa", "Bunhwangsa"]
+        ],
+        "incheon": [
+          ["Songdo Central Park", "Songdo Central Park"], ["Incheon Chinatown", "Incheon Chinatown"], ["Incheon Grand Park", "Incheon Grand Park"], ["Wolmido", "Wolmido"], ["Jeondeungsa", "Jeondeungsa"]
+        ],
+        "suwon": [
+          ["Hwaseong Fortress", "Hwaseong Fortress"], ["Gwanggyo Lake Park", "Gwanggyo Lake Park"], ["Suwon World Cup Stadium", "Suwon World Cup Stadium"]
+        ],
+        "jeonju": [
+          ["Jeonju Hanok Village", "Jeonju Hanok Village"], ["Jeondong Cathedral", "Jeondong Cathedral"], ["Jeonju National Museum", "Jeonju National Museum"]
+        ],
+        "daegu": [
+          ["Daegu National Museum", "Daegu National Museum"], ["Apsan Park", "Apsan Park"], ["Seomun Market", "Seomun Market"], ["Our Lady of Lourdes Cathedral, Daegu", "Gyesan Cathedral"]
+        ],
+        "gangneung": [
+          ["Ojukheon", "Ojukheon"], ["Gyeongpodae", "Gyeongpodae"], ["Gangneung Ice Arena", "Gangneung Ice Arena"]
+        ],
+        "sokcho": [
+          ["Sokcho Beach", "Sokcho Beach"], ["Abai Village", "Abai Village"], ["Seoraksan", "Seoraksan"]
+        ],
+        "andong": [
+          ["Hahoe Folk Village", "Hahoe Folk Village"], ["Dosan Seowon", "Dosan Seowon"], ["Bongjeongsa", "Bongjeongsa"]
+        ],
+        "yeosu": [
+          ["Odongdo", "Odongdo"], ["Jinnamgwan Hall", "Jinnamgwan Hall"], ["Expo 2012", "Expo 2012 Yeosu Korea"], ["Hyangiram", "Hyangiram"]
+        ],
+        "tongyeong": [
+          ["Dongpirang village", "Dongpirang Village"], ["Hansando", "Hansando"], ["Yokjido", "Yokjido"]
+        ]
+      }
+    }
+  }
+}

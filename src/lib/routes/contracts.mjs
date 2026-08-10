@@ -193,6 +193,13 @@ export function normalizeDiscoveredRoute(value) {
     regionEntityId: cleanText(value.regionEntityId),
     regions: uniqueTextList(value.regions),
     themes: uniqueTextList(value.themes),
+    themeEvidence: objectList(value.themeEvidence),
+    themeMetadataProvenance: value.themeMetadataProvenance && typeof value.themeMetadataProvenance === "object"
+      ? structuredClone(value.themeMetadataProvenance)
+      : null,
+    routeThemeCompatibility: value.routeThemeCompatibility && typeof value.routeThemeCompatibility === "object"
+      ? structuredClone(value.routeThemeCompatibility)
+      : null,
     highlights: uniqueTextList(value.highlights),
     coverAsset: imageAsset(value.coverAsset),
     onlineCoverAsset: feedCoverAsset(value.onlineCoverAsset),
@@ -247,6 +254,9 @@ export function normalizeDiscoveredRoute(value) {
     durationPolicy: cleanText(value.durationPolicy),
     requestedDurationDays: Number.isFinite(Number(value.requestedDurationDays)) && Number(value.requestedDurationDays) > 0
       ? Math.round(Number(value.requestedDurationDays))
+      : null,
+    routeExpansion: value.routeExpansion && typeof value.routeExpansion === "object"
+      ? structuredClone(value.routeExpansion)
       : null,
   };
 

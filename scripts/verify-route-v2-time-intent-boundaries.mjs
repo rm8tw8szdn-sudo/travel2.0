@@ -85,7 +85,15 @@ assert.deepEqual(
 assert.equal(parse("February Japan 7 days").intentHash, parse("Feb Japan 7 days").intentHash);
 assert.notEqual(parse("13月").intentHash, parse("0月").intentHash);
 assert.equal(isRouteV2TimeIntentEnabled({}), false);
-assert.equal(isRouteV2TimeIntentEnabled({ ROUTE_V2_TIME_INTENT_ENABLED: "true" }), true);
+assert.equal(isRouteV2TimeIntentEnabled({
+  ROUTE_V2_RUNTIME_ENABLED: "true",
+  ROUTE_V2_TIME_INTENT_ENABLED: "true",
+}), true);
+assert.equal(
+  isRouteV2TimeIntentEnabled({ ROUTE_V2_TIME_INTENT_ENABLED: "true" }),
+  false,
+  "the Time Intent child flag must not bypass the missing master switch",
+);
 
 const legacyIntent = parseSearchIntent("2月去日本7天");
 assert.equal(Object.hasOwn(legacyIntent, "timeIntent"), false, "flag-off parser shape must remain legacy-compatible");
@@ -132,6 +140,8 @@ function plannerHarness(label) {
   const acceptedPath = path.join(root, "accepted-routes.json");
   const localEvidenceRoot = path.join(root, "local-evidence");
   const env = {
+    ROUTE_V2_RUNTIME_ENABLED: "true",
+    ROUTE_V2_CANARY_PERCENTAGE: "100",
     ROUTE_V2_TIME_INTENT_ENABLED: "true",
     ROUTE_V2_INTENT_ENABLED: "true",
     ROUTE_V2_CANDIDATE_POOL_ENABLED: "true",

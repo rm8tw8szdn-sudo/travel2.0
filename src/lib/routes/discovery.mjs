@@ -12,6 +12,7 @@ import { createRouteJobStore } from "./route-job-store.mjs";
 import { createRouteSearchCache } from "./route-search-cache.mjs";
 import { createRouteSearchAnalytics } from "./route-search-analytics.mjs";
 import { createRouteSearchService } from "./route-search-service.mjs";
+import { createRouteV2RuntimeMetrics } from "./route-v2-runtime-metrics.mjs";
 import { createEvidenceRepository } from "./evidence-repository.mjs";
 import { createRouteCompositionPlanner } from "./route-composition-planner.mjs";
 import { createConfiguredLlmRefineProvider } from "./route-llm-refine-provider.mjs";
@@ -118,6 +119,7 @@ export function createRouteDiscovery({
   searchIndex = null,
   searchCache = createRouteSearchCache(),
   searchAnalytics = createRouteSearchAnalytics(),
+  runtimeMetrics = null,
   searchPlanner = null,
   searchService = null,
   knowledgeEntityLayerRepository = null,
@@ -136,12 +138,21 @@ export function createRouteDiscovery({
       knowledgeEntityLayerRepository,
       env,
     });
+  const routeV2RuntimeMetrics = runtimeMetrics || (
+    searchService
+      ? null
+      : createRouteV2RuntimeMetrics({
+          env,
+          storagePath: env.ROUTE_V2_RUNTIME_METRICS_PATH || null,
+        })
+  );
   const routeSearchService = searchService || createRouteSearchService({
     acceptedRepository,
     searchCache,
     analytics: searchAnalytics,
     planner: searchPlanner || defaultSearchContext?.planner || null,
     intentCatalog: defaultSearchContext?.intentCatalog || null,
+    runtimeMetrics: routeV2RuntimeMetrics,
     env,
   });
   const runningDestinationJobs = new Set();

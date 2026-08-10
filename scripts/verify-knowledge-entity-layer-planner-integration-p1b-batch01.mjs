@@ -77,11 +77,11 @@ const fallbackKnowledgeGraph = {
 const adapter = createKnowledgeEntityLayerPlannerAdapter({ repository, fallbackKnowledgeGraph });
 const catalogs = createKnowledgeEntityLayerSearchIntentCatalog({ repository });
 
-assert.equal(repository.listCountries().length, 50);
-assert.equal(repository.listCities().length, 25);
-assert.equal(repository.listPois().length, 75);
-assert.equal(catalogs.countries.length, 50);
-assert.equal(catalogs.cities.length, 25);
+assert.equal(repository.listCountries().length, 51);
+assert.equal(repository.listCities().length, 99);
+assert.equal(repository.listPois().length, 568);
+assert.equal(catalogs.countries.length, 51);
+assert.equal(catalogs.cities.length, 99);
 
 for (const country of repository.listCountries()) {
   const intent = parseSearchIntent(country.canonicalNameEn, { catalogs });
@@ -100,9 +100,9 @@ const adapterCities = repository.listCountries().flatMap((country) => adapter.qu
   country: country.isoAlpha2,
   limit: 100,
 }).filter((destination) => destination.destinationSource === "knowledge-entity-layer"));
-assert.equal(adapterCities.length, 25);
-assert.equal(adapterCities.flatMap((city) => city.poiEntities).length, 75);
-assert.ok(adapterCities.every((city) => city.poiEntities.length === 3));
+assert.equal(adapterCities.length, 99);
+assert.equal(adapterCities.flatMap((city) => city.poiEntities).length, 568);
+assert.ok(adapterCities.every((city) => city.poiEntities.length >= 3));
 
 const expectedCities = new Map([
   ["Amsterdam", ["Anne Frank House", "Rijksmuseum", "Van Gogh Museum"]],
@@ -127,25 +127,27 @@ for (const [countryCode, cityName] of [
   ["ES", "Madrid"],
   ["KR", "Seoul"],
 ]) {
-  const destinations = adapter.queryDestinations({ country: countryCode, limit: 20 });
+  const destinations = adapter.queryDestinations({ country: countryCode, limit: 100 });
   const city = destinations.find((item) => item.canonicalNameEn === cityName);
   assert.ok(city, `${cityName} should be available through the Planner adapter`);
   assert.ok(city.entityId.startsWith("city-"));
   assert.ok(city.parentCountryEntityId.startsWith("country-"));
   assert.equal(city.entityTypeName, "city");
-  assert.deepEqual(city.poiEntities.map((poi) => poi.canonicalNameEn), expectedCities.get(cityName));
+  for (const expectedPoi of expectedCities.get(cityName)) {
+    assert.ok(city.poiEntities.some((poi) => poi.canonicalNameEn === expectedPoi), `${cityName} should retain ${expectedPoi}`);
+  }
   assert.ok(city.poiEntities.every((poi) => poi.parentCityEntityId === city.entityId));
   assert.ok(city.poiEntities.every((poi) => !Object.hasOwn(poi, "provenance")));
   assert.ok(!Object.hasOwn(city, "provenance"));
 }
 
-const firstJapan = adapter.queryDestinations({ country: "JP", limit: 20 });
-const secondJapan = adapter.queryDestinations({ country: "JP", limit: 20 });
+const firstJapan = adapter.queryDestinations({ country: "JP", limit: 100 });
+const secondJapan = adapter.queryDestinations({ country: "JP", limit: 100 });
 assert.deepEqual(firstJapan, secondJapan, "Planner adapter ordering should be stable");
 assert.equal(firstJapan.filter((item) => item.wikidataId === "Q1490").length, 1, "fallback Tokyo should be de-duplicated");
 firstJapan[0].canonicalNameEn = "mutated";
 firstJapan[0].poiEntities[0].canonicalNameEn = "mutated";
-assert.deepEqual(adapter.queryDestinations({ country: "JP", limit: 20 }), secondJapan, "Planner adapter should return defensive copies");
+assert.deepEqual(adapter.queryDestinations({ country: "JP", limit: 100 }), secondJapan, "Planner adapter should return defensive copies");
 assert.deepEqual(adapter.queryDestinations({ country: "US", limit: 20 }), [fallbackBoston], "unmapped countries should retain the fallback graph");
 
 const netherlandsIntent = parseSearchIntent("Netherlands Amsterdam 4 days", { catalogs });
@@ -243,7 +245,7 @@ for (const requested of [
   });
   assert.equal(result.accepted.length, 1, `${requested.city}: ${JSON.stringify(result.rejected)}`);
   assert.equal(result.accepted[0].record.destinationEntities[0].canonicalNameEn, requested.city);
-  assert.equal(result.accepted[0].record.destinationEntities[0].poiEntities.length, 3);
+  assert.ok(result.accepted[0].record.destinationEntities[0].poiEntities.length >= 3);
 }
 
 const legacyGraph = {

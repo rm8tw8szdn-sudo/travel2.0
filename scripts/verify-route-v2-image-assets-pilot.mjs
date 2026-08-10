@@ -104,7 +104,14 @@ assert.equal(imageAssets.resolveAssetUrl("../secret.webp", { assetBaseUrl: TEST_
 assert.equal(imageAssets.resolveAssetUrl("https://other.example/image.webp", { assetBaseUrl: TEST_ASSET_BASE_URL, fallbackUrl: "local.svg" }), "local.svg");
 assert.equal(imageAssets.isConfiguredAssetUrl(`${TEST_ASSET_BASE_URL}routes/italy-first-trip.webp`, { assetBaseUrl: TEST_ASSET_BASE_URL }), true);
 assert.equal(imageAssets.isConfiguredAssetUrl("https://images.unsplash.com/photo-test", { assetBaseUrl: TEST_ASSET_BASE_URL }), false);
-assert.equal(imageAssets.resolveLocalRouteCover({ id: "gold-case-accepted-gold-1-jp-first-trip" }).url, "assets/route-japan-classic-cover.svg");
+assert.equal(imageAssets.resolveLocalRouteCover({
+  id: "gold-case-accepted-gold-1-jp-first-trip",
+  countryEntities: [{ countryCode: "JP", name: "Japan" }],
+}).url, "assets/route-japan-classic-cover.svg");
+assert.equal(imageAssets.resolveLocalRouteCover({
+  id: "gold-case-accepted-gold-1-jp-first-trip",
+  countryEntities: [{ countryCode: "US", name: "United States" }],
+}).url, "assets/trip-cover-placeholder.svg", "Route IDs cannot reuse a semantically unrelated country cover");
 assert.equal(imageAssets.resolveLocalRouteCover({
   id: "local-city-route",
   destinationEntities: [{ name: "Tokyo", countryCode: "JP" }],
@@ -115,6 +122,26 @@ assert.equal(imageAssets.resolveLocalRouteCover({
   countryEntities: [{ countryCode: "FI", name: "Finland" }],
 }).url, "assets/country-landmark-finland.png");
 assert.equal(imageAssets.resolveLocalRouteCover({ id: "unknown-local-route" }).url, "assets/trip-cover-placeholder.svg");
+for (const record of [
+  {
+    id: "gold-case-accepted-gold-c45-13-california-pacific-coast",
+    countryEntities: [{ countryCode: "US", name: "United States" }],
+  },
+  {
+    id: "gold-case-accepted-gold-c45-7-andalusia-deep-dive",
+    countryEntities: [{ countryCode: "ES", name: "Spain" }],
+  },
+  {
+    id: "gold-case-accepted-gold-c45-32-croatian-islands",
+    countryEntities: [{ countryCode: "HR", name: "Croatia" }],
+  },
+]) {
+  assert.equal(
+    imageAssets.resolveLocalRouteCover(record).url,
+    "assets/trip-cover-placeholder.svg",
+    `${record.id}: a wrong-country illustration must degrade to the shared placeholder`,
+  );
+}
 assert.equal(imageAssets.resolveLocalDestinationCover({ name: "Kyoto", countryCode: "JP" }).url, "assets/city-kyoto-cover.svg");
 assert.equal(imageAssets.resolveLocalDestinationCover({ name: "Unknown", countryCode: "ZZ" }).url, "assets/route-city-oslo.svg");
 assert.equal(

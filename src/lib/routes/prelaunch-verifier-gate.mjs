@@ -2,6 +2,51 @@ import { spawnSync } from "node:child_process";
 
 export const MANDATORY_PRELAUNCH_VERIFIERS = Object.freeze([
   Object.freeze({
+    name: "production-readiness-phase1-rollout-control",
+    relativePath: "scripts/verify-route-v2-production-readiness-phase1.mjs",
+    phase: "static",
+  }),
+  Object.freeze({
+    name: "production-readiness-phase2-runtime-observability",
+    relativePath: "scripts/verify-route-v2-production-readiness-phase2.mjs",
+    phase: "static",
+  }),
+  Object.freeze({
+    name: "real-user-search-intent-regression",
+    relativePath: "scripts/verify-route-v2-real-user-search-intent-regression.mjs",
+    phase: "static",
+  }),
+  Object.freeze({
+    name: "region-island-constraint-preservation",
+    relativePath: "scripts/verify-route-v2-region-island-constraints.mjs",
+    phase: "static",
+  }),
+  Object.freeze({
+    name: "pr19-p1-closures",
+    relativePath: "scripts/verify-route-v2-pr19-p1-closures.mjs",
+    phase: "static",
+  }),
+  Object.freeze({
+    name: "long-trip-capacity",
+    relativePath: "scripts/verify-route-v2-long-trip-capacity.mjs",
+    phase: "static",
+  }),
+  Object.freeze({
+    name: "ui-input-image-navigation-safety",
+    relativePath: "scripts/verify-route-v2-ui-input-image-navigation.mjs",
+    phase: "static",
+  }),
+  Object.freeze({
+    name: "generated-detail-authoritative-load",
+    relativePath: "scripts/verify-route-v2-generated-detail-stability.mjs",
+    phase: "static",
+  }),
+  Object.freeze({
+    name: "theme-evidence-trust",
+    relativePath: "scripts/verify-route-v2-theme-evidence-trust.mjs",
+    phase: "static",
+  }),
+  Object.freeze({
     name: "route-intent-model",
     relativePath: "scripts/verify-route-v2-route-intent-model.mjs",
     phase: "static",

@@ -1,4 +1,6 @@
 import crypto from "node:crypto";
+import { maxDestinationsForTripDays } from "./route-trip-capacity.mjs";
+import { canonicalizeTravelRegionKey } from "./route-search-region-taxonomy.mjs";
 
 export const ROUTE_INTENT_SCHEMA_VERSION = "route-intent-v1";
 export const ROUTE_INTENT_FINGERPRINT_VERSION = "route-intent-fingerprint-v1";
@@ -41,6 +43,7 @@ const HARD_CONSTRAINT_KEYS = new Set([
 const SOFT_PREFERENCE_KEYS = new Set([
   "travelStyle",
   "theme",
+  "themeConstraintMode",
   "transport",
   "pace",
   "budget",
@@ -103,12 +106,12 @@ function plainObject(value) {
   return Boolean(value) && typeof value === "object" && !Array.isArray(value);
 }
 
-function validateObjectKeys(value, path, allowedKeys, violations) {
+function validateObjectKeys(value, path, allowedKeys, violations, { requiredKeys = allowedKeys } = {}) {
   if (!plainObject(value)) {
     violations.push(schemaViolation(path, "object", value));
     return false;
   }
-  for (const key of allowedKeys) {
+  for (const key of requiredKeys) {
     if (!hasOwn(value, key)) {
       violations.push(schemaViolation(`${path}.${key}`, "required field", undefined, "missing-field"));
     }
@@ -427,6 +430,17 @@ export function validateNormalizedRouteIntent(input) {
         provided: validateStableString,
         empty: validateEmptyString,
       });
+      if (hard.region?.state === "provided" && typeof hard.region.value === "string") {
+        const canonicalRegion = canonicalizeTravelRegionKey(hard.region.value);
+        if (canonicalRegion !== hard.region.value) {
+          violations.push(schemaViolation(
+            "hardConstraints.region.value",
+            `canonical Region key ${canonicalRegion}`,
+            hard.region.value,
+            "non-canonical-value",
+          ));
+        }
+      }
       validateScalarPresence(hard.routeCapacity, "hardConstraints.routeCapacity", violations, {
         provided: validatePositiveInteger,
         empty: validateNull,
@@ -438,9 +452,20 @@ export function validateNormalizedRouteIntent(input) {
       }
     }
 
-    if (validateObjectKeys(input.softPreferences, "softPreferences", SOFT_PREFERENCE_KEYS, violations)) {
+    if (validateObjectKeys(input.softPreferences, "softPreferences", SOFT_PREFERENCE_KEYS, violations, {
+      requiredKeys: new Set([...SOFT_PREFERENCE_KEYS].filter((key) => key !== "themeConstraintMode")),
+    })) {
       for (const field of ["travelStyle", "theme", "pace", "budget", "tripIntent"]) {
         validateString(input.softPreferences[field], `softPreferences.${field}`, violations);
+      }
+      if (hasOwn(input.softPreferences, "themeConstraintMode")
+        && !["preference", "explicit"].includes(input.softPreferences.themeConstraintMode)) {
+        violations.push(schemaViolation(
+          "softPreferences.themeConstraintMode",
+          "preference|explicit",
+          input.softPreferences.themeConstraintMode,
+          "invalid-enum",
+        ));
       }
       validateListPresence(input.softPreferences.transport, "softPreferences.transport", violations, validateStableString);
       if (!Array.isArray(input.softPreferences.exclusions)) {
@@ -564,10 +589,13 @@ function normalizeStringList(values) {
 }
 
 function normalizeCountryList(input) {
-  const arrayProvided = hasOwn(input, "countries") || hasOwn(input, "countryCodes");
+  const arrayProvided = hasOwn(input, "countries")
+    || hasOwn(input, "countryCodes")
+    || hasOwn(input, "regionCountryCodes");
   const arrayValues = [
     ...(Array.isArray(input.countries) ? input.countries : []),
     ...(Array.isArray(input.countryCodes) ? input.countryCodes : []),
+    ...(Array.isArray(input.regionCountryCodes) ? input.regionCountryCodes : []),
   ];
   const composite = clean(input.country);
   const compositeValues = !arrayProvided && /[/|,]/u.test(composite)
@@ -581,12 +609,7 @@ function normalizeCountryList(input) {
 }
 
 export function maxDestinationsForRouteIntentDays(days) {
-  if (!Number.isInteger(days) || days <= 0) return null;
-  if (days <= 2) return 2;
-  if (days <= 4) return 3;
-  if (days <= 7) return 4;
-  if (days <= 10) return 5;
-  return 6;
+  return maxDestinationsForTripDays(days);
 }
 
 function normalizeAlreadyNormalized(input) {
@@ -658,7 +681,8 @@ export function normalizeRouteIntent(input = {}) {
     && (hasOwn(input, "countryCode") || hasOwn(input, "countryEntityId") || hasOwn(input, "country"));
   const country = presence(countryProvided, countryText, !countryText);
 
-  const regionText = semanticText(input.normalizedRegion || input.regionEntityId || input.region);
+  const regionInput = input.normalizedRegion || input.regionEntityId || input.region;
+  const regionText = regionInput ? canonicalizeTravelRegionKey(regionInput) : "";
   const regionProvided = hasOwn(input, "normalizedRegion") || hasOwn(input, "regionEntityId") || hasOwn(input, "region");
   const region = presence(regionProvided, regionText, !regionText);
 
@@ -687,6 +711,7 @@ export function normalizeRouteIntent(input = {}) {
     softPreferences: {
       travelStyle: semanticText(input.travelStyle),
       theme: semanticText(input.themeKey || input.theme),
+      themeConstraintMode: input.themeConstraintMode === "explicit" ? "explicit" : "preference",
       transport: listPresence(
         hasOwn(input, "transport") || hasOwn(input, "transportPreference"),
         normalizeStringList([

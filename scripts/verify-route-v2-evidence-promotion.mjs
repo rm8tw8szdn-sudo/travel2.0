@@ -14,8 +14,13 @@ const outputRoot = path.join(root, "seed");
 const formalRoot = path.resolve("data", "route-v2", "evidence-seed");
 fs.mkdirSync(sourceRoot, { recursive: true });
 
-const legs = fs.readFileSync(path.join(formalRoot, "route-leg-evidence.jsonl"), "utf8").trim().split(/\r?\n/u).map(JSON.parse);
-const seasons = fs.readFileSync(path.join(formalRoot, "season-evidence.jsonl"), "utf8").trim().split(/\r?\n/u).map(JSON.parse);
+const allLegs = fs.readFileSync(path.join(formalRoot, "route-leg-evidence.jsonl"), "utf8").trim().split(/\r?\n/u).map(JSON.parse);
+const allSeasons = fs.readFileSync(path.join(formalRoot, "season-evidence.jsonl"), "utf8").trim().split(/\r?\n/u).map(JSON.parse);
+// The original promotion path is a Japan-scoped operator workflow. Batch 01
+// adds independently curated multi-country seed records without pretending
+// that they were produced by that Japan-only workflow.
+const legs = allLegs.filter((record) => !record.fromEntityId.startsWith("city-"));
+const seasons = allSeasons.filter((record) => !record.entityId.startsWith("city-"));
 const promotedCount = legs.length + seasons.length;
 const fixedNow = "2026-07-22T00:00:00.000Z";
 const manifest = [
@@ -125,12 +130,12 @@ assert(corrupt.diagnostics.some((item) => item.code === "source-duplicate-id"));
 assert(corrupt.diagnostics.some((item) => item.code === "source-schema-invalid"));
 
 const formalManifest = JSON.parse(fs.readFileSync(path.join(formalRoot, "evidence-seed-manifest.json"), "utf8"));
-assert.deepEqual(formalManifest.counts, { routeLeg: legs.length, season: seasons.length, total: promotedCount });
-assert.equal(new Set(formalManifest.routeLegEvidenceIds).size, legs.length);
-assert.equal(new Set(formalManifest.seasonEvidenceIds).size, seasons.length);
-assert(legs.every((record) => record.directed === true && record.feasibilityStatus === "feasible"));
-assert(legs.every((record) => record.sources.length > 0 && record.sources.every((source) => /^https:\/\//u.test(source.url))));
-assert(seasons.every((record) => record.sources.length > 0 && record.conflicts.length === 0));
+assert.deepEqual(formalManifest.counts, { routeLeg: allLegs.length, season: allSeasons.length, total: allLegs.length + allSeasons.length });
+assert.equal(new Set(formalManifest.routeLegEvidenceIds).size, allLegs.length);
+assert.equal(new Set(formalManifest.seasonEvidenceIds).size, allSeasons.length);
+assert(allLegs.every((record) => record.directed === true && record.feasibilityStatus === "feasible"));
+assert(allLegs.every((record) => record.sources.length > 0 && record.sources.every((source) => /^https:\/\//u.test(source.url))));
+assert(allSeasons.every((record) => record.sources.length > 0 && record.conflicts.length === 0));
 
 fs.rmSync(root, { recursive: true, force: true });
 console.log(JSON.stringify({

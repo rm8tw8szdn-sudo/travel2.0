@@ -102,7 +102,10 @@ assert.equal(cache.get(intent), null, "old unversioned cache must not replay acr
 const readyPath = path.join(root, "ready", "routes.json");
 const readyPool = createRouteV2ReadyPool({
   storagePath: readyPath,
-  env: { ROUTE_V2_READY_POOL_ENABLED: "true" },
+  env: {
+    ROUTE_V2_RUNTIME_ENABLED: "true",
+    ROUTE_V2_READY_POOL_ENABLED: "true",
+  },
   now: () => "2026-07-27T00:00:00.000Z",
 });
 const publicationGate = {

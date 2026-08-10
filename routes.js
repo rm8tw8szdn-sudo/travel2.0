@@ -20,9 +20,15 @@ const FEED_IMAGE_CANDIDATE_LIMIT = 24;
 const FEED_CARD_IMAGE_TIMEOUT_MS = 2_000;
 const FEED_COVER_PREPARE_DEADLINE_MS = 2_000;
 const FEED_LOAD_WATCHDOG_MS = 8_000;
+const SEARCH_DISCOVERY_TIMEOUT_MS = 7_000;
+const SEARCH_LOAD_WATCHDOG_MS = 10_000;
+const MAX_ROUTE_QUERY_LENGTH = 160;
 const ROUTE_FEED_SESSION_KEY = "travelCollection.routeFeedSession";
 const ROUTE_FEED_PRELOAD_KEY = "travelCollection.routeFeedPreload.v2";
 const ROUTE_FEED_PRELOAD_TTL_MS = 5 * 60 * 1000;
+const ROUTE_FEED_NAVIGATION_STATE_KEY = "travelCollection.routeFeedNavigation.v1";
+const ROUTE_FEED_NAVIGATION_STATE_TTL_MS = 30 * 60 * 1000;
+const ROUTE_FEED_NAVIGATION_RECORD_LIMIT = 360;
 const ROUTE_FEED_QUERY_PARAM = "q";
 const FALLBACK_ROUTE_COVER = "assets/trip-cover-placeholder.svg";
 const routeImageAssets = globalThis.RouteV2ImageAssets || null;
@@ -454,8 +460,6 @@ const feedState = {
 activateRouteTab(feedState.activeTab);
 
 if ("scrollRestoration" in history) history.scrollRestoration = "manual";
-window.scrollTo(0, 0);
-window.addEventListener("pageshow", () => window.scrollTo(0, 0), { once: true });
 
 function createSessionId() {
   const stored = sessionStorage.getItem(ROUTE_FEED_SESSION_KEY);
@@ -564,7 +568,10 @@ function activateRouteTab(routeType) {
 
 function autoClassifySearchResults(records = []) {
   const firstResultType = records.map(routeKind).find((routeType) => ["cross", "single"].includes(routeType));
-  if (firstResultType) activateRouteTab(firstResultType);
+  if (firstResultType) {
+    activateRouteTab(firstResultType);
+    persistRouteTypeInUrl(firstResultType);
+  }
   return firstResultType || "";
 }
 
@@ -619,6 +626,131 @@ function persistRouteQueryInUrl(query) {
   if (normalized) url.searchParams.set(ROUTE_FEED_QUERY_PARAM, normalized);
   else url.searchParams.delete(ROUTE_FEED_QUERY_PARAM);
   window.history.replaceState(window.history.state, "", url);
+}
+
+function persistRouteTypeInUrl(routeType) {
+  if (!["cross", "single"].includes(routeType)) return;
+  const url = new URL(window.location.href);
+  url.searchParams.set("routeType", routeType);
+  window.history.replaceState(window.history.state, "", url);
+}
+
+function navigationRecordSnapshot(records = []) {
+  try {
+    return JSON.parse(JSON.stringify(records.slice(0, ROUTE_FEED_NAVIGATION_RECORD_LIMIT)));
+  } catch {
+    return [];
+  }
+}
+
+function persistRouteFeedNavigationState() {
+  try {
+    const payload = {
+      schemaVersion: "route-feed-navigation-v1",
+      savedAt: Date.now(),
+      query: feedState.query,
+      activeTab: feedState.activeTab,
+      feedRouteType: feedState.feedRouteType,
+      records: navigationRecordSnapshot(feedState.records),
+      cursor: feedState.cursor,
+      hasMore: feedState.hasMore,
+      sessionId: feedState.sessionId,
+      suggestions: [...feedState.suggestions],
+      skippedRouteIds: [...feedState.skippedRouteIds],
+      searchResolved: feedState.searchResolved,
+      searchResultCount: feedState.searchResultCount,
+      searchFailureReason: feedState.searchFailureReason,
+      searchFailureCodes: [...feedState.searchFailureCodes],
+      consecutiveEmptyPages: feedState.consecutiveEmptyPages,
+      scrollY: Math.max(0, window.scrollY || 0),
+      rootScrollTop: Math.max(0, routeScrollRoot?.scrollTop || 0),
+    };
+    sessionStorage.setItem(ROUTE_FEED_NAVIGATION_STATE_KEY, JSON.stringify(payload));
+  } catch {
+    // Navigation restoration is best-effort and must never block the route page.
+  }
+}
+
+function readRouteFeedNavigationState() {
+  try {
+    const payload = JSON.parse(sessionStorage.getItem(ROUTE_FEED_NAVIGATION_STATE_KEY) || "null");
+    if (payload?.schemaVersion !== "route-feed-navigation-v1") return null;
+    if (!Number.isFinite(payload.savedAt) || Date.now() - payload.savedAt > ROUTE_FEED_NAVIGATION_STATE_TTL_MS) return null;
+    if (!Array.isArray(payload.records) || payload.records.length > ROUTE_FEED_NAVIGATION_RECORD_LIMIT) return null;
+    if (String(payload.query || "") !== readRouteQueryFromUrl()) return null;
+    const urlRouteType = readRouteTypeFromUrl();
+    if (payload.activeTab !== urlRouteType) return null;
+    return payload;
+  } catch {
+    return null;
+  }
+}
+
+function restoreRouteFeedNavigationState() {
+  const payload = readRouteFeedNavigationState();
+  if (!payload || !payload.records.length) return false;
+  abortActiveRequest();
+  Object.assign(feedState, {
+    records: payload.records,
+    cursor: payload.cursor || null,
+    hasMore: Boolean(payload.hasMore && payload.cursor),
+    status: "ready",
+    query: String(payload.query || ""),
+    activeTab: payload.activeTab,
+    feedRouteType: payload.feedRouteType || payload.activeTab,
+    sessionId: payload.sessionId || createSessionId(),
+    suggestions: Array.isArray(payload.suggestions) ? payload.suggestions : [],
+    skippedRouteIds: new Set(payload.skippedRouteIds || []),
+    searchResolved: Boolean(payload.searchResolved),
+    searchResultCount: Number(payload.searchResultCount || 0),
+    searchFailureReason: String(payload.searchFailureReason || ""),
+    searchFailureCodes: Array.isArray(payload.searchFailureCodes) ? payload.searchFailureCodes : [],
+    consecutiveEmptyPages: Number(payload.consecutiveEmptyPages || 0),
+  });
+  activateRouteTab(feedState.activeTab);
+  if (routeSearch) routeSearch.value = feedState.query;
+  renderFeed();
+  activateFeedScroll();
+  restoreRouteFeedScrollPosition(payload);
+  return true;
+}
+
+function restoreRouteFeedScrollPosition(payload = {}) {
+  requestAnimationFrame(() => requestAnimationFrame(() => {
+    window.scrollTo(0, Math.max(0, Number(payload.scrollY || 0)));
+    if (routeScrollRoot) routeScrollRoot.scrollTop = Math.max(0, Number(payload.rootScrollTop || 0));
+  }));
+}
+
+window.addEventListener("pageshow", (event) => {
+  if (!event.persisted) return;
+  const payload = readRouteFeedNavigationState();
+  if (payload) restoreRouteFeedScrollPosition(payload);
+});
+
+function rejectOversizedRouteQuery(value) {
+  const query = String(value || "").trim();
+  if (query.length <= MAX_ROUTE_QUERY_LENGTH) return false;
+  abortActiveRequest();
+  feedState.requestToken += 1;
+  Object.assign(feedState, {
+    records: [],
+    cursor: null,
+    hasMore: false,
+    status: "ready",
+    query,
+    suggestions: [],
+    searchResolved: true,
+    searchResultCount: 0,
+    searchFailureReason: "query-too-long",
+    searchFailureCodes: [],
+    consecutiveEmptyPages: 0,
+    loadingStartedAt: 0,
+  });
+  sessionStorage.removeItem(ROUTE_FEED_NAVIGATION_STATE_KEY);
+  persistRouteQueryInUrl("");
+  renderFeed();
+  return true;
 }
 
 function coverUrl(record) {
@@ -1117,27 +1249,7 @@ async function ensureRecordCoverReady(record, signal, usedImageUrls = new Set())
 function localCoverForRoute(record = {}) {
   const resolved = routeImageAssets?.resolveLocalRouteCover?.(record);
   if (resolved?.url && !resolved.isFallback) return resolved.url;
-  const routeCover = LOCAL_COVER_BY_ROUTE_ID[record.id];
-  if (routeCover) return routeCover;
-  const text = routeSearchText(record);
-  const rule = LOCAL_COVER_RULES.find(([pattern]) => pattern.test(text));
-  if (rule) return rule[1];
-  const countryCodes = [
-    ...(record.countries || []),
-    ...(record.countryEntities || []).map((item) => item.countryCode),
-  ].filter(Boolean);
-  const codeCover = countryCodes.map((code) => LOCAL_COVER_BY_COUNTRY[String(code).toUpperCase()]).find(Boolean);
-  if (codeCover) return codeCover;
-  const countryNames = [
-    ...(record.countries || []),
-    ...(record.countryEntities || []).map((item) => item.name),
-  ].filter(Boolean);
-  const nameCover = countryNames.map((name) => LOCAL_COVER_BY_COUNTRY_NAME[name]).find(Boolean);
-  if (nameCover) return nameCover;
-  const continentCover = countryCodes
-    .map((code) => LOCAL_COVER_BY_CONTINENT[continentForCountryCode(code)])
-    .find(Boolean);
-  return continentCover || resolved?.url || FALLBACK_ROUTE_COVER;
+  return FALLBACK_ROUTE_COVER;
 }
 
 function geographySummary(record) {
@@ -1967,11 +2079,24 @@ function stateMarkup() {
     return `<div class="route-empty-state" data-route-feed-state="error"><p>${visible.length ? "稍后重试" : "路线加载失败"}</p><span>当前请求没有成功完成</span><button type="button" ${visible.length ? "data-route-feed-more" : "data-route-feed-refresh"}>${visible.length ? "继续加载" : "重新加载"}</button></div>`;
   }
   if (!visible.length) {
+    if (feedState.query && feedState.searchFailureReason === "query-too-long") {
+      return `<div class="route-empty-state" data-route-feed-state="query-too-long"><p>搜索内容有点长</p><span>请将需求精简到 ${MAX_ROUTE_QUERY_LENGTH} 个字符以内，系统尚未发送这次请求</span></div>`;
+    }
+    if (feedState.query && feedState.searchFailureReason === "trip-duration-capacity-exceeded") {
+      return `<div class="route-empty-state" data-route-feed-state="trip-capacity-exceeded"><p>当前路线容量还不足以可靠覆盖这么长的行程</p><span>系统不会用重复城市或景点凑数；可以缩短天数后再试</span></div>`;
+    }
     if (feedState.query && feedState.searchFailureReason === "invalid-duration") {
       return `<div class="route-empty-state" data-route-feed-state="invalid-duration"><p>行程天数无效</p><span>请输入大于0的整数天数，例如“巴黎4天”</span></div>`;
     }
     if (feedState.query && feedState.searchFailureReason === "unresolved-destination") {
       return `<div class="route-empty-state" data-route-feed-state="unresolved-destination"><p>有城市暂时无法完整识别</p><span>请检查城市名称或换一种写法，系统不会删除城市后改推其他路线</span></div>`;
+    }
+    if (feedState.query && feedState.searchFailureReason === "destination-confirmation-required") {
+      return `<div class="route-empty-state" data-route-feed-state="destination-confirmation-required"><p>请确认目的地名称</p><span>系统发现了可能的拼写结果，但不会在未确认时替你选择其他目的地</span>${suggestionsMarkup()}</div>`;
+    }
+    if (feedState.query && feedState.searchFailureReason === "constraint-conflict"
+      && feedState.searchFailureCodes.includes("explicit-theme-mismatch")) {
+      return `<div class="route-empty-state" data-route-feed-state="unsupported-theme"><p>暂时没有符合这个旅行主题的可靠路线</p><span>系统不会把普通路线包装成亲子、徒步、蜜月或其他主题路线</span></div>`;
     }
     if (feedState.query && feedState.searchFailureReason === "constraint-conflict") {
       return `<div class="route-empty-state" data-route-feed-state="constraint-conflict"><p>这些条件暂时无法同时满足</p><span>请增加行程天数或减少城市后再试</span></div>`;
@@ -2062,10 +2187,19 @@ function renderSearchSummary() {
     routeSearchSummary.textContent = `“${feedState.query}”的${routeTypeLabel}分类暂时没有路线，可以切换另一分类`;
   } else if (feedState.searchResultCount) {
     routeSearchSummary.textContent = `已找到 ${feedState.searchResultCount} 条路线，正在准备首批卡片`;
+  } else if (feedState.searchFailureReason === "query-too-long") {
+    routeSearchSummary.textContent = `搜索内容超过 ${MAX_ROUTE_QUERY_LENGTH} 个字符，请精简后重试；本次没有发送请求`;
+  } else if (feedState.searchFailureReason === "trip-duration-capacity-exceeded") {
+    routeSearchSummary.textContent = `“${feedState.query}”超过当前可靠路线容量，系统没有用重复城市或景点凑数`;
   } else if (feedState.searchFailureReason === "invalid-duration") {
     routeSearchSummary.textContent = `“${feedState.query}”中的行程天数无效，请输入大于0的整数天数`;
   } else if (feedState.searchFailureReason === "unresolved-destination") {
     routeSearchSummary.textContent = `“${feedState.query}”中有城市暂时无法完整识别，请检查名称后重试`;
+  } else if (feedState.searchFailureReason === "destination-confirmation-required") {
+    routeSearchSummary.textContent = `“${feedState.query}”可能包含目的地拼写错误，请确认建议后重新搜索`;
+  } else if (feedState.searchFailureReason === "constraint-conflict"
+    && feedState.searchFailureCodes.includes("explicit-theme-mismatch")) {
+    routeSearchSummary.textContent = `暂时没有符合“${feedState.query}”主题约束的可靠路线`;
   } else if (feedState.searchFailureReason === "constraint-conflict") {
     routeSearchSummary.textContent = `“${feedState.query}”的条件无法同时满足，请增加天数或减少城市`;
   } else {
@@ -2278,6 +2412,7 @@ function resolveFeedContinuation({ insertedCount, serverHasMore, nextCursor, pre
 
 async function loadFeed({ refresh = false } = {}) {
   if (!routeFeed || feedState.status === "loading" || (!refresh && !canRequestMoreFeed())) return;
+  if (rejectOversizedRouteQuery(feedState.query)) return;
   if (refresh) {
     abortActiveRequest();
     Object.assign(feedState, {
@@ -2323,7 +2458,7 @@ async function loadFeed({ refresh = false } = {}) {
     feedState.hasMore = true;
     renderFeed({ incremental: feedState.records.length > 0 });
     scheduleContinuationCheck();
-  }, FEED_LOAD_WATCHDOG_MS);
+  }, requested.query ? SEARCH_LOAD_WATCHDOG_MS : FEED_LOAD_WATCHDOG_MS);
 
   try {
     if (feedState.prefetchPromise) await feedState.prefetchPromise;
@@ -2337,7 +2472,7 @@ async function loadFeed({ refresh = false } = {}) {
       ? feedState.prefetchedFeedPage
       : null;
     if (prefetched) feedState.prefetchedFeedPage = null;
-    const discoverySignal = requestSignal(controller, requested.query ? 3_200 : 4_800);
+    const discoverySignal = requestSignal(controller, requested.query ? SEARCH_DISCOVERY_TIMEOUT_MS : 4_800);
     let payload = prefetched?.payload || await requestDiscoveryPage({ ...requested, signal: discoverySignal });
     if (token !== feedState.requestToken) return;
     const previousCount = feedState.records.length;
@@ -2411,6 +2546,7 @@ async function loadFeed({ refresh = false } = {}) {
     if (feedState.activeAbortController === controller) feedState.activeAbortController = null;
     feedState.pendingBatchAnchorId = "";
     renderFeed({ incremental: previousCount > 0 });
+    persistRouteFeedNavigationState();
     void prefetchNextFeedPage();
   } catch (error) {
     if (token !== feedState.requestToken) return;
@@ -2459,6 +2595,8 @@ function resetDiscovery({ preferBootstrap = false } = {}) {
 
 routeTabs.forEach((button) => button.addEventListener("click", () => {
   activateRouteTab(button.dataset.routeTab);
+  persistRouteTypeInUrl(feedState.activeTab);
+  persistRouteFeedNavigationState();
   if (!feedState.query) resetDiscovery({ preferBootstrap: true });
   else renderFeed();
 }));
@@ -2466,14 +2604,17 @@ routeTabs.forEach((button) => button.addEventListener("click", () => {
 let searchTimer = 0;
 routeSearch?.addEventListener("input", () => {
   clearTimeout(searchTimer);
+  if (rejectOversizedRouteQuery(routeSearch.value)) return;
   searchTimer = setTimeout(() => {
     feedState.query = routeSearch.value.trim();
     persistRouteQueryInUrl(feedState.query);
+    sessionStorage.removeItem(ROUTE_FEED_NAVIGATION_STATE_KEY);
     resetDiscovery();
   }, 300);
 });
 
 routeFeed?.addEventListener("click", (event) => {
+  if (event.target.closest("[data-route-open]")) persistRouteFeedNavigationState();
   if (event.target.closest("[data-route-feed-refresh]")) return resetDiscovery();
   if (event.target.closest("[data-route-feed-more]")) return loadFeed();
   const favoriteButton = event.target.closest("[data-route-favorite]");
@@ -2641,14 +2782,17 @@ window.__routeFeedDebug = () => ({
 });
 window.__routeForceLoadFeed = () => loadFeed();
 
+window.addEventListener("pagehide", persistRouteFeedNavigationState);
 if (routeSearch && feedState.query) routeSearch.value = feedState.query;
-const preloadedRouteFeed = feedState.query ? null : (readBootstrappedRouteFeed(feedState.feedRouteType) || readPreloadedRouteFeed());
-if (preloadedRouteFeed) {
-  usePreloadedRouteFeed(preloadedRouteFeed);
-} else {
-  loadFeed().finally(() => {
-    window.scrollTo(0, 0);
-    if (routeScrollRoot) routeScrollRoot.scrollTo?.(0, 0);
-    activateFeedScroll();
-  });
+if (!rejectOversizedRouteQuery(feedState.query) && !restoreRouteFeedNavigationState()) {
+  const preloadedRouteFeed = feedState.query ? null : (readBootstrappedRouteFeed(feedState.feedRouteType) || readPreloadedRouteFeed());
+  if (preloadedRouteFeed) {
+    usePreloadedRouteFeed(preloadedRouteFeed);
+  } else {
+    loadFeed().finally(() => {
+      window.scrollTo(0, 0);
+      if (routeScrollRoot) routeScrollRoot.scrollTo?.(0, 0);
+      activateFeedScroll();
+    });
+  }
 }

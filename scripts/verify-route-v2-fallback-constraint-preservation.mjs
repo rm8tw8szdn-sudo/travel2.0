@@ -173,6 +173,8 @@ async function searchScenario({ name, query, accepted = [], plannerResult, sessi
     searchCache: cache,
     planner: routePlanner,
     env: {
+      ROUTE_V2_RUNTIME_ENABLED: "true",
+      ROUTE_V2_CANARY_PERCENTAGE: "100",
       ROUTE_V2_TIME_INTENT_ENABLED: "true",
       SEARCH_AUTO_ACCEPT_GENERATED: "true",
       SEARCH_MAX_PLANNER_CALLS_PER_REQUEST: "1",

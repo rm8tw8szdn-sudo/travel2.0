@@ -1,0 +1,1072 @@
+{
+  "schemaVersion": "route-v2-knowledge-expansion-batch02-selection-v1",
+  "country": [
+    {
+      "entityId": "country-a0509b9eab0ea9ce",
+      "wikidataId": "Q17",
+      "canonicalNameEn": "Japan"
+    }
+  ],
+  "cities": [
+    {
+      "key": "beppu",
+      "entityId": "city-2a35c76c6ffed88a",
+      "parentCountryEntityId": "country-a0509b9eab0ea9ce",
+      "wikidataId": "Q273880",
+      "canonicalNameEn": "Beppu",
+      "targetPoiCount": 3
+    },
+    {
+      "key": "fukuoka",
+      "entityId": "city-11aadb65744f16c8",
+      "parentCountryEntityId": "country-a0509b9eab0ea9ce",
+      "wikidataId": "Q26600",
+      "canonicalNameEn": "Fukuoka",
+      "targetPoiCount": 7
+    },
+    {
+      "key": "hakodate",
+      "entityId": "city-8604e98af5a0bf75",
+      "parentCountryEntityId": "country-a0509b9eab0ea9ce",
+      "wikidataId": "Q26418",
+      "canonicalNameEn": "Hakodate",
+      "targetPoiCount": 5
+    },
+    {
+      "key": "hakone",
+      "entityId": "city-963a6186abb8bb90",
+      "parentCountryEntityId": "country-a0509b9eab0ea9ce",
+      "wikidataId": "Q671040",
+      "canonicalNameEn": "Hakone",
+      "targetPoiCount": 5
+    },
+    {
+      "key": "hiroshima",
+      "entityId": "city-684cf7eb16759f74",
+      "parentCountryEntityId": "country-a0509b9eab0ea9ce",
+      "wikidataId": "Q34664",
+      "canonicalNameEn": "Hiroshima",
+      "targetPoiCount": 7
+    },
+    {
+      "key": "kamakura",
+      "entityId": "city-130a47f528e210f3",
+      "parentCountryEntityId": "country-a0509b9eab0ea9ce",
+      "wikidataId": "Q200267",
+      "canonicalNameEn": "Kamakura",
+      "targetPoiCount": 6
+    },
+    {
+      "key": "kanazawa",
+      "entityId": "city-7b76928f557485f6",
+      "parentCountryEntityId": "country-a0509b9eab0ea9ce",
+      "wikidataId": "Q191130",
+      "canonicalNameEn": "Kanazawa",
+      "targetPoiCount": 5
+    },
+    {
+      "key": "kawaguchiko",
+      "entityId": "city-2e866e33dbb9ed15",
+      "parentCountryEntityId": "country-a0509b9eab0ea9ce",
+      "wikidataId": "Q1004231",
+      "canonicalNameEn": "Fujikawaguchiko",
+      "targetPoiCount": 4
+    },
+    {
+      "key": "kobe",
+      "entityId": "city-f94e894e88837154",
+      "parentCountryEntityId": "country-a0509b9eab0ea9ce",
+      "wikidataId": "Q48320",
+      "canonicalNameEn": "Kobe",
+      "targetPoiCount": 6
+    },
+    {
+      "key": "kumamoto",
+      "entityId": "city-e4c829354d7edc8a",
+      "parentCountryEntityId": "country-a0509b9eab0ea9ce",
+      "wikidataId": "Q199889",
+      "canonicalNameEn": "Kumamoto",
+      "targetPoiCount": 5
+    },
+    {
+      "key": "kyoto",
+      "entityId": "city-8acaf08893e5abf1",
+      "parentCountryEntityId": "country-a0509b9eab0ea9ce",
+      "wikidataId": "Q34600",
+      "canonicalNameEn": "Kyoto",
+      "targetPoiCount": 19
+    },
+    {
+      "key": "miyajima",
+      "entityId": "city-47c9ca41467ed3e5",
+      "parentCountryEntityId": "country-a0509b9eab0ea9ce",
+      "wikidataId": "Q875301",
+      "canonicalNameEn": "Miyajima",
+      "targetPoiCount": 6
+    },
+    {
+      "key": "nagoya",
+      "entityId": "city-f17cb016449ab40e",
+      "parentCountryEntityId": "country-a0509b9eab0ea9ce",
+      "wikidataId": "Q11751",
+      "canonicalNameEn": "Nagoya",
+      "targetPoiCount": 8
+    },
+    {
+      "key": "naha",
+      "entityId": "city-a537532044875bb1",
+      "parentCountryEntityId": "country-a0509b9eab0ea9ce",
+      "wikidataId": "Q181966",
+      "canonicalNameEn": "Naha",
+      "targetPoiCount": 5
+    },
+    {
+      "key": "nara",
+      "entityId": "city-8e7ea972d32813e9",
+      "parentCountryEntityId": "country-a0509b9eab0ea9ce",
+      "wikidataId": "Q22150",
+      "canonicalNameEn": "Nara",
+      "targetPoiCount": 8
+    },
+    {
+      "key": "okinawa-city",
+      "entityId": "city-52661544a7a4388d",
+      "parentCountryEntityId": "country-a0509b9eab0ea9ce",
+      "wikidataId": "Q328615",
+      "canonicalNameEn": "Okinawa City",
+      "targetPoiCount": 3
+    },
+    {
+      "key": "osaka",
+      "entityId": "city-bb2b8072fca1d274",
+      "parentCountryEntityId": "country-a0509b9eab0ea9ce",
+      "wikidataId": "Q35765",
+      "canonicalNameEn": "Osaka",
+      "targetPoiCount": 15
+    },
+    {
+      "key": "otaru",
+      "entityId": "city-b584cab6bd222b8d",
+      "parentCountryEntityId": "country-a0509b9eab0ea9ce",
+      "wikidataId": "Q242108",
+      "canonicalNameEn": "Otaru",
+      "targetPoiCount": 3
+    },
+    {
+      "key": "sapporo",
+      "entityId": "city-45d08342ab6298be",
+      "parentCountryEntityId": "country-a0509b9eab0ea9ce",
+      "wikidataId": "Q37951",
+      "canonicalNameEn": "Sapporo",
+      "targetPoiCount": 7
+    },
+    {
+      "key": "takayama",
+      "entityId": "city-9eb941dc4cc899ef",
+      "parentCountryEntityId": "country-a0509b9eab0ea9ce",
+      "wikidataId": "Q622594",
+      "canonicalNameEn": "Takayama",
+      "targetPoiCount": 4
+    },
+    {
+      "key": "tokyo",
+      "entityId": "city-5a21732f861ff7f1",
+      "parentCountryEntityId": "country-a0509b9eab0ea9ce",
+      "wikidataId": "Q1490",
+      "canonicalNameEn": "Tokyo",
+      "targetPoiCount": 19
+    },
+    {
+      "key": "yufuin",
+      "entityId": "city-ec98c79ca52bdb7f",
+      "parentCountryEntityId": "country-a0509b9eab0ea9ce",
+      "wikidataId": "Q990455",
+      "canonicalNameEn": "Yufuin (Yufu)",
+      "targetPoiCount": 3
+    }
+  ],
+  "pois": [
+    {
+      "entityId": "poi-18e6193f67170e81",
+      "parentCityEntityId": "city-11aadb65744f16c8",
+      "wikidataId": "Q1050353",
+      "canonicalNameEn": "Canal City Hakata"
+    },
+    {
+      "entityId": "poi-21839afe551e4748",
+      "parentCityEntityId": "city-11aadb65744f16c8",
+      "wikidataId": "Q710786",
+      "canonicalNameEn": "Dazaifu Tenmangū"
+    },
+    {
+      "entityId": "poi-ab413ded34022895",
+      "parentCityEntityId": "city-11aadb65744f16c8",
+      "wikidataId": "Q3330163",
+      "canonicalNameEn": "Fukuoka Asian Art Museum"
+    },
+    {
+      "entityId": "poi-1bb4b8d62af2a589",
+      "parentCityEntityId": "city-11aadb65744f16c8",
+      "wikidataId": "Q1143944",
+      "canonicalNameEn": "Fukuoka Castle"
+    },
+    {
+      "entityId": "poi-e1d5387176095e84",
+      "parentCityEntityId": "city-11aadb65744f16c8",
+      "wikidataId": "Q847033",
+      "canonicalNameEn": "Fukuoka Tower"
+    },
+    {
+      "entityId": "poi-26e956770e0f8748",
+      "parentCityEntityId": "city-11aadb65744f16c8",
+      "wikidataId": "Q865839",
+      "canonicalNameEn": "Kushida Shrine"
+    },
+    {
+      "entityId": "poi-c55ace566b499e5f",
+      "parentCityEntityId": "city-11aadb65744f16c8",
+      "wikidataId": "Q846710",
+      "canonicalNameEn": "Ōhori Park"
+    },
+    {
+      "entityId": "poi-b7766f7d5860544e",
+      "parentCityEntityId": "city-130a47f528e210f3",
+      "wikidataId": "Q954860",
+      "canonicalNameEn": "Engaku-ji"
+    },
+    {
+      "entityId": "poi-bc11f187a9c8c347",
+      "parentCityEntityId": "city-130a47f528e210f3",
+      "wikidataId": "Q1034293",
+      "canonicalNameEn": "Hase-dera"
+    },
+    {
+      "entityId": "poi-2fc9dca2029ea8a7",
+      "parentCityEntityId": "city-130a47f528e210f3",
+      "wikidataId": "Q3146363",
+      "canonicalNameEn": "Hōkoku-ji"
+    },
+    {
+      "entityId": "poi-fbadc9388a2a4d5c",
+      "parentCityEntityId": "city-130a47f528e210f3",
+      "wikidataId": "Q1396078",
+      "canonicalNameEn": "Kenchō-ji"
+    },
+    {
+      "entityId": "poi-b4caf8a530bae330",
+      "parentCityEntityId": "city-130a47f528e210f3",
+      "wikidataId": "Q672056",
+      "canonicalNameEn": "Kōtoku-in"
+    },
+    {
+      "entityId": "poi-9860fa4a7c9427f8",
+      "parentCityEntityId": "city-130a47f528e210f3",
+      "wikidataId": "Q701403",
+      "canonicalNameEn": "Tsurugaoka Hachimangū"
+    },
+    {
+      "entityId": "poi-710afe53908d551f",
+      "parentCityEntityId": "city-2a35c76c6ffed88a",
+      "wikidataId": "Q4890932",
+      "canonicalNameEn": "Beppu Onsen"
+    },
+    {
+      "entityId": "poi-433030fa5211c000",
+      "parentCityEntityId": "city-2a35c76c6ffed88a",
+      "wikidataId": "Q818646",
+      "canonicalNameEn": "Beppu Tower"
+    },
+    {
+      "entityId": "poi-9ef540430a036449",
+      "parentCityEntityId": "city-2a35c76c6ffed88a",
+      "wikidataId": "Q5709027",
+      "canonicalNameEn": "Hells of Beppu"
+    },
+    {
+      "entityId": "poi-0ba3e556ec530ae6",
+      "parentCityEntityId": "city-2e866e33dbb9ed15",
+      "wikidataId": "Q1192174",
+      "canonicalNameEn": "Fuji-Q Highland"
+    },
+    {
+      "entityId": "poi-01a5ad2e8155be86",
+      "parentCityEntityId": "city-2e866e33dbb9ed15",
+      "wikidataId": "Q11553670",
+      "canonicalNameEn": "Kawaguchiko Music Forest Museum"
+    },
+    {
+      "entityId": "poi-f92698d354cc8607",
+      "parentCityEntityId": "city-2e866e33dbb9ed15",
+      "wikidataId": "Q577372",
+      "canonicalNameEn": "Lake Kawaguchi"
+    },
+    {
+      "entityId": "poi-a94833beb3158478",
+      "parentCityEntityId": "city-2e866e33dbb9ed15",
+      "wikidataId": "Q7699891",
+      "canonicalNameEn": "Mount Fuji Panoramic Ropeway"
+    },
+    {
+      "entityId": "poi-7233cdf9f2561914",
+      "parentCityEntityId": "city-45d08342ab6298be",
+      "wikidataId": "Q11403710",
+      "canonicalNameEn": "Historical Village of Hokkaido"
+    },
+    {
+      "entityId": "poi-727669df6853dd02",
+      "parentCityEntityId": "city-45d08342ab6298be",
+      "wikidataId": "Q1298335",
+      "canonicalNameEn": "Moerenuma Park"
+    },
+    {
+      "entityId": "poi-c27c6bcdc815f9b8",
+      "parentCityEntityId": "city-45d08342ab6298be",
+      "wikidataId": "Q11625132",
+      "canonicalNameEn": "Mount Moiwa"
+    },
+    {
+      "entityId": "poi-17f89b9fb2b734de",
+      "parentCityEntityId": "city-45d08342ab6298be",
+      "wikidataId": "Q3107971",
+      "canonicalNameEn": "Odori Park"
+    },
+    {
+      "entityId": "poi-d2a7f11dda3c8539",
+      "parentCityEntityId": "city-45d08342ab6298be",
+      "wikidataId": "Q1055944",
+      "canonicalNameEn": "Sapporo Beer Museum"
+    },
+    {
+      "entityId": "poi-e31abab21c401277",
+      "parentCityEntityId": "city-45d08342ab6298be",
+      "wikidataId": "Q1140619",
+      "canonicalNameEn": "Sapporo Clock Tower"
+    },
+    {
+      "entityId": "poi-f45fefff3f3685bd",
+      "parentCityEntityId": "city-45d08342ab6298be",
+      "wikidataId": "Q1063319",
+      "canonicalNameEn": "Sapporo TV Tower"
+    },
+    {
+      "entityId": "poi-17fd4b4919f28dc9",
+      "parentCityEntityId": "city-47c9ca41467ed3e5",
+      "wikidataId": "Q3012169",
+      "canonicalNameEn": "Daishō-in"
+    },
+    {
+      "entityId": "poi-e3ab8df9b75d658a",
+      "parentCityEntityId": "city-47c9ca41467ed3e5",
+      "wikidataId": "Q191763",
+      "canonicalNameEn": "Itsukushima Shrine"
+    },
+    {
+      "entityId": "poi-23bced4dd2a143be",
+      "parentCityEntityId": "city-47c9ca41467ed3e5",
+      "wikidataId": "Q6764196",
+      "canonicalNameEn": "Miyajima Aquarium"
+    },
+    {
+      "entityId": "poi-378061149341b7d3",
+      "parentCityEntityId": "city-47c9ca41467ed3e5",
+      "wikidataId": "Q6884215",
+      "canonicalNameEn": "Miyajima Ropeway"
+    },
+    {
+      "entityId": "poi-710423a5f2bae9dc",
+      "parentCityEntityId": "city-47c9ca41467ed3e5",
+      "wikidataId": "Q6897278",
+      "canonicalNameEn": "Momijidani Park"
+    },
+    {
+      "entityId": "poi-687fd794e282a894",
+      "parentCityEntityId": "city-47c9ca41467ed3e5",
+      "wikidataId": "Q3109237",
+      "canonicalNameEn": "Mount Misen"
+    },
+    {
+      "entityId": "poi-3704dd1329e8db55",
+      "parentCityEntityId": "city-52661544a7a4388d",
+      "wikidataId": "Q22118212",
+      "canonicalNameEn": "Koza Music Town"
+    },
+    {
+      "entityId": "poi-2cc408dcaf40297d",
+      "parentCityEntityId": "city-52661544a7a4388d",
+      "wikidataId": "Q11552583",
+      "canonicalNameEn": "Okinawa Zoo & Museum"
+    },
+    {
+      "entityId": "poi-375fa11d4c753ed5",
+      "parentCityEntityId": "city-52661544a7a4388d",
+      "wikidataId": "Q7569315",
+      "canonicalNameEn": "Southeast Botanical Gardens"
+    },
+    {
+      "entityId": "poi-0f686b97b037b62d",
+      "parentCityEntityId": "city-5a21732f861ff7f1",
+      "wikidataId": "Q418096",
+      "canonicalNameEn": "Akihabara"
+    },
+    {
+      "entityId": "poi-219113e3a237ec2c",
+      "parentCityEntityId": "city-5a21732f861ff7f1",
+      "wikidataId": "Q1191042",
+      "canonicalNameEn": "Edo-Tokyo Museum"
+    },
+    {
+      "entityId": "poi-5db33445aadf3f36",
+      "parentCityEntityId": "city-5a21732f861ff7f1",
+      "wikidataId": "Q1033333",
+      "canonicalNameEn": "Hama-rikyū Gardens"
+    },
+    {
+      "entityId": "poi-f8d977e6bf64cd4b",
+      "parentCityEntityId": "city-5a21732f861ff7f1",
+      "wikidataId": "Q3082575",
+      "canonicalNameEn": "Kabuki-za"
+    },
+    {
+      "entityId": "poi-23a13e54f8f87b40",
+      "parentCityEntityId": "city-5a21732f861ff7f1",
+      "wikidataId": "Q4410434",
+      "canonicalNameEn": "Mori Art Museum"
+    },
+    {
+      "entityId": "poi-b172c14acd4b86cf",
+      "parentCityEntityId": "city-5a21732f861ff7f1",
+      "wikidataId": "Q74940",
+      "canonicalNameEn": "National Museum of Nature and Science"
+    },
+    {
+      "entityId": "poi-448be837167ecb6b",
+      "parentCityEntityId": "city-5a21732f861ff7f1",
+      "wikidataId": "Q335612",
+      "canonicalNameEn": "Nezu Shrine"
+    },
+    {
+      "entityId": "poi-294ca8813c073f3d",
+      "parentCityEntityId": "city-5a21732f861ff7f1",
+      "wikidataId": "Q211861",
+      "canonicalNameEn": "Odaiba"
+    },
+    {
+      "entityId": "poi-a168d2f21c36674e",
+      "parentCityEntityId": "city-5a21732f861ff7f1",
+      "wikidataId": "Q1071084",
+      "canonicalNameEn": "Roppongi Hills"
+    },
+    {
+      "entityId": "poi-0a3a1d58a4c61d04",
+      "parentCityEntityId": "city-5a21732f861ff7f1",
+      "wikidataId": "Q21083961",
+      "canonicalNameEn": "Shibuya Crossing"
+    },
+    {
+      "entityId": "poi-30404931176880cd",
+      "parentCityEntityId": "city-5a21732f861ff7f1",
+      "wikidataId": "Q776863",
+      "canonicalNameEn": "Shinjuku Gyo-en"
+    },
+    {
+      "entityId": "poi-d289279c697af9cb",
+      "parentCityEntityId": "city-5a21732f861ff7f1",
+      "wikidataId": "Q500681",
+      "canonicalNameEn": "Tokyo Imperial Palace"
+    },
+    {
+      "entityId": "poi-f4c2c5398d7f3c48",
+      "parentCityEntityId": "city-5a21732f861ff7f1",
+      "wikidataId": "Q653433",
+      "canonicalNameEn": "Tokyo National Museum"
+    },
+    {
+      "entityId": "poi-b7b1faa2e3604334",
+      "parentCityEntityId": "city-5a21732f861ff7f1",
+      "wikidataId": "Q57965",
+      "canonicalNameEn": "Tokyo Skytree"
+    },
+    {
+      "entityId": "poi-6660e3dba6979fc0",
+      "parentCityEntityId": "city-5a21732f861ff7f1",
+      "wikidataId": "Q746216",
+      "canonicalNameEn": "Ueno Park"
+    },
+    {
+      "entityId": "poi-5aec09d716222240",
+      "parentCityEntityId": "city-5a21732f861ff7f1",
+      "wikidataId": "Q1204253",
+      "canonicalNameEn": "Yoyogi Park"
+    },
+    {
+      "entityId": "poi-ffde595ba894606c",
+      "parentCityEntityId": "city-684cf7eb16759f74",
+      "wikidataId": "Q41977",
+      "canonicalNameEn": "Hiroshima Castle"
+    },
+    {
+      "entityId": "poi-b35754115244ce34",
+      "parentCityEntityId": "city-684cf7eb16759f74",
+      "wikidataId": "Q63828",
+      "canonicalNameEn": "Hiroshima Museum of Art"
+    },
+    {
+      "entityId": "poi-15db25a496c36e61",
+      "parentCityEntityId": "city-684cf7eb16759f74",
+      "wikidataId": "Q231140",
+      "canonicalNameEn": "Hiroshima Peace Memorial"
+    },
+    {
+      "entityId": "poi-50972da99bf80764",
+      "parentCityEntityId": "city-684cf7eb16759f74",
+      "wikidataId": "Q1200076",
+      "canonicalNameEn": "Hiroshima Peace Memorial Museum"
+    },
+    {
+      "entityId": "poi-ae9a7ed8c788b235",
+      "parentCityEntityId": "city-684cf7eb16759f74",
+      "wikidataId": "Q1207208",
+      "canonicalNameEn": "Hiroshima Peace Memorial Park"
+    },
+    {
+      "entityId": "poi-d952735eea317b42",
+      "parentCityEntityId": "city-684cf7eb16759f74",
+      "wikidataId": "Q63712",
+      "canonicalNameEn": "Mitaki-dera"
+    },
+    {
+      "entityId": "poi-4d0854676b93f0c6",
+      "parentCityEntityId": "city-684cf7eb16759f74",
+      "wikidataId": "Q2576732",
+      "canonicalNameEn": "Shukkei-en"
+    },
+    {
+      "entityId": "poi-416e187fb14509a7",
+      "parentCityEntityId": "city-7b76928f557485f6",
+      "wikidataId": "Q3242206",
+      "canonicalNameEn": "21st Century Museum of Contemporary Art, Kanazawa"
+    },
+    {
+      "entityId": "poi-94e02a6969fef5e7",
+      "parentCityEntityId": "city-7b76928f557485f6",
+      "wikidataId": "Q11648713",
+      "canonicalNameEn": "D. T. Suzuki Museum"
+    },
+    {
+      "entityId": "poi-33c2bf247a21dcaf",
+      "parentCityEntityId": "city-7b76928f557485f6",
+      "wikidataId": "Q511412",
+      "canonicalNameEn": "Kanazawa Castle"
+    },
+    {
+      "entityId": "poi-78de7debcc8ef6b1",
+      "parentCityEntityId": "city-7b76928f557485f6",
+      "wikidataId": "Q998239",
+      "canonicalNameEn": "Kenroku-en"
+    },
+    {
+      "entityId": "poi-a3adcc7437848709",
+      "parentCityEntityId": "city-7b76928f557485f6",
+      "wikidataId": "Q3342007",
+      "canonicalNameEn": "Myōryū-ji"
+    },
+    {
+      "entityId": "poi-9676ebc7506cfdf1",
+      "parentCityEntityId": "city-8604e98af5a0bf75",
+      "wikidataId": "Q1196357",
+      "canonicalNameEn": "Goryōkaku"
+    },
+    {
+      "entityId": "poi-67d45782fc17655b",
+      "parentCityEntityId": "city-8604e98af5a0bf75",
+      "wikidataId": "Q10896697",
+      "canonicalNameEn": "Hakodate Morning Market"
+    },
+    {
+      "entityId": "poi-b6665ed0ea8b45b5",
+      "parentCityEntityId": "city-8604e98af5a0bf75",
+      "wikidataId": "Q4504662",
+      "canonicalNameEn": "Hakodate Orthodox Church"
+    },
+    {
+      "entityId": "poi-0648c4e634e88b86",
+      "parentCityEntityId": "city-8604e98af5a0bf75",
+      "wikidataId": "Q11647285",
+      "canonicalNameEn": "Kanemori Red Brick Warehouse"
+    },
+    {
+      "entityId": "poi-d702579cf5c59625",
+      "parentCityEntityId": "city-8604e98af5a0bf75",
+      "wikidataId": "Q3526214",
+      "canonicalNameEn": "Mount Hakodate"
+    },
+    {
+      "entityId": "poi-704b6c18972d5d8f",
+      "parentCityEntityId": "city-8acaf08893e5abf1",
+      "wikidataId": "Q2859566",
+      "canonicalNameEn": "Arashiyama"
+    },
+    {
+      "entityId": "poi-58cc93e7d349c728",
+      "parentCityEntityId": "city-8acaf08893e5abf1",
+      "wikidataId": "Q257473",
+      "canonicalNameEn": "Ginkaku-ji"
+    },
+    {
+      "entityId": "poi-4e7c07cd58065386",
+      "parentCityEntityId": "city-8acaf08893e5abf1",
+      "wikidataId": "Q926312",
+      "canonicalNameEn": "Gion"
+    },
+    {
+      "entityId": "poi-3672f65250763a10",
+      "parentCityEntityId": "city-8acaf08893e5abf1",
+      "wikidataId": "Q385141",
+      "canonicalNameEn": "Heian Shrine"
+    },
+    {
+      "entityId": "poi-d2c34e4c5344b1ee",
+      "parentCityEntityId": "city-8acaf08893e5abf1",
+      "wikidataId": "Q1202239",
+      "canonicalNameEn": "Kyoto Imperial Palace"
+    },
+    {
+      "entityId": "poi-d0c54dff31d1c736",
+      "parentCityEntityId": "city-8acaf08893e5abf1",
+      "wikidataId": "Q147286",
+      "canonicalNameEn": "Kyoto National Museum"
+    },
+    {
+      "entityId": "poi-5a825e4d4f8f027a",
+      "parentCityEntityId": "city-8acaf08893e5abf1",
+      "wikidataId": "Q24014029",
+      "canonicalNameEn": "Kyoto Railway Museum"
+    },
+    {
+      "entityId": "poi-e55406df2e067316",
+      "parentCityEntityId": "city-8acaf08893e5abf1",
+      "wikidataId": "Q1089767",
+      "canonicalNameEn": "Nanzen-ji"
+    },
+    {
+      "entityId": "poi-4266ab9e848eb68f",
+      "parentCityEntityId": "city-8acaf08893e5abf1",
+      "wikidataId": "Q1013399",
+      "canonicalNameEn": "Nijō Castle"
+    },
+    {
+      "entityId": "poi-01d579fe00f3e277",
+      "parentCityEntityId": "city-8acaf08893e5abf1",
+      "wikidataId": "Q11650434",
+      "canonicalNameEn": "Nishiki Market"
+    },
+    {
+      "entityId": "poi-6636df4f87ad42cc",
+      "parentCityEntityId": "city-8acaf08893e5abf1",
+      "wikidataId": "Q1510488",
+      "canonicalNameEn": "Philosopher's Walk"
+    },
+    {
+      "entityId": "poi-1a7fe3b019eb6847",
+      "parentCityEntityId": "city-8acaf08893e5abf1",
+      "wikidataId": "Q587371",
+      "canonicalNameEn": "Ryōan-ji"
+    },
+    {
+      "entityId": "poi-67aaa69995a8f99e",
+      "parentCityEntityId": "city-8acaf08893e5abf1",
+      "wikidataId": "Q653319",
+      "canonicalNameEn": "Sanjūsangen-dō"
+    },
+    {
+      "entityId": "poi-bd1b38b2526a6f42",
+      "parentCityEntityId": "city-8acaf08893e5abf1",
+      "wikidataId": "Q1759226",
+      "canonicalNameEn": "Tenryū-ji"
+    },
+    {
+      "entityId": "poi-c216fa180f2d902a",
+      "parentCityEntityId": "city-8acaf08893e5abf1",
+      "wikidataId": "Q2166743",
+      "canonicalNameEn": "Tōfuku-ji"
+    },
+    {
+      "entityId": "poi-ced7e11efc1a8f07",
+      "parentCityEntityId": "city-8acaf08893e5abf1",
+      "wikidataId": "Q692714",
+      "canonicalNameEn": "Yasaka Shrine"
+    },
+    {
+      "entityId": "poi-066545b93f169753",
+      "parentCityEntityId": "city-8e7ea972d32813e9",
+      "wikidataId": "Q261932",
+      "canonicalNameEn": "Hōryū-ji"
+    },
+    {
+      "entityId": "poi-6559ab1e1c010efa",
+      "parentCityEntityId": "city-8e7ea972d32813e9",
+      "wikidataId": "Q2745677",
+      "canonicalNameEn": "Isui-en"
+    },
+    {
+      "entityId": "poi-4246622360bd6b3c",
+      "parentCityEntityId": "city-8e7ea972d32813e9",
+      "wikidataId": "Q714559",
+      "canonicalNameEn": "Kasuga-taisha"
+    },
+    {
+      "entityId": "poi-aefde57821b81d95",
+      "parentCityEntityId": "city-8e7ea972d32813e9",
+      "wikidataId": "Q1070863",
+      "canonicalNameEn": "Kōfuku-ji"
+    },
+    {
+      "entityId": "poi-afd01ef697cb0976",
+      "parentCityEntityId": "city-8e7ea972d32813e9",
+      "wikidataId": "Q147312",
+      "canonicalNameEn": "Nara National Museum"
+    },
+    {
+      "entityId": "poi-7a01db758f70920f",
+      "parentCityEntityId": "city-8e7ea972d32813e9",
+      "wikidataId": "Q1186358",
+      "canonicalNameEn": "Nara Park"
+    },
+    {
+      "entityId": "poi-6323de3444cb3d62",
+      "parentCityEntityId": "city-8e7ea972d32813e9",
+      "wikidataId": "Q460367",
+      "canonicalNameEn": "Tōdai-ji"
+    },
+    {
+      "entityId": "poi-dbc40363f5d9e7e3",
+      "parentCityEntityId": "city-8e7ea972d32813e9",
+      "wikidataId": "Q945913",
+      "canonicalNameEn": "Yakushi-ji"
+    },
+    {
+      "entityId": "poi-8debe1fba4534082",
+      "parentCityEntityId": "city-963a6186abb8bb90",
+      "wikidataId": "Q1134422",
+      "canonicalNameEn": "Hakone Open-Air Museum"
+    },
+    {
+      "entityId": "poi-64efe9a22924d160",
+      "parentCityEntityId": "city-963a6186abb8bb90",
+      "wikidataId": "Q705310",
+      "canonicalNameEn": "Hakone Shrine"
+    },
+    {
+      "entityId": "poi-a7afe1213ad3caec",
+      "parentCityEntityId": "city-963a6186abb8bb90",
+      "wikidataId": "Q187053",
+      "canonicalNameEn": "Lake Ashi"
+    },
+    {
+      "entityId": "poi-228ceda47b061160",
+      "parentCityEntityId": "city-963a6186abb8bb90",
+      "wikidataId": "Q1134429",
+      "canonicalNameEn": "Ōwakudani"
+    },
+    {
+      "entityId": "poi-9a50912891aeccd3",
+      "parentCityEntityId": "city-963a6186abb8bb90",
+      "wikidataId": "Q1574475",
+      "canonicalNameEn": "Pola Museum of Art"
+    },
+    {
+      "entityId": "poi-1309cf4a6d77195b",
+      "parentCityEntityId": "city-9eb941dc4cc899ef",
+      "wikidataId": "Q5751493",
+      "canonicalNameEn": "Hida Folk Village"
+    },
+    {
+      "entityId": "poi-95a45e28021768f9",
+      "parentCityEntityId": "city-9eb941dc4cc899ef",
+      "wikidataId": "Q11665889",
+      "canonicalNameEn": "Hida Kokubun-ji"
+    },
+    {
+      "entityId": "poi-9fcbdcd5c04ff41e",
+      "parentCityEntityId": "city-9eb941dc4cc899ef",
+      "wikidataId": "Q11537980",
+      "canonicalNameEn": "Sakurayama Hachimangu Shrine"
+    },
+    {
+      "entityId": "poi-903e968f4df8e09c",
+      "parentCityEntityId": "city-9eb941dc4cc899ef",
+      "wikidataId": "Q11669454",
+      "canonicalNameEn": "Takayama Jinya"
+    },
+    {
+      "entityId": "poi-75c34093625372b5",
+      "parentCityEntityId": "city-a537532044875bb1",
+      "wikidataId": "Q704636",
+      "canonicalNameEn": "Naminoue Shrine"
+    },
+    {
+      "entityId": "poi-8d2b50a79221cbb5",
+      "parentCityEntityId": "city-a537532044875bb1",
+      "wikidataId": "Q4617100",
+      "canonicalNameEn": "Okinawa Prefectural Museum"
+    },
+    {
+      "entityId": "poi-b9064671945c6b59",
+      "parentCityEntityId": "city-a537532044875bb1",
+      "wikidataId": "Q3133545",
+      "canonicalNameEn": "Shikina-en"
+    },
+    {
+      "entityId": "poi-62365e935d2ab998",
+      "parentCityEntityId": "city-a537532044875bb1",
+      "wikidataId": "Q907052",
+      "canonicalNameEn": "Shuri Castle"
+    },
+    {
+      "entityId": "poi-0524fe5fb19569f4",
+      "parentCityEntityId": "city-a537532044875bb1",
+      "wikidataId": "Q1186324",
+      "canonicalNameEn": "Tamaudun"
+    },
+    {
+      "entityId": "poi-93ded1c1ad68df2f",
+      "parentCityEntityId": "city-b584cab6bd222b8d",
+      "wikidataId": "Q10959355",
+      "canonicalNameEn": "Otaru Canal"
+    },
+    {
+      "entityId": "poi-3865a56a16178f75",
+      "parentCityEntityId": "city-b584cab6bd222b8d",
+      "wikidataId": "Q11462160",
+      "canonicalNameEn": "Otaru City General Museum"
+    },
+    {
+      "entityId": "poi-12dab8b6ab6238e7",
+      "parentCityEntityId": "city-b584cab6bd222b8d",
+      "wikidataId": "Q48765500",
+      "canonicalNameEn": "Otaru Music Box Museum"
+    },
+    {
+      "entityId": "poi-205373acb3f61851",
+      "parentCityEntityId": "city-bb2b8072fca1d274",
+      "wikidataId": "Q16318627",
+      "canonicalNameEn": "Abeno Harukas"
+    },
+    {
+      "entityId": "poi-38b2e0c344a86f13",
+      "parentCityEntityId": "city-bb2b8072fca1d274",
+      "wikidataId": "Q964876",
+      "canonicalNameEn": "Dōtonbori"
+    },
+    {
+      "entityId": "poi-b077eb47ae050df2",
+      "parentCityEntityId": "city-bb2b8072fca1d274",
+      "wikidataId": "Q4817249",
+      "canonicalNameEn": "Expo '70 Commemorative Park"
+    },
+    {
+      "entityId": "poi-8562ccbebc657901",
+      "parentCityEntityId": "city-bb2b8072fca1d274",
+      "wikidataId": "Q10855506",
+      "canonicalNameEn": "Kuromon Ichiba Market"
+    },
+    {
+      "entityId": "poi-1a729951748991a5",
+      "parentCityEntityId": "city-bb2b8072fca1d274",
+      "wikidataId": "Q6960289",
+      "canonicalNameEn": "Nakanoshima Park"
+    },
+    {
+      "entityId": "poi-ec8ffbb5751254d6",
+      "parentCityEntityId": "city-bb2b8072fca1d274",
+      "wikidataId": "Q1055037",
+      "canonicalNameEn": "National Museum of Art, Osaka"
+    },
+    {
+      "entityId": "poi-3f89f276be586f5d",
+      "parentCityEntityId": "city-bb2b8072fca1d274",
+      "wikidataId": "Q1191885",
+      "canonicalNameEn": "Osaka Aquarium Kaiyukan"
+    },
+    {
+      "entityId": "poi-11e924ce5a1006cb",
+      "parentCityEntityId": "city-bb2b8072fca1d274",
+      "wikidataId": "Q321242",
+      "canonicalNameEn": "Osaka Castle"
+    },
+    {
+      "entityId": "poi-9459d224977f1983",
+      "parentCityEntityId": "city-bb2b8072fca1d274",
+      "wikidataId": "Q11261312",
+      "canonicalNameEn": "Osaka Museum of History"
+    },
+    {
+      "entityId": "poi-51f88dddbe0cf574",
+      "parentCityEntityId": "city-bb2b8072fca1d274",
+      "wikidataId": "Q875709",
+      "canonicalNameEn": "Osaka Science Museum"
+    },
+    {
+      "entityId": "poi-ff19d3354d5d61e0",
+      "parentCityEntityId": "city-bb2b8072fca1d274",
+      "wikidataId": "Q1049117",
+      "canonicalNameEn": "Shinsekai"
+    },
+    {
+      "entityId": "poi-9f32769eb8ae2d2d",
+      "parentCityEntityId": "city-bb2b8072fca1d274",
+      "wikidataId": "Q339859",
+      "canonicalNameEn": "Shitennō-ji"
+    },
+    {
+      "entityId": "poi-92d594a4124da1ba",
+      "parentCityEntityId": "city-bb2b8072fca1d274",
+      "wikidataId": "Q705949",
+      "canonicalNameEn": "Sumiyoshi-taisha"
+    },
+    {
+      "entityId": "poi-13d6126b583ac2ed",
+      "parentCityEntityId": "city-bb2b8072fca1d274",
+      "wikidataId": "Q1148463",
+      "canonicalNameEn": "Tsūtenkaku"
+    },
+    {
+      "entityId": "poi-a9627beb7b71ed0c",
+      "parentCityEntityId": "city-bb2b8072fca1d274",
+      "wikidataId": "Q1151808",
+      "canonicalNameEn": "Umeda Sky Building"
+    },
+    {
+      "entityId": "poi-ea93539b048835ca",
+      "parentCityEntityId": "city-e4c829354d7edc8a",
+      "wikidataId": "Q3140143",
+      "canonicalNameEn": "Honmyō-ji"
+    },
+    {
+      "entityId": "poi-f0e2dea553eba0a8",
+      "parentCityEntityId": "city-e4c829354d7edc8a",
+      "wikidataId": "Q613355",
+      "canonicalNameEn": "Kumamoto Castle"
+    },
+    {
+      "entityId": "poi-39b7d5c3fc855904",
+      "parentCityEntityId": "city-e4c829354d7edc8a",
+      "wikidataId": "Q4556482",
+      "canonicalNameEn": "Kumamoto Prefectural Museum of Art"
+    },
+    {
+      "entityId": "poi-a84bfedc0d9f0c48",
+      "parentCityEntityId": "city-e4c829354d7edc8a",
+      "wikidataId": "Q1856438",
+      "canonicalNameEn": "Reigando Cave"
+    },
+    {
+      "entityId": "poi-dcf6c43368d8e6b5",
+      "parentCityEntityId": "city-e4c829354d7edc8a",
+      "wikidataId": "Q1090968",
+      "canonicalNameEn": "Suizen-ji Jōju-en"
+    },
+    {
+      "entityId": "poi-f086dc7037271814",
+      "parentCityEntityId": "city-ec98c79ca52bdb7f",
+      "wikidataId": "Q11648024",
+      "canonicalNameEn": "Lake Kinrin"
+    },
+    {
+      "entityId": "poi-394ba2ac62a385a6",
+      "parentCityEntityId": "city-ec98c79ca52bdb7f",
+      "wikidataId": "Q11264855",
+      "canonicalNameEn": "Yufuin Onsen"
+    },
+    {
+      "entityId": "poi-a701d55938f5303d",
+      "parentCityEntityId": "city-ec98c79ca52bdb7f",
+      "wikidataId": "Q8060317",
+      "canonicalNameEn": "Yufuin Station"
+    },
+    {
+      "entityId": "poi-6d1bee8d7ded92fa",
+      "parentCityEntityId": "city-f17cb016449ab40e",
+      "wikidataId": "Q482065",
+      "canonicalNameEn": "Atsuta Shrine"
+    },
+    {
+      "entityId": "poi-835fff1e835797de",
+      "parentCityEntityId": "city-f17cb016449ab40e",
+      "wikidataId": "Q648629",
+      "canonicalNameEn": "Nagoya Castle"
+    },
+    {
+      "entityId": "poi-7fb1ba1e9f8f6a96",
+      "parentCityEntityId": "city-f17cb016449ab40e",
+      "wikidataId": "Q11415016",
+      "canonicalNameEn": "Nagoya City Science Museum"
+    },
+    {
+      "entityId": "poi-578835ba17243cc1",
+      "parentCityEntityId": "city-f17cb016449ab40e",
+      "wikidataId": "Q7051341",
+      "canonicalNameEn": "Noritake Garden"
+    },
+    {
+      "entityId": "poi-1351d00d096d2f2f",
+      "parentCityEntityId": "city-f17cb016449ab40e",
+      "wikidataId": "Q3594052",
+      "canonicalNameEn": "Ōsu Kannon"
+    },
+    {
+      "entityId": "poi-319eb25e19990491",
+      "parentCityEntityId": "city-f17cb016449ab40e",
+      "wikidataId": "Q5362576",
+      "canonicalNameEn": "SCMaglev and Railway Park"
+    },
+    {
+      "entityId": "poi-30d6af8eb6c6375b",
+      "parentCityEntityId": "city-f17cb016449ab40e",
+      "wikidataId": "Q3077236",
+      "canonicalNameEn": "Tokugawa Art Museum"
+    },
+    {
+      "entityId": "poi-38d2602308539bc2",
+      "parentCityEntityId": "city-f17cb016449ab40e",
+      "wikidataId": "Q7830774",
+      "canonicalNameEn": "Toyota Commemorative Museum of Industry and Technology"
+    },
+    {
+      "entityId": "poi-9fec3264f148dd4b",
+      "parentCityEntityId": "city-f94e894e88837154",
+      "wikidataId": "Q710086",
+      "canonicalNameEn": "Ikuta Shrine"
+    },
+    {
+      "entityId": "poi-dca17abef80973d2",
+      "parentCityEntityId": "city-f94e894e88837154",
+      "wikidataId": "Q5363751",
+      "canonicalNameEn": "Kitano-chō"
+    },
+    {
+      "entityId": "poi-57457f6ef7be598d",
+      "parentCityEntityId": "city-f94e894e88837154",
+      "wikidataId": "Q3330666",
+      "canonicalNameEn": "Kobe City Museum"
+    },
+    {
+      "entityId": "poi-3bf0971cd04b3ae6",
+      "parentCityEntityId": "city-f94e894e88837154",
+      "wikidataId": "Q798766",
+      "canonicalNameEn": "Kobe Port Tower"
+    },
+    {
+      "entityId": "poi-e8d8af0f3e4be649",
+      "parentCityEntityId": "city-f94e894e88837154",
+      "wikidataId": "Q5365128",
+      "canonicalNameEn": "Meriken Park"
+    },
+    {
+      "entityId": "poi-8aa3acc9feae7ceb",
+      "parentCityEntityId": "city-f94e894e88837154",
+      "wikidataId": "Q462120",
+      "canonicalNameEn": "Mount Rokkō"
+    }
+  ]
+}

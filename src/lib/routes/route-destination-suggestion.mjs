@@ -1,5 +1,10 @@
 import { SEARCH_KNOWLEDGE_GRAPH_FALLBACKS } from "./search-knowledge-graph-fallbacks.mjs";
 import { stableHash } from "./route-v2-utils.mjs";
+import { maxDestinationsForTripDays } from "./route-trip-capacity.mjs";
+import {
+  filterDestinationsForTravelRegion,
+  resolveTravelRegionDefinition,
+} from "./route-search-region-taxonomy.mjs";
 
 function clean(value) {
   return String(value || "").trim().replace(/\s+/gu, " ");
@@ -127,13 +132,7 @@ function distanceKm(left = {}, right = {}) {
 }
 
 export function maxSuggestedDestinationsForDuration(durationDays) {
-  const days = Number(durationDays);
-  if (!Number.isFinite(days) || days <= 0) return 4;
-  if (days <= 3) return 2;
-  if (days <= 6) return 3;
-  if (days <= 10) return 4;
-  if (days <= 14) return 5;
-  return 6;
+  return maxDestinationsForTripDays(Number(durationDays)) || 4;
 }
 
 function shortTripDistanceLimit(durationDays) {
@@ -278,29 +277,80 @@ export function buildRouteDestinationSuggestion({
     ...(Array.isArray(intent.countryCodes) ? intent.countryCodes : []),
     intent.countryCode,
   ].map((code) => clean(code).toUpperCase()).filter((code) => /^[A-Z]{2}$/u.test(code)));
+  const regionCountryCodes = unique((Array.isArray(intent.regionCountryCodes) ? intent.regionCountryCodes : [])
+    .map((code) => clean(code).toUpperCase())
+    .filter((code) => /^[A-Z]{2}$/u.test(code)));
+  const explicitRegion = clean(intent.regionEntityId || intent.normalizedRegion || intent.region);
+  const regionDefinition = resolveTravelRegionDefinition(explicitRegion, intentCatalog?.regions);
   const destinationSuggestionMode = intent.intentMode === "destination-suggestion";
   const countryScopedSuggestionMode = intent.intentMode === "specified-destination"
     && requiredDestinationIds.length === 0
+    && !explicitRegion
     && explicitCountryCodes.length > 0;
-  if ((!destinationSuggestionMode && !countryScopedSuggestionMode) || !intent.canGenerate) {
+  const regionScopedSuggestionMode = intent.intentMode === "specified-destination"
+    && requiredDestinationIds.length === 0
+    && Boolean(explicitRegion)
+    && (regionCountryCodes.length > 0 || explicitCountryCodes.length > 0);
+  if ((!destinationSuggestionMode && !countryScopedSuggestionMode && !regionScopedSuggestionMode) || !intent.canGenerate) {
     return { ready: false, reason: "destination-suggestion-not-requested", suggestion: null };
   }
   const normalizedSessionId = clean(sessionId) || `intent:${clean(intent.intentHash)}`;
+  if (regionScopedSuggestionMode && regionDefinition?.supported === false) {
+    return { ready: false, reason: "destination-suggestion-region-unsupported", suggestion: null };
+  }
   const suggestionMode = countryScopedSuggestionMode
     ? "country-scoped-destination-suggestion"
+    : regionScopedSuggestionMode
+      ? "region-scoped-destination-suggestion"
     : "destination-suggestion";
   const seed = stableHash({ sessionId: normalizedSessionId, intentHash: clean(intent.intentHash), mode: suggestionMode });
   let entries = buildCountryEntries({
     intent,
     acceptedRoutes,
     intentCatalog,
-    minimumDestinationCountOverride: countryScopedSuggestionMode ? 2 : null,
+    minimumDestinationCountOverride: countryScopedSuggestionMode || regionScopedSuggestionMode ? 2 : null,
   });
   if (countryScopedSuggestionMode) {
     const allowedCountryCodes = new Set(explicitCountryCodes);
     entries = entries.filter((entry) => allowedCountryCodes.has(entry.countryCode));
   }
-  if (!entries.length) return { ready: false, reason: "destination-suggestion-pool-empty", suggestion: null };
+  if (regionScopedSuggestionMode) {
+    const allowedCountryCodes = new Set(regionCountryCodes.length ? regionCountryCodes : explicitCountryCodes);
+    entries = entries.filter((entry) => allowedCountryCodes.has(entry.countryCode)).flatMap((entry) => {
+      if (!regionDefinition) return [];
+      if (regionDefinition.scope === "macro-region") return [entry];
+      const destinations = filterDestinationsForTravelRegion(entry.destinations, explicitRegion, intentCatalog?.regions);
+      const entityDestinations = filterDestinationsForTravelRegion(entry.entityDestinations, explicitRegion, intentCatalog?.regions);
+      if (!destinations.length) return [];
+      const routeDestinationsForScope = Array.isArray(entry.route?.destinationEntities)
+        ? entry.route.destinationEntities
+        : [];
+      const scopedRoute = entry.route && routeDestinationsForScope.length > 0
+        && filterDestinationsForTravelRegion(routeDestinationsForScope, explicitRegion, intentCatalog?.regions).length === routeDestinationsForScope.length
+        ? entry.route
+        : null;
+      return [{
+        ...entry,
+        destinations,
+        entityDestinations,
+        entityDestinationCount: entityDestinations.length,
+        route: scopedRoute,
+        compatibility: scopedRoute ? routeCompatibility(scopedRoute, intent) : {
+          durationCompatible: false,
+          monthCompatible: false,
+          routeDays: null,
+          knownMonths: [],
+        },
+      }];
+    });
+  }
+  if (!entries.length) {
+    return {
+      ready: false,
+      reason: regionScopedSuggestionMode ? "destination-suggestion-region-unsupported" : "destination-suggestion-pool-empty",
+      suggestion: null,
+    };
+  }
 
   if (Number(intent.durationDays)) {
     const durationMatches = entries.filter((entry) => entry.compatibility.durationCompatible);
@@ -370,6 +420,10 @@ export function buildRouteDestinationSuggestion({
     eligibleCount: entries.length,
     countryCode: selected.countryCode,
     countryName: selected.countryName,
+    ...(regionScopedSuggestionMode ? {
+      regionId: regionDefinition?.key || explicitRegion,
+      regionLabel: regionDefinition?.label || clean(intent.region),
+    } : {}),
     cities: anchors.map((destination) => destination.name),
     normalizedCities: anchors.map((destination) => normalize(destination.sourceTitle || destination.name)),
     destinationIds: candidateDestinations.map(destinationIdentity),

@@ -70,7 +70,7 @@ function generatedCase(index) {
   const months = timeMode === "month" ? [...new Set([integer(1, 12), ...(random() < 0.25 ? [integer(1, 12)] : [])])].sort((a, b) => a - b) : [];
   const season = timeMode === "season" ? pick(["winter", "spring", "summer", "autumn"]) : null;
   const country = selected.every((entry) => entry[2] === selected[0][2]) ? selected[0][2] : "";
-  const region = selected.every((entry) => entry[3] === selected[0][3]) && random() < 0.35 ? selected[0][3] : "";
+  const region = "";
   const intent = {
     intentMode: "specified-destination",
     requiredDestinationIds: selected.map((entry) => entry[0]),

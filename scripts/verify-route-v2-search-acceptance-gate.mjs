@@ -24,6 +24,12 @@ function route(overrides = {}) {
     durationDays: 8,
     themes: ["\u6781\u5149"],
     tags: ["\u81ea\u9a7e"],
+    themeEvidence: [{
+      sourceType: "verified-evidence",
+      evidenceId: "verified-iceland-road-trip",
+      theme: "self-drive",
+      structureType: "road-trip",
+    }],
     source: { name: "Planner", url: "" },
     sourceType: "planner-designed",
     destinationSource: "knowledge-graph",

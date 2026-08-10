@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "route-v2-batch03b-france-review-v1",
+  "reviewCount": 3,
+  "entries": [
+    {
+      "reviewId": "batch03b-france-review-001",
+      "entityType": "region",
+      "seedKey": "Mont-Saint-Michel",
+      "requestedTitle": "Mont-Saint-Michel",
+      "reasonCode": "entity-type-not-supported-by-current-schema",
+      "disposition": "excluded-from-published-batch"
+    },
+    {
+      "reviewId": "batch03b-france-review-002",
+      "entityType": "region",
+      "seedKey": "Loire Valley",
+      "requestedTitle": "Loire Valley",
+      "reasonCode": "entity-type-not-supported-by-current-schema",
+      "disposition": "excluded-from-published-batch"
+    },
+    {
+      "reviewId": "batch03b-france-review-003",
+      "entityType": "region",
+      "seedKey": "Provence",
+      "requestedTitle": "Provence",
+      "reasonCode": "entity-type-not-supported-by-current-schema",
+      "disposition": "excluded-from-published-batch"
+    }
+  ]
+}

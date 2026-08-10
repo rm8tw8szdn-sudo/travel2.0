@@ -1,0 +1,1373 @@
+{
+  "schemaVersion": "route-v2-city-baseline-p1b-batch05",
+  "generatedFrom": "data/knowledge/raw/knowledge-expansion-batch03a-italy.wikidata.json",
+  "cityCount": 11,
+  "cities": [
+    {
+      "schemaVersion": "route-v2-city-baseline-p1b",
+      "entityId": "city-c35a51f0cb5d2021",
+      "entityType": "city",
+      "parentCountryEntityId": "country-4df88b953a99e6a4",
+      "wikidataId": "Q1891",
+      "canonicalNameZh": "博洛尼亚",
+      "canonicalNameEn": "Bologna",
+      "aliases": [
+        "Bologna, Italy",
+        "Bologne",
+        "Bolonia",
+        "Bolonia, Emilia-Romagna",
+        "Bolonia, Italia",
+        "La dotta",
+        "볼로냐",
+        "博洛尼亞",
+        "波隆尼亞",
+        "波隆納"
+      ],
+      "coordinates": {
+        "latitude": 44.493888888889,
+        "longitude": 11.342777777778
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-08-03T16:00:00.000Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch03a-italy",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "city-c35a51f0cb5d2021"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch03a-italy",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "city"
+        },
+        "parentCountryEntityId": {
+          "field": "parentCountryEntityId",
+          "sourceType": "repository-reference",
+          "source": "Italy Country Entity",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q38",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "country-4df88b953a99e6a4"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1891",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "Q1891"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1891",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "博洛尼亚"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1891",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "Bologna"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1891",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": [
+            "Bologna, Italy",
+            "Bologne",
+            "Bolonia",
+            "Bolonia, Emilia-Romagna",
+            "Bolonia, Italia",
+            "La dotta",
+            "볼로냐",
+            "博洛尼亞",
+            "波隆尼亞",
+            "波隆納"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1891",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": {
+            "latitude": 44.493888888889,
+            "longitude": 11.342777777778
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch03a-italy",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch03a-italy",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1891",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "2026-08-03T16:00:00.000Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-city-baseline-p1b",
+      "entityId": "city-42fa7d7ec2a164f4",
+      "entityType": "city",
+      "parentCountryEntityId": "country-4df88b953a99e6a4",
+      "wikidataId": "Q1903",
+      "canonicalNameZh": "卡塔尼亚",
+      "canonicalNameEn": "Catania",
+      "aliases": [
+        "Catane",
+        "카타니아",
+        "卡塔尼亞",
+        "卡塔纳"
+      ],
+      "coordinates": {
+        "latitude": 37.502669444444,
+        "longitude": 15.087269444444
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-08-03T16:00:00.000Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch03a-italy",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "city-42fa7d7ec2a164f4"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch03a-italy",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "city"
+        },
+        "parentCountryEntityId": {
+          "field": "parentCountryEntityId",
+          "sourceType": "repository-reference",
+          "source": "Italy Country Entity",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q38",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "country-4df88b953a99e6a4"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1903",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "Q1903"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1903",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "卡塔尼亚"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1903",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "Catania"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1903",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": [
+            "Catane",
+            "카타니아",
+            "卡塔尼亞",
+            "卡塔纳"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1903",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": {
+            "latitude": 37.502669444444,
+            "longitude": 15.087269444444
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch03a-italy",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch03a-italy",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1903",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "2026-08-03T16:00:00.000Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-city-baseline-p1b",
+      "entityId": "city-df3c42866a11edba",
+      "entityType": "city",
+      "parentCountryEntityId": "country-4df88b953a99e6a4",
+      "wikidataId": "Q1308",
+      "canonicalNameZh": "科莫",
+      "canonicalNameEn": "Como",
+      "aliases": [
+        "Côme",
+        "코모"
+      ],
+      "coordinates": {
+        "latitude": 45.81025,
+        "longitude": 9.0861388888889
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-08-03T16:00:00.000Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch03a-italy",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "city-df3c42866a11edba"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch03a-italy",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "city"
+        },
+        "parentCountryEntityId": {
+          "field": "parentCountryEntityId",
+          "sourceType": "repository-reference",
+          "source": "Italy Country Entity",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q38",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "country-4df88b953a99e6a4"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1308",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "Q1308"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1308",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "科莫"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1308",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "Como"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1308",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": [
+            "Côme",
+            "코모"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1308",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": {
+            "latitude": 45.81025,
+            "longitude": 9.0861388888889
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch03a-italy",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch03a-italy",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1308",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "2026-08-03T16:00:00.000Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-city-baseline-p1b",
+      "entityId": "city-c2ce5de4c930921c",
+      "entityType": "city",
+      "parentCountryEntityId": "country-4df88b953a99e6a4",
+      "wikidataId": "Q490",
+      "canonicalNameZh": "米兰",
+      "canonicalNameEn": "Milan",
+      "aliases": [
+        "Mailand",
+        "Milán",
+        "Milan, Italy",
+        "Milan, Lombardy",
+        "Milano",
+        "Milano, Italy",
+        "밀라노",
+        "米蘭"
+      ],
+      "coordinates": {
+        "latitude": 45.466944444444,
+        "longitude": 9.19
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-08-03T16:00:00.000Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch03a-italy",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "city-c2ce5de4c930921c"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch03a-italy",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "city"
+        },
+        "parentCountryEntityId": {
+          "field": "parentCountryEntityId",
+          "sourceType": "repository-reference",
+          "source": "Italy Country Entity",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q38",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "country-4df88b953a99e6a4"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q490",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "Q490"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q490",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "米兰"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q490",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "Milan"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q490",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": [
+            "Mailand",
+            "Milán",
+            "Milan, Italy",
+            "Milan, Lombardy",
+            "Milano",
+            "Milano, Italy",
+            "밀라노",
+            "米蘭"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q490",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": {
+            "latitude": 45.466944444444,
+            "longitude": 9.19
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch03a-italy",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch03a-italy",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q490",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "2026-08-03T16:00:00.000Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-city-baseline-p1b",
+      "entityId": "city-f4ab4ac7c8c65aac",
+      "entityType": "city",
+      "parentCountryEntityId": "country-4df88b953a99e6a4",
+      "wikidataId": "Q2634",
+      "canonicalNameZh": "那不勒斯",
+      "canonicalNameEn": "Naples",
+      "aliases": [
+        "Napoles",
+        "Nápoles",
+        "Napoli",
+        "Neapolis",
+        "나폴리",
+        "帕爾忒諾珀",
+        "帕耳忒诺珀",
+        "拿坡里",
+        "拿波里",
+        "那波利"
+      ],
+      "coordinates": {
+        "latitude": 40.83583333333333,
+        "longitude": 14.248611111111112
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-08-03T16:00:00.000Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch03a-italy",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "city-f4ab4ac7c8c65aac"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch03a-italy",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "city"
+        },
+        "parentCountryEntityId": {
+          "field": "parentCountryEntityId",
+          "sourceType": "repository-reference",
+          "source": "Italy Country Entity",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q38",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "country-4df88b953a99e6a4"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q2634",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "Q2634"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q2634",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "那不勒斯"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q2634",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "Naples"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q2634",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": [
+            "Napoles",
+            "Nápoles",
+            "Napoli",
+            "Neapolis",
+            "나폴리",
+            "帕爾忒諾珀",
+            "帕耳忒诺珀",
+            "拿坡里",
+            "拿波里",
+            "那波利"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q2634",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": {
+            "latitude": 40.83583333333333,
+            "longitude": 14.248611111111112
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch03a-italy",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch03a-italy",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q2634",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "2026-08-03T16:00:00.000Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-city-baseline-p1b",
+      "entityId": "city-e8f0c07a3b186851",
+      "entityType": "city",
+      "parentCountryEntityId": "country-4df88b953a99e6a4",
+      "wikidataId": "Q2656",
+      "canonicalNameZh": "巴勒莫",
+      "canonicalNameEn": "Palermo",
+      "aliases": [
+        "Palerme",
+        "Palermo (PA)",
+        "Palermo, Italy",
+        "Panormos",
+        "Panormus",
+        "παν-όρμος",
+        "팔레르모",
+        "巴勒摩"
+      ],
+      "coordinates": {
+        "latitude": 38.115658055555556,
+        "longitude": 13.361261944444445
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-08-03T16:00:00.000Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch03a-italy",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "city-e8f0c07a3b186851"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch03a-italy",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "city"
+        },
+        "parentCountryEntityId": {
+          "field": "parentCountryEntityId",
+          "sourceType": "repository-reference",
+          "source": "Italy Country Entity",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q38",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "country-4df88b953a99e6a4"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q2656",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "Q2656"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q2656",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "巴勒莫"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q2656",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "Palermo"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q2656",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": [
+            "Palerme",
+            "Palermo (PA)",
+            "Palermo, Italy",
+            "Panormos",
+            "Panormus",
+            "παν-όρμος",
+            "팔레르모",
+            "巴勒摩"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q2656",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": {
+            "latitude": 38.115658055555556,
+            "longitude": 13.361261944444445
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch03a-italy",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch03a-italy",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q2656",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "2026-08-03T16:00:00.000Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-city-baseline-p1b",
+      "entityId": "city-164dd28088aa25f4",
+      "entityType": "city",
+      "parentCountryEntityId": "country-4df88b953a99e6a4",
+      "wikidataId": "Q13375",
+      "canonicalNameZh": "比萨",
+      "canonicalNameEn": "Pisa",
+      "aliases": [
+        "Pise",
+        "피사"
+      ],
+      "coordinates": {
+        "latitude": 43.716666666667,
+        "longitude": 10.4
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-08-03T16:00:00.000Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch03a-italy",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "city-164dd28088aa25f4"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch03a-italy",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "city"
+        },
+        "parentCountryEntityId": {
+          "field": "parentCountryEntityId",
+          "sourceType": "repository-reference",
+          "source": "Italy Country Entity",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q38",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "country-4df88b953a99e6a4"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q13375",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "Q13375"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q13375",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "比萨"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q13375",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "Pisa"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q13375",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": [
+            "Pise",
+            "피사"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q13375",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": {
+            "latitude": 43.716666666667,
+            "longitude": 10.4
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch03a-italy",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch03a-italy",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q13375",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "2026-08-03T16:00:00.000Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-city-baseline-p1b",
+      "entityId": "city-b83b9960445cd188",
+      "entityType": "city",
+      "parentCountryEntityId": "country-4df88b953a99e6a4",
+      "wikidataId": "Q2751",
+      "canonicalNameZh": "锡耶纳",
+      "canonicalNameEn": "Siena",
+      "aliases": [
+        "Sienna",
+        "Sienne",
+        "시에나"
+      ],
+      "coordinates": {
+        "latitude": 43.318333333333,
+        "longitude": 11.331388888889
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-08-03T16:00:00.000Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch03a-italy",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "city-b83b9960445cd188"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch03a-italy",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "city"
+        },
+        "parentCountryEntityId": {
+          "field": "parentCountryEntityId",
+          "sourceType": "repository-reference",
+          "source": "Italy Country Entity",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q38",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "country-4df88b953a99e6a4"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q2751",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "Q2751"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q2751",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "锡耶纳"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q2751",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "Siena"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q2751",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": [
+            "Sienna",
+            "Sienne",
+            "시에나"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q2751",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": {
+            "latitude": 43.318333333333,
+            "longitude": 11.331388888889
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch03a-italy",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch03a-italy",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q2751",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "2026-08-03T16:00:00.000Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-city-baseline-p1b",
+      "entityId": "city-0a37bf91d42410d6",
+      "entityType": "city",
+      "parentCountryEntityId": "country-4df88b953a99e6a4",
+      "wikidataId": "Q495",
+      "canonicalNameZh": "都灵",
+      "canonicalNameEn": "Turin",
+      "aliases": [
+        "Torino",
+        "Turín",
+        "Turin, Italy",
+        "토리노",
+        "托里诺",
+        "杜林"
+      ],
+      "coordinates": {
+        "latitude": 45.079166666666666,
+        "longitude": 7.676111111111111
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-08-03T16:00:00.000Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch03a-italy",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "city-0a37bf91d42410d6"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch03a-italy",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "city"
+        },
+        "parentCountryEntityId": {
+          "field": "parentCountryEntityId",
+          "sourceType": "repository-reference",
+          "source": "Italy Country Entity",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q38",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "country-4df88b953a99e6a4"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q495",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "Q495"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q495",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "都灵"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q495",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "Turin"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q495",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": [
+            "Torino",
+            "Turín",
+            "Turin, Italy",
+            "토리노",
+            "托里诺",
+            "杜林"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q495",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": {
+            "latitude": 45.079166666666666,
+            "longitude": 7.676111111111111
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch03a-italy",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch03a-italy",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q495",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "2026-08-03T16:00:00.000Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-city-baseline-p1b",
+      "entityId": "city-c85060ff1bf40bda",
+      "entityType": "city",
+      "parentCountryEntityId": "country-4df88b953a99e6a4",
+      "wikidataId": "Q641",
+      "canonicalNameZh": "威尼斯",
+      "canonicalNameEn": "Venice",
+      "aliases": [
+        "Cité des Doges",
+        "Serenissima",
+        "Sérénissime",
+        "Venecia",
+        "Venetia",
+        "Venexia",
+        "Venezia",
+        "Venézia",
+        "Venice, Italy",
+        "Venise",
+        "Vinegia",
+        "베네치아"
+      ],
+      "coordinates": {
+        "latitude": 45.439722222222,
+        "longitude": 12.331944444444
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-08-03T16:00:00.000Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch03a-italy",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "city-c85060ff1bf40bda"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch03a-italy",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "city"
+        },
+        "parentCountryEntityId": {
+          "field": "parentCountryEntityId",
+          "sourceType": "repository-reference",
+          "source": "Italy Country Entity",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q38",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "country-4df88b953a99e6a4"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q641",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "Q641"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q641",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "威尼斯"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q641",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "Venice"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q641",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": [
+            "Cité des Doges",
+            "Serenissima",
+            "Sérénissime",
+            "Venecia",
+            "Venetia",
+            "Venexia",
+            "Venezia",
+            "Venézia",
+            "Venice, Italy",
+            "Venise",
+            "Vinegia",
+            "베네치아"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q641",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": {
+            "latitude": 45.439722222222,
+            "longitude": 12.331944444444
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch03a-italy",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch03a-italy",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q641",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "2026-08-03T16:00:00.000Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-city-baseline-p1b",
+      "entityId": "city-66bc37ecc403b7eb",
+      "entityType": "city",
+      "parentCountryEntityId": "country-4df88b953a99e6a4",
+      "wikidataId": "Q2028",
+      "canonicalNameZh": "维罗纳",
+      "canonicalNameEn": "Verona",
+      "aliases": [
+        "Vérone",
+        "베로나"
+      ],
+      "coordinates": {
+        "latitude": 45.43861111111111,
+        "longitude": 10.992777777777778
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-08-03T16:00:00.000Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch03a-italy",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "city-66bc37ecc403b7eb"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch03a-italy",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "city"
+        },
+        "parentCountryEntityId": {
+          "field": "parentCountryEntityId",
+          "sourceType": "repository-reference",
+          "source": "Italy Country Entity",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q38",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "country-4df88b953a99e6a4"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q2028",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "Q2028"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q2028",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "维罗纳"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q2028",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "Verona"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q2028",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": [
+            "Vérone",
+            "베로나"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q2028",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": {
+            "latitude": 45.43861111111111,
+            "longitude": 10.992777777777778
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch03a-italy",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch03a-italy",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q2028",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "2026-08-03T16:00:00.000Z"
+        }
+      }
+    }
+  ]
+}

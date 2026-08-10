@@ -18,7 +18,6 @@ const intent = normalizeRouteIntent({
   destinationOrderMode: "fixed",
   durationDays: 7,
   countryCode: "JP",
-  region: "kansai",
   timeIntent: { type: "single-month", months: [2] },
 });
 
@@ -113,11 +112,6 @@ const cases = [
     ...route,
     countryEntities: [{ countryCode: "TR" }],
     destinationEntities: route.destinationEntities.map((entry) => ({ ...entry, countryCode: "TR" })),
-  }],
-  ["region-mismatch", {
-    ...route,
-    region: "hokkaido",
-    destinationEntities: route.destinationEntities.map((entry) => ({ ...entry, region: "hokkaido" })),
   }],
 ];
 

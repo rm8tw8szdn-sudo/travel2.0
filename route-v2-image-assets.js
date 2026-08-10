@@ -71,6 +71,27 @@
     "gold-case-accepted-gold-c45-44-balkan-sampler": "assets/route-central-asia-loop-cover.svg",
     "gold-case-accepted-gold-c45-45-mekong-discovery": "assets/route-southeast-asia-cover.svg",
   });
+  const LOCAL_ROUTE_COVER_COUNTRIES = Object.freeze({
+    "gold-case-accepted-gold-1-jp-first-trip": ["JP"],
+    "gold-case-accepted-gold-2-it-first-trip": ["IT"],
+    "gold-case-accepted-gold-7-jp-autumn-seasonal": ["JP"],
+    "gold-case-accepted-gold-8-france-wine-theme": ["FR"],
+    "gold-case-accepted-gold-9-greece-island-hopping": ["GR"],
+    "gold-case-accepted-gold-10-shikoku-pilgrimage": ["JP"],
+    "gold-case-accepted-gold-c45-9-northern-norway-deep-dive": ["NO"],
+    "gold-case-accepted-gold-c45-12-canadian-rockies-road-trip": ["CA"],
+    "gold-case-accepted-gold-c45-17-japan-jr-grand-route": ["JP"],
+    "gold-case-accepted-gold-c45-18-norway-scenic-railway": ["NO"],
+    "gold-case-accepted-gold-c45-19-canadian-transcontinental-rail": ["CA"],
+    "gold-case-accepted-gold-c45-23-canada-autumn-rockies": ["CA"],
+    "gold-case-accepted-gold-c45-27-italy-food-journey": ["IT"],
+    "gold-case-accepted-gold-c45-28-turkey-unesco-journey": ["TR"],
+    "gold-case-accepted-gold-c45-38-kumano-kodo": ["JP"],
+    "gold-case-accepted-gold-c45-39-via-francigena": ["IT"],
+  });
+  const SEMANTIC_LOCAL_COUNTRY_CODES = new Set([
+    "AE", "EG", "FI", "FR", "GR", "IS", "IT", "JP", "KH", "KR", "MY", "NO", "SE", "SG", "TH", "TR", "VN",
+  ]);
   const LOCAL_CITY_COVERS = Object.freeze({
     tokyo: "assets/city-tokyo-cover.svg",
     "東京": "assets/city-tokyo-cover.svg",
@@ -235,7 +256,25 @@
       .map(normalizedLookupKey)
       .map((name) => LOCAL_COUNTRY_NAMES[name])
       .find(Boolean);
-    return LOCAL_COUNTRY_COVERS[directCode || nameCode] || "";
+    const code = directCode || nameCode;
+    if (!SEMANTIC_LOCAL_COUNTRY_CODES.has(code)) return "";
+    return LOCAL_COUNTRY_COVERS[code] || "";
+  }
+
+  function recordCountryCodes(record = {}) {
+    return [...new Set([
+      ...(record.countryEntities || []).map((entry) => entry?.countryCode),
+      ...(record.destinationEntities || []).map((entry) => entry?.countryCode),
+      ...(record.countryCodes || []),
+    ].map((value) => String(value || "").trim().toUpperCase()).filter((value) => /^[A-Z]{2}$/u.test(value)))];
+  }
+
+  function semanticallyMatchedRouteCover(record = {}) {
+    const routeId = String(record.id || "");
+    const allowedCodes = LOCAL_ROUTE_COVER_COUNTRIES[routeId];
+    const actualCodes = recordCountryCodes(record);
+    if (!allowedCodes || !actualCodes.length || !actualCodes.every((code) => allowedCodes.includes(code))) return "";
+    return LOCAL_ROUTE_COVERS[routeId] || "";
   }
 
   function localResolution(url, source, key = "") {
@@ -261,7 +300,7 @@
   function resolveLocalRouteCover(record = {}, options = {}) {
     const configured = resolvePilotRouteCover(record.id, options);
     if (configured && !configured.isFallback) return Object.freeze({ ...configured, source: "configured-route" });
-    const routeUrl = LOCAL_ROUTE_COVERS[String(record.id || "")];
+    const routeUrl = semanticallyMatchedRouteCover(record);
     if (routeUrl) return localResolution(routeUrl, "local-route");
     const destination = firstDestination(record);
     const cityUrl = localCityCover(destination);

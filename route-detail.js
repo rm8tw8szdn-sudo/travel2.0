@@ -19,6 +19,8 @@ document.querySelectorAll("[data-route-back]").forEach((link) => {
 const FALLBACK_ROUTE_COVER = "assets/trip-cover-placeholder.svg";
 const routeImageAssets = globalThis.RouteV2ImageAssets || null;
 const runtimeImageSearchEnabled = routeImageAssets?.isRuntimeImageSearchEnabled?.() === true;
+const detailLoadController = globalThis.RouteV2DetailLoadController?.create?.({ timeoutMs: 11_000 });
+if (!detailLoadController) throw new Error("Route detail load controller is unavailable");
 
 let activeRouteRecord = null;
 let destinationHydrationToken = 0;
@@ -84,7 +86,11 @@ function destinationNameKey(destination = {}) {
 
 function uniqueDestinations(record = {}) {
   const seen = new Set();
-  return (record.destinationEntities || []).filter((destination) => {
+  const expansionPois = record.routeReferenceMode === "country-expansion"
+    && Array.isArray(record.routeExpansion?.poiEntities)
+    ? record.routeExpansion.poiEntities
+    : [];
+  return [...(record.destinationEntities || []), ...expansionPois].filter((destination) => {
     const key = destinationKey(destination);
     const nameKey = destinationNameKey(destination);
     if (!destination?.name || seen.has(key) || seen.has(nameKey)) return false;
@@ -398,6 +404,8 @@ function renderFavoriteSnapshot() {
 
 async function loadRouteDetail() {
   if (!routeId) return showState("not-found");
+  const load = detailLoadController.begin();
+  destinationHydrationToken += 1;
   showState("loading");
   try {
     const mode = routeDetailSource === "search" && routeSearchStatus !== "accepted" ? "search-detail" : "detail";
@@ -411,21 +419,29 @@ async function loadRouteDetail() {
         searchSessionId: routeSearchSessionId,
         queryId: routeSearchQueryId,
       }),
-      signal: AbortSignal.timeout(11_000),
+      signal: load.signal,
     });
     const payload = await response.json().catch(() => ({}));
+    if (!load.isCurrent()) return;
     if (!response.ok || !payload.ok || payload.record?.id !== routeId) {
       throw new Error(payload.error?.message || `Route detail failed (${response.status})`);
     }
     const mediaState = updateRouteState((state) => window.TravelState.cacheRouteMedia(state, payload.record));
     const stableRecord = window.TravelState.applyCachedRouteMedia?.(mediaState, payload.record) || payload.record;
     renderRoute(stableRecord, payload.diagnostics || {});
-    if (window.TravelState?.isRouteFavorite?.(mediaState, routeId)) {
-      updateRouteState((state) => window.TravelState.hydrateRouteFavorite(state, stableRecord));
+    try {
+      if (window.TravelState?.isRouteFavorite?.(mediaState, routeId)) {
+        updateRouteState((state) => window.TravelState.hydrateRouteFavorite(state, stableRecord));
+      }
+    } catch {
+      // Persisted UI state is optional and must never replace a successfully rendered detail.
     }
+    load.settle();
   } catch (error) {
+    if (!load.isCurrent() || load.abortReason() === "superseded") return;
     console.error("Route detail load failed", error);
     if (!renderFavoriteSnapshot()) showState(error.message.includes("not found") ? "not-found" : "error");
+    load.settle();
   }
 }
 

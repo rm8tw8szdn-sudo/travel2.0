@@ -1,0 +1,203 @@
+{
+  "schemaVersion": "route-v2-country-baseline-p1a-batch04",
+  "generatedFrom": "data/knowledge/raw/knowledge-expansion-batch01.wikidata.json",
+  "countryCount": 1,
+  "countries": [
+    {
+      "schemaVersion": "route-v2-country-baseline-p1a",
+      "entityId": "country-0294eb483e5c1ea1",
+      "entityType": "country",
+      "isoAlpha2": "IS",
+      "isoAlpha3": "ISL",
+      "isoNumeric": "352",
+      "wikidataId": "Q189",
+      "canonicalNameZh": "冰岛",
+      "canonicalNameEn": "Iceland",
+      "aliases": [
+        "Ísland",
+        "Republic of Iceland",
+        "冰岛共和国"
+      ],
+      "continent": {
+        "wikidataId": "Q46",
+        "canonicalNameZh": "欧洲",
+        "canonicalNameEn": "Europe"
+      },
+      "region": "欧洲",
+      "subregion": "Northern Europe",
+      "capital": {
+        "wikidataId": "Q1764",
+        "canonicalNameZh": "雷克雅未克",
+        "canonicalNameEn": "Reykjavík",
+        "aliases": [
+          "Reykjavik"
+        ]
+      },
+      "coordinates": {
+        "latitude": 65,
+        "longitude": -19
+      },
+      "entitySourceType": "wikidata",
+      "provenance": {
+        "entityId": [
+          {
+            "sourceType": "iso",
+            "source": "ISO 3166 Knowledge Expansion Batch 01 seed",
+            "field": "entityId",
+            "sourceUrl": "",
+            "retrievedAt": "2026-08-03T08:00:00.000Z",
+            "value": "IS"
+          },
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "entityId",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q189",
+            "retrievedAt": "2026-08-03T08:00:00.000Z",
+            "value": "Q189"
+          }
+        ],
+        "isoAlpha2": [
+          {
+            "sourceType": "iso",
+            "source": "ISO 3166 Knowledge Expansion Batch 01 seed",
+            "field": "isoAlpha2",
+            "sourceUrl": "",
+            "retrievedAt": "2026-08-03T08:00:00.000Z",
+            "value": "IS"
+          }
+        ],
+        "isoAlpha3": [
+          {
+            "sourceType": "iso",
+            "source": "ISO 3166 Knowledge Expansion Batch 01 seed",
+            "field": "isoAlpha3",
+            "sourceUrl": "",
+            "retrievedAt": "2026-08-03T08:00:00.000Z",
+            "value": "ISL"
+          }
+        ],
+        "isoNumeric": [
+          {
+            "sourceType": "iso",
+            "source": "ISO 3166 Knowledge Expansion Batch 01 seed",
+            "field": "isoNumeric",
+            "sourceUrl": "",
+            "retrievedAt": "2026-08-03T08:00:00.000Z",
+            "value": "352"
+          }
+        ],
+        "wikidataId": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "wikidataId",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q189",
+            "retrievedAt": "2026-08-03T08:00:00.000Z",
+            "value": "Q189"
+          }
+        ],
+        "canonicalNameZh": [
+          {
+            "sourceType": "project-country-catalog",
+            "source": "Knowledge Expansion Batch 01 curated country catalog",
+            "field": "canonicalNameZh",
+            "sourceUrl": "",
+            "retrievedAt": "2026-08-03T08:00:00.000Z",
+            "value": "冰岛"
+          }
+        ],
+        "canonicalNameEn": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "canonicalNameEn",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q189",
+            "retrievedAt": "2026-08-03T08:00:00.000Z",
+            "value": "Iceland"
+          }
+        ],
+        "aliases": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "aliases",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q189",
+            "retrievedAt": "2026-08-03T08:00:00.000Z",
+            "value": [
+              "Ísland",
+              "Republic of Iceland",
+              "冰岛共和国"
+            ]
+          }
+        ],
+        "continent": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "continent",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q189",
+            "retrievedAt": "2026-08-03T08:00:00.000Z",
+            "value": {
+              "wikidataId": "Q46",
+              "canonicalNameZh": "欧洲",
+              "canonicalNameEn": "Europe"
+            }
+          }
+        ],
+        "region": [
+          {
+            "sourceType": "project-country-catalog",
+            "source": "Knowledge Expansion Batch 01 curated country catalog",
+            "field": "region",
+            "sourceUrl": "",
+            "retrievedAt": "2026-08-03T08:00:00.000Z",
+            "value": "欧洲"
+          }
+        ],
+        "subregion": [
+          {
+            "sourceType": "project-country-catalog",
+            "source": "Knowledge Expansion Batch 01 curated country catalog",
+            "field": "subregion",
+            "sourceUrl": "",
+            "retrievedAt": "2026-08-03T08:00:00.000Z",
+            "value": "Northern Europe"
+          }
+        ],
+        "capital": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "capital",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q189",
+            "retrievedAt": "2026-08-03T08:00:00.000Z",
+            "value": {
+              "wikidataId": "Q1764",
+              "canonicalNameZh": "雷克雅未克",
+              "canonicalNameEn": "Reykjavík",
+              "aliases": [
+                "Reykjavik"
+              ]
+            }
+          }
+        ],
+        "coordinates": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "coordinates",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q189",
+            "retrievedAt": "2026-08-03T08:00:00.000Z",
+            "value": {
+              "latitude": 65,
+              "longitude": -19
+            }
+          }
+        ]
+      },
+      "confidence": 0.95,
+      "retrievedAt": "2026-08-03T08:00:00.000Z"
+    }
+  ]
+}

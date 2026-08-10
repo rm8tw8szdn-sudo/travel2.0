@@ -13,10 +13,19 @@ import { compareRouteIntentShadow } from "./route-intent-shadow-validation.mjs";
 import { createWebSearchEvidenceProvider } from "./web-search-evidence-provider.mjs";
 import { createWebEvidenceExtractor } from "./web-evidence-extractor.mjs";
 import { createWebEvidenceCorroborator } from "./web-evidence-corroborator.mjs";
-import { createDecisionTraceStore, writeFailureDecisionTraceSafe, writeLegacyDecisionTraceSafe } from "./decision-trace-store.mjs";
+import {
+  createDecisionTraceStore,
+  isRouteV2TraceEnabled,
+  writeFailureDecisionTraceSafe,
+  writeLegacyDecisionTraceSafe,
+} from "./decision-trace-store.mjs";
 import { isRouteV2IntentEnabled, routeIntentSnapshot } from "./decision-trace-schema.mjs";
 import { buildRouteCandidatesFromPool } from "./route-candidate-builder.mjs";
-import { createRouteCandidatePoolStore, validateRouteCandidate } from "./route-candidate-pool.mjs";
+import {
+  createRouteCandidatePoolStore,
+  isRouteV2CandidatePoolEnabled,
+  validateRouteCandidate,
+} from "./route-candidate-pool.mjs";
 import {
   ROUTE_CANDIDATE_SELECTION_TARGET,
   selectRouteCandidates,
@@ -27,8 +36,15 @@ import {
   maxDestinationsForDuration,
   validateRouteForUse,
 } from "./route-candidate-evidence-validation.mjs";
-import { createEvidenceBundleStore } from "./evidence-bundle-store.mjs";
-import { writeLocalEvidenceSidecarSafe } from "./local-evidence-sidecar.mjs";
+import { maxDestinationsForTripDays, resolveRouteTripCapacity } from "./route-trip-capacity.mjs";
+import {
+  createEvidenceBundleStore,
+  isRouteV2EvidenceBundleEnabled,
+} from "./evidence-bundle-store.mjs";
+import {
+  isRouteV2LocalEvidenceEnabled,
+  writeLocalEvidenceSidecarSafe,
+} from "./local-evidence-sidecar.mjs";
 import { writeEvidenceBundleLifecycleSidecarSafe } from "./evidence-bundle-lifecycle-sidecar.mjs";
 import { createLocalEvidenceRepository } from "./local-evidence-repository.mjs";
 import {
@@ -36,7 +52,11 @@ import {
   evaluateRouteV2Publication,
   isRouteV2PublicationGateEnabled,
 } from "./route-publication-gate.mjs";
-import { createRouteV2ReadyPool } from "./route-v2-ready-pool.mjs";
+import {
+  createRouteV2ReadyPool,
+  isRouteV2ReadyPoolEnabled,
+} from "./route-v2-ready-pool.mjs";
+import { resolveRouteV2RuntimeDecision } from "./route-v2-runtime-environment.mjs";
 
 const PHASE_2A_STRATEGIES = ["Geographic", "Theme", "Season", "Transport", "Depth", "Efficiency"];
 const MAX_SEGMENT_KM = 650;
@@ -234,14 +254,12 @@ function anchorIndex(destination, anchors = []) {
 function maxDestinationsForConcept(concept = {}) {
   const days = Number(concept.durationDays) || Number.parseInt(concept.recommendedDays, 10) || 8;
   if (concept.travelStyle === "city-break") return 2;
-  if (days <= 3) return 2;
-  if (days <= 6) return concept.travelStyle === "country-hopper" ? 4 : 3;
-  if (days <= 10) {
-    if (["classic-first-trip", "seasonal", "theme"].includes(concept.travelStyle)) return 5;
-    return 6;
+  const durationCapacity = maxDestinationsForTripDays(days) || 4;
+  if (days <= 6 && concept.travelStyle === "country-hopper") return Math.min(4, durationCapacity);
+  if (days <= 10 && !["classic-first-trip", "seasonal", "theme"].includes(concept.travelStyle)) {
+    return Math.min(6, durationCapacity + 1);
   }
-  if (days <= 14) return ["road-trip", "rail-journey", "pilgrimage"].includes(concept.travelStyle) ? 8 : 6;
-  return 8;
+  return durationCapacity;
 }
 
 function routeDistanceLimits(concept = {}) {
@@ -1444,6 +1462,11 @@ function buildPlannerRecord({ concept, skeleton, context, evidenceResult, strate
     recommendationText: displayTravelValue,
     travelStyle: concept.travelStyle,
     travelStyleConceptKey: concept.travelStyle,
+    themeMetadataProvenance: {
+      sourceType: "request-derived",
+      producer: "route-composition-planner",
+      requestedTheme: clean(context.themeKey || context.theme || concept.travelStyle),
+    },
     durationBand: concept.durationBand,
     concept: displayConcept,
     countries: countryEntities.map((country) => country.countryCode),
@@ -1478,7 +1501,12 @@ function buildPlannerRecord({ concept, skeleton, context, evidenceResult, strate
       strategyEvidence: strategies.map((s) => ({ strategy: s, evidenceIds: [] })),
       concept: { travelStyle: concept.travelStyle, durationBand: concept.durationBand, routeStructure: concept.routeStructure },
     },
-    contentEvidence: { provider: "phase2b-planner", travelStyle: concept.travelStyle, evidenceHash: routeDedupeFingerprint({ destinationEntities, recommendedDays: concept.recommendedDays }) },
+    contentEvidence: {
+      provider: "phase2b-planner",
+      travelStyle: concept.travelStyle,
+      themeMetadataSource: "planner-derived",
+      evidenceHash: routeDedupeFingerprint({ destinationEntities, recommendedDays: concept.recommendedDays }),
+    },
     llmRefine: {
       refined: llmRefined,
       confidence: llmConfidence,
@@ -1589,6 +1617,70 @@ function decorateCitywalkReferenceRecord(record, context = {}) {
   };
 }
 
+function expansionPoiCoverage(destinations = [], limit = 0) {
+  const seen = new Set();
+  const pois = [];
+  for (const city of destinations) {
+    for (const poi of city.poiEntities || []) {
+      const id = clean(poi.wikidataId || poi.entityId || poi.canonicalNameEn || poi.canonicalNameZh || poi.name);
+      if (!id || seen.has(id)) continue;
+      seen.add(id);
+      pois.push({
+        ...structuredClone(poi),
+        parentCityEntityId: clean(poi.parentCityEntityId || city.entityId),
+        countryCode: clean(city.countryCode || poi.countryCode),
+      });
+    }
+  }
+  return pois.slice(0, Math.max(0, Number(limit) || 0));
+}
+
+function decorateLongTripExpansionRecord(record, context = {}) {
+  if (!record || clean(context.routeReferenceMode) === "citywalk") return record;
+  const capacity = context.tripCapacity || resolveRouteTripCapacity(context);
+  if (!capacity.supported || !["extended", "deep-exploration"].includes(clean(capacity.mode))) return record;
+  if (clean(capacity.scope) !== "single-country") return record;
+  const destinations = Array.isArray(record.destinationEntities) ? record.destinationEntities : [];
+  const cities = destinations.filter((destination) => clean(destination.entityTypeName || "city") === "city");
+  const poiCoverage = expansionPoiCoverage(cities, capacity.targetPoiCount);
+  const countryName = (record.countryEntities || []).map((country) => clean(country.name || country.countryCode)).filter(Boolean).join("、");
+  const cityNames = cities.map((city) => clean(city.canonicalNameZh || city.name || city.canonicalNameEn)).filter(Boolean);
+  const modeLabel = capacity.mode === "deep-exploration" ? "深度探索" : "延展探索";
+  const coverageLimited = cities.length < capacity.targetCityCount || poiCoverage.length < capacity.targetPoiCount;
+  const title = `${countryName}${capacity.requestedDays}天${modeLabel}${cityNames.length ? `：${cityNames.slice(0, 3).join("、")}` : ""}`;
+  return {
+    ...record,
+    name: title,
+    canonicalTitle: title,
+    summary: `以${cityNames.join("、") || countryName}为城市骨架，覆盖当前知识库中${poiCoverage.length}个经典地点；${coverageLimited ? "现有资料尚未填满全部容量，后续可继续补充。" : "按停留天数分配更从容的区域探索。"}`,
+    recommendationText: coverageLimited
+      ? "这是一条受当前城市与景点资料容量约束的长途参考，不会用重复地点假装扩展覆盖。"
+      : "这是一条按长途旅行容量扩展的单国参考，可按区域拆分停留节奏。",
+    routeReferenceMode: "country-expansion",
+    durationPolicy: "bounded-expansion",
+    routeExpansion: {
+      version: capacity.version,
+      mode: capacity.mode,
+      requestedDays: capacity.requestedDays,
+      maxSupportedDays: capacity.maxSupportedDays,
+      maxCities: capacity.maxCities,
+      maxPois: capacity.maxPois,
+      targetCityCount: capacity.targetCityCount,
+      actualCityCount: cities.length,
+      targetPoiCount: capacity.targetPoiCount,
+      actualPoiCount: poiCoverage.length,
+      coverageStatus: coverageLimited ? "knowledge-capacity-limited" : "target-covered",
+      poiEntities: poiCoverage,
+    },
+    highlights: unique([
+      ...(record.highlights || []),
+      `${cities.length}座城市构成长途路线骨架`,
+      `${poiCoverage.length}个经典地点纳入分区参考`,
+      coverageLimited ? "当前知识容量不足的部分明确保留为待补充" : "城市与景点覆盖达到当前路线容量目标",
+    ]),
+  };
+}
+
 function validatePlannerCandidateSafe(record, concept, context, strategyRegistry) {
   try {
     return validatePlannerCandidate(record, concept, context, strategyRegistry);
@@ -1606,10 +1698,28 @@ function validatePlannerCandidateSafe(record, concept, context, strategyRegistry
 async function runPipeline({ context, knowledgeGraph, evidenceRepository, acceptedRepository, strategyRegistry, llmRefineProvider, webEvidencePipeline, decisionTraceStore, candidatePoolStore, evidenceBundleStore, localEvidenceRepository, publicationGateEvaluator, readyPool, routeCandidateBuilder, candidateEvidenceValidator, localEvidenceSidecar, localEvidenceCollector, env, limit }) {
   const accepted = [];
   const rejected = [];
+  const acceptedThemeSnapshot = acceptedRepository.list({ limit: 100_000 }).records;
+  const acceptedThemeEvidenceById = new Map();
+  for (const route of acceptedThemeSnapshot) {
+    const routeId = clean(route?.id || route?.routeId || route?.stableRouteId || route?.stableId);
+    if (routeId) acceptedThemeEvidenceById.set(routeId, route);
+  }
+  const acceptedRouteResolver = (routeId) => {
+    const original = acceptedThemeEvidenceById.get(clean(routeId));
+    return original ? structuredClone(original) : null;
+  };
   const v2IntentEnabled = isRouteV2IntentEnabled(env);
+  const requestAllowsV2SideEffects = context?.routeV2RuntimeDecision
+    ? context.routeV2RuntimeDecision.enabled === true && v2IntentEnabled
+    : v2IntentEnabled;
+  const candidateWritesAllowed = requestAllowsV2SideEffects && isRouteV2CandidatePoolEnabled(env);
+  const traceWritesAllowed = requestAllowsV2SideEffects && isRouteV2TraceEnabled(env);
+  const evidenceBundleWritesAllowed = requestAllowsV2SideEffects && isRouteV2EvidenceBundleEnabled(env);
+  const localEvidenceWritesAllowed = requestAllowsV2SideEffects && isRouteV2LocalEvidenceEnabled(env);
+  const readyPoolWritesAllowed = requestAllowsV2SideEffects && isRouteV2ReadyPoolEnabled(env);
   let candidatePoolEnabled = false;
   let candidatePoolInitializationFailure = "";
-  if (v2IntentEnabled && candidatePoolStore?.enabled) {
+  if (candidateWritesAllowed && candidatePoolStore?.enabled) {
     try {
       candidatePoolEnabled = Boolean(candidatePoolStore.enabled());
     } catch (error) {
@@ -1645,7 +1755,8 @@ async function runPipeline({ context, knowledgeGraph, evidenceRepository, accept
       legacyFallback: Boolean(legacyFallback),
       candidateStateWrite,
     };
-    const traceWrite = await writeFailureDecisionTraceSafe(decisionTraceStore, {
+    const traceWrite = traceWritesAllowed
+      ? await writeFailureDecisionTraceSafe(decisionTraceStore, {
       context,
       intentId: context?.intentId || "",
       candidatePool: failure.candidates,
@@ -1665,7 +1776,8 @@ async function runPipeline({ context, knowledgeGraph, evidenceRepository, accept
         }] : []),
       ],
       legacyFallback: failure.legacyFallback,
-    });
+    })
+      : { written: false, persisted: false, skipped: true, reason: "request-v2-side-effects-disabled" };
     v2Failure = { ...failure, traceWrite };
     return v2Failure;
   }
@@ -1719,7 +1831,17 @@ async function runPipeline({ context, knowledgeGraph, evidenceRepository, accept
   const v2InputConstraintFailure = v2Attempted
     && explicitRequestedDestinations.length > 0
     && explicitRequestedDestinations.length > durationCapacity;
-  const candidateSidecar = candidatePoolInitializationFailure
+  const candidateSidecar = !candidateWritesAllowed
+    ? {
+        enabled: false,
+        generated: 0,
+        written: 0,
+        skipped: true,
+        reason: "request-v2-side-effects-disabled",
+        selection: null,
+        persistenceReady: false,
+      }
+    : candidatePoolInitializationFailure
       ? {
         enabled: true,
         generated: 0,
@@ -1767,7 +1889,7 @@ async function runPipeline({ context, knowledgeGraph, evidenceRepository, accept
   const v2SelectionReady = !v2InputConstraintFailure
     && candidateSidecar?.persistenceReady === true
     && candidateSidecar?.selection?.ready === true;
-  if (!v2SelectionReady) {
+  if (localEvidenceWritesAllowed && !v2SelectionReady) {
     await localEvidenceSidecar({
       candidates: candidateSidecar?.writtenCandidates || [],
       kgPool: pool,
@@ -1974,6 +2096,7 @@ async function runPipeline({ context, knowledgeGraph, evidenceRepository, accept
   const routeIntentFinalization = finalizeRouteResult(record, context, {
     source: "planner-final-route",
     claimedSuccess: true,
+    acceptedRouteResolver,
   });
   const routeIntentShadow = compareRouteIntentShadow({
     route: routeIntentFinalization.record || record,
@@ -2001,10 +2124,13 @@ async function runPipeline({ context, knowledgeGraph, evidenceRepository, accept
     rejected.push({ context, reason: "fallback-hard-constraint-mismatch", constraintValidation: invariantFailure });
     return { accepted, rejected, concept, v2Failure: failureTrace };
   }
-  record = decorateCitywalkReferenceRecord(routeIntentFinalization.record, context);
+  record = decorateLongTripExpansionRecord(
+    decorateCitywalkReferenceRecord(routeIntentFinalization.record, context),
+    context,
+  );
 
   // [8] duplicateDistance
-  const existingRecords = acceptedRepository.list({ limit: 100_000 }).records;
+  const existingRecords = acceptedThemeSnapshot;
   let dedupeDistance = duplicateDistance(record, existingRecords);
   if (countryClusterSaturated(record, existingRecords, Number(context.maxAcceptedPerCountryCluster) || Infinity)) {
     const failureTrace = await recordV2Failure({
@@ -2027,7 +2153,8 @@ async function runPipeline({ context, knowledgeGraph, evidenceRepository, accept
     return { accepted, rejected, concept, v2Failure: failureTrace };
   }
 
-  let traceWrite = v2Failure?.traceWrite || await writeLegacyDecisionTraceSafe(decisionTraceStore, {
+  let traceWrite = v2Failure?.traceWrite || (traceWritesAllowed
+    ? await writeLegacyDecisionTraceSafe(decisionTraceStore, {
     route: record,
     context,
     source: "planner-pipeline",
@@ -2057,7 +2184,8 @@ async function runPipeline({ context, knowledgeGraph, evidenceRepository, accept
       { field: "completeRejectedAlternatives", reason: "Phase 1 persists exactly three deterministic alternatives; evidence-backed expansion is not implemented." },
       { field: "llmContribution", reason: llmRefined ? "LLM refine result was applied to the legacy path." : "LLM refine did not change the selected candidate route." },
     ],
-  });
+  })
+    : { written: false, persisted: false, skipped: true, reason: "request-v2-side-effects-disabled" });
   const successTracePersisted = traceWrite?.persisted === true && Boolean(clean(traceWrite?.traceId));
   if (usingV2SelectedCandidate && !successTracePersisted) {
     await recordV2Failure({
@@ -2111,6 +2239,7 @@ async function runPipeline({ context, knowledgeGraph, evidenceRepository, accept
     const legacyRouteIntentFinalization = finalizeRouteResult(record, context, {
       source: "planner-legacy-fallback",
       claimedSuccess: true,
+      acceptedRouteResolver,
     });
     const legacyRouteIntentShadow = compareRouteIntentShadow({
       route: legacyRouteIntentFinalization.record || record,
@@ -2147,7 +2276,7 @@ async function runPipeline({ context, knowledgeGraph, evidenceRepository, accept
   }
 
   let evidenceBundleLifecycle = null;
-  if (usingV2SelectedCandidate) {
+  if (evidenceBundleWritesAllowed && usingV2SelectedCandidate) {
     const selectedValidation = (candidateSidecar.selection.validationResults || [])
       .find((validationResult) => clean(validationResult?.candidateId) === clean(selectedCandidate?.candidateId)) || null;
     evidenceBundleLifecycle = await writeEvidenceBundleLifecycleSidecarSafe({
@@ -2186,7 +2315,7 @@ async function runPipeline({ context, knowledgeGraph, evidenceRepository, accept
     });
     return { accepted, rejected, concept, v2Failure: failureTrace };
   }
-  if (usingV2SelectedCandidate && isRouteV2PublicationGateEnabled(env)) {
+  if (requestAllowsV2SideEffects && usingV2SelectedCandidate && isRouteV2PublicationGateEnabled(env)) {
     record = ensureV2PublicationCover(record);
     try {
       const decisionTrace = decisionTraceStore?.list?.().find((trace) => clean(trace?.traceId) === clean(record.decisionTraceId)) || null;
@@ -2216,7 +2345,7 @@ async function runPipeline({ context, knowledgeGraph, evidenceRepository, accept
     }
     record.v2PublicationStatus = publicationGate.status;
     try {
-      if (readyPool?.enabled?.()) {
+      if (readyPoolWritesAllowed && readyPool?.enabled?.()) {
         readyPoolWrite = readyPool.applyEvaluation({ routeRecord: record, publicationGate });
       }
     } catch (error) {
@@ -2268,9 +2397,19 @@ export function createRouteCompositionPlanner({ evidenceRepository, acceptedRepo
   const sidecarReadyPool = readyPool || createRouteV2ReadyPool({ env });
   return {
     async buildCandidates({ limit = 5, context = null } = {}) {
+      const requestRuntime = context?.routeV2RuntimeEnvironment
+        ? {
+            environment: context.routeV2RuntimeEnvironment,
+            decision: context.routeV2RuntimeDecision || null,
+          }
+        : resolveRouteV2RuntimeDecision({
+            env,
+            userId: context?.userId,
+            sessionId: context?.sessionId,
+          });
       // 新管线模式：有 context（{durationDays, country, style, ...}）走知识图驱动（async，含 LLM 节点）
       if (context && (context.country || context.durationDays || context.travelStyle)) {
-        return runPipeline({ context, knowledgeGraph, evidenceRepository, acceptedRepository, strategyRegistry, llmRefineProvider, webEvidencePipeline, decisionTraceStore: traceStore, candidatePoolStore: sidecarCandidatePoolStore, evidenceBundleStore: sidecarEvidenceBundleStore, localEvidenceRepository: sidecarLocalEvidenceRepository, publicationGateEvaluator, readyPool: sidecarReadyPool, routeCandidateBuilder, candidateEvidenceValidator, localEvidenceSidecar, localEvidenceCollector, env, limit });
+        return runPipeline({ context, knowledgeGraph, evidenceRepository, acceptedRepository, strategyRegistry, llmRefineProvider, webEvidencePipeline, decisionTraceStore: traceStore, candidatePoolStore: sidecarCandidatePoolStore, evidenceBundleStore: sidecarEvidenceBundleStore, localEvidenceRepository: sidecarLocalEvidenceRepository, publicationGateEvaluator, readyPool: sidecarReadyPool, routeCandidateBuilder, candidateEvidenceValidator, localEvidenceSidecar, localEvidenceCollector, env: requestRuntime.environment, limit });
       }
       // 旧兼容模式：evidence 桶缝合（codex 原 buildCandidates，仅旧 verify 脚本与生产 run-route-ai-production-phase2a 走此路径）
       const existingRecords = acceptedRepository.list({ limit: 100_000 }).records;

@@ -1,0 +1,335 @@
+{
+  "schemaVersion": "route-v2-real-user-search-intent-matrix-v1",
+  "cases": [
+    {
+      "id": "region-europe-zh",
+      "category": "region",
+      "query": "欧洲10天",
+      "expected": { "region": "europe", "durationDays": 10, "parseSuccess": true }
+    },
+    {
+      "id": "region-northern-europe-season",
+      "category": "region",
+      "query": "北欧夏天",
+      "expected": { "region": "northern-europe", "season": "summer", "parseSuccess": true }
+    },
+    {
+      "id": "region-asia-season",
+      "category": "region",
+      "query": "亚洲冬季",
+      "expected": { "region": "asia", "season": "winter", "parseSuccess": true }
+    },
+    {
+      "id": "region-southeast-asia",
+      "category": "region",
+      "query": "东南亚7天",
+      "expected": { "region": "southeast-asia", "durationDays": 7, "parseSuccess": true }
+    },
+    {
+      "id": "region-americas",
+      "category": "region",
+      "query": "美洲10天",
+      "expected": { "region": "americas", "durationDays": 10, "parseSuccess": true }
+    },
+    {
+      "id": "region-europe-en",
+      "category": "region",
+      "query": "Europe 10 days",
+      "expected": { "region": "europe", "durationDays": 10, "parseSuccess": true }
+    },
+    {
+      "id": "region-europe-natural-en",
+      "category": "region",
+      "query": "summer in Europe for 10 days",
+      "expected": { "region": "europe", "durationDays": 10, "season": "summer", "parseSuccess": true }
+    },
+    {
+      "id": "region-asia-natural-en",
+      "category": "region",
+      "query": "Asia winter trip",
+      "expected": { "region": "asia", "season": "winter", "parseSuccess": true }
+    },
+    {
+      "id": "duration-chinese-digits",
+      "category": "duration",
+      "query": "日本7天",
+      "expected": { "countryCode": "JP", "durationDays": 7, "parseSuccess": true }
+    },
+    {
+      "id": "duration-chinese-week",
+      "category": "duration",
+      "query": "日本一周",
+      "expected": { "countryCode": "JP", "durationDays": 7, "parseSuccess": true }
+    },
+    {
+      "id": "duration-chinese-approx-week",
+      "category": "duration",
+      "query": "日本一周左右",
+      "expected": { "countryCode": "JP", "durationDays": 7, "parseSuccess": true }
+    },
+    {
+      "id": "duration-chinese-tenish",
+      "category": "duration",
+      "query": "日本十来天",
+      "expected": { "countryCode": "JP", "durationDays": 10, "parseSuccess": true }
+    },
+    {
+      "id": "duration-english-digits",
+      "category": "duration",
+      "query": "Japan 7 days",
+      "expected": { "countryCode": "JP", "durationDays": 7, "parseSuccess": true }
+    },
+    {
+      "id": "duration-english-word",
+      "category": "duration",
+      "query": "Japan seven days",
+      "expected": { "countryCode": "JP", "durationDays": 7, "parseSuccess": true }
+    },
+    {
+      "id": "duration-english-one-week",
+      "category": "duration",
+      "query": "Japan one week",
+      "expected": { "countryCode": "JP", "durationDays": 7, "parseSuccess": true }
+    },
+    {
+      "id": "duration-english-a-week",
+      "category": "duration",
+      "query": "Japan a week",
+      "expected": { "countryCode": "JP", "durationDays": 7, "parseSuccess": true }
+    },
+    {
+      "id": "duration-english-hyphen",
+      "category": "duration",
+      "query": "Japan 10-day trip",
+      "expected": { "countryCode": "JP", "durationDays": 10, "parseSuccess": true }
+    },
+    {
+      "id": "duration-month-word-mixed",
+      "category": "multilingual",
+      "query": "February Japan seven days",
+      "expected": { "countryCode": "JP", "durationDays": 7, "months": [2], "parseSuccess": true }
+    },
+    {
+      "id": "duration-zh-country-en-week",
+      "category": "multilingual",
+      "query": "日本 one week",
+      "expected": { "countryCode": "JP", "durationDays": 7, "parseSuccess": true }
+    },
+    {
+      "id": "duration-en-country-zh-days",
+      "category": "multilingual",
+      "query": "Japan 7天",
+      "expected": { "countryCode": "JP", "durationDays": 7, "parseSuccess": true }
+    },
+    {
+      "id": "duration-english-unsupported-safe-failure",
+      "category": "duration",
+      "query": "Japan several days",
+      "expected": { "countryCode": "JP", "parseSuccess": false, "failureReason": "invalid-duration" }
+    },
+    {
+      "id": "typo-japan",
+      "category": "typo",
+      "query": "Jappan 7 days",
+      "expected": { "parseSuccess": false, "failureReason": "destination-confirmation-required", "correctionCountryCode": "JP" }
+    },
+    {
+      "id": "typo-italy",
+      "category": "typo",
+      "query": "Italyy 10 days",
+      "expected": { "parseSuccess": false, "failureReason": "destination-confirmation-required", "correctionCountryCode": "IT" }
+    },
+    {
+      "id": "typo-thailand",
+      "category": "typo",
+      "query": "Thialand 7 days",
+      "expected": { "parseSuccess": false, "failureReason": "destination-confirmation-required", "correctionCountryCode": "TH" }
+    },
+    {
+      "id": "typo-low-confidence",
+      "category": "typo",
+      "query": "Xyzland 7 days",
+      "expected": { "parseSuccess": false, "failureReason": "unresolved-destination" }
+    },
+    {
+      "id": "theme-ring-road",
+      "category": "theme",
+      "query": "冰岛环岛7天",
+      "expected": { "countryCode": "IS", "durationDays": 7, "travelStyle": "road-trip", "theme": "ring-road", "parseSuccess": true }
+    },
+    {
+      "id": "theme-self-drive",
+      "category": "theme",
+      "query": "冰岛自驾7天",
+      "expected": { "countryCode": "IS", "durationDays": 7, "travelStyle": "road-trip", "theme": "self-drive", "parseSuccess": true }
+    },
+    {
+      "id": "theme-island",
+      "category": "theme",
+      "query": "海岛度假",
+      "expected": { "travelStyle": "island-hopping", "theme": "island-vacation", "intentMode": "destination-suggestion", "parseSuccess": true }
+    },
+    {
+      "id": "theme-weekend",
+      "category": "theme",
+      "query": "周末短途",
+      "expected": { "travelStyle": "city-break", "theme": "weekend-short-trip", "intentMode": "destination-suggestion", "parseSuccess": true }
+    },
+    {
+      "id": "theme-honeymoon",
+      "category": "theme",
+      "query": "蜜月旅行",
+      "expected": { "theme": "honeymoon", "tripIntent": "honeymoon", "intentMode": "destination-suggestion", "parseSuccess": true }
+    },
+    {
+      "id": "theme-family",
+      "category": "theme",
+      "query": "亲子旅行",
+      "expected": { "theme": "family", "tripIntent": "family", "intentMode": "destination-suggestion", "parseSuccess": true }
+    },
+    {
+      "id": "theme-hiking",
+      "category": "theme",
+      "query": "徒步旅行",
+      "expected": { "theme": "hiking", "intentMode": "destination-suggestion", "parseSuccess": true }
+    },
+    {
+      "id": "theme-citywalk",
+      "category": "theme",
+      "query": "巴黎城市漫游",
+      "expected": { "countryCode": "FR", "travelStyle": "city-break", "theme": "citywalk", "parseSuccess": true }
+    },
+    {
+      "id": "vague-summer",
+      "category": "vague",
+      "query": "夏天去哪玩",
+      "expected": { "season": "summer", "intentMode": "destination-suggestion", "parseSuccess": true }
+    },
+    {
+      "id": "vague-winter",
+      "category": "vague",
+      "query": "冬天适合哪里",
+      "expected": { "season": "winter", "intentMode": "destination-suggestion", "parseSuccess": true }
+    },
+    {
+      "id": "vague-two-days",
+      "category": "vague",
+      "query": "2天去哪",
+      "expected": { "durationDays": 2, "intentMode": "destination-suggestion", "parseSuccess": true }
+    },
+    {
+      "id": "vague-island",
+      "category": "vague",
+      "query": "island vacation",
+      "expected": { "travelStyle": "island-hopping", "theme": "island-vacation", "intentMode": "destination-suggestion", "parseSuccess": true }
+    },
+    {
+      "id": "typo-japan-low-confidence",
+      "category": "typo",
+      "query": "Jappann 7 days",
+      "expected": { "parseSuccess": false, "failureReason": "unresolved-destination" }
+    },
+    {
+      "id": "typo-italy-low-confidence",
+      "category": "typo",
+      "query": "Italyyy 7 days",
+      "expected": { "parseSuccess": false, "failureReason": "unresolved-destination" }
+    },
+    {
+      "id": "typo-thailand-confirmation",
+      "category": "typo",
+      "query": "Thailannd 10 days",
+      "expected": { "parseSuccess": false, "failureReason": "destination-confirmation-required", "correctionCountryCode": "TH" }
+    },
+    {
+      "id": "typo-multiple-candidates",
+      "category": "typo",
+      "query": "Jappan Italyy 7 days",
+      "expected": { "parseSuccess": false, "failureReason": "unresolved-destination" }
+    },
+    {
+      "id": "typo-known-plus-unresolved-destination",
+      "category": "typo",
+      "query": "Japan Italyyy 7 days",
+      "expected": { "parseSuccess": false, "failureReason": "unresolved-destination", "countryCode": "JP" }
+    },
+    {
+      "id": "typo-unknown-latin-destination",
+      "category": "typo",
+      "query": "Atlantiss 7 days",
+      "expected": { "parseSuccess": false, "failureReason": "unresolved-destination" }
+    },
+    {
+      "id": "typo-explicit-unknown-destination-slot",
+      "category": "typo",
+      "query": "travel to Xxxxx for seven days",
+      "expected": { "parseSuccess": false, "failureReason": "unresolved-destination" }
+    },
+    {
+      "id": "generic-friends-trip",
+      "category": "vague",
+      "query": "travel with friends for seven days",
+      "expected": { "durationDays": 7, "intentMode": "destination-suggestion", "parseSuccess": true }
+    },
+    {
+      "id": "generic-quiet-trip",
+      "category": "vague",
+      "query": "a quiet trip for seven days",
+      "expected": { "durationDays": 7, "intentMode": "destination-suggestion", "parseSuccess": true }
+    },
+    {
+      "id": "generic-budget-trip",
+      "category": "vague",
+      "query": "a budget trip for seven days",
+      "expected": { "durationDays": 7, "intentMode": "destination-suggestion", "parseSuccess": true }
+    },
+    {
+      "id": "generic-mountain-trip",
+      "category": "vague",
+      "query": "mountain trip for seven days",
+      "expected": { "durationDays": 7, "intentMode": "destination-suggestion", "parseSuccess": true }
+    },
+    {
+      "id": "generic-history-architecture-europe",
+      "category": "region",
+      "query": "history and architecture trip in Europe",
+      "expected": { "region": "europe", "parseSuccess": true }
+    },
+    {
+      "id": "generic-interest-in-architecture",
+      "category": "vague",
+      "query": "interested in architecture for seven days",
+      "expected": { "durationDays": 7, "intentMode": "destination-suggestion", "parseSuccess": true }
+    },
+    {
+      "id": "generic-english-question",
+      "category": "vague",
+      "query": "where should I travel for seven days",
+      "expected": { "durationDays": 7, "intentMode": "destination-suggestion", "parseSuccess": true }
+    },
+    {
+      "id": "generic-family-trip",
+      "category": "theme",
+      "query": "family trip for seven days",
+      "expected": { "durationDays": 7, "theme": "family", "tripIntent": "family", "intentMode": "destination-suggestion", "parseSuccess": true }
+    },
+    {
+      "id": "generic-summer-europe",
+      "category": "region",
+      "query": "summer trip in Europe",
+      "expected": { "region": "europe", "season": "summer", "parseSuccess": true }
+    },
+    {
+      "id": "theme-ring-road-english-loop",
+      "category": "theme",
+      "query": "Iceland loop 7 days",
+      "expected": { "countryCode": "IS", "durationDays": 7, "travelStyle": "road-trip", "theme": "ring-road", "parseSuccess": true }
+    },
+    {
+      "id": "theme-weekend-english",
+      "category": "theme",
+      "query": "weekend trip",
+      "expected": { "travelStyle": "city-break", "theme": "weekend-short-trip", "intentMode": "destination-suggestion", "parseSuccess": true }
+    }
+  ]
+}

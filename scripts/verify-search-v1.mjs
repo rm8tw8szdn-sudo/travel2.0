@@ -171,6 +171,12 @@ const generated = route({
   durationDays: 8,
   travelStyle: "road-trip",
   travelStyleConceptKey: "road-trip",
+  themeEvidence: [{
+    sourceType: "verified-evidence",
+    evidenceId: "verified-iceland-road-trip",
+    theme: "self-drive",
+    structureType: "road-trip",
+  }],
   classification: "single",
   coverAsset: null,
 });
@@ -229,8 +235,9 @@ const fallbackDiscovery = createRouteDiscovery({
 });
 const fallbackResult = await fallbackDiscovery.discover({ mode: "search", query: icelandRoadTrip, limit: 20, sessionId: "s-fallback" });
 assert.equal(rejectedPlannerCalls, 1);
-assert.equal(fallbackResult.records[0].searchStatus, "needs-review");
-assert.ok(fallbackResult.records[0].coverAsset?.imageUrl);
+assert.equal(fallbackResult.records.length, 0, "a generic fallback must not impersonate an explicit road-trip route");
+assert.equal(fallbackResult.diagnostics.reason, "constraint-conflict");
+assert(fallbackResult.diagnostics.constraintConflict.reasonCodes.includes("explicit-theme-mismatch"));
 
 const china = await discovery.discover({ mode: "search", query: china8, limit: 20, sessionId: "s1" });
 assert.deepEqual(china.records, []);

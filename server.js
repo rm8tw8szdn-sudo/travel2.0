@@ -1453,6 +1453,7 @@ async function createDiscoveryHandler(routeLibrary, knowledgeEntityLayerReposito
     createRouteDiscovery,
     createRouteDiscoveryHandler,
     createRouteJobStore,
+    createRouteV2RuntimeMetrics,
   } = routeLibrary;
   const acceptedRepository = createAcceptedRouteRepository({
     storagePath: process.env.ROUTE_ACCEPTED_REPOSITORY_PATH || path.join(root, ".route-v2-cache", "accepted-routes.json"),
@@ -1467,11 +1468,20 @@ async function createDiscoveryHandler(routeLibrary, knowledgeEntityLayerReposito
       if (process.env.ROUTE_FEED_REFILL_LOG === "true") console.log(JSON.stringify({ stage: "feed-refill", ...event }));
     },
   });
+  const runtimeMetricsPath = process.env.ROUTE_V2_RUNTIME_METRICS_PATH
+    || (process.env.ROUTE_SEARCH_CACHE_PATH
+      ? path.join(path.dirname(process.env.ROUTE_SEARCH_CACHE_PATH), "route-v2-runtime-metrics.json")
+      : path.join(root, ".route-v2-cache", "route-v2-runtime-metrics.json"));
+  const runtimeMetrics = createRouteV2RuntimeMetrics({
+    storagePath: runtimeMetricsPath,
+    env: routeV2RuntimeEnv,
+  });
   const discovery = createRouteDiscovery({
     acceptedRepository,
     jobStore,
     feedRefillWorker,
     knowledgeEntityLayerRepository,
+    runtimeMetrics,
     env: routeV2RuntimeEnv,
   });
   return createRouteDiscoveryHandler({ discovery });

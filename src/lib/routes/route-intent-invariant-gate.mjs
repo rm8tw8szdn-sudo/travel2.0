@@ -7,6 +7,12 @@ import {
   readRouteIntentEnvelope,
   validateNormalizedRouteIntent,
 } from "./route-intent-model.mjs";
+import {
+  ROUTE_V2_SUBNATIONAL_REGION_DEFINITIONS,
+  ROUTE_V2_TRAVEL_REGION_DEFINITIONS,
+  destinationMatchesTravelRegion,
+  resolveTravelRegionDefinition,
+} from "./route-search-region-taxonomy.mjs";
 
 function clean(value) {
   return String(value ?? "").normalize("NFKC").trim().replace(/\s+/gu, " ");
@@ -116,6 +122,151 @@ function timeEvidenceReady(record = {}) {
     .some((value) => ["ready", "complete", "supported", "validated", "passed"].includes(value));
 }
 
+const EXPLICIT_THEME_COMPATIBILITY = new Map([
+  ["family", {
+    evidence: ["family", "familytrip", "亲子", "家庭旅行"],
+  }],
+  ["hiking", {
+    evidence: ["hiking", "trekking", "trek", "徒步", "健行"],
+  }],
+  ["honeymoon", {
+    evidence: ["honeymoon", "蜜月"],
+  }],
+  ["selfdrive", {
+    evidence: ["selfdrive", "roadtrip", "自驾", "公路"],
+    structures: ["roadtrip", "roadcorridor", "drivingroute"],
+  }],
+  ["islandvacation", {
+    evidence: ["islandvacation", "islandhopping", "beachvacation", "海岛度假", "跳岛"],
+    structures: ["island", "islandhopping", "archipelago"],
+  }],
+  ["ringroad", {
+    evidence: ["ringroad", "islandcircuit", "环岛"],
+    structures: ["loop", "ringroad", "islandcircuit", "circularroute"],
+  }],
+  ["weekendshorttrip", {
+    evidence: ["weekendshorttrip", "weekendgetaway", "weekendbreak", "周末短途", "周末旅行"],
+    maxDays: 3,
+  }],
+  ["citywalk", {
+    evidence: ["citywalk", "urbanwalk", "城市漫游"],
+    routeReferenceModes: ["citywalk"],
+  }],
+]);
+
+const TRUSTED_THEME_EVIDENCE_SOURCES = new Set([
+  "acceptedasset",
+  "knowledgeentity",
+  "verifiedevidence",
+]);
+
+function themeTokenMatches(values = [], expected = []) {
+  const actual = values.map(semantic).filter(Boolean);
+  const wanted = expected.map(semantic).filter(Boolean);
+  return wanted.some((token) => actual.some((value) => value === token || value.includes(token)));
+}
+
+function normalizeThemeEvidenceEntry(entry = {}) {
+  if (!entry || typeof entry !== "object" || Array.isArray(entry)) return null;
+  const sourceType = semantic(entry.sourceType || entry.provenance || entry.source);
+  if (!TRUSTED_THEME_EVIDENCE_SOURCES.has(sourceType)) return null;
+  return {
+    sourceType,
+    sourceRef: clean(entry.sourceRef || entry.evidenceId || entry.entityId || entry.url),
+    tokens: unique([
+      entry.theme,
+      entry.travelStyle,
+      ...(Array.isArray(entry.themes) ? entry.themes : []),
+      ...(Array.isArray(entry.tags) ? entry.tags : []),
+    ].map(semantic).filter(Boolean)),
+    structures: unique([
+      entry.structureType,
+      entry.routeType,
+      entry.topology,
+      ...(Array.isArray(entry.structures) ? entry.structures : []),
+    ].map(semantic).filter(Boolean)),
+    routeReferenceModes: unique([
+      entry.routeReferenceMode,
+      ...(Array.isArray(entry.routeReferenceModes) ? entry.routeReferenceModes : []),
+    ].map(semantic).filter(Boolean)),
+  };
+}
+
+function stableRouteIdentifier(record = {}) {
+  return clean(record.id || record.routeId || record.stableRouteId || record.stableId);
+}
+
+function acceptedAssetThemeEvidence(record = {}, options = {}) {
+  const routeId = stableRouteIdentifier(record);
+  if (!routeId || typeof options.acceptedRouteResolver !== "function") return null;
+  let original = null;
+  try {
+    original = options.acceptedRouteResolver(routeId);
+  } catch {
+    return null;
+  }
+  if (!original || typeof original !== "object" || Array.isArray(original)) return null;
+  if (stableRouteIdentifier(original) !== routeId) return null;
+  const repositoryStatus = semantic(original.repositoryStatus || original.enrichmentStatus);
+  if (!["accepted", "mediaready"].includes(repositoryStatus)) return null;
+  return normalizeThemeEvidenceEntry({
+    sourceType: "accepted-asset",
+    sourceRef: routeId,
+    themes: original.themes,
+    tags: original.tags,
+    travelStyle: original.travelStyle || original.travelStyleConceptKey,
+    structureType: original.routeTopology?.type
+      || original.provenance?.concept?.routeStructure?.type,
+    routeReferenceMode: original.routeReferenceMode,
+  });
+}
+
+function independentThemeEvidence(record = {}, options = {}) {
+  const explicitEntries = [
+    ...(Array.isArray(record.themeEvidence) ? record.themeEvidence : []),
+    ...(Array.isArray(record.provenance?.themeEvidence) ? record.provenance.themeEvidence : []),
+    ...(Array.isArray(record.contentEvidence?.themeEvidence) ? record.contentEvidence.themeEvidence : []),
+    ...(Array.isArray(record.destinationEntities)
+      ? record.destinationEntities.flatMap((entry) => Array.isArray(entry?.themeEvidence) ? entry.themeEvidence : [])
+      : []),
+  ].map(normalizeThemeEvidenceEntry)
+    .filter((entry) => entry && entry.sourceType !== "acceptedasset" && entry.sourceRef);
+
+  const acceptedAsset = acceptedAssetThemeEvidence(record, options);
+  return acceptedAsset ? [...explicitEntries, acceptedAsset] : explicitEntries;
+}
+
+function evaluateExplicitThemeCompatibility(record = {}, requestedTheme = "", options = {}) {
+  const normalizedTheme = semantic(requestedTheme);
+  if (!normalizedTheme) return { supported: true, requestedTheme: "", trustedEvidenceSources: [] };
+  const rule = EXPLICIT_THEME_COMPATIBILITY.get(normalizedTheme);
+  if (!rule) return { supported: false, requestedTheme: normalizedTheme, trustedEvidenceSources: [] };
+
+  const evidence = independentThemeEvidence(record, options);
+  const evidenceMatch = evidence.some((entry) => themeTokenMatches(entry.tokens, rule.evidence));
+  const structureMatch = evidence.some((entry) => themeTokenMatches(entry.structures, rule.structures || []));
+  const referenceMatch = evidence.some((entry) => themeTokenMatches(
+    entry.routeReferenceModes,
+    rule.routeReferenceModes || [],
+  ));
+  const durationMatch = !Number.isInteger(rule.maxDays) || (routeDays(record) != null && routeDays(record) <= rule.maxDays);
+  return {
+    supported: durationMatch && (evidenceMatch || structureMatch || referenceMatch),
+    requestedTheme: normalizedTheme,
+    trustedEvidenceSources: unique(evidence.map((entry) => entry.sourceType)),
+    trustedEvidenceRefs: unique(evidence.map((entry) => entry.sourceRef).filter(Boolean)),
+    evidenceMatch,
+    structureMatch,
+    referenceMatch,
+    durationMatch,
+    requestMetadataSources: unique([
+      record.themeMetadataProvenance?.sourceType,
+      record.contentEvidence?.themeMetadataSource,
+      record.sourceType === "planner-designed" && !record.repositoryStatus ? "planner-derived" : "",
+    ].map(semantic).filter(Boolean)),
+  };
+}
+
 function violation(code, field, expected, actual, source) {
   return { code, field, expected, actual, source: clean(source || "route-result") };
 }
@@ -154,6 +305,7 @@ function schemaFailure(schemaValidation, source) {
     destinationConflict: false,
     countryConflict: false,
     regionConflict: false,
+    themeConflict: false,
   };
 }
 
@@ -244,7 +396,24 @@ export function validateRouteIntentInvariants(record = {}, routeIntent = {}, opt
   const expectedCountry = normalizedIntent.hardConstraints.country;
   const expectedCountries = normalizedIntent.hardConstraints.countries;
   const actualCountries = routeCountryCodes(record, destinations);
-  if (expectedCountries?.state === "provided" && expectedCountries.values.length
+  const expectedRegion = normalizedIntent.hardConstraints.region;
+  const localRegionDefinition = expectedRegion?.state === "provided"
+    ? resolveTravelRegionDefinition(expectedRegion.value, ROUTE_V2_SUBNATIONAL_REGION_DEFINITIONS)
+    : null;
+  const macroRegionDefinition = expectedRegion?.state === "provided"
+    ? resolveTravelRegionDefinition(expectedRegion.value, ROUTE_V2_TRAVEL_REGION_DEFINITIONS)
+    : null;
+  const regionScopedCountrySet = expectedRegion?.state === "provided"
+    && Boolean(expectedRegion.value)
+    && expectedCountry?.state !== "provided"
+    && expectedCountries?.state === "provided"
+    && expectedCountries.values.length > 0;
+  if (regionScopedCountrySet
+    && (!actualCountries.length || actualCountries.some((country) => !expectedCountries.values.includes(country)))) {
+    violations.push(violation("region-country-mismatch", "countries", expectedCountries.values, actualCountries, source));
+  } else if (!regionScopedCountrySet
+    && expectedCountries?.state === "provided"
+    && expectedCountries.values.length
     && (expectedCountries.values.length !== actualCountries.length
       || expectedCountries.values.some((country) => !actualCountries.includes(country)))) {
     violations.push(violation("country-mismatch", "countries", expectedCountries.values, actualCountries, source));
@@ -253,9 +422,32 @@ export function validateRouteIntentInvariants(record = {}, routeIntent = {}, opt
     violations.push(violation("country-mismatch", "country", expectedCountry.value, actualCountries, source));
   }
 
-  const expectedRegion = normalizedIntent.hardConstraints.region;
   const actualRegions = routeRegions(record, destinations);
-  if (expectedRegion.state === "provided" && expectedRegion.value && !actualRegions.includes(expectedRegion.value)) {
+  if (expectedRegion.state === "provided" && expectedRegion.value
+    && !localRegionDefinition && !macroRegionDefinition) {
+    violations.push(violation("region-definition-missing", "region", expectedRegion.value, actualRegions, source));
+  } else if (localRegionDefinition) {
+    if (localRegionDefinition.knownDestinationIds.length === 0) {
+      violations.push(violation("unsupported-region", "region", expectedRegion.value, [], source));
+    } else {
+      const mismatchedDestinations = constraintDestinations.filter((destination) => (
+        !destinationMatchesTravelRegion(destination, localRegionDefinition)
+      ));
+      if (!constraintDestinations.length || mismatchedDestinations.length) {
+        violations.push(violation(
+          "region-mismatch",
+          "region",
+          localRegionDefinition.key,
+          mismatchedDestinations.map((destination) => destination.id || destination.name),
+          source,
+        ));
+      }
+    }
+  } else if (!regionScopedCountrySet
+    && macroRegionDefinition
+    && expectedRegion.state === "provided"
+    && expectedRegion.value
+    && !actualRegions.includes(expectedRegion.value)) {
     violations.push(violation("region-mismatch", "region", expectedRegion.value, actualRegions, source));
   }
 
@@ -284,6 +476,21 @@ export function validateRouteIntentInvariants(record = {}, routeIntent = {}, opt
 
   if (normalizedIntent.hardConstraints.invalidTime) {
     violations.push(violation("invalid-time-intent", "timeType", "valid", "invalid", source));
+  }
+
+  const expectedTheme = normalizedIntent.softPreferences.theme;
+  const explicitThemeRequested = normalizedIntent.softPreferences.themeConstraintMode === "explicit";
+  const themeCompatibility = explicitThemeRequested && expectedTheme
+    ? evaluateExplicitThemeCompatibility(record, expectedTheme, options)
+    : null;
+  if (themeCompatibility && !themeCompatibility.supported) {
+    violations.push(violation("explicit-theme-mismatch", "theme", expectedTheme, {
+      themes: Array.isArray(record.themes) ? record.themes : [],
+      travelStyle: clean(record.travelStyle || record.travelStyleConceptKey),
+      routeReferenceMode: clean(record.routeReferenceMode),
+      trustedEvidenceSources: themeCompatibility.trustedEvidenceSources,
+      requestMetadataSources: themeCompatibility.requestMetadataSources,
+    }, source));
   }
 
   const envelope = readRouteIntentEnvelope(record);
@@ -367,7 +574,12 @@ export function validateRouteIntentInvariants(record = {}, routeIntent = {}, opt
       || reasonCodes.includes("required-city-count-mismatch")
       || reasonCodes.includes("duplicate-route-city"),
     countryConflict: reasonCodes.includes("country-mismatch"),
-    regionConflict: reasonCodes.includes("region-mismatch"),
+    regionConflict: reasonCodes.includes("region-mismatch")
+      || reasonCodes.includes("region-country-mismatch")
+      || reasonCodes.includes("unsupported-region")
+      || reasonCodes.includes("region-definition-missing"),
+    themeConflict: reasonCodes.includes("explicit-theme-mismatch"),
+    themeCompatibility,
   };
 }
 
@@ -408,6 +620,9 @@ export function finalizeRouteResult(record = {}, routeIntent = {}, options = {})
       ...attached,
       routeIntentInvariantStatus: validation.requiresEvidence ? "needs-evidence" : "passed",
       routeIntentInvariantCheckedAt: null,
+      ...(validation.themeCompatibility ? {
+        routeThemeCompatibility: structuredClone(validation.themeCompatibility),
+      } : {}),
     },
     validation,
   };

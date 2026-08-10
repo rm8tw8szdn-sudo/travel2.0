@@ -61,7 +61,7 @@ function legacyCity(englishName) {
   return { city, country };
 }
 
-async function expectThreePois(englishName) {
+async function expectPois(englishName, expectedCount = 3) {
   const legacy = legacyCity(englishName);
   const result = await loadKnowledgeCityPois({
     legacyCity: legacy.city,
@@ -70,22 +70,26 @@ async function expectThreePois(englishName) {
   });
   assert.equal(result.status, "ready", `${englishName} mapping status`);
   assert.equal(result.city.canonicalNameEn, englishName);
-  assert.equal(result.pois.length, 3, `${englishName} POI count`);
-  assert.equal(new Set(result.pois.map((poi) => poi.wikidataId)).size, 3);
+  assert.equal(result.pois.length, expectedCount, `${englishName} POI count`);
+  assert.equal(new Set(result.pois.map((poi) => poi.wikidataId)).size, expectedCount);
   return result;
 }
 
 assert.equal(normalizeKnowledgeName("  St. Mary’s  Basilica "), "st marys basilica");
 assert.equal(normalizeKnowledgeName("Bogotá"), "bogotá");
 
-const amsterdam = await expectThreePois("Amsterdam");
-const prague = await expectThreePois("Prague");
-const tokyo = await expectThreePois("Tokyo");
-const paris = await expectThreePois("Paris");
-const berlin = await expectThreePois("Berlin");
-const rome = await expectThreePois("Rome");
-const madrid = await expectThreePois("Madrid");
-const seoul = await expectThreePois("Seoul");
+const amsterdam = await expectPois("Amsterdam");
+const prague = await expectPois("Prague");
+const tokyo = await expectPois("Tokyo", 19);
+const osaka = await expectPois("Osaka", 15);
+const paris = await expectPois("Paris", 15);
+const berlin = await expectPois("Berlin");
+const rome = await expectPois("Rome", 15);
+const madrid = await expectPois("Madrid", 15);
+const seoul = await expectPois("Seoul", 15);
+const venice = await expectPois("Venice", 8);
+const nice = await expectPois("Nice", 8);
+const seville = await expectPois("Seville", 8);
 const bogota = await loadKnowledgeCityPois({
   legacyCity: { id: "CO-BOG", name: "波哥大", englishName: "Bogotá", countryId: "CO" },
   legacyCountry: { id: "CO", name: "哥伦比亚", englishName: "Colombia" },
@@ -95,10 +99,10 @@ assert.equal(bogota.status, "ready");
 assert.equal(bogota.city.canonicalNameEn, "Bogotá");
 assert.equal(bogota.pois.length, 3);
 
-const osaka = legacyCity("Osaka");
+const yokohama = legacyCity("Yokohama");
 const unmatched = await loadKnowledgeCityPois({
-  legacyCity: osaka.city,
-  legacyCountry: osaka.country,
+  legacyCity: yokohama.city,
+  legacyCountry: yokohama.country,
   fetchImpl: repositoryFetch,
 });
 assert.deepEqual(unmatched, { status: "unmatched", pois: [] });
@@ -134,7 +138,7 @@ const conflicting = resolveKnowledgeCity({
 assert.equal(conflicting.country.entityId, "country-bb");
 assert.equal(conflicting.city.entityId, "city-bb");
 
-for (const result of [amsterdam, bogota, prague, tokyo, paris, berlin, rome, madrid, seoul]) {
+for (const result of [amsterdam, bogota, prague, tokyo, osaka, paris, berlin, rome, madrid, seoul, venice, nice, seville]) {
   const serialized = JSON.stringify(result.pois);
   for (const forbidden of ["provenance", "review", "candidate", "evidence", "sourceUrl"]) {
     assert.equal(serialized.includes(forbidden), false, `UI POI payload includes ${forbidden}`);
@@ -159,11 +163,15 @@ process.stdout.write(`${JSON.stringify({
     Bogotá: bogota.pois.map((poi) => poi.canonicalNameEn),
     Prague: prague.pois.map((poi) => poi.canonicalNameEn),
     Tokyo: tokyo.pois.map((poi) => poi.canonicalNameEn),
+    Osaka: osaka.pois.map((poi) => poi.canonicalNameEn),
     Paris: paris.pois.map((poi) => poi.canonicalNameEn),
     Berlin: berlin.pois.map((poi) => poi.canonicalNameEn),
     Rome: rome.pois.map((poi) => poi.canonicalNameEn),
     Madrid: madrid.pois.map((poi) => poi.canonicalNameEn),
     Seoul: seoul.pois.map((poi) => poi.canonicalNameEn),
+    Venice: venice.pois.map((poi) => poi.canonicalNameEn),
+    Nice: nice.pois.map((poi) => poi.canonicalNameEn),
+    Seville: seville.pois.map((poi) => poi.canonicalNameEn),
   },
   compatibility: {
     unmatchedLegacyCity: unmatched.status,

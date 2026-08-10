@@ -5,6 +5,12 @@ import {
   readRouteIntentEnvelope,
   validateNormalizedRouteIntent,
 } from "./route-intent-model.mjs";
+import {
+  ROUTE_V2_SUBNATIONAL_REGION_DEFINITIONS,
+  ROUTE_V2_TRAVEL_REGION_DEFINITIONS,
+  canonicalizeTravelRegionKey,
+  resolveTravelRegionDefinition,
+} from "./route-search-region-taxonomy.mjs";
 
 const tidy = (value) => String(value ?? "").normalize("NFKC").trim().toLocaleLowerCase("en-US")
   .replace(/[^\p{L}\p{N}]+/gu, "");
@@ -66,6 +72,58 @@ function hasTimeEvidence(route = {}) {
     .some((value) => ["ready", "complete", "supported", "validated", "passed"].includes(value));
 }
 
+function oracleSubnationalRegion(value) {
+  return resolveTravelRegionDefinition(
+    canonicalizeTravelRegionKey(value),
+    ROUTE_V2_SUBNATIONAL_REGION_DEFINITIONS,
+  );
+}
+
+function oracleDestinationMatchesRegion(point = {}, definition = null) {
+  if (!definition) return false;
+  const known = new Set((definition.knownDestinationIds || []).map(id));
+  return Boolean(point.id) && known.has(id(point.id));
+}
+
+const EXPLICIT_THEME_RULES = new Map([
+  ["family", { labels: ["family", "familytrip", "亲子", "家庭旅行"], styles: [] }],
+  ["hiking", { labels: ["hiking", "trekking", "trek", "徒步", "健行"], styles: ["hiking", "trekking"] }],
+  ["honeymoon", { labels: ["honeymoon", "蜜月"], styles: [] }],
+  ["selfdrive", { labels: ["selfdrive", "roadtrip", "自驾", "公路"], styles: ["roadtrip"] }],
+  ["islandvacation", { labels: ["islandvacation", "islandhopping", "beachvacation", "海岛度假", "跳岛"], styles: ["islandhopping"] }],
+  ["ringroad", { labels: ["ringroad", "islandcircuit", "环岛"], styles: ["roadtrip"] }],
+  ["weekendshorttrip", { labels: ["weekendshorttrip", "weekendgetaway", "weekendbreak", "周末短途", "周末旅行"], styles: ["citybreak"], maxDays: 3 }],
+  ["citywalk", { labels: ["citywalk", "urbanwalk", "城市漫游"], styles: ["citybreak", "deepdive"], routeModes: ["citywalk"] }],
+]);
+
+function oracleThemeCompatible(route = {}, requestedTheme = "") {
+  const rule = EXPLICIT_THEME_RULES.get(tidy(requestedTheme));
+  if (!rule) return false;
+  const generatedFallback = String(route.destinationSource || "").trim() === "search-knowledge-graph-fallback"
+    || String(route.contentEvidence?.provider || "").trim() === "search-v1-fallback";
+  const labels = generatedFallback
+    ? new Set()
+    : new Set([
+        ...(Array.isArray(route.themes) ? route.themes : []),
+        ...(Array.isArray(route.tags) ? route.tags : []),
+        ...(Array.isArray(route.supportedThemes) ? route.supportedThemes : []),
+        ...(Array.isArray(route.themeCompatibility) ? route.themeCompatibility : []),
+      ].map(tidy).filter(Boolean));
+  const styles = new Set([
+    route.travelStyle,
+    route.travelStyleConceptKey,
+    route.contentEvidence?.travelStyle,
+    route.contentEvidence?.concept?.travelStyle,
+  ].map(tidy).filter(Boolean));
+  const durationCompatible = !Number.isInteger(rule.maxDays)
+    || (days(route) != null && days(route) <= rule.maxDays);
+  return durationCompatible && (
+    rule.labels.some((value) => labels.has(tidy(value)))
+    || rule.styles.some((value) => styles.has(tidy(value)))
+    || (rule.routeModes || []).some((value) => tidy(value) === tidy(route.routeReferenceMode))
+  );
+}
+
 export function evaluateRouteIntentOracle(normalizedIntentInput, route = {}, options = {}) {
   const intent = normalizeRouteIntent(normalizedIntentInput);
   const schemaValidation = validateNormalizedRouteIntent(intent);
@@ -107,6 +165,12 @@ export function evaluateRouteIntentOracle(normalizedIntentInput, route = {}, opt
 
   const expectedCountry = intent.hardConstraints.country;
   const expectedCountries = intent.hardConstraints.countries;
+  const expectedRegion = intent.hardConstraints.region;
+  const regionScopedCountrySet = expectedRegion.state === "provided"
+    && expectedRegion.value
+    && expectedCountry.state !== "provided"
+    && expectedCountries?.state === "provided"
+    && expectedCountries.values.length > 0;
   const authoritativeCountries = Array.isArray(route.countryEntities) && route.countryEntities.length
     ? route.countryEntities.map((entry) => id(entry?.countryCode || entry?.entityId))
     : Array.isArray(route.countryCodes) && route.countryCodes.length
@@ -116,20 +180,39 @@ export function evaluateRouteIntentOracle(normalizedIntentInput, route = {}, opt
         : points.map((entry) => entry.country);
   const countries = new Set(authoritativeCountries.filter(Boolean));
   if (expectedCountries?.state === "provided" && expectedCountries.values.length) {
-    if (countries.size !== expectedCountries.values.length
+    if (regionScopedCountrySet) {
+      const allowed = new Set(expectedCountries.values.map(id));
+      if (!countries.size || [...countries].some((country) => !allowed.has(country))) violations.push("region-country-mismatch");
+    } else if (countries.size !== expectedCountries.values.length
       || expectedCountries.values.some((country) => !countries.has(country))) violations.push("country-mismatch");
   } else if (expectedCountry.state === "provided" && expectedCountry.value
     && (countries.size !== 1 || !countries.has(expectedCountry.value))) {
     violations.push("country-mismatch");
   }
 
-  const expectedRegion = intent.hardConstraints.region;
   const regions = new Set([
     ...points.map((entry) => entry.region),
     ...(Array.isArray(route.regions) ? route.regions.map(tidy) : []),
     tidy(route.region || route.regionEntityId),
   ].filter(Boolean));
-  if (expectedRegion.state === "provided" && expectedRegion.value && !regions.has(expectedRegion.value)) violations.push("region-mismatch");
+  if (expectedRegion.state === "provided" && expectedRegion.value) {
+    const localRegion = oracleSubnationalRegion(expectedRegion.value);
+    const macroRegion = resolveTravelRegionDefinition(
+      canonicalizeTravelRegionKey(expectedRegion.value),
+      ROUTE_V2_TRAVEL_REGION_DEFINITIONS,
+    );
+    if (!localRegion && !macroRegion) {
+      violations.push("region-definition-missing");
+    } else if (localRegion) {
+      if (!(localRegion.knownDestinationIds || []).length) violations.push("unsupported-region");
+      else if (!constraintPoints.length
+        || constraintPoints.some((point) => !oracleDestinationMatchesRegion(point, localRegion))) {
+        violations.push("region-mismatch");
+      }
+    } else if (!regionScopedCountrySet && !regions.has(tidy(macroRegion.key))) {
+      violations.push("region-mismatch");
+    }
+  }
 
   let requiresEvidence = false;
   const expectedMonths = intent.hardConstraints.months;
@@ -152,6 +235,11 @@ export function evaluateRouteIntentOracle(normalizedIntentInput, route = {}, opt
     else if (!hasTimeEvidence(route)) requiresEvidence = true;
   }
   if (intent.hardConstraints.invalidTime) violations.push("invalid-time-intent");
+  if (intent.softPreferences.themeConstraintMode === "explicit"
+    && intent.softPreferences.theme
+    && !oracleThemeCompatible(route, intent.softPreferences.theme)) {
+    violations.push("explicit-theme-mismatch");
+  }
 
   const expectedFingerprint = createRouteIntentFingerprint(intent).value;
   const envelope = readRouteIntentEnvelope(route);

@@ -1,0 +1,254 @@
+{
+  "schemaVersion": "route-v2-knowledge-expansion-batch01-selection-v1",
+  "country": [
+    {
+      "entityId": "country-0294eb483e5c1ea1",
+      "wikidataId": "Q189",
+      "canonicalNameEn": "Iceland"
+    }
+  ],
+  "cities": [
+    {
+      "entityId": "city-08c9530e89597cdf",
+      "parentCountryEntityId": "country-b6e9ffcc290e32d8",
+      "wikidataId": "Q37100",
+      "canonicalNameEn": "Auckland"
+    },
+    {
+      "entityId": "city-102fbf49ef872866",
+      "parentCountryEntityId": "country-c3fe14f3610d3a77",
+      "wikidataId": "Q1861",
+      "canonicalNameEn": "Bangkok"
+    },
+    {
+      "entityId": "city-2cb3e8890c6c7848",
+      "parentCountryEntityId": "country-b6e9ffcc290e32d8",
+      "wikidataId": "Q613602",
+      "canonicalNameEn": "Queenstown"
+    },
+    {
+      "entityId": "city-6424297f5bfd77b8",
+      "parentCountryEntityId": "country-d3be2882ba68e9b0",
+      "wikidataId": "Q4191",
+      "canonicalNameEn": "Lucerne"
+    },
+    {
+      "entityId": "city-64a359ba87706a72",
+      "parentCountryEntityId": "country-d58bcebbb9283d7e",
+      "wikidataId": "Q3130",
+      "canonicalNameEn": "Sydney"
+    },
+    {
+      "entityId": "city-8dfe7b39752eceb2",
+      "parentCountryEntityId": "country-d3be2882ba68e9b0",
+      "wikidataId": "Q72",
+      "canonicalNameEn": "Zürich"
+    },
+    {
+      "entityId": "city-922253e414d069f3",
+      "parentCountryEntityId": "country-0294eb483e5c1ea1",
+      "wikidataId": "Q685369",
+      "canonicalNameEn": "Vík í Mýrdal"
+    },
+    {
+      "entityId": "city-dde5b708a62ae273",
+      "parentCountryEntityId": "country-c3fe14f3610d3a77",
+      "wikidataId": "Q52028",
+      "canonicalNameEn": "Chiang Mai"
+    },
+    {
+      "entityId": "city-e91b5be401efc35d",
+      "parentCountryEntityId": "country-d58bcebbb9283d7e",
+      "wikidataId": "Q3141",
+      "canonicalNameEn": "Melbourne"
+    },
+    {
+      "entityId": "city-ec5f6eb44af88c19",
+      "parentCountryEntityId": "country-0294eb483e5c1ea1",
+      "wikidataId": "Q1764",
+      "canonicalNameEn": "Reykjavík"
+    }
+  ],
+  "pois": [
+    {
+      "entityId": "poi-0eb1228d4c6fbdb9",
+      "parentCityEntityId": "city-2cb3e8890c6c7848",
+      "wikidataId": "Q127469",
+      "canonicalNameEn": "Lake Wakatipu"
+    },
+    {
+      "entityId": "poi-11552d7158b391bd",
+      "parentCityEntityId": "city-922253e414d069f3",
+      "wikidataId": "Q7319590",
+      "canonicalNameEn": "Reynisdrangar"
+    },
+    {
+      "entityId": "poi-15707bde57e19192",
+      "parentCityEntityId": "city-8dfe7b39752eceb2",
+      "wikidataId": "Q685038",
+      "canonicalNameEn": "Kunsthaus Zürich"
+    },
+    {
+      "entityId": "poi-2db70d54ff4779a2",
+      "parentCityEntityId": "city-ec5f6eb44af88c19",
+      "wikidataId": "Q271466",
+      "canonicalNameEn": "Hallgrímskirkja"
+    },
+    {
+      "entityId": "poi-38be7cfdd2178aee",
+      "parentCityEntityId": "city-dde5b708a62ae273",
+      "wikidataId": "Q1517698",
+      "canonicalNameEn": "Wat Phra That Doi Suthep"
+    },
+    {
+      "entityId": "poi-402b7ab898768a76",
+      "parentCityEntityId": "city-08c9530e89597cdf",
+      "wikidataId": "Q758657",
+      "canonicalNameEn": "Auckland War Memorial Museum"
+    },
+    {
+      "entityId": "poi-4282c38f0ec75b4e",
+      "parentCityEntityId": "city-102fbf49ef872866",
+      "wikidataId": "Q724970",
+      "canonicalNameEn": "Wat Arun"
+    },
+    {
+      "entityId": "poi-43cb36ffc3d8a3e3",
+      "parentCityEntityId": "city-64a359ba87706a72",
+      "wikidataId": "Q54495",
+      "canonicalNameEn": "Sydney Harbour Bridge"
+    },
+    {
+      "entityId": "poi-450306ed5bfc7913",
+      "parentCityEntityId": "city-08c9530e89597cdf",
+      "wikidataId": "Q4819492",
+      "canonicalNameEn": "Auckland Art Gallery"
+    },
+    {
+      "entityId": "poi-4aac2a9980871b19",
+      "parentCityEntityId": "city-6424297f5bfd77b8",
+      "wikidataId": "Q688214",
+      "canonicalNameEn": "Lion Monument"
+    },
+    {
+      "entityId": "poi-4cef4d841745bcc3",
+      "parentCityEntityId": "city-8dfe7b39752eceb2",
+      "wikidataId": "Q684948",
+      "canonicalNameEn": "Grossmünster"
+    },
+    {
+      "entityId": "poi-6711c42f38860bdd",
+      "parentCityEntityId": "city-dde5b708a62ae273",
+      "wikidataId": "Q1657130",
+      "canonicalNameEn": "Wat Phra Singh"
+    },
+    {
+      "entityId": "poi-67ff3980626e150c",
+      "parentCityEntityId": "city-6424297f5bfd77b8",
+      "wikidataId": "Q25225",
+      "canonicalNameEn": "Chapel Bridge"
+    },
+    {
+      "entityId": "poi-69de0ee7fc58e11d",
+      "parentCityEntityId": "city-e91b5be401efc35d",
+      "wikidataId": "Q1353869",
+      "canonicalNameEn": "Melbourne Museum"
+    },
+    {
+      "entityId": "poi-7493da726c9fa035",
+      "parentCityEntityId": "city-102fbf49ef872866",
+      "wikidataId": "Q1059910",
+      "canonicalNameEn": "Wat Pho"
+    },
+    {
+      "entityId": "poi-86322cc1bce47e9c",
+      "parentCityEntityId": "city-2cb3e8890c6c7848",
+      "wikidataId": "Q7271100",
+      "canonicalNameEn": "Queenstown Gardens"
+    },
+    {
+      "entityId": "poi-95dda57c49c98ebc",
+      "parentCityEntityId": "city-8dfe7b39752eceb2",
+      "wikidataId": "Q691896",
+      "canonicalNameEn": "National Museum Zurich"
+    },
+    {
+      "entityId": "poi-a173f1d1fa02521f",
+      "parentCityEntityId": "city-102fbf49ef872866",
+      "wikidataId": "Q873769",
+      "canonicalNameEn": "Grand Palace"
+    },
+    {
+      "entityId": "poi-b6d61b537ecfe53f",
+      "parentCityEntityId": "city-922253e414d069f3",
+      "wikidataId": "Q16430332",
+      "canonicalNameEn": "Víkurkirkja"
+    },
+    {
+      "entityId": "poi-b928f53dba863292",
+      "parentCityEntityId": "city-08c9530e89597cdf",
+      "wikidataId": "Q722125",
+      "canonicalNameEn": "Sky Tower"
+    },
+    {
+      "entityId": "poi-c117087ce07a1d3e",
+      "parentCityEntityId": "city-64a359ba87706a72",
+      "wikidataId": "Q54489",
+      "canonicalNameEn": "Royal Botanic Garden, Sydney"
+    },
+    {
+      "entityId": "poi-d0afc66da29c6ccf",
+      "parentCityEntityId": "city-2cb3e8890c6c7848",
+      "wikidataId": "Q106362263",
+      "canonicalNameEn": "Skyline Queenstown"
+    },
+    {
+      "entityId": "poi-d1a3c301ade414c5",
+      "parentCityEntityId": "city-922253e414d069f3",
+      "wikidataId": "Q115641739",
+      "canonicalNameEn": "Reynisfjara"
+    },
+    {
+      "entityId": "poi-d568d27102b2ed3b",
+      "parentCityEntityId": "city-e91b5be401efc35d",
+      "wikidataId": "Q1464509",
+      "canonicalNameEn": "National Gallery of Victoria"
+    },
+    {
+      "entityId": "poi-dcd7f51accdfb88a",
+      "parentCityEntityId": "city-dde5b708a62ae273",
+      "wikidataId": "Q1454288",
+      "canonicalNameEn": "Wat Chedi Luang"
+    },
+    {
+      "entityId": "poi-ddf299edff5272f9",
+      "parentCityEntityId": "city-e91b5be401efc35d",
+      "wikidataId": "Q695935",
+      "canonicalNameEn": "Royal Exhibition Building"
+    },
+    {
+      "entityId": "poi-e7a7ac63679e80ce",
+      "parentCityEntityId": "city-ec5f6eb44af88c19",
+      "wikidataId": "Q1783706",
+      "canonicalNameEn": "Harpa"
+    },
+    {
+      "entityId": "poi-f479da195081445a",
+      "parentCityEntityId": "city-ec5f6eb44af88c19",
+      "wikidataId": "Q626963",
+      "canonicalNameEn": "National Museum of Iceland"
+    },
+    {
+      "entityId": "poi-fb3ffe1ebf65311d",
+      "parentCityEntityId": "city-64a359ba87706a72",
+      "wikidataId": "Q45178",
+      "canonicalNameEn": "Sydney Opera House"
+    },
+    {
+      "entityId": "poi-fd5e8f242c450b08",
+      "parentCityEntityId": "city-6424297f5bfd77b8",
+      "wikidataId": "Q670595",
+      "canonicalNameEn": "Swiss Museum of Transport"
+    }
+  ]
+}

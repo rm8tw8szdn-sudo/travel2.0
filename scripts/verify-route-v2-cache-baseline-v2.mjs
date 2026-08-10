@@ -12,6 +12,7 @@ import {
 import {
   attachRouteIntentEnvelope,
   createRouteSearchCache,
+  createRouteV2RuntimeMetrics,
   normalizeRouteIntent,
 } from "../src/lib/routes/index.mjs";
 import { readKnowledgeGraphCache } from "../src/lib/routes/wikidata-sparql-knowledge-graph.mjs";
@@ -110,6 +111,39 @@ try {
   assert(brokenJsonl.errors.some((error) => error.includes("search-analytics.jsonl:invalid-jsonl")));
   fs.writeFileSync(analyticsPath, analyticsOriginal);
   testResults.corruptJsonlDetected = true;
+
+  const runtimeMetricsPath = path.join(copyRoot, "route-v2-runtime-metrics.json");
+  const runtimeMetrics = createRouteV2RuntimeMetrics({
+    storagePath: runtimeMetricsPath,
+    maxRequestsPerWindow: 100,
+  });
+  assert.equal(runtimeMetrics.record({
+    v2Attempted: true,
+    v2Displayed: false,
+    fallback: true,
+    fallbackReason: "candidate-rejected",
+    rejectCount: 1,
+    resultCount: 1,
+    candidateRejectReasons: ["duration-capacity-conflict"],
+    timings: { searchMs: 50, plannerMs: 20, cacheMs: 3 },
+  }).persisted, true);
+  const validRuntimeMetrics = auditRouteV2Cache(copyRoot);
+  assert.equal(validRuntimeMetrics.status, "PASS", validRuntimeMetrics.errors.join("\n"));
+  assert(validRuntimeMetrics.runtimeState.files.some((entry) => (
+    entry.path === "route-v2-runtime-metrics.json"
+      && entry.structureType === "route-v2-runtime-metrics-json"
+      && entry.required === false
+  )));
+  const contaminatedRuntimeMetrics = JSON.parse(fs.readFileSync(runtimeMetricsPath, "utf8"));
+  contaminatedRuntimeMetrics.query = "must-not-be-stored";
+  fs.writeFileSync(runtimeMetricsPath, JSON.stringify(contaminatedRuntimeMetrics), "utf8");
+  const invalidRuntimeMetrics = auditRouteV2Cache(copyRoot);
+  assert.equal(invalidRuntimeMetrics.status, "FAIL");
+  assert(invalidRuntimeMetrics.errors.some((error) => (
+    error === "route-v2-runtime-metrics.json:metrics-root-fields-invalid"
+  )));
+  fs.rmSync(runtimeMetricsPath, { force: true });
+  testResults.runtimeMetricsStructureAndPrivacyDetected = true;
 
   const nestedIntent = normalizeRouteIntent({
     countryCode: "JP",

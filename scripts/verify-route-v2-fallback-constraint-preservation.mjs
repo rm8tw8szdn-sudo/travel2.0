@@ -53,6 +53,23 @@ function intent(cities, overrides = {}) {
   };
 }
 
+function countryRoute(id, countries, overrides = {}) {
+  return {
+    id,
+    destinationEntities: countries.map((country, index) => ({
+      wikidataId: `Q-country-${country}`,
+      name: `${country}-city-${index + 1}`,
+      countryCode: country,
+    })),
+    countryEntities: countries.map((countryCode) => ({ countryCode })),
+    countries: [...countries],
+    durationDays: 14,
+    recommendedDays: "14天",
+    searchStatus: "search-generated",
+    ...overrides,
+  };
+}
+
 const requiredFour = [CITY.tokyo, CITY.kyoto, CITY.osaka, CITY.nara];
 const pureCases = {
   flexibleComplete: validateFallbackRouteAgainstIntent(
@@ -115,8 +132,40 @@ const pureCases = {
     route("country-conflict", [CITY.tokyo, CITY.kyoto], {
       countryEntities: [{ wikidataId: "Q55", countryCode: "NL", name: "荷兰" }],
       countries: ["NL"],
+      destinationEntities: [CITY.tokyo, CITY.kyoto]
+        .map((city) => ({ wikidataId: city.id, entityId: city.id, name: city.name, countryCode: "NL" })),
     }),
     intent([CITY.tokyo, CITY.kyoto]),
+  ),
+  multiCountryComplete: validateFallbackRouteAgainstIntent(
+    countryRoute("multi-country-complete", ["DE", "AT"]),
+    intent([], {
+      countryCode: "DE",
+      countryCodes: ["DE", "AT"],
+      requiredCountryCodes: ["DE", "AT"],
+      durationDays: 14,
+    }),
+  ),
+  multiCountryMissing: validateFallbackRouteAgainstIntent(
+    countryRoute("multi-country-missing", ["DE"], {
+      countryEntities: ["DE", "AT"].map((countryCode) => ({ countryCode })),
+    }),
+    intent([], {
+      countryCode: "DE",
+      countryCodes: ["DE", "AT"],
+      requiredCountryCodes: ["DE", "AT"],
+      durationDays: 14,
+    }),
+  ),
+  fixedCountryOrderMismatch: validateFallbackRouteAgainstIntent(
+    countryRoute("fixed-country-order-mismatch", ["AT", "DE"]),
+    intent([], {
+      countryCode: "DE",
+      countryCodes: ["DE", "AT"],
+      requiredCountryCodes: ["DE", "AT"],
+      destinationOrderMode: "fixed",
+      durationDays: 14,
+    }),
   ),
 };
 
@@ -135,6 +184,10 @@ assert.equal(pureCases.monthNeedsEvidence.matched, true);
 assert.equal(pureCases.monthNeedsEvidence.requiresEvidence, true);
 assert.equal(pureCases.seasonConflict.timeConstraintConflict, true);
 assert.equal(pureCases.countryConflict.countryConflict, true);
+assert.equal(pureCases.multiCountryComplete.matched, true);
+assert.equal(pureCases.multiCountryMissing.countryConflict, true);
+assert.equal(pureCases.fixedCountryOrderMismatch.countryConflict, true);
+assert.equal(pureCases.fixedCountryOrderMismatch.orderMismatch, true);
 
 function searchCache() {
   const state = { puts: 0, reviews: 0, records: [] };

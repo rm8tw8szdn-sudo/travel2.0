@@ -73,6 +73,8 @@ function routeDays(record = {}) {
 }
 
 function routeCountryCodes(record = {}, destinations = routeDestinations(record)) {
+  const destinationCountries = unique(destinations.map((entry) => entry.countryCode).filter(Boolean));
+  if (destinationCountries.length) return destinationCountries;
   const countryEntities = Array.isArray(record.countryEntities)
     ? record.countryEntities.map((entry) => entry?.countryCode || entry?.entityId).map(identity).filter(Boolean)
     : [];
@@ -420,6 +422,22 @@ export function validateRouteIntentInvariants(record = {}, routeIntent = {}, opt
   } else if (expectedCountry.state === "provided" && expectedCountry.value
     && (actualCountries.length !== 1 || actualCountries[0] !== expectedCountry.value)) {
     violations.push(violation("country-mismatch", "country", expectedCountry.value, actualCountries, source));
+  }
+  const exactCountrySetMatches = expectedCountries?.state === "provided"
+    && expectedCountries.values.length === actualCountries.length
+    && expectedCountries.values.every((country) => actualCountries.includes(country));
+  if (!regionScopedCountrySet
+    && exactCountrySetMatches
+    && expectedCountries.values.length > 1
+    && normalizedIntent.hardConstraints.destinationOrderMode.value === "fixed"
+    && expectedCountries.values.some((country, index) => country !== actualCountries[index])) {
+    violations.push(violation(
+      "fixed-country-order-mismatch",
+      "destinationOrderMode",
+      expectedCountries.values,
+      actualCountries,
+      source,
+    ));
   }
 
   const actualRegions = routeRegions(record, destinations);

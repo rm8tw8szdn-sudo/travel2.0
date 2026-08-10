@@ -726,45 +726,20 @@ async function writeCandidatePoolSidecarSafe({
     const evidenceBridgeInsertions = selectionEnabled && isRouteV2EvidenceValidationEnabled(env)
       ? preferredEvidenceBridgeInsertions(context, pool, localEvidenceRepository)
       : [];
-    const candidateContext = evidenceBridgeInsertions.length
-      ? { ...context, preferredEvidenceBridgeInsertions: evidenceBridgeInsertions }
-      : context;
-    let builtCandidates = routeCandidateBuilder({
+    const candidateContext = {
+      ...context,
+      ...(strictSuggestionCapacity ? { candidateMaxDestinationCount: strictSuggestionCapacity } : {}),
+      ...(evidenceBridgeInsertions.length ? { preferredEvidenceBridgeInsertions: evidenceBridgeInsertions } : {}),
+    };
+    const builtCandidates = routeCandidateBuilder({
       context: candidateContext,
       concept,
       pool,
-      targetCount: selectionEnabled && strictSuggestionCapacity
-        ? 12
-        : selectionEnabled
-          ? ROUTE_CANDIDATE_SELECTION_TARGET
-          : Number(context?.candidateTargetCount) || 8,
+      targetCount: selectionEnabled
+        ? ROUTE_CANDIDATE_SELECTION_TARGET
+        : Number(context?.candidateTargetCount) || 8,
       seed: context?.candidateSeed || context?.intentId || "",
     });
-    if (selectionEnabled && strictSuggestionCapacity) {
-      const suggestionShape = (candidate) => JSON.stringify({
-        destinations: [...(candidate.proposedOrder || [])].sort(),
-        variant: clean(candidate.candidateVariant || ""),
-      });
-      const byShape = new Map(builtCandidates.map((candidate) => [suggestionShape(candidate), candidate]));
-      for (let attempt = 1; attempt <= 6; attempt += 1) {
-        const capacitySafeCount = [...byShape.values()]
-          .filter((candidate) => candidate.destinations.length <= strictSuggestionCapacity)
-          .length;
-        if (capacitySafeCount >= ROUTE_CANDIDATE_SELECTION_TARGET) break;
-        const retrySeed = `${context?.candidateSeed || context?.intentId || ""}:capacity:${attempt}`;
-        for (const candidate of routeCandidateBuilder({
-          context: candidateContext,
-          concept,
-          pool,
-          targetCount: 12,
-          seed: retrySeed,
-        })) {
-          const shape = suggestionShape(candidate);
-          if (!byShape.has(shape)) byShape.set(shape, candidate);
-        }
-      }
-      builtCandidates = [...byShape.values()];
-    }
     const capacitySafeCandidates = strictSuggestionCapacity
       ? builtCandidates.filter((candidate) => candidate.destinations.length <= strictSuggestionCapacity)
       : builtCandidates;
@@ -1541,8 +1516,14 @@ function validatePlannerCandidate(record, concept, context, strategyRegistry) {
   const suggestedDestinationCount = Array.isArray(context?.destinationSuggestion?.destinationIds)
     ? context.destinationSuggestion.destinationIds.length
     : 0;
+  const requiredDestinationCount = Math.max(
+    Array.isArray(context?.requiredDestinationIds) ? context.requiredDestinationIds.length : 0,
+    Array.isArray(context?.requiredDestinationNames) ? context.requiredDestinationNames.length : 0,
+  );
   const quality = validateRouteContent(record, {
-    minimumDestinations: suggestedDestinationCount > 0
+    minimumDestinations: requiredDestinationCount > 0
+      ? requiredDestinationCount
+      : suggestedDestinationCount > 0
       ? Math.min(2, suggestedDestinationCount)
       : null,
   });

@@ -171,13 +171,17 @@ export function evaluateRouteIntentOracle(normalizedIntentInput, route = {}, opt
     && expectedCountry.state !== "provided"
     && expectedCountries?.state === "provided"
     && expectedCountries.values.length > 0;
-  const authoritativeCountries = Array.isArray(route.countryEntities) && route.countryEntities.length
-    ? route.countryEntities.map((entry) => id(entry?.countryCode || entry?.entityId))
-    : Array.isArray(route.countryCodes) && route.countryCodes.length
+  const pointCountries = constraintPoints.map((entry) => entry.country).filter(Boolean);
+  const authoritativeCountries = pointCountries.length
+    ? pointCountries
+    : Array.isArray(route.countryEntities) && route.countryEntities.length
+      ? route.countryEntities.map((entry) => id(entry?.countryCode || entry?.entityId))
+      : Array.isArray(route.countryCodes) && route.countryCodes.length
       ? route.countryCodes.map(id)
       : Array.isArray(route.countries) && route.countries.some((entry) => /^[a-z]{2}$/iu.test(String(entry)))
         ? route.countries.filter((entry) => /^[a-z]{2}$/iu.test(String(entry))).map(id)
-        : points.map((entry) => entry.country);
+        : [];
+  const orderedCountries = [...new Set(authoritativeCountries.filter(Boolean))];
   const countries = new Set(authoritativeCountries.filter(Boolean));
   if (expectedCountries?.state === "provided" && expectedCountries.values.length) {
     if (regionScopedCountrySet) {
@@ -188,6 +192,16 @@ export function evaluateRouteIntentOracle(normalizedIntentInput, route = {}, opt
   } else if (expectedCountry.state === "provided" && expectedCountry.value
     && (countries.size !== 1 || !countries.has(expectedCountry.value))) {
     violations.push("country-mismatch");
+  }
+  const exactCountrySetMatches = expectedCountries?.state === "provided"
+    && expectedCountries.values.length === countries.size
+    && expectedCountries.values.every((country) => countries.has(country));
+  if (!regionScopedCountrySet
+    && exactCountrySetMatches
+    && expectedCountries.values.length > 1
+    && intent.hardConstraints.destinationOrderMode.value === "fixed"
+    && expectedCountries.values.some((country, index) => country !== orderedCountries[index])) {
+    violations.push("fixed-country-order-mismatch");
   }
 
   const regions = new Set([

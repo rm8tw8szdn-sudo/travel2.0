@@ -9,6 +9,7 @@ import {
   createEvidenceRepository,
   createRouteCandidatePoolStore,
   createRouteCompositionPlanner,
+  buildRouteCandidatesFromPool,
   isRouteV2CandidatePoolEnabled,
   isRouteV2IntentEnabled,
   isRouteV2TraceEnabled,
@@ -107,6 +108,7 @@ function createHarness(name, envOverrides = {}, paths = {}) {
     decisionTraceStore,
     env,
   };
+  if (paths.routeCandidateBuilder) plannerOptions.routeCandidateBuilder = paths.routeCandidateBuilder;
   if (env.ROUTE_V2_INTENT_ENABLED === "true") {
     plannerOptions.webEvidencePipeline = {
       provider: { async searchEvidence() { networkProbe.calls += 1; throw new Error("unexpected-online-evidence-call"); } },
@@ -140,6 +142,8 @@ assert.equal(fs.existsSync(flagOffHarness.candidatePath), false, "default-off mu
 assert.equal(fs.existsSync(flagOffHarness.tracePath), false, "default-off must not create DecisionTrace storage");
 
 const enabledFlags = {
+  ROUTE_V2_RUNTIME_ENABLED: "true",
+  ROUTE_V2_CANARY_PERCENTAGE: "100",
   ROUTE_V2_CANDIDATE_POOL_ENABLED: "true",
   ROUTE_V2_INTENT_ENABLED: "true",
   ROUTE_V2_TRACE_ENABLED: "true",
@@ -260,6 +264,29 @@ const boundedHarness = createHarness("bounded-target", enabledFlags);
 await buildOne(boundedHarness, { candidateTargetCount: 5 });
 assert.equal(readJsonl(boundedHarness.candidatePath).length, 3, "Phase 1 must keep every test intent at exactly three candidates");
 assert.equal(readJsonl(boundedHarness.tracePath)[0].rejectedCandidates.length, 2, "three-candidate selection must reject exactly two alternatives");
+
+const suggestionBuilderCalls = [];
+const suggestionHarness = createHarness("suggestion-single-build", enabledFlags, {
+  routeCandidateBuilder(input) {
+    suggestionBuilderCalls.push({
+      targetCount: input.targetCount,
+      maxDestinationCount: input.context?.candidateMaxDestinationCount,
+    });
+    return buildRouteCandidatesFromPool(input);
+  },
+});
+await buildOne(suggestionHarness, {
+  destinationSuggestion: {
+    countryCode: "JP",
+    destinationIds: JP_POOL.map((item) => item.wikidataId),
+  },
+});
+assert.equal(suggestionBuilderCalls.length, 1, "destination suggestions must use one bounded Candidate build");
+assert.equal(suggestionBuilderCalls[0].targetCount, 3, "selection must request only its three required candidates");
+assert(
+  Number.isInteger(suggestionBuilderCalls[0].maxDestinationCount) && suggestionBuilderCalls[0].maxDestinationCount >= 2,
+  "planner must pass the suggestion destination cap directly to the Candidate builder",
+);
 
 const candidateFailureDir = path.join(tempRoot, "candidate-write-failure-target");
 fs.mkdirSync(candidateFailureDir, { recursive: true });

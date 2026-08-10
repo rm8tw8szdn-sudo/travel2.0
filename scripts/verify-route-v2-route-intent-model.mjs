@@ -78,6 +78,23 @@ assert.notEqual(
   createRouteIntentFingerprint({ countries: ["AT", "SK", "HU"], durationDays: 7 }).value,
   "removing a required country must change the fingerprint",
 );
+const fixedMultiCountry = normalizeRouteIntent({
+  requiredCountryCodes: ["DE", "AT"],
+  countryCodes: ["DE", "AT"],
+  destinationOrderMode: "fixed",
+  durationDays: 14,
+});
+assert.deepEqual(fixedMultiCountry.hardConstraints.countries.values, ["DE", "AT"]);
+assert.notEqual(
+  createRouteIntentFingerprint(fixedMultiCountry).value,
+  createRouteIntentFingerprint({
+    requiredCountryCodes: ["AT", "DE"],
+    countryCodes: ["AT", "DE"],
+    destinationOrderMode: "fixed",
+    durationDays: 14,
+  }).value,
+  "fixed multi-country constraints must include country order",
+);
 
 const unspecified = normalizeRouteIntent({});
 const explicitEmpty = normalizeRouteIntent({

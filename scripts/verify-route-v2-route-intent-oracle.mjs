@@ -60,6 +60,31 @@ assert.equal(
   true,
 );
 
+const fixedCountryIntent = normalizeRouteIntent({
+  requiredCountryCodes: ["DE", "AT"],
+  countryCodes: ["DE", "AT"],
+  destinationOrderMode: "fixed",
+  durationDays: 14,
+});
+const fixedCountryRoute = {
+  durationDays: 14,
+  destinationEntities: [
+    { wikidataId: "Q64", name: "Berlin", countryCode: "DE" },
+    { wikidataId: "Q1741", name: "Vienna", countryCode: "AT" },
+  ],
+  countryEntities: ["DE", "AT"].map((countryCode) => ({ countryCode })),
+};
+assert.equal(validateRouteIntentInvariants(fixedCountryRoute, fixedCountryIntent, { requireFingerprint: false }).matched, true);
+assert.equal(evaluateRouteIntentOracle(fixedCountryIntent, fixedCountryRoute, { requireFingerprint: false }).matched, true);
+const reversedCountryRoute = {
+  ...fixedCountryRoute,
+  destinationEntities: [...fixedCountryRoute.destinationEntities].reverse(),
+};
+const fixedCountryProduction = validateRouteIntentInvariants(reversedCountryRoute, fixedCountryIntent, { requireFingerprint: false });
+const fixedCountryOracle = evaluateRouteIntentOracle(fixedCountryIntent, reversedCountryRoute, { requireFingerprint: false });
+assert.deepEqual([...fixedCountryProduction.reasonCodes].sort(), [...fixedCountryOracle.violationCodes].sort());
+assert(fixedCountryProduction.reasonCodes.includes("fixed-country-order-mismatch"));
+
 function compare(candidate, expectedCode = "") {
   const production = validateRouteIntentInvariants(candidate, intent);
   const oracle = evaluateRouteIntentOracle(intent, candidate);

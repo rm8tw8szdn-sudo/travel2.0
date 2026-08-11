@@ -27,6 +27,11 @@ export const MANDATORY_PRELAUNCH_VERIFIERS = Object.freeze([
     phase: "static",
   }),
   Object.freeze({
+    name: "trip-footprint-knowledge-identity",
+    relativePath: "scripts/verify-travel-state.mjs",
+    phase: "static",
+  }),
+  Object.freeze({
     name: "multi-country-hard-constraints",
     relativePath: "scripts/verify-route-v2-multi-country-hard-constraints.mjs",
     phase: "static",

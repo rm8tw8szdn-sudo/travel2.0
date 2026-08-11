@@ -190,7 +190,7 @@ node scripts/verify-route-v2-comprehensive-prelaunch.mjs
 node scripts/verify-route-v2-comprehensive-failure-propagation.mjs
 ```
 
-Expected: all 36 mandatory stages pass, injected nonzero stages block the aggregate, performance remains within configured bounds, and tests report isolated storage.
+Expected: all 37 mandatory stages pass, injected nonzero stages block the aggregate, performance remains within configured bounds, and tests report isolated storage.
 
 - [ ] **Step 2: Run syntax and diff checks**
 
@@ -255,7 +255,7 @@ node scripts/verify-route-v2-single-city-hard-constraint.mjs
 node scripts/verify-route-v2-multi-country-hard-constraints.mjs
 ```
 
-Expected: 36/36 mandatory stages and all focused E2E checks pass with formal assets unchanged.
+Expected: 37/37 mandatory stages and all focused E2E checks pass with formal assets unchanged.
 
 - [ ] **Step 5: Publish a ready-for-review pull request**
 

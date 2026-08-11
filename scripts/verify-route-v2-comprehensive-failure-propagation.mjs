@@ -13,6 +13,7 @@ const requiredNames = new Set(MANDATORY_PRELAUNCH_VERIFIERS.map((stage) => stage
 for (const name of [
   "multi-city-hard-constraints",
   "single-city-hard-constraint",
+  "trip-footprint-knowledge-identity",
   "multi-country-hard-constraints",
   "semantic-intent-and-candidate-snapshot-consistency",
   "malformed-route-intent-production-paths",
@@ -30,36 +31,75 @@ for (const name of [
   assert(requiredNames.has(name), `${name} must be a mandatory comprehensive stage`);
 }
 
-const failingStage = MANDATORY_PRELAUNCH_VERIFIERS.find((stage) => stage.name === "publication-gate");
-let thrown = null;
-try {
-  runMandatoryVerifierStage({
-    stage: failingStage,
-    projectRoot,
-    env: process.env,
-    spawnImpl: () => ({
-      status: 17,
-      signal: null,
-      stdout: "{\"verifier\":\"injected-child\",\"status\":\"FAIL\"}\n",
-      stderr: "controlled child failure\n",
-    }),
-  });
-} catch (error) {
-  thrown = error;
+const travelStateStage = MANDATORY_PRELAUNCH_VERIFIERS.find((stage) => stage.name === "trip-footprint-knowledge-identity");
+assert(travelStateStage, "Trip/Footprint identity verification must be registered");
+
+function injectedFailure(result) {
+  let thrown = null;
+  try {
+    runMandatoryVerifierStage({
+      stage: travelStateStage,
+      projectRoot,
+      env: process.env,
+      spawnImpl: () => result,
+    });
+  } catch (error) {
+    thrown = error;
+  }
+  assert(thrown instanceof MandatoryVerifierStageError);
+  assert.equal(thrown.stageResult.name, "trip-footprint-knowledge-identity");
+  assert.equal(thrown.stageResult.command, "node scripts/verify-travel-state.mjs");
+  return thrown.stageResult;
 }
 
-assert(thrown instanceof MandatoryVerifierStageError);
-assert.equal(thrown.stageResult.name, "publication-gate");
-assert.equal(thrown.stageResult.command, "node scripts/verify-route-v2-publication-gate.mjs");
-assert.equal(thrown.stageResult.exitCode, 17);
-assert.match(thrown.stageResult.stdoutSummary, /injected-child/u);
-assert.match(thrown.stageResult.stderrSummary, /controlled child failure/u);
+const nonZero = injectedFailure({
+  status: 23,
+  signal: null,
+  stdout: "{\"verifier\":\"injected-trip-footprint\",\"status\":\"PASS\"}\n",
+  stderr: "controlled child failure\n",
+});
+assert.equal(nonZero.exitCode, 23);
+assert.match(nonZero.stdoutSummary, /injected-trip-footprint/u);
+assert.match(nonZero.stderrSummary, /controlled child failure/u);
+
+const signaled = injectedFailure({
+  status: null,
+  signal: "SIGTERM",
+  stdout: "",
+  stderr: "controlled signal\n",
+});
+assert.equal(signaled.signal, "SIGTERM");
+
+const spawnError = injectedFailure({
+  status: null,
+  signal: null,
+  stdout: "",
+  stderr: "",
+  error: new Error("controlled spawn error"),
+});
+assert.match(spawnError.stderrSummary, /controlled spawn error/u);
+
+const passTextIgnored = runMandatoryVerifierStage({
+  stage: travelStateStage,
+  projectRoot,
+  env: process.env,
+  spawnImpl: () => ({
+    status: 0,
+    signal: null,
+    stdout: "text intentionally contains FAIL without affecting exit status\n",
+    stderr: "",
+  }),
+});
+assert.equal(passTextIgnored.exitCode, 0);
 
 process.stdout.write(`${JSON.stringify({
   verifier: "route-v2-comprehensive-failure-propagation",
   status: "PASS",
   mandatoryStageCount: MANDATORY_PRELAUNCH_VERIFIERS.length,
-  nonZeroChildPropagated: true,
-  injectedExitCode: 17,
+  tripFootprintNonZeroPropagated: true,
+  tripFootprintSignalPropagated: true,
+  tripFootprintSpawnErrorPropagated: true,
+  outputTextIgnored: true,
+  injectedExitCode: 23,
   productionRunnerExercised: true,
 }, null, 2)}\n`);

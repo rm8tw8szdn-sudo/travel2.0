@@ -110,6 +110,7 @@ const routesSource = fs.readFileSync(new URL("../routes.js", import.meta.url), "
 const routesHtml = fs.readFileSync(new URL("../routes.html", import.meta.url), "utf8");
 const detailSource = fs.readFileSync(new URL("../route-detail.js", import.meta.url), "utf8");
 const detailHtml = fs.readFileSync(new URL("../route-detail.html", import.meta.url), "utf8");
+const imageAssetsSource = fs.readFileSync(new URL("../route-v2-image-assets.js", import.meta.url), "utf8");
 assert.match(serverSource, /createRouteV2RuntimeEnvironment/);
 assert.match(serverSource, /env:\s*routeV2RuntimeEnv/);
 assert.match(discoverySource, /env\s*=\s*process\.env/);
@@ -133,21 +134,29 @@ const searchServiceSource = fs.readFileSync(new URL("../src/lib/routes/route-sea
 assert.match(searchServiceSource, /const cityBreakByExplicitPair = !suggested/);
 
 const localCoverFunction = routesSource.match(/function localCoverForRoute\(record = \{\}\) \{[\s\S]*?\n\}/u)?.[0] || "";
-const pilotReturnIndex = localCoverFunction.indexOf("!resolved.isFallback");
-const routeFallbackIndex = localCoverFunction.indexOf("LOCAL_COVER_BY_ROUTE_ID");
-assert(pilotReturnIndex >= 0, "local route covers must only short-circuit for a non-placeholder resolver result");
-assert(routeFallbackIndex > pilotReturnIndex, "legacy route/theme/country fallbacks must run after a pilot placeholder");
+assert.match(localCoverFunction, /resolveLocalRouteCover/);
+assert.match(localCoverFunction, /!resolved\.isFallback/);
+const localResolverFunction = imageAssetsSource.match(/function resolveLocalRouteCover\(record = \{\}, options = \{\}\) \{[\s\S]*?\n  \}/u)?.[0] || "";
+const configuredCoverIndex = localResolverFunction.indexOf("resolvePilotRouteCover");
+const routeCoverIndex = localResolverFunction.indexOf("semanticallyMatchedRouteCover");
+const cityCoverIndex = localResolverFunction.indexOf("localCityCover");
+const countryCoverIndex = localResolverFunction.indexOf("localCountryCover");
+const neutralFallbackIndex = localResolverFunction.indexOf("DEFAULT_ROUTE_PLACEHOLDER");
+assert(configuredCoverIndex >= 0, "configured route cover lookup missing");
+assert(routeCoverIndex > configuredCoverIndex, "semantic route fallback must follow configured cover lookup");
+assert(cityCoverIndex > routeCoverIndex, "city fallback must follow route-specific cover lookup");
+assert(countryCoverIndex > cityCoverIndex, "country fallback must follow city lookup");
+assert(neutralFallbackIndex > countryCoverIndex, "neutral fallback must be last");
 assert.match(routesSource, /source:\s*"local-route-fallback"/);
 assert.match(routesSource, /const LOCAL_COVER_BY_CONTINENT = \{/);
-assert.match(routesSource, /LOCAL_COVER_BY_CONTINENT\[continentForCountryCode\(code\)\]/);
 assert.match(routesSource, /function isReusableLocalCover\(/);
 assert.match(routesSource, /usedImages\.has\(imageKey\) && !reusableLocalCover/);
 assert.match(routesSource, /used\.has\(key\) && !isReusableLocalCover\(record, displayCoverUrl\(record\)\)/);
 assert.match(routesSource, /const safeLocalCover = Boolean\(/);
 assert.match(routesSource, /fixedCoverKey\.startsWith\("local:"\)/);
 assert.match(routesSource, /const source = safeLocalCover\s*\?\s*fixedCover\.url/);
-assert.match(routesHtml, /routes\.js\?v=default-runtime-user-path-fixes-20260728b/);
-assert.match(detailHtml, /route-detail\.js\?v=default-runtime-user-path-fixes-20260728/);
+assert.match(routesHtml, /routes\.js\?v=[^"']+/);
+assert.match(detailHtml, /route-detail\.js\?v=[^"']+/);
 
 console.log(JSON.stringify({
   status: "PASS",

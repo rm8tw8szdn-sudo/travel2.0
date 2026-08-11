@@ -1,0 +1,107 @@
+{
+  "schemaVersion": "route-v2-verifier-lifecycle-v1",
+  "activeReleaseGateSource": "src/lib/routes/prelaunch-verifier-gate.mjs",
+  "canonicalTextHashHelper": "scripts/lib/knowledge-baseline-text.mjs",
+  "retired": [
+    {
+      "path": "scripts/verify-knowledge-city-baseline-p1b-pilot.mjs",
+      "reason": "Superseded cumulative assets make its byte-identical pilot snapshot and protected-diff scope obsolete.",
+      "replacement": "scripts/verify-knowledge-entity-layer-p1b-batch02.mjs + scripts/verify-knowledge-semantic-gate.mjs"
+    },
+    {
+      "path": "scripts/verify-knowledge-city-baseline-p1b-batch02.mjs",
+      "reason": "Superseded batch snapshot uses platform-sensitive byte hashes and an obsolete isolated-batch scope.",
+      "replacement": "scripts/verify-knowledge-entity-layer-p1b-batch02.mjs + scripts/verify-knowledge-semantic-gate.mjs"
+    },
+    {
+      "path": "scripts/verify-knowledge-poi-baseline-p1b-pilot.mjs",
+      "reason": "Superseded cumulative assets make its byte-identical pilot snapshot and protected-diff scope obsolete.",
+      "replacement": "scripts/verify-knowledge-entity-layer-p1b-batch02.mjs + scripts/verify-knowledge-semantic-gate.mjs"
+    },
+    {
+      "path": "scripts/verify-knowledge-poi-baseline-p1b-batch02.mjs",
+      "reason": "Superseded batch snapshot uses platform-sensitive byte hashes and an obsolete isolated-batch scope.",
+      "replacement": "scripts/verify-knowledge-entity-layer-p1b-batch02.mjs + scripts/verify-knowledge-semantic-gate.mjs"
+    },
+    {
+      "path": "scripts/verify-knowledge-entity-layer-p1b-pilot.mjs",
+      "reason": "Superseded pilot totals and byte-identical snapshot rules no longer describe the cumulative published layer.",
+      "replacement": "scripts/verify-knowledge-entity-layer-p1b-batch02.mjs + scripts/verify-knowledge-semantic-gate.mjs"
+    },
+    {
+      "path": "scripts/verify-achievement-page-ui.mjs",
+      "reason": "Legacy macOS-only Playwright check; not a release gate.",
+      "replacement": "in-app browser acceptance"
+    },
+    {
+      "path": "scripts/verify-auxiliary-modules.mjs",
+      "reason": "Legacy macOS-only Playwright check; not a release gate.",
+      "replacement": "in-app browser acceptance"
+    },
+    {
+      "path": "scripts/verify-bottom-tabs-playwright.mjs",
+      "reason": "Legacy macOS-only Playwright check; not a release gate.",
+      "replacement": "in-app browser acceptance"
+    },
+    {
+      "path": "scripts/verify-budget-page-ui.mjs",
+      "reason": "Legacy macOS-only Playwright check; not a release gate.",
+      "replacement": "in-app browser acceptance"
+    },
+    {
+      "path": "scripts/verify-footprint-page.mjs",
+      "reason": "Legacy macOS-only Playwright check; not a release gate.",
+      "replacement": "scripts/verify-travel-state.mjs + in-app browser acceptance"
+    },
+    {
+      "path": "scripts/verify-interaction-flows.mjs",
+      "reason": "Legacy macOS-only Playwright check; not a release gate.",
+      "replacement": "in-app browser acceptance"
+    },
+    {
+      "path": "scripts/verify-route-add-to-trip.mjs",
+      "reason": "Legacy macOS-only Playwright check; not a release gate.",
+      "replacement": "scripts/verify-travel-state.mjs + in-app browser acceptance"
+    },
+    {
+      "path": "scripts/verify-route-detail-v2.mjs",
+      "reason": "Legacy macOS-only Playwright check; not a release gate.",
+      "replacement": "scripts/verify-route-v2-generated-detail-stability.mjs + in-app browser acceptance"
+    },
+    {
+      "path": "scripts/verify-route-feed.mjs",
+      "reason": "Legacy macOS-only Playwright check; not a release gate.",
+      "replacement": "scripts/verify-route-v2-prelaunch-browser.mjs + in-app browser acceptance"
+    },
+    {
+      "path": "scripts/verify-task2-playwright.mjs",
+      "reason": "Historical task-scoped macOS-only check.",
+      "replacement": "in-app browser acceptance"
+    },
+    {
+      "path": "scripts/verify-task4-playwright.mjs",
+      "reason": "Historical task-scoped macOS-only check.",
+      "replacement": "in-app browser acceptance"
+    },
+    {
+      "path": "scripts/verify-task5-playwright.mjs",
+      "reason": "Historical task-scoped macOS-only check.",
+      "replacement": "in-app browser acceptance"
+    },
+    {
+      "path": "scripts/verify-task6-end-to-end.mjs",
+      "reason": "Historical task-scoped macOS-only check.",
+      "replacement": "in-app browser acceptance"
+    },
+    {
+      "path": "scripts/verify-task6-screenshots.mjs",
+      "reason": "Historical task-scoped macOS-only screenshot utility.",
+      "replacement": "in-app browser acceptance"
+    },
+    {
+      "path": "scripts/capture-route-v2-screenshots.mjs",
+      "reason": "Manual macOS-era screenshot utility; never part of the release gate.",
+      "replacement": "in-app browser screenshots"
+    }
+  ]
+}

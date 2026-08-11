@@ -28,6 +28,19 @@ The six values are averaged and rounded to the nearest percentage point. Accepte
 | Directed RouteLegEvidence | 130 | 196 | 66 |
 | Risk-only SeasonEvidence | 56 | 76 | 20 |
 
+## Coverage semantics
+
+Catalog presence is not route readiness. The current production assets therefore report these meanings separately:
+
+| Metric | Countries | Share of catalog | Meaning |
+| --- | ---: | ---: | --- |
+| `catalogCountries` | 51 | 100% | Published Country entities only |
+| `plannableCountries` | 21 | 41.2% | At least one typed City and one published POI |
+| `evidenceBackedCountries` | 15 | 29.4% | Plannable plus directed transport and objective month-risk Evidence |
+| Country-only | 30 | 58.8% | Country identity is known, but Route V2 Knowledge depth is not claimed |
+
+Norway is currently Country-only in the published Knowledge Entity Layer. A country catalog match must not be presented as Knowledge-backed planning coverage, and unsupported requests remain fail-closed.
+
 ## Fifteen-country dashboard
 
 | Country | Country entity | Cities | POIs | Directed transport | Risk months | Accepted/Feed routes | Evidence association | Maximum reliable days | Coverage | Main gap |

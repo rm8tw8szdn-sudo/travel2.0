@@ -11,13 +11,21 @@ import {
 const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const requiredNames = new Set(MANDATORY_PRELAUNCH_VERIFIERS.map((stage) => stage.name));
 for (const name of [
+  "multi-city-hard-constraints",
+  "single-city-hard-constraint",
+  "multi-country-hard-constraints",
   "semantic-intent-and-candidate-snapshot-consistency",
   "malformed-route-intent-production-paths",
   "cache-semantic-and-evidence-association-integrity",
+  "published-knowledge-semantic-integrity",
+  "knowledge-coverage-semantics",
   "publication-gate",
   "search-cache-semantic-migration",
   "cache-baseline-v2",
   "intent-performance",
+  "server-security-boundaries",
+  "neutral-city-placeholder",
+  "verifier-lifecycle-and-platform-integrity",
 ]) {
   assert(requiredNames.has(name), `${name} must be a mandatory comprehensive stage`);
 }

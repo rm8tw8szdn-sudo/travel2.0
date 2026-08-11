@@ -134,6 +134,8 @@ function deriveIntentId(context = {}, concept = {}, pool = []) {
       ]).map(cleanString),
       requiredDestinationIds: unique(context.requiredDestinationIds || []).map(cleanString),
       destinationOrderMode: cleanString(context.destinationOrderMode),
+      requiredCountryCodes: unique(context.requiredCountryCodes || []).map(normalizeCode),
+      countryOrderMode: cleanString(context.countryOrderMode),
       durationDays: context.durationDays,
       durationBand: context.durationBand,
       travelStyle: context.travelStyle,
@@ -413,6 +415,69 @@ function resolveRequiredCountries(context = {}, pool = []) {
   };
 }
 
+function isRouteLevelDestination(destination = {}) {
+  const entityTypeName = cleanString(destination.entityTypeName).toLocaleLowerCase("en-US");
+  return entityTypeName !== "poi" && entityTypeName !== "country";
+}
+
+function requiredCityCountryCandidateSequences(pool, seed, requiredConstraint, countryConstraint) {
+  const required = dedupeDestinations(requiredConstraint.destinations);
+  const coveredCountryCodes = new Set(required.map((destination) => normalizeCode(destination.countryCode)).filter(Boolean));
+  const uncoveredCountryCodes = countryConstraint.codes.filter((code) => !coveredCountryCodes.has(code));
+  if (!uncoveredCountryCodes.length) return null;
+
+  const grouped = new Map(uncoveredCountryCodes.map((code) => [
+    code,
+    stableSortDestinations(
+      pool.filter((destination) => (
+        isRouteLevelDestination(destination)
+        && normalizeCode(destination.countryCode) === code
+      )),
+      `${seed}:required-city-country:${code}`,
+    ),
+  ]));
+  if ([...grouped.values()].some((destinations) => destinations.length === 0)) return [];
+
+  function supplementalDestinations(variantIndex) {
+    return uncoveredCountryCodes.map((code) => deterministicRotate(grouped.get(code), variantIndex)[0]);
+  }
+
+  function constrainedOrder(supplemental) {
+    const combined = [...required, ...supplemental];
+    if (countryConstraint.orderMode !== "fixed") return combined;
+    const countryPositions = new Map(countryConstraint.codes.map((code, index) => [code, index]));
+    return combined
+      .map((destination, index) => ({ destination, index }))
+      .sort((left, right) => (
+        (countryPositions.get(normalizeCode(left.destination.countryCode)) ?? Number.MAX_SAFE_INTEGER)
+          - (countryPositions.get(normalizeCode(right.destination.countryCode)) ?? Number.MAX_SAFE_INTEGER)
+        || left.index - right.index
+      ))
+      .map((entry) => entry.destination);
+  }
+
+  const balanced = constrainedOrder(supplementalDestinations(0));
+  const lowTransfer = constrainedOrder(supplementalDestinations(1));
+  const depth = constrainedOrder(supplementalDestinations(2));
+  if (requiredConstraint.orderMode === "fixed" || countryConstraint.orderMode === "fixed") {
+    return [
+      { method: "required-mixed-fixed-order-balanced", candidateVariant: "balanced", destinations: balanced },
+      { method: "required-mixed-fixed-order-low-transfer", candidateVariant: "low-transfer", destinations: lowTransfer },
+      { method: "required-mixed-fixed-order-depth", candidateVariant: "depth", destinations: depth },
+    ];
+  }
+
+  return [
+    { method: "required-mixed-flexible-balanced", candidateVariant: "balanced", destinations: balanced },
+    {
+      method: "required-mixed-flexible-low-transfer",
+      candidateVariant: "low-transfer",
+      destinations: stableSortDestinations(lowTransfer, `${seed}:required-mixed-low-transfer`),
+    },
+    { method: "required-mixed-flexible-depth", candidateVariant: "depth", destinations: [...depth].reverse() },
+  ];
+}
+
 function requiredCountryCandidateSequences(pool, maxDestinations, seed, constraint) {
   const grouped = new Map(constraint.codes.map((code) => [
     code,
@@ -502,10 +567,13 @@ export function buildRouteCandidatesFromPool({
   if (requiredConstraint.missingIds.length) return [];
   const requiredCountryConstraint = resolveRequiredCountries(context, normalizedPool);
   if (requiredCountryConstraint.missingCodes.length) return [];
+  const mixedRequiredSequences = requiredConstraint.ids.length
+    ? requiredCityCountryCandidateSequences(normalizedPool, candidateSeed, requiredConstraint, requiredCountryConstraint)
+    : null;
   const sequences = citywalkReference
     ? citywalkCandidateSequences(normalizedPool, candidateSeed, requiredConstraint)
     : requiredConstraint.ids.length
-    ? requiredCandidateSequences(normalizedPool, maxDestinations, candidateSeed, requiredConstraint)
+    ? mixedRequiredSequences ?? requiredCandidateSequences(normalizedPool, maxDestinations, candidateSeed, requiredConstraint)
     : requiredCountryConstraint.codes.length > 1
       ? requiredCountryCandidateSequences(normalizedPool, maxDestinations, candidateSeed, requiredCountryConstraint)
     : normalizedPool.length === 2

@@ -163,7 +163,11 @@ const franceIntent = parseSearchIntent("France Paris 4 days", { catalogs });
 assert.equal(franceIntent.countryCode, "FR");
 assert.deepEqual(franceIntent.normalizedCities, ["paris"]);
 assert.equal(franceIntent.canGenerate, true);
-assert.deepEqual(parseSearchIntent("Netherlands Prague", { catalogs }).cities, [], "a City from another Country must not leak into the intent");
+const mixedCountryCityIntent = parseSearchIntent("Netherlands Prague", { catalogs });
+assert.deepEqual(mixedCountryCityIntent.cities, ["Prague"], "an explicit City must not be dropped when its parent Country differs from another explicit Country");
+assert.deepEqual(mixedCountryCityIntent.countryCodes, ["NL", "CZ"]);
+assert.deepEqual(mixedCountryCityIntent.requiredCountryCodes, ["NL"]);
+assert.deepEqual(mixedCountryCityIntent.requiredDestinationIds, ["Q1085"]);
 assert.equal(parseSearchIntent("online itinerary", { catalogs }).countryCode, "", "short ISO aliases must match complete tokens only");
 
 let capturedPlannerContext = null;

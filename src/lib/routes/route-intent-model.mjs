@@ -30,6 +30,7 @@ const NORMALIZED_ROUTE_INTENT_KEYS = new Set([
 const HARD_CONSTRAINT_KEYS = new Set([
   "requiredCities",
   "destinationOrderMode",
+  "countryOrderMode",
   "exactDays",
   "months",
   "season",
@@ -204,6 +205,14 @@ function validateRouteIntentSemanticConsistency(input, violations) {
   const hard = input?.hardConstraints;
   const evidence = input?.evidenceStatus;
   if (!plainObject(hard) || !plainObject(evidence) || !TIME_TYPES.has(hard.timeType)) return;
+  if (hard.countryOrderMode?.state === "provided"
+    && (hard.countries?.state !== "provided" || hard.countries.values.length < 2)) {
+    violations.push(semanticViolation(
+      "hardConstraints.countryOrderMode",
+      "provided only with at least two required countries",
+      hard.countryOrderMode,
+    ));
+  }
 
   const months = hard.months;
   const season = hard.season;
@@ -378,7 +387,9 @@ export function validateNormalizedRouteIntent(input) {
       violations.push(schemaViolation("intentMode", [...INTENT_MODES].join("|"), input.intentMode, "invalid-enum"));
     }
 
-    if (validateObjectKeys(input.hardConstraints, "hardConstraints", HARD_CONSTRAINT_KEYS, violations)) {
+    if (validateObjectKeys(input.hardConstraints, "hardConstraints", HARD_CONSTRAINT_KEYS, violations, {
+      requiredKeys: new Set([...HARD_CONSTRAINT_KEYS].filter((key) => key !== "countryOrderMode")),
+    })) {
       const hard = input.hardConstraints;
       validateListPresence(hard.requiredCities, "hardConstraints.requiredCities", violations, validateRequiredCity);
       if (Array.isArray(hard.requiredCities?.values)) {
@@ -397,6 +408,18 @@ export function validateNormalizedRouteIntent(input) {
           if (value !== "unspecified") target.push(schemaViolation(path, "unspecified", value, "state-value-conflict"));
         },
       });
+      if (hasOwn(hard, "countryOrderMode")) {
+        validateScalarPresence(hard.countryOrderMode, "hardConstraints.countryOrderMode", violations, {
+          provided: (value, path, target) => {
+            if (typeof value !== "string" || !ORDER_MODES.has(value)) {
+              target.push(schemaViolation(path, [...ORDER_MODES].join("|"), value, "invalid-enum"));
+            }
+          },
+          empty: (value, path, target) => {
+            if (value !== "unspecified") target.push(schemaViolation(path, "unspecified", value, "state-value-conflict"));
+          },
+        });
+      }
       validateScalarPresence(hard.exactDays, "hardConstraints.exactDays", violations, {
         provided: validatePositiveInteger,
         empty: validateNull,
@@ -606,7 +629,16 @@ function normalizeCountryList(input) {
   const values = unique([...arrayValues, ...compositeValues]
     .map(entityId)
     .filter(Boolean));
-  if (clean(input.destinationOrderMode || input.countryOrderMode) !== "fixed") {
+  const hasRequiredCities = [
+    input.requiredCities,
+    input.requiredDestinationIds,
+    input.requiredDestinationNames,
+  ].some((value) => Array.isArray(value) && value.length > 0);
+  const fixedCountryOrder = clean(input.countryOrderMode) === "fixed"
+    || (!hasOwn(input, "countryOrderMode")
+      && !hasRequiredCities
+      && clean(input.destinationOrderMode) === "fixed");
+  if (!fixedCountryOrder) {
     values.sort((left, right) => left.localeCompare(right, "en"));
   }
   return listPresence(arrayProvided || compositeValues.length > 1, values);
@@ -644,6 +676,18 @@ export function normalizeRouteIntent(input = {}) {
     destinationOrderModeProvided,
     destinationOrderModeText || "unspecified",
     !destinationOrderModeText,
+  );
+  const hasRequiredCities = requiredCities.state === "provided" && requiredCities.values.length > 0;
+  const legacyFixedCountryOrder = !hasOwn(input, "countryOrderMode")
+    && !hasRequiredCities
+    && destinationOrderModeText === "fixed";
+  const countryOrderModeText = clean(input.countryOrderMode || (legacyFixedCountryOrder ? "fixed" : "unspecified"));
+  const countryOrderModeProvided = legacyFixedCountryOrder
+    || (hasOwn(input, "countryOrderMode") && countryOrderModeText !== "unspecified");
+  const countryOrderMode = presence(
+    countryOrderModeProvided,
+    countryOrderModeText || "unspecified",
+    !countryOrderModeText,
   );
 
   const durationProvided = hasOwn(input, "exactDays") || hasOwn(input, "durationDays");
@@ -702,6 +746,7 @@ export function normalizeRouteIntent(input = {}) {
     hardConstraints: {
       requiredCities,
       destinationOrderMode,
+      ...(countryOrderModeProvided ? { countryOrderMode } : {}),
       exactDays,
       months,
       season,

@@ -332,8 +332,8 @@ function cityIdentity(city = {}) {
     || `${clean(city.countryCode).toUpperCase()}:${clean(city.normalizedLabel || city.label).toLocaleLowerCase("en-US")}`;
 }
 
-function aliasOccurrences(query, alias) {
-  const normalizedQuery = normalizeText(query);
+function aliasOccurrences(query, alias, normalizedQueryInput = "") {
+  const normalizedQuery = normalizedQueryInput || normalizeText(query);
   const normalizedAlias = normalizeText(alias);
   if (!normalizedAlias) return [];
   if (/^[a-z0-9][a-z0-9\s.-]*$/u.test(normalizedAlias)) {
@@ -353,12 +353,30 @@ function aliasOccurrences(query, alias) {
   return occurrences;
 }
 
+function firstCatalogMatchOutsideRanges(query, catalog, occupiedRanges = []) {
+  const matches = [];
+  const normalizedQuery = normalizeText(query);
+  for (const item of catalog) {
+    for (const alias of unique([item.label, item.normalizedLabel, ...(item.aliases || [])])) {
+      for (const occurrence of aliasOccurrences(query, alias, normalizedQuery)) {
+        matches.push({ ...occurrence, item });
+      }
+    }
+  }
+  matches.sort((left, right) => left.index - right.index
+    || (right.end - right.index) - (left.end - left.index));
+  return matches.find((match) => !occupiedRanges.some((occupied) => (
+    match.index >= occupied.index && match.end <= occupied.end
+  )))?.item || null;
+}
+
 function extractCountryOccurrences(query, countryCatalog) {
   const rawOccurrences = [];
+  const normalizedQuery = normalizeText(query);
   for (const country of countryCatalog) {
     const identity = clean(country.code).toUpperCase();
     for (const alias of unique([country.label, country.normalizedLabel, ...(country.aliases || [])])) {
-      for (const occurrence of aliasOccurrences(query, alias)) {
+      for (const occurrence of aliasOccurrences(query, alias, normalizedQuery)) {
         rawOccurrences.push({ ...occurrence, country, identity, alias: clean(alias) });
       }
     }
@@ -381,13 +399,26 @@ function extractCountryOccurrences(query, countryCatalog) {
   return [...byIdentity.values()].sort((left, right) => left.index - right.index);
 }
 
-function hasFixedDestinationOrderSyntax(query, requiredCount) {
+function hasFixedDestinationOrderSyntax(query, occurrencesOrCount) {
+  const occurrences = Array.isArray(occurrencesOrCount)
+    ? occurrencesOrCount
+    : [];
+  const requiredCount = occurrences.length || Number(occurrencesOrCount);
   if (requiredCount < 2) return false;
-  const normalized = normalizeText(query);
-  return /(?:→|->|⇒|➜)/u.test(query)
-    || /先.+再(?:去|到)?.+/u.test(query)
-    || /先.+(?:然后|再(?:去|到)?).+(?:最后|然后|再(?:去|到)?)/u.test(query)
-    || /到.+(?:再去|然后|再到)/u.test(query)
+  if (occurrences.length) {
+    for (let index = 1; index < occurrences.length; index += 1) {
+      if (/(?:→|->|⇒|➜)/u.test(query.slice(occurrences[index - 1].end, occurrences[index].index))) return true;
+    }
+  } else if (/(?:→|->|⇒|➜)/u.test(query)) {
+    return true;
+  }
+  const scopedQuery = occurrences.length
+    ? query.slice(Math.max(0, occurrences[0].index - 4), occurrences[occurrences.length - 1].end)
+    : query;
+  const normalized = normalizeText(scopedQuery);
+  return /先.+再(?:去|到)?.+/u.test(scopedQuery)
+    || /先.+(?:然后|再(?:去|到)?).+(?:最后|然后|再(?:去|到)?)/u.test(scopedQuery)
+    || /到.+(?:再去|然后|再到)/u.test(scopedQuery)
     || /\bto\b.+\bthen\b/iu.test(normalized);
 }
 
@@ -429,7 +460,10 @@ function unknownCityTokenDiagnostics(query, occurrences, countryCatalog) {
     ...SEASON_CATALOG.flatMap((item) => item.aliases || []),
     ...TRANSPORT_CATALOG.flatMap((item) => item.aliases || []),
   ].map(clean).filter(Boolean).sort((left, right) => right.length - left.length);
-  for (const alias of knownAliases) residual = removeKnownAlias(residual, alias);
+  const normalizedResidual = normalizeText(residual);
+  for (const alias of knownAliases) {
+    if (normalizedResidual.includes(normalizeText(alias))) residual = removeKnownAlias(residual, alias);
+  }
   const tokens = residual
     .split(/(?:、|，|,|→|->|⇒|➜|\s+|到|再去|再到|然后|最后|先|\bto\b|\bthen\b)/iu)
     .map((token) => clean(token).replace(/^(?:去|游|旅行|路线)+|(?:去|游|旅行|路线)+$/gu, ""))
@@ -448,10 +482,11 @@ function isAmbiguousShortCityAlias(alias) {
 
 function extractRequiredDestinations(query, cityCatalog, countryCatalog) {
   const rawOccurrences = [];
+  const normalizedQuery = normalizeText(query);
   for (const city of cityCatalog) {
     for (const alias of unique([city.label, city.normalizedLabel, ...(city.aliases || [])])) {
       if (isAmbiguousShortCityAlias(alias)) continue;
-      for (const occurrence of aliasOccurrences(query, alias)) {
+      for (const occurrence of aliasOccurrences(query, alias, normalizedQuery)) {
         rawOccurrences.push({ ...occurrence, city, identity: cityIdentity(city), alias: clean(alias) });
       }
     }
@@ -496,7 +531,7 @@ function extractRequiredDestinations(query, cityCatalog, countryCatalog) {
     required,
     diagnostics,
     destinationOrderMode: required.length >= 2
-      ? hasFixedDestinationOrderSyntax(query, required.length) ? "fixed" : "flexible"
+      ? hasFixedDestinationOrderSyntax(query, required) ? "fixed" : "flexible"
       : "unspecified",
   };
 }
@@ -743,13 +778,17 @@ export function targetResultCountForConstraintLevel(count) {
 
 export function normalizeIntentKey(intent = {}) {
   const explicitCountryCodes = unique(intent.requiredCountryCodes || intent.explicitCountryCodes || []);
-  const orderedCountryCodes = clean(intent.destinationOrderMode) === "fixed"
+  const countryOrderMode = clean(intent.countryOrderMode || "unspecified");
+  const orderedCountryCodes = countryOrderMode === "fixed"
     ? explicitCountryCodes
     : [...explicitCountryCodes].sort();
   const payload = {
     ...(intent.intentMode ? { intentMode: clean(intent.intentMode) } : {}),
     countryCode: clean(intent.countryCode),
-    ...(orderedCountryCodes.length > 1 ? { requiredCountryCodes: orderedCountryCodes } : {}),
+    ...(orderedCountryCodes.length > 1 ? {
+      requiredCountryCodes: orderedCountryCodes,
+      countryOrderMode,
+    } : {}),
     ...((intent.regionCountryCodes || []).length ? {
       regionCountryCodes: unique(intent.regionCountryCodes).sort(),
     } : {}),
@@ -977,21 +1016,13 @@ export function parseSearchIntent(query, { acceptedRoutes = [], catalogs = null,
   const cityCatalog = cityAdditions.length
     ? mergeCityCatalog(CITY_CATALOG, cityAdditions)
     : CITY_CATALOG;
-  const extractedDestinations = timeIntentEnabled
-    ? extractRequiredDestinations(rawQuery, cityCatalog, countryCatalog)
-    : { required: [], diagnostics: [] };
+  const extractedDestinations = extractRequiredDestinations(rawQuery, cityCatalog, countryCatalog);
   let requiredOccurrences = extractedDestinations.required;
-  let matchedCities = timeIntentEnabled
-    ? requiredOccurrences.map((entry) => entry.city)
-    : matchesFromCatalog(normalizedQuery, cityCatalog);
-  const matchedRegion = firstMatch(normalizedQuery, regionCatalog);
-  const explicitCountryOccurrences = timeIntentEnabled
-    ? extractCountryOccurrences(rawQuery, countryCatalog)
-    : [];
-  const matchedCountries = timeIntentEnabled
-    ? explicitCountryOccurrences.map((entry) => entry.country)
-    : matchesFromCatalog(normalizedQuery, countryCatalog).slice(0, 1);
-  if (timeIntentEnabled && matchedRegion?.scope && matchedRegion.scope !== "macro-region") {
+  let matchedCities = requiredOccurrences.map((entry) => entry.city);
+  const matchedRegion = firstCatalogMatchOutsideRanges(rawQuery, regionCatalog, requiredOccurrences);
+  const explicitCountryOccurrences = extractCountryOccurrences(rawQuery, countryCatalog);
+  const matchedCountries = explicitCountryOccurrences.map((entry) => entry.country);
+  if (matchedRegion?.scope && matchedRegion.scope !== "macro-region") {
     const regionalCityIds = new Set((matchedRegion.knownDestinationIds || []).map((value) => clean(value).toUpperCase()));
     requiredOccurrences = requiredOccurrences.filter((entry) => {
       const cityId = clean(entry.city.wikidataId || entry.city.entityId || entry.identity).toUpperCase();
@@ -1000,9 +1031,6 @@ export function parseSearchIntent(query, { acceptedRoutes = [], catalogs = null,
     matchedCities = requiredOccurrences.map((entry) => entry.city);
   }
   let matchedCountry = matchedCountries[0] || null;
-  if (matchedCountry && matchedCities.length && !timeIntentEnabled) {
-    matchedCities = matchedCities.filter((item) => item.countryCode === matchedCountry.code);
-  }
   if (!matchedCountry && matchedCities.length) {
     matchedCountry = countryCatalog.find((item) => item.code === matchedCities[0].countryCode) || null;
   }
@@ -1042,13 +1070,11 @@ export function parseSearchIntent(query, { acceptedRoutes = [], catalogs = null,
     normalizedQuery,
     countryCode: matchedCountry?.code || "",
     countryCodes,
-    ...(timeIntentEnabled ? {
-      explicitCountryCodes: explicitCountryOccurrences.map((entry) => clean(entry.country.code).toUpperCase()),
-      requiredCountryCodes: explicitCountryOccurrences.map((entry) => clean(entry.country.code).toUpperCase()),
-      countryOrderMode: explicitCountryOccurrences.length >= 2
-        ? hasFixedDestinationOrderSyntax(rawQuery, explicitCountryOccurrences.length) ? "fixed" : "flexible"
-        : "unspecified",
-    } : {}),
+    explicitCountryCodes: explicitCountryOccurrences.map((entry) => clean(entry.country.code).toUpperCase()),
+    requiredCountryCodes: explicitCountryOccurrences.map((entry) => clean(entry.country.code).toUpperCase()),
+    countryOrderMode: explicitCountryOccurrences.length >= 2
+      ? hasFixedDestinationOrderSyntax(rawQuery, explicitCountryOccurrences) ? "fixed" : "flexible"
+      : "unspecified",
     country: matchedCountry?.label || "",
     normalizedCountry: matchedCountry?.normalizedLabel || "",
     region: matchedRegion?.label || "",
@@ -1067,17 +1093,13 @@ export function parseSearchIntent(query, { acceptedRoutes = [], catalogs = null,
     } : {}),
     cities: unique(matchedCities.map((item) => item.label)),
     normalizedCities: unique(matchedCities.map((item) => item.normalizedLabel)),
-    ...(timeIntentEnabled ? {
-      requiredDestinationIds: requiredOccurrences.map((entry) => clean(entry.city.wikidataId || entry.city.entityId || entry.identity)),
-      requiredDestinationNames: requiredOccurrences.map((entry) => clean(entry.city.label || entry.city.normalizedLabel)),
-      requiredDestinationRaw: requiredOccurrences.map((entry) => clean(entry.rawValue)),
-      destinationOrderMode: requiredOccurrences.length >= 2
-        ? hasFixedDestinationOrderSyntax(rawQuery, requiredOccurrences.length) ? "fixed" : "flexible"
-        : explicitCountryOccurrences.length >= 2
-          ? hasFixedDestinationOrderSyntax(rawQuery, explicitCountryOccurrences.length) ? "fixed" : "flexible"
-          : "unspecified",
-      destinationDiagnostics: extractedDestinations.diagnostics,
-    } : {}),
+    requiredDestinationIds: requiredOccurrences.map((entry) => clean(entry.city.wikidataId || entry.city.entityId || entry.identity)),
+    requiredDestinationNames: requiredOccurrences.map((entry) => clean(entry.city.label || entry.city.normalizedLabel)),
+    requiredDestinationRaw: requiredOccurrences.map((entry) => clean(entry.rawValue)),
+    destinationOrderMode: requiredOccurrences.length >= 2
+      ? hasFixedDestinationOrderSyntax(rawQuery, requiredOccurrences) ? "fixed" : "flexible"
+      : "unspecified",
+    destinationDiagnostics: extractedDestinations.diagnostics,
     durationDays,
     durationBand: durationBand(durationDays),
     ...(timeIntentEnabled ? {

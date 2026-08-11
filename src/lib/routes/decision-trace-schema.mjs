@@ -8,6 +8,7 @@ import {
   createRouteIntentFingerprint,
   validateNormalizedRouteIntent,
 } from "./route-intent-model.mjs";
+import { minimumRouteDestinationCount } from "./route-cardinality-policy.mjs";
 
 export const DECISION_TRACE_SCHEMA_VERSION = "route-generation-v2-phase1-trace-v1";
 export const ROUTE_V2_INTENT_FLAG = "ROUTE_V2_INTENT_ENABLED";
@@ -444,7 +445,7 @@ export function validateDecisionTrace(trace = {}) {
     if (!candidateId) missing.push("candidatePool-candidateId-required");
     if (candidateIds.has(candidateId)) missing.push(`candidatePool-candidateId-duplicate:${candidateId}`);
     candidateIds.add(candidateId);
-    if (!Array.isArray(candidate?.proposedOrder) || candidate.proposedOrder.length < 2) missing.push(`candidatePool-order:${candidateId}`);
+    if (!Array.isArray(candidate?.proposedOrder) || candidate.proposedOrder.length < minimumRouteDestinationCount(candidate)) missing.push(`candidatePool-order:${candidateId}`);
     if (!Array.isArray(candidate?.rejectionReasons)) missing.push(`candidatePool-rejectionReasons:${candidateId}`);
     if (!new Set(["pending", "selected", "rejected", "needs-evidence", "failed"]).has(candidate?.status)) {
       missing.push(`candidatePool-status:${candidateId}`);

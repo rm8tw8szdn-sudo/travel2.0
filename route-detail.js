@@ -90,7 +90,12 @@ function uniqueDestinations(record = {}) {
     && Array.isArray(record.routeExpansion?.poiEntities)
     ? record.routeExpansion.poiEntities
     : [];
-  return [...(record.destinationEntities || []), ...expansionPois].filter((destination) => {
+  const citywalkPois = record.routeReferenceMode === "citywalk"
+    ? (record.destinationEntities || []).flatMap((destination) => (
+        Array.isArray(destination.poiEntities) ? destination.poiEntities : []
+      ))
+    : [];
+  return [...(record.destinationEntities || []), ...expansionPois, ...citywalkPois].filter((destination) => {
     const key = destinationKey(destination);
     const nameKey = destinationNameKey(destination);
     if (!destination?.name || seen.has(key) || seen.has(nameKey)) return false;

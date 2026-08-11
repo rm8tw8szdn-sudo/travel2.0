@@ -6,7 +6,7 @@
   "use strict";
 
   const DEFAULT_ROUTE_PLACEHOLDER = "assets/trip-cover-placeholder.svg";
-  const DEFAULT_CITY_PLACEHOLDER = "assets/route-city-oslo.svg";
+  const DEFAULT_CITY_PLACEHOLDER = "assets/route-city-placeholder.svg";
   const IMAGE_DELIVERY_SPEC = Object.freeze({
     format: "WebP",
     aspectRatio: "16:10",

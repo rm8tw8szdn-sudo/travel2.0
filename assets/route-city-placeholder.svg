@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="750" viewBox="0 0 1200 750" role="img" aria-label="Neutral travel placeholder">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#dbeafe"/>
+      <stop offset="1" stop-color="#f5f3ff"/>
+    </linearGradient>
+    <linearGradient id="ground" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#99f6e4"/>
+      <stop offset="1" stop-color="#bfdbfe"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="750" fill="url(#sky)"/>
+  <circle cx="930" cy="145" r="62" fill="#fde68a" opacity=".85"/>
+  <path d="M0 490C180 430 320 525 500 475s330-20 700 55v220H0Z" fill="url(#ground)"/>
+  <g fill="#ffffff" opacity=".9">
+    <rect x="205" y="350" width="150" height="220" rx="18"/>
+    <rect x="390" y="285" width="185" height="285" rx="18"/>
+    <rect x="610" y="385" width="135" height="185" rx="18"/>
+    <rect x="780" y="320" width="190" height="250" rx="18"/>
+  </g>
+  <g fill="#93c5fd" opacity=".65">
+    <circle cx="260" cy="410" r="16"/><circle cx="315" cy="410" r="16"/>
+    <circle cx="450" cy="350" r="16"/><circle cx="515" cy="350" r="16"/>
+    <circle cx="450" cy="410" r="16"/><circle cx="515" cy="410" r="16"/>
+    <circle cx="835" cy="385" r="16"/><circle cx="910" cy="385" r="16"/>
+  </g>
+  <path d="M160 620c190-95 390 80 560-20 115-67 210-72 335-25" fill="none" stroke="#ffffff" stroke-width="28" stroke-linecap="round" opacity=".75"/>
+</svg>

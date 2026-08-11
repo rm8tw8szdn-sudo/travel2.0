@@ -147,13 +147,34 @@ export function evaluateRouteIntentOracle(normalizedIntentInput, route = {}, opt
   if (required.state === "provided") {
     const actualKeys = constraintPoints.map((entry) => entry.id || entry.name);
     const expectedKeys = required.values.map((entry) => id(entry.id) || tidy(entry.name));
-    const missing = expectedKeys.filter((key) => !actualKeys.includes(key));
+    const used = new Set();
+    const matchedIndexes = expectedKeys.map((key) => {
+      const index = actualKeys.findIndex((actualKey, candidateIndex) => !used.has(candidateIndex) && actualKey === key);
+      if (index >= 0) used.add(index);
+      return index;
+    });
+    const missing = expectedKeys.filter((_, index) => matchedIndexes[index] < 0);
     if (missing.length) violations.push("required-city-missing");
-    if (actualKeys.length > expectedKeys.length) violations.push("unexpected-city-added");
-    if (actualKeys.length < expectedKeys.length) violations.push("required-city-count-mismatch");
+    const requiredCityCountries = new Set([...used].map((index) => constraintPoints[index]?.country).filter(Boolean));
+    const expectedCountries = intent.hardConstraints.countries;
+    const allowRequiredCountryRepresentatives = !missing.length
+      && intent.hardConstraints.region?.state !== "provided"
+      && expectedCountries?.state === "provided";
+    const uncoveredCountries = allowRequiredCountryRepresentatives
+      ? expectedCountries.values.map(id).filter((code) => code && !requiredCityCountries.has(code))
+      : [];
+    const supplementalPoints = constraintPoints.filter((_, index) => !used.has(index));
+    const supplementalCountries = supplementalPoints.map((entry) => entry.country).filter(Boolean);
+    const validCountryRepresentatives = supplementalPoints.length === uncoveredCountries.length
+      && supplementalCountries.length === uncoveredCountries.length
+      && new Set(supplementalCountries).size === supplementalCountries.length
+      && supplementalCountries.every((code) => uncoveredCountries.includes(code));
+    const expectedCount = expectedKeys.length + uncoveredCountries.length;
+    if (actualKeys.length > expectedCount || !validCountryRepresentatives) violations.push("unexpected-city-added");
+    if (actualKeys.length < expectedCount) violations.push("required-city-count-mismatch");
     if (intent.hardConstraints.destinationOrderMode.value === "fixed"
-      && expectedKeys.length === actualKeys.length
-      && expectedKeys.some((key, index) => key !== actualKeys[index])) {
+      && !missing.length
+      && matchedIndexes.some((index, position) => index !== position)) {
       violations.push("fixed-order-mismatch");
     }
   }
@@ -196,10 +217,15 @@ export function evaluateRouteIntentOracle(normalizedIntentInput, route = {}, opt
   const exactCountrySetMatches = expectedCountries?.state === "provided"
     && expectedCountries.values.length === countries.size
     && expectedCountries.values.every((country) => countries.has(country));
+  const countryOrderMode = intent.hardConstraints.countryOrderMode;
+  const fixedCountryOrder = countryOrderMode
+    ? countryOrderMode.value === "fixed"
+    : required.state !== "provided"
+      && intent.hardConstraints.destinationOrderMode.value === "fixed";
   if (!regionScopedCountrySet
     && exactCountrySetMatches
     && expectedCountries.values.length > 1
-    && intent.hardConstraints.destinationOrderMode.value === "fixed"
+    && fixedCountryOrder
     && expectedCountries.values.some((country, index) => country !== orderedCountries[index])) {
     violations.push("fixed-country-order-mismatch");
   }

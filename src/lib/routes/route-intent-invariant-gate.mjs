@@ -332,11 +332,30 @@ function requestedMatches(normalizedIntent, destinations, source, violations) {
   if (missing.length) {
     violations.push(violation("required-city-missing", "requiredCities", required.values.map((entry) => entry.id || entry.name), missing, source));
   }
-  if (destinations.length !== required.values.length) {
+  const requiredCityCountryCodes = new Set([...used]
+    .map((index) => destinations[index]?.countryCode)
+    .filter(Boolean));
+  const expectedCountries = normalizedIntent.hardConstraints.countries;
+  const allowRequiredCountryRepresentatives = !missing.length
+    && normalizedIntent.hardConstraints.region?.state !== "provided"
+    && expectedCountries?.state === "provided";
+  const uncoveredCountryCodes = allowRequiredCountryRepresentatives
+    ? expectedCountries.values.map(identity).filter((code) => code && !requiredCityCountryCodes.has(code))
+    : [];
+  const supplementalDestinations = destinations.filter((_, index) => !used.has(index));
+  const supplementalCountryCodes = supplementalDestinations.map((destination) => destination.countryCode).filter(Boolean);
+  const validCountryRepresentatives = supplementalDestinations.length === uncoveredCountryCodes.length
+    && supplementalCountryCodes.length === uncoveredCountryCodes.length
+    && new Set(supplementalCountryCodes).size === supplementalCountryCodes.length
+    && supplementalCountryCodes.every((code) => uncoveredCountryCodes.includes(code));
+  const expectedDestinationCount = required.values.length + uncoveredCountryCodes.length;
+  if (destinations.length !== expectedDestinationCount || !validCountryRepresentatives) {
     violations.push(violation(
-      destinations.length > required.values.length ? "unexpected-city-added" : "required-city-count-mismatch",
+      destinations.length > expectedDestinationCount || !validCountryRepresentatives
+        ? "unexpected-city-added"
+        : "required-city-count-mismatch",
       "requiredCities",
-      required.values.length,
+      expectedDestinationCount,
       destinations.length,
       source,
     ));
@@ -426,14 +445,19 @@ export function validateRouteIntentInvariants(record = {}, routeIntent = {}, opt
   const exactCountrySetMatches = expectedCountries?.state === "provided"
     && expectedCountries.values.length === actualCountries.length
     && expectedCountries.values.every((country) => actualCountries.includes(country));
+  const countryOrderMode = normalizedIntent.hardConstraints.countryOrderMode;
+  const fixedCountryOrder = countryOrderMode
+    ? countryOrderMode.value === "fixed"
+    : required.state !== "provided"
+      && normalizedIntent.hardConstraints.destinationOrderMode.value === "fixed";
   if (!regionScopedCountrySet
     && exactCountrySetMatches
     && expectedCountries.values.length > 1
-    && normalizedIntent.hardConstraints.destinationOrderMode.value === "fixed"
+    && fixedCountryOrder
     && expectedCountries.values.some((country, index) => country !== actualCountries[index])) {
     violations.push(violation(
       "fixed-country-order-mismatch",
-      "destinationOrderMode",
+      "countryOrderMode",
       expectedCountries.values,
       actualCountries,
       source,

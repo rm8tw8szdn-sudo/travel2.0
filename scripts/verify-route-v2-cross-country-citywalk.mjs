@@ -5,6 +5,7 @@ import path from "node:path";
 
 import {
   createAcceptedRouteRepository,
+  buildEvidenceBundleLifecycle,
   createDecisionTraceStore,
   createEvidenceBundleStore,
   createEvidenceRepository,
@@ -77,6 +78,8 @@ try {
   assert.deepEqual(longStayIntent.requiredDestinationIds, ["Q90"]);
 
   const env = {
+    ROUTE_V2_RUNTIME_ENABLED: "true",
+    ROUTE_V2_CANARY_PERCENTAGE: "100",
     ROUTE_V2_INTENT_ENABLED: "true",
     ROUTE_V2_TIME_INTENT_ENABLED: "true",
     ROUTE_V2_CANDIDATE_POOL_ENABLED: "true",
@@ -134,7 +137,11 @@ try {
     sessionId: "cross-country-session",
   });
   assert.equal(crossResult.records.length, 1, JSON.stringify(crossResult.diagnostics));
-  assert.deepEqual(destinationIds(crossResult.records[0]), ["Q727", "Q90"]);
+  assert.deepEqual(
+    destinationIds(crossResult.records[0]),
+    ["Q727", "Q90"],
+    JSON.stringify({ intent: crossResult.intent, record: crossResult.records[0], diagnostics: crossResult.diagnostics }),
+  );
   assert.deepEqual(crossResult.records[0].countryEntities.map((item) => item.countryCode), ["NL", "FR"]);
   assert.equal(crossResult.records[0].classification, "cross");
   assert.equal(crossResult.records[0].searchStatus, "needs-review");
@@ -189,11 +196,13 @@ try {
     const cityStops = record.destinationEntities.filter((item) => item.entityTypeName === "city");
     const poiStops = record.destinationEntities.filter((item) => item.entityTypeName === "poi");
     assert.deepEqual(cityStops.map((item) => item.wikidataId), ["Q90"]);
+    assert.equal(poiStops.length, 0, "POIs must remain nested content depth rather than synthetic route destinations");
+    const nestedPoiNames = cityStops[0].poiEntities.map((item) => item.canonicalNameEn);
     assert.deepEqual(
-      new Set(poiStops.map((item) => item.canonicalNameEn)),
+      new Set(["Eiffel Tower", "Louvre Museum", "Musée d'Orsay"].filter((name) => nestedPoiNames.includes(name))),
       new Set(["Eiffel Tower", "Louvre Museum", "Musée d'Orsay"]),
     );
-    assert.equal(poiStops.length, 3, "all published Paris POIs must be present");
+    assert.equal(cityStops[0].poiEntities.length, 15, "all published Paris POIs must remain available as single-city depth");
   }
   assert.equal(new Set(citywalkRecords.map((record) => record.id)).size, 1, "the open-ended Citywalk reference must have a stable ID across requested durations");
 
@@ -209,7 +218,20 @@ try {
     assert.equal(trace.candidateId, record.selectedCandidateId);
     assert.equal(trace.routeId, record.id);
     const bundle = evidenceBundleStore.getLifecycle(record.evidenceBundleId);
-    assert(bundle, `EvidenceBundle missing for ${record.id}`);
+    const evidenceDiagnostic = bundle ? null : buildEvidenceBundleLifecycle({
+      selectedCandidate: selected[0],
+      routeRecord: record,
+      decisionTrace: {
+        traceId: trace.traceId,
+        intentId: selected[0].intentId,
+        outcome: "success",
+        routeIntentFingerprintVersion: selected[0].routeIntentFingerprintVersion,
+        routeIntentFingerprint: selected[0].routeIntentFingerprint,
+        selectedCandidate: selected[0],
+      },
+      now: () => fixedNow,
+    });
+    assert(bundle, `EvidenceBundle missing for ${record.id}: ${JSON.stringify(evidenceDiagnostic)}`);
     assert.equal(bundle.candidateId, record.selectedCandidateId);
     assert.equal(bundle.decisionTraceId, record.decisionTraceId);
     assert.equal(bundle.routeRecordId, record.id);
@@ -236,7 +258,7 @@ try {
     citywalk: {
       routeId: citywalkRecords[0].id,
       title: citywalkRecords[0].canonicalTitle,
-      publishedPoiCount: citywalkRecords[0].destinationEntities.filter((item) => item.entityTypeName === "poi").length,
+      publishedPoiCount: citywalkRecords[0].destinationEntities[0].poiEntities.length,
       requestedDurations: citywalkRecords.map((record) => record.requestedDurationDays),
     },
     externalFetchCalls,

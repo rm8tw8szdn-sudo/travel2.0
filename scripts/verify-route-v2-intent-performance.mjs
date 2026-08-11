@@ -280,11 +280,11 @@ const parseRelativeRegressionLimit = 0.1;
 const parseRoundP95StabilityLimit = 0.25;
 assert(
   local.parseSearchIntent.p95Ms < parseAbsoluteSafetyLimitMs,
-  `intent parsing p95 must remain below the ${parseAbsoluteSafetyLimitMs}ms absolute safety limit`,
+  `intent parsing p95 ${local.parseSearchIntent.p95Ms}ms must remain below the ${parseAbsoluteSafetyLimitMs}ms absolute safety limit`,
 );
 assert(
   local.parseSearchIntent.roundP95CoefficientOfVariation <= parseRoundP95StabilityLimit,
-  "intent parsing round-p95 coefficient of variation must remain at or below 25%",
+  `intent parsing round-p95 coefficient of variation ${local.parseSearchIntent.roundP95CoefficientOfVariation} must remain at or below 25%`,
 );
 if (parseRelativeBaselineP95Ms > 0) {
   assert(

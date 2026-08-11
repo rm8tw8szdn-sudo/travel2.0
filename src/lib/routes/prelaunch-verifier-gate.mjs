@@ -17,6 +17,26 @@ export const MANDATORY_PRELAUNCH_VERIFIERS = Object.freeze([
     phase: "static",
   }),
   Object.freeze({
+    name: "multi-city-hard-constraints",
+    relativePath: "scripts/verify-route-v2-multi-city-hard-constraints.mjs",
+    phase: "static",
+  }),
+  Object.freeze({
+    name: "single-city-hard-constraint",
+    relativePath: "scripts/verify-route-v2-single-city-hard-constraint.mjs",
+    phase: "static",
+  }),
+  Object.freeze({
+    name: "trip-footprint-knowledge-identity",
+    relativePath: "scripts/verify-travel-state.mjs",
+    phase: "static",
+  }),
+  Object.freeze({
+    name: "multi-country-hard-constraints",
+    relativePath: "scripts/verify-route-v2-multi-country-hard-constraints.mjs",
+    phase: "static",
+  }),
+  Object.freeze({
     name: "region-island-constraint-preservation",
     relativePath: "scripts/verify-route-v2-region-island-constraints.mjs",
     phase: "static",
@@ -87,6 +107,16 @@ export const MANDATORY_PRELAUNCH_VERIFIERS = Object.freeze([
     phase: "static",
   }),
   Object.freeze({
+    name: "published-knowledge-semantic-integrity",
+    relativePath: "scripts/verify-knowledge-semantic-gate.mjs",
+    phase: "static",
+  }),
+  Object.freeze({
+    name: "knowledge-coverage-semantics",
+    relativePath: "scripts/verify-knowledge-coverage-semantics.mjs",
+    phase: "static",
+  }),
+  Object.freeze({
     name: "publication-gate",
     relativePath: "scripts/verify-route-v2-publication-gate.mjs",
     phase: "static",
@@ -134,6 +164,21 @@ export const MANDATORY_PRELAUNCH_VERIFIERS = Object.freeze([
   Object.freeze({
     name: "image-proxy-network-boundary",
     relativePath: "scripts/verify-route-v2-image-proxy-network-boundary.mjs",
+    phase: "static",
+  }),
+  Object.freeze({
+    name: "server-security-boundaries",
+    relativePath: "scripts/verify-route-v2-server-security-boundaries.mjs",
+    phase: "static",
+  }),
+  Object.freeze({
+    name: "neutral-city-placeholder",
+    relativePath: "scripts/verify-route-v2-neutral-city-placeholder.mjs",
+    phase: "static",
+  }),
+  Object.freeze({
+    name: "verifier-lifecycle-and-platform-integrity",
+    relativePath: "scripts/verify-route-v2-verifier-lifecycle.mjs",
     phase: "static",
   }),
   Object.freeze({

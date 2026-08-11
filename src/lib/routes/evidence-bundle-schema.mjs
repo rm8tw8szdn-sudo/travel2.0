@@ -5,6 +5,7 @@ import {
   createRouteIntentFingerprint,
   validateNormalizedRouteIntent,
 } from "./route-intent-model.mjs";
+import { minimumRouteDestinationCount } from "./route-cardinality-policy.mjs";
 
 export const EVIDENCE_BUNDLE_LIFECYCLE_SCHEMA_VERSION = "route-generation-v2-evidence-3a-lifecycle-v1";
 export const EVIDENCE_BUNDLE_LIFECYCLE_STATUSES = new Set([
@@ -133,6 +134,9 @@ function lifecycleIdSeed(input = {}) {
     routeRecordId: clean(input.routeRecordId),
     routeIntentFingerprintVersion: clean(input.routeIntentFingerprintVersion),
     routeIntentFingerprint: clean(input.routeIntentFingerprint),
+    ...(input.normalizedRouteIntent && typeof input.normalizedRouteIntent === "object" ? {
+      normalizedRouteIntent: clone(input.normalizedRouteIntent),
+    } : {}),
   };
 }
 
@@ -151,6 +155,9 @@ export function normalizeEvidenceBundleLifecycle(input = {}, { now = () => new D
     routeRecordId: clean(input.routeRecordId),
     routeIntentFingerprintVersion: clean(input.routeIntentFingerprintVersion),
     routeIntentFingerprint: clean(input.routeIntentFingerprint),
+    ...(input.normalizedRouteIntent && typeof input.normalizedRouteIntent === "object" ? {
+      normalizedRouteIntent: clone(input.normalizedRouteIntent),
+    } : {}),
     createdAt: clean(input.createdAt) || timestamp,
     updatedAt: clean(input.updatedAt) || timestamp,
     status: clean(input.status || "pending"),
@@ -241,7 +248,7 @@ export function buildEvidenceBundleLifecycle({
 
   const timestamp = now();
   const destinationOrder = candidateDestinationOrder(selectedCandidate);
-  if (destinationOrder.length < 2) return { created: false, reason: "selected-candidate-order-invalid" };
+  if (destinationOrder.length < minimumRouteDestinationCount(selectedCandidate)) return { created: false, reason: "selected-candidate-order-invalid" };
   const consistency = consistencyFailures({ selectedCandidate, routeRecord, decisionTrace });
   const hardSeasonConstraint = Boolean(context.seasonHardConstraint);
   const timeIntent = context.timeIntent && typeof context.timeIntent === "object"
@@ -262,7 +269,9 @@ export function buildEvidenceBundleLifecycle({
     || timeIntent?.type === "season-only"
     || invalidTimeIntent;
   const unknowns = [
-    { field: "transport", reason: "Transport feasibility and duration require external evidence." },
+    ...(destinationOrder.length > 1
+      ? [{ field: "transport", reason: "Transport feasibility and duration require external evidence." }]
+      : []),
     { field: "geography", reason: "Geographic relationship evidence has not been collected." },
     { field: "routePacing", reason: "Route pacing has not been evidence-validated." },
     ...(requestedMonths.length ? [{ field: "seasonality", reason: `Season evidence for month${requestedMonths.length > 1 ? "s" : ""} ${requestedMonths.join(", ")} has not been collected.` }] : []),
@@ -279,6 +288,7 @@ export function buildEvidenceBundleLifecycle({
     routeRecordId: routeRecord.id,
     routeIntentFingerprintVersion: routeRecord.routeIntentFingerprintVersion || selectedCandidate.routeIntentFingerprintVersion,
     routeIntentFingerprint: routeRecord.routeIntentFingerprint || selectedCandidate.routeIntentFingerprint,
+    normalizedRouteIntent: selectedCandidate.normalizedRouteIntent,
     createdAt: timestamp,
     updatedAt: timestamp,
     status,
@@ -389,7 +399,7 @@ export function validateEvidenceBundleLifecycle(input = {}, expected = {}) {
       }
     }
   }
-  if (!Array.isArray(input.destinationOrder) || bundle.destinationOrder.length < 2) reasons.push("destinationOrder-minimum-two");
+  if (!Array.isArray(input.destinationOrder) || bundle.destinationOrder.length < minimumRouteDestinationCount(bundle)) reasons.push("destinationOrder-below-intent-minimum");
   if (bundle.destinationOrder.length !== (Array.isArray(input.destinationOrder) ? input.destinationOrder.map(clean).filter(Boolean).length : 0)) reasons.push("destinationOrder-duplicate-or-empty");
   if (!Array.isArray(input.legs)) reasons.push("legs-array-required");
   if (bundle.legs.length !== Math.max(0, bundle.destinationOrder.length - 1)) reasons.push("legs-destination-order-length-mismatch");

@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "route-v2-knowledge-semantic-corrections-v1",
+  "retrievedAt": "2026-08-11T00:00:00.000Z",
+  "entities": {
+    "Q3640": {
+      "instanceOfIds": ["Q2716259", "Q515"],
+      "sourceUrl": "https://www.wikidata.org/wiki/Q3640"
+    },
+    "Q406": {
+      "instanceOfIds": ["Q2716259", "Q27554677", "Q174844", "Q51929311", "Q2264924", "Q1549591", "Q15661340"],
+      "sourceUrl": "https://www.wikidata.org/wiki/Q406"
+    },
+    "Q169134": {
+      "qid": "Q169134",
+      "labels": ["Nara", "Nara City", "奈良", "奈良市"],
+      "semanticClass": "city",
+      "instanceOfIds": ["Q1137833", "Q65589340", "Q1025961", "Q1549591", "Q494721", "Q1059478", "Q1200957", "Q11422368"],
+      "countryQids": ["Q17"],
+      "coordinates": { "latitude": 34.685, "longitude": 135.804777777778 },
+      "sourceUrl": "https://www.wikidata.org/wiki/Q169134"
+    },
+    "Q736897": {
+      "qid": "Q736897",
+      "labels": ["Hatsukaichi", "Hatsukaichi, Hiroshima", "廿日市", "廿日市市", "Miyajima"],
+      "semanticClass": "city",
+      "instanceOfIds": ["Q494721", "Q1549591"],
+      "countryQids": ["Q17"],
+      "coordinates": { "latitude": 34.348222222222, "longitude": 132.331583333333 },
+      "sourceUrl": "https://www.wikidata.org/wiki/Q736897"
+    },
+    "Q686508": {
+      "qid": "Q686508",
+      "labels": ["Linz Palace", "Linz Castle", "Linzer Schloss", "林茨城堡"],
+      "semanticClass": "poi",
+      "instanceOfIds": ["Q751876"],
+      "countryQids": ["Q40"],
+      "coordinates": { "latitude": 48.305, "longitude": 14.283055555556 },
+      "sourceUrl": "https://www.wikidata.org/wiki/Q686508"
+    }
+  }
+}

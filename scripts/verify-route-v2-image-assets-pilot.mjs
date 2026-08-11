@@ -81,7 +81,7 @@ for (const [cityId, key] of Object.entries(EXPECTED_CITY_KEYS)) {
   assert.deepEqual(first, second);
   assert.equal(first.url, `${TEST_ASSET_BASE_URL}${key}`);
   assert.equal(first.isFallback, false);
-  assert.equal(imageAssets.resolvePilotCityCover(cityId).url, "assets/route-city-oslo.svg");
+  assert.equal(imageAssets.resolvePilotCityCover(cityId).url, "assets/route-city-placeholder.svg");
   assert.equal(imageAssets.resolvePilotCityCover(cityId).isFallback, true);
 }
 
@@ -143,7 +143,7 @@ for (const record of [
   );
 }
 assert.equal(imageAssets.resolveLocalDestinationCover({ name: "Kyoto", countryCode: "JP" }).url, "assets/city-kyoto-cover.svg");
-assert.equal(imageAssets.resolveLocalDestinationCover({ name: "Unknown", countryCode: "ZZ" }).url, "assets/route-city-oslo.svg");
+assert.equal(imageAssets.resolveLocalDestinationCover({ name: "Unknown", countryCode: "ZZ" }).url, "assets/route-city-placeholder.svg");
 assert.equal(
   imageAssets.resolveLocalRouteCover({ id: "gold-case-accepted-gold-2-it-first-trip" }, { assetBaseUrl: TEST_ASSET_BASE_URL }).url,
   `${TEST_ASSET_BASE_URL}routes/italy-first-trip.webp`,
@@ -216,7 +216,7 @@ process.stdout.write(`${JSON.stringify({
   },
   defaultAssetBaseUrl: imageAssets.getAssetBaseUrl(),
   fallback: {
-    city: "assets/route-city-oslo.svg",
+    city: "assets/route-city-placeholder.svg",
     route: "assets/trip-cover-placeholder.svg",
   },
   batching: {

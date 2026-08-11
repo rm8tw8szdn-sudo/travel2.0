@@ -23,7 +23,7 @@ const EXPECTED_JAPAN_POIS = Object.freeze({
   Kobe: 6,
   Kumamoto: 5,
   Kyoto: 19,
-  Miyajima: 6,
+  Hatsukaichi: 6,
   Nagoya: 8,
   Naha: 5,
   Nara: 8,
@@ -38,7 +38,7 @@ const EXPECTED_JAPAN_POIS = Object.freeze({
 const EXPECTED_DIRECTED_PAIRS = Object.freeze([
   ["Tokyo", "Nagoya"], ["Nagoya", "Kyoto"], ["Kyoto", "Osaka"],
   ["Osaka", "Nara"], ["Osaka", "Kobe"], ["Kobe", "Hiroshima"],
-  ["Hiroshima", "Miyajima"], ["Hiroshima", "Fukuoka"], ["Tokyo", "Hakone"],
+  ["Hiroshima", "Hatsukaichi"], ["Hiroshima", "Fukuoka"], ["Tokyo", "Hakone"],
   ["Tokyo", "Kamakura"], ["Tokyo", "Fujikawaguchiko"], ["Nagoya", "Takayama"],
   ["Takayama", "Kanazawa"], ["Fukuoka", "Kumamoto"], ["Fukuoka", "Beppu"],
   ["Beppu", "Yufuin (Yufu)"], ["Sapporo", "Otaru"], ["Sapporo", "Hakodate"],

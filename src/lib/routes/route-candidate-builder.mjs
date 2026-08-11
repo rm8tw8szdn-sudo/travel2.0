@@ -10,6 +10,7 @@ import {
   createRouteIntentFingerprint,
   maxDestinationsForRouteIntentDays,
 } from "./route-intent-model.mjs";
+import { minimumRouteDestinationCount } from "./route-cardinality-policy.mjs";
 
 export const ROUTE_CANDIDATE_BUILDER_DEFAULT_TARGET = 8;
 export const ROUTE_CANDIDATE_BUILDER_MIN_TARGET = 3;
@@ -133,6 +134,8 @@ function deriveIntentId(context = {}, concept = {}, pool = []) {
       ]).map(cleanString),
       requiredDestinationIds: unique(context.requiredDestinationIds || []).map(cleanString),
       destinationOrderMode: cleanString(context.destinationOrderMode),
+      requiredCountryCodes: unique(context.requiredCountryCodes || []).map(normalizeCode),
+      countryOrderMode: cleanString(context.countryOrderMode),
       durationDays: context.durationDays,
       durationBand: context.durationBand,
       travelStyle: context.travelStyle,
@@ -249,7 +252,7 @@ function candidateDraft({
   requiredCountryConstraint = null,
 }) {
   const normalizedDestinations = dedupeDestinations(destinations);
-  if (normalizedDestinations.length < 2) return null;
+  if (normalizedDestinations.length < minimumRouteDestinationCount({ normalizedRouteIntent })) return null;
   const countries = unique(normalizedDestinations.map((item) => item.countryCode)).map(normalizeCode);
   const order = buildOrder(normalizedDestinations);
   return {
@@ -412,6 +415,69 @@ function resolveRequiredCountries(context = {}, pool = []) {
   };
 }
 
+function isRouteLevelDestination(destination = {}) {
+  const entityTypeName = cleanString(destination.entityTypeName).toLocaleLowerCase("en-US");
+  return entityTypeName !== "poi" && entityTypeName !== "country";
+}
+
+function requiredCityCountryCandidateSequences(pool, seed, requiredConstraint, countryConstraint) {
+  const required = dedupeDestinations(requiredConstraint.destinations);
+  const coveredCountryCodes = new Set(required.map((destination) => normalizeCode(destination.countryCode)).filter(Boolean));
+  const uncoveredCountryCodes = countryConstraint.codes.filter((code) => !coveredCountryCodes.has(code));
+  if (!uncoveredCountryCodes.length) return null;
+
+  const grouped = new Map(uncoveredCountryCodes.map((code) => [
+    code,
+    stableSortDestinations(
+      pool.filter((destination) => (
+        isRouteLevelDestination(destination)
+        && normalizeCode(destination.countryCode) === code
+      )),
+      `${seed}:required-city-country:${code}`,
+    ),
+  ]));
+  if ([...grouped.values()].some((destinations) => destinations.length === 0)) return [];
+
+  function supplementalDestinations(variantIndex) {
+    return uncoveredCountryCodes.map((code) => deterministicRotate(grouped.get(code), variantIndex)[0]);
+  }
+
+  function constrainedOrder(supplemental) {
+    const combined = [...required, ...supplemental];
+    if (countryConstraint.orderMode !== "fixed") return combined;
+    const countryPositions = new Map(countryConstraint.codes.map((code, index) => [code, index]));
+    return combined
+      .map((destination, index) => ({ destination, index }))
+      .sort((left, right) => (
+        (countryPositions.get(normalizeCode(left.destination.countryCode)) ?? Number.MAX_SAFE_INTEGER)
+          - (countryPositions.get(normalizeCode(right.destination.countryCode)) ?? Number.MAX_SAFE_INTEGER)
+        || left.index - right.index
+      ))
+      .map((entry) => entry.destination);
+  }
+
+  const balanced = constrainedOrder(supplementalDestinations(0));
+  const lowTransfer = constrainedOrder(supplementalDestinations(1));
+  const depth = constrainedOrder(supplementalDestinations(2));
+  if (requiredConstraint.orderMode === "fixed" || countryConstraint.orderMode === "fixed") {
+    return [
+      { method: "required-mixed-fixed-order-balanced", candidateVariant: "balanced", destinations: balanced },
+      { method: "required-mixed-fixed-order-low-transfer", candidateVariant: "low-transfer", destinations: lowTransfer },
+      { method: "required-mixed-fixed-order-depth", candidateVariant: "depth", destinations: depth },
+    ];
+  }
+
+  return [
+    { method: "required-mixed-flexible-balanced", candidateVariant: "balanced", destinations: balanced },
+    {
+      method: "required-mixed-flexible-low-transfer",
+      candidateVariant: "low-transfer",
+      destinations: stableSortDestinations(lowTransfer, `${seed}:required-mixed-low-transfer`),
+    },
+    { method: "required-mixed-flexible-depth", candidateVariant: "depth", destinations: [...depth].reverse() },
+  ];
+}
+
 function requiredCountryCandidateSequences(pool, maxDestinations, seed, constraint) {
   const grouped = new Map(constraint.codes.map((code) => [
     code,
@@ -460,14 +526,12 @@ function requiredCountryCandidateSequences(pool, maxDestinations, seed, constrai
 function citywalkCandidateSequences(pool, seed, requiredConstraint) {
   const city = dedupeDestinations(requiredConstraint.destinations)[0];
   if (!city) return [];
-  const cityId = destinationIdentity(city);
-  const poiStops = dedupeDestinations(pool).filter((destination) => destinationIdentity(destination) !== cityId);
-  if (!poiStops.length) return [];
-  const stablePois = stableSortDestinations(poiStops, `${seed}:citywalk`);
+  void pool;
+  void seed;
   return [
-    { method: "citywalk-balanced", candidateVariant: "balanced", destinations: [city, ...poiStops] },
-    { method: "citywalk-low-transfer", candidateVariant: "low-transfer", destinations: [city, ...stablePois] },
-    { method: "citywalk-depth", candidateVariant: "depth", destinations: [city, ...stablePois].slice(0, 1).concat([...stablePois].reverse()) },
+    { method: "single-city-balanced", candidateVariant: "balanced", destinations: [city] },
+    { method: "single-city-low-transfer", candidateVariant: "low-transfer", destinations: [city] },
+    { method: "single-city-depth", candidateVariant: "depth", destinations: [city] },
   ];
 }
 
@@ -480,7 +544,7 @@ export function buildRouteCandidatesFromPool({
   createdAt = ROUTE_CANDIDATE_BUILDER_CREATED_AT,
 } = {}) {
   const normalizedPool = dedupeDestinations(Array.isArray(pool) ? pool : []);
-  if (normalizedPool.length < 2) return [];
+  if (normalizedPool.length < minimumRouteDestinationCount(context)) return [];
 
   const durationDays = deriveDurationDays(context, concept);
   const travelStyle = deriveTravelStyle(context, concept);
@@ -488,7 +552,7 @@ export function buildRouteCandidatesFromPool({
   const requestedTarget = clampCandidateTarget(targetCount);
   const citywalkReference = cleanString(context.routeReferenceMode) === "citywalk";
   const requestedMaxDestinations = Number(context.candidateMaxDestinationCount);
-  const plannerDestinationCap = Number.isInteger(requestedMaxDestinations) && requestedMaxDestinations >= 2
+  const plannerDestinationCap = Number.isInteger(requestedMaxDestinations) && requestedMaxDestinations >= minimumRouteDestinationCount(context)
     ? requestedMaxDestinations
     : normalizedPool.length;
   const maxDestinations = citywalkReference
@@ -503,10 +567,13 @@ export function buildRouteCandidatesFromPool({
   if (requiredConstraint.missingIds.length) return [];
   const requiredCountryConstraint = resolveRequiredCountries(context, normalizedPool);
   if (requiredCountryConstraint.missingCodes.length) return [];
+  const mixedRequiredSequences = requiredConstraint.ids.length
+    ? requiredCityCountryCandidateSequences(normalizedPool, candidateSeed, requiredConstraint, requiredCountryConstraint)
+    : null;
   const sequences = citywalkReference
     ? citywalkCandidateSequences(normalizedPool, candidateSeed, requiredConstraint)
     : requiredConstraint.ids.length
-    ? requiredCandidateSequences(normalizedPool, maxDestinations, candidateSeed, requiredConstraint)
+    ? mixedRequiredSequences ?? requiredCandidateSequences(normalizedPool, maxDestinations, candidateSeed, requiredConstraint)
     : requiredCountryConstraint.codes.length > 1
       ? requiredCountryCandidateSequences(normalizedPool, maxDestinations, candidateSeed, requiredCountryConstraint)
     : normalizedPool.length === 2

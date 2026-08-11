@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 import { createRequire } from "node:module";
+import { createPublishedKnowledgeEntityLayerRepository } from "../src/lib/routes/index.mjs";
 
 const require = createRequire(import.meta.url);
 const {
@@ -298,6 +299,114 @@ function baseState(overrides = {}) {
   assert.equal(resolveTripCover({ id: "route-trip", routeSnapshot: { id: "route-missing-cover", name: "缺封面路线" } }, state), "", "a route trip must never fall back to an unrelated cover");
   assert.match(resolveTripCover({ id: "manual-trip", name: "手动行程" }, state), /trip-cover-placeholder\.svg$/, "a manual trip without a real cover must use the explicit neutral placeholder");
   assert.doesNotMatch(resolveTripCover({ id: "manual-trip", name: "手动行程" }, state), /aurora/i);
+}
+
+{
+  const routeSnapshot = {
+    id: "route-v2-knowledge-germany",
+    name: "Berlin and Munich",
+    countries: ["DE"],
+    destinations: ["Berlin", "Munich"],
+    durationDays: 7,
+    destinationEntities: [
+      {
+        entityId: "city-berlin-stable",
+        wikidataId: "Q64",
+        countryCode: "DE",
+        name: "柏林",
+        canonicalNameEn: "Berlin",
+        entityTypeName: "city",
+      },
+      {
+        entityId: "city-munich-stable",
+        wikidataId: "Q1726",
+        countryCode: "DE",
+        name: "慕尼黑",
+        canonicalNameEn: "Munich",
+        entityTypeName: "city",
+      },
+    ],
+  };
+  const planned = createTripFromRoute(recalculateTravelState(baseState()), routeSnapshot);
+  const plannedTrip = planned.trips.at(-1);
+
+  assert.deepEqual(
+    plannedTrip.cityIds,
+    ["city-berlin-stable", "city-munich-stable"],
+    "Route V2 Knowledge entity IDs must survive route-to-trip conversion",
+  );
+  assert.deepEqual(
+    plannedTrip.cityQids,
+    ["Q64", "Q1726"],
+    "Wikidata identities must remain available for future migrations",
+  );
+  assert.equal(planned.plannedCities.length, 2, "Knowledge cities must participate in planned footprint state");
+
+  const persisted = recalculateTravelState(JSON.parse(JSON.stringify(planned)));
+  assert.deepEqual(persisted.trips.at(-1).cityIds, plannedTrip.cityIds, "Knowledge city IDs must survive persistence");
+  const completed = setTripStatus(persisted, plannedTrip.id, "completed");
+  assert.equal(getTravelStats(completed).exploredCityCount, 2, "completed Knowledge routes must count their cities");
+  assert.deepEqual(
+    completed.exploredCities.map((city) => city.wikidataId).sort(),
+    ["Q1726", "Q64"],
+    "completed footprint city identities must remain canonical",
+  );
+}
+
+{
+  const repository = createPublishedKnowledgeEntityLayerRepository();
+  const countries = repository.listCountries();
+  const cities = repository.listCities();
+  const countryByCode = new Map(countries.map((country) => [country.isoAlpha2, country]));
+  const citiesByCode = new Map();
+  for (const city of cities) {
+    const countryCode = countries.find((country) => country.entityId === city.parentCountryEntityId)?.isoAlpha2;
+    if (!countryCode) continue;
+    citiesByCode.set(countryCode, [...(citiesByCode.get(countryCode) || []), city]);
+  }
+
+  for (const scenario of [
+    { name: "Germany Austria 14 days", countryCodes: ["DE", "AT"], citiesPerCountry: 3, durationDays: 14 },
+    { name: "Japan 14 days", countryCodes: ["JP"], citiesPerCountry: 3, durationDays: 14 },
+    { name: "Italy 14 days", countryCodes: ["IT"], citiesPerCountry: 3, durationDays: 14 },
+  ]) {
+    const selectedCities = scenario.countryCodes.flatMap((countryCode) => (
+      (citiesByCode.get(countryCode) || []).slice(0, scenario.citiesPerCountry).map((city) => ({
+        ...city,
+        countryCode,
+        name: city.canonicalNameZh || city.canonicalNameEn,
+        entityTypeName: "city",
+      }))
+    ));
+    assert.equal(
+      selectedCities.length,
+      scenario.countryCodes.length * scenario.citiesPerCountry,
+      `${scenario.name}: published Knowledge cities must exist for the regression fixture`,
+    );
+    const snapshot = {
+      id: `route-v2-${scenario.name.toLocaleLowerCase("en-US").replace(/[^a-z0-9]+/gu, "-")}`,
+      name: scenario.name,
+      countries: scenario.countryCodes,
+      durationDays: scenario.durationDays,
+      destinationEntities: selectedCities,
+      countryEntities: scenario.countryCodes.map((code) => countryByCode.get(code)).filter(Boolean),
+    };
+    const planned = createTripFromRoute(recalculateTravelState(baseState()), snapshot);
+    const trip = planned.trips.at(-1);
+    assert.equal(trip.cityIds.length, selectedCities.length, `${scenario.name}: Trip main data must retain every city`);
+    assert.deepEqual(
+      trip.cityQids.sort(),
+      selectedCities.map((city) => city.wikidataId).sort(),
+      `${scenario.name}: Trip must retain every city QID`,
+    );
+    const completed = setTripStatus(recalculateTravelState(JSON.parse(JSON.stringify(planned))), trip.id, "completed");
+    const completedStats = getTravelStats(completed);
+    assert.equal(completedStats.exploredCountryCount, scenario.countryCodes.length, `${scenario.name}: completed Footprint country count`);
+    assert.equal(completedStats.exploredCityCount, selectedCities.length, `${scenario.name}: completed Footprint city count`);
+    const removed = removeTrip(completed, trip.id);
+    assert.equal(getTravelStats(removed).exploredCountryCount, 0, `${scenario.name}: deleting the only Trip must clear explored countries`);
+    assert.equal(getTravelStats(removed).exploredCityCount, 0, `${scenario.name}: deleting the only Trip must clear explored cities`);
+  }
 }
 
 console.log("Travel state calculations verified.");

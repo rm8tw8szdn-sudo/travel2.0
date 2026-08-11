@@ -252,6 +252,39 @@
     return unique(normalizeList(value).map((item) => String(item || "").trim()).filter(Boolean));
   }
 
+  function normalizeRouteCityIdentity(value = {}) {
+    if (!value || typeof value !== "object") return null;
+    const entityTypeName = String(value.entityTypeName || value.entityType || "city").trim().toLowerCase();
+    if (entityTypeName !== "city") return null;
+    const entityId = String(value.entityId || "").trim();
+    const wikidataId = String(value.wikidataId || "").trim().toUpperCase();
+    const countryCode = String(value.countryCode || value.isoAlpha2 || value.countryEntity?.countryCode || "").trim().toUpperCase();
+    const canonicalNameZh = String(value.canonicalNameZh || "").trim();
+    const canonicalNameEn = String(value.canonicalNameEn || value.sourceTitle || "").trim();
+    const name = String(value.name || canonicalNameZh || canonicalNameEn || "").trim();
+    const id = entityId || (wikidataId ? `wikidata:${wikidataId}` : "");
+    if (!id || !name) return null;
+    return {
+      id,
+      entityId,
+      wikidataId,
+      countryCode,
+      name,
+      canonicalNameZh,
+      canonicalNameEn,
+      aliases: normalizeTextList(value.aliases),
+    };
+  }
+
+  function normalizeRouteCityIdentities(values = []) {
+    const identities = new Map();
+    normalizeList(values).forEach((value) => {
+      const identity = normalizeRouteCityIdentity(value);
+      if (identity) identities.set(identity.id, identity);
+    });
+    return [...identities.values()];
+  }
+
   function normalizeRouteSnapshot(value = {}) {
     value = value || {};
     const id = String(value.id || "").trim();
@@ -260,6 +293,11 @@
     const durationDays = Number(value.durationDays);
     const sourceName = String(value.source?.name || "").trim();
     const sourceUrl = String(value.source?.url || "").trim();
+    const destinationEntities = normalizeList(value.destinationEntities).map((item) => clone(item));
+    const cityIdentities = normalizeRouteCityIdentities([
+      ...normalizeList(value.cityIdentities),
+      ...destinationEntities,
+    ]);
     return {
       id,
       name,
@@ -281,7 +319,8 @@
       coverAsset: value.coverAsset && typeof value.coverAsset === "object" ? clone(value.coverAsset) : null,
       destinationAssets: normalizeList(value.destinationAssets).map((item) => clone(item)),
       countryEntities: normalizeList(value.countryEntities).map((item) => clone(item)),
-      destinationEntities: normalizeList(value.destinationEntities).map((item) => clone(item)),
+      destinationEntities,
+      cityIdentities,
       provenance: value.provenance && typeof value.provenance === "object" ? clone(value.provenance) : {},
       routeBannerTitle: String(value.routeBannerTitle || "").trim(),
       routeImageTitle: String(value.routeImageTitle || "").trim(),
@@ -659,14 +698,27 @@
 
   function normalizeTrip(trip, countriesById, citiesById) {
     const countryIds = normalizeIds(trip.countryIds || trip.countries || trip.places, countriesById);
-    const cityIds = normalizeIds(trip.cityIds || trip.cities, citiesById);
     const routeSnapshot = normalizeRouteSnapshot(trip.routeSnapshot);
+    const cityIdentities = normalizeRouteCityIdentities([
+      ...normalizeList(trip.cityIdentities),
+      ...normalizeList(routeSnapshot?.cityIdentities),
+    ]);
+    const cityIds = unique([
+      ...normalizeIds(trip.cityIds || trip.cities, citiesById),
+      ...cityIdentities.map((city) => city.id),
+    ]);
+    const cityQids = unique([
+      ...normalizeTextList(trip.cityQids).map((value) => value.toUpperCase()),
+      ...cityIdentities.map((city) => city.wikidataId),
+    ]);
     const normalized = {
       ...trip,
       id: trip.id || `trip-${Date.now()}`,
       status: tripStatus(trip.status),
       countryIds,
       cityIds,
+      cityQids,
+      cityIdentities,
     };
     if (routeSnapshot) normalized.routeSnapshot = routeSnapshot;
     else delete normalized.routeSnapshot;
@@ -699,8 +751,25 @@
       defaultCountryCovers,
     ).map((country) => ({ ...country, cover: safeCountryCover(country) }));
     const countriesById = byId(countries);
+    const routeCityIdentities = normalizeRouteCityIdentities(normalizeList(source.trips).flatMap((trip) => [
+      ...normalizeList(trip?.cityIdentities),
+      ...normalizeList(normalizeRouteSnapshot(trip?.routeSnapshot)?.cityIdentities),
+    ]));
+    const sourceCities = normalizeList(source.cities?.length ? source.cities : defaults.cities);
+    const cityRecords = new Map(sourceCities.filter((city) => city?.id).map((city) => [city.id, city]));
+    routeCityIdentities.forEach((identity) => {
+      const existing = cityRecords.get(identity.id) || {};
+      cityRecords.set(identity.id, {
+        ...existing,
+        ...identity,
+        countryId: identity.countryCode || existing.countryId || "",
+        englishName: identity.canonicalNameEn || existing.englishName || "",
+        cover: existing.cover || "",
+        knowledgeEntity: true,
+      });
+    });
     const cities = syncDefaultCovers(
-      mergeDetails(normalizeList(source.cities?.length ? source.cities : defaults.cities), cityDetails),
+      mergeDetails([...cityRecords.values()], cityDetails),
       defaultCityCovers,
     ).map((city) => ({ ...city, cover: safeCityCover(city, countriesById) }));
     const citiesById = byId(cities);
@@ -994,7 +1063,12 @@
     const snapshot = normalizeRouteSnapshot(routeSnapshot);
     if (!snapshot) return normalizedState;
     const countryIds = normalizeKnownIds(snapshot.countries, normalizedState.countriesById);
-    const cityIds = normalizeKnownIds([...snapshot.cities, ...snapshot.destinations], normalizedState.citiesById);
+    const cityIdentities = normalizeRouteCityIdentities(snapshot.cityIdentities);
+    const cityIds = unique([
+      ...cityIdentities.map((city) => city.id),
+      ...normalizeKnownIds([...snapshot.cities, ...snapshot.destinations], normalizedState.citiesById),
+    ]);
+    const cityQids = unique(cityIdentities.map((city) => city.wikidataId));
     const trip = {
       id: `trip-route-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
       name: snapshot.name,
@@ -1002,6 +1076,8 @@
       planStatus: "规划中",
       countryIds,
       cityIds,
+      cityQids,
+      cityIdentities,
       days: snapshot.recommendedDays || (snapshot.durationDays ? `${snapshot.durationDays}天` : ""),
       routeSnapshot: snapshot,
     };

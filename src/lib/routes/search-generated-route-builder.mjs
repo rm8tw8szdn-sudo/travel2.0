@@ -1,6 +1,7 @@
 import { routeDedupeFingerprint } from "./route-dedupe.mjs";
 import { ensureSearchGeneratedMedia } from "./search-generated-media.mjs";
 import { SEARCH_KNOWLEDGE_GRAPH_FALLBACKS } from "./search-knowledge-graph-fallbacks.mjs";
+import { minimumRouteDestinationCount } from "./route-cardinality-policy.mjs";
 
 function clean(value) {
   return String(value || "").trim();
@@ -21,7 +22,11 @@ function destinationsForIntent(intent = {}) {
   const matched = cityNeedles.length
     ? pool.filter((item) => cityNeedles.some((needle) => clean(item.name).toLocaleLowerCase("zh-CN").includes(needle) || clean(item.sourceTitle).toLocaleLowerCase("zh-CN").includes(needle)))
     : [];
-  return unique([...matched, ...pool].map((item) => item.wikidataId))
+  const requiredIds = unique(intent.requiredDestinationIds);
+  const ordered = requiredIds.length
+    ? requiredIds
+    : unique([...matched, ...pool].map((item) => item.wikidataId));
+  return ordered
     .map((id) => pool.find((item) => item.wikidataId === id))
     .filter(Boolean)
     .slice(0, Math.max(3, Math.min(6, Number(intent.durationDays || 8) - 2)));
@@ -30,7 +35,7 @@ function destinationsForIntent(intent = {}) {
 export function buildSearchGeneratedFallbackRoute(intent = {}) {
   if (!intent.countryCode || intent.isChinaBlocked) return null;
   const destinations = destinationsForIntent(intent);
-  if (destinations.length < 2) return null;
+  if (destinations.length < minimumRouteDestinationCount(intent)) return null;
   const label = styleLabel(intent);
   const days = Number(intent.durationDays || 8);
   const destinationEntities = destinations.map((item) => ({

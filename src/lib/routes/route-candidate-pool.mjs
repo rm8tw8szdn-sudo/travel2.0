@@ -8,6 +8,7 @@ import {
   createRouteIntentFingerprint,
   validateNormalizedRouteIntent,
 } from "./route-intent-model.mjs";
+import { minimumRouteDestinationCount } from "./route-cardinality-policy.mjs";
 import { canonicalizeTravelRegionKey } from "./route-search-region-taxonomy.mjs";
 
 export const ROUTE_CANDIDATE_SCHEMA_VERSION = "route-generation-v2-phase2a-candidate-v1";
@@ -269,8 +270,9 @@ function validateRouteCandidateUnsafe(candidate = {}, { requireIntentSnapshot = 
   if (!cleanString(candidate.candidateId)) reasons.push("candidateId-required");
   if (!cleanString(candidate.intentId)) reasons.push("intentId-required");
   if (!Array.isArray(candidate.countries) || candidate.countries.length === 0) reasons.push("countries-required");
-  if (!Array.isArray(candidate.destinations) || candidate.destinations.length < 2) reasons.push("destinations-minimum-two");
-  if (!Array.isArray(candidate.proposedOrder) || candidate.proposedOrder.length < 2) reasons.push("proposedOrder-minimum-two");
+  const minimumDestinations = minimumRouteDestinationCount(candidate);
+  if (!Array.isArray(candidate.destinations) || candidate.destinations.length < minimumDestinations) reasons.push("destinations-below-intent-minimum");
+  if (!Array.isArray(candidate.proposedOrder) || candidate.proposedOrder.length < minimumDestinations) reasons.push("proposedOrder-below-intent-minimum");
   if (!Number.isFinite(Number(candidate.durationDays)) || Number(candidate.durationDays) <= 0) reasons.push("durationDays-positive-number-required");
   if (!cleanString(candidate.travelStyle)) reasons.push("travelStyle-required");
   if (!cleanString(candidate.generationSource)) reasons.push("generationSource-required");

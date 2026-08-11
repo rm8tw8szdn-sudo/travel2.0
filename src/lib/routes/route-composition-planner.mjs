@@ -57,6 +57,7 @@ import {
   isRouteV2ReadyPoolEnabled,
 } from "./route-v2-ready-pool.mjs";
 import { resolveRouteV2RuntimeDecision } from "./route-v2-runtime-environment.mjs";
+import { minimumRouteDestinationCount } from "./route-cardinality-policy.mjs";
 
 const PHASE_2A_STRATEGIES = ["Geographic", "Theme", "Season", "Transport", "Depth", "Efficiency"];
 const MAX_SEGMENT_KM = 650;
@@ -655,7 +656,7 @@ function selectDestinationPool(concept, context, knowledgeGraph) {
   );
   if (clean(context.routeReferenceMode) === "citywalk") {
     const citywalkPool = citywalkDestinationPool(entityPool, [...requiredIds]);
-    if (citywalkPool.length >= 2) return citywalkPool;
+    if (citywalkPool.length >= 1) return citywalkPool;
   }
   const entityKeys = new Set(entityPool.flatMap((destination) => destinationIdentityKeys(destination)));
   const entityPoolCoversRequired = [...requiredIds].every((id) => entityKeys.has(id));
@@ -1016,25 +1017,7 @@ function citywalkDestinationPool(entityPool = [], requiredIds = []) {
     && destinationIdentityKeys(destination).includes(requiredId)
   ));
   if (!city || !Array.isArray(city.poiEntities) || city.poiEntities.length === 0) return [];
-  const pois = city.poiEntities.map((poi) => ({
-    ...structuredClone(poi),
-    parentCountryEntityId: clean(city.parentCountryEntityId),
-    parentCityEntityId: clean(poi.parentCityEntityId || city.entityId),
-    countryCode: clean(city.countryCode),
-    name: clean(poi.canonicalNameZh || poi.canonicalNameEn || poi.name),
-    sourceTitle: clean(poi.canonicalNameEn || poi.canonicalNameZh || poi.name),
-    canonicalTitle: clean(poi.canonicalNameEn || poi.canonicalNameZh || poi.name),
-    entityTypeName: "poi",
-    destinationSource: "knowledge-entity-layer",
-    countryEntity: structuredClone(city.countryEntity || {}),
-  }));
-  const seen = new Set();
-  return [city, ...pois].filter((destination) => {
-    const id = destinationIdentityKeys(destination)[0];
-    if (!id || seen.has(id)) return false;
-    seen.add(id);
-    return true;
-  });
+  return [city];
 }
 
 function reusableLegEvidence(index, fromEntityId, toEntityId) {
@@ -1083,7 +1066,7 @@ function skeletonFromSelectedCandidate(selectedCandidate, pool = []) {
     ? selectedCandidate.proposedOrder.map(clean).filter(Boolean)
     : [];
   const candidateDestinations = Array.isArray(selectedCandidate.destinations) ? selectedCandidate.destinations : [];
-  if (proposedOrder.length < 2 || proposedOrder.length !== candidateDestinations.length) {
+  if (proposedOrder.length < minimumRouteDestinationCount(selectedCandidate) || proposedOrder.length !== candidateDestinations.length) {
     return { ok: false, reason: "selected-candidate-order-invalid" };
   }
   const poolByKey = new Map();
@@ -1559,8 +1542,8 @@ function decorateCitywalkReferenceRecord(record, context = {}) {
   if (clean(context.routeReferenceMode) !== "citywalk") return record;
   const destinations = Array.isArray(record.destinationEntities) ? record.destinationEntities : [];
   const city = destinations.find((destination) => clean(destination.entityTypeName) === "city");
-  const pois = destinations.filter((destination) => clean(destination.entityTypeName) === "poi");
-  if (!city || !pois.length) return record;
+  if (!city) return record;
+  const pois = Array.isArray(city.poiEntities) ? city.poiEntities : [];
   const cityName = clean(city.canonicalNameZh || city.name || city.canonicalNameEn);
   const poiNames = pois.map((poi) => clean(poi.canonicalNameZh || poi.name || poi.canonicalNameEn)).filter(Boolean);
   const stableDestinations = [...destinations].sort((left, right) => (
@@ -1903,7 +1886,7 @@ async function runPipeline({ context, knowledgeGraph, evidenceRepository, accept
   const skeleton = usingV2SelectedCandidate
     ? selectedResolution.skeleton
     : buildRouteSkeleton(pool, concept, context);
-  if (skeleton.length < 2) {
+  if (skeleton.length < minimumRouteDestinationCount(context)) {
     const failureTrace = await recordV2Failure({
       stage: "route-skeleton",
       reason: "skeleton-too-short",
@@ -2017,7 +2000,7 @@ async function runPipeline({ context, knowledgeGraph, evidenceRepository, accept
     usingV2SelectedCandidate = false;
     selectedCandidate = null;
     refinedSkeleton = buildRouteSkeleton(pool, concept, context);
-    if (refinedSkeleton.length < 2) {
+    if (refinedSkeleton.length < minimumRouteDestinationCount(context)) {
       rejected.push({ context, reason: "legacy-fallback-skeleton-too-short" });
       return { accepted, rejected, concept, v2Failure };
     }
@@ -2178,7 +2161,7 @@ async function runPipeline({ context, knowledgeGraph, evidenceRepository, accept
     usingV2SelectedCandidate = false;
     selectedCandidate = null;
     refinedSkeleton = buildRouteSkeleton(pool, concept, context);
-    if (refinedSkeleton.length < 2) {
+    if (refinedSkeleton.length < minimumRouteDestinationCount(context)) {
       rejected.push({ context, reason: "legacy-fallback-skeleton-too-short" });
       return { accepted, rejected, concept, v2Failure };
     }

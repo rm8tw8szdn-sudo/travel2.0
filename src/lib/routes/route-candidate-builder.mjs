@@ -10,6 +10,7 @@ import {
   createRouteIntentFingerprint,
   maxDestinationsForRouteIntentDays,
 } from "./route-intent-model.mjs";
+import { minimumRouteDestinationCount } from "./route-cardinality-policy.mjs";
 
 export const ROUTE_CANDIDATE_BUILDER_DEFAULT_TARGET = 8;
 export const ROUTE_CANDIDATE_BUILDER_MIN_TARGET = 3;
@@ -249,7 +250,7 @@ function candidateDraft({
   requiredCountryConstraint = null,
 }) {
   const normalizedDestinations = dedupeDestinations(destinations);
-  if (normalizedDestinations.length < 2) return null;
+  if (normalizedDestinations.length < minimumRouteDestinationCount({ normalizedRouteIntent })) return null;
   const countries = unique(normalizedDestinations.map((item) => item.countryCode)).map(normalizeCode);
   const order = buildOrder(normalizedDestinations);
   return {
@@ -460,14 +461,12 @@ function requiredCountryCandidateSequences(pool, maxDestinations, seed, constrai
 function citywalkCandidateSequences(pool, seed, requiredConstraint) {
   const city = dedupeDestinations(requiredConstraint.destinations)[0];
   if (!city) return [];
-  const cityId = destinationIdentity(city);
-  const poiStops = dedupeDestinations(pool).filter((destination) => destinationIdentity(destination) !== cityId);
-  if (!poiStops.length) return [];
-  const stablePois = stableSortDestinations(poiStops, `${seed}:citywalk`);
+  void pool;
+  void seed;
   return [
-    { method: "citywalk-balanced", candidateVariant: "balanced", destinations: [city, ...poiStops] },
-    { method: "citywalk-low-transfer", candidateVariant: "low-transfer", destinations: [city, ...stablePois] },
-    { method: "citywalk-depth", candidateVariant: "depth", destinations: [city, ...stablePois].slice(0, 1).concat([...stablePois].reverse()) },
+    { method: "single-city-balanced", candidateVariant: "balanced", destinations: [city] },
+    { method: "single-city-low-transfer", candidateVariant: "low-transfer", destinations: [city] },
+    { method: "single-city-depth", candidateVariant: "depth", destinations: [city] },
   ];
 }
 
@@ -480,7 +479,7 @@ export function buildRouteCandidatesFromPool({
   createdAt = ROUTE_CANDIDATE_BUILDER_CREATED_AT,
 } = {}) {
   const normalizedPool = dedupeDestinations(Array.isArray(pool) ? pool : []);
-  if (normalizedPool.length < 2) return [];
+  if (normalizedPool.length < minimumRouteDestinationCount(context)) return [];
 
   const durationDays = deriveDurationDays(context, concept);
   const travelStyle = deriveTravelStyle(context, concept);
@@ -488,7 +487,7 @@ export function buildRouteCandidatesFromPool({
   const requestedTarget = clampCandidateTarget(targetCount);
   const citywalkReference = cleanString(context.routeReferenceMode) === "citywalk";
   const requestedMaxDestinations = Number(context.candidateMaxDestinationCount);
-  const plannerDestinationCap = Number.isInteger(requestedMaxDestinations) && requestedMaxDestinations >= 2
+  const plannerDestinationCap = Number.isInteger(requestedMaxDestinations) && requestedMaxDestinations >= minimumRouteDestinationCount(context)
     ? requestedMaxDestinations
     : normalizedPool.length;
   const maxDestinations = citywalkReference

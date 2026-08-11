@@ -1398,7 +1398,7 @@ function routeFeatureIntroV2(record = {}) {
   if (record.routeReferenceMode === "citywalk") {
     const destinations = record.destinationEntities || [];
     const city = destinations.find((destination) => destination.entityTypeName === "city");
-    const poiCount = destinations.filter((destination) => destination.entityTypeName === "poi").length;
+    const poiCount = Array.isArray(city?.poiEntities) ? city.poiEntities.length : 0;
     return `以${city?.canonicalNameZh || city?.name || "当前城市"}为中心，汇总${poiCount}个现有景点；可按兴趣自由拆分，不设天数上限。`;
   }
   const narrativeText = [

@@ -512,6 +512,7 @@ function plannerContextFromIntent(intent, deadlineAt, abortSignal = null, {
     && Array.isArray(intent.requiredDestinationIds)
     && intent.requiredDestinationIds.length === 1
     && cities.length === 1
+    && countryCodes.length <= 1
     && Number(intent.durationDays) >= 3;
   const cityBreakByDuration = Number(intent.durationDays) > 0 && Number(intent.durationDays) <= 3;
   const cityBreakByExplicitPair = !suggested

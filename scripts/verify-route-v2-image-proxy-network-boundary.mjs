@@ -12,7 +12,6 @@ const temporaryRoot = fs.mkdtempSync(path.join(os.tmpdir(), "route-v2-image-prox
 const proxyCache = path.join(temporaryRoot, "proxy-cache");
 const routeImageCache = path.join(temporaryRoot, "route-image-cache.json");
 const previous = {
-  fetch: globalThis.fetch,
   proxyCache: process.env.ROUTE_IMAGE_PROXY_CACHE_DIR,
   routeImageCache: process.env.ROUTE_IMAGE_CACHE_PATH,
   timeout: process.env.ROUTE_IMAGE_PROXY_TIMEOUT_MS,
@@ -38,9 +37,9 @@ function captureResponse() {
   };
 }
 
-async function request(proxyRemoteImage, url) {
+async function request(proxyRemoteImage, url, dependencies) {
   const response = captureResponse();
-  await proxyRemoteImage(url, response, new AbortController().signal);
+  await proxyRemoteImage(url, response, new AbortController().signal, dependencies);
   return response;
 }
 
@@ -50,17 +49,14 @@ try {
   process.env.ROUTE_IMAGE_PROXY_TIMEOUT_MS = "30";
 
   let upstreamRequests = 0;
-  globalThis.fetch = async (url) => {
+  const successfulDownload = async (url) => {
     upstreamRequests += 1;
     assert.equal(url, "https://upload.wikimedia.org/example-canary.jpg");
-    return new Response(Uint8Array.from([0xff, 0xd8, 0xff, 0xd9]), {
-      status: 200,
-      headers: { "content-type": "image/jpeg", "content-length": "4" },
-    });
+    return { body: Buffer.from([0xff, 0xd8, 0xff, 0xd9]), contentType: "image/jpeg" };
   };
 
   const firstProxy = loadProxy();
-  const cold = await request(firstProxy, "https://upload.wikimedia.org/example-canary.jpg");
+  const cold = await request(firstProxy, "https://upload.wikimedia.org/example-canary.jpg", { downloadImage: successfulDownload });
   assert.equal(cold.status, 200);
   assert.equal(upstreamRequests, 1, "a cold proxy miss must fetch the upstream URL once");
   assert.equal(fs.readdirSync(proxyCache).length, 2, "a successful cold fetch must write isolated body and metadata files");
@@ -75,24 +71,20 @@ try {
   assert.equal(upstreamRequests, 1, "a cold-process disk hit must not fetch upstream again");
 
   let upstream404Requests = 0;
-  globalThis.fetch = async () => {
+  const missingDownload = async () => {
     upstream404Requests += 1;
-    return new Response("Not found", {
-      status: 404,
-      headers: { "content-type": "text/plain" },
-    });
+    throw Object.assign(new Error("image_upstream_unavailable"), { code: "image_upstream_unavailable", statusCode: 502 });
   };
   const missingProxy = loadProxy();
-  const missing = await request(missingProxy, "https://upload.wikimedia.org/example-missing.jpg");
+  const missing = await request(missingProxy, "https://upload.wikimedia.org/example-missing.jpg", { downloadImage: missingDownload });
   assert.equal(missing.status, 502);
   assert.equal(fs.readdirSync(proxyCache).length, 2, "an upstream 404 must not create a cache entry");
 
-  globalThis.fetch = async (_url, options = {}) => new Promise((resolve, reject) => {
-    void resolve;
-    options.signal?.addEventListener("abort", () => reject(new Error("mock-timeout")), { once: true });
-  });
+  const timeoutDownload = async () => {
+    throw Object.assign(new Error("image_timeout"), { code: "image_timeout", statusCode: 502 });
+  };
   const timeoutProxy = loadProxy();
-  const timedOut = await request(timeoutProxy, "https://upload.wikimedia.org/example-timeout.jpg");
+  const timedOut = await request(timeoutProxy, "https://upload.wikimedia.org/example-timeout.jpg", { downloadImage: timeoutDownload });
   assert.equal(timedOut.status, 502);
   assert.equal(fs.readdirSync(proxyCache).length, 2, "a timeout must not create a cache entry");
 
@@ -119,7 +111,6 @@ try {
     isolatedCache: true,
   }, null, 2)}\n`);
 } finally {
-  globalThis.fetch = previous.fetch;
   if (previous.proxyCache === undefined) delete process.env.ROUTE_IMAGE_PROXY_CACHE_DIR;
   else process.env.ROUTE_IMAGE_PROXY_CACHE_DIR = previous.proxyCache;
   if (previous.routeImageCache === undefined) delete process.env.ROUTE_IMAGE_CACHE_PATH;

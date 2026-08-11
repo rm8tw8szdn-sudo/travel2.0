@@ -3,6 +3,16 @@ const http = require("node:http");
 const path = require("node:path");
 const crypto = require("node:crypto");
 const { pathToFileURL } = require("node:url");
+const {
+  DEFAULT_IMAGE_MAX_BYTES,
+  DEFAULT_REQUEST_BODY_MAX_BYTES,
+  RequestBodyTooLargeError,
+  ServerBoundaryError,
+  downloadTrustedImage,
+  parseTrustedImageUrl,
+  readRequestBody,
+  safeStaticPath: resolveSafeStaticPath,
+} = require("./server-security.js");
 
 const root = __dirname;
 const port = Number(process.env.PORT || 4173);
@@ -12,8 +22,12 @@ const routeImageCacheVersion = "verified-country-v9";
 const acceptedRoutesPath = process.env.ROUTE_ACCEPTED_REPOSITORY_PATH || path.join(root, ".route-v2-cache", "accepted-routes.json");
 const proxiedImageDiskCacheDir = process.env.ROUTE_IMAGE_PROXY_CACHE_DIR || path.join(root, ".route-v2-cache", "proxied-images");
 const proxiedImageCache = new Map();
-const proxiedImageMaxBytes = 16 * 1024 * 1024;
+const proxiedImageMaxBytes = DEFAULT_IMAGE_MAX_BYTES;
 const proxiedImageTimeoutMs = Number(process.env.ROUTE_IMAGE_PROXY_TIMEOUT_MS || 12000);
+const configuredRequestBodyMaxBytes = Number(process.env.ROUTE_REQUEST_BODY_MAX_BYTES || DEFAULT_REQUEST_BODY_MAX_BYTES);
+const requestBodyMaxBytes = Number.isSafeInteger(configuredRequestBodyMaxBytes) && configuredRequestBodyMaxBytes > 0
+  ? configuredRequestBodyMaxBytes
+  : DEFAULT_REQUEST_BODY_MAX_BYTES;
 
 const contentTypes = {
   ".html": "text/html; charset=utf-8",
@@ -34,18 +48,20 @@ function send(response, status, body, headers = {}) {
 }
 
 function safeStaticPath(urlPath) {
-  let pathname = decodeURIComponent(urlPath.split("?")[0] || "/");
-  if (pathname === "/" || pathname === "/travel-collection") pathname = "/travel-collection/";
-  if (pathname === "/travel-collection/") pathname = "/travel-collection/index.html";
-  if (pathname.startsWith("/travel-collection/")) pathname = pathname.slice("/travel-collection".length);
-  const resolved = path.resolve(root, `.${pathname}`);
-  return resolved.startsWith(root) ? resolved : "";
+  return resolveSafeStaticPath(root, urlPath);
 }
 
 async function readBody(request) {
-  const chunks = [];
-  for await (const chunk of request) chunks.push(chunk);
-  return Buffer.concat(chunks);
+  return readRequestBody(request, { maxBytes: requestBodyMaxBytes });
+}
+
+function parseJsonBody(body) {
+  if (!body?.length) return {};
+  try {
+    return JSON.parse(body.toString("utf8"));
+  } catch {
+    throw new ServerBoundaryError("invalid_json", 400);
+  }
 }
 
 function readJsonFile(filePath, fallback) {
@@ -218,17 +234,13 @@ function writeProxiedImageDiskCache(cacheKey, body, contentType) {
   }
 }
 
-async function proxyRemoteImage(url, response, signal) {
+async function proxyRemoteImage(url, response, signal, dependencies = {}) {
   const imageUrl = String(url || "").trim();
   let parsed;
   try {
-    parsed = new URL(imageUrl);
-  } catch {
-    send(response, 400, "Invalid image URL", { "content-type": "text/plain; charset=utf-8" });
-    return;
-  }
-  if (parsed.protocol !== "https:") {
-    send(response, 400, "Only https images are allowed", { "content-type": "text/plain; charset=utf-8" });
+    parsed = parseTrustedImageUrl(imageUrl);
+  } catch (error) {
+    send(response, error?.statusCode || 400, error?.code || "image_url_invalid", { "content-type": "text/plain; charset=utf-8" });
     return;
   }
   const cacheKey = parsed.href;
@@ -249,36 +261,20 @@ async function proxyRemoteImage(url, response, signal) {
     });
     return;
   }
-  const timeoutController = new AbortController();
-  const timeout = setTimeout(() => timeoutController.abort(), proxiedImageTimeoutMs);
-  const proxySignal = AbortSignal.any ? AbortSignal.any([signal, timeoutController.signal]) : timeoutController.signal;
-  let upstream;
+  let downloaded;
   try {
-    upstream = await fetch(parsed.href, {
-      headers: {
-        "accept": "image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8",
-        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) TravelCollectionRouteImageProxy/1.0 Safari/537.36",
-        "referer": "https://commons.wikimedia.org/",
-      },
-      signal: proxySignal,
+    downloaded = await (dependencies.downloadImage || downloadTrustedImage)(parsed.href, {
+      lookup: dependencies.lookup,
+      requestHop: dependencies.requestHop,
+      maxBytes: proxiedImageMaxBytes,
+      timeoutMs: proxiedImageTimeoutMs,
+      signal,
     });
-  } catch {
-    send(response, 502, "Remote image unavailable", { "content-type": "text/plain; charset=utf-8" });
-    return;
-  } finally {
-    clearTimeout(timeout);
-  }
-  const contentType = upstream.headers.get("content-type") || "";
-  const contentLength = Number(upstream.headers.get("content-length") || 0);
-  if (!upstream.ok || !contentType.startsWith("image/") || contentLength > proxiedImageMaxBytes) {
-    send(response, 502, "Remote image unavailable", { "content-type": "text/plain; charset=utf-8" });
+  } catch (error) {
+    send(response, error?.statusCode || 502, error?.code || "image_upstream_unavailable", { "content-type": "text/plain; charset=utf-8" });
     return;
   }
-  const body = Buffer.from(await upstream.arrayBuffer());
-  if (body.length > proxiedImageMaxBytes) {
-    send(response, 502, "Remote image too large", { "content-type": "text/plain; charset=utf-8" });
-    return;
-  }
+  const { body, contentType } = downloaded;
   proxiedImageCache.set(cacheKey, { body, contentType });
   writeProxiedImageDiskCache(cacheKey, body, contentType);
   if (proxiedImageCache.size > 200) {
@@ -1502,7 +1498,7 @@ async function main() {
         const abortController = new AbortController();
         request.on("aborted", () => abortController.abort());
         const body = request.method === "POST" ? await readBody(request) : undefined;
-        const route = body?.length ? JSON.parse(body.toString("utf8")) : {};
+        const route = parseJsonBody(body);
         const image = await resolveOnlineRouteImage(route, abortController.signal);
         sendJson(response, 200, { ok: true, status: image?.imageUrl ? "verified" : "not_found", image });
         return;
@@ -1551,7 +1547,11 @@ async function main() {
         "cache-control": "no-store",
       });
     } catch (error) {
-      send(response, 500, error?.stack || String(error), { "content-type": "text/plain; charset=utf-8" });
+      if (error instanceof RequestBodyTooLargeError || error instanceof ServerBoundaryError) {
+        sendJson(response, error.statusCode, { error: { code: error.code } });
+        return;
+      }
+      sendJson(response, 500, { error: { code: "internal_server_error" } });
     }
   });
 
@@ -1569,4 +1569,4 @@ if (require.main === module) {
   });
 }
 
-module.exports = Object.freeze({ proxyRemoteImage });
+module.exports = Object.freeze({ main, proxyRemoteImage, safeStaticPath });

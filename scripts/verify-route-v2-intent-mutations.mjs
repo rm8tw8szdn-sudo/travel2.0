@@ -19,6 +19,7 @@ import {
   validateRouteCandidate,
   validateRouteIntentInvariants,
 } from "../src/lib/routes/index.mjs";
+import { evaluateRouteIntentOracle } from "../src/lib/routes/route-intent-model-oracle.mjs";
 import { auditRouteV2Cache } from "../src/lib/routes/cache-baseline-v2.mjs";
 import {
   AUTHORIZED_SEARCH_CACHE_SEMANTIC_MIGRATION_SIGNATURES,
@@ -70,6 +71,111 @@ kill(
   "remove-required-cities-check",
   !validateRouteIntentInvariants(missingCity, baseIntent, { requireFingerprint: true, claimedSuccess: true }).matched,
   "required-city-missing",
+);
+
+function killConstraintMutationByProductionAndOracle(name, route, intent, expectedCode) {
+  const production = validateRouteIntentInvariants(route, intent, {
+    requireFingerprint: true,
+    claimedSuccess: true,
+    source: `mutation:${name}`,
+  });
+  const oracle = evaluateRouteIntentOracle(intent, route);
+  kill(
+    name,
+    !production.matched
+      && !oracle.matched
+      && production.reasonCodes.includes(expectedCode)
+      && oracle.violationCodes.includes(expectedCode),
+    `production-and-oracle:${expectedCode}`,
+  );
+}
+
+killConstraintMutationByProductionAndOracle(
+  "delete-one-required-city",
+  missingCity,
+  baseIntent,
+  "required-city-missing",
+);
+
+const twoCityIntent = {
+  intentMode: "specified-destination",
+  requiredDestinationIds: ["Q64", "Q1726"],
+  requiredDestinationNames: ["Berlin", "Munich"],
+  destinationOrderMode: "flexible",
+  durationDays: 7,
+  countryCodes: ["DE"],
+};
+const twoCityRoute = {
+  id: "mutation-two-city",
+  destinationEntities: [
+    { wikidataId: "Q64", name: "Berlin", countryCode: "DE" },
+    { wikidataId: "Q1726", name: "Munich", countryCode: "DE" },
+  ],
+  destinations: ["Berlin", "Munich"],
+  countryEntities: [{ countryCode: "DE" }],
+  durationDays: 7,
+  searchStatus: "search-generated",
+};
+const twoCityToOne = attachRouteIntentEnvelope({
+  ...twoCityRoute,
+  destinationEntities: twoCityRoute.destinationEntities.slice(0, 1),
+  destinations: twoCityRoute.destinations.slice(0, 1),
+}, twoCityIntent);
+killConstraintMutationByProductionAndOracle(
+  "two-city-becomes-single-city",
+  twoCityToOne,
+  twoCityIntent,
+  "required-city-missing",
+);
+
+const threeCountryIntent = {
+  intentMode: "specified-destination",
+  requiredCountryCodes: ["FR", "DE", "AT"],
+  countryCodes: ["FR", "DE", "AT"],
+  destinationOrderMode: "flexible",
+  durationDays: 14,
+};
+const threeCountryRoute = {
+  id: "mutation-three-country",
+  destinationEntities: [
+    { wikidataId: "Q90", name: "Paris", countryCode: "FR" },
+    { wikidataId: "Q64", name: "Berlin", countryCode: "DE" },
+    { wikidataId: "Q1741", name: "Vienna", countryCode: "AT" },
+  ],
+  countryEntities: ["FR", "DE", "AT"].map((countryCode) => ({ countryCode })),
+  durationDays: 14,
+  searchStatus: "search-generated",
+};
+const countryDeleted = attachRouteIntentEnvelope({
+  ...threeCountryRoute,
+  destinationEntities: threeCountryRoute.destinationEntities.slice(0, -1),
+}, threeCountryIntent);
+killConstraintMutationByProductionAndOracle(
+  "delete-one-required-country",
+  countryDeleted,
+  threeCountryIntent,
+  "country-mismatch",
+);
+
+const twoCountryIntent = {
+  intentMode: "specified-destination",
+  requiredCountryCodes: ["DE", "AT"],
+  countryCodes: ["DE", "AT"],
+  destinationOrderMode: "flexible",
+  durationDays: 14,
+};
+const multiCountryToSingle = attachRouteIntentEnvelope({
+  id: "mutation-multi-country-to-single",
+  destinationEntities: [{ wikidataId: "Q64", name: "Berlin", countryCode: "DE" }],
+  countryEntities: ["DE", "AT"].map((countryCode) => ({ countryCode })),
+  durationDays: 14,
+  searchStatus: "search-generated",
+}, twoCountryIntent);
+killConstraintMutationByProductionAndOracle(
+  "multi-country-becomes-single-country",
+  multiCountryToSingle,
+  twoCountryIntent,
+  "country-mismatch",
 );
 
 const reordered = attachRouteIntentEnvelope({

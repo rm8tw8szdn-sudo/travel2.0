@@ -539,6 +539,8 @@ function plannerContextFromIntent(intent, deadlineAt, abortSignal = null, {
     countryCode,
     countries: [...countryCodes],
     countryCodes: [...countryCodes],
+    requiredCountryCodes: [...(intent.requiredCountryCodes || [])],
+    countryOrderMode: intent.countryOrderMode || "unspecified",
     countryName,
     cities: [...cities],
     normalizedCities: [...normalizedCities],
@@ -637,7 +639,8 @@ export function createRouteSearchService({
     const countryScopedDestinationSuggestion = intent.intentMode === "specified-destination"
       && !(intent.requiredDestinationIds || []).length
       && !explicitRegionConstraint
-      && (intent.countryCodes || []).length > 0;
+      && (intent.requiredCountryCodes || intent.countryCodes || []).length === 1
+      && (intent.countryCodes || []).length === 1;
     const regionScopedDestinationSuggestion = intent.intentMode === "specified-destination"
       && !(intent.requiredDestinationIds || []).length
       && explicitRegionConstraint

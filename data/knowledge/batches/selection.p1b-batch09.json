@@ -1,0 +1,633 @@
+{
+  "schemaVersion": "route-v2-batch04a-germany-selection-v1",
+  "country": [
+    {
+      "entityId": "country-9bef984affea20d8",
+      "wikidataId": "Q183",
+      "canonicalNameEn": "Germany"
+    }
+  ],
+  "cities": [
+    {
+      "key": "berlin",
+      "entityId": "city-92d9ceba1c4a056d",
+      "parentCountryEntityId": "country-9bef984affea20d8",
+      "wikidataId": "Q64",
+      "canonicalNameEn": "Berlin",
+      "targetPoiCount": 15,
+      "selectedPoiCount": 15
+    },
+    {
+      "key": "cologne",
+      "entityId": "city-4c0072d93c40af15",
+      "parentCountryEntityId": "country-9bef984affea20d8",
+      "wikidataId": "Q365",
+      "canonicalNameEn": "Cologne",
+      "targetPoiCount": 8,
+      "selectedPoiCount": 8
+    },
+    {
+      "key": "dresden",
+      "entityId": "city-9191f5c8ad23559d",
+      "parentCountryEntityId": "country-9bef984affea20d8",
+      "wikidataId": "Q1731",
+      "canonicalNameEn": "Dresden",
+      "targetPoiCount": 8,
+      "selectedPoiCount": 8
+    },
+    {
+      "key": "frankfurt",
+      "entityId": "city-eb3b0543a44c1a6a",
+      "parentCountryEntityId": "country-9bef984affea20d8",
+      "wikidataId": "Q1794",
+      "canonicalNameEn": "Frankfurt",
+      "targetPoiCount": 8,
+      "selectedPoiCount": 8
+    },
+    {
+      "key": "fussen",
+      "entityId": "city-0e2167f7aa866944",
+      "parentCountryEntityId": "country-9bef984affea20d8",
+      "wikidataId": "Q262684",
+      "canonicalNameEn": "Füssen",
+      "targetPoiCount": 3,
+      "selectedPoiCount": 3
+    },
+    {
+      "key": "hamburg",
+      "entityId": "city-35d40ad856b5217d",
+      "parentCountryEntityId": "country-9bef984affea20d8",
+      "wikidataId": "Q1055",
+      "canonicalNameEn": "Hamburg",
+      "targetPoiCount": 8,
+      "selectedPoiCount": 8
+    },
+    {
+      "key": "heidelberg",
+      "entityId": "city-04043a41b9e40b7c",
+      "parentCountryEntityId": "country-9bef984affea20d8",
+      "wikidataId": "Q2966",
+      "canonicalNameEn": "Heidelberg",
+      "targetPoiCount": 5,
+      "selectedPoiCount": 5
+    },
+    {
+      "key": "leipzig",
+      "entityId": "city-b0c1c518937f5849",
+      "parentCountryEntityId": "country-9bef984affea20d8",
+      "wikidataId": "Q2079",
+      "canonicalNameEn": "Leipzig",
+      "targetPoiCount": 5,
+      "selectedPoiCount": 5
+    },
+    {
+      "key": "munich",
+      "entityId": "city-6dd5cc0f5d9b27be",
+      "parentCountryEntityId": "country-9bef984affea20d8",
+      "wikidataId": "Q1726",
+      "canonicalNameEn": "Munich",
+      "targetPoiCount": 15,
+      "selectedPoiCount": 15
+    },
+    {
+      "key": "nuremberg",
+      "entityId": "city-486403ae2fe80a8e",
+      "parentCountryEntityId": "country-9bef984affea20d8",
+      "wikidataId": "Q2090",
+      "canonicalNameEn": "Nuremberg",
+      "targetPoiCount": 8,
+      "selectedPoiCount": 8
+    },
+    {
+      "key": "rothenburg",
+      "entityId": "city-cc58ce9627425138",
+      "parentCountryEntityId": "country-9bef984affea20d8",
+      "wikidataId": "Q153494",
+      "canonicalNameEn": "Rothenburg ob der Tauber",
+      "targetPoiCount": 3,
+      "selectedPoiCount": 3
+    },
+    {
+      "key": "stuttgart",
+      "entityId": "city-cb1036743b005670",
+      "parentCountryEntityId": "country-9bef984affea20d8",
+      "wikidataId": "Q1022",
+      "canonicalNameEn": "Stuttgart",
+      "targetPoiCount": 5,
+      "selectedPoiCount": 5
+    }
+  ],
+  "pois": [
+    {
+      "entityId": "poi-085031ca51562873",
+      "parentCityEntityId": "city-04043a41b9e40b7c",
+      "wikidataId": "Q574702",
+      "canonicalNameEn": "Church of the Holy Spirit"
+    },
+    {
+      "entityId": "poi-0e8f7417903bcb43",
+      "parentCityEntityId": "city-04043a41b9e40b7c",
+      "wikidataId": "Q327265",
+      "canonicalNameEn": "Heidelberg Castle"
+    },
+    {
+      "entityId": "poi-14862138e72c74fc",
+      "parentCityEntityId": "city-04043a41b9e40b7c",
+      "wikidataId": "Q874724",
+      "canonicalNameEn": "Kurpfälzisches Museum"
+    },
+    {
+      "entityId": "poi-3eee7ca2479728d8",
+      "parentCityEntityId": "city-04043a41b9e40b7c",
+      "wikidataId": "Q435416",
+      "canonicalNameEn": "Old Bridge"
+    },
+    {
+      "entityId": "poi-9fc1faf0001f852d",
+      "parentCityEntityId": "city-04043a41b9e40b7c",
+      "wikidataId": "Q897016",
+      "canonicalNameEn": "Philosophers' Way"
+    },
+    {
+      "entityId": "poi-388f9bf56abf16f1",
+      "parentCityEntityId": "city-0e2167f7aa866944",
+      "wikidataId": "Q1623988",
+      "canonicalNameEn": "High Castle of Füssen"
+    },
+    {
+      "entityId": "poi-d157a5b88ca7e0c2",
+      "parentCityEntityId": "city-0e2167f7aa866944",
+      "wikidataId": "Q76627637",
+      "canonicalNameEn": "Museum of the City of Füssen"
+    },
+    {
+      "entityId": "poi-3d71d23e25430d31",
+      "parentCityEntityId": "city-0e2167f7aa866944",
+      "wikidataId": "Q1527304",
+      "canonicalNameEn": "St. Mang's Abbey"
+    },
+    {
+      "entityId": "poi-30d246a5a4e2185c",
+      "parentCityEntityId": "city-35d40ad856b5217d",
+      "wikidataId": "Q673223",
+      "canonicalNameEn": "Elbphilharmonie"
+    },
+    {
+      "entityId": "poi-6b47c88656fe5ce9",
+      "parentCityEntityId": "city-35d40ad856b5217d",
+      "wikidataId": "Q3987",
+      "canonicalNameEn": "Hamburg Rathaus"
+    },
+    {
+      "entityId": "poi-7e9b612686300534",
+      "parentCityEntityId": "city-35d40ad856b5217d",
+      "wikidataId": "Q169542",
+      "canonicalNameEn": "Hamburger Kunsthalle"
+    },
+    {
+      "entityId": "poi-fcd093fa0a8657b8",
+      "parentCityEntityId": "city-35d40ad856b5217d",
+      "wikidataId": "Q937608",
+      "canonicalNameEn": "International Maritime Museum Hamburg"
+    },
+    {
+      "entityId": "poi-0e2d601fa95aab85",
+      "parentCityEntityId": "city-35d40ad856b5217d",
+      "wikidataId": "Q685524",
+      "canonicalNameEn": "Miniatur Wunderland"
+    },
+    {
+      "entityId": "poi-0eda97962bc7338f",
+      "parentCityEntityId": "city-35d40ad856b5217d",
+      "wikidataId": "Q494440",
+      "canonicalNameEn": "Planten un Blomen"
+    },
+    {
+      "entityId": "poi-1520dbb1f8cb4857",
+      "parentCityEntityId": "city-35d40ad856b5217d",
+      "wikidataId": "Q661881",
+      "canonicalNameEn": "Speicherstadt"
+    },
+    {
+      "entityId": "poi-a231be50ab664612",
+      "parentCityEntityId": "city-35d40ad856b5217d",
+      "wikidataId": "Q674472",
+      "canonicalNameEn": "St. Michael's Church"
+    },
+    {
+      "entityId": "poi-9062570a5f763741",
+      "parentCityEntityId": "city-486403ae2fe80a8e",
+      "wikidataId": "Q523148",
+      "canonicalNameEn": "Albrecht Dürer's House"
+    },
+    {
+      "entityId": "poi-c12040f565372972",
+      "parentCityEntityId": "city-486403ae2fe80a8e",
+      "wikidataId": "Q877333",
+      "canonicalNameEn": "Documentation Center Nazi Party Rally Grounds"
+    },
+    {
+      "entityId": "poi-5d6ab7f70bbcfb8c",
+      "parentCityEntityId": "city-486403ae2fe80a8e",
+      "wikidataId": "Q478695",
+      "canonicalNameEn": "Germanisches Nationalmuseum"
+    },
+    {
+      "entityId": "poi-faee93a1c07602ca",
+      "parentCityEntityId": "city-486403ae2fe80a8e",
+      "wikidataId": "Q707396",
+      "canonicalNameEn": "Nuremberg Castle"
+    },
+    {
+      "entityId": "poi-a6214001755e3a3e",
+      "parentCityEntityId": "city-486403ae2fe80a8e",
+      "wikidataId": "Q458915",
+      "canonicalNameEn": "Nuremberg Transport Museum"
+    },
+    {
+      "entityId": "poi-20e066f1b0e57dd1",
+      "parentCityEntityId": "city-486403ae2fe80a8e",
+      "wikidataId": "Q686220",
+      "canonicalNameEn": "Nuremberg Zoo"
+    },
+    {
+      "entityId": "poi-f07d82a1bc8ef716",
+      "parentCityEntityId": "city-486403ae2fe80a8e",
+      "wikidataId": "Q519595",
+      "canonicalNameEn": "Schöner Brunnen"
+    },
+    {
+      "entityId": "poi-a9c411bba6389ba3",
+      "parentCityEntityId": "city-486403ae2fe80a8e",
+      "wikidataId": "Q707357",
+      "canonicalNameEn": "St. Lorenz"
+    },
+    {
+      "entityId": "poi-7d626e4e649f46a7",
+      "parentCityEntityId": "city-4c0072d93c40af15",
+      "wikidataId": "Q4176",
+      "canonicalNameEn": "Cologne Cathedral"
+    },
+    {
+      "entityId": "poi-de97941f593625e4",
+      "parentCityEntityId": "city-4c0072d93c40af15",
+      "wikidataId": "Q55399",
+      "canonicalNameEn": "Cologne Chocolate Museum"
+    },
+    {
+      "entityId": "poi-6cb3319696c21e97",
+      "parentCityEntityId": "city-4c0072d93c40af15",
+      "wikidataId": "Q323556",
+      "canonicalNameEn": "Cologne City Hall"
+    },
+    {
+      "entityId": "poi-dfa1505e792bd022",
+      "parentCityEntityId": "city-4c0072d93c40af15",
+      "wikidataId": "Q564520",
+      "canonicalNameEn": "Great St. Martin Church"
+    },
+    {
+      "entityId": "poi-e1ae439c6f6fac7c",
+      "parentCityEntityId": "city-4c0072d93c40af15",
+      "wikidataId": "Q696762",
+      "canonicalNameEn": "Hohenzollern Bridge"
+    },
+    {
+      "entityId": "poi-aa429e82d2d46e7d",
+      "parentCityEntityId": "city-4c0072d93c40af15",
+      "wikidataId": "Q703640",
+      "canonicalNameEn": "Museum Ludwig"
+    },
+    {
+      "entityId": "poi-a0c82173ea61f6fc",
+      "parentCityEntityId": "city-4c0072d93c40af15",
+      "wikidataId": "Q707955",
+      "canonicalNameEn": "Romano-Germanic Museum"
+    },
+    {
+      "entityId": "poi-7fb4fd5d58263694",
+      "parentCityEntityId": "city-4c0072d93c40af15",
+      "wikidataId": "Q700959",
+      "canonicalNameEn": "Wallraf–Richartz Museum"
+    },
+    {
+      "entityId": "poi-c186033602d1c87d",
+      "parentCityEntityId": "city-6dd5cc0f5d9b27be",
+      "wikidataId": "Q127429",
+      "canonicalNameEn": "Allianz Arena"
+    },
+    {
+      "entityId": "poi-44bd59387381f0f5",
+      "parentCityEntityId": "city-6dd5cc0f5d9b27be",
+      "wikidataId": "Q154568",
+      "canonicalNameEn": "Alte Pinakothek"
+    },
+    {
+      "entityId": "poi-538e188f6288365d",
+      "parentCityEntityId": "city-6dd5cc0f5d9b27be",
+      "wikidataId": "Q152973",
+      "canonicalNameEn": "Asam Church"
+    },
+    {
+      "entityId": "poi-57b32d1d672713cb",
+      "parentCityEntityId": "city-6dd5cc0f5d9b27be",
+      "wikidataId": "Q703212",
+      "canonicalNameEn": "BMW Museum"
+    },
+    {
+      "entityId": "poi-5c36879c65d25f64",
+      "parentCityEntityId": "city-6dd5cc0f5d9b27be",
+      "wikidataId": "Q131617",
+      "canonicalNameEn": "Deutsches Museum"
+    },
+    {
+      "entityId": "poi-b7a8a96e4e21ab31",
+      "parentCityEntityId": "city-6dd5cc0f5d9b27be",
+      "wikidataId": "Q167193",
+      "canonicalNameEn": "Frauenkirche"
+    },
+    {
+      "entityId": "poi-225d896dc2e050ed",
+      "parentCityEntityId": "city-6dd5cc0f5d9b27be",
+      "wikidataId": "Q152971",
+      "canonicalNameEn": "Hofbräuhaus am Platzl"
+    },
+    {
+      "entityId": "poi-e45acaf6e37d8bdd",
+      "parentCityEntityId": "city-6dd5cc0f5d9b27be",
+      "wikidataId": "Q686548",
+      "canonicalNameEn": "Munich Residenz"
+    },
+    {
+      "entityId": "poi-ba892d7cb17b646e",
+      "parentCityEntityId": "city-6dd5cc0f5d9b27be",
+      "wikidataId": "Q170152",
+      "canonicalNameEn": "Neue Pinakothek"
+    },
+    {
+      "entityId": "poi-03c7613e4ce64ff1",
+      "parentCityEntityId": "city-6dd5cc0f5d9b27be",
+      "wikidataId": "Q383296",
+      "canonicalNameEn": "Olympiapark"
+    },
+    {
+      "entityId": "poi-a834b802d4e74e45",
+      "parentCityEntityId": "city-6dd5cc0f5d9b27be",
+      "wikidataId": "Q250195",
+      "canonicalNameEn": "Pinakothek der Moderne"
+    },
+    {
+      "entityId": "poi-59d9cb6840de75b6",
+      "parentCityEntityId": "city-6dd5cc0f5d9b27be",
+      "wikidataId": "Q686629",
+      "canonicalNameEn": "Viktualienmarkt"
+    },
+    {
+      "entityId": "poi-d70966e336ba2d8a",
+      "parentCityEntityId": "city-9191f5c8ad23559d",
+      "wikidataId": "Q25711",
+      "canonicalNameEn": "Brühl's Terrace"
+    },
+    {
+      "entityId": "poi-707a1ef601baf6c9",
+      "parentCityEntityId": "city-9191f5c8ad23559d",
+      "wikidataId": "Q167314",
+      "canonicalNameEn": "Dresden Castle"
+    },
+    {
+      "entityId": "poi-c096bb02574e3b03",
+      "parentCityEntityId": "city-9191f5c8ad23559d",
+      "wikidataId": "Q157229",
+      "canonicalNameEn": "Dresden Frauenkirche"
+    },
+    {
+      "entityId": "poi-f561cd2c5a501c2d",
+      "parentCityEntityId": "city-9191f5c8ad23559d",
+      "wikidataId": "Q155107",
+      "canonicalNameEn": "Dresden Zwinger"
+    },
+    {
+      "entityId": "poi-2f93f99dec352050",
+      "parentCityEntityId": "city-9191f5c8ad23559d",
+      "wikidataId": "Q707407",
+      "canonicalNameEn": "Green Vault"
+    },
+    {
+      "entityId": "poi-450ec7933ba8dcb0",
+      "parentCityEntityId": "city-9191f5c8ad23559d",
+      "wikidataId": "Q4890",
+      "canonicalNameEn": "Old Masters Picture Gallery"
+    },
+    {
+      "entityId": "poi-e0ab732066a3b312",
+      "parentCityEntityId": "city-9191f5c8ad23559d",
+      "wikidataId": "Q462239",
+      "canonicalNameEn": "Pillnitz Castle"
+    },
+    {
+      "entityId": "poi-74c585465827eb9e",
+      "parentCityEntityId": "city-9191f5c8ad23559d",
+      "wikidataId": "Q127097",
+      "canonicalNameEn": "Semperoper"
+    },
+    {
+      "entityId": "poi-c35ac75d524146a5",
+      "parentCityEntityId": "city-92d9ceba1c4a056d",
+      "wikidataId": "Q152783",
+      "canonicalNameEn": "Alexanderplatz"
+    },
+    {
+      "entityId": "poi-6dd39324ee63fbf0",
+      "parentCityEntityId": "city-92d9ceba1c4a056d",
+      "wikidataId": "Q154563",
+      "canonicalNameEn": "Berlin Cathedral"
+    },
+    {
+      "entityId": "poi-7c18da5df8e160ea",
+      "parentCityEntityId": "city-92d9ceba1c4a056d",
+      "wikidataId": "Q95517",
+      "canonicalNameEn": "Berlin Wall Memorial"
+    },
+    {
+      "entityId": "poi-ddaba4546880ea4b",
+      "parentCityEntityId": "city-92d9ceba1c4a056d",
+      "wikidataId": "Q154996",
+      "canonicalNameEn": "Charlottenburg Palace"
+    },
+    {
+      "entityId": "poi-507bb04c085e931a",
+      "parentCityEntityId": "city-92d9ceba1c4a056d",
+      "wikidataId": "Q68689",
+      "canonicalNameEn": "Checkpoint Charlie"
+    },
+    {
+      "entityId": "poi-80c92526c863edda",
+      "parentCityEntityId": "city-92d9ceba1c4a056d",
+      "wikidataId": "Q170103",
+      "canonicalNameEn": "Gendarmenmarkt"
+    },
+    {
+      "entityId": "poi-f6d5f6877a36f5e4",
+      "parentCityEntityId": "city-92d9ceba1c4a056d",
+      "wikidataId": "Q153951",
+      "canonicalNameEn": "Kaiser Wilhelm Memorial Church"
+    },
+    {
+      "entityId": "poi-f1caa24655101227",
+      "parentCityEntityId": "city-92d9ceba1c4a056d",
+      "wikidataId": "Q160700",
+      "canonicalNameEn": "Memorial to the Murdered Jews of Europe"
+    },
+    {
+      "entityId": "poi-97bd52e42d77ce7e",
+      "parentCityEntityId": "city-92d9ceba1c4a056d",
+      "wikidataId": "Q157298",
+      "canonicalNameEn": "Pergamon Museum"
+    },
+    {
+      "entityId": "poi-3706ca1a0342269b",
+      "parentCityEntityId": "city-92d9ceba1c4a056d",
+      "wikidataId": "Q151897",
+      "canonicalNameEn": "Reichstag Building"
+    },
+    {
+      "entityId": "poi-52147234ac3f2421",
+      "parentCityEntityId": "city-92d9ceba1c4a056d",
+      "wikidataId": "Q694020",
+      "canonicalNameEn": "Tiergarten"
+    },
+    {
+      "entityId": "poi-dc08b5ce281538be",
+      "parentCityEntityId": "city-92d9ceba1c4a056d",
+      "wikidataId": "Q819081",
+      "canonicalNameEn": "Topography of Terror"
+    },
+    {
+      "entityId": "poi-82f40f2370a6ae30",
+      "parentCityEntityId": "city-b0c1c518937f5849",
+      "wikidataId": "Q519613",
+      "canonicalNameEn": "Gewandhaus"
+    },
+    {
+      "entityId": "poi-ce3547c472167005",
+      "parentCityEntityId": "city-b0c1c518937f5849",
+      "wikidataId": "Q220055",
+      "canonicalNameEn": "Leipzig Zoological Garden"
+    },
+    {
+      "entityId": "poi-693b4dae16a4b7fb",
+      "parentCityEntityId": "city-b0c1c518937f5849",
+      "wikidataId": "Q699448",
+      "canonicalNameEn": "Monument to the Battle of the Nations"
+    },
+    {
+      "entityId": "poi-0108c681751ee148",
+      "parentCityEntityId": "city-b0c1c518937f5849",
+      "wikidataId": "Q566661",
+      "canonicalNameEn": "Museum of Fine Arts"
+    },
+    {
+      "entityId": "poi-15b49d2a1b08da64",
+      "parentCityEntityId": "city-b0c1c518937f5849",
+      "wikidataId": "Q170402",
+      "canonicalNameEn": "St. Thomas Church"
+    },
+    {
+      "entityId": "poi-22d198099ffd98b0",
+      "parentCityEntityId": "city-cb1036743b005670",
+      "wikidataId": "Q707377",
+      "canonicalNameEn": "Mercedes-Benz Museum"
+    },
+    {
+      "entityId": "poi-3d411d01ed779ba4",
+      "parentCityEntityId": "city-cb1036743b005670",
+      "wikidataId": "Q328623",
+      "canonicalNameEn": "Porsche Museum"
+    },
+    {
+      "entityId": "poi-70ac97f4be00103a",
+      "parentCityEntityId": "city-cb1036743b005670",
+      "wikidataId": "Q242067",
+      "canonicalNameEn": "Schlossplatz"
+    },
+    {
+      "entityId": "poi-1b02a95228efca3d",
+      "parentCityEntityId": "city-cb1036743b005670",
+      "wikidataId": "Q14917275",
+      "canonicalNameEn": "Staatsgalerie Stuttgart"
+    },
+    {
+      "entityId": "poi-d31e913a8dbbc871",
+      "parentCityEntityId": "city-cb1036743b005670",
+      "wikidataId": "Q679067",
+      "canonicalNameEn": "Wilhelma"
+    },
+    {
+      "entityId": "poi-bd09f56ffda31dad",
+      "parentCityEntityId": "city-cc58ce9627425138",
+      "wikidataId": "Q23787389",
+      "canonicalNameEn": "Medieval Crime Museum"
+    },
+    {
+      "entityId": "poi-2663cf5003b14ee7",
+      "parentCityEntityId": "city-cc58ce9627425138",
+      "wikidataId": "Q60853296",
+      "canonicalNameEn": "Plönlein"
+    },
+    {
+      "entityId": "poi-d455a95ab264285d",
+      "parentCityEntityId": "city-cc58ce9627425138",
+      "wikidataId": "Q880354",
+      "canonicalNameEn": "St. James's Church"
+    },
+    {
+      "entityId": "poi-3493f728d6f3e042",
+      "parentCityEntityId": "city-eb3b0543a44c1a6a",
+      "wikidataId": "Q436079",
+      "canonicalNameEn": "Alte Oper"
+    },
+    {
+      "entityId": "poi-9798b43903892bad",
+      "parentCityEntityId": "city-eb3b0543a44c1a6a",
+      "wikidataId": "Q57341",
+      "canonicalNameEn": "Frankfurt Cathedral"
+    },
+    {
+      "entityId": "poi-bc13b353e878d1b1",
+      "parentCityEntityId": "city-eb3b0543a44c1a6a",
+      "wikidataId": "Q896039",
+      "canonicalNameEn": "Goethe House"
+    },
+    {
+      "entityId": "poi-c9ad4440b37534b3",
+      "parentCityEntityId": "city-eb3b0543a44c1a6a",
+      "wikidataId": "Q321291",
+      "canonicalNameEn": "Main Tower"
+    },
+    {
+      "entityId": "poi-d34b83251bb568c4",
+      "parentCityEntityId": "city-eb3b0543a44c1a6a",
+      "wikidataId": "Q456994",
+      "canonicalNameEn": "Museum für Moderne Kunst"
+    },
+    {
+      "entityId": "poi-2db98d82378cc6e3",
+      "parentCityEntityId": "city-eb3b0543a44c1a6a",
+      "wikidataId": "Q663149",
+      "canonicalNameEn": "Palmengarten"
+    },
+    {
+      "entityId": "poi-f45d047a462746fc",
+      "parentCityEntityId": "city-eb3b0543a44c1a6a",
+      "wikidataId": "Q195146",
+      "canonicalNameEn": "Römer"
+    },
+    {
+      "entityId": "poi-2847d7a34315e692",
+      "parentCityEntityId": "city-eb3b0543a44c1a6a",
+      "wikidataId": "Q163804",
+      "canonicalNameEn": "Städel Museum"
+    }
+  ],
+  "regionalReview": []
+}

@@ -121,6 +121,58 @@ const BATCH05_08_CITY_POI_COUNTS = Object.freeze({
   Yeosu: 4,
 });
 const BATCH05_08_CITY_NAMES = Object.freeze(Object.keys(BATCH05_08_CITY_POI_COUNTS));
+const BATCH09_13_CITY_POI_COUNTS = Object.freeze({
+  Berlin: 15,
+  Cologne: 8,
+  Dresden: 8,
+  Frankfurt: 8,
+  "Füssen": 3,
+  Hamburg: 8,
+  Heidelberg: 5,
+  Leipzig: 5,
+  Munich: 15,
+  Nuremberg: 8,
+  "Rothenburg ob der Tauber": 3,
+  Stuttgart: 5,
+  Bregenz: 5,
+  Graz: 8,
+  Hallstatt: 3,
+  Innsbruck: 8,
+  Linz: 5,
+  Salzburg: 8,
+  Vienna: 15,
+  "Zell am See": 3,
+  Aveiro: 5,
+  Braga: 5,
+  Coimbra: 8,
+  "Évora": 5,
+  Faro: 5,
+  "Guimarães": 5,
+  Lagos: 5,
+  Lisbon: 15,
+  Porto: 8,
+  Sintra: 8,
+  Athens: 15,
+  Chania: 8,
+  "Corfu Town": 8,
+  Delphi: 3,
+  Heraklion: 8,
+  Kalabaka: 3,
+  Nafplio: 5,
+  "Rhodes Town": 8,
+  Thessaloniki: 8,
+  Amsterdam: 15,
+  Delft: 5,
+  Giethoorn: 3,
+  Groningen: 5,
+  Haarlem: 5,
+  Leiden: 5,
+  Maastricht: 5,
+  Rotterdam: 8,
+  "The Hague": 8,
+  Utrecht: 8,
+});
+const BATCH09_13_CITY_NAMES = Object.freeze(Object.keys(BATCH09_13_CITY_POI_COUNTS));
 const EXPECTED_CITY_POI_COUNTS = Object.freeze({
   ...Object.fromEntries([
     ...BATCH01_CITY_NAMES,
@@ -129,6 +181,7 @@ const EXPECTED_CITY_POI_COUNTS = Object.freeze({
   ].map((name) => [name, 3])),
   ...BATCH04_CITY_POI_COUNTS,
   ...BATCH05_08_CITY_POI_COUNTS,
+  ...BATCH09_13_CITY_POI_COUNTS,
 });
 const UI_AND_PLANNER_PATHS = Object.freeze([
   "atlas.js",
@@ -258,6 +311,7 @@ try {
     ...BATCH03_CITY_NAMES,
     ...BATCH04_CITY_NAMES,
     ...BATCH05_08_CITY_NAMES,
+    ...BATCH09_13_CITY_NAMES,
   ])];
   const batchCities = batchCityNames.map((name) => {
     const city = cities.find((candidate) => candidate.canonicalNameEn === name);
@@ -268,11 +322,11 @@ try {
   const pilotPois = pois.filter((poi) => !batchCityIds.has(poi.parentCityEntityId));
 
   assert.equal(new Set(countries.map((entity) => entity.entityId)).size, 51);
-  assert.equal(new Set(cities.map((entity) => entity.entityId)).size, 99);
-  assert.equal(new Set(pois.map((entity) => entity.entityId)).size, 568);
-  assert.equal(new Set([...countries, ...cities, ...pois].map((entity) => entity.entityId)).size, 718);
-  assert.equal(new Set(cities.map((entity) => entity.wikidataId)).size, 99);
-  assert.equal(new Set(pois.map((entity) => entity.wikidataId)).size, 568);
+  assert.equal(new Set(cities.map((entity) => entity.entityId)).size, 144);
+  assert.equal(new Set(pois.map((entity) => entity.entityId)).size, 904);
+  assert.equal(new Set([...countries, ...cities, ...pois].map((entity) => entity.entityId)).size, 1099);
+  assert.equal(new Set(cities.map((entity) => entity.wikidataId)).size, 144);
+  assert.equal(new Set(pois.map((entity) => entity.wikidataId)).size, 904);
   assert.equal(pilotPois.length, 9);
   for (const city of batchCities) {
     const expectedCount = EXPECTED_CITY_POI_COUNTS[city.canonicalNameEn];
@@ -386,7 +440,7 @@ try {
     assert.equal(publicPayloadText.includes(forbidden), false, `runtime API exposed forbidden detail: ${forbidden}`);
   }
   assert.ok(requestedPaths.every((relativePath) => relativePath.startsWith("/api/knowledge-entities/")));
-  assert.equal((output.stdout.match(/Knowledge Entity Layer: 51 countries, 99 cities, 568 POIs/g) || []).length, 1);
+  assert.equal((output.stdout.match(/Knowledge Entity Layer: 51 countries, 144 cities, 904 POIs/g) || []).length, 1);
   assert.equal(output.stderr, "", `server stderr was not empty:\n${output.stderr}`);
 
   result = {

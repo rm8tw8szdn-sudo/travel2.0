@@ -78,10 +78,10 @@ const adapter = createKnowledgeEntityLayerPlannerAdapter({ repository, fallbackK
 const catalogs = createKnowledgeEntityLayerSearchIntentCatalog({ repository });
 
 assert.equal(repository.listCountries().length, 51);
-assert.equal(repository.listCities().length, 99);
-assert.equal(repository.listPois().length, 568);
+assert.equal(repository.listCities().length, 144);
+assert.equal(repository.listPois().length, 904);
 assert.equal(catalogs.countries.length, 51);
-assert.equal(catalogs.cities.length, 99);
+assert.equal(catalogs.cities.length, 144);
 
 for (const country of repository.listCountries()) {
   const intent = parseSearchIntent(country.canonicalNameEn, { catalogs });
@@ -100,8 +100,8 @@ const adapterCities = repository.listCountries().flatMap((country) => adapter.qu
   country: country.isoAlpha2,
   limit: 100,
 }).filter((destination) => destination.destinationSource === "knowledge-entity-layer"));
-assert.equal(adapterCities.length, 99);
-assert.equal(adapterCities.flatMap((city) => city.poiEntities).length, 568);
+assert.equal(adapterCities.length, 144);
+assert.equal(adapterCities.flatMap((city) => city.poiEntities).length, 904);
 assert.ok(adapterCities.every((city) => city.poiEntities.length >= 3));
 
 const expectedCities = new Map([
@@ -222,7 +222,7 @@ assert.equal(entityPlannerRecord.destinationSource, "knowledge-entity-layer");
 assert.equal(entityPlannerCandidate.destinationSource, "knowledge-entity-layer");
 assert.equal(entityPlannerRecord.countryEntities[0].entityId, "country-febe99ab26ea41f0");
 assert.ok(entityPlannerRecord.destinationEntities.every((city) => city.entityId && city.parentCountryEntityId));
-assert.ok(entityPlannerRecord.destinationEntities.every((city) => city.poiEntities.length === 3));
+assert.ok(entityPlannerRecord.destinationEntities.every((city) => city.poiEntities.length >= 3));
 assert.equal(entityPlannerRecord.destinationEntities[0].canonicalNameEn, "Amsterdam");
 assert.equal(entityPlannerRecord.provenance.sources[0].providerId, "knowledge-entity-layer");
 
@@ -320,10 +320,9 @@ assert.equal(defaultSearchResult.records.length, 1);
 assert.equal(defaultSearchResult.records[0].destinationSource, "knowledge-entity-layer");
 assert.equal(defaultSearchResult.records[0].countryEntities[0].entityId, "country-febe99ab26ea41f0");
 assert.equal(defaultSearchResult.records[0].destinationEntities[0].canonicalNameEn, "Amsterdam");
-assert.deepEqual(
-  defaultSearchResult.records[0].destinationEntities[0].poiEntities.map((poi) => poi.canonicalNameEn),
-  expectedCities.get("Amsterdam"),
-);
+const defaultAmsterdamPois = defaultSearchResult.records[0].destinationEntities[0].poiEntities
+  .map((poi) => poi.canonicalNameEn);
+assert.ok(expectedCities.get("Amsterdam").every((poi) => defaultAmsterdamPois.includes(poi)));
 
 assert.equal(networkRequestCount, 0, "Planner integration must not perform external network requests");
 assert.deepEqual(directorySnapshot(path.join(projectRoot, ".route-v2-cache")), cacheBefore, "Planner integration must not change route cache files");

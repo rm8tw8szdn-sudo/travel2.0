@@ -52,6 +52,21 @@ const TRUSTED_SOURCE_DOMAINS = Object.freeze([
   { domain: "meteofrance.com", sourceType: "approved-high-trust-source", publisher: "Meteo-France" },
   { domain: "aemet.es", sourceType: "approved-high-trust-source", publisher: "AEMET" },
   { domain: "kma.go.kr", sourceType: "approved-high-trust-source", publisher: "Korea Meteorological Administration" },
+  { domain: "bahn.de", sourceType: "official-transport-operator", publisher: "Deutsche Bahn AG" },
+  { domain: "oebb.at", sourceType: "official-transport-operator", publisher: "Österreichische Bundesbahnen" },
+  { domain: "cp.pt", sourceType: "official-transport-operator", publisher: "CP – Comboios de Portugal" },
+  { domain: "hellenictrain.gr", sourceType: "official-transport-operator", publisher: "Hellenic Train" },
+  { domain: "ktelargolida.gr", sourceType: "official-transport-operator", publisher: "KTEL Argolidas" },
+  { domain: "ktel-fokidas.gr", sourceType: "official-transport-operator", publisher: "KTEL Fokidas" },
+  { domain: "ktel-trikala.gr", sourceType: "official-transport-operator", publisher: "KTEL Trikala" },
+  { domain: "aegeanair.com", sourceType: "official-transport-operator", publisher: "AEGEAN Airlines" },
+  { domain: "e-ktel.com", sourceType: "official-transport-operator", publisher: "KTEL Chania-Rethymno" },
+  { domain: "ns.nl", sourceType: "official-transport-operator", publisher: "Nederlandse Spoorwegen" },
+  { domain: "dwd.de", sourceType: "approved-high-trust-source", publisher: "Deutscher Wetterdienst" },
+  { domain: "geosphere.at", sourceType: "approved-high-trust-source", publisher: "GeoSphere Austria" },
+  { domain: "ipma.pt", sourceType: "approved-high-trust-source", publisher: "Instituto Português do Mar e da Atmosfera" },
+  { domain: "emy.gr", sourceType: "approved-high-trust-source", publisher: "Hellenic National Meteorological Service" },
+  { domain: "knmi.nl", sourceType: "approved-high-trust-source", publisher: "Royal Netherlands Meteorological Institute" },
 ]);
 
 function clean(value) {

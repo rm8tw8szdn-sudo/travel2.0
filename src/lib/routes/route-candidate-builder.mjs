@@ -246,6 +246,7 @@ function candidateDraft({
   routeIntentFingerprint,
   normalizedRouteIntent,
   candidateVariant = "",
+  requiredCountryConstraint = null,
 }) {
   const normalizedDestinations = dedupeDestinations(destinations);
   if (normalizedDestinations.length < 2) return null;
@@ -274,6 +275,12 @@ function candidateDraft({
           ids: [...requiredConstraint.ids],
           names: [...(requiredConstraint.names || [])],
           orderMode: requiredConstraint.orderMode,
+        }),
+      ] : []),
+      ...(requiredCountryConstraint?.codes?.length ? [
+        supportingSignal("required-country-constraint", {
+          codes: [...requiredCountryConstraint.codes],
+          orderMode: requiredCountryConstraint.orderMode,
         }),
       ] : []),
     ],
@@ -395,6 +402,61 @@ function requiredCandidateSequences(pool, maxDestinations, seed, requiredConstra
   ];
 }
 
+function resolveRequiredCountries(context = {}, pool = []) {
+  const codes = unique(context.requiredCountryCodes || []).map(normalizeCode).filter(Boolean);
+  const available = new Set(pool.map((destination) => normalizeCode(destination.countryCode)).filter(Boolean));
+  return {
+    codes,
+    missingCodes: codes.filter((code) => !available.has(code)),
+    orderMode: cleanString(context.countryOrderMode || context.destinationOrderMode) === "fixed" ? "fixed" : "flexible",
+  };
+}
+
+function requiredCountryCandidateSequences(pool, maxDestinations, seed, constraint) {
+  const grouped = new Map(constraint.codes.map((code) => [
+    code,
+    stableSortDestinations(
+      pool.filter((destination) => normalizeCode(destination.countryCode) === code),
+      `${seed}:required-country:${code}`,
+    ),
+  ]));
+  if ([...grouped.values()].some((destinations) => destinations.length === 0)) return [];
+
+  function groupedSequence(countryOrder, variantIndex) {
+    const rotatedGroups = new Map(countryOrder.map((code) => [
+      code,
+      deterministicRotate(grouped.get(code), variantIndex),
+    ]));
+    const counts = new Map(countryOrder.map((code) => [code, 1]));
+    let remaining = Math.max(0, maxDestinations - countryOrder.length);
+    while (remaining > 0) {
+      let added = false;
+      for (const code of countryOrder) {
+        const nextCount = Number(counts.get(code) || 0) + 1;
+        if (nextCount > rotatedGroups.get(code).length) continue;
+        counts.set(code, nextCount);
+        remaining -= 1;
+        added = true;
+        if (remaining === 0) break;
+      }
+      if (!added) break;
+    }
+    return countryOrder.flatMap((code) => rotatedGroups.get(code).slice(0, counts.get(code)));
+  }
+
+  const inputOrder = [...constraint.codes];
+  const reverseOrder = [...constraint.codes].reverse();
+  return [
+    { method: "required-country-balanced", candidateVariant: "balanced", destinations: groupedSequence(inputOrder, 0) },
+    {
+      method: "required-country-low-transfer",
+      candidateVariant: "low-transfer",
+      destinations: groupedSequence(constraint.orderMode === "fixed" ? inputOrder : reverseOrder, 1),
+    },
+    { method: "required-country-depth", candidateVariant: "depth", destinations: groupedSequence(inputOrder, 2) },
+  ];
+}
+
 function citywalkCandidateSequences(pool, seed, requiredConstraint) {
   const city = dedupeDestinations(requiredConstraint.destinations)[0];
   if (!city) return [];
@@ -425,16 +487,28 @@ export function buildRouteCandidatesFromPool({
   const intentId = deriveIntentId(context, concept, normalizedPool);
   const requestedTarget = clampCandidateTarget(targetCount);
   const citywalkReference = cleanString(context.routeReferenceMode) === "citywalk";
+  const requestedMaxDestinations = Number(context.candidateMaxDestinationCount);
+  const plannerDestinationCap = Number.isInteger(requestedMaxDestinations) && requestedMaxDestinations >= 2
+    ? requestedMaxDestinations
+    : normalizedPool.length;
   const maxDestinations = citywalkReference
     ? normalizedPool.length
-    : Math.min(maxDestinationsForRouteIntentDays(durationDays) || 4, normalizedPool.length);
+    : Math.min(
+        maxDestinationsForRouteIntentDays(durationDays) || 4,
+        plannerDestinationCap,
+        normalizedPool.length,
+      );
   const candidateSeed = cleanString(seed || context.seed || concept.seed);
   const requiredConstraint = resolveRequiredDestinations(context, normalizedPool);
   if (requiredConstraint.missingIds.length) return [];
+  const requiredCountryConstraint = resolveRequiredCountries(context, normalizedPool);
+  if (requiredCountryConstraint.missingCodes.length) return [];
   const sequences = citywalkReference
     ? citywalkCandidateSequences(normalizedPool, candidateSeed, requiredConstraint)
     : requiredConstraint.ids.length
     ? requiredCandidateSequences(normalizedPool, maxDestinations, candidateSeed, requiredConstraint)
+    : requiredCountryConstraint.codes.length > 1
+      ? requiredCountryCandidateSequences(normalizedPool, maxDestinations, candidateSeed, requiredCountryConstraint)
     : normalizedPool.length === 2
       ? [
           { method: "two-destination-balanced", candidateVariant: "balanced", destinations: normalizedPool },
@@ -460,6 +534,7 @@ export function buildRouteCandidatesFromPool({
       routeIntentFingerprint: routeIntentFingerprint.value,
       normalizedRouteIntent: routeIntentFingerprint.normalizedIntent,
       candidateVariant: sequence.candidateVariant,
+      requiredCountryConstraint,
     });
     if (!draft) continue;
     const candidate = normalizeRouteCandidate({ ...draft, createdAt }, { now: () => createdAt });

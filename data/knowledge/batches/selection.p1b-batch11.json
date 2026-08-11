@@ -1,0 +1,521 @@
+{
+  "schemaVersion": "route-v2-batch04c-portugal-selection-v1",
+  "country": [
+    {
+      "entityId": "country-1f0b323f39f6befd",
+      "wikidataId": "Q45",
+      "canonicalNameEn": "Portugal"
+    }
+  ],
+  "cities": [
+    {
+      "key": "aveiro",
+      "entityId": "city-abdd80683790dc81",
+      "parentCountryEntityId": "country-1f0b323f39f6befd",
+      "wikidataId": "Q485581",
+      "canonicalNameEn": "Aveiro",
+      "targetPoiCount": 5,
+      "selectedPoiCount": 5
+    },
+    {
+      "key": "braga",
+      "entityId": "city-ed958a6d1d2dcc7d",
+      "parentCountryEntityId": "country-1f0b323f39f6befd",
+      "wikidataId": "Q83247",
+      "canonicalNameEn": "Braga",
+      "targetPoiCount": 5,
+      "selectedPoiCount": 5
+    },
+    {
+      "key": "coimbra",
+      "entityId": "city-3afec41980a016c2",
+      "parentCountryEntityId": "country-1f0b323f39f6befd",
+      "wikidataId": "Q45412",
+      "canonicalNameEn": "Coimbra",
+      "targetPoiCount": 8,
+      "selectedPoiCount": 8
+    },
+    {
+      "key": "evora",
+      "entityId": "city-5bf2ba95e40c608e",
+      "parentCountryEntityId": "country-1f0b323f39f6befd",
+      "wikidataId": "Q179948",
+      "canonicalNameEn": "Évora",
+      "targetPoiCount": 5,
+      "selectedPoiCount": 5
+    },
+    {
+      "key": "faro",
+      "entityId": "city-c159dcf369a61f40",
+      "parentCountryEntityId": "country-1f0b323f39f6befd",
+      "wikidataId": "Q159457",
+      "canonicalNameEn": "Faro",
+      "targetPoiCount": 5,
+      "selectedPoiCount": 5
+    },
+    {
+      "key": "guimaraes",
+      "entityId": "city-e522715ce542e2ca",
+      "parentCountryEntityId": "country-1f0b323f39f6befd",
+      "wikidataId": "Q170903",
+      "canonicalNameEn": "Guimarães",
+      "targetPoiCount": 5,
+      "selectedPoiCount": 5
+    },
+    {
+      "key": "lagos",
+      "entityId": "city-23e4523c57c5ac2a",
+      "parentCountryEntityId": "country-1f0b323f39f6befd",
+      "wikidataId": "Q732548",
+      "canonicalNameEn": "Lagos",
+      "targetPoiCount": 5,
+      "selectedPoiCount": 5
+    },
+    {
+      "key": "lisbon",
+      "entityId": "city-0b698dc2d0543b0e",
+      "parentCountryEntityId": "country-1f0b323f39f6befd",
+      "wikidataId": "Q597",
+      "canonicalNameEn": "Lisbon",
+      "targetPoiCount": 15,
+      "selectedPoiCount": 15
+    },
+    {
+      "key": "porto",
+      "entityId": "city-6f31bde299eab111",
+      "parentCountryEntityId": "country-1f0b323f39f6befd",
+      "wikidataId": "Q36433",
+      "canonicalNameEn": "Porto",
+      "targetPoiCount": 8,
+      "selectedPoiCount": 8
+    },
+    {
+      "key": "sintra",
+      "entityId": "city-4258f12373d3c348",
+      "parentCountryEntityId": "country-1f0b323f39f6befd",
+      "wikidataId": "Q190187",
+      "canonicalNameEn": "Sintra",
+      "targetPoiCount": 8,
+      "selectedPoiCount": 8
+    }
+  ],
+  "pois": [
+    {
+      "entityId": "poi-6e51dc6255515fca",
+      "parentCityEntityId": "city-0b698dc2d0543b0e",
+      "wikidataId": "Q215003",
+      "canonicalNameEn": "Belém Tower"
+    },
+    {
+      "entityId": "poi-d5a5696ea46f0a35",
+      "parentCityEntityId": "city-0b698dc2d0543b0e",
+      "wikidataId": "Q211262",
+      "canonicalNameEn": "Calouste Gulbenkian Museum"
+    },
+    {
+      "entityId": "poi-d78b4ea469ee58ee",
+      "parentCityEntityId": "city-0b698dc2d0543b0e",
+      "wikidataId": "Q1470414",
+      "canonicalNameEn": "Carmo Convent"
+    },
+    {
+      "entityId": "poi-63cbc46ab2e6cfb1",
+      "parentCityEntityId": "city-0b698dc2d0543b0e",
+      "wikidataId": "Q2657972",
+      "canonicalNameEn": "Estrela Basilica"
+    },
+    {
+      "entityId": "poi-31113712100ea159",
+      "parentCityEntityId": "city-0b698dc2d0543b0e",
+      "wikidataId": "Q272781",
+      "canonicalNameEn": "Jerónimos Monastery"
+    },
+    {
+      "entityId": "poi-09ba1e4f0fea22b6",
+      "parentCityEntityId": "city-0b698dc2d0543b0e",
+      "wikidataId": "Q432290",
+      "canonicalNameEn": "Lisbon Cathedral"
+    },
+    {
+      "entityId": "poi-82799885c56f3318",
+      "parentCityEntityId": "city-0b698dc2d0543b0e",
+      "wikidataId": "Q652806",
+      "canonicalNameEn": "Lisbon Oceanarium"
+    },
+    {
+      "entityId": "poi-73b0042a1ac625e0",
+      "parentCityEntityId": "city-0b698dc2d0543b0e",
+      "wikidataId": "Q27522479",
+      "canonicalNameEn": "MAAT"
+    },
+    {
+      "entityId": "poi-650e42449143b9af",
+      "parentCityEntityId": "city-0b698dc2d0543b0e",
+      "wikidataId": "Q1133712",
+      "canonicalNameEn": "Monument to the Discoveries"
+    },
+    {
+      "entityId": "poi-ebee9b21260d843a",
+      "parentCityEntityId": "city-0b698dc2d0543b0e",
+      "wikidataId": "Q212459",
+      "canonicalNameEn": "National Museum of Ancient Art"
+    },
+    {
+      "entityId": "poi-506a9901d67bfe12",
+      "parentCityEntityId": "city-0b698dc2d0543b0e",
+      "wikidataId": "Q2313815",
+      "canonicalNameEn": "National Tile Museum"
+    },
+    {
+      "entityId": "poi-75464f91795a3c9d",
+      "parentCityEntityId": "city-0b698dc2d0543b0e",
+      "wikidataId": "Q999002",
+      "canonicalNameEn": "Praça do Comércio"
+    },
+    {
+      "entityId": "poi-647d5daa71083b65",
+      "parentCityEntityId": "city-0b698dc2d0543b0e",
+      "wikidataId": "Q1549270",
+      "canonicalNameEn": "Rossio"
+    },
+    {
+      "entityId": "poi-0c09beabf9849b0a",
+      "parentCityEntityId": "city-0b698dc2d0543b0e",
+      "wikidataId": "Q168001",
+      "canonicalNameEn": "Santa Justa Lift"
+    },
+    {
+      "entityId": "poi-95d008a9a0cf0af6",
+      "parentCityEntityId": "city-0b698dc2d0543b0e",
+      "wikidataId": "Q636780",
+      "canonicalNameEn": "São Jorge Castle"
+    },
+    {
+      "entityId": "poi-45785f3f13537a7d",
+      "parentCityEntityId": "city-23e4523c57c5ac2a",
+      "wikidataId": "Q98458464",
+      "canonicalNameEn": "Castle of Lagos"
+    },
+    {
+      "entityId": "poi-22369f563987fd2a",
+      "parentCityEntityId": "city-23e4523c57c5ac2a",
+      "wikidataId": "Q5994200",
+      "canonicalNameEn": "Church of Saint Anthony"
+    },
+    {
+      "entityId": "poi-55978898bddf089d",
+      "parentCityEntityId": "city-23e4523c57c5ac2a",
+      "wikidataId": "Q10283735",
+      "canonicalNameEn": "Forte da Ponta da Bandeira"
+    },
+    {
+      "entityId": "poi-aab6a812a30e403b",
+      "parentCityEntityId": "city-23e4523c57c5ac2a",
+      "wikidataId": "Q2103673",
+      "canonicalNameEn": "Ponta da Piedade"
+    },
+    {
+      "entityId": "poi-bcf86db6701b32e6",
+      "parentCityEntityId": "city-23e4523c57c5ac2a",
+      "wikidataId": "Q66813856",
+      "canonicalNameEn": "Slave Market"
+    },
+    {
+      "entityId": "poi-6f1c660d80318e8b",
+      "parentCityEntityId": "city-3afec41980a016c2",
+      "wikidataId": "Q1773229",
+      "canonicalNameEn": "Biblioteca Joanina"
+    },
+    {
+      "entityId": "poi-3db255f02e1d62da",
+      "parentCityEntityId": "city-3afec41980a016c2",
+      "wikidataId": "Q66942450",
+      "canonicalNameEn": "Botanical Garden of the University of Coimbra"
+    },
+    {
+      "entityId": "poi-08eff9ca9e7a3e08",
+      "parentCityEntityId": "city-3afec41980a016c2",
+      "wikidataId": "Q6974439",
+      "canonicalNameEn": "Machado de Castro National Museum"
+    },
+    {
+      "entityId": "poi-e9dab338e2f096d3",
+      "parentCityEntityId": "city-3afec41980a016c2",
+      "wikidataId": "Q6898348",
+      "canonicalNameEn": "Monastery of Santa Clara-a-Nova"
+    },
+    {
+      "entityId": "poi-488dbf8ad6e56055",
+      "parentCityEntityId": "city-3afec41980a016c2",
+      "wikidataId": "Q2499524",
+      "canonicalNameEn": "Monastery of Santa Cruz"
+    },
+    {
+      "entityId": "poi-9fa8a6e46e01aa23",
+      "parentCityEntityId": "city-3afec41980a016c2",
+      "wikidataId": "Q2351947",
+      "canonicalNameEn": "Old Cathedral of Coimbra"
+    },
+    {
+      "entityId": "poi-bb03afb66df7acb5",
+      "parentCityEntityId": "city-3afec41980a016c2",
+      "wikidataId": "Q2669590",
+      "canonicalNameEn": "Portugal dos Pequenitos"
+    },
+    {
+      "entityId": "poi-08649331aa43c6aa",
+      "parentCityEntityId": "city-3afec41980a016c2",
+      "wikidataId": "Q368643",
+      "canonicalNameEn": "University of Coimbra"
+    },
+    {
+      "entityId": "poi-b87a02f95bde460b",
+      "parentCityEntityId": "city-4258f12373d3c348",
+      "wikidataId": "Q1049008",
+      "canonicalNameEn": "Castle of the Moors"
+    },
+    {
+      "entityId": "poi-71c52fcf56b5a8fc",
+      "parentCityEntityId": "city-4258f12373d3c348",
+      "wikidataId": "Q54253293",
+      "canonicalNameEn": "Chalet of the Countess of Edla"
+    },
+    {
+      "entityId": "poi-47b3cf6ec663f718",
+      "parentCityEntityId": "city-4258f12373d3c348",
+      "wikidataId": "Q1129421",
+      "canonicalNameEn": "Convent of the Capuchos"
+    },
+    {
+      "entityId": "poi-5040c7dbeac2e56b",
+      "parentCityEntityId": "city-4258f12373d3c348",
+      "wikidataId": "Q3175595",
+      "canonicalNameEn": "Monserrate Palace"
+    },
+    {
+      "entityId": "poi-661806744bb028bf",
+      "parentCityEntityId": "city-4258f12373d3c348",
+      "wikidataId": "Q69513",
+      "canonicalNameEn": "Pena Palace"
+    },
+    {
+      "entityId": "poi-d5877e64526a9182",
+      "parentCityEntityId": "city-4258f12373d3c348",
+      "wikidataId": "Q2630165",
+      "canonicalNameEn": "Quinta da Regaleira"
+    },
+    {
+      "entityId": "poi-165b679750ba21a1",
+      "parentCityEntityId": "city-4258f12373d3c348",
+      "wikidataId": "Q1108996",
+      "canonicalNameEn": "Seteais Palace"
+    },
+    {
+      "entityId": "poi-01dcbd46dda6399c",
+      "parentCityEntityId": "city-4258f12373d3c348",
+      "wikidataId": "Q532399",
+      "canonicalNameEn": "Sintra National Palace"
+    },
+    {
+      "entityId": "poi-4cd5685eec654a9e",
+      "parentCityEntityId": "city-5bf2ba95e40c608e",
+      "wikidataId": "Q650037",
+      "canonicalNameEn": "Cathedral of Évora"
+    },
+    {
+      "entityId": "poi-f1718274e1ef6eed",
+      "parentCityEntityId": "city-5bf2ba95e40c608e",
+      "wikidataId": "Q2561983",
+      "canonicalNameEn": "Chapel of Bones"
+    },
+    {
+      "entityId": "poi-4a51857420608645",
+      "parentCityEntityId": "city-5bf2ba95e40c608e",
+      "wikidataId": "Q7126267",
+      "canonicalNameEn": "Palace of the Dukes of Cadaval"
+    },
+    {
+      "entityId": "poi-b5b2cd56cef4ae6b",
+      "parentCityEntityId": "city-5bf2ba95e40c608e",
+      "wikidataId": "Q737441",
+      "canonicalNameEn": "Roman Temple of Évora"
+    },
+    {
+      "entityId": "poi-66f49f981b940557",
+      "parentCityEntityId": "city-5bf2ba95e40c608e",
+      "wikidataId": "Q1557861",
+      "canonicalNameEn": "University of Évora"
+    },
+    {
+      "entityId": "poi-977c43c698e8c372",
+      "parentCityEntityId": "city-6f31bde299eab111",
+      "wikidataId": "Q1549939",
+      "canonicalNameEn": "Church of São Francisco"
+    },
+    {
+      "entityId": "poi-e7132fc0b3d751c5",
+      "parentCityEntityId": "city-6f31bde299eab111",
+      "wikidataId": "Q18642",
+      "canonicalNameEn": "Clérigos Church"
+    },
+    {
+      "entityId": "poi-f9b2237864c0597d",
+      "parentCityEntityId": "city-6f31bde299eab111",
+      "wikidataId": "Q1322447",
+      "canonicalNameEn": "Dom Luís I Bridge"
+    },
+    {
+      "entityId": "poi-e82e40e2aaa38910",
+      "parentCityEntityId": "city-6f31bde299eab111",
+      "wikidataId": "Q3408689",
+      "canonicalNameEn": "Livraria Lello"
+    },
+    {
+      "entityId": "poi-5c2e8680d82bfefb",
+      "parentCityEntityId": "city-6f31bde299eab111",
+      "wikidataId": "Q1371109",
+      "canonicalNameEn": "Palácio da Bolsa"
+    },
+    {
+      "entityId": "poi-dba1bd0a3ae07fd9",
+      "parentCityEntityId": "city-6f31bde299eab111",
+      "wikidataId": "Q1441255",
+      "canonicalNameEn": "Porto Cathedral"
+    },
+    {
+      "entityId": "poi-72f4d68f9721efd7",
+      "parentCityEntityId": "city-6f31bde299eab111",
+      "wikidataId": "Q579250",
+      "canonicalNameEn": "São Bento Railway Station"
+    },
+    {
+      "entityId": "poi-88e1d189073082a5",
+      "parentCityEntityId": "city-6f31bde299eab111",
+      "wikidataId": "Q3393650",
+      "canonicalNameEn": "Serralves"
+    },
+    {
+      "entityId": "poi-e51d5788080ba3f4",
+      "parentCityEntityId": "city-abdd80683790dc81",
+      "wikidataId": "Q9698854",
+      "canonicalNameEn": "Art Nouveau Museum"
+    },
+    {
+      "entityId": "poi-0164e7eea9ca46d3",
+      "parentCityEntityId": "city-abdd80683790dc81",
+      "wikidataId": "Q3663664",
+      "canonicalNameEn": "Aveiro Cathedral"
+    },
+    {
+      "entityId": "poi-38b6ff1b6c9830ac",
+      "parentCityEntityId": "city-abdd80683790dc81",
+      "wikidataId": "Q53580592",
+      "canonicalNameEn": "Aveiro City Museum"
+    },
+    {
+      "entityId": "poi-ee3eb394c9c36d53",
+      "parentCityEntityId": "city-abdd80683790dc81",
+      "wikidataId": "Q99300945",
+      "canonicalNameEn": "Aveiro Museum"
+    },
+    {
+      "entityId": "poi-4bd54097fbdd14aa",
+      "parentCityEntityId": "city-abdd80683790dc81",
+      "wikidataId": "Q800417",
+      "canonicalNameEn": "Aveiro Railway Station"
+    },
+    {
+      "entityId": "poi-87166280cb73ee31",
+      "parentCityEntityId": "city-c159dcf369a61f40",
+      "wikidataId": "Q11906389",
+      "canonicalNameEn": "Arco da Vila"
+    },
+    {
+      "entityId": "poi-cd7bee140bd84171",
+      "parentCityEntityId": "city-c159dcf369a61f40",
+      "wikidataId": "Q3585514",
+      "canonicalNameEn": "Carmo Church"
+    },
+    {
+      "entityId": "poi-aaa76a6edf5a7cea",
+      "parentCityEntityId": "city-c159dcf369a61f40",
+      "wikidataId": "Q17390064",
+      "canonicalNameEn": "Castle of Faro"
+    },
+    {
+      "entityId": "poi-b7f9b4e31deb469b",
+      "parentCityEntityId": "city-c159dcf369a61f40",
+      "wikidataId": "Q136792787",
+      "canonicalNameEn": "Faro Archaeological Museum"
+    },
+    {
+      "entityId": "poi-78a8e39fe7c4eb9b",
+      "parentCityEntityId": "city-c159dcf369a61f40",
+      "wikidataId": "Q648397",
+      "canonicalNameEn": "Faro Cathedral"
+    },
+    {
+      "entityId": "poi-c16ef089a705ffb3",
+      "parentCityEntityId": "city-e522715ce542e2ca",
+      "wikidataId": "Q17167645",
+      "canonicalNameEn": "Alberto Sampaio Museum"
+    },
+    {
+      "entityId": "poi-74270ca283dd9df2",
+      "parentCityEntityId": "city-e522715ce542e2ca",
+      "wikidataId": "Q4894732",
+      "canonicalNameEn": "Church of Nossa Senhora da Oliveira"
+    },
+    {
+      "entityId": "poi-66aca22a8bd5347b",
+      "parentCityEntityId": "city-e522715ce542e2ca",
+      "wikidataId": "Q113485289",
+      "canonicalNameEn": "Church of Our Lady of Consolation"
+    },
+    {
+      "entityId": "poi-835474049c743f77",
+      "parentCityEntityId": "city-e522715ce542e2ca",
+      "wikidataId": "Q2658498",
+      "canonicalNameEn": "Guimarães Castle"
+    },
+    {
+      "entityId": "poi-2e959239d40c4166",
+      "parentCityEntityId": "city-e522715ce542e2ca",
+      "wikidataId": "Q4892877",
+      "canonicalNameEn": "Palace of the Dukes of Braganza"
+    },
+    {
+      "entityId": "poi-e1d63b76aafaf3f6",
+      "parentCityEntityId": "city-ed958a6d1d2dcc7d",
+      "wikidataId": "Q4917216",
+      "canonicalNameEn": "Biscainhos Museum"
+    },
+    {
+      "entityId": "poi-fc3f7706f0171e9b",
+      "parentCityEntityId": "city-ed958a6d1d2dcc7d",
+      "wikidataId": "Q2707216",
+      "canonicalNameEn": "Bom Jesus do Monte"
+    },
+    {
+      "entityId": "poi-1567a22b6b9b4a93",
+      "parentCityEntityId": "city-ed958a6d1d2dcc7d",
+      "wikidataId": "Q513902",
+      "canonicalNameEn": "Braga Cathedral"
+    },
+    {
+      "entityId": "poi-4736c29a5ae6ccc6",
+      "parentCityEntityId": "city-ed958a6d1d2dcc7d",
+      "wikidataId": "Q5522404",
+      "canonicalNameEn": "Garden of Santa Barbara"
+    },
+    {
+      "entityId": "poi-3e035db238f30b35",
+      "parentCityEntityId": "city-ed958a6d1d2dcc7d",
+      "wikidataId": "Q7409276",
+      "canonicalNameEn": "Sanctuary of Our Lady of Sameiro"
+    }
+  ],
+  "regionalReview": [
+    "Algarve"
+  ]
+}

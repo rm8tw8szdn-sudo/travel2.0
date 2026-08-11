@@ -13,7 +13,7 @@ import { validateSeasonEvidence } from "../src/lib/routes/season-evidence-schema
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const RETRIEVED_AT = "2026-08-03T18:00:00.000Z";
-const EXPECTED_TOTALS = Object.freeze({ countries: 51, cities: 99, pois: 568, total: 718 });
+const EXPECTED_TOTALS = Object.freeze({ countries: 51, cities: 144, pois: 904, total: 1099 });
 const CONFIG = Object.freeze({
   IT: { label: "Italy", iso: "IT", qid: "Q38", batch: "05", slug: "batch03a-italy", cityCount: 13, poiCount: 90, newCities: 11, newPois: 84, reviews: 4, directedLegs: 18, season: 4 },
   FR: { label: "France", iso: "FR", qid: "Q142", batch: "06", slug: "batch03b-france", cityCount: 13, poiCount: 82, newCities: 11, newPois: 76, reviews: 3, directedLegs: 18, season: 4 },
@@ -115,7 +115,7 @@ for (const forbidden of ["best month", "recommended month", "best season", "reco
 
 const manifest = readJson("data/route-v2/evidence-seed/evidence-seed-manifest.json");
 assert.ok(manifest.countries.includes(countryCode));
-assert.deepEqual(manifest.counts, { routeLeg: 130, season: 56, total: 186 });
+assert.deepEqual(manifest.counts, { routeLeg: 196, season: 76, total: 272 });
 assert.equal(new Set(manifest.routeLegEvidenceIds).size, manifest.routeLegEvidenceIds.length);
 assert.equal(new Set(manifest.seasonEvidenceIds).size, manifest.seasonEvidenceIds.length);
 

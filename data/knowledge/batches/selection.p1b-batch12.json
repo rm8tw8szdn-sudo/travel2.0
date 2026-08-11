@@ -1,0 +1,497 @@
+{
+  "schemaVersion": "route-v2-batch04d-greece-selection-v1",
+  "country": [
+    {
+      "entityId": "country-f7321d73dac66bae",
+      "wikidataId": "Q41",
+      "canonicalNameEn": "Greece"
+    }
+  ],
+  "cities": [
+    {
+      "key": "athens",
+      "entityId": "city-2c0cedec09cfd089",
+      "parentCountryEntityId": "country-f7321d73dac66bae",
+      "wikidataId": "Q1524",
+      "canonicalNameEn": "Athens",
+      "targetPoiCount": 15,
+      "selectedPoiCount": 15
+    },
+    {
+      "key": "chania",
+      "entityId": "city-50bab3faba488ced",
+      "parentCountryEntityId": "country-f7321d73dac66bae",
+      "wikidataId": "Q182299",
+      "canonicalNameEn": "Chania",
+      "targetPoiCount": 8,
+      "selectedPoiCount": 8
+    },
+    {
+      "key": "corfu-town",
+      "entityId": "city-8b50df8117d56136",
+      "parentCountryEntityId": "country-f7321d73dac66bae",
+      "wikidataId": "Q205832",
+      "canonicalNameEn": "Corfu Town",
+      "targetPoiCount": 8,
+      "selectedPoiCount": 8
+    },
+    {
+      "key": "delphi",
+      "entityId": "city-6e4ba9ec0c2f0f00",
+      "parentCountryEntityId": "country-f7321d73dac66bae",
+      "wikidataId": "Q75459",
+      "canonicalNameEn": "Delphi",
+      "targetPoiCount": 3,
+      "selectedPoiCount": 3
+    },
+    {
+      "key": "heraklion",
+      "entityId": "city-1ae2bf785c1f74bc",
+      "parentCountryEntityId": "country-f7321d73dac66bae",
+      "wikidataId": "Q160544",
+      "canonicalNameEn": "Heraklion",
+      "targetPoiCount": 8,
+      "selectedPoiCount": 8
+    },
+    {
+      "key": "kalabaka",
+      "entityId": "city-d325ab7cc4450e38",
+      "parentCountryEntityId": "country-f7321d73dac66bae",
+      "wikidataId": "Q940330",
+      "canonicalNameEn": "Kalabaka",
+      "targetPoiCount": 3,
+      "selectedPoiCount": 3
+    },
+    {
+      "key": "nafplio",
+      "entityId": "city-074db4d4b49a85e5",
+      "parentCountryEntityId": "country-f7321d73dac66bae",
+      "wikidataId": "Q202337",
+      "canonicalNameEn": "Nafplio",
+      "targetPoiCount": 5,
+      "selectedPoiCount": 5
+    },
+    {
+      "key": "rhodes-town",
+      "entityId": "city-771fa7d75414482c",
+      "parentCountryEntityId": "country-f7321d73dac66bae",
+      "wikidataId": "Q188731",
+      "canonicalNameEn": "Rhodes Town",
+      "targetPoiCount": 8,
+      "selectedPoiCount": 8
+    },
+    {
+      "key": "thessaloniki",
+      "entityId": "city-adda424dbaf38725",
+      "parentCountryEntityId": "country-f7321d73dac66bae",
+      "wikidataId": "Q17151",
+      "canonicalNameEn": "Thessaloniki",
+      "targetPoiCount": 8,
+      "selectedPoiCount": 8
+    }
+  ],
+  "pois": [
+    {
+      "entityId": "poi-7670cb0a2d53b3f6",
+      "parentCityEntityId": "city-074db4d4b49a85e5",
+      "wikidataId": "Q3555617",
+      "canonicalNameEn": "Acronauplia"
+    },
+    {
+      "entityId": "poi-022ddd3a783d4373",
+      "parentCityEntityId": "city-074db4d4b49a85e5",
+      "wikidataId": "Q4785420",
+      "canonicalNameEn": "Archaeological Museum of Nafplion"
+    },
+    {
+      "entityId": "poi-832421ece7a22820",
+      "parentCityEntityId": "city-074db4d4b49a85e5",
+      "wikidataId": "Q603886",
+      "canonicalNameEn": "Bourtzi Castle"
+    },
+    {
+      "entityId": "poi-69313fd041c61edf",
+      "parentCityEntityId": "city-074db4d4b49a85e5",
+      "wikidataId": "Q53632512",
+      "canonicalNameEn": "Karathona Beach"
+    },
+    {
+      "entityId": "poi-34c61d8f18d4f246",
+      "parentCityEntityId": "city-074db4d4b49a85e5",
+      "wikidataId": "Q606341",
+      "canonicalNameEn": "Palamidi"
+    },
+    {
+      "entityId": "poi-2143b404a6213ce8",
+      "parentCityEntityId": "city-1ae2bf785c1f74bc",
+      "wikidataId": "Q2942217",
+      "canonicalNameEn": "Agios Minas Cathedral"
+    },
+    {
+      "entityId": "poi-a8442fb9c264fb09",
+      "parentCityEntityId": "city-1ae2bf785c1f74bc",
+      "wikidataId": "Q636972",
+      "canonicalNameEn": "Heraklion Archaeological Museum"
+    },
+    {
+      "entityId": "poi-e40cfc8618811f6e",
+      "parentCityEntityId": "city-1ae2bf785c1f74bc",
+      "wikidataId": "Q4204518",
+      "canonicalNameEn": "Historical Museum of Crete"
+    },
+    {
+      "entityId": "poi-530476ec6243aa16",
+      "parentCityEntityId": "city-1ae2bf785c1f74bc",
+      "wikidataId": "Q173527",
+      "canonicalNameEn": "Knossos"
+    },
+    {
+      "entityId": "poi-99c1e38f14ca12b2",
+      "parentCityEntityId": "city-1ae2bf785c1f74bc",
+      "wikidataId": "Q603920",
+      "canonicalNameEn": "Koules Fortress"
+    },
+    {
+      "entityId": "poi-6b8e21ec96e966a7",
+      "parentCityEntityId": "city-1ae2bf785c1f74bc",
+      "wikidataId": "Q14175781",
+      "canonicalNameEn": "Loggia of Heraklion"
+    },
+    {
+      "entityId": "poi-3c9b86154caca06f",
+      "parentCityEntityId": "city-1ae2bf785c1f74bc",
+      "wikidataId": "Q15616490",
+      "canonicalNameEn": "Morosini Fountain"
+    },
+    {
+      "entityId": "poi-b72e0bae0f1fbd13",
+      "parentCityEntityId": "city-1ae2bf785c1f74bc",
+      "wikidataId": "Q6980521",
+      "canonicalNameEn": "Natural History Museum of Crete"
+    },
+    {
+      "entityId": "poi-0e3c2f85eac6bbb7",
+      "parentCityEntityId": "city-2c0cedec09cfd089",
+      "wikidataId": "Q421084",
+      "canonicalNameEn": "Acropolis Museum"
+    },
+    {
+      "entityId": "poi-ff8d8c1a5a229492",
+      "parentCityEntityId": "city-2c0cedec09cfd089",
+      "wikidataId": "Q131013",
+      "canonicalNameEn": "Acropolis of Athens"
+    },
+    {
+      "entityId": "poi-07e0770489176ec7",
+      "parentCityEntityId": "city-2c0cedec09cfd089",
+      "wikidataId": "Q395367",
+      "canonicalNameEn": "Ancient Agora of Athens"
+    },
+    {
+      "entityId": "poi-d9c12dc68323e70c",
+      "parentCityEntityId": "city-2c0cedec09cfd089",
+      "wikidataId": "Q816669",
+      "canonicalNameEn": "Benaki Museum"
+    },
+    {
+      "entityId": "poi-a5135b26d3f53b01",
+      "parentCityEntityId": "city-2c0cedec09cfd089",
+      "wikidataId": "Q630974",
+      "canonicalNameEn": "Kerameikos"
+    },
+    {
+      "entityId": "poi-4ebd0abc14541478",
+      "parentCityEntityId": "city-2c0cedec09cfd089",
+      "wikidataId": "Q1235440",
+      "canonicalNameEn": "Monastiraki"
+    },
+    {
+      "entityId": "poi-fd0b058ae4e0a188",
+      "parentCityEntityId": "city-2c0cedec09cfd089",
+      "wikidataId": "Q1357713",
+      "canonicalNameEn": "Mount Lycabettus"
+    },
+    {
+      "entityId": "poi-e1bc90e8dfd927c7",
+      "parentCityEntityId": "city-2c0cedec09cfd089",
+      "wikidataId": "Q637187",
+      "canonicalNameEn": "National Archaeological Museum"
+    },
+    {
+      "entityId": "poi-3bc9cda11e1eda0a",
+      "parentCityEntityId": "city-2c0cedec09cfd089",
+      "wikidataId": "Q646284",
+      "canonicalNameEn": "National Garden"
+    },
+    {
+      "entityId": "poi-d129dfa0c96438b5",
+      "parentCityEntityId": "city-2c0cedec09cfd089",
+      "wikidataId": "Q1328165",
+      "canonicalNameEn": "Odeon of Herodes Atticus"
+    },
+    {
+      "entityId": "poi-216e8c3905d77512",
+      "parentCityEntityId": "city-2c0cedec09cfd089",
+      "wikidataId": "Q208811",
+      "canonicalNameEn": "Panathenaic Stadium"
+    },
+    {
+      "entityId": "poi-14e06e859046f175",
+      "parentCityEntityId": "city-2c0cedec09cfd089",
+      "wikidataId": "Q10288",
+      "canonicalNameEn": "Parthenon"
+    },
+    {
+      "entityId": "poi-74045cbb6267990f",
+      "parentCityEntityId": "city-2c0cedec09cfd089",
+      "wikidataId": "Q1435551",
+      "canonicalNameEn": "Roman Agora"
+    },
+    {
+      "entityId": "poi-720c2a7d001ffd0a",
+      "parentCityEntityId": "city-2c0cedec09cfd089",
+      "wikidataId": "Q1137997",
+      "canonicalNameEn": "Syntagma Square"
+    },
+    {
+      "entityId": "poi-61a5afacc6939996",
+      "parentCityEntityId": "city-2c0cedec09cfd089",
+      "wikidataId": "Q1123019",
+      "canonicalNameEn": "Temple of Olympian Zeus"
+    },
+    {
+      "entityId": "poi-ce0a372babdb1ad5",
+      "parentCityEntityId": "city-50bab3faba488ced",
+      "wikidataId": "Q4785399",
+      "canonicalNameEn": "Archaeological Museum of Chania"
+    },
+    {
+      "entityId": "poi-207d04710c798980",
+      "parentCityEntityId": "city-50bab3faba488ced",
+      "wikidataId": "Q4426043",
+      "canonicalNameEn": "Cathedral of Chania"
+    },
+    {
+      "entityId": "poi-4c52b8f3b6d7eb8a",
+      "parentCityEntityId": "city-50bab3faba488ced",
+      "wikidataId": "Q16964744",
+      "canonicalNameEn": "Chania Lighthouse"
+    },
+    {
+      "entityId": "poi-c4e29f98065d1e1f",
+      "parentCityEntityId": "city-50bab3faba488ced",
+      "wikidataId": "Q1231296",
+      "canonicalNameEn": "Etz Hayyim Synagogue"
+    },
+    {
+      "entityId": "poi-e5923b9bcb0c9c22",
+      "parentCityEntityId": "city-50bab3faba488ced",
+      "wikidataId": "Q38279797",
+      "canonicalNameEn": "Firkas Fortress"
+    },
+    {
+      "entityId": "poi-2a73642d1b01268b",
+      "parentCityEntityId": "city-50bab3faba488ced",
+      "wikidataId": "Q4292348",
+      "canonicalNameEn": "Mosque of the Janissaries"
+    },
+    {
+      "entityId": "poi-745d5ac9dda93c5d",
+      "parentCityEntityId": "city-50bab3faba488ced",
+      "wikidataId": "Q21476554",
+      "canonicalNameEn": "Municipal Market of Chania"
+    },
+    {
+      "entityId": "poi-ac8d596536916b0a",
+      "parentCityEntityId": "city-50bab3faba488ced",
+      "wikidataId": "Q2598833",
+      "canonicalNameEn": "Nautical Museum of Crete"
+    },
+    {
+      "entityId": "poi-52016cdd59db1b7a",
+      "parentCityEntityId": "city-6e4ba9ec0c2f0f00",
+      "wikidataId": "Q636928",
+      "canonicalNameEn": "Delphi Archaeological Museum"
+    },
+    {
+      "entityId": "poi-27836e9df5d61a0b",
+      "parentCityEntityId": "city-6e4ba9ec0c2f0f00",
+      "wikidataId": "Q10751359",
+      "canonicalNameEn": "Temple of Apollo"
+    },
+    {
+      "entityId": "poi-dc27452f70b6755f",
+      "parentCityEntityId": "city-6e4ba9ec0c2f0f00",
+      "wikidataId": "Q12013451",
+      "canonicalNameEn": "Tholos of Delphi"
+    },
+    {
+      "entityId": "poi-83a25efb7895ceca",
+      "parentCityEntityId": "city-771fa7d75414482c",
+      "wikidataId": "Q3557443",
+      "canonicalNameEn": "Acropolis of Rhodes"
+    },
+    {
+      "entityId": "poi-3891a78f24d636c7",
+      "parentCityEntityId": "city-771fa7d75414482c",
+      "wikidataId": "Q4785432",
+      "canonicalNameEn": "Archaeological Museum of Rhodes"
+    },
+    {
+      "entityId": "poi-ebd10d0357dc880d",
+      "parentCityEntityId": "city-771fa7d75414482c",
+      "wikidataId": "Q3748750",
+      "canonicalNameEn": "Fortifications of Rhodes"
+    },
+    {
+      "entityId": "poi-f96b34f238a92c49",
+      "parentCityEntityId": "city-771fa7d75414482c",
+      "wikidataId": "Q2920386",
+      "canonicalNameEn": "Kahal Shalom Synagogue"
+    },
+    {
+      "entityId": "poi-e3741777d8a319d3",
+      "parentCityEntityId": "city-771fa7d75414482c",
+      "wikidataId": "Q931371",
+      "canonicalNameEn": "Palace of the Grand Master"
+    },
+    {
+      "entityId": "poi-fae1cf13b277d07e",
+      "parentCityEntityId": "city-771fa7d75414482c",
+      "wikidataId": "Q108901113",
+      "canonicalNameEn": "Rodini Park"
+    },
+    {
+      "entityId": "poi-49d6e96a34bff11c",
+      "parentCityEntityId": "city-771fa7d75414482c",
+      "wikidataId": "Q1159415",
+      "canonicalNameEn": "Street of the Knights"
+    },
+    {
+      "entityId": "poi-48c0ad8e7cf24834",
+      "parentCityEntityId": "city-771fa7d75414482c",
+      "wikidataId": "Q2381941",
+      "canonicalNameEn": "Suleymaniye Mosque"
+    },
+    {
+      "entityId": "poi-2affed51932097bd",
+      "parentCityEntityId": "city-8b50df8117d56136",
+      "wikidataId": "Q4785398",
+      "canonicalNameEn": "Archaeological Museum of Corfu"
+    },
+    {
+      "entityId": "poi-653d432e2edd1c32",
+      "parentCityEntityId": "city-8b50df8117d56136",
+      "wikidataId": "Q65073514",
+      "canonicalNameEn": "Liston"
+    },
+    {
+      "entityId": "poi-aeb15790dd52ff90",
+      "parentCityEntityId": "city-8b50df8117d56136",
+      "wikidataId": "Q824940",
+      "canonicalNameEn": "Mon Repos"
+    },
+    {
+      "entityId": "poi-da1745ec3887472f",
+      "parentCityEntityId": "city-8b50df8117d56136",
+      "wikidataId": "Q495148",
+      "canonicalNameEn": "Museum of Asian Art of Corfu"
+    },
+    {
+      "entityId": "poi-02a01a2c682d1de1",
+      "parentCityEntityId": "city-8b50df8117d56136",
+      "wikidataId": "Q603447",
+      "canonicalNameEn": "New Fortress"
+    },
+    {
+      "entityId": "poi-a268d8a35a8dab20",
+      "parentCityEntityId": "city-8b50df8117d56136",
+      "wikidataId": "Q606185",
+      "canonicalNameEn": "Old Fortress"
+    },
+    {
+      "entityId": "poi-e0890ea19a6c0f58",
+      "parentCityEntityId": "city-8b50df8117d56136",
+      "wikidataId": "Q7126255",
+      "canonicalNameEn": "Palace of St. Michael and St. George"
+    },
+    {
+      "entityId": "poi-e1ec1323972cd4f4",
+      "parentCityEntityId": "city-8b50df8117d56136",
+      "wikidataId": "Q4426008",
+      "canonicalNameEn": "Saint Spyridon Church"
+    },
+    {
+      "entityId": "poi-a52e2eed572e2f79",
+      "parentCityEntityId": "city-adda424dbaf38725",
+      "wikidataId": "Q2658285",
+      "canonicalNameEn": "Archaeological Museum of Thessaloniki"
+    },
+    {
+      "entityId": "poi-c2a849888735412b",
+      "parentCityEntityId": "city-adda424dbaf38725",
+      "wikidataId": "Q667472",
+      "canonicalNameEn": "Aristotelous Square"
+    },
+    {
+      "entityId": "poi-1fcc9f3db234bde7",
+      "parentCityEntityId": "city-adda424dbaf38725",
+      "wikidataId": "Q38280289",
+      "canonicalNameEn": "Church of Saint Demetrius"
+    },
+    {
+      "entityId": "poi-59ef9fb5812a7054",
+      "parentCityEntityId": "city-adda424dbaf38725",
+      "wikidataId": "Q1568660",
+      "canonicalNameEn": "Hagia Sophia"
+    },
+    {
+      "entityId": "poi-928ce7234b252688",
+      "parentCityEntityId": "city-adda424dbaf38725",
+      "wikidataId": "Q1572213",
+      "canonicalNameEn": "Heptapyrgion"
+    },
+    {
+      "entityId": "poi-d508adfc1f243a09",
+      "parentCityEntityId": "city-adda424dbaf38725",
+      "wikidataId": "Q3563158",
+      "canonicalNameEn": "Museum of Byzantine Culture"
+    },
+    {
+      "entityId": "poi-d16c411466dde243",
+      "parentCityEntityId": "city-adda424dbaf38725",
+      "wikidataId": "Q1584841",
+      "canonicalNameEn": "Rotunda"
+    },
+    {
+      "entityId": "poi-b291a3209962c0d7",
+      "parentCityEntityId": "city-adda424dbaf38725",
+      "wikidataId": "Q550576",
+      "canonicalNameEn": "White Tower of Thessaloniki"
+    },
+    {
+      "entityId": "poi-dc5d221b40593c44",
+      "parentCityEntityId": "city-d325ab7cc4450e38",
+      "wikidataId": "Q3125051",
+      "canonicalNameEn": "Meteora"
+    },
+    {
+      "entityId": "poi-6735e0cd60aa9158",
+      "parentCityEntityId": "city-d325ab7cc4450e38",
+      "wikidataId": "Q664858",
+      "canonicalNameEn": "Monastery of Great Meteoron"
+    },
+    {
+      "entityId": "poi-da26a3d9662fd414",
+      "parentCityEntityId": "city-d325ab7cc4450e38",
+      "wikidataId": "Q3320354",
+      "canonicalNameEn": "Varlaam Monastery"
+    }
+  ],
+  "regionalReview": [
+    "Meteora",
+    "Crete",
+    "Rhodes island",
+    "Corfu island"
+  ]
+}

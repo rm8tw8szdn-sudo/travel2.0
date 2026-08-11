@@ -15,14 +15,16 @@ export function validateFallbackRouteAgainstIntent(record = {}, routeIntent = {}
   );
   const missingRequiredDestinationIds = missing.filter((entry) => requiredIds.has(entry));
   const missingRequiredDestinationNames = missing.filter((entry) => !requiredIds.has(entry));
-  const orderMismatch = validation.reasonCodes.includes("fixed-order-mismatch");
+  const orderMismatch = validation.reasonCodes.includes("fixed-order-mismatch")
+    || validation.reasonCodes.includes("fixed-country-order-mismatch");
   const durationConflict = validation.reasonCodes.includes("exact-days-mismatch");
   const capacityConflict = validation.reasonCodes.includes("duration-capacity-conflict")
     || validation.reasonCodes.includes("route-capacity-exceeded");
   const timeConstraintConflict = validation.reasonCodes.includes("month-conflict")
     || validation.reasonCodes.includes("season-conflict")
     || validation.reasonCodes.includes("invalid-time-intent");
-  const countryConflict = validation.reasonCodes.includes("country-mismatch");
+  const countryConflict = validation.reasonCodes.includes("country-mismatch")
+    || validation.reasonCodes.includes("fixed-country-order-mismatch");
   const regionConflict = validation.reasonCodes.includes("region-mismatch")
     || validation.reasonCodes.includes("region-country-mismatch")
     || validation.reasonCodes.includes("unsupported-region")

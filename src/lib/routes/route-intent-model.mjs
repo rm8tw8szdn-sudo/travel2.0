@@ -589,10 +589,12 @@ function normalizeStringList(values) {
 }
 
 function normalizeCountryList(input) {
-  const arrayProvided = hasOwn(input, "countries")
+  const arrayProvided = hasOwn(input, "requiredCountryCodes")
+    || hasOwn(input, "countries")
     || hasOwn(input, "countryCodes")
     || hasOwn(input, "regionCountryCodes");
   const arrayValues = [
+    ...(Array.isArray(input.requiredCountryCodes) ? input.requiredCountryCodes : []),
     ...(Array.isArray(input.countries) ? input.countries : []),
     ...(Array.isArray(input.countryCodes) ? input.countryCodes : []),
     ...(Array.isArray(input.regionCountryCodes) ? input.regionCountryCodes : []),
@@ -603,8 +605,10 @@ function normalizeCountryList(input) {
     : [];
   const values = unique([...arrayValues, ...compositeValues]
     .map(entityId)
-    .filter(Boolean))
-    .sort((left, right) => left.localeCompare(right, "en"));
+    .filter(Boolean));
+  if (clean(input.destinationOrderMode || input.countryOrderMode) !== "fixed") {
+    values.sort((left, right) => left.localeCompare(right, "en"));
+  }
   return listPresence(arrayProvided || compositeValues.length > 1, values);
 }
 

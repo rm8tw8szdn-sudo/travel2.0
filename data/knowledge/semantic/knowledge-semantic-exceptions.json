@@ -1,0 +1,150 @@
+{
+  "schemaVersion": "route-v2-knowledge-semantic-exceptions-v1",
+  "exceptions": [
+    {
+      "qid": "Q334",
+      "entityId": "city-dde074f983b42cfd",
+      "kind": "city",
+      "parentEntityId": "country-e0a550ef5a59c6f9",
+      "expectedCountryQid": "Q334",
+      "code": "instance-type-incompatible",
+      "reason": "Singapore is a city-state; the same canonical Wikidata item is valid for both the published country and city identities."
+    },
+    {
+      "qid": "Q334",
+      "entityId": "city-dde074f983b42cfd",
+      "kind": "city",
+      "parentEntityId": "country-e0a550ef5a59c6f9",
+      "expectedCountryQid": "Q334",
+      "code": "semantic-class-mismatch",
+      "reason": "Singapore is a city-state; the same canonical Wikidata item is valid for both the published country and city identities."
+    },
+    {
+      "qid": "Q2943",
+      "entityId": "poi-252cc1e9ec91cd9a",
+      "kind": "poi",
+      "parentEntityId": "city-133b155bac966dfa",
+      "expectedCountryQid": "Q38",
+      "code": "country-claim-mismatch",
+      "reason": "Sistine Chapel is geographically consumed under Rome while Wikidata correctly records Vatican City as sovereign country."
+    },
+    {
+      "qid": "Q12512",
+      "entityId": "poi-7f3514da5bd7b130",
+      "kind": "poi",
+      "parentEntityId": "city-133b155bac966dfa",
+      "expectedCountryQid": "Q38",
+      "code": "country-claim-mismatch",
+      "reason": "St. Peter's Basilica is geographically consumed under Rome while Wikidata correctly records Vatican City as sovereign country."
+    },
+    {
+      "qid": "Q182955",
+      "entityId": "poi-9a712ca8e083a1dc",
+      "kind": "poi",
+      "parentEntityId": "city-133b155bac966dfa",
+      "expectedCountryQid": "Q38",
+      "code": "country-claim-mismatch",
+      "reason": "Vatican Museums are geographically consumed under Rome while Wikidata correctly records Vatican City as sovereign country."
+    },
+    {
+      "qid": "Q334",
+      "entityId": "city-dde074f983b42cfd",
+      "kind": "city",
+      "parentEntityId": "country-e0a550ef5a59c6f9",
+      "expectedCountryQid": "Q334",
+      "code": "country-claim-missing",
+      "reason": "Singapore is a city-state represented by the same canonical item as its parent Country; that item has no direct P17 statement.",
+      "sourceUrl": "https://www.wikidata.org/wiki/Q334"
+    },
+    {
+      "qid": "Q12593341",
+      "entityId": "poi-cd9124df7a06aa46",
+      "kind": "poi",
+      "parentEntityId": "city-b2e7474b951f723e",
+      "expectedCountryQid": "Q884",
+      "code": "instance-type-missing",
+      "reason": "The official Wikidata item for Jeju Dongmun Traditional Market currently has no direct P31 statement; identity, coordinates, name, and exact parent remain independently enforced.",
+      "sourceUrl": "https://www.wikidata.org/wiki/Q12593341"
+    },
+    {
+      "qid": "Q12593341",
+      "entityId": "poi-cd9124df7a06aa46",
+      "kind": "poi",
+      "parentEntityId": "city-b2e7474b951f723e",
+      "expectedCountryQid": "Q884",
+      "code": "country-claim-missing",
+      "reason": "The official Wikidata item currently has no direct P17 statement; its exact Jeju parent and coordinates remain enforced.",
+      "sourceUrl": "https://www.wikidata.org/wiki/Q12593341"
+    },
+    {
+      "qid": "Q139855779",
+      "entityId": "poi-9da90f75b8293fbf",
+      "kind": "poi",
+      "parentEntityId": "city-b2e7474b951f723e",
+      "expectedCountryQid": "Q884",
+      "code": "instance-type-missing",
+      "reason": "The official Wikidata item for Iho Tewoo Beach currently has no direct P31 statement; identity, coordinates, name, and exact parent remain independently enforced.",
+      "sourceUrl": "https://www.wikidata.org/wiki/Q139855779"
+    },
+    {
+      "qid": "Q139855779",
+      "entityId": "poi-9da90f75b8293fbf",
+      "kind": "poi",
+      "parentEntityId": "city-b2e7474b951f723e",
+      "expectedCountryQid": "Q884",
+      "code": "country-claim-missing",
+      "reason": "The official Wikidata item currently has no direct P17 statement; its exact Jeju parent and coordinates remain enforced.",
+      "sourceUrl": "https://www.wikidata.org/wiki/Q139855779"
+    },
+    {
+      "qid": "Q1790954",
+      "entityId": "poi-1fc98c7d3d0e3a5c",
+      "kind": "poi",
+      "parentEntityId": "city-bf507de627cbfc1e",
+      "expectedCountryQid": "Q55",
+      "code": "instance-type-missing",
+      "reason": "The official Wikidata Cube House item currently models type through other claims but has no direct P31 statement; P17, coordinates, name, and exact parent remain enforced.",
+      "sourceUrl": "https://www.wikidata.org/wiki/Q1790954"
+    },
+    {
+      "qid": "Q110996824",
+      "entityId": "poi-2720c01c0d1dad6e",
+      "kind": "poi",
+      "parentEntityId": "city-e05bc954475d4069",
+      "expectedCountryQid": "Q55",
+      "code": "country-claim-missing",
+      "reason": "The official Wikidata Panorama Mesdag item currently has no direct P17 statement; its type, exact The Hague parent, coordinates, and name remain enforced.",
+      "sourceUrl": "https://www.wikidata.org/wiki/Q110996824"
+    },
+    {
+      "qid": "Q16181364",
+      "entityId": "poi-924378717a3862e5",
+      "kind": "poi",
+      "parentEntityId": "city-f204bf635ee5ea16",
+      "expectedCountryQid": "Q884",
+      "code": "instance-type-missing",
+      "reason": "The official Wikidata item for Odongdo currently has no direct P31 statement; identity, coordinates, name, and exact parent remain independently enforced.",
+      "sourceUrl": "https://www.wikidata.org/wiki/Q16181364"
+    },
+    {
+      "qid": "Q16181364",
+      "entityId": "poi-924378717a3862e5",
+      "kind": "poi",
+      "parentEntityId": "city-f204bf635ee5ea16",
+      "expectedCountryQid": "Q884",
+      "code": "country-claim-missing",
+      "reason": "The official Wikidata item currently has no direct P17 statement; its exact Yeosu parent and coordinates remain enforced.",
+      "sourceUrl": "https://www.wikidata.org/wiki/Q16181364"
+    },
+    {
+      "qid": "Q12608061",
+      "entityId": "poi-a2d88b1dba40034d",
+      "kind": "poi",
+      "parentEntityId": "city-f97862dc82774ea9",
+      "expectedCountryQid": "Q884",
+      "code": "instance-type-missing",
+      "reason": "The official Wikidata Ojukheon item currently has no direct P31 statement; P17, heritage classification, coordinates, name, and exact parent remain enforced.",
+      "sourceUrl": "https://www.wikidata.org/wiki/Q12608061"
+    }
+  ]
+}

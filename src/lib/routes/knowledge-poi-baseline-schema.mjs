@@ -1,11 +1,11 @@
 import {
   canonicalizeEntityLayerAliases,
-  createTypedEntityId,
   isValidEntityLayerQid,
   normalizeEntityLayerCoordinates,
   normalizeEntityLayerText,
   validateEntityLayerProvenanceEntry,
 } from "./knowledge-entity-layer-primitives.mjs";
+import { isApprovedKnowledgeEntityIdentity } from "./knowledge-stable-identity-migrations.mjs";
 
 export const KNOWLEDGE_POI_BASELINE_SCHEMA_VERSION = "route-v2-poi-baseline-p1b";
 export const KNOWLEDGE_POI_ENTITY_TYPE = "poi";
@@ -56,10 +56,11 @@ export function validateKnowledgePoiEntity(poi) {
   if (poi.schemaVersion !== KNOWLEDGE_POI_BASELINE_SCHEMA_VERSION) reasons.push("schema-version-invalid");
   if (poi.entityType !== KNOWLEDGE_POI_ENTITY_TYPE) reasons.push("entity-type-invalid");
   if (!isValidEntityLayerQid(poi.wikidataId)) reasons.push("wikidata-id-invalid");
-  if (isValidEntityLayerQid(poi.wikidataId)) {
-    const expectedEntityId = createTypedEntityId({ entityType: KNOWLEDGE_POI_ENTITY_TYPE, wikidataId: poi.wikidataId });
-    if (poi.entityId !== expectedEntityId) reasons.push("entity-id-invalid");
-  }
+  if (!isApprovedKnowledgeEntityIdentity({
+    entityType: KNOWLEDGE_POI_ENTITY_TYPE,
+    entityId: poi.entityId,
+    wikidataId: poi.wikidataId,
+  })) reasons.push("entity-id-invalid");
   if (!/^city-[0-9a-f]{16}$/u.test(normalizeEntityLayerText(poi.parentCityEntityId))) {
     reasons.push("parent-city-entity-id-invalid");
   }

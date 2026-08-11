@@ -53,7 +53,7 @@ const BATCH04_CITY_POI_COUNTS = Object.freeze({
   Kobe: 6,
   Kumamoto: 5,
   Kyoto: 19,
-  Miyajima: 6,
+  Hatsukaichi: 6,
   Nagoya: 8,
   Naha: 5,
   Nara: 8,

@@ -1,11 +1,11 @@
 import {
   canonicalizeEntityLayerAliases,
-  createTypedEntityId,
   isValidEntityLayerQid,
   normalizeEntityLayerCoordinates,
   normalizeEntityLayerText,
   validateEntityLayerProvenanceEntry,
 } from "./knowledge-entity-layer-primitives.mjs";
+import { isApprovedKnowledgeEntityIdentity } from "./knowledge-stable-identity-migrations.mjs";
 
 export const KNOWLEDGE_CITY_BASELINE_SCHEMA_VERSION = "route-v2-city-baseline-p1b";
 export const KNOWLEDGE_CITY_ENTITY_TYPE = "city";
@@ -56,10 +56,11 @@ export function validateKnowledgeCityEntity(city) {
   if (city.schemaVersion !== KNOWLEDGE_CITY_BASELINE_SCHEMA_VERSION) reasons.push("schema-version-invalid");
   if (city.entityType !== KNOWLEDGE_CITY_ENTITY_TYPE) reasons.push("entity-type-invalid");
   if (!isValidEntityLayerQid(city.wikidataId)) reasons.push("wikidata-id-invalid");
-  if (isValidEntityLayerQid(city.wikidataId)) {
-    const expectedEntityId = createTypedEntityId({ entityType: KNOWLEDGE_CITY_ENTITY_TYPE, wikidataId: city.wikidataId });
-    if (city.entityId !== expectedEntityId) reasons.push("entity-id-invalid");
-  }
+  if (!isApprovedKnowledgeEntityIdentity({
+    entityType: KNOWLEDGE_CITY_ENTITY_TYPE,
+    entityId: city.entityId,
+    wikidataId: city.wikidataId,
+  })) reasons.push("entity-id-invalid");
   if (!/^country-[0-9a-f]{16}$/u.test(normalizeEntityLayerText(city.parentCountryEntityId))) {
     reasons.push("parent-country-entity-id-invalid");
   }

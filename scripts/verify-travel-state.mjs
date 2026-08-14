@@ -296,7 +296,8 @@ function baseState(overrides = {}) {
 
 {
   const state = recalculateTravelState(baseState());
-  assert.equal(resolveTripCover({ id: "route-trip", routeSnapshot: { id: "route-missing-cover", name: "缺封面路线" } }, state), "", "a route trip must never fall back to an unrelated cover");
+  assert.match(resolveTripCover({ id: "route-trip", routeSnapshot: { id: "route-missing-cover", name: "缺封面路线" } }, state), /trip-cover-placeholder\.svg$/, "a route trip without a verified cover must use the explicit neutral placeholder");
+  assert.match(resolveTripCover({ id: "route-trip", routeSnapshot: { id: "route-remote-cover", name: "远程封面路线", coverImage: "https://images.example.invalid/destination.jpg" } }, state), /trip-cover-placeholder\.svg$/, "a route trip must never load an external cover at runtime");
   assert.match(resolveTripCover({ id: "manual-trip", name: "手动行程" }, state), /trip-cover-placeholder\.svg$/, "a manual trip without a real cover must use the explicit neutral placeholder");
   assert.doesNotMatch(resolveTripCover({ id: "manual-trip", name: "手动行程" }, state), /aurora/i);
 }

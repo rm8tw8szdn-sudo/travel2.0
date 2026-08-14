@@ -17,15 +17,6 @@ let activeCompletedFilter = "all";
 let activeTripDaySearch = "";
 let pendingCoverTripId = "";
 
-const tripPhoto = (id) => `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=900&q=80`;
-const CITY_SPOT_COVERS = {
-  "JP-TYO": tripPhoto("1540959733332-eab4deabeeaf"),
-  "JP-KYO": tripPhoto("1493976040374-85c8e12f0c0e"),
-  "JP-OSA": tripPhoto("1590559899731-a382839e5549"),
-  "JP-NAR": tripPhoto("1528360983277-13d401cdc186"),
-  "JP-SPK": tripPhoto("1516822003754-cca485356ecb"),
-};
-
 const tripIcons = {
   calendar: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4v3M17 4v3M5 9h14M6 6h12v14H6Z"></path></svg>`,
   country: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 20V5M5 6h10l-1.4 4L15 14H5"></path></svg>`,
@@ -180,12 +171,17 @@ function tripPlaceMeta(trip, state) {
 
 function resolveTripCover(trip, state) {
   const resolved = window.TravelState?.resolveTripCover?.(trip, state) || "";
-  if (trip.routeSnapshot) return resolved;
-  return resolved || trip.cover || "assets/trip-cover-placeholder.svg";
+  const stored = String(trip?.cover || "").trim();
+  const safeStored = /^(?:https?:)?\/\//iu.test(stored) ? "" : stored;
+  return resolved || safeStored || "assets/trip-cover-placeholder.svg";
 }
 
 function resolveCitySpotCover(city, trip, state) {
-  return CITY_SPOT_COVERS[city?.id] || city?.cover || resolveTripCover(trip, state);
+  const configured = window.RouteV2ImageCoverage?.cityByEntityId?.[city?.entityId || city?.id]?.assetPath;
+  if (configured && !/^(?:https?:)?\/\//iu.test(configured)) return configured;
+  const localCover = String(city?.cover || "").trim();
+  if (localCover && !/^(?:https?:)?\/\//iu.test(localCover)) return localCover;
+  return window.RouteV2ImageCoverage?.fallbackPolicy?.city || "assets/route-city-placeholder.svg";
 }
 
 function tripCountdown(trip) {
@@ -366,7 +362,7 @@ function renderRouteTimeline(trip, state) {
     <div class="trip-route-timeline">
       ${cities.map((city, index) => `
         <article>
-          <img src="${escapeHtml(city.cover || resolveTripCover(trip, state))}" alt="${escapeHtml(city.name)}封面图" />
+          <img src="${escapeHtml(resolveCitySpotCover(city, trip, state))}" alt="${escapeHtml(city.name)}封面图" />
           <strong>${escapeHtml(city.name)}</strong>
           <small>${escapeHtml(nights[index] || 1)}晚</small>
         </article>
@@ -385,7 +381,7 @@ function renderSavedSpots(trip, state) {
         const spots = (city.spots || []).slice(0, 3);
         return `
           <article>
-            <img src="${escapeHtml(resolveCitySpotCover(city, trip, state))}" alt="${escapeHtml(city.name)}代表景点图" />
+            <img src="${escapeHtml(resolveCitySpotCover(city, trip, state))}" alt="${escapeHtml(city.name)}城市图片" />
             <span>
               <strong>${escapeHtml(city.name)} (${spots.length || 1})</strong>
               ${spots.map((spot) => `<small>· ${escapeHtml(spot)}</small>`).join("")}

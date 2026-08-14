@@ -9,6 +9,7 @@
     "favoriteRoutes",
   ];
   const DEFAULT_TRIP_COVER = TravelData.DEFAULT_TRIP_COVER || "assets/trip-cover-placeholder.svg";
+  const DEFAULT_ROUTE_CITY_COVER = global.RouteV2ImageCoverage?.fallbackPolicy?.city || "assets/route-city-placeholder.svg";
   const TOTAL_COUNTRY_COUNT = 195;
   const BLOCKED_COVER_ASSETS = new Set([
     "assets/city-helsinki-cover.svg",
@@ -389,15 +390,23 @@
   }
 
   function isBlockedCover(cover) {
-    return !cover || BLOCKED_COVER_ASSETS.has(cover);
+    const value = String(cover || "").trim();
+    return !value || /^(?:https?:)?\/\//iu.test(value) || BLOCKED_COVER_ASSETS.has(value);
   }
 
   function safeCountryCover(country) {
-    return isBlockedCover(country.cover) ? DEFAULT_TRIP_COVER : country.cover;
+    const countryCode = String(country?.id || country?.countryCode || country?.isoAlpha2 || "").trim().toUpperCase();
+    const configured = global.RouteV2ImageCoverage?.countryByCode?.[countryCode]?.assetPath;
+    if (!isBlockedCover(configured)) return configured;
+    return isBlockedCover(country?.cover) ? DEFAULT_TRIP_COVER : country.cover;
   }
 
   function safeCityCover(city, countriesById) {
-    if (!isBlockedCover(city.cover)) return city.cover;
+    const entityId = String(city?.entityId || city?.id || "").trim();
+    const configured = global.RouteV2ImageCoverage?.cityByEntityId?.[entityId]?.assetPath;
+    if (!isBlockedCover(configured)) return configured;
+    if (city?.knowledgeEntity) return DEFAULT_ROUTE_CITY_COVER;
+    if (!isBlockedCover(city?.cover)) return city.cover;
     return safeCountryCover(countriesById[city.countryId] || {});
   }
 
@@ -730,14 +739,14 @@
 
   function resolveTripCover(trip, state) {
     const routeAssetCover = String(trip?.routeSnapshot?.coverAsset?.imageUrl || "").trim();
-    if (routeAssetCover) return routeAssetCover;
+    if (!isBlockedCover(routeAssetCover)) return routeAssetCover;
     const routeCover = String(trip?.routeSnapshot?.coverImage || "").trim();
-    if (routeCover) return routeCover;
-    if (trip?.routeSnapshot) return "";
+    if (!isBlockedCover(routeCover)) return routeCover;
+    if (trip?.routeSnapshot) return DEFAULT_TRIP_COVER;
     const countriesById = state.countriesById || byId(state.countries || []);
     const countryId = normalizeList(trip?.countryIds || trip?.countries)[0];
     const countryCover = countriesById[countryId]?.cover;
-    return countryCover || DEFAULT_TRIP_COVER;
+    return isBlockedCover(countryCover) ? DEFAULT_TRIP_COVER : countryCover;
   }
 
   function recalculateTravelState(input = {}) {

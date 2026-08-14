@@ -24,71 +24,8 @@
     "gold-case-accepted-gold-4-central-europe-hopper": "routes/central-europe-hopper.webp",
     "gold-case-accepted-gold-2-it-first-trip": "routes/italy-first-trip.webp",
   });
-  const LOCAL_ROUTE_COVERS = Object.freeze({
-    "gold-case-accepted-gold-1-jp-first-trip": "assets/route-japan-classic-cover.svg",
-    "gold-case-accepted-gold-2-it-first-trip": "assets/atlas-italy-cover.svg",
-    "gold-case-accepted-gold-3-jp-alps-deep-dive": "assets/route-japan-hokkaido-cover.svg",
-    "gold-case-accepted-gold-4-central-europe-hopper": "assets/route-central-asia-loop-cover.svg",
-    "gold-case-accepted-gold-5-scotland-road-trip": "assets/route-nordic-cover.svg",
-    "gold-case-accepted-gold-6-swiss-rail-journey": "assets/route-nordic-cover.svg",
-    "gold-case-accepted-gold-7-jp-autumn-seasonal": "assets/route-japan-kansai-cover.svg",
-    "gold-case-accepted-gold-8-france-wine-theme": "assets/country-landmark-france.jpg",
-    "gold-case-accepted-gold-9-greece-island-hopping": "assets/route-greece-civilization-cover.svg",
-    "gold-case-accepted-gold-10-shikoku-pilgrimage": "assets/route-japan-classic-cover.svg",
-    "gold-case-accepted-gold-11-london-city-break": "assets/route-central-asia-loop-cover.svg",
-    "gold-case-accepted-gold-c45-3-peru-first-trip": "assets/favorite-route-central-asia.svg",
-    "gold-case-accepted-gold-c45-4-morocco-first-trip": "assets/route-east-africa-safari-cover.svg",
-    "gold-case-accepted-gold-c45-5-new-zealand-first-trip": "assets/favorite-route-canada.svg",
-    "gold-case-accepted-gold-c45-7-andalusia-deep-dive": "assets/atlas-italy-cover.svg",
-    "gold-case-accepted-gold-c45-8-patagonia-deep-dive": "assets/favorite-route-canada.svg",
-    "gold-case-accepted-gold-c45-9-northern-norway-deep-dive": "assets/route-nordic-cover.svg",
-    "gold-case-accepted-gold-c45-10-yucatan-deep-dive": "assets/route-greece-civilization-cover.svg",
-    "gold-case-accepted-gold-c45-12-canadian-rockies-road-trip": "assets/favorite-route-canada.svg",
-    "gold-case-accepted-gold-c45-13-california-pacific-coast": "assets/favorite-route-canada.svg",
-    "gold-case-accepted-gold-c45-14-south-island-new-zealand": "assets/favorite-route-canada.svg",
-    "gold-case-accepted-gold-c45-15-garden-route": "assets/route-east-africa-safari-cover.svg",
-    "gold-case-accepted-gold-c45-17-japan-jr-grand-route": "assets/route-japan-classic-cover.svg",
-    "gold-case-accepted-gold-c45-18-norway-scenic-railway": "assets/route-nordic-cover.svg",
-    "gold-case-accepted-gold-c45-19-canadian-transcontinental-rail": "assets/favorite-route-canada.svg",
-    "gold-case-accepted-gold-c45-20-central-europe-by-rail": "assets/route-central-asia-loop-cover.svg",
-    "gold-case-accepted-gold-c45-22-netherlands-tulip-season": "assets/country-landmark-france.jpg",
-    "gold-case-accepted-gold-c45-23-canada-autumn-rockies": "assets/favorite-route-canada.svg",
-    "gold-case-accepted-gold-c45-24-germany-christmas-markets": "assets/route-central-asia-loop-cover.svg",
-    "gold-case-accepted-gold-c45-25-namibia-dry-season-safari": "assets/route-east-africa-safari-cover.svg",
-    "gold-case-accepted-gold-c45-27-italy-food-journey": "assets/atlas-italy-cover.svg",
-    "gold-case-accepted-gold-c45-28-turkey-unesco-journey": "assets/trip-turkey-cover.svg",
-    "gold-case-accepted-gold-c45-29-australia-wildlife-journey": "assets/route-east-africa-safari-cover.svg",
-    "gold-case-accepted-gold-c45-30-mexico-maya-civilization": "assets/route-greece-civilization-cover.svg",
-    "gold-case-accepted-gold-c45-32-croatian-islands": "assets/route-thai-islands-cover.svg",
-    "gold-case-accepted-gold-c45-33-philippines-palawan": "assets/route-thai-islands-cover.svg",
-    "gold-case-accepted-gold-c45-34-azores-islands": "assets/route-thai-islands-cover.svg",
-    "gold-case-accepted-gold-c45-35-hawaii-island-journey": "assets/route-thai-islands-cover.svg",
-    "gold-case-accepted-gold-c45-37-camino-frances": "assets/atlas-italy-cover.svg",
-    "gold-case-accepted-gold-c45-38-kumano-kodo": "assets/route-japan-kansai-cover.svg",
-    "gold-case-accepted-gold-c45-39-via-francigena": "assets/atlas-italy-cover.svg",
-    "gold-case-accepted-gold-c45-42-baltic-capitals": "assets/route-nordic-cover.svg",
-    "gold-case-accepted-gold-c45-43-benelux-explorer": "assets/route-central-asia-loop-cover.svg",
-    "gold-case-accepted-gold-c45-44-balkan-sampler": "assets/route-central-asia-loop-cover.svg",
-    "gold-case-accepted-gold-c45-45-mekong-discovery": "assets/route-southeast-asia-cover.svg",
-  });
-  const LOCAL_ROUTE_COVER_COUNTRIES = Object.freeze({
-    "gold-case-accepted-gold-1-jp-first-trip": ["JP"],
-    "gold-case-accepted-gold-2-it-first-trip": ["IT"],
-    "gold-case-accepted-gold-7-jp-autumn-seasonal": ["JP"],
-    "gold-case-accepted-gold-8-france-wine-theme": ["FR"],
-    "gold-case-accepted-gold-9-greece-island-hopping": ["GR"],
-    "gold-case-accepted-gold-10-shikoku-pilgrimage": ["JP"],
-    "gold-case-accepted-gold-c45-9-northern-norway-deep-dive": ["NO"],
-    "gold-case-accepted-gold-c45-12-canadian-rockies-road-trip": ["CA"],
-    "gold-case-accepted-gold-c45-17-japan-jr-grand-route": ["JP"],
-    "gold-case-accepted-gold-c45-18-norway-scenic-railway": ["NO"],
-    "gold-case-accepted-gold-c45-19-canadian-transcontinental-rail": ["CA"],
-    "gold-case-accepted-gold-c45-23-canada-autumn-rockies": ["CA"],
-    "gold-case-accepted-gold-c45-27-italy-food-journey": ["IT"],
-    "gold-case-accepted-gold-c45-28-turkey-unesco-journey": ["TR"],
-    "gold-case-accepted-gold-c45-38-kumano-kodo": ["JP"],
-    "gold-case-accepted-gold-c45-39-via-francigena": ["IT"],
-  });
+  const LOCAL_ROUTE_COVERS = Object.freeze({});
+  const LOCAL_ROUTE_COVER_COUNTRIES = Object.freeze({});
   const SEMANTIC_LOCAL_COUNTRY_CODES = new Set([
     "AE", "EG", "FI", "FR", "GR", "IS", "IT", "JP", "KH", "KR", "MY", "NO", "SE", "SG", "TH", "TR", "VN",
   ]);
@@ -242,23 +179,18 @@
   }
 
   function localCityCover(destination = {}) {
-    const values = [destination.name, destination.canonicalNameEn, destination.canonicalNameZh, destination.sourceTitle];
-    for (const value of values) {
-      const cover = LOCAL_CITY_COVERS[normalizedLookupKey(value)];
-      if (cover) return cover;
-    }
+    const entityId = String(destination.entityId || destination.destinationEntityId || "").trim();
+    const coverage = global.RouteV2ImageCoverage?.cityByEntityId?.[entityId];
+    if (coverage?.status === "imageReady" && coverage.semanticScope === "exact-city") return coverage.assetPath;
+    if (coverage?.status === "placeholder" && coverage.semanticScope === "neutral-placeholder") return coverage.assetPath;
     return "";
   }
 
   function localCountryCover(country = {}) {
-    const directCode = String(country.countryCode || country.iso2 || "").trim().toUpperCase();
-    const nameCode = [country.name, country.canonicalNameEn, country.canonicalNameZh]
-      .map(normalizedLookupKey)
-      .map((name) => LOCAL_COUNTRY_NAMES[name])
-      .find(Boolean);
-    const code = directCode || nameCode;
-    if (!SEMANTIC_LOCAL_COUNTRY_CODES.has(code)) return "";
-    return LOCAL_COUNTRY_COVERS[code] || "";
+    const code = String(country.countryCode || country.iso2 || "").trim().toUpperCase();
+    const coverage = global.RouteV2ImageCoverage?.countryByCode?.[code];
+    if (coverage?.status === "imageReady" && coverage.semanticScope === "exact-country") return coverage.assetPath;
+    return "";
   }
 
   function recordCountryCodes(record = {}) {
@@ -290,10 +222,6 @@
   function resolveLocalDestinationCover(destination = {}, record = {}) {
     const cityUrl = localCityCover(destination);
     if (cityUrl) return localResolution(cityUrl, "local-city");
-    const country = (record.countryEntities || []).find((item) => item.countryCode === destination.countryCode)
-      || firstCountry(record, destination);
-    const countryUrl = localCountryCover(country);
-    if (countryUrl) return localResolution(countryUrl, "local-country");
     return localResolution(DEFAULT_CITY_PLACEHOLDER, "local-placeholder");
   }
 
@@ -305,7 +233,8 @@
     const destination = firstDestination(record);
     const cityUrl = localCityCover(destination);
     if (cityUrl) return localResolution(cityUrl, "local-city");
-    const countryUrl = localCountryCover(firstCountry(record, destination));
+    const countryCodes = recordCountryCodes(record);
+    const countryUrl = countryCodes.length === 1 ? localCountryCover(firstCountry(record, destination)) : "";
     if (countryUrl) return localResolution(countryUrl, "local-country");
     return localResolution(DEFAULT_ROUTE_PLACEHOLDER, "local-placeholder");
   }

@@ -29,6 +29,36 @@ function localOnlyCover(cover) {
   return localOnlyPlaceholderCover;
 }
 
+function localImageAssetPath(value) {
+  const candidate = String(value || "").trim().replaceAll("\\", "/");
+  if (!candidate.startsWith("assets/") || candidate.includes("..") || /^(?:https?:)?\/\//iu.test(candidate)) return "";
+  return candidate;
+}
+
+function neutralCityCover() {
+  return localImageAssetPath(globalThis.RouteV2ImageCoverage?.fallbackPolicy?.city)
+    || localOnlyPlaceholderCover;
+}
+
+function cityCoverResolution(entityId) {
+  const coverage = globalThis.RouteV2ImageCoverage?.cityByEntityId?.[String(entityId || "").trim()];
+  const verifiedAsset = coverage?.status === "imageReady"
+    && coverage.assetKind === "verified-destination-image"
+    && coverage.semanticScope === "exact-city"
+    ? localImageAssetPath(coverage.assetPath)
+    : "";
+  if (verifiedAsset) return { url: verifiedAsset, source: "verified-city-image" };
+  return { url: neutralCityCover(), source: "neutral-placeholder" };
+}
+
+function applyCityCover(entityId = "") {
+  if (!cityCover) return;
+  const resolution = cityCoverResolution(entityId);
+  cityCover.src = localOnlyCover(resolution.url);
+  cityCover.dataset.coverSource = resolution.source;
+  cityCover.removeAttribute("data-cover-image-key");
+}
+
 async function localOnlyKnowledgeFetch(input, init) {
   const url = new URL(String(input), window.location.href);
   const allowed = url.origin === window.location.origin
@@ -121,6 +151,7 @@ function renderKnowledgePois(result) {
 
   status.hidden = true;
   section.setAttribute("data-knowledge-city-id", result.city.entityId);
+  applyCityCover(result.city.entityId);
   for (const poi of result.pois) {
     const item = document.createElement("span");
     const preferredName = poi.canonicalNameZh || poi.canonicalNameEn || "景点";
@@ -161,11 +192,8 @@ function renderCity() {
   if (cityCountry) cityCountry.textContent = country.name || "";
   if (cityIntro) cityIntro.textContent = detail.description || city.intro || "";
   if (cityCover) {
-    const pilotCover = globalThis.RouteV2ImageAssets?.resolvePilotCityCover(city.id);
-    cityCover.src = localOnlyCover(pilotCover?.url || detail.coverImage || city.cover || country.cover || "assets/route-city-placeholder.svg");
+    applyCityCover(city.entityId);
     cityCover.alt = `${city.name}封面图`;
-    if (pilotCover?.key) cityCover.dataset.coverImageKey = pilotCover.key;
-    cityCover.dataset.coverSource = pilotCover ? (pilotCover.isFallback ? "local-placeholder" : "fixed-asset") : "legacy";
   }
   if (cityTags) {
     cityTags.innerHTML = (detail.tags || city.tags || []).map((tag) => `<span>${tag}</span>`).join("");

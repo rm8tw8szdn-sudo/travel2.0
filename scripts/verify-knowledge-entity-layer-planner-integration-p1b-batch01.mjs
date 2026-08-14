@@ -102,7 +102,14 @@ const adapterCities = repository.listCountries().flatMap((country) => adapter.qu
 }).filter((destination) => destination.destinationSource === "knowledge-entity-layer"));
 assert.equal(adapterCities.length, 306);
 assert.equal(adapterCities.flatMap((city) => city.poiEntities).length, 2101);
-assert.ok(adapterCities.every((city) => city.poiEntities.length >= 3));
+assert.ok(adapterCities.every((city) => city.poiEntities.length >= 1), "every published City must retain at least one validated POI");
+assert.deepEqual(
+  adapterCities
+    .filter((city) => city.poiEntities.length < 3)
+    .map((city) => ({ wikidataId: city.wikidataId, countryCode: city.countryCode, poiCount: city.poiEntities.length })),
+  [{ wikidataId: "Q216075", countryCode: "VN", poiCount: 1 }],
+  "only the explicitly reviewed Cần Thơ capacity shortfall may remain below three POIs",
+);
 
 const expectedCities = new Map([
   ["Amsterdam", ["Anne Frank House", "Rijksmuseum", "Van Gogh Museum"]],

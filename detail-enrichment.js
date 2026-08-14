@@ -1,7 +1,7 @@
 (function (global) {
   const CACHE_DAYS = 30;
   const WIKIVOYAGE_API = "https://en.wikivoyage.org/w/api.php";
-  const DEFAULT_TRIP_COVER = global.TravelState?.DEFAULT_TRIP_COVER || global.TravelData?.DEFAULT_TRIP_COVER || "assets/home-aurora-cover.svg";
+  const DEFAULT_TRIP_COVER = global.TravelState?.DEFAULT_TRIP_COVER || global.TravelData?.DEFAULT_TRIP_COVER || "assets/trip-cover-placeholder.svg";
   const DEFAULT_PLACE_COVER = global.TravelData?.DEFAULT_PLACE_COVER || DEFAULT_TRIP_COVER;
 
   function nowIso() {

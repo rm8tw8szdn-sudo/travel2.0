@@ -2,21 +2,21 @@ const SHARE_PRESETS = {
   country: {
     type: "国家",
     name: "日本",
-    cover: "assets/detail-japan-hero.svg",
+    cover: "assets/trip-cover-placeholder.svg",
     description: "融合传统与现代的国度，四季分明，值得一去再去。",
     meta: "来自 我的旅行足迹 · Ruby",
   },
   city: {
     type: "城市",
     name: "东京",
-    cover: "assets/city-tokyo-cover.svg",
+    cover: "assets/route-city-placeholder.svg",
     description: "现代与传统交织的国际化大都市。",
     meta: "来自 我的旅行足迹 · Ruby",
   },
   trip: {
     type: "行程",
     name: "我的旅行",
-    cover: "assets/home-aurora-cover.svg",
+    cover: "assets/trip-cover-placeholder.svg",
     description: "旅行记录",
     meta: "日期待定",
   },
@@ -245,43 +245,11 @@ function routePreloadTimeoutSignal(timeoutMs) {
 
 function proxiedRoutePreloadImageUrl(imageUrl) {
   const text = String(imageUrl || "");
-  return /^https?:\/\//i.test(text) ? `/api/routes/image-proxy?url=${encodeURIComponent(text)}` : text;
+  return /^https?:\/\//i.test(text) ? "assets/trip-cover-placeholder.svg" : text;
 }
 
-function routePreloadFallbackCover(record = {}, usedImageUrls = new Set()) {
-  const text = [
-    record.id,
-    record.name,
-    record.canonicalTitle,
-    record.sourceTitle,
-    ...(record.countries || []),
-    ...(record.destinations || []),
-    ...(record.cities || []),
-    ...(record.themes || []),
-    ...(record.tags || []),
-  ].filter(Boolean).join(" ");
-  const fallbacks = [
-    [/中欧|奥地利|斯洛伐克|匈牙利|捷克|central europe/i, "https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Hungarian_Parliament_Building_from_across_the_Danube%2C_2025-01-11.jpg/960px-Hungarian_Parliament_Building_from_across_the_Danube%2C_2025-01-11.jpg"],
-    [/欧洲E45|e45|布伦纳/i, "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Brennerpass_nordrampe.jpg/960px-Brennerpass_nordrampe.jpg"],
-    [/多瑙河|danube/i, "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Wachau_%282%29.JPG/960px-Wachau_%282%29.JPG"],
-    [/曼谷.*新加坡|bangkok.*singapore/i, "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Bangkok-large.png/960px-Bangkok-large.png"],
-    [/加拿大|落基|rockies/i, "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Moraine_Lake_17092005.jpg/960px-Moraine_Lake_17092005.jpg"],
-    [/荷兰|郁金香|tulip/i, "https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Keukenhof%2C_tulips_%2833513228345%29.jpg/960px-Keukenhof%2C_tulips_%2833513228345%29.jpg"],
-    [/挪威|lofoten|norway/i, "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Reine_i_Lofoten_LC0148.jpg/960px-Reine_i_Lofoten_LC0148.jpg"],
-    [/新西兰|南岛|new zealand/i, "https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Milford_Sound_in_Fiordland_National_Park_01.jpg/960px-Milford_Sound_in_Fiordland_National_Park_01.jpg"],
-    [/加州|california|pacific coast/i, "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Bixby_Creek_Bridge%2C_California%2C_USA_-_May_2013.jpg/960px-Bixby_Creek_Bridge%2C_California%2C_USA_-_May_2013.jpg"],
-    [/秘鲁|peru/i, "https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Machu_Picchu%2C_Peru.jpg/960px-Machu_Picchu%2C_Peru.jpg"],
-    [/摩洛哥|morocco/i, "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/A%C3%AFtBenhaddou_Morocco_2.jpg/960px-A%C3%AFtBenhaddou_Morocco_2.jpg"],
-    [/伦敦|london/i, "https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Tower_Bridge_from_Shad_Thames.jpg/960px-Tower_Bridge_from_Shad_Thames.jpg"],
-  ];
-  const match = fallbacks.find(([pattern]) => pattern.test(text));
-  if (match && !usedImageUrls.has(String(match[1]).toLowerCase())) return match[1];
-  const hash = [...String(record.id || record.name || "")].reduce((total, char) => total + char.charCodeAt(0), 0);
-  for (let offset = 0; offset < fallbacks.length; offset += 1) {
-    const imageUrl = fallbacks[(hash + offset) % fallbacks.length][1];
-    if (!usedImageUrls.has(String(imageUrl).toLowerCase())) return imageUrl;
-  }
-  return fallbacks[hash % fallbacks.length][1];
+function routePreloadFallbackCover() {
+  return "assets/trip-cover-placeholder.svg";
 }
 
 function warmRoutePreloadImage(imageUrl, timeoutMs = 2_500) {

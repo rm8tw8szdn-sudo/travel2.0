@@ -32,120 +32,13 @@ const ROUTE_FEED_NAVIGATION_RECORD_LIMIT = 360;
 const ROUTE_FEED_QUERY_PARAM = "q";
 const FALLBACK_ROUTE_COVER = "assets/trip-cover-placeholder.svg";
 const routeImageAssets = globalThis.RouteV2ImageAssets || null;
-const runtimeImageSearchEnabled = routeImageAssets?.isRuntimeImageSearchEnabled?.() === true;
-const IMAGE_READY_COUNTRY_CODES = new Set([
-  "AT", "BE", "FI", "FR", "GB", "HR", "HU", "IN", "IS", "IT", "JP", "KH", "LU", "MA", "NL", "SK", "TH", "TR", "US", "VN", "ZA",
-  "AR", "CH", "CL", "CZ", "DE", "ES", "GR", "NO", "NP", "PL", "PT", "SE", "SI",
-]);
-const unsplashCover = (id) => `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=960&q=80`;
-const BAD_REMOTE_COVER_PATTERNS = [
-  /World_map_blank_without_borders/i,
-  /\.svg(?:\.png)?(?:[?#]|$)/i,
-  /(?:^|[/_-])map(?:[/_.-]|$)/i,
-  /\.png(?:[?#]|$)/i,
-  /danubemap/i,
-  /tabliczka|road[_-]?sign|route[_-]?marker|locator|blank|flag|logo|icon|diagram/i,
-  /collage|pays|statue|museum|camping|national[_-]?road|padang[_-]?besar|arkadenhof|front\.jpe?g|entrance|platform/i,
-  /Big_Spy_Hop|Laguna_San_Ignacio|rosso|thumbnail\.jpg/i,
-];
-const ROUTE_IMAGE_COUNTRY_MISMATCH_RULES = [
-  { pattern: /eiffel|paris|versailles|mont[-_ ]?saint[-_ ]?michel|france|bordeaux|photo-1502602898657/i, allowed: ["FR"] },
-  { pattern: /milan|milano|venice|venezia|florence|firenze|rome|roma|tuscany|italy|photo-1523906834658/i, allowed: ["IT"] },
-  { pattern: /london|westminster|tower[_-]?bridge|england|scotland|wales|photo-1513635269975/i, allowed: ["GB"] },
-  { pattern: /budapest|hungarian[_-]?parliament|hungary/i, allowed: ["HU"] },
-  { pattern: /prague|charles[_-]?bridge|czech/i, allowed: ["CZ"] },
-  { pattern: /vienna|schonbrunn|sch%C3%B6nbrunn|austria/i, allowed: ["AT"] },
-  { pattern: /lofoten|bergen|norway|fjord|photo-1518684079/i, allowed: ["NO"] },
-  { pattern: /aurora|northern[_-]?lights|photo-1519681393784/i, allowed: ["NO", "SE", "FI", "IS", "CA", "US"] },
-  { pattern: /iceland|jokulsarlon|reykjavik/i, allowed: ["IS"] },
-  { pattern: /kyoto|tokyo|kiyomizu|fushimi|japan/i, allowed: ["JP"] },
-  { pattern: /cappadocia|istanbul|pamukkale|turkey/i, allowed: ["TR"] },
-  { pattern: /angkor|cambodia/i, allowed: ["KH"] },
-  { pattern: /bangkok|thailand|photo-1537996194471/i, allowed: ["TH"] },
-  { pattern: /halong|vietnam/i, allowed: ["VN"] },
-  { pattern: /machu[_-]?picchu|peru/i, allowed: ["PE"] },
-  { pattern: /ait[-_ ]?benhaddou|marrakesh|morocco/i, allowed: ["MA"] },
-  { pattern: /safari|kenya|tanzania|namibia|sossusvlei|etosha/i, allowed: ["KE", "TZ", "NA", "ZA", "BW", "UG", "RW"] },
-];
+const runtimeImageSearchEnabled = false;
+const IMAGE_READY_COUNTRY_CODES = new Set(
+  Object.entries(globalThis.RouteV2ImageCoverage?.countryByCode || {})
+    .filter(([, item]) => item?.status === "imageReady" && item?.semanticScope === "exact-country")
+    .map(([code]) => code),
+);
 const badRuntimeImageUrls = new Set();
-const ONLINE_FALLBACK_COVERS = [
-  [/佛教|圣地|印度|阿富汗|越南|buddhist|india|vietnam/i, unsplashCover("1524492412937-b28074a5d7da")],
-  [/中欧|奥地利|斯洛伐克|匈牙利|捷克|central europe/i, "https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Hungarian_Parliament_Building_from_across_the_Danube%2C_2025-01-11.jpg/960px-Hungarian_Parliament_Building_from_across_the_Danube%2C_2025-01-11.jpg"],
-  [/欧洲E45|e45|布伦纳/i, "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Brennerpass_nordrampe.jpg/960px-Brennerpass_nordrampe.jpg"],
-  [/多瑙河|danube/i, "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Wachau_%282%29.JPG/960px-Wachau_%282%29.JPG"],
-  [/曼谷.*新加坡|bangkok.*singapore/i, "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Bangkok-large.png/960px-Bangkok-large.png"],
-  [/加拿大|落基|rockies/i, "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Moraine_Lake_17092005.jpg/960px-Moraine_Lake_17092005.jpg"],
-  [/荷兰|郁金香|tulip/i, "https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Keukenhof%2C_tulips_%2833513228345%29.jpg/960px-Keukenhof%2C_tulips_%2833513228345%29.jpg"],
-  [/挪威|lofoten|norway/i, "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Reine_i_Lofoten_LC0148.jpg/960px-Reine_i_Lofoten_LC0148.jpg"],
-  [/新西兰|南岛|new zealand/i, "https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Milford_Sound_in_Fiordland_National_Park_01.jpg/960px-Milford_Sound_in_Fiordland_National_Park_01.jpg"],
-  [/加州|california|pacific coast/i, "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Bixby_Creek_Bridge%2C_California%2C_USA_-_May_2013.jpg/960px-Bixby_Creek_Bridge%2C_California%2C_USA_-_May_2013.jpg"],
-  [/秘鲁|peru/i, "https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Machu_Picchu%2C_Peru.jpg/960px-Machu_Picchu%2C_Peru.jpg"],
-  [/摩洛哥|morocco/i, "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/A%C3%AFtBenhaddou_Morocco_2.jpg/960px-A%C3%AFtBenhaddou_Morocco_2.jpg"],
-  [/伦敦|london/i, "https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Tower_Bridge_from_Shad_Thames.jpg/960px-Tower_Bridge_from_Shad_Thames.jpg"],
-  [/camino|santiago|pilgrim/i, "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Santiago_cathedral_2021.jpg/960px-Santiago_cathedral_2021.jpg"],
-  [/southeast|banana|khao/i, "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Khao_San_East_2007.jpg/960px-Khao_San_East_2007.jpg"],
-  [/francigena|aosta/i, "https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/CastelloDiF%C3%A9nisJuly292023_06.jpg/960px-CastelloDiF%C3%A9nisJuly292023_06.jpg"],
-  [/baltic|tallinn|estonia/i, "https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Raekoja_plats_at_night.jpg/960px-Raekoja_plats_at_night.jpg"],
-  [/angkor|cambodia|mekong/i, "https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Angkor_Wat.jpg/960px-Angkor_Wat.jpg"],
-  [/santorini|greece|island/i, "https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Oia_-_Santorini_-_Greece_-_16.jpg/960px-Oia_-_Santorini_-_Greece_-_16.jpg"],
-  [/kyoto|japan|kansai/i, "https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Kiyomizu-dera%2C_Kyoto%2C_November_2016_-01.jpg/960px-Kiyomizu-dera%2C_Kyoto%2C_November_2016_-01.jpg"],
-  [/cappadocia|turkey|balloon/i, "https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Hot_air_balloon_start_in_Cappadocia_2014.jpg/960px-Hot_air_balloon_start_in_Cappadocia_2014.jpg"],
-];
-const CENTRAL_EUROPE_FALLBACK_COVERS = [
-  unsplashCover("1541849546-216549ae216d"),
-  unsplashCover("1549877452-9c387954fbc2"),
-  unsplashCover("1500530855697-b586d89ba3ee"),
-  unsplashCover("1467269204594-9661b134dd2b"),
-  unsplashCover("1502602898657-3e91760cbb34"),
-  unsplashCover("1506744038136-46273834b3fb"),
-];
-const REGION_FALLBACK_COVERS = [
-  { codes: ["NL", "BE", "LU"], images: [
-    unsplashCover("1512470876302-972faa2aa9a4"),
-    unsplashCover("1505761671935-60b3a7427bad"),
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Bruges_Belgium_Rozenhoedkaai-01.jpg/960px-Bruges_Belgium_Rozenhoedkaai-01.jpg",
-  ] },
-  { codes: ["GB", "FR"], images: [
-    unsplashCover("1513635269975-59663e0ac1ad"),
-    unsplashCover("1502602898657-3e91760cbb34"),
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Mont-Saint-Michel_vu_du_ciel.jpg/960px-Mont-Saint-Michel_vu_du_ciel.jpg",
-  ] },
-  { codes: ["DE", "FR"], images: [
-    unsplashCover("1502602898657-3e91760cbb34"),
-    unsplashCover("1467269204594-9661b134dd2b"),
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Strasbourg_Cathedral_Exterior_-_Diliff.jpg/960px-Strasbourg_Cathedral_Exterior_-_Diliff.jpg",
-  ] },
-  { codes: ["GB", "DE"], images: [
-    unsplashCover("1513635269975-59663e0ac1ad"),
-    unsplashCover("1467269204594-9661b134dd2b"),
-    unsplashCover("1502602898657-3e91760cbb34"),
-  ] },
-  { codes: ["DE", "IT"], images: [
-    unsplashCover("1467269204594-9661b134dd2b"),
-    unsplashCover("1523906834658-6e24ef2386f9"),
-    unsplashCover("1500534623283-312aade485b7"),
-  ] },
-  { codes: ["CZ", "IT"], images: [
-    unsplashCover("1541849546-216549ae216d"),
-    unsplashCover("1523906834658-6e24ef2386f9"),
-    unsplashCover("1467269204594-9661b134dd2b"),
-  ] },
-  { codes: ["AR", "CL"], images: [
-    unsplashCover("1500530855697-b586d89ba3ee"),
-    unsplashCover("1469474968028-56623f02e42e"),
-    unsplashCover("1506744038136-46273834b3fb"),
-  ] },
-  { codes: ["TH", "KH", "VN"], images: [
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Angkor_Wat.jpg/960px-Angkor_Wat.jpg",
-    unsplashCover("1507525428034-b723cf961d3e"),
-    unsplashCover("1537996194471-e657df975ab4"),
-  ] },
-  { codes: ["LT", "LV", "EE", "FI"], images: [
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Raekoja_plats_at_night.jpg/960px-Raekoja_plats_at_night.jpg",
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Riga_Dom_2010.jpg/960px-Riga_Dom_2010.jpg",
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Helsinki_Cathedral_in_July_2004.jpg/960px-Helsinki_Cathedral_in_July_2004.jpg",
-  ] },
-];
 const COUNTRY_CONTINENT_SETS = {
   africa: new Set(["DZ", "AO", "BJ", "BW", "BF", "BI", "CV", "CM", "CF", "TD", "KM", "CG", "CD", "CI", "DJ", "EG", "GQ", "ER", "SZ", "ET", "GA", "GM", "GH", "GN", "GW", "KE", "LS", "LR", "LY", "MG", "MW", "ML", "MR", "MU", "MA", "MZ", "NA", "NE", "NG", "RW", "ST", "SN", "SC", "ZA", "SS", "SD", "TZ", "TG", "TN", "UG", "ZM", "ZW"]),
   americas: new Set(["AG", "AR", "BS", "BB", "BZ", "BO", "BR", "CA", "CL", "CO", "CR", "CU", "DM", "DO", "EC", "SV", "GD", "GT", "GY", "HT", "HN", "JM", "MX", "NI", "PA", "PY", "PE", "KN", "LC", "VC", "SR", "TT", "US", "UY", "VE"]),
@@ -153,279 +46,6 @@ const COUNTRY_CONTINENT_SETS = {
   europe: new Set(["AD", "AL", "AT", "BA", "BE", "BG", "BY", "CH", "CZ", "DE", "DK", "EE", "ES", "FI", "FR", "GB", "GR", "HR", "HU", "IE", "IS", "IT", "LI", "LT", "LU", "LV", "MC", "MD", "ME", "MK", "MT", "NL", "NO", "PL", "PT", "RO", "RS", "RU", "SE", "SI", "SK", "SM", "UA", "VA", "XK"]),
   oceania: new Set(["AU", "FJ", "FM", "KI", "MH", "NR", "NZ", "PW", "PG", "WS", "SB", "TO", "TV", "VU"]),
 };
-const CONTINENT_ONLINE_FALLBACK_COVERS = {
-  africa: [
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/A%C3%AFtBenhaddou_Morocco_2.jpg/960px-A%C3%AFtBenhaddou_Morocco_2.jpg",
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/NubianMeroePyramids30sep2005.jpg/960px-NubianMeroePyramids30sep2005.jpg",
-    unsplashCover("1547471080-7cc2caa01a7e"),
-    unsplashCover("1516026672322-bc52d61a55d5"),
-    unsplashCover("1523805009345-7448845a9e53"),
-    unsplashCover("1516426122078-c23e76319801"),
-  ],
-  americas: [
-    unsplashCover("1500530855697-b586d89ba3ee"),
-    unsplashCover("1469474968028-56623f02e42e"),
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Machu_Picchu%2C_Peru.jpg/960px-Machu_Picchu%2C_Peru.jpg",
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Golden_Gate_Bridge_at_sunset_1.jpg/960px-Golden_Gate_Bridge_at_sunset_1.jpg",
-    unsplashCover("1506744038136-46273834b3fb"),
-    unsplashCover("1519681393784-d120267933ba"),
-  ],
-  asia: [
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Kiyomizu-dera%2C_Kyoto%2C_November_2016_-01.jpg/960px-Kiyomizu-dera%2C_Kyoto%2C_November_2016_-01.jpg",
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Angkor_Wat.jpg/960px-Angkor_Wat.jpg",
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Hot_air_balloon_start_in_Cappadocia_2014.jpg/960px-Hot_air_balloon_start_in_Cappadocia_2014.jpg",
-    unsplashCover("1537996194471-e657df975ab4"),
-    unsplashCover("1507525428034-b723cf961d3e"),
-    unsplashCover("1524492412937-b28074a5d7da"),
-  ],
-  europe: [
-    unsplashCover("1541849546-216549ae216d"),
-    unsplashCover("1467269204594-9661b134dd2b"),
-    unsplashCover("1513635269975-59663e0ac1ad"),
-    unsplashCover("1523906834658-6e24ef2386f9"),
-    unsplashCover("1502602898657-3e91760cbb34"),
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Hungarian_Parliament_Building_from_across_the_Danube%2C_2025-01-11.jpg/960px-Hungarian_Parliament_Building_from_across_the_Danube%2C_2025-01-11.jpg",
-  ],
-  oceania: [
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Milford_Sound_in_Fiordland_National_Park_01.jpg/960px-Milford_Sound_in_Fiordland_National_Park_01.jpg",
-    unsplashCover("1500530855697-b586d89ba3ee"),
-    unsplashCover("1507525428034-b723cf961d3e"),
-    unsplashCover("1518684079-3c830dcef090"),
-    unsplashCover("1506744038136-46273834b3fb"),
-    unsplashCover("1470770841072-f978cf4d019e"),
-  ],
-};
-const GLOBAL_ONLINE_FALLBACK_COVERS = [
-  unsplashCover("1500530855697-b586d89ba3ee"),
-  unsplashCover("1469474968028-56623f02e42e"),
-  unsplashCover("1476514525535-07fb3b4ae5f1"),
-  unsplashCover("1493246507139-91e8fad9978e"),
-  unsplashCover("1500534623283-312aade485b7"),
-  unsplashCover("1506744038136-46273834b3fb"),
-  unsplashCover("1519681393784-d120267933ba"),
-  unsplashCover("1526772662000-3f88f10405ff"),
-  unsplashCover("1537996194471-e657df975ab4"),
-  unsplashCover("1541849546-216549ae216d"),
-  unsplashCover("1467269204594-9661b134dd2b"),
-  unsplashCover("1513635269975-59663e0ac1ad"),
-  unsplashCover("1523906834658-6e24ef2386f9"),
-  unsplashCover("1502602898657-3e91760cbb34"),
-  unsplashCover("1547471080-7cc2caa01a7e"),
-  unsplashCover("1516026672322-bc52d61a55d5"),
-  unsplashCover("1523805009345-7448845a9e53"),
-  unsplashCover("1516426122078-c23e76319801"),
-  unsplashCover("1507525428034-b723cf961d3e"),
-  unsplashCover("1524492412937-b28074a5d7da"),
-  "https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Sunset_on_the_beach_in_Colonia_del_Sacramento.jpg/960px-Sunset_on_the_beach_in_Colonia_del_Sacramento.jpg",
-  "https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Saariston_rengastie_11.jpg/960px-Saariston_rengastie_11.jpg",
-  "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Arroyo_del_Valle_-_Major_Cliffs.jpg/960px-Arroyo_del_Valle_-_Major_Cliffs.jpg",
-  "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Patapat_Viaduct_Bridge.jpg/960px-Patapat_Viaduct_Bridge.jpg",
-  "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Trekking_Ausangate_Circuit_-_Kampeerplaats_Japata.jpg/960px-Trekking_Ausangate_Circuit_-_Kampeerplaats_Japata.jpg",
-  "https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Anne_Beadell_Highway_2006.jpg/960px-Anne_Beadell_Highway_2006.jpg",
-  "https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Parador_de_Carmona_1.jpg/960px-Parador_de_Carmona_1.jpg",
-  "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Blue_Ridge_Parkway_-_Nature%27s_Palette_on_the_Blue_Ridge_Parkway_-_NARA_-_7717421.jpg/960px-Blue_Ridge_Parkway_-_Nature%27s_Palette_on_the_Blue_Ridge_Parkway_-_NARA_-_7717421.jpg",
-  "https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/NubianMeroePyramids30sep2005.jpg/960px-NubianMeroePyramids30sep2005.jpg",
-  "https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Amtrak_California_Zephyr_on_the_Colorado_River_%2828154290124%29.jpg/960px-Amtrak_California_Zephyr_on_the_Colorado_River_%2828154290124%29.jpg",
-  "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Central_Alexandria.JPG/960px-Central_Alexandria.JPG",
-  "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Ferry_on_Prince_William_Sound_at_Whittier.jpg/960px-Ferry_on_Prince_William_Sound_at_Whittier.jpg",
-  "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Hunawihr1P7.jpg/960px-Hunawihr1P7.jpg",
-  "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Khao_San_East_2007.jpg/960px-Khao_San_East_2007.jpg",
-  "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/1997-10-bruce-trail-river-r.jpg/960px-1997-10-bruce-trail-river-r.jpg",
-  "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Sarnath_Archaeological_Site_4.jpg/960px-Sarnath_Archaeological_Site_4.jpg",
-  "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Kusttram_CAF_Middelkerke--Westende_08.jpg/960px-Kusttram_CAF_Middelkerke--Westende_08.jpg",
-  "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Puente_La_Quemada_-_San_Felipe%2C_Guanajuato_-_Camino_Real_de_Tierra_Adentro_6.jpg/960px-Puente_La_Quemada_-_San_Felipe%2C_Guanajuato_-_Camino_Real_de_Tierra_Adentro_6.jpg",
-  "https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Black_Brooke_Green_Cove_Cabot_Trail_Nova_Scotia_Canada-2_%2827447976389%29.jpg/960px-Black_Brooke_Green_Cove_Cabot_Trail_Nova_Scotia_Canada-2_%2827447976389%29.jpg",
-  "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Outback_Xplorer_10_Mar_20.jpg/960px-Outback_Xplorer_10_Mar_20.jpg",
-  "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Bishop_Peak_from_the_Coast_Starlight.jpg/960px-Bishop_Peak_from_the_Coast_Starlight.jpg",
-  "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Start_of_coast_to_coast_-_winter.jpg/960px-Start_of_coast_to_coast_-_winter.jpg",
-  "https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Lagangarbh_cottage_with_Buachaille_Etive_M%C3%B2r.jpg/960px-Lagangarbh_cottage_with_Buachaille_Etive_M%C3%B2r.jpg",
-  "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/DarjeelingTrainFruitshop.JPG/960px-DarjeelingTrainFruitshop.JPG",
-  "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Brennerpass_nordrampe.jpg/960px-Brennerpass_nordrampe.jpg",
-  "https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Milano%2C_Duomo_with_Milan_Cathedral_and_Galleria_Vittorio_Emanuele_II%2C_2016.jpg/960px-Milano%2C_Duomo_with_Milan_Cathedral_and_Galleria_Vittorio_Emanuele_II%2C_2016.jpg",
-  "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Athens_City_Hall_from_NE_corner.JPG/960px-Athens_City_Hall_from_NE_corner.JPG",
-  "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/138_-_Place_de_la_Bourse_et_le_miroir_d%27eau_-_Bordeaux.jpg/960px-138_-_Place_de_la_Bourse_et_le_miroir_d%27eau_-_Bordeaux.jpg",
-  "https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/City_of_London%2C_seen_from_Tower_Bridge.jpg/960px-City_of_London%2C_seen_from_Tower_Bridge.jpg",
-  "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Kiyomizu.jpg/960px-Kiyomizu.jpg",
-  "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Appalachian_National_Scenic_Trail_%28Vermont%29_%28f37a5748-d122-4f49-99f1-f13a6d68fb3f%29.jpg/960px-Appalachian_National_Scenic_Trail_%28Vermont%29_%28f37a5748-d122-4f49-99f1-f13a6d68fb3f%29.jpg",
-  "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Santiago_cathedral_2021.jpg/960px-Santiago_cathedral_2021.jpg",
-];
-const SAFE_WIKIMEDIA_FALLBACK_COVERS = {
-  africa: [
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/A%C3%AFtBenhaddou_Morocco_2.jpg/960px-A%C3%AFtBenhaddou_Morocco_2.jpg",
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/NubianMeroePyramids30sep2005.jpg/960px-NubianMeroePyramids30sep2005.jpg",
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Central_Alexandria.JPG/960px-Central_Alexandria.JPG",
-  ],
-  americas: [
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Machu_Picchu%2C_Peru.jpg/960px-Machu_Picchu%2C_Peru.jpg",
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Golden_Gate_Bridge_at_sunset_1.jpg/960px-Golden_Gate_Bridge_at_sunset_1.jpg",
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Puente_La_Quemada_-_San_Felipe%2C_Guanajuato_-_Camino_Real_de_Tierra_Adentro_6.jpg/960px-Puente_La_Quemada_-_San_Felipe%2C_Guanajuato_-_Camino_Real_de_Tierra_Adentro_6.jpg",
-  ],
-  asia: [
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Angkor_Wat.jpg/960px-Angkor_Wat.jpg",
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Kiyomizu-dera%2C_Kyoto%2C_November_2016_-01.jpg/960px-Kiyomizu-dera%2C_Kyoto%2C_November_2016_-01.jpg",
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Hot_air_balloon_start_in_Cappadocia_2014.jpg/960px-Hot_air_balloon_start_in_Cappadocia_2014.jpg",
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Halong_Bay_in_Vietnam.jpg/960px-Halong_Bay_in_Vietnam.jpg",
-  ],
-  europe: [
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Hungarian_Parliament_Building_from_across_the_Danube%2C_2025-01-11.jpg/960px-Hungarian_Parliament_Building_from_across_the_Danube%2C_2025-01-11.jpg",
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Brennerpass_nordrampe.jpg/960px-Brennerpass_nordrampe.jpg",
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Bruges_Belgium_Rozenhoedkaai-01.jpg/960px-Bruges_Belgium_Rozenhoedkaai-01.jpg",
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Raekoja_plats_at_night.jpg/960px-Raekoja_plats_at_night.jpg",
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Helsinki_Cathedral_in_July_2004.jpg/960px-Helsinki_Cathedral_in_July_2004.jpg",
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Oia_-_Santorini_-_Greece_-_16.jpg/960px-Oia_-_Santorini_-_Greece_-_16.jpg",
-  ],
-  oceania: [
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Milford_Sound_in_Fiordland_National_Park_01.jpg/960px-Milford_Sound_in_Fiordland_National_Park_01.jpg",
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Outback_Xplorer_10_Mar_20.jpg/960px-Outback_Xplorer_10_Mar_20.jpg",
-  ],
-};
-const SAFE_WIKIMEDIA_FALLBACK_SET = new Set(Object.values(SAFE_WIKIMEDIA_FALLBACK_COVERS).flat().map((url) => String(url).toLowerCase()));
-const UNIQUE_WIKIMEDIA_FALLBACK_COVERS = [...new Set([
-  ...Object.values(SAFE_WIKIMEDIA_FALLBACK_COVERS).flat(),
-  ...GLOBAL_ONLINE_FALLBACK_COVERS.filter((url) => /^https:\/\/upload\.wikimedia\.org\//i.test(url)),
-])];
-const LOCAL_COVER_BY_ROUTE_ID = {
-  "gold-case-accepted-gold-1-jp-first-trip": "assets/route-japan-classic-cover.svg",
-  "gold-case-accepted-gold-2-it-first-trip": "assets/atlas-italy-cover.svg",
-  "gold-case-accepted-gold-3-jp-alps-deep-dive": "assets/route-japan-hokkaido-cover.svg",
-  "gold-case-accepted-gold-4-central-europe-hopper": "assets/route-central-asia-loop-cover.svg",
-  "gold-case-accepted-gold-5-scotland-road-trip": "assets/route-nordic-cover.svg",
-  "gold-case-accepted-gold-6-swiss-rail-journey": "assets/route-nordic-cover.svg",
-  "gold-case-accepted-gold-7-jp-autumn-seasonal": "assets/route-japan-kansai-cover.svg",
-  "gold-case-accepted-gold-8-france-wine-theme": "assets/country-landmark-france.jpg",
-  "gold-case-accepted-gold-9-greece-island-hopping": "assets/route-greece-civilization-cover.svg",
-  "gold-case-accepted-gold-10-shikoku-pilgrimage": "assets/route-japan-classic-cover.svg",
-  "gold-case-accepted-gold-11-london-city-break": "assets/route-central-asia-loop-cover.svg",
-  "gold-case-accepted-gold-c45-3-peru-first-trip": "assets/favorite-route-central-asia.svg",
-  "gold-case-accepted-gold-c45-4-morocco-first-trip": "assets/route-east-africa-safari-cover.svg",
-  "gold-case-accepted-gold-c45-5-new-zealand-first-trip": "assets/favorite-route-canada.svg",
-  "gold-case-accepted-gold-c45-7-andalusia-deep-dive": "assets/atlas-italy-cover.svg",
-  "gold-case-accepted-gold-c45-8-patagonia-deep-dive": "assets/favorite-route-canada.svg",
-  "gold-case-accepted-gold-c45-9-northern-norway-deep-dive": "assets/route-nordic-cover.svg",
-  "gold-case-accepted-gold-c45-10-yucatan-deep-dive": "assets/route-greece-civilization-cover.svg",
-  "gold-case-accepted-gold-c45-12-canadian-rockies-road-trip": "assets/favorite-route-canada.svg",
-  "gold-case-accepted-gold-c45-13-california-pacific-coast": "assets/favorite-route-canada.svg",
-  "gold-case-accepted-gold-c45-14-south-island-new-zealand": "assets/favorite-route-canada.svg",
-  "gold-case-accepted-gold-c45-15-garden-route": "assets/route-east-africa-safari-cover.svg",
-  "gold-case-accepted-gold-c45-17-japan-jr-grand-route": "assets/route-japan-classic-cover.svg",
-  "gold-case-accepted-gold-c45-18-norway-scenic-railway": "assets/route-nordic-cover.svg",
-  "gold-case-accepted-gold-c45-19-canadian-transcontinental-rail": "assets/favorite-route-canada.svg",
-  "gold-case-accepted-gold-c45-20-central-europe-by-rail": "assets/route-central-asia-loop-cover.svg",
-  "gold-case-accepted-gold-c45-22-netherlands-tulip-season": "assets/country-landmark-france.jpg",
-  "gold-case-accepted-gold-c45-23-canada-autumn-rockies": "assets/favorite-route-canada.svg",
-  "gold-case-accepted-gold-c45-24-germany-christmas-markets": "assets/route-central-asia-loop-cover.svg",
-  "gold-case-accepted-gold-c45-25-namibia-dry-season-safari": "assets/route-east-africa-safari-cover.svg",
-  "gold-case-accepted-gold-c45-27-italy-food-journey": "assets/atlas-italy-cover.svg",
-  "gold-case-accepted-gold-c45-28-turkey-unesco-journey": "assets/trip-turkey-cover.svg",
-  "gold-case-accepted-gold-c45-29-australia-wildlife-journey": "assets/route-east-africa-safari-cover.svg",
-  "gold-case-accepted-gold-c45-30-mexico-maya-civilization": "assets/route-greece-civilization-cover.svg",
-  "gold-case-accepted-gold-c45-32-croatian-islands": "assets/route-thai-islands-cover.svg",
-  "gold-case-accepted-gold-c45-33-philippines-palawan": "assets/route-thai-islands-cover.svg",
-  "gold-case-accepted-gold-c45-34-azores-islands": "assets/route-thai-islands-cover.svg",
-  "gold-case-accepted-gold-c45-35-hawaii-island-journey": "assets/route-thai-islands-cover.svg",
-  "gold-case-accepted-gold-c45-37-camino-frances": "assets/atlas-italy-cover.svg",
-  "gold-case-accepted-gold-c45-38-kumano-kodo": "assets/route-japan-kansai-cover.svg",
-  "gold-case-accepted-gold-c45-39-via-francigena": "assets/atlas-italy-cover.svg",
-  "gold-case-accepted-gold-c45-42-baltic-capitals": "assets/route-nordic-cover.svg",
-  "gold-case-accepted-gold-c45-43-benelux-explorer": "assets/route-central-asia-loop-cover.svg",
-  "gold-case-accepted-gold-c45-44-balkan-sampler": "assets/route-central-asia-loop-cover.svg",
-  "gold-case-accepted-gold-c45-45-mekong-discovery": "assets/route-southeast-asia-cover.svg",
-};
-const COUNTRY_ONLINE_FALLBACK_COVERS = {
-  AT: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Wien_-_Schloss_Sch%C3%B6nbrunn_%281%29.JPG/960px-Wien_-_Schloss_Sch%C3%B6nbrunn_%281%29.JPG",
-  BE: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Bruges_Belgium_Rozenhoedkaai-01.jpg/960px-Bruges_Belgium_Rozenhoedkaai-01.jpg",
-  CZ: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Raekoja_plats_at_night.jpg/960px-Raekoja_plats_at_night.jpg",
-  DE: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Brennerpass_nordrampe.jpg/960px-Brennerpass_nordrampe.jpg",
-  FR: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Mont-Saint-Michel_vu_du_ciel.jpg/960px-Mont-Saint-Michel_vu_du_ciel.jpg",
-  GB: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Tower_Bridge_from_Shad_Thames.jpg/960px-Tower_Bridge_from_Shad_Thames.jpg",
-  HU: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Hungarian_Parliament_Building_from_across_the_Danube%2C_2025-01-11.jpg/960px-Hungarian_Parliament_Building_from_across_the_Danube%2C_2025-01-11.jpg",
-  IS: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/J%C3%B6kuls%C3%A1rl%C3%B3n_lagoon_in_Iceland.jpg/960px-J%C3%B6kuls%C3%A1rl%C3%B3n_lagoon_in_Iceland.jpg",
-  IT: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Milano%2C_Duomo_with_Milan_Cathedral_and_Galleria_Vittorio_Emanuele_II%2C_2016.jpg/960px-Milano%2C_Duomo_with_Milan_Cathedral_and_Galleria_Vittorio_Emanuele_II%2C_2016.jpg",
-  AR: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Trekking_Ausangate_Circuit_-_Kampeerplaats_Japata.jpg/960px-Trekking_Ausangate_Circuit_-_Kampeerplaats_Japata.jpg",
-  CL: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Trekking_Ausangate_Circuit_-_Kampeerplaats_Japata.jpg/960px-Trekking_Ausangate_Circuit_-_Kampeerplaats_Japata.jpg",
-  JP: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Kiyomizu-dera%2C_Kyoto%2C_November_2016_-01.jpg/960px-Kiyomizu-dera%2C_Kyoto%2C_November_2016_-01.jpg",
-  KH: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Angkor_Wat.jpg/960px-Angkor_Wat.jpg",
-  LU: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Luxembourg_City_Grund_from_Bock.jpg/960px-Luxembourg_City_Grund_from_Bock.jpg",
-  NL: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Keukenhof%2C_tulips_%2833513228345%29.jpg/960px-Keukenhof%2C_tulips_%2833513228345%29.jpg",
-  SK: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Bratislava_Castle%2C_Danube%2C_St_Martin_Cathedral.jpg/960px-Bratislava_Castle%2C_Danube%2C_St_Martin_Cathedral.jpg",
-  TH: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Khao_San_East_2007.jpg/960px-Khao_San_East_2007.jpg",
-  TR: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Hot_air_balloon_start_in_Cappadocia_2014.jpg/960px-Hot_air_balloon_start_in_Cappadocia_2014.jpg",
-  US: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Golden_Gate_Bridge_at_sunset_1.jpg/960px-Golden_Gate_Bridge_at_sunset_1.jpg",
-  VN: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Halong_Bay_in_Vietnam.jpg/960px-Halong_Bay_in_Vietnam.jpg",
-};
-const LOCAL_COVER_BY_COUNTRY = {
-  AE: "assets/country-landmark-uae.jpg",
-  EG: "assets/route-egypt-pyramids-cover.svg",
-  FI: "assets/country-landmark-finland.png",
-  FR: "assets/country-landmark-france.jpg",
-  GR: "assets/route-greece-civilization-cover.svg",
-  IS: "assets/atlas-iceland-cover.svg",
-  IT: "assets/atlas-italy-cover.svg",
-  JP: "assets/route-japan-classic-cover.svg",
-  KE: "assets/route-east-africa-safari-cover.svg",
-  KG: "assets/route-central-asia-cover.svg",
-  KH: "assets/country-landmark-cambodia.jpg",
-  KR: "assets/country-landmark-korea.jpg",
-  KZ: "assets/route-central-asia-cover.svg",
-  MY: "assets/country-landmark-malaysia.jpg",
-  NO: "assets/country-landmark-norway.jpg",
-  SE: "assets/country-landmark-sweden.jpg",
-  SG: "assets/country-landmark-singapore.jpg",
-  TH: "assets/country-landmark-thailand.jpg",
-  TR: "assets/trip-turkey-cover.svg",
-  TZ: "assets/route-east-africa-safari-cover.svg",
-  UZ: "assets/route-central-asia-cover.svg",
-  VN: "assets/country-landmark-vietnam.jpg",
-};
-const LOCAL_COVER_BY_COUNTRY_NAME = {
-  日本: LOCAL_COVER_BY_COUNTRY.JP,
-  意大利: LOCAL_COVER_BY_COUNTRY.IT,
-  法国: LOCAL_COVER_BY_COUNTRY.FR,
-  希腊: LOCAL_COVER_BY_COUNTRY.GR,
-  土耳其: LOCAL_COVER_BY_COUNTRY.TR,
-  冰岛: LOCAL_COVER_BY_COUNTRY.IS,
-  挪威: LOCAL_COVER_BY_COUNTRY.NO,
-  芬兰: LOCAL_COVER_BY_COUNTRY.FI,
-  瑞典: LOCAL_COVER_BY_COUNTRY.SE,
-  埃及: LOCAL_COVER_BY_COUNTRY.EG,
-  泰国: LOCAL_COVER_BY_COUNTRY.TH,
-  越南: LOCAL_COVER_BY_COUNTRY.VN,
-  柬埔寨: LOCAL_COVER_BY_COUNTRY.KH,
-  马来西亚: LOCAL_COVER_BY_COUNTRY.MY,
-  新加坡: LOCAL_COVER_BY_COUNTRY.SG,
-  肯尼亚: LOCAL_COVER_BY_COUNTRY.KE,
-  坦桑尼亚: LOCAL_COVER_BY_COUNTRY.TZ,
-  韩国: LOCAL_COVER_BY_COUNTRY.KR,
-  阿联酋: LOCAL_COVER_BY_COUNTRY.AE,
-  乌兹别克斯坦: LOCAL_COVER_BY_COUNTRY.UZ,
-  哈萨克斯坦: LOCAL_COVER_BY_COUNTRY.KZ,
-  吉尔吉斯斯坦: LOCAL_COVER_BY_COUNTRY.KG,
-};
-const LOCAL_COVER_BY_CONTINENT = {
-  africa: "assets/route-east-africa-safari-cover.svg",
-  americas: "assets/favorite-route-canada.svg",
-  asia: "assets/route-southeast-asia-cover.svg",
-  europe: "assets/route-central-asia-loop-cover.svg",
-  oceania: "assets/favorite-route-canada.svg",
-};
-const LOCAL_COVER_RULES = [
-  [/湄公河|东南亚|曼谷|暹粒|金边|胡志明|seasia|southeast/i, "assets/route-southeast-asia-cover.svg"],
-  [/日本|东京|京都|大阪|关西|熊野|四国|japan|kansai/i, "assets/route-japan-classic-cover.svg"],
-  [/北海道|札幌|雪|hokkaido/i, "assets/route-japan-hokkaido-cover.svg"],
-  [/挪威|芬兰|瑞典|北欧|极光|峡湾|norway|finland|sweden|nordic|aurora|fjord/i, "assets/route-nordic-cover.svg"],
-  [/冰岛|reykjavik|iceland/i, "assets/atlas-iceland-cover.svg"],
-  [/土耳其|卡帕多奇亚|伊斯坦布尔|turkey|cappadocia/i, "assets/trip-turkey-cover.svg"],
-  [/希腊|雅典|圣托里尼|greece|athens|santorini/i, "assets/route-greece-civilization-cover.svg"],
-  [/埃及|开罗|卢克索|金字塔|egypt|cairo|pyramid/i, "assets/route-egypt-pyramids-cover.svg"],
-  [/中亚|乌兹别克|哈萨克|吉尔吉斯|撒马尔罕|central asia|samarkand/i, "assets/route-central-asia-cover.svg"],
-  [/肯尼亚|坦桑尼亚|南非|纳米比亚|动物|野生|safari|kenya|tanzania|namibia/i, "assets/route-east-africa-safari-cover.svg"],
-  [/跳岛|海岛|群岛|island|hawaii|palawan|azores|croatia/i, "assets/route-thai-islands-cover.svg"],
-  [/铁路|火车|rail|train/i, "assets/route-nordic-cover.svg"],
-  [/自驾|公路|海岸|高地|落基|road|coast|rockies|patagonia/i, "assets/favorite-route-canada.svg"],
-  [/葡萄酒|美食|wine|food/i, "assets/atlas-italy-cover.svg"],
-  [/多国|首都|欧洲|中欧|巴尔干|波罗的海|benelux|balkan|baltic|europe/i, "assets/route-central-asia-loop-cover.svg"],
-];
-
 const feedState = {
   records: [],
   cursor: null,
@@ -908,57 +528,19 @@ function isVerifiedRouteImageAsset(record = {}, asset = {}) {
   return routeCodes.length > 0 && imageCodes.some((code) => routeCodes.includes(code));
 }
 
-function routeHasAnyCountry(record = {}, allowedCodes = []) {
-  const codes = new Set(routeCountryCodes(record));
-  return allowedCodes.some((code) => codes.has(String(code || "").toUpperCase()));
-}
-
 function routeImageReadinessScore(record = {}) {
   const verifiedCoverBonus = displayCoverUrl(record) ? 100 : 0;
   return verifiedCoverBonus + routeCountryCodes(record).filter((code) => IMAGE_READY_COUNTRY_CODES.has(code)).length;
 }
 
 function routeImageAllowed(record = {}, imageUrl = "") {
-  const text = String(imageUrl || "");
-  if (!text) return false;
-  if (/images\.unsplash\.com/i.test(text)) return false;
-  if (/^https:\/\/loremflickr\.com\//i.test(text)) return false;
-  if (BAD_REMOTE_COVER_PATTERNS.some((pattern) => pattern.test(text))) return false;
-  if (badRuntimeImageUrls.has(coverIdentity(text))) return false;
-  for (const rule of ROUTE_IMAGE_COUNTRY_MISMATCH_RULES) {
-    if (rule.pattern.test(text) && !routeHasAnyCountry(record, rule.allowed)) return false;
-  }
-  const routeCodes = routeCountryCodes(record);
-  const imageCodes = imageCountryCodesForUrl(record, text);
-  return routeCodes.length > 0 && imageCodes.some((code) => routeCodes.includes(code));
+  const text = String(imageUrl || "").trim();
+  if (!text || /^(?:https?:)?\/\//i.test(text)) return false;
+  return !badRuntimeImageUrls.has(coverIdentity(text));
 }
 
 function routeImageAllowedForAsset(record = {}, image = {}) {
-  return Boolean(
-    image?.imageUrl
-      && routeImageAllowed({ ...record, onlineCoverAsset: image }, image.imageUrl),
-  );
-}
-
-function isSafeWikimediaFallbackCover(imageUrl = "") {
-  const raw = String(imageUrl || "").toLowerCase();
-  if (BAD_REMOTE_COVER_PATTERNS.some((pattern) => pattern.test(raw))) return false;
-  if (SAFE_WIKIMEDIA_FALLBACK_SET.has(raw)) return true;
-  try {
-    const decoded = decodeURIComponent(raw);
-    if (BAD_REMOTE_COVER_PATTERNS.some((pattern) => pattern.test(decoded))) return false;
-    return SAFE_WIKIMEDIA_FALLBACK_SET.has(decoded);
-  } catch {
-    return false;
-  }
-}
-
-function isDisplayableRouteImage(record = {}, imageUrl = "") {
-  return routeImageAllowed(record, imageUrl);
-}
-
-function isTemporaryRuntimeCover(imageUrl = "") {
-  return /^https:\/\/loremflickr\.com\//i.test(String(imageUrl || ""));
+  return Boolean(image?.imageUrl && isVerifiedRouteImageAsset(record, image) && routeImageAllowed(record, image.imageUrl));
 }
 
 function englishCountryNameForCode(code) {
@@ -973,53 +555,12 @@ function englishCountryNameForCode(code) {
 
 function routeImageThemeKeyword(record = {}) {
   const text = routeSearchText(record);
-  if (/沙漠|sahara|desert|dune/i.test(text)) return "desert";
-  if (/海岛|跳岛|island|beach|coast/i.test(text)) return "coast";
-  if (/铁路|火车|rail|train/i.test(text)) return "station";
-  if (/古城|遗产|文明|castle|cathedral|temple|heritage|unesco/i.test(text)) return "landmark";
-  if (/自然|野生|动物|safari|wildlife|fjord|glacier|mountain/i.test(text)) return "nature";
+  if (/sahara|desert|dune/i.test(text)) return "desert";
+  if (/island|beach|coast/i.test(text)) return "coast";
+  if (/rail|train/i.test(text)) return "station";
+  if (/castle|cathedral|temple|heritage|unesco/i.test(text)) return "landmark";
+  if (/safari|wildlife|fjord|glacier|mountain/i.test(text)) return "nature";
   return "landmark";
-}
-
-function dynamicCountryCoverUrl(record = {}, offset = 0) {
-  const codes = routeCountryCodes(record);
-  if (!codes.length) return "";
-  const continents = [...new Set(codes.map(continentForCountryCode))];
-  const continent = continents.length
-    ? continents[(stableTextHash(`${record.id || record.name || ""}:safe-continent`) + offset) % continents.length]
-    : "europe";
-  const pool = SAFE_WIKIMEDIA_FALLBACK_COVERS[continent] || SAFE_WIKIMEDIA_FALLBACK_COVERS.europe;
-  const hash = stableTextHash(`${record.id || record.name || ""}:${codes.join("|")}:safe-cover`);
-  for (let index = 0; index < pool.length; index += 1) {
-    const image = pool[(hash + offset + index) % pool.length];
-    if (routeImageAllowed(record, image) || isSafeWikimediaFallbackCover(image)) return image;
-  }
-  const merged = Object.values(SAFE_WIKIMEDIA_FALLBACK_COVERS).flat();
-  return merged[(hash + offset) % merged.length] || "";
-}
-
-function countryCodeFallbackCoverUrl(record = {}, offset = 0) {
-  const codes = routeCountryCodes(record);
-  const codeSet = new Set(codes);
-  const region = REGION_FALLBACK_COVERS.find((item) => item.codes.every((code) => codeSet.has(code)));
-  if (region) {
-    const hash = [...String(record.id || record.name || "")].reduce((total, char) => total + char.charCodeAt(0), 0);
-    const image = region.images[(hash + offset) % region.images.length];
-    if (routeImageAllowed(record, image)) return image;
-  }
-  const images = codes.map((code) => COUNTRY_ONLINE_FALLBACK_COVERS[code]).filter(Boolean);
-  if (images.length) {
-    const hash = [...String(record.id || record.name || "")].reduce((total, char) => total + char.charCodeAt(0), 0);
-    for (let index = 0; index < images.length; index += 1) {
-      const image = images[(hash + offset + index) % images.length];
-      if (routeImageAllowed(record, image) || isSafeWikimediaFallbackCover(image)) return image;
-    }
-  }
-  for (let index = 0; index <= FEED_DEDUPE_WINDOW; index += 1) {
-    const dynamicImage = dynamicCountryCoverUrl(record, offset + index);
-    if (dynamicImage && routeImageAllowed(record, dynamicImage)) return dynamicImage;
-  }
-  return "";
 }
 
 function continentForCountryCode(code) {
@@ -1030,95 +571,9 @@ function continentForCountryCode(code) {
   return "europe";
 }
 
-function continentFallbackCoverUrl(record = {}, offset = 0) {
-  const codes = routeCountryCodes(record);
-  const continents = [...new Set(codes.map(continentForCountryCode))];
-  const continent = continents.length
-    ? continents[(stableTextHash(record.id || record.name || "") + offset) % continents.length]
-    : "europe";
-  const images = CONTINENT_ONLINE_FALLBACK_COVERS[continent] || CONTINENT_ONLINE_FALLBACK_COVERS.europe;
-  const hash = stableTextHash(`${record.id || record.name || ""}:${codes.join("|")}`);
-  for (let index = 0; index < images.length; index += 1) {
-    const image = images[(hash + offset + index) % images.length];
-    if (routeImageAllowed(record, image) || isSafeWikimediaFallbackCover(image)) return image;
-  }
-  return codes.length ? dynamicCountryCoverUrl(record, offset) : GLOBAL_ONLINE_FALLBACK_COVERS[(hash + offset) % GLOBAL_ONLINE_FALLBACK_COVERS.length];
-}
-
-function clientFallbackCoverUrl(record = {}, offset = 0) {
-  const codeFallback = countryCodeFallbackCoverUrl(record, offset);
-  if (codeFallback) return codeFallback;
-  const text = routeSearchText(record);
-  const match = ONLINE_FALLBACK_COVERS.find(([pattern]) => pattern.test(text));
-  if (match && offset === 0 && isDisplayableRouteImage(record, match[1])) return match[1];
-  return "";
-}
-
-function isCurrentBoundedFallbackImage(record = {}, imageUrl = "") {
-  const key = coverIdentity(imageUrl);
-  if (!key || !routeImageAllowed(record, imageUrl)) return false;
-  if (/^https:\/\/loremflickr\.com\//i.test(imageUrl)) return true;
-  for (let offset = 0; offset <= FEED_DEDUPE_WINDOW; offset += 1) {
-    const candidate = countryCodeFallbackCoverUrl(record, offset);
-    if (candidate && coverIdentity(candidate) === key) return true;
-  }
-  return false;
-}
-
-function seededOnlineFallbackCover(record = {}, offset = 0) {
-  if (isCentralEuropeMaterializedRoute(record)) {
-    const hash = [...String(record.id || record.name || "")].reduce((total, char) => total + char.charCodeAt(0), 0);
-    return CENTRAL_EUROPE_FALLBACK_COVERS[(hash + offset) % CENTRAL_EUROPE_FALLBACK_COVERS.length];
-  }
-  const codes = new Set(routeCountryCodes(record));
-  const region = REGION_FALLBACK_COVERS.find((item) => item.codes.every((code) => codes.has(code)));
-  if (region) {
-    const hash = [...String(record.id || record.name || "")].reduce((total, char) => total + char.charCodeAt(0), 0);
-    return region.images[(hash + offset) % region.images.length];
-  }
-  if (offset === 0) {
-    const clientFallback = clientFallbackCoverUrl(record, offset);
-    if (clientFallback) return clientFallback;
-  }
-  return continentFallbackCoverUrl(record, offset);
-}
-
 function normalizedRemoteImageUrl(imageUrl) {
   const text = String(imageUrl || "").trim();
-  if (!/^https?:\/\//i.test(text)) return text;
-  try {
-    const url = new URL(text);
-    if (url.hostname === "commons.wikimedia.org" && url.pathname.includes("/wiki/Special:FilePath/")) {
-      url.searchParams.set("width", "960");
-      return url.href;
-    }
-    if (url.hostname !== "upload.wikimedia.org") return text;
-    const parts = url.pathname.split("/").filter(Boolean);
-    const thumbIndex = parts.indexOf("thumb");
-    if (thumbIndex >= 0 && parts.length > thumbIndex + 4) {
-      const fileName = parts[parts.length - 2];
-      parts[parts.length - 1] = `960px-${fileName}`;
-      url.pathname = `/${parts.join("/")}`;
-      return url.href;
-    }
-    const commonsIndex = parts.indexOf("commons");
-    if (commonsIndex >= 0 && parts.length >= commonsIndex + 4) {
-      const fileName = parts[parts.length - 1];
-      if (/\.(jpe?g|webp)$/i.test(fileName)) {
-        const thumbParts = [
-          ...parts.slice(0, commonsIndex + 1),
-          "thumb",
-          ...parts.slice(commonsIndex + 1),
-          `960px-${fileName}`,
-        ];
-        url.pathname = `/${thumbParts.join("/")}`;
-        return url.href;
-      }
-    }
-  } catch {
-    return text;
-  }
-  return text;
+  return /^(?:https?:)?\/\//i.test(text) ? FALLBACK_ROUTE_COVER : text;
 }
 
 function proxiedRouteImageUrl(imageUrl) {

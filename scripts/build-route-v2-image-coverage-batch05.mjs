@@ -51,6 +51,39 @@ async function write(relativePath, contents) {
 function assetPath(kind, key) { return `${ASSET_ROOT}/${kind}/${key}.svg`; }
 function percent(numerator, denominator) { return denominator ? Number((numerator / denominator * 100).toFixed(1)) : 100; }
 
+function localAssetMetadata(relativePath, {
+  entityType,
+  assetType,
+  isDedicated,
+  isPlaceholder,
+  sourcePath,
+  verificationStatus,
+}) {
+  const bytes = fs.readFileSync(path.join(ROOT, relativePath));
+  const source = bytes.toString("utf8");
+  const viewBox = source.match(/viewBox=["']\s*[\d.-]+\s+[\d.-]+\s+([\d.]+)\s+([\d.]+)["']/u);
+  const width = Number(source.match(/\bwidth=["']([\d.]+)["']/u)?.[1] || viewBox?.[1] || 0);
+  const height = Number(source.match(/\bheight=["']([\d.]+)["']/u)?.[1] || viewBox?.[2] || 0);
+  const hash = crypto.createHash("sha256").update(bytes).digest("hex");
+  return {
+    entityType,
+    assetType,
+    isDedicated,
+    isPlaceholder,
+    localPath: relativePath,
+    sourceUrl: null,
+    sourcePath,
+    license: "project-generated",
+    dimensions: { width, height },
+    sourceHash: hash,
+    processedHash: hash,
+    bytes: bytes.length,
+    format: path.extname(relativePath).slice(1).toLocaleLowerCase("en-US"),
+    verificationStatus,
+    acquiredAt: RETRIEVED_AT,
+  };
+}
+
 const repository = createPublishedKnowledgeEntityLayerRepository({ projectRoot: ROOT });
 const countries = repository.listCountries();
 const cities = repository.listCities();
@@ -64,6 +97,14 @@ const plannableCountries = countries.filter((country) => {
 const countryRecords = [];
 const cityRecords = [];
 const poiRecords = [];
+const neutralPlaceholderMetadata = localAssetMetadata(PLACEHOLDER, {
+  entityType: "shared-placeholder",
+  assetType: "neutral-placeholder",
+  isDedicated: false,
+  isPlaceholder: true,
+  sourcePath: PLACEHOLDER,
+  verificationStatus: "verified-neutral-placeholder",
+});
 for (const country of plannableCountries) {
   const countryPath = assetPath("countries", country.isoAlpha2.toLocaleLowerCase("en-US"));
   await write(countryPath, svgCard({ label: country.canonicalNameEn, eyebrow: `${country.isoAlpha2} country`, key: country.wikidataId }));
@@ -71,6 +112,14 @@ for (const country of plannableCountries) {
     entityId: country.entityId, wikidataId: country.wikidataId, countryCode: country.isoAlpha2,
     canonicalNameEn: country.canonicalNameEn, assetPath: countryPath, status: "imageReady", semanticScope: "exact-country",
     assetKind: "entity-label-card", visualTruthStatus: "non-photographic-graphic", rights: GENERATED_VECTOR_RIGHTS,
+    ...localAssetMetadata(countryPath, {
+      entityType: "Country",
+      assetType: "country-graphic-cover",
+      isDedicated: true,
+      isPlaceholder: false,
+      sourcePath: GENERATED_VECTOR_RIGHTS.sourcePath,
+      verificationStatus: "verified-non-photographic-graphic",
+    }),
   });
   const countryCities = cities.filter((city) => city.parentCountryEntityId === country.entityId)
     .sort((left, right) => (poisByCity.get(right.entityId)?.length || 0) - (poisByCity.get(left.entityId)?.length || 0)
@@ -85,6 +134,8 @@ for (const country of plannableCountries) {
       publishedPoiCount, backfillPriority: isCore ? "high" : publishedPoiCount >= 5 ? "normal" : "low",
       status: "placeholder", needsBackfill: true, assetKind: "neutral-placeholder",
       semanticScope: "neutral-placeholder",
+      ...neutralPlaceholderMetadata,
+      entityType: "City",
     });
     if (!isCore) continue;
     const corePoi = [...(poisByCity.get(city.entityId) || [])].sort((a, b) => a.canonicalNameEn.localeCompare(b.canonicalNameEn, "en"))[0];
@@ -95,6 +146,8 @@ for (const country of plannableCountries) {
       assetPath: PLACEHOLDER, status: "placeholder", needsBackfill: true,
       backfillPriority: "high",
       assetKind: "neutral-placeholder", semanticScope: "neutral-placeholder",
+      ...neutralPlaceholderMetadata,
+      entityType: "POI",
     });
   }
 }
@@ -120,7 +173,7 @@ const summarize = (countrySet, citySet, poiSet) => ({
   needsBackfillCount: [...citySet, ...poiSet].filter((record) => record.needsBackfill).length,
 });
 const manifest = {
-  schemaVersion: "route-v2-image-coverage-v1", retrievedAt: RETRIEVED_AT,
+  schemaVersion: "route-v2-image-coverage-v2", retrievedAt: RETRIEVED_AT,
   fallbackPolicy: { city: PLACEHOLDER, poi: PLACEHOLDER, route: "assets/trip-cover-placeholder.svg", runtimeExternalRequestsAllowed: false },
   countries: countryRecords, cities: cityRecords, pois: poiRecords, invalidMappings,
   coverage: {

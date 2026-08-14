@@ -119,7 +119,7 @@ function renderFootprintTrips() {
   list.innerHTML = `<span class="footprint-timeline-line" aria-hidden="true"></span>${trips.map((trip) => {
     const parts = dateParts(trip.end || trip.endDate || trip.start || trip.startDate);
     const places = tripPlaceText(trip, state);
-    const cover = window.TravelState?.resolveTripCover?.(trip, state) || trip.cover || "assets/home-aurora-cover.svg";
+    const cover = window.TravelState?.resolveTripCover?.(trip, state) || "assets/trip-cover-placeholder.svg";
     return `
       <article class="footprint-trip-row" data-trip-detail="${escapeHtml(trip.id)}">
         <time><strong>${escapeHtml(parts.year)}</strong><em>${escapeHtml(parts.month)}</em></time>

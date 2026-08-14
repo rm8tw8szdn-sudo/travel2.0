@@ -51,8 +51,8 @@ assert.match(css, /\.route-copy strong\s*\{[^}]*text-overflow: ellipsis;[^}]*whi
 assert.match(css, /@media \(max-width: 430px\)\s*\{\s*\.route-copy strong\s*\{[^}]*-webkit-line-clamp: 2;[^}]*white-space: normal;/u);
 assert.match(css, /\.route-card img\s*\{[\s\S]*width: 104px;[\s\S]*height: 86px;/u);
 assert.doesNotMatch(imageAssetsSource, /fetch\(|XMLHttpRequest/u);
-assert.match(routesSource, /if \(!runtimeImageSearchEnabled && \/\^https\?:/u);
-assert.match(preloadSource, /if \(!runtimeImageSearchEnabled && \/\^https\?:/u);
+assert.match(routesSource, /return \/\^\(\?:https\?:\)\?\\\/\\\/\/i\.test\(text\) \? FALLBACK_ROUTE_COVER : text;/u);
+assert.match(preloadSource, /return \/\^https\?:\\\/\\\/\/i\.test\(text\) \? imageAssets\?\.DEFAULT_ROUTE_PLACEHOLDER/u);
 assert.ok(detailHtml.indexOf("route-v2-image-assets.js") < detailHtml.indexOf("route-detail.js"));
 assert.match(detailSource, /if \(!runtimeImageSearchEnabled\) return;/u);
 assert.match(detailSource, /resolveLocalRouteCover/u);

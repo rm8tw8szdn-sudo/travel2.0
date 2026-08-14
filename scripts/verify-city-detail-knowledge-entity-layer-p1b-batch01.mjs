@@ -79,7 +79,7 @@ assert.equal(normalizeKnowledgeName("  St. Mary’s  Basilica "), "st marys basi
 assert.equal(normalizeKnowledgeName("Bogotá"), "bogotá");
 
 const amsterdam = await expectPois("Amsterdam", 15);
-const prague = await expectPois("Prague");
+const prague = await expectPois("Prague", 15);
 const tokyo = await expectPois("Tokyo", 19);
 const osaka = await expectPois("Osaka", 15);
 const paris = await expectPois("Paris", 15);

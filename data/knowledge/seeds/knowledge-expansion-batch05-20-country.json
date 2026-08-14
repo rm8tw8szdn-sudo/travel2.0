@@ -1,0 +1,73 @@
+{
+  "schemaVersion": "route-v2-knowledge-expansion-batch05-seed-v1",
+  "retrievedAt": "2026-08-11T02:00:00.000Z",
+  "poiTargets": { "world": 12, "core": 8, "standard": 5, "town": 3 },
+  "waves": {
+    "1": { "batchNumber": "14", "countries": ["GB", "IE", "CZ", "HU", "HR"] },
+    "2": { "batchNumber": "15", "countries": ["NO", "SE", "FI", "DK", "BE"] },
+    "3": { "batchNumber": "16", "countries": ["PL", "SI", "VN", "MY", "ID"] },
+    "4": { "batchNumber": "17", "countries": ["PH", "CA", "US", "MX", "PE"] }
+  },
+  "countries": {
+    "GB": { "label": "United Kingdom", "qid": "Q145", "wave": 1, "cities": [
+      ["London", "world"], ["Edinburgh", "core"], ["Glasgow", "core"], ["Manchester", "core"], ["Liverpool", "standard"], ["York", "standard"], ["Bath, Somerset", "standard", "Bath"], ["Oxford", "standard"], ["Cambridge", "standard"], ["Bristol", "standard"], ["Brighton", "standard"], ["Inverness", "town"], ["Cardiff", "core"], ["Belfast", "core"], ["Canterbury", "town"]
+    ]},
+    "IE": { "label": "Ireland", "qid": "Q27", "wave": 1, "cities": [
+      ["Dublin", "world"], ["Galway", "core"], ["Cork (city)", "core", "Cork"], ["Killarney", "standard"], ["Kilkenny", "standard"], ["Limerick", "standard"], ["Doolin", "town"], ["Sligo", "standard"], ["Waterford", "standard"]
+    ]},
+    "CZ": { "label": "Czechia", "qid": "Q213", "wave": 1, "cities": [
+      ["Prague", "world"], ["Brno", "core"], ["Český Krumlov", "standard"], ["Karlovy Vary", "standard"], ["Kutná Hora", "standard"], ["Olomouc", "standard"], ["Plzeň", "standard"]
+    ]},
+    "HU": { "label": "Hungary", "qid": "Q28", "wave": 1, "iso3": "HUN", "isoNumeric": "348", "region": "Europe", "subregion": "Eastern Europe", "cities": [
+      ["Budapest", "world"], ["Eger", "standard"], ["Pécs", "core"], ["Szeged", "core"], ["Győr", "standard"], ["Debrecen", "core"], ["Szentendre", "town"]
+    ]},
+    "HR": { "label": "Croatia", "qid": "Q224", "wave": 1, "iso3": "HRV", "isoNumeric": "191", "region": "Europe", "subregion": "Southern Europe", "cities": [
+      ["Zagreb", "world"], ["Dubrovnik", "core"], ["Split, Croatia", "core", "Split"], ["Zadar", "core"], ["Rovinj", "standard"], ["Pula", "standard"], ["Šibenik", "standard"], ["Trogir", "town"]
+    ]},
+    "NO": { "label": "Norway", "qid": "Q20", "wave": 2, "cities": [
+      ["Oslo", "world"], ["Bergen", "core"], ["Tromsø", "core"], ["Trondheim", "core"], ["Stavanger", "standard"], ["Ålesund", "standard"], ["Bodø (town)", "standard", "Bodø"], ["Lillehammer", "town"]
+    ]},
+    "SE": { "label": "Sweden", "qid": "Q34", "wave": 2, "iso3": "SWE", "isoNumeric": "752", "region": "Europe", "subregion": "Northern Europe", "cities": [
+      ["Stockholm", "world"], ["Gothenburg", "core"], ["Malmö", "core"], ["Uppsala", "standard"], ["Lund", "standard"], ["Kiruna", "standard"], ["Visby", "standard"]
+    ]},
+    "FI": { "label": "Finland", "qid": "Q33", "wave": 2, "cities": [
+      ["Helsinki", "world"], ["Turku", "core"], ["Tampere", "core"], ["Rovaniemi", "core"], ["Oulu", "standard"], ["Porvoo", "standard"], ["Kuopio", "standard"]
+    ]},
+    "DK": { "label": "Denmark", "qid": "Q35", "wave": 2, "cities": [
+      ["Copenhagen", "world"], ["Aarhus", "core"], ["Odense", "core"], ["Aalborg", "standard"], ["Roskilde", "standard"], ["Helsingør", "standard"], ["Ribe", "town"]
+    ]},
+    "BE": { "label": "Belgium", "qid": "Q31", "wave": 2, "cities": [
+      ["City of Brussels", "world", "Brussels"], ["Bruges", "core"], ["Ghent", "core"], ["Antwerp", "core"], ["Leuven", "standard"], ["Dinant", "town"], ["Liège", "standard"]
+    ]},
+    "PL": { "label": "Poland", "qid": "Q36", "wave": 3, "cities": [
+      ["Warsaw", "world"], ["Kraków", "core"], ["Gdańsk", "core"], ["Wrocław", "core"], ["Poznań", "core"], ["Toruń", "standard"], ["Lublin", "standard"], ["Zakopane", "standard"]
+    ]},
+    "SI": { "label": "Slovenia", "qid": "Q215", "wave": 3, "iso3": "SVN", "isoNumeric": "705", "region": "Europe", "subregion": "Southern Europe", "cities": [
+      ["Ljubljana", "world"], ["Bled", "core"], ["Piran", "standard"], ["Koper", "standard"], ["Maribor", "core"], ["Kranjska Gora", "town"]
+    ]},
+    "VN": { "label": "Vietnam", "qid": "Q881", "wave": 3, "cities": [
+      ["Hanoi", "world"], ["Ho Chi Minh City", "world"], ["Da Nang", "core"], ["Hội An (city)", "standard", "Hội An"], ["Huế", "core"], ["Nha Trang", "standard"], ["Da Lat", "standard"], ["Cần Thơ", "town"], ["Haiphong", "standard"]
+    ]},
+    "MY": { "label": "Malaysia", "qid": "Q833", "wave": 3, "cities": [
+      ["Kuala Lumpur", "world"], ["George Town, Penang", "core", "George Town"], ["Malacca City", "core"], ["Kota Kinabalu", "core"], ["Kuching", "core"], ["Ipoh", "standard"], ["Johor Bahru", "standard"]
+    ]},
+    "ID": { "label": "Indonesia", "qid": "Q252", "wave": 3, "cities": [
+      ["Jakarta", "world"], ["Yogyakarta", "core"], ["Surabaya", "core"], ["Bandung", "core"], ["Ubud", "core"], ["Denpasar", "standard"], ["Semarang", "standard"], ["Malang", "standard"], ["Makassar", "standard"]
+    ]},
+    "PH": { "label": "Philippines", "qid": "Q928", "wave": 4, "cities": [
+      ["Manila", "world"], ["Cebu City", "core"], ["Davao City", "core"], ["Baguio", "standard"], ["Vigan", "standard"], ["Iloilo City", "standard"], ["Puerto Princesa", "standard"]
+    ]},
+    "CA": { "label": "Canada", "qid": "Q16", "wave": 4, "cities": [
+      ["Toronto", "world"], ["Vancouver", "world"], ["Montreal", "world"], ["Quebec City", "core"], ["Ottawa", "core"], ["Calgary", "core"], ["Victoria, British Columbia", "core", "Victoria"], ["Halifax, Nova Scotia", "standard", "Halifax"], ["Banff, Alberta", "standard", "Banff"], ["Jasper, Alberta", "standard", "Jasper"]
+    ]},
+    "US": { "label": "United States", "qid": "Q30", "wave": 4, "cities": [
+      ["New York City", "world", "New York City", ["New York"]], ["Los Angeles", "world"], ["San Francisco", "world"], ["Las Vegas", "core"], ["Chicago", "world"], ["Boston", "core"], ["Washington, D.C.", "world"], ["Seattle", "core"], ["Miami", "core"], ["New Orleans", "core"], ["Honolulu", "core"], ["San Diego", "core"], ["Orlando, Florida", "core", "Orlando"], ["Denver", "core"]
+    ]},
+    "MX": { "label": "Mexico", "qid": "Q96", "wave": 4, "cities": [
+      ["Mexico City", "world"], ["Oaxaca City", "core", "Oaxaca"], ["Guadalajara", "core"], ["Puebla (city)", "core", "Puebla"], ["Mérida, Yucatán", "core", "Mérida"], ["Cancún", "core"], ["Playa del Carmen", "standard"], ["Guanajuato (city)", "standard", "Guanajuato"], ["San Miguel de Allende", "standard"]
+    ]},
+    "PE": { "label": "Peru", "qid": "Q419", "wave": 4, "cities": [
+      ["Lima", "world"], ["Cusco", "world"], ["Arequipa", "core"], ["Puno", "standard"], ["Ica, Peru", "standard", "Ica"], ["Trujillo, Peru", "standard", "Trujillo"], ["Huaraz", "standard"]
+    ]}
+  }
+}

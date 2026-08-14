@@ -20,7 +20,7 @@ const RETRIEVED_AT = "2026-08-10T14:00:00.000Z";
 const BATCH04_PATH = /(?:cities|pois)\.p1b-batch(?:09|10|11|12|13)\.json$/u;
 const ACCEPTED_SHA256 = "aea28bcc03eaf6ccce5fd7453f88ece4f0060789f135eaf837b568d9c43e7e3f";
 const IMMUTABLE_EVIDENCE_SHA256 = "4bb9e7b702de1c9b981f0ed53a649632e2a7149bd7f2dabedfa120dcde13c376";
-const FINAL_EVIDENCE_COUNTS = Object.freeze({ routeLeg: 196, season: 76, total: 272 });
+const FINAL_EVIDENCE_COUNTS = Object.freeze({ routeLeg: 414, season: 156, total: 570 });
 const CONFIG = Object.freeze({
   DE: {
     label: "Germany",
@@ -95,7 +95,7 @@ const CONFIG = Object.freeze({
     reviews: 0,
     directedLegs: 14,
     season: 4,
-    minimumManifest: { routeLeg: 196, season: 76, total: 272 },
+    minimumManifest: FINAL_EVIDENCE_COUNTS,
   },
 });
 

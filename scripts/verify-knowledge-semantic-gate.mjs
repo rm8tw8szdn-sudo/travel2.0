@@ -109,7 +109,7 @@ const exceptions = exceptionDocument.exceptions || [];
 
 const production = validatePublishedKnowledgeSemantics({ countries, cities, pois, factsByQid: facts, exceptionDocument });
 assert.equal(production.accepted, true, JSON.stringify(production.violations, null, 2));
-assert.equal(production.checked, 1099, "all published entities must be checked");
+assert.equal(production.checked, countries.length + cities.length + pois.length, "all published entities must be checked");
 assert.equal(production.exceptionCount, 15, "all 15 semantic exceptions must be valid");
 assert.equal(production.usedExceptionCount, 15, "all 15 semantic exceptions must be consumed");
 

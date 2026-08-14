@@ -1,0 +1,851 @@
+{
+  "schemaVersion": "route-v2-country-baseline-p1a-batch05",
+  "generatedFrom": "data/knowledge/seeds/knowledge-expansion-batch05-20-country.json",
+  "countryCount": 4,
+  "countries": [
+    {
+      "schemaVersion": "route-v2-country-baseline-p1a",
+      "entityId": "country-86933c85e9204ede",
+      "entityType": "country",
+      "isoAlpha2": "HR",
+      "isoAlpha3": "HRV",
+      "isoNumeric": "191",
+      "wikidataId": "Q224",
+      "canonicalNameZh": "克罗地亚",
+      "canonicalNameEn": "Croatia",
+      "aliases": [
+        "CRO",
+        "HR",
+        "HRV",
+        "Republic of Croatia",
+        "RH",
+        "克羅地亞",
+        "克羅埃西亞"
+      ],
+      "continent": {
+        "wikidataId": "Q46",
+        "canonicalNameZh": "欧洲",
+        "canonicalNameEn": "Europe"
+      },
+      "region": "Europe",
+      "subregion": "Southern Europe",
+      "capital": {
+        "wikidataId": "Q1435",
+        "canonicalNameZh": "萨格勒布",
+        "canonicalNameEn": "Zagreb",
+        "aliases": [
+          "萨格勒布"
+        ]
+      },
+      "coordinates": {
+        "latitude": 45.25,
+        "longitude": 15.466667
+      },
+      "entitySourceType": "wikidata",
+      "provenance": {
+        "entityId": [
+          {
+            "sourceType": "iso",
+            "source": "ISO 3166 Batch 05 reviewed seed",
+            "field": "entityId",
+            "sourceUrl": "",
+            "retrievedAt": "2026-08-11T02:00:00.000Z",
+            "value": "HR"
+          },
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "entityId",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q224",
+            "retrievedAt": "2026-08-11T02:00:00.000Z",
+            "value": "Q224"
+          }
+        ],
+        "isoAlpha2": [
+          {
+            "sourceType": "iso",
+            "source": "ISO 3166 Batch 05 reviewed seed",
+            "field": "isoAlpha2",
+            "sourceUrl": "",
+            "retrievedAt": "2026-08-11T02:00:00.000Z",
+            "value": "HR"
+          }
+        ],
+        "isoAlpha3": [
+          {
+            "sourceType": "iso",
+            "source": "ISO 3166 Batch 05 reviewed seed",
+            "field": "isoAlpha3",
+            "sourceUrl": "",
+            "retrievedAt": "2026-08-11T02:00:00.000Z",
+            "value": "HRV"
+          }
+        ],
+        "isoNumeric": [
+          {
+            "sourceType": "iso",
+            "source": "ISO 3166 Batch 05 reviewed seed",
+            "field": "isoNumeric",
+            "sourceUrl": "",
+            "retrievedAt": "2026-08-11T02:00:00.000Z",
+            "value": "191"
+          }
+        ],
+        "wikidataId": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "wikidataId",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q224",
+            "retrievedAt": "2026-08-11T02:00:00.000Z",
+            "value": "Q224"
+          }
+        ],
+        "canonicalNameZh": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "canonicalNameZh",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q224",
+            "retrievedAt": "2026-08-11T02:00:00.000Z",
+            "value": "克罗地亚"
+          }
+        ],
+        "canonicalNameEn": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "canonicalNameEn",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q224",
+            "retrievedAt": "2026-08-11T02:00:00.000Z",
+            "value": "Croatia"
+          }
+        ],
+        "aliases": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "aliases",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q224",
+            "retrievedAt": "2026-08-11T02:00:00.000Z",
+            "value": [
+              "CRO",
+              "HR",
+              "HRV",
+              "Republic of Croatia",
+              "RH",
+              "克羅地亞",
+              "克羅埃西亞"
+            ]
+          }
+        ],
+        "continent": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "continent",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q224",
+            "retrievedAt": "2026-08-11T02:00:00.000Z",
+            "value": {
+              "wikidataId": "Q46",
+              "canonicalNameZh": "欧洲",
+              "canonicalNameEn": "Europe"
+            }
+          }
+        ],
+        "region": [
+          {
+            "sourceType": "project-country-catalog",
+            "source": "Batch 05 reviewed country catalog",
+            "field": "region",
+            "sourceUrl": "",
+            "retrievedAt": "2026-08-11T02:00:00.000Z",
+            "value": "Europe"
+          }
+        ],
+        "subregion": [
+          {
+            "sourceType": "project-country-catalog",
+            "source": "Batch 05 reviewed country catalog",
+            "field": "subregion",
+            "sourceUrl": "",
+            "retrievedAt": "2026-08-11T02:00:00.000Z",
+            "value": "Southern Europe"
+          }
+        ],
+        "capital": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "capital",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q224",
+            "retrievedAt": "2026-08-11T02:00:00.000Z",
+            "value": {
+              "wikidataId": "Q1435",
+              "canonicalNameZh": "萨格勒布",
+              "canonicalNameEn": "Zagreb",
+              "aliases": [
+                "萨格勒布"
+              ]
+            }
+          }
+        ],
+        "coordinates": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "coordinates",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q224",
+            "retrievedAt": "2026-08-11T02:00:00.000Z",
+            "value": {
+              "latitude": 45.25,
+              "longitude": 15.466667
+            }
+          }
+        ]
+      },
+      "confidence": 0.95,
+      "retrievedAt": "2026-08-11T02:00:00.000Z"
+    },
+    {
+      "schemaVersion": "route-v2-country-baseline-p1a",
+      "entityId": "country-7cd816b792420f59",
+      "entityType": "country",
+      "isoAlpha2": "HU",
+      "isoAlpha3": "HUN",
+      "isoNumeric": "348",
+      "wikidataId": "Q28",
+      "canonicalNameZh": "匈牙利",
+      "canonicalNameEn": "Hungary",
+      "aliases": [
+        "匈牙利共和国",
+        "匈牙利共和國"
+      ],
+      "continent": {
+        "wikidataId": "Q46",
+        "canonicalNameZh": "欧洲",
+        "canonicalNameEn": "Europe"
+      },
+      "region": "Europe",
+      "subregion": "Eastern Europe",
+      "capital": {
+        "wikidataId": "Q1781",
+        "canonicalNameZh": "布达佩斯",
+        "canonicalNameEn": "Budapest",
+        "aliases": [
+          "Alt-Ofen",
+          "Buda",
+          "Buda Pest",
+          "Buda-Pest",
+          "Buda-Pesth",
+          "Budapešť",
+          "Budapest, Hungary",
+          "Budapesta",
+          "Budapeszt",
+          "Budim",
+          "Budín",
+          "Budon",
+          "Ofen",
+          "Pest",
+          "Pešť",
+          "Pešta",
+          "布达佩斯"
+        ]
+      },
+      "coordinates": {
+        "latitude": 47,
+        "longitude": 19
+      },
+      "entitySourceType": "wikidata",
+      "provenance": {
+        "entityId": [
+          {
+            "sourceType": "iso",
+            "source": "ISO 3166 Batch 05 reviewed seed",
+            "field": "entityId",
+            "sourceUrl": "",
+            "retrievedAt": "2026-08-11T02:00:00.000Z",
+            "value": "HU"
+          },
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "entityId",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q28",
+            "retrievedAt": "2026-08-11T02:00:00.000Z",
+            "value": "Q28"
+          }
+        ],
+        "isoAlpha2": [
+          {
+            "sourceType": "iso",
+            "source": "ISO 3166 Batch 05 reviewed seed",
+            "field": "isoAlpha2",
+            "sourceUrl": "",
+            "retrievedAt": "2026-08-11T02:00:00.000Z",
+            "value": "HU"
+          }
+        ],
+        "isoAlpha3": [
+          {
+            "sourceType": "iso",
+            "source": "ISO 3166 Batch 05 reviewed seed",
+            "field": "isoAlpha3",
+            "sourceUrl": "",
+            "retrievedAt": "2026-08-11T02:00:00.000Z",
+            "value": "HUN"
+          }
+        ],
+        "isoNumeric": [
+          {
+            "sourceType": "iso",
+            "source": "ISO 3166 Batch 05 reviewed seed",
+            "field": "isoNumeric",
+            "sourceUrl": "",
+            "retrievedAt": "2026-08-11T02:00:00.000Z",
+            "value": "348"
+          }
+        ],
+        "wikidataId": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "wikidataId",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q28",
+            "retrievedAt": "2026-08-11T02:00:00.000Z",
+            "value": "Q28"
+          }
+        ],
+        "canonicalNameZh": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "canonicalNameZh",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q28",
+            "retrievedAt": "2026-08-11T02:00:00.000Z",
+            "value": "匈牙利"
+          }
+        ],
+        "canonicalNameEn": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "canonicalNameEn",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q28",
+            "retrievedAt": "2026-08-11T02:00:00.000Z",
+            "value": "Hungary"
+          }
+        ],
+        "aliases": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "aliases",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q28",
+            "retrievedAt": "2026-08-11T02:00:00.000Z",
+            "value": [
+              "匈牙利共和国",
+              "匈牙利共和國"
+            ]
+          }
+        ],
+        "continent": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "continent",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q28",
+            "retrievedAt": "2026-08-11T02:00:00.000Z",
+            "value": {
+              "wikidataId": "Q46",
+              "canonicalNameZh": "欧洲",
+              "canonicalNameEn": "Europe"
+            }
+          }
+        ],
+        "region": [
+          {
+            "sourceType": "project-country-catalog",
+            "source": "Batch 05 reviewed country catalog",
+            "field": "region",
+            "sourceUrl": "",
+            "retrievedAt": "2026-08-11T02:00:00.000Z",
+            "value": "Europe"
+          }
+        ],
+        "subregion": [
+          {
+            "sourceType": "project-country-catalog",
+            "source": "Batch 05 reviewed country catalog",
+            "field": "subregion",
+            "sourceUrl": "",
+            "retrievedAt": "2026-08-11T02:00:00.000Z",
+            "value": "Eastern Europe"
+          }
+        ],
+        "capital": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "capital",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q28",
+            "retrievedAt": "2026-08-11T02:00:00.000Z",
+            "value": {
+              "wikidataId": "Q1781",
+              "canonicalNameZh": "布达佩斯",
+              "canonicalNameEn": "Budapest",
+              "aliases": [
+                "Alt-Ofen",
+                "Buda",
+                "Buda Pest",
+                "Buda-Pest",
+                "Buda-Pesth",
+                "Budapešť",
+                "Budapest, Hungary",
+                "Budapesta",
+                "Budapeszt",
+                "Budim",
+                "Budín",
+                "Budon",
+                "Ofen",
+                "Pest",
+                "Pešť",
+                "Pešta",
+                "布达佩斯"
+              ]
+            }
+          }
+        ],
+        "coordinates": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "coordinates",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q28",
+            "retrievedAt": "2026-08-11T02:00:00.000Z",
+            "value": {
+              "latitude": 47,
+              "longitude": 19
+            }
+          }
+        ]
+      },
+      "confidence": 0.95,
+      "retrievedAt": "2026-08-11T02:00:00.000Z"
+    },
+    {
+      "schemaVersion": "route-v2-country-baseline-p1a",
+      "entityId": "country-03f395ef6a7d5271",
+      "entityType": "country",
+      "isoAlpha2": "SE",
+      "isoAlpha3": "SWE",
+      "isoNumeric": "752",
+      "wikidataId": "Q34",
+      "canonicalNameZh": "瑞典",
+      "canonicalNameEn": "Sweden",
+      "aliases": [
+        "Kingdom of Sweden",
+        "se",
+        "Swedish Kingdom",
+        "瑞典王国"
+      ],
+      "continent": {
+        "wikidataId": "Q46",
+        "canonicalNameZh": "欧洲",
+        "canonicalNameEn": "Europe"
+      },
+      "region": "Europe",
+      "subregion": "Northern Europe",
+      "capital": {
+        "wikidataId": "Q1754",
+        "canonicalNameZh": "斯德哥尔摩",
+        "canonicalNameEn": "Stockholm",
+        "aliases": [
+          "Sthlm",
+          "斯德哥尔摩"
+        ]
+      },
+      "coordinates": {
+        "latitude": 61,
+        "longitude": 15
+      },
+      "entitySourceType": "wikidata",
+      "provenance": {
+        "entityId": [
+          {
+            "sourceType": "iso",
+            "source": "ISO 3166 Batch 05 reviewed seed",
+            "field": "entityId",
+            "sourceUrl": "",
+            "retrievedAt": "2026-08-11T02:00:00.000Z",
+            "value": "SE"
+          },
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "entityId",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q34",
+            "retrievedAt": "2026-08-11T02:00:00.000Z",
+            "value": "Q34"
+          }
+        ],
+        "isoAlpha2": [
+          {
+            "sourceType": "iso",
+            "source": "ISO 3166 Batch 05 reviewed seed",
+            "field": "isoAlpha2",
+            "sourceUrl": "",
+            "retrievedAt": "2026-08-11T02:00:00.000Z",
+            "value": "SE"
+          }
+        ],
+        "isoAlpha3": [
+          {
+            "sourceType": "iso",
+            "source": "ISO 3166 Batch 05 reviewed seed",
+            "field": "isoAlpha3",
+            "sourceUrl": "",
+            "retrievedAt": "2026-08-11T02:00:00.000Z",
+            "value": "SWE"
+          }
+        ],
+        "isoNumeric": [
+          {
+            "sourceType": "iso",
+            "source": "ISO 3166 Batch 05 reviewed seed",
+            "field": "isoNumeric",
+            "sourceUrl": "",
+            "retrievedAt": "2026-08-11T02:00:00.000Z",
+            "value": "752"
+          }
+        ],
+        "wikidataId": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "wikidataId",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q34",
+            "retrievedAt": "2026-08-11T02:00:00.000Z",
+            "value": "Q34"
+          }
+        ],
+        "canonicalNameZh": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "canonicalNameZh",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q34",
+            "retrievedAt": "2026-08-11T02:00:00.000Z",
+            "value": "瑞典"
+          }
+        ],
+        "canonicalNameEn": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "canonicalNameEn",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q34",
+            "retrievedAt": "2026-08-11T02:00:00.000Z",
+            "value": "Sweden"
+          }
+        ],
+        "aliases": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "aliases",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q34",
+            "retrievedAt": "2026-08-11T02:00:00.000Z",
+            "value": [
+              "Kingdom of Sweden",
+              "se",
+              "Swedish Kingdom",
+              "瑞典王国"
+            ]
+          }
+        ],
+        "continent": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "continent",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q34",
+            "retrievedAt": "2026-08-11T02:00:00.000Z",
+            "value": {
+              "wikidataId": "Q46",
+              "canonicalNameZh": "欧洲",
+              "canonicalNameEn": "Europe"
+            }
+          }
+        ],
+        "region": [
+          {
+            "sourceType": "project-country-catalog",
+            "source": "Batch 05 reviewed country catalog",
+            "field": "region",
+            "sourceUrl": "",
+            "retrievedAt": "2026-08-11T02:00:00.000Z",
+            "value": "Europe"
+          }
+        ],
+        "subregion": [
+          {
+            "sourceType": "project-country-catalog",
+            "source": "Batch 05 reviewed country catalog",
+            "field": "subregion",
+            "sourceUrl": "",
+            "retrievedAt": "2026-08-11T02:00:00.000Z",
+            "value": "Northern Europe"
+          }
+        ],
+        "capital": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "capital",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q34",
+            "retrievedAt": "2026-08-11T02:00:00.000Z",
+            "value": {
+              "wikidataId": "Q1754",
+              "canonicalNameZh": "斯德哥尔摩",
+              "canonicalNameEn": "Stockholm",
+              "aliases": [
+                "Sthlm",
+                "斯德哥尔摩"
+              ]
+            }
+          }
+        ],
+        "coordinates": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "coordinates",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q34",
+            "retrievedAt": "2026-08-11T02:00:00.000Z",
+            "value": {
+              "latitude": 61,
+              "longitude": 15
+            }
+          }
+        ]
+      },
+      "confidence": 0.95,
+      "retrievedAt": "2026-08-11T02:00:00.000Z"
+    },
+    {
+      "schemaVersion": "route-v2-country-baseline-p1a",
+      "entityId": "country-971f0777b204bd2f",
+      "entityType": "country",
+      "isoAlpha2": "SI",
+      "isoAlpha3": "SVN",
+      "isoNumeric": "705",
+      "wikidataId": "Q215",
+      "canonicalNameZh": "斯洛文尼亚",
+      "canonicalNameEn": "Slovenia",
+      "aliases": [
+        "Republic of Slovenia",
+        "si",
+        "slo",
+        "Slovenija",
+        "svn",
+        "斯洛文尼亞",
+        "斯洛維尼亞"
+      ],
+      "continent": {
+        "wikidataId": "Q46",
+        "canonicalNameZh": "欧洲",
+        "canonicalNameEn": "Europe"
+      },
+      "region": "Europe",
+      "subregion": "Southern Europe",
+      "capital": {
+        "wikidataId": "Q437",
+        "canonicalNameZh": "卢布尔雅那",
+        "canonicalNameEn": "Ljubljana",
+        "aliases": [
+          "Labacum",
+          "Ljubljana, Slovenia",
+          "Lublana",
+          "卢布尔雅那",
+          "盧布爾雅那",
+          "盧比安納"
+        ]
+      },
+      "coordinates": {
+        "latitude": 46,
+        "longitude": 15
+      },
+      "entitySourceType": "wikidata",
+      "provenance": {
+        "entityId": [
+          {
+            "sourceType": "iso",
+            "source": "ISO 3166 Batch 05 reviewed seed",
+            "field": "entityId",
+            "sourceUrl": "",
+            "retrievedAt": "2026-08-11T02:00:00.000Z",
+            "value": "SI"
+          },
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "entityId",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q215",
+            "retrievedAt": "2026-08-11T02:00:00.000Z",
+            "value": "Q215"
+          }
+        ],
+        "isoAlpha2": [
+          {
+            "sourceType": "iso",
+            "source": "ISO 3166 Batch 05 reviewed seed",
+            "field": "isoAlpha2",
+            "sourceUrl": "",
+            "retrievedAt": "2026-08-11T02:00:00.000Z",
+            "value": "SI"
+          }
+        ],
+        "isoAlpha3": [
+          {
+            "sourceType": "iso",
+            "source": "ISO 3166 Batch 05 reviewed seed",
+            "field": "isoAlpha3",
+            "sourceUrl": "",
+            "retrievedAt": "2026-08-11T02:00:00.000Z",
+            "value": "SVN"
+          }
+        ],
+        "isoNumeric": [
+          {
+            "sourceType": "iso",
+            "source": "ISO 3166 Batch 05 reviewed seed",
+            "field": "isoNumeric",
+            "sourceUrl": "",
+            "retrievedAt": "2026-08-11T02:00:00.000Z",
+            "value": "705"
+          }
+        ],
+        "wikidataId": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "wikidataId",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q215",
+            "retrievedAt": "2026-08-11T02:00:00.000Z",
+            "value": "Q215"
+          }
+        ],
+        "canonicalNameZh": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "canonicalNameZh",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q215",
+            "retrievedAt": "2026-08-11T02:00:00.000Z",
+            "value": "斯洛文尼亚"
+          }
+        ],
+        "canonicalNameEn": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "canonicalNameEn",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q215",
+            "retrievedAt": "2026-08-11T02:00:00.000Z",
+            "value": "Slovenia"
+          }
+        ],
+        "aliases": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "aliases",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q215",
+            "retrievedAt": "2026-08-11T02:00:00.000Z",
+            "value": [
+              "Republic of Slovenia",
+              "si",
+              "slo",
+              "Slovenija",
+              "svn",
+              "斯洛文尼亞",
+              "斯洛維尼亞"
+            ]
+          }
+        ],
+        "continent": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "continent",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q215",
+            "retrievedAt": "2026-08-11T02:00:00.000Z",
+            "value": {
+              "wikidataId": "Q46",
+              "canonicalNameZh": "欧洲",
+              "canonicalNameEn": "Europe"
+            }
+          }
+        ],
+        "region": [
+          {
+            "sourceType": "project-country-catalog",
+            "source": "Batch 05 reviewed country catalog",
+            "field": "region",
+            "sourceUrl": "",
+            "retrievedAt": "2026-08-11T02:00:00.000Z",
+            "value": "Europe"
+          }
+        ],
+        "subregion": [
+          {
+            "sourceType": "project-country-catalog",
+            "source": "Batch 05 reviewed country catalog",
+            "field": "subregion",
+            "sourceUrl": "",
+            "retrievedAt": "2026-08-11T02:00:00.000Z",
+            "value": "Southern Europe"
+          }
+        ],
+        "capital": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "capital",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q215",
+            "retrievedAt": "2026-08-11T02:00:00.000Z",
+            "value": {
+              "wikidataId": "Q437",
+              "canonicalNameZh": "卢布尔雅那",
+              "canonicalNameEn": "Ljubljana",
+              "aliases": [
+                "Labacum",
+                "Ljubljana, Slovenia",
+                "Lublana",
+                "卢布尔雅那",
+                "盧布爾雅那",
+                "盧比安納"
+              ]
+            }
+          }
+        ],
+        "coordinates": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "coordinates",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q215",
+            "retrievedAt": "2026-08-11T02:00:00.000Z",
+            "value": {
+              "latitude": 46,
+              "longitude": 15
+            }
+          }
+        ]
+      },
+      "confidence": 0.95,
+      "retrievedAt": "2026-08-11T02:00:00.000Z"
+    }
+  ]
+}

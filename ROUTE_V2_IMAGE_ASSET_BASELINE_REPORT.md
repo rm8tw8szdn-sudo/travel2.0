@@ -1,6 +1,8 @@
 # Route V2 Image Asset Baseline Report
 
-Generated from HEAD timestamp: 2026-08-14T17:17:31+08:00
+Baseline source HEAD: 8f63d1f814df050c577a0c0bc6286ccb74618f65
+
+Baseline source HEAD timestamp: 2026-08-14T17:17:31+08:00
 
 ## Outcome
 

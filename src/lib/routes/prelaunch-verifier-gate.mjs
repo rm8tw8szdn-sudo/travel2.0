@@ -137,6 +137,11 @@ export const MANDATORY_PRELAUNCH_VERIFIERS = Object.freeze([
     phase: "static",
   }),
   Object.freeze({
+    name: "route-v2-image-asset-baseline",
+    relativePath: "scripts/verify-route-v2-image-asset-baseline.mjs",
+    phase: "static",
+  }),
+  Object.freeze({
     name: "route-v2-image-quality-adversarial",
     relativePath: "scripts/verify-route-v2-image-quality-adversarial.mjs",
     phase: "static",

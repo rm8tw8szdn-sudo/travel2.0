@@ -14,6 +14,7 @@ export const FORMAL_MANIFEST_PATH = "data/route-v2/images/image-coverage-manifes
 export const IMAGE_SIZE_AUDIT_THRESHOLD_BYTES = 300_000;
 export const NORMAL_GIT_DEFAULT_FAIL_THRESHOLD_BYTES = 500_000;
 export const NORMAL_GIT_HARD_LIMIT_BYTES = 5_000_000;
+export const IMAGE_ASSET_BASELINE_SOURCE_HEAD = "8f63d1f814df050c577a0c0bc6286ccb74618f65";
 
 const GENERATED_REFERENCE_EXCLUSIONS = new Set([
   INVENTORY_PATH,
@@ -520,14 +521,17 @@ export function buildImageAssetBaseline({ root }) {
     const unusedSizeExceptions = NORMAL_GIT_SIZE_EXCEPTIONS.filter((entry) => !usedExceptionIds.has(entry.id)).map((entry) => entry.id);
     const sizes = assets.map((asset) => asset.bytes);
     const categoryCounts = Object.fromEntries([...new Set(assets.map((asset) => asset.category))].sort().map((category) => [category, assets.filter((asset) => asset.category === category).length]));
-    const generatedFromHead = run("git", ["show", "-s", "--format=%cI", "HEAD"], { root: projectRoot }).stdout.trim();
-    const deletedImagePaths = run("git", ["diff", "--name-only", "--diff-filter=D", "HEAD", "--"], { root: projectRoot }).stdout
+    const generatedFromHead = run("git", ["show", "-s", "--format=%cI", IMAGE_ASSET_BASELINE_SOURCE_HEAD], { root: projectRoot }).stdout.trim();
+    const committedDeletedPaths = run("git", ["diff", "--name-only", "--diff-filter=D", `${IMAGE_ASSET_BASELINE_SOURCE_HEAD}..HEAD`, "--"], { root: projectRoot }).stdout;
+    const workingDeletedPaths = run("git", ["diff", "--name-only", "--diff-filter=D", "HEAD", "--"], { root: projectRoot }).stdout;
+    const deletedImagePaths = [...new Set(`${committedDeletedPaths}\n${workingDeletedPaths}`
       .split(/\r?\n/u)
       .map(cleanPath)
-      .filter((filePath) => IMAGE_EXTENSIONS.has(path.extname(filePath).toLocaleLowerCase("en-US")))
+      .filter((filePath) => IMAGE_EXTENSIONS.has(path.extname(filePath).toLocaleLowerCase("en-US"))))]
       .sort((left, right) => left.localeCompare(right, "en"));
     return {
       schemaVersion: BASELINE_SCHEMA_VERSION,
+      sourceBaselineHead: IMAGE_ASSET_BASELINE_SOURCE_HEAD,
       generatedFromHead,
       inventory: assets,
       summary: {
@@ -616,7 +620,9 @@ export function renderImageAssetBaselineReport(model) {
   const perceptual = model.duplicates.perceptualGroups.map((group) => `- distance≤${group.maximumPairDistance} · ${group.paths.join(" · ")}`).join("\n") || "- None";
   return `# Route V2 Image Asset Baseline Report
 
-Generated from HEAD timestamp: ${model.generatedFromHead}
+Baseline source HEAD: ${model.sourceBaselineHead}
+
+Baseline source HEAD timestamp: ${model.generatedFromHead}
 
 ## Outcome
 

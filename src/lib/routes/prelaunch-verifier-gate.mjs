@@ -117,6 +117,41 @@ export const MANDATORY_PRELAUNCH_VERIFIERS = Object.freeze([
     phase: "static",
   }),
   Object.freeze({
+    name: "knowledge-expansion-batch05-integrity",
+    relativePath: "scripts/verify-knowledge-expansion-batch05.mjs",
+    phase: "static",
+  }),
+  Object.freeze({
+    name: "knowledge-expansion-batch05-adversarial-semantics",
+    relativePath: "scripts/verify-knowledge-expansion-batch05-adversarial.mjs",
+    phase: "static",
+  }),
+  Object.freeze({
+    name: "knowledge-expansion-batch05-route-consumption",
+    relativePath: "scripts/verify-knowledge-expansion-batch05-route-consumption.mjs",
+    phase: "static",
+  }),
+  Object.freeze({
+    name: "route-v2-image-coverage-batch05",
+    relativePath: "scripts/verify-route-v2-image-coverage-batch05.mjs",
+    phase: "static",
+  }),
+  Object.freeze({
+    name: "route-v2-image-quality-adversarial",
+    relativePath: "scripts/verify-route-v2-image-quality-adversarial.mjs",
+    phase: "static",
+  }),
+  Object.freeze({
+    name: "route-v2-city-detail-image-fallback",
+    relativePath: "scripts/verify-route-v2-city-detail-image-fallback.mjs",
+    phase: "static",
+  }),
+  Object.freeze({
+    name: "knowledge-expansion-batch05-report-consistency",
+    relativePath: "scripts/verify-knowledge-expansion-batch05-report-consistency.mjs",
+    phase: "static",
+  }),
+  Object.freeze({
     name: "publication-gate",
     relativePath: "scripts/verify-route-v2-publication-gate.mjs",
     phase: "static",

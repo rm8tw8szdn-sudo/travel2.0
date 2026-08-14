@@ -325,7 +325,7 @@ export { createRouteFeedRefillWorker } from "./route-feed-refill-worker.mjs";
 export { createSearchIndex } from "./search-index.mjs";
 export { createRouteSearchAnalytics } from "./route-search-analytics.mjs";
 export { createRouteSearchCache } from "./route-search-cache.mjs";
-export { createRouteSearchService } from "./route-search-service.mjs";
+export { createRouteSearchService, routeUsesStaleCoveragePlaceholder } from "./route-search-service.mjs";
 export {
   buildRouteDestinationSuggestion,
   maxSuggestedDestinationsForDuration,

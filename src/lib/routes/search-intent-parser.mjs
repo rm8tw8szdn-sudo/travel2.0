@@ -36,6 +36,25 @@ function unique(values) {
 }
 
 const ALIAS_MATCHER_CACHE = new Map();
+const STATIC_PARSE_CACHE_LIMIT = 128;
+const STATIC_PARSE_CACHE = new Map();
+
+function cachedStaticParse(cacheKey) {
+  if (!cacheKey || !STATIC_PARSE_CACHE.has(cacheKey)) return null;
+  const cached = STATIC_PARSE_CACHE.get(cacheKey);
+  STATIC_PARSE_CACHE.delete(cacheKey);
+  STATIC_PARSE_CACHE.set(cacheKey, cached);
+  return structuredClone(cached);
+}
+
+function rememberStaticParse(cacheKey, intent) {
+  if (!cacheKey) return;
+  if (STATIC_PARSE_CACHE.has(cacheKey)) STATIC_PARSE_CACHE.delete(cacheKey);
+  STATIC_PARSE_CACHE.set(cacheKey, structuredClone(intent));
+  while (STATIC_PARSE_CACHE.size > STATIC_PARSE_CACHE_LIMIT) {
+    STATIC_PARSE_CACHE.delete(STATIC_PARSE_CACHE.keys().next().value);
+  }
+}
 
 function aliasMatcher(alias) {
   const cacheKey = String(alias || "");
@@ -997,6 +1016,11 @@ function unresolvedLatinDestinationTokens(query, matchedDestinations = []) {
 
 export function parseSearchIntent(query, { acceptedRoutes = [], catalogs = null, timeIntentEnabled = false } = {}) {
   const rawQuery = clean(query);
+  const staticCacheKey = !catalogs && acceptedRoutes.length === 0
+    ? `${timeIntentEnabled ? "time" : "legacy"}\u0000${rawQuery}`
+    : "";
+  const cachedIntent = cachedStaticParse(staticCacheKey);
+  if (cachedIntent) return cachedIntent;
   const normalizedQuery = normalizeText(rawQuery);
   const containsLatinText = /[A-Za-z]/u.test(rawQuery);
   const duration = parseDuration(normalizedQuery, { allowBareNumber: timeIntentEnabled });
@@ -1186,6 +1210,7 @@ export function parseSearchIntent(query, { acceptedRoutes = [], catalogs = null,
         ...(catalogs || {}),
         regions: regionCatalog,
       } });
+  rememberStaticParse(staticCacheKey, intent);
   return intent;
 }
 

@@ -820,8 +820,11 @@ function stableJson(value) {
 }
 
 export function createRouteIntentFingerprint(input = {}) {
-  const normalizedIntent = normalizeRouteIntent(input);
-  const validation = validateNormalizedRouteIntent(normalizedIntent);
+  const directValidation = validateNormalizedRouteIntent(input);
+  const normalizedIntent = directValidation.valid ? clone(input) : normalizeRouteIntent(input);
+  const validation = directValidation.valid
+    ? directValidation
+    : validateNormalizedRouteIntent(normalizedIntent);
   if (!validation.valid) {
     return {
       version: ROUTE_INTENT_FINGERPRINT_VERSION,

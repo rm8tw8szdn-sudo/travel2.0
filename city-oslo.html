@@ -3,10 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <title>奥斯陆 · 城市详情</title>
+    <title>城市详情</title>
     <link rel="icon" href="assets/profile-avatar-kuma-small.jpg" />
     <link rel="stylesheet" href="mobile.css" />
-    <script src="route-v2-image-assets.js?v=image-assets-pilot-20260720" defer></script>
+    <script src="route-v2-image-coverage.js?v=batch05-20260811" defer></script>
+    <script src="route-v2-image-assets.js?v=image-assets-batch05-20260811" defer></script>
     <script src="travel-data.js?v=route-cover-clean-20260615" defer></script>
     <script src="travel-state.js?v=logic-state-20260607" defer></script>
     <script src="detail-enrichment.js?v=detail-cache-20260616" defer></script>
@@ -25,14 +26,14 @@
         </div>
       </header>
       <section class="city-detail-cover">
-        <img src="assets/city-oslo-cover.svg" alt="城市封面图" data-city-cover />
+        <img src="assets/route-city-placeholder.svg" alt="城市占位图" data-city-cover data-cover-source="neutral-placeholder" />
       </section>
       <section class="route-detail-content">
         <div class="route-detail-title">
-          <h1 data-city-name>奥斯陆</h1>
-          <p data-city-country>挪威</p>
+          <h1 data-city-name>城市详情</h1>
+          <p data-city-country>目的地信息加载中</p>
         </div>
-        <p class="country-intro" data-city-intro>挪威城市，适合作为北欧路线的城市起点。</p>
+        <p class="country-intro" data-city-intro>正在加载城市信息。</p>
         <div class="city-tag-row" data-city-tags></div>
         <section class="city-trip-meta" aria-label="城市操作">
           <button type="button" data-city-mark-explored>标记已探索</button>

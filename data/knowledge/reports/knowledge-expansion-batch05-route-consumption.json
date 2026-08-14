@@ -1,0 +1,1516 @@
+{
+  "schemaVersion": "route-v2-knowledge-expansion-batch05-route-consumption-v1",
+  "generatedAt": "2026-08-11T06:00:00.000Z",
+  "status": "PASS",
+  "queryCount": 52,
+  "externalFetchCalls": 0,
+  "staleAcceptedFixturesRejected": 15,
+  "crossCountryResults": [
+    {
+      "query": "Czechia Austria Hungary 14 days",
+      "durationDays": 14,
+      "requiredCountryCodes": [
+        "AT",
+        "CZ",
+        "HU"
+      ],
+      "actualCountryCodes": [
+        "AT",
+        "CZ",
+        "HU"
+      ],
+      "recordId": "planner-designed-::::::Q1085|Q131633|Q167109|Q1737|Q1781|Q384544::14天::Classic First Trip::::Q1085>Q384544>Q131633>Q1737>Q167109>Q1781",
+      "cityEntityIds": [
+        "city-2c83bc499c1c4889",
+        "city-ebbbc5dfc5b2cb0c",
+        "city-85e356e0e514f090",
+        "city-3f52e95430ac83e2",
+        "city-aad4a016af406593",
+        "city-918ca6909e031908"
+      ],
+      "cityQids": [
+        "Q1085",
+        "Q384544",
+        "Q131633",
+        "Q1737",
+        "Q167109",
+        "Q1781"
+      ]
+    },
+    {
+      "query": "Belgium Netherlands France 14 days",
+      "durationDays": 14,
+      "requiredCountryCodes": [
+        "BE",
+        "FR",
+        "NL"
+      ],
+      "actualCountryCodes": [
+        "BE",
+        "FR",
+        "NL"
+      ],
+      "recordId": "planner-designed-::::::Q12892|Q23482|Q239|Q33959|Q727|Q803::14天::Classic First Trip::::Q12892>Q239>Q727>Q803>Q23482>Q33959",
+      "cityEntityIds": [
+        "city-2379d38efd7a0d92",
+        "city-c1934ae62a95f59e",
+        "city-66a343aed16e37a4",
+        "city-48c618f238f3263d",
+        "city-60de7be23c539c87",
+        "city-d224602f49c126a0"
+      ],
+      "cityQids": [
+        "Q12892",
+        "Q239",
+        "Q727",
+        "Q803",
+        "Q23482",
+        "Q33959"
+      ]
+    },
+    {
+      "query": "Sweden Norway 14 days",
+      "durationDays": 14,
+      "requiredCountryCodes": [
+        "NO",
+        "SE"
+      ],
+      "actualCountryCodes": [
+        "NO",
+        "SE"
+      ],
+      "recordId": "planner-designed-::::::Q25287|Q25804|Q42328401|Q54757|Q585|Q83232::14天::Classic First Trip::::Q54757>Q25287>Q83232>Q42328401>Q585>Q25804",
+      "cityEntityIds": [
+        "city-5f291da6070af599",
+        "city-b84d2c11f89fa4c2",
+        "city-db7a96547625c19f",
+        "city-f2256a3b9b503d5d",
+        "city-25addacaf4743504",
+        "city-709539223e144546"
+      ],
+      "cityQids": [
+        "Q54757",
+        "Q25287",
+        "Q83232",
+        "Q42328401",
+        "Q585",
+        "Q25804"
+      ]
+    },
+    {
+      "query": "Denmark Sweden 10 days",
+      "durationDays": 10,
+      "requiredCountryCodes": [
+        "DK",
+        "SE"
+      ],
+      "actualCountryCodes": [
+        "DK",
+        "SE"
+      ],
+      "recordId": "planner-designed-::::::Q1748|Q25319|Q25410|Q54757|Q83232::10天::Classic First Trip::::Q1748>Q25410>Q25319>Q54757>Q83232",
+      "cityEntityIds": [
+        "city-de64a21a71e5cbce",
+        "city-f02ab28c44007d48",
+        "city-3ddab7f670e90afa",
+        "city-5f291da6070af599",
+        "city-db7a96547625c19f"
+      ],
+      "cityQids": [
+        "Q1748",
+        "Q25410",
+        "Q25319",
+        "Q54757",
+        "Q83232"
+      ]
+    },
+    {
+      "query": "Vietnam Malaysia 14 days",
+      "durationDays": 14,
+      "requiredCountryCodes": [
+        "MY",
+        "VN"
+      ],
+      "actualCountryCodes": [
+        "MY",
+        "VN"
+      ],
+      "recordId": "planner-designed-::::::Q137271|Q1854|Q19491|Q220445|Q25282|Q61089::14天::Classic First Trip::::Q1854>Q25282>Q19491>Q61089>Q137271>Q220445",
+      "cityEntityIds": [
+        "city-e321c6d35c4b62da",
+        "city-3534e10ea2259139",
+        "city-6c2fe9a829ecf2d5",
+        "city-bc20c9d6ca2573f9",
+        "city-b0f38f4d2ec1fbf4",
+        "city-50645031fe7e62a5"
+      ],
+      "cityQids": [
+        "Q1854",
+        "Q25282",
+        "Q19491",
+        "Q61089",
+        "Q137271",
+        "Q220445"
+      ]
+    },
+    {
+      "query": "USA Canada 14 days",
+      "durationDays": 14,
+      "requiredCountryCodes": [
+        "CA",
+        "US"
+      ],
+      "actualCountryCodes": [
+        "CA",
+        "US"
+      ],
+      "recordId": "planner-designed-::::::Q16552|Q2132|Q2141|Q34404|Q49233|Q58337::14天::Classic First Trip::::Q34404>Q49233>Q16552>Q58337>Q2132>Q2141",
+      "cityEntityIds": [
+        "city-58e0b68e36021c6f",
+        "city-c26220d9c7fd85c9",
+        "city-07c243032c44b063",
+        "city-d029e97d08ae18b0",
+        "city-5c6be2bb844c746b",
+        "city-ace4fa6b86e141a0"
+      ],
+      "cityQids": [
+        "Q34404",
+        "Q49233",
+        "Q16552",
+        "Q58337",
+        "Q2132",
+        "Q2141"
+      ]
+    }
+  ],
+  "explicitCityAliasResult": {
+    "query": "New York Toronto 10 days",
+    "durationDays": 10,
+    "recordId": "planner-designed-::::::Q172|Q60::10天::Classic First Trip::::Q60>Q172",
+    "cityQids": [
+      "Q60",
+      "Q172"
+    ],
+    "countryCodes": [
+      "CA",
+      "US"
+    ]
+  },
+  "countries": {
+    "GB": {
+      "label": "United Kingdom",
+      "testedDurations": [
+        7,
+        14,
+        21
+      ],
+      "reliableMaxDurationDays": 21,
+      "results": [
+        {
+          "countryCode": "GB",
+          "label": "United Kingdom",
+          "query": "United Kingdom 7 days",
+          "durationDays": 7,
+          "recordId": "planner-designed-::::::Q10686|Q22889|Q29303|Q350::7天::Classic First Trip::::Q350>Q22889>Q10686>Q29303",
+          "routeReferenceMode": null,
+          "cityEntityIds": [
+            "city-86cc244c0a5a7aa5",
+            "city-53617dc1a4e72d29",
+            "city-a5c13de09b454c1c",
+            "city-13d4b2991a591819"
+          ],
+          "cityQids": [
+            "Q350",
+            "Q22889",
+            "Q10686",
+            "Q29303"
+          ],
+          "poiCount": 0,
+          "coverageStatus": "route-returned"
+        },
+        {
+          "countryCode": "GB",
+          "label": "United Kingdom",
+          "query": "United Kingdom 14 days",
+          "durationDays": 14,
+          "recordId": "planner-designed-::::::Q10690|Q131491|Q22889|Q23154|Q23436|Q350::14天::Classic First Trip::::Q10690>Q23436>Q131491>Q23154>Q22889>Q350",
+          "routeReferenceMode": "country-expansion",
+          "cityEntityIds": [
+            "city-921e6278451dd6d8",
+            "city-65b1aca3904788fe",
+            "city-3f4f26f63b098928",
+            "city-28b5dc0644526a55",
+            "city-53617dc1a4e72d29",
+            "city-86cc244c0a5a7aa5"
+          ],
+          "cityQids": [
+            "Q10690",
+            "Q23436",
+            "Q131491",
+            "Q23154",
+            "Q22889",
+            "Q350"
+          ],
+          "poiCount": 5,
+          "coverageStatus": "target-covered"
+        },
+        {
+          "countryCode": "GB",
+          "label": "United Kingdom",
+          "query": "United Kingdom 21 days",
+          "durationDays": 21,
+          "recordId": "planner-designed-::::::Q131491|Q160493|Q22889|Q23154|Q23436|Q29303|Q350|Q4093::21天::Classic First Trip::::Q131491>Q29303>Q4093>Q350>Q23154>Q160493>Q23436>Q22889",
+          "routeReferenceMode": "country-expansion",
+          "cityEntityIds": [
+            "city-3f4f26f63b098928",
+            "city-13d4b2991a591819",
+            "city-4a330ecde03b4bcf",
+            "city-86cc244c0a5a7aa5",
+            "city-28b5dc0644526a55",
+            "city-0c5f16f24966ecc1",
+            "city-65b1aca3904788fe",
+            "city-53617dc1a4e72d29"
+          ],
+          "cityQids": [
+            "Q131491",
+            "Q29303",
+            "Q4093",
+            "Q350",
+            "Q23154",
+            "Q160493",
+            "Q23436",
+            "Q22889"
+          ],
+          "poiCount": 17,
+          "coverageStatus": "target-covered"
+        }
+      ]
+    },
+    "IE": {
+      "label": "Ireland",
+      "testedDurations": [
+        7,
+        14
+      ],
+      "reliableMaxDurationDays": 14,
+      "results": [
+        {
+          "countryCode": "IE",
+          "label": "Ireland",
+          "query": "Ireland 7 days",
+          "durationDays": 7,
+          "recordId": "planner-designed-::::::Q129610|Q174802|Q1761|Q623382::7天::Classic First Trip::::Q174802>Q129610>Q1761>Q623382",
+          "routeReferenceMode": null,
+          "cityEntityIds": [
+            "city-8b979679b5fbbdd3",
+            "city-63dfc636699e6461",
+            "city-e6665ba2dee556d1",
+            "city-4fd91a8d8db74fad"
+          ],
+          "cityQids": [
+            "Q174802",
+            "Q129610",
+            "Q1761",
+            "Q623382"
+          ],
+          "poiCount": 0,
+          "coverageStatus": "route-returned"
+        },
+        {
+          "countryCode": "IE",
+          "label": "Ireland",
+          "query": "Ireland 14 days",
+          "durationDays": 14,
+          "recordId": "planner-designed-::::::Q109092|Q133315|Q174802|Q1761|Q36647|Q623382::14天::Classic First Trip::::Q623382>Q109092>Q36647>Q133315>Q1761>Q174802",
+          "routeReferenceMode": "country-expansion",
+          "cityEntityIds": [
+            "city-4fd91a8d8db74fad",
+            "city-2c224d4669e71336",
+            "city-6ddc11780af61808",
+            "city-44730a29a4a100b2",
+            "city-e6665ba2dee556d1",
+            "city-8b979679b5fbbdd3"
+          ],
+          "cityQids": [
+            "Q623382",
+            "Q109092",
+            "Q36647",
+            "Q133315",
+            "Q1761",
+            "Q174802"
+          ],
+          "poiCount": 5,
+          "coverageStatus": "target-covered"
+        }
+      ]
+    },
+    "CZ": {
+      "label": "Czechia",
+      "testedDurations": [
+        7,
+        14
+      ],
+      "reliableMaxDurationDays": 14,
+      "results": [
+        {
+          "countryCode": "CZ",
+          "label": "Czechia",
+          "query": "Czechia 7 days",
+          "durationDays": 7,
+          "recordId": "planner-designed-::::::Q14960|Q155975|Q384544|Q81137::7天::Classic First Trip::::Q14960>Q384544>Q155975>Q81137",
+          "routeReferenceMode": null,
+          "cityEntityIds": [
+            "city-498e80bf490697fd",
+            "city-ebbbc5dfc5b2cb0c",
+            "city-a58978ee641f9081",
+            "city-64fc6d3de2c9948d"
+          ],
+          "cityQids": [
+            "Q14960",
+            "Q384544",
+            "Q155975",
+            "Q81137"
+          ],
+          "poiCount": 0,
+          "coverageStatus": "route-returned"
+        },
+        {
+          "countryCode": "CZ",
+          "label": "Czechia",
+          "query": "Czechia 14 days",
+          "durationDays": 14,
+          "recordId": "planner-designed-::::::Q1085|Q14960|Q155975|Q188082|Q43453|Q81137::14天::Classic First Trip::::Q14960>Q155975>Q1085>Q81137>Q188082>Q43453",
+          "routeReferenceMode": "country-expansion",
+          "cityEntityIds": [
+            "city-498e80bf490697fd",
+            "city-a58978ee641f9081",
+            "city-2c83bc499c1c4889",
+            "city-64fc6d3de2c9948d",
+            "city-c39223c2cd05297f",
+            "city-9255a28fe4d7f19b"
+          ],
+          "cityQids": [
+            "Q14960",
+            "Q155975",
+            "Q1085",
+            "Q81137",
+            "Q188082",
+            "Q43453"
+          ],
+          "poiCount": 5,
+          "coverageStatus": "target-covered"
+        }
+      ]
+    },
+    "HU": {
+      "label": "Hungary",
+      "testedDurations": [
+        7,
+        14
+      ],
+      "reliableMaxDurationDays": 14,
+      "results": [
+        {
+          "countryCode": "HU",
+          "label": "Hungary",
+          "query": "Hungary 7 days",
+          "durationDays": 7,
+          "recordId": "planner-designed-::::::Q167109|Q1781|Q45779|Q79880::7天::Classic First Trip::::Q1781>Q167109>Q79880>Q45779",
+          "routeReferenceMode": null,
+          "cityEntityIds": [
+            "city-918ca6909e031908",
+            "city-aad4a016af406593",
+            "city-d3ff5daf8ed68e18",
+            "city-d8feb521dfebb139"
+          ],
+          "cityQids": [
+            "Q1781",
+            "Q167109",
+            "Q79880",
+            "Q45779"
+          ],
+          "poiCount": 0,
+          "coverageStatus": "route-returned"
+        },
+        {
+          "countryCode": "HU",
+          "label": "Hungary",
+          "query": "Hungary 14 days",
+          "durationDays": 14,
+          "recordId": "planner-designed-::::::Q167109|Q1781|Q390798|Q45779|Q79880|Q81581::14天::Classic First Trip::::Q167109>Q1781>Q45779>Q79880>Q81581>Q390798",
+          "routeReferenceMode": "country-expansion",
+          "cityEntityIds": [
+            "city-aad4a016af406593",
+            "city-918ca6909e031908",
+            "city-d8feb521dfebb139",
+            "city-d3ff5daf8ed68e18",
+            "city-44edb4b5caecb65d",
+            "city-d9d86d455b0e5f3e"
+          ],
+          "cityQids": [
+            "Q167109",
+            "Q1781",
+            "Q45779",
+            "Q79880",
+            "Q81581",
+            "Q390798"
+          ],
+          "poiCount": 5,
+          "coverageStatus": "target-covered"
+        }
+      ]
+    },
+    "HR": {
+      "label": "Croatia",
+      "testedDurations": [
+        7,
+        14
+      ],
+      "reliableMaxDurationDays": 14,
+      "results": [
+        {
+          "countryCode": "HR",
+          "label": "Croatia",
+          "query": "Croatia 7 days",
+          "durationDays": 7,
+          "recordId": "planner-designed-::::::Q1722|Q3549|Q4656|Q5316::7天::Classic First Trip::::Q5316>Q3549>Q4656>Q1722",
+          "routeReferenceMode": null,
+          "cityEntityIds": [
+            "city-7f2ac96ad1cf93fc",
+            "city-59f6e6f56d6ec3ae",
+            "city-1046a89f4d07b594",
+            "city-7cacd1fb1304df51"
+          ],
+          "cityQids": [
+            "Q5316",
+            "Q3549",
+            "Q4656",
+            "Q1722"
+          ],
+          "poiCount": 0,
+          "coverageStatus": "route-returned"
+        },
+        {
+          "countryCode": "HR",
+          "label": "Croatia",
+          "query": "Croatia 14 days",
+          "durationDays": 14,
+          "recordId": "planner-designed-::::::Q1435|Q1663|Q1722|Q3549|Q4656|Q5316::14天::Classic First Trip::::Q1663>Q3549>Q5316>Q1435>Q4656>Q1722",
+          "routeReferenceMode": "country-expansion",
+          "cityEntityIds": [
+            "city-f8acfc46483ac5f3",
+            "city-59f6e6f56d6ec3ae",
+            "city-7f2ac96ad1cf93fc",
+            "city-776c07b74e9ee818",
+            "city-1046a89f4d07b594",
+            "city-7cacd1fb1304df51"
+          ],
+          "cityQids": [
+            "Q1663",
+            "Q3549",
+            "Q5316",
+            "Q1435",
+            "Q4656",
+            "Q1722"
+          ],
+          "poiCount": 5,
+          "coverageStatus": "target-covered"
+        }
+      ]
+    },
+    "NO": {
+      "label": "Norway",
+      "testedDurations": [
+        7,
+        14
+      ],
+      "reliableMaxDurationDays": 14,
+      "results": [
+        {
+          "countryCode": "NO",
+          "label": "Norway",
+          "query": "Norway 7 days",
+          "durationDays": 7,
+          "recordId": "planner-designed-::::::Q25416|Q26793|Q42900680|Q585::7天::Classic First Trip::::Q25416>Q585>Q42900680>Q26793",
+          "routeReferenceMode": null,
+          "cityEntityIds": [
+            "city-e446cff2b1de8c7c",
+            "city-25addacaf4743504",
+            "city-3feffb92e64ea397",
+            "city-9a09aa14302ec54f"
+          ],
+          "cityQids": [
+            "Q25416",
+            "Q585",
+            "Q42900680",
+            "Q26793"
+          ],
+          "poiCount": 0,
+          "coverageStatus": "route-returned"
+        },
+        {
+          "countryCode": "NO",
+          "label": "Norway",
+          "query": "Norway 14 days",
+          "durationDays": 14,
+          "recordId": "planner-designed-::::::Q101341|Q25416|Q25804|Q26793|Q39383|Q585::14天::Classic First Trip::::Q39383>Q585>Q25416>Q25804>Q101341>Q26793",
+          "routeReferenceMode": "country-expansion",
+          "cityEntityIds": [
+            "city-5540afe0ce541593",
+            "city-25addacaf4743504",
+            "city-e446cff2b1de8c7c",
+            "city-709539223e144546",
+            "city-e296c5f0e95d5bb3",
+            "city-9a09aa14302ec54f"
+          ],
+          "cityQids": [
+            "Q39383",
+            "Q585",
+            "Q25416",
+            "Q25804",
+            "Q101341",
+            "Q26793"
+          ],
+          "poiCount": 5,
+          "coverageStatus": "target-covered"
+        }
+      ]
+    },
+    "SE": {
+      "label": "Sweden",
+      "testedDurations": [
+        7,
+        14
+      ],
+      "reliableMaxDurationDays": 14,
+      "results": [
+        {
+          "countryCode": "SE",
+          "label": "Sweden",
+          "query": "Sweden 7 days",
+          "durationDays": 7,
+          "recordId": "planner-designed-::::::Q1754|Q2167|Q25287|Q83232::7天::Classic First Trip::::Q25287>Q2167>Q1754>Q83232",
+          "routeReferenceMode": null,
+          "cityEntityIds": [
+            "city-b84d2c11f89fa4c2",
+            "city-cf01417966fb6e7b",
+            "city-7a0950c424e1282d",
+            "city-db7a96547625c19f"
+          ],
+          "cityQids": [
+            "Q25287",
+            "Q2167",
+            "Q1754",
+            "Q83232"
+          ],
+          "poiCount": 0,
+          "coverageStatus": "route-returned"
+        },
+        {
+          "countryCode": "SE",
+          "label": "Sweden",
+          "query": "Sweden 14 days",
+          "durationDays": 14,
+          "recordId": "planner-designed-::::::Q1754|Q2167|Q2211|Q25286|Q25287|Q83232::14天::Classic First Trip::::Q1754>Q25286>Q2211>Q2167>Q25287>Q83232",
+          "routeReferenceMode": "country-expansion",
+          "cityEntityIds": [
+            "city-7a0950c424e1282d",
+            "city-a94b312a4103b0da",
+            "city-6e7b3c3b9490e8b9",
+            "city-cf01417966fb6e7b",
+            "city-b84d2c11f89fa4c2",
+            "city-db7a96547625c19f"
+          ],
+          "cityQids": [
+            "Q1754",
+            "Q25286",
+            "Q2211",
+            "Q2167",
+            "Q25287",
+            "Q83232"
+          ],
+          "poiCount": 5,
+          "coverageStatus": "target-covered"
+        }
+      ]
+    },
+    "FI": {
+      "label": "Finland",
+      "testedDurations": [
+        7,
+        14
+      ],
+      "reliableMaxDurationDays": 14,
+      "results": [
+        {
+          "countryCode": "FI",
+          "label": "Finland",
+          "query": "Finland 7 days",
+          "durationDays": 7,
+          "recordId": "planner-designed-::::::Q103717|Q1757|Q40840|Q47048::7天::Classic First Trip::::Q40840>Q47048>Q1757>Q103717",
+          "routeReferenceMode": null,
+          "cityEntityIds": [
+            "city-999501a1081be244",
+            "city-d85e4f336213d064",
+            "city-f8fd54cc84a22fd5",
+            "city-429a3933fcf72f52"
+          ],
+          "cityQids": [
+            "Q40840",
+            "Q47048",
+            "Q1757",
+            "Q103717"
+          ],
+          "poiCount": 0,
+          "coverageStatus": "route-returned"
+        },
+        {
+          "countryCode": "FI",
+          "label": "Finland",
+          "query": "Finland 14 days",
+          "durationDays": 14,
+          "recordId": "planner-designed-::::::Q162279|Q1757|Q193367|Q38511|Q40840|Q47048::14天::Classic First Trip::::Q162279>Q1757>Q47048>Q193367>Q38511>Q40840",
+          "routeReferenceMode": "country-expansion",
+          "cityEntityIds": [
+            "city-9160fdd17b9c562f",
+            "city-f8fd54cc84a22fd5",
+            "city-d85e4f336213d064",
+            "city-1169803b507f0a75",
+            "city-51d172b9e24e3620",
+            "city-999501a1081be244"
+          ],
+          "cityQids": [
+            "Q162279",
+            "Q1757",
+            "Q47048",
+            "Q193367",
+            "Q38511",
+            "Q40840"
+          ],
+          "poiCount": 5,
+          "coverageStatus": "target-covered"
+        }
+      ]
+    },
+    "DK": {
+      "label": "Denmark",
+      "testedDurations": [
+        7,
+        14
+      ],
+      "reliableMaxDurationDays": 14,
+      "results": [
+        {
+          "countryCode": "DK",
+          "label": "Denmark",
+          "query": "Denmark 7 days",
+          "durationDays": 7,
+          "recordId": "planner-designed-::::::Q1748|Q25319|Q26881|Q322361::7天::Classic First Trip::::Q322361>Q26881>Q25319>Q1748",
+          "routeReferenceMode": null,
+          "cityEntityIds": [
+            "city-9ecfbe14bb1d7923",
+            "city-de47ecdaa72970d3",
+            "city-3ddab7f670e90afa",
+            "city-de64a21a71e5cbce"
+          ],
+          "cityQids": [
+            "Q322361",
+            "Q26881",
+            "Q25319",
+            "Q1748"
+          ],
+          "poiCount": 0,
+          "coverageStatus": "route-returned"
+        },
+        {
+          "countryCode": "DK",
+          "label": "Denmark",
+          "query": "Denmark 14 days",
+          "durationDays": 14,
+          "recordId": "planner-designed-::::::Q1748|Q25331|Q25410|Q26563|Q26881|Q322361::14天::Classic First Trip::::Q25331>Q1748>Q25410>Q26563>Q322361>Q26881",
+          "routeReferenceMode": "country-expansion",
+          "cityEntityIds": [
+            "city-5828c678a083189d",
+            "city-de64a21a71e5cbce",
+            "city-f02ab28c44007d48",
+            "city-a95e8eb6e438477c",
+            "city-9ecfbe14bb1d7923",
+            "city-de47ecdaa72970d3"
+          ],
+          "cityQids": [
+            "Q25331",
+            "Q1748",
+            "Q25410",
+            "Q26563",
+            "Q322361",
+            "Q26881"
+          ],
+          "poiCount": 5,
+          "coverageStatus": "target-covered"
+        }
+      ]
+    },
+    "BE": {
+      "label": "Belgium",
+      "testedDurations": [
+        7,
+        14
+      ],
+      "reliableMaxDurationDays": 14,
+      "results": [
+        {
+          "countryCode": "BE",
+          "label": "Belgium",
+          "query": "Belgium 7 days",
+          "durationDays": 7,
+          "recordId": "planner-designed-::::::Q108247|Q12892|Q1296|Q239::7天::Classic First Trip::::Q239>Q108247>Q12892>Q1296",
+          "routeReferenceMode": null,
+          "cityEntityIds": [
+            "city-c1934ae62a95f59e",
+            "city-b8f568d203bce192",
+            "city-2379d38efd7a0d92",
+            "city-567aca625098d09b"
+          ],
+          "cityQids": [
+            "Q239",
+            "Q108247",
+            "Q12892",
+            "Q1296"
+          ],
+          "poiCount": 0,
+          "coverageStatus": "route-returned"
+        },
+        {
+          "countryCode": "BE",
+          "label": "Belgium",
+          "query": "Belgium 14 days",
+          "durationDays": 14,
+          "recordId": "planner-designed-::::::Q108247|Q118958|Q1296|Q12994|Q239|Q3992::14天::Classic First Trip::::Q12994>Q1296>Q108247>Q239>Q3992>Q118958",
+          "routeReferenceMode": "country-expansion",
+          "cityEntityIds": [
+            "city-7fa1315cc6058d08",
+            "city-567aca625098d09b",
+            "city-b8f568d203bce192",
+            "city-c1934ae62a95f59e",
+            "city-39b17ae0551d2929",
+            "city-8896853114ec6d46"
+          ],
+          "cityQids": [
+            "Q12994",
+            "Q1296",
+            "Q108247",
+            "Q239",
+            "Q3992",
+            "Q118958"
+          ],
+          "poiCount": 5,
+          "coverageStatus": "target-covered"
+        }
+      ]
+    },
+    "PL": {
+      "label": "Poland",
+      "testedDurations": [
+        7,
+        14
+      ],
+      "reliableMaxDurationDays": 14,
+      "results": [
+        {
+          "countryCode": "PL",
+          "label": "Poland",
+          "query": "Poland 7 days",
+          "durationDays": 7,
+          "recordId": "planner-designed-::::::Q1792|Q268|Q270|Q31487::7天::Classic First Trip::::Q268>Q270>Q31487>Q1792",
+          "routeReferenceMode": null,
+          "cityEntityIds": [
+            "city-3d736d05d7e11912",
+            "city-83414d1ae1a11ef2",
+            "city-7c5e7e54c0cc73d4",
+            "city-e9ddfb5c811a7673"
+          ],
+          "cityQids": [
+            "Q268",
+            "Q270",
+            "Q31487",
+            "Q1792"
+          ],
+          "poiCount": 0,
+          "coverageStatus": "route-returned"
+        },
+        {
+          "countryCode": "PL",
+          "label": "Poland",
+          "query": "Poland 14 days",
+          "durationDays": 14,
+          "recordId": "planner-designed-::::::Q144786|Q1792|Q270|Q31487|Q37333|Q47554::14天::Classic First Trip::::Q144786>Q270>Q47554>Q31487>Q37333>Q1792",
+          "routeReferenceMode": "country-expansion",
+          "cityEntityIds": [
+            "city-c08bc01a26eed6dd",
+            "city-83414d1ae1a11ef2",
+            "city-f4462cd2a1212e8c",
+            "city-7c5e7e54c0cc73d4",
+            "city-46d5c7517db93e4a",
+            "city-e9ddfb5c811a7673"
+          ],
+          "cityQids": [
+            "Q144786",
+            "Q270",
+            "Q47554",
+            "Q31487",
+            "Q37333",
+            "Q1792"
+          ],
+          "poiCount": 5,
+          "coverageStatus": "target-covered"
+        }
+      ]
+    },
+    "SI": {
+      "label": "Slovenia",
+      "testedDurations": [
+        7,
+        14
+      ],
+      "reliableMaxDurationDays": 14,
+      "results": [
+        {
+          "countryCode": "SI",
+          "label": "Slovenia",
+          "query": "Slovenia 7 days",
+          "durationDays": 7,
+          "recordId": "planner-designed-::::::Q1010|Q1015|Q1382|Q2139428::7天::Classic First Trip::::Q1382>Q1015>Q1010>Q2139428",
+          "routeReferenceMode": null,
+          "cityEntityIds": [
+            "city-662396baf7e7346e",
+            "city-157aa18beb222874",
+            "city-acb0423f7fa0d7e7",
+            "city-2d710f6259cc1454"
+          ],
+          "cityQids": [
+            "Q1382",
+            "Q1015",
+            "Q1010",
+            "Q2139428"
+          ],
+          "poiCount": 0,
+          "coverageStatus": "route-returned"
+        },
+        {
+          "countryCode": "SI",
+          "label": "Slovenia",
+          "query": "Slovenia 14 days",
+          "durationDays": 14,
+          "recordId": "planner-designed-::::::Q1010|Q1015|Q1382|Q202852|Q2139428|Q437::14天::Classic First Trip::::Q1010>Q1015>Q437>Q202852>Q2139428>Q1382",
+          "routeReferenceMode": "country-expansion",
+          "cityEntityIds": [
+            "city-acb0423f7fa0d7e7",
+            "city-157aa18beb222874",
+            "city-47ea9a0b8d57fa76",
+            "city-ddb9df8e3b769e04",
+            "city-2d710f6259cc1454",
+            "city-662396baf7e7346e"
+          ],
+          "cityQids": [
+            "Q1010",
+            "Q1015",
+            "Q437",
+            "Q202852",
+            "Q2139428",
+            "Q1382"
+          ],
+          "poiCount": 5,
+          "coverageStatus": "target-covered"
+        }
+      ]
+    },
+    "VN": {
+      "label": "Vietnam",
+      "testedDurations": [
+        7,
+        14,
+        21
+      ],
+      "reliableMaxDurationDays": 21,
+      "results": [
+        {
+          "countryCode": "VN",
+          "label": "Vietnam",
+          "query": "Vietnam 7 days",
+          "durationDays": 7,
+          "recordId": "planner-designed-::::::Q1854|Q1858|Q216075|Q25282::7天::Classic First Trip::::Q216075>Q1854>Q25282>Q1858",
+          "routeReferenceMode": null,
+          "cityEntityIds": [
+            "city-58c9dc2086482e5b",
+            "city-e321c6d35c4b62da",
+            "city-3534e10ea2259139",
+            "city-c5b9642fac1b070a"
+          ],
+          "cityQids": [
+            "Q216075",
+            "Q1854",
+            "Q25282",
+            "Q1858"
+          ],
+          "poiCount": 0,
+          "coverageStatus": "route-returned"
+        },
+        {
+          "countryCode": "VN",
+          "label": "Vietnam",
+          "query": "Vietnam 14 days",
+          "durationDays": 14,
+          "recordId": "planner-designed-::::::Q1854|Q1858|Q216075|Q25281|Q25282|Q36160::14天::Classic First Trip::::Q1858>Q216075>Q25282>Q36160>Q25281>Q1854",
+          "routeReferenceMode": "country-expansion",
+          "cityEntityIds": [
+            "city-c5b9642fac1b070a",
+            "city-58c9dc2086482e5b",
+            "city-3534e10ea2259139",
+            "city-185e6e1e3f131407",
+            "city-1489fedbf28c09fd",
+            "city-e321c6d35c4b62da"
+          ],
+          "cityQids": [
+            "Q1858",
+            "Q216075",
+            "Q25282",
+            "Q36160",
+            "Q25281",
+            "Q1854"
+          ],
+          "poiCount": 5,
+          "coverageStatus": "target-covered"
+        },
+        {
+          "countryCode": "VN",
+          "label": "Vietnam",
+          "query": "Vietnam 21 days",
+          "durationDays": 21,
+          "recordId": "planner-designed-::::::Q1858|Q19491|Q216075|Q25281|Q25282|Q36160|Q36399|Q72818::21天::Classic First Trip::::Q36399>Q72818>Q216075>Q19491>Q25282>Q25281>Q36160>Q1858",
+          "routeReferenceMode": "country-expansion",
+          "cityEntityIds": [
+            "city-6f7577d16778bfce",
+            "city-e431d604e55c2218",
+            "city-58c9dc2086482e5b",
+            "city-6c2fe9a829ecf2d5",
+            "city-3534e10ea2259139",
+            "city-1489fedbf28c09fd",
+            "city-185e6e1e3f131407",
+            "city-c5b9642fac1b070a"
+          ],
+          "cityQids": [
+            "Q36399",
+            "Q72818",
+            "Q216075",
+            "Q19491",
+            "Q25282",
+            "Q25281",
+            "Q36160",
+            "Q1858"
+          ],
+          "poiCount": 17,
+          "coverageStatus": "target-covered"
+        }
+      ]
+    },
+    "MY": {
+      "label": "Malaysia",
+      "testedDurations": [
+        7,
+        14
+      ],
+      "reliableMaxDurationDays": 14,
+      "results": [
+        {
+          "countryCode": "MY",
+          "label": "Malaysia",
+          "query": "Malaysia 7 days",
+          "durationDays": 7,
+          "recordId": "planner-designed-::::::Q137271|Q1865|Q231318|Q61092::7天::Classic First Trip::::Q1865>Q61092>Q231318>Q137271",
+          "routeReferenceMode": null,
+          "cityEntityIds": [
+            "city-0075bb1293b44dbc",
+            "city-a12f0a59f07b75f1",
+            "city-8b438984cffef51f",
+            "city-b0f38f4d2ec1fbf4"
+          ],
+          "cityQids": [
+            "Q1865",
+            "Q61092",
+            "Q231318",
+            "Q137271"
+          ],
+          "poiCount": 0,
+          "coverageStatus": "route-returned"
+        },
+        {
+          "countryCode": "MY",
+          "label": "Malaysia",
+          "query": "Malaysia 14 days",
+          "durationDays": 14,
+          "recordId": "planner-designed-::::::Q1865|Q220445|Q231318|Q271619|Q61089|Q61092::14天::Classic First Trip::::Q271619>Q61089>Q1865>Q220445>Q61092>Q231318",
+          "routeReferenceMode": "country-expansion",
+          "cityEntityIds": [
+            "city-b8ae7d31fb5cfd18",
+            "city-bc20c9d6ca2573f9",
+            "city-0075bb1293b44dbc",
+            "city-50645031fe7e62a5",
+            "city-a12f0a59f07b75f1",
+            "city-8b438984cffef51f"
+          ],
+          "cityQids": [
+            "Q271619",
+            "Q61089",
+            "Q1865",
+            "Q220445",
+            "Q61092",
+            "Q231318"
+          ],
+          "poiCount": 5,
+          "coverageStatus": "target-covered"
+        }
+      ]
+    },
+    "ID": {
+      "label": "Indonesia",
+      "testedDurations": [
+        7,
+        14,
+        21
+      ],
+      "reliableMaxDurationDays": 21,
+      "results": [
+        {
+          "countryCode": "ID",
+          "label": "Indonesia",
+          "query": "Indonesia 7 days",
+          "durationDays": 7,
+          "recordId": "planner-designed-::::::Q11025|Q11445|Q11506|Q14634::7天::Classic First Trip::::Q11025>Q11506>Q14634>Q11445",
+          "routeReferenceMode": null,
+          "cityEntityIds": [
+            "city-9cf52ce619057b10",
+            "city-3bea25263e94af5b",
+            "city-389d19c84f2f9c30",
+            "city-4ffdffdd0f029f7f"
+          ],
+          "cityQids": [
+            "Q11025",
+            "Q11506",
+            "Q14634",
+            "Q11445"
+          ],
+          "poiCount": 0,
+          "coverageStatus": "route-returned"
+        },
+        {
+          "countryCode": "ID",
+          "label": "Indonesia",
+          "query": "Indonesia 14 days",
+          "durationDays": 14,
+          "recordId": "planner-designed-::::::Q10389|Q11445|Q11462|Q11506|Q210654|Q3630::14天::Classic First Trip::::Q11445>Q11506>Q210654>Q3630>Q10389>Q11462",
+          "routeReferenceMode": "country-expansion",
+          "cityEntityIds": [
+            "city-4ffdffdd0f029f7f",
+            "city-3bea25263e94af5b",
+            "city-982451e3a3c530d0",
+            "city-25008f3980057dc6",
+            "city-e1be65f85ec6dcba",
+            "city-2919c25138c3d0fd"
+          ],
+          "cityQids": [
+            "Q11445",
+            "Q11506",
+            "Q210654",
+            "Q3630",
+            "Q10389",
+            "Q11462"
+          ],
+          "poiCount": 5,
+          "coverageStatus": "target-covered"
+        },
+        {
+          "countryCode": "ID",
+          "label": "Indonesia",
+          "query": "Indonesia 21 days",
+          "durationDays": 21,
+          "recordId": "planner-designed-::::::Q10389|Q11025|Q11445|Q11462|Q11506|Q14634|Q210654|Q3630::21天::Classic First Trip::::Q10389>Q11025>Q11462>Q210654>Q11506>Q3630>Q11445>Q14634",
+          "routeReferenceMode": "country-expansion",
+          "cityEntityIds": [
+            "city-e1be65f85ec6dcba",
+            "city-9cf52ce619057b10",
+            "city-2919c25138c3d0fd",
+            "city-982451e3a3c530d0",
+            "city-3bea25263e94af5b",
+            "city-25008f3980057dc6",
+            "city-4ffdffdd0f029f7f",
+            "city-389d19c84f2f9c30"
+          ],
+          "cityQids": [
+            "Q10389",
+            "Q11025",
+            "Q11462",
+            "Q210654",
+            "Q11506",
+            "Q3630",
+            "Q11445",
+            "Q14634"
+          ],
+          "poiCount": 17,
+          "coverageStatus": "target-covered"
+        }
+      ]
+    },
+    "PH": {
+      "label": "Philippines",
+      "testedDurations": [
+        7,
+        14
+      ],
+      "reliableMaxDurationDays": 14,
+      "results": [
+        {
+          "countryCode": "PH",
+          "label": "Philippines",
+          "query": "Philippines 7 days",
+          "durationDays": 7,
+          "recordId": "planner-designed-::::::Q111739|Q1461|Q1467|Q459787::7天::Classic First Trip::::Q459787>Q1461>Q1467>Q111739",
+          "routeReferenceMode": null,
+          "cityEntityIds": [
+            "city-251735e9e17b600f",
+            "city-004791374256954d",
+            "city-2de17a2bc6043fc0",
+            "city-7b2cab1ae5a4c63e"
+          ],
+          "cityQids": [
+            "Q459787",
+            "Q1461",
+            "Q1467",
+            "Q111739"
+          ],
+          "poiCount": 0,
+          "coverageStatus": "route-returned"
+        },
+        {
+          "countryCode": "PH",
+          "label": "Philippines",
+          "query": "Philippines 14 days",
+          "durationDays": 14,
+          "recordId": "planner-designed-::::::Q111739|Q1461|Q1467|Q1473|Q1822|Q235004::14天::Classic First Trip::::Q1467>Q1473>Q111739>Q235004>Q1822>Q1461",
+          "routeReferenceMode": "country-expansion",
+          "cityEntityIds": [
+            "city-2de17a2bc6043fc0",
+            "city-e21ca783f3d984fc",
+            "city-7b2cab1ae5a4c63e",
+            "city-6dbca898f0d17e6d",
+            "city-604193e42a5d9f31",
+            "city-004791374256954d"
+          ],
+          "cityQids": [
+            "Q1467",
+            "Q1473",
+            "Q111739",
+            "Q235004",
+            "Q1822",
+            "Q1461"
+          ],
+          "poiCount": 5,
+          "coverageStatus": "target-covered"
+        }
+      ]
+    },
+    "CA": {
+      "label": "Canada",
+      "testedDurations": [
+        7,
+        14,
+        21
+      ],
+      "reliableMaxDurationDays": 21,
+      "results": [
+        {
+          "countryCode": "CA",
+          "label": "Canada",
+          "query": "Canada 7 days",
+          "durationDays": 7,
+          "recordId": "planner-designed-::::::Q2141|Q340|Q58337|Q999429::7天::Classic First Trip::::Q999429>Q2141>Q58337>Q340",
+          "routeReferenceMode": null,
+          "cityEntityIds": [
+            "city-c6d2534bcb1a2557",
+            "city-ace4fa6b86e141a0",
+            "city-d029e97d08ae18b0",
+            "city-41ced49048f1d971"
+          ],
+          "cityQids": [
+            "Q999429",
+            "Q2141",
+            "Q58337",
+            "Q340"
+          ],
+          "poiCount": 0,
+          "coverageStatus": "route-returned"
+        },
+        {
+          "countryCode": "CA",
+          "label": "Canada",
+          "query": "Canada 14 days",
+          "durationDays": 14,
+          "recordId": "planner-designed-::::::Q172|Q2141|Q2145|Q36312|Q58337|Q999429::14天::Classic First Trip::::Q999429>Q36312>Q58337>Q2145>Q2141>Q172",
+          "routeReferenceMode": "country-expansion",
+          "cityEntityIds": [
+            "city-c6d2534bcb1a2557",
+            "city-caac7e9129b49c1a",
+            "city-d029e97d08ae18b0",
+            "city-7d4280aac6b5016a",
+            "city-ace4fa6b86e141a0",
+            "city-0634eba240864940"
+          ],
+          "cityQids": [
+            "Q999429",
+            "Q36312",
+            "Q58337",
+            "Q2145",
+            "Q2141",
+            "Q172"
+          ],
+          "poiCount": 5,
+          "coverageStatus": "target-covered"
+        },
+        {
+          "countryCode": "CA",
+          "label": "Canada",
+          "query": "Canada 21 days",
+          "durationDays": 21,
+          "recordId": "planner-designed-::::::Q172|Q2132|Q2141|Q2145|Q24639|Q36312|Q58337|Q999429::21天::Classic First Trip::::Q2132>Q2141>Q24639>Q2145>Q172>Q999429>Q36312>Q58337",
+          "routeReferenceMode": "country-expansion",
+          "cityEntityIds": [
+            "city-5c6be2bb844c746b",
+            "city-ace4fa6b86e141a0",
+            "city-e28f1e57abe5d071",
+            "city-7d4280aac6b5016a",
+            "city-0634eba240864940",
+            "city-c6d2534bcb1a2557",
+            "city-caac7e9129b49c1a",
+            "city-d029e97d08ae18b0"
+          ],
+          "cityQids": [
+            "Q2132",
+            "Q2141",
+            "Q24639",
+            "Q2145",
+            "Q172",
+            "Q999429",
+            "Q36312",
+            "Q58337"
+          ],
+          "poiCount": 17,
+          "coverageStatus": "target-covered"
+        }
+      ]
+    },
+    "US": {
+      "label": "United States",
+      "testedDurations": [
+        7,
+        14,
+        21
+      ],
+      "reliableMaxDurationDays": 21,
+      "results": [
+        {
+          "countryCode": "US",
+          "label": "United States",
+          "query": "United States 7 days",
+          "durationDays": 7,
+          "recordId": "planner-designed-::::::Q16554|Q18094|Q23768|Q65::7天::Classic First Trip::::Q16554>Q18094>Q23768>Q65",
+          "routeReferenceMode": null,
+          "cityEntityIds": [
+            "city-461119780811d24f",
+            "city-872e81620b136129",
+            "city-e4701b3935371283",
+            "city-acc77da3ec924a7d"
+          ],
+          "cityQids": [
+            "Q16554",
+            "Q18094",
+            "Q23768",
+            "Q65"
+          ],
+          "poiCount": 0,
+          "coverageStatus": "route-returned"
+        },
+        {
+          "countryCode": "US",
+          "label": "United States",
+          "query": "United States 14 days",
+          "durationDays": 14,
+          "recordId": "planner-designed-::::::Q100|Q1297|Q18094|Q34404|Q65|Q8652::14天::Classic First Trip::::Q8652>Q34404>Q100>Q65>Q18094>Q1297",
+          "routeReferenceMode": "country-expansion",
+          "cityEntityIds": [
+            "city-8a3ead331f5d086c",
+            "city-58e0b68e36021c6f",
+            "city-e9c5ca89d86c9b06",
+            "city-acc77da3ec924a7d",
+            "city-872e81620b136129",
+            "city-9c500879d4604b46"
+          ],
+          "cityQids": [
+            "Q8652",
+            "Q34404",
+            "Q100",
+            "Q65",
+            "Q18094",
+            "Q1297"
+          ],
+          "poiCount": 5,
+          "coverageStatus": "target-covered"
+        },
+        {
+          "countryCode": "US",
+          "label": "United States",
+          "query": "United States 21 days",
+          "durationDays": 21,
+          "recordId": "planner-designed-::::::Q1297|Q16554|Q18094|Q23768|Q34404|Q60|Q65|Q8652::21天::Classic First Trip::::Q60>Q34404>Q8652>Q1297>Q23768>Q18094>Q16554>Q65",
+          "routeReferenceMode": "country-expansion",
+          "cityEntityIds": [
+            "city-1b035830a43bec55",
+            "city-58e0b68e36021c6f",
+            "city-8a3ead331f5d086c",
+            "city-9c500879d4604b46",
+            "city-e4701b3935371283",
+            "city-872e81620b136129",
+            "city-461119780811d24f",
+            "city-acc77da3ec924a7d"
+          ],
+          "cityQids": [
+            "Q60",
+            "Q34404",
+            "Q8652",
+            "Q1297",
+            "Q23768",
+            "Q18094",
+            "Q16554",
+            "Q65"
+          ],
+          "poiCount": 17,
+          "coverageStatus": "target-covered"
+        }
+      ]
+    },
+    "MX": {
+      "label": "Mexico",
+      "testedDurations": [
+        7,
+        14
+      ],
+      "reliableMaxDurationDays": 14,
+      "results": [
+        {
+          "countryCode": "MX",
+          "label": "Mexico",
+          "query": "Mexico 7 days",
+          "durationDays": 7,
+          "recordId": "planner-designed-::::::Q1489|Q165204|Q61306|Q8969::7天::Classic First Trip::::Q61306>Q8969>Q1489>Q165204",
+          "routeReferenceMode": null,
+          "cityEntityIds": [
+            "city-bf2e678a44a19bc6",
+            "city-7d67be5cb83e1485",
+            "city-18ed579b1bfe2d8d",
+            "city-2bb58506d297fedd"
+          ],
+          "cityQids": [
+            "Q61306",
+            "Q8969",
+            "Q1489",
+            "Q165204"
+          ],
+          "poiCount": 0,
+          "coverageStatus": "route-returned"
+        },
+        {
+          "countryCode": "MX",
+          "label": "Mexico",
+          "query": "Mexico 14 days",
+          "durationDays": 14,
+          "recordId": "planner-designed-::::::Q125293|Q1489|Q61306|Q8969|Q9022|Q989988::14天::Classic First Trip::::Q9022>Q8969>Q125293>Q61306>Q989988>Q1489",
+          "routeReferenceMode": "country-expansion",
+          "cityEntityIds": [
+            "city-258a16d7e3a6b561",
+            "city-7d67be5cb83e1485",
+            "city-d8821f411fd0711e",
+            "city-bf2e678a44a19bc6",
+            "city-9e1481413119dfc3",
+            "city-18ed579b1bfe2d8d"
+          ],
+          "cityQids": [
+            "Q9022",
+            "Q8969",
+            "Q125293",
+            "Q61306",
+            "Q989988",
+            "Q1489"
+          ],
+          "poiCount": 5,
+          "coverageStatus": "target-covered"
+        }
+      ]
+    },
+    "PE": {
+      "label": "Peru",
+      "testedDurations": [
+        7,
+        14
+      ],
+      "reliableMaxDurationDays": 14,
+      "results": [
+        {
+          "countryCode": "PE",
+          "label": "Peru",
+          "query": "Peru 7 days",
+          "durationDays": 7,
+          "recordId": "planner-designed-::::::Q159273|Q2868|Q5582862|Q793809::7天::Classic First Trip::::Q793809>Q5582862>Q2868>Q159273",
+          "routeReferenceMode": null,
+          "cityEntityIds": [
+            "city-70016b1a4282de88",
+            "city-65c7e5ade4f64098",
+            "city-54e3b945011b3295",
+            "city-c53e89efdcd37dfe"
+          ],
+          "cityQids": [
+            "Q793809",
+            "Q5582862",
+            "Q2868",
+            "Q159273"
+          ],
+          "poiCount": 0,
+          "coverageStatus": "route-returned"
+        },
+        {
+          "countryCode": "PE",
+          "label": "Peru",
+          "query": "Peru 14 days",
+          "durationDays": 14,
+          "recordId": "planner-designed-::::::Q159273|Q214173|Q232842|Q2868|Q793809|Q840712::14天::Classic First Trip::::Q2868>Q793809>Q159273>Q214173>Q840712>Q232842",
+          "routeReferenceMode": "country-expansion",
+          "cityEntityIds": [
+            "city-54e3b945011b3295",
+            "city-70016b1a4282de88",
+            "city-c53e89efdcd37dfe",
+            "city-30dca9649cefe803",
+            "city-20f11e603aef8ebd",
+            "city-b063448da22824fd"
+          ],
+          "cityQids": [
+            "Q2868",
+            "Q793809",
+            "Q159273",
+            "Q214173",
+            "Q840712",
+            "Q232842"
+          ],
+          "poiCount": 5,
+          "coverageStatus": "target-covered"
+        }
+      ]
+    }
+  }
+}

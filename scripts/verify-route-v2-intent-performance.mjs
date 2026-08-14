@@ -274,6 +274,14 @@ const local = {
   ),
 };
 
+const cachedParseMutationProbe = parseSearchIntent("Tokyo Kyoto Osaka 7 days");
+cachedParseMutationProbe.requiredDestinationIds.push("Q999999999");
+assert.equal(
+  parseSearchIntent("Tokyo Kyoto Osaka 7 days").requiredDestinationIds.includes("Q999999999"),
+  false,
+  "static parse cache must return defensive copies",
+);
+
 const parseAbsoluteSafetyLimitMs = 2;
 const parseRelativeBaselineP95Ms = Number(process.env.ROUTE_V2_PARSE_BASELINE_P95_MS || 0);
 const parseRelativeRegressionLimit = 0.1;
@@ -295,7 +303,10 @@ if (parseRelativeBaselineP95Ms > 0) {
 assert(local.normalizeRouteIntent.p95Ms < 0.1, "intent normalization p95 must remain below 0.1ms");
 assert(local.validateNormalizedRouteIntent.p95Ms < 0.1, "intent schema validation p95 must remain below 0.1ms");
 assert(local.fingerprint.p95Ms < 0.1, "fingerprint p95 must remain below 0.1ms");
-assert(local.finalInvariantGate.p95Ms < 0.25, "full invariant gate p95 must remain below 0.25ms");
+assert(
+  local.finalInvariantGate.p95Ms < 0.25,
+  `full invariant gate p95 ${local.finalInvariantGate.p95Ms}ms must remain below 0.25ms`,
+);
 
 const cache = createRouteSearchCache({
   storagePath: path.join(temporaryRoot, "search-cache.json"),

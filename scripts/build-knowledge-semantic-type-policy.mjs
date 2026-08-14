@@ -65,6 +65,7 @@ const COMPOSITE_ALLOWANCES = Object.freeze([
   ["Q20444179", "poi-730cedb51468a4e5", "Dongpirang Village is an exact cultural-village POI."],
   ["Q11269655", "poi-d5ed664da2165f25", "Jeonju Hanok Village is an exact visitor-facing village POI."],
   ["Q3393650", "poi-88e1d189073082a5", "Serralves is an exact cultural foundation POI whose current P31 is foundation."],
+  ["Q437959", "poi-7ab19c2b130f72e0", "Old Port of Marseille is an exact visitor-facing historic port POI whose seaport taxonomy exceeds the bounded generic POI path."],
 ].map(([qid, entityId, reason]) => Object.freeze({
   qid,
   entityId,

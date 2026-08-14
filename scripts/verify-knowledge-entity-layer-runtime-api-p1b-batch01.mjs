@@ -182,6 +182,12 @@ const EXPECTED_CITY_POI_COUNTS = Object.freeze({
   ...BATCH04_CITY_POI_COUNTS,
   ...BATCH05_08_CITY_POI_COUNTS,
   ...BATCH09_13_CITY_POI_COUNTS,
+  Brno: 11,
+  Prague: 15,
+  Helsinki: 15,
+  Turku: 11,
+  Warsaw: 15,
+  "Kraków": 11,
 });
 const UI_AND_PLANNER_PATHS = Object.freeze([
   "atlas.js",
@@ -319,14 +325,15 @@ try {
     return city;
   });
   const batchCityIds = new Set(batchCities.map((city) => city.entityId));
-  const pilotPois = pois.filter((poi) => !batchCityIds.has(poi.parentCityEntityId));
+  const pilotPois = JSON.parse(readText("data/knowledge/pois.p1b-pilot.json")).pois
+    .filter((poi) => !batchCityIds.has(poi.parentCityEntityId));
 
-  assert.equal(new Set(countries.map((entity) => entity.entityId)).size, 51);
-  assert.equal(new Set(cities.map((entity) => entity.entityId)).size, 144);
-  assert.equal(new Set(pois.map((entity) => entity.entityId)).size, 904);
-  assert.equal(new Set([...countries, ...cities, ...pois].map((entity) => entity.entityId)).size, 1099);
-  assert.equal(new Set(cities.map((entity) => entity.wikidataId)).size, 144);
-  assert.equal(new Set(pois.map((entity) => entity.wikidataId)).size, 904);
+  assert.equal(new Set(countries.map((entity) => entity.entityId)).size, 55);
+  assert.equal(new Set(cities.map((entity) => entity.entityId)).size, 306);
+  assert.equal(new Set(pois.map((entity) => entity.entityId)).size, 2101);
+  assert.equal(new Set([...countries, ...cities, ...pois].map((entity) => entity.entityId)).size, 2462);
+  assert.equal(new Set(cities.map((entity) => entity.wikidataId)).size, 306);
+  assert.equal(new Set(pois.map((entity) => entity.wikidataId)).size, 2101);
   assert.equal(pilotPois.length, 9);
   for (const city of batchCities) {
     const expectedCount = EXPECTED_CITY_POI_COUNTS[city.canonicalNameEn];
@@ -377,7 +384,7 @@ try {
 
   const countriesResponse = await request("/api/knowledge-entities/countries");
   assert.equal(countriesResponse.status, 200);
-  assert.equal(countriesResponse.payload.countries.length, 51);
+  assert.equal(countriesResponse.payload.countries.length, 55);
   const countriesAgain = await request("/api/knowledge-entities/countries");
   assert.deepEqual(countriesAgain.payload, countriesResponse.payload);
 
@@ -440,7 +447,7 @@ try {
     assert.equal(publicPayloadText.includes(forbidden), false, `runtime API exposed forbidden detail: ${forbidden}`);
   }
   assert.ok(requestedPaths.every((relativePath) => relativePath.startsWith("/api/knowledge-entities/")));
-  assert.equal((output.stdout.match(/Knowledge Entity Layer: 51 countries, 144 cities, 904 POIs/g) || []).length, 1);
+  assert.equal((output.stdout.match(/Knowledge Entity Layer: 55 countries, 306 cities, 2101 POIs/g) || []).length, 1);
   assert.equal(output.stderr, "", `server stderr was not empty:\n${output.stderr}`);
 
   result = {

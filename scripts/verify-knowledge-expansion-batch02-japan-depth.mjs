@@ -10,7 +10,7 @@ import {
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const RETRIEVED_AT = "2026-08-03T14:00:00.000Z";
-const EXPECTED_TOTALS = Object.freeze({ countries: 51, cities: 144, pois: 904, total: 1099 });
+const EXPECTED_TOTALS = Object.freeze({ countries: 55, cities: 306, pois: 2101, total: 2462 });
 const EXPECTED_JAPAN_POIS = Object.freeze({
   Beppu: 3,
   Fujikawaguchiko: 4,
@@ -148,9 +148,9 @@ for (const forbidden of ["best month", "recommended month", "best season", "reco
 }
 
 const manifest = readJson("data/route-v2/evidence-seed/evidence-seed-manifest.json");
-assert.deepEqual(manifest.counts, { routeLeg: 196, season: 76, total: 272 });
-assert.equal(new Set(manifest.routeLegEvidenceIds).size, 196);
-assert.equal(new Set(manifest.seasonEvidenceIds).size, 76);
+assert.deepEqual(manifest.counts, { routeLeg: 414, season: 156, total: 570 });
+assert.equal(new Set(manifest.routeLegEvidenceIds).size, 414);
+assert.equal(new Set(manifest.seasonEvidenceIds).size, 156);
 
 const importerSource = fs.readFileSync(path.join(ROOT, "scripts/import-knowledge-expansion-batch02-japan-depth.mjs"), "utf8");
 assert.match(importerSource, /atomicText\(OUTPUTS\.raw/u);

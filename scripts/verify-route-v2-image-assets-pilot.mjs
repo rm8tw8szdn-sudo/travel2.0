@@ -40,6 +40,13 @@ function read(relativePath) {
 const knowledgeBefore = snapshot(KNOWLEDGE_ROOT, { hash: true });
 const cacheBefore = snapshot(CACHE_ROOT);
 const imageAssets = require(MODULE_PATH);
+const imageCoverageManifest = JSON.parse(read("data/route-v2/images/image-coverage-manifest.json"));
+globalThis.RouteV2ImageCoverage = {
+  countryByCode: Object.fromEntries(imageCoverageManifest.countries.map((record) => [record.countryCode, record])),
+  cityByEntityId: Object.fromEntries(imageCoverageManifest.cities.map((record) => [record.entityId, record])),
+  fallbackPolicy: imageCoverageManifest.fallbackPolicy,
+};
+const tokyoCoverage = imageCoverageManifest.cities.find((record) => record.canonicalNameEn === "Tokyo");
 
 const EXPECTED_CITY_KEYS = Object.freeze({
   "NL-AMS": "cities/amsterdam.webp",
@@ -107,20 +114,20 @@ assert.equal(imageAssets.isConfiguredAssetUrl("https://images.unsplash.com/photo
 assert.equal(imageAssets.resolveLocalRouteCover({
   id: "gold-case-accepted-gold-1-jp-first-trip",
   countryEntities: [{ countryCode: "JP", name: "Japan" }],
-}).url, "assets/route-japan-classic-cover.svg");
+}).url, "assets/route-v2-images/countries/jp.svg");
 assert.equal(imageAssets.resolveLocalRouteCover({
   id: "gold-case-accepted-gold-1-jp-first-trip",
   countryEntities: [{ countryCode: "US", name: "United States" }],
-}).url, "assets/trip-cover-placeholder.svg", "Route IDs cannot reuse a semantically unrelated country cover");
+}).url, "assets/route-v2-images/countries/us.svg", "Route IDs cannot override the exact manifest country scope");
 assert.equal(imageAssets.resolveLocalRouteCover({
   id: "local-city-route",
-  destinationEntities: [{ name: "Tokyo", countryCode: "JP" }],
+  destinationEntities: [{ entityId: tokyoCoverage.entityId, name: "Tokyo", countryCode: "JP" }],
   countryEntities: [{ countryCode: "JP", name: "Japan" }],
-}).url, "assets/city-tokyo-cover.svg");
+}).url, "assets/route-city-placeholder.svg");
 assert.equal(imageAssets.resolveLocalRouteCover({
   id: "local-country-route",
   countryEntities: [{ countryCode: "FI", name: "Finland" }],
-}).url, "assets/country-landmark-finland.png");
+}).url, "assets/route-v2-images/countries/fi.svg");
 assert.equal(imageAssets.resolveLocalRouteCover({ id: "unknown-local-route" }).url, "assets/trip-cover-placeholder.svg");
 for (const record of [
   {
@@ -138,11 +145,12 @@ for (const record of [
 ]) {
   assert.equal(
     imageAssets.resolveLocalRouteCover(record).url,
-    "assets/trip-cover-placeholder.svg",
-    `${record.id}: a wrong-country illustration must degrade to the shared placeholder`,
+    `assets/route-v2-images/countries/${record.countryEntities[0].countryCode.toLowerCase()}.svg`,
+    `${record.id}: a wrong-place legacy illustration must degrade to the exact manifest country graphic`,
   );
 }
-assert.equal(imageAssets.resolveLocalDestinationCover({ name: "Kyoto", countryCode: "JP" }).url, "assets/city-kyoto-cover.svg");
+assert.equal(imageAssets.resolveLocalDestinationCover({ name: "Kyoto", countryCode: "JP" }).url, "assets/route-city-placeholder.svg");
+assert.equal(imageAssets.resolveLocalDestinationCover({ entityId: tokyoCoverage.entityId, name: "Tokyo", countryCode: "JP" }).url, "assets/route-city-placeholder.svg");
 assert.equal(imageAssets.resolveLocalDestinationCover({ name: "Unknown", countryCode: "ZZ" }).url, "assets/route-city-placeholder.svg");
 assert.equal(
   imageAssets.resolveLocalRouteCover({ id: "gold-case-accepted-gold-2-it-first-trip" }, { assetBaseUrl: TEST_ASSET_BASE_URL }).url,
@@ -178,7 +186,11 @@ assert.match(routesSource, /if \(!runtimeImageSearchEnabled && \/\^https\?:/u);
 assert.match(preloadSource, /resolvePilotRouteCover/u);
 assert.match(preloadSource, /if \(fixedCover\?\.isFallback && runtimeImageSearchEnabled\) image = await requestCover/u);
 assert.match(preloadSource, /if \(!runtimeImageSearchEnabled && \/\^https\?:/u);
-assert.match(citySource, /resolvePilotCityCover/u);
+assert.match(citySource, /coverage\?\.status === "imageReady"/u);
+assert.match(citySource, /coverage\.assetKind === "verified-destination-image"/u);
+assert.match(citySource, /coverage\.semanticScope === "exact-city"/u);
+assert.match(citySource, /neutralCityCover\(\)/u);
+assert.doesNotMatch(citySource, /resolvePilotCityCover/u, "City Detail must not use an unverified pilot or remote City image");
 assert.match(citySource, /cityCover\.alt = `\$\{city\.name\}封面图`/u);
 assert.ok(detailHtml.indexOf("route-v2-image-assets.js") < detailHtml.indexOf("route-detail.js"));
 assert.match(detailSource, /resolveLocalRouteCover/u);

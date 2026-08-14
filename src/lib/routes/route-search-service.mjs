@@ -73,6 +73,23 @@ function unique(values) {
   return [...new Set((values || []).map(clean).filter(Boolean))];
 }
 
+export function routeUsesStaleCoveragePlaceholder({
+  record,
+  requiredCountryCodes = [],
+  plannableCountryCodes = [],
+} = {}) {
+  const required = new Set(unique(requiredCountryCodes).map((code) => code.toUpperCase()));
+  const plannable = new Set(unique(plannableCountryCodes).map((code) => code.toUpperCase()));
+  if (!required.size || !plannable.size) return false;
+  return (Array.isArray(record?.destinationEntities) ? record.destinationEntities : []).some((destination) => {
+    const id = clean(destination?.wikidataId || destination?.entityId);
+    if (!/^coverage:/iu.test(id)) return false;
+    const idCountryCode = id.split(":")[1] || "";
+    const countryCode = clean(destination?.countryCode || idCountryCode).toUpperCase();
+    return required.has(countryCode) && plannable.has(countryCode);
+  });
+}
+
 function number(value, fallback = 0) {
   const parsed = Number(value);
   return Number.isFinite(parsed) ? parsed : fallback;
@@ -636,6 +653,15 @@ export function createRouteSearchService({
       catalogs: intentCatalog,
       timeIntentEnabled: isRouteV2TimeIntentEnabled(requestEnv),
     });
+    const plannableCountryCodes = unique((intentCatalog?.cities || []).map((city) => city?.countryCode));
+    const requiredCountryCodes = unique(
+      (intent.requiredCountryCodes || []).length ? intent.requiredCountryCodes : intent.countryCodes,
+    );
+    const acceptedForIntent = acceptedSnapshot.filter((record) => !routeUsesStaleCoveragePlaceholder({
+      record,
+      requiredCountryCodes,
+      plannableCountryCodes,
+    }));
     const explicitRegionConstraint = Boolean(intent.regionEntityId || intent.normalizedRegion || intent.region);
     const countryScopedDestinationSuggestion = intent.intentMode === "specified-destination"
       && !(intent.requiredDestinationIds || []).length
@@ -658,7 +684,11 @@ export function createRouteSearchService({
           limit: 99_999,
           sessionId: request.sessionId || intent.intentHash,
           routeType: request.routeType || "",
-        }).records,
+        }).records.filter((record) => !routeUsesStaleCoveragePlaceholder({
+          record,
+          requiredCountryCodes,
+          plannableCountryCodes,
+        })),
         intentCatalog,
       })
       : null;
@@ -908,14 +938,14 @@ export function createRouteSearchService({
       };
     }
 
-    ranked = rankAcceptedRoutes(acceptedSnapshot, intent, {
+    ranked = rankAcceptedRoutes(acceptedForIntent, intent, {
       routeType: request.routeType,
       weights: rankingWeights,
       now,
       validateRecord,
     });
     if (!ranked.length) {
-      ranked = constrainRanked(dedupeRanked(rankKeywordAcceptedRoutes(acceptedSnapshot, request.query, {
+      ranked = constrainRanked(dedupeRanked(rankKeywordAcceptedRoutes(acceptedForIntent, request.query, {
         routeType: request.routeType,
         now,
       })), "accepted-keyword-fallback");

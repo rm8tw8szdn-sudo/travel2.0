@@ -35,7 +35,7 @@ assert.equal(conflicts.conflictCount, 0);
 assert.equal(conflicts.conflicts.length, 0);
 
 const repository = createPublishedKnowledgeEntityLayerRepository({ projectRoot: ROOT });
-assert.deepEqual({ countries: repository.listCountries().length, cities: repository.listCities().length, pois: repository.listPois().length }, { countries: 51, cities: 144, pois: 904 });
+assert.deepEqual({ countries: repository.listCountries().length, cities: repository.listCities().length, pois: repository.listPois().length }, { countries: 55, cities: 306, pois: 2101 });
 assert.equal(repository.validateParentReferences().accepted, true);
 
 const expectedCityQids = ["Q1764", "Q685369", "Q1861", "Q52028", "Q72", "Q4191", "Q37100", "Q613602", "Q3130", "Q3141"];
@@ -49,10 +49,10 @@ for (const qid of expectedCityQids) {
 }
 
 const allEntities = [...repository.listCountries(), ...repository.listCities(), ...repository.listPois()];
-assert.equal(new Set(allEntities.map((entity) => entity.entityId)).size, 1099);
+assert.equal(new Set(allEntities.map((entity) => entity.entityId)).size, 2462);
 // The pre-existing Singapore country/city pair intentionally shares Q334 across
 // entity types. Batch 01 must not add another cross-type QID collision.
-assert.equal(new Set(allEntities.map((entity) => entity.wikidataId)).size, 1098);
+assert.equal(new Set(allEntities.map((entity) => entity.wikidataId)).size, 2472);
 const duplicateQids = [...new Set(allEntities.map((entity) => entity.wikidataId))]
   .filter((qid) => allEntities.filter((entity) => entity.wikidataId === qid).length > 1);
 assert.deepEqual(duplicateQids, ["Q334"]);
@@ -60,7 +60,7 @@ assert.equal(new Set([...countryAsset.countries, ...cityAsset.cities, ...poiAsse
 
 for (const record of routeLegs) assert.equal(validateRouteLegEvidence(record).accepted, true, record.legEvidenceId);
 for (const record of seasons) assert.equal(validateSeasonEvidence(record).accepted, true, record.seasonEvidenceId);
-assert.deepEqual(manifest.counts, { routeLeg: 196, season: 76, total: 272 });
+assert.deepEqual(manifest.counts, { routeLeg: 414, season: 156, total: 570 });
 assert.equal(batch01RouteLegs.length, 12);
 assert.equal(batch01Seasons.length, 20);
 
@@ -99,7 +99,7 @@ assert(newEvidence.every((record) => record.sources.every((item) => /^[a-f0-9]{6
 
 console.log(JSON.stringify({
   status: "PASS",
-  totals: { countries: 51, cities: 144, pois: 904, entities: 1099 },
+  totals: { countries: 55, cities: 306, pois: 2101, entities: 2462 },
   batch01: { countries: 1, cities: 10, pois: 30, directedRouteLegs: 12, seasonRiskRecords: 20 },
   integrity: { orphan: 0, duplicateEntityId: 0, newDuplicateQid: 0, preExistingCrossTypeQid: "Q334", conflicts: 0 },
 }, null, 2));

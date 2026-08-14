@@ -58,18 +58,18 @@ const fallbackTokyo = {
   latitude: 35.6894,
   longitude: 139.6917,
 };
-const fallbackBoston = {
-  wikidataId: "Q100",
-  countryCode: "US",
-  name: "Boston",
+const fallbackCapeTown = {
+  wikidataId: "Q5465",
+  countryCode: "ZA",
+  name: "Cape Town",
   entityTypeName: "city",
-  latitude: 42.3601,
-  longitude: -71.0589,
+  latitude: -33.9253,
+  longitude: 18.4239,
 };
 const fallbackKnowledgeGraph = {
   queryDestinations(query = {}) {
     if (query.country === "JP") return [structuredClone(fallbackTokyo)];
-    if (query.country === "US") return [structuredClone(fallbackBoston)];
+    if (query.country === "ZA") return [structuredClone(fallbackCapeTown)];
     return [];
   },
 };
@@ -77,11 +77,11 @@ const fallbackKnowledgeGraph = {
 const adapter = createKnowledgeEntityLayerPlannerAdapter({ repository, fallbackKnowledgeGraph });
 const catalogs = createKnowledgeEntityLayerSearchIntentCatalog({ repository });
 
-assert.equal(repository.listCountries().length, 51);
-assert.equal(repository.listCities().length, 144);
-assert.equal(repository.listPois().length, 904);
-assert.equal(catalogs.countries.length, 51);
-assert.equal(catalogs.cities.length, 144);
+assert.equal(repository.listCountries().length, 55);
+assert.equal(repository.listCities().length, 306);
+assert.equal(repository.listPois().length, 2101);
+assert.equal(catalogs.countries.length, 55);
+assert.equal(catalogs.cities.length, 306);
 
 for (const country of repository.listCountries()) {
   const intent = parseSearchIntent(country.canonicalNameEn, { catalogs });
@@ -100,9 +100,16 @@ const adapterCities = repository.listCountries().flatMap((country) => adapter.qu
   country: country.isoAlpha2,
   limit: 100,
 }).filter((destination) => destination.destinationSource === "knowledge-entity-layer"));
-assert.equal(adapterCities.length, 144);
-assert.equal(adapterCities.flatMap((city) => city.poiEntities).length, 904);
-assert.ok(adapterCities.every((city) => city.poiEntities.length >= 3));
+assert.equal(adapterCities.length, 306);
+assert.equal(adapterCities.flatMap((city) => city.poiEntities).length, 2101);
+assert.ok(adapterCities.every((city) => city.poiEntities.length >= 1), "every published City must retain at least one validated POI");
+assert.deepEqual(
+  adapterCities
+    .filter((city) => city.poiEntities.length < 3)
+    .map((city) => ({ wikidataId: city.wikidataId, countryCode: city.countryCode, poiCount: city.poiEntities.length })),
+  [{ wikidataId: "Q216075", countryCode: "VN", poiCount: 1 }],
+  "only the explicitly reviewed Cần Thơ capacity shortfall may remain below three POIs",
+);
 
 const expectedCities = new Map([
   ["Amsterdam", ["Anne Frank House", "Rijksmuseum", "Van Gogh Museum"]],
@@ -148,7 +155,7 @@ assert.equal(firstJapan.filter((item) => item.wikidataId === "Q1490").length, 1,
 firstJapan[0].canonicalNameEn = "mutated";
 firstJapan[0].poiEntities[0].canonicalNameEn = "mutated";
 assert.deepEqual(adapter.queryDestinations({ country: "JP", limit: 100 }), secondJapan, "Planner adapter should return defensive copies");
-assert.deepEqual(adapter.queryDestinations({ country: "US", limit: 20 }), [fallbackBoston], "unmapped countries should retain the fallback graph");
+assert.deepEqual(adapter.queryDestinations({ country: "ZA", limit: 20 }), [fallbackCapeTown], "unmapped countries should retain the fallback graph");
 
 const netherlandsIntent = parseSearchIntent("Netherlands Amsterdam 4 days", { catalogs });
 assert.equal(netherlandsIntent.countryCode, "NL");

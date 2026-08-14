@@ -38,6 +38,12 @@ const routesSource = fs.readFileSync(routesPath, "utf8");
 const routeDetailSource = fs.readFileSync(routeDetailPath, "utf8");
 delete require.cache[require.resolve(imageModulePath)];
 const imageAssets = require(imageModulePath);
+const imageCoverageManifest = JSON.parse(fs.readFileSync(path.join(projectRoot, "data/route-v2/images/image-coverage-manifest.json"), "utf8"));
+globalThis.RouteV2ImageCoverage = {
+  countryByCode: Object.fromEntries(imageCoverageManifest.countries.map((record) => [record.countryCode, record])),
+  cityByEntityId: Object.fromEntries(imageCoverageManifest.cities.map((record) => [record.entityId, record])),
+  fallbackPolicy: imageCoverageManifest.fallbackPolicy,
+};
 
 assert.match(routesSource, /const MAX_ROUTE_QUERY_LENGTH = 160;/u);
 assert.match(routesSource, /routeSearch\?\.addEventListener\("input", \(\) => \{[\s\S]*?if \(rejectOversizedRouteQuery\(routeSearch\.value\)\) return;[\s\S]*?setTimeout/u);
@@ -77,16 +83,16 @@ const semanticFixtures = [
 ];
 for (const record of semanticFixtures) {
   const result = imageAssets.resolveLocalRouteCover(record);
-  assert.equal(result.url, imageAssets.DEFAULT_ROUTE_PLACEHOLDER, record.id);
-  assert.equal(result.isFallback, true, record.id);
+  assert.equal(result.url, `assets/route-v2-images/countries/${record.countryEntities[0].countryCode.toLowerCase()}.svg`, record.id);
+  assert.equal(result.source, "local-country", record.id);
 }
 
 const japan = imageAssets.resolveLocalRouteCover({
   id: "gold-case-accepted-gold-1-jp-first-trip",
   countryEntities: [{ countryCode: "JP", name: "Japan" }],
 });
-assert.equal(japan.url, "assets/route-japan-classic-cover.svg");
-assert.equal(japan.source, "local-route");
+assert.equal(japan.url, "assets/route-v2-images/countries/jp.svg");
+assert.equal(japan.source, "local-country");
 assert.match(routesSource, /function localCoverForRoute\(record = \{\}\) \{[\s\S]*?return FALLBACK_ROUTE_COVER;\s*\}/u);
 assert.match(routeDetailSource, /record\.routeReferenceMode === "country-expansion"[\s\S]*?record\.routeExpansion\?\.poiEntities/u);
 
@@ -101,6 +107,6 @@ console.log(JSON.stringify({
     maximumStoredRecords: 360,
   },
   semanticImageFixtures: semanticFixtures.length,
-  wrongCountryFallbacks: semanticFixtures.length,
+  wrongPlaceMappingsRetired: semanticFixtures.length,
   externalRequests: 0,
 }, null, 2));

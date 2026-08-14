@@ -1,4 +1,6 @@
 import assert from "node:assert/strict";
+import fs from "node:fs";
+import os from "node:os";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -7,8 +9,10 @@ import {
   MandatoryVerifierStageError,
   runMandatoryVerifierStage,
 } from "../src/lib/routes/prelaunch-verifier-gate.mjs";
+import { calculateBatch05ReportData, comma } from "./lib/knowledge-expansion-batch05-report-data.mjs";
 
 const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
+const batch05ReportData = calculateBatch05ReportData({ root: projectRoot });
 const requiredNames = new Set(MANDATORY_PRELAUNCH_VERIFIERS.map((stage) => stage.name));
 for (const name of [
   "multi-city-hard-constraints",
@@ -20,6 +24,13 @@ for (const name of [
   "cache-semantic-and-evidence-association-integrity",
   "published-knowledge-semantic-integrity",
   "knowledge-coverage-semantics",
+  "knowledge-expansion-batch05-integrity",
+  "knowledge-expansion-batch05-adversarial-semantics",
+  "knowledge-expansion-batch05-route-consumption",
+  "route-v2-image-coverage-batch05",
+  "route-v2-image-quality-adversarial",
+  "route-v2-city-detail-image-fallback",
+  "knowledge-expansion-batch05-report-consistency",
   "publication-gate",
   "search-cache-semantic-migration",
   "cache-baseline-v2",
@@ -33,6 +44,8 @@ for (const name of [
 
 const travelStateStage = MANDATORY_PRELAUNCH_VERIFIERS.find((stage) => stage.name === "trip-footprint-knowledge-identity");
 assert(travelStateStage, "Trip/Footprint identity verification must be registered");
+const reportConsistencyStage = MANDATORY_PRELAUNCH_VERIFIERS.find((stage) => stage.name === "knowledge-expansion-batch05-report-consistency");
+assert(reportConsistencyStage, "Batch 05 report consistency verification must be registered");
 
 function injectedFailure(result) {
   let thrown = null;
@@ -92,6 +105,44 @@ const passTextIgnored = runMandatoryVerifierStage({
 });
 assert.equal(passTextIgnored.exitCode, 0);
 
+function realReportMutationFailure(search, replacement, label) {
+  const sourcePath = path.join(projectRoot, "ROUTE_V2_KNOWLEDGE_EXPANSION_BATCH05_REPORT.md");
+  const source = fs.readFileSync(sourcePath, "utf8");
+  const mutated = source.replace(search, replacement);
+  assert.notEqual(mutated, source, `${label}:mutation must change the report`);
+  const temporaryRoot = fs.mkdtempSync(path.join(os.tmpdir(), "route-v2-report-propagation-"));
+  const reportPath = path.join(temporaryRoot, "mutated-report.md");
+  fs.writeFileSync(reportPath, mutated, "utf8");
+  let thrown = null;
+  try {
+    runMandatoryVerifierStage({
+      stage: reportConsistencyStage,
+      projectRoot,
+      env: { ...process.env, ROUTE_V2_BATCH05_REPORT_PATH: reportPath },
+      timeoutMs: 30_000,
+    });
+  } catch (error) {
+    thrown = error;
+  } finally {
+    fs.rmSync(temporaryRoot, { recursive: true, force: true });
+  }
+  assert(thrown instanceof MandatoryVerifierStageError, `${label}:comprehensive stage must reject the mutated report`);
+  assert.equal(thrown.stageResult.name, "knowledge-expansion-batch05-report-consistency");
+  assert.notEqual(thrown.stageResult.exitCode, 0);
+  return thrown.stageResult;
+}
+
+const reportPoiMutation = realReportMutationFailure(
+  `${comma(batch05ReportData.additions.pois)} POIs`,
+  `${comma(batch05ReportData.additions.pois + 1)} POIs`,
+  "POI total",
+);
+const reportCityImageMutation = realReportMutationFailure(
+  `Dedicated City covers: ${comma(batch05ReportData.images.dedicatedCities)}/${comma(batch05ReportData.images.cityTotal)}`,
+  `Dedicated City covers: ${comma(batch05ReportData.images.dedicatedCities + 1)}/${comma(batch05ReportData.images.cityTotal)}`,
+  "Dedicated City image total",
+);
+
 process.stdout.write(`${JSON.stringify({
   verifier: "route-v2-comprehensive-failure-propagation",
   status: "PASS",
@@ -102,4 +153,6 @@ process.stdout.write(`${JSON.stringify({
   outputTextIgnored: true,
   injectedExitCode: 23,
   productionRunnerExercised: true,
+  reportPoiMutationPropagated: reportPoiMutation.exitCode !== 0,
+  reportDedicatedCityMutationPropagated: reportCityImageMutation.exitCode !== 0,
 }, null, 2)}\n`);

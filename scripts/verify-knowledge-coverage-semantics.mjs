@@ -20,14 +20,15 @@ const report = createKnowledgeCoverageSemantics({
   seasonEvidence: readJsonl("data/route-v2/evidence-seed/season-evidence.jsonl"),
 });
 
-assert.equal(report.catalogCountries, 51);
-assert.equal(report.plannableCountries, 21);
-assert.equal(report.evidenceBackedCountries, 15);
-assert.equal(report.countryOnlyCountries, 30);
-assert.equal(report.plannablePercentage, 41.2);
-assert.equal(report.evidenceBackedPercentage, 29.4);
-assert.equal(report.plannableCountryCodes.includes("NO"), false, "a Country-only Norway entity must not imply Route V2 planning depth");
-assert.equal(report.countryOnlyCountryCodes.includes("NO"), true);
+assert.equal(report.catalogCountries, 55);
+assert.equal(report.plannableCountries, 38);
+assert.equal(report.evidenceBackedCountries, 35);
+assert.equal(report.countryOnlyCountries, 17);
+assert.equal(report.plannablePercentage, 69.1);
+assert.equal(report.evidenceBackedPercentage, 63.6);
+assert.equal(report.plannableCountryCodes.includes("NO"), true, "Batch 05 Norway City/POI depth must be reflected as plannable");
+assert.equal(report.countryOnlyCountryCodes.includes("NO"), false);
+assert.equal(report.countryOnlyCountryCodes.includes("AD"), true, "a Country-only Andorra entity must not imply Route V2 planning depth");
 assert(report.catalogCountries > report.plannableCountries, "catalog presence must not be reported as planning coverage");
 
 process.stdout.write(`${JSON.stringify({

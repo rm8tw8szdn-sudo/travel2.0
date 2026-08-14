@@ -1,0 +1,76 @@
+{
+  "schemaVersion": "route-v2-knowledge-expansion-batch05-browser-acceptance-v1",
+  "generatedAt": "2026-08-11T07:00:00.000Z",
+  "status": "PASS",
+  "browser": "Codex in-app browser",
+  "countryMatrix": {
+    "countries": 20,
+    "queries": 45,
+    "stableDetailPagesOverFiveSeconds": 20,
+    "testedDurations": {
+      "allCountries": [7, 14],
+      "longTripCountries": {
+        "GB": 21,
+        "VN": 21,
+        "ID": 21,
+        "CA": 21,
+        "US": 21
+      }
+    }
+  },
+  "requiredCrossCountryMatrix": {
+    "queries": 6,
+    "stableDetailPagesOverFiveSeconds": 6,
+    "cases": [
+      "Czechia Austria Hungary 14 days",
+      "Belgium Netherlands France 14 days",
+      "Sweden Norway 14 days",
+      "Denmark Sweden 10 days",
+      "Vietnam Malaysia 14 days",
+      "USA Canada 14 days"
+    ]
+  },
+  "explicitCityAliasRegression": {
+    "query": "New York Toronto 10 days",
+    "requiredCityQids": ["Q60", "Q172"],
+    "stableDetailPageOverFiveSeconds": true
+  },
+  "extraCrossCityChecks": {
+    "queries": 5,
+    "stableDetailPagesOverFiveSeconds": 5,
+    "cases": [
+      "London Paris 7 days",
+      "Dublin Belfast 7 days",
+      "Prague Vienna 7 days",
+      "Copenhagen Malmö 7 days",
+      "Brussels Amsterdam 7 days"
+    ]
+  },
+  "quality": {
+    "exactDays": "PASS",
+    "allExplicitCountriesPresent": "PASS",
+    "knowledgeEntityIdAndQidPresent": "PASS",
+    "detailStable": "PASS",
+    "backForward": "PASS",
+    "consoleErrorWarningCount": 0,
+    "externalEvidenceRequests": 0,
+    "externalImageRequests": 0
+  },
+  "imageSemanticSamples": [
+    {
+      "query": "United Kingdom 7 days",
+      "status": "country-cover",
+      "asset": "assets/route-v2-images/countries/gb.svg"
+    },
+    {
+      "query": "London 7 days",
+      "status": "dedicated-city",
+      "asset": "assets/route-v2-images/cities/city-eba7cc78f607d814.svg"
+    },
+    {
+      "query": "USA Canada 14 days",
+      "status": "neutral-multi-country-placeholder",
+      "asset": "assets/trip-cover-placeholder.svg"
+    }
+  ]
+}

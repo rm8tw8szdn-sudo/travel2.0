@@ -3183,6 +3183,7 @@
         "U. S.",
         "U. S. A.",
         "U.S. of America",
+        "USA",
         "United States",
         "US of A",
         "US of America",
@@ -3327,8 +3328,8 @@
         "aliases": [
           {
             "sourceType": "wikidata",
-            "source": "Wikidata SPARQL",
-            "field": "skos:altLabel",
+            "source": "Wikidata SPARQL labels plus P298 ISO alpha-3",
+            "field": "skos:altLabel + P298",
             "sourceUrl": "https://www.wikidata.org/wiki/Q30",
             "retrievedAt": "2026-07-14T09:50:27.742Z",
             "value": [
@@ -3348,6 +3349,7 @@
               "U. S.",
               "U. S. A.",
               "U.S. of America",
+              "USA",
               "United States",
               "US of A",
               "US of America",

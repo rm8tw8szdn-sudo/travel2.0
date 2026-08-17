@@ -4,7 +4,7 @@
   const DEBUG_KEY = "travelCollection.routeFeedPreload.debug";
   const FEED_LIMIT = 6;
   const imageAssets = globalThis.RouteV2ImageAssets || null;
-  const runtimeImageSearchEnabled = imageAssets?.isRuntimeImageSearchEnabled?.() === true;
+  const runtimeImageSearchEnabled = false;
 
   function mark(status, extra = {}) {
     try {
@@ -28,8 +28,7 @@
   function proxyImageUrl(imageUrl) {
     const text = String(imageUrl || "");
     if (imageAssets?.isConfiguredAssetUrl(text)) return text;
-    if (!runtimeImageSearchEnabled && /^https?:\/\//i.test(text)) return imageAssets?.DEFAULT_ROUTE_PLACEHOLDER || "assets/trip-cover-placeholder.svg";
-    return /^https?:\/\//i.test(text) ? `/api/routes/image-proxy?url=${encodeURIComponent(text)}` : text;
+    return /^https?:\/\//i.test(text) ? imageAssets?.DEFAULT_ROUTE_PLACEHOLDER || "assets/trip-cover-placeholder.svg" : text;
   }
 
   function fixedPilotCover(record = {}) {
@@ -52,30 +51,8 @@
     ].filter(Boolean).join(" ");
   }
 
-  function fallbackCover(record = {}, used = new Set()) {
-    const text = routeText(record);
-    const fallbacks = [
-      [/central|europe|austria|hungary|czech|slovakia|prague|budapest|vienna/i, "https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Hungarian_Parliament_Building_from_across_the_Danube%2C_2025-01-11.jpg/960px-Hungarian_Parliament_Building_from_across_the_Danube%2C_2025-01-11.jpg"],
-      [/e45|brenner|alps/i, "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Brennerpass_nordrampe.jpg/960px-Brennerpass_nordrampe.jpg"],
-      [/danube|wachau/i, "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Wachau_%282%29.JPG/960px-Wachau_%282%29.JPG"],
-      [/bangkok|singapore|malaysia/i, "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Bangkok-large.png/960px-Bangkok-large.png"],
-      [/canada|rockies|banff/i, "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Moraine_Lake_17092005.jpg/960px-Moraine_Lake_17092005.jpg"],
-      [/netherlands|tulip|keukenhof/i, "https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Keukenhof%2C_tulips_%2833513228345%29.jpg/960px-Keukenhof%2C_tulips_%2833513228345%29.jpg"],
-      [/norway|lofoten|flam/i, "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Reine_i_Lofoten_LC0148.jpg/960px-Reine_i_Lofoten_LC0148.jpg"],
-      [/new zealand|south island|milford/i, "https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Milford_Sound_in_Fiordland_National_Park_01.jpg/960px-Milford_Sound_in_Fiordland_National_Park_01.jpg"],
-      [/california|pacific|coast|big sur/i, "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Bixby_Creek_Bridge%2C_California%2C_USA_-_May_2013.jpg/960px-Bixby_Creek_Bridge%2C_California%2C_USA_-_May_2013.jpg"],
-      [/peru|machu/i, "https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Machu_Picchu%2C_Peru.jpg/960px-Machu_Picchu%2C_Peru.jpg"],
-      [/morocco|benhaddou/i, "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/A%C3%AFtBenhaddou_Morocco_2.jpg/960px-A%C3%AFtBenhaddou_Morocco_2.jpg"],
-      [/london|tower bridge/i, "https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Tower_Bridge_from_Shad_Thames.jpg/960px-Tower_Bridge_from_Shad_Thames.jpg"],
-    ];
-    const direct = fallbacks.find(([pattern]) => pattern.test(text))?.[1];
-    if (direct && !used.has(direct.toLowerCase())) return direct;
-    const hash = [...String(record.id || record.name || "")].reduce((total, char) => total + char.charCodeAt(0), 0);
-    for (let offset = 0; offset < fallbacks.length; offset += 1) {
-      const imageUrl = fallbacks[(hash + offset) % fallbacks.length][1];
-      if (!used.has(imageUrl.toLowerCase())) return imageUrl;
-    }
-    return fallbacks[hash % fallbacks.length][1];
+  function fallbackCover() {
+    return imageAssets?.DEFAULT_ROUTE_PLACEHOLDER || "assets/trip-cover-placeholder.svg";
   }
 
   function warmImage(imageUrl, timeoutMs = 2500) {

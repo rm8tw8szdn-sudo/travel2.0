@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import crypto from "node:crypto";
 import fs from "node:fs";
 import path from "node:path";
 import { createRequire } from "node:module";
@@ -21,7 +22,7 @@ const plannable = countries.filter((country) => {
   return localCities.length > 0 && pois.some((poi) => localIds.has(poi.parentCityEntityId));
 });
 
-assert.equal(manifest.schemaVersion, "route-v2-image-coverage-v1");
+assert.equal(manifest.schemaVersion, "route-v2-image-coverage-v2");
 assert.equal(manifest.fallbackPolicy.city, "assets/route-city-placeholder.svg");
 assert.equal(manifest.fallbackPolicy.poi, "assets/route-city-placeholder.svg");
 assert.equal(manifest.fallbackPolicy.runtimeExternalRequestsAllowed, false);
@@ -46,12 +47,35 @@ assert.deepEqual(manifest.invalidMappings, []);
 
 const dedicatedPaths = new Set();
 for (const record of [...manifest.countries, ...manifest.cities, ...manifest.pois]) {
+  assert.equal(record.localPath, record.assetPath);
+  assert.match(record.entityType, /^(?:Country|City|POI)$/u);
+  assert.equal(typeof record.assetType, "string");
+  assert.equal(typeof record.isDedicated, "boolean");
+  assert.equal(typeof record.isPlaceholder, "boolean");
+  assert.equal(record.sourceUrl, null);
+  assert.equal(typeof record.sourcePath, "string");
+  assert.equal(record.license, "project-generated");
+  assert.equal(record.dimensions.width > 0 && record.dimensions.height > 0, true);
+  assert.match(record.sourceHash, /^[0-9a-f]{64}$/u);
+  assert.match(record.processedHash, /^[0-9a-f]{64}$/u);
+  assert.equal(record.sourceHash, record.processedHash);
+  assert.equal(record.bytes > 0, true);
+  assert.equal(record.format, "svg");
+  assert.match(record.verificationStatus, /^verified-/u);
+  assert.equal(record.acquiredAt, manifest.retrievedAt);
+  const localBytes = fs.readFileSync(path.join(ROOT, record.assetPath));
+  assert.equal(record.bytes, localBytes.length);
+  assert.equal(record.processedHash, crypto.createHash("sha256").update(localBytes).digest("hex"));
   if (record.status === "placeholder") {
     assert.equal(record.assetPath, "assets/route-city-placeholder.svg");
     assert.equal(record.semanticScope, "neutral-placeholder");
     assert.equal(record.needsBackfill, true);
+    assert.equal(record.isDedicated, false);
+    assert.equal(record.isPlaceholder, true);
     continue;
   }
+  assert.equal(record.isDedicated, true);
+  assert.equal(record.isPlaceholder, false);
   assert.match(record.assetPath, /^assets\/route-v2-images\/(?:countries|cities|pois)\/[a-z0-9-]+\.svg$/u);
   assert.equal(fs.existsSync(path.join(ROOT, record.assetPath)), true, record.assetPath);
   const svg = read(record.assetPath);

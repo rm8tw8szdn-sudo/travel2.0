@@ -9,12 +9,20 @@ const ROOT = path.resolve(import.meta.dirname, "..");
 const PLACEHOLDER_PATH = "/travel-collection/assets/route-city-placeholder.svg";
 const PLACEHOLDER_SOURCE = "assets/route-city-placeholder.svg";
 const CITY_SHELL_PATH = path.join(ROOT, "city-oslo.html");
+const COUNTRY_SHELL_PATH = path.join(ROOT, "country-japan.html");
+const COUNTRY_DETAIL_SOURCE_PATH = path.join(ROOT, "country-detail.js");
 const CASES = Object.freeze([
   { id: "GB-LON", name: "London", scope: "batch05" },
   { id: "JP-NAR", name: "Nara", scope: "legacy" },
   { id: "DE-BER", name: "Berlin", scope: "historical" },
   { id: "NO-OSL", name: "Oslo", scope: "batch05" },
   { id: "JP-TYO", name: "Tokyo", scope: "legacy" },
+]);
+const COUNTRY_CASES = Object.freeze([
+  { code: "GB", label: "United Kingdom / York" },
+  { code: "JP", label: "Japan" },
+  { code: "DE", label: "Germany" },
+  { code: "VN", label: "Batch 05 / Vietnam" },
 ]);
 
 function htmlAttribute(tag, name) {
@@ -34,6 +42,31 @@ function verifyStaticCityShell() {
   assert.doesNotMatch(html, /<link\b[^>]*\brel=["']preload["'][^>]*\bas=["']image["']/iu, "City Detail shell must not preload a place-specific image");
   assert.doesNotMatch(html, /<noscript\b/iu, "City Detail shell must not provide an unverified noscript image fallback");
   return { heroSource: PLACEHOLDER_SOURCE, osloSpecificSemantics: 0 };
+}
+
+function verifyStaticCountryShell() {
+  const html = fs.readFileSync(COUNTRY_SHELL_PATH, "utf8");
+  const hero = html.match(/<img\b(?=[^>]*\bcountry-hero-image\b)[^>]*>/iu)?.[0] || "";
+  assert.ok(hero, "Country Detail shell must contain one country hero image");
+  assert.equal(htmlAttribute(hero, "src"), "assets/trip-cover-placeholder.svg", "initial Country hero must be neutral until Country identity resolves");
+  assert.doesNotMatch(htmlAttribute(hero, "src"), /\/countries\/|country-japan/iu, "initial Country hero must not request a specific Country asset");
+  assert.equal(htmlAttribute(hero, "alt"), "国家封面占位图", "initial Country hero alt text must be generic");
+  return { heroSource: "assets/trip-cover-placeholder.svg", countrySpecificSemantics: 0 };
+}
+
+function verifyCountryCityCardSource(source) {
+  assert.match(source, /const NEUTRAL_CITY_COVER\s*=\s*["']assets\/route-city-placeholder\.svg["']/u, "Country Detail must define one neutral City-card fallback");
+  assert.doesNotMatch(source, /\.map\(\(id\)[\s\S]{0,240}cover\s*:\s*country\.cover/u, "unresolved City cards must not inherit the Country cover");
+  assert.doesNotMatch(source, /city\.cover\s*\|\|\s*country\.cover/u, "resolved City cards must not inherit the Country cover");
+  assert.doesNotMatch(source, /<img[^>]+src=[^>]+country\.cover/u, "City-card rendering must not consume the Country cover");
+  return { neutralFallback: PLACEHOLDER_SOURCE, countryCoverFallbacks: 0 };
+}
+
+function verifyCountryCityCardMutation(source) {
+  const mutated = source.replace("cover: NEUTRAL_CITY_COVER", "cover: country.cover");
+  assert.notEqual(mutated, source, "Country-to-City fallback mutation must alter production source");
+  assert.throws(() => verifyCountryCityCardSource(mutated), /must not inherit the Country cover/u, "Country-to-City fallback mutation must be killed");
+  return true;
 }
 
 function requestPath(url) {
@@ -192,6 +225,10 @@ async function stopChild(child) {
 }
 
 const staticShell = verifyStaticCityShell();
+const staticCountryShell = verifyStaticCountryShell();
+const countryDetailSource = fs.readFileSync(COUNTRY_DETAIL_SOURCE_PATH, "utf8");
+const staticCountryCityCards = verifyCountryCityCardSource(countryDetailSource);
+const countryCoverFallbackMutationKilled = verifyCountryCityCardMutation(countryDetailSource);
 const temporaryRoot = fs.mkdtempSync(path.join(os.tmpdir(), "route-v2-city-detail-image-"));
 const acceptedCopy = path.join(temporaryRoot, "accepted-routes.json");
 fs.copyFileSync(path.join(ROOT, ".route-v2-cache", "accepted-routes.json"), acceptedCopy);
@@ -259,6 +296,7 @@ try {
   const consoleProblems = [];
   const simulatedFailureConsoleProblems = [];
   const externalRequests = [];
+  const externalImageRequests = [];
   let navigationMode = "normal";
   let imageRequests = [];
   let blockedCityDetailScriptRequests = 0;
@@ -279,6 +317,7 @@ try {
     if (message.method === "Network.requestWillBeSent") {
       const url = String(message.params?.request?.url || "");
       if (/^https?:/iu.test(url) && !url.startsWith(baseUrl)) externalRequests.push(url);
+      if (message.params?.type === "Image" && /^https?:/iu.test(url) && !url.startsWith(baseUrl)) externalImageRequests.push(url);
       if (message.params?.type === "Image") imageRequests.push(url);
       if (navigationMode === "script-failure" && /\/city-detail\.js(?:\?|$)/u.test(url)) {
         blockedCityDetailScriptRequests += 1;
@@ -335,6 +374,67 @@ try {
     const requestedImagePaths = assertNeutralInitialImageRequests(fixture.id, imageRequests, rendered.verifiedDedicatedPath);
     results.push({ ...fixture, renderedCityName: rendered.cityName, coverPath: rendered.path, requestedImagePaths });
   }
+  assert.deepEqual(externalRequests, [], `City Detail external requests:${externalRequests.join("|")}`);
+
+  const countryCardResults = [];
+  const { identifier: countryEvidenceStubIdentifier } = await client.send("Page.addScriptToEvaluateOnNewDocument", {
+    source: `(() => {
+      const originalFetch = globalThis.fetch.bind(globalThis);
+      globalThis.fetch = async (input, init) => {
+        const url = String(input?.url || input || "");
+        if (url.startsWith("https://en.wikivoyage.org/")) {
+          return new Response(JSON.stringify({ query: { search: [{
+            title: "United Kingdom London Edinburgh York museum",
+            snippet: "United Kingdom London Edinburgh York museum castle travel",
+          }] } }), { status: 200, headers: { "content-type": "application/json" } });
+        }
+        return originalFetch(input, init);
+      };
+    })();`,
+  }, sessionId);
+  for (const fixture of COUNTRY_CASES) {
+    navigationMode = "normal";
+    imageRequests = [];
+    const url = `${baseUrl}/travel-collection/country-japan.html?localOnly=1&countryCityImageVerifier=${encodeURIComponent(fixture.code)}#${encodeURIComponent(fixture.code)}`;
+    await client.send("Page.navigate", { url }, sessionId);
+    await new Promise((resolve) => setTimeout(resolve, 1_000));
+    const evaluation = await client.send("Runtime.evaluate", {
+      expression: `(() => ({
+        countryName: document.querySelector(".country-hero-copy h1")?.textContent || "",
+        heroPath: (() => {
+          const image = document.querySelector(".country-hero-image");
+          return image ? new URL(image.currentSrc || image.src, location.href).pathname : "";
+        })(),
+        cards: [...document.querySelectorAll(".country-mini-card")].map((card) => {
+          const image = card.querySelector("img");
+          return {
+            name: card.querySelector("strong")?.textContent || card.dataset.city || "",
+            path: image ? new URL(image.currentSrc || image.src, location.href).pathname : "",
+            complete: image?.complete === true,
+            naturalWidth: image?.naturalWidth || 0,
+            naturalHeight: image?.naturalHeight || 0,
+          };
+        }),
+      }))()`,
+      returnByValue: true,
+    }, sessionId);
+    const rendered = evaluation.result?.value || {};
+    assert.ok(rendered.cards?.length > 0, `${fixture.code}:Country Detail must render City cards`);
+    if (fixture.code === "GB") assert.ok(rendered.cards.some((card) => card.name === "约克"), "GB:York City card must be included in the regression fixture");
+    for (const card of rendered.cards) {
+      assert.equal(card.path, PLACEHOLDER_PATH, `${fixture.code}/${card.name}:City card without a verified dedicated image must use the neutral placeholder`);
+      assert.doesNotMatch(card.path, /\/countries\//u, `${fixture.code}/${card.name}:Country cover must not render in a City card`);
+      assert.equal(card.complete, true, `${fixture.code}/${card.name}:City-card image must finish loading`);
+      assert.ok(card.naturalWidth > 0 && card.naturalHeight > 0, `${fixture.code}/${card.name}:City-card image must not be broken`);
+    }
+    const requestedImagePaths = imageRequests.map(requestPath);
+    assert.ok(requestedImagePaths.includes(PLACEHOLDER_PATH), `${fixture.code}:navigation must request the neutral City placeholder`);
+    const requestedCountryCovers = requestedImagePaths.filter((candidate) => /\/route-v2-images\/countries\/[a-z]{2}\.svg$/u.test(candidate));
+    const expectedCountryCover = `/travel-collection/assets/route-v2-images/countries/${fixture.code.toLowerCase()}.svg`;
+    assert.deepEqual([...new Set(requestedCountryCovers)], [expectedCountryCover], `${fixture.code}:navigation must not request another Country cover before identity resolution`);
+    countryCardResults.push({ ...fixture, countryName: rendered.countryName, heroPath: rendered.heroPath, cards: rendered.cards, requestedImagePaths });
+  }
+  await client.send("Page.removeScriptToEvaluateOnNewDocument", { identifier: countryEvidenceStubIdentifier }, sessionId);
 
   navigationMode = "script-failure";
   imageRequests = [];
@@ -369,7 +469,7 @@ try {
 
   removeListener();
   assert.deepEqual(consoleProblems, [], `City Detail console error/warning:${consoleProblems.join("|")}`);
-  assert.deepEqual(externalRequests, [], `City Detail external requests:${externalRequests.join("|")}`);
+  assert.deepEqual(externalImageRequests, [], `City/Country Detail external image requests:${externalImageRequests.join("|")}`);
   await client.send("Target.closeTarget", { targetId });
 
   console.log(JSON.stringify({
@@ -377,7 +477,11 @@ try {
     status: "PASS",
     browser: path.basename(browserExecutable),
     staticShell,
+    staticCountryShell,
+    staticCountryCityCards,
+    countryCoverFallbackMutationKilled,
     cases: results,
+    countryCardCases: countryCardResults,
     scriptFailure: {
       blockedScriptRequests: blockedCityDetailScriptRequests,
       blockedScriptFailures: blockedCityDetailScriptFailures,

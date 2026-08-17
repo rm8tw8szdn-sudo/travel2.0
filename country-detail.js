@@ -4,6 +4,7 @@ const exploreToggleText = exploreToggle?.querySelector("span");
 const exploreModal = document.querySelector("[data-explore-modal]");
 const visitRecord = document.querySelector("[data-visit-record]");
 const recordMenu = document.querySelector("[data-record-menu]");
+const NEUTRAL_CITY_COVER = "assets/route-city-placeholder.svg";
 let activeCountryDetail = null;
 
 function normalizeCountryHash() {
@@ -25,6 +26,23 @@ function escapeHtml(value) {
     .replaceAll("<", "&lt;")
     .replaceAll(">", "&gt;")
     .replaceAll('"', "&quot;");
+}
+
+function localImageAssetPath(value) {
+  const candidate = String(value || "").trim().replaceAll("\\", "/");
+  if (!candidate.startsWith("assets/") || candidate.includes("..") || /^(?:https?:)?\/\//iu.test(candidate)) return "";
+  return candidate;
+}
+
+function cityCardCover(city) {
+  const entityId = String(city?.entityId || city?.id || "").trim();
+  const coverage = window.RouteV2ImageCoverage?.cityByEntityId?.[entityId];
+  const verifiedAsset = coverage?.status === "imageReady"
+    && coverage.assetKind === "verified-destination-image"
+    && coverage.semanticScope === "exact-city"
+    ? localImageAssetPath(coverage.assetPath)
+    : "";
+  return verifiedAsset || NEUTRAL_CITY_COVER;
 }
 
 function statusLabel(status) {
@@ -75,7 +93,10 @@ function renderCountry() {
   document.querySelector(".country-hero")?.setAttribute("aria-label", country.name);
   const heroImage = document.querySelector(".country-hero-image");
   if (heroImage) {
-    heroImage.src = detail.coverImage || country.cover || "assets/home-aurora-cover.svg";
+    const coverage = window.RouteV2ImageCoverage?.countryByCode?.[String(country.id || countryCode).toUpperCase()];
+    heroImage.src = coverage?.status === "imageReady" && coverage?.semanticScope === "exact-country"
+      ? coverage.assetPath
+      : "assets/trip-cover-placeholder.svg";
     heroImage.alt = `${country.name}封面图`;
   }
   document.querySelector(".country-hero-copy h1")?.replaceChildren(country.name);
@@ -109,11 +130,11 @@ function renderCities(country, state, detail = {}) {
   if (!list) return;
   const cityRefs = detail.recommendedCities || country.cityIds || [];
   const cities = cityRefs
-    .map((id) => state.citiesById?.[id] || { id: "", name: id, cover: country.cover, explorationStatus: "unexplored", isNameOnly: true })
+    .map((id) => state.citiesById?.[id] || { id: "", name: id, cover: NEUTRAL_CITY_COVER, explorationStatus: "unexplored", isNameOnly: true })
     .slice(0, 3);
   list.innerHTML = cities.map((city) => `
     <button class="country-mini-card" type="button" ${city.id ? `data-city-id="${escapeHtml(city.id)}"` : "disabled"}>
-      <img src="${escapeHtml(city.cover || country.cover)}" alt="${escapeHtml(city.name)}封面图" />
+      <img src="${escapeHtml(cityCardCover(city))}" alt="${escapeHtml(city.name)}封面图" />
       <span></span>
       <strong>${escapeHtml(city.name)}</strong>
       <em>${escapeHtml(statusLabel(city.explorationStatus))}</em>
@@ -155,7 +176,7 @@ function openCountryCityGallery() {
       <div class="country-city-gallery-grid">
         ${cities.map((city) => `
           <button class="country-city-gallery-card" type="button" data-city-id="${escapeHtml(city.id)}">
-            <img src="${escapeHtml(city.cover || country.cover)}" alt="${escapeHtml(city.name)}封面图" />
+            <img src="${escapeHtml(cityCardCover(city))}" alt="${escapeHtml(city.name)}封面图" />
             <span></span>
             <strong>${escapeHtml(city.name)}</strong>
             <em>${escapeHtml(city.englishName || statusLabel(city.explorationStatus))}</em>

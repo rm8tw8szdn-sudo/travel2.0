@@ -91,8 +91,8 @@ try {
   const routesSource = fs.readFileSync(path.join(projectRoot, "routes.js"), "utf8");
   const preloadSource = fs.readFileSync(path.join(projectRoot, "route-feed-preload.js"), "utf8");
   const detailSource = fs.readFileSync(path.join(projectRoot, "route-detail.js"), "utf8");
-  assert.match(routesSource, /if \(!runtimeImageSearchEnabled && \/\^https\?:/u);
-  assert.match(preloadSource, /if \(!runtimeImageSearchEnabled && \/\^https\?:/u);
+  assert.match(routesSource, /return \/\^\(\?:https\?:\)\?\\\/\\\/\/i\.test\(text\) \? FALLBACK_ROUTE_COVER : text;/u);
+  assert.match(preloadSource, /return \/\^https\?:\\\/\\\/\/i\.test\(text\) \? imageAssets\?\.DEFAULT_ROUTE_PLACEHOLDER/u);
   assert.match(detailSource, /if \(!runtimeImageSearchEnabled\) return;/u);
 
   process.stdout.write(`${JSON.stringify({

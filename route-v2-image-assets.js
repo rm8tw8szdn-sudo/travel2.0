@@ -26,72 +26,6 @@
   });
   const LOCAL_ROUTE_COVERS = Object.freeze({});
   const LOCAL_ROUTE_COVER_COUNTRIES = Object.freeze({});
-  const SEMANTIC_LOCAL_COUNTRY_CODES = new Set([
-    "AE", "EG", "FI", "FR", "GR", "IS", "IT", "JP", "KH", "KR", "MY", "NO", "SE", "SG", "TH", "TR", "VN",
-  ]);
-  const LOCAL_CITY_COVERS = Object.freeze({
-    tokyo: "assets/city-tokyo-cover.svg",
-    "東京": "assets/city-tokyo-cover.svg",
-    "东京": "assets/city-tokyo-cover.svg",
-    kyoto: "assets/city-kyoto-cover.svg",
-    "京都": "assets/city-kyoto-cover.svg",
-    osaka: "assets/city-osaka-cover.svg",
-    "大阪": "assets/city-osaka-cover.svg",
-    nara: "assets/city-nara-cover.svg",
-    "奈良": "assets/city-nara-cover.svg",
-    sapporo: "assets/city-sapporo-cover.svg",
-    "札幌": "assets/city-sapporo-cover.svg",
-    oslo: "assets/city-oslo-cover.svg",
-    "奥斯陆": "assets/city-oslo-cover.svg",
-    helsinki: "assets/city-helsinki-cover.svg",
-    "赫尔辛基": "assets/city-helsinki-cover.svg",
-    stockholm: "assets/city-stockholm-cover.svg",
-    "斯德哥尔摩": "assets/city-stockholm-cover.svg",
-    singapore: "assets/city-singapore-cover.svg",
-    "新加坡": "assets/city-singapore-cover.svg",
-    istanbul: "assets/city-istanbul-cover.svg",
-    "伊斯坦布尔": "assets/city-istanbul-cover.svg",
-    paris: "assets/city-paris-cover.svg",
-    "巴黎": "assets/city-paris-cover.svg",
-    rome: "assets/city-rome-cover.svg",
-    "罗马": "assets/city-rome-cover.svg",
-    athens: "assets/city-athens-cover.svg",
-    "雅典": "assets/city-athens-cover.svg",
-  });
-  const LOCAL_COUNTRY_COVERS = Object.freeze({
-    AE: "assets/country-landmark-uae.jpg",
-    EG: "assets/route-egypt-pyramids-cover.svg",
-    FI: "assets/country-landmark-finland.png",
-    FR: "assets/country-landmark-france.jpg",
-    GR: "assets/route-greece-civilization-cover.svg",
-    IS: "assets/atlas-iceland-cover.svg",
-    IT: "assets/atlas-italy-cover.svg",
-    JP: "assets/route-japan-classic-cover.svg",
-    KE: "assets/route-east-africa-safari-cover.svg",
-    KG: "assets/route-central-asia-cover.svg",
-    KH: "assets/country-landmark-cambodia.jpg",
-    KR: "assets/country-landmark-korea.jpg",
-    KZ: "assets/route-central-asia-cover.svg",
-    MY: "assets/country-landmark-malaysia.jpg",
-    NO: "assets/country-landmark-norway.jpg",
-    SE: "assets/country-landmark-sweden.jpg",
-    SG: "assets/country-landmark-singapore.jpg",
-    TH: "assets/country-landmark-thailand.jpg",
-    TR: "assets/trip-turkey-cover.svg",
-    TZ: "assets/route-east-africa-safari-cover.svg",
-    UZ: "assets/route-central-asia-cover.svg",
-    VN: "assets/country-landmark-vietnam.jpg",
-  });
-  const LOCAL_COUNTRY_NAMES = Object.freeze({
-    japan: "JP", "日本": "JP", italy: "IT", "意大利": "IT", france: "FR", "法国": "FR",
-    greece: "GR", "希腊": "GR", turkey: "TR", "土耳其": "TR", iceland: "IS", "冰岛": "IS",
-    norway: "NO", "挪威": "NO", finland: "FI", "芬兰": "FI", sweden: "SE", "瑞典": "SE",
-    egypt: "EG", "埃及": "EG", thailand: "TH", "泰国": "TH", vietnam: "VN", "越南": "VN",
-    cambodia: "KH", "柬埔寨": "KH", malaysia: "MY", "马来西亚": "MY", singapore: "SG", "新加坡": "SG",
-    kenya: "KE", "肯尼亚": "KE", tanzania: "TZ", "坦桑尼亚": "TZ", korea: "KR", "韩国": "KR",
-    "united arab emirates": "AE", "阿联酋": "AE", uzbekistan: "UZ", "乌兹别克斯坦": "UZ",
-    kazakhstan: "KZ", "哈萨克斯坦": "KZ", kyrgyzstan: "KG", "吉尔吉斯斯坦": "KG",
-  });
 
   function normalizedAssetBaseUrl(value) {
     const text = String(value || "").trim();
@@ -112,9 +46,8 @@
     return normalizedAssetBaseUrl(global.RouteV2ImageAssetConfig?.assetBaseUrl);
   }
 
-  function isRuntimeImageSearchEnabled(options = {}) {
-    if (Object.hasOwn(options, "allowRuntimeImageSearch")) return options.allowRuntimeImageSearch === true;
-    return global.RouteV2ImageAssetConfig?.allowRuntimeImageSearch === true;
+  function isRuntimeImageSearchEnabled() {
+    return false;
   }
 
   function normalizedCoverImageKey(value) {

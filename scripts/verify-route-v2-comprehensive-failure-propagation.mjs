@@ -28,6 +28,7 @@ for (const name of [
   "knowledge-expansion-batch05-adversarial-semantics",
   "knowledge-expansion-batch05-route-consumption",
   "route-v2-image-coverage-batch05",
+  "route-v2-image-asset-baseline",
   "route-v2-image-quality-adversarial",
   "route-v2-city-detail-image-fallback",
   "knowledge-expansion-batch05-report-consistency",
@@ -46,6 +47,8 @@ const travelStateStage = MANDATORY_PRELAUNCH_VERIFIERS.find((stage) => stage.nam
 assert(travelStateStage, "Trip/Footprint identity verification must be registered");
 const reportConsistencyStage = MANDATORY_PRELAUNCH_VERIFIERS.find((stage) => stage.name === "knowledge-expansion-batch05-report-consistency");
 assert(reportConsistencyStage, "Batch 05 report consistency verification must be registered");
+const imageBaselineStage = MANDATORY_PRELAUNCH_VERIFIERS.find((stage) => stage.name === "route-v2-image-asset-baseline");
+assert(imageBaselineStage, "Image asset baseline verification must be registered");
 
 function injectedFailure(result) {
   let thrown = null;
@@ -105,6 +108,21 @@ const passTextIgnored = runMandatoryVerifierStage({
 });
 assert.equal(passTextIgnored.exitCode, 0);
 
+let imageBaselineFailure = null;
+try {
+  runMandatoryVerifierStage({
+    stage: imageBaselineStage,
+    projectRoot,
+    env: process.env,
+    spawnImpl: () => ({ status: 29, signal: null, stdout: "", stderr: "controlled image baseline failure\n" }),
+  });
+} catch (error) {
+  imageBaselineFailure = error;
+}
+assert(imageBaselineFailure instanceof MandatoryVerifierStageError);
+assert.equal(imageBaselineFailure.stageResult.name, "route-v2-image-asset-baseline");
+assert.equal(imageBaselineFailure.stageResult.exitCode, 29);
+
 function realReportMutationFailure(search, replacement, label) {
   const sourcePath = path.join(projectRoot, "ROUTE_V2_KNOWLEDGE_EXPANSION_BATCH05_REPORT.md");
   const source = fs.readFileSync(sourcePath, "utf8");
@@ -153,6 +171,7 @@ process.stdout.write(`${JSON.stringify({
   outputTextIgnored: true,
   injectedExitCode: 23,
   productionRunnerExercised: true,
+  imageBaselineFailurePropagated: imageBaselineFailure.stageResult.exitCode === 29,
   reportPoiMutationPropagated: reportPoiMutation.exitCode !== 0,
   reportDedicatedCityMutationPropagated: reportCityImageMutation.exitCode !== 0,
 }, null, 2)}\n`);

@@ -190,7 +190,7 @@ function getTravelStats(state) {
 }
 
 function resolveTripCover(trip, state) {
-  return window.TravelState?.resolveTripCover?.(trip, state) || "assets/home-aurora-cover.svg";
+  return window.TravelState?.resolveTripCover?.(trip, state) || "assets/trip-cover-placeholder.svg";
 }
 
 function homeTripCover(trip, state) {

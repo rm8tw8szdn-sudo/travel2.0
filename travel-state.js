@@ -11,34 +11,29 @@
   const DEFAULT_TRIP_COVER = TravelData.DEFAULT_TRIP_COVER || "assets/trip-cover-placeholder.svg";
   const DEFAULT_ROUTE_CITY_COVER = global.RouteV2ImageCoverage?.fallbackPolicy?.city || "assets/route-city-placeholder.svg";
   const TOTAL_COUNTRY_COUNT = 195;
-  const BLOCKED_COVER_ASSETS = new Set([
-    "assets/city-helsinki-cover.svg",
-    "assets/city-chiangmai-cover.svg",
-  ]);
-
   const defaultCountries = [
-    ["JP", "日本", "assets/country-landmark-japan.jpg"],
-    ["TR", "土耳其", "assets/country-landmark-turkey.jpg"],
-    ["TH", "泰国", "assets/country-landmark-thailand.jpg"],
-    ["IT", "意大利", "assets/country-landmark-italy.jpg"],
-    ["FR", "法国", "assets/country-landmark-france.jpg"],
-    ["IS", "冰岛", "assets/country-landmark-iceland.jpg"],
-    ["KR", "韩国", "assets/country-landmark-korea.jpg"],
-    ["SG", "新加坡", "assets/country-landmark-singapore.jpg"],
-    ["MY", "马来西亚", "assets/country-landmark-malaysia.jpg"],
-    ["AE", "阿联酋", "assets/country-landmark-uae.jpg"],
-    ["EG", "埃及", "assets/country-landmark-egypt.jpg"],
-    ["NO", "挪威", "assets/country-landmark-norway.jpg"],
-    ["FI", "芬兰", "assets/country-landmark-finland.png"],
-    ["SE", "瑞典", "assets/country-landmark-sweden.jpg"],
-    ["KE", "肯尼亚", "assets/country-landmark-kenya.jpg"],
-    ["TZ", "坦桑尼亚", "assets/country-landmark-tanzania.jpg"],
-    ["GR", "希腊", "assets/country-landmark-greece.jpg"],
-    ["UZ", "乌兹别克斯坦", "assets/country-landmark-uzbekistan.jpg"],
-    ["KZ", "哈萨克斯坦", "assets/country-landmark-kazakhstan.jpg"],
-    ["KG", "吉尔吉斯斯坦", "assets/country-landmark-kyrgyzstan.jpg"],
-    ["VN", "越南", "assets/country-landmark-vietnam.jpg"],
-    ["KH", "柬埔寨", "assets/country-landmark-cambodia.jpg"],
+    ["JP", "日本", DEFAULT_TRIP_COVER],
+    ["TR", "土耳其", DEFAULT_TRIP_COVER],
+    ["TH", "泰国", DEFAULT_TRIP_COVER],
+    ["IT", "意大利", DEFAULT_TRIP_COVER],
+    ["FR", "法国", DEFAULT_TRIP_COVER],
+    ["IS", "冰岛", DEFAULT_TRIP_COVER],
+    ["KR", "韩国", DEFAULT_TRIP_COVER],
+    ["SG", "新加坡", DEFAULT_TRIP_COVER],
+    ["MY", "马来西亚", DEFAULT_TRIP_COVER],
+    ["AE", "阿联酋", DEFAULT_TRIP_COVER],
+    ["EG", "埃及", DEFAULT_TRIP_COVER],
+    ["NO", "挪威", DEFAULT_TRIP_COVER],
+    ["FI", "芬兰", DEFAULT_TRIP_COVER],
+    ["SE", "瑞典", DEFAULT_TRIP_COVER],
+    ["KE", "肯尼亚", DEFAULT_TRIP_COVER],
+    ["TZ", "坦桑尼亚", DEFAULT_TRIP_COVER],
+    ["GR", "希腊", DEFAULT_TRIP_COVER],
+    ["UZ", "乌兹别克斯坦", DEFAULT_TRIP_COVER],
+    ["KZ", "哈萨克斯坦", DEFAULT_TRIP_COVER],
+    ["KG", "吉尔吉斯斯坦", DEFAULT_TRIP_COVER],
+    ["VN", "越南", DEFAULT_TRIP_COVER],
+    ["KH", "柬埔寨", DEFAULT_TRIP_COVER],
   ].map(([id, name, cover]) => ({ id, name, cover }));
 
   const countryDetails = {
@@ -81,45 +76,45 @@
   };
 
   const defaultCities = [
-    ["JP-TYO", "东京", "JP", "assets/city-tokyo-cover.svg"],
-    ["JP-KYO", "京都", "JP", "assets/city-kyoto-cover.svg"],
-    ["JP-OSA", "大阪", "JP", "assets/city-osaka-cover.svg"],
-    ["JP-SPK", "札幌", "JP", "assets/city-sapporo-cover.svg"],
-    ["TR-IST", "伊斯坦布尔", "TR", "assets/city-istanbul-cover.svg"],
-    ["TR-CAP", "卡帕多奇亚", "TR", "assets/city-cappadocia-cover.svg"],
-    ["TR-ANT", "安塔利亚", "TR", "assets/city-antalya-cover.svg"],
-    ["TH-CNX", "清迈", "TH", "assets/country-landmark-thailand.jpg"],
-    ["TH-CEI", "清莱", "TH", "assets/city-chiangrai-cover.svg"],
-    ["IT-ROM", "罗马", "IT", "assets/city-rome-cover.svg"],
-    ["IT-FLR", "佛罗伦萨", "IT", "assets/city-florence-cover.svg"],
-    ["IT-VCE", "威尼斯", "IT", "assets/city-venice-cover.svg"],
-    ["FR-PAR", "巴黎", "FR", "assets/city-paris-cover.svg"],
-    ["FR-NCE", "尼斯", "FR", "assets/city-nice-cover.svg"],
-    ["IS-REK", "雷克雅未克", "IS", "assets/city-reykjavik-cover.svg"],
-    ["KR-SEL", "首尔", "KR", "assets/city-seoul-cover.svg"],
-    ["KR-PUS", "釜山", "KR", "assets/city-busan-cover.svg"],
-    ["SG-SIN", "新加坡", "SG", "assets/city-singapore-cover.svg"],
-    ["MY-KUL", "吉隆坡", "MY", "assets/city-kuala-lumpur-cover.svg"],
-    ["MY-PEN", "槟城", "MY", "assets/city-penang-cover.svg"],
-    ["AE-DXB", "迪拜", "AE", "assets/city-dubai-cover.svg"],
-    ["AE-AUH", "阿布扎比", "AE", "assets/city-abudhabi-cover.svg"],
-    ["EG-CAI", "开罗", "EG", "assets/city-cairo-cover.svg"],
-    ["EG-LXR", "卢克索", "EG", "assets/city-luxor-cover.svg"],
-    ["JP-YOK", "横滨", "JP", "assets/city-yokohama-cover.svg"],
-    ["JP-NAR", "奈良", "JP", "assets/city-nara-cover.svg"],
-    ["JP-KOB", "神户", "JP", "assets/city-kobe-cover.svg"],
-    ["NO-OSL", "奥斯陆", "NO", "assets/city-oslo-cover.svg"],
-    ["FI-HEL", "赫尔辛基", "FI", "assets/country-landmark-finland.png"],
-    ["SE-STO", "斯德哥尔摩", "SE", "assets/city-stockholm-cover.svg"],
-    ["KE-NBO", "内罗毕", "KE", "assets/city-nairobi-cover.svg"],
-    ["TZ-ARK", "阿鲁沙", "TZ", "assets/city-arusha-cover.svg"],
-    ["EG-GLZ", "吉萨", "EG", "assets/city-giza-cover.svg"],
-    ["GR-ATH", "雅典", "GR", "assets/city-athens-cover.svg"],
-    ["TH-HKT", "普吉", "TH", "assets/city-phuket-cover.svg"],
-    ["TH-KBI", "甲米", "TH", "assets/city-krabi-cover.svg"],
-    ["UZ-SKD", "撒马尔罕", "UZ", "assets/city-samarkand-cover.svg"],
-    ["VN-HAN", "河内", "VN", "assets/city-hanoi-cover.svg"],
-    ["KH-REP", "暹粒", "KH", "assets/city-siemreap-cover.svg"],
+    ["JP-TYO", "东京", "JP", DEFAULT_ROUTE_CITY_COVER],
+    ["JP-KYO", "京都", "JP", DEFAULT_ROUTE_CITY_COVER],
+    ["JP-OSA", "大阪", "JP", DEFAULT_ROUTE_CITY_COVER],
+    ["JP-SPK", "札幌", "JP", DEFAULT_ROUTE_CITY_COVER],
+    ["TR-IST", "伊斯坦布尔", "TR", DEFAULT_ROUTE_CITY_COVER],
+    ["TR-CAP", "卡帕多奇亚", "TR", DEFAULT_ROUTE_CITY_COVER],
+    ["TR-ANT", "安塔利亚", "TR", DEFAULT_ROUTE_CITY_COVER],
+    ["TH-CNX", "清迈", "TH", DEFAULT_TRIP_COVER],
+    ["TH-CEI", "清莱", "TH", DEFAULT_ROUTE_CITY_COVER],
+    ["IT-ROM", "罗马", "IT", DEFAULT_ROUTE_CITY_COVER],
+    ["IT-FLR", "佛罗伦萨", "IT", DEFAULT_ROUTE_CITY_COVER],
+    ["IT-VCE", "威尼斯", "IT", DEFAULT_ROUTE_CITY_COVER],
+    ["FR-PAR", "巴黎", "FR", DEFAULT_ROUTE_CITY_COVER],
+    ["FR-NCE", "尼斯", "FR", DEFAULT_ROUTE_CITY_COVER],
+    ["IS-REK", "雷克雅未克", "IS", DEFAULT_ROUTE_CITY_COVER],
+    ["KR-SEL", "首尔", "KR", DEFAULT_ROUTE_CITY_COVER],
+    ["KR-PUS", "釜山", "KR", DEFAULT_ROUTE_CITY_COVER],
+    ["SG-SIN", "新加坡", "SG", DEFAULT_ROUTE_CITY_COVER],
+    ["MY-KUL", "吉隆坡", "MY", DEFAULT_ROUTE_CITY_COVER],
+    ["MY-PEN", "槟城", "MY", DEFAULT_ROUTE_CITY_COVER],
+    ["AE-DXB", "迪拜", "AE", DEFAULT_ROUTE_CITY_COVER],
+    ["AE-AUH", "阿布扎比", "AE", DEFAULT_ROUTE_CITY_COVER],
+    ["EG-CAI", "开罗", "EG", DEFAULT_ROUTE_CITY_COVER],
+    ["EG-LXR", "卢克索", "EG", DEFAULT_ROUTE_CITY_COVER],
+    ["JP-YOK", "横滨", "JP", DEFAULT_ROUTE_CITY_COVER],
+    ["JP-NAR", "奈良", "JP", DEFAULT_ROUTE_CITY_COVER],
+    ["JP-KOB", "神户", "JP", DEFAULT_ROUTE_CITY_COVER],
+    ["NO-OSL", "奥斯陆", "NO", DEFAULT_ROUTE_CITY_COVER],
+    ["FI-HEL", "赫尔辛基", "FI", DEFAULT_TRIP_COVER],
+    ["SE-STO", "斯德哥尔摩", "SE", DEFAULT_ROUTE_CITY_COVER],
+    ["KE-NBO", "内罗毕", "KE", DEFAULT_ROUTE_CITY_COVER],
+    ["TZ-ARK", "阿鲁沙", "TZ", DEFAULT_ROUTE_CITY_COVER],
+    ["EG-GLZ", "吉萨", "EG", DEFAULT_ROUTE_CITY_COVER],
+    ["GR-ATH", "雅典", "GR", DEFAULT_ROUTE_CITY_COVER],
+    ["TH-HKT", "普吉", "TH", DEFAULT_ROUTE_CITY_COVER],
+    ["TH-KBI", "甲米", "TH", DEFAULT_ROUTE_CITY_COVER],
+    ["UZ-SKD", "撒马尔罕", "UZ", DEFAULT_ROUTE_CITY_COVER],
+    ["VN-HAN", "河内", "VN", DEFAULT_ROUTE_CITY_COVER],
+    ["KH-REP", "暹粒", "KH", DEFAULT_ROUTE_CITY_COVER],
   ].map(([id, name, countryId, cover]) => ({ id, name, countryId, cover }));
 
   const cityDetails = {
@@ -391,7 +386,7 @@
 
   function isBlockedCover(cover) {
     const value = String(cover || "").trim();
-    return !value || /^(?:https?:)?\/\//iu.test(value) || BLOCKED_COVER_ASSETS.has(value);
+    return !value || /^(?:https?:)?\/\//iu.test(value);
   }
 
   function safeCountryCover(country) {
@@ -405,9 +400,7 @@
     const entityId = String(city?.entityId || city?.id || "").trim();
     const configured = global.RouteV2ImageCoverage?.cityByEntityId?.[entityId]?.assetPath;
     if (!isBlockedCover(configured)) return configured;
-    if (city?.knowledgeEntity) return DEFAULT_ROUTE_CITY_COVER;
-    if (!isBlockedCover(city?.cover)) return city.cover;
-    return safeCountryCover(countriesById[city.countryId] || {});
+    return DEFAULT_ROUTE_CITY_COVER;
   }
 
   function syncDefaultCovers(items, covers) {

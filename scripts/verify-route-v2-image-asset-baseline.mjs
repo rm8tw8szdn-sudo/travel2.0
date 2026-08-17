@@ -15,7 +15,7 @@ import {
   renderImageAssetBaselineReport,
   stableBaselineJson,
 } from "./lib/image-asset-baseline.mjs";
-
+import { normalizeKnowledgeBaselineText } from "./lib/knowledge-baseline-text.mjs";
 const FIXTURE_HASH = "1".repeat(64);
 const OTHER_FIXTURE_HASH = "2".repeat(64);
 
@@ -75,6 +75,34 @@ function verifyNormalGitSizePolicyMutations() {
   };
 }
 
+function artifactTextMatches(generated, checkedIn) {
+  return normalizeKnowledgeBaselineText(generated) === normalizeKnowledgeBaselineText(checkedIn);
+}
+
+function verifyCanonicalTextComparisonFixtures() {
+  const lf = "artifact=value\nstatus=current\n";
+  const crlf = "artifact=value\r\nstatus=current\r\n";
+  const changedText = "artifact=changed\nstatus=current\n";
+  const addedLine = "artifact=value\nstatus=current\nextra=true\n";
+  const changedValue = "artifact=value\nstatus=stale\n";
+
+  assert.equal(artifactTextMatches(lf, lf), true, "LF generated text must match LF checked-in text");
+  assert.equal(artifactTextMatches(lf, crlf), true, "LF generated text must match CRLF checked-in text");
+  assert.equal(artifactTextMatches(crlf, lf), true, "CRLF generated text must match LF checked-in text");
+  assert.equal(artifactTextMatches(lf, changedText), false, "real text changes must remain stale");
+  assert.equal(artifactTextMatches(lf, addedLine), false, "added or removed content lines must remain stale");
+  assert.equal(artifactTextMatches(lf, changedValue), false, "value changes must remain stale");
+
+  return {
+    lfToLf: "PASS",
+    lfToCrlf: "PASS",
+    crlfToLf: "PASS",
+    changedTextKilled: true,
+    addedLineKilled: true,
+    changedValueKilled: true,
+  };
+}
+
 const ROOT = path.resolve(import.meta.dirname, "..");
 const inventoryPath = path.join(ROOT, INVENTORY_PATH);
 const reportPath = path.join(ROOT, REPORT_PATH);
@@ -83,9 +111,18 @@ assert.equal(fs.existsSync(reportPath), true, `${REPORT_PATH}:missing; run the b
 
 const model = buildImageAssetBaseline({ root: ROOT });
 const sizePolicyMutations = verifyNormalGitSizePolicyMutations();
+const canonicalTextComparisonFixtures = verifyCanonicalTextComparisonFixtures();
 assert.equal(model.schemaVersion, BASELINE_SCHEMA_VERSION);
-assert.equal(fs.readFileSync(inventoryPath, "utf8"), stableBaselineJson(model), `${INVENTORY_PATH}:stale or manually edited`);
-assert.equal(fs.readFileSync(reportPath, "utf8"), renderImageAssetBaselineReport(model), `${REPORT_PATH}:stale or manually edited`);
+assert.equal(
+  artifactTextMatches(stableBaselineJson(model), fs.readFileSync(inventoryPath, "utf8")),
+  true,
+  `${INVENTORY_PATH}:stale or manually edited`,
+);
+assert.equal(
+  artifactTextMatches(renderImageAssetBaselineReport(model), fs.readFileSync(reportPath, "utf8")),
+  true,
+  `${REPORT_PATH}:stale or manually edited`,
+);
 
 assert.equal(model.orphanAssets.unknown.length, 0, `unknown image assets:${JSON.stringify(model.orphanAssets.unknown)}`);
 assert.equal(model.references.blockingMissingLocalAssets.length, 0, `missing production local image assets:${JSON.stringify(model.references.blockingMissingLocalAssets)}`);
@@ -144,6 +181,7 @@ process.stdout.write(`${JSON.stringify({
   lfsTrackedBytes: model.summary.lfsTrackedBytes,
   normalGitLargeAssets: model.git.normalGitLargeAssets.length,
   sizePolicyMutations,
+  canonicalTextComparisonFixtures,
   unknownAssets: 0,
   invalidMappings: 0,
 }, null, 2)}\n`);

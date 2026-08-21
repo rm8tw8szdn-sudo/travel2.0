@@ -372,6 +372,20 @@ function aliasOccurrences(query, alias, normalizedQueryInput = "") {
   return occurrences;
 }
 
+function countryAliasOccurrences(query, country, alias, normalizedQuery = "") {
+  const value = clean(alias);
+  const countryCode = clean(country?.code).toUpperCase();
+  if (value === countryCode && /^[A-Z]{2}$/u.test(value)) {
+    const pattern = new RegExp(`(?<![\\p{L}\\p{N}])${escapeRegExp(countryCode)}(?![\\p{L}\\p{N}])`, "gu");
+    return [...query.matchAll(pattern)].map((match) => ({
+      index: match.index,
+      end: Number(match.index) + match[0].length,
+      rawValue: match[0],
+    }));
+  }
+  return aliasOccurrences(query, alias, normalizedQuery);
+}
+
 function firstCatalogMatchOutsideRanges(query, catalog, occupiedRanges = []) {
   const matches = [];
   const normalizedQuery = normalizeText(query);
@@ -395,7 +409,7 @@ function extractCountryOccurrences(query, countryCatalog) {
   for (const country of countryCatalog) {
     const identity = clean(country.code).toUpperCase();
     for (const alias of unique([country.label, country.normalizedLabel, ...(country.aliases || [])])) {
-      for (const occurrence of aliasOccurrences(query, alias, normalizedQuery)) {
+      for (const occurrence of countryAliasOccurrences(query, country, alias, normalizedQuery)) {
         rawOccurrences.push({ ...occurrence, country, identity, alias: clean(alias) });
       }
     }
@@ -499,7 +513,7 @@ function isAmbiguousShortCityAlias(alias) {
   return normalized.length < 2 && /[\p{Script=Han}\p{Script=Hiragana}\p{Script=Katakana}]/u.test(normalized);
 }
 
-function extractRequiredDestinations(query, cityCatalog, countryCatalog) {
+function collectCityAliasOccurrences(query, cityCatalog) {
   const rawOccurrences = [];
   const normalizedQuery = normalizeText(query);
   for (const city of cityCatalog) {
@@ -510,25 +524,64 @@ function extractRequiredDestinations(query, cityCatalog, countryCatalog) {
       }
     }
   }
+  return rawOccurrences;
+}
+
+function uniqueOccurrenceRanges(occurrences = []) {
+  const ranges = new Map();
+  for (const occurrence of occurrences) {
+    const key = `${occurrence.index}:${occurrence.end}`;
+    if (!ranges.has(key)) ranges.set(key, { index: occurrence.index, end: occurrence.end });
+  }
+  return [...ranges.values()];
+}
+
+function extractRequiredDestinations(query, rawOccurrences, countryCatalog, scopeCountryCodes = []) {
+  const allowedCountryCodes = new Set(scopeCountryCodes.map((value) => clean(value).toUpperCase()).filter(Boolean));
   rawOccurrences.sort((left, right) => left.index - right.index
     || (right.end - right.index) - (left.end - left.index)
     || left.identity.localeCompare(right.identity, "en"));
-  const occurrenceKeys = new Set();
+  const groupsByRange = new Map();
+  for (const entry of rawOccurrences) {
+    const rangeKey = `${entry.index}:${entry.end}`;
+    const group = groupsByRange.get(rangeKey) || new Map();
+    if (!group.has(entry.identity)) group.set(entry.identity, entry);
+    groupsByRange.set(rangeKey, group);
+  }
+  const groups = [...groupsByRange.values()]
+    .map((group) => [...group.values()])
+    .sort((left, right) => left[0].index - right[0].index
+      || (right[0].end - right[0].index) - (left[0].end - left[0].index));
   const acceptedRanges = [];
-  const occurrences = rawOccurrences.filter((entry) => {
-    const key = `${entry.identity}:${entry.index}:${entry.end}`;
-    if (occurrenceKeys.has(key)) return false;
-    if (acceptedRanges.some((accepted) => (
-      entry.index >= accepted.index
-      && entry.end <= accepted.end
-      && entry.identity !== accepted.identity
-    ))) return false;
-    occurrenceKeys.add(key);
-    acceptedRanges.push(entry);
-    return true;
-  });
-  const byIdentity = new Map();
+  const occurrences = [];
   const diagnostics = [];
+  for (const group of groups) {
+    const first = group[0];
+    if (acceptedRanges.some((accepted) => (
+      first.index >= accepted.index
+      && first.end <= accepted.end
+    ))) continue;
+    let resolved = group[0];
+    if (group.length > 1) {
+      const scoped = allowedCountryCodes.size
+        ? group.filter((entry) => allowedCountryCodes.has(clean(entry.city.countryCode).toUpperCase()))
+        : [];
+      if (scoped.length !== 1) {
+        diagnostics.push({
+          code: "ambiguous-city-alias",
+          message: "Explicit City alias matches multiple published City entities and requires Country or Region qualification.",
+          rawValue: first.rawValue,
+          candidateDestinationIds: group.map((entry) => entry.identity),
+          candidateCountryCodes: unique(group.map((entry) => clean(entry.city.countryCode).toUpperCase())),
+        });
+        continue;
+      }
+      [resolved] = scoped;
+    }
+    acceptedRanges.push(resolved);
+    occurrences.push(resolved);
+  }
+  const byIdentity = new Map();
   for (const occurrence of occurrences) {
     const existing = byIdentity.get(occurrence.identity);
     if (existing) {
@@ -1040,11 +1093,35 @@ export function parseSearchIntent(query, { acceptedRoutes = [], catalogs = null,
   const cityCatalog = cityAdditions.length
     ? mergeCityCatalog(CITY_CATALOG, cityAdditions)
     : CITY_CATALOG;
-  const extractedDestinations = extractRequiredDestinations(rawQuery, cityCatalog, countryCatalog);
+  const rawCityOccurrences = collectCityAliasOccurrences(rawQuery, cityCatalog);
+  const rawCityRanges = uniqueOccurrenceRanges(rawCityOccurrences);
+  const matchedRegion = firstCatalogMatchOutsideRanges(rawQuery, regionCatalog, rawCityRanges);
+  const allCountryOccurrences = extractCountryOccurrences(rawQuery, countryCatalog);
+  const countryOccurrencesOutsideCityAliases = allCountryOccurrences.filter((occurrence) => !rawCityRanges.some((range) => (
+    occurrence.index < range.end && occurrence.end > range.index
+  )));
+  const explicitCountryOccurrences = countryOccurrencesOutsideCityAliases.length
+    ? countryOccurrencesOutsideCityAliases
+    : allCountryOccurrences;
+  const regionCountryCodes = unique([
+    ...(matchedRegion?.countryCodes || []),
+    matchedRegion?.countryCode,
+    matchedRegion?.parentCountryCode,
+  ]
+    .map((code) => clean(code).toUpperCase())
+    .filter((code) => /^[A-Z]{2}$/u.test(code)));
+  const cityScopeCountryCodes = unique([
+    ...explicitCountryOccurrences.map((entry) => entry.country.code),
+    ...regionCountryCodes,
+  ].map((code) => clean(code).toUpperCase()).filter(Boolean));
+  const extractedDestinations = extractRequiredDestinations(
+    rawQuery,
+    rawCityOccurrences,
+    countryCatalog,
+    cityScopeCountryCodes,
+  );
   let requiredOccurrences = extractedDestinations.required;
   let matchedCities = requiredOccurrences.map((entry) => entry.city);
-  const matchedRegion = firstCatalogMatchOutsideRanges(rawQuery, regionCatalog, requiredOccurrences);
-  const explicitCountryOccurrences = extractCountryOccurrences(rawQuery, countryCatalog);
   const matchedCountries = explicitCountryOccurrences.map((entry) => entry.country);
   if (matchedRegion?.scope && matchedRegion.scope !== "macro-region") {
     const regionalCityIds = new Set((matchedRegion.knownDestinationIds || []).map((value) => clean(value).toUpperCase()));
@@ -1082,13 +1159,6 @@ export function parseSearchIntent(query, { acceptedRoutes = [], catalogs = null,
     ...(matchedCountry?.code ? [matchedCountry.code] : []),
     ...matchedCities.map((item) => item.countryCode),
   ].map((code) => clean(code).toUpperCase()).filter(Boolean));
-  const regionCountryCodes = unique([
-    ...(matchedRegion?.countryCodes || []),
-    matchedRegion?.countryCode,
-    matchedRegion?.parentCountryCode,
-  ]
-    .map((code) => clean(code).toUpperCase())
-    .filter((code) => /^[A-Z]{2}$/u.test(code)));
   const intent = {
     rawQuery,
     normalizedQuery,
@@ -1153,9 +1223,12 @@ export function parseSearchIntent(query, { acceptedRoutes = [], catalogs = null,
     const invalidTime = timeIntent.type === "invalid";
     const invalidDuration = intent.invalidDuration === true;
     const unresolvedDestinations = intent.destinationDiagnostics
-      .filter((item) => item.code === "unknown-city-token")
-      .map((item) => clean(item.rawValue))
-      .filter((item) => Array.from(item).length >= 3);
+      .filter((item) => ["unknown-city-token", "ambiguous-city-alias"].includes(item.code))
+      .filter((item) => (
+        item.code === "ambiguous-city-alias"
+        || Array.from(clean(item.rawValue)).length >= 3
+      ))
+      .map((item) => clean(item.rawValue));
     const hasUnresolvedCountry = unresolvedCountryTokens.length > 0;
     const hasUnresolvedDestination = unresolvedDestinations.length > 0 || hasUnresolvedCountry;
     const hasUsableCondition = intent.constraintCount > 0;

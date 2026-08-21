@@ -111,13 +111,15 @@ try {
   });
   assert.deepEqual(fixedCentralEuropeIntent.requiredDestinationIds, ["Q1781", "Q1741", "Q1085"]);
   assert.equal(fixedCentralEuropeIntent.destinationOrderMode, "fixed");
-  const unresolvedDestinationIntent = parseSearchIntent("Lisbon Seville 4 days", {
+  // Lisbon is now a published Knowledge city, so keep this fail-closed case
+  // genuinely unresolved instead of pinning the fixture to an obsolete gap.
+  const unresolvedDestinationIntent = parseSearchIntent("Atlantis Seville 4 days", {
     acceptedRoutes: acceptedDestinationCatalogFixture,
     catalogs,
     timeIntentEnabled: true,
   });
   assert.deepEqual(unresolvedDestinationIntent.requiredDestinationIds, ["Q8717"]);
-  assert.deepEqual(unresolvedDestinationIntent.unresolvedDestinationNames, ["Lisbon"]);
+  assert(unresolvedDestinationIntent.unresolvedDestinationNames.some((name) => name.toLowerCase() === "atlantis"));
   assert.equal(unresolvedDestinationIntent.failureReason, "unresolved-destination");
   assert.equal(unresolvedDestinationIntent.parseSuccess, false);
 

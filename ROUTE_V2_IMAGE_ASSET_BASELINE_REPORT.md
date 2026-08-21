@@ -313,7 +313,7 @@ Baseline source HEAD timestamp: 2026-08-14T17:17:31+08:00
 - Total image bytes: 33.66 MB
 - Normal Git image bytes: 33.66 MB
 - Git LFS image bytes: 0 B
-- Git LFS audit/large-file bytes: 511.87 MB
+- Git LFS audit/large-file bytes: 811.89 MB
 - Average: 152.29 KB
 - Median: 152.00 KB
 - P95: 389.23 KB

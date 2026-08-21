@@ -1,2 +1,4 @@
 data/knowledge/raw/knowledge-expansion-batch05-wave*.wikidata.json filter=lfs diff=lfs merge=lfs -text
 data/knowledge/raw/knowledge-expansion-batch06-wave*.wikidata.json filter=lfs diff=lfs merge=lfs -text
+assets/*.svg text eol=lf
+assets/route-v2-images/**/*.svg text eol=lf

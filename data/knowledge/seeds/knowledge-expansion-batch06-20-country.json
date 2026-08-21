@@ -1,0 +1,139 @@
+{
+  "schemaVersion": "route-v2-knowledge-expansion-batch06-seed-v1",
+  "retrievedAt": "2026-08-17T07:00:00.000Z",
+  "approximateGlobalCountryCount": 195,
+  "selectionPolicy": [
+    "publish the 16 current Catalog-only countries supported by Search V1 while leaving China Catalog-only under its existing search policy",
+    "add Cambodia, Romania, Costa Rica and Uruguay for Southeast Asia, Eastern Europe, Central America and South America coverage",
+    "quarantine any City or POI whose identity, P31/P279, P17, coordinates or parent cannot be confirmed"
+  ],
+  "poiTargets": { "world": 10, "core": 7, "standard": 5, "town": 3 },
+  "waves": {
+    "1": { "batchNumber": "18", "countries": ["AD", "AE", "AR", "BR", "CD"] },
+    "2": { "batchNumber": "19", "countries": ["CL", "UY", "EG", "FJ", "IL"] },
+    "3": { "batchNumber": "20", "countries": ["IN", "KE", "MA", "NG", "RU"] },
+    "4": { "batchNumber": "21", "countries": ["SA", "ZA", "KH", "RO", "CR"] }
+  },
+  "countries": {
+    "AD": {
+      "label": "Andorra", "qid": "Q228", "wave": 1, "tier": 3,
+      "selectionReason": "Current Catalog identity without any published City or POI; microstate single-city and compact multi-destination coverage.",
+      "currentStatus": "catalog-only", "targetStatus": "evidence-backed-plannable",
+      "cities": [["Andorra la Vella", "world"], ["Les Escaldes", "core", "Escaldes"], ["Encamp", "standard"], ["Ordino", "town"]]
+    },
+    "AE": {
+      "label": "United Arab Emirates", "qid": "Q878", "wave": 1, "tier": 1,
+      "selectionReason": "Current Catalog identity and high international travel demand with no Route Knowledge depth.",
+      "currentStatus": "catalog-only", "targetStatus": "evidence-backed-plannable",
+      "cities": [["Dubai", "world"], ["Abu Dhabi", "world"], ["Sharjah", "core"], ["Al Ain", "core"], ["Ras Al Khaimah", "standard"], ["Fujairah", "standard"], ["Ajman", "standard"], ["Khor Fakkan", "town"]]
+    },
+    "AR": {
+      "label": "Argentina", "qid": "Q414", "wave": 1, "tier": 1,
+      "selectionReason": "Current Catalog identity; closes a major South America route-coverage gap.",
+      "currentStatus": "catalog-only", "targetStatus": "evidence-backed-plannable",
+      "cities": [["Buenos Aires", "world"], ["Córdoba, Argentina", "core", "Córdoba"], ["Mendoza, Argentina", "core", "Mendoza"], ["Salta", "core"], ["Rosario", "core"], ["Bariloche", "core"], ["Ushuaia", "core"], ["Puerto Iguazú", "standard"], ["El Calafate", "standard"], ["San Miguel de Tucumán", "standard"]]
+    },
+    "BR": {
+      "label": "Brazil", "qid": "Q155", "wave": 1, "tier": 1,
+      "selectionReason": "Current Catalog identity; largest unplanned tourism market in South America in the current repository.",
+      "currentStatus": "catalog-only", "targetStatus": "evidence-backed-plannable",
+      "cities": [["Rio de Janeiro", "world"], ["São Paulo", "world"], ["Salvador, Bahia", "core", "Salvador"], ["Brasília", "core"], ["Recife", "core"], ["Florianópolis", "core"], ["Manaus", "core"], ["Foz do Iguaçu", "core"], ["Ouro Preto", "standard"], ["Paraty", "standard"], ["Fortaleza", "core"]]
+    },
+    "CD": {
+      "label": "Democratic Republic of the Congo", "qid": "Q974", "wave": 1, "tier": 3,
+      "selectionReason": "Current Catalog identity and a Central Africa coverage gap; limited to verified settlements and visitor-facing POIs.",
+      "currentStatus": "catalog-only", "targetStatus": "evidence-backed-plannable",
+      "cities": [["Kinshasa", "world"], ["Lubumbashi", "core"], ["Kisangani", "standard"], ["Goma", "standard"]]
+    },
+    "CL": {
+      "label": "Chile", "qid": "Q298", "wave": 2, "tier": 1,
+      "selectionReason": "Current Catalog identity; completes another high-demand South America corridor.",
+      "currentStatus": "catalog-only", "targetStatus": "evidence-backed-plannable",
+      "cities": [["Santiago", "world"], ["Valparaíso", "core"], ["Viña del Mar", "core"], ["San Pedro de Atacama", "core"], ["Puerto Varas", "standard"], ["Punta Arenas", "core"], ["Puerto Natales", "standard"], ["Pucón", "standard"], ["La Serena, Chile", "standard", "La Serena"]]
+    },
+    "UY": {
+      "label": "Uruguay", "qid": "Q77", "wave": 2, "tier": 2, "iso3": "URY", "isoNumeric": "858", "region": "Americas", "subregion": "South America",
+      "selectionReason": "Replaces China because the existing product contract intentionally keeps China search blocked; adds a verified South America country without changing Route Engine policy.",
+      "currentStatus": "not-in-catalog", "targetStatus": "evidence-backed-plannable",
+      "cities": [["Montevideo", "world"], ["Punta del Este", "core"], ["Colonia del Sacramento", "core"], ["Salto, Uruguay", "standard", "Salto"], ["Piriápolis", "standard"], ["Maldonado, Uruguay", "standard", "Maldonado"], ["Carmelo, Uruguay", "town", "Carmelo"]]
+    },
+    "EG": {
+      "label": "Egypt", "qid": "Q79", "wave": 2, "tier": 1,
+      "selectionReason": "Current Catalog identity and a high-demand North Africa heritage route gap.",
+      "currentStatus": "catalog-only", "targetStatus": "evidence-backed-plannable",
+      "cities": [["Cairo", "world"], ["Alexandria", "core"], ["Luxor", "world"], ["Aswan", "core"], ["Hurghada", "core"], ["Sharm El Sheikh", "core"], ["Giza", "core"], ["Marsa Alam", "standard"]]
+    },
+    "FJ": {
+      "label": "Fiji", "qid": "Q712", "wave": 2, "tier": 3,
+      "selectionReason": "Current Catalog identity and an Oceania island-nation gap; only settlements are published as City.",
+      "currentStatus": "catalog-only", "targetStatus": "evidence-backed-plannable",
+      "cities": [["Suva", "world"], ["Nadi", "core"], ["Lautoka", "standard"], ["Savusavu", "town"]]
+    },
+    "IL": {
+      "label": "Israel", "qid": "Q801", "wave": 2, "tier": 2,
+      "selectionReason": "Current Catalog identity with concentrated urban and heritage destinations but no published Route depth.",
+      "currentStatus": "catalog-only", "targetStatus": "evidence-backed-plannable",
+      "cities": [["Jerusalem", "world"], ["Tel Aviv", "world"], ["Haifa", "core"], ["Acre, Israel", "standard", "Acre"], ["Eilat", "core"], ["Tiberias", "standard"], ["Nazareth", "core"]]
+    },
+    "IN": {
+      "label": "India", "qid": "Q668", "wave": 3, "tier": 1,
+      "selectionReason": "Current Catalog identity and a major South Asia travel market with no published City/POI depth.",
+      "currentStatus": "catalog-only", "targetStatus": "evidence-backed-plannable",
+      "cities": [["Delhi", "world"], ["Mumbai", "world"], ["Jaipur", "world"], ["Agra", "world"], ["Varanasi", "core"], ["Udaipur", "core"], ["Jodhpur", "core"], ["Kochi", "core"], ["Panaji", "standard"], ["Chennai", "core"], ["Bengaluru", "core"], ["Kolkata", "core"], ["Amritsar", "core"]]
+    },
+    "KE": {
+      "label": "Kenya", "qid": "Q114", "wave": 3, "tier": 2,
+      "selectionReason": "Current Catalog identity and an East Africa route gap; settlements remain distinct from reserves and parks.",
+      "currentStatus": "catalog-only", "targetStatus": "evidence-backed-plannable",
+      "cities": [["Nairobi", "world"], ["Mombasa", "core"], ["Nakuru", "core"], ["Naivasha", "standard"], ["Kisumu", "standard"], ["Lamu", "standard"], ["Malindi", "standard"]]
+    },
+    "MA": {
+      "label": "Morocco", "qid": "Q1028", "wave": 3, "tier": 1,
+      "selectionReason": "Current Catalog identity and a high-demand North Africa city circuit.",
+      "currentStatus": "catalog-only", "targetStatus": "evidence-backed-plannable",
+      "cities": [["Marrakesh", "world"], ["Fez, Morocco", "world", "Fez"], ["Casablanca", "core"], ["Rabat", "core"], ["Chefchaouen", "core"], ["Essaouira", "core"], ["Tangier", "core"], ["Meknes", "standard"], ["Ouarzazate", "standard"]]
+    },
+    "NG": {
+      "label": "Nigeria", "qid": "Q1033", "wave": 3, "tier": 2,
+      "selectionReason": "Current Catalog identity and a West Africa coverage gap; limited to verified urban destinations.",
+      "currentStatus": "catalog-only", "targetStatus": "evidence-backed-plannable",
+      "cities": [["Lagos", "world"], ["Abuja", "world"], ["Calabar", "core"], ["Kano (city)", "core", "Kano"], ["Ibadan", "standard"], ["Benin City", "standard"]]
+    },
+    "RU": {
+      "label": "Russia", "qid": "Q159", "wave": 3, "tier": 1,
+      "selectionReason": "Current Catalog identity and the largest remaining Eurasian Country-only coverage gap.",
+      "currentStatus": "catalog-only", "targetStatus": "evidence-backed-plannable",
+      "cities": [["Moscow", "world"], ["Saint Petersburg", "world"], ["Kazan", "core"], ["Sochi", "core"], ["Yekaterinburg", "core"], ["Irkutsk", "core"], ["Vladivostok", "core"], ["Nizhny Novgorod", "core"], ["Kaliningrad", "standard"], ["Veliky Novgorod", "standard"]]
+    },
+    "SA": {
+      "label": "Saudi Arabia", "qid": "Q851", "wave": 4, "tier": 2,
+      "selectionReason": "Current Catalog identity and a rapidly growing Middle East destination network.",
+      "currentStatus": "catalog-only", "targetStatus": "evidence-backed-plannable",
+      "cities": [["Riyadh", "world"], ["Jeddah", "world"], ["Medina", "core"], ["Mecca", "core"], ["Tabuk, Saudi Arabia", "core", "Tabuk"], ["Taif", "standard"], ["Dammam", "standard"], ["Abha", "standard"]]
+    },
+    "ZA": {
+      "label": "South Africa", "qid": "Q258", "wave": 4, "tier": 1,
+      "selectionReason": "Current Catalog identity and the primary Southern Africa route-coverage gap.",
+      "currentStatus": "catalog-only", "targetStatus": "evidence-backed-plannable",
+      "cities": [["Cape Town", "world"], ["Johannesburg", "world"], ["Durban", "core"], ["Pretoria", "core"], ["Stellenbosch", "core"], ["Gqeberha", "core"], ["Knysna", "standard"], ["Hermanus", "standard"], ["Bloemfontein", "standard"], ["Kimberley, South Africa", "standard", "Kimberley"]]
+    },
+    "KH": {
+      "label": "Cambodia", "qid": "Q424", "wave": 4, "tier": 2, "iso3": "KHM", "isoNumeric": "116", "region": "Asia", "subregion": "South-eastern Asia",
+      "selectionReason": "Not yet Cataloged; fills a high-demand mainland Southeast Asia gap next to existing Vietnam/Thailand coverage.",
+      "currentStatus": "not-cataloged", "targetStatus": "evidence-backed-plannable",
+      "cities": [["Phnom Penh", "world"], ["Siem Reap", "world"], ["Battambang", "core"], ["Kampot", "standard"], ["Kampong Cham (city)", "town", "Kampong Cham"], ["Sihanoukville", "core"]]
+    },
+    "RO": {
+      "label": "Romania", "qid": "Q218", "wave": 4, "tier": 2, "iso3": "ROU", "isoNumeric": "642", "region": "Europe", "subregion": "Eastern Europe",
+      "selectionReason": "Not yet Cataloged; fills an Eastern Europe gap between the current Hungary, Poland and Balkan coverage.",
+      "currentStatus": "not-cataloged", "targetStatus": "evidence-backed-plannable",
+      "cities": [["Bucharest", "world"], ["Brașov", "core"], ["Sibiu", "core"], ["Cluj-Napoca", "core"], ["Timișoara", "core"], ["Sighișoara", "standard"], ["Constanța", "standard"], ["Iași", "standard"]]
+    },
+    "CR": {
+      "label": "Costa Rica", "qid": "Q800", "wave": 4, "tier": 2, "iso3": "CRI", "isoNumeric": "188", "region": "Americas", "subregion": "Central America",
+      "selectionReason": "Not yet Cataloged; establishes the first broad Central America city route coverage beyond Mexico.",
+      "currentStatus": "not-cataloged", "targetStatus": "evidence-backed-plannable",
+      "cities": [["San José, Costa Rica", "world", "San José"], ["Liberia, Costa Rica", "core", "Liberia"], ["Puntarenas", "core"], ["Limón", "core"], ["Cartago, Costa Rica", "standard", "Cartago"], ["Alajuela", "standard"], ["Heredia, Costa Rica", "standard", "Heredia"], ["San Isidro de El General", "standard", "San Isidro"]]
+    }
+  }
+}

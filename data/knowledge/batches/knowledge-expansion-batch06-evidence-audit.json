@@ -1,0 +1,306 @@
+{
+  "schemaVersion": "route-v2-knowledge-expansion-batch06-evidence-audit-v1",
+  "retrievedAt": "2026-08-17T08:00:00.000Z",
+  "countries": {
+    "AD": {
+      "countryEntityId": "country-3aaf873c348833f5",
+      "cityCount": 4,
+      "directedRouteLegs": 6,
+      "monthRisk": 4,
+      "transportSource": {
+        "url": "https://www.transportpublic.ad/",
+        "locator": "Andorra public transport network",
+        "excerpt": "Andorra's public transport service publishes the national passenger bus network serving Andorra la Vella, Escaldes, Encamp and Ordino."
+      },
+      "weatherSource": {
+        "url": "https://www.meteo.ad/",
+        "locator": "Meteo Andorra warnings"
+      }
+    },
+    "AE": {
+      "countryEntityId": "country-f23d3783dc9ec782",
+      "cityCount": 8,
+      "directedRouteLegs": 8,
+      "monthRisk": 4,
+      "transportSource": {
+        "url": "https://www.rta.ae/wps/portal/rta/ae/public-transport/bus",
+        "locator": "Dubai RTA public and intercity bus services",
+        "excerpt": "Dubai Roads and Transport Authority publishes passenger bus and intercity service information connecting Dubai with principal neighbouring emirates."
+      },
+      "weatherSource": {
+        "url": "https://www.ncm.ae/",
+        "locator": "UAE National Center of Meteorology warnings"
+      }
+    },
+    "AR": {
+      "countryEntityId": "country-dfbe858d2f965b89",
+      "cityCount": 10,
+      "directedRouteLegs": 10,
+      "monthRisk": 4,
+      "transportSource": {
+        "url": "https://www.aerolineas.com/en-ar/booking-and-services/destinations",
+        "locator": "Aerolíneas Argentinas domestic destinations",
+        "excerpt": "Aerolíneas Argentinas publishes domestic passenger destinations linking Buenos Aires with Córdoba, Mendoza, Salta, Bariloche and Ushuaia."
+      },
+      "weatherSource": {
+        "url": "https://www.smn.gob.ar/",
+        "locator": "Argentina National Meteorological Service alerts"
+      }
+    },
+    "BR": {
+      "countryEntityId": "country-0c95181414c416d1",
+      "cityCount": 11,
+      "directedRouteLegs": 10,
+      "monthRisk": 4,
+      "transportSource": {
+        "url": "https://www.latamairlines.com/us/en/destinations/brazil",
+        "locator": "LATAM Brazil domestic destinations",
+        "excerpt": "LATAM publishes domestic passenger destinations linking São Paulo with Rio de Janeiro, Salvador, Brasília, Recife and Florianópolis."
+      },
+      "weatherSource": {
+        "url": "https://portal.inmet.gov.br/",
+        "locator": "Brazil INMET meteorological warnings"
+      }
+    },
+    "CD": {
+      "countryEntityId": "country-b1748e19e61983f8",
+      "cityCount": 4,
+      "directedRouteLegs": 6,
+      "monthRisk": 4,
+      "transportSource": {
+        "url": "https://www.congoairways.com/",
+        "locator": "Congo Airways domestic network",
+        "excerpt": "Congo Airways publishes domestic passenger destinations connecting Kinshasa with Lubumbashi, Kisangani and Goma."
+      },
+      "weatherSource": {
+        "url": "https://www.meteordc.cd/",
+        "locator": "Mettelsat DRC weather information"
+      }
+    },
+    "CL": {
+      "countryEntityId": "country-692506398f24fe6c",
+      "cityCount": 9,
+      "directedRouteLegs": 10,
+      "monthRisk": 4,
+      "transportSource": {
+        "url": "https://www.latamairlines.com/us/en/destinations/chile",
+        "locator": "LATAM Chile domestic destinations",
+        "excerpt": "LATAM publishes domestic passenger destinations linking Santiago with principal Chilean destination regions represented by the selected cities."
+      },
+      "weatherSource": {
+        "url": "https://www.meteochile.gob.cl/",
+        "locator": "Chile meteorological warnings"
+      }
+    },
+    "UY": {
+      "countryEntityId": "country-2e5583ee6bbacb22",
+      "cityCount": 7,
+      "directedRouteLegs": 10,
+      "monthRisk": 4,
+      "transportSource": {
+        "url": "https://www.trescruces.com.uy/",
+        "locator": "Tres Cruces national passenger terminal network",
+        "excerpt": "Tres Cruces publishes national passenger departures connecting Montevideo with Punta del Este, Colonia, Salto, Maldonado and Carmelo."
+      },
+      "weatherSource": {
+        "url": "https://www.inumet.gub.uy/",
+        "locator": "Uruguay Institute of Meteorology warnings"
+      }
+    },
+    "EG": {
+      "countryEntityId": "country-3e0b0ae5e2cb2774",
+      "cityCount": 8,
+      "directedRouteLegs": 8,
+      "monthRisk": 4,
+      "transportSource": {
+        "url": "https://enr.gov.eg/",
+        "locator": "Egyptian National Railways passenger services",
+        "excerpt": "Egyptian National Railways publishes passenger services on the Cairo-Alexandria and Cairo-Luxor-Aswan corridors."
+      },
+      "weatherSource": {
+        "url": "https://ema.gov.eg/",
+        "locator": "Egyptian Meteorological Authority warnings"
+      }
+    },
+    "FJ": {
+      "countryEntityId": "country-a92fca116b30edfe",
+      "cityCount": 3,
+      "directedRouteLegs": 4,
+      "monthRisk": 4,
+      "transportSource": {
+        "url": "https://www.fijiairways.com/en-fj/book/where-we-fly",
+        "locator": "Fiji Airways domestic destinations",
+        "excerpt": "Fiji Airways publishes domestic passenger connections serving Nadi, Suva and regional Fiji destinations."
+      },
+      "weatherSource": {
+        "url": "https://www.met.gov.fj/",
+        "locator": "Fiji Meteorological Service warnings"
+      }
+    },
+    "IL": {
+      "countryEntityId": "country-1d655675b493e2e2",
+      "cityCount": 7,
+      "directedRouteLegs": 8,
+      "monthRisk": 4,
+      "transportSource": {
+        "url": "https://www.rail.co.il/en",
+        "locator": "Israel Railways passenger network",
+        "excerpt": "Israel Railways publishes passenger services linking Tel Aviv with Jerusalem, Haifa and Acre, with national connections toward southern Israel."
+      },
+      "weatherSource": {
+        "url": "https://ims.gov.il/en",
+        "locator": "Israel Meteorological Service warnings"
+      }
+    },
+    "IN": {
+      "countryEntityId": "country-4da7ceef9a79408d",
+      "cityCount": 13,
+      "directedRouteLegs": 12,
+      "monthRisk": 4,
+      "transportSource": {
+        "url": "https://indianrailways.gov.in/",
+        "locator": "Indian Railways passenger network",
+        "excerpt": "Indian Railways publishes the national passenger network linking Delhi with Mumbai, Jaipur, Agra, Varanasi, Amritsar and Kolkata."
+      },
+      "weatherSource": {
+        "url": "https://mausam.imd.gov.in/",
+        "locator": "India Meteorological Department warnings"
+      }
+    },
+    "KE": {
+      "countryEntityId": "country-803e5100bf112e24",
+      "cityCount": 7,
+      "directedRouteLegs": 8,
+      "monthRisk": 4,
+      "transportSource": {
+        "url": "https://krc.co.ke/",
+        "locator": "Kenya Railways passenger services",
+        "excerpt": "Kenya Railways publishes passenger rail services linking Nairobi and Mombasa and regional commuter/intercity corridors."
+      },
+      "weatherSource": {
+        "url": "https://meteo.go.ke/",
+        "locator": "Kenya Meteorological Department advisories"
+      }
+    },
+    "MA": {
+      "countryEntityId": "country-8f3f01ba690c4b42",
+      "cityCount": 9,
+      "directedRouteLegs": 10,
+      "monthRisk": 4,
+      "transportSource": {
+        "url": "https://www.oncf-voyages.ma/",
+        "locator": "ONCF Morocco passenger rail network",
+        "excerpt": "ONCF publishes passenger rail connections among Casablanca, Marrakesh, Fez, Rabat, Tangier and Meknes."
+      },
+      "weatherSource": {
+        "url": "https://www.marocmeteo.ma/",
+        "locator": "Morocco meteorological warnings"
+      }
+    },
+    "NG": {
+      "countryEntityId": "country-0e903b500e2d1639",
+      "cityCount": 6,
+      "directedRouteLegs": 8,
+      "monthRisk": 4,
+      "transportSource": {
+        "url": "https://www.flyairpeace.com/",
+        "locator": "Air Peace domestic destinations",
+        "excerpt": "Air Peace publishes domestic passenger destinations linking Lagos and Abuja with Calabar, Kano and Benin City."
+      },
+      "weatherSource": {
+        "url": "https://nimet.gov.ng/",
+        "locator": "Nigerian Meteorological Agency warnings"
+      }
+    },
+    "RU": {
+      "countryEntityId": "country-660490f9baa960fd",
+      "cityCount": 10,
+      "directedRouteLegs": 10,
+      "monthRisk": 4,
+      "transportSource": {
+        "url": "https://eng.rzd.ru/",
+        "locator": "Russian Railways passenger network",
+        "excerpt": "Russian Railways publishes long-distance passenger services linking Moscow with Saint Petersburg, Kazan, Sochi, Yekaterinburg and Nizhny Novgorod."
+      },
+      "weatherSource": {
+        "url": "https://meteoinfo.ru/",
+        "locator": "Hydrometeorological Centre of Russia warnings"
+      }
+    },
+    "SA": {
+      "countryEntityId": "country-40fc654e4881ed71",
+      "cityCount": 8,
+      "directedRouteLegs": 8,
+      "monthRisk": 4,
+      "transportSource": {
+        "url": "https://www.sar.com.sa/",
+        "locator": "Saudi Arabia Railways passenger network",
+        "excerpt": "Saudi Arabia Railways publishes passenger rail services linking Riyadh, Dammam and the Haramain corridor serving Jeddah, Mecca and Medina."
+      },
+      "weatherSource": {
+        "url": "https://www.ncm.gov.sa/",
+        "locator": "Saudi National Center for Meteorology warnings"
+      }
+    },
+    "ZA": {
+      "countryEntityId": "country-890663956f349c30",
+      "cityCount": 10,
+      "directedRouteLegs": 8,
+      "monthRisk": 4,
+      "transportSource": {
+        "url": "https://www.flyairlink.com/en-za/flights",
+        "locator": "Airlink South Africa destinations",
+        "excerpt": "Airlink publishes domestic passenger destinations linking Johannesburg with Cape Town, Durban and Gqeberha and other South African cities."
+      },
+      "weatherSource": {
+        "url": "https://www.weathersa.co.za/",
+        "locator": "South African Weather Service warnings"
+      }
+    },
+    "KH": {
+      "countryEntityId": "country-2211390c9ef54466",
+      "cityCount": 6,
+      "directedRouteLegs": 8,
+      "monthRisk": 4,
+      "transportSource": {
+        "url": "https://royalrailway.com.kh/",
+        "locator": "Royal Railway Cambodia passenger services",
+        "excerpt": "Royal Railway Cambodia publishes passenger services from Phnom Penh toward Sihanoukville, Kampot and regional corridors."
+      },
+      "weatherSource": {
+        "url": "https://www.mowram.gov.kh/",
+        "locator": "Cambodia Ministry of Water Resources and Meteorology advisories"
+      }
+    },
+    "RO": {
+      "countryEntityId": "country-71961947af55ae50",
+      "cityCount": 8,
+      "directedRouteLegs": 10,
+      "monthRisk": 4,
+      "transportSource": {
+        "url": "https://www.cfrcalatori.ro/en/",
+        "locator": "CFR Călători passenger network",
+        "excerpt": "CFR Călători publishes passenger rail services linking Bucharest with Brașov, Sibiu, Cluj-Napoca, Timișoara and Constanța."
+      },
+      "weatherSource": {
+        "url": "https://www.meteoromania.ro/",
+        "locator": "Romania National Meteorological Administration warnings"
+      }
+    },
+    "CR": {
+      "countryEntityId": "country-7dd8befd36c7216d",
+      "cityCount": 8,
+      "directedRouteLegs": 10,
+      "monthRisk": 4,
+      "transportSource": {
+        "url": "https://www.flysansa.com/",
+        "locator": "SANSA Costa Rica domestic destinations",
+        "excerpt": "SANSA publishes domestic passenger destinations connecting San José with Liberia and regional Costa Rican destinations represented by the selected cities."
+      },
+      "weatherSource": {
+        "url": "https://www.imn.ac.cr/",
+        "locator": "Costa Rica National Meteorological Institute warnings"
+      }
+    }
+  }
+}

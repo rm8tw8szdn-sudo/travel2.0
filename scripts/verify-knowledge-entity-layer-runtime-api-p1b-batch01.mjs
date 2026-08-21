@@ -328,17 +328,20 @@ try {
   const pilotPois = JSON.parse(readText("data/knowledge/pois.p1b-pilot.json")).pois
     .filter((poi) => !batchCityIds.has(poi.parentCityEntityId));
 
-  assert.equal(new Set(countries.map((entity) => entity.entityId)).size, 55);
-  assert.equal(new Set(cities.map((entity) => entity.entityId)).size, 306);
-  assert.equal(new Set(pois.map((entity) => entity.entityId)).size, 2101);
-  assert.equal(new Set([...countries, ...cities, ...pois].map((entity) => entity.entityId)).size, 2462);
-  assert.equal(new Set(cities.map((entity) => entity.wikidataId)).size, 306);
-  assert.equal(new Set(pois.map((entity) => entity.wikidataId)).size, 2101);
+  assert.equal(new Set(countries.map((entity) => entity.entityId)).size, KNOWLEDGE_ENTITY_LAYER_PUBLISHED_TOTALS.countries);
+  assert.equal(new Set(cities.map((entity) => entity.entityId)).size, KNOWLEDGE_ENTITY_LAYER_PUBLISHED_TOTALS.cities);
+  assert.equal(new Set(pois.map((entity) => entity.entityId)).size, KNOWLEDGE_ENTITY_LAYER_PUBLISHED_TOTALS.pois);
+  assert.equal(new Set([...countries, ...cities, ...pois].map((entity) => entity.entityId)).size, KNOWLEDGE_ENTITY_LAYER_PUBLISHED_TOTALS.total);
+  assert.equal(new Set(cities.map((entity) => entity.wikidataId)).size, KNOWLEDGE_ENTITY_LAYER_PUBLISHED_TOTALS.cities);
+  assert.equal(new Set(pois.map((entity) => entity.wikidataId)).size, KNOWLEDGE_ENTITY_LAYER_PUBLISHED_TOTALS.pois);
   assert.equal(pilotPois.length, 9);
   for (const city of batchCities) {
     const expectedCount = EXPECTED_CITY_POI_COUNTS[city.canonicalNameEn];
     assert.ok(Number.isInteger(expectedCount), `Missing expected POI count for ${city.canonicalNameEn}`);
-    assert.equal(repository.listPoisByCity(city.entityId).length, expectedCount, `${city.canonicalNameEn} POI count`);
+    assert.ok(
+      repository.listPoisByCity(city.entityId).length >= expectedCount,
+      `${city.canonicalNameEn} POI count fell below its published historical baseline`,
+    );
   }
 
   const countriesCopy = repository.listCountries();
@@ -384,7 +387,7 @@ try {
 
   const countriesResponse = await request("/api/knowledge-entities/countries");
   assert.equal(countriesResponse.status, 200);
-  assert.equal(countriesResponse.payload.countries.length, 55);
+  assert.equal(countriesResponse.payload.countries.length, KNOWLEDGE_ENTITY_LAYER_PUBLISHED_TOTALS.countries);
   const countriesAgain = await request("/api/knowledge-entities/countries");
   assert.deepEqual(countriesAgain.payload, countriesResponse.payload);
 
@@ -403,7 +406,8 @@ try {
   for (const city of batchCities) {
     const response = await request(`/api/knowledge-entities/cities/${city.entityId}/pois`);
     assert.equal(response.status, 200);
-    assert.equal(response.payload.pois.length, EXPECTED_CITY_POI_COUNTS[city.canonicalNameEn], `${city.canonicalNameEn} runtime POI count`);
+    assert.equal(response.payload.pois.length, repository.listPoisByCity(city.entityId).length, `${city.canonicalNameEn} runtime POI count`);
+    assert.ok(response.payload.pois.length >= EXPECTED_CITY_POI_COUNTS[city.canonicalNameEn], `${city.canonicalNameEn} runtime POI count fell below its published historical baseline`);
     assert.ok(response.payload.pois.every((poi) => poi.parentCityEntityId === city.entityId));
     const repeated = await request(`/api/knowledge-entities/cities/${city.entityId}/pois`);
     assert.deepEqual(repeated.payload, response.payload, `${city.canonicalNameEn} ordering changed`);
@@ -447,7 +451,8 @@ try {
     assert.equal(publicPayloadText.includes(forbidden), false, `runtime API exposed forbidden detail: ${forbidden}`);
   }
   assert.ok(requestedPaths.every((relativePath) => relativePath.startsWith("/api/knowledge-entities/")));
-  assert.equal((output.stdout.match(/Knowledge Entity Layer: 55 countries, 306 cities, 2101 POIs/g) || []).length, 1);
+  const expectedStartupSummary = `Knowledge Entity Layer: ${KNOWLEDGE_ENTITY_LAYER_PUBLISHED_TOTALS.countries} countries, ${KNOWLEDGE_ENTITY_LAYER_PUBLISHED_TOTALS.cities} cities, ${KNOWLEDGE_ENTITY_LAYER_PUBLISHED_TOTALS.pois} POIs`;
+  assert.equal(output.stdout.split(expectedStartupSummary).length - 1, 1);
   assert.equal(output.stderr, "", `server stderr was not empty:\n${output.stderr}`);
 
   result = {

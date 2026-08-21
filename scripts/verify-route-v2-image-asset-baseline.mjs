@@ -130,9 +130,9 @@ assert.equal(model.references.externalImageReferences.filter((entry) => entry.ki
 assert.equal(model.references.unsafeProductionImages.length, 0, `unverified legacy destination images in production:${JSON.stringify(model.references.unsafeProductionImages)}`);
 assert.equal(model.coverage.invalidMappings, 0);
 assert.equal(model.backfill.problems.length, 0, `needsBackfill mismatches:${JSON.stringify(model.backfill.problems)}`);
-assert.equal(model.backfill.total, model.coverage.cities.total + model.coverage.corePois.total);
-assert.equal(model.coverage.cities.dedicated, 0);
-assert.equal(model.coverage.corePois.dedicated, 0);
+assert.equal(model.backfill.total, model.coverage.cities.total - model.coverage.cities.dedicated + model.coverage.corePois.total - model.coverage.corePois.dedicated);
+assert(model.coverage.cities.dedicated >= 0 && model.coverage.cities.dedicated <= model.coverage.cities.total);
+assert(model.coverage.corePois.dedicated >= 0 && model.coverage.corePois.dedicated <= model.coverage.corePois.total);
 assert.equal(model.coverage.neutralPlaceholderAssignments, model.backfill.total);
 assert.equal(model.git.invalidLfsPointers.length, 0, `invalid LFS pointers:${JSON.stringify(model.git.invalidLfsPointers)}`);
 assert.equal(IMAGE_SIZE_AUDIT_THRESHOLD_BYTES, 300_000);

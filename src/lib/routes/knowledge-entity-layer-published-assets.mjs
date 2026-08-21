@@ -11,10 +11,10 @@ const moduleDirectory = path.dirname(fileURLToPath(import.meta.url));
 const defaultProjectRoot = path.resolve(moduleDirectory, "../../..");
 
 export const KNOWLEDGE_ENTITY_LAYER_PUBLISHED_TOTALS = Object.freeze({
-  countries: 55,
-  cities: 306,
-  pois: 2101,
-  total: 2462,
+  countries: 59,
+  cities: 462,
+  pois: 3130,
+  total: 3651,
 });
 
 export const KNOWLEDGE_ENTITY_LAYER_PUBLISHED_ASSETS = Object.freeze({
@@ -25,6 +25,7 @@ export const KNOWLEDGE_ENTITY_LAYER_PUBLISHED_ASSETS = Object.freeze({
     "data/knowledge/batches/countries.p1a-batch03.json",
     "data/knowledge/batches/countries.p1a-batch04.json",
     "data/knowledge/batches/countries.p1a-batch05.json",
+    "data/knowledge/batches/countries.p1a-batch06.json",
   ]),
   cities: Object.freeze([
     "data/knowledge/cities.p1b-pilot.json",
@@ -45,6 +46,10 @@ export const KNOWLEDGE_ENTITY_LAYER_PUBLISHED_ASSETS = Object.freeze({
     "data/knowledge/batches/cities.p1b-batch15.json",
     "data/knowledge/batches/cities.p1b-batch16.json",
     "data/knowledge/batches/cities.p1b-batch17.json",
+    "data/knowledge/batches/cities.p1b-batch18.json",
+    "data/knowledge/batches/cities.p1b-batch19.json",
+    "data/knowledge/batches/cities.p1b-batch20.json",
+    "data/knowledge/batches/cities.p1b-batch21.json",
   ]),
   pois: Object.freeze([
     "data/knowledge/pois.p1b-pilot.json",
@@ -65,6 +70,10 @@ export const KNOWLEDGE_ENTITY_LAYER_PUBLISHED_ASSETS = Object.freeze({
     "data/knowledge/batches/pois.p1b-batch15.json",
     "data/knowledge/batches/pois.p1b-batch16.json",
     "data/knowledge/batches/pois.p1b-batch17.json",
+    "data/knowledge/batches/pois.p1b-batch18.json",
+    "data/knowledge/batches/pois.p1b-batch19.json",
+    "data/knowledge/batches/pois.p1b-batch20.json",
+    "data/knowledge/batches/pois.p1b-batch21.json",
   ]),
 });
 

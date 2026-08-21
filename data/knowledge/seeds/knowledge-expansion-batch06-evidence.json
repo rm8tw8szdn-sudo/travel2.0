@@ -1,0 +1,106 @@
+{
+  "schemaVersion": "route-v2-knowledge-expansion-batch06-evidence-seed-v1",
+  "retrievedAt": "2026-08-17T08:00:00.000Z",
+  "countries": {
+    "AD": {
+      "transportSource": { "url": "https://www.transportpublic.ad/", "locator": "Andorra public transport network", "excerpt": "Andorra's public transport service publishes the national passenger bus network serving Andorra la Vella, Escaldes, Encamp and Ordino." },
+      "pairs": [["Andorra la Vella", "Escaldes", "bus"], ["Andorra la Vella", "Encamp", "bus"], ["Andorra la Vella", "Ordino", "bus"]],
+      "weatherSource": { "url": "https://www.meteo.ad/", "locator": "Meteo Andorra warnings", "first": [1, ["snow-or-ice-risk"]], "second": [7, ["severe-thunderstorm-risk", "high-temperature-risk"]] }
+    },
+    "AE": {
+      "transportSource": { "url": "https://www.rta.ae/wps/portal/rta/ae/public-transport/bus", "locator": "Dubai RTA public and intercity bus services", "excerpt": "Dubai Roads and Transport Authority publishes passenger bus and intercity service information connecting Dubai with principal neighbouring emirates." },
+      "pairs": [["Dubai", "Abu Dhabi", "bus"], ["Dubai", "Sharjah", "bus"], ["Dubai", "Ajman", "bus"], ["Dubai", "Fujairah", "bus"]],
+      "weatherSource": { "url": "https://www.ncm.ae/", "locator": "UAE National Center of Meteorology warnings", "first": [7, ["extreme-heat-risk", "dust-risk"]], "second": [1, ["fog-risk", "heavy-rain-risk"]] }
+    },
+    "AR": {
+      "transportSource": { "url": "https://www.aerolineas.com/en-ar/booking-and-services/destinations", "locator": "Aerolíneas Argentinas domestic destinations", "excerpt": "Aerolíneas Argentinas publishes domestic passenger destinations linking Buenos Aires with Córdoba, Mendoza, Salta, Bariloche and Ushuaia." },
+      "pairs": [["Buenos Aires", "Córdoba", "air"], ["Buenos Aires", "Mendoza", "air"], ["Buenos Aires", "Salta", "air"], ["Buenos Aires", "Bariloche", "air"], ["Buenos Aires", "Ushuaia", "air"]],
+      "weatherSource": { "url": "https://www.smn.gob.ar/", "locator": "Argentina National Meteorological Service alerts", "first": [1, ["high-temperature-risk", "severe-thunderstorm-risk"]], "second": [7, ["snow-or-ice-risk", "strong-wind-risk"]] }
+    },
+    "BR": {
+      "transportSource": { "url": "https://www.latamairlines.com/us/en/destinations/brazil", "locator": "LATAM Brazil domestic destinations", "excerpt": "LATAM publishes domestic passenger destinations linking São Paulo with Rio de Janeiro, Salvador, Brasília, Recife and Florianópolis." },
+      "pairs": [["São Paulo", "Rio de Janeiro", "air"], ["São Paulo", "Salvador", "air"], ["São Paulo", "Brasília", "air"], ["São Paulo", "Recife", "air"], ["São Paulo", "Florianópolis", "air"]],
+      "weatherSource": { "url": "https://portal.inmet.gov.br/", "locator": "Brazil INMET meteorological warnings", "first": [1, ["heavy-rain-risk", "flood-risk"]], "second": [9, ["high-temperature-risk", "wildfire-weather-risk"]] }
+    },
+    "CD": {
+      "transportSource": { "url": "https://www.congoairways.com/", "locator": "Congo Airways domestic network", "excerpt": "Congo Airways publishes domestic passenger destinations connecting Kinshasa with Lubumbashi, Kisangani and Goma." },
+      "pairs": [["Kinshasa", "Lubumbashi", "air"], ["Kinshasa", "Kisangani", "air"], ["Kinshasa", "Goma", "air"]],
+      "weatherSource": { "url": "https://www.meteordc.cd/", "locator": "Mettelsat DRC weather information", "first": [3, ["heavy-rain-risk", "flood-risk"]], "second": [11, ["severe-thunderstorm-risk", "landslide-risk"]] }
+    },
+    "CL": {
+      "transportSource": { "url": "https://www.latamairlines.com/us/en/destinations/chile", "locator": "LATAM Chile domestic destinations", "excerpt": "LATAM publishes domestic passenger destinations linking Santiago with principal Chilean destination regions represented by the selected cities." },
+      "pairs": [["Santiago", "Valparaíso", "bus"], ["Santiago", "Viña del Mar", "bus"], ["Santiago", "Punta Arenas", "air"], ["Santiago", "La Serena", "air"], ["Santiago", "Puerto Varas", "air-bus"]],
+      "weatherSource": { "url": "https://www.meteochile.gob.cl/", "locator": "Chile meteorological warnings", "first": [1, ["wildfire-weather-risk", "high-temperature-risk"]], "second": [7, ["heavy-rain-risk", "snow-or-ice-risk"]] }
+    },
+    "UY": {
+      "transportSource": { "url": "https://www.trescruces.com.uy/", "locator": "Tres Cruces national passenger terminal network", "excerpt": "Tres Cruces publishes national passenger departures connecting Montevideo with Punta del Este, Colonia, Salto, Maldonado and Carmelo." },
+      "pairs": [["Montevideo", "Punta del Este", "bus"], ["Montevideo", "Colonia del Sacramento", "bus"], ["Montevideo", "Salto", "bus"], ["Montevideo", "Maldonado", "bus"], ["Montevideo", "Carmelo", "bus"]],
+      "weatherSource": { "url": "https://www.inumet.gub.uy/", "locator": "Uruguay Institute of Meteorology warnings", "first": [1, ["high-temperature-risk", "severe-thunderstorm-risk"]], "second": [7, ["cold-wave-risk", "strong-wind-risk"]] }
+    },
+    "EG": {
+      "transportSource": { "url": "https://enr.gov.eg/", "locator": "Egyptian National Railways passenger services", "excerpt": "Egyptian National Railways publishes passenger services on the Cairo-Alexandria and Cairo-Luxor-Aswan corridors." },
+      "pairs": [["Cairo", "Alexandria", "rail"], ["Cairo", "Luxor", "rail"], ["Luxor", "Aswan", "rail"], ["Cairo", "Hurghada", "bus"]],
+      "weatherSource": { "url": "https://ema.gov.eg/", "locator": "Egyptian Meteorological Authority warnings", "first": [7, ["extreme-heat-risk", "dust-risk"]], "second": [1, ["strong-wind-risk", "heavy-rain-risk"]] }
+    },
+    "FJ": {
+      "transportSource": { "url": "https://www.fijiairways.com/en-fj/book/where-we-fly", "locator": "Fiji Airways domestic destinations", "excerpt": "Fiji Airways publishes domestic passenger connections serving Nadi, Suva and regional Fiji destinations." },
+      "pairs": [["Suva", "Nadi", "air"], ["Nadi", "Lautoka", "bus"]],
+      "weatherSource": { "url": "https://www.met.gov.fj/", "locator": "Fiji Meteorological Service warnings", "first": [2, ["tropical-cyclone-risk", "heavy-rain-risk", "flood-risk"]], "second": [11, ["severe-thunderstorm-risk", "heavy-rain-risk"]] }
+    },
+    "IL": {
+      "transportSource": { "url": "https://www.rail.co.il/en", "locator": "Israel Railways passenger network", "excerpt": "Israel Railways publishes passenger services linking Tel Aviv with Jerusalem, Haifa and Acre, with national connections toward southern Israel." },
+      "pairs": [["Tel Aviv", "Jerusalem", "rail"], ["Tel Aviv", "Haifa", "rail"], ["Haifa", "Acre", "rail"], ["Tel Aviv", "Eilat", "bus"]],
+      "weatherSource": { "url": "https://ims.gov.il/en", "locator": "Israel Meteorological Service warnings", "first": [7, ["extreme-heat-risk", "wildfire-weather-risk"]], "second": [1, ["heavy-rain-risk", "flood-risk"]] }
+    },
+    "IN": {
+      "transportSource": { "url": "https://indianrailways.gov.in/", "locator": "Indian Railways passenger network", "excerpt": "Indian Railways publishes the national passenger network linking Delhi with Mumbai, Jaipur, Agra, Varanasi, Amritsar and Kolkata." },
+      "pairs": [["Delhi", "Mumbai", "rail"], ["Delhi", "Jaipur", "rail"], ["Delhi", "Agra", "rail"], ["Delhi", "Varanasi", "rail"], ["Delhi", "Amritsar", "rail"], ["Delhi", "Kolkata", "rail"]],
+      "weatherSource": { "url": "https://mausam.imd.gov.in/", "locator": "India Meteorological Department warnings", "first": [6, ["heavy-rain-risk", "flood-risk", "landslide-risk"]], "second": [5, ["extreme-heat-risk", "dust-risk"]] }
+    },
+    "KE": {
+      "transportSource": { "url": "https://krc.co.ke/", "locator": "Kenya Railways passenger services", "excerpt": "Kenya Railways publishes passenger rail services linking Nairobi and Mombasa and regional commuter/intercity corridors." },
+      "pairs": [["Nairobi", "Mombasa", "rail"], ["Nairobi", "Nakuru", "rail-bus"], ["Nairobi", "Naivasha", "rail-bus"], ["Nairobi", "Kisumu", "air"]],
+      "weatherSource": { "url": "https://meteo.go.ke/", "locator": "Kenya Meteorological Department advisories", "first": [4, ["heavy-rain-risk", "flood-risk"]], "second": [10, ["heavy-rain-risk", "landslide-risk"]] }
+    },
+    "MA": {
+      "transportSource": { "url": "https://www.oncf-voyages.ma/", "locator": "ONCF Morocco passenger rail network", "excerpt": "ONCF publishes passenger rail connections among Casablanca, Marrakesh, Fez, Rabat, Tangier and Meknes." },
+      "pairs": [["Casablanca", "Marrakesh", "rail"], ["Casablanca", "Fez", "rail"], ["Casablanca", "Rabat", "rail"], ["Casablanca", "Tangier", "rail"], ["Fez", "Meknes", "rail"]],
+      "weatherSource": { "url": "https://www.marocmeteo.ma/", "locator": "Morocco meteorological warnings", "first": [7, ["extreme-heat-risk", "wildfire-weather-risk"]], "second": [1, ["heavy-rain-risk", "flood-risk", "snow-or-ice-risk"]] }
+    },
+    "NG": {
+      "transportSource": { "url": "https://www.flyairpeace.com/", "locator": "Air Peace domestic destinations", "excerpt": "Air Peace publishes domestic passenger destinations linking Lagos and Abuja with Calabar, Kano and Benin City." },
+      "pairs": [["Lagos", "Abuja", "air"], ["Lagos", "Calabar", "air"], ["Lagos", "Kano", "air"], ["Lagos", "Benin City", "air"]],
+      "weatherSource": { "url": "https://nimet.gov.ng/", "locator": "Nigerian Meteorological Agency warnings", "first": [8, ["heavy-rain-risk", "flood-risk"]], "second": [3, ["high-temperature-risk", "dust-risk"]] }
+    },
+    "RU": {
+      "transportSource": { "url": "https://eng.rzd.ru/", "locator": "Russian Railways passenger network", "excerpt": "Russian Railways publishes long-distance passenger services linking Moscow with Saint Petersburg, Kazan, Sochi, Yekaterinburg and Nizhny Novgorod." },
+      "pairs": [["Moscow", "Saint Petersburg", "rail"], ["Moscow", "Kazan", "rail"], ["Moscow", "Sochi", "rail"], ["Moscow", "Yekaterinburg", "rail"], ["Moscow", "Nizhny Novgorod", "rail"]],
+      "weatherSource": { "url": "https://meteoinfo.ru/", "locator": "Hydrometeorological Centre of Russia warnings", "first": [1, ["extreme-cold-risk", "heavy-snow-risk", "ice-risk"]], "second": [7, ["wildfire-weather-risk", "severe-thunderstorm-risk"]] }
+    },
+    "SA": {
+      "transportSource": { "url": "https://www.sar.com.sa/", "locator": "Saudi Arabia Railways passenger network", "excerpt": "Saudi Arabia Railways publishes passenger rail services linking Riyadh, Dammam and the Haramain corridor serving Jeddah, Mecca and Medina." },
+      "pairs": [["Riyadh", "Dammam", "rail"], ["Jeddah", "Mecca", "rail"], ["Jeddah", "Medina", "rail"], ["Riyadh", "Jeddah", "air"]],
+      "weatherSource": { "url": "https://www.ncm.gov.sa/", "locator": "Saudi National Center for Meteorology warnings", "first": [7, ["extreme-heat-risk", "dust-risk"]], "second": [1, ["heavy-rain-risk", "flood-risk"]] }
+    },
+    "ZA": {
+      "transportSource": { "url": "https://www.flyairlink.com/en-za/flights", "locator": "Airlink South Africa destinations", "excerpt": "Airlink publishes domestic passenger destinations linking Johannesburg with Cape Town, Durban and Gqeberha and other South African cities." },
+      "pairs": [["Johannesburg", "Cape Town", "air"], ["Johannesburg", "Durban", "air"], ["Johannesburg", "Pretoria", "rail"], ["Johannesburg", "Gqeberha", "air"]],
+      "weatherSource": { "url": "https://www.weathersa.co.za/", "locator": "South African Weather Service warnings", "first": [1, ["high-temperature-risk", "severe-thunderstorm-risk"]], "second": [7, ["heavy-rain-risk", "strong-wind-risk"]] }
+    },
+    "KH": {
+      "transportSource": { "url": "https://royalrailway.com.kh/", "locator": "Royal Railway Cambodia passenger services", "excerpt": "Royal Railway Cambodia publishes passenger services from Phnom Penh toward Sihanoukville, Kampot and regional corridors." },
+      "pairs": [["Phnom Penh", "Sihanoukville", "rail"], ["Phnom Penh", "Kampot", "rail"], ["Phnom Penh", "Battambang", "rail"], ["Phnom Penh", "Siem Reap", "bus"]],
+      "weatherSource": { "url": "https://www.mowram.gov.kh/", "locator": "Cambodia Ministry of Water Resources and Meteorology advisories", "first": [9, ["heavy-rain-risk", "flood-risk"]], "second": [4, ["extreme-heat-risk", "severe-thunderstorm-risk"]] }
+    },
+    "RO": {
+      "transportSource": { "url": "https://www.cfrcalatori.ro/en/", "locator": "CFR Călători passenger network", "excerpt": "CFR Călători publishes passenger rail services linking Bucharest with Brașov, Sibiu, Cluj-Napoca, Timișoara and Constanța." },
+      "pairs": [["Bucharest", "Brașov", "rail"], ["Bucharest", "Sibiu", "rail"], ["Bucharest", "Cluj-Napoca", "rail"], ["Bucharest", "Timișoara", "rail"], ["Bucharest", "Constanța", "rail"]],
+      "weatherSource": { "url": "https://www.meteoromania.ro/", "locator": "Romania National Meteorological Administration warnings", "first": [1, ["heavy-snow-risk", "ice-risk"]], "second": [7, ["high-temperature-risk", "severe-thunderstorm-risk"]] }
+    },
+    "CR": {
+      "transportSource": { "url": "https://www.flysansa.com/", "locator": "SANSA Costa Rica domestic destinations", "excerpt": "SANSA publishes domestic passenger destinations connecting San José with Liberia and regional Costa Rican destinations represented by the selected cities." },
+      "pairs": [["San José", "Liberia", "air"], ["San José", "Puntarenas", "bus"], ["San José", "Limón", "bus"], ["San José", "Cartago", "bus"], ["San José", "Alajuela", "bus"]],
+      "weatherSource": { "url": "https://www.imn.ac.cr/", "locator": "Costa Rica National Meteorological Institute warnings", "first": [9, ["heavy-rain-risk", "flood-risk", "landslide-risk"]], "second": [3, ["high-temperature-risk", "wildfire-weather-risk"]] }
+    }
+  }
+}

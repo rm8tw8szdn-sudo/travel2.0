@@ -40,9 +40,9 @@ assert.equal(manifest.coverage.overall.countryCoverCoverage.percent, 100);
 assert.equal(manifest.coverage.overall.invalidMappingCount, 0);
 assert.equal(manifest.coverage.overall.cityPlaceholderCount, manifest.cities.filter((record) => record.status === "placeholder").length);
 assert.equal(manifest.coverage.overall.needsBackfillCount, [...manifest.cities, ...manifest.pois].filter((record) => record.needsBackfill).length);
-assert.equal(manifest.coverage.overall.cityDedicatedImageCoverage.ready, 0);
-assert.equal(manifest.coverage.overall.corePoiImageCoverage.ready, 0);
-assert.equal(manifest.coverage.overall.needsBackfillCount, manifest.cities.length + manifest.pois.length);
+assert.equal(manifest.coverage.overall.cityDedicatedImageCoverage.ready, manifest.cities.filter((record) => record.status === "imageReady").length);
+assert.equal(manifest.coverage.overall.corePoiImageCoverage.ready, manifest.pois.filter((record) => record.status === "imageReady").length);
+assert.equal(manifest.coverage.overall.needsBackfillCount, manifest.cities.filter((record) => record.status === "placeholder").length + manifest.pois.filter((record) => record.status === "placeholder").length);
 assert.deepEqual(manifest.invalidMappings, []);
 
 const dedicatedPaths = new Set();
@@ -52,21 +52,21 @@ for (const record of [...manifest.countries, ...manifest.cities, ...manifest.poi
   assert.equal(typeof record.assetType, "string");
   assert.equal(typeof record.isDedicated, "boolean");
   assert.equal(typeof record.isPlaceholder, "boolean");
-  assert.equal(record.sourceUrl, null);
   assert.equal(typeof record.sourcePath, "string");
-  assert.equal(record.license, "project-generated");
+  assert.equal(typeof record.license, "string");
   assert.equal(record.dimensions.width > 0 && record.dimensions.height > 0, true);
   assert.match(record.sourceHash, /^[0-9a-f]{64}$/u);
   assert.match(record.processedHash, /^[0-9a-f]{64}$/u);
-  assert.equal(record.sourceHash, record.processedHash);
   assert.equal(record.bytes > 0, true);
-  assert.equal(record.format, "svg");
   assert.match(record.verificationStatus, /^verified-/u);
-  assert.equal(record.acquiredAt, manifest.retrievedAt);
   const localBytes = fs.readFileSync(path.join(ROOT, record.assetPath));
   assert.equal(record.bytes, localBytes.length);
   assert.equal(record.processedHash, crypto.createHash("sha256").update(localBytes).digest("hex"));
   if (record.status === "placeholder") {
+    assert.equal(record.sourceUrl, null);
+    assert.equal(record.license, "project-generated");
+    assert.equal(record.format, "svg");
+    assert.equal(record.sourceHash, record.processedHash);
     assert.equal(record.assetPath, "assets/route-city-placeholder.svg");
     assert.equal(record.semanticScope, "neutral-placeholder");
     assert.equal(record.needsBackfill, true);
@@ -76,14 +76,25 @@ for (const record of [...manifest.countries, ...manifest.cities, ...manifest.poi
   }
   assert.equal(record.isDedicated, true);
   assert.equal(record.isPlaceholder, false);
-  assert.match(record.assetPath, /^assets\/route-v2-images\/(?:countries|cities|pois)\/[a-z0-9-]+\.svg$/u);
+  assert.match(record.assetPath, /^assets\/route-v2-images\/(?:countries|cities|pois)\/[a-z0-9-]+\.(?:svg|jpe?g|png|webp)$/u);
   assert.equal(fs.existsSync(path.join(ROOT, record.assetPath)), true, record.assetPath);
-  const svg = read(record.assetPath);
-  assert.doesNotMatch(svg, /(?:href|src)=['"]https?:\/\//iu);
-  const encodedName = record.canonicalNameEn.replace(/&/gu, "&amp;").replace(/</gu, "&lt;").replace(/>/gu, "&gt;").replace(/"/gu, "&quot;").replace(/'/gu, "&apos;");
-  assert.equal(svg.includes(encodedName), true, record.assetPath);
-  if (record.semanticScope === "exact-city") {
-    assert.equal(dedicatedPaths.has(record.assetPath), false, `city asset reused:${record.assetPath}`);
+  if (record.entityType === "Country") {
+    assert.equal(record.sourceUrl, null);
+    assert.equal(record.license, "project-generated");
+    assert.equal(record.format, "svg");
+    const svg = read(record.assetPath);
+    assert.doesNotMatch(svg, /(?:href|src)=['"]https?:\/\//iu);
+    const encodedName = record.canonicalNameEn.replace(/&/gu, "&amp;").replace(/</gu, "&lt;").replace(/>/gu, "&gt;").replace(/"/gu, "&quot;").replace(/'/gu, "&apos;");
+    assert.equal(svg.includes(encodedName), true, record.assetPath);
+  } else {
+    assert.match(record.sourceUrl, /^https:\/\/commons\.wikimedia\.org\/wiki\/File:/u);
+    assert.equal(record.sourcePath, "data/route-v2/images/batch06-dedicated-image-provenance.json");
+    assert.match(record.license, /^(?:CC BY|CC0|Public domain)/iu);
+    assert.match(record.format, /^(?:jpe?g|png|webp)$/u);
+    assert(record.bytes <= 300_000, `${record.assetPath}:dedicated asset exceeds 300KB`);
+    assert.equal(record.assetKind, "verified-destination-image");
+    assert.match(record.semanticScope, /^exact-(?:city|poi)$/u);
+    assert.equal(dedicatedPaths.has(record.assetPath), false, `dedicated asset reused:${record.assetPath}`);
     dedicatedPaths.add(record.assetPath);
   }
 }
@@ -99,7 +110,7 @@ require(path.join(ROOT, "route-v2-image-coverage.js"));
 const imageAssets = require(path.join(ROOT, "route-v2-image-assets.js"));
 const placeholder = manifest.cities.find((record) => record.status === "placeholder");
 assert.equal(imageAssets.resolveLocalDestinationCover({ entityId: placeholder.entityId, countryCode: placeholder.countryCode }).url, "assets/route-city-placeholder.svg");
-assert.equal(manifest.cities.every((record) => imageAssets.resolveLocalDestinationCover({ entityId: record.entityId, countryCode: record.countryCode }).url === "assets/route-city-placeholder.svg"), true);
+assert.equal(manifest.cities.every((record) => imageAssets.resolveLocalDestinationCover({ entityId: record.entityId, countryCode: record.countryCode }).url === record.assetPath), true);
 assert.equal(imageAssets.resolveLocalDestinationCover({ name: "Unknown", countryCode: "CA" }).url, "assets/route-city-placeholder.svg");
 const countryCover = manifest.countries.find((record) => record.countryCode === "CA");
 assert.equal(imageAssets.resolveLocalRouteCover({ countryEntities: [{ countryCode: "CA", name: "Canada" }] }).url, countryCover.assetPath);

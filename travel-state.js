@@ -443,6 +443,30 @@
     }).filter(Boolean));
   }
 
+  function citySemanticKeys(value = {}) {
+    const countryCode = String(value.countryCode || value.isoAlpha2 || value.countryId || "").trim().toUpperCase();
+    const keys = new Set();
+    const wikidataId = String(value.wikidataId || "").trim().toUpperCase();
+    if (wikidataId) keys.add(`qid:${wikidataId}`);
+    [value.name, value.canonicalNameZh, value.canonicalNameEn, value.englishName, ...normalizeList(value.aliases)]
+      .map((name) => String(name || "").trim().toLocaleLowerCase("en-US"))
+      .filter(Boolean)
+      .forEach((name) => keys.add(`name:${countryCode}:${name}`));
+    return keys;
+  }
+
+  function dedupeCityIdsAgainstIdentities(cityIds, cityIdentities, citiesById) {
+    if (!cityIdentities.length) return unique(cityIds);
+    const identityIds = new Set(cityIdentities.map((identity) => identity.id));
+    const identityKeys = new Set(cityIdentities.flatMap((identity) => [...citySemanticKeys(identity)]));
+    return unique(cityIds).filter((cityId) => {
+      if (identityIds.has(cityId)) return true;
+      const city = citiesById[cityId];
+      if (!city) return true;
+      return ![...citySemanticKeys(city)].some((key) => identityKeys.has(key));
+    });
+  }
+
   function normalizeBudgetItems(value) {
     if (!value) return {};
     if (Array.isArray(value)) {
@@ -705,10 +729,10 @@
       ...normalizeList(trip.cityIdentities),
       ...normalizeList(routeSnapshot?.cityIdentities),
     ]);
-    const cityIds = unique([
+    const cityIds = dedupeCityIdsAgainstIdentities([
       ...normalizeIds(trip.cityIds || trip.cities, citiesById),
       ...cityIdentities.map((city) => city.id),
-    ]);
+    ], cityIdentities, citiesById);
     const cityQids = unique([
       ...normalizeTextList(trip.cityQids).map((value) => value.toUpperCase()),
       ...cityIdentities.map((city) => city.wikidataId),
@@ -1066,10 +1090,10 @@
     if (!snapshot) return normalizedState;
     const countryIds = normalizeKnownIds(snapshot.countries, normalizedState.countriesById);
     const cityIdentities = normalizeRouteCityIdentities(snapshot.cityIdentities);
-    const cityIds = unique([
+    const cityIds = dedupeCityIdsAgainstIdentities([
       ...cityIdentities.map((city) => city.id),
       ...normalizeKnownIds([...snapshot.cities, ...snapshot.destinations], normalizedState.citiesById),
-    ]);
+    ], cityIdentities, normalizedState.citiesById);
     const cityQids = unique(cityIdentities.map((city) => city.wikidataId));
     const trip = {
       id: `trip-route-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,

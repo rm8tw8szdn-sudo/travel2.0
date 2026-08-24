@@ -1,0 +1,48 @@
+{
+  "schemaVersion": "route-v2-knowledge-expansion-batch06-browser-acceptance-v1",
+  "testedAt": "2026-08-17T11:30:00.000Z",
+  "status": "PASS",
+  "runtime": {
+    "routeV2Enabled": true,
+    "canaryPercentage": 100,
+    "onlineEvidenceEnabled": false,
+    "isolatedRuntimeState": true
+  },
+  "searchAcceptance": {
+    "countryQueries7Days": 20,
+    "tier1Queries14And21Days": 18,
+    "hardConstraintCombinationQueries": 9,
+    "historicalRegressionQueries": 3,
+    "successfulQueries": 50,
+    "constraintPreservationFailures": 0,
+    "expectedFailClosed": [
+      { "query": "Brazil road trip 14 days", "reason": "explicit-theme-mismatch" },
+      { "query": "Lake Como 7 days", "reason": "region-constraint-conflict" },
+      { "query": "Santorini 7 days", "reason": "region-island-constraint-conflict" }
+    ]
+  },
+  "tripFootprintAcceptance": {
+    "query": "Argentina Chile 14 days",
+    "countryCount": 2,
+    "cityCount": 6,
+    "duplicateCityCount": 0,
+    "knowledgeEntityIdsPreserved": true,
+    "wikidataIdsPreserved": true,
+    "completedFootprintCountryCount": 2,
+    "completedFootprintCityCount": 6
+  },
+  "imageAcceptance": {
+    "batch06CountryCoversRendered": 20,
+    "dedicatedAssetsVisuallyInspected": 96,
+    "cityDetailDedicatedImageChecks": 1,
+    "wrongSemanticImages": 0,
+    "watermarkedImages": 0,
+    "brokenImages": 0,
+    "runtimeExternalImageRequests": 0,
+    "runtimeExternalEvidenceRequests": 0
+  },
+  "console": {
+    "errors": 0,
+    "warnings": 0
+  }
+}

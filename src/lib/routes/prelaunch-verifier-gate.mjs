@@ -22,6 +22,11 @@ export const MANDATORY_PRELAUNCH_VERIFIERS = Object.freeze([
     phase: "static",
   }),
   Object.freeze({
+    name: "homonymous-city-country-disambiguation",
+    relativePath: "scripts/verify-route-v2-homonymous-city-disambiguation.mjs",
+    phase: "static",
+  }),
+  Object.freeze({
     name: "single-city-hard-constraint",
     relativePath: "scripts/verify-route-v2-single-city-hard-constraint.mjs",
     phase: "static",
@@ -154,6 +159,21 @@ export const MANDATORY_PRELAUNCH_VERIFIERS = Object.freeze([
   Object.freeze({
     name: "knowledge-expansion-batch05-report-consistency",
     relativePath: "scripts/verify-knowledge-expansion-batch05-report-consistency.mjs",
+    phase: "static",
+  }),
+  Object.freeze({
+    name: "knowledge-expansion-batch06-integrity",
+    relativePath: "scripts/verify-knowledge-expansion-batch06.mjs",
+    phase: "static",
+  }),
+  Object.freeze({
+    name: "knowledge-expansion-batch06-route-consumption",
+    relativePath: "scripts/verify-knowledge-expansion-batch06-route-consumption.mjs",
+    phase: "static",
+  }),
+  Object.freeze({
+    name: "knowledge-expansion-batch06-report-consistency",
+    relativePath: "scripts/verify-knowledge-expansion-batch06-report-consistency.mjs",
     phase: "static",
   }),
   Object.freeze({

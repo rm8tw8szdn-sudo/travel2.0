@@ -10,8 +10,12 @@ const ASSET_ROOT = "assets/route-v2-images";
 const MANIFEST_PATH = "data/route-v2/images/image-coverage-manifest.json";
 const RUNTIME_PATH = "route-v2-image-coverage.js";
 const AUDIT_PATH = "ROUTE_V2_IMAGE_COVERAGE_BACKFILL_AUDIT.md";
-const RETRIEVED_AT = "2026-08-11T05:00:00.000Z";
-const BATCH05_CODES = new Set(["GB","IE","CZ","HU","HR","NO","SE","FI","DK","BE","PL","SI","VN","MY","ID","PH","CA","US","MX","PE"]);
+const BATCH06_AUDIT_PATH = "ROUTE_V2_IMAGE_COVERAGE_BACKFILL_BATCH06_AUDIT.md";
+const PROVENANCE_PATH = "data/route-v2/images/batch06-dedicated-image-provenance.json";
+const BATCH06_BASELINE_PATH = "data/knowledge/reports/knowledge-expansion-batch06-baseline.json";
+const RETRIEVED_AT = "2026-08-17T09:00:00.000Z";
+const BATCH05_CODES = new Set(["GB", "IE", "CZ", "HU", "HR", "NO", "SE", "FI", "DK", "BE", "PL", "SI", "VN", "MY", "ID", "PH", "CA", "US", "MX", "PE"]);
+const BATCH06_CODES = new Set(["AD", "AE", "AR", "BR", "CD", "CL", "UY", "EG", "FJ", "IL", "IN", "KE", "MA", "NG", "RU", "SA", "ZA", "KH", "RO", "CR"]);
 const PLACEHOLDER = "assets/route-city-placeholder.svg";
 const GENERATED_VECTOR_RIGHTS = Object.freeze({
   sourceType: "project-generated-vector",
@@ -50,37 +54,31 @@ async function write(relativePath, contents) {
 
 function assetPath(kind, key) { return `${ASSET_ROOT}/${kind}/${key}.svg`; }
 function percent(numerator, denominator) { return denominator ? Number((numerator / denominator * 100).toFixed(1)) : 100; }
+function sha256(bytes) { return crypto.createHash("sha256").update(bytes).digest("hex"); }
 
-function localAssetMetadata(relativePath, {
-  entityType,
-  assetType,
-  isDedicated,
-  isPlaceholder,
-  sourcePath,
-  verificationStatus,
-}) {
+function localAssetMetadata(relativePath, options) {
   const bytes = fs.readFileSync(path.join(ROOT, relativePath));
-  const source = bytes.toString("utf8");
+  const source = path.extname(relativePath).toLocaleLowerCase("en-US") === ".svg" ? bytes.toString("utf8") : "";
   const viewBox = source.match(/viewBox=["']\s*[\d.-]+\s+[\d.-]+\s+([\d.]+)\s+([\d.]+)["']/u);
-  const width = Number(source.match(/\bwidth=["']([\d.]+)["']/u)?.[1] || viewBox?.[1] || 0);
-  const height = Number(source.match(/\bheight=["']([\d.]+)["']/u)?.[1] || viewBox?.[2] || 0);
-  const hash = crypto.createHash("sha256").update(bytes).digest("hex");
+  const width = Number(source.match(/\bwidth=["']([\d.]+)["']/u)?.[1] || viewBox?.[1] || options.dimensions?.width || 0);
+  const height = Number(source.match(/\bheight=["']([\d.]+)["']/u)?.[1] || viewBox?.[2] || options.dimensions?.height || 0);
+  const hash = sha256(bytes);
   return {
-    entityType,
-    assetType,
-    isDedicated,
-    isPlaceholder,
+    entityType: options.entityType,
+    assetType: options.assetType,
+    isDedicated: options.isDedicated,
+    isPlaceholder: options.isPlaceholder,
     localPath: relativePath,
-    sourceUrl: null,
-    sourcePath,
-    license: "project-generated",
+    sourceUrl: options.sourceUrl || null,
+    sourcePath: options.sourcePath,
+    license: options.license,
     dimensions: { width, height },
-    sourceHash: hash,
+    sourceHash: options.sourceHash || hash,
     processedHash: hash,
     bytes: bytes.length,
     format: path.extname(relativePath).slice(1).toLocaleLowerCase("en-US"),
-    verificationStatus,
-    acquiredAt: RETRIEVED_AT,
+    verificationStatus: options.verificationStatus,
+    acquiredAt: options.acquiredAt || RETRIEVED_AT,
   };
 }
 
@@ -92,8 +90,11 @@ const poisByCity = new Map(cities.map((city) => [city.entityId, pois.filter((poi
 const plannableCountries = countries.filter((country) => {
   const countryCities = cities.filter((city) => city.parentCountryEntityId === country.entityId);
   return countryCities.length > 0 && countryCities.some((city) => (poisByCity.get(city.entityId) || []).length > 0);
-}).sort((a, b) => a.isoAlpha2.localeCompare(b.isoAlpha2, "en"));
+}).sort((left, right) => left.isoAlpha2.localeCompare(right.isoAlpha2, "en"));
 
+const provenance = JSON.parse(await readFile(path.join(ROOT, PROVENANCE_PATH), "utf8"));
+const batch06Baseline = JSON.parse(await readFile(path.join(ROOT, BATCH06_BASELINE_PATH), "utf8"));
+const dedicatedByEntityId = new Map((provenance.assets || []).map((record) => [record.entityId, record]));
 const countryRecords = [];
 const cityRecords = [];
 const poiRecords = [];
@@ -103,21 +104,87 @@ const neutralPlaceholderMetadata = localAssetMetadata(PLACEHOLDER, {
   isDedicated: false,
   isPlaceholder: true,
   sourcePath: PLACEHOLDER,
+  license: "project-generated",
   verificationStatus: "verified-neutral-placeholder",
 });
+
+function destinationRecord(entity, { entityType, countryCode, parentCityEntityId = null, core = false, publishedPoiCount = 0, backfillPriority = "high" } = {}) {
+  const dedicated = dedicatedByEntityId.get(entity.entityId);
+  if (!dedicated) {
+    return {
+      entityId: entity.entityId,
+      wikidataId: entity.wikidataId,
+      countryCode,
+      ...(parentCityEntityId ? { parentCityEntityId } : {}),
+      canonicalNameEn: entity.canonicalNameEn,
+      assetPath: PLACEHOLDER,
+      core,
+      publishedPoiCount,
+      backfillPriority,
+      status: "placeholder",
+      needsBackfill: true,
+      assetKind: "neutral-placeholder",
+      semanticScope: "neutral-placeholder",
+      visualTruthStatus: "neutral-non-geographic-placeholder",
+      ...neutralPlaceholderMetadata,
+      entityType,
+    };
+  }
+  const metadata = localAssetMetadata(dedicated.assetPath, {
+    entityType,
+    assetType: "dedicated-destination-image",
+    isDedicated: true,
+    isPlaceholder: false,
+    sourcePath: PROVENANCE_PATH,
+    sourceUrl: dedicated.sourceUrl,
+    license: dedicated.license,
+    sourceHash: dedicated.sourceHash,
+    dimensions: dedicated.dimensions,
+    acquiredAt: dedicated.acquiredAt,
+    verificationStatus: dedicated.verificationStatus,
+  });
+  return {
+    entityId: entity.entityId,
+    wikidataId: entity.wikidataId,
+    countryCode,
+    ...(parentCityEntityId ? { parentCityEntityId } : {}),
+    canonicalNameEn: entity.canonicalNameEn,
+    assetPath: dedicated.assetPath,
+    core,
+    publishedPoiCount,
+    backfillPriority,
+    status: "imageReady",
+    needsBackfill: false,
+    assetKind: "verified-destination-image",
+    semanticScope: entityType === "City" ? "exact-city" : "exact-poi",
+    visualTruthStatus: "verified-entity-p18-photograph",
+    rights: dedicated.rights,
+    ...metadata,
+  };
+}
+
 for (const country of plannableCountries) {
   const countryPath = assetPath("countries", country.isoAlpha2.toLocaleLowerCase("en-US"));
   await write(countryPath, svgCard({ label: country.canonicalNameEn, eyebrow: `${country.isoAlpha2} country`, key: country.wikidataId }));
   countryRecords.push({
-    entityId: country.entityId, wikidataId: country.wikidataId, countryCode: country.isoAlpha2,
-    canonicalNameEn: country.canonicalNameEn, assetPath: countryPath, status: "imageReady", semanticScope: "exact-country",
-    assetKind: "entity-label-card", visualTruthStatus: "non-photographic-graphic", rights: GENERATED_VECTOR_RIGHTS,
+    entityId: country.entityId,
+    wikidataId: country.wikidataId,
+    countryCode: country.isoAlpha2,
+    canonicalNameEn: country.canonicalNameEn,
+    assetPath: countryPath,
+    status: "imageReady",
+    needsBackfill: false,
+    semanticScope: "exact-country",
+    assetKind: "entity-label-card",
+    visualTruthStatus: "non-photographic-graphic",
+    rights: GENERATED_VECTOR_RIGHTS,
     ...localAssetMetadata(countryPath, {
       entityType: "Country",
       assetType: "country-graphic-cover",
       isDedicated: true,
       isPlaceholder: false,
       sourcePath: GENERATED_VECTOR_RIGHTS.sourcePath,
+      license: "project-generated",
       verificationStatus: "verified-non-photographic-graphic",
     }),
   });
@@ -128,40 +195,27 @@ for (const country of plannableCountries) {
   for (const city of countryCities) {
     const isCore = coreIds.has(city.entityId);
     const publishedPoiCount = (poisByCity.get(city.entityId) || []).length;
-    cityRecords.push({
-      entityId: city.entityId, wikidataId: city.wikidataId, countryCode: country.isoAlpha2,
-      canonicalNameEn: city.canonicalNameEn, assetPath: PLACEHOLDER, core: isCore,
-      publishedPoiCount, backfillPriority: isCore ? "high" : publishedPoiCount >= 5 ? "normal" : "low",
-      status: "placeholder", needsBackfill: true, assetKind: "neutral-placeholder",
-      semanticScope: "neutral-placeholder",
-      ...neutralPlaceholderMetadata,
+    cityRecords.push(destinationRecord(city, {
       entityType: "City",
-    });
+      countryCode: country.isoAlpha2,
+      core: isCore,
+      publishedPoiCount,
+      backfillPriority: isCore ? "high" : publishedPoiCount >= 5 ? "normal" : "low",
+    }));
     if (!isCore) continue;
-    const corePoi = [...(poisByCity.get(city.entityId) || [])].sort((a, b) => a.canonicalNameEn.localeCompare(b.canonicalNameEn, "en"))[0];
-    if (!corePoi) continue;
-    poiRecords.push({
-      entityId: corePoi.entityId, wikidataId: corePoi.wikidataId, parentCityEntityId: city.entityId,
-      countryCode: country.isoAlpha2, canonicalNameEn: corePoi.canonicalNameEn,
-      assetPath: PLACEHOLDER, status: "placeholder", needsBackfill: true,
-      backfillPriority: "high",
-      assetKind: "neutral-placeholder", semanticScope: "neutral-placeholder",
-      ...neutralPlaceholderMetadata,
-      entityType: "POI",
-    });
+    const corePoi = [...(poisByCity.get(city.entityId) || [])].sort((left, right) => left.canonicalNameEn.localeCompare(right.canonicalNameEn, "en"))[0];
+    if (corePoi) poiRecords.push(destinationRecord(corePoi, { entityType: "POI", countryCode: country.isoAlpha2, parentCityEntityId: city.entityId, core: true }));
   }
 }
 
-const batch05Country = countryRecords.filter((record) => BATCH05_CODES.has(record.countryCode));
-const batch05City = cityRecords.filter((record) => BATCH05_CODES.has(record.countryCode));
-const batch05Poi = poiRecords.filter((record) => BATCH05_CODES.has(record.countryCode));
-const historicalCountry = countryRecords.filter((record) => !BATCH05_CODES.has(record.countryCode));
-const historicalCity = cityRecords.filter((record) => !BATCH05_CODES.has(record.countryCode));
-const historicalPoi = poiRecords.filter((record) => !BATCH05_CODES.has(record.countryCode));
-const invalidMappings = [...countryRecords, ...cityRecords, ...poiRecords].filter((record) => (
-  (record.status === "imageReady" && (!record.assetPath || record.assetKind !== "entity-label-card"))
-  || (record.status === "placeholder" && (record.assetPath !== PLACEHOLDER || record.semanticScope !== "neutral-placeholder"))
-)).map((record) => ({ entityId: record.entityId, assetPath: record.assetPath, reason: "status-asset-policy-mismatch" }));
+const invalidMappings = [...countryRecords, ...cityRecords, ...poiRecords].flatMap((record) => {
+  if (!record.assetPath || !fs.existsSync(path.join(ROOT, record.assetPath))) return [{ entityId: record.entityId, assetPath: record.assetPath, reason: "missing-asset" }];
+  if (record.status === "placeholder" && (record.assetPath !== PLACEHOLDER || record.semanticScope !== "neutral-placeholder" || !record.needsBackfill)) return [{ entityId: record.entityId, assetPath: record.assetPath, reason: "placeholder-policy-mismatch" }];
+  if (record.entityType === "Country" && (record.assetKind !== "entity-label-card" || record.semanticScope !== "exact-country")) return [{ entityId: record.entityId, assetPath: record.assetPath, reason: "country-policy-mismatch" }];
+  if (record.status === "imageReady" && record.entityType !== "Country" && (record.assetKind !== "verified-destination-image" || !["exact-city", "exact-poi"].includes(record.semanticScope) || record.needsBackfill)) return [{ entityId: record.entityId, assetPath: record.assetPath, reason: "dedicated-policy-mismatch" }];
+  return [];
+});
+
 const summarize = (countrySet, citySet, poiSet) => ({
   plannableCountries: countrySet.length,
   countryCoverCoverage: { ready: countrySet.filter((record) => record.status === "imageReady").length, total: countrySet.length, percent: percent(countrySet.filter((record) => record.status === "imageReady").length, countrySet.length) },
@@ -172,38 +226,57 @@ const summarize = (countrySet, citySet, poiSet) => ({
   invalidMappingCount: invalidMappings.filter((entry) => [...countrySet, ...citySet, ...poiSet].some((record) => record.entityId === entry.entityId)).length,
   needsBackfillCount: [...citySet, ...poiSet].filter((record) => record.needsBackfill).length,
 });
+
+const scope = (codes, records) => records.filter((record) => codes.has(record.countryCode));
+const historicalCodes = new Set(countryRecords.map((record) => record.countryCode).filter((code) => !BATCH06_CODES.has(code)));
 const manifest = {
-  schemaVersion: "route-v2-image-coverage-v2", retrievedAt: RETRIEVED_AT,
+  schemaVersion: "route-v2-image-coverage-v2",
+  retrievedAt: RETRIEVED_AT,
   fallbackPolicy: { city: PLACEHOLDER, poi: PLACEHOLDER, route: "assets/trip-cover-placeholder.svg", runtimeExternalRequestsAllowed: false },
-  countries: countryRecords, cities: cityRecords, pois: poiRecords, invalidMappings,
+  countries: countryRecords,
+  cities: cityRecords,
+  pois: poiRecords,
+  invalidMappings,
   coverage: {
-    historicalPlannableCountries: summarize(historicalCountry, historicalCity, historicalPoi),
-    batch05Countries: summarize(batch05Country, batch05City, batch05Poi),
+    historicalPlannableCountries: summarize(scope(historicalCodes, countryRecords), scope(historicalCodes, cityRecords), scope(historicalCodes, poiRecords)),
+    batch05Countries: summarize(scope(BATCH05_CODES, countryRecords), scope(BATCH05_CODES, cityRecords), scope(BATCH05_CODES, poiRecords)),
+    batch06Countries: summarize(scope(BATCH06_CODES, countryRecords), scope(BATCH06_CODES, cityRecords), scope(BATCH06_CODES, poiRecords)),
     overall: summarize(countryRecords, cityRecords, poiRecords),
   },
 };
 await write(MANIFEST_PATH, `${JSON.stringify(manifest, null, 2)}\n`);
 
+function runtimeRecord(record) {
+  return {
+    entityId: record.entityId,
+    wikidataId: record.wikidataId,
+    countryCode: record.countryCode,
+    ...(record.parentCityEntityId ? { parentCityEntityId: record.parentCityEntityId } : {}),
+    canonicalNameEn: record.canonicalNameEn,
+    assetPath: record.assetPath,
+    status: record.status,
+    needsBackfill: record.needsBackfill,
+    assetKind: record.assetKind,
+    semanticScope: record.semanticScope,
+    verificationStatus: record.verificationStatus,
+  };
+}
 const runtime = {
   schemaVersion: manifest.schemaVersion,
-  countryByCode: Object.fromEntries(countryRecords.map((record) => [record.countryCode, record])),
-  cityByEntityId: Object.fromEntries(cityRecords.map((record) => [record.entityId, record])),
-  poiByEntityId: Object.fromEntries(poiRecords.map((record) => [record.entityId, record])),
+  countryByCode: Object.fromEntries(countryRecords.map((record) => [record.countryCode, runtimeRecord(record)])),
+  cityByEntityId: Object.fromEntries(cityRecords.map((record) => [record.entityId, runtimeRecord(record)])),
+  poiByEntityId: Object.fromEntries(poiRecords.map((record) => [record.entityId, runtimeRecord(record)])),
   fallbackPolicy: manifest.fallbackPolicy,
 };
 await write(RUNTIME_PATH, `(function (global) { "use strict"; global.RouteV2ImageCoverage = Object.freeze(${JSON.stringify(runtime)}); }(typeof globalThis !== "undefined" ? globalThis : window));\n`);
 
-const historicalDebtBefore = historicalCity.length + historicalPoi.length;
-const batch05ImageCount = batch05Country.length;
-const backfill = cityRecords.filter((record) => record.needsBackfill).map((record) => `- ${record.countryCode} · ${record.backfillPriority} · ${record.canonicalNameEn} · ${record.entityId}`).join("\n");
-const poiBackfill = poiRecords.filter((record) => record.needsBackfill).map((record) => `- ${record.countryCode} · ${record.backfillPriority} · ${record.canonicalNameEn} · ${record.entityId}`).join("\n");
 const debtByCountry = countryRecords.map((country) => {
   const countryCities = cityRecords.filter((record) => record.countryCode === country.countryCode && record.needsBackfill);
   const countryPois = poiRecords.filter((record) => record.countryCode === country.countryCode && record.needsBackfill);
   return {
     countryCode: country.countryCode,
     countryName: country.canonicalNameEn,
-    scope: BATCH05_CODES.has(country.countryCode) ? "Batch 05" : "Historical",
+    scope: BATCH06_CODES.has(country.countryCode) ? "Batch 06" : BATCH05_CODES.has(country.countryCode) ? "Batch 05" : "Historical",
     high: countryCities.filter((record) => record.backfillPriority === "high").length,
     normal: countryCities.filter((record) => record.backfillPriority === "normal").length,
     low: countryCities.filter((record) => record.backfillPriority === "low").length,
@@ -212,5 +285,21 @@ const debtByCountry = countryRecords.map((country) => {
   };
 });
 const debtTable = debtByCountry.map((entry) => `| ${entry.countryCode} | ${entry.countryName} | ${entry.scope} | ${entry.high} | ${entry.normal} | ${entry.low} | ${entry.corePois} | ${entry.total} |`).join("\n");
-await write(AUDIT_PATH, `# Route V2 Image Coverage Backfill Audit\n\nGenerated: ${RETRIEVED_AT}\n\n## Outcome\n\n- Historical image debt discovered: ${historicalDebtBefore}\n- Country graphic covers added: ${countryRecords.length}\n- Verified destination City images: ${cityRecords.filter((record) => record.status === "imageReady").length}\n- Batch 05 local Country graphic covers added: ${batch05ImageCount}\n- Dedicated City image coverage: ${manifest.coverage.overall.cityDedicatedImageCoverage.ready}/${manifest.coverage.overall.cityDedicatedImageCoverage.total} (${manifest.coverage.overall.cityDedicatedImageCoverage.percent}%)\n- City neutral placeholders: ${manifest.coverage.overall.cityPlaceholderCount}\n- Verified Core POI image coverage: ${manifest.coverage.overall.corePoiImageCoverage.ready}/${manifest.coverage.overall.corePoiImageCoverage.total} (${manifest.coverage.overall.corePoiImageCoverage.percent}%)\n- POI neutral placeholders: ${manifest.coverage.overall.poiPlaceholderCount}\n- Active invalid mappings: ${invalidMappings.length}\n- Needs backfill: ${manifest.coverage.overall.needsBackfillCount}\n- Runtime external image requests: disabled\n\nCountry resources are explicitly classified as non-photographic entity label cards. They make no landmark or destination-photo claim. Generated City/POI label cards are not counted as dedicated imagery; until a source and rights-verified destination image exists, every City/POI uses the shared neutral placeholder.\n\n## Debt by country and priority\n\nPriority is deterministic: each country's three highest-depth published Cities are high, other Cities with at least five published POIs are normal, and lower-depth Cities are low. Core POI debt inherits high priority.\n\n| Code | Country | Scope | High City | Normal City | Low City | Core POI | Total |\n| --- | --- | --- | ---: | ---: | ---: | ---: | ---: |\n${debtTable}\n\n## Remaining City backfill\n\n${backfill || "None"}\n\n## Remaining Core POI backfill\n\n${poiBackfill || "None"}\n`);
-console.log(JSON.stringify({ status: "PASS", plannableCountries: countryRecords.length, dedicatedCities: cityRecords.filter((record) => record.status === "imageReady").length, placeholders: manifest.coverage.overall.cityPlaceholderCount, corePois: poiRecords.length, batch05ImageCount, outputs: [MANIFEST_PATH, RUNTIME_PATH, AUDIT_PATH] }, null, 2));
+const cityBackfill = cityRecords.filter((record) => record.needsBackfill).map((record) => `- ${record.countryCode} | ${record.backfillPriority} | ${record.canonicalNameEn} | ${record.entityId}`).join("\n");
+const poiBackfill = poiRecords.filter((record) => record.needsBackfill).map((record) => `- ${record.countryCode} | ${record.backfillPriority} | ${record.canonicalNameEn} | ${record.entityId}`).join("\n");
+const batch06Added = provenance.assets.filter((record) => BATCH06_CODES.has(record.countryCode)).length;
+const audit = `# Route V2 Image Coverage Backfill Audit\n\nGenerated: ${RETRIEVED_AT}\n\n## Outcome\n\n- Historical image debt before Batch 06: ${batch06Baseline.images.needsBackfill}\n- Historical image debt after Batch 06: ${manifest.coverage.historicalPlannableCountries.needsBackfillCount}\n- Plannable Country graphic covers: ${manifest.coverage.overall.countryCoverCoverage.ready}/${manifest.coverage.overall.countryCoverCoverage.total}\n- Batch 06 Country graphic covers added: ${scope(BATCH06_CODES, countryRecords).length}\n- Verified destination City images: ${manifest.coverage.overall.cityDedicatedImageCoverage.ready}\n- Dedicated City image coverage: ${manifest.coverage.overall.cityDedicatedImageCoverage.ready}/${manifest.coverage.overall.cityDedicatedImageCoverage.total} (${manifest.coverage.overall.cityDedicatedImageCoverage.percent}%)\n- City neutral placeholders: ${manifest.coverage.overall.cityPlaceholderCount}\n- Verified Core POI image coverage: ${manifest.coverage.overall.corePoiImageCoverage.ready}/${manifest.coverage.overall.corePoiImageCoverage.total} (${manifest.coverage.overall.corePoiImageCoverage.percent}%)\n- POI neutral placeholders: ${manifest.coverage.overall.poiPlaceholderCount}\n- Batch 06 verified destination images added: ${batch06Added}\n- Active invalid mappings: ${invalidMappings.length}\n- Needs backfill: ${manifest.coverage.overall.needsBackfillCount}\n- Runtime external image requests: disabled\n\nCountry covers are non-photographic entity label graphics and are not counted as City or POI imagery. Dedicated destination assets require an exact Wikidata entity P18, a fixed local Commons file, and auditable free-license metadata. All other destinations retain the shared neutral placeholder and needsBackfill.\n\n## Debt by country and priority\n\n| Code | Country | Scope | High City | Normal City | Low City | Core POI | Total |\n| --- | --- | --- | ---: | ---: | ---: | ---: | ---: |\n${debtTable}\n\n## Remaining City backfill\n\n${cityBackfill || "None"}\n\n## Remaining Core POI backfill\n\n${poiBackfill || "None"}\n`;
+await write(AUDIT_PATH, audit);
+await write(BATCH06_AUDIT_PATH, audit.replace("# Route V2 Image Coverage Backfill Audit", "# Route V2 Image Coverage Backfill Batch 06 Audit"));
+
+console.log(JSON.stringify({
+  status: invalidMappings.length === 0 ? "PASS" : "FAIL",
+  plannableCountries: countryRecords.length,
+  dedicatedCities: manifest.coverage.overall.cityDedicatedImageCoverage.ready,
+  dedicatedPois: manifest.coverage.overall.corePoiImageCoverage.ready,
+  needsBackfill: manifest.coverage.overall.needsBackfillCount,
+  invalidMappings: invalidMappings.length,
+  batch06Added,
+  outputs: [MANIFEST_PATH, RUNTIME_PATH, AUDIT_PATH, BATCH06_AUDIT_PATH],
+}, null, 2));
+if (invalidMappings.length) process.exitCode = 1;

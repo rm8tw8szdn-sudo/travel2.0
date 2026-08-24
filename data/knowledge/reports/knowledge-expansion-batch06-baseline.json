@@ -1,0 +1,44 @@
+{
+  "schemaVersion": "route-v2-knowledge-expansion-batch06-baseline-v1",
+  "generatedAt": "2026-08-17T06:30:00.000Z",
+  "baseCommit": "101d1dc7b22729f28d7b5f7289b51a9ceccd0cd7",
+  "coverage": {
+    "catalogCountries": 55,
+    "plannableCountries": 38,
+    "evidenceBackedCountries": 35,
+    "catalogOnlyCountries": 17,
+    "catalogOnlyCountryCodes": ["AD", "AE", "AR", "BR", "CD", "CL", "CN", "EG", "FJ", "IL", "IN", "KE", "MA", "NG", "RU", "SA", "ZA"],
+    "countriesOutsideCatalogAgainstApproximate195": 140
+  },
+  "knowledge": {
+    "countries": 55,
+    "cities": 306,
+    "pois": 2101,
+    "entities": 2462,
+    "transportEvidence": 414,
+    "monthRisk": 156
+  },
+  "images": {
+    "countryCovers": 38,
+    "dedicatedCities": 0,
+    "cityTotal": 306,
+    "dedicatedCorePois": 0,
+    "corePoiTotal": 105,
+    "needsBackfill": 411,
+    "invalidMappings": 0
+  },
+  "protectedAssets": {
+    "acceptedSha256": "aea28bcc03eaf6ccce5fd7453f88ece4f0060789f135eaf837b568d9c43e7e3f",
+    "formalEvidenceSha256": "4bb9e7b702de1c9b981f0ed53a649632e2a7149bd7f2dabedfa120dcde13c376",
+    "immutableAggregateSha256": "61e243e0c0756d53513ab7205281f8c796eeb074317f484d08784cbc5fe9505c",
+    "cacheFileCount": 331,
+    "runtimeStateFileCount": 329,
+    "metricsExists": false
+  },
+  "derivation": {
+    "knowledge": "createPublishedKnowledgeEntityLayerRepository",
+    "coverage": "createKnowledgeCoverageSemantics",
+    "evidence": "data/route-v2/evidence-seed/*.jsonl",
+    "images": "data/route-v2/images/image-coverage-manifest.json"
+  }
+}

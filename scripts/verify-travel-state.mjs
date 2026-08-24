@@ -355,6 +355,60 @@ function baseState(overrides = {}) {
 }
 
 {
+  const legacyAndKnowledgeState = recalculateTravelState(baseState({
+    countries: [
+      { id: "AR", name: "Argentina" },
+      { id: "CL", name: "Chile" },
+    ],
+    cities: [
+      { id: "AR-BUE", name: "Buenos Aires", englishName: "Buenos Aires", countryId: "AR" },
+      { id: "CL-SCL", name: "Santiago", englishName: "Santiago", countryId: "CL" },
+    ],
+  }));
+  const routeSnapshot = {
+    id: "route-v2-argentina-chile",
+    name: "Argentina Chile 14 days",
+    countries: ["AR", "CL"],
+    cities: ["Buenos Aires", "Santiago"],
+    destinations: ["Buenos Aires", "Santiago"],
+    durationDays: 14,
+    destinationEntities: [
+      {
+        entityId: "city-buenos-aires-stable",
+        wikidataId: "Q1486",
+        countryCode: "AR",
+        name: "Buenos Aires",
+        canonicalNameEn: "Buenos Aires",
+        entityTypeName: "city",
+      },
+      {
+        entityId: "city-santiago-stable",
+        wikidataId: "Q2887",
+        countryCode: "CL",
+        name: "Santiago",
+        canonicalNameEn: "Santiago",
+        entityTypeName: "city",
+      },
+    ],
+  };
+  const planned = createTripFromRoute(legacyAndKnowledgeState, routeSnapshot);
+  const trip = planned.trips.at(-1);
+  assert.deepEqual(
+    trip.cityIds,
+    ["city-buenos-aires-stable", "city-santiago-stable"],
+    "legacy name matches must not duplicate authoritative Knowledge city identities",
+  );
+  const persisted = recalculateTravelState(JSON.parse(JSON.stringify(planned)));
+  assert.deepEqual(
+    persisted.trips.at(-1).cityIds,
+    trip.cityIds,
+    "identity-aware city deduplication must survive persistence",
+  );
+  const completed = setTripStatus(persisted, trip.id, "completed");
+  assert.equal(getTravelStats(completed).exploredCityCount, 2, "Footprint must count each canonical city once");
+}
+
+{
   const repository = createPublishedKnowledgeEntityLayerRepository();
   const countries = repository.listCountries();
   const cities = repository.listCities();

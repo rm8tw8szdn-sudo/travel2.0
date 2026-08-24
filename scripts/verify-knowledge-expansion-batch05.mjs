@@ -18,7 +18,7 @@ const ROOT = path.resolve(import.meta.dirname, "..");
 const NOW = "2026-08-11T04:00:00.000Z";
 const ACCEPTED_SHA256 = "aea28bcc03eaf6ccce5fd7453f88ece4f0060789f135eaf837b568d9c43e7e3f";
 const IMMUTABLE_EVIDENCE_SHA256 = "4bb9e7b702de1c9b981f0ed53a649632e2a7149bd7f2dabedfa120dcde13c376";
-const EXPECTED_TOTALS = { countries: 55, cities: 306, pois: 2101, total: 2462 };
+const BATCH05_PUBLISHED_BASELINE = { countries: 55, cities: 306, pois: 2101, total: 2462 };
 const WAVES = Object.freeze({
   1: { batch: "14", countries: ["GB","IE","CZ","HU","HR"], newCities: 44, reusedCities: 2, newPois: 296 },
   2: { batch: "15", countries: ["NO","SE","FI","DK","BE"], newCities: 34, reusedCities: 2, newPois: 248 },
@@ -33,13 +33,16 @@ const repository = createPublishedKnowledgeEntityLayerRepository({ projectRoot: 
 const countries = repository.listCountries();
 const cities = repository.listCities();
 const pois = repository.listPois();
-assert.deepEqual(KNOWLEDGE_ENTITY_LAYER_PUBLISHED_TOTALS, EXPECTED_TOTALS);
-assert.deepEqual({ countries: countries.length, cities: cities.length, pois: pois.length, total: countries.length + cities.length + pois.length }, EXPECTED_TOTALS);
+const currentTotals = { countries: countries.length, cities: cities.length, pois: pois.length, total: countries.length + cities.length + pois.length };
+assert.deepEqual(currentTotals, KNOWLEDGE_ENTITY_LAYER_PUBLISHED_TOTALS);
+for (const [key, minimum] of Object.entries(BATCH05_PUBLISHED_BASELINE)) {
+  assert.ok(currentTotals[key] >= minimum, `${key} fell below the sealed Batch 05 baseline`);
+}
 assert.equal(validateCountryEntitySet(countries).accepted, true);
 assert.equal(validateKnowledgeCityEntitySet(cities).accepted, true);
 assert.equal(validateKnowledgePoiEntitySet(pois).accepted, true);
 assert.deepEqual(repository.validateParentReferences(), { accepted: true, reasons: [] });
-assert.equal(new Set([...countries, ...cities, ...pois].map((entry) => entry.entityId)).size, EXPECTED_TOTALS.total);
+assert.equal(new Set([...countries, ...cities, ...pois].map((entry) => entry.entityId)).size, currentTotals.total);
 assert.equal(new Set(cities.map((entry) => entry.wikidataId)).size, cities.length);
 assert.equal(new Set(pois.map((entry) => entry.wikidataId)).size, pois.length);
 
@@ -96,8 +99,8 @@ const legs = readJsonl("data/route-v2/evidence-seed/route-leg-evidence.jsonl");
 const seasons = readJsonl("data/route-v2/evidence-seed/season-evidence.jsonl");
 const newLegs = legs.filter((entry) => entry.retrievedAt === NOW);
 const newSeasons = seasons.filter((entry) => entry.retrievedAt === NOW);
-assert.equal(legs.length, 414);
-assert.equal(seasons.length, 156);
+assert.ok(legs.length >= 414, "route-leg evidence fell below the sealed Batch 05 baseline");
+assert.ok(seasons.length >= 156, "season evidence fell below the sealed Batch 05 baseline");
 assert.equal(newLegs.length, 218);
 assert.equal(newSeasons.length, 80);
 for (const record of newLegs) {
@@ -120,7 +123,7 @@ for (const record of newSeasons) {
   assert.doesNotMatch(JSON.stringify(record), /best month|best time|recommended month|最佳月份/iu);
 }
 const manifest = readJson("data/route-v2/evidence-seed/evidence-seed-manifest.json");
-assert.deepEqual(manifest.counts, { routeLeg: 414, season: 156, total: 570 });
+assert.deepEqual(manifest.counts, { routeLeg: legs.length, season: seasons.length, total: legs.length + seasons.length });
 assert.equal([...targetCodes].every((code) => manifest.countries.includes(code)), true);
 
 const imageManifest = readJson("data/route-v2/images/image-coverage-manifest.json");
@@ -136,7 +139,8 @@ assert.equal(fs.existsSync(path.join(ROOT, ".route-v2-cache", "route-v2-runtime-
 console.log(JSON.stringify({
   status: "PASS", verifier: "knowledge-expansion-batch05-20-country",
   additions: { countries: 4, cities: 162, pois: 1197, directedTransportEvidence: 218, monthRiskEvidence: 80 },
-  totals: EXPECTED_TOTALS,
+  totals: currentTotals,
+  sealedBatch05Baseline: BATCH05_PUBLISHED_BASELINE,
   quality: { duplicateEntityIds: 0, duplicateCityQids: 0, duplicatePoiQids: 0, orphans: 0, conflicts: 0 },
   images: imageManifest.coverage,
   protectedAssets: { acceptedSha256: ACCEPTED_SHA256, immutableEvidenceSha256: IMMUTABLE_EVIDENCE_SHA256, metricsCreated: false },

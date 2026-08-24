@@ -1,0 +1,841 @@
+{
+  "schemaVersion": "route-v2-country-baseline-p1a-batch06",
+  "generatedFrom": "data/knowledge/seeds/knowledge-expansion-batch06-20-country.json",
+  "countryCount": 4,
+  "countries": [
+    {
+      "schemaVersion": "route-v2-country-baseline-p1a",
+      "entityId": "country-7dd8befd36c7216d",
+      "entityType": "country",
+      "isoAlpha2": "CR",
+      "isoAlpha3": "CRI",
+      "isoNumeric": "188",
+      "wikidataId": "Q800",
+      "canonicalNameZh": "哥斯达黎加",
+      "canonicalNameEn": "Costa Rica",
+      "aliases": [
+        "cr",
+        "Republic of Costa Rica",
+        "哥斯大黎加",
+        "哥斯达黎加共和国",
+        "哥斯達黎加"
+      ],
+      "continent": {
+        "wikidataId": "Q49",
+        "canonicalNameZh": "北美洲",
+        "canonicalNameEn": "North America"
+      },
+      "region": "Americas",
+      "subregion": "Central America",
+      "capital": {
+        "wikidataId": "Q3070",
+        "canonicalNameZh": "圣何塞",
+        "canonicalNameEn": "San José",
+        "aliases": [
+          "San Jose",
+          "San José, Costa Rica",
+          "圣何塞",
+          "聖何塞",
+          "聖荷西"
+        ]
+      },
+      "coordinates": {
+        "latitude": 10,
+        "longitude": -84
+      },
+      "entitySourceType": "wikidata",
+      "provenance": {
+        "entityId": [
+          {
+            "sourceType": "iso",
+            "source": "ISO 3166 Batch 06 reviewed seed",
+            "field": "entityId",
+            "sourceUrl": "",
+            "retrievedAt": "2026-08-17T07:00:00.000Z",
+            "value": "CR"
+          },
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "entityId",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q800",
+            "retrievedAt": "2026-08-17T07:00:00.000Z",
+            "value": "Q800"
+          }
+        ],
+        "isoAlpha2": [
+          {
+            "sourceType": "iso",
+            "source": "ISO 3166 Batch 06 reviewed seed",
+            "field": "isoAlpha2",
+            "sourceUrl": "",
+            "retrievedAt": "2026-08-17T07:00:00.000Z",
+            "value": "CR"
+          }
+        ],
+        "isoAlpha3": [
+          {
+            "sourceType": "iso",
+            "source": "ISO 3166 Batch 06 reviewed seed",
+            "field": "isoAlpha3",
+            "sourceUrl": "",
+            "retrievedAt": "2026-08-17T07:00:00.000Z",
+            "value": "CRI"
+          }
+        ],
+        "isoNumeric": [
+          {
+            "sourceType": "iso",
+            "source": "ISO 3166 Batch 06 reviewed seed",
+            "field": "isoNumeric",
+            "sourceUrl": "",
+            "retrievedAt": "2026-08-17T07:00:00.000Z",
+            "value": "188"
+          }
+        ],
+        "wikidataId": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "wikidataId",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q800",
+            "retrievedAt": "2026-08-17T07:00:00.000Z",
+            "value": "Q800"
+          }
+        ],
+        "canonicalNameZh": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "canonicalNameZh",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q800",
+            "retrievedAt": "2026-08-17T07:00:00.000Z",
+            "value": "哥斯达黎加"
+          }
+        ],
+        "canonicalNameEn": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "canonicalNameEn",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q800",
+            "retrievedAt": "2026-08-17T07:00:00.000Z",
+            "value": "Costa Rica"
+          }
+        ],
+        "aliases": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "aliases",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q800",
+            "retrievedAt": "2026-08-17T07:00:00.000Z",
+            "value": [
+              "cr",
+              "Republic of Costa Rica",
+              "哥斯大黎加",
+              "哥斯达黎加共和国",
+              "哥斯達黎加"
+            ]
+          }
+        ],
+        "continent": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "continent",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q800",
+            "retrievedAt": "2026-08-17T07:00:00.000Z",
+            "value": {
+              "wikidataId": "Q49",
+              "canonicalNameZh": "北美洲",
+              "canonicalNameEn": "North America"
+            }
+          }
+        ],
+        "region": [
+          {
+            "sourceType": "project-country-catalog",
+            "source": "Batch 06 reviewed country catalog",
+            "field": "region",
+            "sourceUrl": "",
+            "retrievedAt": "2026-08-17T07:00:00.000Z",
+            "value": "Americas"
+          }
+        ],
+        "subregion": [
+          {
+            "sourceType": "project-country-catalog",
+            "source": "Batch 06 reviewed country catalog",
+            "field": "subregion",
+            "sourceUrl": "",
+            "retrievedAt": "2026-08-17T07:00:00.000Z",
+            "value": "Central America"
+          }
+        ],
+        "capital": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "capital",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q800",
+            "retrievedAt": "2026-08-17T07:00:00.000Z",
+            "value": {
+              "wikidataId": "Q3070",
+              "canonicalNameZh": "圣何塞",
+              "canonicalNameEn": "San José",
+              "aliases": [
+                "San Jose",
+                "San José, Costa Rica",
+                "圣何塞",
+                "聖何塞",
+                "聖荷西"
+              ]
+            }
+          }
+        ],
+        "coordinates": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "coordinates",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q800",
+            "retrievedAt": "2026-08-17T07:00:00.000Z",
+            "value": {
+              "latitude": 10,
+              "longitude": -84
+            }
+          }
+        ]
+      },
+      "confidence": 0.95,
+      "retrievedAt": "2026-08-17T07:00:00.000Z"
+    },
+    {
+      "schemaVersion": "route-v2-country-baseline-p1a",
+      "entityId": "country-2211390c9ef54466",
+      "entityType": "country",
+      "isoAlpha2": "KH",
+      "isoAlpha3": "KHM",
+      "isoNumeric": "116",
+      "wikidataId": "Q424",
+      "canonicalNameZh": "柬埔寨",
+      "canonicalNameEn": "Cambodia",
+      "aliases": [
+        "Camboya",
+        "Campuchia",
+        "Kambodzha",
+        "Kamboja",
+        "Kampuchea",
+        "kh",
+        "Kingdom of Cambodia",
+        "柬埔寨王国",
+        "柬埔寨王國"
+      ],
+      "continent": {
+        "wikidataId": "Q48",
+        "canonicalNameZh": "亚洲",
+        "canonicalNameEn": "Asia"
+      },
+      "region": "Asia",
+      "subregion": "South-eastern Asia",
+      "capital": {
+        "wikidataId": "Q1850",
+        "canonicalNameZh": "金边",
+        "canonicalNameEn": "Phnom Penh",
+        "aliases": [
+          "金边"
+        ]
+      },
+      "coordinates": {
+        "latitude": 12.5,
+        "longitude": 105
+      },
+      "entitySourceType": "wikidata",
+      "provenance": {
+        "entityId": [
+          {
+            "sourceType": "iso",
+            "source": "ISO 3166 Batch 06 reviewed seed",
+            "field": "entityId",
+            "sourceUrl": "",
+            "retrievedAt": "2026-08-17T07:00:00.000Z",
+            "value": "KH"
+          },
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "entityId",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q424",
+            "retrievedAt": "2026-08-17T07:00:00.000Z",
+            "value": "Q424"
+          }
+        ],
+        "isoAlpha2": [
+          {
+            "sourceType": "iso",
+            "source": "ISO 3166 Batch 06 reviewed seed",
+            "field": "isoAlpha2",
+            "sourceUrl": "",
+            "retrievedAt": "2026-08-17T07:00:00.000Z",
+            "value": "KH"
+          }
+        ],
+        "isoAlpha3": [
+          {
+            "sourceType": "iso",
+            "source": "ISO 3166 Batch 06 reviewed seed",
+            "field": "isoAlpha3",
+            "sourceUrl": "",
+            "retrievedAt": "2026-08-17T07:00:00.000Z",
+            "value": "KHM"
+          }
+        ],
+        "isoNumeric": [
+          {
+            "sourceType": "iso",
+            "source": "ISO 3166 Batch 06 reviewed seed",
+            "field": "isoNumeric",
+            "sourceUrl": "",
+            "retrievedAt": "2026-08-17T07:00:00.000Z",
+            "value": "116"
+          }
+        ],
+        "wikidataId": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "wikidataId",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q424",
+            "retrievedAt": "2026-08-17T07:00:00.000Z",
+            "value": "Q424"
+          }
+        ],
+        "canonicalNameZh": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "canonicalNameZh",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q424",
+            "retrievedAt": "2026-08-17T07:00:00.000Z",
+            "value": "柬埔寨"
+          }
+        ],
+        "canonicalNameEn": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "canonicalNameEn",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q424",
+            "retrievedAt": "2026-08-17T07:00:00.000Z",
+            "value": "Cambodia"
+          }
+        ],
+        "aliases": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "aliases",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q424",
+            "retrievedAt": "2026-08-17T07:00:00.000Z",
+            "value": [
+              "Camboya",
+              "Campuchia",
+              "Kambodzha",
+              "Kamboja",
+              "Kampuchea",
+              "kh",
+              "Kingdom of Cambodia",
+              "柬埔寨王国",
+              "柬埔寨王國"
+            ]
+          }
+        ],
+        "continent": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "continent",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q424",
+            "retrievedAt": "2026-08-17T07:00:00.000Z",
+            "value": {
+              "wikidataId": "Q48",
+              "canonicalNameZh": "亚洲",
+              "canonicalNameEn": "Asia"
+            }
+          }
+        ],
+        "region": [
+          {
+            "sourceType": "project-country-catalog",
+            "source": "Batch 06 reviewed country catalog",
+            "field": "region",
+            "sourceUrl": "",
+            "retrievedAt": "2026-08-17T07:00:00.000Z",
+            "value": "Asia"
+          }
+        ],
+        "subregion": [
+          {
+            "sourceType": "project-country-catalog",
+            "source": "Batch 06 reviewed country catalog",
+            "field": "subregion",
+            "sourceUrl": "",
+            "retrievedAt": "2026-08-17T07:00:00.000Z",
+            "value": "South-eastern Asia"
+          }
+        ],
+        "capital": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "capital",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q424",
+            "retrievedAt": "2026-08-17T07:00:00.000Z",
+            "value": {
+              "wikidataId": "Q1850",
+              "canonicalNameZh": "金边",
+              "canonicalNameEn": "Phnom Penh",
+              "aliases": [
+                "金边"
+              ]
+            }
+          }
+        ],
+        "coordinates": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "coordinates",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q424",
+            "retrievedAt": "2026-08-17T07:00:00.000Z",
+            "value": {
+              "latitude": 12.5,
+              "longitude": 105
+            }
+          }
+        ]
+      },
+      "confidence": 0.95,
+      "retrievedAt": "2026-08-17T07:00:00.000Z"
+    },
+    {
+      "schemaVersion": "route-v2-country-baseline-p1a",
+      "entityId": "country-71961947af55ae50",
+      "entityType": "country",
+      "isoAlpha2": "RO",
+      "isoAlpha3": "ROU",
+      "isoNumeric": "642",
+      "wikidataId": "Q218",
+      "canonicalNameZh": "罗马尼亚",
+      "canonicalNameEn": "Romania",
+      "aliases": [
+        "Roumania",
+        "Rumania",
+        "羅馬尼亞"
+      ],
+      "continent": {
+        "wikidataId": "Q46",
+        "canonicalNameZh": "欧洲",
+        "canonicalNameEn": "Europe"
+      },
+      "region": "Europe",
+      "subregion": "Eastern Europe",
+      "capital": {
+        "wikidataId": "Q19660",
+        "canonicalNameZh": "布加勒斯特",
+        "canonicalNameEn": "Bucharest",
+        "aliases": [
+          "Bucharest, Romania",
+          "Bucuresti",
+          "Bucureşti",
+          "București",
+          "Little Paris",
+          "Paris of the East",
+          "布加勒斯",
+          "布加勒斯特",
+          "東方巴黎"
+        ]
+      },
+      "coordinates": {
+        "latitude": 46,
+        "longitude": 25
+      },
+      "entitySourceType": "wikidata",
+      "provenance": {
+        "entityId": [
+          {
+            "sourceType": "iso",
+            "source": "ISO 3166 Batch 06 reviewed seed",
+            "field": "entityId",
+            "sourceUrl": "",
+            "retrievedAt": "2026-08-17T07:00:00.000Z",
+            "value": "RO"
+          },
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "entityId",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q218",
+            "retrievedAt": "2026-08-17T07:00:00.000Z",
+            "value": "Q218"
+          }
+        ],
+        "isoAlpha2": [
+          {
+            "sourceType": "iso",
+            "source": "ISO 3166 Batch 06 reviewed seed",
+            "field": "isoAlpha2",
+            "sourceUrl": "",
+            "retrievedAt": "2026-08-17T07:00:00.000Z",
+            "value": "RO"
+          }
+        ],
+        "isoAlpha3": [
+          {
+            "sourceType": "iso",
+            "source": "ISO 3166 Batch 06 reviewed seed",
+            "field": "isoAlpha3",
+            "sourceUrl": "",
+            "retrievedAt": "2026-08-17T07:00:00.000Z",
+            "value": "ROU"
+          }
+        ],
+        "isoNumeric": [
+          {
+            "sourceType": "iso",
+            "source": "ISO 3166 Batch 06 reviewed seed",
+            "field": "isoNumeric",
+            "sourceUrl": "",
+            "retrievedAt": "2026-08-17T07:00:00.000Z",
+            "value": "642"
+          }
+        ],
+        "wikidataId": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "wikidataId",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q218",
+            "retrievedAt": "2026-08-17T07:00:00.000Z",
+            "value": "Q218"
+          }
+        ],
+        "canonicalNameZh": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "canonicalNameZh",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q218",
+            "retrievedAt": "2026-08-17T07:00:00.000Z",
+            "value": "罗马尼亚"
+          }
+        ],
+        "canonicalNameEn": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "canonicalNameEn",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q218",
+            "retrievedAt": "2026-08-17T07:00:00.000Z",
+            "value": "Romania"
+          }
+        ],
+        "aliases": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "aliases",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q218",
+            "retrievedAt": "2026-08-17T07:00:00.000Z",
+            "value": [
+              "Roumania",
+              "Rumania",
+              "羅馬尼亞"
+            ]
+          }
+        ],
+        "continent": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "continent",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q218",
+            "retrievedAt": "2026-08-17T07:00:00.000Z",
+            "value": {
+              "wikidataId": "Q46",
+              "canonicalNameZh": "欧洲",
+              "canonicalNameEn": "Europe"
+            }
+          }
+        ],
+        "region": [
+          {
+            "sourceType": "project-country-catalog",
+            "source": "Batch 06 reviewed country catalog",
+            "field": "region",
+            "sourceUrl": "",
+            "retrievedAt": "2026-08-17T07:00:00.000Z",
+            "value": "Europe"
+          }
+        ],
+        "subregion": [
+          {
+            "sourceType": "project-country-catalog",
+            "source": "Batch 06 reviewed country catalog",
+            "field": "subregion",
+            "sourceUrl": "",
+            "retrievedAt": "2026-08-17T07:00:00.000Z",
+            "value": "Eastern Europe"
+          }
+        ],
+        "capital": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "capital",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q218",
+            "retrievedAt": "2026-08-17T07:00:00.000Z",
+            "value": {
+              "wikidataId": "Q19660",
+              "canonicalNameZh": "布加勒斯特",
+              "canonicalNameEn": "Bucharest",
+              "aliases": [
+                "Bucharest, Romania",
+                "Bucuresti",
+                "Bucureşti",
+                "București",
+                "Little Paris",
+                "Paris of the East",
+                "布加勒斯",
+                "布加勒斯特",
+                "東方巴黎"
+              ]
+            }
+          }
+        ],
+        "coordinates": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "coordinates",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q218",
+            "retrievedAt": "2026-08-17T07:00:00.000Z",
+            "value": {
+              "latitude": 46,
+              "longitude": 25
+            }
+          }
+        ]
+      },
+      "confidence": 0.95,
+      "retrievedAt": "2026-08-17T07:00:00.000Z"
+    },
+    {
+      "schemaVersion": "route-v2-country-baseline-p1a",
+      "entityId": "country-2e5583ee6bbacb22",
+      "entityType": "country",
+      "isoAlpha2": "UY",
+      "isoAlpha3": "URY",
+      "isoNumeric": "858",
+      "wikidataId": "Q77",
+      "canonicalNameZh": "乌拉圭",
+      "canonicalNameEn": "Uruguay",
+      "aliases": [
+        "Eastern Republic of Uruguay",
+        "Oriental Republic of Uruguay",
+        "URU",
+        "uy",
+        "乌拉圭东岸共和国",
+        "烏拉圭",
+        "烏拉圭東岸共和國"
+      ],
+      "continent": {
+        "wikidataId": "Q18",
+        "canonicalNameZh": "南美洲",
+        "canonicalNameEn": "South America"
+      },
+      "region": "Americas",
+      "subregion": "South America",
+      "capital": {
+        "wikidataId": "Q1335",
+        "canonicalNameZh": "蒙得维的亚",
+        "canonicalNameEn": "Montevideo",
+        "aliases": [
+          "蒙得维的亚",
+          "蒙特維多"
+        ]
+      },
+      "coordinates": {
+        "latitude": -33,
+        "longitude": -56
+      },
+      "entitySourceType": "wikidata",
+      "provenance": {
+        "entityId": [
+          {
+            "sourceType": "iso",
+            "source": "ISO 3166 Batch 06 reviewed seed",
+            "field": "entityId",
+            "sourceUrl": "",
+            "retrievedAt": "2026-08-17T07:00:00.000Z",
+            "value": "UY"
+          },
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "entityId",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q77",
+            "retrievedAt": "2026-08-17T07:00:00.000Z",
+            "value": "Q77"
+          }
+        ],
+        "isoAlpha2": [
+          {
+            "sourceType": "iso",
+            "source": "ISO 3166 Batch 06 reviewed seed",
+            "field": "isoAlpha2",
+            "sourceUrl": "",
+            "retrievedAt": "2026-08-17T07:00:00.000Z",
+            "value": "UY"
+          }
+        ],
+        "isoAlpha3": [
+          {
+            "sourceType": "iso",
+            "source": "ISO 3166 Batch 06 reviewed seed",
+            "field": "isoAlpha3",
+            "sourceUrl": "",
+            "retrievedAt": "2026-08-17T07:00:00.000Z",
+            "value": "URY"
+          }
+        ],
+        "isoNumeric": [
+          {
+            "sourceType": "iso",
+            "source": "ISO 3166 Batch 06 reviewed seed",
+            "field": "isoNumeric",
+            "sourceUrl": "",
+            "retrievedAt": "2026-08-17T07:00:00.000Z",
+            "value": "858"
+          }
+        ],
+        "wikidataId": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "wikidataId",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q77",
+            "retrievedAt": "2026-08-17T07:00:00.000Z",
+            "value": "Q77"
+          }
+        ],
+        "canonicalNameZh": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "canonicalNameZh",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q77",
+            "retrievedAt": "2026-08-17T07:00:00.000Z",
+            "value": "乌拉圭"
+          }
+        ],
+        "canonicalNameEn": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "canonicalNameEn",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q77",
+            "retrievedAt": "2026-08-17T07:00:00.000Z",
+            "value": "Uruguay"
+          }
+        ],
+        "aliases": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "aliases",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q77",
+            "retrievedAt": "2026-08-17T07:00:00.000Z",
+            "value": [
+              "Eastern Republic of Uruguay",
+              "Oriental Republic of Uruguay",
+              "URU",
+              "uy",
+              "乌拉圭东岸共和国",
+              "烏拉圭",
+              "烏拉圭東岸共和國"
+            ]
+          }
+        ],
+        "continent": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "continent",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q77",
+            "retrievedAt": "2026-08-17T07:00:00.000Z",
+            "value": {
+              "wikidataId": "Q18",
+              "canonicalNameZh": "南美洲",
+              "canonicalNameEn": "South America"
+            }
+          }
+        ],
+        "region": [
+          {
+            "sourceType": "project-country-catalog",
+            "source": "Batch 06 reviewed country catalog",
+            "field": "region",
+            "sourceUrl": "",
+            "retrievedAt": "2026-08-17T07:00:00.000Z",
+            "value": "Americas"
+          }
+        ],
+        "subregion": [
+          {
+            "sourceType": "project-country-catalog",
+            "source": "Batch 06 reviewed country catalog",
+            "field": "subregion",
+            "sourceUrl": "",
+            "retrievedAt": "2026-08-17T07:00:00.000Z",
+            "value": "South America"
+          }
+        ],
+        "capital": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "capital",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q77",
+            "retrievedAt": "2026-08-17T07:00:00.000Z",
+            "value": {
+              "wikidataId": "Q1335",
+              "canonicalNameZh": "蒙得维的亚",
+              "canonicalNameEn": "Montevideo",
+              "aliases": [
+                "蒙得维的亚",
+                "蒙特維多"
+              ]
+            }
+          }
+        ],
+        "coordinates": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "coordinates",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q77",
+            "retrievedAt": "2026-08-17T07:00:00.000Z",
+            "value": {
+              "latitude": -33,
+              "longitude": -56
+            }
+          }
+        ]
+      },
+      "confidence": 0.95,
+      "retrievedAt": "2026-08-17T07:00:00.000Z"
+    }
+  ]
+}

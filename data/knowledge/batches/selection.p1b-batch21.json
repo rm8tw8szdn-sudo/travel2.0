@@ -1,0 +1,3559 @@
+{
+  "schemaVersion": "route-v2-knowledge-expansion-batch06-wave4-selection-v1",
+  "wave": 4,
+  "countries": [
+    {
+      "isoAlpha2": "SA",
+      "wikidataId": "Q851",
+      "entityId": "country-40fc654e4881ed71"
+    },
+    {
+      "isoAlpha2": "ZA",
+      "wikidataId": "Q258",
+      "entityId": "country-890663956f349c30"
+    },
+    {
+      "isoAlpha2": "KH",
+      "wikidataId": "Q424",
+      "entityId": "country-2211390c9ef54466"
+    },
+    {
+      "isoAlpha2": "RO",
+      "wikidataId": "Q218",
+      "entityId": "country-71961947af55ae50"
+    },
+    {
+      "isoAlpha2": "CR",
+      "wikidataId": "Q800",
+      "entityId": "country-7dd8befd36c7216d"
+    }
+  ],
+  "cities": [
+    {
+      "countryCode": "SA",
+      "tier": "world",
+      "targetPoiCount": 10,
+      "selectedPoiCount": 10,
+      "reused": false,
+      "entityId": "city-ffce627b0c72a8e5",
+      "wikidataId": "Q3692",
+      "canonicalNameEn": "Riyadh",
+      "positiveTypePath": [
+        "Q486972"
+      ]
+    },
+    {
+      "countryCode": "SA",
+      "tier": "world",
+      "targetPoiCount": 10,
+      "selectedPoiCount": 10,
+      "reused": false,
+      "entityId": "city-d66308af429fe98f",
+      "wikidataId": "Q374365",
+      "canonicalNameEn": "Jeddah",
+      "positiveTypePath": [
+        "Q1549591",
+        "Q515",
+        "Q124250988",
+        "Q486972"
+      ]
+    },
+    {
+      "countryCode": "SA",
+      "tier": "core",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 7,
+      "reused": false,
+      "entityId": "city-8374dd46e0b8d1a4",
+      "wikidataId": "Q35484",
+      "canonicalNameEn": "Medina",
+      "positiveTypePath": [
+        "Q1549591",
+        "Q515",
+        "Q124250988",
+        "Q486972"
+      ]
+    },
+    {
+      "countryCode": "SA",
+      "tier": "core",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 7,
+      "reused": false,
+      "entityId": "city-75a3031f2e06bd11",
+      "wikidataId": "Q5806",
+      "canonicalNameEn": "Mecca",
+      "positiveTypePath": [
+        "Q116291701",
+        "Q116291627",
+        "Q692581",
+        "Q7930989",
+        "Q124250988",
+        "Q486972"
+      ]
+    },
+    {
+      "countryCode": "SA",
+      "tier": "core",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 3,
+      "reused": false,
+      "entityId": "city-ad40a087703ae8fc",
+      "wikidataId": "Q244232",
+      "canonicalNameEn": "Tabuk",
+      "positiveTypePath": [
+        "Q1549591",
+        "Q515",
+        "Q124250988",
+        "Q486972"
+      ]
+    },
+    {
+      "countryCode": "SA",
+      "tier": "standard",
+      "targetPoiCount": 5,
+      "selectedPoiCount": 5,
+      "reused": false,
+      "entityId": "city-de94e977e0f5436d",
+      "wikidataId": "Q182640",
+      "canonicalNameEn": "Taif",
+      "positiveTypePath": [
+        "Q1549591",
+        "Q515",
+        "Q124250988",
+        "Q486972"
+      ]
+    },
+    {
+      "countryCode": "SA",
+      "tier": "standard",
+      "targetPoiCount": 5,
+      "selectedPoiCount": 5,
+      "reused": false,
+      "entityId": "city-f56658eea5af4c54",
+      "wikidataId": "Q160320",
+      "canonicalNameEn": "Dammam",
+      "positiveTypePath": [
+        "Q2264924",
+        "Q132967635",
+        "Q30504307",
+        "Q486972"
+      ]
+    },
+    {
+      "countryCode": "SA",
+      "tier": "standard",
+      "targetPoiCount": 5,
+      "selectedPoiCount": 5,
+      "reused": false,
+      "entityId": "city-d46b0b97215f8cb3",
+      "wikidataId": "Q190948",
+      "canonicalNameEn": "Abha",
+      "positiveTypePath": [
+        "Q1549591",
+        "Q515",
+        "Q124250988",
+        "Q486972"
+      ]
+    },
+    {
+      "countryCode": "ZA",
+      "tier": "world",
+      "targetPoiCount": 10,
+      "selectedPoiCount": 10,
+      "reused": false,
+      "entityId": "city-294de71e53f697a4",
+      "wikidataId": "Q5465",
+      "canonicalNameEn": "Cape Town",
+      "positiveTypePath": [
+        "Q2264924",
+        "Q132967635",
+        "Q30504307",
+        "Q486972"
+      ]
+    },
+    {
+      "countryCode": "ZA",
+      "tier": "world",
+      "targetPoiCount": 10,
+      "selectedPoiCount": 10,
+      "reused": false,
+      "entityId": "city-110036ac7d1c1494",
+      "wikidataId": "Q34647",
+      "canonicalNameEn": "Johannesburg",
+      "positiveTypePath": [
+        "Q515",
+        "Q124250988",
+        "Q486972"
+      ]
+    },
+    {
+      "countryCode": "ZA",
+      "tier": "core",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 7,
+      "reused": false,
+      "entityId": "city-a3bb1c8dabf2b63c",
+      "wikidataId": "Q5468",
+      "canonicalNameEn": "Durban",
+      "positiveTypePath": [
+        "Q515",
+        "Q124250988",
+        "Q486972"
+      ]
+    },
+    {
+      "countryCode": "ZA",
+      "tier": "core",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 7,
+      "reused": false,
+      "entityId": "city-3243e1623fa2b8f3",
+      "wikidataId": "Q3926",
+      "canonicalNameEn": "Pretoria",
+      "positiveTypePath": [
+        "Q1549591",
+        "Q515",
+        "Q124250988",
+        "Q486972"
+      ]
+    },
+    {
+      "countryCode": "ZA",
+      "tier": "core",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 7,
+      "reused": false,
+      "entityId": "city-d2c59cf3c9b76937",
+      "wikidataId": "Q5460",
+      "canonicalNameEn": "Stellenbosch",
+      "positiveTypePath": [
+        "Q515",
+        "Q124250988",
+        "Q486972"
+      ]
+    },
+    {
+      "countryCode": "ZA",
+      "tier": "core",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 7,
+      "reused": false,
+      "entityId": "city-bc2e5c7914f3d5ee",
+      "wikidataId": "Q125434",
+      "canonicalNameEn": "Gqeberha",
+      "positiveTypePath": [
+        "Q515",
+        "Q124250988",
+        "Q486972"
+      ]
+    },
+    {
+      "countryCode": "ZA",
+      "tier": "standard",
+      "targetPoiCount": 5,
+      "selectedPoiCount": 4,
+      "reused": false,
+      "entityId": "city-9ec37834c48a5380",
+      "wikidataId": "Q251137",
+      "canonicalNameEn": "Knysna",
+      "positiveTypePath": [
+        "Q3957",
+        "Q124250988",
+        "Q486972"
+      ]
+    },
+    {
+      "countryCode": "ZA",
+      "tier": "standard",
+      "targetPoiCount": 5,
+      "selectedPoiCount": 5,
+      "reused": false,
+      "entityId": "city-36c09ee2524778d4",
+      "wikidataId": "Q1613480",
+      "canonicalNameEn": "Hermanus",
+      "positiveTypePath": [
+        "Q3957",
+        "Q124250988",
+        "Q486972"
+      ]
+    },
+    {
+      "countryCode": "ZA",
+      "tier": "standard",
+      "targetPoiCount": 5,
+      "selectedPoiCount": 5,
+      "reused": false,
+      "entityId": "city-a39d626dea650040",
+      "wikidataId": "Q37701",
+      "canonicalNameEn": "Bloemfontein",
+      "positiveTypePath": [
+        "Q515",
+        "Q124250988",
+        "Q486972"
+      ]
+    },
+    {
+      "countryCode": "ZA",
+      "tier": "standard",
+      "targetPoiCount": 5,
+      "selectedPoiCount": 5,
+      "reused": false,
+      "entityId": "city-a6fe3ad27cd430d5",
+      "wikidataId": "Q125905",
+      "canonicalNameEn": "Kimberley",
+      "positiveTypePath": [
+        "Q3957",
+        "Q124250988",
+        "Q486972"
+      ]
+    },
+    {
+      "countryCode": "KH",
+      "tier": "world",
+      "targetPoiCount": 10,
+      "selectedPoiCount": 10,
+      "reused": false,
+      "entityId": "city-0fe0a2e83191480c",
+      "wikidataId": "Q1850",
+      "canonicalNameEn": "Phnom Penh",
+      "positiveTypePath": [
+        "Q515",
+        "Q124250988",
+        "Q486972"
+      ]
+    },
+    {
+      "countryCode": "KH",
+      "tier": "world",
+      "targetPoiCount": 10,
+      "selectedPoiCount": 10,
+      "reused": false,
+      "entityId": "city-93ec625f45fdc11a",
+      "wikidataId": "Q11711",
+      "canonicalNameEn": "Siem Reap",
+      "positiveTypePath": [
+        "Q1549591",
+        "Q515",
+        "Q124250988",
+        "Q486972"
+      ]
+    },
+    {
+      "countryCode": "KH",
+      "tier": "core",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 1,
+      "reused": false,
+      "entityId": "city-a3ebfc3d8b1f1db7",
+      "wikidataId": "Q748336",
+      "canonicalNameEn": "Battambang",
+      "positiveTypePath": [
+        "Q515",
+        "Q124250988",
+        "Q486972"
+      ]
+    },
+    {
+      "countryCode": "KH",
+      "tier": "standard",
+      "targetPoiCount": 5,
+      "selectedPoiCount": 2,
+      "reused": false,
+      "entityId": "city-1de46e4475fc50b7",
+      "wikidataId": "Q876549",
+      "canonicalNameEn": "Kampot",
+      "positiveTypePath": [
+        "Q515",
+        "Q124250988",
+        "Q486972"
+      ]
+    },
+    {
+      "countryCode": "KH",
+      "tier": "town",
+      "targetPoiCount": 3,
+      "selectedPoiCount": 2,
+      "reused": false,
+      "entityId": "city-0b712370bc52b649",
+      "wikidataId": "Q855724",
+      "canonicalNameEn": "Kampong Cham",
+      "positiveTypePath": [
+        "Q515",
+        "Q124250988",
+        "Q486972"
+      ]
+    },
+    {
+      "countryCode": "KH",
+      "tier": "core",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 7,
+      "reused": false,
+      "entityId": "city-d4f155a3d8ae0c4e",
+      "wikidataId": "Q18207676",
+      "canonicalNameEn": "Sihanoukville",
+      "positiveTypePath": [
+        "Q515",
+        "Q124250988",
+        "Q486972"
+      ]
+    },
+    {
+      "countryCode": "RO",
+      "tier": "world",
+      "targetPoiCount": 10,
+      "selectedPoiCount": 10,
+      "reused": false,
+      "entityId": "city-baf8e3fa2fe96c95",
+      "wikidataId": "Q19660",
+      "canonicalNameEn": "Bucharest",
+      "positiveTypePath": [
+        "Q640364",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "RO",
+      "tier": "core",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 7,
+      "reused": false,
+      "entityId": "city-f29c8b00bdd0a9bf",
+      "wikidataId": "Q82174",
+      "canonicalNameEn": "Brașov",
+      "positiveTypePath": [
+        "Q640364",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "RO",
+      "tier": "core",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 7,
+      "reused": false,
+      "entityId": "city-37d634de60db8a36",
+      "wikidataId": "Q83324",
+      "canonicalNameEn": "Sibiu",
+      "positiveTypePath": [
+        "Q640364",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "RO",
+      "tier": "core",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 7,
+      "reused": false,
+      "entityId": "city-8338219da4b081e4",
+      "wikidataId": "Q100188",
+      "canonicalNameEn": "Cluj-Napoca",
+      "positiveTypePath": [
+        "Q640364",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "RO",
+      "tier": "core",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 7,
+      "reused": false,
+      "entityId": "city-2de9ecdaa09305c4",
+      "wikidataId": "Q83404",
+      "canonicalNameEn": "Timișoara",
+      "positiveTypePath": [
+        "Q640364",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "RO",
+      "tier": "standard",
+      "targetPoiCount": 5,
+      "selectedPoiCount": 5,
+      "reused": false,
+      "entityId": "city-5682ab1567a884fc",
+      "wikidataId": "Q193001",
+      "canonicalNameEn": "Sighișoara",
+      "positiveTypePath": [
+        "Q640364",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "RO",
+      "tier": "standard",
+      "targetPoiCount": 5,
+      "selectedPoiCount": 5,
+      "reused": false,
+      "entityId": "city-a449e82c55118a81",
+      "wikidataId": "Q79808",
+      "canonicalNameEn": "Constanța",
+      "positiveTypePath": [
+        "Q640364",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "RO",
+      "tier": "standard",
+      "targetPoiCount": 5,
+      "selectedPoiCount": 5,
+      "reused": false,
+      "entityId": "city-e5292a3c5cdd691f",
+      "wikidataId": "Q46852",
+      "canonicalNameEn": "Iași",
+      "positiveTypePath": [
+        "Q640364",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "CR",
+      "tier": "world",
+      "targetPoiCount": 10,
+      "selectedPoiCount": 10,
+      "reused": false,
+      "entityId": "city-9f550079c3739335",
+      "wikidataId": "Q3070",
+      "canonicalNameEn": "San José",
+      "positiveTypePath": [
+        "Q515",
+        "Q124250988",
+        "Q486972"
+      ]
+    },
+    {
+      "countryCode": "CR",
+      "tier": "core",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 7,
+      "reused": false,
+      "entityId": "city-bdaca6fa565ca515",
+      "wikidataId": "Q1387526",
+      "canonicalNameEn": "Liberia",
+      "positiveTypePath": [
+        "Q515",
+        "Q124250988",
+        "Q486972"
+      ]
+    },
+    {
+      "countryCode": "CR",
+      "tier": "core",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 6,
+      "reused": false,
+      "entityId": "city-51a0f1561bbcdd08",
+      "wikidataId": "Q30687",
+      "canonicalNameEn": "Puntarenas",
+      "positiveTypePath": [
+        "Q515",
+        "Q124250988",
+        "Q486972"
+      ]
+    },
+    {
+      "countryCode": "CR",
+      "tier": "core",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 5,
+      "reused": false,
+      "entityId": "city-272c5c1939c309e2",
+      "wikidataId": "Q30620",
+      "canonicalNameEn": "Limón",
+      "positiveTypePath": [
+        "Q515",
+        "Q124250988",
+        "Q486972"
+      ]
+    },
+    {
+      "countryCode": "CR",
+      "tier": "standard",
+      "targetPoiCount": 5,
+      "selectedPoiCount": 5,
+      "reused": false,
+      "entityId": "city-21f03bba97a2e2a2",
+      "wikidataId": "Q30617",
+      "canonicalNameEn": "Cartago",
+      "positiveTypePath": [
+        "Q515",
+        "Q124250988",
+        "Q486972"
+      ]
+    },
+    {
+      "countryCode": "CR",
+      "tier": "standard",
+      "targetPoiCount": 5,
+      "selectedPoiCount": 5,
+      "reused": false,
+      "entityId": "city-979c3750767f29bc",
+      "wikidataId": "Q37104",
+      "canonicalNameEn": "Alajuela",
+      "positiveTypePath": [
+        "Q515",
+        "Q124250988",
+        "Q486972"
+      ]
+    },
+    {
+      "countryCode": "CR",
+      "tier": "standard",
+      "targetPoiCount": 5,
+      "selectedPoiCount": 5,
+      "reused": false,
+      "entityId": "city-c06719ebf4192345",
+      "wikidataId": "Q30616",
+      "canonicalNameEn": "Heredia",
+      "positiveTypePath": [
+        "Q515",
+        "Q124250988",
+        "Q486972"
+      ]
+    },
+    {
+      "countryCode": "CR",
+      "tier": "standard",
+      "targetPoiCount": 5,
+      "selectedPoiCount": 5,
+      "reused": false,
+      "entityId": "city-b1062de88a48bcf5",
+      "wikidataId": "Q2518620",
+      "canonicalNameEn": "San Isidro",
+      "positiveTypePath": [
+        "Q486972"
+      ]
+    }
+  ],
+  "pois": [
+    {
+      "entityId": "poi-107cb51f5538f106",
+      "parentCityEntityId": "city-ffce627b0c72a8e5",
+      "wikidataId": "Q751987",
+      "canonicalNameEn": "Masmak Fort",
+      "positiveTypePath": [
+        "Q1785071",
+        "Q57821",
+        "Q811979"
+      ],
+      "distanceKm": 2.128
+    },
+    {
+      "entityId": "poi-c3c5c6c0b2f97b28",
+      "parentCityEntityId": "city-ffce627b0c72a8e5",
+      "wikidataId": "Q16250443",
+      "canonicalNameEn": "Murabba Palace",
+      "positiveTypePath": [
+        "Q16560",
+        "Q41176"
+      ],
+      "distanceKm": 0.396
+    },
+    {
+      "entityId": "poi-9f0b5c63d25ad939",
+      "parentCityEntityId": "city-ffce627b0c72a8e5",
+      "wikidataId": "Q1407325",
+      "canonicalNameEn": "Riyadh TV Tower",
+      "positiveTypePath": [
+        "Q11166728",
+        "Q5367899",
+        "Q13226383"
+      ],
+      "distanceKm": 1.617
+    },
+    {
+      "entityId": "poi-2206c037c5e21202",
+      "parentCityEntityId": "city-ffce627b0c72a8e5",
+      "wikidataId": "Q3704686",
+      "canonicalNameEn": "Deera Square",
+      "positiveTypePath": [
+        "Q174782",
+        "Q811979"
+      ],
+      "distanceKm": 2.134
+    },
+    {
+      "entityId": "poi-d586b741977fd1ad",
+      "parentCityEntityId": "city-ffce627b0c72a8e5",
+      "wikidataId": "Q55614335",
+      "canonicalNameEn": "Imam Turki bin Abdullah Mosque",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 2.163
+    },
+    {
+      "entityId": "poi-68fb7d23443e30b5",
+      "parentCityEntityId": "city-ffce627b0c72a8e5",
+      "wikidataId": "Q85765745",
+      "canonicalNameEn": "Hareeq Dam",
+      "positiveTypePath": [
+        "Q12323",
+        "Q121359"
+      ],
+      "distanceKm": 2.069
+    },
+    {
+      "entityId": "poi-83ac5861b276d133",
+      "parentCityEntityId": "city-ffce627b0c72a8e5",
+      "wikidataId": "Q131686938",
+      "canonicalNameEn": "Al Madi Mosque",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 0.362
+    },
+    {
+      "entityId": "poi-d436be47d377c428",
+      "parentCityEntityId": "city-ffce627b0c72a8e5",
+      "wikidataId": "Q131686934",
+      "canonicalNameEn": "King Abdulaziz Mosque",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 0.501
+    },
+    {
+      "entityId": "poi-4b16c080f4a114ae",
+      "parentCityEntityId": "city-ffce627b0c72a8e5",
+      "wikidataId": "Q22932999",
+      "canonicalNameEn": "Riyadh Water Tower",
+      "positiveTypePath": [
+        "Q274153",
+        "Q12518",
+        "Q41176"
+      ],
+      "distanceKm": 0.6
+    },
+    {
+      "entityId": "poi-e7639c2bc57af309",
+      "parentCityEntityId": "city-ffce627b0c72a8e5",
+      "wikidataId": "Q123280699",
+      "canonicalNameEn": "SAMA Money Museum",
+      "positiveTypePath": [
+        "Q33506"
+      ],
+      "distanceKm": 1.486
+    },
+    {
+      "entityId": "poi-392225252c6ad3fc",
+      "parentCityEntityId": "city-d66308af429fe98f",
+      "wikidataId": "Q240426",
+      "canonicalNameEn": "King Fahd's Fountain",
+      "positiveTypePath": [
+        "Q43483",
+        "Q10713454",
+        "Q15324"
+      ],
+      "distanceKm": 2.251
+    },
+    {
+      "entityId": "poi-1565f743e1f4cbf5",
+      "parentCityEntityId": "city-d66308af429fe98f",
+      "wikidataId": "Q1151131",
+      "canonicalNameEn": "Jeddah Light",
+      "positiveTypePath": [
+        "Q39715",
+        "Q41176"
+      ],
+      "distanceKm": 6.826
+    },
+    {
+      "entityId": "poi-badca64f8378b34f",
+      "parentCityEntityId": "city-d66308af429fe98f",
+      "wikidataId": "Q2419298",
+      "canonicalNameEn": "Tomb of Eve",
+      "positiveTypePath": [
+        "Q839954"
+      ],
+      "distanceKm": 5.109
+    },
+    {
+      "entityId": "poi-f34c036350ac8a4a",
+      "parentCityEntityId": "city-d66308af429fe98f",
+      "wikidataId": "Q2628988",
+      "canonicalNameEn": "King Saud Mosque",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 2.364
+    },
+    {
+      "entityId": "poi-5409d34087506c2d",
+      "parentCityEntityId": "city-d66308af429fe98f",
+      "wikidataId": "Q18210580",
+      "canonicalNameEn": "Jeddah Flagpole",
+      "positiveTypePath": [
+        "Q1971570",
+        "Q525800",
+        "Q811979"
+      ],
+      "distanceKm": 2.531
+    },
+    {
+      "entityId": "poi-de477c1d5e787377",
+      "parentCityEntityId": "city-d66308af429fe98f",
+      "wikidataId": "Q1407285",
+      "canonicalNameEn": "Jeddah TV Tower",
+      "positiveTypePath": [
+        "Q11166728",
+        "Q5367899",
+        "Q13226383"
+      ],
+      "distanceKm": 7.407
+    },
+    {
+      "entityId": "poi-9ca82810e715aef1",
+      "parentCityEntityId": "city-d66308af429fe98f",
+      "wikidataId": "Q6967597",
+      "canonicalNameEn": "Nasseef House",
+      "positiveTypePath": [
+        "Q41176"
+      ],
+      "distanceKm": 5.741
+    },
+    {
+      "entityId": "poi-2666b8fbc61d3e4c",
+      "parentCityEntityId": "city-d66308af429fe98f",
+      "wikidataId": "Q2061935",
+      "canonicalNameEn": "Lamar Towers",
+      "positiveTypePath": [
+        "Q1497364",
+        "Q1497375"
+      ],
+      "distanceKm": 9.15
+    },
+    {
+      "entityId": "poi-e45276793b86a6d9",
+      "parentCityEntityId": "city-d66308af429fe98f",
+      "wikidataId": "Q626425",
+      "canonicalNameEn": "King Road Tower",
+      "positiveTypePath": [
+        "Q11303",
+        "Q18142",
+        "Q11755959",
+        "Q79146420",
+        "Q41176"
+      ],
+      "distanceKm": 5.01
+    },
+    {
+      "entityId": "poi-fd39c8d2aff32688",
+      "parentCityEntityId": "city-d66308af429fe98f",
+      "wikidataId": "Q3513926",
+      "canonicalNameEn": "Tahlia Street",
+      "positiveTypePath": [
+        "Q34442",
+        "Q123414165",
+        "Q811979"
+      ],
+      "distanceKm": 2.68
+    },
+    {
+      "entityId": "poi-0e8e9b5013b76871",
+      "parentCityEntityId": "city-8374dd46e0b8d1a4",
+      "wikidataId": "Q486080",
+      "canonicalNameEn": "Prophet's Mosque",
+      "positiveTypePath": [
+        "Q1454820",
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 0.204
+    },
+    {
+      "entityId": "poi-78505250955ce999",
+      "parentCityEntityId": "city-8374dd46e0b8d1a4",
+      "wikidataId": "Q276569",
+      "canonicalNameEn": "Quba Mosque",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 3.506
+    },
+    {
+      "entityId": "poi-450779dc3992ace4",
+      "parentCityEntityId": "city-8374dd46e0b8d1a4",
+      "wikidataId": "Q154204",
+      "canonicalNameEn": "Al-Baqi'",
+      "positiveTypePath": [
+        "Q2404995",
+        "Q39614",
+        "Q1497375"
+      ],
+      "distanceKm": 0.73
+    },
+    {
+      "entityId": "poi-3eee318e8c7ef9d0",
+      "parentCityEntityId": "city-8374dd46e0b8d1a4",
+      "wikidataId": "Q2334553",
+      "canonicalNameEn": "Masjid al-Qiblatain",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 3.516
+    },
+    {
+      "entityId": "poi-ac0471daa074ac9a",
+      "parentCityEntityId": "city-8374dd46e0b8d1a4",
+      "wikidataId": "Q1436040",
+      "canonicalNameEn": "Mount Uhud",
+      "positiveTypePath": [
+        "Q8502",
+        "Q35145263"
+      ],
+      "distanceKm": 4.496
+    },
+    {
+      "entityId": "poi-2fd01d89fcff8550",
+      "parentCityEntityId": "city-8374dd46e0b8d1a4",
+      "wikidataId": "Q14921963",
+      "canonicalNameEn": "Al Jum'ah Mosque",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 2.776
+    },
+    {
+      "entityId": "poi-73127f142870c2cf",
+      "parentCityEntityId": "city-8374dd46e0b8d1a4",
+      "wikidataId": "Q12242695",
+      "canonicalNameEn": "Al-Ijabah Mosque",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 0.871
+    },
+    {
+      "entityId": "poi-2787270c521014d3",
+      "parentCityEntityId": "city-75a3031f2e06bd11",
+      "wikidataId": "Q29466",
+      "canonicalNameEn": "Kaaba",
+      "positiveTypePath": [
+        "Q41176"
+      ],
+      "distanceKm": 0.006
+    },
+    {
+      "entityId": "poi-a460113a81da5b70",
+      "parentCityEntityId": "city-75a3031f2e06bd11",
+      "wikidataId": "Q428858",
+      "canonicalNameEn": "Al-Masjid Al-Haram",
+      "positiveTypePath": [
+        "Q1454820",
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 0
+    },
+    {
+      "entityId": "poi-9edcf13670a244ff",
+      "parentCityEntityId": "city-75a3031f2e06bd11",
+      "wikidataId": "Q146038",
+      "canonicalNameEn": "Zamzam Well",
+      "positiveTypePath": [
+        "Q43483",
+        "Q10713454",
+        "Q15324"
+      ],
+      "distanceKm": 0.043
+    },
+    {
+      "entityId": "poi-39a6f9503458a7f3",
+      "parentCityEntityId": "city-75a3031f2e06bd11",
+      "wikidataId": "Q189476",
+      "canonicalNameEn": "Abraj Al Bait",
+      "positiveTypePath": [
+        "Q1497364",
+        "Q1497375"
+      ],
+      "distanceKm": 0.403
+    },
+    {
+      "entityId": "poi-eaecba5e05581960",
+      "parentCityEntityId": "city-75a3031f2e06bd11",
+      "wikidataId": "Q1033157",
+      "canonicalNameEn": "Jabal al-Nour",
+      "positiveTypePath": [
+        "Q8502",
+        "Q35145263"
+      ],
+      "distanceKm": 5.382
+    },
+    {
+      "entityId": "poi-8e6d03acd01674aa",
+      "parentCityEntityId": "city-75a3031f2e06bd11",
+      "wikidataId": "Q42004",
+      "canonicalNameEn": "Jannat al-Mu'alla",
+      "positiveTypePath": [
+        "Q2404995",
+        "Q39614",
+        "Q1497375"
+      ],
+      "distanceKm": 1.643
+    },
+    {
+      "entityId": "poi-cd57a5e2d25b6d13",
+      "parentCityEntityId": "city-75a3031f2e06bd11",
+      "wikidataId": "Q1261987",
+      "canonicalNameEn": "Jamaraat Bridge",
+      "positiveTypePath": [
+        "Q1068842",
+        "Q12280",
+        "Q811979"
+      ],
+      "distanceKm": 4.834
+    },
+    {
+      "entityId": "poi-c0ddce91ddc1c8f2",
+      "parentCityEntityId": "city-ad40a087703ae8fc",
+      "wikidataId": "Q25454119",
+      "canonicalNameEn": "Tabuk Castle",
+      "positiveTypePath": [
+        "Q23413",
+        "Q57821",
+        "Q811979"
+      ],
+      "distanceKm": 0
+    },
+    {
+      "entityId": "poi-76d13c080ee0d435",
+      "parentCityEntityId": "city-ad40a087703ae8fc",
+      "wikidataId": "Q20401763",
+      "canonicalNameEn": "Tabuk Museum",
+      "positiveTypePath": [
+        "Q33506"
+      ],
+      "distanceKm": 1.97
+    },
+    {
+      "entityId": "poi-0c5c6dba266decdd",
+      "parentCityEntityId": "city-ad40a087703ae8fc",
+      "wikidataId": "Q22689910",
+      "canonicalNameEn": "Tabuk Mosque",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 2.288
+    },
+    {
+      "entityId": "poi-73b39ea47f5d591d",
+      "parentCityEntityId": "city-de94e977e0f5436d",
+      "wikidataId": "Q12217412",
+      "canonicalNameEn": "Souq Okadh",
+      "positiveTypePath": [
+        "Q132510",
+        "Q37654"
+      ],
+      "distanceKm": 33.096
+    },
+    {
+      "entityId": "poi-af8dc09e72374fc4",
+      "parentCityEntityId": "city-de94e977e0f5436d",
+      "wikidataId": "Q4502362",
+      "canonicalNameEn": "Hunayn",
+      "positiveTypePath": [
+        "Q39816",
+        "Q35145263"
+      ],
+      "distanceKm": 19.773
+    },
+    {
+      "entityId": "poi-d6b813c8589ca02d",
+      "parentCityEntityId": "city-de94e977e0f5436d",
+      "wikidataId": "Q6411564",
+      "canonicalNameEn": "King Fahd Sports City",
+      "positiveTypePath": [
+        "Q483110",
+        "Q1076486",
+        "Q811979"
+      ],
+      "distanceKm": 19.948
+    },
+    {
+      "entityId": "poi-6c1e7b0ece0dd64e",
+      "parentCityEntityId": "city-de94e977e0f5436d",
+      "wikidataId": "Q12242830",
+      "canonicalNameEn": "Abdullah Ibn Abbas Mosque, Ta'if",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 0.944
+    },
+    {
+      "entityId": "poi-c12893151ff7be42",
+      "parentCityEntityId": "city-de94e977e0f5436d",
+      "wikidataId": "Q64681816",
+      "canonicalNameEn": "Al Qantara Mosque",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 2.877
+    },
+    {
+      "entityId": "poi-f8c26243a44fb8ec",
+      "parentCityEntityId": "city-f56658eea5af4c54",
+      "wikidataId": "Q3134340",
+      "canonicalNameEn": "Tarout Island",
+      "positiveTypePath": [
+        "Q23442",
+        "Q271669"
+      ],
+      "distanceKm": 15.193
+    },
+    {
+      "entityId": "poi-639c3108fa3d429e",
+      "parentCityEntityId": "city-f56658eea5af4c54",
+      "wikidataId": "Q2650633",
+      "canonicalNameEn": "Prince Mohamed bin Fahd Stadium",
+      "positiveTypePath": [
+        "Q483110",
+        "Q1076486",
+        "Q811979"
+      ],
+      "distanceKm": 1.561
+    },
+    {
+      "entityId": "poi-f4cb14278d32c36d",
+      "parentCityEntityId": "city-f56658eea5af4c54",
+      "wikidataId": "Q16119944",
+      "canonicalNameEn": "Tarout Castle",
+      "positiveTypePath": [
+        "Q23413",
+        "Q57821",
+        "Q811979"
+      ],
+      "distanceKm": 15.431
+    },
+    {
+      "entityId": "poi-1e27502f797e04be",
+      "parentCityEntityId": "city-f56658eea5af4c54",
+      "wikidataId": "Q16120817",
+      "canonicalNameEn": "Mosque of Imam Hussein",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 3.147
+    },
+    {
+      "entityId": "poi-4c0dbc193be657cc",
+      "parentCityEntityId": "city-f56658eea5af4c54",
+      "wikidataId": "Q12195463",
+      "canonicalNameEn": "Prosperity Well No. 7",
+      "positiveTypePath": [
+        "Q211748",
+        "Q15104915",
+        "Q35145263"
+      ],
+      "distanceKm": 12.783
+    },
+    {
+      "entityId": "poi-0eb467b6c0f56350",
+      "parentCityEntityId": "city-d46b0b97215f8cb3",
+      "wikidataId": "Q208299",
+      "canonicalNameEn": "Arabian Desert",
+      "positiveTypePath": [
+        "Q8514",
+        "Q271669"
+      ],
+      "distanceKm": 15.025
+    },
+    {
+      "entityId": "poi-53a4368bfee70829",
+      "parentCityEntityId": "city-d46b0b97215f8cb3",
+      "wikidataId": "Q2466169",
+      "canonicalNameEn": "Sarawat Mountains",
+      "positiveTypePath": [
+        "Q46831",
+        "Q271669"
+      ],
+      "distanceKm": 15.025
+    },
+    {
+      "entityId": "poi-fbd1d589dbe16350",
+      "parentCityEntityId": "city-d46b0b97215f8cb3",
+      "wikidataId": "Q1261892",
+      "canonicalNameEn": "Jabal Sawda",
+      "positiveTypePath": [
+        "Q8502",
+        "Q35145263"
+      ],
+      "distanceKm": 15.025
+    },
+    {
+      "entityId": "poi-86c055dd6ece4a7e",
+      "parentCityEntityId": "city-d46b0b97215f8cb3",
+      "wikidataId": "Q22689176",
+      "canonicalNameEn": "Al-Muftaha Village",
+      "positiveTypePath": [
+        "Q66310866",
+        "Q756102",
+        "Q33506"
+      ],
+      "distanceKm": 0.566
+    },
+    {
+      "entityId": "poi-7ee195354f60d468",
+      "parentCityEntityId": "city-d46b0b97215f8cb3",
+      "wikidataId": "Q4120210",
+      "canonicalNameEn": "Prince Mohammed bin Abdul Aziz Stadium",
+      "positiveTypePath": [
+        "Q483110",
+        "Q1076486",
+        "Q811979"
+      ],
+      "distanceKm": 1.266
+    },
+    {
+      "entityId": "poi-488401632f333d06",
+      "parentCityEntityId": "city-294de71e53f697a4",
+      "wikidataId": "Q1049562",
+      "canonicalNameEn": "Castle of Good Hope",
+      "positiveTypePath": [
+        "Q12797",
+        "Q39535649",
+        "Q1785071",
+        "Q57821",
+        "Q811979"
+      ],
+      "distanceKm": 0.361
+    },
+    {
+      "entityId": "poi-a8982d0688bf0d59",
+      "parentCityEntityId": "city-294de71e53f697a4",
+      "wikidataId": "Q211497",
+      "canonicalNameEn": "National Library of South Africa",
+      "positiveTypePath": [
+        "Q22806",
+        "Q65768782",
+        "Q385994",
+        "Q7075",
+        "Q101542346",
+        "Q13226383"
+      ],
+      "distanceKm": 0.479
+    },
+    {
+      "entityId": "poi-c7d3e90cb1fec1fb",
+      "parentCityEntityId": "city-294de71e53f697a4",
+      "wikidataId": "Q7128085",
+      "canonicalNameEn": "Palm Tree Mosque",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 0.657
+    },
+    {
+      "entityId": "poi-6326302f8198169a",
+      "parentCityEntityId": "city-294de71e53f697a4",
+      "wikidataId": "Q1419469",
+      "canonicalNameEn": "South African National Gallery",
+      "positiveTypePath": [
+        "Q207694",
+        "Q33506"
+      ],
+      "distanceKm": 0.744
+    },
+    {
+      "entityId": "poi-acafc48652d6ea37",
+      "parentCityEntityId": "city-294de71e53f697a4",
+      "wikidataId": "Q18125735",
+      "canonicalNameEn": "Houses of Parliament",
+      "positiveTypePath": [
+        "Q1081138",
+        "Q210272"
+      ],
+      "distanceKm": 0.445
+    },
+    {
+      "entityId": "poi-ea77343fd8cf270e",
+      "parentCityEntityId": "city-294de71e53f697a4",
+      "wikidataId": "Q5486794",
+      "canonicalNameEn": "Tuynhuys",
+      "positiveTypePath": [
+        "Q3950",
+        "Q3947",
+        "Q41176"
+      ],
+      "distanceKm": 0.559
+    },
+    {
+      "entityId": "poi-6cf66c285bc63377",
+      "parentCityEntityId": "city-294de71e53f697a4",
+      "wikidataId": "Q4817466",
+      "canonicalNameEn": "Cape Town City Hall",
+      "positiveTypePath": [
+        "Q543654",
+        "Q25550691",
+        "Q294422",
+        "Q41176"
+      ],
+      "distanceKm": 0
+    },
+    {
+      "entityId": "poi-3639f771ff9a8d0e",
+      "parentCityEntityId": "city-294de71e53f697a4",
+      "wikidataId": "Q590259",
+      "canonicalNameEn": "Company's Garden",
+      "positiveTypePath": [
+        "Q1107656",
+        "Q811979"
+      ],
+      "distanceKm": 0.698
+    },
+    {
+      "entityId": "poi-3862629763de6b35",
+      "parentCityEntityId": "city-294de71e53f697a4",
+      "wikidataId": "Q3331005",
+      "canonicalNameEn": "Mutual Building",
+      "positiveTypePath": [
+        "Q41176"
+      ],
+      "distanceKm": 0.184
+    },
+    {
+      "entityId": "poi-31023d6bf9e09888",
+      "parentCityEntityId": "city-294de71e53f697a4",
+      "wikidataId": "Q20981990",
+      "canonicalNameEn": "Statue of Jan Hendrik Hofmeyr",
+      "positiveTypePath": [
+        "Q179700",
+        "Q860861",
+        "Q4502142",
+        "Q838948"
+      ],
+      "distanceKm": 0.231
+    },
+    {
+      "entityId": "poi-4c3d903b13275ba4",
+      "parentCityEntityId": "city-110036ac7d1c1494",
+      "wikidataId": "Q976172",
+      "canonicalNameEn": "Carlton Centre",
+      "positiveTypePath": [
+        "Q11303",
+        "Q18142",
+        "Q11755959",
+        "Q79146420",
+        "Q41176"
+      ],
+      "distanceKm": 0.519
+    },
+    {
+      "entityId": "poi-1887f12813b13a4d",
+      "parentCityEntityId": "city-110036ac7d1c1494",
+      "wikidataId": "Q10991765",
+      "canonicalNameEn": "Nelson Mandela Bridge",
+      "positiveTypePath": [
+        "Q537127",
+        "Q12280",
+        "Q811979"
+      ],
+      "distanceKm": 1.13
+    },
+    {
+      "entityId": "poi-f49aa24290f2f3f1",
+      "parentCityEntityId": "city-110036ac7d1c1494",
+      "wikidataId": "Q512913",
+      "canonicalNameEn": "Trust Bank Building",
+      "positiveTypePath": [
+        "Q11303",
+        "Q18142",
+        "Q11755959",
+        "Q79146420",
+        "Q41176"
+      ],
+      "distanceKm": 0.364
+    },
+    {
+      "entityId": "poi-6aac598f103e8504",
+      "parentCityEntityId": "city-110036ac7d1c1494",
+      "wikidataId": "Q6217142",
+      "canonicalNameEn": "Johannesburg Art Gallery",
+      "positiveTypePath": [
+        "Q207694",
+        "Q33506"
+      ],
+      "distanceKm": 0.983
+    },
+    {
+      "entityId": "poi-b7ddc478859092e0",
+      "parentCityEntityId": "city-110036ac7d1c1494",
+      "wikidataId": "Q7598177",
+      "canonicalNameEn": "Standard Bank Centre",
+      "positiveTypePath": [
+        "Q11303",
+        "Q18142",
+        "Q11755959",
+        "Q79146420",
+        "Q41176"
+      ],
+      "distanceKm": 0.335
+    },
+    {
+      "entityId": "poi-63ee0ad4e6429fc0",
+      "parentCityEntityId": "city-110036ac7d1c1494",
+      "wikidataId": "Q5520720",
+      "canonicalNameEn": "Gandhi Square",
+      "positiveTypePath": [
+        "Q174782",
+        "Q811979"
+      ],
+      "distanceKm": 0.293
+    },
+    {
+      "entityId": "poi-bc1d4beecd1523a4",
+      "parentCityEntityId": "city-110036ac7d1c1494",
+      "wikidataId": "Q6755229",
+      "canonicalNameEn": "Marble Towers",
+      "positiveTypePath": [
+        "Q41176"
+      ],
+      "distanceKm": 0.649
+    },
+    {
+      "entityId": "poi-52a9c255cc049a08",
+      "parentCityEntityId": "city-110036ac7d1c1494",
+      "wikidataId": "Q1900656",
+      "canonicalNameEn": "Market Theatre",
+      "positiveTypePath": [
+        "Q24354",
+        "Q114961210",
+        "Q41176"
+      ],
+      "distanceKm": 0.971
+    },
+    {
+      "entityId": "poi-bccfc69083fe2410",
+      "parentCityEntityId": "city-110036ac7d1c1494",
+      "wikidataId": "Q19898490",
+      "canonicalNameEn": "Statue of Mahatma Gandhi",
+      "positiveTypePath": [
+        "Q179700",
+        "Q860861",
+        "Q4502142",
+        "Q838948"
+      ],
+      "distanceKm": 0.28
+    },
+    {
+      "entityId": "poi-810bdb1f46a07be5",
+      "parentCityEntityId": "city-110036ac7d1c1494",
+      "wikidataId": "Q4669640",
+      "canonicalNameEn": "ABSA Tower",
+      "positiveTypePath": [
+        "Q811979"
+      ],
+      "distanceKm": 0.822
+    },
+    {
+      "entityId": "poi-223cd61b61046818",
+      "parentCityEntityId": "city-a3bb1c8dabf2b63c",
+      "wikidataId": "Q175289",
+      "canonicalNameEn": "Moses Mabhida Stadium",
+      "positiveTypePath": [
+        "Q1154710",
+        "Q1076486",
+        "Q811979"
+      ],
+      "distanceKm": 3.302
+    },
+    {
+      "entityId": "poi-0a217f1cdc609dc7",
+      "parentCityEntityId": "city-a3bb1c8dabf2b63c",
+      "wikidataId": "Q6413355",
+      "canonicalNameEn": "Kingsmead Cricket Ground",
+      "positiveTypePath": [
+        "Q682943",
+        "Q120169965",
+        "Q1076486",
+        "Q811979"
+      ],
+      "distanceKm": 0.959
+    },
+    {
+      "entityId": "poi-c8beeea9384455e9",
+      "parentCityEntityId": "city-a3bb1c8dabf2b63c",
+      "wikidataId": "Q17006922",
+      "canonicalNameEn": "Juma Mosque",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 0.823
+    },
+    {
+      "entityId": "poi-28d389a09ced6d82",
+      "parentCityEntityId": "city-a3bb1c8dabf2b63c",
+      "wikidataId": "Q288325",
+      "canonicalNameEn": "uShaka Marine World",
+      "positiveTypePath": [
+        "Q194195",
+        "Q338112"
+      ],
+      "distanceKm": 1.996
+    },
+    {
+      "entityId": "poi-6259e6db6f0f8cbe",
+      "parentCityEntityId": "city-a3bb1c8dabf2b63c",
+      "wikidataId": "Q11856374",
+      "canonicalNameEn": "Durban City Hall",
+      "positiveTypePath": [
+        "Q25550691",
+        "Q294422",
+        "Q41176"
+      ],
+      "distanceKm": 0.146
+    },
+    {
+      "entityId": "poi-e48ea8fe72b28a67",
+      "parentCityEntityId": "city-a3bb1c8dabf2b63c",
+      "wikidataId": "Q7054113",
+      "canonicalNameEn": "North Beach",
+      "positiveTypePath": [
+        "Q40080",
+        "Q468756",
+        "Q20719696"
+      ],
+      "distanceKm": 1.688
+    },
+    {
+      "entityId": "poi-18eb7dc459d54343",
+      "parentCityEntityId": "city-a3bb1c8dabf2b63c",
+      "wikidataId": "Q5316277",
+      "canonicalNameEn": "Durban Botanic Gardens",
+      "positiveTypePath": [
+        "Q167346",
+        "Q13226383"
+      ],
+      "distanceKm": 2.188
+    },
+    {
+      "entityId": "poi-beac5542e4706e9f",
+      "parentCityEntityId": "city-3243e1623fa2b8f3",
+      "wikidataId": "Q2213534",
+      "canonicalNameEn": "Apies River",
+      "positiveTypePath": [
+        "Q4022",
+        "Q355304",
+        "Q15324"
+      ],
+      "distanceKm": 1.483
+    },
+    {
+      "entityId": "poi-043f6c9853913cb3",
+      "parentCityEntityId": "city-3243e1623fa2b8f3",
+      "wikidataId": "Q2264091",
+      "canonicalNameEn": "Union Buildings",
+      "positiveTypePath": [
+        "Q1220959",
+        "Q294422",
+        "Q41176"
+      ],
+      "distanceKm": 2.489
+    },
+    {
+      "entityId": "poi-70ef2298bfb1184e",
+      "parentCityEntityId": "city-3243e1623fa2b8f3",
+      "wikidataId": "Q2583379",
+      "canonicalNameEn": "Ditsong National Museum of Natural History",
+      "positiveTypePath": [
+        "Q33506"
+      ],
+      "distanceKm": 0.446
+    },
+    {
+      "entityId": "poi-1fd92834e6b80a8f",
+      "parentCityEntityId": "city-3243e1623fa2b8f3",
+      "wikidataId": "Q1139958",
+      "canonicalNameEn": "National Zoological Garden of South Africa",
+      "positiveTypePath": [
+        "Q43501",
+        "Q22698"
+      ],
+      "distanceKm": 0.903
+    },
+    {
+      "entityId": "poi-2e504651566d54d2",
+      "parentCityEntityId": "city-3243e1623fa2b8f3",
+      "wikidataId": "Q2749491",
+      "canonicalNameEn": "Church Square, Pretoria",
+      "positiveTypePath": [
+        "Q174782",
+        "Q811979"
+      ],
+      "distanceKm": 0.005
+    },
+    {
+      "entityId": "poi-99e6878e303e21c7",
+      "parentCityEntityId": "city-3243e1623fa2b8f3",
+      "wikidataId": "Q1541745",
+      "canonicalNameEn": "Kruger House, Pretoria",
+      "positiveTypePath": [
+        "Q41176"
+      ],
+      "distanceKm": 0.668
+    },
+    {
+      "entityId": "poi-0a1dd5d75f4fa3c4",
+      "parentCityEntityId": "city-3243e1623fa2b8f3",
+      "wikidataId": "Q302422",
+      "canonicalNameEn": "Ou Raadsaal",
+      "positiveTypePath": [
+        "Q7138926",
+        "Q294422",
+        "Q41176"
+      ],
+      "distanceKm": 0.097
+    },
+    {
+      "entityId": "poi-0f7648aed4e93c15",
+      "parentCityEntityId": "city-d2c59cf3c9b76937",
+      "wikidataId": "Q2422623",
+      "canonicalNameEn": "Danie Craven Stadium",
+      "positiveTypePath": [
+        "Q15303456",
+        "Q1076486",
+        "Q811979"
+      ],
+      "distanceKm": 1.187
+    },
+    {
+      "entityId": "poi-e295c75de65ebce1",
+      "parentCityEntityId": "city-d2c59cf3c9b76937",
+      "wikidataId": "Q1553299",
+      "canonicalNameEn": "Mother Church (Stellenbosch)",
+      "positiveTypePath": [
+        "Q16970",
+        "Q24398318",
+        "Q41176"
+      ],
+      "distanceKm": 0.291
+    },
+    {
+      "entityId": "poi-7f505f8df140aa38",
+      "parentCityEntityId": "city-d2c59cf3c9b76937",
+      "wikidataId": "Q5140841",
+      "canonicalNameEn": "Coetzenburg Stadium",
+      "positiveTypePath": [
+        "Q483110",
+        "Q1076486",
+        "Q811979"
+      ],
+      "distanceKm": 0.877
+    },
+    {
+      "entityId": "poi-13ae4ee9bbd32810",
+      "parentCityEntityId": "city-d2c59cf3c9b76937",
+      "wikidataId": "Q7153315",
+      "canonicalNameEn": "Paul Roos Gymnasium",
+      "positiveTypePath": [
+        "Q269770",
+        "Q699405",
+        "Q811979"
+      ],
+      "distanceKm": 0.586
+    },
+    {
+      "entityId": "poi-f254f8243000e82a",
+      "parentCityEntityId": "city-d2c59cf3c9b76937",
+      "wikidataId": "Q5773209",
+      "canonicalNameEn": "Oom Samie se Winkel",
+      "positiveTypePath": [
+        "Q213441",
+        "Q628858",
+        "Q13226383"
+      ],
+      "distanceKm": 0.606
+    },
+    {
+      "entityId": "poi-c2df9baad7094710",
+      "parentCityEntityId": "city-d2c59cf3c9b76937",
+      "wikidataId": "Q6275611",
+      "canonicalNameEn": "Jonkershoek Nature Reserve",
+      "positiveTypePath": [
+        "Q179049",
+        "Q473972"
+      ],
+      "distanceKm": 7.796
+    },
+    {
+      "entityId": "poi-770b77d629d3dc0d",
+      "parentCityEntityId": "city-d2c59cf3c9b76937",
+      "wikidataId": "Q4735298",
+      "canonicalNameEn": "Alphen Dam",
+      "positiveTypePath": [
+        "Q12323",
+        "Q121359"
+      ],
+      "distanceKm": 8.415
+    },
+    {
+      "entityId": "poi-eb044463de815b4f",
+      "parentCityEntityId": "city-bc2e5c7914f3d5ee",
+      "wikidataId": "Q181445",
+      "canonicalNameEn": "Nelson Mandela Bay Stadium",
+      "positiveTypePath": [
+        "Q1154710",
+        "Q1076486",
+        "Q811979"
+      ],
+      "distanceKm": 2.257
+    },
+    {
+      "entityId": "poi-51a979557516f184",
+      "parentCityEntityId": "city-bc2e5c7914f3d5ee",
+      "wikidataId": "Q3046060",
+      "canonicalNameEn": "EPRU Stadium",
+      "positiveTypePath": [
+        "Q15303456",
+        "Q1076486",
+        "Q811979"
+      ],
+      "distanceKm": 4.504
+    },
+    {
+      "entityId": "poi-ef0a2283504f6950",
+      "parentCityEntityId": "city-bc2e5c7914f3d5ee",
+      "wikidataId": "Q3495321",
+      "canonicalNameEn": "St George's Park Cricket Ground",
+      "positiveTypePath": [
+        "Q682943",
+        "Q120169965",
+        "Q1076486",
+        "Q811979"
+      ],
+      "distanceKm": 1.316
+    },
+    {
+      "entityId": "poi-5842cbbf9e6e6cb2",
+      "parentCityEntityId": "city-bc2e5c7914f3d5ee",
+      "wikidataId": "Q34670300",
+      "canonicalNameEn": "Baakens River",
+      "positiveTypePath": [
+        "Q4022",
+        "Q355304",
+        "Q15324"
+      ],
+      "distanceKm": 2.753
+    },
+    {
+      "entityId": "poi-f633450cba96440c",
+      "parentCityEntityId": "city-bc2e5c7914f3d5ee",
+      "wikidataId": "Q6990626",
+      "canonicalNameEn": "Nelson Mandela Metropolitan Art Museum",
+      "positiveTypePath": [
+        "Q207694",
+        "Q33506"
+      ],
+      "distanceKm": 1.338
+    },
+    {
+      "entityId": "poi-ceada1f7e47c1681",
+      "parentCityEntityId": "city-bc2e5c7914f3d5ee",
+      "wikidataId": "Q5905499",
+      "canonicalNameEn": "Horse Memorial",
+      "positiveTypePath": [
+        "Q5003624",
+        "Q4989906"
+      ],
+      "distanceKm": 0.982
+    },
+    {
+      "entityId": "poi-80788710ee788298",
+      "parentCityEntityId": "city-bc2e5c7914f3d5ee",
+      "wikidataId": "Q24233875",
+      "canonicalNameEn": "Fort Frederick",
+      "positiveTypePath": [
+        "Q1785071",
+        "Q57821",
+        "Q811979"
+      ],
+      "distanceKm": 2.193
+    },
+    {
+      "entityId": "poi-3a03c2eb62b0714c",
+      "parentCityEntityId": "city-9ec37834c48a5380",
+      "wikidataId": "Q83706882",
+      "canonicalNameEn": "Knysna River",
+      "positiveTypePath": [
+        "Q573344",
+        "Q47521",
+        "Q15324"
+      ],
+      "distanceKm": 5.994
+    },
+    {
+      "entityId": "poi-876bc7ff571afabb",
+      "parentCityEntityId": "city-9ec37834c48a5380",
+      "wikidataId": "Q19623655",
+      "canonicalNameEn": "Steenbok Nature Reserve",
+      "positiveTypePath": [
+        "Q179049",
+        "Q473972"
+      ],
+      "distanceKm": 3.542
+    },
+    {
+      "entityId": "poi-c350ad0ecba6d55b",
+      "parentCityEntityId": "city-9ec37834c48a5380",
+      "wikidataId": "Q119512704",
+      "canonicalNameEn": "Pledge Nature Reserve",
+      "positiveTypePath": [
+        "Q179049",
+        "Q473972"
+      ],
+      "distanceKm": 0.487
+    },
+    {
+      "entityId": "poi-b48f858d202c8b69",
+      "parentCityEntityId": "city-9ec37834c48a5380",
+      "wikidataId": "Q127923685",
+      "canonicalNameEn": "Holy Trinity Church, Belvidere",
+      "positiveTypePath": [
+        "Q16970",
+        "Q24398318",
+        "Q41176"
+      ],
+      "distanceKm": 4.63
+    },
+    {
+      "entityId": "poi-24320c03857fae71",
+      "parentCityEntityId": "city-36c09ee2524778d4",
+      "wikidataId": "Q7962218",
+      "canonicalNameEn": "Walker Bay",
+      "positiveTypePath": [
+        "Q39594",
+        "Q35116038",
+        "Q15324"
+      ],
+      "distanceKm": 9.756
+    },
+    {
+      "entityId": "poi-c1f05cce3c73faea",
+      "parentCityEntityId": "city-36c09ee2524778d4",
+      "wikidataId": "Q5445118",
+      "canonicalNameEn": "Fernkloof Nature Reserve",
+      "positiveTypePath": [
+        "Q179049",
+        "Q473972"
+      ],
+      "distanceKm": 3.901
+    },
+    {
+      "entityId": "poi-72c514698985f831",
+      "parentCityEntityId": "city-36c09ee2524778d4",
+      "wikidataId": "Q4788030",
+      "canonicalNameEn": "Klein River",
+      "positiveTypePath": [
+        "Q4022",
+        "Q355304",
+        "Q15324"
+      ],
+      "distanceKm": 0.463
+    },
+    {
+      "entityId": "poi-694cdd9d55dc615b",
+      "parentCityEntityId": "city-36c09ee2524778d4",
+      "wikidataId": "Q32024772",
+      "canonicalNameEn": "Strandveld",
+      "positiveTypePath": [
+        "Q160091",
+        "Q271669"
+      ],
+      "distanceKm": 9.608
+    },
+    {
+      "entityId": "poi-a3407011b13a454a",
+      "parentCityEntityId": "city-36c09ee2524778d4",
+      "wikidataId": "Q65062437",
+      "canonicalNameEn": "Walker Bay Whale Sanctuary",
+      "positiveTypePath": [
+        "Q60773370",
+        "Q1367500",
+        "Q473972"
+      ],
+      "distanceKm": 6.39
+    },
+    {
+      "entityId": "poi-638abbcee526a20b",
+      "parentCityEntityId": "city-a39d626dea650040",
+      "wikidataId": "Q181439",
+      "canonicalNameEn": "Free State Stadium",
+      "positiveTypePath": [
+        "Q15303456",
+        "Q1076486",
+        "Q811979"
+      ],
+      "distanceKm": 2.059
+    },
+    {
+      "entityId": "poi-231cb681abe03e0b",
+      "parentCityEntityId": "city-a39d626dea650040",
+      "wikidataId": "Q795063",
+      "canonicalNameEn": "National Women's Monument",
+      "positiveTypePath": [
+        "Q5003624",
+        "Q4989906"
+      ],
+      "distanceKm": 4.697
+    },
+    {
+      "entityId": "poi-ef9f5c7050b3f318",
+      "parentCityEntityId": "city-a39d626dea650040",
+      "wikidataId": "Q5094407",
+      "canonicalNameEn": "Chevrolet Park",
+      "positiveTypePath": [
+        "Q483110",
+        "Q1076486",
+        "Q811979"
+      ],
+      "distanceKm": 2.16
+    },
+    {
+      "entityId": "poi-ec993c38181f54ed",
+      "parentCityEntityId": "city-a39d626dea650040",
+      "wikidataId": "Q30582989",
+      "canonicalNameEn": "Bloemfontein City Hall",
+      "positiveTypePath": [
+        "Q543654",
+        "Q25550691",
+        "Q294422",
+        "Q41176"
+      ],
+      "distanceKm": 1.563
+    },
+    {
+      "entityId": "poi-f7910900f6f22f1f",
+      "parentCityEntityId": "city-a39d626dea650040",
+      "wikidataId": "Q6974423",
+      "canonicalNameEn": "National Museum, Bloemfontein",
+      "positiveTypePath": [
+        "Q33506"
+      ],
+      "distanceKm": 1.696
+    },
+    {
+      "entityId": "poi-f9325a3919878dfc",
+      "parentCityEntityId": "city-a6fe3ad27cd430d5",
+      "wikidataId": "Q19040",
+      "canonicalNameEn": "Big Hole",
+      "positiveTypePath": [
+        "Q2387901",
+        "Q190429",
+        "Q271669"
+      ],
+      "distanceKm": 0.491
+    },
+    {
+      "entityId": "poi-db076190e525fe79",
+      "parentCityEntityId": "city-a6fe3ad27cd430d5",
+      "wikidataId": "Q3853378",
+      "canonicalNameEn": "McGregor Museum",
+      "positiveTypePath": [
+        "Q16735822",
+        "Q33506"
+      ],
+      "distanceKm": 2.018
+    },
+    {
+      "entityId": "poi-049776eae65b1d96",
+      "parentCityEntityId": "city-a6fe3ad27cd430d5",
+      "wikidataId": "Q5244241",
+      "canonicalNameEn": "De Beers Diamond Oval",
+      "positiveTypePath": [
+        "Q483110",
+        "Q1076486",
+        "Q811979"
+      ],
+      "distanceKm": 3.33
+    },
+    {
+      "entityId": "poi-851b78497c589981",
+      "parentCityEntityId": "city-a6fe3ad27cd430d5",
+      "wikidataId": "Q6357077",
+      "canonicalNameEn": "Kamfers Dam",
+      "positiveTypePath": [
+        "Q12323",
+        "Q121359"
+      ],
+      "distanceKm": 7.29
+    },
+    {
+      "entityId": "poi-93de322cf9686070",
+      "parentCityEntityId": "city-a6fe3ad27cd430d5",
+      "wikidataId": "Q8012674",
+      "canonicalNameEn": "William Humphreys Art Gallery",
+      "positiveTypePath": [
+        "Q207694",
+        "Q33506"
+      ],
+      "distanceKm": 0.763
+    },
+    {
+      "entityId": "poi-79f1c08c0b54ffdd",
+      "parentCityEntityId": "city-0fe0a2e83191480c",
+      "wikidataId": "Q850268",
+      "canonicalNameEn": "Tuol Sleng torture center",
+      "positiveTypePath": [
+        "Q33506"
+      ],
+      "distanceKm": 2.267
+    },
+    {
+      "entityId": "poi-d223bbec8fcbcf88",
+      "parentCityEntityId": "city-0fe0a2e83191480c",
+      "wikidataId": "Q420618",
+      "canonicalNameEn": "Royal Palace",
+      "positiveTypePath": [
+        "Q53536964",
+        "Q16560",
+        "Q41176"
+      ],
+      "distanceKm": 1.28
+    },
+    {
+      "entityId": "poi-dfa46a66d992fcbf",
+      "parentCityEntityId": "city-0fe0a2e83191480c",
+      "wikidataId": "Q1929750",
+      "canonicalNameEn": "National Museum of Cambodia",
+      "positiveTypePath": [
+        "Q207694",
+        "Q33506"
+      ],
+      "distanceKm": 0.965
+    },
+    {
+      "entityId": "poi-160aa9d7a1fdb0f7",
+      "parentCityEntityId": "city-0fe0a2e83191480c",
+      "wikidataId": "Q2021522",
+      "canonicalNameEn": "Olympic Stadium",
+      "positiveTypePath": [
+        "Q483110",
+        "Q1076486",
+        "Q811979"
+      ],
+      "distanceKm": 1.583
+    },
+    {
+      "entityId": "poi-cb0e81d372cb873c",
+      "parentCityEntityId": "city-0fe0a2e83191480c",
+      "wikidataId": "Q2556297",
+      "canonicalNameEn": "National Library of Cambodia",
+      "positiveTypePath": [
+        "Q22806",
+        "Q65768782",
+        "Q385994",
+        "Q7075",
+        "Q101542346",
+        "Q13226383"
+      ],
+      "distanceKm": 0.795
+    },
+    {
+      "entityId": "poi-c6aead6f46cf830a",
+      "parentCityEntityId": "city-0fe0a2e83191480c",
+      "wikidataId": "Q2641555",
+      "canonicalNameEn": "Silver Pagoda, Phnom Penh",
+      "positiveTypePath": [
+        "Q199451",
+        "Q1370598"
+      ],
+      "distanceKm": 1.402
+    },
+    {
+      "entityId": "poi-5cd86d8b97ee2c67",
+      "parentCityEntityId": "city-0fe0a2e83191480c",
+      "wikidataId": "Q1108673",
+      "canonicalNameEn": "Independence Monument, Phnom Penh",
+      "positiveTypePath": [
+        "Q4989906"
+      ],
+      "distanceKm": 1.656
+    },
+    {
+      "entityId": "poi-54e902e8925e9cc8",
+      "parentCityEntityId": "city-0fe0a2e83191480c",
+      "wikidataId": "Q190668",
+      "canonicalNameEn": "Central Market",
+      "positiveTypePath": [
+        "Q2080521",
+        "Q330284",
+        "Q13226383"
+      ],
+      "distanceKm": 0.001
+    },
+    {
+      "entityId": "poi-b5df5a61ee741f1a",
+      "parentCityEntityId": "city-0fe0a2e83191480c",
+      "wikidataId": "Q18387267",
+      "canonicalNameEn": "Peace Palace, Phnom Penh",
+      "positiveTypePath": [
+        "Q481289",
+        "Q1221145",
+        "Q3947",
+        "Q41176"
+      ],
+      "distanceKm": 0.684
+    },
+    {
+      "entityId": "poi-5d0b8434315675ca",
+      "parentCityEntityId": "city-0fe0a2e83191480c",
+      "wikidataId": "Q3324935",
+      "canonicalNameEn": "Al-Serkal",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 1.332
+    },
+    {
+      "entityId": "poi-b6c78a3d9c306feb",
+      "parentCityEntityId": "city-93ec625f45fdc11a",
+      "wikidataId": "Q43473",
+      "canonicalNameEn": "Angkor Wat",
+      "positiveTypePath": [
+        "Q5393308",
+        "Q1370598"
+      ],
+      "distanceKm": 5.641
+    },
+    {
+      "entityId": "poi-81f6938f7b0a17f6",
+      "parentCityEntityId": "city-93ec625f45fdc11a",
+      "wikidataId": "Q654024",
+      "canonicalNameEn": "Bayon",
+      "positiveTypePath": [
+        "Q44539",
+        "Q697295",
+        "Q24398318",
+        "Q41176"
+      ],
+      "distanceKm": 8.788
+    },
+    {
+      "entityId": "poi-88ad19359ef44928",
+      "parentCityEntityId": "city-93ec625f45fdc11a",
+      "wikidataId": "Q790118",
+      "canonicalNameEn": "Baphuon",
+      "positiveTypePath": [
+        "Q44539",
+        "Q697295",
+        "Q24398318",
+        "Q41176"
+      ],
+      "distanceKm": 9.076
+    },
+    {
+      "entityId": "poi-eb20b0d64587e9b0",
+      "parentCityEntityId": "city-93ec625f45fdc11a",
+      "wikidataId": "Q592846",
+      "canonicalNameEn": "Ta Prohm",
+      "positiveTypePath": [
+        "Q839954"
+      ],
+      "distanceKm": 8.697
+    },
+    {
+      "entityId": "poi-16da0c8460c66ece",
+      "parentCityEntityId": "city-93ec625f45fdc11a",
+      "wikidataId": "Q601605",
+      "canonicalNameEn": "Banteay Kdei",
+      "positiveTypePath": [
+        "Q44539",
+        "Q697295",
+        "Q24398318",
+        "Q41176"
+      ],
+      "distanceKm": 8.594
+    },
+    {
+      "entityId": "poi-5fe657f9282800d7",
+      "parentCityEntityId": "city-93ec625f45fdc11a",
+      "wikidataId": "Q789081",
+      "canonicalNameEn": "Baksei Chamkrong",
+      "positiveTypePath": [
+        "Q44539",
+        "Q697295",
+        "Q24398318",
+        "Q41176"
+      ],
+      "distanceKm": 7.008
+    },
+    {
+      "entityId": "poi-6527c854f577c67c",
+      "parentCityEntityId": "city-93ec625f45fdc11a",
+      "wikidataId": "Q578075",
+      "canonicalNameEn": "Phnom Bakheng",
+      "positiveTypePath": [
+        "Q839954"
+      ],
+      "distanceKm": 6.86
+    },
+    {
+      "entityId": "poi-9c7e403f14d7d9c3",
+      "parentCityEntityId": "city-93ec625f45fdc11a",
+      "wikidataId": "Q584347",
+      "canonicalNameEn": "Phimeanakas",
+      "positiveTypePath": [
+        "Q839954"
+      ],
+      "distanceKm": 9.286
+    },
+    {
+      "entityId": "poi-b125eb200d66c837",
+      "parentCityEntityId": "city-93ec625f45fdc11a",
+      "wikidataId": "Q874573",
+      "canonicalNameEn": "Chau Say Tevoda",
+      "positiveTypePath": [
+        "Q839954"
+      ],
+      "distanceKm": 9.44
+    },
+    {
+      "entityId": "poi-355367e4aead5d99",
+      "parentCityEntityId": "city-93ec625f45fdc11a",
+      "wikidataId": "Q597206",
+      "canonicalNameEn": "Thommanon",
+      "positiveTypePath": [
+        "Q839954"
+      ],
+      "distanceKm": 9.629
+    },
+    {
+      "entityId": "poi-3e9b8000849289aa",
+      "parentCityEntityId": "city-a3ebfc3d8b1f1db7",
+      "wikidataId": "Q22704084",
+      "canonicalNameEn": "Wat Ek Phnom",
+      "positiveTypePath": [
+        "Q842402",
+        "Q44539",
+        "Q697295",
+        "Q24398318",
+        "Q41176"
+      ],
+      "distanceKm": 6.757
+    },
+    {
+      "entityId": "poi-48e36850b1024b16",
+      "parentCityEntityId": "city-1de46e4475fc50b7",
+      "wikidataId": "Q27214537",
+      "canonicalNameEn": "Koh Ach Seh",
+      "positiveTypePath": [
+        "Q23442",
+        "Q271669"
+      ],
+      "distanceKm": 31.673
+    },
+    {
+      "entityId": "poi-b157f544cb340f84",
+      "parentCityEntityId": "city-1de46e4475fc50b7",
+      "wikidataId": "Q7186584",
+      "canonicalNameEn": "Phnom Voar",
+      "positiveTypePath": [
+        "Q8502",
+        "Q35145263"
+      ],
+      "distanceKm": 19.513
+    },
+    {
+      "entityId": "poi-bf00e2c62ac6f7ab",
+      "parentCityEntityId": "city-0b712370bc52b649",
+      "wikidataId": "Q3396600",
+      "canonicalNameEn": "Kizuna bridge",
+      "positiveTypePath": [
+        "Q12280",
+        "Q811979"
+      ],
+      "distanceKm": 1.161
+    },
+    {
+      "entityId": "poi-8790b572dce17a58",
+      "parentCityEntityId": "city-0b712370bc52b649",
+      "wikidataId": "Q806972",
+      "canonicalNameEn": "Banteay Prey Nokor",
+      "positiveTypePath": [
+        "Q839954"
+      ],
+      "distanceKm": 2.769
+    },
+    {
+      "entityId": "poi-553772ebad7eb0ac",
+      "parentCityEntityId": "city-d4f155a3d8ae0c4e",
+      "wikidataId": "Q4930573",
+      "canonicalNameEn": "Ream National Park",
+      "positiveTypePath": [
+        "Q46169",
+        "Q22698"
+      ],
+      "distanceKm": 29.247
+    },
+    {
+      "entityId": "poi-84aa388473b0bc6d",
+      "parentCityEntityId": "city-d4f155a3d8ae0c4e",
+      "wikidataId": "Q4930285",
+      "canonicalNameEn": "Koh Rong Sanloem",
+      "positiveTypePath": [
+        "Q23442",
+        "Q271669"
+      ],
+      "distanceKm": 23.081
+    },
+    {
+      "entityId": "poi-50d952fab802b445",
+      "parentCityEntityId": "city-d4f155a3d8ae0c4e",
+      "wikidataId": "Q6425865",
+      "canonicalNameEn": "Koh Russei",
+      "positiveTypePath": [
+        "Q23442",
+        "Q271669"
+      ],
+      "distanceKm": 16.836
+    },
+    {
+      "entityId": "poi-02472c8b7d2e4a80",
+      "parentCityEntityId": "city-d4f155a3d8ae0c4e",
+      "wikidataId": "Q24952108",
+      "canonicalNameEn": "Koh Puos",
+      "positiveTypePath": [
+        "Q23442",
+        "Q271669"
+      ],
+      "distanceKm": 2.261
+    },
+    {
+      "entityId": "poi-7e1a990431c6b1c1",
+      "parentCityEntityId": "city-d4f155a3d8ae0c4e",
+      "wikidataId": "Q18206752",
+      "canonicalNameEn": "Koh Thmei",
+      "positiveTypePath": [
+        "Q23442",
+        "Q271669"
+      ],
+      "distanceKm": 34.263
+    },
+    {
+      "entityId": "poi-f1c8f0b9a38ed2d6",
+      "parentCityEntityId": "city-d4f155a3d8ae0c4e",
+      "wikidataId": "Q96605088",
+      "canonicalNameEn": "St. Michael's Church, Sihanoukville",
+      "positiveTypePath": [
+        "Q16970",
+        "Q24398318",
+        "Q41176"
+      ],
+      "distanceKm": 1.826
+    },
+    {
+      "entityId": "poi-688201416a5f1ab5",
+      "parentCityEntityId": "city-d4f155a3d8ae0c4e",
+      "wikidataId": "Q107185213",
+      "canonicalNameEn": "Bay of Kampong Som",
+      "positiveTypePath": [
+        "Q39594",
+        "Q35116038",
+        "Q15324"
+      ],
+      "distanceKm": 18.568
+    },
+    {
+      "entityId": "poi-a1cc34f5a7dea0f1",
+      "parentCityEntityId": "city-baf8e3fa2fe96c95",
+      "wikidataId": "Q164150",
+      "canonicalNameEn": "Palace of the Parliament",
+      "positiveTypePath": [
+        "Q16560",
+        "Q41176"
+      ],
+      "distanceKm": 1.771
+    },
+    {
+      "entityId": "poi-2bfec3fb211fc56f",
+      "parentCityEntityId": "city-baf8e3fa2fe96c95",
+      "wikidataId": "Q622012",
+      "canonicalNameEn": "National Library of Romania",
+      "positiveTypePath": [
+        "Q22806",
+        "Q65768782",
+        "Q385994",
+        "Q7075",
+        "Q101542346",
+        "Q13226383"
+      ],
+      "distanceKm": 1.668
+    },
+    {
+      "entityId": "poi-ef8c16df46d8983d",
+      "parentCityEntityId": "city-baf8e3fa2fe96c95",
+      "wikidataId": "Q1514860",
+      "canonicalNameEn": "Romanian Patriarchal Cathedral",
+      "positiveTypePath": [
+        "Q56242225",
+        "Q2977",
+        "Q16970",
+        "Q24398318",
+        "Q41176"
+      ],
+      "distanceKm": 1.246
+    },
+    {
+      "entityId": "poi-a15d92a63498801b",
+      "parentCityEntityId": "city-baf8e3fa2fe96c95",
+      "wikidataId": "Q1855757",
+      "canonicalNameEn": "Curtea Veche",
+      "positiveTypePath": [
+        "Q811979"
+      ],
+      "distanceKm": 1.882
+    },
+    {
+      "entityId": "poi-0572fcd4d3b7b904",
+      "parentCityEntityId": "city-baf8e3fa2fe96c95",
+      "wikidataId": "Q179283",
+      "canonicalNameEn": "National Museum of Romanian History",
+      "positiveTypePath": [
+        "Q17431399",
+        "Q33506"
+      ],
+      "distanceKm": 2.021
+    },
+    {
+      "entityId": "poi-ef4ac4a05d1592af",
+      "parentCityEntityId": "city-baf8e3fa2fe96c95",
+      "wikidataId": "Q592204",
+      "canonicalNameEn": "Bellu Cemetery",
+      "positiveTypePath": [
+        "Q39614",
+        "Q1497375"
+      ],
+      "distanceKm": 1.068
+    },
+    {
+      "entityId": "poi-0b8f4e8f46df14b8",
+      "parentCityEntityId": "city-baf8e3fa2fe96c95",
+      "wikidataId": "Q2052075",
+      "canonicalNameEn": "Carol Park",
+      "positiveTypePath": [
+        "Q22746",
+        "Q22698"
+      ],
+      "distanceKm": 0.158
+    },
+    {
+      "entityId": "poi-67b4786d7196c785",
+      "parentCityEntityId": "city-baf8e3fa2fe96c95",
+      "wikidataId": "Q950735",
+      "canonicalNameEn": "Piața Unirii",
+      "positiveTypePath": [
+        "Q174782",
+        "Q811979"
+      ],
+      "distanceKm": 1.664
+    },
+    {
+      "entityId": "poi-4d12b336d9bdb0a8",
+      "parentCityEntityId": "city-baf8e3fa2fe96c95",
+      "wikidataId": "Q631967",
+      "canonicalNameEn": "Bulevardul Unirii",
+      "positiveTypePath": [
+        "Q54114",
+        "Q79007",
+        "Q811979"
+      ],
+      "distanceKm": 1.874
+    },
+    {
+      "entityId": "poi-b534ec450ce84f21",
+      "parentCityEntityId": "city-baf8e3fa2fe96c95",
+      "wikidataId": "Q2916042",
+      "canonicalNameEn": "Great Synagogue",
+      "positiveTypePath": [
+        "Q34627",
+        "Q811979"
+      ],
+      "distanceKm": 1.992
+    },
+    {
+      "entityId": "poi-c2654699286f46ec",
+      "parentCityEntityId": "city-f29c8b00bdd0a9bf",
+      "wikidataId": "Q910124",
+      "canonicalNameEn": "Black Church",
+      "positiveTypePath": [
+        "Q2977",
+        "Q16970",
+        "Q24398318",
+        "Q41176"
+      ],
+      "distanceKm": 2.15
+    },
+    {
+      "entityId": "poi-ffca49e9077cd1f8",
+      "parentCityEntityId": "city-f29c8b00bdd0a9bf",
+      "wikidataId": "Q592762",
+      "canonicalNameEn": "Țara Bârsei",
+      "positiveTypePath": [
+        "Q190429",
+        "Q271669"
+      ],
+      "distanceKm": 7.471
+    },
+    {
+      "entityId": "poi-afae20547a3c39ac",
+      "parentCityEntityId": "city-f29c8b00bdd0a9bf",
+      "wikidataId": "Q691448",
+      "canonicalNameEn": "Tâmpa",
+      "positiveTypePath": [
+        "Q473972"
+      ],
+      "distanceKm": 2.431
+    },
+    {
+      "entityId": "poi-09839a3a74eb0081",
+      "parentCityEntityId": "city-f29c8b00bdd0a9bf",
+      "wikidataId": "Q1086906",
+      "canonicalNameEn": "St. Nicholas Church",
+      "positiveTypePath": [
+        "Q16970",
+        "Q24398318",
+        "Q41176"
+      ],
+      "distanceKm": 2.925
+    },
+    {
+      "entityId": "poi-b833e02f8d27cf4d",
+      "parentCityEntityId": "city-f29c8b00bdd0a9bf",
+      "wikidataId": "Q542499",
+      "canonicalNameEn": "Catherine's Gate",
+      "positiveTypePath": [
+        "Q82117",
+        "Q57821",
+        "Q811979"
+      ],
+      "distanceKm": 2.37
+    },
+    {
+      "entityId": "poi-3ecb987b03a81283",
+      "parentCityEntityId": "city-f29c8b00bdd0a9bf",
+      "wikidataId": "Q690585",
+      "canonicalNameEn": "Neolog Jewish temple in Brașov",
+      "positiveTypePath": [
+        "Q34627",
+        "Q811979"
+      ],
+      "distanceKm": 2.275
+    },
+    {
+      "entityId": "poi-1a1ee74ab267a14f",
+      "parentCityEntityId": "city-f29c8b00bdd0a9bf",
+      "wikidataId": "Q718353",
+      "canonicalNameEn": "Șchei Gate",
+      "positiveTypePath": [
+        "Q82117",
+        "Q57821",
+        "Q811979"
+      ],
+      "distanceKm": 2.371
+    },
+    {
+      "entityId": "poi-5ddeeb7031252542",
+      "parentCityEntityId": "city-37d634de60db8a36",
+      "wikidataId": "Q3845208",
+      "canonicalNameEn": "Holy Trinity Cathedral",
+      "positiveTypePath": [
+        "Q56242225",
+        "Q2977",
+        "Q16970",
+        "Q24398318",
+        "Q41176"
+      ],
+      "distanceKm": 0.627
+    },
+    {
+      "entityId": "poi-8561ad00a17c55d4",
+      "parentCityEntityId": "city-37d634de60db8a36",
+      "wikidataId": "Q850207",
+      "canonicalNameEn": "Brukenthal National Museum",
+      "positiveTypePath": [
+        "Q17431399",
+        "Q33506"
+      ],
+      "distanceKm": 0.392
+    },
+    {
+      "entityId": "poi-f700a581fab4e124",
+      "parentCityEntityId": "city-37d634de60db8a36",
+      "wikidataId": "Q1760429",
+      "canonicalNameEn": "Sibiu Lutheran Cathedral",
+      "positiveTypePath": [
+        "Q56242235",
+        "Q58079064",
+        "Q24398318",
+        "Q41176"
+      ],
+      "distanceKm": 0.245
+    },
+    {
+      "entityId": "poi-219023d332842b4a",
+      "parentCityEntityId": "city-37d634de60db8a36",
+      "wikidataId": "Q4993504",
+      "canonicalNameEn": "Jesuit Church",
+      "positiveTypePath": [
+        "Q16970",
+        "Q24398318",
+        "Q41176"
+      ],
+      "distanceKm": 0.336
+    },
+    {
+      "entityId": "poi-44897cff49159489",
+      "parentCityEntityId": "city-37d634de60db8a36",
+      "wikidataId": "Q6675722",
+      "canonicalNameEn": "Grand Square",
+      "positiveTypePath": [
+        "Q174782",
+        "Q811979"
+      ],
+      "distanceKm": 0.4
+    },
+    {
+      "entityId": "poi-b550e40c9d8d462e",
+      "parentCityEntityId": "city-37d634de60db8a36",
+      "wikidataId": "Q12738249",
+      "canonicalNameEn": "Bridge of Lies",
+      "positiveTypePath": [
+        "Q12280",
+        "Q811979"
+      ],
+      "distanceKm": 0.195
+    },
+    {
+      "entityId": "poi-3941f34894ba6240",
+      "parentCityEntityId": "city-37d634de60db8a36",
+      "wikidataId": "Q12053061",
+      "canonicalNameEn": "ASTRA National Museum Complex",
+      "positiveTypePath": [
+        "Q17431399",
+        "Q33506"
+      ],
+      "distanceKm": 0.279
+    },
+    {
+      "entityId": "poi-6c86f3ebeb88d775",
+      "parentCityEntityId": "city-8338219da4b081e4",
+      "wikidataId": "Q923595",
+      "canonicalNameEn": "St. Michael's Church",
+      "positiveTypePath": [
+        "Q1088552",
+        "Q140454931",
+        "Q16970",
+        "Q24398318",
+        "Q41176"
+      ],
+      "distanceKm": 0.141
+    },
+    {
+      "entityId": "poi-fa7ade767232fc1f",
+      "parentCityEntityId": "city-8338219da4b081e4",
+      "wikidataId": "Q1253767",
+      "canonicalNameEn": "Stadionul Dr. Constantin Rădulescu",
+      "positiveTypePath": [
+        "Q1154710",
+        "Q1076486",
+        "Q811979"
+      ],
+      "distanceKm": 1.574
+    },
+    {
+      "entityId": "poi-bb21c69a2effcd1e",
+      "parentCityEntityId": "city-8338219da4b081e4",
+      "wikidataId": "Q632261",
+      "canonicalNameEn": "Hoia Forest",
+      "positiveTypePath": [
+        "Q4421",
+        "Q52105",
+        "Q43619",
+        "Q20719696"
+      ],
+      "distanceKm": 5.26
+    },
+    {
+      "entityId": "poi-97b7d7a69423c27f",
+      "parentCityEntityId": "city-8338219da4b081e4",
+      "wikidataId": "Q74413",
+      "canonicalNameEn": "Cluj Arena",
+      "positiveTypePath": [
+        "Q1154710",
+        "Q1076486",
+        "Q811979"
+      ],
+      "distanceKm": 1.406
+    },
+    {
+      "entityId": "poi-b6a8798aa214382c",
+      "parentCityEntityId": "city-8338219da4b081e4",
+      "wikidataId": "Q610611",
+      "canonicalNameEn": "Cluj-Napoca Neolog Synagogue",
+      "positiveTypePath": [
+        "Q34627",
+        "Q811979"
+      ],
+      "distanceKm": 0.972
+    },
+    {
+      "entityId": "poi-b8926b3a6ed9cd9d",
+      "parentCityEntityId": "city-8338219da4b081e4",
+      "wikidataId": "Q669890",
+      "canonicalNameEn": "Dormition of the Theotokos Cathedral, Cluj-Napoca",
+      "positiveTypePath": [
+        "Q56242225",
+        "Q2977",
+        "Q16970",
+        "Q24398318",
+        "Q41176"
+      ],
+      "distanceKm": 0.533
+    },
+    {
+      "entityId": "poi-4031432bd64ea4e5",
+      "parentCityEntityId": "city-8338219da4b081e4",
+      "wikidataId": "Q831528",
+      "canonicalNameEn": "Transfiguration Cathedral",
+      "positiveTypePath": [
+        "Q2977",
+        "Q16970",
+        "Q24398318",
+        "Q41176"
+      ],
+      "distanceKm": 0.161
+    },
+    {
+      "entityId": "poi-4c614c8d534e6073",
+      "parentCityEntityId": "city-2de9ecdaa09305c4",
+      "wikidataId": "Q1062101",
+      "canonicalNameEn": "St. George's Cathedral",
+      "positiveTypePath": [
+        "Q56242215",
+        "Q470540",
+        "Q467970",
+        "Q13226383"
+      ],
+      "distanceKm": 0.179
+    },
+    {
+      "entityId": "poi-8249fdb12b008c39",
+      "parentCityEntityId": "city-2de9ecdaa09305c4",
+      "wikidataId": "Q1078584",
+      "canonicalNameEn": "Serbian Orthodox Cathedral in Timișoara",
+      "positiveTypePath": [
+        "Q34545040",
+        "Q2031836",
+        "Q16970",
+        "Q24398318",
+        "Q41176"
+      ],
+      "distanceKm": 0.256
+    },
+    {
+      "entityId": "poi-3869dd8d6c41f5bf",
+      "parentCityEntityId": "city-2de9ecdaa09305c4",
+      "wikidataId": "Q2067482",
+      "canonicalNameEn": "Huniade Castle",
+      "positiveTypePath": [
+        "Q751876",
+        "Q879050",
+        "Q11755880",
+        "Q41176"
+      ],
+      "distanceKm": 0.778
+    },
+    {
+      "entityId": "poi-25fc0b8692219b04",
+      "parentCityEntityId": "city-2de9ecdaa09305c4",
+      "wikidataId": "Q535287",
+      "canonicalNameEn": "Cetate Synagogue",
+      "positiveTypePath": [
+        "Q34627",
+        "Q811979"
+      ],
+      "distanceKm": 0.474
+    },
+    {
+      "entityId": "poi-7a31a21ad3aadf4c",
+      "parentCityEntityId": "city-2de9ecdaa09305c4",
+      "wikidataId": "Q2073128",
+      "canonicalNameEn": "Holy Trinity Monument, Timişoara",
+      "positiveTypePath": [
+        "Q860861",
+        "Q4502142",
+        "Q838948"
+      ],
+      "distanceKm": 0.211
+    },
+    {
+      "entityId": "poi-dad36f11c64efe4a",
+      "parentCityEntityId": "city-2de9ecdaa09305c4",
+      "wikidataId": "Q422722",
+      "canonicalNameEn": "Union Square",
+      "positiveTypePath": [
+        "Q174782",
+        "Q811979"
+      ],
+      "distanceKm": 0.211
+    },
+    {
+      "entityId": "poi-7c6123b7b0e9ad8c",
+      "parentCityEntityId": "city-2de9ecdaa09305c4",
+      "wikidataId": "Q808559",
+      "canonicalNameEn": "Baroque Palace, Timișoara",
+      "positiveTypePath": [
+        "Q16560",
+        "Q41176"
+      ],
+      "distanceKm": 0.267
+    },
+    {
+      "entityId": "poi-07470769f1e32e82",
+      "parentCityEntityId": "city-5682ab1567a884fc",
+      "wikidataId": "Q1557132",
+      "canonicalNameEn": "Clock Tower of Sighișoara",
+      "positiveTypePath": [
+        "Q12518",
+        "Q41176"
+      ],
+      "distanceKm": 0.311
+    },
+    {
+      "entityId": "poi-6a045eae2e31aca3",
+      "parentCityEntityId": "city-5682ab1567a884fc",
+      "wikidataId": "Q2258547",
+      "canonicalNameEn": "Church on the Hill",
+      "positiveTypePath": [
+        "Q16970",
+        "Q24398318",
+        "Q41176"
+      ],
+      "distanceKm": 0.087
+    },
+    {
+      "entityId": "poi-703ec904c4a59dae",
+      "parentCityEntityId": "city-5682ab1567a884fc",
+      "wikidataId": "Q4382309",
+      "canonicalNameEn": "Holy Trinity Church",
+      "positiveTypePath": [
+        "Q16970",
+        "Q24398318",
+        "Q41176"
+      ],
+      "distanceKm": 0.666
+    },
+    {
+      "entityId": "poi-87d094b670b77f0a",
+      "parentCityEntityId": "city-5682ab1567a884fc",
+      "wikidataId": "Q18378645",
+      "canonicalNameEn": "Monastery Church in Sighișoara",
+      "positiveTypePath": [
+        "Q16970",
+        "Q24398318",
+        "Q41176"
+      ],
+      "distanceKm": 0.352
+    },
+    {
+      "entityId": "poi-eead0a4eccd25ea5",
+      "parentCityEntityId": "city-5682ab1567a884fc",
+      "wikidataId": "Q25111031",
+      "canonicalNameEn": "Scholars' Stairs",
+      "positiveTypePath": [
+        "Q12511",
+        "Q3352369",
+        "Q66498943",
+        "Q121359"
+      ],
+      "distanceKm": 0.212
+    },
+    {
+      "entityId": "poi-dcbf084215fcce40",
+      "parentCityEntityId": "city-a449e82c55118a81",
+      "wikidataId": "Q592260",
+      "canonicalNameEn": "Danube – Black Sea Canal",
+      "positiveTypePath": [
+        "Q12284",
+        "Q121359"
+      ],
+      "distanceKm": 20.268
+    },
+    {
+      "entityId": "poi-e932169e073d6257",
+      "parentCityEntityId": "city-a449e82c55118a81",
+      "wikidataId": "Q1044149",
+      "canonicalNameEn": "Carol I Mosque",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 0.805
+    },
+    {
+      "entityId": "poi-b262b617e3cd853c",
+      "parentCityEntityId": "city-a449e82c55118a81",
+      "wikidataId": "Q12723726",
+      "canonicalNameEn": "Constanța Casino",
+      "positiveTypePath": [
+        "Q133215",
+        "Q13226383"
+      ],
+      "distanceKm": 1.229
+    },
+    {
+      "entityId": "poi-c5f940c490a07257",
+      "parentCityEntityId": "city-a449e82c55118a81",
+      "wikidataId": "Q665510",
+      "canonicalNameEn": "Lake Siutghiol",
+      "positiveTypePath": [
+        "Q23397",
+        "Q271669"
+      ],
+      "distanceKm": 8.74
+    },
+    {
+      "entityId": "poi-0f3a4c2059ac14d3",
+      "parentCityEntityId": "city-a449e82c55118a81",
+      "wikidataId": "Q2437251",
+      "canonicalNameEn": "Stadionul Farul",
+      "positiveTypePath": [
+        "Q1049757",
+        "Q1076486",
+        "Q811979"
+      ],
+      "distanceKm": 2.461
+    },
+    {
+      "entityId": "poi-f9ce08d3f7738fda",
+      "parentCityEntityId": "city-e5292a3c5cdd691f",
+      "wikidataId": "Q2522104",
+      "canonicalNameEn": "Palace of Culture",
+      "positiveTypePath": [
+        "Q17431399",
+        "Q33506"
+      ],
+      "distanceKm": 0.557
+    },
+    {
+      "entityId": "poi-d9d5f38d5d974a3f",
+      "parentCityEntityId": "city-e5292a3c5cdd691f",
+      "wikidataId": "Q2778323",
+      "canonicalNameEn": "Great Synagogue",
+      "positiveTypePath": [
+        "Q34627",
+        "Q811979"
+      ],
+      "distanceKm": 0.443
+    },
+    {
+      "entityId": "poi-d87a4d90dff87304",
+      "parentCityEntityId": "city-e5292a3c5cdd691f",
+      "wikidataId": "Q8273856",
+      "canonicalNameEn": "Metropolitan Cathedral",
+      "positiveTypePath": [
+        "Q2977",
+        "Q16970",
+        "Q24398318",
+        "Q41176"
+      ],
+      "distanceKm": 0.52
+    },
+    {
+      "entityId": "poi-bb7a0fe4f3e84091",
+      "parentCityEntityId": "city-e5292a3c5cdd691f",
+      "wikidataId": "Q2262973",
+      "canonicalNameEn": "Stadionul Emil Alexandrescu",
+      "positiveTypePath": [
+        "Q1049757",
+        "Q1076486",
+        "Q811979"
+      ],
+      "distanceKm": 3.241
+    },
+    {
+      "entityId": "poi-a0ef93d005673791",
+      "parentCityEntityId": "city-e5292a3c5cdd691f",
+      "wikidataId": "Q5983528",
+      "canonicalNameEn": "Vasile Alecsandri National Theatre Iași",
+      "positiveTypePath": [
+        "Q24354",
+        "Q114961210",
+        "Q41176"
+      ],
+      "distanceKm": 0.325
+    },
+    {
+      "entityId": "poi-8330b0e83897f763",
+      "parentCityEntityId": "city-9f550079c3739335",
+      "wikidataId": "Q2522000",
+      "canonicalNameEn": "Estadio Nacional de Costa Rica",
+      "positiveTypePath": [
+        "Q483110",
+        "Q1076486",
+        "Q811979"
+      ],
+      "distanceKm": 3.111
+    },
+    {
+      "entityId": "poi-282b6ee374207ad9",
+      "parentCityEntityId": "city-9f550079c3739335",
+      "wikidataId": "Q1879771",
+      "canonicalNameEn": "Central Valley",
+      "positiveTypePath": [
+        "Q39816",
+        "Q35145263"
+      ],
+      "distanceKm": 2.279
+    },
+    {
+      "entityId": "poi-20f462604c531ad8",
+      "parentCityEntityId": "city-9f550079c3739335",
+      "wikidataId": "Q1968698",
+      "canonicalNameEn": "National Museum of Costa Rica",
+      "positiveTypePath": [
+        "Q17431399",
+        "Q33506"
+      ],
+      "distanceKm": 0.895
+    },
+    {
+      "entityId": "poi-758e99528fa5f196",
+      "parentCityEntityId": "city-9f550079c3739335",
+      "wikidataId": "Q1369626",
+      "canonicalNameEn": "Estadio Ricardo Saprissa Aymá",
+      "positiveTypePath": [
+        "Q1154710",
+        "Q1076486",
+        "Q811979"
+      ],
+      "distanceKm": 3.663
+    },
+    {
+      "entityId": "poi-2a806b2d7685d9a2",
+      "parentCityEntityId": "city-9f550079c3739335",
+      "wikidataId": "Q3067683",
+      "canonicalNameEn": "Estadio Nacional de Costa Rica",
+      "positiveTypePath": [
+        "Q483110",
+        "Q1076486",
+        "Q811979"
+      ],
+      "distanceKm": 3.124
+    },
+    {
+      "entityId": "poi-19587596f753270d",
+      "parentCityEntityId": "city-9f550079c3739335",
+      "wikidataId": "Q1138822",
+      "canonicalNameEn": "National Theatre of Costa Rica",
+      "positiveTypePath": [
+        "Q24354",
+        "Q114961210",
+        "Q41176"
+      ],
+      "distanceKm": 0.294
+    },
+    {
+      "entityId": "poi-133eed5b650130e5",
+      "parentCityEntityId": "city-9f550079c3739335",
+      "wikidataId": "Q6825031",
+      "canonicalNameEn": "Metropolitan Cathedral of San José",
+      "positiveTypePath": [
+        "Q2977",
+        "Q16970",
+        "Q24398318",
+        "Q41176"
+      ],
+      "distanceKm": 0.09
+    },
+    {
+      "entityId": "poi-753fc78087ab3f41",
+      "parentCityEntityId": "city-9f550079c3739335",
+      "wikidataId": "Q3357547",
+      "canonicalNameEn": "Melico Salazar Theatre",
+      "positiveTypePath": [
+        "Q24354",
+        "Q114961210",
+        "Q41176"
+      ],
+      "distanceKm": 0.088
+    },
+    {
+      "entityId": "poi-94b82be7efef9ec8",
+      "parentCityEntityId": "city-9f550079c3739335",
+      "wikidataId": "Q10941394",
+      "canonicalNameEn": "Pre-Columbian Gold Museum",
+      "positiveTypePath": [
+        "Q33506"
+      ],
+      "distanceKm": 0.32
+    },
+    {
+      "entityId": "poi-2ebd30a093070f48",
+      "parentCityEntityId": "city-9f550079c3739335",
+      "wikidataId": "Q6063251",
+      "canonicalNameEn": "Parque Zoológico Nacional Simón Bolívar",
+      "positiveTypePath": [
+        "Q43501",
+        "Q22698"
+      ],
+      "distanceKm": 1.037
+    },
+    {
+      "entityId": "poi-52943c3eb32249eb",
+      "parentCityEntityId": "city-bdaca6fa565ca515",
+      "wikidataId": "Q1122340",
+      "canonicalNameEn": "Rincón de la Vieja Volcano",
+      "positiveTypePath": [
+        "Q8502",
+        "Q35145263"
+      ],
+      "distanceKm": 25.543
+    },
+    {
+      "entityId": "poi-04ea8ac5734a2af8",
+      "parentCityEntityId": "city-bdaca6fa565ca515",
+      "wikidataId": "Q1587862",
+      "canonicalNameEn": "Guanacaste National Park",
+      "positiveTypePath": [
+        "Q46169",
+        "Q22698"
+      ],
+      "distanceKm": 25.543
+    },
+    {
+      "entityId": "poi-2345f21b64e2292f",
+      "parentCityEntityId": "city-bdaca6fa565ca515",
+      "wikidataId": "Q1431228",
+      "canonicalNameEn": "Rincón de la Vieja National Park",
+      "positiveTypePath": [
+        "Q46169",
+        "Q22698"
+      ],
+      "distanceKm": 25.543
+    },
+    {
+      "entityId": "poi-5f710d824d2ab1e6",
+      "parentCityEntityId": "city-bdaca6fa565ca515",
+      "wikidataId": "Q11697913",
+      "canonicalNameEn": "Palo Verde National Park",
+      "positiveTypePath": [
+        "Q46169",
+        "Q22698"
+      ],
+      "distanceKm": 28.736
+    },
+    {
+      "entityId": "poi-9ffc1765a0392bd4",
+      "parentCityEntityId": "city-bdaca6fa565ca515",
+      "wikidataId": "Q3495574",
+      "canonicalNameEn": "Estadio Edgardo Baltodano Briceño",
+      "positiveTypePath": [
+        "Q1154710",
+        "Q1076486",
+        "Q811979"
+      ],
+      "distanceKm": 0.874
+    },
+    {
+      "entityId": "poi-df61ca53e90345b5",
+      "parentCityEntityId": "city-bdaca6fa565ca515",
+      "wikidataId": "Q27044947",
+      "canonicalNameEn": "Africa Safari Adventure Park",
+      "positiveTypePath": [
+        "Q22698"
+      ],
+      "distanceKm": 8.393
+    },
+    {
+      "entityId": "poi-22208f3e971d75d2",
+      "parentCityEntityId": "city-bdaca6fa565ca515",
+      "wikidataId": "Q5891106",
+      "canonicalNameEn": "Hacienda Santa Rosa (Costa Rica)",
+      "positiveTypePath": [
+        "Q4989906"
+      ],
+      "distanceKm": 29.642
+    },
+    {
+      "entityId": "poi-3c02ddec6abd7af9",
+      "parentCityEntityId": "city-51a0f1561bbcdd08",
+      "wikidataId": "Q592125",
+      "canonicalNameEn": "San Lucas Island",
+      "positiveTypePath": [
+        "Q23442",
+        "Q271669"
+      ],
+      "distanceKm": 8.673
+    },
+    {
+      "entityId": "poi-1a607d7a5110096b",
+      "parentCityEntityId": "city-51a0f1561bbcdd08",
+      "wikidataId": "Q4784120",
+      "canonicalNameEn": "Aranjuez River",
+      "positiveTypePath": [
+        "Q4022",
+        "Q355304",
+        "Q15324"
+      ],
+      "distanceKm": 2
+    },
+    {
+      "entityId": "poi-5ec6e330d4533edf",
+      "parentCityEntityId": "city-51a0f1561bbcdd08",
+      "wikidataId": "Q20968419",
+      "canonicalNameEn": "Our Lady of Mount Carmel Cathedral, Puntarenas",
+      "positiveTypePath": [
+        "Q2977",
+        "Q16970",
+        "Q24398318",
+        "Q41176"
+      ],
+      "distanceKm": 0.046
+    },
+    {
+      "entityId": "poi-e36a3423a57bbc27",
+      "parentCityEntityId": "city-51a0f1561bbcdd08",
+      "wikidataId": "Q3495703",
+      "canonicalNameEn": "Estadio Lito Pérez",
+      "positiveTypePath": [
+        "Q1154710",
+        "Q1076486",
+        "Q811979"
+      ],
+      "distanceKm": 0.464
+    },
+    {
+      "entityId": "poi-d68f91d151acbd38",
+      "parentCityEntityId": "city-51a0f1561bbcdd08",
+      "wikidataId": "Q5613177",
+      "canonicalNameEn": "Guacimal River",
+      "positiveTypePath": [
+        "Q4022",
+        "Q355304",
+        "Q15324"
+      ],
+      "distanceKm": 8.335
+    },
+    {
+      "entityId": "poi-5f95aa4fbbaf897e",
+      "parentCityEntityId": "city-51a0f1561bbcdd08",
+      "wikidataId": "Q96379985",
+      "canonicalNameEn": "Guayabo Island Biological Reserve",
+      "positiveTypePath": [
+        "Q76163914",
+        "Q76163432",
+        "Q473972"
+      ],
+      "distanceKm": 8.733
+    },
+    {
+      "entityId": "poi-959da476bcdaee3a",
+      "parentCityEntityId": "city-272c5c1939c309e2",
+      "wikidataId": "Q2328844",
+      "canonicalNameEn": "Uvita Island",
+      "positiveTypePath": [
+        "Q23442",
+        "Q271669"
+      ],
+      "distanceKm": 8.02
+    },
+    {
+      "entityId": "poi-7e12ac06f181701c",
+      "parentCityEntityId": "city-272c5c1939c309e2",
+      "wikidataId": "Q3377609",
+      "canonicalNameEn": "Pacuare River",
+      "positiveTypePath": [
+        "Q4022",
+        "Q355304",
+        "Q15324"
+      ],
+      "distanceKm": 32.362
+    },
+    {
+      "entityId": "poi-5c4b2af3cbb17d87",
+      "parentCityEntityId": "city-272c5c1939c309e2",
+      "wikidataId": "Q5102010",
+      "canonicalNameEn": "Chirripó Duchi River",
+      "positiveTypePath": [
+        "Q4022",
+        "Q355304",
+        "Q15324"
+      ],
+      "distanceKm": 24.446
+    },
+    {
+      "entityId": "poi-67ba581428fa2c85",
+      "parentCityEntityId": "city-272c5c1939c309e2",
+      "wikidataId": "Q3495669",
+      "canonicalNameEn": "Estadio Juan Gobán",
+      "positiveTypePath": [
+        "Q1154710",
+        "Q1076486",
+        "Q811979"
+      ],
+      "distanceKm": 5.718
+    },
+    {
+      "entityId": "poi-65504fe9135e58a6",
+      "parentCityEntityId": "city-272c5c1939c309e2",
+      "wikidataId": "Q3495797",
+      "canonicalNameEn": "Estadio Nuevo de Limón",
+      "positiveTypePath": [
+        "Q1154710",
+        "Q1076486",
+        "Q811979"
+      ],
+      "distanceKm": 2.54
+    },
+    {
+      "entityId": "poi-d15af43390410472",
+      "parentCityEntityId": "city-21f03bba97a2e2a2",
+      "wikidataId": "Q3445644",
+      "canonicalNameEn": "Nuestra Señora de los Ángeles",
+      "positiveTypePath": [
+        "Q16970",
+        "Q24398318",
+        "Q41176"
+      ],
+      "distanceKm": 0.87
+    },
+    {
+      "entityId": "poi-024dd71287657c94",
+      "parentCityEntityId": "city-21f03bba97a2e2a2",
+      "wikidataId": "Q1657264",
+      "canonicalNameEn": "Estadio José Rafael Fello Meza Ivankovich",
+      "positiveTypePath": [
+        "Q1154710",
+        "Q1076486",
+        "Q811979"
+      ],
+      "distanceKm": 0.683
+    },
+    {
+      "entityId": "poi-9e5b03dc70c5b0e4",
+      "parentCityEntityId": "city-21f03bba97a2e2a2",
+      "wikidataId": "Q3369639",
+      "canonicalNameEn": "Lankester Botanical Garden",
+      "positiveTypePath": [
+        "Q167346",
+        "Q13226383"
+      ],
+      "distanceKm": 4.368
+    },
+    {
+      "entityId": "poi-4b9c4de336c49e17",
+      "parentCityEntityId": "city-21f03bba97a2e2a2",
+      "wikidataId": "Q27430494",
+      "canonicalNameEn": "Our Lady of Carmel Cathedral, Cartago",
+      "positiveTypePath": [
+        "Q2977",
+        "Q16970",
+        "Q24398318",
+        "Q41176"
+      ],
+      "distanceKm": 0.232
+    },
+    {
+      "entityId": "poi-87d39012c4555431",
+      "parentCityEntityId": "city-21f03bba97a2e2a2",
+      "wikidataId": "Q96374499",
+      "canonicalNameEn": "Carpintera Hills Protected Zone",
+      "positiveTypePath": [
+        "Q473972"
+      ],
+      "distanceKm": 7.28
+    },
+    {
+      "entityId": "poi-046c9a9e2c240da5",
+      "parentCityEntityId": "city-979c3750767f29bc",
+      "wikidataId": "Q1369050",
+      "canonicalNameEn": "Estadio Alejandro Morera Soto",
+      "positiveTypePath": [
+        "Q1154710",
+        "Q1076486",
+        "Q811979"
+      ],
+      "distanceKm": 0.773
+    },
+    {
+      "entityId": "poi-7fc4716794d1bf6d",
+      "parentCityEntityId": "city-979c3750767f29bc",
+      "wikidataId": "Q3846757",
+      "canonicalNameEn": "San José Costa Rica Temple",
+      "positiveTypePath": [
+        "Q2142152",
+        "Q1370598"
+      ],
+      "distanceKm": 4.613
+    },
+    {
+      "entityId": "poi-ffcac68628bcc7bc",
+      "parentCityEntityId": "city-979c3750767f29bc",
+      "wikidataId": "Q27430732",
+      "canonicalNameEn": "Our Lady of the Pillar Cathedral, Alajuela",
+      "positiveTypePath": [
+        "Q2977",
+        "Q16970",
+        "Q24398318",
+        "Q41176"
+      ],
+      "distanceKm": 0.107
+    },
+    {
+      "entityId": "poi-3028ba8d0fb3072e",
+      "parentCityEntityId": "city-979c3750767f29bc",
+      "wikidataId": "Q3495546",
+      "canonicalNameEn": "Carlos Alvarado Stadium",
+      "positiveTypePath": [
+        "Q1154710",
+        "Q1076486",
+        "Q811979"
+      ],
+      "distanceKm": 6.435
+    },
+    {
+      "entityId": "poi-27c87b125dbffe6c",
+      "parentCityEntityId": "city-979c3750767f29bc",
+      "wikidataId": "Q47482045",
+      "canonicalNameEn": "Estadio Rafael Bolaños",
+      "positiveTypePath": [
+        "Q1154710",
+        "Q1076486",
+        "Q811979"
+      ],
+      "distanceKm": 3.985
+    },
+    {
+      "entityId": "poi-f09310b98a88fe5f",
+      "parentCityEntityId": "city-c06719ebf4192345",
+      "wikidataId": "Q1656772",
+      "canonicalNameEn": "Estadio Eladio Rosabal Cordero",
+      "positiveTypePath": [
+        "Q1154710",
+        "Q1076486",
+        "Q811979"
+      ],
+      "distanceKm": 0.665
+    },
+    {
+      "entityId": "poi-72f71fc04e40ed86",
+      "parentCityEntityId": "city-c06719ebf4192345",
+      "wikidataId": "Q3438120",
+      "canonicalNameEn": "La Sabana Metropolitan Park",
+      "positiveTypePath": [
+        "Q22652",
+        "Q22698"
+      ],
+      "distanceKm": 7.272
+    },
+    {
+      "entityId": "poi-303b7dd839ed1ef6",
+      "parentCityEntityId": "city-c06719ebf4192345",
+      "wikidataId": "Q20022317",
+      "canonicalNameEn": "Costa Rican Museum of Art",
+      "positiveTypePath": [
+        "Q207694",
+        "Q33506"
+      ],
+      "distanceKm": 7.28
+    },
+    {
+      "entityId": "poi-749d4f8519459b1f",
+      "parentCityEntityId": "city-c06719ebf4192345",
+      "wikidataId": "Q7414518",
+      "canonicalNameEn": "San José Central Market",
+      "positiveTypePath": [
+        "Q37654"
+      ],
+      "distanceKm": 8.058
+    },
+    {
+      "entityId": "poi-cbf6e9a2630336dd",
+      "parentCityEntityId": "city-c06719ebf4192345",
+      "wikidataId": "Q107462347",
+      "canonicalNameEn": "Omar Mosque and Islamic Center of Costa Rica",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 7.54
+    },
+    {
+      "entityId": "poi-e6d43a0e56c89109",
+      "parentCityEntityId": "city-b1062de88a48bcf5",
+      "wikidataId": "Q252362",
+      "canonicalNameEn": "Cerro Chirripó",
+      "positiveTypePath": [
+        "Q8502",
+        "Q35145263"
+      ],
+      "distanceKm": 31.281
+    },
+    {
+      "entityId": "poi-b54abdee6641363c",
+      "parentCityEntityId": "city-b1062de88a48bcf5",
+      "wikidataId": "Q957600",
+      "canonicalNameEn": "Cordillera de Talamanca",
+      "positiveTypePath": [
+        "Q46831",
+        "Q271669"
+      ],
+      "distanceKm": 23.034
+    },
+    {
+      "entityId": "poi-fc6bd557c442db90",
+      "parentCityEntityId": "city-b1062de88a48bcf5",
+      "wikidataId": "Q3244192",
+      "canonicalNameEn": "Chirripó National Park",
+      "positiveTypePath": [
+        "Q46169",
+        "Q22698"
+      ],
+      "distanceKm": 31.879
+    },
+    {
+      "entityId": "poi-cbc766ea6b53cc5c",
+      "parentCityEntityId": "city-b1062de88a48bcf5",
+      "wikidataId": "Q4391501",
+      "canonicalNameEn": "Cerro de la Muerte",
+      "positiveTypePath": [
+        "Q8502",
+        "Q35145263"
+      ],
+      "distanceKm": 25.228
+    },
+    {
+      "entityId": "poi-9521d97761938004",
+      "parentCityEntityId": "city-b1062de88a48bcf5",
+      "wikidataId": "Q3364525",
+      "canonicalNameEn": "Marino Ballena National Park",
+      "positiveTypePath": [
+        "Q46169",
+        "Q22698"
+      ],
+      "distanceKm": 27.623
+    }
+  ],
+  "quarantineCount": 2151
+}

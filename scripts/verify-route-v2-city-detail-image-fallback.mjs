@@ -264,6 +264,7 @@ const preview = spawn(process.execPath, ["server.js"], {
 const browserExecutable = findBrowserExecutable();
 let chromium = null;
 let socket = null;
+let client = null;
 
 try {
   await waitForPreview(baseUrl, preview);
@@ -275,6 +276,7 @@ try {
     "--disable-extensions",
     "--disable-features=OptimizationHints,MediaRouter",
     "--disable-gpu",
+    "--edge-skip-compat-layer-relaunch",
     "--no-default-browser-check",
     "--no-first-run",
     "--remote-debugging-port=0",
@@ -284,7 +286,7 @@ try {
   const webSocketUrl = await waitForDevtools(chromium);
   const connection = await connectCdp(webSocketUrl);
   socket = connection.socket;
-  const { client } = connection;
+  client = connection.client;
   const { targetId } = await client.send("Target.createTarget", { url: "about:blank" });
   const { sessionId } = await client.send("Target.attachToTarget", { targetId, flatten: true });
   await client.send("Page.enable", {}, sessionId);
@@ -497,8 +499,11 @@ try {
     isolatedStorage: true,
   }, null, 2));
 } finally {
+  if (client && socket?.readyState === WebSocket.OPEN) {
+    await client.send("Browser.close").catch(() => {});
+  }
   if (socket?.readyState === WebSocket.OPEN) socket.close();
   await stopChild(chromium);
   await stopChild(preview);
-  fs.rmSync(temporaryRoot, { recursive: true, force: true });
+  fs.rmSync(temporaryRoot, { recursive: true, force: true, maxRetries: 10, retryDelay: 200 });
 }

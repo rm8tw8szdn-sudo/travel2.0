@@ -16,6 +16,7 @@ const batch05ReportData = calculateBatch05ReportData({ root: projectRoot });
 const requiredNames = new Set(MANDATORY_PRELAUNCH_VERIFIERS.map((stage) => stage.name));
 for (const name of [
   "multi-city-hard-constraints",
+  "homonymous-city-country-disambiguation",
   "single-city-hard-constraint",
   "trip-footprint-knowledge-identity",
   "multi-country-hard-constraints",
@@ -32,6 +33,9 @@ for (const name of [
   "route-v2-image-quality-adversarial",
   "route-v2-city-detail-image-fallback",
   "knowledge-expansion-batch05-report-consistency",
+  "knowledge-expansion-batch06-integrity",
+  "knowledge-expansion-batch06-route-consumption",
+  "knowledge-expansion-batch06-report-consistency",
   "publication-gate",
   "search-cache-semantic-migration",
   "cache-baseline-v2",
@@ -49,6 +53,8 @@ const reportConsistencyStage = MANDATORY_PRELAUNCH_VERIFIERS.find((stage) => sta
 assert(reportConsistencyStage, "Batch 05 report consistency verification must be registered");
 const imageBaselineStage = MANDATORY_PRELAUNCH_VERIFIERS.find((stage) => stage.name === "route-v2-image-asset-baseline");
 assert(imageBaselineStage, "Image asset baseline verification must be registered");
+const homonymousCityStage = MANDATORY_PRELAUNCH_VERIFIERS.find((stage) => stage.name === "homonymous-city-country-disambiguation");
+assert(homonymousCityStage, "Homonymous City disambiguation verification must be registered");
 
 function injectedFailure(result) {
   let thrown = null;
@@ -123,6 +129,21 @@ assert(imageBaselineFailure instanceof MandatoryVerifierStageError);
 assert.equal(imageBaselineFailure.stageResult.name, "route-v2-image-asset-baseline");
 assert.equal(imageBaselineFailure.stageResult.exitCode, 29);
 
+let homonymousCityFailure = null;
+try {
+  runMandatoryVerifierStage({
+    stage: homonymousCityStage,
+    projectRoot,
+    env: process.env,
+    spawnImpl: () => ({ status: 31, signal: null, stdout: "", stderr: "controlled homonymous City failure\n" }),
+  });
+} catch (error) {
+  homonymousCityFailure = error;
+}
+assert(homonymousCityFailure instanceof MandatoryVerifierStageError);
+assert.equal(homonymousCityFailure.stageResult.name, "homonymous-city-country-disambiguation");
+assert.equal(homonymousCityFailure.stageResult.exitCode, 31);
+
 function realReportMutationFailure(search, replacement, label) {
   const sourcePath = path.join(projectRoot, "ROUTE_V2_KNOWLEDGE_EXPANSION_BATCH05_REPORT.md");
   const source = fs.readFileSync(sourcePath, "utf8");
@@ -172,6 +193,7 @@ process.stdout.write(`${JSON.stringify({
   injectedExitCode: 23,
   productionRunnerExercised: true,
   imageBaselineFailurePropagated: imageBaselineFailure.stageResult.exitCode === 29,
+  homonymousCityFailurePropagated: homonymousCityFailure.stageResult.exitCode === 31,
   reportPoiMutationPropagated: reportPoiMutation.exitCode !== 0,
   reportDedicatedCityMutationPropagated: reportCityImageMutation.exitCode !== 0,
 }, null, 2)}\n`);

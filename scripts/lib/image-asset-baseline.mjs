@@ -213,6 +213,7 @@ function lfsInventory(root) {
 function referenceKind(sourcePath) {
   if (/^scripts\/verify-/u.test(sourcePath)) return "test";
   if (/^data\/knowledge\/(?:raw|reports|batches)\//u.test(sourcePath)) return "audit";
+  if (sourcePath === "data/route-v2/images/batch06-dedicated-image-provenance.json") return "audit";
   if (/^(?:docs\/|ROUTE_V2_.*\.md$)/u.test(sourcePath) || sourcePath.endsWith(".md")) return "audit";
   if (/^scripts\//u.test(sourcePath)) return "build";
   if (sourcePath === FORMAL_MANIFEST_PATH || sourcePath === "route-v2-image-coverage.js") return "manifest";
@@ -386,16 +387,24 @@ function verifyBackfill({ manifest, repository }) {
     const entity = cityById.get(record.entityId);
     const country = entity ? countryById.get(entity.parentCountryEntityId) : null;
     if (!entity || entity.wikidataId !== record.wikidataId || country?.isoAlpha2 !== record.countryCode) problems.push({ entityId: record.entityId, reason: "city-entity-qid-or-parent-mismatch" });
-    if (record.status !== "placeholder" || !record.needsBackfill || record.assetPath !== manifest.fallbackPolicy.city) problems.push({ entityId: record.entityId, reason: "city-debt-placeholder-mismatch" });
-    debts.push({ entityId: record.entityId, qid: record.wikidataId, entityType: "City", countryCode: record.countryCode, parentCityEntityId: null, priority: record.backfillPriority });
+    if (record.status === "placeholder") {
+      if (!record.needsBackfill || record.assetPath !== manifest.fallbackPolicy.city || record.isDedicated) problems.push({ entityId: record.entityId, reason: "city-debt-placeholder-mismatch" });
+      debts.push({ entityId: record.entityId, qid: record.wikidataId, entityType: "City", countryCode: record.countryCode, parentCityEntityId: null, priority: record.backfillPriority });
+    } else if (record.status !== "imageReady" || record.needsBackfill || record.assetKind !== "verified-destination-image" || record.semanticScope !== "exact-city") {
+      problems.push({ entityId: record.entityId, reason: "city-dedicated-image-mismatch" });
+    }
   }
   for (const record of manifest.pois || []) {
     const entity = poiById.get(record.entityId);
     const city = entity ? cityById.get(entity.parentCityEntityId) : null;
     const country = city ? countryById.get(city.parentCountryEntityId) : null;
     if (!entity || entity.wikidataId !== record.wikidataId || city?.entityId !== record.parentCityEntityId || country?.isoAlpha2 !== record.countryCode) problems.push({ entityId: record.entityId, reason: "poi-entity-qid-or-parent-mismatch" });
-    if (record.status !== "placeholder" || !record.needsBackfill || record.assetPath !== manifest.fallbackPolicy.poi) problems.push({ entityId: record.entityId, reason: "poi-debt-placeholder-mismatch" });
-    debts.push({ entityId: record.entityId, qid: record.wikidataId, entityType: "POI", countryCode: record.countryCode, parentCityEntityId: record.parentCityEntityId, priority: record.backfillPriority });
+    if (record.status === "placeholder") {
+      if (!record.needsBackfill || record.assetPath !== manifest.fallbackPolicy.poi || record.isDedicated) problems.push({ entityId: record.entityId, reason: "poi-debt-placeholder-mismatch" });
+      debts.push({ entityId: record.entityId, qid: record.wikidataId, entityType: "POI", countryCode: record.countryCode, parentCityEntityId: record.parentCityEntityId, priority: record.backfillPriority });
+    } else if (record.status !== "imageReady" || record.needsBackfill || record.assetKind !== "verified-destination-image" || record.semanticScope !== "exact-poi") {
+      problems.push({ entityId: record.entityId, reason: "poi-dedicated-image-mismatch" });
+    }
   }
   const byCountry = [...new Set(debts.map((record) => record.countryCode))].sort().map((countryCode) => ({
     countryCode,

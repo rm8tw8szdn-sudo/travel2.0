@@ -12,7 +12,7 @@ const sha256 = (value) => crypto.createHash("sha256").update(value).digest("hex"
 const read = (relativePath) => fs.readFileSync(path.join(ROOT, relativePath), "utf8");
 const assets = [...manifest.countries, ...manifest.cities, ...manifest.pois]
   .filter((record) => record.assetPath && record.assetPath !== manifest.fallbackPolicy.city)
-  .map((record) => ({ ...record, source: read(record.assetPath) }));
+  .map((record) => ({ ...record, bytesBuffer: fs.readFileSync(path.join(ROOT, record.assetPath)) }));
 
 function normalizedTemplate(source) {
   return source
@@ -27,15 +27,27 @@ function normalizedTemplate(source) {
 const exactGroups = new Map();
 const templateGroups = new Map();
 for (const asset of assets) {
-  const exact = sha256(asset.source);
-  const template = sha256(normalizedTemplate(asset.source));
+  const exact = sha256(asset.bytesBuffer);
   if (!exactGroups.has(exact)) exactGroups.set(exact, []);
-  if (!templateGroups.has(template)) templateGroups.set(template, []);
   exactGroups.get(exact).push(asset.assetPath);
-  templateGroups.get(template).push(asset.assetPath);
-  assert.doesNotMatch(asset.source, /(?:href|src)=["']https?:\/\//iu, `${asset.assetPath}:external-image-reference`);
-  assert.doesNotMatch(asset.source, /<image\b/iu, `${asset.assetPath}:embedded-unverified-raster`);
-  assert.match(asset.source, /viewBox="0 0 800 500"/u, `${asset.assetPath}:unexpected-aspect-ratio`);
+  if (asset.entityType === "Country") {
+    const source = asset.bytesBuffer.toString("utf8");
+    const template = sha256(normalizedTemplate(source));
+    if (!templateGroups.has(template)) templateGroups.set(template, []);
+    templateGroups.get(template).push(asset.assetPath);
+    assert.doesNotMatch(source, /(?:href|src)=["']https?:\/\//iu, `${asset.assetPath}:external-image-reference`);
+    assert.doesNotMatch(source, /<image\b/iu, `${asset.assetPath}:embedded-unverified-raster`);
+    assert.match(source, /viewBox="0 0 800 500"/u, `${asset.assetPath}:unexpected-aspect-ratio`);
+  } else {
+    assert.equal(asset.assetKind, "verified-destination-image");
+    assert.match(asset.semanticScope, /^exact-(?:city|poi)$/u);
+    assert.match(asset.sourceUrl, /^https:\/\/commons\.wikimedia\.org\/wiki\/File:/u);
+    assert.equal(asset.sourcePath, "data/route-v2/images/batch06-dedicated-image-provenance.json");
+    assert.match(asset.license, /^(?:CC BY|CC0|Public domain)/iu);
+    assert(asset.dimensions.width >= 640 && asset.dimensions.height > 0, `${asset.assetPath}:insufficient-raster-dimensions`);
+    assert(asset.bytes > 8_000 && asset.bytes <= 300_000, `${asset.assetPath}:unexpected-raster-size`);
+    assert.equal(asset.processedHash, exact, `${asset.assetPath}:manifest-hash-mismatch`);
+  }
 }
 
 const exactDuplicates = [...exactGroups.values()].filter((group) => group.length > 1);

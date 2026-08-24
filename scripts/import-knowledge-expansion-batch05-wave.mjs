@@ -21,16 +21,23 @@ import { validateKnowledgePoiEntitySet } from "../src/lib/routes/knowledge-poi-b
 import { KNOWLEDGE_ENTITY_LAYER_PUBLISHED_ASSETS } from "../src/lib/routes/knowledge-entity-layer-published-assets.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const SEED_PATH = "data/knowledge/seeds/knowledge-expansion-batch05-20-country.json";
-const COUNTRY_OUTPUT = "data/knowledge/batches/countries.p1a-batch05.json";
+const argument = (name) => process.argv.find((value) => value.startsWith(`--${name}=`))?.slice(name.length + 3) || "";
+const BATCH = argument("batch") || "05";
+if (!["05", "06"].includes(BATCH)) throw new Error("batch-argument-invalid:--batch=05|06");
+const BATCH_LABEL = `Batch ${BATCH}`;
+const SEED_PATH = `data/knowledge/seeds/knowledge-expansion-batch${BATCH}-20-country.json`;
+const COUNTRY_OUTPUT = `data/knowledge/batches/countries.p1a-batch${BATCH}.json`;
 const WIKIDATA_API = "https://www.wikidata.org/w/api.php";
 const WIKIPEDIA_API = "https://en.wikipedia.org/w/api.php";
 const LOCAL_WIKIPEDIA_LANGUAGE = Object.freeze({
+  AD: "ca", AE: "ar", AR: "es", BR: "pt", CD: "fr", CL: "es", CN: "zh", CR: "es", UY: "es",
+  EG: "ar", FJ: "fj", IL: "he", IN: "hi", KE: "sw", KH: "km", MA: "fr", NG: "en",
+  RO: "ro", RU: "ru", SA: "ar", ZA: "en",
   BE: "nl", CA: "fr", CZ: "cs", DK: "da", FI: "fi", HR: "hr", HU: "hu", ID: "id", IE: "ga",
   MX: "es", MY: "ms", NO: "no", PE: "es", PL: "pl", SE: "sv", SI: "sl", VN: "vi",
 });
-const USER_AGENT = "travel2-route-v2-knowledge-expansion-batch05/1.0 (https://github.com/rm8tw8szdn-sudo/travel2.0)";
-const FETCH_CACHE_ROOT = path.join(ROOT, ".tmp", "route-v2-batch05-import-cache");
+const USER_AGENT = `travel2-route-v2-knowledge-expansion-batch${BATCH}/1.0 (https://github.com/rm8tw8szdn-sudo/travel2.0)`;
+const FETCH_CACHE_ROOT = path.join(ROOT, ".tmp", `route-v2-batch${BATCH}-import-cache`);
 const MAX_SUBCLASS_DEPTH = 8;
 const CITY_ROOTS = new Set(["Q486972", "Q15284"]);
 const POI_ROOTS = new Set([
@@ -64,9 +71,12 @@ const VISITOR_POI_ROOTS = new Set([
 ]);
 const ISO = Object.freeze({
   HU: ["HUN", "348"], HR: ["HRV", "191"], SE: ["SWE", "752"], SI: ["SVN", "705"],
+  KH: ["KHM", "116"], RO: ["ROU", "642"], CR: ["CRI", "188"], UY: ["URY", "858"],
 });
+const COUNTRY_OUTPUT_CODES = BATCH === "05"
+  ? new Set(["HU", "HR", "SE", "SI"])
+  : new Set(["KH", "RO", "CR", "UY"]);
 
-const argument = (name) => process.argv.find((value) => value.startsWith(`--${name}=`))?.slice(name.length + 3) || "";
 const wave = Number(argument("wave"));
 if (![1, 2, 3, 4].includes(wave)) throw new Error("wave-argument-required:--wave=1|2|3|4");
 
@@ -285,7 +295,7 @@ function buildCity(seed, entity, country, retrievedAt) {
     .filter((value) => entity.id === country.wikidataId || !countryNames.has(clean(value).toLocaleLowerCase("en-US")));
   const wiki = `https://www.wikidata.org/wiki/${entity.id}`;
   const wd = (field, value) => provenance(field, "wikidata", "Wikidata exact enwiki title and wbgetentities", wiki, value, retrievedAt);
-  const schema = (field, value) => provenance(field, "project-schema", "Route V2 Knowledge Expansion Batch 05", "", value, retrievedAt);
+  const schema = (field, value) => provenance(field, "project-schema", `Route V2 Knowledge Expansion ${BATCH_LABEL}`, "", value, retrievedAt);
   return {
     schemaVersion: "route-v2-city-baseline-p1b", entityId, entityType: "city",
     parentCountryEntityId: country.entityId, wikidataId: entity.id,
@@ -297,7 +307,7 @@ function buildCity(seed, entity, country, retrievedAt) {
       wikidataId: wd("wikidataId", entity.id), canonicalNameZh: wd("canonicalNameZh", canonicalNameZh),
       canonicalNameEn: wd("canonicalNameEn", seed.name),
       aliases: seed.aliases.length > 0
-        ? provenance("aliases", "repository-reference", "Batch 05 reviewed search aliases bound to the exact Wikidata city entity", wiki, entityAliases, retrievedAt)
+        ? provenance("aliases", "repository-reference", `${BATCH_LABEL} reviewed search aliases bound to the exact Wikidata city entity`, wiki, entityAliases, retrievedAt)
         : wd("aliases", entityAliases),
       coordinates: wd("coordinates", coordinates), entitySourceType: schema("entitySourceType", "wikidata"),
       confidence: schema("confidence", 0.95), retrievedAt: wd("retrievedAt", retrievedAt),
@@ -313,7 +323,7 @@ function buildPoi(candidate, entity, city, retrievedAt) {
   const entityAliases = aliases(entity, [candidate.title], [nameZh, nameEn]);
   const wiki = `https://www.wikidata.org/wiki/${entity.id}`;
   const wd = (field, value) => provenance(field, "wikidata", "Wikidata plus English Wikipedia geosearch", wiki, value, retrievedAt);
-  const schema = (field, value) => provenance(field, "project-schema", "Route V2 Knowledge Expansion Batch 05", "", value, retrievedAt);
+  const schema = (field, value) => provenance(field, "project-schema", `Route V2 Knowledge Expansion ${BATCH_LABEL}`, "", value, retrievedAt);
   return {
     schemaVersion: "route-v2-poi-baseline-p1b", entityId, entityType: "poi",
     parentCityEntityId: city.entityId, wikidataId: entity.id,
@@ -354,9 +364,9 @@ function buildCountry(seed, entity, relatedEntities, retrievedAt) {
     aliases: aliases(capital, [], [capitalNameEn]),
   };
   const coords = coordinate(entity);
-  const isoSource = (field, value) => sourceEntry({ sourceType: "iso", source: "ISO 3166 Batch 05 reviewed seed", field, retrievedAt, value });
+  const isoSource = (field, value) => sourceEntry({ sourceType: "iso", source: `ISO 3166 ${BATCH_LABEL} reviewed seed`, field, retrievedAt, value });
   const wd = (field, value) => sourceEntry({ sourceType: "wikidata", source: "Wikidata wbgetentities", field, sourceUrl: wiki, retrievedAt, value });
-  const catalog = (field, value) => sourceEntry({ sourceType: "project-country-catalog", source: "Batch 05 reviewed country catalog", field, retrievedAt, value });
+  const catalog = (field, value) => sourceEntry({ sourceType: "project-country-catalog", source: `${BATCH_LABEL} reviewed country catalog`, field, retrievedAt, value });
   return {
     schemaVersion: "route-v2-country-baseline-p1a", entityId, entityType: "country",
     isoAlpha2: seed.iso, isoAlpha3, isoNumeric, wikidataId: seed.qid,
@@ -416,39 +426,40 @@ async function main() {
   const retrievedAt = seedDocument.retrievedAt;
   const countries = waveConfig.countries.map((iso) => ({ iso, ...seedDocument.countries[iso] }));
   const existingCountries = await readAssets([...KNOWLEDGE_ENTITY_LAYER_PUBLISHED_ASSETS.countries, COUNTRY_OUTPUT], "countries");
-  const priorBatch05CityPaths = ["14", "15", "16", "17"]
+  const batchNumbers = Object.values(seedDocument.waves).map((entry) => String(entry.batchNumber));
+  const priorBatchCityPaths = batchNumbers
     .filter((number) => number !== batchNumber)
     .map((number) => `data/knowledge/batches/cities.p1b-batch${number}.json`)
     .filter((relativePath) => !KNOWLEDGE_ENTITY_LAYER_PUBLISHED_ASSETS.cities.includes(relativePath));
-  const priorBatch05PoiPaths = ["14", "15", "16", "17"]
+  const priorBatchPoiPaths = batchNumbers
     .filter((number) => number !== batchNumber)
     .map((number) => `data/knowledge/batches/pois.p1b-batch${number}.json`)
     .filter((relativePath) => !KNOWLEDGE_ENTITY_LAYER_PUBLISHED_ASSETS.pois.includes(relativePath));
   const existingCities = await readAssets([
     ...KNOWLEDGE_ENTITY_LAYER_PUBLISHED_ASSETS.cities.filter((relativePath) => relativePath !== currentCityPath),
-    ...priorBatch05CityPaths,
+    ...priorBatchCityPaths,
   ], "cities");
   const existingPois = await readAssets([
     ...KNOWLEDGE_ENTITY_LAYER_PUBLISHED_ASSETS.pois.filter((relativePath) => relativePath !== currentPoiPath),
-    ...priorBatch05PoiPaths,
+    ...priorBatchPoiPaths,
   ], "pois");
   const countryByIso = new Map(existingCountries.map((entry) => [entry.isoAlpha2, entry]));
   const cityByQid = new Map(existingCities.map((entry) => [entry.wikidataId, entry]));
   const poiByQid = new Map(existingPois.map((entry) => [entry.wikidataId, entry]));
+  const countryEntities = await fetchEntities(countries.map((entry) => entry.qid));
+  const countryRelatedQids = Object.values(countryEntities).flatMap((entity) => [...qids(entity, "P36"), ...qids(entity, "P30")]);
+  const countryRelatedEntities = await fetchEntities(countryRelatedQids);
 
   const missingCountrySeeds = countries.filter((entry) => !countryByIso.has(entry.iso));
   if (missingCountrySeeds.length) {
-    const countryEntities = await fetchEntities(missingCountrySeeds.map((entry) => entry.qid));
-    const relatedQids = Object.values(countryEntities).flatMap((entity) => [...qids(entity, "P36"), ...qids(entity, "P30")]);
-    const related = await fetchEntities(relatedQids);
-    const additions = missingCountrySeeds.map((entry) => buildCountry(entry, countryEntities[entry.qid], related, retrievedAt));
-    const allNewCountries = [...existingCountries.filter((entry) => ISO[entry.isoAlpha2]), ...additions]
+    const additions = missingCountrySeeds.map((entry) => buildCountry(entry, countryEntities[entry.qid], countryRelatedEntities, retrievedAt));
+    const allNewCountries = [...existingCountries.filter((entry) => COUNTRY_OUTPUT_CODES.has(entry.isoAlpha2)), ...additions]
       .filter((entry, index, array) => array.findIndex((candidate) => candidate.isoAlpha2 === entry.isoAlpha2) === index)
       .sort((left, right) => left.isoAlpha2.localeCompare(right.isoAlpha2, "en"));
     const validation = validateCountryEntitySet(allNewCountries);
     if (!validation.accepted) throw new Error(`country-validation-failed:${validation.reasons.join("|")}`);
     await atomicJson(COUNTRY_OUTPUT, {
-      schemaVersion: "route-v2-country-baseline-p1a-batch05",
+      schemaVersion: `route-v2-country-baseline-p1a-batch${BATCH}`,
       generatedFrom: SEED_PATH,
       countryCount: allNewCountries.length,
       countries: allNewCountries,
@@ -518,7 +529,7 @@ async function main() {
       if (usedPoiQids.has(candidate.qid)) reasons.push("duplicate-wave-poi");
       if (reasons.length) {
         reviews.push({
-          reviewId: `batch05-wave${wave}-review-${String(reviews.length + 1).padStart(5, "0")}`,
+          reviewId: `batch${BATCH}-wave${wave}-review-${String(reviews.length + 1).padStart(5, "0")}`,
           entityType: "poi-candidate", countryCode: selected.seed.iso, parentCityEntityId: selected.city.entityId,
           requestedTitle: candidate.title, wikidataId: candidate.qid, reasonCodes: reasons,
           disposition: "quarantined-not-published",
@@ -535,7 +546,7 @@ async function main() {
     const surplus = accepted.slice(selected.seed.targetPoiCount);
     for (const item of surplus) {
       reviews.push({
-        reviewId: `batch05-wave${wave}-review-${String(reviews.length + 1).padStart(5, "0")}`,
+        reviewId: `batch${BATCH}-wave${wave}-review-${String(reviews.length + 1).padStart(5, "0")}`,
         entityType: "poi-candidate", countryCode: selected.seed.iso, parentCityEntityId: selected.city.entityId,
         requestedTitle: item.candidate.title, wikidataId: item.candidate.qid,
         reasonCodes: ["capacity-surplus"], disposition: "quarantined-not-published",
@@ -547,7 +558,7 @@ async function main() {
     const minimumRoutePoiCount = Math.min(1, selected.seed.targetPoiCount);
     if (chosen.length < minimumRoutePoiCount) {
       reviews.push({
-        reviewId: `batch05-wave${wave}-review-${String(reviews.length + 1).padStart(5, "0")}`,
+        reviewId: `batch${BATCH}-wave${wave}-review-${String(reviews.length + 1).padStart(5, "0")}`,
         entityType: "city-capacity", countryCode: selected.seed.iso, parentCityEntityId: selected.city.entityId,
         requestedTitle: selected.seed.name, wikidataId: selected.city.wikidataId,
         reasonCodes: ["no-route-eligible-poi"], disposition: "quarantined-city-not-published",
@@ -558,7 +569,7 @@ async function main() {
     }
     if (chosen.length < selected.seed.targetPoiCount) {
       reviews.push({
-        reviewId: `batch05-wave${wave}-review-${String(reviews.length + 1).padStart(5, "0")}`,
+        reviewId: `batch${BATCH}-wave${wave}-review-${String(reviews.length + 1).padStart(5, "0")}`,
         entityType: "poi-capacity", countryCode: selected.seed.iso, parentCityEntityId: selected.city.entityId,
         requestedTitle: selected.seed.name, wikidataId: selected.city.wikidataId,
         reasonCodes: ["route-quality-capacity-shortfall"], disposition: "accepted-below-target-without-padding",
@@ -585,7 +596,7 @@ async function main() {
 
   publishableNewCities.sort((left, right) => left.canonicalNameEn.localeCompare(right.canonicalNameEn, "en"));
   newPois.sort((left, right) => left.parentCityEntityId.localeCompare(right.parentCityEntityId, "en") || left.canonicalNameEn.localeCompare(right.canonicalNameEn, "en"));
-  const prefix = `knowledge-expansion-batch05-wave${wave}`;
+  const prefix = `knowledge-expansion-batch${BATCH}-wave${wave}`;
   const paths = {
     raw: `data/knowledge/raw/${prefix}.wikidata.json`,
     cities: `data/knowledge/batches/cities.p1b-batch${batchNumber}.json`,
@@ -598,7 +609,7 @@ async function main() {
   await atomicJson(paths.raw, {
     schemaVersion: `route-v2-${prefix}-raw-v1`, retrievedAt, endpoint: { wikidata: WIKIDATA_API, wikipedia: WIKIPEDIA_API },
     seedPath: SEED_PATH, wave, countries: countries.map((entry) => entry.iso), titleResolution: Object.fromEntries(titleResolution),
-    wikidata: { cityEntities, poiEntities }, typeGraphs: {
+    wikidata: { countryEntities, countryRelatedEntities, cityEntities, poiEntities }, typeGraphs: {
       city: Object.fromEntries(cityTypeGraph), poi: Object.fromEntries(poiTypeGraph),
     }, geosearch: Object.fromEntries(geosearchByCity),
   });

@@ -12,6 +12,7 @@ const cases = [
   { id: "rome-florence", query: "Rome Florence 7 days", fixedQuery: "Rome → Florence 7 days", requiredIds: ["Q220", "Q2044"] },
   { id: "madrid-barcelona", query: "Madrid Barcelona 7 days", fixedQuery: "Madrid → Barcelona 7 days", requiredIds: ["Q2807", "Q1492"] },
   { id: "seoul-busan", query: "Seoul Busan 7 days", fixedQuery: "Seoul → Busan 7 days", requiredIds: ["Q8684", "Q16520"] },
+  { id: "rio-sao-paulo-country-code-collision", query: "Rio de Janeiro São Paulo 10 days", fixedQuery: "Rio de Janeiro → São Paulo 10 days", requiredIds: ["Q8678", "Q174"] },
 ];
 
 function assertExactSet(actual, expected, label) {

@@ -1,0 +1,119 @@
+{
+  "schemaVersion": "route-v2-knowledge-expansion-batch07-seed-v1",
+  "retrievedAt": "2026-08-24T03:00:00.000Z",
+  "approximateGlobalCountryCount": 195,
+  "selectionPolicy": [
+    "keep China Catalog-only under the existing Search restriction and do not change Route Engine policy",
+    "select 20 uncataloged countries by travel demand, regional gaps, and compact-country route value",
+    "quarantine any City or POI whose identity, P31/P279, P17, coordinates, parent, or visitor value cannot be confirmed"
+  ],
+  "poiTargets": { "world": 10, "core": 7, "standard": 5, "town": 3 },
+  "waves": {
+    "1": { "batchNumber": "22", "countries": ["AL", "BG", "CY", "EE", "LV"] },
+    "2": { "batchNumber": "23", "countries": ["LT", "MT", "ME", "RS", "SK"] },
+    "3": { "batchNumber": "24", "countries": ["GE", "JO", "LK", "NP", "MV"] },
+    "4": { "batchNumber": "25", "countries": ["TN", "TZ", "EC", "PA", "GT"] }
+  },
+  "countries": {
+    "AL": {
+      "label": "Albania", "qid": "Q222", "wave": 1, "tier": 2, "iso3": "ALB", "isoNumeric": "008", "region": "欧洲", "subregion": "Southern Europe",
+      "selectionReason": "Uncataloged Adriatic and Western Balkans route gap.", "currentStatus": "not-cataloged", "targetStatus": "evidence-backed-plannable",
+      "cities": [["Tirana", "world"], ["Berat", "core"], ["Gjirokastër", "core"], ["Shkodër", "core"], ["Durrës", "core"], ["Vlorë", "standard"], ["Korçë", "standard"]]
+    },
+    "BG": {
+      "label": "Bulgaria", "qid": "Q219", "wave": 1, "tier": 1, "iso3": "BGR", "isoNumeric": "100", "region": "欧洲", "subregion": "Eastern Europe",
+      "selectionReason": "Uncataloged high-depth Balkan city and heritage circuit.", "currentStatus": "not-cataloged", "targetStatus": "evidence-backed-plannable",
+      "cities": [["Sofia", "world"], ["Plovdiv", "world"], ["Varna, Bulgaria", "core", "Varna"], ["Burgas", "core"], ["Veliko Tarnovo", "core"], ["Ruse, Bulgaria", "standard", "Ruse"], ["Bansko", "standard"], ["Nesebar", "core"]]
+    },
+    "CY": {
+      "label": "Cyprus", "qid": "Q229", "wave": 1, "tier": 2, "iso3": "CYP", "isoNumeric": "196", "region": "南欧", "subregion": "Southern Europe",
+      "selectionReason": "Uncataloged eastern Mediterranean island-country route gap; only verified settlements may publish as City.", "currentStatus": "not-cataloged", "targetStatus": "evidence-backed-plannable",
+      "cities": [["Nicosia", "world"], ["Limassol", "world"], ["Larnaca", "core"], ["Paphos", "core"], ["Ayia Napa", "core"], ["Polis, Cyprus", "standard", "Polis"]]
+    },
+    "EE": {
+      "label": "Estonia", "qid": "Q191", "wave": 1, "tier": 2, "iso3": "EST", "isoNumeric": "233", "region": "北欧", "subregion": "Northern Europe",
+      "selectionReason": "Uncataloged Baltic route gap.", "currentStatus": "not-cataloged", "targetStatus": "evidence-backed-plannable",
+      "cities": [["Tallinn", "world"], ["Tartu", "core"], ["Pärnu", "core"], ["Narva", "standard"], ["Kuressaare", "standard"], ["Viljandi", "standard"]]
+    },
+    "LV": {
+      "label": "Latvia", "qid": "Q211", "wave": 1, "tier": 2, "iso3": "LVA", "isoNumeric": "428", "region": "北欧", "subregion": "Northern Europe",
+      "selectionReason": "Uncataloged Baltic route gap adjoining Estonia and Lithuania.", "currentStatus": "not-cataloged", "targetStatus": "evidence-backed-plannable",
+      "cities": [["Riga", "world"], ["Daugavpils", "core"], ["Liepāja", "core"], ["Jelgava", "standard"], ["Cēsis", "standard"], ["Ventspils", "standard"]]
+    },
+    "LT": {
+      "label": "Lithuania", "qid": "Q37", "wave": 2, "tier": 2, "iso3": "LTU", "isoNumeric": "440", "region": "北欧", "subregion": "Northern Europe",
+      "selectionReason": "Completes the uncataloged Baltic trio.", "currentStatus": "not-cataloged", "targetStatus": "evidence-backed-plannable",
+      "cities": [["Vilnius", "world"], ["Kaunas", "world"], ["Klaipėda", "core"], ["Šiauliai", "standard"], ["Panevėžys", "standard"], ["Trakai", "core"]]
+    },
+    "MT": {
+      "label": "Malta", "qid": "Q233", "wave": 2, "tier": 2, "iso3": "MLT", "isoNumeric": "470", "region": "南欧", "subregion": "Southern Europe",
+      "selectionReason": "Compact Mediterranean state with valid single-city and short multi-city route shapes.", "currentStatus": "not-cataloged", "targetStatus": "evidence-backed-plannable",
+      "cities": [["Valletta", "world"], ["Sliema", "core"], ["St. Julian's, Malta", "core", "St. Julian's"], ["Mdina", "core"], ["Rabat, Malta", "standard", "Rabat"], ["Birgu", "standard"]]
+    },
+    "ME": {
+      "label": "Montenegro", "qid": "Q236", "wave": 2, "tier": 2, "iso3": "MNE", "isoNumeric": "499", "region": "欧洲", "subregion": "Southern Europe",
+      "selectionReason": "Uncataloged Adriatic and Western Balkans route gap.", "currentStatus": "not-cataloged", "targetStatus": "evidence-backed-plannable",
+      "cities": [["Podgorica", "world"], ["Kotor", "world"], ["Budva", "core"], ["Cetinje", "core"], ["Herceg Novi", "core"], ["Bar, Montenegro", "standard", "Bar"]]
+    },
+    "RS": {
+      "label": "Serbia", "qid": "Q403", "wave": 2, "tier": 2, "iso3": "SRB", "isoNumeric": "688", "region": "欧洲", "subregion": "Southern Europe",
+      "selectionReason": "Uncataloged central Balkan transport and city circuit.", "currentStatus": "not-cataloged", "targetStatus": "evidence-backed-plannable",
+      "cities": [["Belgrade", "world"], ["Novi Sad", "world"], ["Niš", "core"], ["Subotica", "core"], ["Kragujevac", "standard"], ["Užice", "standard"], ["Novi Pazar", "standard"]]
+    },
+    "SK": {
+      "label": "Slovakia", "qid": "Q214", "wave": 2, "tier": 2, "iso3": "SVK", "isoNumeric": "703", "region": "欧洲", "subregion": "Eastern Europe",
+      "selectionReason": "Uncataloged Central European gap between existing Czechia, Poland, Austria and Hungary.", "currentStatus": "not-cataloged", "targetStatus": "evidence-backed-plannable",
+      "cities": [["Bratislava", "world"], ["Košice", "world"], ["Banská Bystrica", "core"], ["Žilina", "core"], ["Nitra", "standard"], ["Trnava", "standard"], ["Poprad", "standard"]]
+    },
+    "GE": {
+      "label": "Georgia", "qid": "Q230", "wave": 3, "tier": 1, "iso3": "GEO", "isoNumeric": "268", "region": "西亚", "subregion": "Western Asia",
+      "selectionReason": "High-demand Caucasus and Western Asia route gap.", "currentStatus": "not-cataloged", "targetStatus": "evidence-backed-plannable",
+      "cities": [["Tbilisi", "world"], ["Batumi", "world"], ["Kutaisi", "core"], ["Mtskheta", "core"], ["Gori, Georgia", "core", "Gori"], ["Telavi", "standard"], ["Zugdidi", "standard"], ["Akhaltsikhe", "standard"]]
+    },
+    "JO": {
+      "label": "Jordan", "qid": "Q810", "wave": 3, "tier": 1, "iso3": "JOR", "isoNumeric": "400", "region": "西亚", "subregion": "Western Asia",
+      "selectionReason": "High-demand Levant heritage and city route gap.", "currentStatus": "not-cataloged", "targetStatus": "evidence-backed-plannable",
+      "cities": [["Amman", "world"], ["Aqaba", "world"], ["Madaba", "core"], ["Jerash", "core"], ["As-Salt", "core", "Salt"], ["Al-Karak", "core", "Karak"], ["Irbid", "standard"], ["Wadi Musa", "standard"]]
+    },
+    "LK": {
+      "label": "Sri Lanka", "qid": "Q854", "wave": 3, "tier": 1, "iso3": "LKA", "isoNumeric": "144", "region": "南亚", "subregion": "Southern Asia",
+      "selectionReason": "High-demand South Asia island-country route gap.", "currentStatus": "not-cataloged", "targetStatus": "evidence-backed-plannable",
+      "cities": [["Colombo", "world"], ["Kandy", "world"], ["Galle", "core"], ["Jaffna", "core"], ["Anuradhapura", "core"], ["Nuwara Eliya", "core"], ["Negombo", "standard"], ["Matara, Sri Lanka", "standard", "Matara"]]
+    },
+    "NP": {
+      "label": "Nepal", "qid": "Q837", "wave": 3, "tier": 1, "iso3": "NPL", "isoNumeric": "524", "region": "南亚", "subregion": "Southern Asia",
+      "selectionReason": "High-demand Himalayan cultural route gap; only settlements publish as City.", "currentStatus": "not-cataloged", "targetStatus": "evidence-backed-plannable",
+      "cities": [["Kathmandu", "world"], ["Pokhara", "world"], ["Lalitpur, Nepal", "core", "Lalitpur"], ["Bhaktapur", "core"], ["Bharatpur, Nepal", "core", "Bharatpur"], ["Janakpur", "standard"], ["Biratnagar", "standard"], ["Nepalgunj", "standard"]]
+    },
+    "MV": {
+      "label": "Maldives", "qid": "Q826", "wave": 3, "tier": 3, "iso3": "MDV", "isoNumeric": "462", "region": "南亚", "subregion": "Southern Asia",
+      "selectionReason": "Small island state requiring compact settlement routes without treating islands or resorts as City.", "currentStatus": "not-cataloged", "targetStatus": "evidence-backed-plannable",
+      "cities": [["Malé", "world"], ["Addu City", "core"]]
+    },
+    "TN": {
+      "label": "Tunisia", "qid": "Q948", "wave": 4, "tier": 1, "iso3": "TUN", "isoNumeric": "788", "region": "北非", "subregion": "Northern Africa",
+      "selectionReason": "High-demand North Africa Mediterranean route gap.", "currentStatus": "not-cataloged", "targetStatus": "evidence-backed-plannable",
+      "cities": [["Tunis", "world"], ["Sousse", "world"], ["Sfax", "core"], ["Kairouan", "core"], ["Monastir, Tunisia", "core", "Monastir"], ["Hammamet, Tunisia", "core", "Hammamet"], ["Bizerte", "standard"], ["Tozeur", "standard"]]
+    },
+    "TZ": {
+      "label": "Tanzania", "qid": "Q924", "wave": 4, "tier": 1, "iso3": "TZA", "isoNumeric": "834", "region": "东非", "subregion": "Eastern Africa",
+      "selectionReason": "Major East Africa route gap; parks and islands remain POI/Region rather than City.", "currentStatus": "not-cataloged", "targetStatus": "evidence-backed-plannable",
+      "cities": [["Dar es Salaam", "world"], ["Dodoma", "world"], ["Arusha", "core"], ["Zanzibar City", "core"], ["Mwanza", "core"], ["Moshi, Tanzania", "core", "Moshi"], ["Mbeya", "standard"], ["Tanga, Tanzania", "standard", "Tanga"]]
+    },
+    "EC": {
+      "label": "Ecuador", "qid": "Q736", "wave": 4, "tier": 1, "iso3": "ECU", "isoNumeric": "218", "region": "南美洲", "subregion": "South America",
+      "selectionReason": "High-demand Andean and Pacific South America route gap.", "currentStatus": "not-cataloged", "targetStatus": "evidence-backed-plannable",
+      "cities": [["Quito", "world"], ["Guayaquil", "world"], ["Cuenca, Ecuador", "core", "Cuenca"], ["Baños de Agua Santa", "core", "Baños"], ["Loja, Ecuador", "core", "Loja"], ["Manta, Ecuador", "core", "Manta"], ["Riobamba", "standard"], ["Otavalo (city)", "standard", "Otavalo"]]
+    },
+    "PA": {
+      "label": "Panama", "qid": "Q804", "wave": 4, "tier": 1, "iso3": "PAN", "isoNumeric": "591", "region": "中美洲", "subregion": "Central America",
+      "selectionReason": "High-demand Central America corridor between existing Costa Rica and the Caribbean.", "currentStatus": "not-cataloged", "targetStatus": "evidence-backed-plannable",
+      "cities": [["Panama City", "world"], ["Colón, Panama", "core", "Colón"], ["David, Chiriquí", "core", "David"], ["Boquete, Chiriquí", "core", "Boquete", [], "博克特"], ["Bocas Town, Bocas del Toro", "core", "Bocas Town"], ["Santiago de Veraguas", "standard"], ["Chitré", "standard"], ["Portobelo", "standard"]]
+    },
+    "GT": {
+      "label": "Guatemala", "qid": "Q774", "wave": 4, "tier": 1, "iso3": "GTM", "isoNumeric": "320", "region": "中美洲", "subregion": "Central America",
+      "selectionReason": "High-demand Maya heritage and Central America route gap.", "currentStatus": "not-cataloged", "targetStatus": "evidence-backed-plannable",
+      "cities": [["Guatemala City", "world"], ["Antigua Guatemala", "world"], ["Quetzaltenango", "core"], ["Flores, Petén", "core", "Flores"], ["Panajachel", "core"], ["Livingston, Guatemala", "standard", "Livingston"], ["Cobán", "standard"], ["Chichicastenango", "standard"]]
+    }
+  }
+}

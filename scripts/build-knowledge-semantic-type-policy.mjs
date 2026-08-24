@@ -66,6 +66,12 @@ const COMPOSITE_ALLOWANCES = Object.freeze([
   ["Q11269655", "poi-d5ed664da2165f25", "Jeonju Hanok Village is an exact visitor-facing village POI."],
   ["Q3393650", "poi-88e1d189073082a5", "Serralves is an exact cultural foundation POI whose current P31 is foundation."],
   ["Q437959", "poi-7ab19c2b130f72e0", "Old Port of Marseille is an exact visitor-facing historic port POI whose seaport taxonomy exceeds the bounded generic POI path."],
+  ["Q576339", "poi-bf0a161622a18722", "Albaicín is an exact visitor-facing historic neighborhood POI in Granada."],
+  ["Q2842387", "poi-10ce57887f93f3ba", "Sacromonte is an exact visitor-facing historic neighborhood POI in Granada."],
+  ["Q17154", "poi-2986b7ceeddfe153", "Gothic Quarter is an exact visitor-facing historic neighborhood POI in Barcelona."],
+  ["Q151963", "poi-d406ad37b4ddadbc", "Museum Island is an exact visitor-facing museum ensemble and neighborhood POI in Berlin."],
+  ["Q965606", "poi-69ee875827beaf18", "Petite France is an exact visitor-facing historic neighborhood POI in Strasbourg."],
+  ["Q490981", "poi-bbd6159b384bb9c9", "Bukchon Hanok Village is an exact visitor-facing historic neighborhood POI in Seoul."],
 ].map(([qid, entityId, reason]) => Object.freeze({
   qid,
   entityId,
@@ -236,7 +242,7 @@ const typeClassifications = Object.fromEntries(observedTypeQids.flatMap((typeQid
     const cityPath = shortestPathToRoot(typeQid, ROOTS.city.map(([rootQid]) => rootQid), fullGraph);
     if (cityPath) allowedKinds.city = cityPath;
   }
-  if (poiObservedTypes.has(typeQid) && !cityObservedTypes.has(typeQid)) {
+  if (poiObservedTypes.has(typeQid)) {
     const poiPath = shortestPathToRoot(typeQid, ROOTS.poi.map(([rootQid]) => rootQid), fullGraph);
     if (poiPath) allowedKinds.poi = poiPath;
   }

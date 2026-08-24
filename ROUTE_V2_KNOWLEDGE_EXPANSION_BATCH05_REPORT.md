@@ -7,7 +7,7 @@ Generated: 2026-08-11T06:30:00.000Z
 - Waves: 4 (5 countries each)
 - Countries expanded: 20
 - Published additions: 4 Countries / 162 Cities / 1,197 POIs
-- Published totals: 59 Countries / 462 Cities / 3,130 POIs / 3,651 entities
+- Published totals: 79 Countries / 601 Cities / 4,038 POIs / 4,718 entities
 - Directed transport Evidence added: 218 (194 domestic + 24 cross-border)
 - Objective month-risk Evidence added: 80
 - Route-consumption checks: 52/52 PASS; external network calls: 0
@@ -29,18 +29,18 @@ Every Batch 05 country produced an exact-duration, single-country Route V2 resul
 
 ## Image asset expansion and historical backfill
 
-- Historical image debt discovered: 364
-- Country graphic covers available: 58/58
+- Historical image debt discovered: 531
+- Country graphic covers available: 78/78
 - Batch 05 Country graphic covers added: 20
-- Dedicated City covers: 66/462
-- Dedicated Core POI images: 30/165
-- Neutral placeholders: 531 (396 City + 135 Core POI)
+- Dedicated City covers: 96/601
+- Dedicated Core POI images: 42/224
+- Neutral placeholders: 687 (505 City + 182 Core POI)
 - Batch 05 trusted local images added: 39
 - Active invalid mappings: 0
-- Remaining needsBackfill: 531
+- Remaining needsBackfill: 687
 - Runtime external image requests: disabled
 
-Country resources are explicitly classified as non-photographic Country graphic covers. Verified dedicated destination images cover 66/462 Cities and 30/165 Core POIs; the remaining 531 images use neutral placeholders and remain in needsBackfill.
+Country resources are explicitly classified as non-photographic Country graphic covers. Verified dedicated destination images cover 96/601 Cities and 42/224 Core POIs; the remaining 687 images use neutral placeholders and remain in needsBackfill.
 
 ## Evidence discipline
 

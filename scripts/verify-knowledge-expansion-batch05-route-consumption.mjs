@@ -18,10 +18,10 @@ import {
 } from "../src/lib/routes/index.mjs";
 
 const ROOT = path.resolve(import.meta.dirname, "..");
-const BATCH = process.argv.includes("--batch=06") ? "06" : "05";
+const BATCH = process.argv.includes("--batch=07") ? "07" : process.argv.includes("--batch=06") ? "06" : "05";
 const TEMPORARY_ROOT = fs.mkdtempSync(path.join(os.tmpdir(), `route-v2-batch${BATCH}-consumption-`));
 const REPORT_PATH = path.join(ROOT, `data/knowledge/reports/knowledge-expansion-batch${BATCH}-route-consumption.json`);
-const GENERATED_AT = BATCH === "06" ? "2026-08-17T10:00:00.000Z" : "2026-08-11T06:00:00.000Z";
+const GENERATED_AT = BATCH === "07" ? "2026-08-24T06:00:00.000Z" : BATCH === "06" ? "2026-08-17T10:00:00.000Z" : "2026-08-11T06:00:00.000Z";
 const BATCH05_COUNTRIES = Object.freeze([
   ["GB", "United Kingdom"], ["IE", "Ireland"], ["CZ", "Czechia"], ["HU", "Hungary"], ["HR", "Croatia"],
   ["NO", "Norway"], ["SE", "Sweden"], ["FI", "Finland"], ["DK", "Denmark"], ["BE", "Belgium"],
@@ -37,16 +37,23 @@ const BATCH05_CROSS_COUNTRY_CASES = Object.freeze([
   { query: "Vietnam Malaysia 14 days", durationDays: 14, countryCodes: ["MY", "VN"] },
   { query: "USA Canada 14 days", durationDays: 14, countryCodes: ["CA", "US"] },
 ]);
-const batch06Seed = BATCH === "06"
-  ? JSON.parse(fs.readFileSync(path.join(ROOT, "data/knowledge/seeds/knowledge-expansion-batch06-20-country.json"), "utf8"))
+const expansionSeed = ["06", "07"].includes(BATCH)
+  ? JSON.parse(fs.readFileSync(path.join(ROOT, `data/knowledge/seeds/knowledge-expansion-batch${BATCH}-20-country.json`), "utf8"))
   : null;
-const COUNTRIES = BATCH === "06"
-  ? Object.freeze(Object.entries(batch06Seed.countries).map(([code, entry]) => [code, entry.label]))
+const COUNTRIES = ["06", "07"].includes(BATCH)
+  ? Object.freeze(Object.entries(expansionSeed.countries).map(([code, entry]) => [code, entry.label]))
   : BATCH05_COUNTRIES;
-const LONG_TRIP_CODES = BATCH === "06"
-  ? new Set(Object.entries(batch06Seed.countries).filter(([, entry]) => entry.tier === 1).map(([code]) => code))
+const LONG_TRIP_CODES = ["06", "07"].includes(BATCH)
+  ? new Set(Object.entries(expansionSeed.countries).filter(([, entry]) => entry.tier === 1).map(([code]) => code))
   : BATCH05_LONG_TRIP_CODES;
-const CROSS_COUNTRY_CASES = BATCH === "06" ? Object.freeze([
+const CROSS_COUNTRY_CASES = BATCH === "07" ? Object.freeze([
+  { query: "Estonia Latvia Lithuania 14 days", durationDays: 14, countryCodes: ["EE", "LT", "LV"] },
+  { query: "Albania Montenegro 14 days", durationDays: 14, countryCodes: ["AL", "ME"] },
+  { query: "Georgia Turkey 14 days", durationDays: 14, countryCodes: ["GE", "TR"] },
+  { query: "Jordan Israel 14 days", durationDays: 14, countryCodes: ["IL", "JO"] },
+  { query: "Ecuador Peru 14 days", durationDays: 14, countryCodes: ["EC", "PE"] },
+  { query: "Guatemala → Panama 14 days", durationDays: 14, countryCodes: ["GT", "PA"] },
+]) : BATCH === "06" ? Object.freeze([
   { query: "Argentina Chile 14 days", durationDays: 14, countryCodes: ["AR", "CL"] },
   { query: "Cambodia Vietnam 14 days", durationDays: 14, countryCodes: ["KH", "VN"] },
   { query: "Romania Hungary 14 days", durationDays: 14, countryCodes: ["HU", "RO"] },
@@ -54,7 +61,9 @@ const CROSS_COUNTRY_CASES = BATCH === "06" ? Object.freeze([
   { query: "Morocco Spain 14 days", durationDays: 14, countryCodes: ["ES", "MA"] },
   { query: "Uruguay → Argentina 14 days", durationDays: 14, countryCodes: ["AR", "UY"] },
 ]) : BATCH05_CROSS_COUNTRY_CASES;
-const CITY_ALIAS_CASE = BATCH === "06"
+const CITY_ALIAS_CASE = BATCH === "07"
+  ? { query: "Tbilisi Batumi 10 days", durationDays: 10, qids: ["Q994", "Q25475"] }
+  : BATCH === "06"
   ? { query: "Rio de Janeiro São Paulo 10 days", durationDays: 10, qids: ["Q8678", "Q174"] }
   : { query: "New York Toronto 10 days", durationDays: 10, qids: ["Q60", "Q172"] };
 
@@ -157,7 +166,29 @@ try {
     });
 
     const results = [];
+    const countryOnlyResults = [];
+    const seasonalResults = [];
     for (const [countryCode, label] of COUNTRIES) {
+      if (BATCH === "07") {
+        const response = await service.search({ query: label, limit: 3, sessionId: `batch${BATCH}-${countryCode.toLowerCase()}-country-only` });
+        assert(response.records.length > 0, `${label}:${JSON.stringify(response.diagnostics)}`);
+        const record = response.records[0];
+        const countryCodes = recordCountryCodes(record);
+        const cityEntities = recordCityEntities(record);
+        assert.deepEqual(countryCodes, [countryCode], `${label}:country-only-constraint`);
+        assert(cityEntities.length > 0, `${label}:country-only-knowledge-city-consumption`);
+        assert.equal(cityEntities.every((city) => /^city-[a-f0-9]{16}$/u.test(city.entityId) && /^Q\d+$/u.test(city.wikidataId)), true, `${label}:country-only-knowledge-identity`);
+        assert.equal(unique(cityEntities.map((city) => city.entityId)).length, cityEntities.length, `${label}:country-only-duplicate-city`);
+        countryOnlyResults.push({
+          countryCode,
+          label,
+          query: label,
+          durationDays: Number(record.durationDays),
+          recordId: record.id,
+          cityEntityIds: cityEntities.map((city) => city.entityId),
+          cityQids: cityEntities.map((city) => city.wikidataId),
+        });
+      }
       const durations = LONG_TRIP_CODES.has(countryCode) ? [7, 14, 21] : [7, 14];
       for (const durationDays of durations) {
         const query = `${label} ${durationDays} days`;
@@ -186,7 +217,16 @@ try {
           coverageStatus: record.routeExpansion?.coverageStatus || "route-returned",
         });
       }
+      const seasonalQuery = `${label} 7 days in December`;
+      const seasonalResponse = await service.search({ query: seasonalQuery, limit: 3, sessionId: `batch${BATCH}-${countryCode.toLowerCase()}-december` });
+      assert(seasonalResponse.records.length > 0, `${seasonalQuery}:${JSON.stringify(seasonalResponse.diagnostics)}`);
+      const seasonalRecord = seasonalResponse.records[0];
+      assert.equal(Number(seasonalRecord.durationDays), 7, `${seasonalQuery}:exact-duration`);
+      assert.deepEqual(recordCountryCodes(seasonalRecord), [countryCode], `${seasonalQuery}:country-constraint`);
+      assert(recordCityEntities(seasonalRecord).length > 0, `${seasonalQuery}:knowledge-city-consumption`);
+      seasonalResults.push({ countryCode, query: seasonalQuery, recordId: seasonalRecord.id, countryCodes: recordCountryCodes(seasonalRecord) });
     }
+    if (BATCH === "07") assert.equal(countryOnlyResults.length, COUNTRIES.length);
     assert.equal(results.length, COUNTRIES.length * 2 + LONG_TRIP_CODES.size);
     for (const [countryCode] of COUNTRIES) {
       const countryResults = results.filter((entry) => entry.countryCode === countryCode).sort((left, right) => left.durationDays - right.durationDays);
@@ -236,10 +276,12 @@ try {
       schemaVersion: `route-v2-knowledge-expansion-batch${BATCH}-route-consumption-v1`,
       generatedAt: GENERATED_AT,
       status: "PASS",
-      queryCount: results.length + crossCountryResults.length + 1,
+      queryCount: countryOnlyResults.length + results.length + seasonalResults.length + crossCountryResults.length + 1,
       externalFetchCalls,
       staleAcceptedFixturesRejected: staleFixtures.length,
+      countryOnlyResults,
       crossCountryResults,
+      seasonalResults,
       explicitCityAliasResult: {
         query: CITY_ALIAS_CASE.query,
         durationDays: CITY_ALIAS_CASE.durationDays,
@@ -264,8 +306,9 @@ try {
     console.log(JSON.stringify({
       status: "PASS",
       verifier: `knowledge-expansion-batch${BATCH}-route-consumption`,
-      queryCount: results.length + crossCountryResults.length + 1,
+      queryCount: countryOnlyResults.length + results.length + seasonalResults.length + crossCountryResults.length + 1,
       countries: COUNTRIES.length,
+      countryOnlyCases: countryOnlyResults.length,
       longTripCountries: LONG_TRIP_CODES.size,
       crossCountryCases: crossCountryResults.length,
       explicitCityAliasCases: 1,

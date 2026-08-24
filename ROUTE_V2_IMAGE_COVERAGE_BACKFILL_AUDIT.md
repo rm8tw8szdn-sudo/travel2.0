@@ -1,21 +1,21 @@
 # Route V2 Image Coverage Backfill Audit
 
-Generated: 2026-08-17T09:00:00.000Z
+Generated: 2026-08-24T05:00:00.000Z
 
 ## Outcome
 
-- Historical image debt before Batch 06: 411
-- Historical image debt after Batch 06: 364
-- Plannable Country graphic covers: 58/58
-- Batch 06 Country graphic covers added: 20
-- Verified destination City images: 66
-- Dedicated City image coverage: 66/462 (14.3%)
-- City neutral placeholders: 396
-- Verified Core POI image coverage: 30/165 (18.2%)
-- POI neutral placeholders: 135
-- Batch 06 verified destination images added: 49
+- Historical image debt before Batch 07: 531
+- Historical image debt after Batch 07: 531
+- Plannable Country graphic covers: 78/78
+- Batch 07 Country graphic covers added: 20
+- Verified destination City images: 96
+- Dedicated City image coverage: 96/601 (16%)
+- City neutral placeholders: 505
+- Verified Core POI image coverage: 42/224 (18.8%)
+- POI neutral placeholders: 182
+- Batch 07 verified destination images: 42
 - Active invalid mappings: 0
-- Needs backfill: 531
+- Needs backfill: 687
 - Runtime external image requests: disabled
 
 Country covers are non-photographic entity label graphics and are not counted as City or POI imagery. Dedicated destination assets require an exact Wikidata entity P18, a fixed local Commons file, and auditable free-license metadata. All other destinations retain the shared neutral placeholder and needsBackfill.
@@ -23,13 +23,15 @@ Country covers are non-photographic entity label graphics and are not counted as
 ## Debt by country and priority
 
 | Code | Country | Scope | High City | Normal City | Low City | Core POI | Total |
-| --- | --- | --- | ---: | ---: | ---: | ---: | ---: |
+| --- | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: |
 | AD | Andorra | Batch 06 | 1 | 0 | 1 | 2 | 4 |
 | AE | United Arab Emirates | Batch 06 | 1 | 3 | 2 | 3 | 9 |
+| AL | Albania | Batch 07 | 1 | 4 | 0 | 2 | 7 |
 | AR | Argentina | Batch 06 | 3 | 5 | 2 | 2 | 12 |
 | AT | Austria | Historical | 2 | 3 | 2 | 2 | 9 |
 | AU | Australia | Historical | 1 | 0 | 0 | 2 | 3 |
 | BE | Belgium | Batch 05 | 2 | 3 | 1 | 3 | 9 |
+| BG | Bulgaria | Batch 07 | 2 | 5 | 0 | 3 | 10 |
 | BR | Brazil | Batch 06 | 1 | 7 | 1 | 2 | 11 |
 | CA | Canada | Batch 05 | 2 | 7 | 0 | 3 | 12 |
 | CD | Democratic Republic of the Congo | Batch 06 | 1 | 0 | 1 | 3 | 5 |
@@ -37,16 +39,21 @@ Country covers are non-photographic entity label graphics and are not counted as
 | CL | Chile | Batch 06 | 1 | 6 | 0 | 2 | 9 |
 | CO | Colombia | Historical | 1 | 0 | 0 | 2 | 3 |
 | CR | Costa Rica | Batch 06 | 1 | 5 | 0 | 2 | 8 |
+| CY | Cyprus | Batch 07 | 2 | 3 | 0 | 3 | 8 |
 | CZ | Czechia | Batch 05 | 2 | 4 | 0 | 3 | 9 |
 | DE | Germany | Historical | 2 | 7 | 2 | 3 | 14 |
 | DK | Denmark | Batch 05 | 2 | 3 | 1 | 3 | 9 |
+| EC | Ecuador | Batch 07 | 2 | 4 | 1 | 2 | 9 |
+| EE | Estonia | Batch 07 | 2 | 3 | 0 | 2 | 7 |
 | EG | Egypt | Batch 06 | 2 | 4 | 1 | 2 | 9 |
 | ES | Spain | Historical | 2 | 9 | 1 | 2 | 14 |
 | FI | Finland | Batch 05 | 2 | 4 | 0 | 3 | 9 |
 | FJ | Fiji | Batch 06 | 2 | 0 | 0 | 2 | 4 |
 | FR | France | Historical | 2 | 6 | 4 | 2 | 14 |
 | GB | United Kingdom | Batch 05 | 2 | 10 | 2 | 2 | 16 |
+| GE | Georgia | Batch 07 | 1 | 1 | 4 | 2 | 8 |
 | GR | Greece | Historical | 2 | 4 | 2 | 2 | 10 |
+| GT | Guatemala | Batch 07 | 1 | 4 | 1 | 2 | 8 |
 | HR | Croatia | Batch 05 | 2 | 3 | 2 | 3 | 10 |
 | HU | Hungary | Batch 05 | 2 | 3 | 1 | 3 | 9 |
 | ID | Indonesia | Batch 05 | 3 | 6 | 0 | 3 | 12 |
@@ -55,29 +62,42 @@ Country covers are non-photographic entity label graphics and are not counted as
 | IN | India | Batch 06 | 2 | 10 | 0 | 3 | 15 |
 | IS | Iceland | Historical | 1 | 0 | 0 | 1 | 2 |
 | IT | Italy | Historical | 2 | 10 | 0 | 2 | 14 |
+| JO | Jordan | Batch 07 | 1 | 2 | 3 | 2 | 8 |
 | JP | Japan | Historical | 2 | 13 | 6 | 2 | 23 |
 | KE | Kenya | Batch 06 | 1 | 2 | 2 | 2 | 7 |
 | KH | Cambodia | Batch 06 | 1 | 0 | 3 | 2 | 6 |
 | KR | South Korea | Historical | 2 | 2 | 8 | 2 | 14 |
+| LK | Sri Lanka | Batch 07 | 2 | 5 | 0 | 3 | 10 |
+| LT | Lithuania | Batch 07 | 2 | 3 | 0 | 3 | 8 |
+| LV | Latvia | Batch 07 | 1 | 3 | 0 | 3 | 7 |
 | MA | Morocco | Batch 06 | 1 | 5 | 1 | 3 | 10 |
+| ME | Montenegro | Batch 07 | 1 | 2 | 1 | 2 | 6 |
+| MT | Malta | Batch 07 | 1 | 3 | 0 | 3 | 7 |
+| MV | Maldives | Batch 07 | 0 | 0 | 0 | 1 | 1 |
 | MX | Mexico | Batch 05 | 2 | 6 | 0 | 3 | 11 |
 | MY | Malaysia | Batch 05 | 2 | 4 | 0 | 3 | 9 |
 | NG | Nigeria | Batch 06 | 1 | 3 | 0 | 2 | 6 |
 | NL | Netherlands | Historical | 3 | 6 | 1 | 3 | 13 |
 | NO | Norway | Batch 05 | 3 | 4 | 1 | 3 | 11 |
+| NP | Nepal | Batch 07 | 2 | 2 | 3 | 2 | 9 |
 | NZ | New Zealand | Historical | 1 | 0 | 0 | 1 | 2 |
+| PA | Panama | Batch 07 | 1 | 3 | 2 | 2 | 8 |
 | PE | Peru | Batch 05 | 2 | 3 | 1 | 3 | 9 |
 | PH | Philippines | Batch 05 | 2 | 3 | 1 | 3 | 9 |
 | PL | Poland | Batch 05 | 2 | 5 | 0 | 3 | 10 |
 | PT | Portugal | Historical | 3 | 7 | 0 | 2 | 12 |
 | RO | Romania | Batch 06 | 1 | 5 | 0 | 2 | 8 |
+| RS | Serbia | Batch 07 | 2 | 3 | 1 | 3 | 9 |
 | RU | Russia | Batch 06 | 1 | 7 | 0 | 2 | 10 |
 | SA | Saudi Arabia | Batch 06 | 2 | 4 | 1 | 2 | 9 |
 | SE | Sweden | Batch 05 | 2 | 4 | 0 | 3 | 9 |
 | SG | Singapore | Historical | 0 | 0 | 0 | 0 | 0 |
 | SI | Slovenia | Batch 05 | 2 | 2 | 1 | 3 | 8 |
+| SK | Slovakia | Batch 07 | 2 | 4 | 0 | 2 | 8 |
 | TH | Thailand | Historical | 1 | 0 | 0 | 1 | 2 |
+| TN | Tunisia | Batch 07 | 1 | 4 | 1 | 2 | 8 |
 | TR | Turkey | Historical | 1 | 0 | 0 | 2 | 3 |
+| TZ | Tanzania | Batch 07 | 2 | 2 | 3 | 3 | 10 |
 | US | United States of America | Batch 05 | 3 | 11 | 0 | 2 | 16 |
 | UY | Uruguay | Batch 06 | 2 | 1 | 3 | 2 | 8 |
 | VN | Vietnam | Batch 05 | 2 | 4 | 2 | 3 | 11 |
@@ -93,6 +113,11 @@ Country covers are non-photographic entity label graphics and are not counted as
 - AE | normal | Fujairah | city-d4b77d7daa27e5f5
 - AE | low | Khor Fakkan | city-93a2d6a697532ef5
 - AE | low | Ras Al Khaimah | city-3349a64b0643f725
+- AL | high | Durrës | city-ee0bb26cfd8cb42b
+- AL | normal | Gjirokastër | city-38903ca8e6524334
+- AL | normal | Shkodër | city-20e3e829169edc4e
+- AL | normal | Korçë | city-c313824e619c7ec4
+- AL | normal | Vlorë | city-ef1dce8d1a6b31ac
 - AR | high | Buenos Aires | city-d18920037862503a
 - AR | high | Bariloche | city-ab137758f46c1326
 - AR | high | Córdoba | city-90d70af2967179eb
@@ -117,6 +142,13 @@ Country covers are non-photographic entity label graphics and are not counted as
 - BE | normal | Leuven | city-8896853114ec6d46
 - BE | normal | Liège | city-39b17ae0551d2929
 - BE | low | Dinant | city-b8f568d203bce192
+- BG | high | Sofia | city-457e6817e0669d12
+- BG | high | Burgas | city-f8173292543b80e1
+- BG | normal | Nesebar | city-16efce86103eda2c
+- BG | normal | Varna | city-c1a60f1e26a530c2
+- BG | normal | Veliko Tarnovo | city-627cca3a11c76917
+- BG | normal | Bansko | city-c3bca7aaced2c6a5
+- BG | normal | Ruse | city-165cdce01fb56e96
 - BR | high | Brasília | city-6f45425881ae5c76
 - BR | normal | Florianópolis | city-49ca34157b0bc20d
 - BR | normal | Fortaleza | city-af9be76f7cb53a22
@@ -152,6 +184,11 @@ Country covers are non-photographic entity label graphics and are not counted as
 - CR | normal | Heredia | city-c06719ebf4192345
 - CR | normal | Limón | city-272c5c1939c309e2
 - CR | normal | San Isidro | city-b1062de88a48bcf5
+- CY | high | Nicosia | city-329b0cbe28d8c1f9
+- CY | high | Larnaca | city-f0301ca1cc536970
+- CY | normal | Paphos | city-111ccbe353f6c218
+- CY | normal | Ayia Napa | city-f14dd30804ae34c1
+- CY | normal | Polis | city-4debde6874a42528
 - CZ | high | Brno | city-498e80bf490697fd
 - CZ | high | Český Krumlov | city-c39223c2cd05297f
 - CZ | normal | Karlovy Vary | city-ebbbc5dfc5b2cb0c
@@ -175,6 +212,18 @@ Country covers are non-photographic entity label graphics and are not counted as
 - DK | normal | Helsingør | city-de47ecdaa72970d3
 - DK | normal | Roskilde | city-a95e8eb6e438477c
 - DK | low | Ribe | city-9ecfbe14bb1d7923
+- EC | high | Guayaquil | city-a880e930de457d8d
+- EC | high | Baños | city-d0c066e88f251190
+- EC | normal | Cuenca | city-bac8823bb40c09a2
+- EC | normal | Loja | city-7db72d074dc027c1
+- EC | normal | Otavalo | city-e3bcc3d4a0bdd170
+- EC | normal | Riobamba | city-c94bd707ab76e354
+- EC | low | Manta | city-50abf9d4187fe5d3
+- EE | high | Tallinn | city-b60298568e650251
+- EE | high | Tartu | city-f5bb9646058c170d
+- EE | normal | Kuressaare | city-29a3512165ab72fa
+- EE | normal | Narva | city-91beaf179e63c192
+- EE | normal | Viljandi | city-1b42f0839d5c958b
 - EG | high | Luxor | city-c0a01367e67ce539
 - EG | high | Alexandria | city-370420a4073e0350
 - EG | normal | Aswan | city-831852f6389b4176
@@ -228,6 +277,12 @@ Country covers are non-photographic entity label graphics and are not counted as
 - GB | normal | York | city-ee28d5dc14fd9967
 - GB | low | Canterbury | city-13d4b2991a591819
 - GB | low | Inverness | city-0c5f16f24966ecc1
+- GE | high | Gori | city-3e5c8c01d4bd946a
+- GE | normal | Kutaisi | city-711d1843cb963a33
+- GE | low | Mtskheta | city-8e759e84812787a7
+- GE | low | Zugdidi | city-4dfe11463cc9c9ec
+- GE | low | Akhaltsikhe | city-f5d45597635ecc86
+- GE | low | Telavi | city-66c58eb6837fda40
 - GR | high | Chania | city-50bab3faba488ced
 - GR | high | Corfu Town | city-8b50df8117d56136
 - GR | normal | Heraklion | city-1ae2bf785c1f74bc
@@ -236,6 +291,12 @@ Country covers are non-photographic entity label graphics and are not counted as
 - GR | normal | Nafplio | city-074db4d4b49a85e5
 - GR | low | Delphi | city-6e4ba9ec0c2f0f00
 - GR | low | Kalabaka | city-d325ab7cc4450e38
+- GT | high | Flores | city-ea318285b003f888
+- GT | normal | Panajachel | city-6084e95dc7481a19
+- GT | normal | Quetzaltenango | city-fc365814a06ed9a6
+- GT | normal | Cobán | city-43081ff09daac6ed
+- GT | normal | Livingston | city-dcf9139a7d167309
+- GT | low | Chichicastenango | city-af1149d86f7da7c1
 - HR | high | Dubrovnik | city-7cacd1fb1304df51
 - HR | high | Split | city-f8acfc46483ac5f3
 - HR | normal | Zadar | city-7f0fbcf9789cca06
@@ -296,6 +357,12 @@ Country covers are non-photographic entity label graphics and are not counted as
 - IT | normal | Siena | city-b83b9960445cd188
 - IT | normal | Turin | city-0a37bf91d42410d6
 - IT | normal | Verona | city-66bc37ecc403b7eb
+- JO | high | Karak | city-92c960fc4a1810d9
+- JO | normal | Aqaba | city-cad0d2674c75e7fa
+- JO | normal | Wadi Musa | city-5d90fc5bc97a7e0d
+- JO | low | Irbid | city-d43e6edac3906d62
+- JO | low | Madaba | city-bde19ee75a02b4c3
+- JO | low | Salt | city-83123965d748ccdb
 - JP | high | Tokyo | city-5a21732f861ff7f1
 - JP | high | Osaka | city-bb2b8072fca1d274
 - JP | normal | Nagoya | city-f17cb016449ab40e
@@ -338,6 +405,22 @@ Country covers are non-photographic entity label graphics and are not counted as
 - KR | low | Sokcho | city-8e4cd3ee52eca954
 - KR | low | Suwon | city-adcc5add2dc37dc8
 - KR | low | Tongyeong | city-db8501edb4e1335d
+- LK | high | Kandy | city-665132a5271740ff
+- LK | high | Anuradhapura | city-6ebcec7ab5eaefd2
+- LK | normal | Galle | city-6b5ea6ba9449c964
+- LK | normal | Jaffna | city-4cee20026277bdb0
+- LK | normal | Nuwara Eliya | city-19b27d438e9cfd55
+- LK | normal | Matara | city-264f7283df5e8d2b
+- LK | normal | Negombo | city-13040d61677690cb
+- LT | high | Vilnius | city-3218123cda21a052
+- LT | high | Klaipėda | city-aa986d210ab3364c
+- LT | normal | Trakai | city-fd268a60febe1082
+- LT | normal | Panevėžys | city-a7168daf6ebc4cfa
+- LT | normal | Šiauliai | city-bd206ae943f51f57
+- LV | high | Liepāja | city-0b33252699e4d521
+- LV | normal | Cēsis | city-53c8c0035cdb0ff5
+- LV | normal | Jelgava | city-333f17efde0d99a7
+- LV | normal | Ventspils | city-68dfdddf976b4b4d
 - MA | high | Casablanca | city-7f445ec817f8eacf
 - MA | normal | Essaouira | city-583293f7f89c81d4
 - MA | normal | Rabat | city-c759ae8e4c36508f
@@ -345,6 +428,14 @@ Country covers are non-photographic entity label graphics and are not counted as
 - MA | normal | Chefchaouen | city-8af390081fd7e36c
 - MA | normal | Meknes | city-7a25e34f774d492f
 - MA | low | Ouarzazate | city-e79b1faca8fe283b
+- ME | high | Cetinje | city-5ccbce45ae6a43ae
+- ME | normal | Budva | city-8a6c60c5b23a528c
+- ME | normal | Bar | city-8f2203f417278175
+- ME | low | Herceg Novi | city-3c565d46fa23f131
+- MT | high | Sliema | city-3dec310c255cb3e9
+- MT | normal | St. Julian's | city-c0597395d20f858b
+- MT | normal | Birgu | city-e661aea8f6a743df
+- MT | normal | Rabat | city-7ed1dad406a87916
 - MX | high | Cancún | city-7d67be5cb83e1485
 - MX | high | Guadalajara | city-258a16d7e3a6b561
 - MX | normal | Mérida | city-2bb58506d297fedd
@@ -381,7 +472,20 @@ Country covers are non-photographic entity label graphics and are not counted as
 - NO | normal | Bodø | city-5540afe0ce541593
 - NO | normal | Stavanger | city-e446cff2b1de8c7c
 - NO | low | Lillehammer | city-e296c5f0e95d5bb3
+- NP | high | Kathmandu | city-08d83a1dc91c566d
+- NP | high | Bhaktapur | city-6236dd6b31a2c3cd
+- NP | normal | Lalitpur | city-7f313d2e71b49a4d
+- NP | normal | Bharatpur | city-0c628aa360000445
+- NP | low | Janakpur | city-21497a799b66b49b
+- NP | low | Biratnagar | city-87f9b2371a53dd1b
+- NP | low | Nepalgunj | city-c6a80dce12621342
 - NZ | high | Queenstown | city-2cb3e8890c6c7848
+- PA | high | Colón | city-499b28f9c807c8a0
+- PA | normal | David | city-a9b16554bbd775d8
+- PA | normal | Portobelo | city-0c0eb393a15790e1
+- PA | normal | Santiago de Veraguas | city-2152c5ce6a8d6b8d
+- PA | low | Boquete | city-349039e547288da5
+- PA | low | Chitré | city-6f32ae5edc95cc3b
 - PE | high | Lima | city-54e3b945011b3295
 - PE | high | Arequipa | city-c53e89efdcd37dfe
 - PE | normal | Huaraz | city-70016b1a4282de88
@@ -417,6 +521,12 @@ Country covers are non-photographic entity label graphics and are not counted as
 - RO | normal | Constanța | city-a449e82c55118a81
 - RO | normal | Iași | city-e5292a3c5cdd691f
 - RO | normal | Sighișoara | city-5682ab1567a884fc
+- RS | high | Belgrade | city-e7fac4d1bf968a80
+- RS | high | Niš | city-2d152543abf9dfb7
+- RS | normal | Subotica | city-4b05095bafad2961
+- RS | normal | Kragujevac | city-857cbd9702ae6bea
+- RS | normal | Užice | city-d05a6591df5084ad
+- RS | low | Novi Pazar | city-b8047465b6630d46
 - RU | high | Kazan | city-27cc7ad1800e2aa5
 - RU | normal | Nizhny Novgorod | city-f9fe2a4724ddc2e2
 - RU | normal | Sochi | city-bc0c7789e6d04ced
@@ -443,8 +553,27 @@ Country covers are non-photographic entity label graphics and are not counted as
 - SI | normal | Koper | city-157aa18beb222874
 - SI | normal | Piran | city-662396baf7e7346e
 - SI | low | Kranjska Gora | city-2d710f6259cc1454
+- SK | high | Košice | city-1bc3e9b307cdfd93
+- SK | high | Banská Bystrica | city-1036d6be42f766ae
+- SK | normal | Žilina | city-1f423b09420361fa
+- SK | normal | Nitra | city-7b557b748910ebe8
+- SK | normal | Poprad | city-e57ee143e4a2f74a
+- SK | normal | Trnava | city-b558de7120e6366f
 - TH | high | Chiang Mai | city-dde5b708a62ae273
+- TN | high | Hammamet | city-59658a68d7e36b19
+- TN | normal | Kairouan | city-d54fd3d70eabed20
+- TN | normal | Sfax | city-76f184fd2dc1b0fb
+- TN | normal | Monastir | city-8cbc2a4d89601937
+- TN | normal | Tozeur | city-f94c0952b3270835
+- TN | low | Bizerte | city-df9ee34320af905c
 - TR | high | Istanbul | city-fc91a9c6c7b389cf
+- TZ | high | Dar es Salaam | city-371ef9f5bec43a25
+- TZ | high | Arusha | city-f2bdb846d057110d
+- TZ | normal | Mbeya | city-e7e24badf24c56e8
+- TZ | normal | Tanga | city-648453877eaa1c2a
+- TZ | low | Dodoma | city-7af16210200c3a5b
+- TZ | low | Moshi | city-c3f0b1fb3f5e13cc
+- TZ | low | Mwanza | city-5a8b9184d53b5e47
 - US | high | Chicago | city-9c500879d4604b46
 - US | high | Los Angeles | city-acc77da3ec924a7d
 - US | high | New York City | city-1b035830a43bec55
@@ -489,6 +618,8 @@ Country covers are non-photographic entity label graphics and are not counted as
 - AE | high | Abu Dhabi Securities Exchange | poi-d0cb01c46e212be6
 - AE | high | Al Bastakiya | poi-63495fb818a96e6e
 - AE | high | Al Ain National Museum | poi-6f84a9afda9d1518
+- AL | high | Halveti Teqe | poi-37d98f23fb63d999
+- AL | high | Beach of Durrës | poi-2d4f0c5bb7b16eca
 - AR | high | Cathedral of Our Lady of Nahuel Huapi | poi-d2f280ec4dfeea7f
 - AR | high | Argentine National Observatory | poi-f3f59a548a9fd5b0
 - AT | high | Eggenberg Palace | poi-ccf6f66f438d0d5d
@@ -498,6 +629,9 @@ Country covers are non-photographic entity label graphics and are not counted as
 - BE | high | Bourse Palace | poi-518bea221a0be78c
 - BE | high | Antwerp City Hall | poi-5e1ec61554ca98d4
 - BE | high | Belfry of Bruges | poi-b5f780790c07acfa
+- BG | high | Alyosha Monument | poi-79568596e9a47104
+- BG | high | Alexander Nevsky Cathedral | poi-e90298df84233c35
+- BG | high | Arena Burgas | poi-d4f1b47996cb7317
 - BR | high | Edifício Altino Arantes | poi-fd25abb26c69b253
 - BR | high | Cathedral of Brasília | poi-4b77c8c5908711da
 - CA | high | Church of St. Andrew and St. Paul | poi-3f518c09904aa8a8
@@ -514,6 +648,9 @@ Country covers are non-photographic entity label graphics and are not counted as
 - CO | high | Medellín Museum of Modern Art | poi-cc15b69a5d3397c6
 - CR | high | Africa Safari Adventure Park | poi-df61ca53e90345b5
 - CR | high | Aranjuez River | poi-1a607d7a5110096b
+- CY | high | Akrotiri Bay | poi-46852544da52d343
+- CY | high | Arabahmet Mosque | poi-2e2a1f7bb9a15427
+- CY | high | AEK Arena - Georgios Karapatakis | poi-57a3d7d2ab87a0ea
 - CZ | high | Bethlehem Chapel | poi-74c4f69929e1f918
 - CZ | high | AZ Tower | poi-4db44bb328b578d9
 - CZ | high | Český Krumlov Castle | poi-0417f69e4ad93a24
@@ -523,6 +660,10 @@ Country covers are non-photographic entity label graphics and are not counted as
 - DK | high | Caritas Well | poi-b9e7939120e97cb5
 - DK | high | Aarhus Cathedral | poi-5c7f510bfab708c8
 - DK | high | Funen | poi-9e7e7bd7605c1ca6
+- EC | high | Basilica of La Merced | poi-99dbcd4382819951
+- EC | high | Agoyán | poi-7bb7d328420262d5
+- EE | high | Ammende Villa | poi-f6fddc4f11b889df
+- EE | high | main building of the University of Tartu | poi-0d93f0a234f7d322
 - EG | high | Colossi of Memnon | poi-69ec671176f79db9
 - EG | high | Alexandria Stadium | poi-3c665a2866fc927e
 - ES | high | Almudena Cathedral | poi-e1af6231a8050bae
@@ -536,8 +677,12 @@ Country covers are non-photographic entity label graphics and are not counted as
 - FR | high | Basilica of Notre-Dame de Fourvière | poi-b6b05705097c6bb1
 - GB | high | Albert Memorial Clock | poi-9355e26f3258af59
 - GB | high | Cardiff Arms Park | poi-832167259be358ab
+- GE | high | Art Museum of Georgia | poi-85fff512730b3ade
+- GE | high | Ateni Sioni Church | poi-4cc0a490932a32f9
 - GR | high | Archaeological Museum of Chania | poi-ce0a372babdb1ad5
 - GR | high | Archaeological Museum of Corfu | poi-2affed51932097bd
+- GT | high | Cathedral of Guatemala City | poi-6f9fd08042925a34
+- GT | high | Actún Can | poi-c10065bfec84a63f
 - HR | high | Archaeological Museum of Zagreb | poi-8f85e9f971a61d2f
 - HR | high | Dubrovnik Cathedral | poi-2c2aec6cf59867a3
 - HR | high | Cathedral of Saint Domnius | poi-feb613ff95927a0c
@@ -558,6 +703,8 @@ Country covers are non-photographic entity label graphics and are not counted as
 - IS | high | Reynisdrangar | poi-11552d7158b391bd
 - IT | high | Basilica of Santa Croce | poi-1f03bd299a2a68e5
 - IT | high | Basilica of Sant'Ambrogio | poi-99ca42e432383064
+- JO | high | Arch of Hadrian | poi-eb45efdd9f1feabe
+- JO | high | Bab edh-Dhra | poi-8b651779a1a39409
 - JP | high | Akihabara | poi-0f686b97b037b62d
 - JP | high | Abeno Harukas | poi-205373acb3f61851
 - KE | high | Fort Jesus Museum | poi-1a910f9bbf1fd33d
@@ -566,9 +713,24 @@ Country covers are non-photographic entity label graphics and are not counted as
 - KH | high | Bay of Kampong Som | poi-688201416a5f1ab5
 - KR | high | Beomeosa | poi-8b5e85f2115504cc
 - KR | high | Bulguksa | poi-cc64bdc058f4268f
+- LK | high | Altair | poi-ba99b6476175f7c0
+- LK | high | Asgiriya Stadium | poi-e28f4fd5f3d1f017
+- LK | high | Abhayavapi | poi-334c141ed6b36331
+- LT | high | Christ's Resurrection Church | poi-b3386b3a4002794a
+- LT | high | Cathedral Square | poi-8a2fcc6bdce56e24
+- LT | high | Kiaulės Nugara | poi-c01f58a2f73fdaf9
+- LV | high | Eurovision Song Contest 2003 | poi-b6e2446b9bed0dbe
+- LV | high | Daugavpils Fortress | poi-db8fc2320abb4ac8
+- LV | high | Daugava Stadium | poi-5862ee1eed9bed08
 - MA | high | Al-Attarine Madrasa | poi-9b678916208b9f5d
 - MA | high | Almoravid Koubba | poi-0694f32efd286fc6
 - MA | high | Ain-Diab Circuit | poi-dede442041af184f
+- ME | high | Cathedral of the Resurrection of Christ | poi-8c0e48f03e35193b
+- ME | high | Biljarda | poi-3edf49e957f0d8b3
+- MT | high | Basilica of Our Lady of Mount Carmel | poi-13a5c5b71883dc09
+- MT | high | Buskett Gardens | poi-962e2b0f21faa44f
+- MT | high | Fort Manoel | poi-ac036120c9090ddc
+- MV | high | Equatorial Convention Centre | poi-2f7f73fdd13bc487
 - MX | high | Alberca Olímpica Francisco Márquez | poi-dda2188a94d1ba0d
 - MX | high | Andrés Quintana Roo Olympic Stadium | poi-267d2a426a2ab742
 - MX | high | Guadalajara Cathedral | poi-05bd98bd1b4f0a1b
@@ -583,7 +745,11 @@ Country covers are non-photographic entity label graphics and are not counted as
 - NO | high | Christiania Theatre | poi-5f75f1ebc5e63513
 - NO | high | Bergen Cathedral | poi-0d54abefe1ec72da
 - NO | high | Arctic Cathedral | poi-7931d7714510f76c
+- NP | high | Bat Cave | poi-e54d1ff349439794
+- NP | high | Bhaktapur Durbar Square | poi-55e36b5fc5ba31f6
 - NZ | high | Lake Wakatipu | poi-0eb1228d4c6fbdb9
+- PA | high | Bastimentos Island | poi-5b733512bc74857c
+- PA | high | Atlantic Bridge | poi-808b7eb161b7b5e3
 - PE | high | Church of the Society of Jesus | poi-83aea39ff88db267
 - PE | high | Basílica María Auxiliadora | poi-8380fdaf565ed6f0
 - PE | high | Arequipa Peru Temple | poi-8302f74ba1bc1d76
@@ -597,6 +763,9 @@ Country covers are non-photographic entity label graphics and are not counted as
 - PT | high | Church of São Francisco | poi-977c43c698e8c372
 - RO | high | Black Church | poi-c2654699286f46ec
 - RO | high | Cluj Arena | poi-97b7d7a69423c27f
+- RS | high | ? | poi-35f310fda12c8252
+- RS | high | Karađorđe Stadium | poi-52164861c6fccf20
+- RS | high | Čair Sports Center | poi-453dcdcb2e908c77
 - RU | high | Alexander Column | poi-b6f9781e8a011bca
 - RU | high | Ak Bars Arena | poi-d9a7ed146870321a
 - SA | high | Al Madi Mosque | poi-83ac5861b276d133
@@ -607,9 +776,16 @@ Country covers are non-photographic entity label graphics and are not counted as
 - SI | high | Arch. Plečnik's Marketplace | poi-9c318a43e0dce3fb
 - SI | high | Ajdna | poi-73853ceaf4bbb254
 - SI | high | Basilica of Our Mother of Mercy | poi-67c84ea5b6649d46
+- SK | high | Cathedral of St. Elizabeth | poi-9f293d301b91e2dd
+- SK | high | Banská Bystrica Castle | poi-b79c15461ced72fb
 - TH | high | Wat Chedi Luang | poi-dcd7f51accdfb88a
+- TN | high | Bou Ali Lahouar Stadium | poi-54c0d5baca355011
+- TN | high | Djebel Ressas | poi-fb2a0783be10c2e3
 - TR | high | Anıtkabir | poi-85f5ccba3f115856
 - TR | high | Hagia Sophia | poi-9a98993feb59f773
+- TZ | high | Askari Monument | poi-63850697ffee0e93
+- TZ | high | Amaan Stadium | poi-2e8bc8b6ed81f6f9
+- TZ | high | Arusha Declaration Monument | poi-38cf85eb3cd78db3
 - US | high | Bradbury Building | poi-16cc50a0b2e2f1dc
 - US | high | 30 Park Place | poi-2f453a160b61d8c2
 - UY | high | Anchorena Park | poi-170c14cbaf91d9fd

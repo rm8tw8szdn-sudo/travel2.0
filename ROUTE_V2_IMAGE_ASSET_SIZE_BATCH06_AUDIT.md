@@ -2,8 +2,8 @@
 
 Generated: 2026-08-17T11:00:00.000Z
 
-- Images: 221
-- Total bytes: 33655098
+- Images: 283
+- Total bytes: 43101273
 - >300KB audit: 18
 - >500KB exact-baseline exception required: 9
 - >1MB: 1

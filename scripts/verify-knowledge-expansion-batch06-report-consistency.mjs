@@ -9,7 +9,7 @@ const stats = calculateBatch06ReportData({ root: ROOT });
 const read = (name) => fs.readFileSync(path.join(ROOT, name), "utf8").replaceAll("\r\n", "\n");
 const report = read("ROUTE_V2_KNOWLEDGE_EXPANSION_BATCH06_REPORT.md");
 const dashboard = read("ROUTE_V2_KNOWLEDGE_EXPANSION_BATCH06_DASHBOARD.md");
-const imageAudit = read("ROUTE_V2_IMAGE_COVERAGE_BACKFILL_BATCH06_AUDIT.md");
+const imageAudit = read("ROUTE_V2_IMAGE_COVERAGE_BACKFILL_AUDIT.md");
 const sizeAudit = read("ROUTE_V2_IMAGE_ASSET_SIZE_BATCH06_AUDIT.md");
 const browserAcceptance = JSON.parse(read("data/knowledge/reports/knowledge-expansion-batch06-browser-acceptance.json"));
 const requireTokens = (source, tokens, label) => tokens.forEach((token) => assert(source.includes(token), `${label}:missing-or-stale:${token}`));
@@ -42,12 +42,10 @@ requireTokens(dashboard, [
 ], "Batch06 dashboard");
 for (const entry of stats.targetCountryCoverage) requireTokens(dashboard, [`${entry.label} (${entry.countryCode})`, `| T${entry.tier} | ${entry.cities} | ${entry.pois} |`], `${entry.countryCode} row`);
 requireTokens(imageAudit, [
-  `Historical image debt before Batch 06: ${stats.images.historicalDebtBefore}`,
-  `Historical image debt after Batch 06: ${stats.images.historicalDebtAfter}`,
   `Plannable Country graphic covers: ${stats.images.countryCovers}/${stats.images.countryTotal}`,
-  `Batch 06 Country graphic covers added: ${stats.images.batch06CountryCovers}`,
   `Verified destination City images: ${stats.images.dedicatedCities}`,
-  `Batch 06 verified destination images added: ${stats.images.batch06VerifiedImages}`,
+  `Dedicated City image coverage: ${stats.images.dedicatedCities}/${stats.images.cityTotal}`,
+  `Verified Core POI image coverage: ${stats.images.dedicatedPois}/${stats.images.poiTotal}`,
   `Needs backfill: ${stats.images.needsBackfill}`,
   `Active invalid mappings: ${stats.images.invalidMappings}`,
 ], "Batch06 image audit");

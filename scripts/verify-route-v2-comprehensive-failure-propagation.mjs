@@ -36,6 +36,9 @@ for (const name of [
   "knowledge-expansion-batch06-integrity",
   "knowledge-expansion-batch06-route-consumption",
   "knowledge-expansion-batch06-report-consistency",
+  "knowledge-expansion-batch07-integrity",
+  "knowledge-expansion-batch07-route-consumption",
+  "knowledge-expansion-batch07-report-consistency",
   "publication-gate",
   "search-cache-semantic-migration",
   "cache-baseline-v2",
@@ -55,6 +58,8 @@ const imageBaselineStage = MANDATORY_PRELAUNCH_VERIFIERS.find((stage) => stage.n
 assert(imageBaselineStage, "Image asset baseline verification must be registered");
 const homonymousCityStage = MANDATORY_PRELAUNCH_VERIFIERS.find((stage) => stage.name === "homonymous-city-country-disambiguation");
 assert(homonymousCityStage, "Homonymous City disambiguation verification must be registered");
+const batch07ReportConsistencyStage = MANDATORY_PRELAUNCH_VERIFIERS.find((stage) => stage.name === "knowledge-expansion-batch07-report-consistency");
+assert(batch07ReportConsistencyStage, "Batch 07 report consistency verification must be registered");
 
 function injectedFailure(result) {
   let thrown = null;
@@ -144,6 +149,21 @@ assert(homonymousCityFailure instanceof MandatoryVerifierStageError);
 assert.equal(homonymousCityFailure.stageResult.name, "homonymous-city-country-disambiguation");
 assert.equal(homonymousCityFailure.stageResult.exitCode, 31);
 
+let batch07ReportFailure = null;
+try {
+  runMandatoryVerifierStage({
+    stage: batch07ReportConsistencyStage,
+    projectRoot,
+    env: process.env,
+    spawnImpl: () => ({ status: 37, signal: null, stdout: "", stderr: "controlled Batch 07 report failure\n" }),
+  });
+} catch (error) {
+  batch07ReportFailure = error;
+}
+assert(batch07ReportFailure instanceof MandatoryVerifierStageError);
+assert.equal(batch07ReportFailure.stageResult.name, "knowledge-expansion-batch07-report-consistency");
+assert.equal(batch07ReportFailure.stageResult.exitCode, 37);
+
 function realReportMutationFailure(search, replacement, label) {
   const sourcePath = path.join(projectRoot, "ROUTE_V2_KNOWLEDGE_EXPANSION_BATCH05_REPORT.md");
   const source = fs.readFileSync(sourcePath, "utf8");
@@ -194,6 +214,7 @@ process.stdout.write(`${JSON.stringify({
   productionRunnerExercised: true,
   imageBaselineFailurePropagated: imageBaselineFailure.stageResult.exitCode === 29,
   homonymousCityFailurePropagated: homonymousCityFailure.stageResult.exitCode === 31,
+  batch07ReportFailurePropagated: batch07ReportFailure.stageResult.exitCode === 37,
   reportPoiMutationPropagated: reportPoiMutation.exitCode !== 0,
   reportDedicatedCityMutationPropagated: reportCityImageMutation.exitCode !== 0,
 }, null, 2)}\n`);

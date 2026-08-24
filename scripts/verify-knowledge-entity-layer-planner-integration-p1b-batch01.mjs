@@ -58,18 +58,18 @@ const fallbackTokyo = {
   latitude: 35.6894,
   longitude: 139.6917,
 };
-const fallbackCapeTown = {
-  wikidataId: "Q5465",
-  countryCode: "ZA",
-  name: "Cape Town",
+const fallbackMcMurdo = {
+  wikidataId: "Q498872",
+  countryCode: "AQ",
+  name: "McMurdo Station",
   entityTypeName: "city",
-  latitude: -33.9253,
-  longitude: 18.4239,
+  latitude: -77.846,
+  longitude: 166.676,
 };
 const fallbackKnowledgeGraph = {
   queryDestinations(query = {}) {
     if (query.country === "JP") return [structuredClone(fallbackTokyo)];
-    if (query.country === "ZA") return [structuredClone(fallbackCapeTown)];
+    if (query.country === "AQ") return [structuredClone(fallbackMcMurdo)];
     return [];
   },
 };
@@ -77,11 +77,11 @@ const fallbackKnowledgeGraph = {
 const adapter = createKnowledgeEntityLayerPlannerAdapter({ repository, fallbackKnowledgeGraph });
 const catalogs = createKnowledgeEntityLayerSearchIntentCatalog({ repository });
 
-assert.equal(repository.listCountries().length, 55);
-assert.equal(repository.listCities().length, 306);
-assert.equal(repository.listPois().length, 2101);
-assert.equal(catalogs.countries.length, 55);
-assert.equal(catalogs.cities.length, 306);
+assert.equal(repository.listCountries().length, 79);
+assert.equal(repository.listCities().length, 601);
+assert.equal(repository.listPois().length, 4038);
+assert.equal(catalogs.countries.length, 79);
+assert.equal(catalogs.cities.length, 601);
 
 for (const country of repository.listCountries()) {
   const intent = parseSearchIntent(country.canonicalNameEn, { catalogs });
@@ -93,23 +93,36 @@ for (const city of repository.listCities()) {
   const catalogCity = catalogs.cities.find((item) => item.entityId === city.entityId);
   const intent = parseSearchIntent(`${country.canonicalNameEn} ${city.canonicalNameEn}`, { catalogs });
   assert.equal(intent.countryCode, country.isoAlpha2, `City intent should keep the parent Country for ${city.canonicalNameEn}`);
-  assert.ok(intent.normalizedCities.includes(catalogCity.normalizedLabel), `City intent should resolve ${city.canonicalNameEn}`);
+  assert.ok(intent.requiredDestinationIds.includes(city.wikidataId), `City intent should resolve the Knowledge identity for ${city.canonicalNameEn}`);
+  assert.ok(catalogCity, `Search catalog must retain ${city.canonicalNameEn}`);
 }
 
 const adapterCities = repository.listCountries().flatMap((country) => adapter.queryDestinations({
   country: country.isoAlpha2,
   limit: 100,
 }).filter((destination) => destination.destinationSource === "knowledge-entity-layer"));
-assert.equal(adapterCities.length, 306);
-assert.equal(adapterCities.flatMap((city) => city.poiEntities).length, 2101);
+assert.equal(adapterCities.length, 601);
+assert.equal(adapterCities.flatMap((city) => city.poiEntities).length, 4038);
 assert.ok(adapterCities.every((city) => city.poiEntities.length >= 1), "every published City must retain at least one validated POI");
-assert.deepEqual(
-  adapterCities
-    .filter((city) => city.poiEntities.length < 3)
-    .map((city) => ({ wikidataId: city.wikidataId, countryCode: city.countryCode, poiCount: city.poiEntities.length })),
-  [{ wikidataId: "Q216075", countryCode: "VN", poiCount: 1 }],
-  "only the explicitly reviewed Cần Thơ capacity shortfall may remain below three POIs",
-);
+const reviewQueueDirectory = path.join(projectRoot, "data", "knowledge", "batches");
+const reviewedCapacityShortfalls = fs.readdirSync(reviewQueueDirectory)
+  .filter((fileName) => /^review-queue\.knowledge-expansion-batch\d{2}(?:-wave\d+)?\.json$/.test(fileName))
+  .flatMap((fileName) => {
+    const reviewQueue = JSON.parse(fs.readFileSync(path.join(reviewQueueDirectory, fileName), "utf8"));
+    return Array.isArray(reviewQueue) ? reviewQueue : reviewQueue.entries ?? [];
+  })
+  .filter((entry) => entry.entityType === "poi-capacity"
+    && entry.disposition === "accepted-below-target-without-padding"
+    && entry.reasonCodes?.includes("route-quality-capacity-shortfall"));
+
+for (const city of adapterCities.filter((entry) => entry.poiEntities.length < 3)) {
+  const review = reviewedCapacityShortfalls.find((entry) => entry.parentCityEntityId === city.entityId
+    && entry.wikidataId === city.wikidataId
+    && entry.countryCode === city.countryCode);
+  assert.ok(review, `${city.canonicalNameEn} must have an exact reviewed capacity-shortfall record`);
+  assert.equal(review.selectedPoiCount, city.poiEntities.length, `${city.canonicalNameEn} reviewed POI count must match published data`);
+  assert.ok(review.targetPoiCount >= 3, `${city.canonicalNameEn} review must document the unmet route-capacity target`);
+}
 
 const expectedCities = new Map([
   ["Amsterdam", ["Anne Frank House", "Rijksmuseum", "Van Gogh Museum"]],
@@ -155,7 +168,7 @@ assert.equal(firstJapan.filter((item) => item.wikidataId === "Q1490").length, 1,
 firstJapan[0].canonicalNameEn = "mutated";
 firstJapan[0].poiEntities[0].canonicalNameEn = "mutated";
 assert.deepEqual(adapter.queryDestinations({ country: "JP", limit: 100 }), secondJapan, "Planner adapter should return defensive copies");
-assert.deepEqual(adapter.queryDestinations({ country: "ZA", limit: 20 }), [fallbackCapeTown], "unmapped countries should retain the fallback graph");
+assert.deepEqual(adapter.queryDestinations({ country: "AQ", limit: 20 }), [fallbackMcMurdo], "unmapped countries should retain the fallback graph");
 
 const netherlandsIntent = parseSearchIntent("Netherlands Amsterdam 4 days", { catalogs });
 assert.equal(netherlandsIntent.countryCode, "NL");

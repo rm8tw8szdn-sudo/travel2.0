@@ -4,11 +4,11 @@ Generated: 2026-08-11T06:30:00.000Z
 
 ## Portfolio boundary
 
-- Catalog Countries: 59
-- Plannable Countries: 58
-- Evidence-backed Countries: 55
+- Catalog Countries: 79
+- Plannable Countries: 78
+- Evidence-backed Countries: 75
 - Batch 05 Countries: 20
-- Published totals: 59 Countries / 462 Cities / 3130 POIs / 3651 entities
+- Published totals: 79 Countries / 601 Cities / 4038 POIs / 4718 entities
 
 **Catalog Country != Plannable Country.** A Catalog entity is an identity record. Plannable requires published City/POI depth and a safe local image path. Evidence-backed additionally requires validated transport or objective month-risk Evidence.
 
@@ -43,6 +43,6 @@ Coverage score is an operational prioritization signal: plannability (25), City 
 
 | Scope | Country Cover Coverage | City Dedicated Coverage | City Placeholder | Core POI Coverage | Invalid Mapping | Needs Backfill |
 |---|---:|---:|---:|---:|---:|---:|
-| Historical Plannable Countries | 38/38 (100%) | 33/306 (10.8%) | 273 | 14/105 (13.3%) | 0 | 364 |
+| Historical Plannable Countries | 58/58 (100%) | 66/462 (14.3%) | 396 | 30/165 (18.2%) | 0 | 531 |
 | Batch 05 Countries | 20/20 (100%) | 17/168 (10.1%) | 151 | 2/60 (3.3%) | 0 | 209 |
-| Overall | 58/58 (100%) | 66/462 (14.3%) | 396 | 30/165 (18.2%) | 0 | 531 |
+| Overall | 78/78 (100%) | 96/601 (16%) | 505 | 42/224 (18.8%) | 0 | 687 |

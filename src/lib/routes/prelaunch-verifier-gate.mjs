@@ -177,6 +177,21 @@ export const MANDATORY_PRELAUNCH_VERIFIERS = Object.freeze([
     phase: "static",
   }),
   Object.freeze({
+    name: "knowledge-expansion-batch07-integrity",
+    relativePath: "scripts/verify-knowledge-expansion-batch07.mjs",
+    phase: "static",
+  }),
+  Object.freeze({
+    name: "knowledge-expansion-batch07-route-consumption",
+    relativePath: "scripts/verify-knowledge-expansion-batch07-route-consumption.mjs",
+    phase: "static",
+  }),
+  Object.freeze({
+    name: "knowledge-expansion-batch07-report-consistency",
+    relativePath: "scripts/verify-knowledge-expansion-batch07-report-consistency.mjs",
+    phase: "static",
+  }),
+  Object.freeze({
     name: "publication-gate",
     relativePath: "scripts/verify-route-v2-publication-gate.mjs",
     phase: "static",

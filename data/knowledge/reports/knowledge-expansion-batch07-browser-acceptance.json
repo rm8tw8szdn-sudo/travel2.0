@@ -1,0 +1,65 @@
+{
+  "schemaVersion": "route-v2-knowledge-expansion-batch07-browser-acceptance-v1",
+  "testedAt": "2026-08-24T12:00:00.000Z",
+  "status": "PASS",
+  "runtime": {
+    "browser": "Codex In-app Browser",
+    "routeV2Enabled": true,
+    "canaryPercentage": 100,
+    "onlineEvidenceEnabled": false,
+    "isolatedRuntimeState": true
+  },
+  "searchAcceptance": {
+    "countryQueries": 20,
+    "successfulQueries": 20,
+    "routeDetailChecks": 2,
+    "backForwardChecks": 1,
+    "constraintPreservationFailures": 0,
+    "countryCodesObserved": [
+      "AL", "BG", "CY", "EE", "LV", "LT", "MT", "ME", "RS", "SK",
+      "GE", "JO", "LK", "NP", "MV", "TN", "TZ", "EC", "PA", "GT"
+    ]
+  },
+  "tripFootprintAcceptance": {
+    "flows": 2,
+    "singleCountry": {
+      "query": "Guatemala 7 days",
+      "routeCountryCount": 1,
+      "routeCityCount": 4,
+      "tripCountryCount": 1,
+      "tripCityCount": 4,
+      "completedFootprintCountryCount": 1,
+      "completedFootprintCityCount": 4
+    },
+    "crossCountry": {
+      "query": "Estonia Latvia Lithuania 14 days",
+      "routeCountryCount": 3,
+      "routeCityCount": 6,
+      "tripCountryCount": 3,
+      "tripCityCount": 6,
+      "completedFootprintCountryCount": 3,
+      "completedFootprintCityCount": 6
+    },
+    "completedFootprintCountryCount": 4,
+    "completedFootprintCityCount": 10,
+    "duplicateCityCount": 0,
+    "knowledgeEntityIdsPreserved": true,
+    "wikidataIdsPreserved": true,
+    "identityValidation": "real UI counts plus mandatory production TravelState identity verifier"
+  },
+  "imageAcceptance": {
+    "routeCardsRendered": 20,
+    "routeDetailsRendered": 2,
+    "dedicatedAssetsVisuallyInspected": 1,
+    "neutralPlaceholdersRendered": true,
+    "wrongSemanticImages": 0,
+    "watermarkedImages": 0,
+    "brokenImages": 0,
+    "runtimeExternalImageRequests": 0,
+    "runtimeExternalEvidenceRequests": 0
+  },
+  "console": {
+    "errors": 0,
+    "warnings": 0
+  }
+}

@@ -6,11 +6,14 @@ import path from "node:path";
 import { createPublishedKnowledgeEntityLayerRepository } from "../src/lib/routes/index.mjs";
 
 const ROOT = path.resolve(import.meta.dirname, "..");
-const SEED_PATH = "data/knowledge/seeds/knowledge-expansion-batch06-20-country.json";
+const BATCH = String(process.argv.find((value) => value.startsWith("--batch="))?.split("=")[1] || "06").padStart(2, "0");
+if (!["06", "07"].includes(BATCH)) throw new Error("batch-argument-invalid:--batch=06|07");
+const SEED_PATH = `data/knowledge/seeds/knowledge-expansion-batch${BATCH}-20-country.json`;
 const MANIFEST_PATH = "data/route-v2/images/image-coverage-manifest.json";
-const PROVENANCE_PATH = "data/route-v2/images/batch06-dedicated-image-provenance.json";
-const ACQUIRED_AT = "2026-08-17T09:00:00.000Z";
-const USER_AGENT = "travel2-route-v2-image-backfill-batch06/1.0 (https://github.com/rm8tw8szdn-sudo/travel2.0)";
+const PROVENANCE_PATH = `data/route-v2/images/batch${BATCH}-dedicated-image-provenance.json`;
+const PRIOR_PROVENANCE_PATH = BATCH === "07" ? "data/route-v2/images/batch06-dedicated-image-provenance.json" : null;
+const ACQUIRED_AT = BATCH === "07" ? "2026-08-24T05:00:00.000Z" : "2026-08-17T09:00:00.000Z";
+const USER_AGENT = `travel2-route-v2-image-backfill-batch${BATCH}/1.0 (https://github.com/rm8tw8szdn-sudo/travel2.0)`;
 const WIKIDATA_API = "https://www.wikidata.org/w/api.php";
 const COMMONS_API = "https://commons.wikimedia.org/w/api.php";
 const WIDTHS = [1200, 1000, 800, 640];
@@ -184,8 +187,25 @@ async function main() {
   ));
   const corePoi = (city) => [...(poisByCity.get(city.entityId) || [])]
     .sort((left, right) => left.canonicalNameEn.localeCompare(right.canonicalNameEn, "en"))[0] || null;
+  const inherited = PRIOR_PROVENANCE_PATH && fs.existsSync(path.join(ROOT, PRIOR_PROVENANCE_PATH))
+    ? JSON.parse(await readFile(path.join(ROOT, PRIOR_PROVENANCE_PATH), "utf8"))
+    : { assets: [], attempts: [] };
+  const current = fs.existsSync(path.join(ROOT, PROVENANCE_PATH))
+    ? JSON.parse(await readFile(path.join(ROOT, PROVENANCE_PATH), "utf8"))
+    : { assets: [], attempts: [] };
+  const previous = {
+    assets: [...new Map([...(inherited.assets || []), ...(current.assets || [])].map((record) => [record.entityId, record])).values()],
+    attempts: [...new Map([...(inherited.attempts || []), ...(current.attempts || [])].map((record) => [record.entityId, record])).values()],
+  };
 
-  const candidates = [];
+  const candidates = (previous.assets || []).map((record) => ({
+    entityId: record.entityId,
+    wikidataId: record.wikidataId,
+    entityType: record.entityType,
+    countryCode: record.countryCode,
+    parentCityEntityId: record.parentCityEntityId || null,
+    canonicalNameEn: record.canonicalNameEn,
+  }));
   for (const code of historicalCodes) {
     const city = sortedCities(code)[0];
     if (city) candidates.push(candidateRecord(city, code));
@@ -203,9 +223,6 @@ async function main() {
   const uniqueCandidates = [...new Map(candidates.map((candidate) => [candidate.entityId, candidate])).values()];
   const candidateIds = new Set(uniqueCandidates.map((candidate) => candidate.entityId));
   const entities = await fetchEntities(uniqueCandidates.map((candidate) => candidate.wikidataId));
-  const previous = fs.existsSync(path.join(ROOT, PROVENANCE_PATH))
-    ? JSON.parse(await readFile(path.join(ROOT, PROVENANCE_PATH), "utf8"))
-    : { assets: [], attempts: [] };
   for (const record of previous.assets || []) {
     if (candidateIds.has(record.entityId)) continue;
     if (!/^assets\/route-v2-images\/(?:cities|pois)\/[a-z0-9-]+\.(?:jpe?g|png|webp)$/u.test(record.assetPath || "")) continue;
@@ -292,7 +309,7 @@ async function main() {
   }
 
   const document = {
-    schemaVersion: "route-v2-image-backfill-batch06-provenance-v1",
+    schemaVersion: `route-v2-image-backfill-batch${BATCH}-provenance-v1`,
     acquiredAt: ACQUIRED_AT,
     sourcePolicy: "exact Wikidata entity P18 plus Wikimedia Commons free-license extmetadata; fixed local thumbnail only",
     candidateCount: uniqueCandidates.length,

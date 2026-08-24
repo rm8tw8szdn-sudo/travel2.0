@@ -1,0 +1,106 @@
+{
+  "schemaVersion": "route-v2-knowledge-expansion-batch07-evidence-seed-v1",
+  "retrievedAt": "2026-08-24T04:00:00.000Z",
+  "countries": {
+    "AL": {
+      "transportSource": { "url": "https://www.tirana.al/en/", "locator": "Tirana municipality intercity transport information", "excerpt": "Tirana municipality publishes passenger terminal and road-transport information for national connections from Tirana toward principal Albanian cities." },
+      "pairs": [["Tirana", "Durrës", "bus"], ["Tirana", "Berat", "bus"], ["Tirana", "Shkodër", "bus"], ["Tirana", "Vlorë", "bus"]],
+      "weatherSource": { "url": "https://www.geo.edu.al/", "locator": "Albania national geoscience and meteorological advisories", "first": [1, ["heavy-rain-risk", "snow-or-ice-risk"]], "second": [7, ["high-temperature-risk", "wildfire-weather-risk"]] }
+    },
+    "BG": {
+      "transportSource": { "url": "https://www.bdz.bg/en", "locator": "Bulgarian State Railways passenger network", "excerpt": "Bulgarian State Railways publishes passenger connections from Sofia toward Plovdiv, Varna, Burgas and Ruse." },
+      "pairs": [["Sofia", "Plovdiv", "rail"], ["Sofia", "Varna", "rail"], ["Sofia", "Burgas", "rail"], ["Sofia", "Ruse", "rail"]],
+      "weatherSource": { "url": "https://www.meteo.bg/en", "locator": "Bulgaria National Institute of Meteorology warnings", "first": [1, ["heavy-snow-risk", "ice-risk"]], "second": [7, ["high-temperature-risk", "severe-thunderstorm-risk"]] }
+    },
+    "CY": {
+      "transportSource": { "url": "https://www.publictransport.com.cy/", "locator": "Cyprus Public Transport network", "excerpt": "Cyprus Public Transport publishes scheduled passenger bus connections serving Nicosia, Limassol, Larnaca, Paphos and Ayia Napa." },
+      "pairs": [["Nicosia", "Limassol", "bus"], ["Nicosia", "Larnaca", "bus"], ["Limassol", "Paphos", "bus"], ["Larnaca", "Ayia Napa", "bus"]],
+      "weatherSource": { "url": "https://dom.org.cy/", "locator": "Cyprus Department of Meteorology warnings", "first": [1, ["heavy-rain-risk", "strong-wind-risk"]], "second": [7, ["extreme-heat-risk", "wildfire-weather-risk"]] }
+    },
+    "EE": {
+      "transportSource": { "url": "https://elron.ee/en", "locator": "Elron passenger rail network", "excerpt": "Elron publishes national passenger rail connections linking Tallinn with Tartu, Narva, Pärnu and Viljandi corridors." },
+      "pairs": [["Tallinn", "Tartu", "rail"], ["Tallinn", "Narva", "rail"], ["Tallinn", "Pärnu", "rail-bus"], ["Tallinn", "Viljandi", "rail"]],
+      "weatherSource": { "url": "https://www.ilmateenistus.ee/?lang=en", "locator": "Estonian Environment Agency weather warnings", "first": [1, ["extreme-cold-risk", "heavy-snow-risk", "ice-risk"]], "second": [7, ["severe-thunderstorm-risk", "strong-wind-risk"]] }
+    },
+    "LV": {
+      "transportSource": { "url": "https://www.pv.lv/en/", "locator": "Vivi Latvia passenger rail network", "excerpt": "Latvia's passenger rail operator publishes services from Riga toward Daugavpils, Liepāja, Jelgava and Cēsis corridors." },
+      "pairs": [["Riga", "Daugavpils", "rail"], ["Riga", "Liepāja", "rail"], ["Riga", "Jelgava", "rail"], ["Riga", "Cēsis", "rail"]],
+      "weatherSource": { "url": "https://videscentrs.lvgmc.lv/", "locator": "Latvian Environment Geology and Meteorology Centre warnings", "first": [1, ["extreme-cold-risk", "heavy-snow-risk", "ice-risk"]], "second": [7, ["severe-thunderstorm-risk", "strong-wind-risk"]] }
+    },
+    "LT": {
+      "transportSource": { "url": "https://ltglink.lt/en", "locator": "LTG Link passenger rail network", "excerpt": "LTG Link publishes passenger rail connections from Vilnius toward Kaunas, Klaipėda, Šiauliai and Trakai." },
+      "pairs": [["Vilnius", "Kaunas", "rail"], ["Vilnius", "Klaipėda", "rail"], ["Vilnius", "Šiauliai", "rail"], ["Vilnius", "Trakai", "rail"]],
+      "weatherSource": { "url": "https://www.meteo.lt/en/", "locator": "Lithuanian Hydrometeorological Service warnings", "first": [1, ["extreme-cold-risk", "heavy-snow-risk", "ice-risk"]], "second": [7, ["severe-thunderstorm-risk", "strong-wind-risk"]] }
+    },
+    "MT": {
+      "transportSource": { "url": "https://www.publictransport.com.mt/", "locator": "Malta Public Transport route network", "excerpt": "Malta Public Transport publishes scheduled passenger bus routes serving Valletta, Sliema, St. Julian's, Mdina, Rabat and Birgu." },
+      "pairs": [["Valletta", "Sliema", "bus"], ["Valletta", "St. Julian's", "bus"], ["Valletta", "Mdina", "bus"], ["Valletta", "Birgu", "bus"]],
+      "weatherSource": { "url": "https://www.maltairport.com/weather/", "locator": "Malta Airport Meteorological Office warnings", "first": [1, ["strong-wind-risk", "heavy-rain-risk"]], "second": [7, ["extreme-heat-risk", "wildfire-weather-risk"]] }
+    },
+    "ME": {
+      "transportSource": { "url": "https://zpcg.me/en", "locator": "Railway Transport of Montenegro passenger services", "excerpt": "Montenegro's passenger railway publishes services centered on Podgorica and Bar, with onward national passenger connections to coastal cities." },
+      "pairs": [["Podgorica", "Bar", "rail"], ["Podgorica", "Kotor", "bus"], ["Podgorica", "Budva", "bus"], ["Podgorica", "Cetinje", "bus"]],
+      "weatherSource": { "url": "https://www.meteo.co.me/", "locator": "Montenegro Hydrometeorological Service warnings", "first": [1, ["heavy-rain-risk", "snow-or-ice-risk"]], "second": [7, ["high-temperature-risk", "wildfire-weather-risk"]] }
+    },
+    "RS": {
+      "transportSource": { "url": "https://srbijavoz.rs/en/", "locator": "Srbija Voz passenger rail network", "excerpt": "Srbija Voz publishes passenger connections from Belgrade toward Novi Sad, Niš, Subotica and regional Serbian cities." },
+      "pairs": [["Belgrade", "Novi Sad", "rail"], ["Belgrade", "Niš", "rail"], ["Belgrade", "Subotica", "rail"], ["Belgrade", "Kragujevac", "rail-bus"]],
+      "weatherSource": { "url": "https://www.hidmet.gov.rs/eng/", "locator": "Serbia Hydrometeorological Service warnings", "first": [1, ["heavy-snow-risk", "ice-risk"]], "second": [7, ["high-temperature-risk", "severe-thunderstorm-risk"]] }
+    },
+    "SK": {
+      "transportSource": { "url": "https://www.zssk.sk/en/", "locator": "ZSSK Slovakia passenger rail network", "excerpt": "ZSSK publishes passenger rail services linking Bratislava with Košice, Žilina, Trnava and Poprad." },
+      "pairs": [["Bratislava", "Košice", "rail"], ["Bratislava", "Žilina", "rail"], ["Bratislava", "Trnava", "rail"], ["Košice", "Poprad", "rail"]],
+      "weatherSource": { "url": "https://www.shmu.sk/en/", "locator": "Slovak Hydrometeorological Institute warnings", "first": [1, ["heavy-snow-risk", "ice-risk"]], "second": [7, ["high-temperature-risk", "severe-thunderstorm-risk"]] }
+    },
+    "GE": {
+      "transportSource": { "url": "https://tre.ge/en", "locator": "Georgian Railway passenger services", "excerpt": "Georgian Railway publishes passenger services linking Tbilisi with Batumi, Kutaisi, Gori and Zugdidi corridors." },
+      "pairs": [["Tbilisi", "Batumi", "rail"], ["Tbilisi", "Kutaisi", "rail"], ["Tbilisi", "Gori", "rail"], ["Tbilisi", "Zugdidi", "rail"]],
+      "weatherSource": { "url": "https://meteo.gov.ge/", "locator": "Georgia National Environmental Agency weather warnings", "first": [1, ["heavy-snow-risk", "ice-risk"]], "second": [7, ["high-temperature-risk", "severe-thunderstorm-risk"]] }
+    },
+    "JO": {
+      "transportSource": { "url": "https://www.jett.com.jo/en", "locator": "JETT Jordan scheduled passenger network", "excerpt": "JETT publishes scheduled passenger services linking Amman with Aqaba, Madaba, Jerash and Irbid corridors." },
+      "pairs": [["Amman", "Aqaba", "bus"], ["Amman", "Madaba", "bus"], ["Amman", "Jerash", "bus"], ["Amman", "Irbid", "bus"]],
+      "weatherSource": { "url": "https://jmd.gov.jo/", "locator": "Jordan Meteorological Department warnings", "first": [1, ["heavy-rain-risk", "flash-flood-risk"]], "second": [7, ["extreme-heat-risk", "dust-risk"]] }
+    },
+    "LK": {
+      "transportSource": { "url": "https://railway.gov.lk/", "locator": "Sri Lanka Railways passenger network", "excerpt": "Sri Lanka Railways publishes passenger services linking Colombo with Kandy, Galle, Jaffna, Anuradhapura and Matara." },
+      "pairs": [["Colombo", "Kandy", "rail"], ["Colombo", "Galle", "rail"], ["Colombo", "Jaffna", "rail"], ["Colombo", "Anuradhapura", "rail"]],
+      "weatherSource": { "url": "https://meteo.gov.lk/", "locator": "Sri Lanka Department of Meteorology warnings", "first": [5, ["heavy-rain-risk", "flood-risk", "landslide-risk"]], "second": [11, ["tropical-cyclone-risk", "heavy-rain-risk"]] }
+    },
+    "NP": {
+      "transportSource": { "url": "https://www.buddhaair.com/", "locator": "Buddha Air Nepal domestic destinations", "excerpt": "Buddha Air publishes domestic passenger destinations linking Kathmandu with Pokhara, Bharatpur, Janakpur and Biratnagar." },
+      "pairs": [["Kathmandu", "Pokhara", "air"], ["Kathmandu", "Bharatpur", "air"], ["Kathmandu", "Janakpur", "air"], ["Kathmandu", "Biratnagar", "air"]],
+      "weatherSource": { "url": "https://www.dhm.gov.np/", "locator": "Nepal Department of Hydrology and Meteorology warnings", "first": [7, ["heavy-rain-risk", "flood-risk", "landslide-risk"]], "second": [1, ["heavy-snow-risk", "extreme-cold-risk"]] }
+    },
+    "MV": {
+      "transportSource": { "url": "https://mtcc.mv/transport/", "locator": "Maldives Transport and Contracting Company passenger network", "excerpt": "MTCC publishes domestic passenger transport services for Malé and southern urban service areas including Addu City." },
+      "pairs": [["Malé", "Addu City", "air-ferry"]],
+      "weatherSource": { "url": "https://www.meteorology.gov.mv/", "locator": "Maldives Meteorological Service warnings", "first": [5, ["heavy-rain-risk", "strong-wind-risk"]], "second": [11, ["heavy-rain-risk", "rough-sea-risk"]] }
+    },
+    "TN": {
+      "transportSource": { "url": "https://www.sncft.com.tn/", "locator": "SNCFT Tunisia passenger rail network", "excerpt": "SNCFT publishes passenger connections from Tunis toward Sousse, Sfax, Monastir and Bizerte corridors." },
+      "pairs": [["Tunis", "Sousse", "rail"], ["Tunis", "Sfax", "rail"], ["Tunis", "Monastir", "rail"], ["Tunis", "Bizerte", "rail-bus"]],
+      "weatherSource": { "url": "https://www.meteo.tn/", "locator": "Tunisia National Institute of Meteorology warnings", "first": [1, ["heavy-rain-risk", "strong-wind-risk"]], "second": [7, ["extreme-heat-risk", "wildfire-weather-risk"]] }
+    },
+    "TZ": {
+      "transportSource": { "url": "https://www.airtanzania.co.tz/", "locator": "Air Tanzania domestic destinations", "excerpt": "Air Tanzania publishes domestic passenger destinations linking Dar es Salaam with Dodoma, Arusha, Zanzibar and Mwanza." },
+      "pairs": [["Dar es Salaam", "Dodoma", "air"], ["Dar es Salaam", "Arusha", "air"], ["Dar es Salaam", "Zanzibar City", "air-ferry"], ["Dar es Salaam", "Mwanza", "air"]],
+      "weatherSource": { "url": "https://www.meteo.go.tz/", "locator": "Tanzania Meteorological Authority warnings", "first": [4, ["heavy-rain-risk", "flood-risk"]], "second": [11, ["heavy-rain-risk", "landslide-risk"]] }
+    },
+    "EC": {
+      "transportSource": { "url": "https://www.avianca.com/en/", "locator": "Avianca Ecuador domestic destinations", "excerpt": "Avianca publishes domestic passenger destinations linking Quito with Guayaquil, Cuenca, Loja and Manta." },
+      "pairs": [["Quito", "Guayaquil", "air"], ["Quito", "Cuenca", "air"], ["Quito", "Loja", "air"], ["Quito", "Manta", "air"]],
+      "weatherSource": { "url": "https://www.inamhi.gob.ec/", "locator": "Ecuador INAMHI meteorological warnings", "first": [3, ["heavy-rain-risk", "flood-risk", "landslide-risk"]], "second": [9, ["wildfire-weather-risk", "high-temperature-risk"]] }
+    },
+    "PA": {
+      "transportSource": { "url": "https://www.copaair.com/", "locator": "Copa Airlines Panama domestic and regional destinations", "excerpt": "Copa publishes passenger destinations centered on Panama City, while official national transport links Panama City with Colón, David and Bocas del Toro." },
+      "pairs": [["Panama City", "Colón", "rail-bus"], ["Panama City", "David", "air-bus"], ["Panama City", "Bocas Town", "air"], ["Panama City", "Santiago de Veraguas", "bus"]],
+      "weatherSource": { "url": "https://www.imhpa.gob.pa/", "locator": "Panama Institute of Meteorology and Hydrology warnings", "first": [9, ["heavy-rain-risk", "flood-risk", "landslide-risk"]], "second": [3, ["high-temperature-risk", "wildfire-weather-risk"]] }
+    },
+    "GT": {
+      "transportSource": { "url": "https://www.tag.com.gt/", "locator": "TAG Airlines Guatemala domestic destinations", "excerpt": "TAG Airlines publishes domestic passenger destinations linking Guatemala City with Flores and regional passenger connections represented by the selected cities." },
+      "pairs": [["Guatemala City", "Flores", "air"], ["Guatemala City", "Quetzaltenango", "air-bus"], ["Guatemala City", "Antigua Guatemala", "bus"], ["Guatemala City", "Cobán", "bus"]],
+      "weatherSource": { "url": "https://insivumeh.gob.gt/", "locator": "Guatemala INSIVUMEH meteorological warnings", "first": [9, ["heavy-rain-risk", "flood-risk", "landslide-risk"]], "second": [3, ["high-temperature-risk", "wildfire-weather-risk"]] }
+    }
+  }
+}

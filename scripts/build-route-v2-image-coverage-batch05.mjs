@@ -10,12 +10,16 @@ const ASSET_ROOT = "assets/route-v2-images";
 const MANIFEST_PATH = "data/route-v2/images/image-coverage-manifest.json";
 const RUNTIME_PATH = "route-v2-image-coverage.js";
 const AUDIT_PATH = "ROUTE_V2_IMAGE_COVERAGE_BACKFILL_AUDIT.md";
-const BATCH06_AUDIT_PATH = "ROUTE_V2_IMAGE_COVERAGE_BACKFILL_BATCH06_AUDIT.md";
-const PROVENANCE_PATH = "data/route-v2/images/batch06-dedicated-image-provenance.json";
-const BATCH06_BASELINE_PATH = "data/knowledge/reports/knowledge-expansion-batch06-baseline.json";
-const RETRIEVED_AT = "2026-08-17T09:00:00.000Z";
+const BATCH = String(process.argv.find((value) => value.startsWith("--batch="))?.split("=")[1] || "06").padStart(2, "0");
+if (!["06", "07"].includes(BATCH)) throw new Error("batch-argument-invalid:--batch=06|07");
+const BATCH_AUDIT_PATH = `ROUTE_V2_IMAGE_COVERAGE_BACKFILL_BATCH${BATCH}_AUDIT.md`;
+const PROVENANCE_PATH = `data/route-v2/images/batch${BATCH}-dedicated-image-provenance.json`;
+const BATCH_BASELINE_PATH = `data/knowledge/reports/knowledge-expansion-batch${BATCH}-baseline.json`;
+const RETRIEVED_AT = BATCH === "07" ? "2026-08-24T05:00:00.000Z" : "2026-08-17T09:00:00.000Z";
 const BATCH05_CODES = new Set(["GB", "IE", "CZ", "HU", "HR", "NO", "SE", "FI", "DK", "BE", "PL", "SI", "VN", "MY", "ID", "PH", "CA", "US", "MX", "PE"]);
 const BATCH06_CODES = new Set(["AD", "AE", "AR", "BR", "CD", "CL", "UY", "EG", "FJ", "IL", "IN", "KE", "MA", "NG", "RU", "SA", "ZA", "KH", "RO", "CR"]);
+const BATCH07_CODES = new Set(["AL", "BG", "CY", "EE", "LV", "LT", "MT", "ME", "RS", "SK", "GE", "JO", "LK", "NP", "MV", "TN", "TZ", "EC", "PA", "GT"]);
+const CURRENT_BATCH_CODES = BATCH === "07" ? BATCH07_CODES : BATCH06_CODES;
 const PLACEHOLDER = "assets/route-city-placeholder.svg";
 const GENERATED_VECTOR_RIGHTS = Object.freeze({
   sourceType: "project-generated-vector",
@@ -93,7 +97,7 @@ const plannableCountries = countries.filter((country) => {
 }).sort((left, right) => left.isoAlpha2.localeCompare(right.isoAlpha2, "en"));
 
 const provenance = JSON.parse(await readFile(path.join(ROOT, PROVENANCE_PATH), "utf8"));
-const batch06Baseline = JSON.parse(await readFile(path.join(ROOT, BATCH06_BASELINE_PATH), "utf8"));
+const batchBaseline = JSON.parse(await readFile(path.join(ROOT, BATCH_BASELINE_PATH), "utf8"));
 const dedicatedByEntityId = new Map((provenance.assets || []).map((record) => [record.entityId, record]));
 const countryRecords = [];
 const cityRecords = [];
@@ -228,7 +232,7 @@ const summarize = (countrySet, citySet, poiSet) => ({
 });
 
 const scope = (codes, records) => records.filter((record) => codes.has(record.countryCode));
-const historicalCodes = new Set(countryRecords.map((record) => record.countryCode).filter((code) => !BATCH06_CODES.has(code)));
+const historicalCodes = new Set(countryRecords.map((record) => record.countryCode).filter((code) => !CURRENT_BATCH_CODES.has(code)));
 const manifest = {
   schemaVersion: "route-v2-image-coverage-v2",
   retrievedAt: RETRIEVED_AT,
@@ -241,6 +245,7 @@ const manifest = {
     historicalPlannableCountries: summarize(scope(historicalCodes, countryRecords), scope(historicalCodes, cityRecords), scope(historicalCodes, poiRecords)),
     batch05Countries: summarize(scope(BATCH05_CODES, countryRecords), scope(BATCH05_CODES, cityRecords), scope(BATCH05_CODES, poiRecords)),
     batch06Countries: summarize(scope(BATCH06_CODES, countryRecords), scope(BATCH06_CODES, cityRecords), scope(BATCH06_CODES, poiRecords)),
+    batch07Countries: summarize(scope(BATCH07_CODES, countryRecords), scope(BATCH07_CODES, cityRecords), scope(BATCH07_CODES, poiRecords)),
     overall: summarize(countryRecords, cityRecords, poiRecords),
   },
 };
@@ -276,7 +281,7 @@ const debtByCountry = countryRecords.map((country) => {
   return {
     countryCode: country.countryCode,
     countryName: country.canonicalNameEn,
-    scope: BATCH06_CODES.has(country.countryCode) ? "Batch 06" : BATCH05_CODES.has(country.countryCode) ? "Batch 05" : "Historical",
+    scope: BATCH07_CODES.has(country.countryCode) ? "Batch 07" : BATCH06_CODES.has(country.countryCode) ? "Batch 06" : BATCH05_CODES.has(country.countryCode) ? "Batch 05" : "Historical",
     high: countryCities.filter((record) => record.backfillPriority === "high").length,
     normal: countryCities.filter((record) => record.backfillPriority === "normal").length,
     low: countryCities.filter((record) => record.backfillPriority === "low").length,
@@ -287,10 +292,10 @@ const debtByCountry = countryRecords.map((country) => {
 const debtTable = debtByCountry.map((entry) => `| ${entry.countryCode} | ${entry.countryName} | ${entry.scope} | ${entry.high} | ${entry.normal} | ${entry.low} | ${entry.corePois} | ${entry.total} |`).join("\n");
 const cityBackfill = cityRecords.filter((record) => record.needsBackfill).map((record) => `- ${record.countryCode} | ${record.backfillPriority} | ${record.canonicalNameEn} | ${record.entityId}`).join("\n");
 const poiBackfill = poiRecords.filter((record) => record.needsBackfill).map((record) => `- ${record.countryCode} | ${record.backfillPriority} | ${record.canonicalNameEn} | ${record.entityId}`).join("\n");
-const batch06Added = provenance.assets.filter((record) => BATCH06_CODES.has(record.countryCode)).length;
-const audit = `# Route V2 Image Coverage Backfill Audit\n\nGenerated: ${RETRIEVED_AT}\n\n## Outcome\n\n- Historical image debt before Batch 06: ${batch06Baseline.images.needsBackfill}\n- Historical image debt after Batch 06: ${manifest.coverage.historicalPlannableCountries.needsBackfillCount}\n- Plannable Country graphic covers: ${manifest.coverage.overall.countryCoverCoverage.ready}/${manifest.coverage.overall.countryCoverCoverage.total}\n- Batch 06 Country graphic covers added: ${scope(BATCH06_CODES, countryRecords).length}\n- Verified destination City images: ${manifest.coverage.overall.cityDedicatedImageCoverage.ready}\n- Dedicated City image coverage: ${manifest.coverage.overall.cityDedicatedImageCoverage.ready}/${manifest.coverage.overall.cityDedicatedImageCoverage.total} (${manifest.coverage.overall.cityDedicatedImageCoverage.percent}%)\n- City neutral placeholders: ${manifest.coverage.overall.cityPlaceholderCount}\n- Verified Core POI image coverage: ${manifest.coverage.overall.corePoiImageCoverage.ready}/${manifest.coverage.overall.corePoiImageCoverage.total} (${manifest.coverage.overall.corePoiImageCoverage.percent}%)\n- POI neutral placeholders: ${manifest.coverage.overall.poiPlaceholderCount}\n- Batch 06 verified destination images added: ${batch06Added}\n- Active invalid mappings: ${invalidMappings.length}\n- Needs backfill: ${manifest.coverage.overall.needsBackfillCount}\n- Runtime external image requests: disabled\n\nCountry covers are non-photographic entity label graphics and are not counted as City or POI imagery. Dedicated destination assets require an exact Wikidata entity P18, a fixed local Commons file, and auditable free-license metadata. All other destinations retain the shared neutral placeholder and needsBackfill.\n\n## Debt by country and priority\n\n| Code | Country | Scope | High City | Normal City | Low City | Core POI | Total |\n| --- | --- | --- | ---: | ---: | ---: | ---: | ---: |\n${debtTable}\n\n## Remaining City backfill\n\n${cityBackfill || "None"}\n\n## Remaining Core POI backfill\n\n${poiBackfill || "None"}\n`;
+const batchAdded = provenance.assets.filter((record) => CURRENT_BATCH_CODES.has(record.countryCode)).length;
+const audit = `# Route V2 Image Coverage Backfill Audit\n\nGenerated: ${RETRIEVED_AT}\n\n## Outcome\n\n- Historical image debt before Batch ${BATCH}: ${batchBaseline.images.needsBackfill}\n- Historical image debt after Batch ${BATCH}: ${manifest.coverage.historicalPlannableCountries.needsBackfillCount}\n- Plannable Country graphic covers: ${manifest.coverage.overall.countryCoverCoverage.ready}/${manifest.coverage.overall.countryCoverCoverage.total}\n- Batch ${BATCH} Country graphic covers added: ${scope(CURRENT_BATCH_CODES, countryRecords).length}\n- Verified destination City images: ${manifest.coverage.overall.cityDedicatedImageCoverage.ready}\n- Dedicated City image coverage: ${manifest.coverage.overall.cityDedicatedImageCoverage.ready}/${manifest.coverage.overall.cityDedicatedImageCoverage.total} (${manifest.coverage.overall.cityDedicatedImageCoverage.percent}%)\n- City neutral placeholders: ${manifest.coverage.overall.cityPlaceholderCount}\n- Verified Core POI image coverage: ${manifest.coverage.overall.corePoiImageCoverage.ready}/${manifest.coverage.overall.corePoiImageCoverage.total} (${manifest.coverage.overall.corePoiImageCoverage.percent}%)\n- POI neutral placeholders: ${manifest.coverage.overall.poiPlaceholderCount}\n- Batch ${BATCH} verified destination images: ${batchAdded}\n- Active invalid mappings: ${invalidMappings.length}\n- Needs backfill: ${manifest.coverage.overall.needsBackfillCount}\n- Runtime external image requests: disabled\n\nCountry covers are non-photographic entity label graphics and are not counted as City or POI imagery. Dedicated destination assets require an exact Wikidata entity P18, a fixed local Commons file, and auditable free-license metadata. All other destinations retain the shared neutral placeholder and needsBackfill.\n\n## Debt by country and priority\n\n| Code | Country | Scope | High City | Normal City | Low City | Core POI | Total |\n| --- | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: |\n${debtTable}\n\n## Remaining City backfill\n\n${cityBackfill || "None"}\n\n## Remaining Core POI backfill\n\n${poiBackfill || "None"}\n`;
 await write(AUDIT_PATH, audit);
-await write(BATCH06_AUDIT_PATH, audit.replace("# Route V2 Image Coverage Backfill Audit", "# Route V2 Image Coverage Backfill Batch 06 Audit"));
+await write(BATCH_AUDIT_PATH, audit.replace("# Route V2 Image Coverage Backfill Audit", `# Route V2 Image Coverage Backfill Batch ${BATCH} Audit`));
 
 console.log(JSON.stringify({
   status: invalidMappings.length === 0 ? "PASS" : "FAIL",
@@ -299,7 +304,7 @@ console.log(JSON.stringify({
   dedicatedPois: manifest.coverage.overall.corePoiImageCoverage.ready,
   needsBackfill: manifest.coverage.overall.needsBackfillCount,
   invalidMappings: invalidMappings.length,
-  batch06Added,
-  outputs: [MANIFEST_PATH, RUNTIME_PATH, AUDIT_PATH, BATCH06_AUDIT_PATH],
+  batchAdded,
+  outputs: [MANIFEST_PATH, RUNTIME_PATH, AUDIT_PATH, BATCH_AUDIT_PATH],
 }, null, 2));
 if (invalidMappings.length) process.exitCode = 1;

@@ -23,7 +23,7 @@ import { KNOWLEDGE_ENTITY_LAYER_PUBLISHED_ASSETS } from "../src/lib/routes/knowl
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const argument = (name) => process.argv.find((value) => value.startsWith(`--${name}=`))?.slice(name.length + 3) || "";
 const BATCH = argument("batch") || "05";
-if (!["05", "06"].includes(BATCH)) throw new Error("batch-argument-invalid:--batch=05|06");
+if (!["05", "06", "07"].includes(BATCH)) throw new Error("batch-argument-invalid:--batch=05|06|07");
 const BATCH_LABEL = `Batch ${BATCH}`;
 const SEED_PATH = `data/knowledge/seeds/knowledge-expansion-batch${BATCH}-20-country.json`;
 const COUNTRY_OUTPUT = `data/knowledge/batches/countries.p1a-batch${BATCH}.json`;
@@ -33,6 +33,8 @@ const LOCAL_WIKIPEDIA_LANGUAGE = Object.freeze({
   AD: "ca", AE: "ar", AR: "es", BR: "pt", CD: "fr", CL: "es", CN: "zh", CR: "es", UY: "es",
   EG: "ar", FJ: "fj", IL: "he", IN: "hi", KE: "sw", KH: "km", MA: "fr", NG: "en",
   RO: "ro", RU: "ru", SA: "ar", ZA: "en",
+  AL: "sq", BG: "bg", CY: "el", EE: "et", LV: "lv", LT: "lt", MT: "mt", ME: "sr", RS: "sr", SK: "sk",
+  GE: "ka", JO: "ar", LK: "si", NP: "ne", MV: "dv", TN: "ar", TZ: "sw", EC: "es", PA: "es", GT: "es",
   BE: "nl", CA: "fr", CZ: "cs", DK: "da", FI: "fi", HR: "hr", HU: "hu", ID: "id", IE: "ga",
   MX: "es", MY: "ms", NO: "no", PE: "es", PL: "pl", SE: "sv", SI: "sl", VN: "vi",
 });
@@ -72,10 +74,16 @@ const VISITOR_POI_ROOTS = new Set([
 const ISO = Object.freeze({
   HU: ["HUN", "348"], HR: ["HRV", "191"], SE: ["SWE", "752"], SI: ["SVN", "705"],
   KH: ["KHM", "116"], RO: ["ROU", "642"], CR: ["CRI", "188"], UY: ["URY", "858"],
+  AL: ["ALB", "008"], BG: ["BGR", "100"], CY: ["CYP", "196"], EE: ["EST", "233"], LV: ["LVA", "428"],
+  LT: ["LTU", "440"], MT: ["MLT", "470"], ME: ["MNE", "499"], RS: ["SRB", "688"], SK: ["SVK", "703"],
+  GE: ["GEO", "268"], JO: ["JOR", "400"], LK: ["LKA", "144"], NP: ["NPL", "524"], MV: ["MDV", "462"],
+  TN: ["TUN", "788"], TZ: ["TZA", "834"], EC: ["ECU", "218"], PA: ["PAN", "591"], GT: ["GTM", "320"],
 });
 const COUNTRY_OUTPUT_CODES = BATCH === "05"
   ? new Set(["HU", "HR", "SE", "SI"])
-  : new Set(["KH", "RO", "CR", "UY"]);
+  : BATCH === "06"
+    ? new Set(["KH", "RO", "CR", "UY"])
+    : new Set(["AL", "BG", "CY", "EE", "LV", "LT", "MT", "ME", "RS", "SK", "GE", "JO", "LK", "NP", "MV", "TN", "TZ", "EC", "PA", "GT"]);
 
 const wave = Number(argument("wave"));
 if (![1, 2, 3, 4].includes(wave)) throw new Error("wave-argument-required:--wave=1|2|3|4");
@@ -288,7 +296,10 @@ function provenance(field, sourceType, source, sourceUrl, value, retrievedAt) {
 function buildCity(seed, entity, country, retrievedAt) {
   const entityId = createTypedEntityId({ entityType: "city", wikidataId: entity.id });
   const coordinates = coordinate(entity);
-  const canonicalNameZh = localizedLabel(entity, "zh-hans", localizedLabel(entity, "zh", seed.name));
+  const wikidataNameZh = localizedLabel(entity, "zh-hans", localizedLabel(entity, "zh", ""));
+  const canonicalNameZh = /[\u3400-\u9fff]/u.test(wikidataNameZh)
+    ? wikidataNameZh
+    : seed.nameZh || wikidataNameZh || seed.name;
   const countryNames = new Set([country.canonicalNameEn, country.canonicalNameZh]
     .map((value) => clean(value).toLocaleLowerCase("en-US")));
   const entityAliases = aliases(entity, seed.aliases, [canonicalNameZh, seed.name])
@@ -304,7 +315,10 @@ function buildCity(seed, entity, country, retrievedAt) {
     provenance: {
       entityId: schema("entityId", entityId), entityType: schema("entityType", "city"),
       parentCountryEntityId: provenance("parentCountryEntityId", "repository-reference", `${country.canonicalNameEn} Country Entity`, `https://www.wikidata.org/wiki/${country.wikidataId}`, country.entityId, retrievedAt),
-      wikidataId: wd("wikidataId", entity.id), canonicalNameZh: wd("canonicalNameZh", canonicalNameZh),
+      wikidataId: wd("wikidataId", entity.id),
+      canonicalNameZh: seed.nameZh && canonicalNameZh === seed.nameZh
+        ? provenance("canonicalNameZh", "repository-reference", `${BATCH_LABEL} reviewed Chinese display name bound to the exact Wikidata city entity`, wiki, canonicalNameZh, retrievedAt)
+        : wd("canonicalNameZh", canonicalNameZh),
       canonicalNameEn: wd("canonicalNameEn", seed.name),
       aliases: seed.aliases.length > 0
         ? provenance("aliases", "repository-reference", `${BATCH_LABEL} reviewed search aliases bound to the exact Wikidata city entity`, wiki, entityAliases, retrievedAt)
@@ -405,7 +419,7 @@ async function atomicJson(relativePath, value) {
 }
 
 function citySeed(country, tuple, targetByTier) {
-  const [title, tier, displayName = title, reviewedAliases = []] = tuple;
+  const [title, tier, displayName = title, reviewedAliases = [], displayNameZh = ""] = tuple;
   return {
     key: `${country.iso}:${displayName}`,
     iso: country.iso,
@@ -414,6 +428,7 @@ function citySeed(country, tuple, targetByTier) {
     tier,
     targetPoiCount: targetByTier[tier],
     aliases: [...(title === displayName ? [] : [title]), ...reviewedAliases],
+    nameZh: clean(displayNameZh),
   };
 }
 
@@ -444,6 +459,10 @@ async function main() {
     ...priorBatchPoiPaths,
   ], "pois");
   const countryByIso = new Map(existingCountries.map((entry) => [entry.isoAlpha2, entry]));
+  const publishedCountryQids = new Set([
+    ...existingCountries.map((entry) => entry.wikidataId),
+    ...countries.map((entry) => entry.qid),
+  ]);
   const cityByQid = new Map(existingCities.map((entry) => [entry.wikidataId, entry]));
   const poiByQid = new Map(existingPois.map((entry) => [entry.wikidataId, entry]));
   const countryEntities = await fetchEntities(countries.map((entry) => entry.qid));
@@ -521,6 +540,7 @@ async function main() {
       if (!qids(entity, "P17").includes(countrySeed.qid)) reasons.push("country-claim-mismatch");
       if (!poiPath) reasons.push("positive-poi-type-unconfirmed");
       if (cityPath) reasons.push("settlement-not-published-as-poi");
+      if (publishedCountryQids.has(candidate.qid)) reasons.push("country-not-published-as-poi");
       if (!routeEligibility.accepted) reasons.push("operational-entity-not-route-poi");
       const distanceKm = coords ? entityLayerDistanceKm(selected.city.coordinates, coords) : Number.POSITIVE_INFINITY;
       if (distanceKm > 40) reasons.push("parent-city-distance-exceeded");

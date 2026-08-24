@@ -193,6 +193,28 @@ assertKilled("city-published-as-poi", validatePublishedKnowledgeSemantics({
   countries: [japan], cities: [nara], pois: [naraAsPoi], factsByQid: facts,
 }), "instance-type-not-allowed");
 
+const japanAsPoi = {
+  ...naraAsPoi,
+  entityId: createTypedEntityId({ entityType: "poi", wikidataId: japan.wikidataId }),
+  wikidataId: japan.wikidataId,
+  canonicalNameZh: japan.canonicalNameZh,
+  canonicalNameEn: japan.canonicalNameEn,
+  aliases: japan.aliases,
+  coordinates: japan.coordinates,
+};
+japanAsPoi.provenance = Object.fromEntries(Object.entries(naraAsPoi.provenance).map(([field, entry]) => [
+  field,
+  {
+    ...entry,
+    sourceUrl: `https://www.wikidata.org/wiki/${japan.wikidataId}`,
+    value: japanAsPoi[field],
+  },
+]));
+assert.equal(validateKnowledgePoiEntity(japanAsPoi).accepted, true, "adversarial Country-as-POI fixture must be schema-valid");
+assertKilled("country-published-as-poi", validatePublishedKnowledgeSemantics({
+  countries: [japan], cities: [nara], pois: [japanAsPoi], factsByQid: facts,
+}), "country-published-as-poi");
+
 assertKilled("unknown-instance-type-fails-closed", validatePublishedKnowledgeSemantics({
   countries: [japan], cities: [nara], factsByQid: new Map(facts).set("Q169134", {
     ...facts.get("Q169134"), instanceOfIds: ["Q999999999999"],

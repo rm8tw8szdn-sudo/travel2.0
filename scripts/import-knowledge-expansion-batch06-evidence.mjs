@@ -9,11 +9,13 @@ import { normalizeSeasonEvidence, validateSeasonEvidence } from "../src/lib/rout
 import { stableHash } from "../src/lib/routes/route-v2-utils.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const CONFIG_PATH = "data/knowledge/seeds/knowledge-expansion-batch06-evidence.json";
+const BATCH = String(process.argv.find((value) => value.startsWith("--batch="))?.split("=")[1] || "06").padStart(2, "0");
+if (!["06", "07"].includes(BATCH)) throw new Error("batch-argument-invalid:--batch=06|07");
+const CONFIG_PATH = `data/knowledge/seeds/knowledge-expansion-batch${BATCH}-evidence.json`;
 const ROUTE_LEG_PATH = "data/route-v2/evidence-seed/route-leg-evidence.jsonl";
 const SEASON_PATH = "data/route-v2/evidence-seed/season-evidence.jsonl";
 const MANIFEST_PATH = "data/route-v2/evidence-seed/evidence-seed-manifest.json";
-const AUDIT_PATH = "data/knowledge/batches/knowledge-expansion-batch06-evidence-audit.json";
+const AUDIT_PATH = `data/knowledge/batches/knowledge-expansion-batch${BATCH}-evidence-audit.json`;
 const ISO = String(process.argv.find((value) => value.startsWith("--country="))?.split("=")[1] || "").toUpperCase();
 
 function parseJsonl(text) {
@@ -117,7 +119,7 @@ async function atomicText(relativePath, contents) {
 
 async function main() {
   const configDocument = JSON.parse(await readFile(path.join(ROOT, CONFIG_PATH), "utf8"));
-  const resetBatch = process.argv.includes("--reset-batch06");
+  const resetBatch = process.argv.includes(`--reset-batch${BATCH}`);
   const config = configDocument.countries[ISO];
   if (!config) throw new Error(`country-argument-required:${Object.keys(configDocument.countries).join("|")}`);
   const retrievedAt = configDocument.retrievedAt;
@@ -143,7 +145,7 @@ async function main() {
     ];
   });
   if (new Set(routeAdditions.map((entry) => entry.legEvidenceId)).size !== routeAdditions.length) {
-    throw new Error(`duplicate-batch06-route-leg:${ISO}`);
+    throw new Error(`duplicate-batch${BATCH}-route-leg:${ISO}`);
   }
 
   const weather = config.weatherSource;
@@ -152,13 +154,17 @@ async function main() {
     locator: weather.locator,
     excerpt: `${weather.locator} publishes official alerts for ${[...new Set([...weather.first[1], ...weather.second[1]])].join(", ")} without asserting a preferred travel month.`
   };
-  const seasonAdditions = Array.from({ length: 4 }, (_, index) => {
-    const city = cities[index % cities.length];
-    const [month, risks] = index % 2 === 0 ? weather.first : weather.second;
-    return monthRisk(city.entityId, month, risks, weatherDefinition, retrievedAt);
-  });
+  const seasonAdditions = BATCH === "07"
+    ? cities.flatMap((city) => [weather.first, weather.second].map(([month, risks]) => (
+        monthRisk(city.entityId, month, risks, weatherDefinition, retrievedAt)
+      ))).slice(0, 4)
+    : Array.from({ length: 4 }, (_, index) => {
+        const city = cities[index % cities.length];
+        const [month, risks] = index % 2 === 0 ? weather.first : weather.second;
+        return monthRisk(city.entityId, month, risks, weatherDefinition, retrievedAt);
+      });
   if (new Set(seasonAdditions.map((entry) => entry.seasonEvidenceId)).size !== seasonAdditions.length) {
-    throw new Error(`duplicate-batch06-season:${ISO}`);
+    throw new Error(`duplicate-batch${BATCH}-season:${ISO}`);
   }
 
   const existingLegs = parseJsonl(await readFile(path.join(ROOT, ROUTE_LEG_PATH), "utf8"))
@@ -185,7 +191,7 @@ async function main() {
     ? { countries: {} }
     : await readFile(path.join(ROOT, AUDIT_PATH), "utf8").then(JSON.parse).catch(() => ({ countries: {} }));
   const audit = {
-    schemaVersion: "route-v2-knowledge-expansion-batch06-evidence-audit-v1",
+    schemaVersion: `route-v2-knowledge-expansion-batch${BATCH}-evidence-audit-v1`,
     retrievedAt,
     countries: {
       ...(priorAudit.countries || {}),

@@ -81,7 +81,7 @@ function verifyImageAudit(text) {
   const cityCoverage = stats.imageManifest.coverage.overall.cityDedicatedImageCoverage;
   const poiCoverage = stats.imageManifest.coverage.overall.corePoiImageCoverage;
   requireLines(text, [
-    `- Historical image debt after Batch 06: ${stats.images.historicalNeedsBackfill}`,
+    `- Historical image debt after Batch 07: ${stats.images.historicalNeedsBackfill}`,
     `- Plannable Country graphic covers: ${stats.images.countryCovers}/${stats.images.countryCoverTotal}`,
     `- Verified destination City images: ${stats.images.dedicatedCities}`,
     `- Dedicated City image coverage: ${stats.images.dedicatedCities}/${stats.images.cityTotal} (${cityCoverage.percent}%)`,

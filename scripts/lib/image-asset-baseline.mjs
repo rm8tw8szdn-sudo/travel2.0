@@ -203,7 +203,10 @@ function lfsInventory(root) {
     const match = line.match(/^([0-9a-f]{64})\s+[\*-]\s+(.+)$/u);
     if (!match) continue;
     const filePath = cleanPath(match[2]);
-    const pointer = run("git", ["show", `HEAD:${filePath}`], { root, allowFailure: true }).stdout;
+    const stagedPointer = run("git", ["show", `:${filePath}`], { root, allowFailure: true });
+    const pointer = stagedPointer.status === 0
+      ? stagedPointer.stdout
+      : run("git", ["show", `HEAD:${filePath}`], { root, allowFailure: true }).stdout;
     const size = Number(pointer.match(/^size\s+(\d+)$/mu)?.[1] || 0);
     records.push({ path: filePath, oid: match[1], bytes: size, pointerValid: /^version https:\/\/git-lfs\.github\.com\/spec\/v1$/mu.test(pointer) && size > 0 });
   }
@@ -213,7 +216,7 @@ function lfsInventory(root) {
 function referenceKind(sourcePath) {
   if (/^scripts\/verify-/u.test(sourcePath)) return "test";
   if (/^data\/knowledge\/(?:raw|reports|batches)\//u.test(sourcePath)) return "audit";
-  if (sourcePath === "data/route-v2/images/batch06-dedicated-image-provenance.json") return "audit";
+  if (/^data\/route-v2\/images\/batch\d{2}-dedicated-image-provenance\.json$/u.test(sourcePath)) return "audit";
   if (/^(?:docs\/|ROUTE_V2_.*\.md$)/u.test(sourcePath) || sourcePath.endsWith(".md")) return "audit";
   if (/^scripts\//u.test(sourcePath)) return "build";
   if (sourcePath === FORMAL_MANIFEST_PATH || sourcePath === "route-v2-image-coverage.js") return "manifest";

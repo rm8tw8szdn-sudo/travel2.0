@@ -421,6 +421,7 @@ export function validatePublishedKnowledgeSemantics({
   const facts = factMap(factsByQid);
   const countryByEntityId = new Map(countries.map((entity) => [entity.entityId, entity]));
   const cityByEntityId = new Map(cities.map((entity) => [entity.entityId, entity]));
+  const publishedCountryQids = new Set(countries.map((entity) => qid(entity.wikidataId)));
   const violations = [];
   const normalizedTypePolicy = normalizeTypePolicy(typePolicy, violations);
   const normalizedExceptions = normalizeExceptions({
@@ -436,7 +437,12 @@ export function validatePublishedKnowledgeSemantics({
 
   for (const entity of countries) validateEntity({ entity, kind: "country", facts, countryByEntityId, cityByEntityId, exceptionByScope: normalizedExceptions.byScope, usedExceptionIds, typePolicy: normalizedTypePolicy, violations });
   for (const entity of cities) validateEntity({ entity, kind: "city", facts, countryByEntityId, cityByEntityId, exceptionByScope: normalizedExceptions.byScope, usedExceptionIds, typePolicy: normalizedTypePolicy, violations });
-  for (const entity of pois) validateEntity({ entity, kind: "poi", facts, countryByEntityId, cityByEntityId, exceptionByScope: normalizedExceptions.byScope, usedExceptionIds, typePolicy: normalizedTypePolicy, violations });
+  for (const entity of pois) {
+    if (publishedCountryQids.has(qid(entity.wikidataId))) {
+      violations.push({ qid: qid(entity.wikidataId), entityId: clean(entity.entityId), kind: "poi", code: "country-published-as-poi" });
+    }
+    validateEntity({ entity, kind: "poi", facts, countryByEntityId, cityByEntityId, exceptionByScope: normalizedExceptions.byScope, usedExceptionIds, typePolicy: normalizedTypePolicy, violations });
+  }
 
   for (const entry of normalizedExceptions.byScope.values()) {
     if (!usedExceptionIds.has(entry.exceptionId)) {

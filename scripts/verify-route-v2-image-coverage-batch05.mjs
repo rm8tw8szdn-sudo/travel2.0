@@ -10,6 +10,19 @@ const ROOT = path.resolve(import.meta.dirname, "..");
 const require = createRequire(import.meta.url);
 const read = (relativePath) => fs.readFileSync(path.join(ROOT, relativePath), "utf8");
 const manifest = JSON.parse(read("data/route-v2/images/image-coverage-manifest.json"));
+const provenanceByPath = new Map();
+function exactProvenance(record) {
+  assert.match(record.sourcePath, /^data\/route-v2\/images\/batch\d{2}-dedicated-image-provenance\.json$/u);
+  if (!provenanceByPath.has(record.sourcePath)) {
+    provenanceByPath.set(record.sourcePath, JSON.parse(read(record.sourcePath)).assets || []);
+  }
+  return provenanceByPath.get(record.sourcePath).find((entry) => (
+    entry.entityId === record.entityId
+    && entry.wikidataId === record.wikidataId
+    && entry.assetPath === record.assetPath
+    && entry.processedHash === record.processedHash
+  ));
+}
 const repository = createPublishedKnowledgeEntityLayerRepository({ projectRoot: ROOT });
 const countries = repository.listCountries();
 const cities = repository.listCities();
@@ -88,7 +101,7 @@ for (const record of [...manifest.countries, ...manifest.cities, ...manifest.poi
     assert.equal(svg.includes(encodedName), true, record.assetPath);
   } else {
     assert.match(record.sourceUrl, /^https:\/\/commons\.wikimedia\.org\/wiki\/File:/u);
-    assert.equal(record.sourcePath, "data/route-v2/images/batch06-dedicated-image-provenance.json");
+    assert.ok(exactProvenance(record), `${record.entityId}:dedicated provenance must bind the exact entity, asset, and hash`);
     assert.match(record.license, /^(?:CC BY|CC0|Public domain)/iu);
     assert.match(record.format, /^(?:jpe?g|png|webp)$/u);
     assert(record.bytes <= 300_000, `${record.assetPath}:dedicated asset exceeds 300KB`);

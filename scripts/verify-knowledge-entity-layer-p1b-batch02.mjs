@@ -47,10 +47,10 @@ function readText(relativePath) {
 const protectedAbsolutePaths = PROTECTED_PATHS.map((relativePath) => path.resolve(PROJECT_ROOT, relativePath));
 const protectedBefore = statesFor(protectedAbsolutePaths);
 assert.deepEqual(KNOWLEDGE_ENTITY_LAYER_PUBLISHED_TOTALS, {
-  countries: 55,
-  cities: 306,
-  pois: 2101,
-  total: 2462,
+  countries: 79,
+  cities: 601,
+  pois: 4038,
+  total: 4718,
 });
 assert.deepEqual(KNOWLEDGE_ENTITY_LAYER_PUBLISHED_ASSETS.cities, [
   "data/knowledge/cities.p1b-pilot.json",
@@ -71,6 +71,14 @@ assert.deepEqual(KNOWLEDGE_ENTITY_LAYER_PUBLISHED_ASSETS.cities, [
   "data/knowledge/batches/cities.p1b-batch15.json",
   "data/knowledge/batches/cities.p1b-batch16.json",
   "data/knowledge/batches/cities.p1b-batch17.json",
+  "data/knowledge/batches/cities.p1b-batch18.json",
+  "data/knowledge/batches/cities.p1b-batch19.json",
+  "data/knowledge/batches/cities.p1b-batch20.json",
+  "data/knowledge/batches/cities.p1b-batch21.json",
+  "data/knowledge/batches/cities.p1b-batch22.json",
+  "data/knowledge/batches/cities.p1b-batch23.json",
+  "data/knowledge/batches/cities.p1b-batch24.json",
+  "data/knowledge/batches/cities.p1b-batch25.json",
 ]);
 assert.deepEqual(KNOWLEDGE_ENTITY_LAYER_PUBLISHED_ASSETS.pois, [
   "data/knowledge/pois.p1b-pilot.json",
@@ -91,6 +99,14 @@ assert.deepEqual(KNOWLEDGE_ENTITY_LAYER_PUBLISHED_ASSETS.pois, [
   "data/knowledge/batches/pois.p1b-batch15.json",
   "data/knowledge/batches/pois.p1b-batch16.json",
   "data/knowledge/batches/pois.p1b-batch17.json",
+  "data/knowledge/batches/pois.p1b-batch18.json",
+  "data/knowledge/batches/pois.p1b-batch19.json",
+  "data/knowledge/batches/pois.p1b-batch20.json",
+  "data/knowledge/batches/pois.p1b-batch21.json",
+  "data/knowledge/batches/pois.p1b-batch22.json",
+  "data/knowledge/batches/pois.p1b-batch23.json",
+  "data/knowledge/batches/pois.p1b-batch24.json",
+  "data/knowledge/batches/pois.p1b-batch25.json",
 ]);
 
 const repository = createPublishedKnowledgeEntityLayerRepository({ projectRoot: PROJECT_ROOT });
@@ -99,17 +115,17 @@ const countries = repository.listCountries();
 const cities = repository.listCities();
 const pois = repository.listPois();
 const entities = [...countries, ...cities, ...pois];
-assert.equal(countries.length, 55);
-assert.equal(cities.length, 306);
-assert.equal(pois.length, 2101);
-assert.equal(entities.length, 2462);
+assert.equal(countries.length, 79);
+assert.equal(cities.length, 601);
+assert.equal(pois.length, 4038);
+assert.equal(entities.length, 4718);
 assert.equal(repository.validateParentReferences().accepted, true);
 assert.deepEqual(repositoryAgain.listCountries(), countries);
 assert.deepEqual(repositoryAgain.listCities(), cities);
 assert.deepEqual(repositoryAgain.listPois(), pois);
-assert.equal(new Set(entities.map((entity) => entity.entityId)).size, 2462);
-assert.equal(new Set(cities.map((city) => city.wikidataId)).size, 306);
-assert.equal(new Set(pois.map((poi) => poi.wikidataId)).size, 2101);
+assert.equal(new Set(entities.map((entity) => entity.entityId)).size, 4718);
+assert.equal(new Set(cities.map((city) => city.wikidataId)).size, 601);
+assert.equal(new Set(pois.map((poi) => poi.wikidataId)).size, 4038);
 
 const countryIds = new Set(countries.map((country) => country.entityId));
 const cityIds = new Set(cities.map((city) => city.entityId));

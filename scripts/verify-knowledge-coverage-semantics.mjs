@@ -20,15 +20,17 @@ const report = createKnowledgeCoverageSemantics({
   seasonEvidence: readJsonl("data/route-v2/evidence-seed/season-evidence.jsonl"),
 });
 
-assert.equal(report.catalogCountries, 59);
-assert.equal(report.plannableCountries, 58);
-assert.equal(report.evidenceBackedCountries, 55);
+assert.equal(report.catalogCountries, 79);
+assert.equal(report.plannableCountries, 78);
+assert.equal(report.evidenceBackedCountries, 75);
 assert.equal(report.countryOnlyCountries, 1);
-assert.equal(report.plannablePercentage, 98.3);
-assert.equal(report.evidenceBackedPercentage, 93.2);
+assert.equal(report.plannablePercentage, 98.7);
+assert.equal(report.evidenceBackedPercentage, 94.9);
 assert.equal(report.plannableCountryCodes.includes("NO"), true, "Batch 05 Norway City/POI depth must be reflected as plannable");
 assert.equal(report.countryOnlyCountryCodes.includes("NO"), false);
 assert.equal(report.plannableCountryCodes.includes("AD"), true, "Batch 06 Andorra City/POI depth must be reflected as plannable");
+assert.equal(report.plannableCountryCodes.includes("AL"), true, "Batch 07 Albania City/POI depth must be reflected as plannable");
+assert.equal(report.plannableCountryCodes.includes("GT"), true, "Batch 07 Guatemala City/POI depth must be reflected as plannable");
 assert.deepEqual(report.countryOnlyCountryCodes, ["CN"], "China must remain the only Catalog-only country under the unchanged Search V1 policy");
 assert(report.catalogCountries > report.plannableCountries, "catalog presence must not be reported as planning coverage");
 

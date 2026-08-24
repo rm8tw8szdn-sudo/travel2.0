@@ -77,14 +77,20 @@ assert(accentFoldedCollisions.some((entry) => entry.alias === "lagos"), "Lagos c
 assert(accentFoldedCollisions.some((entry) => entry.alias === "cordoba"), "Cordoba collision must be inventoried after accent folding");
 
 const qualifiedCases = [
+  { id: "fez-morocco-legacy-identity", query: "Fez Morocco 7 days", requiredIds: ["Q80985"], countryCodes: ["MA"] },
+  { id: "marrakesh-morocco-legacy-identity", query: "Marrakesh Morocco 7 days", requiredIds: ["Q101625"], countryCodes: ["MA"] },
   { id: "santiago-chile", query: "Santiago Chile 7 days", requiredIds: ["Q2887"], countryCodes: ["CL"] },
   { id: "santiago-chile-buenos-aires", query: "Santiago de Chile Buenos Aires 14 days", requiredIds: ["Q2887", "Q1486"], countryCodes: ["CL", "AR"] },
   { id: "lagos-nigeria", query: "Lagos Nigeria 7 days", requiredIds: ["Q8673"], countryCodes: ["NG"] },
   { id: "cordoba-spain", query: "Cordoba Spain 7 days", requiredIds: ["Q5818"], countryCodes: ["ES"] },
   { id: "lagos-portugal", query: "Lagos Portugal 7 days", requiredIds: ["Q732548"], countryCodes: ["PT"] },
   { id: "cordoba-argentina", query: "Cordoba Argentina 7 days", requiredIds: ["Q44210"], countryCodes: ["AR"] },
+  { id: "rabat-malta", query: "Rabat Malta 7 days", requiredIds: ["Q44381"], countryCodes: ["MT"] },
+  { id: "rabat-morocco", query: "Rabat Morocco 7 days", requiredIds: ["Q3551"], countryCodes: ["MA"] },
+  { id: "colon-panama", query: "Colón Panama 7 days", requiredIds: ["Q12825018"], countryCodes: ["PA"] },
+  { id: "cologne-germany", query: "Cologne Germany 7 days", requiredIds: ["Q365"], countryCodes: ["DE"] },
 ];
-const unqualifiedCases = ["Santiago 7 days", "Lagos 7 days", "Cordoba 7 days", "杜林 7 days"];
+const unqualifiedCases = ["Santiago 7 days", "Lagos 7 days", "Cordoba 7 days", "Rabat 7 days", "杜林 7 days", "科隆 7 days"];
 const harness = createExplicitConstraintHarness("homonymous-city-disambiguation");
 const results = [];
 let countryFilterMutationKilled = false;

@@ -10,6 +10,19 @@ const manifest = JSON.parse(fs.readFileSync(MANIFEST_PATH, "utf8"));
 
 const sha256 = (value) => crypto.createHash("sha256").update(value).digest("hex");
 const read = (relativePath) => fs.readFileSync(path.join(ROOT, relativePath), "utf8");
+const provenanceByPath = new Map();
+function exactProvenance(asset) {
+  assert.match(asset.sourcePath, /^data\/route-v2\/images\/batch\d{2}-dedicated-image-provenance\.json$/u);
+  if (!provenanceByPath.has(asset.sourcePath)) {
+    provenanceByPath.set(asset.sourcePath, JSON.parse(read(asset.sourcePath)).assets || []);
+  }
+  return provenanceByPath.get(asset.sourcePath).find((entry) => (
+    entry.entityId === asset.entityId
+    && entry.wikidataId === asset.wikidataId
+    && entry.assetPath === asset.assetPath
+    && entry.processedHash === asset.processedHash
+  ));
+}
 const assets = [...manifest.countries, ...manifest.cities, ...manifest.pois]
   .filter((record) => record.assetPath && record.assetPath !== manifest.fallbackPolicy.city)
   .map((record) => ({ ...record, bytesBuffer: fs.readFileSync(path.join(ROOT, record.assetPath)) }));
@@ -42,7 +55,7 @@ for (const asset of assets) {
     assert.equal(asset.assetKind, "verified-destination-image");
     assert.match(asset.semanticScope, /^exact-(?:city|poi)$/u);
     assert.match(asset.sourceUrl, /^https:\/\/commons\.wikimedia\.org\/wiki\/File:/u);
-    assert.equal(asset.sourcePath, "data/route-v2/images/batch06-dedicated-image-provenance.json");
+    assert.ok(exactProvenance(asset), `${asset.entityId}:dedicated provenance must bind the exact entity, asset, and hash`);
     assert.match(asset.license, /^(?:CC BY|CC0|Public domain)/iu);
     assert(asset.dimensions.width >= 640 && asset.dimensions.height > 0, `${asset.assetPath}:insufficient-raster-dimensions`);
     assert(asset.bytes > 8_000 && asset.bytes <= 300_000, `${asset.assetPath}:unexpected-raster-size`);

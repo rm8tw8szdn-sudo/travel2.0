@@ -29,6 +29,8 @@ for (const name of [
   "knowledge-expansion-batch05-adversarial-semantics",
   "knowledge-expansion-batch05-route-consumption",
   "route-v2-image-coverage-batch05",
+  "route-v2-image-debt-elimination",
+  "route-v2-image-provenance-completeness",
   "route-v2-image-asset-baseline",
   "route-v2-image-quality-adversarial",
   "route-v2-city-detail-image-fallback",
@@ -56,6 +58,10 @@ const reportConsistencyStage = MANDATORY_PRELAUNCH_VERIFIERS.find((stage) => sta
 assert(reportConsistencyStage, "Batch 05 report consistency verification must be registered");
 const imageBaselineStage = MANDATORY_PRELAUNCH_VERIFIERS.find((stage) => stage.name === "route-v2-image-asset-baseline");
 assert(imageBaselineStage, "Image asset baseline verification must be registered");
+const imageDebtStage = MANDATORY_PRELAUNCH_VERIFIERS.find((stage) => stage.name === "route-v2-image-debt-elimination");
+assert(imageDebtStage, "Image debt verification must be registered");
+const imageProvenanceStage = MANDATORY_PRELAUNCH_VERIFIERS.find((stage) => stage.name === "route-v2-image-provenance-completeness");
+assert(imageProvenanceStage, "Image provenance completeness verification must be registered");
 const homonymousCityStage = MANDATORY_PRELAUNCH_VERIFIERS.find((stage) => stage.name === "homonymous-city-country-disambiguation");
 assert(homonymousCityStage, "Homonymous City disambiguation verification must be registered");
 const batch07ReportConsistencyStage = MANDATORY_PRELAUNCH_VERIFIERS.find((stage) => stage.name === "knowledge-expansion-batch07-report-consistency");
@@ -133,6 +139,36 @@ try {
 assert(imageBaselineFailure instanceof MandatoryVerifierStageError);
 assert.equal(imageBaselineFailure.stageResult.name, "route-v2-image-asset-baseline");
 assert.equal(imageBaselineFailure.stageResult.exitCode, 29);
+
+let imageDebtFailure = null;
+try {
+  runMandatoryVerifierStage({
+    stage: imageDebtStage,
+    projectRoot,
+    env: process.env,
+    spawnImpl: () => ({ status: 41, signal: null, stdout: "", stderr: "controlled image debt failure\n" }),
+  });
+} catch (error) {
+  imageDebtFailure = error;
+}
+assert(imageDebtFailure instanceof MandatoryVerifierStageError);
+assert.equal(imageDebtFailure.stageResult.name, "route-v2-image-debt-elimination");
+assert.equal(imageDebtFailure.stageResult.exitCode, 41);
+
+let imageProvenanceFailure = null;
+try {
+  runMandatoryVerifierStage({
+    stage: imageProvenanceStage,
+    projectRoot,
+    env: process.env,
+    spawnImpl: () => ({ status: 43, signal: null, stdout: "{\"status\":\"PASS\"}\n", stderr: "controlled image provenance failure\n" }),
+  });
+} catch (error) {
+  imageProvenanceFailure = error;
+}
+assert(imageProvenanceFailure instanceof MandatoryVerifierStageError);
+assert.equal(imageProvenanceFailure.stageResult.name, "route-v2-image-provenance-completeness");
+assert.equal(imageProvenanceFailure.stageResult.exitCode, 43);
 
 let homonymousCityFailure = null;
 try {
@@ -213,6 +249,7 @@ process.stdout.write(`${JSON.stringify({
   injectedExitCode: 23,
   productionRunnerExercised: true,
   imageBaselineFailurePropagated: imageBaselineFailure.stageResult.exitCode === 29,
+  imageDebtFailurePropagated: imageDebtFailure.stageResult.exitCode === 41,
   homonymousCityFailurePropagated: homonymousCityFailure.stageResult.exitCode === 31,
   batch07ReportFailurePropagated: batch07ReportFailure.stageResult.exitCode === 37,
   reportPoiMutationPropagated: reportPoiMutation.exitCode !== 0,

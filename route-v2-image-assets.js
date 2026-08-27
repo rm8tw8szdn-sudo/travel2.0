@@ -119,6 +119,14 @@
     return "";
   }
 
+  function localPoiCover(destination = {}) {
+    const entityId = String(destination.entityId || destination.destinationEntityId || "").trim();
+    const coverage = global.RouteV2ImageCoverage?.poiByEntityId?.[entityId];
+    if (coverage?.status === "imageReady" && coverage.semanticScope === "exact-poi") return coverage.assetPath;
+    if (coverage?.status === "placeholder" && coverage.semanticScope === "neutral-placeholder") return coverage.assetPath;
+    return "";
+  }
+
   function localCountryCover(country = {}) {
     const code = String(country.countryCode || country.iso2 || "").trim().toUpperCase();
     const coverage = global.RouteV2ImageCoverage?.countryByCode?.[code];
@@ -155,6 +163,8 @@
   function resolveLocalDestinationCover(destination = {}, record = {}) {
     const cityUrl = localCityCover(destination);
     if (cityUrl) return localResolution(cityUrl, "local-city");
+    const poiUrl = localPoiCover(destination);
+    if (poiUrl) return localResolution(poiUrl, "local-poi");
     return localResolution(DEFAULT_CITY_PLACEHOLDER, "local-placeholder");
   }
 

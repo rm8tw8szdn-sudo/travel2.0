@@ -14,6 +14,7 @@ const BATCH = String(process.argv.find((value) => value.startsWith("--batch="))?
 if (!["06", "07"].includes(BATCH)) throw new Error("batch-argument-invalid:--batch=06|07");
 const BATCH_AUDIT_PATH = `ROUTE_V2_IMAGE_COVERAGE_BACKFILL_BATCH${BATCH}_AUDIT.md`;
 const PROVENANCE_PATH = `data/route-v2/images/batch${BATCH}-dedicated-image-provenance.json`;
+const DEBT_PROVENANCE_PATH = "data/route-v2/images/image-debt-elimination-provenance.json";
 const BATCH_BASELINE_PATH = `data/knowledge/reports/knowledge-expansion-batch${BATCH}-baseline.json`;
 const RETRIEVED_AT = BATCH === "07" ? "2026-08-24T05:00:00.000Z" : "2026-08-17T09:00:00.000Z";
 const BATCH05_CODES = new Set(["GB", "IE", "CZ", "HU", "HR", "NO", "SE", "FI", "DK", "BE", "PL", "SI", "VN", "MY", "ID", "PH", "CA", "US", "MX", "PE"]);
@@ -97,8 +98,17 @@ const plannableCountries = countries.filter((country) => {
 }).sort((left, right) => left.isoAlpha2.localeCompare(right.isoAlpha2, "en"));
 
 const provenance = JSON.parse(await readFile(path.join(ROOT, PROVENANCE_PATH), "utf8"));
+const debtProvenance = fs.existsSync(path.join(ROOT, DEBT_PROVENANCE_PATH))
+  ? JSON.parse(await readFile(path.join(ROOT, DEBT_PROVENANCE_PATH), "utf8"))
+  : { assets: [] };
 const batchBaseline = JSON.parse(await readFile(path.join(ROOT, BATCH_BASELINE_PATH), "utf8"));
-const dedicatedByEntityId = new Map((provenance.assets || []).map((record) => [record.entityId, record]));
+const dedicatedRecords = [
+  ...(provenance.assets || []).map((record) => ({ ...record, provenancePath: PROVENANCE_PATH })),
+  ...(debtProvenance.assets || [])
+    .filter((record) => record.status === "imageReady" && record.visualAuditStatus === "passed")
+    .map((record) => ({ ...record, provenancePath: DEBT_PROVENANCE_PATH })),
+];
+const dedicatedByEntityId = new Map(dedicatedRecords.map((record) => [record.entityId, record]));
 const countryRecords = [];
 const cityRecords = [];
 const poiRecords = [];
@@ -139,7 +149,7 @@ function destinationRecord(entity, { entityType, countryCode, parentCityEntityId
     assetType: "dedicated-destination-image",
     isDedicated: true,
     isPlaceholder: false,
-    sourcePath: PROVENANCE_PATH,
+    sourcePath: dedicated.provenancePath,
     sourceUrl: dedicated.sourceUrl,
     license: dedicated.license,
     sourceHash: dedicated.sourceHash,
@@ -161,7 +171,7 @@ function destinationRecord(entity, { entityType, countryCode, parentCityEntityId
     needsBackfill: false,
     assetKind: "verified-destination-image",
     semanticScope: entityType === "City" ? "exact-city" : "exact-poi",
-    visualTruthStatus: "verified-entity-p18-photograph",
+    visualTruthStatus: dedicated.visualTruthStatus || "verified-entity-p18-photograph",
     rights: dedicated.rights,
     ...metadata,
   };

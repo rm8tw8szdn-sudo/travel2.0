@@ -216,7 +216,8 @@ function lfsInventory(root) {
 function referenceKind(sourcePath) {
   if (/^scripts\/verify-/u.test(sourcePath)) return "test";
   if (/^data\/knowledge\/(?:raw|reports|batches)\//u.test(sourcePath)) return "audit";
-  if (/^data\/route-v2\/images\/batch\d{2}-dedicated-image-provenance\.json$/u.test(sourcePath)) return "audit";
+  if (/^data\/route-v2\/images\/(?:batch\d{2}-dedicated-image-provenance|image-debt-[a-z0-9-]+)\.json$/u.test(sourcePath)) return "audit";
+  if (/^data\/route-v2\/images\/audit\//u.test(sourcePath)) return "audit";
   if (/^(?:docs\/|ROUTE_V2_.*\.md$)/u.test(sourcePath) || sourcePath.endsWith(".md")) return "audit";
   if (/^scripts\//u.test(sourcePath)) return "build";
   if (sourcePath === FORMAL_MANIFEST_PATH || sourcePath === "route-v2-image-coverage.js") return "manifest";

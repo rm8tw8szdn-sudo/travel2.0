@@ -1,0 +1,3193 @@
+{
+  "schemaVersion": "route-v2-image-debt-recovery-inventory-v1",
+  "frozenAt": "2026-08-24T12:00:00.000Z",
+  "firstPassInventorySha256": "dbe366d476770c915a980ed787996b5ae885ccce47f3d088ef18b57d2b559ce2",
+  "firstPassProvenanceSha256": "569e9a8485cc3acdea7c05b6aa78643991d9564b2267da6aa39951446c481448",
+  "sourceFingerprint": "19e9884d48ace60c2a38bd87316778b6b57764c5b69dae297738306a9f53a1c5",
+  "startingNeedsBackfill": 119,
+  "cityCount": 82,
+  "corePoiCount": 37,
+  "records": [
+    {
+      "entityId": "city-90d70af2967179eb",
+      "qid": "Q44210",
+      "entityType": "City",
+      "canonicalNameEn": "Córdoba",
+      "countryCode": "AR",
+      "countryNameEn": "Argentina",
+      "parentCityEntityId": null,
+      "parentCityQid": null,
+      "parentCityNameEn": null,
+      "priority": "high",
+      "routeExposure": "high",
+      "isCorePoi": false,
+      "firstPass": {
+        "reasonCode": "IMAGE_TOO_LOW_QUALITY",
+        "reasonDetail": "disallowed-collage-or-montage",
+        "candidateTitles": [
+          "Montaje CBA 9.jpg"
+        ],
+        "visualAuditId": null
+      },
+      "searchKeys": [
+        "Q44210",
+        "Córdoba",
+        "Cordoba",
+        "Córdoba Argentina",
+        "Cordoba Argentina"
+      ]
+    },
+    {
+      "entityId": "city-5b3abda833b694fd",
+      "qid": "Q52535",
+      "entityType": "City",
+      "canonicalNameEn": "Rosario",
+      "countryCode": "AR",
+      "countryNameEn": "Argentina",
+      "parentCityEntityId": null,
+      "parentCityQid": null,
+      "parentCityNameEn": null,
+      "priority": "normal",
+      "routeExposure": "standard",
+      "isCorePoi": false,
+      "firstPass": {
+        "reasonCode": "IMAGE_TOO_LOW_QUALITY",
+        "reasonDetail": "source-dimensions:439x600",
+        "candidateTitles": [
+          "Montaje Rosario 01.jpg"
+        ],
+        "visualAuditId": null
+      },
+      "searchKeys": [
+        "Q52535",
+        "Rosario",
+        "Rosario Argentina"
+      ]
+    },
+    {
+      "entityId": "city-40ed56e2195d0562",
+      "qid": "Q36307",
+      "entityType": "City",
+      "canonicalNameEn": "Salta",
+      "countryCode": "AR",
+      "countryNameEn": "Argentina",
+      "parentCityEntityId": null,
+      "parentCityQid": null,
+      "parentCityNameEn": null,
+      "priority": "normal",
+      "routeExposure": "standard",
+      "isCorePoi": false,
+      "firstPass": {
+        "reasonCode": "IMAGE_TOO_LOW_QUALITY",
+        "reasonDetail": "source-dimensions:347x527",
+        "candidateTitles": [
+          "Collage Salta.PNG"
+        ],
+        "visualAuditId": null
+      },
+      "searchKeys": [
+        "Q36307",
+        "Salta",
+        "Salta Argentina"
+      ]
+    },
+    {
+      "entityId": "city-f8173292543b80e1",
+      "qid": "Q6509",
+      "entityType": "City",
+      "canonicalNameEn": "Burgas",
+      "countryCode": "BG",
+      "countryNameEn": "Bulgaria",
+      "parentCityEntityId": null,
+      "parentCityQid": null,
+      "parentCityNameEn": null,
+      "priority": "high",
+      "routeExposure": "high",
+      "isCorePoi": false,
+      "firstPass": {
+        "reasonCode": "IMAGE_TOO_LOW_QUALITY",
+        "reasonDetail": "disallowed-collage-or-montage",
+        "candidateTitles": [
+          "Burgas-Collage D.jpg"
+        ],
+        "visualAuditId": null
+      },
+      "searchKeys": [
+        "Q6509",
+        "Burgas",
+        "Burgas Bulgaria"
+      ]
+    },
+    {
+      "entityId": "city-165cdce01fb56e96",
+      "qid": "Q160173",
+      "entityType": "City",
+      "canonicalNameEn": "Ruse",
+      "countryCode": "BG",
+      "countryNameEn": "Bulgaria",
+      "parentCityEntityId": null,
+      "parentCityQid": null,
+      "parentCityNameEn": null,
+      "priority": "normal",
+      "routeExposure": "standard",
+      "isCorePoi": false,
+      "firstPass": {
+        "reasonCode": "IMAGE_TOO_LOW_QUALITY",
+        "reasonDetail": "disallowed-collage-or-montage",
+        "candidateTitles": [
+          "Collage-ruse.png"
+        ],
+        "visualAuditId": null
+      },
+      "searchKeys": [
+        "Q160173",
+        "Ruse",
+        "Ruse Bulgaria"
+      ]
+    },
+    {
+      "entityId": "city-27f1893e7d82b85d",
+      "qid": "Q40236",
+      "entityType": "City",
+      "canonicalNameEn": "Manaus",
+      "countryCode": "BR",
+      "countryNameEn": "Brazil",
+      "parentCityEntityId": null,
+      "parentCityQid": null,
+      "parentCityNameEn": null,
+      "priority": "normal",
+      "routeExposure": "standard",
+      "isCorePoi": false,
+      "firstPass": {
+        "reasonCode": "IMAGE_TOO_LOW_QUALITY",
+        "reasonDetail": "source-dimensions:550x700",
+        "candidateTitles": [
+          "Collage Manaus.png"
+        ],
+        "visualAuditId": null
+      },
+      "searchKeys": [
+        "Q40236",
+        "Manaus",
+        "Manaus Brazil"
+      ]
+    },
+    {
+      "entityId": "city-ebab6142ff8d73f7",
+      "qid": "Q1930",
+      "entityType": "City",
+      "canonicalNameEn": "Ottawa",
+      "countryCode": "CA",
+      "countryNameEn": "Canada",
+      "parentCityEntityId": null,
+      "parentCityQid": null,
+      "parentCityNameEn": null,
+      "priority": "normal",
+      "routeExposure": "standard",
+      "isCorePoi": false,
+      "firstPass": {
+        "reasonCode": "IMAGE_TOO_LOW_QUALITY",
+        "reasonDetail": "disallowed-collage-or-montage",
+        "candidateTitles": [
+          "Ottawa Montage 2020.jpg"
+        ],
+        "visualAuditId": null
+      },
+      "searchKeys": [
+        "Q1930",
+        "Ottawa",
+        "Ottawa Canada"
+      ]
+    },
+    {
+      "entityId": "city-5c6be2bb844c746b",
+      "qid": "Q2132",
+      "entityType": "City",
+      "canonicalNameEn": "Victoria",
+      "countryCode": "CA",
+      "countryNameEn": "Canada",
+      "parentCityEntityId": null,
+      "parentCityQid": null,
+      "parentCityNameEn": null,
+      "priority": "normal",
+      "routeExposure": "standard",
+      "isCorePoi": false,
+      "firstPass": {
+        "reasonCode": "IMAGE_TOO_LOW_QUALITY",
+        "reasonDetail": "disallowed-collage-or-montage",
+        "candidateTitles": [
+          "Victoria Montage 2020.jpg"
+        ],
+        "visualAuditId": null
+      },
+      "searchKeys": [
+        "Q2132",
+        "Victoria",
+        "Victoria Canada"
+      ]
+    },
+    {
+      "entityId": "city-3edf03aa9cb40fef",
+      "qid": "Q14467",
+      "entityType": "City",
+      "canonicalNameEn": "La Serena",
+      "countryCode": "CL",
+      "countryNameEn": "Chile",
+      "parentCityEntityId": null,
+      "parentCityQid": null,
+      "parentCityNameEn": null,
+      "priority": "normal",
+      "routeExposure": "standard",
+      "isCorePoi": false,
+      "firstPass": {
+        "reasonCode": "IMAGE_TOO_LOW_QUALITY",
+        "reasonDetail": "disallowed-collage-or-montage",
+        "candidateTitles": [
+          "Montaje de La Serena.jpg"
+        ],
+        "visualAuditId": null
+      },
+      "searchKeys": [
+        "Q14467",
+        "La Serena",
+        "La Serena Chile"
+      ]
+    },
+    {
+      "entityId": "city-d6b9912a793aac8c",
+      "qid": "Q184345",
+      "entityType": "City",
+      "canonicalNameEn": "Viña del Mar",
+      "countryCode": "CL",
+      "countryNameEn": "Chile",
+      "parentCityEntityId": null,
+      "parentCityQid": null,
+      "parentCityNameEn": null,
+      "priority": "normal",
+      "routeExposure": "standard",
+      "isCorePoi": false,
+      "firstPass": {
+        "reasonCode": "IMAGE_TOO_LOW_QUALITY",
+        "reasonDetail": "disallowed-collage-or-montage",
+        "candidateTitles": [
+          "Montaje de Viña del Mar (202103280).jpg"
+        ],
+        "visualAuditId": null
+      },
+      "searchKeys": [
+        "Q184345",
+        "Viña del Mar",
+        "Vina del Mar",
+        "Viña del Mar Chile",
+        "Vina del Mar Chile"
+      ]
+    },
+    {
+      "entityId": "city-f0301ca1cc536970",
+      "qid": "Q171882",
+      "entityType": "City",
+      "canonicalNameEn": "Larnaca",
+      "countryCode": "CY",
+      "countryNameEn": "Cyprus",
+      "parentCityEntityId": null,
+      "parentCityQid": null,
+      "parentCityNameEn": null,
+      "priority": "high",
+      "routeExposure": "high",
+      "isCorePoi": false,
+      "firstPass": {
+        "reasonCode": "LICENSE_UNVERIFIED",
+        "reasonDetail": "FAL",
+        "candidateTitles": [
+          "Larnaca 01-2017 img27 Finikoudes.jpg"
+        ],
+        "visualAuditId": null
+      },
+      "searchKeys": [
+        "Q171882",
+        "Larnaca",
+        "Larnaca Cyprus"
+      ]
+    },
+    {
+      "entityId": "city-329b0cbe28d8c1f9",
+      "qid": "Q3856",
+      "entityType": "City",
+      "canonicalNameEn": "Nicosia",
+      "countryCode": "CY",
+      "countryNameEn": "Cyprus",
+      "parentCityEntityId": null,
+      "parentCityQid": null,
+      "parentCityNameEn": null,
+      "priority": "high",
+      "routeExposure": "high",
+      "isCorePoi": false,
+      "firstPass": {
+        "reasonCode": "LICENSE_UNVERIFIED",
+        "reasonDetail": "FAL",
+        "candidateTitles": [
+          "Nicosia 01-2017 img23 View from Shacolas Tower.jpg"
+        ],
+        "visualAuditId": null
+      },
+      "searchKeys": [
+        "Q3856",
+        "Nicosia",
+        "Nicosia Cyprus"
+      ]
+    },
+    {
+      "entityId": "city-3ddab7f670e90afa",
+      "qid": "Q25319",
+      "entityType": "City",
+      "canonicalNameEn": "Aarhus",
+      "countryCode": "DK",
+      "countryNameEn": "Denmark",
+      "parentCityEntityId": null,
+      "parentCityQid": null,
+      "parentCityNameEn": null,
+      "priority": "high",
+      "routeExposure": "high",
+      "isCorePoi": false,
+      "firstPass": {
+        "reasonCode": "LICENSE_UNVERIFIED",
+        "reasonDetail": "Copyrighted free use",
+        "candidateTitles": [
+          "Århus city trafikhavn.jpg"
+        ],
+        "visualAuditId": null
+      },
+      "searchKeys": [
+        "Q25319",
+        "Aarhus",
+        "Aarhus Denmark"
+      ]
+    },
+    {
+      "entityId": "city-a880e930de457d8d",
+      "qid": "Q43509",
+      "entityType": "City",
+      "canonicalNameEn": "Guayaquil",
+      "countryCode": "EC",
+      "countryNameEn": "Ecuador",
+      "parentCityEntityId": null,
+      "parentCityQid": null,
+      "parentCityNameEn": null,
+      "priority": "high",
+      "routeExposure": "high",
+      "isCorePoi": false,
+      "firstPass": {
+        "reasonCode": "IMAGE_TOO_LOW_QUALITY",
+        "reasonDetail": "visual-audit-disallowed-collage",
+        "candidateTitles": [],
+        "visualAuditId": "image-debt-visual-city-a880e930de457d8d-ab88faa33678"
+      },
+      "searchKeys": [
+        "Q43509",
+        "Guayaquil",
+        "Guayaquil Ecuador"
+      ]
+    },
+    {
+      "entityId": "city-50abf9d4187fe5d3",
+      "qid": "Q990738",
+      "entityType": "City",
+      "canonicalNameEn": "Manta",
+      "countryCode": "EC",
+      "countryNameEn": "Ecuador",
+      "parentCityEntityId": null,
+      "parentCityQid": null,
+      "parentCityNameEn": null,
+      "priority": "low",
+      "routeExposure": "long-tail",
+      "isCorePoi": false,
+      "firstPass": {
+        "reasonCode": "IMAGE_TOO_LOW_QUALITY",
+        "reasonDetail": "disallowed-collage-or-montage",
+        "candidateTitles": [
+          "Collage Manta.png"
+        ],
+        "visualAuditId": null
+      },
+      "searchKeys": [
+        "Q990738",
+        "Manta",
+        "Manta Ecuador"
+      ]
+    },
+    {
+      "entityId": "city-c94bd707ab76e354",
+      "qid": "Q478675",
+      "entityType": "City",
+      "canonicalNameEn": "Riobamba",
+      "countryCode": "EC",
+      "countryNameEn": "Ecuador",
+      "parentCityEntityId": null,
+      "parentCityQid": null,
+      "parentCityNameEn": null,
+      "priority": "normal",
+      "routeExposure": "standard",
+      "isCorePoi": false,
+      "firstPass": {
+        "reasonCode": "IMAGE_TOO_LOW_QUALITY",
+        "reasonDetail": "disallowed-collage-or-montage",
+        "candidateTitles": [
+          "Collage Riobamba.png"
+        ],
+        "visualAuditId": null
+      },
+      "searchKeys": [
+        "Q478675",
+        "Riobamba",
+        "Riobamba Ecuador"
+      ]
+    },
+    {
+      "entityId": "city-91beaf179e63c192",
+      "qid": "Q102158",
+      "entityType": "City",
+      "canonicalNameEn": "Narva",
+      "countryCode": "EE",
+      "countryNameEn": "Estonia",
+      "parentCityEntityId": null,
+      "parentCityQid": null,
+      "parentCityNameEn": null,
+      "priority": "normal",
+      "routeExposure": "standard",
+      "isCorePoi": false,
+      "firstPass": {
+        "reasonCode": "LICENSE_UNVERIFIED",
+        "reasonDetail": "FAL",
+        "candidateTitles": [
+          "Narva asv2022-04 img09 Castle.jpg"
+        ],
+        "visualAuditId": null
+      },
+      "searchKeys": [
+        "Q102158",
+        "Narva",
+        "Narva Estonia"
+      ]
+    },
+    {
+      "entityId": "city-f5bb9646058c170d",
+      "qid": "Q13972",
+      "entityType": "City",
+      "canonicalNameEn": "Tartu",
+      "countryCode": "EE",
+      "countryNameEn": "Estonia",
+      "parentCityEntityId": null,
+      "parentCityQid": null,
+      "parentCityNameEn": null,
+      "priority": "high",
+      "routeExposure": "high",
+      "isCorePoi": false,
+      "firstPass": {
+        "reasonCode": "LICENSE_UNVERIFIED",
+        "reasonDetail": "FAL",
+        "candidateTitles": [
+          "Tartu asv2022-04 img31 View from Emajõe Tower.jpg"
+        ],
+        "visualAuditId": null
+      },
+      "searchKeys": [
+        "Q13972",
+        "Tartu",
+        "Tartu Estonia"
+      ]
+    },
+    {
+      "entityId": "city-6a7dac50969d1f2d",
+      "qid": "Q10313",
+      "entityType": "City",
+      "canonicalNameEn": "San Sebastián",
+      "countryCode": "ES",
+      "countryNameEn": "Spain",
+      "parentCityEntityId": null,
+      "parentCityQid": null,
+      "parentCityNameEn": null,
+      "priority": "normal",
+      "routeExposure": "standard",
+      "isCorePoi": false,
+      "firstPass": {
+        "reasonCode": "IMAGE_TOO_LOW_QUALITY",
+        "reasonDetail": "extreme-aspect-ratio:3.609",
+        "candidateTitles": [
+          "Donostia Igeldotik.jpg"
+        ],
+        "visualAuditId": null
+      },
+      "searchKeys": [
+        "Q10313",
+        "San Sebastián",
+        "San Sebastian",
+        "San Sebastián Spain",
+        "San Sebastian Spain"
+      ]
+    },
+    {
+      "entityId": "city-be32e388b00f18d0",
+      "qid": "Q856662",
+      "entityType": "City",
+      "canonicalNameEn": "Lautoka",
+      "countryCode": "FJ",
+      "countryNameEn": "Fiji",
+      "parentCityEntityId": null,
+      "parentCityQid": null,
+      "parentCityNameEn": null,
+      "priority": "high",
+      "routeExposure": "high",
+      "isCorePoi": false,
+      "firstPass": {
+        "reasonCode": "IMAGE_TOO_LOW_QUALITY",
+        "reasonDetail": "source-dimensions:602x428",
+        "candidateTitles": [
+          "Main road lautoka.jpg"
+        ],
+        "visualAuditId": null
+      },
+      "searchKeys": [
+        "Q856662",
+        "Lautoka",
+        "Lautoka Fiji"
+      ]
+    },
+    {
+      "entityId": "city-60de7be23c539c87",
+      "qid": "Q23482",
+      "entityType": "City",
+      "canonicalNameEn": "Marseille",
+      "countryCode": "FR",
+      "countryNameEn": "France",
+      "parentCityEntityId": null,
+      "parentCityQid": null,
+      "parentCityNameEn": null,
+      "priority": "normal",
+      "routeExposure": "standard",
+      "isCorePoi": false,
+      "firstPass": {
+        "reasonCode": "IMAGE_TOO_LOW_QUALITY",
+        "reasonDetail": "extreme-aspect-ratio:3.282",
+        "candidateTitles": [
+          "View of Marseille from Notre-Dame de la Garde 4.jpg"
+        ],
+        "visualAuditId": null
+      },
+      "searchKeys": [
+        "Q23482",
+        "Marseille",
+        "Marseille France"
+      ]
+    },
+    {
+      "entityId": "city-a5c13de09b454c1c",
+      "qid": "Q10686",
+      "entityType": "City",
+      "canonicalNameEn": "Belfast",
+      "countryCode": "GB",
+      "countryNameEn": "United Kingdom",
+      "parentCityEntityId": null,
+      "parentCityQid": null,
+      "parentCityNameEn": null,
+      "priority": "high",
+      "routeExposure": "high",
+      "isCorePoi": false,
+      "firstPass": {
+        "reasonCode": "IMAGE_TOO_LOW_QUALITY",
+        "reasonDetail": "source-dimensions:586x737",
+        "candidateTitles": [
+          "Wikibelfast1.jpg"
+        ],
+        "visualAuditId": null
+      },
+      "searchKeys": [
+        "Q10686",
+        "Belfast",
+        "Belfast United Kingdom"
+      ]
+    },
+    {
+      "entityId": "city-28b5dc0644526a55",
+      "qid": "Q23154",
+      "entityType": "City",
+      "canonicalNameEn": "Bristol",
+      "countryCode": "GB",
+      "countryNameEn": "United Kingdom",
+      "parentCityEntityId": null,
+      "parentCityQid": null,
+      "parentCityNameEn": null,
+      "priority": "normal",
+      "routeExposure": "standard",
+      "isCorePoi": false,
+      "firstPass": {
+        "reasonCode": "IMAGE_TOO_LOW_QUALITY",
+        "reasonDetail": "source-dimensions:378x541",
+        "candidateTitles": [
+          "Bristol landmarks collage.png"
+        ],
+        "visualAuditId": null
+      },
+      "searchKeys": [
+        "Q23154",
+        "Bristol",
+        "Bristol United Kingdom"
+      ]
+    },
+    {
+      "entityId": "city-921e6278451dd6d8",
+      "qid": "Q10690",
+      "entityType": "City",
+      "canonicalNameEn": "Cardiff",
+      "countryCode": "GB",
+      "countryNameEn": "United Kingdom",
+      "parentCityEntityId": null,
+      "parentCityQid": null,
+      "parentCityNameEn": null,
+      "priority": "high",
+      "routeExposure": "high",
+      "isCorePoi": false,
+      "firstPass": {
+        "reasonCode": "IMAGE_TOO_LOW_QUALITY",
+        "reasonDetail": "visual-audit-disallowed-collage",
+        "candidateTitles": [],
+        "visualAuditId": "image-debt-visual-city-921e6278451dd6d8-5d03a8195164"
+      },
+      "searchKeys": [
+        "Q10690",
+        "Cardiff",
+        "Cardiff United Kingdom"
+      ]
+    },
+    {
+      "entityId": "city-0c5f16f24966ecc1",
+      "qid": "Q160493",
+      "entityType": "City",
+      "canonicalNameEn": "Inverness",
+      "countryCode": "GB",
+      "countryNameEn": "United Kingdom",
+      "parentCityEntityId": null,
+      "parentCityQid": null,
+      "parentCityNameEn": null,
+      "priority": "low",
+      "routeExposure": "long-tail",
+      "isCorePoi": false,
+      "firstPass": {
+        "reasonCode": "IMAGE_TOO_LOW_QUALITY",
+        "reasonDetail": "source-dimensions:446x522",
+        "candidateTitles": [
+          "Invernessmixed.jpg"
+        ],
+        "visualAuditId": null
+      },
+      "searchKeys": [
+        "Q160493",
+        "Inverness",
+        "Inverness United Kingdom"
+      ]
+    },
+    {
+      "entityId": "city-e301917587abb680",
+      "qid": "Q24826",
+      "entityType": "City",
+      "canonicalNameEn": "Liverpool",
+      "countryCode": "GB",
+      "countryNameEn": "United Kingdom",
+      "parentCityEntityId": null,
+      "parentCityQid": null,
+      "parentCityNameEn": null,
+      "priority": "normal",
+      "routeExposure": "standard",
+      "isCorePoi": false,
+      "firstPass": {
+        "reasonCode": "IMAGE_TOO_LOW_QUALITY",
+        "reasonDetail": "disallowed-collage-or-montage",
+        "candidateTitles": [
+          "Liverpool Montage.jpg"
+        ],
+        "visualAuditId": null
+      },
+      "searchKeys": [
+        "Q24826",
+        "Liverpool",
+        "Liverpool United Kingdom"
+      ]
+    },
+    {
+      "entityId": "city-4dfe11463cc9c9ec",
+      "qid": "Q185336",
+      "entityType": "City",
+      "canonicalNameEn": "Zugdidi",
+      "countryCode": "GE",
+      "countryNameEn": "Georgia",
+      "parentCityEntityId": null,
+      "parentCityQid": null,
+      "parentCityNameEn": null,
+      "priority": "low",
+      "routeExposure": "long-tail",
+      "isCorePoi": false,
+      "firstPass": {
+        "reasonCode": "IMAGE_TOO_LOW_QUALITY",
+        "reasonDetail": "disallowed-collage-or-montage",
+        "candidateTitles": [
+          "Zugdidi Montage by Gaeser.png"
+        ],
+        "visualAuditId": null
+      },
+      "searchKeys": [
+        "Q185336",
+        "Zugdidi",
+        "Zugdidi Georgia"
+      ]
+    },
+    {
+      "entityId": "city-8b50df8117d56136",
+      "qid": "Q205832",
+      "entityType": "City",
+      "canonicalNameEn": "Corfu Town",
+      "countryCode": "GR",
+      "countryNameEn": "Greece",
+      "parentCityEntityId": null,
+      "parentCityQid": null,
+      "parentCityNameEn": null,
+      "priority": "high",
+      "routeExposure": "high",
+      "isCorePoi": false,
+      "firstPass": {
+        "reasonCode": "IMAGE_TOO_LOW_QUALITY",
+        "reasonDetail": "source-dimensions:1920x343",
+        "candidateTitles": [
+          "Korfu (GR), Korfu, Altstadt -- 2018 -- 1114-21.jpg"
+        ],
+        "visualAuditId": null
+      },
+      "searchKeys": [
+        "Q205832",
+        "Corfu Town",
+        "Corfu Town Greece"
+      ]
+    },
+    {
+      "entityId": "city-1ae2bf785c1f74bc",
+      "qid": "Q160544",
+      "entityType": "City",
+      "canonicalNameEn": "Heraklion",
+      "countryCode": "GR",
+      "countryNameEn": "Greece",
+      "parentCityEntityId": null,
+      "parentCityQid": null,
+      "parentCityNameEn": null,
+      "priority": "normal",
+      "routeExposure": "standard",
+      "isCorePoi": false,
+      "firstPass": {
+        "reasonCode": "IMAGE_TOO_LOW_QUALITY",
+        "reasonDetail": "extreme-aspect-ratio:4.174",
+        "candidateTitles": [
+          "Panoramic of Heraklion.jpg"
+        ],
+        "visualAuditId": null
+      },
+      "searchKeys": [
+        "Q160544",
+        "Heraklion",
+        "Heraklion Greece"
+      ]
+    },
+    {
+      "entityId": "city-074db4d4b49a85e5",
+      "qid": "Q202337",
+      "entityType": "City",
+      "canonicalNameEn": "Nafplio",
+      "countryCode": "GR",
+      "countryNameEn": "Greece",
+      "parentCityEntityId": null,
+      "parentCityQid": null,
+      "parentCityNameEn": null,
+      "priority": "normal",
+      "routeExposure": "standard",
+      "isCorePoi": false,
+      "firstPass": {
+        "reasonCode": "IMAGE_TOO_LOW_QUALITY",
+        "reasonDetail": "disallowed-collage-or-montage",
+        "candidateTitles": [
+          "Nafplio photocollage.png"
+        ],
+        "visualAuditId": null
+      },
+      "searchKeys": [
+        "Q202337",
+        "Nafplio",
+        "Nafplio Greece"
+      ]
+    },
+    {
+      "entityId": "city-adda424dbaf38725",
+      "qid": "Q17151",
+      "entityType": "City",
+      "canonicalNameEn": "Thessaloniki",
+      "countryCode": "GR",
+      "countryNameEn": "Greece",
+      "parentCityEntityId": null,
+      "parentCityQid": null,
+      "parentCityNameEn": null,
+      "priority": "normal",
+      "routeExposure": "standard",
+      "isCorePoi": false,
+      "firstPass": {
+        "reasonCode": "IMAGE_TOO_LOW_QUALITY",
+        "reasonDetail": "disallowed-collage-or-montage",
+        "candidateTitles": [
+          "Thessalonica Montage L.png"
+        ],
+        "visualAuditId": null
+      },
+      "searchKeys": [
+        "Q17151",
+        "Thessaloniki",
+        "Thessaloniki Greece"
+      ]
+    },
+    {
+      "entityId": "city-aad4a016af406593",
+      "qid": "Q167109",
+      "entityType": "City",
+      "canonicalNameEn": "Eger",
+      "countryCode": "HU",
+      "countryNameEn": "Hungary",
+      "parentCityEntityId": null,
+      "parentCityQid": null,
+      "parentCityNameEn": null,
+      "priority": "normal",
+      "routeExposure": "standard",
+      "isCorePoi": false,
+      "firstPass": {
+        "reasonCode": "IMAGE_TOO_LOW_QUALITY",
+        "reasonDetail": "disallowed-collage-or-montage",
+        "candidateTitles": [
+          "Eger montage.JPG"
+        ],
+        "visualAuditId": null
+      },
+      "searchKeys": [
+        "Q167109",
+        "Eger",
+        "Eger Hungary"
+      ]
+    },
+    {
+      "entityId": "city-e1be65f85ec6dcba",
+      "qid": "Q10389",
+      "entityType": "City",
+      "canonicalNameEn": "Bandung",
+      "countryCode": "ID",
+      "countryNameEn": "Indonesia",
+      "parentCityEntityId": null,
+      "parentCityQid": null,
+      "parentCityNameEn": null,
+      "priority": "high",
+      "routeExposure": "high",
+      "isCorePoi": false,
+      "firstPass": {
+        "reasonCode": "IMAGE_TOO_LOW_QUALITY",
+        "reasonDetail": "disallowed-collage-or-montage",
+        "candidateTitles": [
+          "Montage of Bandung.jpg"
+        ],
+        "visualAuditId": null
+      },
+      "searchKeys": [
+        "Q10389",
+        "Bandung",
+        "Bandung Indonesia"
+      ]
+    },
+    {
+      "entityId": "city-25008f3980057dc6",
+      "qid": "Q3630",
+      "entityType": "City",
+      "canonicalNameEn": "Jakarta",
+      "countryCode": "ID",
+      "countryNameEn": "Indonesia",
+      "parentCityEntityId": null,
+      "parentCityQid": null,
+      "parentCityNameEn": null,
+      "priority": "high",
+      "routeExposure": "high",
+      "isCorePoi": false,
+      "firstPass": {
+        "reasonCode": "LICENSE_UNVERIFIED",
+        "reasonDetail": "Copyrighted free use",
+        "candidateTitles": [
+          "Jakarta.jpg"
+        ],
+        "visualAuditId": null
+      },
+      "searchKeys": [
+        "Q3630",
+        "Jakarta",
+        "Jakarta Indonesia"
+      ]
+    },
+    {
+      "entityId": "city-4ffdffdd0f029f7f",
+      "qid": "Q11445",
+      "entityType": "City",
+      "canonicalNameEn": "Malang",
+      "countryCode": "ID",
+      "countryNameEn": "Indonesia",
+      "parentCityEntityId": null,
+      "parentCityQid": null,
+      "parentCityNameEn": null,
+      "priority": "normal",
+      "routeExposure": "standard",
+      "isCorePoi": false,
+      "firstPass": {
+        "reasonCode": "IMAGE_TOO_LOW_QUALITY",
+        "reasonDetail": "source-dimensions:729x123",
+        "candidateTitles": [
+          "Skyline Malang Barat.jpg"
+        ],
+        "visualAuditId": null
+      },
+      "searchKeys": [
+        "Q11445",
+        "Malang",
+        "Malang Indonesia"
+      ]
+    },
+    {
+      "entityId": "city-63dfc636699e6461",
+      "qid": "Q129610",
+      "entityType": "City",
+      "canonicalNameEn": "Galway",
+      "countryCode": "IE",
+      "countryNameEn": "Ireland",
+      "parentCityEntityId": null,
+      "parentCityQid": null,
+      "parentCityNameEn": null,
+      "priority": "high",
+      "routeExposure": "high",
+      "isCorePoi": false,
+      "firstPass": {
+        "reasonCode": "IMAGE_TOO_LOW_QUALITY",
+        "reasonDetail": "visual-audit-disallowed-collage",
+        "candidateTitles": [],
+        "visualAuditId": "image-debt-visual-city-63dfc636699e6461-0b9ca5d6d7ef"
+      },
+      "searchKeys": [
+        "Q129610",
+        "Galway",
+        "Galway Ireland"
+      ]
+    },
+    {
+      "entityId": "city-93a9f2f033a32177",
+      "qid": "Q1353",
+      "entityType": "City",
+      "canonicalNameEn": "Delhi",
+      "countryCode": "IN",
+      "countryNameEn": "India",
+      "parentCityEntityId": null,
+      "parentCityQid": null,
+      "parentCityNameEn": null,
+      "priority": "high",
+      "routeExposure": "high",
+      "isCorePoi": false,
+      "firstPass": {
+        "reasonCode": "LICENSE_UNVERIFIED",
+        "reasonDetail": "FAL",
+        "candidateTitles": [
+          "Red Fort in Delhi 03-2016 img3.jpg"
+        ],
+        "visualAuditId": null
+      },
+      "searchKeys": [
+        "Q1353",
+        "Delhi",
+        "Delhi India"
+      ]
+    },
+    {
+      "entityId": "city-39edd483189fe5fa",
+      "qid": "Q66485",
+      "entityType": "City",
+      "canonicalNameEn": "Jaipur",
+      "countryCode": "IN",
+      "countryNameEn": "India",
+      "parentCityEntityId": null,
+      "parentCityQid": null,
+      "parentCityNameEn": null,
+      "priority": "high",
+      "routeExposure": "high",
+      "isCorePoi": false,
+      "firstPass": {
+        "reasonCode": "IMAGE_TOO_LOW_QUALITY",
+        "reasonDetail": "source-dimensions:520x989",
+        "candidateTitles": [
+          "Jaipur Montage.png"
+        ],
+        "visualAuditId": null
+      },
+      "searchKeys": [
+        "Q66485",
+        "Jaipur",
+        "Jaipur India"
+      ]
+    },
+    {
+      "entityId": "city-8950b6716e00c558",
+      "qid": "Q1800",
+      "entityType": "City",
+      "canonicalNameEn": "Kochi",
+      "countryCode": "IN",
+      "countryNameEn": "India",
+      "parentCityEntityId": null,
+      "parentCityQid": null,
+      "parentCityNameEn": null,
+      "priority": "normal",
+      "routeExposure": "standard",
+      "isCorePoi": false,
+      "firstPass": {
+        "reasonCode": "IMAGE_TOO_LOW_QUALITY",
+        "reasonDetail": "source-dimensions:893x327",
+        "candidateTitles": [
+          "Kochi India.jpg"
+        ],
+        "visualAuditId": null
+      },
+      "searchKeys": [
+        "Q1800",
+        "Kochi",
+        "Kochi India"
+      ]
+    },
+    {
+      "entityId": "city-d40570b2aac4850d",
+      "qid": "Q2044",
+      "entityType": "City",
+      "canonicalNameEn": "Florence",
+      "countryCode": "IT",
+      "countryNameEn": "Italy",
+      "parentCityEntityId": null,
+      "parentCityQid": null,
+      "parentCityNameEn": null,
+      "priority": "high",
+      "routeExposure": "high",
+      "isCorePoi": false,
+      "firstPass": {
+        "reasonCode": "IMAGE_TOO_LOW_QUALITY",
+        "reasonDetail": "extreme-aspect-ratio:3.316",
+        "candidateTitles": [
+          "Panoramica Firenze.jpg"
+        ],
+        "visualAuditId": null
+      },
+      "searchKeys": [
+        "Q2044",
+        "Florence",
+        "Florence Italy"
+      ]
+    },
+    {
+      "entityId": "city-0a37bf91d42410d6",
+      "qid": "Q495",
+      "entityType": "City",
+      "canonicalNameEn": "Turin",
+      "countryCode": "IT",
+      "countryNameEn": "Italy",
+      "parentCityEntityId": null,
+      "parentCityQid": null,
+      "parentCityNameEn": null,
+      "priority": "normal",
+      "routeExposure": "standard",
+      "isCorePoi": false,
+      "firstPass": {
+        "reasonCode": "IMAGE_TOO_LOW_QUALITY",
+        "reasonDetail": "disallowed-collage-or-montage",
+        "candidateTitles": [
+          "Turin Montage.png"
+        ],
+        "visualAuditId": null
+      },
+      "searchKeys": [
+        "Q495",
+        "Turin",
+        "Turin Italy"
+      ]
+    },
+    {
+      "entityId": "city-d43e6edac3906d62",
+      "qid": "Q194165",
+      "entityType": "City",
+      "canonicalNameEn": "Irbid",
+      "countryCode": "JO",
+      "countryNameEn": "Jordan",
+      "parentCityEntityId": null,
+      "parentCityQid": null,
+      "parentCityNameEn": null,
+      "priority": "low",
+      "routeExposure": "long-tail",
+      "isCorePoi": false,
+      "firstPass": {
+        "reasonCode": "IMAGE_TOO_LOW_QUALITY",
+        "reasonDetail": "source-dimensions:511x222",
+        "candidateTitles": [
+          "Irbid1.jpg"
+        ],
+        "visualAuditId": null
+      },
+      "searchKeys": [
+        "Q194165",
+        "Irbid",
+        "Irbid Jordan"
+      ]
+    },
+    {
+      "entityId": "city-bde19ee75a02b4c3",
+      "qid": "Q1683958",
+      "entityType": "City",
+      "canonicalNameEn": "Madaba",
+      "countryCode": "JO",
+      "countryNameEn": "Jordan",
+      "parentCityEntityId": null,
+      "parentCityQid": null,
+      "parentCityNameEn": null,
+      "priority": "low",
+      "routeExposure": "long-tail",
+      "isCorePoi": false,
+      "firstPass": {
+        "reasonCode": "IMAGE_TOO_LOW_QUALITY",
+        "reasonDetail": "visual-audit-disallowed-collage",
+        "candidateTitles": [],
+        "visualAuditId": "image-debt-visual-city-bde19ee75a02b4c3-f6895a29eee1"
+      },
+      "searchKeys": [
+        "Q1683958",
+        "Madaba",
+        "Madaba Jordan"
+      ]
+    },
+    {
+      "entityId": "city-7b76928f557485f6",
+      "qid": "Q191130",
+      "entityType": "City",
+      "canonicalNameEn": "Kanazawa",
+      "countryCode": "JP",
+      "countryNameEn": "Japan",
+      "parentCityEntityId": null,
+      "parentCityQid": null,
+      "parentCityNameEn": null,
+      "priority": "normal",
+      "routeExposure": "standard",
+      "isCorePoi": false,
+      "firstPass": {
+        "reasonCode": "SOURCE_UNAVAILABLE",
+        "reasonDetail": "commons-imageinfo-missing",
+        "candidateTitles": [
+          "望湖台2.jpg"
+        ],
+        "visualAuditId": null
+      },
+      "searchKeys": [
+        "Q191130",
+        "Kanazawa",
+        "Kanazawa Japan"
+      ]
+    },
+    {
+      "entityId": "city-52661544a7a4388d",
+      "qid": "Q328615",
+      "entityType": "City",
+      "canonicalNameEn": "Okinawa City",
+      "countryCode": "JP",
+      "countryNameEn": "Japan",
+      "parentCityEntityId": null,
+      "parentCityQid": null,
+      "parentCityNameEn": null,
+      "priority": "low",
+      "routeExposure": "long-tail",
+      "isCorePoi": false,
+      "firstPass": {
+        "reasonCode": "IMAGE_TOO_LOW_QUALITY",
+        "reasonDetail": "source-dimensions:450x338",
+        "candidateTitles": [
+          "Okinawa City downtown.jpg"
+        ],
+        "visualAuditId": null
+      },
+      "searchKeys": [
+        "Q328615",
+        "Okinawa City",
+        "Okinawa City Japan"
+      ]
+    },
+    {
+      "entityId": "city-39f72910b4074236",
+      "qid": "Q214485",
+      "entityType": "City",
+      "canonicalNameEn": "Kisumu",
+      "countryCode": "KE",
+      "countryNameEn": "Kenya",
+      "parentCityEntityId": null,
+      "parentCityQid": null,
+      "parentCityNameEn": null,
+      "priority": "normal",
+      "routeExposure": "standard",
+      "isCorePoi": false,
+      "firstPass": {
+        "reasonCode": "IMAGE_TOO_LOW_QUALITY",
+        "reasonDetail": "source-dimensions:500x333",
+        "candidateTitles": [
+          "Aerial view of Kisumu.jpg"
+        ],
+        "visualAuditId": null
+      },
+      "searchKeys": [
+        "Q214485",
+        "Kisumu",
+        "Kisumu Kenya"
+      ]
+    },
+    {
+      "entityId": "city-be9bfa5ff5c6d7cd",
+      "qid": "Q239421",
+      "entityType": "City",
+      "canonicalNameEn": "Nakuru",
+      "countryCode": "KE",
+      "countryNameEn": "Kenya",
+      "parentCityEntityId": null,
+      "parentCityQid": null,
+      "parentCityNameEn": null,
+      "priority": "high",
+      "routeExposure": "high",
+      "isCorePoi": false,
+      "firstPass": {
+        "reasonCode": "IMAGE_TOO_LOW_QUALITY",
+        "reasonDetail": "disallowed-collage-or-montage",
+        "candidateTitles": [
+          "Nakuru montage.png"
+        ],
+        "visualAuditId": null
+      },
+      "searchKeys": [
+        "Q239421",
+        "Nakuru",
+        "Nakuru Kenya"
+      ]
+    },
+    {
+      "entityId": "city-d886736d18965d48",
+      "qid": "Q42097",
+      "entityType": "City",
+      "canonicalNameEn": "Gyeongju",
+      "countryCode": "KR",
+      "countryNameEn": "South Korea",
+      "parentCityEntityId": null,
+      "parentCityQid": null,
+      "parentCityNameEn": null,
+      "priority": "high",
+      "routeExposure": "high",
+      "isCorePoi": false,
+      "firstPass": {
+        "reasonCode": "IMAGE_TOO_LOW_QUALITY",
+        "reasonDetail": "disallowed-collage-or-montage",
+        "candidateTitles": [
+          "Gyeongju montage.png"
+        ],
+        "visualAuditId": null
+      },
+      "searchKeys": [
+        "Q42097",
+        "Gyeongju",
+        "Gyeongju South Korea"
+      ]
+    },
+    {
+      "entityId": "city-6ebcec7ab5eaefd2",
+      "qid": "Q5724",
+      "entityType": "City",
+      "canonicalNameEn": "Anuradhapura",
+      "countryCode": "LK",
+      "countryNameEn": "Sri Lanka",
+      "parentCityEntityId": null,
+      "parentCityQid": null,
+      "parentCityNameEn": null,
+      "priority": "high",
+      "routeExposure": "high",
+      "isCorePoi": false,
+      "firstPass": {
+        "reasonCode": "LICENSE_UNVERIFIED",
+        "reasonDetail": "FAL",
+        "candidateTitles": [
+          "SL Anuradhapura asv2020-01 img11 Ruwanwelisaya Stupa.jpg"
+        ],
+        "visualAuditId": null
+      },
+      "searchKeys": [
+        "Q5724",
+        "Anuradhapura",
+        "Anuradhapura Sri Lanka"
+      ]
+    },
+    {
+      "entityId": "city-6b5ea6ba9449c964",
+      "qid": "Q319366",
+      "entityType": "City",
+      "canonicalNameEn": "Galle",
+      "countryCode": "LK",
+      "countryNameEn": "Sri Lanka",
+      "parentCityEntityId": null,
+      "parentCityQid": null,
+      "parentCityNameEn": null,
+      "priority": "normal",
+      "routeExposure": "standard",
+      "isCorePoi": false,
+      "firstPass": {
+        "reasonCode": "LICENSE_UNVERIFIED",
+        "reasonDetail": "FAL",
+        "candidateTitles": [
+          "SL Galle Fort asv2020-01 img23.jpg"
+        ],
+        "visualAuditId": null
+      },
+      "searchKeys": [
+        "Q319366",
+        "Galle",
+        "Galle Sri Lanka"
+      ]
+    },
+    {
+      "entityId": "city-4cee20026277bdb0",
+      "qid": "Q215277",
+      "entityType": "City",
+      "canonicalNameEn": "Jaffna",
+      "countryCode": "LK",
+      "countryNameEn": "Sri Lanka",
+      "parentCityEntityId": null,
+      "parentCityQid": null,
+      "parentCityNameEn": null,
+      "priority": "normal",
+      "routeExposure": "standard",
+      "isCorePoi": false,
+      "firstPass": {
+        "reasonCode": "IMAGE_TOO_LOW_QUALITY",
+        "reasonDetail": "disallowed-collage-or-montage",
+        "candidateTitles": [
+          "Jaffna montage.jpg"
+        ],
+        "visualAuditId": null
+      },
+      "searchKeys": [
+        "Q215277",
+        "Jaffna",
+        "Jaffna Sri Lanka"
+      ]
+    },
+    {
+      "entityId": "city-665132a5271740ff",
+      "qid": "Q203197",
+      "entityType": "City",
+      "canonicalNameEn": "Kandy",
+      "countryCode": "LK",
+      "countryNameEn": "Sri Lanka",
+      "parentCityEntityId": null,
+      "parentCityQid": null,
+      "parentCityNameEn": null,
+      "priority": "high",
+      "routeExposure": "high",
+      "isCorePoi": false,
+      "firstPass": {
+        "reasonCode": "LICENSE_UNVERIFIED",
+        "reasonDetail": "FAL",
+        "candidateTitles": [
+          "SL Kandy asv2020-01 img10 Arthurs Seat view.jpg"
+        ],
+        "visualAuditId": null
+      },
+      "searchKeys": [
+        "Q203197",
+        "Kandy",
+        "Kandy Sri Lanka"
+      ]
+    },
+    {
+      "entityId": "city-19b27d438e9cfd55",
+      "qid": "Q1340579",
+      "entityType": "City",
+      "canonicalNameEn": "Nuwara Eliya",
+      "countryCode": "LK",
+      "countryNameEn": "Sri Lanka",
+      "parentCityEntityId": null,
+      "parentCityQid": null,
+      "parentCityNameEn": null,
+      "priority": "normal",
+      "routeExposure": "standard",
+      "isCorePoi": false,
+      "firstPass": {
+        "reasonCode": "LICENSE_UNVERIFIED",
+        "reasonDetail": "FAL",
+        "candidateTitles": [
+          "SL Nuwara Eliya asv2020-01 img12 racecourse.jpg"
+        ],
+        "visualAuditId": null
+      },
+      "searchKeys": [
+        "Q1340579",
+        "Nuwara Eliya",
+        "Nuwara Eliya Sri Lanka"
+      ]
+    },
+    {
+      "entityId": "city-e661aea8f6a743df",
+      "qid": "Q752346",
+      "entityType": "City",
+      "canonicalNameEn": "Birgu",
+      "countryCode": "MT",
+      "countryNameEn": "Malta",
+      "parentCityEntityId": null,
+      "parentCityQid": null,
+      "parentCityNameEn": null,
+      "priority": "normal",
+      "routeExposure": "standard",
+      "isCorePoi": false,
+      "firstPass": {
+        "reasonCode": "IMAGE_TOO_LOW_QUALITY",
+        "reasonDetail": "disallowed-collage-or-montage",
+        "candidateTitles": [
+          "Birgu montage.jpg"
+        ],
+        "visualAuditId": null
+      },
+      "searchKeys": [
+        "Q752346",
+        "Birgu",
+        "Birgu Malta"
+      ]
+    },
+    {
+      "entityId": "city-7d67be5cb83e1485",
+      "qid": "Q8969",
+      "entityType": "City",
+      "canonicalNameEn": "Cancún",
+      "countryCode": "MX",
+      "countryNameEn": "Mexico",
+      "parentCityEntityId": null,
+      "parentCityQid": null,
+      "parentCityNameEn": null,
+      "priority": "high",
+      "routeExposure": "high",
+      "isCorePoi": false,
+      "firstPass": {
+        "reasonCode": "IMAGE_TOO_LOW_QUALITY",
+        "reasonDetail": "visual-audit-disallowed-collage",
+        "candidateTitles": [],
+        "visualAuditId": "image-debt-visual-city-7d67be5cb83e1485-91704c512a9e"
+      },
+      "searchKeys": [
+        "Q8969",
+        "Cancún",
+        "Cancun",
+        "Cancún Mexico",
+        "Cancun Mexico"
+      ]
+    },
+    {
+      "entityId": "city-2bb58506d297fedd",
+      "qid": "Q165204",
+      "entityType": "City",
+      "canonicalNameEn": "Mérida",
+      "countryCode": "MX",
+      "countryNameEn": "Mexico",
+      "parentCityEntityId": null,
+      "parentCityQid": null,
+      "parentCityNameEn": null,
+      "priority": "normal",
+      "routeExposure": "standard",
+      "isCorePoi": false,
+      "firstPass": {
+        "reasonCode": "IMAGE_TOO_LOW_QUALITY",
+        "reasonDetail": "disallowed-collage-or-montage",
+        "candidateTitles": [
+          "Collage Merida Yucatan.jpg"
+        ],
+        "visualAuditId": null
+      },
+      "searchKeys": [
+        "Q165204",
+        "Mérida",
+        "Merida",
+        "Mérida Mexico",
+        "Merida Mexico"
+      ]
+    },
+    {
+      "entityId": "city-50645031fe7e62a5",
+      "qid": "Q220445",
+      "entityType": "City",
+      "canonicalNameEn": "Kuching",
+      "countryCode": "MY",
+      "countryNameEn": "Malaysia",
+      "parentCityEntityId": null,
+      "parentCityQid": null,
+      "parentCityNameEn": null,
+      "priority": "normal",
+      "routeExposure": "standard",
+      "isCorePoi": false,
+      "firstPass": {
+        "reasonCode": "IMAGE_TOO_LOW_QUALITY",
+        "reasonDetail": "source-dimensions:630x447",
+        "candidateTitles": [
+          "Sarawak River.jpg"
+        ],
+        "visualAuditId": null
+      },
+      "searchKeys": [
+        "Q220445",
+        "Kuching",
+        "Kuching Malaysia"
+      ]
+    },
+    {
+      "entityId": "city-66a343aed16e37a4",
+      "qid": "Q727",
+      "entityType": "City",
+      "canonicalNameEn": "Amsterdam",
+      "countryCode": "NL",
+      "countryNameEn": "Netherlands",
+      "parentCityEntityId": null,
+      "parentCityQid": null,
+      "parentCityNameEn": null,
+      "priority": "high",
+      "routeExposure": "high",
+      "isCorePoi": false,
+      "firstPass": {
+        "reasonCode": "LICENSE_UNVERIFIED",
+        "reasonDetail": "Attribution",
+        "candidateTitles": [
+          "Amsterdam airphoto.jpg"
+        ],
+        "visualAuditId": null
+      },
+      "searchKeys": [
+        "Q727",
+        "Amsterdam",
+        "Amsterdam Netherlands"
+      ]
+    },
+    {
+      "entityId": "city-e05bc954475d4069",
+      "qid": "Q36600",
+      "entityType": "City",
+      "canonicalNameEn": "The Hague",
+      "countryCode": "NL",
+      "countryNameEn": "Netherlands",
+      "parentCityEntityId": null,
+      "parentCityQid": null,
+      "parentCityNameEn": null,
+      "priority": "high",
+      "routeExposure": "high",
+      "isCorePoi": false,
+      "firstPass": {
+        "reasonCode": "IMAGE_TOO_LOW_QUALITY",
+        "reasonDetail": "disallowed-collage-or-montage",
+        "candidateTitles": [
+          "The Hague Montage 2021.png"
+        ],
+        "visualAuditId": null
+      },
+      "searchKeys": [
+        "Q36600",
+        "The Hague",
+        "The Hague Netherlands"
+      ]
+    },
+    {
+      "entityId": "city-25addacaf4743504",
+      "qid": "Q585",
+      "entityType": "City",
+      "canonicalNameEn": "Oslo",
+      "countryCode": "NO",
+      "countryNameEn": "Norway",
+      "parentCityEntityId": null,
+      "parentCityQid": null,
+      "parentCityNameEn": null,
+      "priority": "high",
+      "routeExposure": "high",
+      "isCorePoi": false,
+      "firstPass": {
+        "reasonCode": "IMAGE_TOO_LOW_QUALITY",
+        "reasonDetail": "disallowed-collage-or-montage",
+        "candidateTitles": [
+          "Oslo newer montage 2013.png"
+        ],
+        "visualAuditId": null
+      },
+      "searchKeys": [
+        "Q585",
+        "Oslo",
+        "Oslo Norway"
+      ]
+    },
+    {
+      "entityId": "city-30dca9649cefe803",
+      "qid": "Q214173",
+      "entityType": "City",
+      "canonicalNameEn": "Trujillo",
+      "countryCode": "PE",
+      "countryNameEn": "Peru",
+      "parentCityEntityId": null,
+      "parentCityQid": null,
+      "parentCityNameEn": null,
+      "priority": "normal",
+      "routeExposure": "standard",
+      "isCorePoi": false,
+      "firstPass": {
+        "reasonCode": "IMAGE_TOO_LOW_QUALITY",
+        "reasonDetail": "disallowed-collage-or-montage",
+        "candidateTitles": [
+          "Trujillo Peru Collage.png"
+        ],
+        "visualAuditId": null
+      },
+      "searchKeys": [
+        "Q214173",
+        "Trujillo",
+        "Trujillo Peru"
+      ]
+    },
+    {
+      "entityId": "city-251735e9e17b600f",
+      "qid": "Q459787",
+      "entityType": "City",
+      "canonicalNameEn": "Iloilo City",
+      "countryCode": "PH",
+      "countryNameEn": "Philippines",
+      "parentCityEntityId": null,
+      "parentCityQid": null,
+      "parentCityNameEn": null,
+      "priority": "normal",
+      "routeExposure": "standard",
+      "isCorePoi": false,
+      "firstPass": {
+        "reasonCode": "IMAGE_TOO_LOW_QUALITY",
+        "reasonDetail": "disallowed-collage-or-montage",
+        "candidateTitles": [
+          "Montage Iloilo.jpg"
+        ],
+        "visualAuditId": null
+      },
+      "searchKeys": [
+        "Q459787",
+        "Iloilo City",
+        "Iloilo City Philippines"
+      ]
+    },
+    {
+      "entityId": "city-23e4523c57c5ac2a",
+      "qid": "Q732548",
+      "entityType": "City",
+      "canonicalNameEn": "Lagos",
+      "countryCode": "PT",
+      "countryNameEn": "Portugal",
+      "parentCityEntityId": null,
+      "parentCityQid": null,
+      "parentCityNameEn": null,
+      "priority": "normal",
+      "routeExposure": "standard",
+      "isCorePoi": false,
+      "firstPass": {
+        "reasonCode": "IMAGE_TOO_LOW_QUALITY",
+        "reasonDetail": "extreme-aspect-ratio:3.241",
+        "candidateTitles": [
+          "Lagos visto do alto.jpg"
+        ],
+        "visualAuditId": null
+      },
+      "searchKeys": [
+        "Q732548",
+        "Lagos",
+        "Lagos Portugal"
+      ]
+    },
+    {
+      "entityId": "city-e5292a3c5cdd691f",
+      "qid": "Q46852",
+      "entityType": "City",
+      "canonicalNameEn": "Iași",
+      "countryCode": "RO",
+      "countryNameEn": "Romania",
+      "parentCityEntityId": null,
+      "parentCityQid": null,
+      "parentCityNameEn": null,
+      "priority": "normal",
+      "routeExposure": "standard",
+      "isCorePoi": false,
+      "firstPass": {
+        "reasonCode": "IMAGE_TOO_LOW_QUALITY",
+        "reasonDetail": "disallowed-collage-or-montage",
+        "candidateTitles": [
+          "Jászvásár montage.jpg"
+        ],
+        "visualAuditId": null
+      },
+      "searchKeys": [
+        "Q46852",
+        "Iași",
+        "Iasi",
+        "Iași Romania",
+        "Iasi Romania"
+      ]
+    },
+    {
+      "entityId": "city-e7fac4d1bf968a80",
+      "qid": "Q3711",
+      "entityType": "City",
+      "canonicalNameEn": "Belgrade",
+      "countryCode": "RS",
+      "countryNameEn": "Serbia",
+      "parentCityEntityId": null,
+      "parentCityQid": null,
+      "parentCityNameEn": null,
+      "priority": "high",
+      "routeExposure": "high",
+      "isCorePoi": false,
+      "firstPass": {
+        "reasonCode": "IMAGE_TOO_LOW_QUALITY",
+        "reasonDetail": "disallowed-collage-or-montage",
+        "candidateTitles": [
+          "Beograd collage.jpg"
+        ],
+        "visualAuditId": null
+      },
+      "searchKeys": [
+        "Q3711",
+        "Belgrade",
+        "Belgrade Serbia"
+      ]
+    },
+    {
+      "entityId": "city-2d152543abf9dfb7",
+      "qid": "Q129259",
+      "entityType": "City",
+      "canonicalNameEn": "Niš",
+      "countryCode": "RS",
+      "countryNameEn": "Serbia",
+      "parentCityEntityId": null,
+      "parentCityQid": null,
+      "parentCityNameEn": null,
+      "priority": "high",
+      "routeExposure": "high",
+      "isCorePoi": false,
+      "firstPass": {
+        "reasonCode": "IMAGE_TOO_LOW_QUALITY",
+        "reasonDetail": "disallowed-collage-or-montage",
+        "candidateTitles": [
+          "Niš collage.jpg"
+        ],
+        "visualAuditId": null
+      },
+      "searchKeys": [
+        "Q129259",
+        "Niš",
+        "Nis",
+        "Niš Serbia",
+        "Nis Serbia"
+      ]
+    },
+    {
+      "entityId": "city-b8047465b6630d46",
+      "qid": "Q202453",
+      "entityType": "City",
+      "canonicalNameEn": "Novi Pazar",
+      "countryCode": "RS",
+      "countryNameEn": "Serbia",
+      "parentCityEntityId": null,
+      "parentCityQid": null,
+      "parentCityNameEn": null,
+      "priority": "low",
+      "routeExposure": "long-tail",
+      "isCorePoi": false,
+      "firstPass": {
+        "reasonCode": "IMAGE_TOO_LOW_QUALITY",
+        "reasonDetail": "source-dimensions:750x319",
+        "candidateTitles": [
+          "Novi Pazar 1.jpg"
+        ],
+        "visualAuditId": null
+      },
+      "searchKeys": [
+        "Q202453",
+        "Novi Pazar",
+        "Novi Pazar Serbia"
+      ]
+    },
+    {
+      "entityId": "city-4b05095bafad2961",
+      "qid": "Q170287",
+      "entityType": "City",
+      "canonicalNameEn": "Subotica",
+      "countryCode": "RS",
+      "countryNameEn": "Serbia",
+      "parentCityEntityId": null,
+      "parentCityQid": null,
+      "parentCityNameEn": null,
+      "priority": "normal",
+      "routeExposure": "standard",
+      "isCorePoi": false,
+      "firstPass": {
+        "reasonCode": "IMAGE_TOO_LOW_QUALITY",
+        "reasonDetail": "source-dimensions:300x197",
+        "candidateTitles": [
+          "Суботица.jpg"
+        ],
+        "visualAuditId": null
+      },
+      "searchKeys": [
+        "Q170287",
+        "Subotica",
+        "Subotica Serbia"
+      ]
+    },
+    {
+      "entityId": "city-d05a6591df5084ad",
+      "qid": "Q59473",
+      "entityType": "City",
+      "canonicalNameEn": "Užice",
+      "countryCode": "RS",
+      "countryNameEn": "Serbia",
+      "parentCityEntityId": null,
+      "parentCityQid": null,
+      "parentCityNameEn": null,
+      "priority": "normal",
+      "routeExposure": "standard",
+      "isCorePoi": false,
+      "firstPass": {
+        "reasonCode": "IMAGE_TOO_LOW_QUALITY",
+        "reasonDetail": "disallowed-collage-or-montage",
+        "candidateTitles": [
+          "Užice- collage.jpg"
+        ],
+        "visualAuditId": null
+      },
+      "searchKeys": [
+        "Q59473",
+        "Užice",
+        "Uzice",
+        "Užice Serbia",
+        "Uzice Serbia"
+      ]
+    },
+    {
+      "entityId": "city-27cc7ad1800e2aa5",
+      "qid": "Q900",
+      "entityType": "City",
+      "canonicalNameEn": "Kazan",
+      "countryCode": "RU",
+      "countryNameEn": "Russia",
+      "parentCityEntityId": null,
+      "parentCityQid": null,
+      "parentCityNameEn": null,
+      "priority": "high",
+      "routeExposure": "high",
+      "isCorePoi": false,
+      "firstPass": {
+        "reasonCode": "IMAGE_TOO_LOW_QUALITY",
+        "reasonDetail": "disallowed-collage-or-montage",
+        "candidateTitles": [
+          "KAZ Collage 2015.png"
+        ],
+        "visualAuditId": null
+      },
+      "searchKeys": [
+        "Q900",
+        "Kazan",
+        "Kazan Russia"
+      ]
+    },
+    {
+      "entityId": "city-bc0c7789e6d04ced",
+      "qid": "Q39420",
+      "entityType": "City",
+      "canonicalNameEn": "Sochi",
+      "countryCode": "RU",
+      "countryNameEn": "Russia",
+      "parentCityEntityId": null,
+      "parentCityQid": null,
+      "parentCityNameEn": null,
+      "priority": "normal",
+      "routeExposure": "standard",
+      "isCorePoi": false,
+      "firstPass": {
+        "reasonCode": "IMAGE_TOO_LOW_QUALITY",
+        "reasonDetail": "visual-audit-disallowed-collage",
+        "candidateTitles": [],
+        "visualAuditId": "image-debt-visual-city-bc0c7789e6d04ced-ed56b4bc7b03"
+      },
+      "searchKeys": [
+        "Q39420",
+        "Sochi",
+        "Sochi Russia"
+      ]
+    },
+    {
+      "entityId": "city-7cb168684b6e0cae",
+      "qid": "Q2235",
+      "entityType": "City",
+      "canonicalNameEn": "Veliky Novgorod",
+      "countryCode": "RU",
+      "countryNameEn": "Russia",
+      "parentCityEntityId": null,
+      "parentCityQid": null,
+      "parentCityNameEn": null,
+      "priority": "normal",
+      "routeExposure": "standard",
+      "isCorePoi": false,
+      "firstPass": {
+        "reasonCode": "IMAGE_TOO_LOW_QUALITY",
+        "reasonDetail": "disallowed-collage-or-montage",
+        "candidateTitles": [
+          "Veliky Novgorod montage (2015).png"
+        ],
+        "visualAuditId": null
+      },
+      "searchKeys": [
+        "Q2235",
+        "Veliky Novgorod",
+        "Veliky Novgorod Russia"
+      ]
+    },
+    {
+      "entityId": "city-d46b0b97215f8cb3",
+      "qid": "Q190948",
+      "entityType": "City",
+      "canonicalNameEn": "Abha",
+      "countryCode": "SA",
+      "countryNameEn": "Saudi Arabia",
+      "parentCityEntityId": null,
+      "parentCityQid": null,
+      "parentCityNameEn": null,
+      "priority": "normal",
+      "routeExposure": "standard",
+      "isCorePoi": false,
+      "firstPass": {
+        "reasonCode": "IMAGE_TOO_LOW_QUALITY",
+        "reasonDetail": "source-dimensions:300x300",
+        "candidateTitles": [
+          "Abha1.jpg"
+        ],
+        "visualAuditId": null
+      },
+      "searchKeys": [
+        "Q190948",
+        "Abha",
+        "Abha Saudi Arabia"
+      ]
+    },
+    {
+      "entityId": "city-75a3031f2e06bd11",
+      "qid": "Q5806",
+      "entityType": "City",
+      "canonicalNameEn": "Mecca",
+      "countryCode": "SA",
+      "countryNameEn": "Saudi Arabia",
+      "parentCityEntityId": null,
+      "parentCityQid": null,
+      "parentCityNameEn": null,
+      "priority": "high",
+      "routeExposure": "high",
+      "isCorePoi": false,
+      "firstPass": {
+        "reasonCode": "IMAGE_TOO_LOW_QUALITY",
+        "reasonDetail": "disallowed-collage-or-montage",
+        "candidateTitles": [
+          "Makkah Montage.jpg"
+        ],
+        "visualAuditId": null
+      },
+      "searchKeys": [
+        "Q5806",
+        "Mecca",
+        "Mecca Saudi Arabia"
+      ]
+    },
+    {
+      "entityId": "city-db7a96547625c19f",
+      "qid": "Q83232",
+      "entityType": "City",
+      "canonicalNameEn": "Kiruna",
+      "countryCode": "SE",
+      "countryNameEn": "Sweden",
+      "parentCityEntityId": null,
+      "parentCityQid": null,
+      "parentCityNameEn": null,
+      "priority": "normal",
+      "routeExposure": "standard",
+      "isCorePoi": false,
+      "firstPass": {
+        "reasonCode": "IMAGE_TOO_LOW_QUALITY",
+        "reasonDetail": "source-dimensions:588x804",
+        "candidateTitles": [
+          "Kiruna montage.png"
+        ],
+        "visualAuditId": null
+      },
+      "searchKeys": [
+        "Q83232",
+        "Kiruna",
+        "Kiruna Sweden"
+      ]
+    },
+    {
+      "entityId": "city-a94b312a4103b0da",
+      "qid": "Q25286",
+      "entityType": "City",
+      "canonicalNameEn": "Uppsala",
+      "countryCode": "SE",
+      "countryNameEn": "Sweden",
+      "parentCityEntityId": null,
+      "parentCityQid": null,
+      "parentCityNameEn": null,
+      "priority": "normal",
+      "routeExposure": "standard",
+      "isCorePoi": false,
+      "firstPass": {
+        "reasonCode": "IMAGE_TOO_LOW_QUALITY",
+        "reasonDetail": "source-dimensions:480x601",
+        "candidateTitles": [
+          "Domkyrkan i Uppsalas stadsbild.jpg"
+        ],
+        "visualAuditId": null
+      },
+      "searchKeys": [
+        "Q25286",
+        "Uppsala",
+        "Uppsala Sweden"
+      ]
+    },
+    {
+      "entityId": "city-59658a68d7e36b19",
+      "qid": "Q339535",
+      "entityType": "City",
+      "canonicalNameEn": "Hammamet",
+      "countryCode": "TN",
+      "countryNameEn": "Tunisia",
+      "parentCityEntityId": null,
+      "parentCityQid": null,
+      "parentCityNameEn": null,
+      "priority": "high",
+      "routeExposure": "high",
+      "isCorePoi": false,
+      "firstPass": {
+        "reasonCode": "IMAGE_TOO_LOW_QUALITY",
+        "reasonDetail": "visual-audit-disallowed-collage",
+        "candidateTitles": [],
+        "visualAuditId": "image-debt-visual-city-59658a68d7e36b19-ca95f262ed3e"
+      },
+      "searchKeys": [
+        "Q339535",
+        "Hammamet",
+        "Hammamet Tunisia"
+      ]
+    },
+    {
+      "entityId": "city-d54fd3d70eabed20",
+      "qid": "Q179570",
+      "entityType": "City",
+      "canonicalNameEn": "Kairouan",
+      "countryCode": "TN",
+      "countryNameEn": "Tunisia",
+      "parentCityEntityId": null,
+      "parentCityQid": null,
+      "parentCityNameEn": null,
+      "priority": "normal",
+      "routeExposure": "standard",
+      "isCorePoi": false,
+      "firstPass": {
+        "reasonCode": "IMAGE_TOO_LOW_QUALITY",
+        "reasonDetail": "source-dimensions:600x443",
+        "candidateTitles": [
+          "View of Kairouan from the Minaret of the Great Mosque - Tunisia - 1899.jpg"
+        ],
+        "visualAuditId": null
+      },
+      "searchKeys": [
+        "Q179570",
+        "Kairouan",
+        "Kairouan Tunisia"
+      ]
+    },
+    {
+      "entityId": "city-fc91a9c6c7b389cf",
+      "qid": "Q406",
+      "entityType": "City",
+      "canonicalNameEn": "Istanbul",
+      "countryCode": "TR",
+      "countryNameEn": "Turkey",
+      "parentCityEntityId": null,
+      "parentCityQid": null,
+      "parentCityNameEn": null,
+      "priority": "high",
+      "routeExposure": "high",
+      "isCorePoi": false,
+      "firstPass": {
+        "reasonCode": "IMAGE_TOO_LOW_QUALITY",
+        "reasonDetail": "disallowed-collage-or-montage",
+        "candidateTitles": [
+          "Istanbul Montage 2016.png"
+        ],
+        "visualAuditId": null
+      },
+      "searchKeys": [
+        "Q406",
+        "Istanbul",
+        "Istanbul Turkey"
+      ]
+    },
+    {
+      "entityId": "city-371ef9f5bec43a25",
+      "qid": "Q1960",
+      "entityType": "City",
+      "canonicalNameEn": "Dar es Salaam",
+      "countryCode": "TZ",
+      "countryNameEn": "Tanzania",
+      "parentCityEntityId": null,
+      "parentCityQid": null,
+      "parentCityNameEn": null,
+      "priority": "high",
+      "routeExposure": "high",
+      "isCorePoi": false,
+      "firstPass": {
+        "reasonCode": "LICENSE_UNVERIFIED",
+        "reasonDetail": "GFDL 1.2",
+        "candidateTitles": [
+          "Dar es Salaam before dusk.jpg"
+        ],
+        "visualAuditId": null
+      },
+      "searchKeys": [
+        "Q1960",
+        "Dar es Salaam",
+        "Dar es Salaam Tanzania"
+      ]
+    },
+    {
+      "entityId": "city-9c500879d4604b46",
+      "qid": "Q1297",
+      "entityType": "City",
+      "canonicalNameEn": "Chicago",
+      "countryCode": "US",
+      "countryNameEn": "United States of America",
+      "parentCityEntityId": null,
+      "parentCityQid": null,
+      "parentCityNameEn": null,
+      "priority": "high",
+      "routeExposure": "high",
+      "isCorePoi": false,
+      "firstPass": {
+        "reasonCode": "LICENSE_UNVERIFIED",
+        "reasonDetail": "Attribution",
+        "candidateTitles": [
+          "2010-02-19 3000x2000 chicago skyline.jpg"
+        ],
+        "visualAuditId": null
+      },
+      "searchKeys": [
+        "Q1297",
+        "Chicago",
+        "Chicago United States of America"
+      ]
+    },
+    {
+      "entityId": "city-287feea88a1f2bbd",
+      "qid": "Q56064",
+      "entityType": "City",
+      "canonicalNameEn": "Colonia del Sacramento",
+      "countryCode": "UY",
+      "countryNameEn": "Uruguay",
+      "parentCityEntityId": null,
+      "parentCityQid": null,
+      "parentCityNameEn": null,
+      "priority": "high",
+      "routeExposure": "high",
+      "isCorePoi": false,
+      "firstPass": {
+        "reasonCode": "LICENSE_UNVERIFIED",
+        "reasonDetail": "Attribution",
+        "candidateTitles": [
+          "Basilica del Sanctísimo Sacramento.jpg"
+        ],
+        "visualAuditId": null
+      },
+      "searchKeys": [
+        "Q56064",
+        "Colonia del Sacramento",
+        "Colonia del Sacramento Uruguay"
+      ]
+    },
+    {
+      "entityId": "poi-d0cb01c46e212be6",
+      "qid": "Q4119825",
+      "entityType": "POI",
+      "canonicalNameEn": "Abu Dhabi Securities Exchange",
+      "countryCode": "AE",
+      "countryNameEn": "United Arab Emirates",
+      "parentCityEntityId": "city-035fb7fadf3714ee",
+      "parentCityQid": "Q1519",
+      "parentCityNameEn": "Abu Dhabi",
+      "priority": "high",
+      "routeExposure": "high",
+      "isCorePoi": true,
+      "firstPass": {
+        "reasonCode": "NO_EXACT_IMAGE",
+        "reasonDetail": "No exact P18 or Commons P180 image candidate exists.",
+        "candidateTitles": [],
+        "visualAuditId": null
+      },
+      "searchKeys": [
+        "Q4119825",
+        "Abu Dhabi Securities Exchange",
+        "Abu Dhabi Securities Exchange Abu Dhabi United Arab Emirates"
+      ]
+    },
+    {
+      "entityId": "poi-d2f280ec4dfeea7f",
+      "qid": "Q2942784",
+      "entityType": "POI",
+      "canonicalNameEn": "Cathedral of Our Lady of Nahuel Huapi",
+      "countryCode": "AR",
+      "countryNameEn": "Argentina",
+      "parentCityEntityId": "city-ab137758f46c1326",
+      "parentCityQid": "Q47772",
+      "parentCityNameEn": "Bariloche",
+      "priority": "high",
+      "routeExposure": "high",
+      "isCorePoi": true,
+      "firstPass": {
+        "reasonCode": "IMAGE_TOO_LOW_QUALITY",
+        "reasonDetail": "source-dimensions:419x666",
+        "candidateTitles": [
+          "Catedral de San Carlos de Bariloche.JPG"
+        ],
+        "visualAuditId": null
+      },
+      "searchKeys": [
+        "Q2942784",
+        "Cathedral of Our Lady of Nahuel Huapi",
+        "Cathedral of Our Lady of Nahuel Huapi Bariloche Argentina"
+      ]
+    },
+    {
+      "entityId": "poi-ccf6f66f438d0d5d",
+      "qid": "Q203797",
+      "entityType": "POI",
+      "canonicalNameEn": "Eggenberg Palace",
+      "countryCode": "AT",
+      "countryNameEn": "Austria",
+      "parentCityEntityId": "city-e2930ffae37e9bb6",
+      "parentCityQid": "Q13298",
+      "parentCityNameEn": "Graz",
+      "priority": "high",
+      "routeExposure": "high",
+      "isCorePoi": true,
+      "firstPass": {
+        "reasonCode": "LICENSE_UNVERIFIED",
+        "reasonDetail": "GFDL 1.2",
+        "candidateTitles": [
+          "17-10-26-Graz-Schloß-Eggenberg RR79497.jpg"
+        ],
+        "visualAuditId": null
+      },
+      "searchKeys": [
+        "Q203797",
+        "Eggenberg Palace",
+        "Eggenberg Palace Graz Austria"
+      ]
+    },
+    {
+      "entityId": "poi-69de0ee7fc58e11d",
+      "qid": "Q1353869",
+      "entityType": "POI",
+      "canonicalNameEn": "Melbourne Museum",
+      "countryCode": "AU",
+      "countryNameEn": "Australia",
+      "parentCityEntityId": "city-e91b5be401efc35d",
+      "parentCityQid": "Q3141",
+      "parentCityNameEn": "Melbourne",
+      "priority": "high",
+      "routeExposure": "high",
+      "isCorePoi": true,
+      "firstPass": {
+        "reasonCode": "LICENSE_UNVERIFIED",
+        "reasonDetail": "GFDL 1.2",
+        "candidateTitles": [
+          "Melbourne museum exterior panorama.jpg"
+        ],
+        "visualAuditId": null
+      },
+      "searchKeys": [
+        "Q1353869",
+        "Melbourne Museum",
+        "Melbourne Museum Melbourne Australia"
+      ]
+    },
+    {
+      "entityId": "poi-d4f1b47996cb7317",
+      "qid": "Q121609605",
+      "entityType": "POI",
+      "canonicalNameEn": "Arena Burgas",
+      "countryCode": "BG",
+      "countryNameEn": "Bulgaria",
+      "parentCityEntityId": "city-f8173292543b80e1",
+      "parentCityQid": "Q6509",
+      "parentCityNameEn": "Burgas",
+      "priority": "high",
+      "routeExposure": "high",
+      "isCorePoi": true,
+      "firstPass": {
+        "reasonCode": "NO_EXACT_IMAGE",
+        "reasonDetail": "No exact P18 or Commons P180 image candidate exists.",
+        "candidateTitles": [],
+        "visualAuditId": null
+      },
+      "searchKeys": [
+        "Q121609605",
+        "Arena Burgas",
+        "Arena Burgas Burgas Bulgaria"
+      ]
+    },
+    {
+      "entityId": "poi-fd25abb26c69b253",
+      "qid": "Q169420",
+      "entityType": "POI",
+      "canonicalNameEn": "Edifício Altino Arantes",
+      "countryCode": "BR",
+      "countryNameEn": "Brazil",
+      "parentCityEntityId": "city-10f5e8418e3215cc",
+      "parentCityQid": "Q174",
+      "parentCityNameEn": "São Paulo",
+      "priority": "high",
+      "routeExposure": "high",
+      "isCorePoi": true,
+      "firstPass": {
+        "reasonCode": "IMAGE_TOO_LOW_QUALITY",
+        "reasonDetail": "source-dimensions:330x1016",
+        "candidateTitles": [
+          "Edifício do Banespa (cropped).jpg"
+        ],
+        "visualAuditId": null
+      },
+      "searchKeys": [
+        "Q169420",
+        "Edifício Altino Arantes",
+        "Edificio Altino Arantes",
+        "Edifício Altino Arantes São Paulo Brazil",
+        "Edificio Altino Arantes Sao Paulo Brazil"
+      ]
+    },
+    {
+      "entityId": "poi-02472e59fd8ba8ba",
+      "qid": "Q28233344",
+      "entityType": "POI",
+      "canonicalNameEn": "City of Vancouver Archives",
+      "countryCode": "CA",
+      "countryNameEn": "Canada",
+      "parentCityEntityId": "city-e28f1e57abe5d071",
+      "parentCityQid": "Q24639",
+      "parentCityNameEn": "Vancouver",
+      "priority": "high",
+      "routeExposure": "high",
+      "isCorePoi": true,
+      "firstPass": {
+        "reasonCode": "NO_EXACT_IMAGE",
+        "reasonDetail": "No exact P18 or Commons P180 image candidate exists.",
+        "candidateTitles": [],
+        "visualAuditId": null
+      },
+      "searchKeys": [
+        "Q28233344",
+        "City of Vancouver Archives",
+        "City of Vancouver Archives Vancouver Canada"
+      ]
+    },
+    {
+      "entityId": "poi-e7a187ae9e3829d7",
+      "qid": "Q22396625",
+      "entityType": "POI",
+      "canonicalNameEn": "Mampeza",
+      "countryCode": "CD",
+      "countryNameEn": "Democratic Republic of the Congo",
+      "parentCityEntityId": "city-f413bba50910394f",
+      "parentCityQid": "Q3838",
+      "parentCityNameEn": "Kinshasa",
+      "priority": "high",
+      "routeExposure": "high",
+      "isCorePoi": true,
+      "firstPass": {
+        "reasonCode": "NO_EXACT_IMAGE",
+        "reasonDetail": "No exact P18 or Commons P180 image candidate exists.",
+        "candidateTitles": [],
+        "visualAuditId": null
+      },
+      "searchKeys": [
+        "Q22396625",
+        "Mampeza",
+        "Mampeza Kinshasa Democratic Republic of the Congo"
+      ]
+    },
+    {
+      "entityId": "poi-67ff3980626e150c",
+      "qid": "Q25225",
+      "entityType": "POI",
+      "canonicalNameEn": "Chapel Bridge",
+      "countryCode": "CH",
+      "countryNameEn": "Switzerland",
+      "parentCityEntityId": "city-6424297f5bfd77b8",
+      "parentCityQid": "Q4191",
+      "parentCityNameEn": "Lucerne",
+      "priority": "high",
+      "routeExposure": "high",
+      "isCorePoi": true,
+      "firstPass": {
+        "reasonCode": "LICENSE_UNVERIFIED",
+        "reasonDetail": "FAL",
+        "candidateTitles": [
+          "Luzern asv2022-10 Kapellbrücke img3.jpg"
+        ],
+        "visualAuditId": null
+      },
+      "searchKeys": [
+        "Q25225",
+        "Chapel Bridge",
+        "Chapel Bridge Lucerne Switzerland"
+      ]
+    },
+    {
+      "entityId": "poi-df61ca53e90345b5",
+      "qid": "Q27044947",
+      "entityType": "POI",
+      "canonicalNameEn": "Africa Safari Adventure Park",
+      "countryCode": "CR",
+      "countryNameEn": "Costa Rica",
+      "parentCityEntityId": "city-bdaca6fa565ca515",
+      "parentCityQid": "Q1387526",
+      "parentCityNameEn": "Liberia",
+      "priority": "high",
+      "routeExposure": "high",
+      "isCorePoi": true,
+      "firstPass": {
+        "reasonCode": "NO_EXACT_IMAGE",
+        "reasonDetail": "No exact P18 or Commons P180 image candidate exists.",
+        "candidateTitles": [],
+        "visualAuditId": null
+      },
+      "searchKeys": [
+        "Q27044947",
+        "Africa Safari Adventure Park",
+        "Africa Safari Adventure Park Liberia Costa Rica"
+      ]
+    },
+    {
+      "entityId": "poi-1a607d7a5110096b",
+      "qid": "Q4784120",
+      "entityType": "POI",
+      "canonicalNameEn": "Aranjuez River",
+      "countryCode": "CR",
+      "countryNameEn": "Costa Rica",
+      "parentCityEntityId": "city-51a0f1561bbcdd08",
+      "parentCityQid": "Q30687",
+      "parentCityNameEn": "Puntarenas",
+      "priority": "high",
+      "routeExposure": "high",
+      "isCorePoi": true,
+      "firstPass": {
+        "reasonCode": "SOURCE_UNAVAILABLE",
+        "reasonDetail": "commons-imageinfo-missing",
+        "candidateTitles": [
+          "Cañón del Río Aranjuez - panoramio - Hiram Montiel Calder... (1).jpg"
+        ],
+        "visualAuditId": null
+      },
+      "searchKeys": [
+        "Q4784120",
+        "Aranjuez River",
+        "Aranjuez River Puntarenas Costa Rica"
+      ]
+    },
+    {
+      "entityId": "poi-57a3d7d2ab87a0ea",
+      "qid": "Q23797737",
+      "entityType": "POI",
+      "canonicalNameEn": "AEK Arena - Georgios Karapatakis",
+      "countryCode": "CY",
+      "countryNameEn": "Cyprus",
+      "parentCityEntityId": "city-f0301ca1cc536970",
+      "parentCityQid": "Q171882",
+      "parentCityNameEn": "Larnaca",
+      "priority": "high",
+      "routeExposure": "high",
+      "isCorePoi": true,
+      "firstPass": {
+        "reasonCode": "NO_EXACT_IMAGE",
+        "reasonDetail": "No exact P18 or Commons P180 image candidate exists.",
+        "candidateTitles": [],
+        "visualAuditId": null
+      },
+      "searchKeys": [
+        "Q23797737",
+        "AEK Arena - Georgios Karapatakis",
+        "AEK Arena - Georgios Karapatakis Larnaca Cyprus"
+      ]
+    },
+    {
+      "entityId": "poi-46852544da52d343",
+      "qid": "Q2344091",
+      "entityType": "POI",
+      "canonicalNameEn": "Akrotiri Bay",
+      "countryCode": "CY",
+      "countryNameEn": "Cyprus",
+      "parentCityEntityId": "city-deef00a161c8ab1f",
+      "parentCityQid": "Q185632",
+      "parentCityNameEn": "Limassol",
+      "priority": "high",
+      "routeExposure": "high",
+      "isCorePoi": true,
+      "firstPass": {
+        "reasonCode": "IMAGE_TOO_LOW_QUALITY",
+        "reasonDetail": "source-dimensions:329x353",
+        "candidateTitles": [
+          "CIA-Akrotiri.png"
+        ],
+        "visualAuditId": null
+      },
+      "searchKeys": [
+        "Q2344091",
+        "Akrotiri Bay",
+        "Akrotiri Bay Limassol Cyprus"
+      ]
+    },
+    {
+      "entityId": "poi-c35ac75d524146a5",
+      "qid": "Q152783",
+      "entityType": "POI",
+      "canonicalNameEn": "Alexanderplatz",
+      "countryCode": "DE",
+      "countryNameEn": "Germany",
+      "parentCityEntityId": "city-92d9ceba1c4a056d",
+      "parentCityQid": "Q64",
+      "parentCityNameEn": "Berlin",
+      "priority": "high",
+      "routeExposure": "high",
+      "isCorePoi": true,
+      "firstPass": {
+        "reasonCode": "LICENSE_UNVERIFIED",
+        "reasonDetail": "FAL",
+        "candidateTitles": [
+          "Berlin - Alexanderplatz1.jpg"
+        ],
+        "visualAuditId": null
+      },
+      "searchKeys": [
+        "Q152783",
+        "Alexanderplatz",
+        "Alexanderplatz Berlin Germany"
+      ]
+    },
+    {
+      "entityId": "poi-9e7e7bd7605c1ca6",
+      "qid": "Q26503",
+      "entityType": "POI",
+      "canonicalNameEn": "Funen",
+      "countryCode": "DK",
+      "countryNameEn": "Denmark",
+      "parentCityEntityId": "city-5828c678a083189d",
+      "parentCityQid": "Q25331",
+      "parentCityNameEn": "Odense",
+      "priority": "high",
+      "routeExposure": "high",
+      "isCorePoi": true,
+      "firstPass": {
+        "reasonCode": "LICENSE_UNVERIFIED",
+        "reasonDetail": "Attribution",
+        "candidateTitles": [
+          "Funen, Denmark by Sentinel-2.jpg"
+        ],
+        "visualAuditId": null
+      },
+      "searchKeys": [
+        "Q26503",
+        "Funen",
+        "Funen Odense Denmark"
+      ]
+    },
+    {
+      "entityId": "poi-0d93f0a234f7d322",
+      "qid": "Q11896548",
+      "entityType": "POI",
+      "canonicalNameEn": "main building of the University of Tartu",
+      "countryCode": "EE",
+      "countryNameEn": "Estonia",
+      "parentCityEntityId": "city-f5bb9646058c170d",
+      "parentCityQid": "Q13972",
+      "parentCityNameEn": "Tartu",
+      "priority": "high",
+      "routeExposure": "high",
+      "isCorePoi": true,
+      "firstPass": {
+        "reasonCode": "LICENSE_UNVERIFIED",
+        "reasonDetail": "FAL",
+        "candidateTitles": [
+          "Tartu asv2022-04 img21 University main building.jpg"
+        ],
+        "visualAuditId": null
+      },
+      "searchKeys": [
+        "Q11896548",
+        "main building of the University of Tartu",
+        "main building of the University of Tartu Tartu Estonia"
+      ]
+    },
+    {
+      "entityId": "poi-122727c6f428db14",
+      "qid": "Q2313620",
+      "entityType": "POI",
+      "canonicalNameEn": "Churchill Park",
+      "countryCode": "FJ",
+      "countryNameEn": "Fiji",
+      "parentCityEntityId": "city-be32e388b00f18d0",
+      "parentCityQid": "Q856662",
+      "parentCityNameEn": "Lautoka",
+      "priority": "high",
+      "routeExposure": "high",
+      "isCorePoi": true,
+      "firstPass": {
+        "reasonCode": "IMAGE_TOO_LOW_QUALITY",
+        "reasonDetail": "source-dimensions:592x455",
+        "candidateTitles": [
+          "ChurchillPark-Ltka.jpg"
+        ],
+        "visualAuditId": null
+      },
+      "searchKeys": [
+        "Q2313620",
+        "Churchill Park",
+        "Churchill Park Lautoka Fiji"
+      ]
+    },
+    {
+      "entityId": "poi-feb613ff95927a0c",
+      "qid": "Q1268475",
+      "entityType": "POI",
+      "canonicalNameEn": "Cathedral of Saint Domnius",
+      "countryCode": "HR",
+      "countryNameEn": "Croatia",
+      "parentCityEntityId": "city-f8acfc46483ac5f3",
+      "parentCityQid": "Q1663",
+      "parentCityNameEn": "Split",
+      "priority": "high",
+      "routeExposure": "high",
+      "isCorePoi": true,
+      "firstPass": {
+        "reasonCode": "IMAGE_TOO_LOW_QUALITY",
+        "reasonDetail": "source-dimensions:350x466",
+        "candidateTitles": [
+          "SvDuje.jpg"
+        ],
+        "visualAuditId": null
+      },
+      "searchKeys": [
+        "Q1268475",
+        "Cathedral of Saint Domnius",
+        "Cathedral of Saint Domnius Split Croatia"
+      ]
+    },
+    {
+      "entityId": "poi-26824c4549fcc7e4",
+      "qid": "Q171857",
+      "entityType": "POI",
+      "canonicalNameEn": "Agra Fort",
+      "countryCode": "IN",
+      "countryNameEn": "India",
+      "parentCityEntityId": "city-c9396a1aefcfcdb2",
+      "parentCityQid": "Q42941",
+      "parentCityNameEn": "Agra",
+      "priority": "high",
+      "routeExposure": "high",
+      "isCorePoi": true,
+      "firstPass": {
+        "reasonCode": "LICENSE_UNVERIFIED",
+        "reasonDetail": "FAL",
+        "candidateTitles": [
+          "Agra 03-2016 16 Agra Fort.jpg"
+        ],
+        "visualAuditId": null
+      },
+      "searchKeys": [
+        "Q171857",
+        "Agra Fort",
+        "Agra Fort Agra India"
+      ]
+    },
+    {
+      "entityId": "poi-574215b1feaedc18",
+      "qid": "Q4689416",
+      "entityType": "POI",
+      "canonicalNameEn": "Afraha Stadium",
+      "countryCode": "KE",
+      "countryNameEn": "Kenya",
+      "parentCityEntityId": "city-be9bfa5ff5c6d7cd",
+      "parentCityQid": "Q239421",
+      "parentCityNameEn": "Nakuru",
+      "priority": "high",
+      "routeExposure": "high",
+      "isCorePoi": true,
+      "firstPass": {
+        "reasonCode": "NO_EXACT_IMAGE",
+        "reasonDetail": "No exact P18 or Commons P180 image candidate exists.",
+        "candidateTitles": [],
+        "visualAuditId": null
+      },
+      "searchKeys": [
+        "Q4689416",
+        "Afraha Stadium",
+        "Afraha Stadium Nakuru Kenya"
+      ]
+    },
+    {
+      "entityId": "poi-1a910f9bbf1fd33d",
+      "qid": "Q379080",
+      "entityType": "POI",
+      "canonicalNameEn": "Fort Jesus Museum",
+      "countryCode": "KE",
+      "countryNameEn": "Kenya",
+      "parentCityEntityId": "city-a5e988e292e3b478",
+      "parentCityQid": "Q225641",
+      "parentCityNameEn": "Mombasa",
+      "priority": "high",
+      "routeExposure": "high",
+      "isCorePoi": true,
+      "firstPass": {
+        "reasonCode": "IMAGE_TOO_LOW_QUALITY",
+        "reasonDetail": "source-dimensions:425x319",
+        "candidateTitles": [
+          "Fort JesusMombasa.jpg"
+        ],
+        "visualAuditId": null
+      },
+      "searchKeys": [
+        "Q379080",
+        "Fort Jesus Museum",
+        "Fort Jesus Museum Mombasa Kenya"
+      ]
+    },
+    {
+      "entityId": "poi-b6c78a3d9c306feb",
+      "qid": "Q43473",
+      "entityType": "POI",
+      "canonicalNameEn": "Angkor Wat",
+      "countryCode": "KH",
+      "countryNameEn": "Cambodia",
+      "parentCityEntityId": "city-93ec625f45fdc11a",
+      "parentCityQid": "Q11711",
+      "parentCityNameEn": "Siem Reap",
+      "priority": "high",
+      "routeExposure": "high",
+      "isCorePoi": true,
+      "firstPass": {
+        "reasonCode": "IMAGE_TOO_LOW_QUALITY",
+        "reasonDetail": "source-dimensions:448x336",
+        "candidateTitles": [
+          "Angkor wat temple.jpg"
+        ],
+        "visualAuditId": null
+      },
+      "searchKeys": [
+        "Q43473",
+        "Angkor Wat",
+        "Angkor Wat Siem Reap Cambodia"
+      ]
+    },
+    {
+      "entityId": "poi-688201416a5f1ab5",
+      "qid": "Q107185213",
+      "entityType": "POI",
+      "canonicalNameEn": "Bay of Kampong Som",
+      "countryCode": "KH",
+      "countryNameEn": "Cambodia",
+      "parentCityEntityId": "city-d4f155a3d8ae0c4e",
+      "parentCityQid": "Q18207676",
+      "parentCityNameEn": "Sihanoukville",
+      "priority": "high",
+      "routeExposure": "high",
+      "isCorePoi": true,
+      "firstPass": {
+        "reasonCode": "NO_EXACT_IMAGE",
+        "reasonDetail": "No exact P18 or Commons P180 image candidate exists.",
+        "candidateTitles": [],
+        "visualAuditId": null
+      },
+      "searchKeys": [
+        "Q107185213",
+        "Bay of Kampong Som",
+        "Bay of Kampong Som Sihanoukville Cambodia"
+      ]
+    },
+    {
+      "entityId": "poi-334c141ed6b36331",
+      "qid": "Q4667359",
+      "entityType": "POI",
+      "canonicalNameEn": "Abhayavapi",
+      "countryCode": "LK",
+      "countryNameEn": "Sri Lanka",
+      "parentCityEntityId": "city-6ebcec7ab5eaefd2",
+      "parentCityQid": "Q5724",
+      "parentCityNameEn": "Anuradhapura",
+      "priority": "high",
+      "routeExposure": "high",
+      "isCorePoi": true,
+      "firstPass": {
+        "reasonCode": "LICENSE_UNVERIFIED",
+        "reasonDetail": "FAL",
+        "candidateTitles": [
+          "SL Anuradhapura asv2020-01 img23 Abhayavapi.jpg"
+        ],
+        "visualAuditId": null
+      },
+      "searchKeys": [
+        "Q4667359",
+        "Abhayavapi",
+        "Abhayavapi Anuradhapura Sri Lanka"
+      ]
+    },
+    {
+      "entityId": "poi-ba99b6476175f7c0",
+      "qid": "Q4736088",
+      "entityType": "POI",
+      "canonicalNameEn": "Altair",
+      "countryCode": "LK",
+      "countryNameEn": "Sri Lanka",
+      "parentCityEntityId": "city-22e9ca4c6e34f059",
+      "parentCityQid": "Q35381",
+      "parentCityNameEn": "Colombo",
+      "priority": "high",
+      "routeExposure": "high",
+      "isCorePoi": true,
+      "firstPass": {
+        "reasonCode": "NO_EXACT_IMAGE",
+        "reasonDetail": "No exact P18 or Commons P180 image candidate exists.",
+        "candidateTitles": [],
+        "visualAuditId": null
+      },
+      "searchKeys": [
+        "Q4736088",
+        "Altair",
+        "Altair Colombo Sri Lanka"
+      ]
+    },
+    {
+      "entityId": "poi-e28f4fd5f3d1f017",
+      "qid": "Q4804317",
+      "entityType": "POI",
+      "canonicalNameEn": "Asgiriya Stadium",
+      "countryCode": "LK",
+      "countryNameEn": "Sri Lanka",
+      "parentCityEntityId": "city-665132a5271740ff",
+      "parentCityQid": "Q203197",
+      "parentCityNameEn": "Kandy",
+      "priority": "high",
+      "routeExposure": "high",
+      "isCorePoi": true,
+      "firstPass": {
+        "reasonCode": "NO_EXACT_IMAGE",
+        "reasonDetail": "No exact P18 or Commons P180 image candidate exists.",
+        "candidateTitles": [],
+        "visualAuditId": null
+      },
+      "searchKeys": [
+        "Q4804317",
+        "Asgiriya Stadium",
+        "Asgiriya Stadium Kandy Sri Lanka"
+      ]
+    },
+    {
+      "entityId": "poi-b6e2446b9bed0dbe",
+      "qid": "Q10148",
+      "entityType": "POI",
+      "canonicalNameEn": "Eurovision Song Contest 2003",
+      "countryCode": "LV",
+      "countryNameEn": "Latvia",
+      "parentCityEntityId": "city-416f1a3dc33f460f",
+      "parentCityQid": "Q1773",
+      "parentCityNameEn": "Riga",
+      "priority": "high",
+      "routeExposure": "high",
+      "isCorePoi": true,
+      "firstPass": {
+        "reasonCode": "NO_EXACT_IMAGE",
+        "reasonDetail": "No exact P18 or Commons P180 image candidate exists.",
+        "candidateTitles": [],
+        "visualAuditId": null
+      },
+      "searchKeys": [
+        "Q10148",
+        "Eurovision Song Contest 2003",
+        "Eurovision Song Contest 2003 Riga Latvia"
+      ]
+    },
+    {
+      "entityId": "poi-dede442041af184f",
+      "qid": "Q173217",
+      "entityType": "POI",
+      "canonicalNameEn": "Ain-Diab Circuit",
+      "countryCode": "MA",
+      "countryNameEn": "Morocco",
+      "parentCityEntityId": "city-7f445ec817f8eacf",
+      "parentCityQid": "Q7903",
+      "parentCityNameEn": "Casablanca",
+      "priority": "high",
+      "routeExposure": "high",
+      "isCorePoi": true,
+      "firstPass": {
+        "reasonCode": "IMAGE_TOO_LOW_QUALITY",
+        "reasonDetail": "source-dimensions:413x306",
+        "candidateTitles": [
+          "Circuit Ain Diab.png"
+        ],
+        "visualAuditId": null
+      },
+      "searchKeys": [
+        "Q173217",
+        "Ain-Diab Circuit",
+        "Ain-Diab Circuit Casablanca Morocco"
+      ]
+    },
+    {
+      "entityId": "poi-0694f32efd286fc6",
+      "qid": "Q3412514",
+      "entityType": "POI",
+      "canonicalNameEn": "Almoravid Koubba",
+      "countryCode": "MA",
+      "countryNameEn": "Morocco",
+      "parentCityEntityId": "city-be7f619a03e5b8b8",
+      "parentCityQid": "Q101625",
+      "parentCityNameEn": "Marrakesh",
+      "priority": "high",
+      "routeExposure": "high",
+      "isCorePoi": true,
+      "firstPass": {
+        "reasonCode": "IMAGE_TOO_LOW_QUALITY",
+        "reasonDetail": "source-dimensions:332x500",
+        "candidateTitles": [
+          "Koubba Ba'Adiyn.JPG"
+        ],
+        "visualAuditId": null
+      },
+      "searchKeys": [
+        "Q3412514",
+        "Almoravid Koubba",
+        "Almoravid Koubba Marrakesh Morocco"
+      ]
+    },
+    {
+      "entityId": "poi-2f7f73fdd13bc487",
+      "qid": "Q5384251",
+      "entityType": "POI",
+      "canonicalNameEn": "Equatorial Convention Centre",
+      "countryCode": "MV",
+      "countryNameEn": "Maldives",
+      "parentCityEntityId": "city-a1b9152b3cd74516",
+      "parentCityQid": "Q4681407",
+      "parentCityNameEn": "Addu City",
+      "priority": "high",
+      "routeExposure": "high",
+      "isCorePoi": true,
+      "firstPass": {
+        "reasonCode": "NO_EXACT_IMAGE",
+        "reasonDetail": "No exact P18 or Commons P180 image candidate exists.",
+        "candidateTitles": [],
+        "visualAuditId": null
+      },
+      "searchKeys": [
+        "Q5384251",
+        "Equatorial Convention Centre",
+        "Equatorial Convention Centre Addu City Maldives"
+      ]
+    },
+    {
+      "entityId": "poi-e54d1ff349439794",
+      "qid": "Q31209926",
+      "entityType": "POI",
+      "canonicalNameEn": "Bat Cave",
+      "countryCode": "NP",
+      "countryNameEn": "Nepal",
+      "parentCityEntityId": "city-2a8ba576708f1395",
+      "parentCityQid": "Q6640",
+      "parentCityNameEn": "Pokhara",
+      "priority": "high",
+      "routeExposure": "high",
+      "isCorePoi": true,
+      "firstPass": {
+        "reasonCode": "NO_EXACT_IMAGE",
+        "reasonDetail": "No exact P18 or Commons P180 image candidate exists.",
+        "candidateTitles": [],
+        "visualAuditId": null
+      },
+      "searchKeys": [
+        "Q31209926",
+        "Bat Cave",
+        "Bat Cave Pokhara Nepal"
+      ]
+    },
+    {
+      "entityId": "poi-8302f74ba1bc1d76",
+      "qid": "Q24928031",
+      "entityType": "POI",
+      "canonicalNameEn": "Arequipa Peru Temple",
+      "countryCode": "PE",
+      "countryNameEn": "Peru",
+      "parentCityEntityId": "city-c53e89efdcd37dfe",
+      "parentCityQid": "Q159273",
+      "parentCityNameEn": "Arequipa",
+      "priority": "high",
+      "routeExposure": "high",
+      "isCorePoi": true,
+      "firstPass": {
+        "reasonCode": "NO_EXACT_IMAGE",
+        "reasonDetail": "No exact P18 or Commons P180 image candidate exists.",
+        "candidateTitles": [],
+        "visualAuditId": null
+      },
+      "searchKeys": [
+        "Q24928031",
+        "Arequipa Peru Temple",
+        "Arequipa Peru Temple Arequipa Peru"
+      ]
+    },
+    {
+      "entityId": "poi-1be3a9362f98e12e",
+      "qid": "Q4669514",
+      "entityType": "POI",
+      "canonicalNameEn": "Abreeza",
+      "countryCode": "PH",
+      "countryNameEn": "Philippines",
+      "parentCityEntityId": "city-e21ca783f3d984fc",
+      "parentCityQid": "Q1473",
+      "parentCityNameEn": "Davao City",
+      "priority": "high",
+      "routeExposure": "high",
+      "isCorePoi": true,
+      "firstPass": {
+        "reasonCode": "NO_EXACT_IMAGE",
+        "reasonDetail": "No exact P18 or Commons P180 image candidate exists.",
+        "candidateTitles": [],
+        "visualAuditId": null
+      },
+      "searchKeys": [
+        "Q4669514",
+        "Abreeza",
+        "Abreeza Davao City Philippines"
+      ]
+    },
+    {
+      "entityId": "poi-502780932afb589c",
+      "qid": "Q5055803",
+      "entityType": "POI",
+      "canonicalNameEn": "Cebu City Philippines Temple",
+      "countryCode": "PH",
+      "countryNameEn": "Philippines",
+      "parentCityEntityId": "city-2de17a2bc6043fc0",
+      "parentCityQid": "Q1467",
+      "parentCityNameEn": "Cebu City",
+      "priority": "high",
+      "routeExposure": "high",
+      "isCorePoi": true,
+      "firstPass": {
+        "reasonCode": "NO_EXACT_IMAGE",
+        "reasonDetail": "No exact P18 or Commons P180 image candidate exists.",
+        "candidateTitles": [],
+        "visualAuditId": null
+      },
+      "searchKeys": [
+        "Q5055803",
+        "Cebu City Philippines Temple",
+        "Cebu City Philippines Temple Cebu City Philippines"
+      ]
+    },
+    {
+      "entityId": "poi-83ac5861b276d133",
+      "qid": "Q131686938",
+      "entityType": "POI",
+      "canonicalNameEn": "Al Madi Mosque",
+      "countryCode": "SA",
+      "countryNameEn": "Saudi Arabia",
+      "parentCityEntityId": "city-ffce627b0c72a8e5",
+      "parentCityQid": "Q3692",
+      "parentCityNameEn": "Riyadh",
+      "priority": "high",
+      "routeExposure": "high",
+      "isCorePoi": true,
+      "firstPass": {
+        "reasonCode": "NO_EXACT_IMAGE",
+        "reasonDetail": "No exact P18 or Commons P180 image candidate exists.",
+        "candidateTitles": [],
+        "visualAuditId": null
+      },
+      "searchKeys": [
+        "Q131686938",
+        "Al Madi Mosque",
+        "Al Madi Mosque Riyadh Saudi Arabia"
+      ]
+    },
+    {
+      "entityId": "poi-54c0d5baca355011",
+      "qid": "Q115658",
+      "entityType": "POI",
+      "canonicalNameEn": "Bou Ali Lahouar Stadium",
+      "countryCode": "TN",
+      "countryNameEn": "Tunisia",
+      "parentCityEntityId": "city-95f351f919e6d2f8",
+      "parentCityQid": "Q180717",
+      "parentCityNameEn": "Sousse",
+      "priority": "high",
+      "routeExposure": "high",
+      "isCorePoi": true,
+      "firstPass": {
+        "reasonCode": "NO_EXACT_IMAGE",
+        "reasonDetail": "No exact P18 or Commons P180 image candidate exists.",
+        "candidateTitles": [],
+        "visualAuditId": null
+      },
+      "searchKeys": [
+        "Q115658",
+        "Bou Ali Lahouar Stadium",
+        "Bou Ali Lahouar Stadium Sousse Tunisia"
+      ]
+    },
+    {
+      "entityId": "poi-85f5ccba3f115856",
+      "qid": "Q615404",
+      "entityType": "POI",
+      "canonicalNameEn": "Anıtkabir",
+      "countryCode": "TR",
+      "countryNameEn": "Turkey",
+      "parentCityEntityId": "city-d6f6bf7d2fca5cb4",
+      "parentCityQid": "Q3640",
+      "parentCityNameEn": "Ankara",
+      "priority": "high",
+      "routeExposure": "high",
+      "isCorePoi": true,
+      "firstPass": {
+        "reasonCode": "LICENSE_UNVERIFIED",
+        "reasonDetail": "FAL",
+        "candidateTitles": [
+          "Ankara asv2021-10 img04 Anıtkabir.jpg"
+        ],
+        "visualAuditId": null
+      },
+      "searchKeys": [
+        "Q615404",
+        "Anıtkabir",
+        "Anıtkabir Ankara Turkey"
+      ]
+    }
+  ]
+}

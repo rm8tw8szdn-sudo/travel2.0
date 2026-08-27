@@ -29,18 +29,18 @@ Every Batch 05 country produced an exact-duration, single-country Route V2 resul
 
 ## Image asset expansion and historical backfill
 
-- Historical image debt discovered: 531
+- Historical image debt discovered: 9
 - Country graphic covers available: 78/78
 - Batch 05 Country graphic covers added: 20
-- Dedicated City covers: 96/601
-- Dedicated Core POI images: 42/224
-- Neutral placeholders: 687 (505 City + 182 Core POI)
-- Batch 05 trusted local images added: 39
+- Dedicated City covers: 600/601
+- Dedicated Core POI images: 212/224
+- Neutral placeholders: 13 (1 City + 12 Core POI)
+- Batch 05 trusted local images added: 246
 - Active invalid mappings: 0
-- Remaining needsBackfill: 687
+- Remaining needsBackfill: 13
 - Runtime external image requests: disabled
 
-Country resources are explicitly classified as non-photographic Country graphic covers. Verified dedicated destination images cover 96/601 Cities and 42/224 Core POIs; the remaining 687 images use neutral placeholders and remain in needsBackfill.
+Country resources are explicitly classified as non-photographic Country graphic covers. Verified dedicated destination images cover 600/601 Cities and 212/224 Core POIs; the remaining 13 images use neutral placeholders and remain in needsBackfill.
 
 ## Evidence discipline
 

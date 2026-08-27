@@ -12,7 +12,7 @@ const sha256 = (value) => crypto.createHash("sha256").update(value).digest("hex"
 const read = (relativePath) => fs.readFileSync(path.join(ROOT, relativePath), "utf8");
 const provenanceByPath = new Map();
 function exactProvenance(asset) {
-  assert.match(asset.sourcePath, /^data\/route-v2\/images\/batch\d{2}-dedicated-image-provenance\.json$/u);
+  assert.match(asset.sourcePath, /^data\/route-v2\/images\/(?:batch\d{2}-dedicated-image-provenance|image-debt-elimination-provenance)\.json$/u);
   if (!provenanceByPath.has(asset.sourcePath)) {
     provenanceByPath.set(asset.sourcePath, JSON.parse(read(asset.sourcePath)).assets || []);
   }

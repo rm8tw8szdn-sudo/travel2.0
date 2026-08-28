@@ -1,0 +1,97 @@
+{
+  "schemaVersion": "route-v2-image-debt-browser-acceptance-v1",
+  "recordedAt": "2026-08-26T00:00:00.000+08:00",
+  "browser": "Codex in-app Browser",
+  "origin": "http://127.0.0.1:4188",
+  "result": "PASS",
+  "samples": {
+    "countryDetails": [
+      "JP", "KR", "US", "CA", "GB", "FR", "DE", "IT", "ES", "BR", "IN", "AU", "NZ", "ZA", "EG", "VN", "KE"
+    ],
+    "cityDetails": [
+      "London", "Tokyo", "New York City", "Rio de Janeiro", "Delhi", "Sydney", "Cape Town", "Hanoi", "Kisumu"
+    ],
+    "routeSearches": [
+      "Kisumu 7 days",
+      "Gyeongju 7 days",
+      "Manta 7 days",
+      "Riobamba 7 days",
+      "Agra 7 days",
+      "Siem Reap 7 days",
+      "Mombasa 7 days"
+    ],
+    "routeDetails": [
+      "Mombasa citywalk with Fort Jesus exact-POI image and neutral placeholders for unresolved POIs"
+    ],
+    "tripFootprint": [
+      "Mombasa citywalk -> Add Trip -> Complete -> Footprint (1 Country / 1 City)"
+    ],
+    "poiDedicatedConsumption": [
+      {
+        "entityId": "poi-dfb1960f420454cf",
+        "wikidataId": "Q359256",
+        "name": "Admiralty Arch",
+        "assetPath": "assets/route-v2-images/pois/poi-q359256.jpg"
+      },
+      {
+        "entityId": "poi-1a910f9bbf1fd33d",
+        "wikidataId": "Q379080",
+        "name": "Fort Jesus",
+        "assetPath": "assets/route-v2-images/pois/poi-q379080.webp"
+      }
+    ],
+    "multiSourceRecoveryCityConsumption": [
+      {
+        "wikidataId": "Q214485",
+        "name": "Kisumu",
+        "assetPath": "assets/route-v2-images/cities/city-q214485.webp"
+      },
+      {
+        "wikidataId": "Q42097",
+        "name": "Gyeongju",
+        "assetPath": "assets/route-v2-images/cities/city-q42097.webp"
+      },
+      {
+        "wikidataId": "Q990738",
+        "name": "Manta",
+        "assetPath": "assets/route-v2-images/cities/city-q990738.webp"
+      },
+      {
+        "wikidataId": "Q478675",
+        "name": "Riobamba",
+        "assetPath": "assets/route-v2-images/cities/city-q478675.webp"
+      }
+    ],
+    "detailSurfaceAcceptance": [
+      {
+        "surface": "City Detail",
+        "entityId": "city-39f72910b4074236",
+        "wikidataId": "Q214485",
+        "name": "Kisumu",
+        "assetPath": "assets/route-v2-images/cities/city-q214485.webp",
+        "naturalWidth": 1600,
+        "result": "verified exact-city local asset"
+      },
+      {
+        "surface": "Country Detail",
+        "countryCode": "KE",
+        "countryCover": "assets/route-v2-images/countries/ke.svg",
+        "cityCard": "Nairobi",
+        "cityCardAssetPath": "assets/route-city-placeholder.svg",
+        "result": "country cover isolated to country semantics; unresolved city card uses neutral placeholder"
+      }
+    ]
+  },
+  "assertions": {
+    "dedicatedCityConsumed": true,
+    "dedicatedPoiConsumed": true,
+    "safePlaceholderForRemainingDebt": true,
+    "countryCoverUsedOnlyForCountrySemantics": true,
+    "routeTripFootprintIdentityStable": true,
+    "brokenImages": 0,
+    "wrongSemanticImages": 0,
+    "runtimeExternalImageRequests": 0,
+    "consoleErrors": 0,
+    "consoleWarnings": 0
+  }
+}

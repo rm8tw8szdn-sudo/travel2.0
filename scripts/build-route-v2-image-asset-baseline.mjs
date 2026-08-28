@@ -12,12 +12,10 @@ import {
 const ROOT = path.resolve(import.meta.dirname, "..");
 const strict = process.argv.includes("--strict");
 const model = buildImageAssetBaseline({ root: ROOT });
-
-fs.mkdirSync(path.dirname(path.join(ROOT, INVENTORY_PATH)), { recursive: true });
-fs.writeFileSync(path.join(ROOT, INVENTORY_PATH), stableBaselineJson(model), "utf8");
-fs.writeFileSync(path.join(ROOT, REPORT_PATH), renderImageAssetBaselineReport(model), "utf8");
+const untrackedImageAssets = model.inventory.filter((asset) => !asset.isTracked).map((asset) => asset.path);
 
 const blockers = {
+  untrackedImageAssets: untrackedImageAssets.length,
   unknownAssets: model.orphanAssets.unknown.length,
   missingLocalAssets: model.references.blockingMissingLocalAssets.length,
   activeExternalImageReferences: model.references.externalImageReferences.filter((entry) => entry.kind === "production").length,
@@ -31,6 +29,13 @@ const blockers = {
   unapprovedNormalGitLargeAssets: model.git.sizePolicyViolations.length,
 };
 const blocked = Object.values(blockers).some((value) => value !== 0);
+const sealBlocked = untrackedImageAssets.length > 0;
+
+if (!sealBlocked) {
+  fs.mkdirSync(path.dirname(path.join(ROOT, INVENTORY_PATH)), { recursive: true });
+  fs.writeFileSync(path.join(ROOT, INVENTORY_PATH), stableBaselineJson(model), "utf8");
+  fs.writeFileSync(path.join(ROOT, REPORT_PATH), renderImageAssetBaselineReport(model), "utf8");
+}
 
 process.stdout.write(`${JSON.stringify({
   verifier: "build-route-v2-image-asset-baseline",
@@ -41,8 +46,10 @@ process.stdout.write(`${JSON.stringify({
   needsBackfill: model.backfill.total,
   exactDuplicateGroups: model.duplicates.exactGroups.length,
   perceptualDuplicateGroups: model.duplicates.perceptualGroups.length,
+  sealBlocked,
+  untrackedImageAssets,
   blockers,
-  outputs: [INVENTORY_PATH, REPORT_PATH],
+  outputs: sealBlocked ? [] : [INVENTORY_PATH, REPORT_PATH],
 }, null, 2)}\n`);
 
-if (strict && blocked) process.exitCode = 1;
+if (sealBlocked || (strict && blocked)) process.exitCode = 1;

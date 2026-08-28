@@ -12,7 +12,7 @@ const read = (relativePath) => fs.readFileSync(path.join(ROOT, relativePath), "u
 const manifest = JSON.parse(read("data/route-v2/images/image-coverage-manifest.json"));
 const provenanceByPath = new Map();
 function exactProvenance(record) {
-  assert.match(record.sourcePath, /^data\/route-v2\/images\/batch\d{2}-dedicated-image-provenance\.json$/u);
+  assert.match(record.sourcePath, /^data\/route-v2\/images\/(?:batch\d{2}-dedicated-image-provenance|image-debt-elimination-provenance)\.json$/u);
   if (!provenanceByPath.has(record.sourcePath)) {
     provenanceByPath.set(record.sourcePath, JSON.parse(read(record.sourcePath)).assets || []);
   }
@@ -122,8 +122,12 @@ delete globalThis.RouteV2ImageAssets;
 require(path.join(ROOT, "route-v2-image-coverage.js"));
 const imageAssets = require(path.join(ROOT, "route-v2-image-assets.js"));
 const placeholder = manifest.cities.find((record) => record.status === "placeholder");
-assert.equal(imageAssets.resolveLocalDestinationCover({ entityId: placeholder.entityId, countryCode: placeholder.countryCode }).url, "assets/route-city-placeholder.svg");
+const placeholderProbe = placeholder || { entityId: "city-verifier-unpublished", countryCode: "CA" };
+assert.equal(imageAssets.resolveLocalDestinationCover({ entityId: placeholderProbe.entityId, countryCode: placeholderProbe.countryCode }).url, "assets/route-city-placeholder.svg");
 assert.equal(manifest.cities.every((record) => imageAssets.resolveLocalDestinationCover({ entityId: record.entityId, countryCode: record.countryCode }).url === record.assetPath), true);
+assert.equal(manifest.pois.every((record) => imageAssets.resolveLocalDestinationCover({ entityId: record.entityId, countryCode: record.countryCode }).url === record.assetPath), true);
+const dedicatedPoi = manifest.pois.find((record) => record.status === "imageReady");
+assert.equal(imageAssets.resolveLocalDestinationCover({ entityId: dedicatedPoi.entityId, entityTypeName: "poi", countryCode: dedicatedPoi.countryCode }).source, "local-poi");
 assert.equal(imageAssets.resolveLocalDestinationCover({ name: "Unknown", countryCode: "CA" }).url, "assets/route-city-placeholder.svg");
 const countryCover = manifest.countries.find((record) => record.countryCode === "CA");
 assert.equal(imageAssets.resolveLocalRouteCover({ countryEntities: [{ countryCode: "CA", name: "Canada" }] }).url, countryCover.assetPath);

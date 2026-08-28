@@ -44,9 +44,11 @@ const imageCoverageManifest = JSON.parse(read("data/route-v2/images/image-covera
 globalThis.RouteV2ImageCoverage = {
   countryByCode: Object.fromEntries(imageCoverageManifest.countries.map((record) => [record.countryCode, record])),
   cityByEntityId: Object.fromEntries(imageCoverageManifest.cities.map((record) => [record.entityId, record])),
+  poiByEntityId: Object.fromEntries(imageCoverageManifest.pois.map((record) => [record.entityId, record])),
   fallbackPolicy: imageCoverageManifest.fallbackPolicy,
 };
 const tokyoCoverage = imageCoverageManifest.cities.find((record) => record.canonicalNameEn === "Tokyo");
+const dedicatedPoiCoverage = imageCoverageManifest.pois.find((record) => record.status === "imageReady");
 
 const EXPECTED_CITY_KEYS = Object.freeze({
   "NL-AMS": "cities/amsterdam.webp",
@@ -123,7 +125,7 @@ assert.equal(imageAssets.resolveLocalRouteCover({
   id: "local-city-route",
   destinationEntities: [{ entityId: tokyoCoverage.entityId, name: "Tokyo", countryCode: "JP" }],
   countryEntities: [{ countryCode: "JP", name: "Japan" }],
-}).url, "assets/route-city-placeholder.svg");
+}).url, tokyoCoverage.assetPath);
 assert.equal(imageAssets.resolveLocalRouteCover({
   id: "local-country-route",
   countryEntities: [{ countryCode: "FI", name: "Finland" }],
@@ -150,7 +152,8 @@ for (const record of [
   );
 }
 assert.equal(imageAssets.resolveLocalDestinationCover({ name: "Kyoto", countryCode: "JP" }).url, "assets/route-city-placeholder.svg");
-assert.equal(imageAssets.resolveLocalDestinationCover({ entityId: tokyoCoverage.entityId, name: "Tokyo", countryCode: "JP" }).url, "assets/route-city-placeholder.svg");
+assert.equal(imageAssets.resolveLocalDestinationCover({ entityId: tokyoCoverage.entityId, name: "Tokyo", countryCode: "JP" }).url, tokyoCoverage.assetPath);
+assert.equal(imageAssets.resolveLocalDestinationCover({ entityId: dedicatedPoiCoverage.entityId, countryCode: dedicatedPoiCoverage.countryCode }).url, dedicatedPoiCoverage.assetPath);
 assert.equal(imageAssets.resolveLocalDestinationCover({ name: "Unknown", countryCode: "ZZ" }).url, "assets/route-city-placeholder.svg");
 assert.equal(
   imageAssets.resolveLocalRouteCover({ id: "gold-case-accepted-gold-2-it-first-trip" }, { assetBaseUrl: TEST_ASSET_BASE_URL }).url,

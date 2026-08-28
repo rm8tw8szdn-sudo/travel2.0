@@ -216,7 +216,8 @@ function lfsInventory(root) {
 function referenceKind(sourcePath) {
   if (/^scripts\/verify-/u.test(sourcePath)) return "test";
   if (/^data\/knowledge\/(?:raw|reports|batches)\//u.test(sourcePath)) return "audit";
-  if (/^data\/route-v2\/images\/batch\d{2}-dedicated-image-provenance\.json$/u.test(sourcePath)) return "audit";
+  if (/^data\/route-v2\/images\/(?:batch\d{2}-dedicated-image-provenance|image-debt-[a-z0-9-]+)\.json$/u.test(sourcePath)) return "audit";
+  if (/^data\/route-v2\/images\/audit\//u.test(sourcePath)) return "audit";
   if (/^(?:docs\/|ROUTE_V2_.*\.md$)/u.test(sourcePath) || sourcePath.endsWith(".md")) return "audit";
   if (/^scripts\//u.test(sourcePath)) return "build";
   if (sourcePath === FORMAL_MANIFEST_PATH || sourcePath === "route-v2-image-coverage.js") return "manifest";
@@ -786,4 +787,31 @@ ${markdownList(model.git.invalidLfsPointers)}
 
 export function stableBaselineJson(model) {
   return `${JSON.stringify(model, null, 2)}\n`;
+}
+
+export function compareImageAssetBaselineInventories(currentInventory, sealedInventory) {
+  const currentByPath = new Map(currentInventory.map((asset) => [cleanPath(asset?.path), asset]));
+  const sealedByPath = new Map(sealedInventory.map((asset) => [cleanPath(asset?.path), asset]));
+  const sharedPaths = [...currentByPath.keys()]
+    .filter((assetPath) => sealedByPath.has(assetPath))
+    .sort((left, right) => left.localeCompare(right, "en"));
+
+  return {
+    totalCheckedAssets: currentInventory.length,
+    trackedStateMismatches: sharedPaths
+      .filter((assetPath) => Boolean(currentByPath.get(assetPath)?.isTracked) !== Boolean(sealedByPath.get(assetPath)?.isTracked))
+      .map((assetPath) => ({
+        path: assetPath,
+        currentIsTracked: Boolean(currentByPath.get(assetPath)?.isTracked),
+        sealedIsTracked: Boolean(sealedByPath.get(assetPath)?.isTracked),
+      })),
+    hashMismatches: sharedPaths
+      .filter((assetPath) => String(currentByPath.get(assetPath)?.sha256 || "") !== String(sealedByPath.get(assetPath)?.sha256 || ""))
+      .map((assetPath) => ({ path: assetPath, currentSha256: currentByPath.get(assetPath)?.sha256 || null, sealedSha256: sealedByPath.get(assetPath)?.sha256 || null })),
+    byteMismatches: sharedPaths
+      .filter((assetPath) => Number(currentByPath.get(assetPath)?.bytes) !== Number(sealedByPath.get(assetPath)?.bytes))
+      .map((assetPath) => ({ path: assetPath, currentBytes: currentByPath.get(assetPath)?.bytes ?? null, sealedBytes: sealedByPath.get(assetPath)?.bytes ?? null })),
+    missingAssets: [...sealedByPath.keys()].filter((assetPath) => !currentByPath.has(assetPath)).sort((left, right) => left.localeCompare(right, "en")),
+    unexpectedAssets: [...currentByPath.keys()].filter((assetPath) => !sealedByPath.has(assetPath)).sort((left, right) => left.localeCompare(right, "en")),
+  };
 }

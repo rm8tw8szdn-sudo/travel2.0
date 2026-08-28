@@ -27,14 +27,14 @@ China was retained as Catalog-only because Search V1 intentionally blocks it. Ur
 
 - Historical image debt before Batch 06: 411
 - Historical dedicated destination images added: 47
-- Historical needsBackfill after Batch 06: 531
+- Historical needsBackfill after Batch 06: 9
 - Batch 06 Country Covers: 20/20
 - Batch 06 verified dedicated destination images: 49
 - Country Cover coverage: 78/78
-- Dedicated City coverage: 96/601 (16%)
-- Dedicated Core POI coverage: 42/224 (18.8%)
-- Neutral placeholders: 687 (505 City + 182 Core POI)
-- Remaining needsBackfill: 687
+- Dedicated City coverage: 600/601 (99.8%)
+- Dedicated Core POI coverage: 212/224 (94.6%)
+- Neutral placeholders: 13 (1 City + 12 Core POI)
+- Remaining needsBackfill: 13
 - invalidMapping: 0
 - Runtime external image requests allowed: false
 
@@ -51,8 +51,8 @@ Dedicated imagery is accepted only when bound to the exact entity QID through Wi
 
 ## Asset size and duplicate audit
 
-- Local image assets: 283
-- Total bytes: 43101273
+- Local image assets: 957
+- Total bytes: 202028141
 - >300KB: 18; >500KB: 9; >1MB: 1; >5MB: 0
 - Exact duplicate groups: 2; perceptual duplicate groups: 9
 

@@ -1,0 +1,88 @@
+{
+  "schemaVersion": "route-v2-image-debt-wave-results-v1",
+  "acquiredAt": "2026-08-24T08:00:00.000Z",
+  "waves": [
+    {
+      "wave": 1,
+      "inventoryCount": 150,
+      "attempted": 150,
+      "succeeded": 118,
+      "remained": 32,
+      "semanticReject": 6,
+      "licenseReject": 13,
+      "qualityReject": 12,
+      "duplicateReject": 0,
+      "sizeReject": 0,
+      "sourceUnavailable": 1
+    },
+    {
+      "wave": 2,
+      "inventoryCount": 150,
+      "attempted": 150,
+      "succeeded": 116,
+      "remained": 34,
+      "semanticReject": 12,
+      "licenseReject": 8,
+      "qualityReject": 14,
+      "duplicateReject": 0,
+      "sizeReject": 0,
+      "sourceUnavailable": 0
+    },
+    {
+      "wave": 3,
+      "inventoryCount": 150,
+      "attempted": 150,
+      "succeeded": 130,
+      "remained": 20,
+      "semanticReject": 0,
+      "licenseReject": 1,
+      "qualityReject": 19,
+      "duplicateReject": 0,
+      "sizeReject": 0,
+      "sourceUnavailable": 0
+    },
+    {
+      "wave": 4,
+      "inventoryCount": 150,
+      "attempted": 150,
+      "succeeded": 130,
+      "remained": 20,
+      "semanticReject": 0,
+      "licenseReject": 2,
+      "qualityReject": 17,
+      "duplicateReject": 0,
+      "sizeReject": 0,
+      "sourceUnavailable": 1
+    },
+    {
+      "wave": 5,
+      "inventoryCount": 87,
+      "attempted": 87,
+      "succeeded": 81,
+      "remained": 6,
+      "semanticReject": 0,
+      "licenseReject": 0,
+      "qualityReject": 6,
+      "duplicateReject": 0,
+      "sizeReject": 0,
+      "sourceUnavailable": 0
+    }
+  ],
+  "inventorySha256": "dbe366d476770c915a980ed787996b5ae885ccce47f3d088ef18b57d2b559ce2",
+  "totals": {
+    "attempted": 687,
+    "succeeded": 676,
+    "remained": 11,
+    "semanticReject": 6,
+    "licenseReject": 0,
+    "qualityReject": 5,
+    "duplicateReject": 0,
+    "sizeReject": 0,
+    "sourceUnavailable": 0
+  },
+  "visualAudit": {
+    "reviewed": 676,
+    "passed": 676,
+    "rejected": 0
+  }
+}

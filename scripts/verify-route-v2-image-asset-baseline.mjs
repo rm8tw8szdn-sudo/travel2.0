@@ -10,7 +10,7 @@ import {
   NORMAL_GIT_HARD_LIMIT_BYTES,
   NORMAL_GIT_SIZE_EXCEPTIONS,
   REPORT_PATH,
-  buildImageAssetBaseline,
+  buildImageAssetBaseline, compareImageAssetBaselineInventories,
   evaluateNormalGitImageSizePolicy,
   renderImageAssetBaselineReport,
   stableBaselineJson,
@@ -103,6 +103,50 @@ function verifyCanonicalTextComparisonFixtures() {
   };
 }
 
+function hasInventoryMismatch(result) {
+  return result.trackedStateMismatches.length > 0
+    || result.hashMismatches.length > 0
+    || result.byteMismatches.length > 0
+    || result.missingAssets.length > 0
+    || result.unexpectedAssets.length > 0;
+}
+
+function verifyTrackedStateSealingMutations() {
+  const tracked = Object.freeze({
+    path: "fixture/tracked.webp",
+    isTracked: true,
+    sha256: FIXTURE_HASH,
+    bytes: 123_456,
+  });
+  const compare = (current, sealed) => compareImageAssetBaselineInventories(current, sealed);
+  const trackedMatch = compare([tracked], [{ ...tracked }]);
+  const staleTrackedState = compare([tracked], [{ ...tracked, isTracked: false }]);
+  const currentUntracked = compare([{ ...tracked, isTracked: false }], [tracked]);
+  const missingFormalAsset = compare([], [tracked]);
+  const changedHash = compare([{ ...tracked, sha256: OTHER_FIXTURE_HASH }], [tracked]);
+  const changedBytes = compare([{ ...tracked, bytes: tracked.bytes + 1 }], [tracked]);
+  const changedPath = compare([{ ...tracked, path: "fixture/moved.webp" }], [tracked]);
+
+  assert.equal(hasInventoryMismatch(trackedMatch), false, "tracked live asset and tracked sealed asset must match");
+  assert.equal(staleTrackedState.trackedStateMismatches.length, 1, "tracked live asset must reject a stale untracked baseline state");
+  assert.equal(currentUntracked.trackedStateMismatches.length, 1, "untracked live asset must reject a tracked baseline state");
+  assert.deepEqual(missingFormalAsset.missingAssets, [tracked.path], "missing formal asset must be rejected");
+  assert.equal(changedHash.hashMismatches.length, 1, "image hash changes must be rejected");
+  assert.equal(changedBytes.byteMismatches.length, 1, "image byte-size changes must be rejected");
+  assert.deepEqual(changedPath.missingAssets, [tracked.path], "path changes must report the sealed asset missing");
+  assert.deepEqual(changedPath.unexpectedAssets, ["fixture/moved.webp"], "path changes must report the moved asset unexpected");
+
+  return {
+    trackedLiveAndSealed: "PASS",
+    staleUntrackedBaselineKilled: true,
+    untrackedLiveAssetKilled: true,
+    missingFormalAssetKilled: true,
+    changedHashKilled: true,
+    changedBytesKilled: true,
+    changedPathKilled: true,
+  };
+}
+
 const ROOT = path.resolve(import.meta.dirname, "..");
 const inventoryPath = path.join(ROOT, INVENTORY_PATH);
 const reportPath = path.join(ROOT, REPORT_PATH);
@@ -110,9 +154,18 @@ assert.equal(fs.existsSync(inventoryPath), true, `${INVENTORY_PATH}:missing; run
 assert.equal(fs.existsSync(reportPath), true, `${REPORT_PATH}:missing; run the baseline builder`);
 
 const model = buildImageAssetBaseline({ root: ROOT });
+const sealedModel = JSON.parse(fs.readFileSync(inventoryPath, "utf8"));
+const inventoryComparison = compareImageAssetBaselineInventories(model.inventory, sealedModel.inventory || []);
 const sizePolicyMutations = verifyNormalGitSizePolicyMutations();
 const canonicalTextComparisonFixtures = verifyCanonicalTextComparisonFixtures();
+const trackedStateMutationCases = verifyTrackedStateSealingMutations();
 assert.equal(model.schemaVersion, BASELINE_SCHEMA_VERSION);
+assert.equal(model.inventory.filter((asset) => !asset.isTracked).length, 0, `untracked image assets cannot be sealed:${JSON.stringify(model.inventory.filter((asset) => !asset.isTracked).map((asset) => asset.path))}`);
+assert.equal(inventoryComparison.trackedStateMismatches.length, 0, `tracked-state baseline mismatches:${JSON.stringify(inventoryComparison.trackedStateMismatches)}`);
+assert.equal(inventoryComparison.hashMismatches.length, 0, `image hash baseline mismatches:${JSON.stringify(inventoryComparison.hashMismatches)}`);
+assert.equal(inventoryComparison.byteMismatches.length, 0, `image byte-size baseline mismatches:${JSON.stringify(inventoryComparison.byteMismatches)}`);
+assert.equal(inventoryComparison.missingAssets.length, 0, `missing baseline image assets:${JSON.stringify(inventoryComparison.missingAssets)}`);
+assert.equal(inventoryComparison.unexpectedAssets.length, 0, `unexpected baseline image assets:${JSON.stringify(inventoryComparison.unexpectedAssets)}`);
 assert.equal(
   artifactTextMatches(stableBaselineJson(model), fs.readFileSync(inventoryPath, "utf8")),
   true,
@@ -180,6 +233,13 @@ process.stdout.write(`${JSON.stringify({
   normalGitImageBytes: model.summary.normalGitImageBytes,
   lfsTrackedBytes: model.summary.lfsTrackedBytes,
   normalGitLargeAssets: model.git.normalGitLargeAssets.length,
+  totalCheckedAssets: inventoryComparison.totalCheckedAssets,
+  trackedStateMismatches: inventoryComparison.trackedStateMismatches.length,
+  hashMismatches: inventoryComparison.hashMismatches.length,
+  byteMismatches: inventoryComparison.byteMismatches.length,
+  missingAssets: inventoryComparison.missingAssets.length,
+  unexpectedAssets: inventoryComparison.unexpectedAssets.length,
+  trackedStateMutationCases,
   sizePolicyMutations,
   canonicalTextComparisonFixtures,
   unknownAssets: 0,

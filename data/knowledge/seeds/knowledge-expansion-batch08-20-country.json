@@ -1,0 +1,120 @@
+{
+  "schemaVersion": "route-v2-knowledge-expansion-batch08-seed-v1",
+  "retrievedAt": "2026-08-28T03:00:00.000Z",
+  "approximateGlobalCountryCount": 195,
+  "selectionPolicy": [
+    "keep China Catalog-only under the existing Search restriction and do not change Route Engine policy",
+    "select 20 uncataloged sovereign countries by travel demand, regional continuity, verifiable city depth, and reliable official transport and meteorological sources",
+    "quarantine any City or POI whose identity, positive P31/P279 type, P17, coordinates, parent, visitor value, or route suitability cannot be confirmed",
+    "preserve the 13 pre-Batch08 image debt records and use neutral placeholders for new entities without verified dedicated imagery"
+  ],
+  "poiTargets": { "world": 10, "core": 7, "standard": 5, "town": 3 },
+  "waves": {
+    "1": { "batchNumber": "26", "countries": ["AM", "AZ", "BA", "MK", "MD"] },
+    "2": { "batchNumber": "27", "countries": ["LU", "MC", "LI", "OM", "QA"] },
+    "3": { "batchNumber": "28", "countries": ["BH", "KW", "LB", "DO", "JM"] },
+    "4": { "batchNumber": "29", "countries": ["CU", "BS", "BO", "PY", "NI"] }
+  },
+  "countries": {
+    "AM": {
+      "label": "Armenia", "qid": "Q399", "wave": 1, "tier": 1, "iso3": "ARM", "isoNumeric": "051", "region": "西亚", "subregion": "Western Asia",
+      "selectionReason": "High-demand Caucasus heritage route gap adjoining existing Georgia.", "currentStatus": "not-cataloged", "targetStatus": "evidence-backed-plannable",
+      "cities": [["Yerevan", "world"], ["Gyumri", "world"], ["Vanadzor", "core"], ["Dilijan", "core"], ["Vagharshapat", "core"], ["Goris", "standard"], ["Jermuk", "standard"]]
+    },
+    "AZ": {
+      "label": "Azerbaijan", "qid": "Q227", "wave": 1, "tier": 1, "iso3": "AZE", "isoNumeric": "031", "region": "西亚", "subregion": "Western Asia",
+      "selectionReason": "High-demand Caspian and Caucasus route gap with a clear national rail corridor.", "currentStatus": "not-cataloged", "targetStatus": "evidence-backed-plannable",
+      "cities": [["Baku", "world"], ["Ganja, Azerbaijan", "world", "Ganja"], ["Shaki, Azerbaijan", "core", "Shaki", ["Sheki"]], ["Sumgait", "core"], ["Lankaran", "core"], ["Quba", "standard"], ["Shusha", "standard"]]
+    },
+    "BA": {
+      "label": "Bosnia and Herzegovina", "qid": "Q225", "wave": 1, "tier": 1, "iso3": "BIH", "isoNumeric": "070", "region": "欧洲", "subregion": "Southern Europe",
+      "selectionReason": "High-demand Western Balkans gap between existing Croatia, Montenegro and Serbia.", "currentStatus": "not-cataloged", "targetStatus": "evidence-backed-plannable",
+      "cities": [["Sarajevo", "world"], ["Mostar", "world"], ["Banja Luka", "core"], ["Tuzla", "core"], ["Bihać", "core"], ["Trebinje", "standard"], ["Jajce", "standard"]]
+    },
+    "MK": {
+      "label": "North Macedonia", "qid": "Q221", "wave": 1, "tier": 2, "iso3": "MKD", "isoNumeric": "807", "region": "欧洲", "subregion": "Southern Europe",
+      "selectionReason": "Completes a central Balkan route gap with established city and lake circuits.", "currentStatus": "not-cataloged", "targetStatus": "evidence-backed-plannable",
+      "cities": [["Skopje", "world"], ["Ohrid", "world"], ["Bitola", "core"], ["Tetovo", "core"], ["Prilep", "core"], ["Kruševo", "standard"], ["Struga", "standard"]]
+    },
+    "MD": {
+      "label": "Moldova", "qid": "Q217", "wave": 1, "tier": 2, "iso3": "MDA", "isoNumeric": "498", "region": "欧洲", "subregion": "Eastern Europe",
+      "selectionReason": "Eastern European route gap with compact, verifiable national settlements.", "currentStatus": "not-cataloged", "targetStatus": "evidence-backed-plannable",
+      "cities": [["Chișinău", "world"], ["Bălți", "core"], ["Orhei", "core"], ["Soroca", "core"], ["Comrat", "standard"], ["Cahul", "standard"], ["Ungheni", "standard"]]
+    },
+    "LU": {
+      "label": "Luxembourg", "qid": "Q32", "wave": 2, "tier": 2, "iso3": "LUX", "isoNumeric": "442", "region": "欧洲", "subregion": "Western Europe",
+      "selectionReason": "High-demand compact Western European gap with strong public transport.", "currentStatus": "not-cataloged", "targetStatus": "evidence-backed-plannable",
+      "cities": [["Luxembourg City", "world"], ["Esch-sur-Alzette", "core"], ["Echternach", "core"], ["Vianden", "core"], ["Wiltz", "standard"]]
+    },
+    "MC": {
+      "label": "Monaco", "qid": "Q235", "wave": 2, "tier": 3, "iso3": "MCO", "isoNumeric": "492", "region": "欧洲", "subregion": "Western Europe",
+      "selectionReason": "High-demand sovereign microstate supported by the existing valid single-city route shape.", "currentStatus": "not-cataloged", "targetStatus": "evidence-backed-plannable",
+      "cities": [["Monaco", "world"]]
+    },
+    "LI": {
+      "label": "Liechtenstein", "qid": "Q347", "wave": 2, "tier": 3, "iso3": "LIE", "isoNumeric": "438", "region": "欧洲", "subregion": "Western Europe",
+      "selectionReason": "Compact Alpine sovereign-state route gap with verifiable municipalities and bus links.", "currentStatus": "not-cataloged", "targetStatus": "evidence-backed-plannable",
+      "cities": [["Vaduz", "world"], ["Schaan", "core"], ["Balzers", "core"], ["Triesen", "standard"]]
+    },
+    "OM": {
+      "label": "Oman", "qid": "Q842", "wave": 2, "tier": 1, "iso3": "OMN", "isoNumeric": "512", "region": "西亚", "subregion": "Western Asia",
+      "selectionReason": "High-demand Gulf heritage and coastal route gap with a national passenger network.", "currentStatus": "not-cataloged", "targetStatus": "evidence-backed-plannable",
+      "cities": [["Muscat", "world"], ["Salalah", "world"], ["Nizwa", "core"], ["Sur, Oman", "core", "Sur"], ["Sohar", "core"], ["Rustaq", "standard"], ["Ibri", "standard"]]
+    },
+    "QA": {
+      "label": "Qatar", "qid": "Q846", "wave": 2, "tier": 2, "iso3": "QAT", "isoNumeric": "634", "region": "西亚", "subregion": "Western Asia",
+      "selectionReason": "High-demand Gulf stopover and compact urban route gap with official metro and bus coverage.", "currentStatus": "not-cataloged", "targetStatus": "evidence-backed-plannable",
+      "cities": [["Doha", "world"], ["Al Rayyan", "core"], ["Al Wakrah", "core"], ["Al Khor", "standard"], ["Lusail", "standard"]]
+    },
+    "BH": {
+      "label": "Bahrain", "qid": "Q398", "wave": 3, "tier": 2, "iso3": "BHR", "isoNumeric": "048", "region": "西亚", "subregion": "Western Asia",
+      "selectionReason": "Compact Gulf island-country gap where settlements must remain distinct from islands and governorates.", "currentStatus": "not-cataloged", "targetStatus": "evidence-backed-plannable",
+      "cities": [["Manama", "world"], ["Muharraq", "core"], ["Riffa", "core"], ["Isa Town", "standard"], ["Hamad Town", "standard"]]
+    },
+    "KW": {
+      "label": "Kuwait", "qid": "Q817", "wave": 3, "tier": 2, "iso3": "KWT", "isoNumeric": "414", "region": "西亚", "subregion": "Western Asia",
+      "selectionReason": "Gulf urban route gap with official public transport and meteorological sources.", "currentStatus": "not-cataloged", "targetStatus": "evidence-backed-plannable",
+      "cities": [["Kuwait City", "world"], ["Al Ahmadi, Kuwait", "core", "Al Ahmadi"], ["Salmiya", "core", "Salmiya", [], "萨尔米亚"], ["Salwa, Kuwait", "standard", "Salwa", [], "萨尔瓦"]]
+    },
+    "LB": {
+      "label": "Lebanon", "qid": "Q822", "wave": 3, "tier": 1, "iso3": "LBN", "isoNumeric": "422", "region": "西亚", "subregion": "Western Asia",
+      "selectionReason": "High-demand Levant heritage route gap with multiple established urban centers.", "currentStatus": "not-cataloged", "targetStatus": "evidence-backed-plannable",
+      "cities": [["Beirut", "world"], ["Tripoli, Lebanon", "world", "Tripoli"], ["Sidon", "core"], ["Byblos", "core"], ["Zahlé", "core", "Zahle"], ["Tyre, Lebanon", "core", "Tyre"], ["Baalbek", "standard"]]
+    },
+    "DO": {
+      "label": "Dominican Republic", "qid": "Q786", "wave": 3, "tier": 1, "iso3": "DOM", "isoNumeric": "214", "region": "加勒比", "subregion": "Caribbean",
+      "selectionReason": "High-demand Caribbean route gap with established intercity and resort-access corridors.", "currentStatus": "not-cataloged", "targetStatus": "evidence-backed-plannable",
+      "cities": [["Santo Domingo", "world"], ["Santiago de los Caballeros", "world"], ["Puerto Plata", "core"], ["La Romana, Dominican Republic", "core", "La Romana"], ["Samaná (town)", "core", "Samaná"], ["San Pedro de Macorís", "standard"], ["Higüey", "standard"]]
+    },
+    "JM": {
+      "label": "Jamaica", "qid": "Q766", "wave": 3, "tier": 1, "iso3": "JAM", "isoNumeric": "388", "region": "加勒比", "subregion": "Caribbean",
+      "selectionReason": "High-demand Caribbean destination with a clear city and intercity passenger corridor.", "currentStatus": "not-cataloged", "targetStatus": "evidence-backed-plannable",
+      "cities": [["Kingston, Jamaica", "world", "Kingston"], ["Montego Bay", "world"], ["Spanish Town", "core"], ["Port Antonio", "core"], ["Ocho Rios", "core"], ["Falmouth, Jamaica", "standard", "Falmouth"], ["Negril", "standard"]]
+    },
+    "CU": {
+      "label": "Cuba", "qid": "Q241", "wave": 4, "tier": 1, "iso3": "CUB", "isoNumeric": "192", "region": "加勒比", "subregion": "Caribbean",
+      "selectionReason": "High-demand Caribbean cultural circuit with established national rail and bus corridors.", "currentStatus": "not-cataloged", "targetStatus": "evidence-backed-plannable",
+      "cities": [["Havana", "world"], ["Santiago de Cuba", "world"], ["Trinidad, Cuba", "core", "Trinidad"], ["Cienfuegos", "core"], ["Camagüey", "core"], ["Santa Clara, Cuba", "core", "Santa Clara"], ["Varadero", "standard"], ["Holguín", "standard"]]
+    },
+    "BS": {
+      "label": "The Bahamas", "qid": "Q778", "wave": 4, "tier": 2, "iso3": "BHS", "isoNumeric": "044", "region": "加勒比", "subregion": "Caribbean",
+      "selectionReason": "High-demand Caribbean island-country gap; only settlements may publish as City.", "currentStatus": "not-cataloged", "targetStatus": "evidence-backed-plannable",
+      "cities": [["Nassau, Bahamas", "world", "Nassau"], ["Freeport, Bahamas", "core", "Freeport"], ["Marsh Harbour", "core"], ["George Town, Bahamas", "standard", "George Town"]]
+    },
+    "BO": {
+      "label": "Bolivia", "qid": "Q750", "wave": 4, "tier": 1, "iso3": "BOL", "isoNumeric": "068", "region": "南美洲", "subregion": "South America",
+      "selectionReason": "High-demand Andean route gap adjoining existing Peru, Chile, Argentina and Brazil.", "currentStatus": "not-cataloged", "targetStatus": "evidence-backed-plannable",
+      "cities": [["La Paz", "world"], ["Sucre", "world"], ["Santa Cruz de la Sierra", "core"], ["Cochabamba", "core"], ["Potosí", "core"], ["Uyuni", "standard"], ["Tarija", "standard"]]
+    },
+    "PY": {
+      "label": "Paraguay", "qid": "Q733", "wave": 4, "tier": 2, "iso3": "PRY", "isoNumeric": "600", "region": "南美洲", "subregion": "South America",
+      "selectionReason": "South American regional continuity gap between existing Brazil, Argentina and Bolivia.", "currentStatus": "not-cataloged", "targetStatus": "evidence-backed-plannable",
+      "cities": [["Asunción", "world"], ["Ciudad del Este", "core"], ["Encarnación, Paraguay", "core", "Encarnación"], ["Luque", "core"], ["San Bernardino, Paraguay", "standard", "San Bernardino"], ["Areguá", "standard"]]
+    },
+    "NI": {
+      "label": "Nicaragua", "qid": "Q811", "wave": 4, "tier": 1, "iso3": "NIC", "isoNumeric": "558", "region": "中美洲", "subregion": "Central America",
+      "selectionReason": "High-demand Central American route gap between existing Costa Rica, Panama and Guatemala coverage.", "currentStatus": "not-cataloged", "targetStatus": "evidence-backed-plannable",
+      "cities": [["Managua", "world"], ["León, Nicaragua", "world", "León"], ["Granada, Nicaragua", "core", "Granada"], ["Masaya", "core"], ["San Juan del Sur", "core"], ["Estelí", "standard"], ["Matagalpa", "standard"], ["Bluefields", "standard"]]
+    }
+  }
+}

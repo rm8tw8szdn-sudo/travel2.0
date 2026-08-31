@@ -10,7 +10,7 @@ import { stableHash } from "../src/lib/routes/route-v2-utils.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const BATCH = String(process.argv.find((value) => value.startsWith("--batch="))?.split("=")[1] || "06").padStart(2, "0");
-if (!["06", "07"].includes(BATCH)) throw new Error("batch-argument-invalid:--batch=06|07");
+if (!["06", "07", "08"].includes(BATCH)) throw new Error("batch-argument-invalid:--batch=06|07|08");
 const CONFIG_PATH = `data/knowledge/seeds/knowledge-expansion-batch${BATCH}-evidence.json`;
 const ROUTE_LEG_PATH = "data/route-v2/evidence-seed/route-leg-evidence.jsonl";
 const SEASON_PATH = "data/route-v2/evidence-seed/season-evidence.jsonl";
@@ -128,17 +128,27 @@ async function main() {
   if (!country) throw new Error(`country-not-published:${ISO}`);
   const cities = repository.listCities().filter((entry) => entry.parentCountryEntityId === country.entityId);
   if (!cities.length) throw new Error(`country-has-no-published-cities:${ISO}`);
-  const byName = new Map(cities.flatMap((entry) => [
-    [entry.canonicalNameEn, entry],
-    ...(entry.aliases || []).map((alias) => [alias, entry])
+  const countryByCode = new Map(repository.listCountries().map((entry) => [entry.isoAlpha2, entry]));
+  const citiesByCountryCode = new Map([...countryByCode.entries()].map(([code, entry]) => [
+    code,
+    repository.listCities().filter((city) => city.parentCountryEntityId === entry.entityId),
   ]));
-  const endpointNames = [...new Set(config.pairs.flatMap(([from, to]) => [from, to]))];
-  const missing = endpointNames.filter((name) => !byName.has(name));
-  if (missing.length) throw new Error(`evidence-city-missing:${ISO}:${missing.join("|")}`);
+  const cityByCountryAndName = new Map([...citiesByCountryCode.entries()].flatMap(([code, entries]) => entries.flatMap((entry) => [
+    [`${code}:${entry.canonicalNameEn}`, entry],
+    ...(entry.aliases || []).map((alias) => [`${code}:${alias}`, entry]),
+  ])));
+  const pairDefinitions = config.pairs.map((pair) => pair.length === 3
+    ? { fromCode: ISO, from: pair[0], toCode: ISO, to: pair[1], mode: pair[2] }
+    : { fromCode: pair[0], from: pair[1], toCode: pair[2], to: pair[3], mode: pair[4] });
+  const missing = pairDefinitions.flatMap(({ fromCode, from, toCode, to }) => [
+    cityByCountryAndName.has(`${fromCode}:${from}`) ? null : `${fromCode}:${from}`,
+    cityByCountryAndName.has(`${toCode}:${to}`) ? null : `${toCode}:${to}`,
+  ]).filter(Boolean);
+  if (missing.length) throw new Error(`evidence-city-missing:${ISO}:${[...new Set(missing)].join("|")}`);
 
-  const routeAdditions = config.pairs.flatMap(([from, to, mode]) => {
-    const left = byName.get(from).entityId;
-    const right = byName.get(to).entityId;
+  const routeAdditions = pairDefinitions.flatMap(({ fromCode, from, toCode, to, mode }) => {
+    const left = cityByCountryAndName.get(`${fromCode}:${from}`).entityId;
+    const right = cityByCountryAndName.get(`${toCode}:${to}`).entityId;
     return [
       routeLeg(left, right, mode, config.transportSource, retrievedAt),
       routeLeg(right, left, mode, config.transportSource, retrievedAt)
@@ -154,7 +164,7 @@ async function main() {
     locator: weather.locator,
     excerpt: `${weather.locator} publishes official alerts for ${[...new Set([...weather.first[1], ...weather.second[1]])].join(", ")} without asserting a preferred travel month.`
   };
-  const seasonAdditions = BATCH === "07"
+  const seasonAdditions = BATCH !== "06"
     ? cities.flatMap((city) => [weather.first, weather.second].map(([month, risks]) => (
         monthRisk(city.entityId, month, risks, weatherDefinition, retrievedAt)
       ))).slice(0, 4)

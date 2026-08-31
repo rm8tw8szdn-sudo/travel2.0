@@ -11,37 +11,40 @@ const jsonl = (root, relativePath) => {
 const duplicateCount = (values) => values.length - new Set(values).size;
 const imageReady = (record, scope) => record?.status === "imageReady" && record.semanticScope === scope && record.assetKind === "verified-destination-image";
 
-export function calculateBatch07ReportData({ root } = {}) {
+export function calculateKnowledgeExpansionReportData({ root, batchNumber = 7 } = {}) {
   const projectRoot = path.resolve(root || path.join(import.meta.dirname, "..", ".."));
+  const batchTag = String(batchNumber).padStart(2, "0");
+  const previousBatchTag = String(batchNumber - 1).padStart(2, "0");
   const repository = createPublishedKnowledgeEntityLayerRepository({ projectRoot });
   const countries = repository.listCountries();
   const cities = repository.listCities();
   const pois = repository.listPois();
-  const seed = json(projectRoot, "data/knowledge/seeds/knowledge-expansion-batch07-20-country.json");
-  const baseline = json(projectRoot, "data/knowledge/reports/knowledge-expansion-batch07-baseline.json");
+  const seed = json(projectRoot, `data/knowledge/seeds/knowledge-expansion-batch${batchTag}-20-country.json`);
+  const baseline = json(projectRoot, `data/knowledge/reports/knowledge-expansion-batch${batchTag}-baseline.json`);
   const targetCodes = Object.keys(seed.countries);
   const targetCodeSet = new Set(targetCodes);
   const waveBatches = Object.values(seed.waves).map((wave) => String(wave.batchNumber));
   const countryById = new Map(countries.map((country) => [country.entityId, country]));
   const cityById = new Map(cities.map((city) => [city.entityId, city]));
-  const addedCountries = json(projectRoot, "data/knowledge/batches/countries.p1a-batch07.json").countries;
+  const addedCountries = json(projectRoot, `data/knowledge/batches/countries.p1a-batch${batchTag}.json`).countries;
   const addedCities = waveBatches.flatMap((batch) => json(projectRoot, `data/knowledge/batches/cities.p1b-batch${batch}.json`).cities);
   const addedPois = waveBatches.flatMap((batch) => json(projectRoot, `data/knowledge/batches/pois.p1b-batch${batch}.json`).pois);
-  const conflicts = [1, 2, 3, 4].flatMap((wave) => json(projectRoot, `data/knowledge/batches/conflicts.knowledge-expansion-batch07-wave${wave}.json`).conflicts);
-  const reviews = [1, 2, 3, 4].flatMap((wave) => json(projectRoot, `data/knowledge/batches/review-queue.knowledge-expansion-batch07-wave${wave}.json`).entries);
+  const conflicts = [1, 2, 3, 4].flatMap((wave) => json(projectRoot, `data/knowledge/batches/conflicts.knowledge-expansion-batch${batchTag}-wave${wave}.json`).conflicts);
+  const reviews = [1, 2, 3, 4].flatMap((wave) => json(projectRoot, `data/knowledge/batches/review-queue.knowledge-expansion-batch${batchTag}-wave${wave}.json`).entries);
   const selections = waveBatches.flatMap((batch) => json(projectRoot, `data/knowledge/batches/selection.p1b-batch${batch}.json`).cities);
-  const evidenceAudit = json(projectRoot, "data/knowledge/batches/knowledge-expansion-batch07-evidence-audit.json");
+  const evidenceAudit = json(projectRoot, `data/knowledge/batches/knowledge-expansion-batch${batchTag}-evidence-audit.json`);
   const allRouteLegs = jsonl(projectRoot, "data/route-v2/evidence-seed/route-leg-evidence.jsonl");
   const allSeasons = jsonl(projectRoot, "data/route-v2/evidence-seed/season-evidence.jsonl");
   const batchRouteLegs = allRouteLegs.filter((record) => record.retrievedAt === evidenceAudit.retrievedAt);
   const batchSeasons = allSeasons.filter((record) => record.retrievedAt === evidenceAudit.retrievedAt);
   const imageManifest = json(projectRoot, "data/route-v2/images/image-coverage-manifest.json");
-  const imageProvenance = json(projectRoot, "data/route-v2/images/batch07-dedicated-image-provenance.json");
-  const priorImageProvenance = json(projectRoot, "data/route-v2/images/batch06-dedicated-image-provenance.json");
+  const imageProvenance = json(projectRoot, `data/route-v2/images/batch${batchTag}-dedicated-image-provenance.json`);
+  const priorImageProvenance = json(projectRoot, `data/route-v2/images/batch${previousBatchTag}-dedicated-image-provenance.json`);
   const imageBaseline = json(projectRoot, "data/route-v2/images/image-asset-baseline.json");
-  const routeConsumption = json(projectRoot, "data/knowledge/reports/knowledge-expansion-batch07-route-consumption.json");
-  const browserPath = path.join(projectRoot, "data/knowledge/reports/knowledge-expansion-batch07-browser-acceptance.json");
-  const browserAcceptance = fs.existsSync(browserPath) ? json(projectRoot, "data/knowledge/reports/knowledge-expansion-batch07-browser-acceptance.json") : null;
+  const routeConsumption = json(projectRoot, `data/knowledge/reports/knowledge-expansion-batch${batchTag}-route-consumption.json`);
+  const browserRelativePath = `data/knowledge/reports/knowledge-expansion-batch${batchTag}-browser-acceptance.json`;
+  const browserPath = path.join(projectRoot, browserRelativePath);
+  const browserAcceptance = fs.existsSync(browserPath) ? json(projectRoot, browserRelativePath) : null;
   const priorAssetIds = new Set(priorImageProvenance.assets.map((record) => record.entityId));
   const targetImages = imageProvenance.assets.filter((record) => targetCodeSet.has(record.countryCode));
   const historicalBackfills = imageProvenance.assets.filter((record) => !targetCodeSet.has(record.countryCode) && !priorAssetIds.has(record.entityId));
@@ -83,6 +86,10 @@ export function calculateBatch07ReportData({ root } = {}) {
     evidence: Object.freeze({ transport: batchRouteLegs.length, monthRisk: batchSeasons.length, totalTransport: allRouteLegs.length, totalMonthRisk: allSeasons.length, auditCountries: Object.keys(evidenceAudit.countries).length, retrievedAt: evidenceAudit.retrievedAt }),
     images: Object.freeze({ countryCovers: imageManifest.coverage.overall.countryCoverCoverage.ready, countryTotal: imageManifest.coverage.overall.countryCoverCoverage.total, dedicatedCities: imageManifest.coverage.overall.cityDedicatedImageCoverage.ready, cityTotal: imageManifest.coverage.overall.cityDedicatedImageCoverage.total, dedicatedPois: imageManifest.coverage.overall.corePoiImageCoverage.ready, poiTotal: imageManifest.coverage.overall.corePoiImageCoverage.total, cityPlaceholders: imageManifest.coverage.overall.cityPlaceholderCount, poiPlaceholders: imageManifest.coverage.overall.poiPlaceholderCount, needsBackfill: imageManifest.coverage.overall.needsBackfillCount, invalidMappings: imageManifest.invalidMappings.length, batchVerifiedImages: targetImages.length, historicalBackfillImages: historicalBackfills.length, batchCountryCovers: imageManifest.countries.filter((record) => targetCodeSet.has(record.countryCode)).length, historicalDebtBefore: baseline.images.needsBackfill, historicalDebtAfter: imageManifest.coverage.historicalPlannableCountries.needsBackfillCount, assetCount: imageBaseline.summary.totalImages, totalBytes: imageBaseline.summary.totalBytes, largerThan300Kb: imageBaseline.summary.largerThan300Kb, largerThan500Kb: imageBaseline.summary.largerThan500Kb, largerThan1Mb: imageBaseline.summary.largerThan1Mb, largerThan5Mb: imageBaseline.summary.largerThan5Mb, exactDuplicates: imageBaseline.duplicates.exactGroups.length, perceptualDuplicates: imageBaseline.duplicates.perceptualGroups.length }),
   });
+}
+
+export function calculateBatch07ReportData({ root } = {}) {
+  return calculateKnowledgeExpansionReportData({ root, batchNumber: 7 });
 }
 
 export const comma = (value) => Number(value).toLocaleString("en-US");

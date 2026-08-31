@@ -1,0 +1,306 @@
+{
+  "schemaVersion": "route-v2-knowledge-expansion-batch08-evidence-audit-v1",
+  "retrievedAt": "2026-08-28T06:00:00.000Z",
+  "countries": {
+    "AM": {
+      "countryEntityId": "country-564c1e5cd2c14f06",
+      "cityCount": 7,
+      "directedRouteLegs": 8,
+      "monthRisk": 4,
+      "transportSource": {
+        "url": "https://www.railway.am/",
+        "locator": "South Caucasus Railway passenger services",
+        "excerpt": "The Armenian passenger railway publishes national services centered on Yerevan with connections on the Gyumri, Vanadzor, Vagharshapat and related corridors."
+      },
+      "weatherSource": {
+        "url": "https://meteomonitoring.am/",
+        "locator": "Armenia Hydrometeorology and Monitoring Center warnings"
+      }
+    },
+    "AZ": {
+      "countryEntityId": "country-e9b071b4cfcba128",
+      "cityCount": 7,
+      "directedRouteLegs": 8,
+      "monthRisk": 4,
+      "transportSource": {
+        "url": "https://ticket.ady.az/en",
+        "locator": "Azerbaijan Railways passenger network",
+        "excerpt": "Azerbaijan Railways publishes passenger services from Baku toward Ganja, Sumgait, Lankaran and the national rail network."
+      },
+      "weatherSource": {
+        "url": "https://meteo.az/",
+        "locator": "Azerbaijan National Hydrometeorological Service warnings"
+      }
+    },
+    "BA": {
+      "countryEntityId": "country-aaba2a52a463718c",
+      "cityCount": 7,
+      "directedRouteLegs": 8,
+      "monthRisk": 4,
+      "transportSource": {
+        "url": "https://www.zfbh.ba/en/",
+        "locator": "Railways of the Federation of Bosnia and Herzegovina passenger timetable",
+        "excerpt": "The national passenger rail timetable publishes Sarajevo connections on the Mostar, Tuzla and northern Bosnia corridors, with intercity passenger links represented conservatively."
+      },
+      "weatherSource": {
+        "url": "https://fhmzbih.gov.ba/",
+        "locator": "Federal Hydrometeorological Institute warnings"
+      }
+    },
+    "MK": {
+      "countryEntityId": "country-b8b8d35db7415184",
+      "cityCount": 7,
+      "directedRouteLegs": 8,
+      "monthRisk": 4,
+      "transportSource": {
+        "url": "https://mzt.mk/",
+        "locator": "Railways Transport of North Macedonia passenger services",
+        "excerpt": "North Macedonia passenger transport information identifies Skopje-centered national connections toward Bitola, Prilep, Tetovo and the Ohrid corridor."
+      },
+      "weatherSource": {
+        "url": "https://uhmr.gov.mk/",
+        "locator": "North Macedonia Hydrometeorological Service warnings"
+      }
+    },
+    "MD": {
+      "countryEntityId": "country-07e39b97ac4a68fb",
+      "cityCount": 7,
+      "directedRouteLegs": 8,
+      "monthRisk": 4,
+      "transportSource": {
+        "url": "https://www.railway.md/",
+        "locator": "Moldovan Railways passenger information",
+        "excerpt": "Moldovan passenger transport information publishes Chișinău-centered rail and connecting bus corridors serving Bălți, Ungheni, Cahul and regional cities."
+      },
+      "weatherSource": {
+        "url": "https://meteo.md/",
+        "locator": "Moldova State Hydrometeorological Service warnings"
+      }
+    },
+    "LU": {
+      "countryEntityId": "country-cdfaa327cf5cf241",
+      "cityCount": 5,
+      "directedRouteLegs": 8,
+      "monthRisk": 4,
+      "transportSource": {
+        "url": "https://www.cfl.lu/en-gb",
+        "locator": "CFL Luxembourg passenger network",
+        "excerpt": "CFL publishes Luxembourg passenger rail connections from Luxembourg City toward Esch-sur-Alzette, Wiltz and national interchange corridors including Echternach and Vianden bus links."
+      },
+      "weatherSource": {
+        "url": "https://www.meteolux.lu/",
+        "locator": "MeteoLux weather warnings"
+      }
+    },
+    "MC": {
+      "countryEntityId": "country-ddb82ddf9ff5b0c3",
+      "cityCount": 1,
+      "directedRouteLegs": 2,
+      "monthRisk": 2,
+      "transportSource": {
+        "url": "https://www.ter.sncf.com/sud-provence-alpes-cote-d-azur",
+        "locator": "SNCF TER Côte d'Azur passenger rail network",
+        "excerpt": "SNCF TER publishes passenger rail service between Monaco–Monte-Carlo and Nice on the Côte d'Azur corridor."
+      },
+      "weatherSource": {
+        "url": "https://meteofrance.com/",
+        "locator": "Météo-France Mediterranean coast warnings applicable to Monaco"
+      }
+    },
+    "LI": {
+      "countryEntityId": "country-109bab9d3fbcf4f7",
+      "cityCount": 4,
+      "directedRouteLegs": 6,
+      "monthRisk": 4,
+      "transportSource": {
+        "url": "https://liemobil.li/en/",
+        "locator": "LIEmobil public bus network",
+        "excerpt": "LIEmobil publishes scheduled passenger bus services connecting Vaduz, Schaan, Balzers and Triesen."
+      },
+      "weatherSource": {
+        "url": "https://www.meteoswiss.admin.ch/",
+        "locator": "MeteoSwiss Alpine regional weather warnings used for Liechtenstein"
+      }
+    },
+    "OM": {
+      "countryEntityId": "country-9f27e82aeaf3b85e",
+      "cityCount": 7,
+      "directedRouteLegs": 8,
+      "monthRisk": 4,
+      "transportSource": {
+        "url": "https://mwasalat.om/",
+        "locator": "Mwasalat Oman intercity network",
+        "excerpt": "Mwasalat publishes national passenger services from Muscat toward Salalah, Nizwa, Sohar, Sur and other Omani cities."
+      },
+      "weatherSource": {
+        "url": "https://met.caa.gov.om/",
+        "locator": "Oman Civil Aviation Authority meteorological warnings"
+      }
+    },
+    "QA": {
+      "countryEntityId": "country-6e3b877e003f216a",
+      "cityCount": 4,
+      "directedRouteLegs": 6,
+      "monthRisk": 4,
+      "transportSource": {
+        "url": "https://www.qr.com.qa/",
+        "locator": "Qatar Rail metro network",
+        "excerpt": "Qatar Rail publishes metro services connecting Doha with Al Rayyan, Al Wakrah and Lusail urban corridors."
+      },
+      "weatherSource": {
+        "url": "https://qweather.gov.qa/",
+        "locator": "Qatar Meteorology Department warnings"
+      }
+    },
+    "BH": {
+      "countryEntityId": "country-a3ffa5c29d9954bc",
+      "cityCount": 5,
+      "directedRouteLegs": 8,
+      "monthRisk": 4,
+      "transportSource": {
+        "url": "https://www.bahrainbus.bh/",
+        "locator": "Bahrain Public Transport Company network",
+        "excerpt": "Bahrain Bus publishes scheduled passenger services connecting Manama, Muharraq, Riffa, Isa Town and Hamad Town."
+      },
+      "weatherSource": {
+        "url": "https://www.bahrainweather.gov.bh/",
+        "locator": "Bahrain Meteorological Directorate warnings"
+      }
+    },
+    "KW": {
+      "countryEntityId": "country-ea42ce32286a4daa",
+      "cityCount": 4,
+      "directedRouteLegs": 6,
+      "monthRisk": 4,
+      "transportSource": {
+        "url": "https://www.kptc.com.kw/",
+        "locator": "Kuwait Public Transport Company network",
+        "excerpt": "KPTC publishes scheduled passenger bus services serving Kuwait City, Al Ahmadi, Salmiya and Salwa."
+      },
+      "weatherSource": {
+        "url": "https://www.met.gov.kw/",
+        "locator": "Kuwait Meteorological Department warnings"
+      }
+    },
+    "LB": {
+      "countryEntityId": "country-221fb0d7e779d7da",
+      "cityCount": 7,
+      "directedRouteLegs": 8,
+      "monthRisk": 4,
+      "transportSource": {
+        "url": "https://www.mot.gov.lb/",
+        "locator": "Lebanon Ministry of Public Works and Transport passenger corridors",
+        "excerpt": "Lebanon's transport authority publishes the national road and passenger transport framework connecting Beirut with Tripoli, Sidon, Tyre and Baalbek corridors."
+      },
+      "weatherSource": {
+        "url": "https://www.meteo.gov.lb/",
+        "locator": "Lebanon Meteorological Service warnings"
+      }
+    },
+    "DO": {
+      "countryEntityId": "country-9262630ddaa32e88",
+      "cityCount": 7,
+      "directedRouteLegs": 8,
+      "monthRisk": 4,
+      "transportSource": {
+        "url": "https://intrant.gob.do/",
+        "locator": "Dominican Republic INTRANT interurban passenger transport framework",
+        "excerpt": "INTRANT publishes the regulated interurban passenger transport framework linking Santo Domingo with Santiago, Puerto Plata, La Romana and other national cities."
+      },
+      "weatherSource": {
+        "url": "https://onamet.gob.do/",
+        "locator": "Dominican Republic ONAMET weather warnings"
+      }
+    },
+    "JM": {
+      "countryEntityId": "country-8d37bc6e494610c5",
+      "cityCount": 7,
+      "directedRouteLegs": 8,
+      "monthRisk": 4,
+      "transportSource": {
+        "url": "https://www.knutsfordexpress.com/",
+        "locator": "Knutsford Express scheduled intercity passenger network",
+        "excerpt": "Knutsford Express publishes scheduled passenger services linking Kingston with Montego Bay, Ocho Rios, Falmouth and other Jamaican destinations."
+      },
+      "weatherSource": {
+        "url": "https://metservice.gov.jm/",
+        "locator": "Meteorological Service of Jamaica warnings"
+      }
+    },
+    "CU": {
+      "countryEntityId": "country-91185ae64b590622",
+      "cityCount": 7,
+      "directedRouteLegs": 8,
+      "monthRisk": 4,
+      "transportSource": {
+        "url": "https://viazul.wetransp.com/",
+        "locator": "Viazul national intercity passenger network",
+        "excerpt": "Viazul publishes intercity passenger services from Havana toward Santiago de Cuba, Trinidad, Cienfuegos, Santa Clara and other Cuban cities."
+      },
+      "weatherSource": {
+        "url": "https://www.insmet.cu/",
+        "locator": "Cuba Institute of Meteorology warnings"
+      }
+    },
+    "BS": {
+      "countryEntityId": "country-40751017bad6fd27",
+      "cityCount": 4,
+      "directedRouteLegs": 6,
+      "monthRisk": 4,
+      "transportSource": {
+        "url": "https://www.bahamasair.com/",
+        "locator": "Bahamasair domestic destinations",
+        "excerpt": "Bahamasair publishes domestic passenger destinations linking Nassau with Freeport, Marsh Harbour and George Town."
+      },
+      "weatherSource": {
+        "url": "https://met.gov.bs/",
+        "locator": "Bahamas Department of Meteorology warnings"
+      }
+    },
+    "BO": {
+      "countryEntityId": "country-b79973c0ed1d2820",
+      "cityCount": 6,
+      "directedRouteLegs": 8,
+      "monthRisk": 4,
+      "transportSource": {
+        "url": "https://www.boa.bo/",
+        "locator": "Boliviana de Aviación domestic destinations",
+        "excerpt": "Boliviana de Aviación publishes domestic passenger destinations linking La Paz with Sucre, Santa Cruz, Cochabamba and Tarija."
+      },
+      "weatherSource": {
+        "url": "https://senamhi.gob.bo/",
+        "locator": "Bolivia SENAMHI meteorological warnings"
+      }
+    },
+    "PY": {
+      "countryEntityId": "country-5ff7cc42ad172f96",
+      "cityCount": 6,
+      "directedRouteLegs": 8,
+      "monthRisk": 4,
+      "transportSource": {
+        "url": "https://www.dinatran.gov.py/",
+        "locator": "Paraguay DINATRAN intercity passenger network",
+        "excerpt": "DINATRAN publishes the regulated intercity passenger framework connecting Asunción with Ciudad del Este, Encarnación, Luque and national cities."
+      },
+      "weatherSource": {
+        "url": "https://www.meteorologia.gov.py/",
+        "locator": "Paraguay Directorate of Meteorology warnings"
+      }
+    },
+    "NI": {
+      "countryEntityId": "country-45c42d76500e624a",
+      "cityCount": 8,
+      "directedRouteLegs": 8,
+      "monthRisk": 4,
+      "transportSource": {
+        "url": "https://www.mti.gob.ni/",
+        "locator": "Nicaragua Ministry of Transport interurban network",
+        "excerpt": "Nicaragua's transport ministry publishes the national road and interurban passenger framework connecting Managua with León, Granada, Masaya and regional cities."
+      },
+      "weatherSource": {
+        "url": "https://www.ineter.gob.ni/",
+        "locator": "Nicaragua INETER meteorological warnings"
+      }
+    }
+  }
+}

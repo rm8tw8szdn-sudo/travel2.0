@@ -28,6 +28,8 @@ export function calculateImageDebtReportData({ root } = {}) {
   const successful = provenance.assets.filter((record) => record.status === "imageReady" && record.visualAuditStatus === "passed");
   const remaining = provenance.attempts.filter((record) => record.status === "needsBackfill");
   const sizes = successful.map((record) => record.bytes);
+  const historicalCoverage = manifest.coverage.historicalPlannableCountries;
+  const sealedFinalBytes = phaseBaseline.images.totalBytes + sizes.reduce((sum, value) => sum + value, 0);
   const successesByCountry = [...new Set(inventory.records.map((record) => record.countryCode))].sort().map((countryCode) => ({
     countryCode,
     succeeded: successful.filter((record) => record.countryCode === countryCode).length,
@@ -67,15 +69,15 @@ export function calculateImageDebtReportData({ root } = {}) {
     projectRoot, inventory, phaseBaseline, provenance, visualAudit, waveResults, manifest, imageBaseline, browserAcceptance, recoveryInventory, recoveryResults, provenanceRepairAudit,
     starting: phaseBaseline.images,
     final: {
-      assets: imageBaseline.summary.totalImages,
-      totalBytes: imageBaseline.summary.totalBytes,
-      countryCovers: manifest.coverage.overall.countryCoverCoverage.ready,
-      countryTotal: manifest.coverage.overall.countryCoverCoverage.total,
-      dedicatedCities: manifest.coverage.overall.cityDedicatedImageCoverage.ready,
-      cityTotal: manifest.coverage.overall.cityDedicatedImageCoverage.total,
-      dedicatedPois: manifest.coverage.overall.corePoiImageCoverage.ready,
-      poiTotal: manifest.coverage.overall.corePoiImageCoverage.total,
-      needsBackfill: manifest.coverage.overall.needsBackfillCount,
+      assets: phaseBaseline.images.assets + successful.length,
+      totalBytes: sealedFinalBytes,
+      countryCovers: historicalCoverage.countryCoverCoverage.ready,
+      countryTotal: historicalCoverage.countryCoverCoverage.total,
+      dedicatedCities: historicalCoverage.cityDedicatedImageCoverage.ready,
+      cityTotal: historicalCoverage.cityDedicatedImageCoverage.total,
+      dedicatedPois: historicalCoverage.corePoiImageCoverage.ready,
+      poiTotal: historicalCoverage.corePoiImageCoverage.total,
+      needsBackfill: historicalCoverage.needsBackfillCount,
       invalidMappings: manifest.invalidMappings.length,
     },
     attempted: provenance.attempts.length,
@@ -103,7 +105,7 @@ export function calculateImageDebtReportData({ root } = {}) {
     creatorCompleteWhereRequired,
     attributionCompleteWhereRequired,
     provenanceAudit,
-    projectedFullCoverageBytes: imageBaseline.summary.totalBytes + Math.round((sizes.length ? sizes.reduce((sum, value) => sum + value, 0) / sizes.length : 0) * remaining.length),
+    projectedFullCoverageBytes: sealedFinalBytes + Math.round((sizes.length ? sizes.reduce((sum, value) => sum + value, 0) / sizes.length : 0) * remaining.length),
     recovery: {
       startingDebt: recoveryInventory.startingNeedsBackfill,
       attempted: recoveryResults.attempted,

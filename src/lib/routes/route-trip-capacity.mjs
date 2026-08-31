@@ -89,6 +89,15 @@ function exactDurationDays(intent = {}) {
   return Number.isInteger(normalized) && normalized > 0 ? normalized : null;
 }
 
+function isCountryCityIdentityOverlap(intent = {}) {
+  const normalizedCountry = clean(intent.normalizedCountry).toLocaleLowerCase("en");
+  const normalizedCities = unique(intent.normalizedCities || []).map((value) => value.toLocaleLowerCase("en"));
+  const explicitCountries = unique(intent.explicitCountryCodes || []);
+  return explicitCountries.length === 1
+    && normalizedCountry.length > 0
+    && normalizedCities.includes(normalizedCountry);
+}
+
 function capacityScope(intent = {}) {
   const requiredCount = requiredDestinationCount(intent);
   const countries = countryCodes(intent);
@@ -119,9 +128,12 @@ export function resolveRouteTripCapacity(intent = {}) {
   const limits = ROUTE_TRIP_CAPACITY_LIMITS[scope];
   const days = exactDurationDays(intent);
   const countryCount = Math.max(countryCodes(intent).length, regionCountryCodes(intent).length > 1 ? 2 : 0);
-  const supported = scope === "single-city"
-    || !days
-    || (days <= limits.maxDays && countryCount <= limits.maxCountries);
+  const countryCityOverlap = scope === "single-city" && isCountryCityIdentityOverlap(intent);
+  const maxSupportedDays = countryCityOverlap
+    ? ROUTE_TRIP_CAPACITY_LIMITS["single-country"].maxDays
+    : limits.maxDays;
+  const supported = !days
+    || ((maxSupportedDays == null || days <= maxSupportedDays) && countryCount <= limits.maxCountries);
   const mode = expansionMode(scope, days, supported);
   const maxCitiesForDays = maxDestinationsForTripDays(days) || Math.min(4, limits.maxCities);
   const targetCityCount = scope === "single-city"
@@ -139,7 +151,7 @@ export function resolveRouteTripCapacity(intent = {}) {
     mode,
     supported,
     requestedDays: days,
-    maxSupportedDays: limits.maxDays,
+    maxSupportedDays,
     maxCountries: limits.maxCountries,
     maxCities: limits.maxCities,
     maxPois: limits.maxPois,

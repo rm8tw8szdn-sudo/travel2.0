@@ -56,6 +56,7 @@ function verifyStaticCountryShell() {
 
 function verifyCountryCityCardSource(source) {
   assert.match(source, /const NEUTRAL_CITY_COVER\s*=\s*["']assets\/route-city-placeholder\.svg["']/u, "Country Detail must define one neutral City-card fallback");
+  assert.match(source, /const linkedCityIds = \(state\.cities \|\| \[\]\)[\s\S]{0,180}\.filter\(\(city\) => city\.countryId === country\.id\)/u, "Country Detail must discover route-consumed Cities by country identity");
   assert.doesNotMatch(source, /\.map\(\(id\)[\s\S]{0,240}cover\s*:\s*country\.cover/u, "unresolved City cards must not inherit the Country cover");
   assert.doesNotMatch(source, /city\.cover\s*\|\|\s*country\.cover/u, "resolved City cards must not inherit the Country cover");
   assert.doesNotMatch(source, /<img[^>]+src=[^>]+country\.cover/u, "City-card rendering must not consume the Country cover");
@@ -66,6 +67,9 @@ function verifyCountryCityCardMutation(source) {
   const mutated = source.replace("cover: NEUTRAL_CITY_COVER", "cover: country.cover");
   assert.notEqual(mutated, source, "Country-to-City fallback mutation must alter production source");
   assert.throws(() => verifyCountryCityCardSource(mutated), /must not inherit the Country cover/u, "Country-to-City fallback mutation must be killed");
+  const routeCityMutation = source.replace(".filter((city) => city.countryId === country.id)", ".filter(() => false)");
+  assert.notEqual(routeCityMutation, source, "route-consumed City discovery mutation must alter source");
+  assert.throws(() => verifyCountryCityCardSource(routeCityMutation), /route-consumed Cities/u, "Country Detail route-consumed City discovery mutation must be killed");
   return true;
 }
 

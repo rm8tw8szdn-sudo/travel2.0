@@ -375,6 +375,11 @@ function validateEntity({
     if (!cityPath) add("instance-type-not-allowed", { instanceOfIds, maximumSubclassDepth: typePolicy.maximumSubclassDepth });
   } else if (kind === "poi" && typePolicy) {
     const poiPath = findClassifiedTypePath(instanceOfIds, "poi", typePolicy);
+    const settlementTypeDetected = instanceOfIds.some((instanceOfQid) => Boolean(typePolicy.typeClassifications.get(instanceOfQid)?.allowedKinds?.city));
+    const independentPoiTypeDetected = instanceOfIds.some((instanceOfQid) => {
+      const allowedKinds = typePolicy.typeClassifications.get(instanceOfQid)?.allowedKinds || {};
+      return Boolean(allowedKinds.poi) && !allowedKinds.city;
+    });
     const composite = typePolicy.compositeAllowances.get(compositeAllowanceKey({
       entity,
       kind,
@@ -382,11 +387,12 @@ function validateEntity({
       expectedCountryQid,
       instanceOfIds,
     }));
-    if (!composite && !poiPath) {
+    if (!composite && (!poiPath || (settlementTypeDetected && !independentPoiTypeDetected))) {
       add("instance-type-not-allowed", {
         instanceOfIds,
         maximumSubclassDepth: typePolicy.maximumSubclassDepth,
-        settlementTypeDetected: instanceOfIds.some((instanceOfQid) => Boolean(typePolicy.typeClassifications.get(instanceOfQid)?.allowedKinds?.city)),
+        settlementTypeDetected,
+        independentPoiTypeDetected,
       });
     }
   }

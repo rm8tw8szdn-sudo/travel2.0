@@ -61,6 +61,18 @@ try {
   assert(incompatibleTheme.response.diagnostics.constraintConflict.reasonCodes.includes("explicit-theme-mismatch"));
   assert.equal(harness.externalFetchCalls(), 0, "single-city verifier must not use external Evidence or images");
 
+  const cityStateCapacity = await harness.runQuery("Monaco 46 days", "city-state-capacity");
+  assert.equal(cityStateCapacity.parsedIntent.tripCapacity.scope, "single-city");
+  assert.equal(cityStateCapacity.parsedIntent.tripCapacity.maxSupportedDays, 45, "a Country/City identity overlap must retain the single-Country cap");
+  assert.equal(cityStateCapacity.parsedIntent.tripCapacity.supported, false);
+  assert.equal(cityStateCapacity.response.records.length, 0, "a city-state must not bypass the explicit Country duration cap");
+  assert.equal(cityStateCapacity.response.diagnostics.reason, "trip-duration-capacity-exceeded");
+
+  const ordinaryCityDepth = await harness.runQuery("Tokyo 60 days", "ordinary-city-depth");
+  assert.equal(ordinaryCityDepth.parsedIntent.tripCapacity.scope, "single-city");
+  assert.equal(ordinaryCityDepth.parsedIntent.tripCapacity.maxSupportedDays, null, "ordinary explicit City depth remains open-ended");
+  assert.equal(ordinaryCityDepth.response.records.length, 1);
+
   console.log(JSON.stringify({
     verifier: "route-v2-single-city-hard-constraint",
     passed: true,

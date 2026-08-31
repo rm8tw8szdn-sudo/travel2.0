@@ -372,7 +372,17 @@ function renderRoute(record, diagnostics = {}) {
     reviewNotice.hidden = !reviewOnly;
     reviewNotice.textContent = reviewOnly ? "这条路线仍在证据审核中，交通与季节建议仅供预览。" : "";
   }
-  setText("[data-route-recommended-days]", record.recommendedDays || (record.durationDays ? `${record.durationDays}天` : ""));
+  const hardConstraints = record.normalizedRouteIntent?.hardConstraints
+    || record.inputIntentSnapshot?.normalizedRouteIntent?.hardConstraints
+    || record.inputContext?.normalizedRouteIntent?.hardConstraints
+    || {};
+  const exactDays = Number(hardConstraints.exactDays?.value);
+  setText(
+    "[data-route-recommended-days]",
+    Number.isFinite(exactDays) && exactDays > 0
+      ? `${Math.round(exactDays)}天`
+      : record.recommendedDays || (record.durationDays ? `${record.durationDays}天` : ""),
+  );
   setText("[data-route-season-label]", reviewOnly ? "季节信息" : "最佳季节");
   setText("[data-route-best-months]", reviewOnly
     ? "季节建议待验证"

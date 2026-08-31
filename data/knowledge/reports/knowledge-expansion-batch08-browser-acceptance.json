@@ -1,0 +1,63 @@
+{
+  "schemaVersion": "route-v2-knowledge-expansion-batch08-browser-acceptance-v1",
+  "testedAt": "2026-08-31T08:00:00.000Z",
+  "status": "PASS",
+  "runtime": {
+    "browser": "Codex In-app Browser",
+    "routeV2Enabled": true,
+    "canaryPercentage": 100,
+    "onlineEvidenceEnabled": false,
+    "isolatedRuntimeState": true
+  },
+  "searchAcceptance": {
+    "countryQueries": 20,
+    "successfulQueries": 20,
+    "focusedConstraintQueries": 5,
+    "focusedConstraintSuccesses": 5,
+    "routeDetailChecks": 2,
+    "countryDetailChecks": 1,
+    "cityDetailChecks": 1,
+    "backForwardChecks": 1,
+    "constraintPreservationFailures": 0,
+    "countryCodesObserved": [
+      "AM", "AZ", "BA", "MK", "MD", "LU", "MC", "LI", "OM", "QA",
+      "BH", "KW", "LB", "DO", "JM", "CU", "BS", "BO", "PY", "NI"
+    ]
+  },
+  "tripFootprintAcceptance": {
+    "flows": 1,
+    "crossCountry": {
+      "query": "Oman → Qatar 14 days",
+      "routeCountryCount": 2,
+      "routeCityCount": 6,
+      "tripCountryCount": 2,
+      "tripCityCount": 6,
+      "completedFootprintCountryDelta": 2,
+      "completedFootprintCityDelta": 6
+    },
+    "preExistingCompletedFootprintCountryCount": 1,
+    "preExistingCompletedFootprintCityCount": 1,
+    "completedFootprintCountryCount": 3,
+    "completedFootprintCityCount": 7,
+    "duplicateCityCount": 0,
+    "knowledgeEntityIdsPreserved": true,
+    "wikidataIdsPreserved": true,
+    "identityValidation": "real UI counts plus mandatory production TravelState identity verifier"
+  },
+  "imageAcceptance": {
+    "routeCardsRendered": 25,
+    "routeDetailsRendered": 2,
+    "countryDetailsRendered": 1,
+    "cityDetailsRendered": 1,
+    "neutralPlaceholdersRendered": true,
+    "wrongSemanticImages": 0,
+    "watermarkedImages": 0,
+    "brokenImages": 0,
+    "runtimeExternalImageRequests": 0,
+    "runtimeExternalEvidenceRequests": 0
+  },
+  "console": {
+    "errors": 0,
+    "warnings": 0
+  }
+}

@@ -23,7 +23,7 @@ import { KNOWLEDGE_ENTITY_LAYER_PUBLISHED_ASSETS } from "../src/lib/routes/knowl
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const argument = (name) => process.argv.find((value) => value.startsWith(`--${name}=`))?.slice(name.length + 3) || "";
 const BATCH = argument("batch") || "05";
-if (!["05", "06", "07"].includes(BATCH)) throw new Error("batch-argument-invalid:--batch=05|06|07");
+if (!["05", "06", "07", "08"].includes(BATCH)) throw new Error("batch-argument-invalid:--batch=05|06|07|08");
 const BATCH_LABEL = `Batch ${BATCH}`;
 const SEED_PATH = `data/knowledge/seeds/knowledge-expansion-batch${BATCH}-20-country.json`;
 const COUNTRY_OUTPUT = `data/knowledge/batches/countries.p1a-batch${BATCH}.json`;
@@ -35,12 +35,15 @@ const LOCAL_WIKIPEDIA_LANGUAGE = Object.freeze({
   RO: "ro", RU: "ru", SA: "ar", ZA: "en",
   AL: "sq", BG: "bg", CY: "el", EE: "et", LV: "lv", LT: "lt", MT: "mt", ME: "sr", RS: "sr", SK: "sk",
   GE: "ka", JO: "ar", LK: "si", NP: "ne", MV: "dv", TN: "ar", TZ: "sw", EC: "es", PA: "es", GT: "es",
+  AM: "hy", AZ: "az", BA: "bs", MK: "mk", MD: "ro", LU: "lb", MC: "fr", LI: "de", OM: "ar", QA: "ar",
+  BH: "ar", KW: "ar", LB: "ar", DO: "es", JM: "en", CU: "es", BS: "en", BO: "es", PY: "es", NI: "es",
   BE: "nl", CA: "fr", CZ: "cs", DK: "da", FI: "fi", HR: "hr", HU: "hu", ID: "id", IE: "ga",
   MX: "es", MY: "ms", NO: "no", PE: "es", PL: "pl", SE: "sv", SI: "sl", VN: "vi",
 });
 const USER_AGENT = `travel2-route-v2-knowledge-expansion-batch${BATCH}/1.0 (https://github.com/rm8tw8szdn-sudo/travel2.0)`;
 const FETCH_CACHE_ROOT = path.join(ROOT, ".tmp", `route-v2-batch${BATCH}-import-cache`);
 const MAX_SUBCLASS_DEPTH = 8;
+const MAX_POI_PARENT_DISTANCE_KM = 10;
 const CITY_ROOTS = new Set(["Q486972", "Q15284"]);
 const POI_ROOTS = new Set([
   "Q570116", "Q41176", "Q33506", "Q4989906", "Q1370598", "Q22698", "Q839954", "Q9259",
@@ -78,12 +81,18 @@ const ISO = Object.freeze({
   LT: ["LTU", "440"], MT: ["MLT", "470"], ME: ["MNE", "499"], RS: ["SRB", "688"], SK: ["SVK", "703"],
   GE: ["GEO", "268"], JO: ["JOR", "400"], LK: ["LKA", "144"], NP: ["NPL", "524"], MV: ["MDV", "462"],
   TN: ["TUN", "788"], TZ: ["TZA", "834"], EC: ["ECU", "218"], PA: ["PAN", "591"], GT: ["GTM", "320"],
+  AM: ["ARM", "051"], AZ: ["AZE", "031"], BA: ["BIH", "070"], MK: ["MKD", "807"], MD: ["MDA", "498"],
+  LU: ["LUX", "442"], MC: ["MCO", "492"], LI: ["LIE", "438"], OM: ["OMN", "512"], QA: ["QAT", "634"],
+  BH: ["BHR", "048"], KW: ["KWT", "414"], LB: ["LBN", "422"], DO: ["DOM", "214"], JM: ["JAM", "388"],
+  CU: ["CUB", "192"], BS: ["BHS", "044"], BO: ["BOL", "068"], PY: ["PRY", "600"], NI: ["NIC", "558"],
 });
 const COUNTRY_OUTPUT_CODES = BATCH === "05"
   ? new Set(["HU", "HR", "SE", "SI"])
   : BATCH === "06"
     ? new Set(["KH", "RO", "CR", "UY"])
-    : new Set(["AL", "BG", "CY", "EE", "LV", "LT", "MT", "ME", "RS", "SK", "GE", "JO", "LK", "NP", "MV", "TN", "TZ", "EC", "PA", "GT"]);
+    : BATCH === "07"
+      ? new Set(["AL", "BG", "CY", "EE", "LV", "LT", "MT", "ME", "RS", "SK", "GE", "JO", "LK", "NP", "MV", "TN", "TZ", "EC", "PA", "GT"])
+      : new Set(["AM", "AZ", "BA", "MK", "MD", "LU", "MC", "LI", "OM", "QA", "BH", "KW", "LB", "DO", "JM", "CU", "BS", "BO", "PY", "NI"]);
 
 const wave = Number(argument("wave"));
 if (![1, 2, 3, 4].includes(wave)) throw new Error("wave-argument-required:--wave=1|2|3|4");
@@ -543,7 +552,7 @@ async function main() {
       if (publishedCountryQids.has(candidate.qid)) reasons.push("country-not-published-as-poi");
       if (!routeEligibility.accepted) reasons.push("operational-entity-not-route-poi");
       const distanceKm = coords ? entityLayerDistanceKm(selected.city.coordinates, coords) : Number.POSITIVE_INFINITY;
-      if (distanceKm > 40) reasons.push("parent-city-distance-exceeded");
+      if (distanceKm > MAX_POI_PARENT_DISTANCE_KM) reasons.push("parent-city-distance-exceeded");
       if (candidate.qid === selected.city.wikidataId) reasons.push("same-as-parent-city");
       if (poiByQid.has(candidate.qid)) reasons.push("already-published-poi");
       if (usedPoiQids.has(candidate.qid)) reasons.push("duplicate-wave-poi");

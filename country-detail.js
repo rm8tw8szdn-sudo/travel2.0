@@ -45,6 +45,19 @@ function cityCardCover(city) {
   return verifiedAsset || NEUTRAL_CITY_COVER;
 }
 
+function countryCityReferences(country, state, preferred = []) {
+  const seen = new Set();
+  const linkedCityIds = (state.cities || [])
+    .filter((city) => city.countryId === country.id)
+    .map((city) => city.id);
+  return [...preferred, ...(country.cityIds || []), ...linkedCityIds].filter((id) => {
+    const value = String(id || "").trim();
+    if (!value || seen.has(value)) return false;
+    seen.add(value);
+    return true;
+  });
+}
+
 function statusLabel(status) {
   if (status === "explored") return "已去";
   if (status === "planned") return "待出行";
@@ -128,7 +141,7 @@ function renderCountry() {
 function renderCities(country, state, detail = {}) {
   const list = document.querySelector(".country-city-list");
   if (!list) return;
-  const cityRefs = detail.recommendedCities || country.cityIds || [];
+  const cityRefs = countryCityReferences(country, state, detail.recommendedCities || []);
   const cities = cityRefs
     .map((id) => state.citiesById?.[id] || { id: "", name: id, cover: NEUTRAL_CITY_COVER, explorationStatus: "unexplored", isNameOnly: true })
     .slice(0, 3);
@@ -143,7 +156,7 @@ function renderCities(country, state, detail = {}) {
 }
 
 function countryRecommendedCities(country, state, limit = 12) {
-  return (country.cityIds || [])
+  return countryCityReferences(country, state)
     .map((id) => state.citiesById?.[id])
     .filter(Boolean)
     .slice(0, limit);

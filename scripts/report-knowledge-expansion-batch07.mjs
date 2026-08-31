@@ -131,9 +131,17 @@ Generated: ${GENERATED_AT}
 - Size policy violations: ${stats.imageBaseline.git.sizePolicyViolations.length}
 `;
 
+const currentImageAudit = fs.readFileSync(path.join(ROOT, "ROUTE_V2_IMAGE_COVERAGE_BACKFILL_AUDIT.md"), "utf8")
+  .replace("# Route V2 Image Coverage Backfill Audit", "# Route V2 Image Coverage Backfill Batch 07 Audit")
+  .replace(/Historical image debt before Batch 08: \d+/u, `Historical image debt before Batch 07: ${stats.images.historicalDebtBefore}`)
+  .replace(/Historical image debt after Batch 08: \d+/u, `Historical image debt after Batch 07: ${stats.images.historicalDebtAfter}`)
+  .replace(/Batch 08 Country graphic covers added: \d+/u, `Batch 07 Country graphic covers added: ${stats.images.batchCountryCovers}`)
+  .replace(/Batch 08 verified destination images: \d+/u, `Batch 07 verified destination images: ${stats.images.batchVerifiedImages}`);
+
 for (const [relativePath, text] of [
   ["ROUTE_V2_KNOWLEDGE_EXPANSION_BATCH07_DASHBOARD.md", dashboard],
   ["ROUTE_V2_KNOWLEDGE_EXPANSION_BATCH07_REPORT.md", report],
+  ["ROUTE_V2_IMAGE_COVERAGE_BACKFILL_BATCH07_AUDIT.md", currentImageAudit],
   ["ROUTE_V2_IMAGE_ASSET_SIZE_BATCH07_AUDIT.md", sizeAudit],
 ]) fs.writeFileSync(path.join(ROOT, relativePath), text, "utf8");
 

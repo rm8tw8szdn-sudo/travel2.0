@@ -737,6 +737,21 @@ function routeDestinations(record = {}) {
   ]);
 }
 
+function routeExactRequestedDays(record = {}) {
+  const hardConstraints = record.normalizedRouteIntent?.hardConstraints
+    || record.inputIntentSnapshot?.normalizedRouteIntent?.hardConstraints
+    || record.inputContext?.normalizedRouteIntent?.hardConstraints
+    || {};
+  const days = Number(hardConstraints.exactDays?.value);
+  return Number.isFinite(days) && days > 0 ? Math.round(days) : null;
+}
+
+function routeDayText(record = {}) {
+  const exactDays = routeExactRequestedDays(record);
+  if (exactDays) return `${exactDays}天`;
+  return record.recommendedDays || (record.durationDays ? `${record.durationDays}天` : "");
+}
+
 function routeThemePhrase(record = {}) {
   const text = routeSearchText(record);
   if (/自驾|road|coast|rockies|patagonia|garden route|南岛|加州|落基|花园大道/i.test(text)) return "适合看沿途风景，路上停留比赶景点更重要";
@@ -756,7 +771,7 @@ function routeIntro(record = {}) {
   const placeText = compactPlaceList(places, 4);
   const countries = routeCountryNames(record);
   const countryText = compactPlaceList(countries, 3);
-  const dayText = record.recommendedDays || (record.durationDays ? `${record.durationDays}天` : "");
+  const dayText = routeDayText(record);
   const opening = placeText
     ? `从${places[0]}出发，串联${compactPlaceList(places.slice(1), 3) || countryText || "周边目的地"}。`
     : countryText
@@ -854,7 +869,10 @@ function routeFeatureIntroV2(record = {}) {
     const destinations = record.destinationEntities || [];
     const city = destinations.find((destination) => destination.entityTypeName === "city");
     const poiCount = Array.isArray(city?.poiEntities) ? city.poiEntities.length : 0;
-    return `以${city?.canonicalNameZh || city?.name || "当前城市"}为中心，汇总${poiCount}个现有景点；可按兴趣自由拆分，不设天数上限。`;
+    const exactDays = routeExactRequestedDays(record);
+    return exactDays
+      ? `以${city?.canonicalNameZh || city?.name || "当前城市"}为中心，汇总${poiCount}个现有景点；按${exactDays}天安排停留与景点深度。`
+      : `以${city?.canonicalNameZh || city?.name || "当前城市"}为中心，汇总${poiCount}个现有景点；可按兴趣自由拆分，不设天数上限。`;
   }
   const narrativeText = [
     record.canonicalTitle,
@@ -1447,7 +1465,7 @@ function renderRouteCard(record, index) {
   if (new URL(window.location.href).searchParams.get("localOnly") === "1") {
     detailParams.set("localOnly", "1");
   }
-  const dayText = record.recommendedDays || (record.durationDays ? `${record.durationDays}天` : "");
+  const dayText = routeDayText(record);
   const monthText = record.searchStatus === "needs-review"
     ? "证据待验证"
     : (record.bestMonths || []).join(" / ");

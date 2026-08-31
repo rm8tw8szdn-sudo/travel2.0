@@ -11,16 +11,17 @@ const MANIFEST_PATH = "data/route-v2/images/image-coverage-manifest.json";
 const RUNTIME_PATH = "route-v2-image-coverage.js";
 const AUDIT_PATH = "ROUTE_V2_IMAGE_COVERAGE_BACKFILL_AUDIT.md";
 const BATCH = String(process.argv.find((value) => value.startsWith("--batch="))?.split("=")[1] || "06").padStart(2, "0");
-if (!["06", "07"].includes(BATCH)) throw new Error("batch-argument-invalid:--batch=06|07");
+if (!["06", "07", "08"].includes(BATCH)) throw new Error("batch-argument-invalid:--batch=06|07|08");
 const BATCH_AUDIT_PATH = `ROUTE_V2_IMAGE_COVERAGE_BACKFILL_BATCH${BATCH}_AUDIT.md`;
 const PROVENANCE_PATH = `data/route-v2/images/batch${BATCH}-dedicated-image-provenance.json`;
 const DEBT_PROVENANCE_PATH = "data/route-v2/images/image-debt-elimination-provenance.json";
 const BATCH_BASELINE_PATH = `data/knowledge/reports/knowledge-expansion-batch${BATCH}-baseline.json`;
-const RETRIEVED_AT = BATCH === "07" ? "2026-08-24T05:00:00.000Z" : "2026-08-17T09:00:00.000Z";
+const RETRIEVED_AT = BATCH === "08" ? "2026-08-28T09:00:00.000Z" : BATCH === "07" ? "2026-08-24T05:00:00.000Z" : "2026-08-17T09:00:00.000Z";
 const BATCH05_CODES = new Set(["GB", "IE", "CZ", "HU", "HR", "NO", "SE", "FI", "DK", "BE", "PL", "SI", "VN", "MY", "ID", "PH", "CA", "US", "MX", "PE"]);
 const BATCH06_CODES = new Set(["AD", "AE", "AR", "BR", "CD", "CL", "UY", "EG", "FJ", "IL", "IN", "KE", "MA", "NG", "RU", "SA", "ZA", "KH", "RO", "CR"]);
 const BATCH07_CODES = new Set(["AL", "BG", "CY", "EE", "LV", "LT", "MT", "ME", "RS", "SK", "GE", "JO", "LK", "NP", "MV", "TN", "TZ", "EC", "PA", "GT"]);
-const CURRENT_BATCH_CODES = BATCH === "07" ? BATCH07_CODES : BATCH06_CODES;
+const BATCH08_CODES = new Set(["AM", "AZ", "BA", "MK", "MD", "LU", "MC", "LI", "OM", "QA", "BH", "KW", "LB", "DO", "JM", "CU", "BS", "BO", "PY", "NI"]);
+const CURRENT_BATCH_CODES = BATCH === "08" ? BATCH08_CODES : BATCH === "07" ? BATCH07_CODES : BATCH06_CODES;
 const PLACEHOLDER = "assets/route-city-placeholder.svg";
 const GENERATED_VECTOR_RIGHTS = Object.freeze({
   sourceType: "project-generated-vector",
@@ -98,12 +99,20 @@ const plannableCountries = countries.filter((country) => {
 }).sort((left, right) => left.isoAlpha2.localeCompare(right.isoAlpha2, "en"));
 
 const provenance = JSON.parse(await readFile(path.join(ROOT, PROVENANCE_PATH), "utf8"));
+const cumulativeProvenance = ["06", "07", "08"]
+  .filter((batch) => Number(batch) <= Number(BATCH))
+  .map((batch) => `data/route-v2/images/batch${batch}-dedicated-image-provenance.json`)
+  .filter((relativePath) => fs.existsSync(path.join(ROOT, relativePath)))
+  .flatMap((relativePath) => {
+    const document = JSON.parse(fs.readFileSync(path.join(ROOT, relativePath), "utf8"));
+    return (document.assets || []).map((record) => ({ ...record, provenancePath: relativePath }));
+  });
 const debtProvenance = fs.existsSync(path.join(ROOT, DEBT_PROVENANCE_PATH))
   ? JSON.parse(await readFile(path.join(ROOT, DEBT_PROVENANCE_PATH), "utf8"))
   : { assets: [] };
 const batchBaseline = JSON.parse(await readFile(path.join(ROOT, BATCH_BASELINE_PATH), "utf8"));
 const dedicatedRecords = [
-  ...(provenance.assets || []).map((record) => ({ ...record, provenancePath: PROVENANCE_PATH })),
+  ...cumulativeProvenance,
   ...(debtProvenance.assets || [])
     .filter((record) => record.status === "imageReady" && record.visualAuditStatus === "passed")
     .map((record) => ({ ...record, provenancePath: DEBT_PROVENANCE_PATH })),
@@ -256,6 +265,7 @@ const manifest = {
     batch05Countries: summarize(scope(BATCH05_CODES, countryRecords), scope(BATCH05_CODES, cityRecords), scope(BATCH05_CODES, poiRecords)),
     batch06Countries: summarize(scope(BATCH06_CODES, countryRecords), scope(BATCH06_CODES, cityRecords), scope(BATCH06_CODES, poiRecords)),
     batch07Countries: summarize(scope(BATCH07_CODES, countryRecords), scope(BATCH07_CODES, cityRecords), scope(BATCH07_CODES, poiRecords)),
+    batch08Countries: summarize(scope(BATCH08_CODES, countryRecords), scope(BATCH08_CODES, cityRecords), scope(BATCH08_CODES, poiRecords)),
     overall: summarize(countryRecords, cityRecords, poiRecords),
   },
 };
@@ -291,7 +301,7 @@ const debtByCountry = countryRecords.map((country) => {
   return {
     countryCode: country.countryCode,
     countryName: country.canonicalNameEn,
-    scope: BATCH07_CODES.has(country.countryCode) ? "Batch 07" : BATCH06_CODES.has(country.countryCode) ? "Batch 06" : BATCH05_CODES.has(country.countryCode) ? "Batch 05" : "Historical",
+    scope: BATCH08_CODES.has(country.countryCode) ? "Batch 08" : BATCH07_CODES.has(country.countryCode) ? "Batch 07" : BATCH06_CODES.has(country.countryCode) ? "Batch 06" : BATCH05_CODES.has(country.countryCode) ? "Batch 05" : "Historical",
     high: countryCities.filter((record) => record.backfillPriority === "high").length,
     normal: countryCities.filter((record) => record.backfillPriority === "normal").length,
     low: countryCities.filter((record) => record.backfillPriority === "low").length,

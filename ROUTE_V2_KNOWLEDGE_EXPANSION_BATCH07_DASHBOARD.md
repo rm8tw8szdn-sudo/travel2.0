@@ -5,13 +5,13 @@ Generated: 2026-08-24T12:00:00.000Z
 ## Portfolio boundary
 
 - Approximate global Country count: 195
-- Country Entities (Catalog): 79
-- Plannable Countries: 78
-- Route Knowledge Covered Countries: 78
-- Evidence-backed Countries: 75
+- Country Entities (Catalog): 99
+- Plannable Countries: 98
+- Route Knowledge Covered Countries: 98
+- Evidence-backed Countries: 95
 - Catalog-only Countries: 1 (CN)
-- Remaining uncataloged Countries: 116
-- Published totals: 79 Countries / 601 Cities / 4,038 POIs / 4,718 entities
+- Remaining uncataloged Countries: 96
+- Published totals: 99 Countries / 718 Cities / 4,766 POIs / 5,583 entities
 
 A Country Entity is identity data only. Plannable and Route Knowledge Covered require published City/POI depth plus a successful Route V2 consumption path. Evidence-backed additionally requires validated local transport or objective month-risk Evidence. China remains Catalog-only under the unchanged Search V1 product contract.
 
@@ -44,6 +44,6 @@ A Country Entity is identity data only. Plannable and Route Knowledge Covered re
 
 | Scope | Country Cover | Dedicated City | City Placeholder | Dedicated Core POI | POI Placeholder | needsBackfill | invalidMapping |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| Historical Plannable Countries | 58/58 | 462/462 (100%) | 0 | 156/165 (94.5%) | 9 | 9 | 0 |
+| Historical Plannable Countries | 78/78 | 600/601 (99.8%) | 1 | 212/224 (94.6%) | 12 | 13 | 0 |
 | Batch 07 Countries | 20/20 | 138/139 (99.3%) | 1 | 56/59 (94.9%) | 3 | 4 | 0 |
-| Overall | 78/78 | 600/601 (99.8%) | 1 | 212/224 (94.6%) | 12 | 13 | 0 |
+| Overall | 98/98 | 600/718 (83.6%) | 118 | 212/282 (75.2%) | 70 | 188 | 0 |

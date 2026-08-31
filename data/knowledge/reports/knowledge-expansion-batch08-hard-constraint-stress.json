@@ -1,0 +1,4065 @@
+{
+  "schemaVersion": "route-v2-knowledge-expansion-batch08-hard-constraint-stress-v1",
+  "generatedAt": "2026-08-28T10:00:00.000Z",
+  "status": "PASS",
+  "summary": {
+    "totalCases": 329,
+    "routeCases": 278,
+    "failClosedCases": 51,
+    "categories": {
+      "destination-free-recommendation": 4,
+      "explicit-city": 19,
+      "explicit-city-extra-country": 19,
+      "explicit-two-city": 10,
+      "fixed-city-order": 10,
+      "homonym-fail-closed": 3,
+      "insufficient-theme-evidence": 4,
+      "month": 60,
+      "multi-country": 40,
+      "multi-country-capacity-conflict": 20,
+      "season": 40,
+      "single-country-capacity-conflict": 20,
+      "single-country-duration": 80
+    }
+  },
+  "assertions": {
+    "hardCountryPreserved": true,
+    "hardCityPreserved": true,
+    "fixedOrderPreserved": true,
+    "noDuplicateCityPadding": true,
+    "impossibleConstraintsFailClosed": true,
+    "externalFetchCalls": 0
+  },
+  "results": [
+    {
+      "category": "single-country-duration",
+      "query": "Armenia 1 days",
+      "outcome": "route",
+      "countryCodes": [
+        "AM"
+      ],
+      "cityQids": [
+        "Q1953",
+        "Q183394"
+      ]
+    },
+    {
+      "category": "single-country-duration",
+      "query": "Armenia 2 days",
+      "outcome": "route",
+      "countryCodes": [
+        "AM"
+      ],
+      "cityQids": [
+        "Q1953",
+        "Q183394"
+      ]
+    },
+    {
+      "category": "single-country-duration",
+      "query": "Armenia 7 days",
+      "outcome": "route",
+      "countryCodes": [
+        "AM"
+      ],
+      "cityQids": [
+        "Q319735",
+        "Q39556",
+        "Q39569",
+        "Q199500"
+      ]
+    },
+    {
+      "category": "single-country-duration",
+      "query": "Armenia 14 days",
+      "outcome": "route",
+      "countryCodes": [
+        "AM"
+      ],
+      "cityQids": [
+        "Q62337",
+        "Q39556",
+        "Q183394",
+        "Q199500",
+        "Q319735",
+        "Q1953"
+      ]
+    },
+    {
+      "category": "month",
+      "query": "Armenia 7 days in February",
+      "outcome": "route",
+      "countryCodes": [
+        "AM"
+      ],
+      "cityQids": [
+        "Q183394",
+        "Q39569",
+        "Q39556",
+        "Q62337"
+      ]
+    },
+    {
+      "category": "month",
+      "query": "Armenia 7 days in April",
+      "outcome": "route",
+      "countryCodes": [
+        "AM"
+      ],
+      "cityQids": [
+        "Q62337",
+        "Q319735",
+        "Q199500",
+        "Q39569"
+      ]
+    },
+    {
+      "category": "month",
+      "query": "Armenia 7 days in December",
+      "outcome": "route",
+      "countryCodes": [
+        "AM"
+      ],
+      "cityQids": [
+        "Q183394",
+        "Q199500",
+        "Q62337",
+        "Q319735"
+      ]
+    },
+    {
+      "category": "season",
+      "query": "Armenia 7 days in summer",
+      "outcome": "route",
+      "countryCodes": [
+        "AM"
+      ],
+      "cityQids": [
+        "Q183394",
+        "Q39569",
+        "Q39556",
+        "Q319735"
+      ]
+    },
+    {
+      "category": "season",
+      "query": "Armenia 7 days in winter",
+      "outcome": "route",
+      "countryCodes": [
+        "AM"
+      ],
+      "cityQids": [
+        "Q62337",
+        "Q39569",
+        "Q183394",
+        "Q199500"
+      ]
+    },
+    {
+      "category": "single-country-capacity-conflict",
+      "query": "Armenia 46 days",
+      "outcome": "fail-closed"
+    },
+    {
+      "category": "explicit-city",
+      "query": "Dilijan Armenia 7 days",
+      "outcome": "route",
+      "countryCodes": [
+        "AM"
+      ],
+      "cityQids": [
+        "Q39569"
+      ]
+    },
+    {
+      "category": "single-country-duration",
+      "query": "Azerbaijan 1 days",
+      "outcome": "route",
+      "countryCodes": [
+        "AZ"
+      ],
+      "cityQids": [
+        "Q647982",
+        "Q234783"
+      ]
+    },
+    {
+      "category": "single-country-duration",
+      "query": "Azerbaijan 2 days",
+      "outcome": "route",
+      "countryCodes": [
+        "AZ"
+      ],
+      "cityQids": [
+        "Q647982",
+        "Q234783"
+      ]
+    },
+    {
+      "category": "single-country-duration",
+      "query": "Azerbaijan 7 days",
+      "outcome": "route",
+      "countryCodes": [
+        "AZ"
+      ],
+      "cityQids": [
+        "Q9248",
+        "Q234783",
+        "Q647982",
+        "Q131290"
+      ]
+    },
+    {
+      "category": "single-country-duration",
+      "query": "Azerbaijan 14 days",
+      "outcome": "route",
+      "countryCodes": [
+        "AZ"
+      ],
+      "cityQids": [
+        "Q234783",
+        "Q228811",
+        "Q647982",
+        "Q179833",
+        "Q9248",
+        "Q131290"
+      ]
+    },
+    {
+      "category": "month",
+      "query": "Azerbaijan 7 days in February",
+      "outcome": "route",
+      "countryCodes": [
+        "AZ"
+      ],
+      "cityQids": [
+        "Q158903",
+        "Q9248",
+        "Q647982",
+        "Q234783"
+      ]
+    },
+    {
+      "category": "month",
+      "query": "Azerbaijan 7 days in April",
+      "outcome": "route",
+      "countryCodes": [
+        "AZ"
+      ],
+      "cityQids": [
+        "Q9248",
+        "Q234783",
+        "Q131290",
+        "Q158903"
+      ]
+    },
+    {
+      "category": "month",
+      "query": "Azerbaijan 7 days in December",
+      "outcome": "route",
+      "countryCodes": [
+        "AZ"
+      ],
+      "cityQids": [
+        "Q234783",
+        "Q9248",
+        "Q228811",
+        "Q647982"
+      ]
+    },
+    {
+      "category": "season",
+      "query": "Azerbaijan 7 days in summer",
+      "outcome": "route",
+      "countryCodes": [
+        "AZ"
+      ],
+      "cityQids": [
+        "Q228811",
+        "Q234783",
+        "Q131290",
+        "Q9248"
+      ]
+    },
+    {
+      "category": "season",
+      "query": "Azerbaijan 7 days in winter",
+      "outcome": "route",
+      "countryCodes": [
+        "AZ"
+      ],
+      "cityQids": [
+        "Q234783",
+        "Q131290",
+        "Q9248",
+        "Q158903"
+      ]
+    },
+    {
+      "category": "single-country-capacity-conflict",
+      "query": "Azerbaijan 46 days",
+      "outcome": "fail-closed"
+    },
+    {
+      "category": "explicit-city",
+      "query": "Baku Azerbaijan 7 days",
+      "outcome": "route",
+      "countryCodes": [
+        "AZ"
+      ],
+      "cityQids": [
+        "Q9248"
+      ]
+    },
+    {
+      "category": "single-country-duration",
+      "query": "Bosnia and Herzegovina 1 days",
+      "outcome": "route",
+      "countryCodes": [
+        "BA"
+      ],
+      "cityQids": [
+        "Q131127",
+        "Q258429"
+      ]
+    },
+    {
+      "category": "single-country-duration",
+      "query": "Bosnia and Herzegovina 2 days",
+      "outcome": "route",
+      "countryCodes": [
+        "BA"
+      ],
+      "cityQids": [
+        "Q131127",
+        "Q258429"
+      ]
+    },
+    {
+      "category": "single-country-duration",
+      "query": "Bosnia and Herzegovina 7 days",
+      "outcome": "route",
+      "countryCodes": [
+        "BA"
+      ],
+      "cityQids": [
+        "Q690052",
+        "Q131127",
+        "Q11194",
+        "Q204434"
+      ]
+    },
+    {
+      "category": "single-country-duration",
+      "query": "Bosnia and Herzegovina 14 days",
+      "outcome": "route",
+      "countryCodes": [
+        "BA"
+      ],
+      "cityQids": [
+        "Q204434",
+        "Q93347",
+        "Q690052",
+        "Q258429",
+        "Q174684",
+        "Q131127"
+      ]
+    },
+    {
+      "category": "month",
+      "query": "Bosnia and Herzegovina 7 days in February",
+      "outcome": "route",
+      "countryCodes": [
+        "BA"
+      ],
+      "cityQids": [
+        "Q204434",
+        "Q690052",
+        "Q11194",
+        "Q131127"
+      ]
+    },
+    {
+      "category": "month",
+      "query": "Bosnia and Herzegovina 7 days in April",
+      "outcome": "route",
+      "countryCodes": [
+        "BA"
+      ],
+      "cityQids": [
+        "Q690052",
+        "Q93347",
+        "Q131127",
+        "Q258429"
+      ]
+    },
+    {
+      "category": "month",
+      "query": "Bosnia and Herzegovina 7 days in December",
+      "outcome": "route",
+      "countryCodes": [
+        "BA"
+      ],
+      "cityQids": [
+        "Q690052",
+        "Q131127",
+        "Q204434",
+        "Q11194"
+      ]
+    },
+    {
+      "category": "season",
+      "query": "Bosnia and Herzegovina 7 days in summer",
+      "outcome": "route",
+      "countryCodes": [
+        "BA"
+      ],
+      "cityQids": [
+        "Q93347",
+        "Q690052",
+        "Q11194",
+        "Q204434"
+      ]
+    },
+    {
+      "category": "season",
+      "query": "Bosnia and Herzegovina 7 days in winter",
+      "outcome": "route",
+      "countryCodes": [
+        "BA"
+      ],
+      "cityQids": [
+        "Q11194",
+        "Q93347",
+        "Q131127",
+        "Q258429"
+      ]
+    },
+    {
+      "category": "single-country-capacity-conflict",
+      "query": "Bosnia and Herzegovina 46 days",
+      "outcome": "fail-closed"
+    },
+    {
+      "category": "explicit-city",
+      "query": "Banja Luka Bosnia and Herzegovina 7 days",
+      "outcome": "route",
+      "countryCodes": [
+        "BA"
+      ],
+      "cityQids": [
+        "Q131127"
+      ]
+    },
+    {
+      "category": "single-country-duration",
+      "query": "North Macedonia 1 days",
+      "outcome": "route",
+      "countryCodes": [
+        "MK"
+      ],
+      "cityQids": [
+        "Q156858",
+        "Q1223508"
+      ]
+    },
+    {
+      "category": "single-country-duration",
+      "query": "North Macedonia 2 days",
+      "outcome": "route",
+      "countryCodes": [
+        "MK"
+      ],
+      "cityQids": [
+        "Q157024",
+        "Q384"
+      ]
+    },
+    {
+      "category": "single-country-duration",
+      "query": "North Macedonia 7 days",
+      "outcome": "route",
+      "countryCodes": [
+        "MK"
+      ],
+      "cityQids": [
+        "Q157032",
+        "Q384",
+        "Q157246",
+        "Q157034"
+      ]
+    },
+    {
+      "category": "single-country-duration",
+      "query": "North Macedonia 14 days",
+      "outcome": "route",
+      "countryCodes": [
+        "MK"
+      ],
+      "cityQids": [
+        "Q157246",
+        "Q157034",
+        "Q1223508",
+        "Q156858",
+        "Q157024",
+        "Q157032"
+      ]
+    },
+    {
+      "category": "month",
+      "query": "North Macedonia 7 days in February",
+      "outcome": "route",
+      "countryCodes": [
+        "MK"
+      ],
+      "cityQids": [
+        "Q1223508",
+        "Q157034",
+        "Q157246",
+        "Q157032"
+      ]
+    },
+    {
+      "category": "month",
+      "query": "North Macedonia 7 days in April",
+      "outcome": "route",
+      "countryCodes": [
+        "MK"
+      ],
+      "cityQids": [
+        "Q1223508",
+        "Q157032",
+        "Q156858",
+        "Q384"
+      ]
+    },
+    {
+      "category": "month",
+      "query": "North Macedonia 7 days in December",
+      "outcome": "route",
+      "countryCodes": [
+        "MK"
+      ],
+      "cityQids": [
+        "Q156858",
+        "Q157034",
+        "Q384",
+        "Q157246"
+      ]
+    },
+    {
+      "category": "season",
+      "query": "North Macedonia 7 days in summer",
+      "outcome": "route",
+      "countryCodes": [
+        "MK"
+      ],
+      "cityQids": [
+        "Q384",
+        "Q156858",
+        "Q157032",
+        "Q157246"
+      ]
+    },
+    {
+      "category": "season",
+      "query": "North Macedonia 7 days in winter",
+      "outcome": "route",
+      "countryCodes": [
+        "MK"
+      ],
+      "cityQids": [
+        "Q157032",
+        "Q1223508",
+        "Q156858",
+        "Q384"
+      ]
+    },
+    {
+      "category": "single-country-capacity-conflict",
+      "query": "North Macedonia 46 days",
+      "outcome": "fail-closed"
+    },
+    {
+      "category": "explicit-city",
+      "query": "Bitola North Macedonia 7 days",
+      "outcome": "route",
+      "countryCodes": [
+        "MK"
+      ],
+      "cityQids": [
+        "Q157246"
+      ]
+    },
+    {
+      "category": "single-country-duration",
+      "query": "Moldova 1 days",
+      "outcome": "route",
+      "countryCodes": [
+        "MD"
+      ],
+      "cityQids": [
+        "Q21197",
+        "Q423258"
+      ]
+    },
+    {
+      "category": "single-country-duration",
+      "query": "Moldova 2 days",
+      "outcome": "route",
+      "countryCodes": [
+        "MD"
+      ],
+      "cityQids": [
+        "Q858713",
+        "Q37801"
+      ]
+    },
+    {
+      "category": "single-country-duration",
+      "query": "Moldova 7 days",
+      "outcome": "route",
+      "countryCodes": [
+        "MD"
+      ],
+      "cityQids": [
+        "Q21197",
+        "Q37801",
+        "Q853785",
+        "Q423258"
+      ]
+    },
+    {
+      "category": "single-country-duration",
+      "query": "Moldova 14 days",
+      "outcome": "route",
+      "countryCodes": [
+        "MD"
+      ],
+      "cityQids": [
+        "Q853785",
+        "Q241122",
+        "Q858713",
+        "Q21197",
+        "Q423258",
+        "Q503469"
+      ]
+    },
+    {
+      "category": "month",
+      "query": "Moldova 7 days in February",
+      "outcome": "route",
+      "countryCodes": [
+        "MD"
+      ],
+      "cityQids": [
+        "Q853785",
+        "Q503469",
+        "Q37801",
+        "Q241122"
+      ]
+    },
+    {
+      "category": "month",
+      "query": "Moldova 7 days in April",
+      "outcome": "route",
+      "countryCodes": [
+        "MD"
+      ],
+      "cityQids": [
+        "Q241122",
+        "Q37801",
+        "Q423258",
+        "Q21197"
+      ]
+    },
+    {
+      "category": "month",
+      "query": "Moldova 7 days in December",
+      "outcome": "route",
+      "countryCodes": [
+        "MD"
+      ],
+      "cityQids": [
+        "Q21197",
+        "Q853785",
+        "Q241122",
+        "Q503469"
+      ]
+    },
+    {
+      "category": "season",
+      "query": "Moldova 7 days in summer",
+      "outcome": "route",
+      "countryCodes": [
+        "MD"
+      ],
+      "cityQids": [
+        "Q853785",
+        "Q423258",
+        "Q21197",
+        "Q241122"
+      ]
+    },
+    {
+      "category": "season",
+      "query": "Moldova 7 days in winter",
+      "outcome": "route",
+      "countryCodes": [
+        "MD"
+      ],
+      "cityQids": [
+        "Q853785",
+        "Q21197",
+        "Q503469",
+        "Q37801"
+      ]
+    },
+    {
+      "category": "single-country-capacity-conflict",
+      "query": "Moldova 46 days",
+      "outcome": "fail-closed"
+    },
+    {
+      "category": "explicit-city",
+      "query": "Bălți Moldova 7 days",
+      "outcome": "route",
+      "countryCodes": [
+        "MD"
+      ],
+      "cityQids": [
+        "Q37801"
+      ]
+    },
+    {
+      "category": "single-country-duration",
+      "query": "Luxembourg 1 days",
+      "outcome": "route",
+      "countryCodes": [
+        "LU"
+      ],
+      "cityQids": [
+        "Q741589",
+        "Q836082"
+      ]
+    },
+    {
+      "category": "single-country-duration",
+      "query": "Luxembourg 2 days",
+      "outcome": "route",
+      "countryCodes": [
+        "LU"
+      ],
+      "cityQids": [
+        "Q16010",
+        "Q1842"
+      ]
+    },
+    {
+      "category": "single-country-duration",
+      "query": "Luxembourg 7 days",
+      "outcome": "route",
+      "countryCodes": [
+        "LU"
+      ],
+      "cityQids": [
+        "Q204317",
+        "Q836082",
+        "Q16010",
+        "Q741589"
+      ]
+    },
+    {
+      "category": "single-country-duration",
+      "query": "Luxembourg 14 days",
+      "outcome": "route",
+      "countryCodes": [
+        "LU"
+      ],
+      "cityQids": [
+        "Q1842",
+        "Q741589",
+        "Q204317",
+        "Q836082",
+        "Q16010"
+      ]
+    },
+    {
+      "category": "month",
+      "query": "Luxembourg 7 days in February",
+      "outcome": "route",
+      "countryCodes": [
+        "LU"
+      ],
+      "cityQids": [
+        "Q204317",
+        "Q16010",
+        "Q741589",
+        "Q836082"
+      ]
+    },
+    {
+      "category": "month",
+      "query": "Luxembourg 7 days in April",
+      "outcome": "route",
+      "countryCodes": [
+        "LU"
+      ],
+      "cityQids": [
+        "Q204317",
+        "Q836082",
+        "Q1842",
+        "Q16010"
+      ]
+    },
+    {
+      "category": "month",
+      "query": "Luxembourg 7 days in December",
+      "outcome": "route",
+      "countryCodes": [
+        "LU"
+      ],
+      "cityQids": [
+        "Q836082",
+        "Q1842",
+        "Q16010",
+        "Q741589"
+      ]
+    },
+    {
+      "category": "season",
+      "query": "Luxembourg 7 days in summer",
+      "outcome": "route",
+      "countryCodes": [
+        "LU"
+      ],
+      "cityQids": [
+        "Q204317",
+        "Q741589",
+        "Q836082",
+        "Q16010"
+      ]
+    },
+    {
+      "category": "season",
+      "query": "Luxembourg 7 days in winter",
+      "outcome": "route",
+      "countryCodes": [
+        "LU"
+      ],
+      "cityQids": [
+        "Q16010",
+        "Q1842",
+        "Q741589",
+        "Q836082"
+      ]
+    },
+    {
+      "category": "single-country-capacity-conflict",
+      "query": "Luxembourg 46 days",
+      "outcome": "fail-closed"
+    },
+    {
+      "category": "explicit-city",
+      "query": "Echternach Luxembourg 7 days",
+      "outcome": "route",
+      "countryCodes": [
+        "LU"
+      ],
+      "cityQids": [
+        "Q204317"
+      ]
+    },
+    {
+      "category": "single-country-duration",
+      "query": "Monaco 1 days",
+      "outcome": "route",
+      "countryCodes": [
+        "MC"
+      ],
+      "cityQids": [
+        "Q235"
+      ]
+    },
+    {
+      "category": "single-country-duration",
+      "query": "Monaco 2 days",
+      "outcome": "route",
+      "countryCodes": [
+        "MC"
+      ],
+      "cityQids": [
+        "Q235"
+      ]
+    },
+    {
+      "category": "single-country-duration",
+      "query": "Monaco 7 days",
+      "outcome": "route",
+      "countryCodes": [
+        "MC"
+      ],
+      "cityQids": [
+        "Q235"
+      ]
+    },
+    {
+      "category": "single-country-duration",
+      "query": "Monaco 14 days",
+      "outcome": "route",
+      "countryCodes": [
+        "MC"
+      ],
+      "cityQids": [
+        "Q235"
+      ]
+    },
+    {
+      "category": "month",
+      "query": "Monaco 7 days in February",
+      "outcome": "route",
+      "countryCodes": [
+        "MC"
+      ],
+      "cityQids": [
+        "Q235"
+      ]
+    },
+    {
+      "category": "month",
+      "query": "Monaco 7 days in April",
+      "outcome": "route",
+      "countryCodes": [
+        "MC"
+      ],
+      "cityQids": [
+        "Q235"
+      ]
+    },
+    {
+      "category": "month",
+      "query": "Monaco 7 days in December",
+      "outcome": "route",
+      "countryCodes": [
+        "MC"
+      ],
+      "cityQids": [
+        "Q235"
+      ]
+    },
+    {
+      "category": "season",
+      "query": "Monaco 7 days in summer",
+      "outcome": "route",
+      "countryCodes": [
+        "MC"
+      ],
+      "cityQids": [
+        "Q235"
+      ]
+    },
+    {
+      "category": "season",
+      "query": "Monaco 7 days in winter",
+      "outcome": "route",
+      "countryCodes": [
+        "MC"
+      ],
+      "cityQids": [
+        "Q235"
+      ]
+    },
+    {
+      "category": "single-country-capacity-conflict",
+      "query": "Monaco 46 days",
+      "outcome": "fail-closed"
+    },
+    {
+      "category": "single-country-duration",
+      "query": "Liechtenstein 1 days",
+      "outcome": "route",
+      "countryCodes": [
+        "LI"
+      ],
+      "cityQids": [
+        "Q49654",
+        "Q49663"
+      ]
+    },
+    {
+      "category": "single-country-duration",
+      "query": "Liechtenstein 2 days",
+      "outcome": "route",
+      "countryCodes": [
+        "LI"
+      ],
+      "cityQids": [
+        "Q1844",
+        "Q49657"
+      ]
+    },
+    {
+      "category": "single-country-duration",
+      "query": "Liechtenstein 7 days",
+      "outcome": "route",
+      "countryCodes": [
+        "LI"
+      ],
+      "cityQids": [
+        "Q49663",
+        "Q1844",
+        "Q49657",
+        "Q49654"
+      ]
+    },
+    {
+      "category": "single-country-duration",
+      "query": "Liechtenstein 14 days",
+      "outcome": "route",
+      "countryCodes": [
+        "LI"
+      ],
+      "cityQids": [
+        "Q1844",
+        "Q49663",
+        "Q49657",
+        "Q49654"
+      ]
+    },
+    {
+      "category": "month",
+      "query": "Liechtenstein 7 days in February",
+      "outcome": "route",
+      "countryCodes": [
+        "LI"
+      ],
+      "cityQids": [
+        "Q49654",
+        "Q49657",
+        "Q1844",
+        "Q49663"
+      ]
+    },
+    {
+      "category": "month",
+      "query": "Liechtenstein 7 days in April",
+      "outcome": "route",
+      "countryCodes": [
+        "LI"
+      ],
+      "cityQids": [
+        "Q49657",
+        "Q1844",
+        "Q49663",
+        "Q49654"
+      ]
+    },
+    {
+      "category": "month",
+      "query": "Liechtenstein 7 days in December",
+      "outcome": "route",
+      "countryCodes": [
+        "LI"
+      ],
+      "cityQids": [
+        "Q49654",
+        "Q49657",
+        "Q49663",
+        "Q1844"
+      ]
+    },
+    {
+      "category": "season",
+      "query": "Liechtenstein 7 days in summer",
+      "outcome": "route",
+      "countryCodes": [
+        "LI"
+      ],
+      "cityQids": [
+        "Q49657",
+        "Q1844",
+        "Q49663",
+        "Q49654"
+      ]
+    },
+    {
+      "category": "season",
+      "query": "Liechtenstein 7 days in winter",
+      "outcome": "route",
+      "countryCodes": [
+        "LI"
+      ],
+      "cityQids": [
+        "Q49657",
+        "Q49654",
+        "Q49663",
+        "Q1844"
+      ]
+    },
+    {
+      "category": "single-country-capacity-conflict",
+      "query": "Liechtenstein 46 days",
+      "outcome": "fail-closed"
+    },
+    {
+      "category": "explicit-city",
+      "query": "Balzers Liechtenstein 7 days",
+      "outcome": "route",
+      "countryCodes": [
+        "LI"
+      ],
+      "cityQids": [
+        "Q49663"
+      ]
+    },
+    {
+      "category": "single-country-duration",
+      "query": "Oman 1 days",
+      "outcome": "route",
+      "countryCodes": [
+        "OM"
+      ],
+      "cityQids": [
+        "Q1915327",
+        "Q542678"
+      ]
+    },
+    {
+      "category": "single-country-duration",
+      "query": "Oman 2 days",
+      "outcome": "route",
+      "countryCodes": [
+        "OM"
+      ],
+      "cityQids": [
+        "Q1915327",
+        "Q542678"
+      ]
+    },
+    {
+      "category": "single-country-duration",
+      "query": "Oman 7 days",
+      "outcome": "route",
+      "countryCodes": [
+        "OM"
+      ],
+      "cityQids": [
+        "Q3826",
+        "Q1915327",
+        "Q943270",
+        "Q225376"
+      ]
+    },
+    {
+      "category": "single-country-duration",
+      "query": "Oman 14 days",
+      "outcome": "route",
+      "countryCodes": [
+        "OM"
+      ],
+      "cityQids": [
+        "Q542678",
+        "Q1294439",
+        "Q225376",
+        "Q3826",
+        "Q1915327",
+        "Q737270"
+      ]
+    },
+    {
+      "category": "month",
+      "query": "Oman 7 days in February",
+      "outcome": "route",
+      "countryCodes": [
+        "OM"
+      ],
+      "cityQids": [
+        "Q1915327",
+        "Q542678",
+        "Q943270",
+        "Q1294439"
+      ]
+    },
+    {
+      "category": "month",
+      "query": "Oman 7 days in April",
+      "outcome": "route",
+      "countryCodes": [
+        "OM"
+      ],
+      "cityQids": [
+        "Q1915327",
+        "Q225376",
+        "Q1294439",
+        "Q3826"
+      ]
+    },
+    {
+      "category": "month",
+      "query": "Oman 7 days in December",
+      "outcome": "route",
+      "countryCodes": [
+        "OM"
+      ],
+      "cityQids": [
+        "Q3826",
+        "Q225376",
+        "Q1294439",
+        "Q542678"
+      ]
+    },
+    {
+      "category": "season",
+      "query": "Oman 7 days in summer",
+      "outcome": "route",
+      "countryCodes": [
+        "OM"
+      ],
+      "cityQids": [
+        "Q542678",
+        "Q3826",
+        "Q1915327",
+        "Q225376"
+      ]
+    },
+    {
+      "category": "season",
+      "query": "Oman 7 days in winter",
+      "outcome": "route",
+      "countryCodes": [
+        "OM"
+      ],
+      "cityQids": [
+        "Q3826",
+        "Q225376",
+        "Q1915327",
+        "Q943270"
+      ]
+    },
+    {
+      "category": "single-country-capacity-conflict",
+      "query": "Oman 46 days",
+      "outcome": "fail-closed"
+    },
+    {
+      "category": "explicit-city",
+      "query": "Ibri Oman 7 days",
+      "outcome": "route",
+      "countryCodes": [
+        "OM"
+      ],
+      "cityQids": [
+        "Q225376"
+      ]
+    },
+    {
+      "category": "single-country-duration",
+      "query": "Qatar 1 days",
+      "outcome": "route",
+      "countryCodes": [
+        "QA"
+      ],
+      "cityQids": [
+        "Q935886",
+        "Q3861"
+      ]
+    },
+    {
+      "category": "single-country-duration",
+      "query": "Qatar 2 days",
+      "outcome": "route",
+      "countryCodes": [
+        "QA"
+      ],
+      "cityQids": [
+        "Q3861",
+        "Q310893"
+      ]
+    },
+    {
+      "category": "single-country-duration",
+      "query": "Qatar 7 days",
+      "outcome": "route",
+      "countryCodes": [
+        "QA"
+      ],
+      "cityQids": [
+        "Q3861",
+        "Q310893",
+        "Q935886",
+        "Q311272"
+      ]
+    },
+    {
+      "category": "single-country-duration",
+      "query": "Qatar 14 days",
+      "outcome": "route",
+      "countryCodes": [
+        "QA"
+      ],
+      "cityQids": [
+        "Q935886",
+        "Q311272",
+        "Q3861",
+        "Q310893"
+      ]
+    },
+    {
+      "category": "month",
+      "query": "Qatar 7 days in February",
+      "outcome": "route",
+      "countryCodes": [
+        "QA"
+      ],
+      "cityQids": [
+        "Q3861",
+        "Q311272",
+        "Q310893",
+        "Q935886"
+      ]
+    },
+    {
+      "category": "month",
+      "query": "Qatar 7 days in April",
+      "outcome": "route",
+      "countryCodes": [
+        "QA"
+      ],
+      "cityQids": [
+        "Q3861",
+        "Q935886",
+        "Q311272",
+        "Q310893"
+      ]
+    },
+    {
+      "category": "month",
+      "query": "Qatar 7 days in December",
+      "outcome": "route",
+      "countryCodes": [
+        "QA"
+      ],
+      "cityQids": [
+        "Q3861",
+        "Q311272",
+        "Q310893",
+        "Q935886"
+      ]
+    },
+    {
+      "category": "season",
+      "query": "Qatar 7 days in summer",
+      "outcome": "route",
+      "countryCodes": [
+        "QA"
+      ],
+      "cityQids": [
+        "Q935886",
+        "Q310893",
+        "Q311272",
+        "Q3861"
+      ]
+    },
+    {
+      "category": "season",
+      "query": "Qatar 7 days in winter",
+      "outcome": "route",
+      "countryCodes": [
+        "QA"
+      ],
+      "cityQids": [
+        "Q310893",
+        "Q311272",
+        "Q3861",
+        "Q935886"
+      ]
+    },
+    {
+      "category": "single-country-capacity-conflict",
+      "query": "Qatar 46 days",
+      "outcome": "fail-closed"
+    },
+    {
+      "category": "explicit-city",
+      "query": "Al Rayyan Qatar 7 days",
+      "outcome": "route",
+      "countryCodes": [
+        "QA"
+      ],
+      "cityQids": [
+        "Q311272"
+      ]
+    },
+    {
+      "category": "single-country-duration",
+      "query": "Bahrain 1 days",
+      "outcome": "route",
+      "countryCodes": [
+        "BH"
+      ],
+      "cityQids": [
+        "Q1017673",
+        "Q1771398"
+      ]
+    },
+    {
+      "category": "single-country-duration",
+      "query": "Bahrain 2 days",
+      "outcome": "route",
+      "countryCodes": [
+        "BH"
+      ],
+      "cityQids": [
+        "Q3882",
+        "Q270500"
+      ]
+    },
+    {
+      "category": "single-country-duration",
+      "query": "Bahrain 7 days",
+      "outcome": "route",
+      "countryCodes": [
+        "BH"
+      ],
+      "cityQids": [
+        "Q3882",
+        "Q2088687",
+        "Q1771398",
+        "Q270500"
+      ]
+    },
+    {
+      "category": "single-country-duration",
+      "query": "Bahrain 14 days",
+      "outcome": "route",
+      "countryCodes": [
+        "BH"
+      ],
+      "cityQids": [
+        "Q2088687",
+        "Q1771398",
+        "Q1017673",
+        "Q270500",
+        "Q3882"
+      ]
+    },
+    {
+      "category": "month",
+      "query": "Bahrain 7 days in February",
+      "outcome": "route",
+      "countryCodes": [
+        "BH"
+      ],
+      "cityQids": [
+        "Q3882",
+        "Q1017673",
+        "Q1771398",
+        "Q270500"
+      ]
+    },
+    {
+      "category": "month",
+      "query": "Bahrain 7 days in April",
+      "outcome": "route",
+      "countryCodes": [
+        "BH"
+      ],
+      "cityQids": [
+        "Q2088687",
+        "Q270500",
+        "Q1771398",
+        "Q1017673"
+      ]
+    },
+    {
+      "category": "month",
+      "query": "Bahrain 7 days in December",
+      "outcome": "route",
+      "countryCodes": [
+        "BH"
+      ],
+      "cityQids": [
+        "Q1017673",
+        "Q270500",
+        "Q3882",
+        "Q2088687"
+      ]
+    },
+    {
+      "category": "season",
+      "query": "Bahrain 7 days in summer",
+      "outcome": "route",
+      "countryCodes": [
+        "BH"
+      ],
+      "cityQids": [
+        "Q3882",
+        "Q2088687",
+        "Q270500",
+        "Q1017673"
+      ]
+    },
+    {
+      "category": "season",
+      "query": "Bahrain 7 days in winter",
+      "outcome": "route",
+      "countryCodes": [
+        "BH"
+      ],
+      "cityQids": [
+        "Q3882",
+        "Q270500",
+        "Q1017673",
+        "Q1771398"
+      ]
+    },
+    {
+      "category": "single-country-capacity-conflict",
+      "query": "Bahrain 46 days",
+      "outcome": "fail-closed"
+    },
+    {
+      "category": "explicit-city",
+      "query": "Hamad Town Bahrain 7 days",
+      "outcome": "route",
+      "countryCodes": [
+        "BH"
+      ],
+      "cityQids": [
+        "Q2088687"
+      ]
+    },
+    {
+      "category": "single-country-duration",
+      "query": "Kuwait 1 days",
+      "outcome": "route",
+      "countryCodes": [
+        "KW"
+      ],
+      "cityQids": [
+        "Q980396",
+        "Q1179881"
+      ]
+    },
+    {
+      "category": "single-country-duration",
+      "query": "Kuwait 2 days",
+      "outcome": "route",
+      "countryCodes": [
+        "KW"
+      ],
+      "cityQids": [
+        "Q3505782",
+        "Q1179881"
+      ]
+    },
+    {
+      "category": "single-country-duration",
+      "query": "Kuwait 7 days",
+      "outcome": "route",
+      "countryCodes": [
+        "KW"
+      ],
+      "cityQids": [
+        "Q980396",
+        "Q35178",
+        "Q3505782",
+        "Q1179881"
+      ]
+    },
+    {
+      "category": "single-country-duration",
+      "query": "Kuwait 14 days",
+      "outcome": "route",
+      "countryCodes": [
+        "KW"
+      ],
+      "cityQids": [
+        "Q35178",
+        "Q1179881",
+        "Q980396",
+        "Q3505782"
+      ]
+    },
+    {
+      "category": "month",
+      "query": "Kuwait 7 days in February",
+      "outcome": "route",
+      "countryCodes": [
+        "KW"
+      ],
+      "cityQids": [
+        "Q980396",
+        "Q35178",
+        "Q3505782",
+        "Q1179881"
+      ]
+    },
+    {
+      "category": "month",
+      "query": "Kuwait 7 days in April",
+      "outcome": "route",
+      "countryCodes": [
+        "KW"
+      ],
+      "cityQids": [
+        "Q980396",
+        "Q35178",
+        "Q1179881",
+        "Q3505782"
+      ]
+    },
+    {
+      "category": "month",
+      "query": "Kuwait 7 days in December",
+      "outcome": "route",
+      "countryCodes": [
+        "KW"
+      ],
+      "cityQids": [
+        "Q980396",
+        "Q1179881",
+        "Q3505782",
+        "Q35178"
+      ]
+    },
+    {
+      "category": "season",
+      "query": "Kuwait 7 days in summer",
+      "outcome": "route",
+      "countryCodes": [
+        "KW"
+      ],
+      "cityQids": [
+        "Q3505782",
+        "Q1179881",
+        "Q980396",
+        "Q35178"
+      ]
+    },
+    {
+      "category": "season",
+      "query": "Kuwait 7 days in winter",
+      "outcome": "route",
+      "countryCodes": [
+        "KW"
+      ],
+      "cityQids": [
+        "Q1179881",
+        "Q980396",
+        "Q3505782",
+        "Q35178"
+      ]
+    },
+    {
+      "category": "single-country-capacity-conflict",
+      "query": "Kuwait 46 days",
+      "outcome": "fail-closed"
+    },
+    {
+      "category": "explicit-city",
+      "query": "Al Ahmadi Kuwait 7 days",
+      "outcome": "route",
+      "countryCodes": [
+        "KW"
+      ],
+      "cityQids": [
+        "Q980396"
+      ]
+    },
+    {
+      "category": "single-country-duration",
+      "query": "Lebanon 1 days",
+      "outcome": "route",
+      "countryCodes": [
+        "LB"
+      ],
+      "cityQids": [
+        "Q173532",
+        "Q3820"
+      ]
+    },
+    {
+      "category": "single-country-duration",
+      "query": "Lebanon 2 days",
+      "outcome": "route",
+      "countryCodes": [
+        "LB"
+      ],
+      "cityQids": [
+        "Q3820",
+        "Q173532"
+      ]
+    },
+    {
+      "category": "single-country-duration",
+      "query": "Lebanon 7 days",
+      "outcome": "route",
+      "countryCodes": [
+        "LB"
+      ],
+      "cityQids": [
+        "Q163490",
+        "Q3820",
+        "Q168954",
+        "Q173532"
+      ]
+    },
+    {
+      "category": "single-country-duration",
+      "query": "Lebanon 14 days",
+      "outcome": "route",
+      "countryCodes": [
+        "LB"
+      ],
+      "cityQids": [
+        "Q3820",
+        "Q168954",
+        "Q178835",
+        "Q163490",
+        "Q82070",
+        "Q26569"
+      ]
+    },
+    {
+      "category": "month",
+      "query": "Lebanon 7 days in February",
+      "outcome": "route",
+      "countryCodes": [
+        "LB"
+      ],
+      "cityQids": [
+        "Q173532",
+        "Q178835",
+        "Q82070",
+        "Q163490"
+      ]
+    },
+    {
+      "category": "month",
+      "query": "Lebanon 7 days in April",
+      "outcome": "route",
+      "countryCodes": [
+        "LB"
+      ],
+      "cityQids": [
+        "Q3820",
+        "Q173532",
+        "Q168954",
+        "Q163490"
+      ]
+    },
+    {
+      "category": "month",
+      "query": "Lebanon 7 days in December",
+      "outcome": "route",
+      "countryCodes": [
+        "LB"
+      ],
+      "cityQids": [
+        "Q168954",
+        "Q3820",
+        "Q173532",
+        "Q178835"
+      ]
+    },
+    {
+      "category": "season",
+      "query": "Lebanon 7 days in summer",
+      "outcome": "route",
+      "countryCodes": [
+        "LB"
+      ],
+      "cityQids": [
+        "Q173532",
+        "Q178835",
+        "Q163490",
+        "Q168954"
+      ]
+    },
+    {
+      "category": "season",
+      "query": "Lebanon 7 days in winter",
+      "outcome": "route",
+      "countryCodes": [
+        "LB"
+      ],
+      "cityQids": [
+        "Q178835",
+        "Q82070",
+        "Q173532",
+        "Q3820"
+      ]
+    },
+    {
+      "category": "single-country-capacity-conflict",
+      "query": "Lebanon 46 days",
+      "outcome": "fail-closed"
+    },
+    {
+      "category": "explicit-city",
+      "query": "Baalbek Lebanon 7 days",
+      "outcome": "route",
+      "countryCodes": [
+        "LB"
+      ],
+      "cityQids": [
+        "Q178835"
+      ]
+    },
+    {
+      "category": "single-country-duration",
+      "query": "Dominican Republic 1 days",
+      "outcome": "route",
+      "countryCodes": [
+        "DO"
+      ],
+      "cityQids": [
+        "Q34820",
+        "Q680596"
+      ]
+    },
+    {
+      "category": "single-country-duration",
+      "query": "Dominican Republic 2 days",
+      "outcome": "route",
+      "countryCodes": [
+        "DO"
+      ],
+      "cityQids": [
+        "Q34820",
+        "Q680596"
+      ]
+    },
+    {
+      "category": "single-country-duration",
+      "query": "Dominican Republic 7 days",
+      "outcome": "route",
+      "countryCodes": [
+        "DO"
+      ],
+      "cityQids": [
+        "Q579950",
+        "Q680596",
+        "Q40508",
+        "Q1020261"
+      ]
+    },
+    {
+      "category": "single-country-duration",
+      "query": "Dominican Republic 14 days",
+      "outcome": "route",
+      "countryCodes": [
+        "DO"
+      ],
+      "cityQids": [
+        "Q579950",
+        "Q988413",
+        "Q680596",
+        "Q1020261",
+        "Q34820",
+        "Q42763"
+      ]
+    },
+    {
+      "category": "month",
+      "query": "Dominican Republic 7 days in February",
+      "outcome": "route",
+      "countryCodes": [
+        "DO"
+      ],
+      "cityQids": [
+        "Q988413",
+        "Q680596",
+        "Q40508",
+        "Q579950"
+      ]
+    },
+    {
+      "category": "month",
+      "query": "Dominican Republic 7 days in April",
+      "outcome": "route",
+      "countryCodes": [
+        "DO"
+      ],
+      "cityQids": [
+        "Q680596",
+        "Q1020261",
+        "Q579950",
+        "Q988413"
+      ]
+    },
+    {
+      "category": "month",
+      "query": "Dominican Republic 7 days in December",
+      "outcome": "route",
+      "countryCodes": [
+        "DO"
+      ],
+      "cityQids": [
+        "Q40508",
+        "Q988413",
+        "Q42763",
+        "Q680596"
+      ]
+    },
+    {
+      "category": "season",
+      "query": "Dominican Republic 7 days in summer",
+      "outcome": "route",
+      "countryCodes": [
+        "DO"
+      ],
+      "cityQids": [
+        "Q40508",
+        "Q680596",
+        "Q1020261",
+        "Q42763"
+      ]
+    },
+    {
+      "category": "season",
+      "query": "Dominican Republic 7 days in winter",
+      "outcome": "route",
+      "countryCodes": [
+        "DO"
+      ],
+      "cityQids": [
+        "Q680596",
+        "Q1020261",
+        "Q42763",
+        "Q40508"
+      ]
+    },
+    {
+      "category": "single-country-capacity-conflict",
+      "query": "Dominican Republic 46 days",
+      "outcome": "fail-closed"
+    },
+    {
+      "category": "explicit-city",
+      "query": "Higüey Dominican Republic 7 days",
+      "outcome": "route",
+      "countryCodes": [
+        "DO"
+      ],
+      "cityQids": [
+        "Q1020261"
+      ]
+    },
+    {
+      "category": "single-country-duration",
+      "query": "Jamaica 1 days",
+      "outcome": "route",
+      "countryCodes": [
+        "JM"
+      ],
+      "cityQids": [
+        "Q637555",
+        "Q1394786"
+      ]
+    },
+    {
+      "category": "single-country-duration",
+      "query": "Jamaica 2 days",
+      "outcome": "route",
+      "countryCodes": [
+        "JM"
+      ],
+      "cityQids": [
+        "Q1394786",
+        "Q637555"
+      ]
+    },
+    {
+      "category": "single-country-duration",
+      "query": "Jamaica 7 days",
+      "outcome": "route",
+      "countryCodes": [
+        "JM"
+      ],
+      "cityQids": [
+        "Q974239",
+        "Q637555",
+        "Q34692",
+        "Q162782"
+      ]
+    },
+    {
+      "category": "single-country-duration",
+      "query": "Jamaica 14 days",
+      "outcome": "route",
+      "countryCodes": [
+        "JM"
+      ],
+      "cityQids": [
+        "Q34692",
+        "Q1394786",
+        "Q602783",
+        "Q974239",
+        "Q637555",
+        "Q846939"
+      ]
+    },
+    {
+      "category": "month",
+      "query": "Jamaica 7 days in February",
+      "outcome": "route",
+      "countryCodes": [
+        "JM"
+      ],
+      "cityQids": [
+        "Q1394786",
+        "Q34692",
+        "Q974239",
+        "Q637555"
+      ]
+    },
+    {
+      "category": "month",
+      "query": "Jamaica 7 days in April",
+      "outcome": "route",
+      "countryCodes": [
+        "JM"
+      ],
+      "cityQids": [
+        "Q1394786",
+        "Q162782",
+        "Q602783",
+        "Q637555"
+      ]
+    },
+    {
+      "category": "month",
+      "query": "Jamaica 7 days in December",
+      "outcome": "route",
+      "countryCodes": [
+        "JM"
+      ],
+      "cityQids": [
+        "Q162782",
+        "Q637555",
+        "Q974239",
+        "Q602783"
+      ]
+    },
+    {
+      "category": "season",
+      "query": "Jamaica 7 days in summer",
+      "outcome": "route",
+      "countryCodes": [
+        "JM"
+      ],
+      "cityQids": [
+        "Q602783",
+        "Q1394786",
+        "Q974239",
+        "Q637555"
+      ]
+    },
+    {
+      "category": "season",
+      "query": "Jamaica 7 days in winter",
+      "outcome": "route",
+      "countryCodes": [
+        "JM"
+      ],
+      "cityQids": [
+        "Q34692",
+        "Q162782",
+        "Q1394786",
+        "Q974239"
+      ]
+    },
+    {
+      "category": "single-country-capacity-conflict",
+      "query": "Jamaica 46 days",
+      "outcome": "fail-closed"
+    },
+    {
+      "category": "explicit-city",
+      "query": "Falmouth Jamaica 7 days",
+      "outcome": "route",
+      "countryCodes": [
+        "JM"
+      ],
+      "cityQids": [
+        "Q1394786"
+      ]
+    },
+    {
+      "category": "single-country-duration",
+      "query": "Cuba 1 days",
+      "outcome": "route",
+      "countryCodes": [
+        "CU"
+      ],
+      "cityQids": [
+        "Q211590",
+        "Q190005"
+      ]
+    },
+    {
+      "category": "single-country-duration",
+      "query": "Cuba 2 days",
+      "outcome": "route",
+      "countryCodes": [
+        "CU"
+      ],
+      "cityQids": [
+        "Q319272",
+        "Q190005"
+      ]
+    },
+    {
+      "category": "single-country-duration",
+      "query": "Cuba 7 days",
+      "outcome": "route",
+      "countryCodes": [
+        "CU"
+      ],
+      "cityQids": [
+        "Q211590",
+        "Q117040",
+        "Q115329",
+        "Q190005"
+      ]
+    },
+    {
+      "category": "single-country-duration",
+      "query": "Cuba 14 days",
+      "outcome": "route",
+      "countryCodes": [
+        "CU"
+      ],
+      "cityQids": [
+        "Q117040",
+        "Q244154",
+        "Q1563",
+        "Q115329",
+        "Q319272",
+        "Q211590"
+      ]
+    },
+    {
+      "category": "month",
+      "query": "Cuba 7 days in February",
+      "outcome": "route",
+      "countryCodes": [
+        "CU"
+      ],
+      "cityQids": [
+        "Q117040",
+        "Q244154",
+        "Q115329",
+        "Q1563"
+      ]
+    },
+    {
+      "category": "month",
+      "query": "Cuba 7 days in April",
+      "outcome": "route",
+      "countryCodes": [
+        "CU"
+      ],
+      "cityQids": [
+        "Q115329",
+        "Q190005",
+        "Q1563",
+        "Q244154"
+      ]
+    },
+    {
+      "category": "month",
+      "query": "Cuba 7 days in December",
+      "outcome": "route",
+      "countryCodes": [
+        "CU"
+      ],
+      "cityQids": [
+        "Q115329",
+        "Q190005",
+        "Q1563",
+        "Q117040"
+      ]
+    },
+    {
+      "category": "season",
+      "query": "Cuba 7 days in summer",
+      "outcome": "route",
+      "countryCodes": [
+        "CU"
+      ],
+      "cityQids": [
+        "Q211590",
+        "Q190005",
+        "Q244154",
+        "Q117040"
+      ]
+    },
+    {
+      "category": "season",
+      "query": "Cuba 7 days in winter",
+      "outcome": "route",
+      "countryCodes": [
+        "CU"
+      ],
+      "cityQids": [
+        "Q1563",
+        "Q190005",
+        "Q117040",
+        "Q211590"
+      ]
+    },
+    {
+      "category": "single-country-capacity-conflict",
+      "query": "Cuba 46 days",
+      "outcome": "fail-closed"
+    },
+    {
+      "category": "explicit-city",
+      "query": "Camagüey Cuba 7 days",
+      "outcome": "route",
+      "countryCodes": [
+        "CU"
+      ],
+      "cityQids": [
+        "Q115329"
+      ]
+    },
+    {
+      "category": "single-country-duration",
+      "query": "The Bahamas 1 days",
+      "outcome": "route",
+      "countryCodes": [
+        "BS"
+      ],
+      "cityQids": [
+        "Q1337651",
+        "Q867573"
+      ]
+    },
+    {
+      "category": "single-country-duration",
+      "query": "The Bahamas 2 days",
+      "outcome": "route",
+      "countryCodes": [
+        "BS"
+      ],
+      "cityQids": [
+        "Q1337651",
+        "Q867573"
+      ]
+    },
+    {
+      "category": "single-country-duration",
+      "query": "The Bahamas 7 days",
+      "outcome": "route",
+      "countryCodes": [
+        "BS"
+      ],
+      "cityQids": [
+        "Q3101961",
+        "Q2467",
+        "Q1337651",
+        "Q867573"
+      ]
+    },
+    {
+      "category": "single-country-duration",
+      "query": "The Bahamas 14 days",
+      "outcome": "route",
+      "countryCodes": [
+        "BS"
+      ],
+      "cityQids": [
+        "Q2467",
+        "Q867573",
+        "Q3101961",
+        "Q1337651"
+      ]
+    },
+    {
+      "category": "month",
+      "query": "The Bahamas 7 days in February",
+      "outcome": "route",
+      "countryCodes": [
+        "BS"
+      ],
+      "cityQids": [
+        "Q3101961",
+        "Q867573",
+        "Q1337651",
+        "Q2467"
+      ]
+    },
+    {
+      "category": "month",
+      "query": "The Bahamas 7 days in April",
+      "outcome": "route",
+      "countryCodes": [
+        "BS"
+      ],
+      "cityQids": [
+        "Q1337651",
+        "Q3101961",
+        "Q2467",
+        "Q867573"
+      ]
+    },
+    {
+      "category": "month",
+      "query": "The Bahamas 7 days in December",
+      "outcome": "route",
+      "countryCodes": [
+        "BS"
+      ],
+      "cityQids": [
+        "Q2467",
+        "Q3101961",
+        "Q867573",
+        "Q1337651"
+      ]
+    },
+    {
+      "category": "season",
+      "query": "The Bahamas 7 days in summer",
+      "outcome": "route",
+      "countryCodes": [
+        "BS"
+      ],
+      "cityQids": [
+        "Q1337651",
+        "Q2467",
+        "Q867573",
+        "Q3101961"
+      ]
+    },
+    {
+      "category": "season",
+      "query": "The Bahamas 7 days in winter",
+      "outcome": "route",
+      "countryCodes": [
+        "BS"
+      ],
+      "cityQids": [
+        "Q867573",
+        "Q2467",
+        "Q1337651",
+        "Q3101961"
+      ]
+    },
+    {
+      "category": "single-country-capacity-conflict",
+      "query": "The Bahamas 46 days",
+      "outcome": "fail-closed"
+    },
+    {
+      "category": "explicit-city",
+      "query": "Freeport The Bahamas 7 days",
+      "outcome": "route",
+      "countryCodes": [
+        "BS"
+      ],
+      "cityQids": [
+        "Q867573"
+      ]
+    },
+    {
+      "category": "single-country-duration",
+      "query": "Bolivia 1 days",
+      "outcome": "route",
+      "countryCodes": [
+        "BO"
+      ],
+      "cityQids": [
+        "Q35045",
+        "Q2907"
+      ]
+    },
+    {
+      "category": "single-country-duration",
+      "query": "Bolivia 2 days",
+      "outcome": "route",
+      "countryCodes": [
+        "BO"
+      ],
+      "cityQids": [
+        "Q2907",
+        "Q35045"
+      ]
+    },
+    {
+      "category": "single-country-duration",
+      "query": "Bolivia 7 days",
+      "outcome": "route",
+      "countryCodes": [
+        "BO"
+      ],
+      "cityQids": [
+        "Q183124",
+        "Q35045",
+        "Q35004",
+        "Q2907"
+      ]
+    },
+    {
+      "category": "single-country-duration",
+      "query": "Bolivia 14 days",
+      "outcome": "route",
+      "countryCodes": [
+        "BO"
+      ],
+      "cityQids": [
+        "Q183124",
+        "Q170688",
+        "Q35045",
+        "Q35004",
+        "Q1491",
+        "Q2907"
+      ]
+    },
+    {
+      "category": "month",
+      "query": "Bolivia 7 days in February",
+      "outcome": "route",
+      "countryCodes": [
+        "BO"
+      ],
+      "cityQids": [
+        "Q35045",
+        "Q1491",
+        "Q183124",
+        "Q2907"
+      ]
+    },
+    {
+      "category": "month",
+      "query": "Bolivia 7 days in April",
+      "outcome": "route",
+      "countryCodes": [
+        "BO"
+      ],
+      "cityQids": [
+        "Q2907",
+        "Q35004",
+        "Q170688",
+        "Q1491"
+      ]
+    },
+    {
+      "category": "month",
+      "query": "Bolivia 7 days in December",
+      "outcome": "route",
+      "countryCodes": [
+        "BO"
+      ],
+      "cityQids": [
+        "Q170688",
+        "Q2907",
+        "Q35045",
+        "Q1491"
+      ]
+    },
+    {
+      "category": "season",
+      "query": "Bolivia 7 days in summer",
+      "outcome": "route",
+      "countryCodes": [
+        "BO"
+      ],
+      "cityQids": [
+        "Q1491",
+        "Q170688",
+        "Q35045",
+        "Q35004"
+      ]
+    },
+    {
+      "category": "season",
+      "query": "Bolivia 7 days in winter",
+      "outcome": "route",
+      "countryCodes": [
+        "BO"
+      ],
+      "cityQids": [
+        "Q35045",
+        "Q2907",
+        "Q183124",
+        "Q170688"
+      ]
+    },
+    {
+      "category": "single-country-capacity-conflict",
+      "query": "Bolivia 46 days",
+      "outcome": "fail-closed"
+    },
+    {
+      "category": "explicit-city",
+      "query": "Cochabamba Bolivia 7 days",
+      "outcome": "route",
+      "countryCodes": [
+        "BO"
+      ],
+      "cityQids": [
+        "Q183124"
+      ]
+    },
+    {
+      "category": "single-country-duration",
+      "query": "Paraguay 1 days",
+      "outcome": "route",
+      "countryCodes": [
+        "PY"
+      ],
+      "cityQids": [
+        "Q388644",
+        "Q135975"
+      ]
+    },
+    {
+      "category": "single-country-duration",
+      "query": "Paraguay 2 days",
+      "outcome": "route",
+      "countryCodes": [
+        "PY"
+      ],
+      "cityQids": [
+        "Q2933",
+        "Q946497"
+      ]
+    },
+    {
+      "category": "single-country-duration",
+      "query": "Paraguay 7 days",
+      "outcome": "route",
+      "countryCodes": [
+        "PY"
+      ],
+      "cityQids": [
+        "Q47138",
+        "Q192235",
+        "Q388644",
+        "Q135975"
+      ]
+    },
+    {
+      "category": "single-country-duration",
+      "query": "Paraguay 14 days",
+      "outcome": "route",
+      "countryCodes": [
+        "PY"
+      ],
+      "cityQids": [
+        "Q388644",
+        "Q192235",
+        "Q47138",
+        "Q2933",
+        "Q946497",
+        "Q135975"
+      ]
+    },
+    {
+      "category": "month",
+      "query": "Paraguay 7 days in February",
+      "outcome": "route",
+      "countryCodes": [
+        "PY"
+      ],
+      "cityQids": [
+        "Q946497",
+        "Q135975",
+        "Q2933",
+        "Q388644"
+      ]
+    },
+    {
+      "category": "month",
+      "query": "Paraguay 7 days in April",
+      "outcome": "route",
+      "countryCodes": [
+        "PY"
+      ],
+      "cityQids": [
+        "Q47138",
+        "Q135975",
+        "Q2933",
+        "Q388644"
+      ]
+    },
+    {
+      "category": "month",
+      "query": "Paraguay 7 days in December",
+      "outcome": "route",
+      "countryCodes": [
+        "PY"
+      ],
+      "cityQids": [
+        "Q192235",
+        "Q135975",
+        "Q946497",
+        "Q47138"
+      ]
+    },
+    {
+      "category": "season",
+      "query": "Paraguay 7 days in summer",
+      "outcome": "route",
+      "countryCodes": [
+        "PY"
+      ],
+      "cityQids": [
+        "Q388644",
+        "Q2933",
+        "Q946497",
+        "Q47138"
+      ]
+    },
+    {
+      "category": "season",
+      "query": "Paraguay 7 days in winter",
+      "outcome": "route",
+      "countryCodes": [
+        "PY"
+      ],
+      "cityQids": [
+        "Q135975",
+        "Q946497",
+        "Q2933",
+        "Q192235"
+      ]
+    },
+    {
+      "category": "single-country-capacity-conflict",
+      "query": "Paraguay 46 days",
+      "outcome": "fail-closed"
+    },
+    {
+      "category": "explicit-city",
+      "query": "Areguá Paraguay 7 days",
+      "outcome": "route",
+      "countryCodes": [
+        "PY"
+      ],
+      "cityQids": [
+        "Q135975"
+      ]
+    },
+    {
+      "category": "single-country-duration",
+      "query": "Nicaragua 1 days",
+      "outcome": "route",
+      "countryCodes": [
+        "NI"
+      ],
+      "cityQids": [
+        "Q3274",
+        "Q1001914"
+      ]
+    },
+    {
+      "category": "single-country-duration",
+      "query": "Nicaragua 2 days",
+      "outcome": "route",
+      "countryCodes": [
+        "NI"
+      ],
+      "cityQids": [
+        "Q1001914",
+        "Q205648"
+      ]
+    },
+    {
+      "category": "single-country-duration",
+      "query": "Nicaragua 7 days",
+      "outcome": "route",
+      "countryCodes": [
+        "NI"
+      ],
+      "cityQids": [
+        "Q208151",
+        "Q1007634",
+        "Q205648",
+        "Q885996"
+      ]
+    },
+    {
+      "category": "single-country-duration",
+      "query": "Nicaragua 14 days",
+      "outcome": "route",
+      "countryCodes": [
+        "NI"
+      ],
+      "cityQids": [
+        "Q3274",
+        "Q240247",
+        "Q596688",
+        "Q205648",
+        "Q208151",
+        "Q885996"
+      ]
+    },
+    {
+      "category": "month",
+      "query": "Nicaragua 7 days in February",
+      "outcome": "route",
+      "countryCodes": [
+        "NI"
+      ],
+      "cityQids": [
+        "Q1001914",
+        "Q205648",
+        "Q885996",
+        "Q1007634"
+      ]
+    },
+    {
+      "category": "month",
+      "query": "Nicaragua 7 days in April",
+      "outcome": "route",
+      "countryCodes": [
+        "NI"
+      ],
+      "cityQids": [
+        "Q1001914",
+        "Q205648",
+        "Q3274",
+        "Q208151"
+      ]
+    },
+    {
+      "category": "month",
+      "query": "Nicaragua 7 days in December",
+      "outcome": "route",
+      "countryCodes": [
+        "NI"
+      ],
+      "cityQids": [
+        "Q1001914",
+        "Q208151",
+        "Q3274",
+        "Q205648"
+      ]
+    },
+    {
+      "category": "season",
+      "query": "Nicaragua 7 days in summer",
+      "outcome": "route",
+      "countryCodes": [
+        "NI"
+      ],
+      "cityQids": [
+        "Q1007634",
+        "Q208151",
+        "Q1001914",
+        "Q205648"
+      ]
+    },
+    {
+      "category": "season",
+      "query": "Nicaragua 7 days in winter",
+      "outcome": "route",
+      "countryCodes": [
+        "NI"
+      ],
+      "cityQids": [
+        "Q1007634",
+        "Q1001914",
+        "Q3274",
+        "Q205648"
+      ]
+    },
+    {
+      "category": "single-country-capacity-conflict",
+      "query": "Nicaragua 46 days",
+      "outcome": "fail-closed"
+    },
+    {
+      "category": "explicit-city",
+      "query": "Bluefields Nicaragua 7 days",
+      "outcome": "route",
+      "countryCodes": [
+        "NI"
+      ],
+      "cityQids": [
+        "Q885996"
+      ]
+    },
+    {
+      "category": "multi-country",
+      "query": "Armenia Azerbaijan 7 days",
+      "outcome": "route",
+      "countryCodes": [
+        "AM",
+        "AZ"
+      ],
+      "cityQids": [
+        "Q183394",
+        "Q62337",
+        "Q179833",
+        "Q647982"
+      ]
+    },
+    {
+      "category": "multi-country",
+      "query": "Armenia Azerbaijan 14 days",
+      "outcome": "route",
+      "countryCodes": [
+        "AM",
+        "AZ"
+      ],
+      "cityQids": [
+        "Q319735",
+        "Q39556",
+        "Q183394",
+        "Q9248",
+        "Q647982",
+        "Q131290"
+      ]
+    },
+    {
+      "category": "multi-country-capacity-conflict",
+      "query": "Armenia Azerbaijan 61 days",
+      "outcome": "fail-closed"
+    },
+    {
+      "category": "explicit-city-extra-country",
+      "query": "Dilijan Azerbaijan 14 days",
+      "outcome": "route",
+      "countryCodes": [
+        "AM",
+        "AZ"
+      ],
+      "cityQids": [
+        "Q39569",
+        "Q228811"
+      ]
+    },
+    {
+      "category": "multi-country",
+      "query": "Azerbaijan Bosnia and Herzegovina 7 days",
+      "outcome": "route",
+      "countryCodes": [
+        "AZ",
+        "BA"
+      ],
+      "cityQids": [
+        "Q9248",
+        "Q131290",
+        "Q174684",
+        "Q11194"
+      ]
+    },
+    {
+      "category": "multi-country",
+      "query": "Azerbaijan Bosnia and Herzegovina 14 days",
+      "outcome": "route",
+      "countryCodes": [
+        "AZ",
+        "BA"
+      ],
+      "cityQids": [
+        "Q647982",
+        "Q228811",
+        "Q158903",
+        "Q131127",
+        "Q258429",
+        "Q204434"
+      ]
+    },
+    {
+      "category": "multi-country-capacity-conflict",
+      "query": "Azerbaijan Bosnia and Herzegovina 61 days",
+      "outcome": "fail-closed"
+    },
+    {
+      "category": "explicit-city-extra-country",
+      "query": "Baku Bosnia and Herzegovina 14 days",
+      "outcome": "route",
+      "countryCodes": [
+        "AZ",
+        "BA"
+      ],
+      "cityQids": [
+        "Q9248",
+        "Q93347"
+      ]
+    },
+    {
+      "category": "multi-country",
+      "query": "Bosnia and Herzegovina North Macedonia 7 days",
+      "outcome": "route",
+      "countryCodes": [
+        "BA",
+        "MK"
+      ],
+      "cityQids": [
+        "Q690052",
+        "Q204434",
+        "Q157034",
+        "Q1223508"
+      ]
+    },
+    {
+      "category": "multi-country",
+      "query": "Bosnia and Herzegovina North Macedonia 14 days",
+      "outcome": "route",
+      "countryCodes": [
+        "BA",
+        "MK"
+      ],
+      "cityQids": [
+        "Q11194",
+        "Q204434",
+        "Q131127",
+        "Q157034",
+        "Q157032",
+        "Q156858"
+      ]
+    },
+    {
+      "category": "multi-country-capacity-conflict",
+      "query": "Bosnia and Herzegovina North Macedonia 61 days",
+      "outcome": "fail-closed"
+    },
+    {
+      "category": "explicit-city-extra-country",
+      "query": "Banja Luka North Macedonia 14 days",
+      "outcome": "route",
+      "countryCodes": [
+        "BA",
+        "MK"
+      ],
+      "cityQids": [
+        "Q131127",
+        "Q384"
+      ]
+    },
+    {
+      "category": "multi-country",
+      "query": "North Macedonia Moldova 7 days",
+      "outcome": "route",
+      "countryCodes": [
+        "MD",
+        "MK"
+      ],
+      "cityQids": [
+        "Q157024",
+        "Q157246",
+        "Q858713",
+        "Q423258"
+      ]
+    },
+    {
+      "category": "multi-country",
+      "query": "North Macedonia Moldova 14 days",
+      "outcome": "route",
+      "countryCodes": [
+        "MD",
+        "MK"
+      ],
+      "cityQids": [
+        "Q1223508",
+        "Q157032",
+        "Q157034",
+        "Q241122",
+        "Q503469",
+        "Q37801"
+      ]
+    },
+    {
+      "category": "multi-country-capacity-conflict",
+      "query": "North Macedonia Moldova 61 days",
+      "outcome": "fail-closed"
+    },
+    {
+      "category": "explicit-city-extra-country",
+      "query": "Bitola Moldova 14 days",
+      "outcome": "route",
+      "countryCodes": [
+        "MD",
+        "MK"
+      ],
+      "cityQids": [
+        "Q157246",
+        "Q423258"
+      ]
+    },
+    {
+      "category": "multi-country",
+      "query": "Moldova Luxembourg 7 days",
+      "outcome": "route",
+      "countryCodes": [
+        "LU",
+        "MD"
+      ],
+      "cityQids": [
+        "Q241122",
+        "Q423258",
+        "Q836082",
+        "Q16010"
+      ]
+    },
+    {
+      "category": "multi-country",
+      "query": "Moldova Luxembourg 14 days",
+      "outcome": "route",
+      "countryCodes": [
+        "LU",
+        "MD"
+      ],
+      "cityQids": [
+        "Q503469",
+        "Q853785",
+        "Q241122",
+        "Q741589",
+        "Q1842",
+        "Q836082"
+      ]
+    },
+    {
+      "category": "multi-country-capacity-conflict",
+      "query": "Moldova Luxembourg 61 days",
+      "outcome": "fail-closed"
+    },
+    {
+      "category": "explicit-city-extra-country",
+      "query": "Bălți Luxembourg 14 days",
+      "outcome": "route",
+      "countryCodes": [
+        "LU",
+        "MD"
+      ],
+      "cityQids": [
+        "Q37801",
+        "Q836082"
+      ]
+    },
+    {
+      "category": "multi-country",
+      "query": "Luxembourg Monaco 7 days",
+      "outcome": "fail-closed"
+    },
+    {
+      "category": "multi-country",
+      "query": "Luxembourg Monaco 14 days",
+      "outcome": "fail-closed"
+    },
+    {
+      "category": "multi-country-capacity-conflict",
+      "query": "Luxembourg Monaco 61 days",
+      "outcome": "fail-closed"
+    },
+    {
+      "category": "explicit-city-extra-country",
+      "query": "Echternach Monaco 14 days",
+      "outcome": "route",
+      "countryCodes": [
+        "LU",
+        "MC"
+      ],
+      "cityQids": [
+        "Q204317",
+        "Q235"
+      ]
+    },
+    {
+      "category": "multi-country",
+      "query": "Monaco Liechtenstein 7 days",
+      "outcome": "fail-closed"
+    },
+    {
+      "category": "multi-country",
+      "query": "Monaco Liechtenstein 14 days",
+      "outcome": "fail-closed"
+    },
+    {
+      "category": "multi-country-capacity-conflict",
+      "query": "Monaco Liechtenstein 61 days",
+      "outcome": "fail-closed"
+    },
+    {
+      "category": "multi-country",
+      "query": "Liechtenstein Oman 7 days",
+      "outcome": "route",
+      "countryCodes": [
+        "LI",
+        "OM"
+      ],
+      "cityQids": [
+        "Q49654",
+        "Q49657",
+        "Q542678",
+        "Q3826"
+      ]
+    },
+    {
+      "category": "multi-country",
+      "query": "Liechtenstein Oman 14 days",
+      "outcome": "route",
+      "countryCodes": [
+        "LI",
+        "OM"
+      ],
+      "cityQids": [
+        "Q49663",
+        "Q1844",
+        "Q49657",
+        "Q1915327",
+        "Q542678",
+        "Q1294439"
+      ]
+    },
+    {
+      "category": "multi-country-capacity-conflict",
+      "query": "Liechtenstein Oman 61 days",
+      "outcome": "fail-closed"
+    },
+    {
+      "category": "explicit-city-extra-country",
+      "query": "Balzers Oman 14 days",
+      "outcome": "route",
+      "countryCodes": [
+        "LI",
+        "OM"
+      ],
+      "cityQids": [
+        "Q49663",
+        "Q3826"
+      ]
+    },
+    {
+      "category": "multi-country",
+      "query": "Oman Qatar 7 days",
+      "outcome": "route",
+      "countryCodes": [
+        "OM",
+        "QA"
+      ],
+      "cityQids": [
+        "Q225376",
+        "Q737270",
+        "Q3861",
+        "Q310893"
+      ]
+    },
+    {
+      "category": "multi-country",
+      "query": "Oman Qatar 14 days",
+      "outcome": "route",
+      "countryCodes": [
+        "OM",
+        "QA"
+      ],
+      "cityQids": [
+        "Q225376",
+        "Q3826",
+        "Q542678",
+        "Q3861",
+        "Q935886",
+        "Q311272"
+      ]
+    },
+    {
+      "category": "multi-country-capacity-conflict",
+      "query": "Oman Qatar 61 days",
+      "outcome": "fail-closed"
+    },
+    {
+      "category": "explicit-city-extra-country",
+      "query": "Ibri Qatar 14 days",
+      "outcome": "route",
+      "countryCodes": [
+        "OM",
+        "QA"
+      ],
+      "cityQids": [
+        "Q225376",
+        "Q935886"
+      ]
+    },
+    {
+      "category": "multi-country",
+      "query": "Qatar Bahrain 7 days",
+      "outcome": "route",
+      "countryCodes": [
+        "BH",
+        "QA"
+      ],
+      "cityQids": [
+        "Q311272",
+        "Q3861",
+        "Q3882",
+        "Q1017673"
+      ]
+    },
+    {
+      "category": "multi-country",
+      "query": "Qatar Bahrain 14 days",
+      "outcome": "route",
+      "countryCodes": [
+        "BH",
+        "QA"
+      ],
+      "cityQids": [
+        "Q310893",
+        "Q3861",
+        "Q935886",
+        "Q1017673",
+        "Q3882",
+        "Q2088687"
+      ]
+    },
+    {
+      "category": "multi-country-capacity-conflict",
+      "query": "Qatar Bahrain 61 days",
+      "outcome": "fail-closed"
+    },
+    {
+      "category": "explicit-city-extra-country",
+      "query": "Al Rayyan Bahrain 14 days",
+      "outcome": "route",
+      "countryCodes": [
+        "BH",
+        "QA"
+      ],
+      "cityQids": [
+        "Q311272",
+        "Q1771398"
+      ]
+    },
+    {
+      "category": "multi-country",
+      "query": "Bahrain Kuwait 7 days",
+      "outcome": "route",
+      "countryCodes": [
+        "BH",
+        "KW"
+      ],
+      "cityQids": [
+        "Q270500",
+        "Q3882",
+        "Q980396",
+        "Q3505782"
+      ]
+    },
+    {
+      "category": "multi-country",
+      "query": "Bahrain Kuwait 14 days",
+      "outcome": "route",
+      "countryCodes": [
+        "BH",
+        "KW"
+      ],
+      "cityQids": [
+        "Q2088687",
+        "Q1771398",
+        "Q3882",
+        "Q3505782",
+        "Q1179881",
+        "Q980396"
+      ]
+    },
+    {
+      "category": "multi-country-capacity-conflict",
+      "query": "Bahrain Kuwait 61 days",
+      "outcome": "fail-closed"
+    },
+    {
+      "category": "explicit-city-extra-country",
+      "query": "Hamad Town Kuwait 14 days",
+      "outcome": "route",
+      "countryCodes": [
+        "BH",
+        "KW"
+      ],
+      "cityQids": [
+        "Q2088687",
+        "Q3505782"
+      ]
+    },
+    {
+      "category": "multi-country",
+      "query": "Kuwait Lebanon 7 days",
+      "outcome": "route",
+      "countryCodes": [
+        "KW",
+        "LB"
+      ],
+      "cityQids": [
+        "Q35178",
+        "Q980396",
+        "Q82070",
+        "Q26569"
+      ]
+    },
+    {
+      "category": "multi-country",
+      "query": "Kuwait Lebanon 14 days",
+      "outcome": "route",
+      "countryCodes": [
+        "KW",
+        "LB"
+      ],
+      "cityQids": [
+        "Q3505782",
+        "Q980396",
+        "Q35178",
+        "Q168954",
+        "Q163490",
+        "Q173532"
+      ]
+    },
+    {
+      "category": "multi-country-capacity-conflict",
+      "query": "Kuwait Lebanon 61 days",
+      "outcome": "fail-closed"
+    },
+    {
+      "category": "explicit-city-extra-country",
+      "query": "Al Ahmadi Lebanon 14 days",
+      "outcome": "route",
+      "countryCodes": [
+        "KW",
+        "LB"
+      ],
+      "cityQids": [
+        "Q980396",
+        "Q163490"
+      ]
+    },
+    {
+      "category": "multi-country",
+      "query": "Lebanon Dominican Republic 7 days",
+      "outcome": "route",
+      "countryCodes": [
+        "DO",
+        "LB"
+      ],
+      "cityQids": [
+        "Q163490",
+        "Q3820",
+        "Q988413",
+        "Q42763"
+      ]
+    },
+    {
+      "category": "multi-country",
+      "query": "Lebanon Dominican Republic 14 days",
+      "outcome": "route",
+      "countryCodes": [
+        "DO",
+        "LB"
+      ],
+      "cityQids": [
+        "Q26569",
+        "Q178835",
+        "Q82070",
+        "Q40508",
+        "Q680596",
+        "Q42763"
+      ]
+    },
+    {
+      "category": "multi-country-capacity-conflict",
+      "query": "Lebanon Dominican Republic 61 days",
+      "outcome": "fail-closed"
+    },
+    {
+      "category": "explicit-city-extra-country",
+      "query": "Baalbek Dominican Republic 14 days",
+      "outcome": "route",
+      "countryCodes": [
+        "DO",
+        "LB"
+      ],
+      "cityQids": [
+        "Q178835",
+        "Q42763"
+      ]
+    },
+    {
+      "category": "multi-country",
+      "query": "Dominican Republic Jamaica 7 days",
+      "outcome": "route",
+      "countryCodes": [
+        "DO",
+        "JM"
+      ],
+      "cityQids": [
+        "Q42763",
+        "Q579950",
+        "Q602783",
+        "Q1394786"
+      ]
+    },
+    {
+      "category": "multi-country",
+      "query": "Dominican Republic Jamaica 14 days",
+      "outcome": "route",
+      "countryCodes": [
+        "DO",
+        "JM"
+      ],
+      "cityQids": [
+        "Q34820",
+        "Q988413",
+        "Q579950",
+        "Q637555",
+        "Q974239",
+        "Q846939"
+      ]
+    },
+    {
+      "category": "multi-country-capacity-conflict",
+      "query": "Dominican Republic Jamaica 61 days",
+      "outcome": "fail-closed"
+    },
+    {
+      "category": "explicit-city-extra-country",
+      "query": "Higüey Jamaica 14 days",
+      "outcome": "route",
+      "countryCodes": [
+        "DO",
+        "JM"
+      ],
+      "cityQids": [
+        "Q1020261",
+        "Q1394786"
+      ]
+    },
+    {
+      "category": "multi-country",
+      "query": "Jamaica Cuba 7 days",
+      "outcome": "route",
+      "countryCodes": [
+        "CU",
+        "JM"
+      ],
+      "cityQids": [
+        "Q846939",
+        "Q162782",
+        "Q117040",
+        "Q211590"
+      ]
+    },
+    {
+      "category": "multi-country",
+      "query": "Jamaica Cuba 14 days",
+      "outcome": "route",
+      "countryCodes": [
+        "CU",
+        "JM"
+      ],
+      "cityQids": [
+        "Q602783",
+        "Q846939",
+        "Q974239",
+        "Q211590",
+        "Q319272",
+        "Q190005"
+      ]
+    },
+    {
+      "category": "multi-country-capacity-conflict",
+      "query": "Jamaica Cuba 61 days",
+      "outcome": "fail-closed"
+    },
+    {
+      "category": "explicit-city-extra-country",
+      "query": "Falmouth Cuba 14 days",
+      "outcome": "route",
+      "countryCodes": [
+        "CU",
+        "JM"
+      ],
+      "cityQids": [
+        "Q1394786",
+        "Q211590"
+      ]
+    },
+    {
+      "category": "multi-country",
+      "query": "Cuba The Bahamas 7 days",
+      "outcome": "route",
+      "countryCodes": [
+        "BS",
+        "CU"
+      ],
+      "cityQids": [
+        "Q1563",
+        "Q244154",
+        "Q1337651",
+        "Q2467"
+      ]
+    },
+    {
+      "category": "multi-country",
+      "query": "Cuba The Bahamas 14 days",
+      "outcome": "route",
+      "countryCodes": [
+        "BS",
+        "CU"
+      ],
+      "cityQids": [
+        "Q190005",
+        "Q115329",
+        "Q211590",
+        "Q867573",
+        "Q2467",
+        "Q1337651"
+      ]
+    },
+    {
+      "category": "multi-country-capacity-conflict",
+      "query": "Cuba The Bahamas 61 days",
+      "outcome": "fail-closed"
+    },
+    {
+      "category": "explicit-city-extra-country",
+      "query": "Camagüey The Bahamas 14 days",
+      "outcome": "route",
+      "countryCodes": [
+        "BS",
+        "CU"
+      ],
+      "cityQids": [
+        "Q115329",
+        "Q2467"
+      ]
+    },
+    {
+      "category": "multi-country",
+      "query": "The Bahamas Bolivia 7 days",
+      "outcome": "route",
+      "countryCodes": [
+        "BO",
+        "BS"
+      ],
+      "cityQids": [
+        "Q3101961",
+        "Q2467",
+        "Q183124",
+        "Q1491"
+      ]
+    },
+    {
+      "category": "multi-country",
+      "query": "The Bahamas Bolivia 14 days",
+      "outcome": "route",
+      "countryCodes": [
+        "BO",
+        "BS"
+      ],
+      "cityQids": [
+        "Q867573",
+        "Q3101961",
+        "Q1337651",
+        "Q2907",
+        "Q1491",
+        "Q35004"
+      ]
+    },
+    {
+      "category": "multi-country-capacity-conflict",
+      "query": "The Bahamas Bolivia 61 days",
+      "outcome": "fail-closed"
+    },
+    {
+      "category": "explicit-city-extra-country",
+      "query": "Freeport Bolivia 14 days",
+      "outcome": "route",
+      "countryCodes": [
+        "BO",
+        "BS"
+      ],
+      "cityQids": [
+        "Q867573",
+        "Q2907"
+      ]
+    },
+    {
+      "category": "multi-country",
+      "query": "Bolivia Paraguay 7 days",
+      "outcome": "route",
+      "countryCodes": [
+        "BO",
+        "PY"
+      ],
+      "cityQids": [
+        "Q35004",
+        "Q2907",
+        "Q946497",
+        "Q47138"
+      ]
+    },
+    {
+      "category": "multi-country",
+      "query": "Bolivia Paraguay 14 days",
+      "outcome": "route",
+      "countryCodes": [
+        "BO",
+        "PY"
+      ],
+      "cityQids": [
+        "Q170688",
+        "Q1491",
+        "Q35045",
+        "Q388644",
+        "Q946497",
+        "Q2933"
+      ]
+    },
+    {
+      "category": "multi-country-capacity-conflict",
+      "query": "Bolivia Paraguay 61 days",
+      "outcome": "fail-closed"
+    },
+    {
+      "category": "explicit-city-extra-country",
+      "query": "Cochabamba Paraguay 14 days",
+      "outcome": "route",
+      "countryCodes": [
+        "BO",
+        "PY"
+      ],
+      "cityQids": [
+        "Q183124",
+        "Q388644"
+      ]
+    },
+    {
+      "category": "multi-country",
+      "query": "Paraguay Nicaragua 7 days",
+      "outcome": "route",
+      "countryCodes": [
+        "NI",
+        "PY"
+      ],
+      "cityQids": [
+        "Q47138",
+        "Q388644",
+        "Q1001914",
+        "Q1007634"
+      ]
+    },
+    {
+      "category": "multi-country",
+      "query": "Paraguay Nicaragua 14 days",
+      "outcome": "route",
+      "countryCodes": [
+        "NI",
+        "PY"
+      ],
+      "cityQids": [
+        "Q2933",
+        "Q192235",
+        "Q388644",
+        "Q205648",
+        "Q3274",
+        "Q1007634"
+      ]
+    },
+    {
+      "category": "multi-country-capacity-conflict",
+      "query": "Paraguay Nicaragua 61 days",
+      "outcome": "fail-closed"
+    },
+    {
+      "category": "explicit-city-extra-country",
+      "query": "Areguá Nicaragua 14 days",
+      "outcome": "route",
+      "countryCodes": [
+        "NI",
+        "PY"
+      ],
+      "cityQids": [
+        "Q135975",
+        "Q1007634"
+      ]
+    },
+    {
+      "category": "multi-country",
+      "query": "Nicaragua Armenia 7 days",
+      "outcome": "route",
+      "countryCodes": [
+        "AM",
+        "NI"
+      ],
+      "cityQids": [
+        "Q1007634",
+        "Q240247",
+        "Q1953",
+        "Q319735"
+      ]
+    },
+    {
+      "category": "multi-country",
+      "query": "Nicaragua Armenia 14 days",
+      "outcome": "route",
+      "countryCodes": [
+        "AM",
+        "NI"
+      ],
+      "cityQids": [
+        "Q885996",
+        "Q3274",
+        "Q240247",
+        "Q39569",
+        "Q39556",
+        "Q62337"
+      ]
+    },
+    {
+      "category": "multi-country-capacity-conflict",
+      "query": "Nicaragua Armenia 61 days",
+      "outcome": "fail-closed"
+    },
+    {
+      "category": "explicit-city-extra-country",
+      "query": "Bluefields Armenia 14 days",
+      "outcome": "route",
+      "countryCodes": [
+        "AM",
+        "NI"
+      ],
+      "cityQids": [
+        "Q885996",
+        "Q319735"
+      ]
+    },
+    {
+      "category": "explicit-two-city",
+      "query": "Dilijan Goris 7 days",
+      "outcome": "route",
+      "countryCodes": [
+        "AM"
+      ],
+      "cityQids": [
+        "Q39569",
+        "Q319735"
+      ]
+    },
+    {
+      "category": "fixed-city-order",
+      "query": "Dilijan → Goris 7 days",
+      "outcome": "route",
+      "countryCodes": [
+        "AM"
+      ],
+      "cityQids": [
+        "Q39569",
+        "Q319735"
+      ]
+    },
+    {
+      "category": "explicit-two-city",
+      "query": "Baku Ganja 7 days",
+      "outcome": "route",
+      "countryCodes": [
+        "AZ"
+      ],
+      "cityQids": [
+        "Q9248",
+        "Q131290"
+      ]
+    },
+    {
+      "category": "fixed-city-order",
+      "query": "Baku → Ganja 7 days",
+      "outcome": "route",
+      "countryCodes": [
+        "AZ"
+      ],
+      "cityQids": [
+        "Q9248",
+        "Q131290"
+      ]
+    },
+    {
+      "category": "explicit-two-city",
+      "query": "Banja Luka Bihać 7 days",
+      "outcome": "route",
+      "countryCodes": [
+        "BA"
+      ],
+      "cityQids": [
+        "Q131127",
+        "Q204434"
+      ]
+    },
+    {
+      "category": "fixed-city-order",
+      "query": "Banja Luka → Bihać 7 days",
+      "outcome": "route",
+      "countryCodes": [
+        "BA"
+      ],
+      "cityQids": [
+        "Q131127",
+        "Q204434"
+      ]
+    },
+    {
+      "category": "explicit-two-city",
+      "query": "Bitola Kruševo 7 days",
+      "outcome": "route",
+      "countryCodes": [
+        "MK"
+      ],
+      "cityQids": [
+        "Q157246",
+        "Q157034"
+      ]
+    },
+    {
+      "category": "fixed-city-order",
+      "query": "Bitola → Kruševo 7 days",
+      "outcome": "route",
+      "countryCodes": [
+        "MK"
+      ],
+      "cityQids": [
+        "Q157246",
+        "Q157034"
+      ]
+    },
+    {
+      "category": "explicit-two-city",
+      "query": "Bălți Cahul 7 days",
+      "outcome": "route",
+      "countryCodes": [
+        "MD"
+      ],
+      "cityQids": [
+        "Q37801",
+        "Q503469"
+      ]
+    },
+    {
+      "category": "fixed-city-order",
+      "query": "Bălți → Cahul 7 days",
+      "outcome": "route",
+      "countryCodes": [
+        "MD"
+      ],
+      "cityQids": [
+        "Q37801",
+        "Q503469"
+      ]
+    },
+    {
+      "category": "explicit-two-city",
+      "query": "Echternach Esch-sur-Alzette 7 days",
+      "outcome": "route",
+      "countryCodes": [
+        "LU"
+      ],
+      "cityQids": [
+        "Q204317",
+        "Q16010"
+      ]
+    },
+    {
+      "category": "fixed-city-order",
+      "query": "Echternach → Esch-sur-Alzette 7 days",
+      "outcome": "route",
+      "countryCodes": [
+        "LU"
+      ],
+      "cityQids": [
+        "Q204317",
+        "Q16010"
+      ]
+    },
+    {
+      "category": "explicit-two-city",
+      "query": "Balzers Schaan 7 days",
+      "outcome": "route",
+      "countryCodes": [
+        "LI"
+      ],
+      "cityQids": [
+        "Q49663",
+        "Q49657"
+      ]
+    },
+    {
+      "category": "fixed-city-order",
+      "query": "Balzers → Schaan 7 days",
+      "outcome": "route",
+      "countryCodes": [
+        "LI"
+      ],
+      "cityQids": [
+        "Q49663",
+        "Q49657"
+      ]
+    },
+    {
+      "category": "explicit-two-city",
+      "query": "Ibri Muscat 7 days",
+      "outcome": "route",
+      "countryCodes": [
+        "OM"
+      ],
+      "cityQids": [
+        "Q225376",
+        "Q3826"
+      ]
+    },
+    {
+      "category": "fixed-city-order",
+      "query": "Ibri → Muscat 7 days",
+      "outcome": "route",
+      "countryCodes": [
+        "OM"
+      ],
+      "cityQids": [
+        "Q225376",
+        "Q3826"
+      ]
+    },
+    {
+      "category": "explicit-two-city",
+      "query": "Al Rayyan Al Wakrah 7 days",
+      "outcome": "route",
+      "countryCodes": [
+        "QA"
+      ],
+      "cityQids": [
+        "Q311272",
+        "Q310893"
+      ]
+    },
+    {
+      "category": "fixed-city-order",
+      "query": "Al Rayyan → Al Wakrah 7 days",
+      "outcome": "route",
+      "countryCodes": [
+        "QA"
+      ],
+      "cityQids": [
+        "Q311272",
+        "Q310893"
+      ]
+    },
+    {
+      "category": "explicit-two-city",
+      "query": "Hamad Town Isa Town 7 days",
+      "outcome": "route",
+      "countryCodes": [
+        "BH"
+      ],
+      "cityQids": [
+        "Q2088687",
+        "Q1017673"
+      ]
+    },
+    {
+      "category": "fixed-city-order",
+      "query": "Hamad Town → Isa Town 7 days",
+      "outcome": "route",
+      "countryCodes": [
+        "BH"
+      ],
+      "cityQids": [
+        "Q2088687",
+        "Q1017673"
+      ]
+    },
+    {
+      "category": "destination-free-recommendation",
+      "query": "2月",
+      "outcome": "route",
+      "countryCodes": [
+        "KR"
+      ],
+      "cityQids": [
+        "Q42116",
+        "Q42097",
+        "Q20927",
+        "Q16520",
+        "Q42056",
+        "Q20934"
+      ]
+    },
+    {
+      "category": "destination-free-recommendation",
+      "query": "冬天",
+      "outcome": "route",
+      "countryCodes": [
+        "CY"
+      ],
+      "cityQids": [
+        "Q171882",
+        "Q2626631",
+        "Q180918",
+        "Q393593",
+        "Q185632"
+      ]
+    },
+    {
+      "category": "destination-free-recommendation",
+      "query": "7 days",
+      "outcome": "route",
+      "countryCodes": [
+        "CU",
+        "JM"
+      ],
+      "cityQids": [
+        "coverage:CU:历史城区",
+        "coverage:CU:自然腹地",
+        "coverage:JM:地方生活区",
+        "coverage:JM:区域风景带"
+      ]
+    },
+    {
+      "category": "destination-free-recommendation",
+      "query": "2",
+      "outcome": "route",
+      "countryCodes": [
+        "JM"
+      ],
+      "cityQids": [
+        "Q1394786",
+        "Q637555"
+      ]
+    },
+    {
+      "category": "insufficient-theme-evidence",
+      "query": "Armenia island vacation 7 days",
+      "outcome": "fail-closed"
+    },
+    {
+      "category": "insufficient-theme-evidence",
+      "query": "Luxembourg island vacation 7 days",
+      "outcome": "fail-closed"
+    },
+    {
+      "category": "insufficient-theme-evidence",
+      "query": "Moldova island vacation 7 days",
+      "outcome": "fail-closed"
+    },
+    {
+      "category": "insufficient-theme-evidence",
+      "query": "Paraguay island vacation 7 days",
+      "outcome": "fail-closed"
+    },
+    {
+      "category": "homonym-fail-closed",
+      "query": "Santiago 7 days",
+      "outcome": "fail-closed"
+    },
+    {
+      "category": "homonym-fail-closed",
+      "query": "Lagos 7 days",
+      "outcome": "fail-closed"
+    },
+    {
+      "category": "homonym-fail-closed",
+      "query": "Cordoba 7 days",
+      "outcome": "fail-closed"
+    }
+  ]
+}

@@ -127,7 +127,7 @@ function verifyBindings({ inventory, provenance, audit, manifest }) {
     }
   }
   assert.equal(provenance.assets.length + provenance.attempts.filter((record) => record.status === "needsBackfill").length, inventory.records.length);
-  assert.equal(manifest.coverage.overall.needsBackfillCount, provenance.attempts.filter((record) => record.status === "needsBackfill").length);
+  assert.equal(manifest.coverage.historicalPlannableCountries.needsBackfillCount, provenance.attempts.filter((record) => record.status === "needsBackfill").length);
 }
 
 verifyBindings({ inventory: stats.inventory, provenance: stats.provenance, audit: stats.visualAudit, manifest: stats.manifest });

@@ -202,6 +202,32 @@ export const MANDATORY_PRELAUNCH_VERIFIERS = Object.freeze([
     phase: "static",
   }),
   Object.freeze({
+    name: "knowledge-expansion-batch08-integrity",
+    relativePath: "scripts/verify-knowledge-expansion-batch08.mjs",
+    phase: "static",
+  }),
+  Object.freeze({
+    name: "knowledge-expansion-batch08-route-consumption",
+    relativePath: "scripts/verify-knowledge-expansion-batch08-route-consumption.mjs",
+    phase: "static",
+  }),
+  Object.freeze({
+    name: "knowledge-expansion-batch08-hard-constraint-stress",
+    relativePath: "scripts/verify-knowledge-expansion-batch08-hard-constraint-stress.mjs",
+    phase: "static",
+    timeoutMs: 720_000,
+  }),
+  Object.freeze({
+    name: "knowledge-expansion-batch08-semantic-adversarial",
+    relativePath: "scripts/verify-knowledge-expansion-batch08-semantic-adversarial.mjs",
+    phase: "static",
+  }),
+  Object.freeze({
+    name: "knowledge-expansion-batch08-report-consistency",
+    relativePath: "scripts/verify-knowledge-expansion-batch08-report-consistency.mjs",
+    phase: "static",
+  }),
+  Object.freeze({
     name: "publication-gate",
     relativePath: "scripts/verify-route-v2-publication-gate.mjs",
     phase: "static",
@@ -291,16 +317,19 @@ export function runMandatoryVerifierStage({
   stage,
   projectRoot,
   env,
-  timeoutMs = 240_000,
+  timeoutMs,
   spawnImpl = spawnSync,
 } = {}) {
   if (!stage?.name || !stage?.relativePath) throw new Error("mandatory-verifier-stage-required");
+  const effectiveTimeoutMs = Number.isFinite(timeoutMs)
+    ? timeoutMs
+    : (Number.isFinite(stage.timeoutMs) ? stage.timeoutMs : 240_000);
   const startedAt = performance.now();
   const result = spawnImpl(process.execPath, [stage.relativePath], {
     cwd: projectRoot,
     env,
     encoding: "utf8",
-    timeout: timeoutMs,
+    timeout: effectiveTimeoutMs,
     windowsHide: true,
   }) || {};
   const stageResult = {

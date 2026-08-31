@@ -1,0 +1,47 @@
+{
+  "schemaVersion": "route-v2-knowledge-expansion-batch08-baseline-v1",
+  "capturedAt": "2026-08-28T02:00:00.000Z",
+  "git": {
+    "branch": "main",
+    "head": "272a8e765e39bd1027c7b873b9a8438e15987160",
+    "originMain": "272a8e765e39bd1027c7b873b9a8438e15987160",
+    "ahead": 0,
+    "behind": 0,
+    "clean": true,
+    "staged": 0
+  },
+  "knowledge": {
+    "catalogCountries": 79,
+    "plannableCountries": 78,
+    "evidenceBackedCountries": 75,
+    "catalogOnlyCountries": 1,
+    "catalogOnlyCountryCodes": ["CN"],
+    "uncatalogedCountries": 116,
+    "cities": 601,
+    "pois": 4038,
+    "entities": 4718
+  },
+  "evidence": {
+    "directedTransport": 740,
+    "monthRisk": 316
+  },
+  "images": {
+    "totalAssets": 957,
+    "countryCovers": 78,
+    "countryCoverTotal": 78,
+    "dedicatedCities": 600,
+    "cityTotal": 601,
+    "dedicatedCorePois": 212,
+    "corePoiTotal": 224,
+    "needsBackfill": 13,
+    "invalidMappings": 0
+  },
+  "protectedAssets": {
+    "acceptedHash": "aea28bcc03eaf6ccce5fd7453f88ece4f0060789f135eaf837b568d9c43e7e3f",
+    "formalEvidenceHash": "4bb9e7b702de1c9b981f0ed53a649632e2a7149bd7f2dabedfa120dcde13c376",
+    "immutableAggregateHash": "61e243e0c0756d53513ab7205281f8c796eeb074317f484d08784cbc5fe9505c",
+    "cacheFiles": 331,
+    "runtimeStateFiles": 329,
+    "metricsFiles": 0
+  }
+}

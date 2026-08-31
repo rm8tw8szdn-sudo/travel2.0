@@ -41,6 +41,11 @@ for (const name of [
   "knowledge-expansion-batch07-integrity",
   "knowledge-expansion-batch07-route-consumption",
   "knowledge-expansion-batch07-report-consistency",
+  "knowledge-expansion-batch08-integrity",
+  "knowledge-expansion-batch08-route-consumption",
+  "knowledge-expansion-batch08-hard-constraint-stress",
+  "knowledge-expansion-batch08-semantic-adversarial",
+  "knowledge-expansion-batch08-report-consistency",
   "publication-gate",
   "search-cache-semantic-migration",
   "cache-baseline-v2",
@@ -66,6 +71,8 @@ const homonymousCityStage = MANDATORY_PRELAUNCH_VERIFIERS.find((stage) => stage.
 assert(homonymousCityStage, "Homonymous City disambiguation verification must be registered");
 const batch07ReportConsistencyStage = MANDATORY_PRELAUNCH_VERIFIERS.find((stage) => stage.name === "knowledge-expansion-batch07-report-consistency");
 assert(batch07ReportConsistencyStage, "Batch 07 report consistency verification must be registered");
+const batch08ReportConsistencyStage = MANDATORY_PRELAUNCH_VERIFIERS.find((stage) => stage.name === "knowledge-expansion-batch08-report-consistency");
+assert(batch08ReportConsistencyStage, "Batch 08 report consistency verification must be registered");
 
 function injectedFailure(result) {
   let thrown = null;
@@ -200,6 +207,21 @@ assert(batch07ReportFailure instanceof MandatoryVerifierStageError);
 assert.equal(batch07ReportFailure.stageResult.name, "knowledge-expansion-batch07-report-consistency");
 assert.equal(batch07ReportFailure.stageResult.exitCode, 37);
 
+let batch08ReportFailure = null;
+try {
+  runMandatoryVerifierStage({
+    stage: batch08ReportConsistencyStage,
+    projectRoot,
+    env: process.env,
+    spawnImpl: () => ({ status: 47, signal: null, stdout: "", stderr: "controlled Batch 08 report failure\n" }),
+  });
+} catch (error) {
+  batch08ReportFailure = error;
+}
+assert(batch08ReportFailure instanceof MandatoryVerifierStageError);
+assert.equal(batch08ReportFailure.stageResult.name, "knowledge-expansion-batch08-report-consistency");
+assert.equal(batch08ReportFailure.stageResult.exitCode, 47);
+
 function realReportMutationFailure(search, replacement, label) {
   const sourcePath = path.join(projectRoot, "ROUTE_V2_KNOWLEDGE_EXPANSION_BATCH05_REPORT.md");
   const source = fs.readFileSync(sourcePath, "utf8");
@@ -252,6 +274,7 @@ process.stdout.write(`${JSON.stringify({
   imageDebtFailurePropagated: imageDebtFailure.stageResult.exitCode === 41,
   homonymousCityFailurePropagated: homonymousCityFailure.stageResult.exitCode === 31,
   batch07ReportFailurePropagated: batch07ReportFailure.stageResult.exitCode === 37,
+  batch08ReportFailurePropagated: batch08ReportFailure.stageResult.exitCode === 47,
   reportPoiMutationPropagated: reportPoiMutation.exitCode !== 0,
   reportDedicatedCityMutationPropagated: reportCityImageMutation.exitCode !== 0,
 }, null, 2)}\n`);

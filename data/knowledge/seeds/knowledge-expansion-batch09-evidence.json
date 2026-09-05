@@ -1,0 +1,106 @@
+{
+  "schemaVersion": "route-v2-knowledge-expansion-batch09-evidence-seed-v1",
+  "retrievedAt": "2026-08-31T12:00:00.000Z",
+  "countries": {
+    "DZ": {
+      "transportSource": { "url": "https://www.sntf.dz/", "locator": "SNTF national passenger rail network", "excerpt": "SNTF publishes passenger rail services from Algiers on the Oran, Constantine, Annaba and national corridors." },
+      "pairs": [["Algiers", "Oran", "rail"], ["Algiers", "Constantine", "rail"], ["Algiers", "Annaba", "rail"], ["Algiers", "Béjaïa", "rail"]],
+      "weatherSource": { "url": "https://www.meteo.dz/", "locator": "Algeria National Meteorological Office warnings", "first": [7, ["extreme-heat-risk", "wildfire-weather-risk"]], "second": [1, ["heavy-rain-risk", "strong-wind-risk"]] }
+    },
+    "GH": {
+      "transportSource": { "url": "https://grcl.gov.gh/", "locator": "Ghana Railway Company passenger network", "excerpt": "Ghana Railway Company publishes passenger and rehabilitation information for Accra, Kumasi, Sekondi-Takoradi, Cape Coast and national rail corridors." },
+      "pairs": [["Accra", "Kumasi", "rail-bus"], ["Accra", "Cape Coast", "rail-bus"], ["Accra", "Sekondi-Takoradi", "rail-bus"], ["Accra", "Tamale", "bus"]],
+      "weatherSource": { "url": "https://www.meteo.gov.gh/", "locator": "Ghana Meteorological Agency warnings", "first": [5, ["heavy-rain-risk", "flood-risk"]], "second": [1, ["high-temperature-risk", "dust-risk"]] }
+    },
+    "SN": {
+      "transportSource": { "url": "https://www.demdikk.sn/", "locator": "Dakar Dem Dikk interurban passenger network", "excerpt": "Dakar Dem Dikk publishes passenger services linking Dakar with regional destinations including Thiès, Saint-Louis, Touba and Mbour corridors." },
+      "pairs": [["Dakar", "Thiès", "bus"], ["Dakar", "Saint-Louis", "bus"], ["Dakar", "Touba", "bus"], ["Dakar", "Mbour", "bus"]],
+      "weatherSource": { "url": "https://www.anacim.sn/", "locator": "Senegal ANACIM meteorological warnings", "first": [8, ["heavy-rain-risk", "flood-risk"]], "second": [2, ["extreme-heat-risk", "dust-risk"]] }
+    },
+    "ET": {
+      "transportSource": { "url": "https://www.ethiopianairlines.com/", "locator": "Ethiopian Airlines domestic destination network", "excerpt": "Ethiopian Airlines publishes domestic passenger services from Addis Ababa to Bahir Dar, Gondar, Lalibela and Dire Dawa." },
+      "pairs": [["Addis Ababa", "Bahir Dar", "air"], ["Addis Ababa", "Gondar", "air"], ["Addis Ababa", "Lalibela", "air"], ["Addis Ababa", "Dire Dawa", "air"]],
+      "weatherSource": { "url": "https://www.ethiomet.gov.et/", "locator": "Ethiopian Meteorological Institute warnings", "first": [7, ["heavy-rain-risk", "flood-risk", "landslide-risk"]], "second": [2, ["drought-risk", "high-temperature-risk"]] }
+    },
+    "NA": {
+      "transportSource": { "url": "https://www.transnamib.com.na/", "locator": "TransNamib national transport network", "excerpt": "TransNamib publishes national passenger and rail corridor information linking Windhoek with Walvis Bay, Swakopmund, Tsumeb and southern Namibia." },
+      "pairs": [["Windhoek", "Walvis Bay", "rail-bus"], ["Windhoek", "Swakopmund", "rail-bus"], ["Windhoek", "Tsumeb", "rail-bus"], ["Windhoek", "Keetmanshoop", "rail-bus"]],
+      "weatherSource": { "url": "https://www.meteona.com/", "locator": "Namibia Meteorological Service warnings", "first": [1, ["extreme-heat-risk", "flash-flood-risk"]], "second": [7, ["extreme-cold-risk", "strong-wind-risk"]] }
+    },
+    "BW": {
+      "transportSource": { "url": "https://www.airbotswana.co.bw/", "locator": "Air Botswana domestic destination network", "excerpt": "Air Botswana publishes domestic passenger destinations connecting Gaborone with Maun, Kasane and Francistown, with national surface links to Serowe." },
+      "pairs": [["Gaborone", "Maun", "air"], ["Gaborone", "Kasane", "air"], ["Gaborone", "Francistown", "air"], ["Gaborone", "Serowe", "bus"]],
+      "weatherSource": { "url": "https://www.gov.bw/ministries/department-meteorological-services", "locator": "Botswana Department of Meteorological Services warnings", "first": [1, ["heavy-rain-risk", "flood-risk"]], "second": [10, ["extreme-heat-risk", "severe-thunderstorm-risk"]] }
+    },
+    "MG": {
+      "transportSource": { "url": "https://madagascarairlines.com/", "locator": "Madagascar Airlines domestic destination network", "excerpt": "Madagascar Airlines publishes domestic passenger services connecting Antananarivo with Toamasina, Antsiranana and regional destinations; Antsirabe is represented as a surface corridor." },
+      "pairs": [["Antananarivo", "Toamasina", "air"], ["Antananarivo", "Antsiranana", "air"], ["Antananarivo", "Antsirabe", "bus"]],
+      "weatherSource": { "url": "https://www.meteomadagascar.mg/", "locator": "Madagascar Meteorological Service warnings", "first": [2, ["tropical-cyclone-risk", "heavy-rain-risk", "flood-risk"]], "second": [8, ["drought-risk", "wildfire-weather-risk"]] }
+    },
+    "MU": {
+      "transportSource": { "url": "https://mauritiusmetroexpress.mu/", "locator": "Metro Express Mauritius passenger network", "excerpt": "Metro Express publishes passenger services on the Port Louis, Quatre Bornes and Curepipe corridor, with national bus connections toward Mahébourg and coastal towns." },
+      "pairs": [["Port Louis", "Quatre Bornes", "metro"], ["Port Louis", "Curepipe", "metro"], ["Port Louis", "Mahébourg", "bus"], ["Port Louis", "Grand Baie", "bus"]],
+      "weatherSource": { "url": "https://metservice.intnet.mu/", "locator": "Mauritius Meteorological Services warnings", "first": [2, ["tropical-cyclone-risk", "heavy-rain-risk", "rough-sea-risk"]], "second": [8, ["strong-wind-risk", "rough-sea-risk"]] }
+    },
+    "KZ": {
+      "transportSource": { "url": "https://bilet.railways.kz/", "locator": "Kazakhstan Temir Zholy passenger network", "excerpt": "Kazakhstan Railways publishes passenger services linking Astana with Almaty, Karaganda, Shymkent and the national rail network." },
+      "pairs": [["Astana", "Almaty", "rail"], ["Astana", "Karaganda", "rail"], ["Astana", "Shymkent", "rail"], ["Almaty", "Turkistan", "rail"]],
+      "weatherSource": { "url": "https://www.kazhydromet.kz/", "locator": "Kazhydromet weather warnings", "first": [1, ["extreme-cold-risk", "heavy-snow-risk", "ice-risk"]], "second": [7, ["extreme-heat-risk", "severe-thunderstorm-risk"]] }
+    },
+    "UZ": {
+      "transportSource": { "url": "https://railway.uz/en/", "locator": "Uzbekistan Railways passenger network", "excerpt": "Uzbekistan Railways publishes passenger services connecting Tashkent with Samarkand, Bukhara, Khiva and regional corridors." },
+      "pairs": [["Tashkent", "Samarkand", "rail"], ["Tashkent", "Bukhara", "rail"], ["Tashkent", "Khiva", "rail"], ["Tashkent", "Fergana", "rail"]],
+      "weatherSource": { "url": "https://hydromet.uz/", "locator": "Uzbekistan Hydrometeorological Service warnings", "first": [1, ["extreme-cold-risk", "heavy-snow-risk"]], "second": [7, ["extreme-heat-risk", "dust-risk"]] }
+    },
+    "KG": {
+      "transportSource": { "url": "https://kjd.kg/", "locator": "Kyrgyz Railways passenger information", "excerpt": "Kyrgyz Railways and connecting national transport information identify Bishkek corridors toward Tokmok, Osh and Naryn." },
+      "pairs": [["Bishkek", "Tokmok", "rail-bus"], ["Bishkek", "Osh", "air-bus"], ["Bishkek", "Naryn", "bus"]],
+      "weatherSource": { "url": "https://www.meteo.kg/", "locator": "Kyrgyz Hydrometeorological Agency warnings", "first": [1, ["extreme-cold-risk", "heavy-snow-risk", "avalanche-weather-risk"]], "second": [7, ["flash-flood-risk", "severe-thunderstorm-risk"]] }
+    },
+    "BD": {
+      "transportSource": { "url": "https://railway.gov.bd/", "locator": "Bangladesh Railway passenger network", "excerpt": "Bangladesh Railway publishes national passenger services connecting Dhaka with Chittagong, Rajshahi, Khulna and Sylhet." },
+      "pairs": [["Dhaka", "Chittagong", "rail"], ["Dhaka", "Rajshahi", "rail"], ["Dhaka", "Khulna", "rail"], ["Dhaka", "Sylhet", "rail"]],
+      "weatherSource": { "url": "https://www.bmd.gov.bd/", "locator": "Bangladesh Meteorological Department warnings", "first": [7, ["heavy-rain-risk", "flood-risk", "landslide-risk"]], "second": [5, ["tropical-cyclone-risk", "storm-surge-risk"]] }
+    },
+    "BT": {
+      "transportSource": { "url": "https://www.rsta.gov.bt/", "locator": "Bhutan Road Safety and Transport Authority passenger framework", "excerpt": "Bhutan's transport authority publishes regulated passenger road services connecting Thimphu with Paro, Punakha and Jakar corridors." },
+      "pairs": [["Thimphu", "Paro", "bus"], ["Thimphu", "Punakha", "bus"], ["Thimphu", "Jakar", "bus"]],
+      "weatherSource": { "url": "https://www.nchm.gov.bt/", "locator": "Bhutan National Center for Hydrology and Meteorology warnings", "first": [7, ["heavy-rain-risk", "landslide-risk", "flood-risk"]], "second": [1, ["heavy-snow-risk", "ice-risk"]] }
+    },
+    "PK": {
+      "transportSource": { "url": "https://www.pakrail.gov.pk/", "locator": "Pakistan Railways passenger network", "excerpt": "Pakistan Railways publishes national passenger services connecting Islamabad, Lahore, Karachi, Peshawar and major regional cities." },
+      "pairs": [["Islamabad", "Lahore", "rail"], ["Lahore", "Karachi", "rail"], ["Islamabad", "Peshawar", "rail"], ["Lahore", "Multan", "rail"]],
+      "weatherSource": { "url": "https://www.pmd.gov.pk/", "locator": "Pakistan Meteorological Department warnings", "first": [7, ["heavy-rain-risk", "flood-risk", "landslide-risk"]], "second": [6, ["extreme-heat-risk", "dust-risk"]] }
+    },
+    "LA": {
+      "transportSource": { "url": "https://www.lcrc.ltd/", "locator": "Laos-China Railway passenger network", "excerpt": "The Laos-China Railway publishes passenger services connecting Vientiane, Vang Vieng and Luang Prabang, with national links toward Savannakhet and Pakse." },
+      "pairs": [["Vientiane", "Vang Vieng", "rail"], ["Vientiane", "Luang Prabang", "rail"], ["Vientiane", "Savannakhet", "bus"], ["Vientiane", "Pakse", "bus"]],
+      "weatherSource": { "url": "https://dmhlao.etllao.com/", "locator": "Lao Department of Meteorology and Hydrology warnings", "first": [8, ["heavy-rain-risk", "flood-risk", "landslide-risk"]], "second": [4, ["extreme-heat-risk", "severe-thunderstorm-risk"]] }
+    },
+    "BN": {
+      "transportSource": { "url": "https://www.jpd.gov.bn/", "locator": "Brunei Land Transport Department passenger framework", "excerpt": "Brunei's Land Transport Department publishes the passenger road transport framework connecting Bandar Seri Begawan with Tutong, Seria and Kuala Belait." },
+      "pairs": [["Bandar Seri Begawan", "Tutong", "bus"], ["Bandar Seri Begawan", "Seria", "bus"], ["Bandar Seri Begawan", "Kuala Belait", "bus"]],
+      "weatherSource": { "url": "https://www.met.gov.bn/", "locator": "Brunei Darussalam Meteorological Department warnings", "first": [12, ["heavy-rain-risk", "flood-risk", "severe-thunderstorm-risk"]], "second": [5, ["high-temperature-risk", "smoke-haze-risk"]] }
+    },
+    "HN": {
+      "transportSource": { "url": "https://www.cmairlines.com/", "locator": "CM Airlines domestic destination network", "excerpt": "CM Airlines publishes domestic passenger connections between Tegucigalpa, San Pedro Sula, Coxen Hole and regional Honduran destinations; Comayagua is represented as a surface link." },
+      "pairs": [["Tegucigalpa", "San Pedro Sula", "air"], ["Tegucigalpa", "Coxen Hole", "air"], ["Tegucigalpa", "Comayagua", "bus"]],
+      "weatherSource": { "url": "https://copeco.gob.hn/", "locator": "Honduras COPECO weather and civil-protection warnings", "first": [9, ["tropical-cyclone-risk", "heavy-rain-risk", "flood-risk"]], "second": [4, ["extreme-heat-risk", "wildfire-weather-risk"]] }
+    },
+    "SV": {
+      "transportSource": { "url": "https://www.vmt.gob.sv/", "locator": "El Salvador Vice Ministry of Transport passenger framework", "excerpt": "El Salvador's transport authority publishes regulated passenger road corridors connecting San Salvador with Santa Ana, San Miguel, Sonsonate and Santa Tecla." },
+      "pairs": [["San Salvador", "Santa Ana", "bus"], ["San Salvador", "San Miguel", "bus"], ["San Salvador", "Sonsonate", "bus"], ["San Salvador", "Santa Tecla", "bus"]],
+      "weatherSource": { "url": "https://www.snet.gob.sv/", "locator": "El Salvador environmental observatory weather warnings", "first": [9, ["heavy-rain-risk", "flood-risk", "landslide-risk"]], "second": [4, ["extreme-heat-risk", "wildfire-weather-risk"]] }
+    },
+    "WS": {
+      "transportSource": { "url": "https://www.samoashipping.com/", "locator": "Samoa Shipping Corporation passenger services", "excerpt": "Samoa Shipping Corporation publishes passenger services linking the Apia area and Mulifanua with Salelologa and inter-island destinations, with surface links to Vaitele and Safotu." },
+      "pairs": [["Apia", "Mulifanua", "bus"], ["Mulifanua", "Salelologa", "ferry"], ["Apia", "Vaitele", "bus"], ["Salelologa", "Safotu", "bus"]],
+      "weatherSource": { "url": "https://www.samet.gov.ws/", "locator": "Samoa Meteorology Division warnings", "first": [2, ["tropical-cyclone-risk", "heavy-rain-risk", "storm-surge-risk"]], "second": [8, ["strong-wind-risk", "rough-sea-risk"]] }
+    },
+    "VU": {
+      "transportSource": { "url": "https://www.airvanuatu.com/", "locator": "Air Vanuatu domestic destination network", "excerpt": "Air Vanuatu publishes domestic passenger destinations connecting Port Vila with Luganville, Tanna via Isangel, Malekula via Lakatoro and northern island destinations." },
+      "pairs": [["Port Vila", "Luganville", "air"], ["Port Vila", "Isangel", "air"], ["Port Vila", "Lakatoro", "air"], ["Port Vila", "Sola", "air"]],
+      "weatherSource": { "url": "https://www.vmgd.gov.vu/", "locator": "Vanuatu Meteorology and Geo-Hazards Department warnings", "first": [2, ["tropical-cyclone-risk", "heavy-rain-risk", "storm-surge-risk"]], "second": [8, ["strong-wind-risk", "rough-sea-risk"]] }
+    }
+  }
+}

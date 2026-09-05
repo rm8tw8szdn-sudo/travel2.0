@@ -10,7 +10,7 @@ import { stableHash } from "../src/lib/routes/route-v2-utils.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const BATCH = String(process.argv.find((value) => value.startsWith("--batch="))?.split("=")[1] || "06").padStart(2, "0");
-if (!["06", "07", "08"].includes(BATCH)) throw new Error("batch-argument-invalid:--batch=06|07|08");
+if (!["06", "07", "08", "09"].includes(BATCH)) throw new Error("batch-argument-invalid:--batch=06|07|08|09");
 const CONFIG_PATH = `data/knowledge/seeds/knowledge-expansion-batch${BATCH}-evidence.json`;
 const ROUTE_LEG_PATH = "data/route-v2/evidence-seed/route-leg-evidence.jsonl";
 const SEASON_PATH = "data/route-v2/evidence-seed/season-evidence.jsonl";

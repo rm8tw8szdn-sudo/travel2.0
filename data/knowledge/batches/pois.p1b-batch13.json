@@ -1,7 +1,7 @@
 {
   "schemaVersion": "route-v2-poi-baseline-p1b-batch13",
   "generatedFrom": "data/knowledge/raw/knowledge-expansion-batch04e-netherlands.wikidata.json",
-  "poiCount": 61,
+  "poiCount": 52,
   "pois": [
     {
       "schemaVersion": "route-v2-poi-baseline-p1b",
@@ -353,136 +353,6 @@
     },
     {
       "schemaVersion": "route-v2-poi-baseline-p1b",
-      "entityId": "poi-55ece93ee5fbe46e",
-      "entityType": "poi",
-      "parentCityEntityId": "city-32ccd44f6e63dcb9",
-      "wikidataId": "Q641676",
-      "canonicalNameZh": "莱顿自然生物多样性中心",
-      "canonicalNameEn": "Naturalis Biodiversity Center",
-      "aliases": [
-        "Museu de História Natural de Leiden",
-        "Nationaal Natuurhistorisch Museum",
-        "Naturalis",
-        "Naturalis Bio Center",
-        "Naturalis Biodiversity Centre, Leiden",
-        "NBC",
-        "Nederlands Centrum voor Biodiversiteit Naturalis",
-        "RMNH",
-        "Stichting Naturalis Biodiversity Center"
-      ],
-      "coordinates": {
-        "latitude": 52.16472222,
-        "longitude": 4.47333333
-      },
-      "entitySourceType": "wikidata",
-      "confidence": 0.95,
-      "retrievedAt": "2026-08-10T12:00:00.000Z",
-      "provenance": {
-        "entityId": {
-          "field": "entityId",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "poi-55ece93ee5fbe46e"
-        },
-        "entityType": {
-          "field": "entityType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "poi"
-        },
-        "parentCityEntityId": {
-          "field": "parentCityEntityId",
-          "sourceType": "repository-reference",
-          "source": "Netherlands City Entity",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q43631",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "city-32ccd44f6e63dcb9"
-        },
-        "wikidataId": {
-          "field": "wikidataId",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q641676",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Q641676"
-        },
-        "canonicalNameZh": {
-          "field": "canonicalNameZh",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q641676",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "莱顿自然生物多样性中心"
-        },
-        "canonicalNameEn": {
-          "field": "canonicalNameEn",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q641676",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Naturalis Biodiversity Center"
-        },
-        "aliases": {
-          "field": "aliases",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q641676",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": [
-            "Museu de História Natural de Leiden",
-            "Nationaal Natuurhistorisch Museum",
-            "Naturalis",
-            "Naturalis Bio Center",
-            "Naturalis Biodiversity Centre, Leiden",
-            "NBC",
-            "Nederlands Centrum voor Biodiversiteit Naturalis",
-            "RMNH",
-            "Stichting Naturalis Biodiversity Center"
-          ]
-        },
-        "coordinates": {
-          "field": "coordinates",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q641676",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": {
-            "latitude": 52.16472222,
-            "longitude": 4.47333333
-          }
-        },
-        "entitySourceType": {
-          "field": "entitySourceType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "wikidata"
-        },
-        "confidence": {
-          "field": "confidence",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": 0.95
-        },
-        "retrievedAt": {
-          "field": "retrievedAt",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q641676",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "2026-08-10T12:00:00.000Z"
-        }
-      }
-    },
-    {
-      "schemaVersion": "route-v2-poi-baseline-p1b",
       "entityId": "poi-54ac21f11bbb8d3d",
       "entityType": "poi",
       "parentCityEntityId": "city-32ccd44f6e63dcb9",
@@ -605,268 +475,6 @@
     },
     {
       "schemaVersion": "route-v2-poi-baseline-p1b",
-      "entityId": "poi-8b8e4921938609c0",
-      "entityType": "poi",
-      "parentCityEntityId": "city-42d1de1ad3362df7",
-      "wikidataId": "Q908127",
-      "canonicalNameZh": "聖母教堂",
-      "canonicalNameEn": "Basilica of Our Lady",
-      "aliases": [
-        "Basílica da Assunção de Nossa Senhora (Maastricht)",
-        "Basiliek van Onze Lieve Vrouw ten Hemelopneming",
-        "Basiliek van Onze Lieve Vrouw Tenhemelopneming",
-        "Basiliek van Onze Lieve Vrouwe Sterre der Zee",
-        "Basiliek van Onze Lieve Vrouwe Tenhemelopneming",
-        "Basiliek van Onze-Lieve-Vrouw-Tenhemelopneming",
-        "Basiliek van Onze-Lieve-Vrouw-Tenhemelopneming (Maastricht)",
-        "Liebfrauenbasilika",
-        "Onze Lieve Vrouwe Basiliek",
-        "Onze-Lieve-Vrouwebasiliek",
-        "Onze-Lieve-Vrouwebasiliek (Maastricht)",
-        "rijksmonumentnummer 27454",
-        "Slevrouwe"
-      ],
-      "coordinates": {
-        "latitude": 50.84762,
-        "longitude": 5.69344
-      },
-      "entitySourceType": "wikidata",
-      "confidence": 0.95,
-      "retrievedAt": "2026-08-10T12:00:00.000Z",
-      "provenance": {
-        "entityId": {
-          "field": "entityId",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "poi-8b8e4921938609c0"
-        },
-        "entityType": {
-          "field": "entityType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "poi"
-        },
-        "parentCityEntityId": {
-          "field": "parentCityEntityId",
-          "sourceType": "repository-reference",
-          "source": "Netherlands City Entity",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1309",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "city-42d1de1ad3362df7"
-        },
-        "wikidataId": {
-          "field": "wikidataId",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q908127",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Q908127"
-        },
-        "canonicalNameZh": {
-          "field": "canonicalNameZh",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q908127",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "聖母教堂"
-        },
-        "canonicalNameEn": {
-          "field": "canonicalNameEn",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q908127",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Basilica of Our Lady"
-        },
-        "aliases": {
-          "field": "aliases",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q908127",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": [
-            "Basílica da Assunção de Nossa Senhora (Maastricht)",
-            "Basiliek van Onze Lieve Vrouw ten Hemelopneming",
-            "Basiliek van Onze Lieve Vrouw Tenhemelopneming",
-            "Basiliek van Onze Lieve Vrouwe Sterre der Zee",
-            "Basiliek van Onze Lieve Vrouwe Tenhemelopneming",
-            "Basiliek van Onze-Lieve-Vrouw-Tenhemelopneming",
-            "Basiliek van Onze-Lieve-Vrouw-Tenhemelopneming (Maastricht)",
-            "Liebfrauenbasilika",
-            "Onze Lieve Vrouwe Basiliek",
-            "Onze-Lieve-Vrouwebasiliek",
-            "Onze-Lieve-Vrouwebasiliek (Maastricht)",
-            "rijksmonumentnummer 27454",
-            "Slevrouwe"
-          ]
-        },
-        "coordinates": {
-          "field": "coordinates",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q908127",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": {
-            "latitude": 50.84762,
-            "longitude": 5.69344
-          }
-        },
-        "entitySourceType": {
-          "field": "entitySourceType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "wikidata"
-        },
-        "confidence": {
-          "field": "confidence",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": 0.95
-        },
-        "retrievedAt": {
-          "field": "retrievedAt",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q908127",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "2026-08-10T12:00:00.000Z"
-        }
-      }
-    },
-    {
-      "schemaVersion": "route-v2-poi-baseline-p1b",
-      "entityId": "poi-494e32396974b947",
-      "entityType": "poi",
-      "parentCityEntityId": "city-42d1de1ad3362df7",
-      "wikidataId": "Q253935",
-      "canonicalNameZh": "圣瑟法斯圣殿",
-      "canonicalNameEn": "Basilica of Saint Servatius",
-      "aliases": [
-        "Basilica Saint Servatius",
-        "rijksmonumentnummer 27168",
-        "Servaasbasiliek",
-        "Sint Servaas Basiliek",
-        "Sint-Servaasbasiliek",
-        "Sint-Servaasbasiliek (Maastricht)"
-      ],
-      "coordinates": {
-        "latitude": 50.848817,
-        "longitude": 5.6872
-      },
-      "entitySourceType": "wikidata",
-      "confidence": 0.95,
-      "retrievedAt": "2026-08-10T12:00:00.000Z",
-      "provenance": {
-        "entityId": {
-          "field": "entityId",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "poi-494e32396974b947"
-        },
-        "entityType": {
-          "field": "entityType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "poi"
-        },
-        "parentCityEntityId": {
-          "field": "parentCityEntityId",
-          "sourceType": "repository-reference",
-          "source": "Netherlands City Entity",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1309",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "city-42d1de1ad3362df7"
-        },
-        "wikidataId": {
-          "field": "wikidataId",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q253935",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Q253935"
-        },
-        "canonicalNameZh": {
-          "field": "canonicalNameZh",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q253935",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "圣瑟法斯圣殿"
-        },
-        "canonicalNameEn": {
-          "field": "canonicalNameEn",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q253935",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Basilica of Saint Servatius"
-        },
-        "aliases": {
-          "field": "aliases",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q253935",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": [
-            "Basilica Saint Servatius",
-            "rijksmonumentnummer 27168",
-            "Servaasbasiliek",
-            "Sint Servaas Basiliek",
-            "Sint-Servaasbasiliek",
-            "Sint-Servaasbasiliek (Maastricht)"
-          ]
-        },
-        "coordinates": {
-          "field": "coordinates",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q253935",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": {
-            "latitude": 50.848817,
-            "longitude": 5.6872
-          }
-        },
-        "entitySourceType": {
-          "field": "entitySourceType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "wikidata"
-        },
-        "confidence": {
-          "field": "confidence",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": 0.95
-        },
-        "retrievedAt": {
-          "field": "retrievedAt",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q253935",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "2026-08-10T12:00:00.000Z"
-        }
-      }
-    },
-    {
-      "schemaVersion": "route-v2-poi-baseline-p1b",
       "entityId": "poi-3fc295b815606991",
       "entityType": "poi",
       "parentCityEntityId": "city-42d1de1ad3362df7",
@@ -982,244 +590,6 @@
           "sourceType": "wikidata",
           "source": "Wikidata enwiki title plus wbgetentities",
           "sourceUrl": "https://www.wikidata.org/wiki/Q892727",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "2026-08-10T12:00:00.000Z"
-        }
-      }
-    },
-    {
-      "schemaVersion": "route-v2-poi-baseline-p1b",
-      "entityId": "poi-ca0b4ea91b9fcf42",
-      "entityType": "poi",
-      "parentCityEntityId": "city-42d1de1ad3362df7",
-      "wikidataId": "Q3316628",
-      "canonicalNameZh": "Fort Sint Pieter",
-      "canonicalNameEn": "Fort Sint Pieter",
-      "aliases": [
-        "Fort St. Pieter",
-        "rijksmonumentnummer 28023",
-        "Saint Peter Fort",
-        "Sint Pieter Fort"
-      ],
-      "coordinates": {
-        "latitude": 50.83612,
-        "longitude": 5.68408
-      },
-      "entitySourceType": "wikidata",
-      "confidence": 0.95,
-      "retrievedAt": "2026-08-10T12:00:00.000Z",
-      "provenance": {
-        "entityId": {
-          "field": "entityId",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "poi-ca0b4ea91b9fcf42"
-        },
-        "entityType": {
-          "field": "entityType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "poi"
-        },
-        "parentCityEntityId": {
-          "field": "parentCityEntityId",
-          "sourceType": "repository-reference",
-          "source": "Netherlands City Entity",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1309",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "city-42d1de1ad3362df7"
-        },
-        "wikidataId": {
-          "field": "wikidataId",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q3316628",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Q3316628"
-        },
-        "canonicalNameZh": {
-          "field": "canonicalNameZh",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q3316628",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Fort Sint Pieter"
-        },
-        "canonicalNameEn": {
-          "field": "canonicalNameEn",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q3316628",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Fort Sint Pieter"
-        },
-        "aliases": {
-          "field": "aliases",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q3316628",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": [
-            "Fort St. Pieter",
-            "rijksmonumentnummer 28023",
-            "Saint Peter Fort",
-            "Sint Pieter Fort"
-          ]
-        },
-        "coordinates": {
-          "field": "coordinates",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q3316628",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": {
-            "latitude": 50.83612,
-            "longitude": 5.68408
-          }
-        },
-        "entitySourceType": {
-          "field": "entitySourceType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "wikidata"
-        },
-        "confidence": {
-          "field": "confidence",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": 0.95
-        },
-        "retrievedAt": {
-          "field": "retrievedAt",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q3316628",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "2026-08-10T12:00:00.000Z"
-        }
-      }
-    },
-    {
-      "schemaVersion": "route-v2-poi-baseline-p1b",
-      "entityId": "poi-a9a7a4dd8c8ca876",
-      "entityType": "poi",
-      "parentCityEntityId": "city-42d1de1ad3362df7",
-      "wikidataId": "Q1923527",
-      "canonicalNameZh": "馬斯特里赫特市政廳",
-      "canonicalNameEn": "Maastricht City Hall",
-      "aliases": [
-        "Câmara Municipal de Maastricht",
-        "rijksmonumentnummer 27382",
-        "Stadhuis van Maastricht"
-      ],
-      "coordinates": {
-        "latitude": 50.851389,
-        "longitude": 5.691111
-      },
-      "entitySourceType": "wikidata",
-      "confidence": 0.95,
-      "retrievedAt": "2026-08-10T12:00:00.000Z",
-      "provenance": {
-        "entityId": {
-          "field": "entityId",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "poi-a9a7a4dd8c8ca876"
-        },
-        "entityType": {
-          "field": "entityType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "poi"
-        },
-        "parentCityEntityId": {
-          "field": "parentCityEntityId",
-          "sourceType": "repository-reference",
-          "source": "Netherlands City Entity",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1309",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "city-42d1de1ad3362df7"
-        },
-        "wikidataId": {
-          "field": "wikidataId",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1923527",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Q1923527"
-        },
-        "canonicalNameZh": {
-          "field": "canonicalNameZh",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1923527",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "馬斯特里赫特市政廳"
-        },
-        "canonicalNameEn": {
-          "field": "canonicalNameEn",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1923527",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Maastricht City Hall"
-        },
-        "aliases": {
-          "field": "aliases",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1923527",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": [
-            "Câmara Municipal de Maastricht",
-            "rijksmonumentnummer 27382",
-            "Stadhuis van Maastricht"
-          ]
-        },
-        "coordinates": {
-          "field": "coordinates",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1923527",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": {
-            "latitude": 50.851389,
-            "longitude": 5.691111
-          }
-        },
-        "entitySourceType": {
-          "field": "entitySourceType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "wikidata"
-        },
-        "confidence": {
-          "field": "confidence",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": 0.95
-        },
-        "retrievedAt": {
-          "field": "retrievedAt",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1923527",
           "retrievedAt": "2026-08-10T12:00:00.000Z",
           "value": "2026-08-10T12:00:00.000Z"
         }
@@ -1466,134 +836,6 @@
           "sourceType": "wikidata",
           "source": "Wikidata enwiki title plus wbgetentities",
           "sourceUrl": "https://www.wikidata.org/wiki/Q1735318",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "2026-08-10T12:00:00.000Z"
-        }
-      }
-    },
-    {
-      "schemaVersion": "route-v2-poi-baseline-p1b",
-      "entityId": "poi-85a2077dd928e40a",
-      "entityType": "poi",
-      "parentCityEntityId": "city-48c618f238f3263d",
-      "wikidataId": "Q3368242",
-      "canonicalNameZh": "烏德勒支聖馬丁主教座堂塔樓",
-      "canonicalNameEn": "Dom Tower",
-      "aliases": [
-        "Dom",
-        "Dom Tower of Utrecht",
-        "Dome tower",
-        "Domtoren",
-        "Domtoren van Utrecht",
-        "rijksmonumentnummer 36075",
-        "Turm des Utrechter Doms",
-        "Utrecht Dom Tower"
-      ],
-      "coordinates": {
-        "latitude": 52.09065,
-        "longitude": 5.1214
-      },
-      "entitySourceType": "wikidata",
-      "confidence": 0.95,
-      "retrievedAt": "2026-08-10T12:00:00.000Z",
-      "provenance": {
-        "entityId": {
-          "field": "entityId",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "poi-85a2077dd928e40a"
-        },
-        "entityType": {
-          "field": "entityType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "poi"
-        },
-        "parentCityEntityId": {
-          "field": "parentCityEntityId",
-          "sourceType": "repository-reference",
-          "source": "Netherlands City Entity",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q803",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "city-48c618f238f3263d"
-        },
-        "wikidataId": {
-          "field": "wikidataId",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q3368242",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Q3368242"
-        },
-        "canonicalNameZh": {
-          "field": "canonicalNameZh",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q3368242",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "烏德勒支聖馬丁主教座堂塔樓"
-        },
-        "canonicalNameEn": {
-          "field": "canonicalNameEn",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q3368242",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Dom Tower"
-        },
-        "aliases": {
-          "field": "aliases",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q3368242",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": [
-            "Dom",
-            "Dom Tower of Utrecht",
-            "Dome tower",
-            "Domtoren",
-            "Domtoren van Utrecht",
-            "rijksmonumentnummer 36075",
-            "Turm des Utrechter Doms",
-            "Utrecht Dom Tower"
-          ]
-        },
-        "coordinates": {
-          "field": "coordinates",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q3368242",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": {
-            "latitude": 52.09065,
-            "longitude": 5.1214
-          }
-        },
-        "entitySourceType": {
-          "field": "entitySourceType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "wikidata"
-        },
-        "confidence": {
-          "field": "confidence",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": 0.95
-        },
-        "retrievedAt": {
-          "field": "retrievedAt",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q3368242",
           "retrievedAt": "2026-08-10T12:00:00.000Z",
           "value": "2026-08-10T12:00:00.000Z"
         }
@@ -2121,526 +1363,6 @@
     },
     {
       "schemaVersion": "route-v2-poi-baseline-p1b",
-      "entityId": "poi-1b7c701f73e4322b",
-      "entityType": "poi",
-      "parentCityEntityId": "city-48c618f238f3263d",
-      "wikidataId": "Q936545",
-      "canonicalNameZh": "聖馬丁主教座堂",
-      "canonicalNameEn": "St. Martin's Cathedral",
-      "aliases": [
-        "Dom",
-        "Dom of Utrecht",
-        "Dom van Utrecht",
-        "Domkerk",
-        "rijksmonumentnummer 35973",
-        "St. Martin's Cathedral, Utrecht",
-        "Utrecht Cathedral",
-        "Utrechter Dom",
-        "Utrechter Domkirche"
-      ],
-      "coordinates": {
-        "latitude": 52.09092035228757,
-        "longitude": 5.122233261158417
-      },
-      "entitySourceType": "wikidata",
-      "confidence": 0.95,
-      "retrievedAt": "2026-08-10T12:00:00.000Z",
-      "provenance": {
-        "entityId": {
-          "field": "entityId",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "poi-1b7c701f73e4322b"
-        },
-        "entityType": {
-          "field": "entityType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "poi"
-        },
-        "parentCityEntityId": {
-          "field": "parentCityEntityId",
-          "sourceType": "repository-reference",
-          "source": "Netherlands City Entity",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q803",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "city-48c618f238f3263d"
-        },
-        "wikidataId": {
-          "field": "wikidataId",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q936545",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Q936545"
-        },
-        "canonicalNameZh": {
-          "field": "canonicalNameZh",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q936545",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "聖馬丁主教座堂"
-        },
-        "canonicalNameEn": {
-          "field": "canonicalNameEn",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q936545",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "St. Martin's Cathedral"
-        },
-        "aliases": {
-          "field": "aliases",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q936545",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": [
-            "Dom",
-            "Dom of Utrecht",
-            "Dom van Utrecht",
-            "Domkerk",
-            "rijksmonumentnummer 35973",
-            "St. Martin's Cathedral, Utrecht",
-            "Utrecht Cathedral",
-            "Utrechter Dom",
-            "Utrechter Domkirche"
-          ]
-        },
-        "coordinates": {
-          "field": "coordinates",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q936545",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": {
-            "latitude": 52.09092035228757,
-            "longitude": 5.122233261158417
-          }
-        },
-        "entitySourceType": {
-          "field": "entitySourceType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "wikidata"
-        },
-        "confidence": {
-          "field": "confidence",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": 0.95
-        },
-        "retrievedAt": {
-          "field": "retrievedAt",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q936545",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "2026-08-10T12:00:00.000Z"
-        }
-      }
-    },
-    {
-      "schemaVersion": "route-v2-poi-baseline-p1b",
-      "entityId": "poi-891e5b5595562f34",
-      "entityType": "poi",
-      "parentCityEntityId": "city-4e037309f993aff4",
-      "wikidataId": "Q2689330",
-      "canonicalNameZh": "Amsterdamse Poort",
-      "canonicalNameEn": "Amsterdamse Poort",
-      "aliases": [
-        "rijksmonumentnummer 19771",
-        "Spaarnwouderpoort"
-      ],
-      "coordinates": {
-        "latitude": 52.38062,
-        "longitude": 4.64646
-      },
-      "entitySourceType": "wikidata",
-      "confidence": 0.95,
-      "retrievedAt": "2026-08-10T12:00:00.000Z",
-      "provenance": {
-        "entityId": {
-          "field": "entityId",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "poi-891e5b5595562f34"
-        },
-        "entityType": {
-          "field": "entityType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "poi"
-        },
-        "parentCityEntityId": {
-          "field": "parentCityEntityId",
-          "sourceType": "repository-reference",
-          "source": "Netherlands City Entity",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q9920",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "city-4e037309f993aff4"
-        },
-        "wikidataId": {
-          "field": "wikidataId",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q2689330",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Q2689330"
-        },
-        "canonicalNameZh": {
-          "field": "canonicalNameZh",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q2689330",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Amsterdamse Poort"
-        },
-        "canonicalNameEn": {
-          "field": "canonicalNameEn",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q2689330",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Amsterdamse Poort"
-        },
-        "aliases": {
-          "field": "aliases",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q2689330",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": [
-            "rijksmonumentnummer 19771",
-            "Spaarnwouderpoort"
-          ]
-        },
-        "coordinates": {
-          "field": "coordinates",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q2689330",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": {
-            "latitude": 52.38062,
-            "longitude": 4.64646
-          }
-        },
-        "entitySourceType": {
-          "field": "entitySourceType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "wikidata"
-        },
-        "confidence": {
-          "field": "confidence",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": 0.95
-        },
-        "retrievedAt": {
-          "field": "retrievedAt",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q2689330",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "2026-08-10T12:00:00.000Z"
-        }
-      }
-    },
-    {
-      "schemaVersion": "route-v2-poi-baseline-p1b",
-      "entityId": "poi-d391c3eeaad3314f",
-      "entityType": "poi",
-      "parentCityEntityId": "city-4e037309f993aff4",
-      "wikidataId": "Q574961",
-      "canonicalNameZh": "弗兰斯·哈尔斯博物馆",
-      "canonicalNameEn": "Frans Hals Museum",
-      "aliases": [
-        "Frans Hals Museum - Hof",
-        "Frans Hals Museum (Haarlem)",
-        "Frans Hals Museum | De Hallen Haarlem",
-        "Frans Hals Museum Haarlem",
-        "Frans Hals Museum Hal",
-        "Frans Hals Museum Hof",
-        "Frans Hals Museum in Haarlem",
-        "Frans Halsmuseum",
-        "Haarlem Frans Halsmuseum",
-        "Museum Frans Hals",
-        "弗蘭斯·哈爾斯博物館"
-      ],
-      "coordinates": {
-        "latitude": 52.376609,
-        "longitude": 4.633598
-      },
-      "entitySourceType": "wikidata",
-      "confidence": 0.95,
-      "retrievedAt": "2026-08-10T12:00:00.000Z",
-      "provenance": {
-        "entityId": {
-          "field": "entityId",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "poi-d391c3eeaad3314f"
-        },
-        "entityType": {
-          "field": "entityType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "poi"
-        },
-        "parentCityEntityId": {
-          "field": "parentCityEntityId",
-          "sourceType": "repository-reference",
-          "source": "Netherlands City Entity",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q9920",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "city-4e037309f993aff4"
-        },
-        "wikidataId": {
-          "field": "wikidataId",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q574961",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Q574961"
-        },
-        "canonicalNameZh": {
-          "field": "canonicalNameZh",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q574961",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "弗兰斯·哈尔斯博物馆"
-        },
-        "canonicalNameEn": {
-          "field": "canonicalNameEn",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q574961",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Frans Hals Museum"
-        },
-        "aliases": {
-          "field": "aliases",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q574961",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": [
-            "Frans Hals Museum - Hof",
-            "Frans Hals Museum (Haarlem)",
-            "Frans Hals Museum | De Hallen Haarlem",
-            "Frans Hals Museum Haarlem",
-            "Frans Hals Museum Hal",
-            "Frans Hals Museum Hof",
-            "Frans Hals Museum in Haarlem",
-            "Frans Halsmuseum",
-            "Haarlem Frans Halsmuseum",
-            "Museum Frans Hals",
-            "弗蘭斯·哈爾斯博物館"
-          ]
-        },
-        "coordinates": {
-          "field": "coordinates",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q574961",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": {
-            "latitude": 52.376609,
-            "longitude": 4.633598
-          }
-        },
-        "entitySourceType": {
-          "field": "entitySourceType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "wikidata"
-        },
-        "confidence": {
-          "field": "confidence",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": 0.95
-        },
-        "retrievedAt": {
-          "field": "retrievedAt",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q574961",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "2026-08-10T12:00:00.000Z"
-        }
-      }
-    },
-    {
-      "schemaVersion": "route-v2-poi-baseline-p1b",
-      "entityId": "poi-3f8051df26ca9054",
-      "entityType": "poi",
-      "parentCityEntityId": "city-4e037309f993aff4",
-      "wikidataId": "Q1545193",
-      "canonicalNameZh": "圣巴弗教堂",
-      "canonicalNameEn": "Grote Kerk",
-      "aliases": [
-        "De Bavo",
-        "Grote Kerk (Haarlem)",
-        "Grote Kerk, Haarlem",
-        "Grote of Sint Bavokerk",
-        "Grote of Sint-Bavokerk",
-        "Grote of St.-Bavokerk",
-        "Haarlem Grote Kerk",
-        "Igreja de São Bavão",
-        "Igreja do St. Bavo",
-        "rijksmonumentnummer 19264",
-        "Sint-Bavokerk",
-        "St. Bavochurch",
-        "St.-Bavo-Kirche",
-        "St.-Bavokerk"
-      ],
-      "coordinates": {
-        "latitude": 52.380833333333,
-        "longitude": 4.6363888888889
-      },
-      "entitySourceType": "wikidata",
-      "confidence": 0.95,
-      "retrievedAt": "2026-08-10T12:00:00.000Z",
-      "provenance": {
-        "entityId": {
-          "field": "entityId",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "poi-3f8051df26ca9054"
-        },
-        "entityType": {
-          "field": "entityType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "poi"
-        },
-        "parentCityEntityId": {
-          "field": "parentCityEntityId",
-          "sourceType": "repository-reference",
-          "source": "Netherlands City Entity",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q9920",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "city-4e037309f993aff4"
-        },
-        "wikidataId": {
-          "field": "wikidataId",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1545193",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Q1545193"
-        },
-        "canonicalNameZh": {
-          "field": "canonicalNameZh",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1545193",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "圣巴弗教堂"
-        },
-        "canonicalNameEn": {
-          "field": "canonicalNameEn",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1545193",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Grote Kerk"
-        },
-        "aliases": {
-          "field": "aliases",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1545193",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": [
-            "De Bavo",
-            "Grote Kerk (Haarlem)",
-            "Grote Kerk, Haarlem",
-            "Grote of Sint Bavokerk",
-            "Grote of Sint-Bavokerk",
-            "Grote of St.-Bavokerk",
-            "Haarlem Grote Kerk",
-            "Igreja de São Bavão",
-            "Igreja do St. Bavo",
-            "rijksmonumentnummer 19264",
-            "Sint-Bavokerk",
-            "St. Bavochurch",
-            "St.-Bavo-Kirche",
-            "St.-Bavokerk"
-          ]
-        },
-        "coordinates": {
-          "field": "coordinates",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1545193",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": {
-            "latitude": 52.380833333333,
-            "longitude": 4.6363888888889
-          }
-        },
-        "entitySourceType": {
-          "field": "entitySourceType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "wikidata"
-        },
-        "confidence": {
-          "field": "confidence",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": 0.95
-        },
-        "retrievedAt": {
-          "field": "retrievedAt",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1545193",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "2026-08-10T12:00:00.000Z"
-        }
-      }
-    },
-    {
-      "schemaVersion": "route-v2-poi-baseline-p1b",
       "entityId": "poi-2206dc98d2762a93",
       "entityType": "poi",
       "parentCityEntityId": "city-4e037309f993aff4",
@@ -2996,130 +1718,6 @@
           "sourceType": "wikidata",
           "source": "Wikidata enwiki title plus wbgetentities",
           "sourceUrl": "https://www.wikidata.org/wiki/Q1820897",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "2026-08-10T12:00:00.000Z"
-        }
-      }
-    },
-    {
-      "schemaVersion": "route-v2-poi-baseline-p1b",
-      "entityId": "poi-9342b08c5e256382",
-      "entityType": "poi",
-      "parentCityEntityId": "city-66a343aed16e37a4",
-      "wikidataId": "Q1629214",
-      "canonicalNameZh": "贝居安会院",
-      "canonicalNameEn": "Begijnhof",
-      "aliases": [
-        "Begijnhof (Amsterdam-Centrum)",
-        "Begijnhof (Amsterdam)",
-        "Begijnhof Amsterdam",
-        "Begijnhof van Amsterdam",
-        "Beginenhaus Amsterdam, Niederlande",
-        "Het Begijnhof"
-      ],
-      "coordinates": {
-        "latitude": 52.36944444444445,
-        "longitude": 4.89
-      },
-      "entitySourceType": "wikidata",
-      "confidence": 0.95,
-      "retrievedAt": "2026-08-10T12:00:00.000Z",
-      "provenance": {
-        "entityId": {
-          "field": "entityId",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "poi-9342b08c5e256382"
-        },
-        "entityType": {
-          "field": "entityType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "poi"
-        },
-        "parentCityEntityId": {
-          "field": "parentCityEntityId",
-          "sourceType": "repository-reference",
-          "source": "Netherlands City Entity",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q727",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "city-66a343aed16e37a4"
-        },
-        "wikidataId": {
-          "field": "wikidataId",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1629214",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Q1629214"
-        },
-        "canonicalNameZh": {
-          "field": "canonicalNameZh",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1629214",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "贝居安会院"
-        },
-        "canonicalNameEn": {
-          "field": "canonicalNameEn",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1629214",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Begijnhof"
-        },
-        "aliases": {
-          "field": "aliases",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1629214",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": [
-            "Begijnhof (Amsterdam-Centrum)",
-            "Begijnhof (Amsterdam)",
-            "Begijnhof Amsterdam",
-            "Begijnhof van Amsterdam",
-            "Beginenhaus Amsterdam, Niederlande",
-            "Het Begijnhof"
-          ]
-        },
-        "coordinates": {
-          "field": "coordinates",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1629214",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": {
-            "latitude": 52.36944444444445,
-            "longitude": 4.89
-          }
-        },
-        "entitySourceType": {
-          "field": "entitySourceType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "wikidata"
-        },
-        "confidence": {
-          "field": "confidence",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": 0.95
-        },
-        "retrievedAt": {
-          "field": "retrievedAt",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1629214",
           "retrievedAt": "2026-08-10T12:00:00.000Z",
           "value": "2026-08-10T12:00:00.000Z"
         }
@@ -3895,200 +2493,6 @@
     },
     {
       "schemaVersion": "route-v2-poi-baseline-p1b",
-      "entityId": "poi-31faa7bc9fc7ef11",
-      "entityType": "poi",
-      "parentCityEntityId": "city-66a343aed16e37a4",
-      "wikidataId": "Q1056152",
-      "canonicalNameZh": "阿姆斯特丹王宫",
-      "canonicalNameEn": "Royal Palace of Amsterdam",
-      "aliases": [
-        "Amsterdam Burger Hall",
-        "Amsterdam City Hall",
-        "Amsterdam Civic Hall",
-        "Amsterdam Royal Palace",
-        "Amsterdam State House",
-        "Amsterdamer Stadthaus",
-        "Burger Hall",
-        "Burger Hall of Amsterdam",
-        "Burger Sael",
-        "Burger Zaal",
-        "Burgersael",
-        "Burgerzaal",
-        "City Hall",
-        "City Hall of Amsterdam",
-        "city hall, Amsterdam",
-        "Civic Hall of Amsterdam",
-        "Civil Hall",
-        "Dam Square Royal Palace",
-        "Dutch Royal Palace",
-        "Koninklijk Paleis",
-        "Koninklijk Paleis Amsterdam",
-        "Palácio Real",
-        "Palácio Real de Amesterdão",
-        "Palácio Real de Amsterdão",
-        "Paleis",
-        "Paleis de dam",
-        "Paleis op de Dam",
-        "rijksmonumentnummer 5941",
-        "Royal Palace",
-        "Royal Palace in Amsterdam",
-        "Royal Palace of the Netherlands",
-        "Stad Huis",
-        "Stadhuis",
-        "Stadhuis op de Dam",
-        "Stadt House",
-        "Stadt House at Amsterdam",
-        "Stadt Huis",
-        "Stadthuis",
-        "State House",
-        "State House of Amsterdam",
-        "Βασιλικό Παλάτι του Άμστερνταμ"
-      ],
-      "coordinates": {
-        "latitude": 52.37316666666667,
-        "longitude": 4.891361111111111
-      },
-      "entitySourceType": "wikidata",
-      "confidence": 0.95,
-      "retrievedAt": "2026-08-10T12:00:00.000Z",
-      "provenance": {
-        "entityId": {
-          "field": "entityId",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "poi-31faa7bc9fc7ef11"
-        },
-        "entityType": {
-          "field": "entityType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "poi"
-        },
-        "parentCityEntityId": {
-          "field": "parentCityEntityId",
-          "sourceType": "repository-reference",
-          "source": "Netherlands City Entity",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q727",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "city-66a343aed16e37a4"
-        },
-        "wikidataId": {
-          "field": "wikidataId",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1056152",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Q1056152"
-        },
-        "canonicalNameZh": {
-          "field": "canonicalNameZh",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1056152",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "阿姆斯特丹王宫"
-        },
-        "canonicalNameEn": {
-          "field": "canonicalNameEn",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1056152",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Royal Palace of Amsterdam"
-        },
-        "aliases": {
-          "field": "aliases",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1056152",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": [
-            "Amsterdam Burger Hall",
-            "Amsterdam City Hall",
-            "Amsterdam Civic Hall",
-            "Amsterdam Royal Palace",
-            "Amsterdam State House",
-            "Amsterdamer Stadthaus",
-            "Burger Hall",
-            "Burger Hall of Amsterdam",
-            "Burger Sael",
-            "Burger Zaal",
-            "Burgersael",
-            "Burgerzaal",
-            "City Hall",
-            "City Hall of Amsterdam",
-            "city hall, Amsterdam",
-            "Civic Hall of Amsterdam",
-            "Civil Hall",
-            "Dam Square Royal Palace",
-            "Dutch Royal Palace",
-            "Koninklijk Paleis",
-            "Koninklijk Paleis Amsterdam",
-            "Palácio Real",
-            "Palácio Real de Amesterdão",
-            "Palácio Real de Amsterdão",
-            "Paleis",
-            "Paleis de dam",
-            "Paleis op de Dam",
-            "rijksmonumentnummer 5941",
-            "Royal Palace",
-            "Royal Palace in Amsterdam",
-            "Royal Palace of the Netherlands",
-            "Stad Huis",
-            "Stadhuis",
-            "Stadhuis op de Dam",
-            "Stadt House",
-            "Stadt House at Amsterdam",
-            "Stadt Huis",
-            "Stadthuis",
-            "State House",
-            "State House of Amsterdam",
-            "Βασιλικό Παλάτι του Άμστερνταμ"
-          ]
-        },
-        "coordinates": {
-          "field": "coordinates",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1056152",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": {
-            "latitude": 52.37316666666667,
-            "longitude": 4.891361111111111
-          }
-        },
-        "entitySourceType": {
-          "field": "entitySourceType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "wikidata"
-        },
-        "confidence": {
-          "field": "confidence",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": 0.95
-        },
-        "retrievedAt": {
-          "field": "retrievedAt",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1056152",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "2026-08-10T12:00:00.000Z"
-        }
-      }
-    },
-    {
-      "schemaVersion": "route-v2-poi-baseline-p1b",
       "entityId": "poi-863117fdd63be037",
       "entityType": "poi",
       "parentCityEntityId": "city-66a343aed16e37a4",
@@ -4343,122 +2747,6 @@
     },
     {
       "schemaVersion": "route-v2-poi-baseline-p1b",
-      "entityId": "poi-b630995259ee8d8f",
-      "entityType": "poi",
-      "parentCityEntityId": "city-66a343aed16e37a4",
-      "wikidataId": "Q1130722",
-      "canonicalNameZh": "西教堂",
-      "canonicalNameEn": "Westerkerk",
-      "aliases": [
-        "rijksmonumentnummer 4298",
-        "Westerkerk (Amsterdam)"
-      ],
-      "coordinates": {
-        "latitude": 52.3745,
-        "longitude": 4.8839
-      },
-      "entitySourceType": "wikidata",
-      "confidence": 0.95,
-      "retrievedAt": "2026-08-10T12:00:00.000Z",
-      "provenance": {
-        "entityId": {
-          "field": "entityId",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "poi-b630995259ee8d8f"
-        },
-        "entityType": {
-          "field": "entityType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "poi"
-        },
-        "parentCityEntityId": {
-          "field": "parentCityEntityId",
-          "sourceType": "repository-reference",
-          "source": "Netherlands City Entity",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q727",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "city-66a343aed16e37a4"
-        },
-        "wikidataId": {
-          "field": "wikidataId",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1130722",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Q1130722"
-        },
-        "canonicalNameZh": {
-          "field": "canonicalNameZh",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1130722",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "西教堂"
-        },
-        "canonicalNameEn": {
-          "field": "canonicalNameEn",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1130722",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Westerkerk"
-        },
-        "aliases": {
-          "field": "aliases",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1130722",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": [
-            "rijksmonumentnummer 4298",
-            "Westerkerk (Amsterdam)"
-          ]
-        },
-        "coordinates": {
-          "field": "coordinates",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1130722",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": {
-            "latitude": 52.3745,
-            "longitude": 4.8839
-          }
-        },
-        "entitySourceType": {
-          "field": "entitySourceType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "wikidata"
-        },
-        "confidence": {
-          "field": "confidence",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": 0.95
-        },
-        "retrievedAt": {
-          "field": "retrievedAt",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1130722",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "2026-08-10T12:00:00.000Z"
-        }
-      }
-    },
-    {
-      "schemaVersion": "route-v2-poi-baseline-p1b",
       "entityId": "poi-1fc98c7d3d0e3a5c",
       "entityType": "poi",
       "parentCityEntityId": "city-bf507de627cbfc1e",
@@ -4583,236 +2871,6 @@
     },
     {
       "schemaVersion": "route-v2-poi-baseline-p1b",
-      "entityId": "poi-59858511e2d179d3",
-      "entityType": "poi",
-      "parentCityEntityId": "city-bf507de627cbfc1e",
-      "wikidataId": "Q1184149",
-      "canonicalNameZh": "代尔夫斯哈芬",
-      "canonicalNameEn": "Delfshaven",
-      "aliases": [
-        "Delfshaven (stadsdeel)"
-      ],
-      "coordinates": {
-        "latitude": 51.907222222222,
-        "longitude": 4.4483333333333
-      },
-      "entitySourceType": "wikidata",
-      "confidence": 0.95,
-      "retrievedAt": "2026-08-10T12:00:00.000Z",
-      "provenance": {
-        "entityId": {
-          "field": "entityId",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "poi-59858511e2d179d3"
-        },
-        "entityType": {
-          "field": "entityType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "poi"
-        },
-        "parentCityEntityId": {
-          "field": "parentCityEntityId",
-          "sourceType": "repository-reference",
-          "source": "Netherlands City Entity",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q34370",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "city-bf507de627cbfc1e"
-        },
-        "wikidataId": {
-          "field": "wikidataId",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1184149",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Q1184149"
-        },
-        "canonicalNameZh": {
-          "field": "canonicalNameZh",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1184149",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "代尔夫斯哈芬"
-        },
-        "canonicalNameEn": {
-          "field": "canonicalNameEn",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1184149",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Delfshaven"
-        },
-        "aliases": {
-          "field": "aliases",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1184149",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": [
-            "Delfshaven (stadsdeel)"
-          ]
-        },
-        "coordinates": {
-          "field": "coordinates",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1184149",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": {
-            "latitude": 51.907222222222,
-            "longitude": 4.4483333333333
-          }
-        },
-        "entitySourceType": {
-          "field": "entitySourceType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "wikidata"
-        },
-        "confidence": {
-          "field": "confidence",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": 0.95
-        },
-        "retrievedAt": {
-          "field": "retrievedAt",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1184149",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "2026-08-10T12:00:00.000Z"
-        }
-      }
-    },
-    {
-      "schemaVersion": "route-v2-poi-baseline-p1b",
-      "entityId": "poi-5a25ac86e0ae1234",
-      "entityType": "poi",
-      "parentCityEntityId": "city-bf507de627cbfc1e",
-      "wikidataId": "Q41061028",
-      "canonicalNameZh": "Depot Boijmans Van Beuningen",
-      "canonicalNameEn": "Depot Boijmans Van Beuningen",
-      "aliases": [
-        "Collectiegebouw",
-        "De Pot"
-      ],
-      "coordinates": {
-        "latitude": 51.91379,
-        "longitude": 4.47125
-      },
-      "entitySourceType": "wikidata",
-      "confidence": 0.95,
-      "retrievedAt": "2026-08-10T12:00:00.000Z",
-      "provenance": {
-        "entityId": {
-          "field": "entityId",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "poi-5a25ac86e0ae1234"
-        },
-        "entityType": {
-          "field": "entityType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "poi"
-        },
-        "parentCityEntityId": {
-          "field": "parentCityEntityId",
-          "sourceType": "repository-reference",
-          "source": "Netherlands City Entity",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q34370",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "city-bf507de627cbfc1e"
-        },
-        "wikidataId": {
-          "field": "wikidataId",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q41061028",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Q41061028"
-        },
-        "canonicalNameZh": {
-          "field": "canonicalNameZh",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q41061028",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Depot Boijmans Van Beuningen"
-        },
-        "canonicalNameEn": {
-          "field": "canonicalNameEn",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q41061028",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Depot Boijmans Van Beuningen"
-        },
-        "aliases": {
-          "field": "aliases",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q41061028",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": [
-            "Collectiegebouw",
-            "De Pot"
-          ]
-        },
-        "coordinates": {
-          "field": "coordinates",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q41061028",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": {
-            "latitude": 51.91379,
-            "longitude": 4.47125
-          }
-        },
-        "entitySourceType": {
-          "field": "entitySourceType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "wikidata"
-        },
-        "confidence": {
-          "field": "confidence",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": 0.95
-        },
-        "retrievedAt": {
-          "field": "retrievedAt",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q41061028",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "2026-08-10T12:00:00.000Z"
-        }
-      }
-    },
-    {
-      "schemaVersion": "route-v2-poi-baseline-p1b",
       "entityId": "poi-fd562cabc655e6dc",
       "entityType": "poi",
       "parentCityEntityId": "city-bf507de627cbfc1e",
@@ -4922,240 +2980,6 @@
           "sourceType": "wikidata",
           "source": "Wikidata enwiki title plus wbgetentities",
           "sourceUrl": "https://www.wikidata.org/wiki/Q1668856",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "2026-08-10T12:00:00.000Z"
-        }
-      }
-    },
-    {
-      "schemaVersion": "route-v2-poi-baseline-p1b",
-      "entityId": "poi-589ceb9a1201ac7a",
-      "entityType": "poi",
-      "parentCityEntityId": "city-bf507de627cbfc1e",
-      "wikidataId": "Q3327230",
-      "canonicalNameZh": "市集广场",
-      "canonicalNameEn": "Markthal",
-      "aliases": [
-        "Market Hall",
-        "Markthal (Rotterdam)",
-        "Markthalle"
-      ],
-      "coordinates": {
-        "latitude": 51.92011,
-        "longitude": 4.48695
-      },
-      "entitySourceType": "wikidata",
-      "confidence": 0.95,
-      "retrievedAt": "2026-08-10T12:00:00.000Z",
-      "provenance": {
-        "entityId": {
-          "field": "entityId",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "poi-589ceb9a1201ac7a"
-        },
-        "entityType": {
-          "field": "entityType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "poi"
-        },
-        "parentCityEntityId": {
-          "field": "parentCityEntityId",
-          "sourceType": "repository-reference",
-          "source": "Netherlands City Entity",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q34370",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "city-bf507de627cbfc1e"
-        },
-        "wikidataId": {
-          "field": "wikidataId",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q3327230",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Q3327230"
-        },
-        "canonicalNameZh": {
-          "field": "canonicalNameZh",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q3327230",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "市集广场"
-        },
-        "canonicalNameEn": {
-          "field": "canonicalNameEn",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q3327230",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Markthal"
-        },
-        "aliases": {
-          "field": "aliases",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q3327230",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": [
-            "Market Hall",
-            "Markthal (Rotterdam)",
-            "Markthalle"
-          ]
-        },
-        "coordinates": {
-          "field": "coordinates",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q3327230",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": {
-            "latitude": 51.92011,
-            "longitude": 4.48695
-          }
-        },
-        "entitySourceType": {
-          "field": "entitySourceType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "wikidata"
-        },
-        "confidence": {
-          "field": "confidence",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": 0.95
-        },
-        "retrievedAt": {
-          "field": "retrievedAt",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q3327230",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "2026-08-10T12:00:00.000Z"
-        }
-      }
-    },
-    {
-      "schemaVersion": "route-v2-poi-baseline-p1b",
-      "entityId": "poi-c8ab11f7d24339ba",
-      "entityType": "poi",
-      "parentCityEntityId": "city-e05bc954475d4069",
-      "wikidataId": "Q863935",
-      "canonicalNameZh": "内庭",
-      "canonicalNameEn": "Binnenhof",
-      "aliases": [
-        "Binnenhof (Den Haag)",
-        "Hof van Holland"
-      ],
-      "coordinates": {
-        "latitude": 52.079639,
-        "longitude": 4.313375
-      },
-      "entitySourceType": "wikidata",
-      "confidence": 0.95,
-      "retrievedAt": "2026-08-10T12:00:00.000Z",
-      "provenance": {
-        "entityId": {
-          "field": "entityId",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "poi-c8ab11f7d24339ba"
-        },
-        "entityType": {
-          "field": "entityType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "poi"
-        },
-        "parentCityEntityId": {
-          "field": "parentCityEntityId",
-          "sourceType": "repository-reference",
-          "source": "Netherlands City Entity",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q36600",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "city-e05bc954475d4069"
-        },
-        "wikidataId": {
-          "field": "wikidataId",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q863935",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Q863935"
-        },
-        "canonicalNameZh": {
-          "field": "canonicalNameZh",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q863935",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "内庭"
-        },
-        "canonicalNameEn": {
-          "field": "canonicalNameEn",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q863935",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Binnenhof"
-        },
-        "aliases": {
-          "field": "aliases",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q863935",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": [
-            "Binnenhof (Den Haag)",
-            "Hof van Holland"
-          ]
-        },
-        "coordinates": {
-          "field": "coordinates",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q863935",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": {
-            "latitude": 52.079639,
-            "longitude": 4.313375
-          }
-        },
-        "entitySourceType": {
-          "field": "entitySourceType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "wikidata"
-        },
-        "confidence": {
-          "field": "confidence",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": 0.95
-        },
-        "retrievedAt": {
-          "field": "retrievedAt",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q863935",
           "retrievedAt": "2026-08-10T12:00:00.000Z",
           "value": "2026-08-10T12:00:00.000Z"
         }
@@ -5649,134 +3473,6 @@
     },
     {
       "schemaVersion": "route-v2-poi-baseline-p1b",
-      "entityId": "poi-c0dbcdb181181661",
-      "entityType": "poi",
-      "parentCityEntityId": "city-e05bc954475d4069",
-      "wikidataId": "Q1889721",
-      "canonicalNameZh": "诺代恩德宫",
-      "canonicalNameEn": "Noordeinde Palace",
-      "aliases": [
-        "Noordeinde",
-        "Noordeinde 68",
-        "Palace (The Hague)",
-        "Palace Noordeinde",
-        "Palácio de Noordeinde",
-        "Palácio Noordeinde",
-        "Paleis Noordeinde",
-        "rijksmonumentnummer 17834"
-      ],
-      "coordinates": {
-        "latitude": 52.080917,
-        "longitude": 4.306136
-      },
-      "entitySourceType": "wikidata",
-      "confidence": 0.95,
-      "retrievedAt": "2026-08-10T12:00:00.000Z",
-      "provenance": {
-        "entityId": {
-          "field": "entityId",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "poi-c0dbcdb181181661"
-        },
-        "entityType": {
-          "field": "entityType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "poi"
-        },
-        "parentCityEntityId": {
-          "field": "parentCityEntityId",
-          "sourceType": "repository-reference",
-          "source": "Netherlands City Entity",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q36600",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "city-e05bc954475d4069"
-        },
-        "wikidataId": {
-          "field": "wikidataId",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1889721",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Q1889721"
-        },
-        "canonicalNameZh": {
-          "field": "canonicalNameZh",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1889721",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "诺代恩德宫"
-        },
-        "canonicalNameEn": {
-          "field": "canonicalNameEn",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1889721",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Noordeinde Palace"
-        },
-        "aliases": {
-          "field": "aliases",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1889721",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": [
-            "Noordeinde",
-            "Noordeinde 68",
-            "Palace (The Hague)",
-            "Palace Noordeinde",
-            "Palácio de Noordeinde",
-            "Palácio Noordeinde",
-            "Paleis Noordeinde",
-            "rijksmonumentnummer 17834"
-          ]
-        },
-        "coordinates": {
-          "field": "coordinates",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1889721",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": {
-            "latitude": 52.080917,
-            "longitude": 4.306136
-          }
-        },
-        "entitySourceType": {
-          "field": "entitySourceType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "wikidata"
-        },
-        "confidence": {
-          "field": "confidence",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": 0.95
-        },
-        "retrievedAt": {
-          "field": "retrievedAt",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1889721",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "2026-08-10T12:00:00.000Z"
-        }
-      }
-    },
-    {
-      "schemaVersion": "route-v2-poi-baseline-p1b",
       "entityId": "poi-2720c01c0d1dad6e",
       "entityType": "poi",
       "parentCityEntityId": "city-e05bc954475d4069",
@@ -5886,500 +3582,6 @@
           "sourceType": "wikidata",
           "source": "Wikidata enwiki title plus wbgetentities",
           "sourceUrl": "https://www.wikidata.org/wiki/Q110996824",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "2026-08-10T12:00:00.000Z"
-        }
-      }
-    },
-    {
-      "schemaVersion": "route-v2-poi-baseline-p1b",
-      "entityId": "poi-1a8272341801338a",
-      "entityType": "poi",
-      "parentCityEntityId": "city-e05bc954475d4069",
-      "wikidataId": "Q834448",
-      "canonicalNameZh": "和平宫",
-      "canonicalNameEn": "Peace Palace",
-      "aliases": [
-        "Friedenspalast",
-        "Palácio da Paz",
-        "rijksmonumentnummer 333074",
-        "Vredespaleis",
-        "Παλάτι της Ειρήνης"
-      ],
-      "coordinates": {
-        "latitude": 52.0866,
-        "longitude": 4.2955
-      },
-      "entitySourceType": "wikidata",
-      "confidence": 0.95,
-      "retrievedAt": "2026-08-10T12:00:00.000Z",
-      "provenance": {
-        "entityId": {
-          "field": "entityId",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "poi-1a8272341801338a"
-        },
-        "entityType": {
-          "field": "entityType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "poi"
-        },
-        "parentCityEntityId": {
-          "field": "parentCityEntityId",
-          "sourceType": "repository-reference",
-          "source": "Netherlands City Entity",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q36600",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "city-e05bc954475d4069"
-        },
-        "wikidataId": {
-          "field": "wikidataId",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q834448",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Q834448"
-        },
-        "canonicalNameZh": {
-          "field": "canonicalNameZh",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q834448",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "和平宫"
-        },
-        "canonicalNameEn": {
-          "field": "canonicalNameEn",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q834448",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Peace Palace"
-        },
-        "aliases": {
-          "field": "aliases",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q834448",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": [
-            "Friedenspalast",
-            "Palácio da Paz",
-            "rijksmonumentnummer 333074",
-            "Vredespaleis",
-            "Παλάτι της Ειρήνης"
-          ]
-        },
-        "coordinates": {
-          "field": "coordinates",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q834448",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": {
-            "latitude": 52.0866,
-            "longitude": 4.2955
-          }
-        },
-        "entitySourceType": {
-          "field": "entitySourceType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "wikidata"
-        },
-        "confidence": {
-          "field": "confidence",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": 0.95
-        },
-        "retrievedAt": {
-          "field": "retrievedAt",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q834448",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "2026-08-10T12:00:00.000Z"
-        }
-      }
-    },
-    {
-      "schemaVersion": "route-v2-poi-baseline-p1b",
-      "entityId": "poi-5139f82da7a58fb3",
-      "entityType": "poi",
-      "parentCityEntityId": "city-e9334e2f8591e78c",
-      "wikidataId": "Q732262",
-      "canonicalNameZh": "台夫特市政廳",
-      "canonicalNameEn": "Delft City Hall",
-      "aliases": [
-        "City Hall, Delft",
-        "Rathaus von Delft",
-        "rijksmonument 11901",
-        "rijksmonumentnummer 11901",
-        "Stadhuis Delft",
-        "Stadhuis van Delft",
-        "Stadhuis, Delft",
-        "Town hall of Delft"
-      ],
-      "coordinates": {
-        "latitude": 52.011421,
-        "longitude": 4.357903
-      },
-      "entitySourceType": "wikidata",
-      "confidence": 0.95,
-      "retrievedAt": "2026-08-10T12:00:00.000Z",
-      "provenance": {
-        "entityId": {
-          "field": "entityId",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "poi-5139f82da7a58fb3"
-        },
-        "entityType": {
-          "field": "entityType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "poi"
-        },
-        "parentCityEntityId": {
-          "field": "parentCityEntityId",
-          "sourceType": "repository-reference",
-          "source": "Netherlands City Entity",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q690",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "city-e9334e2f8591e78c"
-        },
-        "wikidataId": {
-          "field": "wikidataId",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q732262",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Q732262"
-        },
-        "canonicalNameZh": {
-          "field": "canonicalNameZh",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q732262",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "台夫特市政廳"
-        },
-        "canonicalNameEn": {
-          "field": "canonicalNameEn",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q732262",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Delft City Hall"
-        },
-        "aliases": {
-          "field": "aliases",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q732262",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": [
-            "City Hall, Delft",
-            "Rathaus von Delft",
-            "rijksmonument 11901",
-            "rijksmonumentnummer 11901",
-            "Stadhuis Delft",
-            "Stadhuis van Delft",
-            "Stadhuis, Delft",
-            "Town hall of Delft"
-          ]
-        },
-        "coordinates": {
-          "field": "coordinates",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q732262",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": {
-            "latitude": 52.011421,
-            "longitude": 4.357903
-          }
-        },
-        "entitySourceType": {
-          "field": "entitySourceType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "wikidata"
-        },
-        "confidence": {
-          "field": "confidence",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": 0.95
-        },
-        "retrievedAt": {
-          "field": "retrievedAt",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q732262",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "2026-08-10T12:00:00.000Z"
-        }
-      }
-    },
-    {
-      "schemaVersion": "route-v2-poi-baseline-p1b",
-      "entityId": "poi-912bc16b9ddf3c8b",
-      "entityType": "poi",
-      "parentCityEntityId": "city-e9334e2f8591e78c",
-      "wikidataId": "Q678611",
-      "canonicalNameZh": "新教堂",
-      "canonicalNameEn": "Nieuwe Kerk",
-      "aliases": [
-        "Delft church",
-        "New Church, Delft",
-        "Nieuwe Kerk (Delft)",
-        "Nieuwe Kerk Delft",
-        "Nieuwe Kerk, Delft",
-        "rijksmonumentnummer 11872",
-        "Νέα Εκκλησία στο Ντελφτ"
-      ],
-      "coordinates": {
-        "latitude": 52.012139,
-        "longitude": 4.360194
-      },
-      "entitySourceType": "wikidata",
-      "confidence": 0.95,
-      "retrievedAt": "2026-08-10T12:00:00.000Z",
-      "provenance": {
-        "entityId": {
-          "field": "entityId",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "poi-912bc16b9ddf3c8b"
-        },
-        "entityType": {
-          "field": "entityType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "poi"
-        },
-        "parentCityEntityId": {
-          "field": "parentCityEntityId",
-          "sourceType": "repository-reference",
-          "source": "Netherlands City Entity",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q690",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "city-e9334e2f8591e78c"
-        },
-        "wikidataId": {
-          "field": "wikidataId",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q678611",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Q678611"
-        },
-        "canonicalNameZh": {
-          "field": "canonicalNameZh",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q678611",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "新教堂"
-        },
-        "canonicalNameEn": {
-          "field": "canonicalNameEn",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q678611",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Nieuwe Kerk"
-        },
-        "aliases": {
-          "field": "aliases",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q678611",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": [
-            "Delft church",
-            "New Church, Delft",
-            "Nieuwe Kerk (Delft)",
-            "Nieuwe Kerk Delft",
-            "Nieuwe Kerk, Delft",
-            "rijksmonumentnummer 11872",
-            "Νέα Εκκλησία στο Ντελφτ"
-          ]
-        },
-        "coordinates": {
-          "field": "coordinates",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q678611",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": {
-            "latitude": 52.012139,
-            "longitude": 4.360194
-          }
-        },
-        "entitySourceType": {
-          "field": "entitySourceType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "wikidata"
-        },
-        "confidence": {
-          "field": "confidence",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": 0.95
-        },
-        "retrievedAt": {
-          "field": "retrievedAt",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q678611",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "2026-08-10T12:00:00.000Z"
-        }
-      }
-    },
-    {
-      "schemaVersion": "route-v2-poi-baseline-p1b",
-      "entityId": "poi-adfceb877a3e69ff",
-      "entityType": "poi",
-      "parentCityEntityId": "city-e9334e2f8591e78c",
-      "wikidataId": "Q612065",
-      "canonicalNameZh": "老教堂",
-      "canonicalNameEn": "Oude Kerk",
-      "aliases": [
-        "Oude Kerk (Delft)",
-        "Oude Kerk, St. Hippolytuskerk",
-        "rijksmonumentnummer 11970"
-      ],
-      "coordinates": {
-        "latitude": 52.0125,
-        "longitude": 4.355278
-      },
-      "entitySourceType": "wikidata",
-      "confidence": 0.95,
-      "retrievedAt": "2026-08-10T12:00:00.000Z",
-      "provenance": {
-        "entityId": {
-          "field": "entityId",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "poi-adfceb877a3e69ff"
-        },
-        "entityType": {
-          "field": "entityType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "poi"
-        },
-        "parentCityEntityId": {
-          "field": "parentCityEntityId",
-          "sourceType": "repository-reference",
-          "source": "Netherlands City Entity",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q690",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "city-e9334e2f8591e78c"
-        },
-        "wikidataId": {
-          "field": "wikidataId",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q612065",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Q612065"
-        },
-        "canonicalNameZh": {
-          "field": "canonicalNameZh",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q612065",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "老教堂"
-        },
-        "canonicalNameEn": {
-          "field": "canonicalNameEn",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q612065",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Oude Kerk"
-        },
-        "aliases": {
-          "field": "aliases",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q612065",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": [
-            "Oude Kerk (Delft)",
-            "Oude Kerk, St. Hippolytuskerk",
-            "rijksmonumentnummer 11970"
-          ]
-        },
-        "coordinates": {
-          "field": "coordinates",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q612065",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": {
-            "latitude": 52.0125,
-            "longitude": 4.355278
-          }
-        },
-        "entitySourceType": {
-          "field": "entitySourceType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "wikidata"
-        },
-        "confidence": {
-          "field": "confidence",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": 0.95
-        },
-        "retrievedAt": {
-          "field": "retrievedAt",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q612065",
           "retrievedAt": "2026-08-10T12:00:00.000Z",
           "value": "2026-08-10T12:00:00.000Z"
         }
@@ -6741,20 +3943,19 @@
     },
     {
       "schemaVersion": "route-v2-poi-baseline-p1b",
-      "entityId": "poi-35fc4660ff79c41d",
+      "entityId": "poi-d19ff456cbde82f2",
       "entityType": "poi",
-      "parentCityEntityId": "city-e9def10b7a0cdea7",
-      "wikidataId": "Q17343784",
-      "canonicalNameZh": "Museum Giethoorn 't Olde Maat Uus",
-      "canonicalNameEn": "Museum Giethoorn 't Olde Maat Uus",
+      "parentCityEntityId": "city-eda8b459459267a5",
+      "wikidataId": "Q1542668",
+      "canonicalNameZh": "格罗宁根博物馆",
+      "canonicalNameEn": "Groninger Museum",
       "aliases": [
-        "Binnenpad 52, Giethoorn",
-        "Boerderijtje met dwars woondeel onder rieten schilddak waarop het rieten dak van het bedrijfsdeel loodrecht aansluit",
-        "rijksmonumentnummer 10503"
+        "Χρόνινγκερ Μουζέουμ",
+        "格罗宁格博物馆"
       ],
       "coordinates": {
-        "latitude": 52.72221,
-        "longitude": 6.08971
+        "latitude": 53.211944,
+        "longitude": 6.565556
       },
       "entitySourceType": "wikidata",
       "confidence": 0.95,
@@ -6766,7 +3967,7 @@
           "source": "Route V2 Knowledge Expansion batch04e-netherlands",
           "sourceUrl": "",
           "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "poi-35fc4660ff79c41d"
+          "value": "poi-d19ff456cbde82f2"
         },
         "entityType": {
           "field": "entityType",
@@ -6780,55 +3981,54 @@
           "field": "parentCityEntityId",
           "sourceType": "repository-reference",
           "source": "Netherlands City Entity",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1025664",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q749",
           "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "city-e9def10b7a0cdea7"
+          "value": "city-eda8b459459267a5"
         },
         "wikidataId": {
           "field": "wikidataId",
           "sourceType": "wikidata",
           "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q17343784",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1542668",
           "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Q17343784"
+          "value": "Q1542668"
         },
         "canonicalNameZh": {
           "field": "canonicalNameZh",
           "sourceType": "wikidata",
           "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q17343784",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1542668",
           "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Museum Giethoorn 't Olde Maat Uus"
+          "value": "格罗宁根博物馆"
         },
         "canonicalNameEn": {
           "field": "canonicalNameEn",
           "sourceType": "wikidata",
           "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q17343784",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1542668",
           "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Museum Giethoorn 't Olde Maat Uus"
+          "value": "Groninger Museum"
         },
         "aliases": {
           "field": "aliases",
           "sourceType": "wikidata",
           "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q17343784",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1542668",
           "retrievedAt": "2026-08-10T12:00:00.000Z",
           "value": [
-            "Binnenpad 52, Giethoorn",
-            "Boerderijtje met dwars woondeel onder rieten schilddak waarop het rieten dak van het bedrijfsdeel loodrecht aansluit",
-            "rijksmonumentnummer 10503"
+            "Χρόνινγκερ Μουζέουμ",
+            "格罗宁格博物馆"
           ]
         },
         "coordinates": {
           "field": "coordinates",
           "sourceType": "wikidata",
           "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q17343784",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1542668",
           "retrievedAt": "2026-08-10T12:00:00.000Z",
           "value": {
-            "latitude": 52.72221,
-            "longitude": 6.08971
+            "latitude": 53.211944,
+            "longitude": 6.565556
           }
         },
         "entitySourceType": {
@@ -6851,7 +4051,7 @@
           "field": "retrievedAt",
           "sourceType": "wikidata",
           "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q17343784",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1542668",
           "retrievedAt": "2026-08-10T12:00:00.000Z",
           "value": "2026-08-10T12:00:00.000Z"
         }
@@ -6859,20 +4059,19 @@
     },
     {
       "schemaVersion": "route-v2-poi-baseline-p1b",
-      "entityId": "poi-dd260e3017e04203",
+      "entityId": "poi-e1429081d8645a3f",
       "entityType": "poi",
-      "parentCityEntityId": "city-e9def10b7a0cdea7",
-      "wikidataId": "Q1813968",
-      "canonicalNameZh": "Tjasker Giethoorn",
-      "canonicalNameEn": "Tjasker Giethoorn",
+      "parentCityEntityId": "city-eda8b459459267a5",
+      "wikidataId": "Q2004350",
+      "canonicalNameZh": "北方海事博物馆",
+      "canonicalNameEn": "Northern Maritime Museum",
       "aliases": [
-        "'t Olde Maat Uus Tjasker",
-        "Tjasker - bij Museum Giethoorn",
-        "Tjasker bij Museum Giethoorn"
+        "Noord. Scheepvaartmuseum",
+        "Noordelijk Scheepvaartmuseum"
       ],
       "coordinates": {
-        "latitude": 52.722222,
-        "longitude": 6.09
+        "latitude": 53.21639,
+        "longitude": 6.56
       },
       "entitySourceType": "wikidata",
       "confidence": 0.95,
@@ -6884,7 +4083,7 @@
           "source": "Route V2 Knowledge Expansion batch04e-netherlands",
           "sourceUrl": "",
           "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "poi-dd260e3017e04203"
+          "value": "poi-e1429081d8645a3f"
         },
         "entityType": {
           "field": "entityType",
@@ -6898,55 +4097,54 @@
           "field": "parentCityEntityId",
           "sourceType": "repository-reference",
           "source": "Netherlands City Entity",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1025664",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q749",
           "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "city-e9def10b7a0cdea7"
+          "value": "city-eda8b459459267a5"
         },
         "wikidataId": {
           "field": "wikidataId",
           "sourceType": "wikidata",
           "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1813968",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q2004350",
           "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Q1813968"
+          "value": "Q2004350"
         },
         "canonicalNameZh": {
           "field": "canonicalNameZh",
           "sourceType": "wikidata",
           "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1813968",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q2004350",
           "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Tjasker Giethoorn"
+          "value": "北方海事博物馆"
         },
         "canonicalNameEn": {
           "field": "canonicalNameEn",
           "sourceType": "wikidata",
           "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1813968",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q2004350",
           "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Tjasker Giethoorn"
+          "value": "Northern Maritime Museum"
         },
         "aliases": {
           "field": "aliases",
           "sourceType": "wikidata",
           "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1813968",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q2004350",
           "retrievedAt": "2026-08-10T12:00:00.000Z",
           "value": [
-            "'t Olde Maat Uus Tjasker",
-            "Tjasker - bij Museum Giethoorn",
-            "Tjasker bij Museum Giethoorn"
+            "Noord. Scheepvaartmuseum",
+            "Noordelijk Scheepvaartmuseum"
           ]
         },
         "coordinates": {
           "field": "coordinates",
           "sourceType": "wikidata",
           "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1813968",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q2004350",
           "retrievedAt": "2026-08-10T12:00:00.000Z",
           "value": {
-            "latitude": 52.722222,
-            "longitude": 6.09
+            "latitude": 53.21639,
+            "longitude": 6.56
           }
         },
         "entitySourceType": {
@@ -6969,7 +4167,1941 @@
           "field": "retrievedAt",
           "sourceType": "wikidata",
           "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1813968",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q2004350",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "2026-08-10T12:00:00.000Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-poi-baseline-p1b",
+      "entityId": "poi-8b8e4921938609c0",
+      "entityType": "poi",
+      "parentCityEntityId": "city-42d1de1ad3362df7",
+      "wikidataId": "Q908127",
+      "canonicalNameZh": "聖母教堂",
+      "canonicalNameEn": "Basilica of Our Lady",
+      "aliases": [
+        "Basílica da Assunção de Nossa Senhora (Maastricht)",
+        "Basiliek van Onze Lieve Vrouw ten Hemelopneming",
+        "Basiliek van Onze Lieve Vrouw Tenhemelopneming",
+        "Basiliek van Onze Lieve Vrouwe Sterre der Zee",
+        "Basiliek van Onze Lieve Vrouwe Tenhemelopneming",
+        "Basiliek van Onze-Lieve-Vrouw-Tenhemelopneming",
+        "Basiliek van Onze-Lieve-Vrouw-Tenhemelopneming (Maastricht)",
+        "Liebfrauenbasilika",
+        "Onze Lieve Vrouwe Basiliek",
+        "Onze-Lieve-Vrouwebasiliek",
+        "Onze-Lieve-Vrouwebasiliek (Maastricht)",
+        "rijksmonumentnummer 27454",
+        "Slevrouwe"
+      ],
+      "coordinates": {
+        "latitude": 50.84762,
+        "longitude": 5.69344
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-08-10T12:00:00.000Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "poi-8b8e4921938609c0"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "poi"
+        },
+        "parentCityEntityId": {
+          "field": "parentCityEntityId",
+          "sourceType": "repository-reference",
+          "source": "Netherlands City Entity",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1309",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "city-42d1de1ad3362df7"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q908127",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "Q908127"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q908127",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "聖母教堂"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q908127",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "Basilica of Our Lady"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q908127",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": [
+            "Basílica da Assunção de Nossa Senhora (Maastricht)",
+            "Basiliek van Onze Lieve Vrouw ten Hemelopneming",
+            "Basiliek van Onze Lieve Vrouw Tenhemelopneming",
+            "Basiliek van Onze Lieve Vrouwe Sterre der Zee",
+            "Basiliek van Onze Lieve Vrouwe Tenhemelopneming",
+            "Basiliek van Onze-Lieve-Vrouw-Tenhemelopneming",
+            "Basiliek van Onze-Lieve-Vrouw-Tenhemelopneming (Maastricht)",
+            "Liebfrauenbasilika",
+            "Onze Lieve Vrouwe Basiliek",
+            "Onze-Lieve-Vrouwebasiliek",
+            "Onze-Lieve-Vrouwebasiliek (Maastricht)",
+            "rijksmonumentnummer 27454",
+            "Slevrouwe"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q908127",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": {
+            "latitude": 50.84762,
+            "longitude": 5.69344
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q908127",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "2026-08-10T12:00:00.000Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-poi-baseline-p1b",
+      "entityId": "poi-494e32396974b947",
+      "entityType": "poi",
+      "parentCityEntityId": "city-42d1de1ad3362df7",
+      "wikidataId": "Q253935",
+      "canonicalNameZh": "圣瑟法斯圣殿",
+      "canonicalNameEn": "Basilica of Saint Servatius",
+      "aliases": [
+        "Basilica Saint Servatius",
+        "rijksmonumentnummer 27168",
+        "Servaasbasiliek",
+        "Sint Servaas Basiliek",
+        "Sint-Servaasbasiliek",
+        "Sint-Servaasbasiliek (Maastricht)"
+      ],
+      "coordinates": {
+        "latitude": 50.848817,
+        "longitude": 5.6872
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-08-10T12:00:00.000Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "poi-494e32396974b947"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "poi"
+        },
+        "parentCityEntityId": {
+          "field": "parentCityEntityId",
+          "sourceType": "repository-reference",
+          "source": "Netherlands City Entity",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1309",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "city-42d1de1ad3362df7"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q253935",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "Q253935"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q253935",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "圣瑟法斯圣殿"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q253935",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "Basilica of Saint Servatius"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q253935",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": [
+            "Basilica Saint Servatius",
+            "rijksmonumentnummer 27168",
+            "Servaasbasiliek",
+            "Sint Servaas Basiliek",
+            "Sint-Servaasbasiliek",
+            "Sint-Servaasbasiliek (Maastricht)"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q253935",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": {
+            "latitude": 50.848817,
+            "longitude": 5.6872
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q253935",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "2026-08-10T12:00:00.000Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-poi-baseline-p1b",
+      "entityId": "poi-ca0b4ea91b9fcf42",
+      "entityType": "poi",
+      "parentCityEntityId": "city-42d1de1ad3362df7",
+      "wikidataId": "Q3316628",
+      "canonicalNameZh": "Fort Sint Pieter",
+      "canonicalNameEn": "Fort Sint Pieter",
+      "aliases": [
+        "Fort St. Pieter",
+        "rijksmonumentnummer 28023",
+        "Saint Peter Fort",
+        "Sint Pieter Fort"
+      ],
+      "coordinates": {
+        "latitude": 50.83612,
+        "longitude": 5.68408
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-08-10T12:00:00.000Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "poi-ca0b4ea91b9fcf42"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "poi"
+        },
+        "parentCityEntityId": {
+          "field": "parentCityEntityId",
+          "sourceType": "repository-reference",
+          "source": "Netherlands City Entity",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1309",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "city-42d1de1ad3362df7"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q3316628",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "Q3316628"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q3316628",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "Fort Sint Pieter"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q3316628",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "Fort Sint Pieter"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q3316628",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": [
+            "Fort St. Pieter",
+            "rijksmonumentnummer 28023",
+            "Saint Peter Fort",
+            "Sint Pieter Fort"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q3316628",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": {
+            "latitude": 50.83612,
+            "longitude": 5.68408
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q3316628",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "2026-08-10T12:00:00.000Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-poi-baseline-p1b",
+      "entityId": "poi-85a2077dd928e40a",
+      "entityType": "poi",
+      "parentCityEntityId": "city-48c618f238f3263d",
+      "wikidataId": "Q3368242",
+      "canonicalNameZh": "烏德勒支聖馬丁主教座堂塔樓",
+      "canonicalNameEn": "Dom Tower",
+      "aliases": [
+        "Dom",
+        "Dom Tower of Utrecht",
+        "Dome tower",
+        "Domtoren",
+        "Domtoren van Utrecht",
+        "rijksmonumentnummer 36075",
+        "Turm des Utrechter Doms",
+        "Utrecht Dom Tower"
+      ],
+      "coordinates": {
+        "latitude": 52.09065,
+        "longitude": 5.1214
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-08-10T12:00:00.000Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "poi-85a2077dd928e40a"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "poi"
+        },
+        "parentCityEntityId": {
+          "field": "parentCityEntityId",
+          "sourceType": "repository-reference",
+          "source": "Netherlands City Entity",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q803",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "city-48c618f238f3263d"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q3368242",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "Q3368242"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q3368242",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "烏德勒支聖馬丁主教座堂塔樓"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q3368242",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "Dom Tower"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q3368242",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": [
+            "Dom",
+            "Dom Tower of Utrecht",
+            "Dome tower",
+            "Domtoren",
+            "Domtoren van Utrecht",
+            "rijksmonumentnummer 36075",
+            "Turm des Utrechter Doms",
+            "Utrecht Dom Tower"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q3368242",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": {
+            "latitude": 52.09065,
+            "longitude": 5.1214
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q3368242",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "2026-08-10T12:00:00.000Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-poi-baseline-p1b",
+      "entityId": "poi-1b7c701f73e4322b",
+      "entityType": "poi",
+      "parentCityEntityId": "city-48c618f238f3263d",
+      "wikidataId": "Q936545",
+      "canonicalNameZh": "聖馬丁主教座堂",
+      "canonicalNameEn": "St. Martin's Cathedral",
+      "aliases": [
+        "Dom",
+        "Dom of Utrecht",
+        "Dom van Utrecht",
+        "Domkerk",
+        "rijksmonumentnummer 35973",
+        "St. Martin's Cathedral, Utrecht",
+        "Utrecht Cathedral",
+        "Utrechter Dom",
+        "Utrechter Domkirche"
+      ],
+      "coordinates": {
+        "latitude": 52.09092035228757,
+        "longitude": 5.122233261158417
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-08-10T12:00:00.000Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "poi-1b7c701f73e4322b"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "poi"
+        },
+        "parentCityEntityId": {
+          "field": "parentCityEntityId",
+          "sourceType": "repository-reference",
+          "source": "Netherlands City Entity",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q803",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "city-48c618f238f3263d"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q936545",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "Q936545"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q936545",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "聖馬丁主教座堂"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q936545",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "St. Martin's Cathedral"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q936545",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": [
+            "Dom",
+            "Dom of Utrecht",
+            "Dom van Utrecht",
+            "Domkerk",
+            "rijksmonumentnummer 35973",
+            "St. Martin's Cathedral, Utrecht",
+            "Utrecht Cathedral",
+            "Utrechter Dom",
+            "Utrechter Domkirche"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q936545",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": {
+            "latitude": 52.09092035228757,
+            "longitude": 5.122233261158417
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q936545",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "2026-08-10T12:00:00.000Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-poi-baseline-p1b",
+      "entityId": "poi-891e5b5595562f34",
+      "entityType": "poi",
+      "parentCityEntityId": "city-4e037309f993aff4",
+      "wikidataId": "Q2689330",
+      "canonicalNameZh": "Amsterdamse Poort",
+      "canonicalNameEn": "Amsterdamse Poort",
+      "aliases": [
+        "rijksmonumentnummer 19771",
+        "Spaarnwouderpoort"
+      ],
+      "coordinates": {
+        "latitude": 52.38062,
+        "longitude": 4.64646
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-08-10T12:00:00.000Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "poi-891e5b5595562f34"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "poi"
+        },
+        "parentCityEntityId": {
+          "field": "parentCityEntityId",
+          "sourceType": "repository-reference",
+          "source": "Netherlands City Entity",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q9920",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "city-4e037309f993aff4"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q2689330",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "Q2689330"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q2689330",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "Amsterdamse Poort"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q2689330",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "Amsterdamse Poort"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q2689330",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": [
+            "rijksmonumentnummer 19771",
+            "Spaarnwouderpoort"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q2689330",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": {
+            "latitude": 52.38062,
+            "longitude": 4.64646
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q2689330",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "2026-08-10T12:00:00.000Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-poi-baseline-p1b",
+      "entityId": "poi-3f8051df26ca9054",
+      "entityType": "poi",
+      "parentCityEntityId": "city-4e037309f993aff4",
+      "wikidataId": "Q1545193",
+      "canonicalNameZh": "圣巴弗教堂",
+      "canonicalNameEn": "Grote Kerk",
+      "aliases": [
+        "De Bavo",
+        "Grote Kerk (Haarlem)",
+        "Grote Kerk, Haarlem",
+        "Grote of Sint Bavokerk",
+        "Grote of Sint-Bavokerk",
+        "Grote of St.-Bavokerk",
+        "Haarlem Grote Kerk",
+        "Igreja de São Bavão",
+        "Igreja do St. Bavo",
+        "rijksmonumentnummer 19264",
+        "Sint-Bavokerk",
+        "St. Bavochurch",
+        "St.-Bavo-Kirche",
+        "St.-Bavokerk"
+      ],
+      "coordinates": {
+        "latitude": 52.380833333333,
+        "longitude": 4.6363888888889
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-08-10T12:00:00.000Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "poi-3f8051df26ca9054"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "poi"
+        },
+        "parentCityEntityId": {
+          "field": "parentCityEntityId",
+          "sourceType": "repository-reference",
+          "source": "Netherlands City Entity",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q9920",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "city-4e037309f993aff4"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1545193",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "Q1545193"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1545193",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "圣巴弗教堂"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1545193",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "Grote Kerk"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1545193",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": [
+            "De Bavo",
+            "Grote Kerk (Haarlem)",
+            "Grote Kerk, Haarlem",
+            "Grote of Sint Bavokerk",
+            "Grote of Sint-Bavokerk",
+            "Grote of St.-Bavokerk",
+            "Haarlem Grote Kerk",
+            "Igreja de São Bavão",
+            "Igreja do St. Bavo",
+            "rijksmonumentnummer 19264",
+            "Sint-Bavokerk",
+            "St. Bavochurch",
+            "St.-Bavo-Kirche",
+            "St.-Bavokerk"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1545193",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": {
+            "latitude": 52.380833333333,
+            "longitude": 4.6363888888889
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1545193",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "2026-08-10T12:00:00.000Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-poi-baseline-p1b",
+      "entityId": "poi-9342b08c5e256382",
+      "entityType": "poi",
+      "parentCityEntityId": "city-66a343aed16e37a4",
+      "wikidataId": "Q1629214",
+      "canonicalNameZh": "贝居安会院",
+      "canonicalNameEn": "Begijnhof",
+      "aliases": [
+        "Begijnhof (Amsterdam-Centrum)",
+        "Begijnhof (Amsterdam)",
+        "Begijnhof Amsterdam",
+        "Begijnhof van Amsterdam",
+        "Beginenhaus Amsterdam, Niederlande",
+        "Het Begijnhof"
+      ],
+      "coordinates": {
+        "latitude": 52.36944444444445,
+        "longitude": 4.89
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-08-10T12:00:00.000Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "poi-9342b08c5e256382"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "poi"
+        },
+        "parentCityEntityId": {
+          "field": "parentCityEntityId",
+          "sourceType": "repository-reference",
+          "source": "Netherlands City Entity",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q727",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "city-66a343aed16e37a4"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1629214",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "Q1629214"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1629214",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "贝居安会院"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1629214",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "Begijnhof"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1629214",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": [
+            "Begijnhof (Amsterdam-Centrum)",
+            "Begijnhof (Amsterdam)",
+            "Begijnhof Amsterdam",
+            "Begijnhof van Amsterdam",
+            "Beginenhaus Amsterdam, Niederlande",
+            "Het Begijnhof"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1629214",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": {
+            "latitude": 52.36944444444445,
+            "longitude": 4.89
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1629214",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "2026-08-10T12:00:00.000Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-poi-baseline-p1b",
+      "entityId": "poi-31faa7bc9fc7ef11",
+      "entityType": "poi",
+      "parentCityEntityId": "city-66a343aed16e37a4",
+      "wikidataId": "Q1056152",
+      "canonicalNameZh": "阿姆斯特丹王宫",
+      "canonicalNameEn": "Royal Palace of Amsterdam",
+      "aliases": [
+        "Amsterdam Burger Hall",
+        "Amsterdam City Hall",
+        "Amsterdam Civic Hall",
+        "Amsterdam Royal Palace",
+        "Amsterdam State House",
+        "Amsterdamer Stadthaus",
+        "Burger Hall",
+        "Burger Hall of Amsterdam",
+        "Burger Sael",
+        "Burger Zaal",
+        "Burgersael",
+        "Burgerzaal",
+        "City Hall",
+        "City Hall of Amsterdam",
+        "city hall, Amsterdam",
+        "Civic Hall of Amsterdam",
+        "Civil Hall",
+        "Dam Square Royal Palace",
+        "Dutch Royal Palace",
+        "Koninklijk Paleis",
+        "Koninklijk Paleis Amsterdam",
+        "Palácio Real",
+        "Palácio Real de Amesterdão",
+        "Palácio Real de Amsterdão",
+        "Paleis",
+        "Paleis de dam",
+        "Paleis op de Dam",
+        "rijksmonumentnummer 5941",
+        "Royal Palace",
+        "Royal Palace in Amsterdam",
+        "Royal Palace of the Netherlands",
+        "Stad Huis",
+        "Stadhuis",
+        "Stadhuis op de Dam",
+        "Stadt House",
+        "Stadt House at Amsterdam",
+        "Stadt Huis",
+        "Stadthuis",
+        "State House",
+        "State House of Amsterdam",
+        "Βασιλικό Παλάτι του Άμστερνταμ"
+      ],
+      "coordinates": {
+        "latitude": 52.37316666666667,
+        "longitude": 4.891361111111111
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-08-10T12:00:00.000Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "poi-31faa7bc9fc7ef11"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "poi"
+        },
+        "parentCityEntityId": {
+          "field": "parentCityEntityId",
+          "sourceType": "repository-reference",
+          "source": "Netherlands City Entity",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q727",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "city-66a343aed16e37a4"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1056152",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "Q1056152"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1056152",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "阿姆斯特丹王宫"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1056152",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "Royal Palace of Amsterdam"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1056152",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": [
+            "Amsterdam Burger Hall",
+            "Amsterdam City Hall",
+            "Amsterdam Civic Hall",
+            "Amsterdam Royal Palace",
+            "Amsterdam State House",
+            "Amsterdamer Stadthaus",
+            "Burger Hall",
+            "Burger Hall of Amsterdam",
+            "Burger Sael",
+            "Burger Zaal",
+            "Burgersael",
+            "Burgerzaal",
+            "City Hall",
+            "City Hall of Amsterdam",
+            "city hall, Amsterdam",
+            "Civic Hall of Amsterdam",
+            "Civil Hall",
+            "Dam Square Royal Palace",
+            "Dutch Royal Palace",
+            "Koninklijk Paleis",
+            "Koninklijk Paleis Amsterdam",
+            "Palácio Real",
+            "Palácio Real de Amesterdão",
+            "Palácio Real de Amsterdão",
+            "Paleis",
+            "Paleis de dam",
+            "Paleis op de Dam",
+            "rijksmonumentnummer 5941",
+            "Royal Palace",
+            "Royal Palace in Amsterdam",
+            "Royal Palace of the Netherlands",
+            "Stad Huis",
+            "Stadhuis",
+            "Stadhuis op de Dam",
+            "Stadt House",
+            "Stadt House at Amsterdam",
+            "Stadt Huis",
+            "Stadthuis",
+            "State House",
+            "State House of Amsterdam",
+            "Βασιλικό Παλάτι του Άμστερνταμ"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1056152",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": {
+            "latitude": 52.37316666666667,
+            "longitude": 4.891361111111111
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1056152",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "2026-08-10T12:00:00.000Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-poi-baseline-p1b",
+      "entityId": "poi-b630995259ee8d8f",
+      "entityType": "poi",
+      "parentCityEntityId": "city-66a343aed16e37a4",
+      "wikidataId": "Q1130722",
+      "canonicalNameZh": "西教堂",
+      "canonicalNameEn": "Westerkerk",
+      "aliases": [
+        "rijksmonumentnummer 4298",
+        "Westerkerk (Amsterdam)"
+      ],
+      "coordinates": {
+        "latitude": 52.3745,
+        "longitude": 4.8839
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-08-10T12:00:00.000Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "poi-b630995259ee8d8f"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "poi"
+        },
+        "parentCityEntityId": {
+          "field": "parentCityEntityId",
+          "sourceType": "repository-reference",
+          "source": "Netherlands City Entity",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q727",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "city-66a343aed16e37a4"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1130722",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "Q1130722"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1130722",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "西教堂"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1130722",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "Westerkerk"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1130722",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": [
+            "rijksmonumentnummer 4298",
+            "Westerkerk (Amsterdam)"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1130722",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": {
+            "latitude": 52.3745,
+            "longitude": 4.8839
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1130722",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "2026-08-10T12:00:00.000Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-poi-baseline-p1b",
+      "entityId": "poi-5a25ac86e0ae1234",
+      "entityType": "poi",
+      "parentCityEntityId": "city-bf507de627cbfc1e",
+      "wikidataId": "Q41061028",
+      "canonicalNameZh": "Depot Boijmans Van Beuningen",
+      "canonicalNameEn": "Depot Boijmans Van Beuningen",
+      "aliases": [
+        "Collectiegebouw",
+        "De Pot"
+      ],
+      "coordinates": {
+        "latitude": 51.91379,
+        "longitude": 4.47125
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-08-10T12:00:00.000Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "poi-5a25ac86e0ae1234"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "poi"
+        },
+        "parentCityEntityId": {
+          "field": "parentCityEntityId",
+          "sourceType": "repository-reference",
+          "source": "Netherlands City Entity",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q34370",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "city-bf507de627cbfc1e"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q41061028",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "Q41061028"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q41061028",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "Depot Boijmans Van Beuningen"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q41061028",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "Depot Boijmans Van Beuningen"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q41061028",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": [
+            "Collectiegebouw",
+            "De Pot"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q41061028",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": {
+            "latitude": 51.91379,
+            "longitude": 4.47125
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q41061028",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "2026-08-10T12:00:00.000Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-poi-baseline-p1b",
+      "entityId": "poi-c8ab11f7d24339ba",
+      "entityType": "poi",
+      "parentCityEntityId": "city-e05bc954475d4069",
+      "wikidataId": "Q863935",
+      "canonicalNameZh": "内庭",
+      "canonicalNameEn": "Binnenhof",
+      "aliases": [
+        "Binnenhof (Den Haag)",
+        "Hof van Holland"
+      ],
+      "coordinates": {
+        "latitude": 52.079639,
+        "longitude": 4.313375
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-08-10T12:00:00.000Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "poi-c8ab11f7d24339ba"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "poi"
+        },
+        "parentCityEntityId": {
+          "field": "parentCityEntityId",
+          "sourceType": "repository-reference",
+          "source": "Netherlands City Entity",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q36600",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "city-e05bc954475d4069"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q863935",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "Q863935"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q863935",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "内庭"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q863935",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "Binnenhof"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q863935",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": [
+            "Binnenhof (Den Haag)",
+            "Hof van Holland"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q863935",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": {
+            "latitude": 52.079639,
+            "longitude": 4.313375
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q863935",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "2026-08-10T12:00:00.000Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-poi-baseline-p1b",
+      "entityId": "poi-c0dbcdb181181661",
+      "entityType": "poi",
+      "parentCityEntityId": "city-e05bc954475d4069",
+      "wikidataId": "Q1889721",
+      "canonicalNameZh": "诺代恩德宫",
+      "canonicalNameEn": "Noordeinde Palace",
+      "aliases": [
+        "Noordeinde",
+        "Noordeinde 68",
+        "Palace (The Hague)",
+        "Palace Noordeinde",
+        "Palácio de Noordeinde",
+        "Palácio Noordeinde",
+        "Paleis Noordeinde",
+        "rijksmonumentnummer 17834"
+      ],
+      "coordinates": {
+        "latitude": 52.080917,
+        "longitude": 4.306136
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-08-10T12:00:00.000Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "poi-c0dbcdb181181661"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "poi"
+        },
+        "parentCityEntityId": {
+          "field": "parentCityEntityId",
+          "sourceType": "repository-reference",
+          "source": "Netherlands City Entity",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q36600",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "city-e05bc954475d4069"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1889721",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "Q1889721"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1889721",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "诺代恩德宫"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1889721",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "Noordeinde Palace"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1889721",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": [
+            "Noordeinde",
+            "Noordeinde 68",
+            "Palace (The Hague)",
+            "Palace Noordeinde",
+            "Palácio de Noordeinde",
+            "Palácio Noordeinde",
+            "Paleis Noordeinde",
+            "rijksmonumentnummer 17834"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1889721",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": {
+            "latitude": 52.080917,
+            "longitude": 4.306136
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1889721",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "2026-08-10T12:00:00.000Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-poi-baseline-p1b",
+      "entityId": "poi-912bc16b9ddf3c8b",
+      "entityType": "poi",
+      "parentCityEntityId": "city-e9334e2f8591e78c",
+      "wikidataId": "Q678611",
+      "canonicalNameZh": "新教堂",
+      "canonicalNameEn": "Nieuwe Kerk",
+      "aliases": [
+        "Delft church",
+        "New Church, Delft",
+        "Nieuwe Kerk (Delft)",
+        "Nieuwe Kerk Delft",
+        "Nieuwe Kerk, Delft",
+        "rijksmonumentnummer 11872",
+        "Νέα Εκκλησία στο Ντελφτ"
+      ],
+      "coordinates": {
+        "latitude": 52.012139,
+        "longitude": 4.360194
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-08-10T12:00:00.000Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "poi-912bc16b9ddf3c8b"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "poi"
+        },
+        "parentCityEntityId": {
+          "field": "parentCityEntityId",
+          "sourceType": "repository-reference",
+          "source": "Netherlands City Entity",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q690",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "city-e9334e2f8591e78c"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q678611",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "Q678611"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q678611",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "新教堂"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q678611",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "Nieuwe Kerk"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q678611",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": [
+            "Delft church",
+            "New Church, Delft",
+            "Nieuwe Kerk (Delft)",
+            "Nieuwe Kerk Delft",
+            "Nieuwe Kerk, Delft",
+            "rijksmonumentnummer 11872",
+            "Νέα Εκκλησία στο Ντελφτ"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q678611",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": {
+            "latitude": 52.012139,
+            "longitude": 4.360194
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q678611",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "2026-08-10T12:00:00.000Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-poi-baseline-p1b",
+      "entityId": "poi-adfceb877a3e69ff",
+      "entityType": "poi",
+      "parentCityEntityId": "city-e9334e2f8591e78c",
+      "wikidataId": "Q612065",
+      "canonicalNameZh": "老教堂",
+      "canonicalNameEn": "Oude Kerk",
+      "aliases": [
+        "Oude Kerk (Delft)",
+        "Oude Kerk, St. Hippolytuskerk",
+        "rijksmonumentnummer 11970"
+      ],
+      "coordinates": {
+        "latitude": 52.0125,
+        "longitude": 4.355278
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-08-10T12:00:00.000Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "poi-adfceb877a3e69ff"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "poi"
+        },
+        "parentCityEntityId": {
+          "field": "parentCityEntityId",
+          "sourceType": "repository-reference",
+          "source": "Netherlands City Entity",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q690",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "city-e9334e2f8591e78c"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q612065",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "Q612065"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q612065",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "老教堂"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q612065",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "Oude Kerk"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q612065",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": [
+            "Oude Kerk (Delft)",
+            "Oude Kerk, St. Hippolytuskerk",
+            "rijksmonumentnummer 11970"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q612065",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": {
+            "latitude": 52.0125,
+            "longitude": 4.355278
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q612065",
           "retrievedAt": "2026-08-10T12:00:00.000Z",
           "value": "2026-08-10T12:00:00.000Z"
         }
@@ -7101,122 +6233,6 @@
     },
     {
       "schemaVersion": "route-v2-poi-baseline-p1b",
-      "entityId": "poi-d19ff456cbde82f2",
-      "entityType": "poi",
-      "parentCityEntityId": "city-eda8b459459267a5",
-      "wikidataId": "Q1542668",
-      "canonicalNameZh": "格罗宁根博物馆",
-      "canonicalNameEn": "Groninger Museum",
-      "aliases": [
-        "Χρόνινγκερ Μουζέουμ",
-        "格罗宁格博物馆"
-      ],
-      "coordinates": {
-        "latitude": 53.211944,
-        "longitude": 6.565556
-      },
-      "entitySourceType": "wikidata",
-      "confidence": 0.95,
-      "retrievedAt": "2026-08-10T12:00:00.000Z",
-      "provenance": {
-        "entityId": {
-          "field": "entityId",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "poi-d19ff456cbde82f2"
-        },
-        "entityType": {
-          "field": "entityType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "poi"
-        },
-        "parentCityEntityId": {
-          "field": "parentCityEntityId",
-          "sourceType": "repository-reference",
-          "source": "Netherlands City Entity",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q749",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "city-eda8b459459267a5"
-        },
-        "wikidataId": {
-          "field": "wikidataId",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1542668",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Q1542668"
-        },
-        "canonicalNameZh": {
-          "field": "canonicalNameZh",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1542668",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "格罗宁根博物馆"
-        },
-        "canonicalNameEn": {
-          "field": "canonicalNameEn",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1542668",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Groninger Museum"
-        },
-        "aliases": {
-          "field": "aliases",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1542668",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": [
-            "Χρόνινγκερ Μουζέουμ",
-            "格罗宁格博物馆"
-          ]
-        },
-        "coordinates": {
-          "field": "coordinates",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1542668",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": {
-            "latitude": 53.211944,
-            "longitude": 6.565556
-          }
-        },
-        "entitySourceType": {
-          "field": "entitySourceType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "wikidata"
-        },
-        "confidence": {
-          "field": "confidence",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": 0.95
-        },
-        "retrievedAt": {
-          "field": "retrievedAt",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1542668",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "2026-08-10T12:00:00.000Z"
-        }
-      }
-    },
-    {
-      "schemaVersion": "route-v2-poi-baseline-p1b",
       "entityId": "poi-039d66769a71b6f7",
       "entityType": "poi",
       "parentCityEntityId": "city-eda8b459459267a5",
@@ -7330,122 +6346,6 @@
           "sourceType": "wikidata",
           "source": "Wikidata enwiki title plus wbgetentities",
           "sourceUrl": "https://www.wikidata.org/wiki/Q1897266",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "2026-08-10T12:00:00.000Z"
-        }
-      }
-    },
-    {
-      "schemaVersion": "route-v2-poi-baseline-p1b",
-      "entityId": "poi-e1429081d8645a3f",
-      "entityType": "poi",
-      "parentCityEntityId": "city-eda8b459459267a5",
-      "wikidataId": "Q2004350",
-      "canonicalNameZh": "北方海事博物馆",
-      "canonicalNameEn": "Northern Maritime Museum",
-      "aliases": [
-        "Noord. Scheepvaartmuseum",
-        "Noordelijk Scheepvaartmuseum"
-      ],
-      "coordinates": {
-        "latitude": 53.21639,
-        "longitude": 6.56
-      },
-      "entitySourceType": "wikidata",
-      "confidence": 0.95,
-      "retrievedAt": "2026-08-10T12:00:00.000Z",
-      "provenance": {
-        "entityId": {
-          "field": "entityId",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "poi-e1429081d8645a3f"
-        },
-        "entityType": {
-          "field": "entityType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "poi"
-        },
-        "parentCityEntityId": {
-          "field": "parentCityEntityId",
-          "sourceType": "repository-reference",
-          "source": "Netherlands City Entity",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q749",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "city-eda8b459459267a5"
-        },
-        "wikidataId": {
-          "field": "wikidataId",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q2004350",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Q2004350"
-        },
-        "canonicalNameZh": {
-          "field": "canonicalNameZh",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q2004350",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "北方海事博物馆"
-        },
-        "canonicalNameEn": {
-          "field": "canonicalNameEn",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q2004350",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Northern Maritime Museum"
-        },
-        "aliases": {
-          "field": "aliases",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q2004350",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": [
-            "Noord. Scheepvaartmuseum",
-            "Noordelijk Scheepvaartmuseum"
-          ]
-        },
-        "coordinates": {
-          "field": "coordinates",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q2004350",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": {
-            "latitude": 53.21639,
-            "longitude": 6.56
-          }
-        },
-        "entitySourceType": {
-          "field": "entitySourceType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "wikidata"
-        },
-        "confidence": {
-          "field": "confidence",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04e-netherlands",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": 0.95
-        },
-        "retrievedAt": {
-          "field": "retrievedAt",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q2004350",
           "retrievedAt": "2026-08-10T12:00:00.000Z",
           "value": "2026-08-10T12:00:00.000Z"
         }

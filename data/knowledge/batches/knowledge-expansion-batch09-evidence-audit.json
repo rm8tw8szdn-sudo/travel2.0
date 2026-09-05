@@ -1,0 +1,306 @@
+{
+  "schemaVersion": "route-v2-knowledge-expansion-batch09-evidence-audit-v1",
+  "retrievedAt": "2026-08-31T12:00:00.000Z",
+  "countries": {
+    "DZ": {
+      "countryEntityId": "country-e8df5f4fc1e18b51",
+      "cityCount": 7,
+      "directedRouteLegs": 8,
+      "monthRisk": 4,
+      "transportSource": {
+        "url": "https://www.sntf.dz/",
+        "locator": "SNTF national passenger rail network",
+        "excerpt": "SNTF publishes passenger rail services from Algiers on the Oran, Constantine, Annaba and national corridors."
+      },
+      "weatherSource": {
+        "url": "https://www.meteo.dz/",
+        "locator": "Algeria National Meteorological Office warnings"
+      }
+    },
+    "GH": {
+      "countryEntityId": "country-037adaa09b882b93",
+      "cityCount": 7,
+      "directedRouteLegs": 8,
+      "monthRisk": 4,
+      "transportSource": {
+        "url": "https://grcl.gov.gh/",
+        "locator": "Ghana Railway Company passenger network",
+        "excerpt": "Ghana Railway Company publishes passenger and rehabilitation information for Accra, Kumasi, Sekondi-Takoradi, Cape Coast and national rail corridors."
+      },
+      "weatherSource": {
+        "url": "https://www.meteo.gov.gh/",
+        "locator": "Ghana Meteorological Agency warnings"
+      }
+    },
+    "SN": {
+      "countryEntityId": "country-dbb08f246975e6ec",
+      "cityCount": 7,
+      "directedRouteLegs": 8,
+      "monthRisk": 4,
+      "transportSource": {
+        "url": "https://www.demdikk.sn/",
+        "locator": "Dakar Dem Dikk interurban passenger network",
+        "excerpt": "Dakar Dem Dikk publishes passenger services linking Dakar with regional destinations including Thiès, Saint-Louis, Touba and Mbour corridors."
+      },
+      "weatherSource": {
+        "url": "https://www.anacim.sn/",
+        "locator": "Senegal ANACIM meteorological warnings"
+      }
+    },
+    "ET": {
+      "countryEntityId": "country-e18266482d5ba703",
+      "cityCount": 7,
+      "directedRouteLegs": 8,
+      "monthRisk": 4,
+      "transportSource": {
+        "url": "https://www.ethiopianairlines.com/",
+        "locator": "Ethiopian Airlines domestic destination network",
+        "excerpt": "Ethiopian Airlines publishes domestic passenger services from Addis Ababa to Bahir Dar, Gondar, Lalibela and Dire Dawa."
+      },
+      "weatherSource": {
+        "url": "https://www.ethiomet.gov.et/",
+        "locator": "Ethiopian Meteorological Institute warnings"
+      }
+    },
+    "NA": {
+      "countryEntityId": "country-84e112850c1b5fb2",
+      "cityCount": 7,
+      "directedRouteLegs": 8,
+      "monthRisk": 4,
+      "transportSource": {
+        "url": "https://www.transnamib.com.na/",
+        "locator": "TransNamib national transport network",
+        "excerpt": "TransNamib publishes national passenger and rail corridor information linking Windhoek with Walvis Bay, Swakopmund, Tsumeb and southern Namibia."
+      },
+      "weatherSource": {
+        "url": "https://www.meteona.com/",
+        "locator": "Namibia Meteorological Service warnings"
+      }
+    },
+    "BW": {
+      "countryEntityId": "country-3dae0e6cd1ab6cdb",
+      "cityCount": 5,
+      "directedRouteLegs": 8,
+      "monthRisk": 4,
+      "transportSource": {
+        "url": "https://www.airbotswana.co.bw/",
+        "locator": "Air Botswana domestic destination network",
+        "excerpt": "Air Botswana publishes domestic passenger destinations connecting Gaborone with Maun, Kasane and Francistown, with national surface links to Serowe."
+      },
+      "weatherSource": {
+        "url": "https://www.gov.bw/ministries/department-meteorological-services",
+        "locator": "Botswana Department of Meteorological Services warnings"
+      }
+    },
+    "MG": {
+      "countryEntityId": "country-c2455eb9ce752fa8",
+      "cityCount": 4,
+      "directedRouteLegs": 6,
+      "monthRisk": 4,
+      "transportSource": {
+        "url": "https://madagascarairlines.com/",
+        "locator": "Madagascar Airlines domestic destination network",
+        "excerpt": "Madagascar Airlines publishes domestic passenger services connecting Antananarivo with Toamasina, Antsiranana and regional destinations; Antsirabe is represented as a surface corridor."
+      },
+      "weatherSource": {
+        "url": "https://www.meteomadagascar.mg/",
+        "locator": "Madagascar Meteorological Service warnings"
+      }
+    },
+    "MU": {
+      "countryEntityId": "country-3eac8dc426cecd34",
+      "cityCount": 6,
+      "directedRouteLegs": 8,
+      "monthRisk": 4,
+      "transportSource": {
+        "url": "https://mauritiusmetroexpress.mu/",
+        "locator": "Metro Express Mauritius passenger network",
+        "excerpt": "Metro Express publishes passenger services on the Port Louis, Quatre Bornes and Curepipe corridor, with national bus connections toward Mahébourg and coastal towns."
+      },
+      "weatherSource": {
+        "url": "https://metservice.intnet.mu/",
+        "locator": "Mauritius Meteorological Services warnings"
+      }
+    },
+    "KZ": {
+      "countryEntityId": "country-3eadc22a44a1d60b",
+      "cityCount": 7,
+      "directedRouteLegs": 8,
+      "monthRisk": 4,
+      "transportSource": {
+        "url": "https://bilet.railways.kz/",
+        "locator": "Kazakhstan Temir Zholy passenger network",
+        "excerpt": "Kazakhstan Railways publishes passenger services linking Astana with Almaty, Karaganda, Shymkent and the national rail network."
+      },
+      "weatherSource": {
+        "url": "https://www.kazhydromet.kz/",
+        "locator": "Kazhydromet weather warnings"
+      }
+    },
+    "UZ": {
+      "countryEntityId": "country-d93016e19c97e8ff",
+      "cityCount": 7,
+      "directedRouteLegs": 8,
+      "monthRisk": 4,
+      "transportSource": {
+        "url": "https://railway.uz/en/",
+        "locator": "Uzbekistan Railways passenger network",
+        "excerpt": "Uzbekistan Railways publishes passenger services connecting Tashkent with Samarkand, Bukhara, Khiva and regional corridors."
+      },
+      "weatherSource": {
+        "url": "https://hydromet.uz/",
+        "locator": "Uzbekistan Hydrometeorological Service warnings"
+      }
+    },
+    "KG": {
+      "countryEntityId": "country-184a7b5ce0956340",
+      "cityCount": 4,
+      "directedRouteLegs": 6,
+      "monthRisk": 4,
+      "transportSource": {
+        "url": "https://kjd.kg/",
+        "locator": "Kyrgyz Railways passenger information",
+        "excerpt": "Kyrgyz Railways and connecting national transport information identify Bishkek corridors toward Tokmok, Osh and Naryn."
+      },
+      "weatherSource": {
+        "url": "https://www.meteo.kg/",
+        "locator": "Kyrgyz Hydrometeorological Agency warnings"
+      }
+    },
+    "BD": {
+      "countryEntityId": "country-3230bd8e619dabfb",
+      "cityCount": 7,
+      "directedRouteLegs": 8,
+      "monthRisk": 4,
+      "transportSource": {
+        "url": "https://railway.gov.bd/",
+        "locator": "Bangladesh Railway passenger network",
+        "excerpt": "Bangladesh Railway publishes national passenger services connecting Dhaka with Chittagong, Rajshahi, Khulna and Sylhet."
+      },
+      "weatherSource": {
+        "url": "https://www.bmd.gov.bd/",
+        "locator": "Bangladesh Meteorological Department warnings"
+      }
+    },
+    "BT": {
+      "countryEntityId": "country-e3bcf0b6f0639562",
+      "cityCount": 4,
+      "directedRouteLegs": 6,
+      "monthRisk": 4,
+      "transportSource": {
+        "url": "https://www.rsta.gov.bt/",
+        "locator": "Bhutan Road Safety and Transport Authority passenger framework",
+        "excerpt": "Bhutan's transport authority publishes regulated passenger road services connecting Thimphu with Paro, Punakha and Jakar corridors."
+      },
+      "weatherSource": {
+        "url": "https://www.nchm.gov.bt/",
+        "locator": "Bhutan National Center for Hydrology and Meteorology warnings"
+      }
+    },
+    "PK": {
+      "countryEntityId": "country-9de571d9d0059602",
+      "cityCount": 8,
+      "directedRouteLegs": 8,
+      "monthRisk": 4,
+      "transportSource": {
+        "url": "https://www.pakrail.gov.pk/",
+        "locator": "Pakistan Railways passenger network",
+        "excerpt": "Pakistan Railways publishes national passenger services connecting Islamabad, Lahore, Karachi, Peshawar and major regional cities."
+      },
+      "weatherSource": {
+        "url": "https://www.pmd.gov.pk/",
+        "locator": "Pakistan Meteorological Department warnings"
+      }
+    },
+    "LA": {
+      "countryEntityId": "country-61b83c295890771d",
+      "cityCount": 5,
+      "directedRouteLegs": 8,
+      "monthRisk": 4,
+      "transportSource": {
+        "url": "https://www.lcrc.ltd/",
+        "locator": "Laos-China Railway passenger network",
+        "excerpt": "The Laos-China Railway publishes passenger services connecting Vientiane, Vang Vieng and Luang Prabang, with national links toward Savannakhet and Pakse."
+      },
+      "weatherSource": {
+        "url": "https://dmhlao.etllao.com/",
+        "locator": "Lao Department of Meteorology and Hydrology warnings"
+      }
+    },
+    "BN": {
+      "countryEntityId": "country-245639bf3af7ce82",
+      "cityCount": 4,
+      "directedRouteLegs": 6,
+      "monthRisk": 4,
+      "transportSource": {
+        "url": "https://www.jpd.gov.bn/",
+        "locator": "Brunei Land Transport Department passenger framework",
+        "excerpt": "Brunei's Land Transport Department publishes the passenger road transport framework connecting Bandar Seri Begawan with Tutong, Seria and Kuala Belait."
+      },
+      "weatherSource": {
+        "url": "https://www.met.gov.bn/",
+        "locator": "Brunei Darussalam Meteorological Department warnings"
+      }
+    },
+    "HN": {
+      "countryEntityId": "country-b68053132c49192d",
+      "cityCount": 4,
+      "directedRouteLegs": 6,
+      "monthRisk": 4,
+      "transportSource": {
+        "url": "https://www.cmairlines.com/",
+        "locator": "CM Airlines domestic destination network",
+        "excerpt": "CM Airlines publishes domestic passenger connections between Tegucigalpa, San Pedro Sula, Coxen Hole and regional Honduran destinations; Comayagua is represented as a surface link."
+      },
+      "weatherSource": {
+        "url": "https://copeco.gob.hn/",
+        "locator": "Honduras COPECO weather and civil-protection warnings"
+      }
+    },
+    "SV": {
+      "countryEntityId": "country-43cebe0100ef97fc",
+      "cityCount": 5,
+      "directedRouteLegs": 8,
+      "monthRisk": 4,
+      "transportSource": {
+        "url": "https://www.vmt.gob.sv/",
+        "locator": "El Salvador Vice Ministry of Transport passenger framework",
+        "excerpt": "El Salvador's transport authority publishes regulated passenger road corridors connecting San Salvador with Santa Ana, San Miguel, Sonsonate and Santa Tecla."
+      },
+      "weatherSource": {
+        "url": "https://www.snet.gob.sv/",
+        "locator": "El Salvador environmental observatory weather warnings"
+      }
+    },
+    "WS": {
+      "countryEntityId": "country-d07e475004eb2619",
+      "cityCount": 5,
+      "directedRouteLegs": 8,
+      "monthRisk": 4,
+      "transportSource": {
+        "url": "https://www.samoashipping.com/",
+        "locator": "Samoa Shipping Corporation passenger services",
+        "excerpt": "Samoa Shipping Corporation publishes passenger services linking the Apia area and Mulifanua with Salelologa and inter-island destinations, with surface links to Vaitele and Safotu."
+      },
+      "weatherSource": {
+        "url": "https://www.samet.gov.ws/",
+        "locator": "Samoa Meteorology Division warnings"
+      }
+    },
+    "VU": {
+      "countryEntityId": "country-3d5ce12449962967",
+      "cityCount": 5,
+      "directedRouteLegs": 8,
+      "monthRisk": 4,
+      "transportSource": {
+        "url": "https://www.airvanuatu.com/",
+        "locator": "Air Vanuatu domestic destination network",
+        "excerpt": "Air Vanuatu publishes domestic passenger destinations connecting Port Vila with Luganville, Tanna via Isangel, Malekula via Lakatoro and northern island destinations."
+      },
+      "weatherSource": {
+        "url": "https://www.vmgd.gov.vu/",
+        "locator": "Vanuatu Meteorology and Geo-Hazards Department warnings"
+      }
+    }
+  }
+}

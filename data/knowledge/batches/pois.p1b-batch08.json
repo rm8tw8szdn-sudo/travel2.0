@@ -1,7 +1,7 @@
 {
   "schemaVersion": "route-v2-poi-baseline-p1b-batch08",
   "generatedFrom": "data/knowledge/raw/knowledge-expansion-batch03d-south-korea.wikidata.json",
-  "poiCount": 64,
+  "poiCount": 58,
   "pois": [
     {
       "schemaVersion": "route-v2-poi-baseline-p1b",
@@ -595,130 +595,6 @@
     },
     {
       "schemaVersion": "route-v2-poi-baseline-p1b",
-      "entityId": "poi-bd629087c855c8d4",
-      "entityType": "poi",
-      "parentCityEntityId": "city-6fdc557c860230e3",
-      "wikidataId": "Q495370",
-      "canonicalNameZh": "广安里海滩",
-      "canonicalNameEn": "Gwangalli Beach",
-      "aliases": [
-        "Playa Gwangalli",
-        "광안 해수욕장",
-        "광안리 해수욕장",
-        "광안리해수욕장",
-        "광안해수욕장",
-        "廣安里海水浴場"
-      ],
-      "coordinates": {
-        "latitude": 35.15416667,
-        "longitude": 129.12055556
-      },
-      "entitySourceType": "wikidata",
-      "confidence": 0.95,
-      "retrievedAt": "2026-08-03T16:00:00.000Z",
-      "provenance": {
-        "entityId": {
-          "field": "entityId",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch03d-south-korea",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": "poi-bd629087c855c8d4"
-        },
-        "entityType": {
-          "field": "entityType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch03d-south-korea",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": "poi"
-        },
-        "parentCityEntityId": {
-          "field": "parentCityEntityId",
-          "sourceType": "repository-reference",
-          "source": "South Korea City Entity",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q16520",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": "city-6fdc557c860230e3"
-        },
-        "wikidataId": {
-          "field": "wikidataId",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q495370",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": "Q495370"
-        },
-        "canonicalNameZh": {
-          "field": "canonicalNameZh",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q495370",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": "广安里海滩"
-        },
-        "canonicalNameEn": {
-          "field": "canonicalNameEn",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q495370",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": "Gwangalli Beach"
-        },
-        "aliases": {
-          "field": "aliases",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q495370",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": [
-            "Playa Gwangalli",
-            "광안 해수욕장",
-            "광안리 해수욕장",
-            "광안리해수욕장",
-            "광안해수욕장",
-            "廣安里海水浴場"
-          ]
-        },
-        "coordinates": {
-          "field": "coordinates",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q495370",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": {
-            "latitude": 35.15416667,
-            "longitude": 129.12055556
-          }
-        },
-        "entitySourceType": {
-          "field": "entitySourceType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch03d-south-korea",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": "wikidata"
-        },
-        "confidence": {
-          "field": "confidence",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch03d-south-korea",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": 0.95
-        },
-        "retrievedAt": {
-          "field": "retrievedAt",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q495370",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": "2026-08-03T16:00:00.000Z"
-        }
-      }
-    },
-    {
-      "schemaVersion": "route-v2-poi-baseline-p1b",
       "entityId": "poi-a1a038b94f251aae",
       "entityType": "poi",
       "parentCityEntityId": "city-6fdc557c860230e3",
@@ -1205,122 +1081,6 @@
     },
     {
       "schemaVersion": "route-v2-poi-baseline-p1b",
-      "entityId": "poi-6205f9aed1710d56",
-      "entityType": "poi",
-      "parentCityEntityId": "city-8e4cd3ee52eca954",
-      "wikidataId": "Q27341175",
-      "canonicalNameZh": "Sokcho Beach",
-      "canonicalNameEn": "Sokcho Beach",
-      "aliases": [
-        "속초해변",
-        "속초해수욕장"
-      ],
-      "coordinates": {
-        "latitude": 38.188888888889,
-        "longitude": 128.605
-      },
-      "entitySourceType": "wikidata",
-      "confidence": 0.95,
-      "retrievedAt": "2026-08-03T16:00:00.000Z",
-      "provenance": {
-        "entityId": {
-          "field": "entityId",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch03d-south-korea",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": "poi-6205f9aed1710d56"
-        },
-        "entityType": {
-          "field": "entityType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch03d-south-korea",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": "poi"
-        },
-        "parentCityEntityId": {
-          "field": "parentCityEntityId",
-          "sourceType": "repository-reference",
-          "source": "South Korea City Entity",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q42109",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": "city-8e4cd3ee52eca954"
-        },
-        "wikidataId": {
-          "field": "wikidataId",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q27341175",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": "Q27341175"
-        },
-        "canonicalNameZh": {
-          "field": "canonicalNameZh",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q27341175",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": "Sokcho Beach"
-        },
-        "canonicalNameEn": {
-          "field": "canonicalNameEn",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q27341175",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": "Sokcho Beach"
-        },
-        "aliases": {
-          "field": "aliases",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q27341175",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": [
-            "속초해변",
-            "속초해수욕장"
-          ]
-        },
-        "coordinates": {
-          "field": "coordinates",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q27341175",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": {
-            "latitude": 38.188888888889,
-            "longitude": 128.605
-          }
-        },
-        "entitySourceType": {
-          "field": "entitySourceType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch03d-south-korea",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": "wikidata"
-        },
-        "confidence": {
-          "field": "confidence",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch03d-south-korea",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": 0.95
-        },
-        "retrievedAt": {
-          "field": "retrievedAt",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q27341175",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": "2026-08-03T16:00:00.000Z"
-        }
-      }
-    },
-    {
-      "schemaVersion": "route-v2-poi-baseline-p1b",
       "entityId": "poi-d4deea46e047a7a6",
       "entityType": "poi",
       "parentCityEntityId": "city-955b93bc3404f668",
@@ -1550,152 +1310,6 @@
           "sourceType": "wikidata",
           "source": "Wikidata enwiki title plus wbgetentities",
           "sourceUrl": "https://www.wikidata.org/wiki/Q4896382",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": "2026-08-03T16:00:00.000Z"
-        }
-      }
-    },
-    {
-      "schemaVersion": "route-v2-poi-baseline-p1b",
-      "entityId": "poi-fcd64b61a49eba3d",
-      "entityType": "poi",
-      "parentCityEntityId": "city-955b93bc3404f668",
-      "wikidataId": "Q12583994",
-      "canonicalNameZh": "桂山聖堂",
-      "canonicalNameEn": "Gyesan Cathedral",
-      "aliases": [
-        "Catedral de Nuestra Señora de Lourdes",
-        "cathédrale de Daegu",
-        "cathédrale de Taikou",
-        "cathédrale Notre-Dame-de-Lourdes de Daegu",
-        "Cattedrale di Nostra Signora di Lourdes",
-        "cattedrale di Taegu",
-        "église de Daegu",
-        "église de Taikou",
-        "계산동 성당",
-        "계산동성당",
-        "계산본당",
-        "계산성당",
-        "계산천주교회",
-        "대구 계산동 성당",
-        "대구 계산동성당",
-        "대구계산동성당",
-        "천주교 계산성당"
-      ],
-      "coordinates": {
-        "latitude": 35.8679,
-        "longitude": 128.58782
-      },
-      "entitySourceType": "wikidata",
-      "confidence": 0.95,
-      "retrievedAt": "2026-08-03T16:00:00.000Z",
-      "provenance": {
-        "entityId": {
-          "field": "entityId",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch03d-south-korea",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": "poi-fcd64b61a49eba3d"
-        },
-        "entityType": {
-          "field": "entityType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch03d-south-korea",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": "poi"
-        },
-        "parentCityEntityId": {
-          "field": "parentCityEntityId",
-          "sourceType": "repository-reference",
-          "source": "South Korea City Entity",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q20927",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": "city-955b93bc3404f668"
-        },
-        "wikidataId": {
-          "field": "wikidataId",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q12583994",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": "Q12583994"
-        },
-        "canonicalNameZh": {
-          "field": "canonicalNameZh",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q12583994",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": "桂山聖堂"
-        },
-        "canonicalNameEn": {
-          "field": "canonicalNameEn",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q12583994",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": "Gyesan Cathedral"
-        },
-        "aliases": {
-          "field": "aliases",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q12583994",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": [
-            "Catedral de Nuestra Señora de Lourdes",
-            "cathédrale de Daegu",
-            "cathédrale de Taikou",
-            "cathédrale Notre-Dame-de-Lourdes de Daegu",
-            "Cattedrale di Nostra Signora di Lourdes",
-            "cattedrale di Taegu",
-            "église de Daegu",
-            "église de Taikou",
-            "계산동 성당",
-            "계산동성당",
-            "계산본당",
-            "계산성당",
-            "계산천주교회",
-            "대구 계산동 성당",
-            "대구 계산동성당",
-            "대구계산동성당",
-            "천주교 계산성당"
-          ]
-        },
-        "coordinates": {
-          "field": "coordinates",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q12583994",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": {
-            "latitude": 35.8679,
-            "longitude": 128.58782
-          }
-        },
-        "entitySourceType": {
-          "field": "entitySourceType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch03d-south-korea",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": "wikidata"
-        },
-        "confidence": {
-          "field": "confidence",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch03d-south-korea",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": 0.95
-        },
-        "retrievedAt": {
-          "field": "retrievedAt",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q12583994",
           "retrievedAt": "2026-08-03T16:00:00.000Z",
           "value": "2026-08-03T16:00:00.000Z"
         }
@@ -2058,138 +1672,6 @@
           "sourceType": "wikidata",
           "source": "Wikidata enwiki title plus wbgetentities",
           "sourceUrl": "https://www.wikidata.org/wiki/Q482423",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": "2026-08-03T16:00:00.000Z"
-        }
-      }
-    },
-    {
-      "schemaVersion": "route-v2-poi-baseline-p1b",
-      "entityId": "poi-fbdf51482a8caac3",
-      "entityType": "poi",
-      "parentCityEntityId": "city-adcc5add2dc37dc8",
-      "wikidataId": "Q494761",
-      "canonicalNameZh": "水原世界杯竞技场",
-      "canonicalNameEn": "Suwon World Cup Stadium",
-      "aliases": [
-        "Big Bird Stadium",
-        "Estadio Big Bird",
-        "Estadio Mundialista de Suwon",
-        "stade de la Coupe du monde de Suwon",
-        "빅버드",
-        "수원 월드컵 경기장",
-        "수원 월드컵경기장",
-        "수원월드컵경기장",
-        "수원월드컵경기장 주경기장",
-        "水原世界盃競技場"
-      ],
-      "coordinates": {
-        "latitude": 37.286421,
-        "longitude": 127.036855
-      },
-      "entitySourceType": "wikidata",
-      "confidence": 0.95,
-      "retrievedAt": "2026-08-03T16:00:00.000Z",
-      "provenance": {
-        "entityId": {
-          "field": "entityId",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch03d-south-korea",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": "poi-fbdf51482a8caac3"
-        },
-        "entityType": {
-          "field": "entityType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch03d-south-korea",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": "poi"
-        },
-        "parentCityEntityId": {
-          "field": "parentCityEntityId",
-          "sourceType": "repository-reference",
-          "source": "South Korea City Entity",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q20714",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": "city-adcc5add2dc37dc8"
-        },
-        "wikidataId": {
-          "field": "wikidataId",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q494761",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": "Q494761"
-        },
-        "canonicalNameZh": {
-          "field": "canonicalNameZh",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q494761",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": "水原世界杯竞技场"
-        },
-        "canonicalNameEn": {
-          "field": "canonicalNameEn",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q494761",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": "Suwon World Cup Stadium"
-        },
-        "aliases": {
-          "field": "aliases",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q494761",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": [
-            "Big Bird Stadium",
-            "Estadio Big Bird",
-            "Estadio Mundialista de Suwon",
-            "stade de la Coupe du monde de Suwon",
-            "빅버드",
-            "수원 월드컵 경기장",
-            "수원 월드컵경기장",
-            "수원월드컵경기장",
-            "수원월드컵경기장 주경기장",
-            "水原世界盃競技場"
-          ]
-        },
-        "coordinates": {
-          "field": "coordinates",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q494761",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": {
-            "latitude": 37.286421,
-            "longitude": 127.036855
-          }
-        },
-        "entitySourceType": {
-          "field": "entitySourceType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch03d-south-korea",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": "wikidata"
-        },
-        "confidence": {
-          "field": "confidence",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch03d-south-korea",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": 0.95
-        },
-        "retrievedAt": {
-          "field": "retrievedAt",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q494761",
           "retrievedAt": "2026-08-03T16:00:00.000Z",
           "value": "2026-08-03T16:00:00.000Z"
         }
@@ -3532,122 +3014,6 @@
           "sourceType": "wikidata",
           "source": "Wikidata enwiki title plus wbgetentities",
           "sourceUrl": "https://www.wikidata.org/wiki/Q11269377",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": "2026-08-03T16:00:00.000Z"
-        }
-      }
-    },
-    {
-      "schemaVersion": "route-v2-poi-baseline-p1b",
-      "entityId": "poi-19fdadddcdebfb23",
-      "entityType": "poi",
-      "parentCityEntityId": "city-b747cf52e4bc20f6",
-      "wikidataId": "Q7561251",
-      "canonicalNameZh": "松島中央公園",
-      "canonicalNameEn": "Songdo Central Park",
-      "aliases": [
-        "송도 센트럴파크",
-        "송도중앙공원 / 松島中央公園"
-      ],
-      "coordinates": {
-        "latitude": 37.3925,
-        "longitude": 126.63944444444445
-      },
-      "entitySourceType": "wikidata",
-      "confidence": 0.95,
-      "retrievedAt": "2026-08-03T16:00:00.000Z",
-      "provenance": {
-        "entityId": {
-          "field": "entityId",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch03d-south-korea",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": "poi-19fdadddcdebfb23"
-        },
-        "entityType": {
-          "field": "entityType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch03d-south-korea",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": "poi"
-        },
-        "parentCityEntityId": {
-          "field": "parentCityEntityId",
-          "sourceType": "repository-reference",
-          "source": "South Korea City Entity",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q20934",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": "city-b747cf52e4bc20f6"
-        },
-        "wikidataId": {
-          "field": "wikidataId",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q7561251",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": "Q7561251"
-        },
-        "canonicalNameZh": {
-          "field": "canonicalNameZh",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q7561251",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": "松島中央公園"
-        },
-        "canonicalNameEn": {
-          "field": "canonicalNameEn",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q7561251",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": "Songdo Central Park"
-        },
-        "aliases": {
-          "field": "aliases",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q7561251",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": [
-            "송도 센트럴파크",
-            "송도중앙공원 / 松島中央公園"
-          ]
-        },
-        "coordinates": {
-          "field": "coordinates",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q7561251",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": {
-            "latitude": 37.3925,
-            "longitude": 126.63944444444445
-          }
-        },
-        "entitySourceType": {
-          "field": "entitySourceType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch03d-south-korea",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": "wikidata"
-        },
-        "confidence": {
-          "field": "confidence",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch03d-south-korea",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": 0.95
-        },
-        "retrievedAt": {
-          "field": "retrievedAt",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q7561251",
           "retrievedAt": "2026-08-03T16:00:00.000Z",
           "value": "2026-08-03T16:00:00.000Z"
         }
@@ -6005,388 +5371,6 @@
     },
     {
       "schemaVersion": "route-v2-poi-baseline-p1b",
-      "entityId": "poi-c50ac0acdf366e43",
-      "entityType": "poi",
-      "parentCityEntityId": "city-f485961843960f06",
-      "wikidataId": "Q482631",
-      "canonicalNameZh": "德寿宫",
-      "canonicalNameEn": "Deoksugung",
-      "aliases": [
-        "Deoksugung Palace",
-        "Gyeongungung",
-        "Palacio Deoksu",
-        "Tŏksu Palace",
-        "Tŏksugung",
-        "경운궁",
-        "덕수궁",
-        "德壽宫",
-        "德壽宮",
-        "慶運宮"
-      ],
-      "coordinates": {
-        "latitude": 37.56611111111111,
-        "longitude": 126.975
-      },
-      "entitySourceType": "wikidata",
-      "confidence": 0.95,
-      "retrievedAt": "2026-08-03T16:00:00.000Z",
-      "provenance": {
-        "entityId": {
-          "field": "entityId",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch03d-south-korea",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": "poi-c50ac0acdf366e43"
-        },
-        "entityType": {
-          "field": "entityType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch03d-south-korea",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": "poi"
-        },
-        "parentCityEntityId": {
-          "field": "parentCityEntityId",
-          "sourceType": "repository-reference",
-          "source": "South Korea City Entity",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q8684",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": "city-f485961843960f06"
-        },
-        "wikidataId": {
-          "field": "wikidataId",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q482631",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": "Q482631"
-        },
-        "canonicalNameZh": {
-          "field": "canonicalNameZh",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q482631",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": "德寿宫"
-        },
-        "canonicalNameEn": {
-          "field": "canonicalNameEn",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q482631",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": "Deoksugung"
-        },
-        "aliases": {
-          "field": "aliases",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q482631",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": [
-            "Deoksugung Palace",
-            "Gyeongungung",
-            "Palacio Deoksu",
-            "Tŏksu Palace",
-            "Tŏksugung",
-            "경운궁",
-            "덕수궁",
-            "德壽宫",
-            "德壽宮",
-            "慶運宮"
-          ]
-        },
-        "coordinates": {
-          "field": "coordinates",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q482631",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": {
-            "latitude": 37.56611111111111,
-            "longitude": 126.975
-          }
-        },
-        "entitySourceType": {
-          "field": "entitySourceType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch03d-south-korea",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": "wikidata"
-        },
-        "confidence": {
-          "field": "confidence",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch03d-south-korea",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": 0.95
-        },
-        "retrievedAt": {
-          "field": "retrievedAt",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q482631",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": "2026-08-03T16:00:00.000Z"
-        }
-      }
-    },
-    {
-      "schemaVersion": "route-v2-poi-baseline-p1b",
-      "entityId": "poi-3b1c2ffdabc0db7a",
-      "entityType": "poi",
-      "parentCityEntityId": "city-f485961843960f06",
-      "wikidataId": "Q5295847",
-      "canonicalNameZh": "东大门设计广场",
-      "canonicalNameEn": "Dongdaemun Design Plaza",
-      "aliases": [
-        "Dongdaemun Design Plaza & Park",
-        "동대문 디자인 플라자 & 파크",
-        "동대문 디자인 플라자&파크",
-        "동대문 디자인플라자&파크",
-        "동대문디자인플라자 & 파크",
-        "동대문디자인플라자&파크"
-      ],
-      "coordinates": {
-        "latitude": 37.5669,
-        "longitude": 127.0094
-      },
-      "entitySourceType": "wikidata",
-      "confidence": 0.95,
-      "retrievedAt": "2026-08-03T16:00:00.000Z",
-      "provenance": {
-        "entityId": {
-          "field": "entityId",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch03d-south-korea",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": "poi-3b1c2ffdabc0db7a"
-        },
-        "entityType": {
-          "field": "entityType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch03d-south-korea",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": "poi"
-        },
-        "parentCityEntityId": {
-          "field": "parentCityEntityId",
-          "sourceType": "repository-reference",
-          "source": "South Korea City Entity",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q8684",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": "city-f485961843960f06"
-        },
-        "wikidataId": {
-          "field": "wikidataId",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q5295847",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": "Q5295847"
-        },
-        "canonicalNameZh": {
-          "field": "canonicalNameZh",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q5295847",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": "东大门设计广场"
-        },
-        "canonicalNameEn": {
-          "field": "canonicalNameEn",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q5295847",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": "Dongdaemun Design Plaza"
-        },
-        "aliases": {
-          "field": "aliases",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q5295847",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": [
-            "Dongdaemun Design Plaza & Park",
-            "동대문 디자인 플라자 & 파크",
-            "동대문 디자인 플라자&파크",
-            "동대문 디자인플라자&파크",
-            "동대문디자인플라자 & 파크",
-            "동대문디자인플라자&파크"
-          ]
-        },
-        "coordinates": {
-          "field": "coordinates",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q5295847",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": {
-            "latitude": 37.5669,
-            "longitude": 127.0094
-          }
-        },
-        "entitySourceType": {
-          "field": "entitySourceType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch03d-south-korea",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": "wikidata"
-        },
-        "confidence": {
-          "field": "confidence",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch03d-south-korea",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": 0.95
-        },
-        "retrievedAt": {
-          "field": "retrievedAt",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q5295847",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": "2026-08-03T16:00:00.000Z"
-        }
-      }
-    },
-    {
-      "schemaVersion": "route-v2-poi-baseline-p1b",
-      "entityId": "poi-fc60c5ecff9ac84a",
-      "entityType": "poi",
-      "parentCityEntityId": "city-f485961843960f06",
-      "wikidataId": "Q482485",
-      "canonicalNameZh": "景福宫",
-      "canonicalNameEn": "Gyeongbokgung",
-      "aliases": [
-        "Gyeongbok Palace",
-        "Gyeongbokgung Palace",
-        "Kyŏngbok Palace",
-        "Palacio de Gyeongbok",
-        "Palais de Gyeongbokgung",
-        "경복궁",
-        "景福宮"
-      ],
-      "coordinates": {
-        "latitude": 37.5798841,
-        "longitude": 126.9767996
-      },
-      "entitySourceType": "wikidata",
-      "confidence": 0.95,
-      "retrievedAt": "2026-08-03T16:00:00.000Z",
-      "provenance": {
-        "entityId": {
-          "field": "entityId",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch03d-south-korea",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": "poi-fc60c5ecff9ac84a"
-        },
-        "entityType": {
-          "field": "entityType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch03d-south-korea",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": "poi"
-        },
-        "parentCityEntityId": {
-          "field": "parentCityEntityId",
-          "sourceType": "repository-reference",
-          "source": "South Korea City Entity",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q8684",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": "city-f485961843960f06"
-        },
-        "wikidataId": {
-          "field": "wikidataId",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q482485",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": "Q482485"
-        },
-        "canonicalNameZh": {
-          "field": "canonicalNameZh",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q482485",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": "景福宫"
-        },
-        "canonicalNameEn": {
-          "field": "canonicalNameEn",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q482485",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": "Gyeongbokgung"
-        },
-        "aliases": {
-          "field": "aliases",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q482485",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": [
-            "Gyeongbok Palace",
-            "Gyeongbokgung Palace",
-            "Kyŏngbok Palace",
-            "Palacio de Gyeongbok",
-            "Palais de Gyeongbokgung",
-            "경복궁",
-            "景福宮"
-          ]
-        },
-        "coordinates": {
-          "field": "coordinates",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q482485",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": {
-            "latitude": 37.5798841,
-            "longitude": 126.9767996
-          }
-        },
-        "entitySourceType": {
-          "field": "entitySourceType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch03d-south-korea",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": "wikidata"
-        },
-        "confidence": {
-          "field": "confidence",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch03d-south-korea",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": 0.95
-        },
-        "retrievedAt": {
-          "field": "retrievedAt",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q482485",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": "2026-08-03T16:00:00.000Z"
-        }
-      }
-    },
-    {
-      "schemaVersion": "route-v2-poi-baseline-p1b",
       "entityId": "poi-4b93cab101207577",
       "entityType": "poi",
       "parentCityEntityId": "city-f485961843960f06",
@@ -6636,130 +5620,6 @@
           "sourceType": "wikidata",
           "source": "Wikidata enwiki title plus wbgetentities",
           "sourceUrl": "https://www.wikidata.org/wiki/Q487498",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": "2026-08-03T16:00:00.000Z"
-        }
-      }
-    },
-    {
-      "schemaVersion": "route-v2-poi-baseline-p1b",
-      "entityId": "poi-cd1569f809c4a06a",
-      "entityType": "poi",
-      "parentCityEntityId": "city-f485961843960f06",
-      "wikidataId": "Q494895",
-      "canonicalNameZh": "乐天世界大厦",
-      "canonicalNameEn": "Lotte World Tower",
-      "aliases": [
-        "Lotte Super Tower",
-        "Lotte Tower",
-        "롯데슈퍼타워",
-        "롯데월드타워",
-        "롯데타워",
-        "樂天世界塔"
-      ],
-      "coordinates": {
-        "latitude": 37.5125,
-        "longitude": 127.1025
-      },
-      "entitySourceType": "wikidata",
-      "confidence": 0.95,
-      "retrievedAt": "2026-08-03T16:00:00.000Z",
-      "provenance": {
-        "entityId": {
-          "field": "entityId",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch03d-south-korea",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": "poi-cd1569f809c4a06a"
-        },
-        "entityType": {
-          "field": "entityType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch03d-south-korea",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": "poi"
-        },
-        "parentCityEntityId": {
-          "field": "parentCityEntityId",
-          "sourceType": "repository-reference",
-          "source": "South Korea City Entity",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q8684",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": "city-f485961843960f06"
-        },
-        "wikidataId": {
-          "field": "wikidataId",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q494895",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": "Q494895"
-        },
-        "canonicalNameZh": {
-          "field": "canonicalNameZh",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q494895",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": "乐天世界大厦"
-        },
-        "canonicalNameEn": {
-          "field": "canonicalNameEn",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q494895",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": "Lotte World Tower"
-        },
-        "aliases": {
-          "field": "aliases",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q494895",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": [
-            "Lotte Super Tower",
-            "Lotte Tower",
-            "롯데슈퍼타워",
-            "롯데월드타워",
-            "롯데타워",
-            "樂天世界塔"
-          ]
-        },
-        "coordinates": {
-          "field": "coordinates",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q494895",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": {
-            "latitude": 37.5125,
-            "longitude": 127.1025
-          }
-        },
-        "entitySourceType": {
-          "field": "entitySourceType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch03d-south-korea",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": "wikidata"
-        },
-        "confidence": {
-          "field": "confidence",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch03d-south-korea",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": 0.95
-        },
-        "retrievedAt": {
-          "field": "retrievedAt",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q494895",
           "retrievedAt": "2026-08-03T16:00:00.000Z",
           "value": "2026-08-03T16:00:00.000Z"
         }
@@ -7135,130 +5995,6 @@
     },
     {
       "schemaVersion": "route-v2-poi-baseline-p1b",
-      "entityId": "poi-e37deb0001b8c14a",
-      "entityType": "poi",
-      "parentCityEntityId": "city-f6091553326ae92e",
-      "wikidataId": "Q2942222",
-      "canonicalNameZh": "殿洞聖堂",
-      "canonicalNameEn": "Jeondong Cathedral",
-      "aliases": [
-        "Catedral de Jeondong",
-        "Cathédrale de Jeondong",
-        "cathédrale Jeondong",
-        "전동 성당",
-        "전동성당",
-        "전주성당"
-      ],
-      "coordinates": {
-        "latitude": 35.8135,
-        "longitude": 127.149
-      },
-      "entitySourceType": "wikidata",
-      "confidence": 0.95,
-      "retrievedAt": "2026-08-03T16:00:00.000Z",
-      "provenance": {
-        "entityId": {
-          "field": "entityId",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch03d-south-korea",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": "poi-e37deb0001b8c14a"
-        },
-        "entityType": {
-          "field": "entityType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch03d-south-korea",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": "poi"
-        },
-        "parentCityEntityId": {
-          "field": "parentCityEntityId",
-          "sourceType": "repository-reference",
-          "source": "South Korea City Entity",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q42140",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": "city-f6091553326ae92e"
-        },
-        "wikidataId": {
-          "field": "wikidataId",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q2942222",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": "Q2942222"
-        },
-        "canonicalNameZh": {
-          "field": "canonicalNameZh",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q2942222",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": "殿洞聖堂"
-        },
-        "canonicalNameEn": {
-          "field": "canonicalNameEn",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q2942222",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": "Jeondong Cathedral"
-        },
-        "aliases": {
-          "field": "aliases",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q2942222",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": [
-            "Catedral de Jeondong",
-            "Cathédrale de Jeondong",
-            "cathédrale Jeondong",
-            "전동 성당",
-            "전동성당",
-            "전주성당"
-          ]
-        },
-        "coordinates": {
-          "field": "coordinates",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q2942222",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": {
-            "latitude": 35.8135,
-            "longitude": 127.149
-          }
-        },
-        "entitySourceType": {
-          "field": "entitySourceType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch03d-south-korea",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": "wikidata"
-        },
-        "confidence": {
-          "field": "confidence",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch03d-south-korea",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": 0.95
-        },
-        "retrievedAt": {
-          "field": "retrievedAt",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q2942222",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": "2026-08-03T16:00:00.000Z"
-        }
-      }
-    },
-    {
-      "schemaVersion": "route-v2-poi-baseline-p1b",
       "entityId": "poi-d5ed664da2165f25",
       "entityType": "poi",
       "parentCityEntityId": "city-f6091553326ae92e",
@@ -7495,238 +6231,6 @@
     },
     {
       "schemaVersion": "route-v2-poi-baseline-p1b",
-      "entityId": "poi-af9a1962ad8ff1c2",
-      "entityType": "poi",
-      "parentCityEntityId": "city-f97862dc82774ea9",
-      "wikidataId": "Q5624072",
-      "canonicalNameZh": "江陵冰上運動場",
-      "canonicalNameEn": "Gangneung Ice Arena",
-      "aliases": [
-        "arena del ghiaccio di Gangneung",
-        "Palais des glaces de Gangneung",
-        "강릉 아이스 아레나"
-      ],
-      "coordinates": {
-        "latitude": 37.7785056,
-        "longitude": 128.896953
-      },
-      "entitySourceType": "wikidata",
-      "confidence": 0.95,
-      "retrievedAt": "2026-08-03T16:00:00.000Z",
-      "provenance": {
-        "entityId": {
-          "field": "entityId",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch03d-south-korea",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": "poi-af9a1962ad8ff1c2"
-        },
-        "entityType": {
-          "field": "entityType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch03d-south-korea",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": "poi"
-        },
-        "parentCityEntityId": {
-          "field": "parentCityEntityId",
-          "sourceType": "repository-reference",
-          "source": "South Korea City Entity",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q42056",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": "city-f97862dc82774ea9"
-        },
-        "wikidataId": {
-          "field": "wikidataId",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q5624072",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": "Q5624072"
-        },
-        "canonicalNameZh": {
-          "field": "canonicalNameZh",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q5624072",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": "江陵冰上運動場"
-        },
-        "canonicalNameEn": {
-          "field": "canonicalNameEn",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q5624072",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": "Gangneung Ice Arena"
-        },
-        "aliases": {
-          "field": "aliases",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q5624072",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": [
-            "arena del ghiaccio di Gangneung",
-            "Palais des glaces de Gangneung",
-            "강릉 아이스 아레나"
-          ]
-        },
-        "coordinates": {
-          "field": "coordinates",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q5624072",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": {
-            "latitude": 37.7785056,
-            "longitude": 128.896953
-          }
-        },
-        "entitySourceType": {
-          "field": "entitySourceType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch03d-south-korea",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": "wikidata"
-        },
-        "confidence": {
-          "field": "confidence",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch03d-south-korea",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": 0.95
-        },
-        "retrievedAt": {
-          "field": "retrievedAt",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q5624072",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": "2026-08-03T16:00:00.000Z"
-        }
-      }
-    },
-    {
-      "schemaVersion": "route-v2-poi-baseline-p1b",
-      "entityId": "poi-7927eb846e60ccdb",
-      "entityType": "poi",
-      "parentCityEntityId": "city-f97862dc82774ea9",
-      "wikidataId": "Q12583922",
-      "canonicalNameZh": "鏡浦臺",
-      "canonicalNameEn": "Gyeongpodae",
-      "aliases": [
-        "경포대"
-      ],
-      "coordinates": {
-        "latitude": 37.795,
-        "longitude": 128.8944
-      },
-      "entitySourceType": "wikidata",
-      "confidence": 0.95,
-      "retrievedAt": "2026-08-03T16:00:00.000Z",
-      "provenance": {
-        "entityId": {
-          "field": "entityId",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch03d-south-korea",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": "poi-7927eb846e60ccdb"
-        },
-        "entityType": {
-          "field": "entityType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch03d-south-korea",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": "poi"
-        },
-        "parentCityEntityId": {
-          "field": "parentCityEntityId",
-          "sourceType": "repository-reference",
-          "source": "South Korea City Entity",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q42056",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": "city-f97862dc82774ea9"
-        },
-        "wikidataId": {
-          "field": "wikidataId",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q12583922",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": "Q12583922"
-        },
-        "canonicalNameZh": {
-          "field": "canonicalNameZh",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q12583922",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": "鏡浦臺"
-        },
-        "canonicalNameEn": {
-          "field": "canonicalNameEn",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q12583922",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": "Gyeongpodae"
-        },
-        "aliases": {
-          "field": "aliases",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q12583922",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": [
-            "경포대"
-          ]
-        },
-        "coordinates": {
-          "field": "coordinates",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q12583922",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": {
-            "latitude": 37.795,
-            "longitude": 128.8944
-          }
-        },
-        "entitySourceType": {
-          "field": "entitySourceType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch03d-south-korea",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": "wikidata"
-        },
-        "confidence": {
-          "field": "confidence",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch03d-south-korea",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": 0.95
-        },
-        "retrievedAt": {
-          "field": "retrievedAt",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q12583922",
-          "retrievedAt": "2026-08-03T16:00:00.000Z",
-          "value": "2026-08-03T16:00:00.000Z"
-        }
-      }
-    },
-    {
-      "schemaVersion": "route-v2-poi-baseline-p1b",
       "entityId": "poi-a2d88b1dba40034d",
       "entityType": "poi",
       "parentCityEntityId": "city-f97862dc82774ea9",
@@ -7842,6 +6346,774 @@
           "sourceType": "wikidata",
           "source": "Wikidata enwiki title plus wbgetentities",
           "sourceUrl": "https://www.wikidata.org/wiki/Q12608061",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "2026-08-03T16:00:00.000Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-poi-baseline-p1b",
+      "entityId": "poi-bd629087c855c8d4",
+      "entityType": "poi",
+      "parentCityEntityId": "city-6fdc557c860230e3",
+      "wikidataId": "Q495370",
+      "canonicalNameZh": "广安里海滩",
+      "canonicalNameEn": "Gwangalli Beach",
+      "aliases": [
+        "Playa Gwangalli",
+        "광안 해수욕장",
+        "광안리 해수욕장",
+        "광안리해수욕장",
+        "광안해수욕장",
+        "廣安里海水浴場"
+      ],
+      "coordinates": {
+        "latitude": 35.15416667,
+        "longitude": 129.12055556
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-08-03T16:00:00.000Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch03d-south-korea",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "poi-bd629087c855c8d4"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch03d-south-korea",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "poi"
+        },
+        "parentCityEntityId": {
+          "field": "parentCityEntityId",
+          "sourceType": "repository-reference",
+          "source": "South Korea City Entity",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q16520",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "city-6fdc557c860230e3"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q495370",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "Q495370"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q495370",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "广安里海滩"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q495370",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "Gwangalli Beach"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q495370",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": [
+            "Playa Gwangalli",
+            "광안 해수욕장",
+            "광안리 해수욕장",
+            "광안리해수욕장",
+            "광안해수욕장",
+            "廣安里海水浴場"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q495370",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": {
+            "latitude": 35.15416667,
+            "longitude": 129.12055556
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch03d-south-korea",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch03d-south-korea",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q495370",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "2026-08-03T16:00:00.000Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-poi-baseline-p1b",
+      "entityId": "poi-6205f9aed1710d56",
+      "entityType": "poi",
+      "parentCityEntityId": "city-8e4cd3ee52eca954",
+      "wikidataId": "Q27341175",
+      "canonicalNameZh": "Sokcho Beach",
+      "canonicalNameEn": "Sokcho Beach",
+      "aliases": [
+        "속초해변",
+        "속초해수욕장"
+      ],
+      "coordinates": {
+        "latitude": 38.188888888889,
+        "longitude": 128.605
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-08-03T16:00:00.000Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch03d-south-korea",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "poi-6205f9aed1710d56"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch03d-south-korea",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "poi"
+        },
+        "parentCityEntityId": {
+          "field": "parentCityEntityId",
+          "sourceType": "repository-reference",
+          "source": "South Korea City Entity",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q42109",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "city-8e4cd3ee52eca954"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q27341175",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "Q27341175"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q27341175",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "Sokcho Beach"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q27341175",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "Sokcho Beach"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q27341175",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": [
+            "속초해변",
+            "속초해수욕장"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q27341175",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": {
+            "latitude": 38.188888888889,
+            "longitude": 128.605
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch03d-south-korea",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch03d-south-korea",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q27341175",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "2026-08-03T16:00:00.000Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-poi-baseline-p1b",
+      "entityId": "poi-fcd64b61a49eba3d",
+      "entityType": "poi",
+      "parentCityEntityId": "city-955b93bc3404f668",
+      "wikidataId": "Q12583994",
+      "canonicalNameZh": "桂山聖堂",
+      "canonicalNameEn": "Gyesan Cathedral",
+      "aliases": [
+        "Catedral de Nuestra Señora de Lourdes",
+        "cathédrale de Daegu",
+        "cathédrale de Taikou",
+        "cathédrale Notre-Dame-de-Lourdes de Daegu",
+        "Cattedrale di Nostra Signora di Lourdes",
+        "cattedrale di Taegu",
+        "église de Daegu",
+        "église de Taikou",
+        "계산동 성당",
+        "계산동성당",
+        "계산본당",
+        "계산성당",
+        "계산천주교회",
+        "대구 계산동 성당",
+        "대구 계산동성당",
+        "대구계산동성당",
+        "천주교 계산성당"
+      ],
+      "coordinates": {
+        "latitude": 35.8679,
+        "longitude": 128.58782
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-08-03T16:00:00.000Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch03d-south-korea",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "poi-fcd64b61a49eba3d"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch03d-south-korea",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "poi"
+        },
+        "parentCityEntityId": {
+          "field": "parentCityEntityId",
+          "sourceType": "repository-reference",
+          "source": "South Korea City Entity",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q20927",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "city-955b93bc3404f668"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q12583994",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "Q12583994"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q12583994",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "桂山聖堂"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q12583994",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "Gyesan Cathedral"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q12583994",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": [
+            "Catedral de Nuestra Señora de Lourdes",
+            "cathédrale de Daegu",
+            "cathédrale de Taikou",
+            "cathédrale Notre-Dame-de-Lourdes de Daegu",
+            "Cattedrale di Nostra Signora di Lourdes",
+            "cattedrale di Taegu",
+            "église de Daegu",
+            "église de Taikou",
+            "계산동 성당",
+            "계산동성당",
+            "계산본당",
+            "계산성당",
+            "계산천주교회",
+            "대구 계산동 성당",
+            "대구 계산동성당",
+            "대구계산동성당",
+            "천주교 계산성당"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q12583994",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": {
+            "latitude": 35.8679,
+            "longitude": 128.58782
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch03d-south-korea",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch03d-south-korea",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q12583994",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "2026-08-03T16:00:00.000Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-poi-baseline-p1b",
+      "entityId": "poi-c50ac0acdf366e43",
+      "entityType": "poi",
+      "parentCityEntityId": "city-f485961843960f06",
+      "wikidataId": "Q482631",
+      "canonicalNameZh": "德寿宫",
+      "canonicalNameEn": "Deoksugung",
+      "aliases": [
+        "Deoksugung Palace",
+        "Gyeongungung",
+        "Palacio Deoksu",
+        "Tŏksu Palace",
+        "Tŏksugung",
+        "경운궁",
+        "덕수궁",
+        "德壽宫",
+        "德壽宮",
+        "慶運宮"
+      ],
+      "coordinates": {
+        "latitude": 37.56611111111111,
+        "longitude": 126.975
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-08-03T16:00:00.000Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch03d-south-korea",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "poi-c50ac0acdf366e43"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch03d-south-korea",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "poi"
+        },
+        "parentCityEntityId": {
+          "field": "parentCityEntityId",
+          "sourceType": "repository-reference",
+          "source": "South Korea City Entity",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q8684",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "city-f485961843960f06"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q482631",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "Q482631"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q482631",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "德寿宫"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q482631",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "Deoksugung"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q482631",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": [
+            "Deoksugung Palace",
+            "Gyeongungung",
+            "Palacio Deoksu",
+            "Tŏksu Palace",
+            "Tŏksugung",
+            "경운궁",
+            "덕수궁",
+            "德壽宫",
+            "德壽宮",
+            "慶運宮"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q482631",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": {
+            "latitude": 37.56611111111111,
+            "longitude": 126.975
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch03d-south-korea",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch03d-south-korea",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q482631",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "2026-08-03T16:00:00.000Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-poi-baseline-p1b",
+      "entityId": "poi-fc60c5ecff9ac84a",
+      "entityType": "poi",
+      "parentCityEntityId": "city-f485961843960f06",
+      "wikidataId": "Q482485",
+      "canonicalNameZh": "景福宫",
+      "canonicalNameEn": "Gyeongbokgung",
+      "aliases": [
+        "Gyeongbok Palace",
+        "Gyeongbokgung Palace",
+        "Kyŏngbok Palace",
+        "Palacio de Gyeongbok",
+        "Palais de Gyeongbokgung",
+        "경복궁",
+        "景福宮"
+      ],
+      "coordinates": {
+        "latitude": 37.5798841,
+        "longitude": 126.9767996
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-08-03T16:00:00.000Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch03d-south-korea",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "poi-fc60c5ecff9ac84a"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch03d-south-korea",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "poi"
+        },
+        "parentCityEntityId": {
+          "field": "parentCityEntityId",
+          "sourceType": "repository-reference",
+          "source": "South Korea City Entity",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q8684",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "city-f485961843960f06"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q482485",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "Q482485"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q482485",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "景福宫"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q482485",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "Gyeongbokgung"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q482485",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": [
+            "Gyeongbok Palace",
+            "Gyeongbokgung Palace",
+            "Kyŏngbok Palace",
+            "Palacio de Gyeongbok",
+            "Palais de Gyeongbokgung",
+            "경복궁",
+            "景福宮"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q482485",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": {
+            "latitude": 37.5798841,
+            "longitude": 126.9767996
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch03d-south-korea",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch03d-south-korea",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q482485",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "2026-08-03T16:00:00.000Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-poi-baseline-p1b",
+      "entityId": "poi-e37deb0001b8c14a",
+      "entityType": "poi",
+      "parentCityEntityId": "city-f6091553326ae92e",
+      "wikidataId": "Q2942222",
+      "canonicalNameZh": "殿洞聖堂",
+      "canonicalNameEn": "Jeondong Cathedral",
+      "aliases": [
+        "Catedral de Jeondong",
+        "Cathédrale de Jeondong",
+        "cathédrale Jeondong",
+        "전동 성당",
+        "전동성당",
+        "전주성당"
+      ],
+      "coordinates": {
+        "latitude": 35.8135,
+        "longitude": 127.149
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-08-03T16:00:00.000Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch03d-south-korea",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "poi-e37deb0001b8c14a"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch03d-south-korea",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "poi"
+        },
+        "parentCityEntityId": {
+          "field": "parentCityEntityId",
+          "sourceType": "repository-reference",
+          "source": "South Korea City Entity",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q42140",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "city-f6091553326ae92e"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q2942222",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "Q2942222"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q2942222",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "殿洞聖堂"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q2942222",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "Jeondong Cathedral"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q2942222",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": [
+            "Catedral de Jeondong",
+            "Cathédrale de Jeondong",
+            "cathédrale Jeondong",
+            "전동 성당",
+            "전동성당",
+            "전주성당"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q2942222",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": {
+            "latitude": 35.8135,
+            "longitude": 127.149
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch03d-south-korea",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch03d-south-korea",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T16:00:00.000Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q2942222",
           "retrievedAt": "2026-08-03T16:00:00.000Z",
           "value": "2026-08-03T16:00:00.000Z"
         }

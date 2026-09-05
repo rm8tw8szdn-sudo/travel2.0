@@ -1,7 +1,7 @@
 {
   "schemaVersion": "route-v2-poi-baseline-p1b-batch11",
   "generatedFrom": "data/knowledge/raw/knowledge-expansion-batch04c-portugal.wikidata.json",
-  "poiCount": 69,
+  "poiCount": 62,
   "pois": [
     {
       "schemaVersion": "route-v2-poi-baseline-p1b",
@@ -1525,256 +1525,6 @@
     },
     {
       "schemaVersion": "route-v2-poi-baseline-p1b",
-      "entityId": "poi-647d5daa71083b65",
-      "entityType": "poi",
-      "parentCityEntityId": "city-0b698dc2d0543b0e",
-      "wikidataId": "Q1549270",
-      "canonicalNameZh": "罗西乌广场",
-      "canonicalNameEn": "Rossio",
-      "aliases": [
-        "Praça D. Pedro IV",
-        "Praça da Rossio",
-        "Praça de D. Pedro IV",
-        "Praça de D. Pedro IV.",
-        "Praça de Dom Pedro IV",
-        "Praça do Rossio",
-        "Praça Dom Pedro IV",
-        "Rossio Square"
-      ],
-      "coordinates": {
-        "latitude": 38.713888888889,
-        "longitude": -9.1394444444444
-      },
-      "entitySourceType": "wikidata",
-      "confidence": 0.95,
-      "retrievedAt": "2026-08-10T12:00:00.000Z",
-      "provenance": {
-        "entityId": {
-          "field": "entityId",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04c-portugal",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "poi-647d5daa71083b65"
-        },
-        "entityType": {
-          "field": "entityType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04c-portugal",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "poi"
-        },
-        "parentCityEntityId": {
-          "field": "parentCityEntityId",
-          "sourceType": "repository-reference",
-          "source": "Portugal City Entity",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q597",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "city-0b698dc2d0543b0e"
-        },
-        "wikidataId": {
-          "field": "wikidataId",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1549270",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Q1549270"
-        },
-        "canonicalNameZh": {
-          "field": "canonicalNameZh",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1549270",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "罗西乌广场"
-        },
-        "canonicalNameEn": {
-          "field": "canonicalNameEn",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1549270",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Rossio"
-        },
-        "aliases": {
-          "field": "aliases",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1549270",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": [
-            "Praça D. Pedro IV",
-            "Praça da Rossio",
-            "Praça de D. Pedro IV",
-            "Praça de D. Pedro IV.",
-            "Praça de Dom Pedro IV",
-            "Praça do Rossio",
-            "Praça Dom Pedro IV",
-            "Rossio Square"
-          ]
-        },
-        "coordinates": {
-          "field": "coordinates",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1549270",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": {
-            "latitude": 38.713888888889,
-            "longitude": -9.1394444444444
-          }
-        },
-        "entitySourceType": {
-          "field": "entitySourceType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04c-portugal",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "wikidata"
-        },
-        "confidence": {
-          "field": "confidence",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04c-portugal",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": 0.95
-        },
-        "retrievedAt": {
-          "field": "retrievedAt",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1549270",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "2026-08-10T12:00:00.000Z"
-        }
-      }
-    },
-    {
-      "schemaVersion": "route-v2-poi-baseline-p1b",
-      "entityId": "poi-0c09beabf9849b0a",
-      "entityType": "poi",
-      "parentCityEntityId": "city-0b698dc2d0543b0e",
-      "wikidataId": "Q168001",
-      "canonicalNameZh": "圣胡斯塔升降机",
-      "canonicalNameEn": "Santa Justa Lift",
-      "aliases": [
-        "Aufzug Santa Justa",
-        "Elevador de Santa Justa",
-        "Elevador do Carmo",
-        "Santa Justa-Lift",
-        "圣朱斯塔升降机"
-      ],
-      "coordinates": {
-        "latitude": 38.71194,
-        "longitude": -9.13917
-      },
-      "entitySourceType": "wikidata",
-      "confidence": 0.95,
-      "retrievedAt": "2026-08-10T12:00:00.000Z",
-      "provenance": {
-        "entityId": {
-          "field": "entityId",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04c-portugal",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "poi-0c09beabf9849b0a"
-        },
-        "entityType": {
-          "field": "entityType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04c-portugal",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "poi"
-        },
-        "parentCityEntityId": {
-          "field": "parentCityEntityId",
-          "sourceType": "repository-reference",
-          "source": "Portugal City Entity",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q597",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "city-0b698dc2d0543b0e"
-        },
-        "wikidataId": {
-          "field": "wikidataId",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q168001",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Q168001"
-        },
-        "canonicalNameZh": {
-          "field": "canonicalNameZh",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q168001",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "圣胡斯塔升降机"
-        },
-        "canonicalNameEn": {
-          "field": "canonicalNameEn",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q168001",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Santa Justa Lift"
-        },
-        "aliases": {
-          "field": "aliases",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q168001",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": [
-            "Aufzug Santa Justa",
-            "Elevador de Santa Justa",
-            "Elevador do Carmo",
-            "Santa Justa-Lift",
-            "圣朱斯塔升降机"
-          ]
-        },
-        "coordinates": {
-          "field": "coordinates",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q168001",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": {
-            "latitude": 38.71194,
-            "longitude": -9.13917
-          }
-        },
-        "entitySourceType": {
-          "field": "entitySourceType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04c-portugal",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "wikidata"
-        },
-        "confidence": {
-          "field": "confidence",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04c-portugal",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": 0.95
-        },
-        "retrievedAt": {
-          "field": "retrievedAt",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q168001",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "2026-08-10T12:00:00.000Z"
-        }
-      }
-    },
-    {
-      "schemaVersion": "route-v2-poi-baseline-p1b",
       "entityId": "poi-95d008a9a0cf0af6",
       "entityType": "poi",
       "parentCityEntityId": "city-0b698dc2d0543b0e",
@@ -1892,120 +1642,6 @@
           "sourceType": "wikidata",
           "source": "Wikidata enwiki title plus wbgetentities",
           "sourceUrl": "https://www.wikidata.org/wiki/Q636780",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "2026-08-10T12:00:00.000Z"
-        }
-      }
-    },
-    {
-      "schemaVersion": "route-v2-poi-baseline-p1b",
-      "entityId": "poi-45785f3f13537a7d",
-      "entityType": "poi",
-      "parentCityEntityId": "city-23e4523c57c5ac2a",
-      "wikidataId": "Q98458464",
-      "canonicalNameZh": "Castle of Lagos",
-      "canonicalNameEn": "Castle of Lagos",
-      "aliases": [
-        "Castelo de Lagos"
-      ],
-      "coordinates": {
-        "latitude": 37.097122,
-        "longitude": -8.671626
-      },
-      "entitySourceType": "wikidata",
-      "confidence": 0.95,
-      "retrievedAt": "2026-08-10T12:00:00.000Z",
-      "provenance": {
-        "entityId": {
-          "field": "entityId",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04c-portugal",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "poi-45785f3f13537a7d"
-        },
-        "entityType": {
-          "field": "entityType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04c-portugal",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "poi"
-        },
-        "parentCityEntityId": {
-          "field": "parentCityEntityId",
-          "sourceType": "repository-reference",
-          "source": "Portugal City Entity",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q732548",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "city-23e4523c57c5ac2a"
-        },
-        "wikidataId": {
-          "field": "wikidataId",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q98458464",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Q98458464"
-        },
-        "canonicalNameZh": {
-          "field": "canonicalNameZh",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q98458464",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Castle of Lagos"
-        },
-        "canonicalNameEn": {
-          "field": "canonicalNameEn",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q98458464",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Castle of Lagos"
-        },
-        "aliases": {
-          "field": "aliases",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q98458464",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": [
-            "Castelo de Lagos"
-          ]
-        },
-        "coordinates": {
-          "field": "coordinates",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q98458464",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": {
-            "latitude": 37.097122,
-            "longitude": -8.671626
-          }
-        },
-        "entitySourceType": {
-          "field": "entitySourceType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04c-portugal",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "wikidata"
-        },
-        "confidence": {
-          "field": "confidence",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04c-portugal",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": 0.95
-        },
-        "retrievedAt": {
-          "field": "retrievedAt",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q98458464",
           "retrievedAt": "2026-08-10T12:00:00.000Z",
           "value": "2026-08-10T12:00:00.000Z"
         }
@@ -2476,120 +2112,6 @@
           "sourceType": "wikidata",
           "source": "Wikidata enwiki title plus wbgetentities",
           "sourceUrl": "https://www.wikidata.org/wiki/Q66813856",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "2026-08-10T12:00:00.000Z"
-        }
-      }
-    },
-    {
-      "schemaVersion": "route-v2-poi-baseline-p1b",
-      "entityId": "poi-6f1c660d80318e8b",
-      "entityType": "poi",
-      "parentCityEntityId": "city-3afec41980a016c2",
-      "wikidataId": "Q1773229",
-      "canonicalNameZh": "若昂尼納圖書館",
-      "canonicalNameEn": "Biblioteca Joanina",
-      "aliases": [
-        "Bιβλιοθήκη Johannine"
-      ],
-      "coordinates": {
-        "latitude": 40.2071,
-        "longitude": -8.4265
-      },
-      "entitySourceType": "wikidata",
-      "confidence": 0.95,
-      "retrievedAt": "2026-08-10T12:00:00.000Z",
-      "provenance": {
-        "entityId": {
-          "field": "entityId",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04c-portugal",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "poi-6f1c660d80318e8b"
-        },
-        "entityType": {
-          "field": "entityType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04c-portugal",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "poi"
-        },
-        "parentCityEntityId": {
-          "field": "parentCityEntityId",
-          "sourceType": "repository-reference",
-          "source": "Portugal City Entity",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q45412",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "city-3afec41980a016c2"
-        },
-        "wikidataId": {
-          "field": "wikidataId",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1773229",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Q1773229"
-        },
-        "canonicalNameZh": {
-          "field": "canonicalNameZh",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1773229",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "若昂尼納圖書館"
-        },
-        "canonicalNameEn": {
-          "field": "canonicalNameEn",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1773229",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Biblioteca Joanina"
-        },
-        "aliases": {
-          "field": "aliases",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1773229",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": [
-            "Bιβλιοθήκη Johannine"
-          ]
-        },
-        "coordinates": {
-          "field": "coordinates",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1773229",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": {
-            "latitude": 40.2071,
-            "longitude": -8.4265
-          }
-        },
-        "entitySourceType": {
-          "field": "entitySourceType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04c-portugal",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "wikidata"
-        },
-        "confidence": {
-          "field": "confidence",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04c-portugal",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": 0.95
-        },
-        "retrievedAt": {
-          "field": "retrievedAt",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1773229",
           "retrievedAt": "2026-08-10T12:00:00.000Z",
           "value": "2026-08-10T12:00:00.000Z"
         }
@@ -3340,140 +2862,6 @@
           "sourceType": "wikidata",
           "source": "Wikidata enwiki title plus wbgetentities",
           "sourceUrl": "https://www.wikidata.org/wiki/Q2669590",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "2026-08-10T12:00:00.000Z"
-        }
-      }
-    },
-    {
-      "schemaVersion": "route-v2-poi-baseline-p1b",
-      "entityId": "poi-08649331aa43c6aa",
-      "entityType": "poi",
-      "parentCityEntityId": "city-3afec41980a016c2",
-      "wikidataId": "Q368643",
-      "canonicalNameZh": "科英布拉大学",
-      "canonicalNameEn": "University of Coimbra",
-      "aliases": [
-        "Faculdade de Ciências da Universidade de Coimbra",
-        "U.Coimbra",
-        "UC",
-        "uc.pt",
-        "Universidade de Coimbra",
-        "Universidade dos Estudos Gerais",
-        "Universitas Conimbrigensis",
-        "Universität Coimbra",
-        "Universiteit van Coimbra",
-        "Πανεπιστήμιο της Κοΐμπρα",
-        "科英布拉大學"
-      ],
-      "coordinates": {
-        "latitude": 40.2074,
-        "longitude": -8.4265
-      },
-      "entitySourceType": "wikidata",
-      "confidence": 0.95,
-      "retrievedAt": "2026-08-10T12:00:00.000Z",
-      "provenance": {
-        "entityId": {
-          "field": "entityId",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04c-portugal",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "poi-08649331aa43c6aa"
-        },
-        "entityType": {
-          "field": "entityType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04c-portugal",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "poi"
-        },
-        "parentCityEntityId": {
-          "field": "parentCityEntityId",
-          "sourceType": "repository-reference",
-          "source": "Portugal City Entity",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q45412",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "city-3afec41980a016c2"
-        },
-        "wikidataId": {
-          "field": "wikidataId",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q368643",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Q368643"
-        },
-        "canonicalNameZh": {
-          "field": "canonicalNameZh",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q368643",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "科英布拉大学"
-        },
-        "canonicalNameEn": {
-          "field": "canonicalNameEn",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q368643",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "University of Coimbra"
-        },
-        "aliases": {
-          "field": "aliases",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q368643",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": [
-            "Faculdade de Ciências da Universidade de Coimbra",
-            "U.Coimbra",
-            "UC",
-            "uc.pt",
-            "Universidade de Coimbra",
-            "Universidade dos Estudos Gerais",
-            "Universitas Conimbrigensis",
-            "Universität Coimbra",
-            "Universiteit van Coimbra",
-            "Πανεπιστήμιο της Κοΐμπρα",
-            "科英布拉大學"
-          ]
-        },
-        "coordinates": {
-          "field": "coordinates",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q368643",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": {
-            "latitude": 40.2074,
-            "longitude": -8.4265
-          }
-        },
-        "entitySourceType": {
-          "field": "entitySourceType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04c-portugal",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "wikidata"
-        },
-        "confidence": {
-          "field": "confidence",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04c-portugal",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": 0.95
-        },
-        "retrievedAt": {
-          "field": "retrievedAt",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q368643",
           "retrievedAt": "2026-08-10T12:00:00.000Z",
           "value": "2026-08-10T12:00:00.000Z"
         }
@@ -4807,264 +4195,6 @@
     },
     {
       "schemaVersion": "route-v2-poi-baseline-p1b",
-      "entityId": "poi-b5b2cd56cef4ae6b",
-      "entityType": "poi",
-      "parentCityEntityId": "city-5bf2ba95e40c608e",
-      "wikidataId": "Q737441",
-      "canonicalNameZh": "埃武拉罗马神庙",
-      "canonicalNameEn": "Roman Temple of Évora",
-      "aliases": [
-        "Roman Temple of Evora",
-        "Romeinse tempel van Evora",
-        "Romeinse tempel van Évora",
-        "Römischer Tempel von Évora",
-        "Templo de Diana",
-        "Templo de Diana (Évora)",
-        "Templo romano de Evora",
-        "Templo Romano de Évora"
-      ],
-      "coordinates": {
-        "latitude": 38.572647,
-        "longitude": -7.90729
-      },
-      "entitySourceType": "wikidata",
-      "confidence": 0.95,
-      "retrievedAt": "2026-08-10T12:00:00.000Z",
-      "provenance": {
-        "entityId": {
-          "field": "entityId",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04c-portugal",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "poi-b5b2cd56cef4ae6b"
-        },
-        "entityType": {
-          "field": "entityType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04c-portugal",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "poi"
-        },
-        "parentCityEntityId": {
-          "field": "parentCityEntityId",
-          "sourceType": "repository-reference",
-          "source": "Portugal City Entity",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q179948",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "city-5bf2ba95e40c608e"
-        },
-        "wikidataId": {
-          "field": "wikidataId",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q737441",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Q737441"
-        },
-        "canonicalNameZh": {
-          "field": "canonicalNameZh",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q737441",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "埃武拉罗马神庙"
-        },
-        "canonicalNameEn": {
-          "field": "canonicalNameEn",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q737441",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Roman Temple of Évora"
-        },
-        "aliases": {
-          "field": "aliases",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q737441",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": [
-            "Roman Temple of Evora",
-            "Romeinse tempel van Evora",
-            "Romeinse tempel van Évora",
-            "Römischer Tempel von Évora",
-            "Templo de Diana",
-            "Templo de Diana (Évora)",
-            "Templo romano de Evora",
-            "Templo Romano de Évora"
-          ]
-        },
-        "coordinates": {
-          "field": "coordinates",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q737441",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": {
-            "latitude": 38.572647,
-            "longitude": -7.90729
-          }
-        },
-        "entitySourceType": {
-          "field": "entitySourceType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04c-portugal",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "wikidata"
-        },
-        "confidence": {
-          "field": "confidence",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04c-portugal",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": 0.95
-        },
-        "retrievedAt": {
-          "field": "retrievedAt",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q737441",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "2026-08-10T12:00:00.000Z"
-        }
-      }
-    },
-    {
-      "schemaVersion": "route-v2-poi-baseline-p1b",
-      "entityId": "poi-66f49f981b940557",
-      "entityType": "poi",
-      "parentCityEntityId": "city-5bf2ba95e40c608e",
-      "wikidataId": "Q1557861",
-      "canonicalNameZh": "埃武拉大学",
-      "canonicalNameEn": "University of Évora",
-      "aliases": [
-        "Colégio da Companhia de Jesus",
-        "Colégio do Espírito Santo",
-        "Evora university",
-        "uevora.pt",
-        "Universidade de Evora",
-        "Universidade de Évora",
-        "Universität Évora",
-        "University of Evora",
-        "埃沃拉大学"
-      ],
-      "coordinates": {
-        "latitude": 38.573,
-        "longitude": -7.90427
-      },
-      "entitySourceType": "wikidata",
-      "confidence": 0.95,
-      "retrievedAt": "2026-08-10T12:00:00.000Z",
-      "provenance": {
-        "entityId": {
-          "field": "entityId",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04c-portugal",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "poi-66f49f981b940557"
-        },
-        "entityType": {
-          "field": "entityType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04c-portugal",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "poi"
-        },
-        "parentCityEntityId": {
-          "field": "parentCityEntityId",
-          "sourceType": "repository-reference",
-          "source": "Portugal City Entity",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q179948",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "city-5bf2ba95e40c608e"
-        },
-        "wikidataId": {
-          "field": "wikidataId",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1557861",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Q1557861"
-        },
-        "canonicalNameZh": {
-          "field": "canonicalNameZh",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1557861",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "埃武拉大学"
-        },
-        "canonicalNameEn": {
-          "field": "canonicalNameEn",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1557861",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "University of Évora"
-        },
-        "aliases": {
-          "field": "aliases",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1557861",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": [
-            "Colégio da Companhia de Jesus",
-            "Colégio do Espírito Santo",
-            "Evora university",
-            "uevora.pt",
-            "Universidade de Evora",
-            "Universidade de Évora",
-            "Universität Évora",
-            "University of Evora",
-            "埃沃拉大学"
-          ]
-        },
-        "coordinates": {
-          "field": "coordinates",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1557861",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": {
-            "latitude": 38.573,
-            "longitude": -7.90427
-          }
-        },
-        "entitySourceType": {
-          "field": "entitySourceType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04c-portugal",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "wikidata"
-        },
-        "confidence": {
-          "field": "confidence",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04c-portugal",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": 0.95
-        },
-        "retrievedAt": {
-          "field": "retrievedAt",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1557861",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "2026-08-10T12:00:00.000Z"
-        }
-      }
-    },
-    {
-      "schemaVersion": "route-v2-poi-baseline-p1b",
       "entityId": "poi-977c43c698e8c372",
       "entityType": "poi",
       "parentCityEntityId": "city-6f31bde299eab111",
@@ -5182,130 +4312,6 @@
           "sourceType": "wikidata",
           "source": "Wikidata enwiki title plus wbgetentities",
           "sourceUrl": "https://www.wikidata.org/wiki/Q1549939",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "2026-08-10T12:00:00.000Z"
-        }
-      }
-    },
-    {
-      "schemaVersion": "route-v2-poi-baseline-p1b",
-      "entityId": "poi-e7132fc0b3d751c5",
-      "entityType": "poi",
-      "parentCityEntityId": "city-6f31bde299eab111",
-      "wikidataId": "Q18642",
-      "canonicalNameZh": "教士教堂",
-      "canonicalNameEn": "Clérigos Church",
-      "aliases": [
-        "Clerigos Church",
-        "Igreja dos Clerigos",
-        "Igreja dos Clérigos",
-        "Igreja São Pedro dos Clérigos",
-        "Torre dos Clerigos",
-        "Torre dos Clérigos"
-      ],
-      "coordinates": {
-        "latitude": 41.145871,
-        "longitude": -8.61401
-      },
-      "entitySourceType": "wikidata",
-      "confidence": 0.95,
-      "retrievedAt": "2026-08-10T12:00:00.000Z",
-      "provenance": {
-        "entityId": {
-          "field": "entityId",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04c-portugal",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "poi-e7132fc0b3d751c5"
-        },
-        "entityType": {
-          "field": "entityType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04c-portugal",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "poi"
-        },
-        "parentCityEntityId": {
-          "field": "parentCityEntityId",
-          "sourceType": "repository-reference",
-          "source": "Portugal City Entity",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q36433",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "city-6f31bde299eab111"
-        },
-        "wikidataId": {
-          "field": "wikidataId",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q18642",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Q18642"
-        },
-        "canonicalNameZh": {
-          "field": "canonicalNameZh",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q18642",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "教士教堂"
-        },
-        "canonicalNameEn": {
-          "field": "canonicalNameEn",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q18642",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Clérigos Church"
-        },
-        "aliases": {
-          "field": "aliases",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q18642",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": [
-            "Clerigos Church",
-            "Igreja dos Clerigos",
-            "Igreja dos Clérigos",
-            "Igreja São Pedro dos Clérigos",
-            "Torre dos Clerigos",
-            "Torre dos Clérigos"
-          ]
-        },
-        "coordinates": {
-          "field": "coordinates",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q18642",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": {
-            "latitude": 41.145871,
-            "longitude": -8.61401
-          }
-        },
-        "entitySourceType": {
-          "field": "entitySourceType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04c-portugal",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "wikidata"
-        },
-        "confidence": {
-          "field": "confidence",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04c-portugal",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": 0.95
-        },
-        "retrievedAt": {
-          "field": "retrievedAt",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q18642",
           "retrievedAt": "2026-08-10T12:00:00.000Z",
           "value": "2026-08-10T12:00:00.000Z"
         }
@@ -5460,136 +4466,6 @@
           "sourceType": "wikidata",
           "source": "Wikidata enwiki title plus wbgetentities",
           "sourceUrl": "https://www.wikidata.org/wiki/Q1322447",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "2026-08-10T12:00:00.000Z"
-        }
-      }
-    },
-    {
-      "schemaVersion": "route-v2-poi-baseline-p1b",
-      "entityId": "poi-e82e40e2aaa38910",
-      "entityType": "poi",
-      "parentCityEntityId": "city-6f31bde299eab111",
-      "wikidataId": "Q3408689",
-      "canonicalNameZh": "萊羅書店",
-      "canonicalNameEn": "Livraria Lello",
-      "aliases": [
-        "Buchhandlung Lello",
-        "José Pinto de Sousa Lello & Irmão",
-        "Lello & Irmão Editores",
-        "Livraria Chardron",
-        "Livraria Internacional de Ernesto Chardron",
-        "Livraria Lello & Irmao",
-        "Livraria Lello & Irmão",
-        "Livraria Lello e Irmao",
-        "Livraria Lello e Irmão"
-      ],
-      "coordinates": {
-        "latitude": 41.146807,
-        "longitude": -8.614827
-      },
-      "entitySourceType": "wikidata",
-      "confidence": 0.95,
-      "retrievedAt": "2026-08-10T12:00:00.000Z",
-      "provenance": {
-        "entityId": {
-          "field": "entityId",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04c-portugal",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "poi-e82e40e2aaa38910"
-        },
-        "entityType": {
-          "field": "entityType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04c-portugal",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "poi"
-        },
-        "parentCityEntityId": {
-          "field": "parentCityEntityId",
-          "sourceType": "repository-reference",
-          "source": "Portugal City Entity",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q36433",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "city-6f31bde299eab111"
-        },
-        "wikidataId": {
-          "field": "wikidataId",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q3408689",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Q3408689"
-        },
-        "canonicalNameZh": {
-          "field": "canonicalNameZh",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q3408689",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "萊羅書店"
-        },
-        "canonicalNameEn": {
-          "field": "canonicalNameEn",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q3408689",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Livraria Lello"
-        },
-        "aliases": {
-          "field": "aliases",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q3408689",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": [
-            "Buchhandlung Lello",
-            "José Pinto de Sousa Lello & Irmão",
-            "Lello & Irmão Editores",
-            "Livraria Chardron",
-            "Livraria Internacional de Ernesto Chardron",
-            "Livraria Lello & Irmao",
-            "Livraria Lello & Irmão",
-            "Livraria Lello e Irmao",
-            "Livraria Lello e Irmão"
-          ]
-        },
-        "coordinates": {
-          "field": "coordinates",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q3408689",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": {
-            "latitude": 41.146807,
-            "longitude": -8.614827
-          }
-        },
-        "entitySourceType": {
-          "field": "entitySourceType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04c-portugal",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "wikidata"
-        },
-        "confidence": {
-          "field": "confidence",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04c-portugal",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": 0.95
-        },
-        "retrievedAt": {
-          "field": "retrievedAt",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q3408689",
           "retrievedAt": "2026-08-10T12:00:00.000Z",
           "value": "2026-08-10T12:00:00.000Z"
         }
@@ -5834,148 +4710,6 @@
           "sourceType": "wikidata",
           "source": "Wikidata enwiki title plus wbgetentities",
           "sourceUrl": "https://www.wikidata.org/wiki/Q1441255",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "2026-08-10T12:00:00.000Z"
-        }
-      }
-    },
-    {
-      "schemaVersion": "route-v2-poi-baseline-p1b",
-      "entityId": "poi-72f4d68f9721efd7",
-      "entityType": "poi",
-      "parentCityEntityId": "city-6f31bde299eab111",
-      "wikidataId": "Q579250",
-      "canonicalNameZh": "圣本笃车站",
-      "canonicalNameEn": "São Bento Railway Station",
-      "aliases": [
-        "Bahnhof Porto Sao Bento",
-        "Bahnhof Porto São Bento",
-        "Estação de S. Bento",
-        "Estação de São Bento",
-        "Estação dos Caminhos de Ferro de São Bento",
-        "Estação Ferroviária de Porto — São Bento",
-        "Estacao Ferroviaria de Porto-Sao Bento",
-        "Estação Ferroviária de Porto-São Bento",
-        "Estação ferroviária de São Bento",
-        "Porto S. Bento",
-        "Porto São Bento",
-        "Porto São Bento train station",
-        "Porto-S. Bento",
-        "Station Sao Bento",
-        "Station São Bento"
-      ],
-      "coordinates": {
-        "latitude": 41.14541667,
-        "longitude": -8.61040278
-      },
-      "entitySourceType": "wikidata",
-      "confidence": 0.95,
-      "retrievedAt": "2026-08-10T12:00:00.000Z",
-      "provenance": {
-        "entityId": {
-          "field": "entityId",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04c-portugal",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "poi-72f4d68f9721efd7"
-        },
-        "entityType": {
-          "field": "entityType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04c-portugal",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "poi"
-        },
-        "parentCityEntityId": {
-          "field": "parentCityEntityId",
-          "sourceType": "repository-reference",
-          "source": "Portugal City Entity",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q36433",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "city-6f31bde299eab111"
-        },
-        "wikidataId": {
-          "field": "wikidataId",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q579250",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Q579250"
-        },
-        "canonicalNameZh": {
-          "field": "canonicalNameZh",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q579250",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "圣本笃车站"
-        },
-        "canonicalNameEn": {
-          "field": "canonicalNameEn",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q579250",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "São Bento Railway Station"
-        },
-        "aliases": {
-          "field": "aliases",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q579250",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": [
-            "Bahnhof Porto Sao Bento",
-            "Bahnhof Porto São Bento",
-            "Estação de S. Bento",
-            "Estação de São Bento",
-            "Estação dos Caminhos de Ferro de São Bento",
-            "Estação Ferroviária de Porto — São Bento",
-            "Estacao Ferroviaria de Porto-Sao Bento",
-            "Estação Ferroviária de Porto-São Bento",
-            "Estação ferroviária de São Bento",
-            "Porto S. Bento",
-            "Porto São Bento",
-            "Porto São Bento train station",
-            "Porto-S. Bento",
-            "Station Sao Bento",
-            "Station São Bento"
-          ]
-        },
-        "coordinates": {
-          "field": "coordinates",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q579250",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": {
-            "latitude": 41.14541667,
-            "longitude": -8.61040278
-          }
-        },
-        "entitySourceType": {
-          "field": "entitySourceType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04c-portugal",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "wikidata"
-        },
-        "confidence": {
-          "field": "confidence",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04c-portugal",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": 0.95
-        },
-        "retrievedAt": {
-          "field": "retrievedAt",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q579250",
           "retrievedAt": "2026-08-10T12:00:00.000Z",
           "value": "2026-08-10T12:00:00.000Z"
         }
@@ -6345,122 +5079,6 @@
     },
     {
       "schemaVersion": "route-v2-poi-baseline-p1b",
-      "entityId": "poi-38b6ff1b6c9830ac",
-      "entityType": "poi",
-      "parentCityEntityId": "city-abdd80683790dc81",
-      "wikidataId": "Q53580592",
-      "canonicalNameZh": "Aveiro City Museum",
-      "canonicalNameEn": "Aveiro City Museum",
-      "aliases": [
-        "Museu da Cidade",
-        "Museu da Cidade de Aveiro"
-      ],
-      "coordinates": {
-        "latitude": 40.641651,
-        "longitude": -8.654508
-      },
-      "entitySourceType": "wikidata",
-      "confidence": 0.95,
-      "retrievedAt": "2026-08-10T12:00:00.000Z",
-      "provenance": {
-        "entityId": {
-          "field": "entityId",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04c-portugal",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "poi-38b6ff1b6c9830ac"
-        },
-        "entityType": {
-          "field": "entityType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04c-portugal",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "poi"
-        },
-        "parentCityEntityId": {
-          "field": "parentCityEntityId",
-          "sourceType": "repository-reference",
-          "source": "Portugal City Entity",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q485581",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "city-abdd80683790dc81"
-        },
-        "wikidataId": {
-          "field": "wikidataId",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q53580592",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Q53580592"
-        },
-        "canonicalNameZh": {
-          "field": "canonicalNameZh",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q53580592",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Aveiro City Museum"
-        },
-        "canonicalNameEn": {
-          "field": "canonicalNameEn",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q53580592",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Aveiro City Museum"
-        },
-        "aliases": {
-          "field": "aliases",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q53580592",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": [
-            "Museu da Cidade",
-            "Museu da Cidade de Aveiro"
-          ]
-        },
-        "coordinates": {
-          "field": "coordinates",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q53580592",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": {
-            "latitude": 40.641651,
-            "longitude": -8.654508
-          }
-        },
-        "entitySourceType": {
-          "field": "entitySourceType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04c-portugal",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "wikidata"
-        },
-        "confidence": {
-          "field": "confidence",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04c-portugal",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": 0.95
-        },
-        "retrievedAt": {
-          "field": "retrievedAt",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q53580592",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "2026-08-10T12:00:00.000Z"
-        }
-      }
-    },
-    {
-      "schemaVersion": "route-v2-poi-baseline-p1b",
       "entityId": "poi-ee3eb394c9c36d53",
       "entityType": "poi",
       "parentCityEntityId": "city-abdd80683790dc81",
@@ -6570,126 +5188,6 @@
           "sourceType": "wikidata",
           "source": "Wikidata enwiki title plus wbgetentities",
           "sourceUrl": "https://www.wikidata.org/wiki/Q99300945",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "2026-08-10T12:00:00.000Z"
-        }
-      }
-    },
-    {
-      "schemaVersion": "route-v2-poi-baseline-p1b",
-      "entityId": "poi-4bd54097fbdd14aa",
-      "entityType": "poi",
-      "parentCityEntityId": "city-abdd80683790dc81",
-      "wikidataId": "Q800417",
-      "canonicalNameZh": "Aveiro Railway Station",
-      "canonicalNameEn": "Aveiro Railway Station",
-      "aliases": [
-        "Bahnhof Aveiro",
-        "Estação de Aveiro",
-        "Estação Ferroviária de Aveiro",
-        "station Aveiro"
-      ],
-      "coordinates": {
-        "latitude": 40.643461,
-        "longitude": -8.6405
-      },
-      "entitySourceType": "wikidata",
-      "confidence": 0.95,
-      "retrievedAt": "2026-08-10T12:00:00.000Z",
-      "provenance": {
-        "entityId": {
-          "field": "entityId",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04c-portugal",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "poi-4bd54097fbdd14aa"
-        },
-        "entityType": {
-          "field": "entityType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04c-portugal",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "poi"
-        },
-        "parentCityEntityId": {
-          "field": "parentCityEntityId",
-          "sourceType": "repository-reference",
-          "source": "Portugal City Entity",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q485581",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "city-abdd80683790dc81"
-        },
-        "wikidataId": {
-          "field": "wikidataId",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q800417",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Q800417"
-        },
-        "canonicalNameZh": {
-          "field": "canonicalNameZh",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q800417",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Aveiro Railway Station"
-        },
-        "canonicalNameEn": {
-          "field": "canonicalNameEn",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q800417",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Aveiro Railway Station"
-        },
-        "aliases": {
-          "field": "aliases",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q800417",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": [
-            "Bahnhof Aveiro",
-            "Estação de Aveiro",
-            "Estação Ferroviária de Aveiro",
-            "station Aveiro"
-          ]
-        },
-        "coordinates": {
-          "field": "coordinates",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q800417",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": {
-            "latitude": 40.643461,
-            "longitude": -8.6405
-          }
-        },
-        "entitySourceType": {
-          "field": "entitySourceType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04c-portugal",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "wikidata"
-        },
-        "confidence": {
-          "field": "confidence",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04c-portugal",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": 0.95
-        },
-        "retrievedAt": {
-          "field": "retrievedAt",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q800417",
           "retrievedAt": "2026-08-10T12:00:00.000Z",
           "value": "2026-08-10T12:00:00.000Z"
         }
@@ -6922,122 +5420,6 @@
           "sourceType": "wikidata",
           "source": "Wikidata enwiki title plus wbgetentities",
           "sourceUrl": "https://www.wikidata.org/wiki/Q3585514",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "2026-08-10T12:00:00.000Z"
-        }
-      }
-    },
-    {
-      "schemaVersion": "route-v2-poi-baseline-p1b",
-      "entityId": "poi-aaa76a6edf5a7cea",
-      "entityType": "poi",
-      "parentCityEntityId": "city-c159dcf369a61f40",
-      "wikidataId": "Q17390064",
-      "canonicalNameZh": "Castle of Faro",
-      "canonicalNameEn": "Castle of Faro",
-      "aliases": [
-        "Castelo de Faro",
-        "Fábrica da Cerveja"
-      ],
-      "coordinates": {
-        "latitude": 37.01197222222222,
-        "longitude": -7.934083333333334
-      },
-      "entitySourceType": "wikidata",
-      "confidence": 0.95,
-      "retrievedAt": "2026-08-10T12:00:00.000Z",
-      "provenance": {
-        "entityId": {
-          "field": "entityId",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04c-portugal",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "poi-aaa76a6edf5a7cea"
-        },
-        "entityType": {
-          "field": "entityType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04c-portugal",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "poi"
-        },
-        "parentCityEntityId": {
-          "field": "parentCityEntityId",
-          "sourceType": "repository-reference",
-          "source": "Portugal City Entity",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q159457",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "city-c159dcf369a61f40"
-        },
-        "wikidataId": {
-          "field": "wikidataId",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q17390064",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Q17390064"
-        },
-        "canonicalNameZh": {
-          "field": "canonicalNameZh",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q17390064",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Castle of Faro"
-        },
-        "canonicalNameEn": {
-          "field": "canonicalNameEn",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q17390064",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Castle of Faro"
-        },
-        "aliases": {
-          "field": "aliases",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q17390064",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": [
-            "Castelo de Faro",
-            "Fábrica da Cerveja"
-          ]
-        },
-        "coordinates": {
-          "field": "coordinates",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q17390064",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": {
-            "latitude": 37.01197222222222,
-            "longitude": -7.934083333333334
-          }
-        },
-        "entitySourceType": {
-          "field": "entitySourceType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04c-portugal",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "wikidata"
-        },
-        "confidence": {
-          "field": "confidence",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04c-portugal",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": 0.95
-        },
-        "retrievedAt": {
-          "field": "retrievedAt",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q17390064",
           "retrievedAt": "2026-08-10T12:00:00.000Z",
           "value": "2026-08-10T12:00:00.000Z"
         }
@@ -7510,122 +5892,6 @@
           "sourceType": "wikidata",
           "source": "Wikidata enwiki title plus wbgetentities",
           "sourceUrl": "https://www.wikidata.org/wiki/Q4894732",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "2026-08-10T12:00:00.000Z"
-        }
-      }
-    },
-    {
-      "schemaVersion": "route-v2-poi-baseline-p1b",
-      "entityId": "poi-66aca22a8bd5347b",
-      "entityType": "poi",
-      "parentCityEntityId": "city-e522715ce542e2ca",
-      "wikidataId": "Q113485289",
-      "canonicalNameZh": "Church of Our Lady of Consolation",
-      "canonicalNameEn": "Church of Our Lady of Consolation",
-      "aliases": [
-        "Igreja de Nossa Senhora da Consolação e Santos Passos",
-        "Igreja dos Santos Passos"
-      ],
-      "coordinates": {
-        "latitude": 41.44083333333333,
-        "longitude": -8.289722222222222
-      },
-      "entitySourceType": "wikidata",
-      "confidence": 0.95,
-      "retrievedAt": "2026-08-10T12:00:00.000Z",
-      "provenance": {
-        "entityId": {
-          "field": "entityId",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04c-portugal",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "poi-66aca22a8bd5347b"
-        },
-        "entityType": {
-          "field": "entityType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04c-portugal",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "poi"
-        },
-        "parentCityEntityId": {
-          "field": "parentCityEntityId",
-          "sourceType": "repository-reference",
-          "source": "Portugal City Entity",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q170903",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "city-e522715ce542e2ca"
-        },
-        "wikidataId": {
-          "field": "wikidataId",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q113485289",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Q113485289"
-        },
-        "canonicalNameZh": {
-          "field": "canonicalNameZh",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q113485289",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Church of Our Lady of Consolation"
-        },
-        "canonicalNameEn": {
-          "field": "canonicalNameEn",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q113485289",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Church of Our Lady of Consolation"
-        },
-        "aliases": {
-          "field": "aliases",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q113485289",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": [
-            "Igreja de Nossa Senhora da Consolação e Santos Passos",
-            "Igreja dos Santos Passos"
-          ]
-        },
-        "coordinates": {
-          "field": "coordinates",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q113485289",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": {
-            "latitude": 41.44083333333333,
-            "longitude": -8.289722222222222
-          }
-        },
-        "entitySourceType": {
-          "field": "entitySourceType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04c-portugal",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "wikidata"
-        },
-        "confidence": {
-          "field": "confidence",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04c-portugal",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": 0.95
-        },
-        "retrievedAt": {
-          "field": "retrievedAt",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q113485289",
           "retrievedAt": "2026-08-10T12:00:00.000Z",
           "value": "2026-08-10T12:00:00.000Z"
         }
@@ -8466,6 +6732,834 @@
           "sourceType": "wikidata",
           "source": "Wikidata enwiki title plus wbgetentities",
           "sourceUrl": "https://www.wikidata.org/wiki/Q7409276",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "2026-08-10T12:00:00.000Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-poi-baseline-p1b",
+      "entityId": "poi-647d5daa71083b65",
+      "entityType": "poi",
+      "parentCityEntityId": "city-0b698dc2d0543b0e",
+      "wikidataId": "Q1549270",
+      "canonicalNameZh": "罗西乌广场",
+      "canonicalNameEn": "Rossio",
+      "aliases": [
+        "Praça D. Pedro IV",
+        "Praça da Rossio",
+        "Praça de D. Pedro IV",
+        "Praça de D. Pedro IV.",
+        "Praça de Dom Pedro IV",
+        "Praça do Rossio",
+        "Praça Dom Pedro IV",
+        "Rossio Square"
+      ],
+      "coordinates": {
+        "latitude": 38.713888888889,
+        "longitude": -9.1394444444444
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-08-10T12:00:00.000Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04c-portugal",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "poi-647d5daa71083b65"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04c-portugal",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "poi"
+        },
+        "parentCityEntityId": {
+          "field": "parentCityEntityId",
+          "sourceType": "repository-reference",
+          "source": "Portugal City Entity",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q597",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "city-0b698dc2d0543b0e"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1549270",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "Q1549270"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1549270",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "罗西乌广场"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1549270",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "Rossio"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1549270",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": [
+            "Praça D. Pedro IV",
+            "Praça da Rossio",
+            "Praça de D. Pedro IV",
+            "Praça de D. Pedro IV.",
+            "Praça de Dom Pedro IV",
+            "Praça do Rossio",
+            "Praça Dom Pedro IV",
+            "Rossio Square"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1549270",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": {
+            "latitude": 38.713888888889,
+            "longitude": -9.1394444444444
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04c-portugal",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04c-portugal",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1549270",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "2026-08-10T12:00:00.000Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-poi-baseline-p1b",
+      "entityId": "poi-45785f3f13537a7d",
+      "entityType": "poi",
+      "parentCityEntityId": "city-23e4523c57c5ac2a",
+      "wikidataId": "Q98458464",
+      "canonicalNameZh": "Castle of Lagos",
+      "canonicalNameEn": "Castle of Lagos",
+      "aliases": [
+        "Castelo de Lagos"
+      ],
+      "coordinates": {
+        "latitude": 37.097122,
+        "longitude": -8.671626
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-08-10T12:00:00.000Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04c-portugal",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "poi-45785f3f13537a7d"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04c-portugal",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "poi"
+        },
+        "parentCityEntityId": {
+          "field": "parentCityEntityId",
+          "sourceType": "repository-reference",
+          "source": "Portugal City Entity",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q732548",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "city-23e4523c57c5ac2a"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q98458464",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "Q98458464"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q98458464",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "Castle of Lagos"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q98458464",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "Castle of Lagos"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q98458464",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": [
+            "Castelo de Lagos"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q98458464",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": {
+            "latitude": 37.097122,
+            "longitude": -8.671626
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04c-portugal",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04c-portugal",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q98458464",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "2026-08-10T12:00:00.000Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-poi-baseline-p1b",
+      "entityId": "poi-6f1c660d80318e8b",
+      "entityType": "poi",
+      "parentCityEntityId": "city-3afec41980a016c2",
+      "wikidataId": "Q1773229",
+      "canonicalNameZh": "若昂尼納圖書館",
+      "canonicalNameEn": "Biblioteca Joanina",
+      "aliases": [
+        "Bιβλιοθήκη Johannine"
+      ],
+      "coordinates": {
+        "latitude": 40.2071,
+        "longitude": -8.4265
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-08-10T12:00:00.000Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04c-portugal",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "poi-6f1c660d80318e8b"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04c-portugal",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "poi"
+        },
+        "parentCityEntityId": {
+          "field": "parentCityEntityId",
+          "sourceType": "repository-reference",
+          "source": "Portugal City Entity",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q45412",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "city-3afec41980a016c2"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1773229",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "Q1773229"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1773229",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "若昂尼納圖書館"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1773229",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "Biblioteca Joanina"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1773229",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": [
+            "Bιβλιοθήκη Johannine"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1773229",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": {
+            "latitude": 40.2071,
+            "longitude": -8.4265
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04c-portugal",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04c-portugal",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1773229",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "2026-08-10T12:00:00.000Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-poi-baseline-p1b",
+      "entityId": "poi-e7132fc0b3d751c5",
+      "entityType": "poi",
+      "parentCityEntityId": "city-6f31bde299eab111",
+      "wikidataId": "Q18642",
+      "canonicalNameZh": "教士教堂",
+      "canonicalNameEn": "Clérigos Church",
+      "aliases": [
+        "Clerigos Church",
+        "Igreja dos Clerigos",
+        "Igreja dos Clérigos",
+        "Igreja São Pedro dos Clérigos",
+        "Torre dos Clerigos",
+        "Torre dos Clérigos"
+      ],
+      "coordinates": {
+        "latitude": 41.145871,
+        "longitude": -8.61401
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-08-10T12:00:00.000Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04c-portugal",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "poi-e7132fc0b3d751c5"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04c-portugal",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "poi"
+        },
+        "parentCityEntityId": {
+          "field": "parentCityEntityId",
+          "sourceType": "repository-reference",
+          "source": "Portugal City Entity",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q36433",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "city-6f31bde299eab111"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q18642",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "Q18642"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q18642",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "教士教堂"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q18642",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "Clérigos Church"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q18642",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": [
+            "Clerigos Church",
+            "Igreja dos Clerigos",
+            "Igreja dos Clérigos",
+            "Igreja São Pedro dos Clérigos",
+            "Torre dos Clerigos",
+            "Torre dos Clérigos"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q18642",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": {
+            "latitude": 41.145871,
+            "longitude": -8.61401
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04c-portugal",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04c-portugal",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q18642",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "2026-08-10T12:00:00.000Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-poi-baseline-p1b",
+      "entityId": "poi-38b6ff1b6c9830ac",
+      "entityType": "poi",
+      "parentCityEntityId": "city-abdd80683790dc81",
+      "wikidataId": "Q53580592",
+      "canonicalNameZh": "Aveiro City Museum",
+      "canonicalNameEn": "Aveiro City Museum",
+      "aliases": [
+        "Museu da Cidade",
+        "Museu da Cidade de Aveiro"
+      ],
+      "coordinates": {
+        "latitude": 40.641651,
+        "longitude": -8.654508
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-08-10T12:00:00.000Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04c-portugal",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "poi-38b6ff1b6c9830ac"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04c-portugal",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "poi"
+        },
+        "parentCityEntityId": {
+          "field": "parentCityEntityId",
+          "sourceType": "repository-reference",
+          "source": "Portugal City Entity",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q485581",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "city-abdd80683790dc81"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q53580592",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "Q53580592"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q53580592",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "Aveiro City Museum"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q53580592",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "Aveiro City Museum"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q53580592",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": [
+            "Museu da Cidade",
+            "Museu da Cidade de Aveiro"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q53580592",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": {
+            "latitude": 40.641651,
+            "longitude": -8.654508
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04c-portugal",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04c-portugal",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q53580592",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "2026-08-10T12:00:00.000Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-poi-baseline-p1b",
+      "entityId": "poi-aaa76a6edf5a7cea",
+      "entityType": "poi",
+      "parentCityEntityId": "city-c159dcf369a61f40",
+      "wikidataId": "Q17390064",
+      "canonicalNameZh": "Castle of Faro",
+      "canonicalNameEn": "Castle of Faro",
+      "aliases": [
+        "Castelo de Faro",
+        "Fábrica da Cerveja"
+      ],
+      "coordinates": {
+        "latitude": 37.01197222222222,
+        "longitude": -7.934083333333334
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-08-10T12:00:00.000Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04c-portugal",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "poi-aaa76a6edf5a7cea"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04c-portugal",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "poi"
+        },
+        "parentCityEntityId": {
+          "field": "parentCityEntityId",
+          "sourceType": "repository-reference",
+          "source": "Portugal City Entity",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q159457",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "city-c159dcf369a61f40"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q17390064",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "Q17390064"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q17390064",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "Castle of Faro"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q17390064",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "Castle of Faro"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q17390064",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": [
+            "Castelo de Faro",
+            "Fábrica da Cerveja"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q17390064",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": {
+            "latitude": 37.01197222222222,
+            "longitude": -7.934083333333334
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04c-portugal",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04c-portugal",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q17390064",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "2026-08-10T12:00:00.000Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-poi-baseline-p1b",
+      "entityId": "poi-66aca22a8bd5347b",
+      "entityType": "poi",
+      "parentCityEntityId": "city-e522715ce542e2ca",
+      "wikidataId": "Q113485289",
+      "canonicalNameZh": "Church of Our Lady of Consolation",
+      "canonicalNameEn": "Church of Our Lady of Consolation",
+      "aliases": [
+        "Igreja de Nossa Senhora da Consolação e Santos Passos",
+        "Igreja dos Santos Passos"
+      ],
+      "coordinates": {
+        "latitude": 41.44083333333333,
+        "longitude": -8.289722222222222
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-08-10T12:00:00.000Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04c-portugal",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "poi-66aca22a8bd5347b"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04c-portugal",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "poi"
+        },
+        "parentCityEntityId": {
+          "field": "parentCityEntityId",
+          "sourceType": "repository-reference",
+          "source": "Portugal City Entity",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q170903",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "city-e522715ce542e2ca"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q113485289",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "Q113485289"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q113485289",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "Church of Our Lady of Consolation"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q113485289",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "Church of Our Lady of Consolation"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q113485289",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": [
+            "Igreja de Nossa Senhora da Consolação e Santos Passos",
+            "Igreja dos Santos Passos"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q113485289",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": {
+            "latitude": 41.44083333333333,
+            "longitude": -8.289722222222222
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04c-portugal",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04c-portugal",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q113485289",
           "retrievedAt": "2026-08-10T12:00:00.000Z",
           "value": "2026-08-10T12:00:00.000Z"
         }

@@ -418,16 +418,26 @@ function extractCountryOccurrences(query, countryCatalog) {
     || (right.end - right.index) - (left.end - left.index)
     || left.identity.localeCompare(right.identity, "en"));
   const acceptedRanges = [];
-  const byIdentity = new Map();
+  const exactOccurrences = new Set();
   for (const occurrence of rawOccurrences) {
-    if (byIdentity.has(occurrence.identity)) continue;
+    const exactKey = `${occurrence.identity}:${occurrence.index}:${occurrence.end}`;
+    if (exactOccurrences.has(exactKey)) continue;
     if (acceptedRanges.some((accepted) => (
       occurrence.index >= accepted.index
       && occurrence.end <= accepted.end
-      && occurrence.identity !== accepted.identity
+      && (occurrence.index !== accepted.index || occurrence.end !== accepted.end)
     ))) continue;
     acceptedRanges.push(occurrence);
-    byIdentity.set(occurrence.identity, occurrence);
+    exactOccurrences.add(exactKey);
+  }
+  return acceptedRanges.sort((left, right) => left.index - right.index
+    || (right.end - right.index) - (left.end - left.index));
+}
+
+function dedupeCountryOccurrencesByIdentity(occurrences = []) {
+  const byIdentity = new Map();
+  for (const occurrence of occurrences) {
+    if (!byIdentity.has(occurrence.identity)) byIdentity.set(occurrence.identity, occurrence);
   }
   return [...byIdentity.values()].sort((left, right) => left.index - right.index);
 }
@@ -1093,16 +1103,30 @@ export function parseSearchIntent(query, { acceptedRoutes = [], catalogs = null,
   const cityCatalog = cityAdditions.length
     ? mergeCityCatalog(CITY_CATALOG, cityAdditions)
     : CITY_CATALOG;
-  const rawCityOccurrences = collectCityAliasOccurrences(rawQuery, cityCatalog);
-  const rawCityRanges = uniqueOccurrenceRanges(rawCityOccurrences);
-  const matchedRegion = firstCatalogMatchOutsideRanges(rawQuery, regionCatalog, rawCityRanges);
   const allCountryOccurrences = extractCountryOccurrences(rawQuery, countryCatalog);
+  const rawCityOccurrences = collectCityAliasOccurrences(rawQuery, cityCatalog).filter((cityOccurrence) => !allCountryOccurrences.some((countryOccurrence) => (
+    countryOccurrence.index <= cityOccurrence.index
+    && countryOccurrence.end >= cityOccurrence.end
+    && (countryOccurrence.end - countryOccurrence.index) > (cityOccurrence.end - cityOccurrence.index)
+  )));
+  const rawCityRanges = uniqueOccurrenceRanges(rawCityOccurrences);
+  const maximalCityRanges = rawCityRanges.filter((range) => !rawCityRanges.some((other) => (
+    range.index >= other.index
+    && range.end <= other.end
+    && (range.index !== other.index || range.end !== other.end)
+  )));
+  const matchedRegion = firstCatalogMatchOutsideRanges(rawQuery, regionCatalog, rawCityRanges);
   const countryOccurrencesOutsideCityAliases = allCountryOccurrences.filter((occurrence) => !rawCityRanges.some((range) => (
     occurrence.index < range.end && occurrence.end > range.index
   )));
-  const explicitCountryOccurrences = countryOccurrencesOutsideCityAliases.length
-    ? countryOccurrencesOutsideCityAliases
-    : allCountryOccurrences;
+  const exactCountryCityOverlaps = allCountryOccurrences.filter((occurrence) => maximalCityRanges.some((range) => (
+    occurrence.index === range.index && occurrence.end === range.end
+  )));
+  const explicitCountryOccurrences = dedupeCountryOccurrencesByIdentity(
+    countryOccurrencesOutsideCityAliases.length
+      ? countryOccurrencesOutsideCityAliases
+      : exactCountryCityOverlaps,
+  );
   const regionCountryCodes = unique([
     ...(matchedRegion?.countryCodes || []),
     matchedRegion?.countryCode,

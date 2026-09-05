@@ -1,7 +1,7 @@
 {
   "schemaVersion": "route-v2-poi-baseline-p1b-batch03",
   "generatedFrom": "data/knowledge/raw/knowledge-expansion-batch01.wikidata.json",
-  "poiCount": 30,
+  "poiCount": 24,
   "pois": [
     {
       "schemaVersion": "route-v2-poi-baseline-p1b",
@@ -230,252 +230,6 @@
           "sourceType": "wikidata",
           "source": "Wikidata wbgetentities",
           "sourceUrl": "https://www.wikidata.org/wiki/Q7319590",
-          "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": "2026-08-03T08:00:00.000Z"
-        }
-      }
-    },
-    {
-      "schemaVersion": "route-v2-poi-baseline-p1b",
-      "entityId": "poi-15707bde57e19192",
-      "entityType": "poi",
-      "parentCityEntityId": "city-8dfe7b39752eceb2",
-      "wikidataId": "Q685038",
-      "canonicalNameZh": "苏黎世美术馆",
-      "canonicalNameEn": "Kunsthaus Zürich",
-      "aliases": [
-        "Art House Zürich",
-        "Kunsthaus di Zurigo",
-        "Kunsthaus Zurich",
-        "Zürcher Kunsthaus",
-        "Zurich. Kunsthaus",
-        "蘇黎世美術館"
-      ],
-      "coordinates": {
-        "latitude": 47.37027777777778,
-        "longitude": 8.548055555555555
-      },
-      "entitySourceType": "wikidata",
-      "confidence": 0.95,
-      "retrievedAt": "2026-08-03T08:00:00.000Z",
-      "provenance": {
-        "entityId": {
-          "field": "entityId",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion Batch 01",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": "poi-15707bde57e19192"
-        },
-        "entityType": {
-          "field": "entityType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion Batch 01",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": "poi"
-        },
-        "parentCityEntityId": {
-          "field": "parentCityEntityId",
-          "sourceType": "repository-reference",
-          "source": "Route V2 P1B City Baseline",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q72",
-          "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": "city-8dfe7b39752eceb2"
-        },
-        "wikidataId": {
-          "field": "wikidataId",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q685038",
-          "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": "Q685038"
-        },
-        "canonicalNameZh": {
-          "field": "canonicalNameZh",
-          "sourceType": "project-schema",
-          "source": "Curated Chinese display name for Knowledge Expansion Batch 01",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q685038",
-          "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": "苏黎世美术馆"
-        },
-        "canonicalNameEn": {
-          "field": "canonicalNameEn",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q685038",
-          "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": "Kunsthaus Zürich"
-        },
-        "aliases": {
-          "field": "aliases",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q685038",
-          "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": [
-            "Art House Zürich",
-            "Kunsthaus di Zurigo",
-            "Kunsthaus Zurich",
-            "Zürcher Kunsthaus",
-            "Zurich. Kunsthaus",
-            "蘇黎世美術館"
-          ]
-        },
-        "coordinates": {
-          "field": "coordinates",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q685038",
-          "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": {
-            "latitude": 47.37027777777778,
-            "longitude": 8.548055555555555
-          }
-        },
-        "entitySourceType": {
-          "field": "entitySourceType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion Batch 01",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": "wikidata"
-        },
-        "confidence": {
-          "field": "confidence",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion Batch 01",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": 0.95
-        },
-        "retrievedAt": {
-          "field": "retrievedAt",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q685038",
-          "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": "2026-08-03T08:00:00.000Z"
-        }
-      }
-    },
-    {
-      "schemaVersion": "route-v2-poi-baseline-p1b",
-      "entityId": "poi-2db70d54ff4779a2",
-      "entityType": "poi",
-      "parentCityEntityId": "city-ec5f6eb44af88c19",
-      "wikidataId": "Q271466",
-      "canonicalNameZh": "哈尔格林姆教堂",
-      "canonicalNameEn": "Hallgrímskirkja",
-      "aliases": [
-        "Hallgrimskirche",
-        "Hallgrimskirkja",
-        "ฮอลล์กริมสคิร์คยา",
-        "ฮัลล์กรีมสคิร์คยา",
-        "哈德格里米尔教堂"
-      ],
-      "coordinates": {
-        "latitude": 64.14194444444445,
-        "longitude": -21.926944444444445
-      },
-      "entitySourceType": "wikidata",
-      "confidence": 0.95,
-      "retrievedAt": "2026-08-03T08:00:00.000Z",
-      "provenance": {
-        "entityId": {
-          "field": "entityId",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion Batch 01",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": "poi-2db70d54ff4779a2"
-        },
-        "entityType": {
-          "field": "entityType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion Batch 01",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": "poi"
-        },
-        "parentCityEntityId": {
-          "field": "parentCityEntityId",
-          "sourceType": "repository-reference",
-          "source": "Route V2 P1B City Baseline",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1764",
-          "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": "city-ec5f6eb44af88c19"
-        },
-        "wikidataId": {
-          "field": "wikidataId",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q271466",
-          "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": "Q271466"
-        },
-        "canonicalNameZh": {
-          "field": "canonicalNameZh",
-          "sourceType": "project-schema",
-          "source": "Curated Chinese display name for Knowledge Expansion Batch 01",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q271466",
-          "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": "哈尔格林姆教堂"
-        },
-        "canonicalNameEn": {
-          "field": "canonicalNameEn",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q271466",
-          "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": "Hallgrímskirkja"
-        },
-        "aliases": {
-          "field": "aliases",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q271466",
-          "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": [
-            "Hallgrimskirche",
-            "Hallgrimskirkja",
-            "ฮอลล์กริมสคิร์คยา",
-            "ฮัลล์กรีมสคิร์คยา",
-            "哈德格里米尔教堂"
-          ]
-        },
-        "coordinates": {
-          "field": "coordinates",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q271466",
-          "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": {
-            "latitude": 64.14194444444445,
-            "longitude": -21.926944444444445
-          }
-        },
-        "entitySourceType": {
-          "field": "entitySourceType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion Batch 01",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": "wikidata"
-        },
-        "confidence": {
-          "field": "confidence",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion Batch 01",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": 0.95
-        },
-        "retrievedAt": {
-          "field": "retrievedAt",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q271466",
           "retrievedAt": "2026-08-03T08:00:00.000Z",
           "value": "2026-08-03T08:00:00.000Z"
         }
@@ -1251,122 +1005,6 @@
     },
     {
       "schemaVersion": "route-v2-poi-baseline-p1b",
-      "entityId": "poi-4cef4d841745bcc3",
-      "entityType": "poi",
-      "parentCityEntityId": "city-8dfe7b39752eceb2",
-      "wikidataId": "Q684948",
-      "canonicalNameZh": "苏黎世大教堂",
-      "canonicalNameEn": "Grossmünster",
-      "aliases": [
-        "Großmünster",
-        "โกรสมึนส์เทอร์"
-      ],
-      "coordinates": {
-        "latitude": 47.37,
-        "longitude": 8.5441666666667
-      },
-      "entitySourceType": "wikidata",
-      "confidence": 0.95,
-      "retrievedAt": "2026-08-03T08:00:00.000Z",
-      "provenance": {
-        "entityId": {
-          "field": "entityId",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion Batch 01",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": "poi-4cef4d841745bcc3"
-        },
-        "entityType": {
-          "field": "entityType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion Batch 01",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": "poi"
-        },
-        "parentCityEntityId": {
-          "field": "parentCityEntityId",
-          "sourceType": "repository-reference",
-          "source": "Route V2 P1B City Baseline",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q72",
-          "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": "city-8dfe7b39752eceb2"
-        },
-        "wikidataId": {
-          "field": "wikidataId",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q684948",
-          "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": "Q684948"
-        },
-        "canonicalNameZh": {
-          "field": "canonicalNameZh",
-          "sourceType": "project-schema",
-          "source": "Curated Chinese display name for Knowledge Expansion Batch 01",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q684948",
-          "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": "苏黎世大教堂"
-        },
-        "canonicalNameEn": {
-          "field": "canonicalNameEn",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q684948",
-          "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": "Grossmünster"
-        },
-        "aliases": {
-          "field": "aliases",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q684948",
-          "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": [
-            "Großmünster",
-            "โกรสมึนส์เทอร์"
-          ]
-        },
-        "coordinates": {
-          "field": "coordinates",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q684948",
-          "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": {
-            "latitude": 47.37,
-            "longitude": 8.5441666666667
-          }
-        },
-        "entitySourceType": {
-          "field": "entitySourceType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion Batch 01",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": "wikidata"
-        },
-        "confidence": {
-          "field": "confidence",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion Batch 01",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": 0.95
-        },
-        "retrievedAt": {
-          "field": "retrievedAt",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q684948",
-          "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": "2026-08-03T08:00:00.000Z"
-        }
-      }
-    },
-    {
-      "schemaVersion": "route-v2-poi-baseline-p1b",
       "entityId": "poi-6711c42f38860bdd",
       "entityType": "poi",
       "parentCityEntityId": "city-dde5b708a62ae273",
@@ -1861,736 +1499,6 @@
     },
     {
       "schemaVersion": "route-v2-poi-baseline-p1b",
-      "entityId": "poi-86322cc1bce47e9c",
-      "entityType": "poi",
-      "parentCityEntityId": "city-2cb3e8890c6c7848",
-      "wikidataId": "Q7271100",
-      "canonicalNameZh": "皇后镇花园",
-      "canonicalNameEn": "Queenstown Gardens",
-      "aliases": [],
-      "coordinates": {
-        "latitude": -45.0377,
-        "longitude": 168.66
-      },
-      "entitySourceType": "wikidata",
-      "confidence": 0.95,
-      "retrievedAt": "2026-08-03T08:00:00.000Z",
-      "provenance": {
-        "entityId": {
-          "field": "entityId",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion Batch 01",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": "poi-86322cc1bce47e9c"
-        },
-        "entityType": {
-          "field": "entityType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion Batch 01",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": "poi"
-        },
-        "parentCityEntityId": {
-          "field": "parentCityEntityId",
-          "sourceType": "repository-reference",
-          "source": "Route V2 P1B City Baseline",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q613602",
-          "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": "city-2cb3e8890c6c7848"
-        },
-        "wikidataId": {
-          "field": "wikidataId",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q7271100",
-          "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": "Q7271100"
-        },
-        "canonicalNameZh": {
-          "field": "canonicalNameZh",
-          "sourceType": "project-schema",
-          "source": "Curated Chinese display name for Knowledge Expansion Batch 01",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q7271100",
-          "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": "皇后镇花园"
-        },
-        "canonicalNameEn": {
-          "field": "canonicalNameEn",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q7271100",
-          "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": "Queenstown Gardens"
-        },
-        "aliases": {
-          "field": "aliases",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q7271100",
-          "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": []
-        },
-        "coordinates": {
-          "field": "coordinates",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q7271100",
-          "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": {
-            "latitude": -45.0377,
-            "longitude": 168.66
-          }
-        },
-        "entitySourceType": {
-          "field": "entitySourceType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion Batch 01",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": "wikidata"
-        },
-        "confidence": {
-          "field": "confidence",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion Batch 01",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": 0.95
-        },
-        "retrievedAt": {
-          "field": "retrievedAt",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q7271100",
-          "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": "2026-08-03T08:00:00.000Z"
-        }
-      }
-    },
-    {
-      "schemaVersion": "route-v2-poi-baseline-p1b",
-      "entityId": "poi-95dda57c49c98ebc",
-      "entityType": "poi",
-      "parentCityEntityId": "city-8dfe7b39752eceb2",
-      "wikidataId": "Q691896",
-      "canonicalNameZh": "瑞士国家博物馆",
-      "canonicalNameEn": "National Museum Zurich",
-      "aliases": [
-        "Landesmuseum",
-        "Landesmuseum Zürich",
-        "Musee Suisse Group",
-        "Musée Suisse Gruppe",
-        "Nationalmuseum",
-        "Schweizerisches Landesmuseum",
-        "Swiss National Museum Zurich",
-        "พิพิธภัณฑ์แห่งชาติสวิส",
-        "瑞士國立博物館"
-      ],
-      "coordinates": {
-        "latitude": 47.37916666666667,
-        "longitude": 8.539722222222222
-      },
-      "entitySourceType": "wikidata",
-      "confidence": 0.95,
-      "retrievedAt": "2026-08-03T08:00:00.000Z",
-      "provenance": {
-        "entityId": {
-          "field": "entityId",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion Batch 01",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": "poi-95dda57c49c98ebc"
-        },
-        "entityType": {
-          "field": "entityType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion Batch 01",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": "poi"
-        },
-        "parentCityEntityId": {
-          "field": "parentCityEntityId",
-          "sourceType": "repository-reference",
-          "source": "Route V2 P1B City Baseline",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q72",
-          "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": "city-8dfe7b39752eceb2"
-        },
-        "wikidataId": {
-          "field": "wikidataId",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q691896",
-          "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": "Q691896"
-        },
-        "canonicalNameZh": {
-          "field": "canonicalNameZh",
-          "sourceType": "project-schema",
-          "source": "Curated Chinese display name for Knowledge Expansion Batch 01",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q691896",
-          "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": "瑞士国家博物馆"
-        },
-        "canonicalNameEn": {
-          "field": "canonicalNameEn",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q691896",
-          "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": "National Museum Zurich"
-        },
-        "aliases": {
-          "field": "aliases",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q691896",
-          "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": [
-            "Landesmuseum",
-            "Landesmuseum Zürich",
-            "Musee Suisse Group",
-            "Musée Suisse Gruppe",
-            "Nationalmuseum",
-            "Schweizerisches Landesmuseum",
-            "Swiss National Museum Zurich",
-            "พิพิธภัณฑ์แห่งชาติสวิส",
-            "瑞士國立博物館"
-          ]
-        },
-        "coordinates": {
-          "field": "coordinates",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q691896",
-          "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": {
-            "latitude": 47.37916666666667,
-            "longitude": 8.539722222222222
-          }
-        },
-        "entitySourceType": {
-          "field": "entitySourceType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion Batch 01",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": "wikidata"
-        },
-        "confidence": {
-          "field": "confidence",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion Batch 01",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": 0.95
-        },
-        "retrievedAt": {
-          "field": "retrievedAt",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q691896",
-          "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": "2026-08-03T08:00:00.000Z"
-        }
-      }
-    },
-    {
-      "schemaVersion": "route-v2-poi-baseline-p1b",
-      "entityId": "poi-a173f1d1fa02521f",
-      "entityType": "poi",
-      "parentCityEntityId": "city-102fbf49ef872866",
-      "wikidataId": "Q873769",
-      "canonicalNameZh": "曼谷大皇宫",
-      "canonicalNameEn": "Grand Palace",
-      "aliases": [
-        "Grand Palace Bangkok",
-        "Großer Palast",
-        "Phra Borom Maha Ratchawang",
-        "Phra Borom Maharadscha Wang",
-        "Phra Ratchawang Luang",
-        "The Grand Palace",
-        "The Grand Palace Bangkok",
-        "พระบรมมหาราชวัง",
-        "พระราชวังพระนคร",
-        "พระราชวังหลวง",
-        "วังหลวง",
-        "大皇宫"
-      ],
-      "coordinates": {
-        "latitude": 13.750138888889,
-        "longitude": 100.49202777778
-      },
-      "entitySourceType": "wikidata",
-      "confidence": 0.95,
-      "retrievedAt": "2026-08-03T08:00:00.000Z",
-      "provenance": {
-        "entityId": {
-          "field": "entityId",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion Batch 01",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": "poi-a173f1d1fa02521f"
-        },
-        "entityType": {
-          "field": "entityType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion Batch 01",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": "poi"
-        },
-        "parentCityEntityId": {
-          "field": "parentCityEntityId",
-          "sourceType": "repository-reference",
-          "source": "Route V2 P1B City Baseline",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1861",
-          "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": "city-102fbf49ef872866"
-        },
-        "wikidataId": {
-          "field": "wikidataId",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q873769",
-          "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": "Q873769"
-        },
-        "canonicalNameZh": {
-          "field": "canonicalNameZh",
-          "sourceType": "project-schema",
-          "source": "Curated Chinese display name for Knowledge Expansion Batch 01",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q873769",
-          "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": "曼谷大皇宫"
-        },
-        "canonicalNameEn": {
-          "field": "canonicalNameEn",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q873769",
-          "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": "Grand Palace"
-        },
-        "aliases": {
-          "field": "aliases",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q873769",
-          "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": [
-            "Grand Palace Bangkok",
-            "Großer Palast",
-            "Phra Borom Maha Ratchawang",
-            "Phra Borom Maharadscha Wang",
-            "Phra Ratchawang Luang",
-            "The Grand Palace",
-            "The Grand Palace Bangkok",
-            "พระบรมมหาราชวัง",
-            "พระราชวังพระนคร",
-            "พระราชวังหลวง",
-            "วังหลวง",
-            "大皇宫"
-          ]
-        },
-        "coordinates": {
-          "field": "coordinates",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q873769",
-          "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": {
-            "latitude": 13.750138888889,
-            "longitude": 100.49202777778
-          }
-        },
-        "entitySourceType": {
-          "field": "entitySourceType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion Batch 01",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": "wikidata"
-        },
-        "confidence": {
-          "field": "confidence",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion Batch 01",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": 0.95
-        },
-        "retrievedAt": {
-          "field": "retrievedAt",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q873769",
-          "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": "2026-08-03T08:00:00.000Z"
-        }
-      }
-    },
-    {
-      "schemaVersion": "route-v2-poi-baseline-p1b",
-      "entityId": "poi-b6d61b537ecfe53f",
-      "entityType": "poi",
-      "parentCityEntityId": "city-922253e414d069f3",
-      "wikidataId": "Q16430332",
-      "canonicalNameZh": "维克教堂",
-      "canonicalNameEn": "Víkurkirkja",
-      "aliases": [
-        "Church in Vík í Mýrdal",
-        "Kirche in Vík í Mýrdal",
-        "Vík Church",
-        "Vík í Mýrdal Church"
-      ],
-      "coordinates": {
-        "latitude": 63.420543,
-        "longitude": -19.002911
-      },
-      "entitySourceType": "wikidata",
-      "confidence": 0.95,
-      "retrievedAt": "2026-08-03T08:00:00.000Z",
-      "provenance": {
-        "entityId": {
-          "field": "entityId",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion Batch 01",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": "poi-b6d61b537ecfe53f"
-        },
-        "entityType": {
-          "field": "entityType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion Batch 01",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": "poi"
-        },
-        "parentCityEntityId": {
-          "field": "parentCityEntityId",
-          "sourceType": "repository-reference",
-          "source": "Route V2 P1B City Baseline",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q685369",
-          "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": "city-922253e414d069f3"
-        },
-        "wikidataId": {
-          "field": "wikidataId",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q16430332",
-          "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": "Q16430332"
-        },
-        "canonicalNameZh": {
-          "field": "canonicalNameZh",
-          "sourceType": "project-schema",
-          "source": "Curated Chinese display name for Knowledge Expansion Batch 01",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q16430332",
-          "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": "维克教堂"
-        },
-        "canonicalNameEn": {
-          "field": "canonicalNameEn",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q16430332",
-          "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": "Víkurkirkja"
-        },
-        "aliases": {
-          "field": "aliases",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q16430332",
-          "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": [
-            "Church in Vík í Mýrdal",
-            "Kirche in Vík í Mýrdal",
-            "Vík Church",
-            "Vík í Mýrdal Church"
-          ]
-        },
-        "coordinates": {
-          "field": "coordinates",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q16430332",
-          "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": {
-            "latitude": 63.420543,
-            "longitude": -19.002911
-          }
-        },
-        "entitySourceType": {
-          "field": "entitySourceType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion Batch 01",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": "wikidata"
-        },
-        "confidence": {
-          "field": "confidence",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion Batch 01",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": 0.95
-        },
-        "retrievedAt": {
-          "field": "retrievedAt",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q16430332",
-          "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": "2026-08-03T08:00:00.000Z"
-        }
-      }
-    },
-    {
-      "schemaVersion": "route-v2-poi-baseline-p1b",
-      "entityId": "poi-b928f53dba863292",
-      "entityType": "poi",
-      "parentCityEntityId": "city-08c9530e89597cdf",
-      "wikidataId": "Q722125",
-      "canonicalNameZh": "天空塔",
-      "canonicalNameEn": "Sky Tower",
-      "aliases": [],
-      "coordinates": {
-        "latitude": -36.84847222222222,
-        "longitude": 174.76230555555554
-      },
-      "entitySourceType": "wikidata",
-      "confidence": 0.95,
-      "retrievedAt": "2026-08-03T08:00:00.000Z",
-      "provenance": {
-        "entityId": {
-          "field": "entityId",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion Batch 01",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": "poi-b928f53dba863292"
-        },
-        "entityType": {
-          "field": "entityType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion Batch 01",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": "poi"
-        },
-        "parentCityEntityId": {
-          "field": "parentCityEntityId",
-          "sourceType": "repository-reference",
-          "source": "Route V2 P1B City Baseline",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q37100",
-          "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": "city-08c9530e89597cdf"
-        },
-        "wikidataId": {
-          "field": "wikidataId",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q722125",
-          "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": "Q722125"
-        },
-        "canonicalNameZh": {
-          "field": "canonicalNameZh",
-          "sourceType": "project-schema",
-          "source": "Curated Chinese display name for Knowledge Expansion Batch 01",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q722125",
-          "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": "天空塔"
-        },
-        "canonicalNameEn": {
-          "field": "canonicalNameEn",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q722125",
-          "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": "Sky Tower"
-        },
-        "aliases": {
-          "field": "aliases",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q722125",
-          "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": []
-        },
-        "coordinates": {
-          "field": "coordinates",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q722125",
-          "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": {
-            "latitude": -36.84847222222222,
-            "longitude": 174.76230555555554
-          }
-        },
-        "entitySourceType": {
-          "field": "entitySourceType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion Batch 01",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": "wikidata"
-        },
-        "confidence": {
-          "field": "confidence",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion Batch 01",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": 0.95
-        },
-        "retrievedAt": {
-          "field": "retrievedAt",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q722125",
-          "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": "2026-08-03T08:00:00.000Z"
-        }
-      }
-    },
-    {
-      "schemaVersion": "route-v2-poi-baseline-p1b",
-      "entityId": "poi-c117087ce07a1d3e",
-      "entityType": "poi",
-      "parentCityEntityId": "city-64a359ba87706a72",
-      "wikidataId": "Q54489",
-      "canonicalNameZh": "悉尼皇家植物园",
-      "canonicalNameEn": "Royal Botanic Garden, Sydney",
-      "aliases": [
-        "Königlicher Botanischer Garten Sydney",
-        "Royal Botanic Garden Sydney",
-        "Royal Botanic Gardens Sydney",
-        "Royal Botanic Gardens, Sydney",
-        "Sydney Botanic Gardens",
-        "悉尼皇家植物園"
-      ],
-      "coordinates": {
-        "latitude": -33.862222,
-        "longitude": 151.2175
-      },
-      "entitySourceType": "wikidata",
-      "confidence": 0.95,
-      "retrievedAt": "2026-08-03T08:00:00.000Z",
-      "provenance": {
-        "entityId": {
-          "field": "entityId",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion Batch 01",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": "poi-c117087ce07a1d3e"
-        },
-        "entityType": {
-          "field": "entityType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion Batch 01",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": "poi"
-        },
-        "parentCityEntityId": {
-          "field": "parentCityEntityId",
-          "sourceType": "repository-reference",
-          "source": "Route V2 P1B City Baseline",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q3130",
-          "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": "city-64a359ba87706a72"
-        },
-        "wikidataId": {
-          "field": "wikidataId",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q54489",
-          "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": "Q54489"
-        },
-        "canonicalNameZh": {
-          "field": "canonicalNameZh",
-          "sourceType": "project-schema",
-          "source": "Curated Chinese display name for Knowledge Expansion Batch 01",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q54489",
-          "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": "悉尼皇家植物园"
-        },
-        "canonicalNameEn": {
-          "field": "canonicalNameEn",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q54489",
-          "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": "Royal Botanic Garden, Sydney"
-        },
-        "aliases": {
-          "field": "aliases",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q54489",
-          "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": [
-            "Königlicher Botanischer Garten Sydney",
-            "Royal Botanic Garden Sydney",
-            "Royal Botanic Gardens Sydney",
-            "Royal Botanic Gardens, Sydney",
-            "Sydney Botanic Gardens",
-            "悉尼皇家植物園"
-          ]
-        },
-        "coordinates": {
-          "field": "coordinates",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q54489",
-          "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": {
-            "latitude": -33.862222,
-            "longitude": 151.2175
-          }
-        },
-        "entitySourceType": {
-          "field": "entitySourceType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion Batch 01",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": "wikidata"
-        },
-        "confidence": {
-          "field": "confidence",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion Batch 01",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": 0.95
-        },
-        "retrievedAt": {
-          "field": "retrievedAt",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q54489",
-          "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": "2026-08-03T08:00:00.000Z"
-        }
-      }
-    },
-    {
-      "schemaVersion": "route-v2-poi-baseline-p1b",
       "entityId": "poi-d0afc66da29c6ccf",
       "entityType": "poi",
       "parentCityEntityId": "city-2cb3e8890c6c7848",
@@ -2804,132 +1712,6 @@
           "sourceType": "wikidata",
           "source": "Wikidata wbgetentities",
           "sourceUrl": "https://www.wikidata.org/wiki/Q115641739",
-          "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": "2026-08-03T08:00:00.000Z"
-        }
-      }
-    },
-    {
-      "schemaVersion": "route-v2-poi-baseline-p1b",
-      "entityId": "poi-d568d27102b2ed3b",
-      "entityType": "poi",
-      "parentCityEntityId": "city-e91b5be401efc35d",
-      "wikidataId": "Q1464509",
-      "canonicalNameZh": "维多利亚国家美术馆",
-      "canonicalNameEn": "National Gallery of Victoria",
-      "aliases": [
-        "Melbourne. National Gallery of Victoria",
-        "Melbourne. Nationalgallerie",
-        "Nationalgallerie Melbourne",
-        "NGV",
-        "Victorian A. Cent.",
-        "หอศิลป์แห่งชาติวิกตอเรีย",
-        "維多利亞國立美術館"
-      ],
-      "coordinates": {
-        "latitude": -37.8225,
-        "longitude": 144.9688888888889
-      },
-      "entitySourceType": "wikidata",
-      "confidence": 0.95,
-      "retrievedAt": "2026-08-03T08:00:00.000Z",
-      "provenance": {
-        "entityId": {
-          "field": "entityId",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion Batch 01",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": "poi-d568d27102b2ed3b"
-        },
-        "entityType": {
-          "field": "entityType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion Batch 01",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": "poi"
-        },
-        "parentCityEntityId": {
-          "field": "parentCityEntityId",
-          "sourceType": "repository-reference",
-          "source": "Route V2 P1B City Baseline",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q3141",
-          "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": "city-e91b5be401efc35d"
-        },
-        "wikidataId": {
-          "field": "wikidataId",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1464509",
-          "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": "Q1464509"
-        },
-        "canonicalNameZh": {
-          "field": "canonicalNameZh",
-          "sourceType": "project-schema",
-          "source": "Curated Chinese display name for Knowledge Expansion Batch 01",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1464509",
-          "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": "维多利亚国家美术馆"
-        },
-        "canonicalNameEn": {
-          "field": "canonicalNameEn",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1464509",
-          "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": "National Gallery of Victoria"
-        },
-        "aliases": {
-          "field": "aliases",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1464509",
-          "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": [
-            "Melbourne. National Gallery of Victoria",
-            "Melbourne. Nationalgallerie",
-            "Nationalgallerie Melbourne",
-            "NGV",
-            "Victorian A. Cent.",
-            "หอศิลป์แห่งชาติวิกตอเรีย",
-            "維多利亞國立美術館"
-          ]
-        },
-        "coordinates": {
-          "field": "coordinates",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1464509",
-          "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": {
-            "latitude": -37.8225,
-            "longitude": 144.9688888888889
-          }
-        },
-        "entitySourceType": {
-          "field": "entitySourceType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion Batch 01",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": "wikidata"
-        },
-        "confidence": {
-          "field": "confidence",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion Batch 01",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": 0.95
-        },
-        "retrievedAt": {
-          "field": "retrievedAt",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1464509",
           "retrievedAt": "2026-08-03T08:00:00.000Z",
           "value": "2026-08-03T08:00:00.000Z"
         }
@@ -3164,128 +1946,6 @@
           "sourceType": "wikidata",
           "source": "Wikidata wbgetentities",
           "sourceUrl": "https://www.wikidata.org/wiki/Q695935",
-          "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": "2026-08-03T08:00:00.000Z"
-        }
-      }
-    },
-    {
-      "schemaVersion": "route-v2-poi-baseline-p1b",
-      "entityId": "poi-e7a7ac63679e80ce",
-      "entityType": "poi",
-      "parentCityEntityId": "city-ec5f6eb44af88c19",
-      "wikidataId": "Q1783706",
-      "canonicalNameZh": "哈帕音乐厅",
-      "canonicalNameEn": "Harpa",
-      "aliases": [
-        "Harpan",
-        "Konzerthaus Harpa",
-        "Konzerthaus Reykjavik",
-        "Tónlistar- og ráðstefnuhús í Reykjavík",
-        "Tónlistar- og ráðstefnuhúsið í Reykjavík"
-      ],
-      "coordinates": {
-        "latitude": 64.15027778,
-        "longitude": -21.9325
-      },
-      "entitySourceType": "wikidata",
-      "confidence": 0.95,
-      "retrievedAt": "2026-08-03T08:00:00.000Z",
-      "provenance": {
-        "entityId": {
-          "field": "entityId",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion Batch 01",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": "poi-e7a7ac63679e80ce"
-        },
-        "entityType": {
-          "field": "entityType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion Batch 01",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": "poi"
-        },
-        "parentCityEntityId": {
-          "field": "parentCityEntityId",
-          "sourceType": "repository-reference",
-          "source": "Route V2 P1B City Baseline",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1764",
-          "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": "city-ec5f6eb44af88c19"
-        },
-        "wikidataId": {
-          "field": "wikidataId",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1783706",
-          "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": "Q1783706"
-        },
-        "canonicalNameZh": {
-          "field": "canonicalNameZh",
-          "sourceType": "project-schema",
-          "source": "Curated Chinese display name for Knowledge Expansion Batch 01",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1783706",
-          "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": "哈帕音乐厅"
-        },
-        "canonicalNameEn": {
-          "field": "canonicalNameEn",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1783706",
-          "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": "Harpa"
-        },
-        "aliases": {
-          "field": "aliases",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1783706",
-          "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": [
-            "Harpan",
-            "Konzerthaus Harpa",
-            "Konzerthaus Reykjavik",
-            "Tónlistar- og ráðstefnuhús í Reykjavík",
-            "Tónlistar- og ráðstefnuhúsið í Reykjavík"
-          ]
-        },
-        "coordinates": {
-          "field": "coordinates",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1783706",
-          "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": {
-            "latitude": 64.15027778,
-            "longitude": -21.9325
-          }
-        },
-        "entitySourceType": {
-          "field": "entitySourceType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion Batch 01",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": "wikidata"
-        },
-        "confidence": {
-          "field": "confidence",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion Batch 01",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": 0.95
-        },
-        "retrievedAt": {
-          "field": "retrievedAt",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1783706",
           "retrievedAt": "2026-08-03T08:00:00.000Z",
           "value": "2026-08-03T08:00:00.000Z"
         }
@@ -3557,23 +2217,22 @@
     },
     {
       "schemaVersion": "route-v2-poi-baseline-p1b",
-      "entityId": "poi-fd5e8f242c450b08",
+      "entityId": "poi-2db70d54ff4779a2",
       "entityType": "poi",
-      "parentCityEntityId": "city-6424297f5bfd77b8",
-      "wikidataId": "Q670595",
-      "canonicalNameZh": "瑞士交通博物馆",
-      "canonicalNameEn": "Swiss Museum of Transport",
+      "parentCityEntityId": "city-ec5f6eb44af88c19",
+      "wikidataId": "Q271466",
+      "canonicalNameZh": "哈尔格林姆教堂",
+      "canonicalNameEn": "Hallgrímskirkja",
       "aliases": [
-        "SMT",
-        "Swiss Museum of Transport and Communication",
-        "Verkehrsarchiv, Verkehrshaus der Schweiz",
-        "Verkehrshaus der Schweiz",
-        "Verkehrshaus Luzern",
-        "VHS"
+        "Hallgrimskirche",
+        "Hallgrimskirkja",
+        "ฮอลล์กริมสคิร์คยา",
+        "ฮัลล์กรีมสคิร์คยา",
+        "哈德格里米尔教堂"
       ],
       "coordinates": {
-        "latitude": 47.052777777778,
-        "longitude": 8.3358333333333
+        "latitude": 64.14194444444445,
+        "longitude": -21.926944444444445
       },
       "entitySourceType": "wikidata",
       "confidence": 0.95,
@@ -3585,7 +2244,7 @@
           "source": "Route V2 Knowledge Expansion Batch 01",
           "sourceUrl": "",
           "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": "poi-fd5e8f242c450b08"
+          "value": "poi-2db70d54ff4779a2"
         },
         "entityType": {
           "field": "entityType",
@@ -3599,58 +2258,57 @@
           "field": "parentCityEntityId",
           "sourceType": "repository-reference",
           "source": "Route V2 P1B City Baseline",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q4191",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1764",
           "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": "city-6424297f5bfd77b8"
+          "value": "city-ec5f6eb44af88c19"
         },
         "wikidataId": {
           "field": "wikidataId",
           "sourceType": "wikidata",
           "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q670595",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q271466",
           "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": "Q670595"
+          "value": "Q271466"
         },
         "canonicalNameZh": {
           "field": "canonicalNameZh",
           "sourceType": "project-schema",
           "source": "Curated Chinese display name for Knowledge Expansion Batch 01",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q670595",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q271466",
           "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": "瑞士交通博物馆"
+          "value": "哈尔格林姆教堂"
         },
         "canonicalNameEn": {
           "field": "canonicalNameEn",
           "sourceType": "wikidata",
           "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q670595",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q271466",
           "retrievedAt": "2026-08-03T08:00:00.000Z",
-          "value": "Swiss Museum of Transport"
+          "value": "Hallgrímskirkja"
         },
         "aliases": {
           "field": "aliases",
           "sourceType": "wikidata",
           "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q670595",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q271466",
           "retrievedAt": "2026-08-03T08:00:00.000Z",
           "value": [
-            "SMT",
-            "Swiss Museum of Transport and Communication",
-            "Verkehrsarchiv, Verkehrshaus der Schweiz",
-            "Verkehrshaus der Schweiz",
-            "Verkehrshaus Luzern",
-            "VHS"
+            "Hallgrimskirche",
+            "Hallgrimskirkja",
+            "ฮอลล์กริมสคิร์คยา",
+            "ฮัลล์กรีมสคิร์คยา",
+            "哈德格里米尔教堂"
           ]
         },
         "coordinates": {
           "field": "coordinates",
           "sourceType": "wikidata",
           "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q670595",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q271466",
           "retrievedAt": "2026-08-03T08:00:00.000Z",
           "value": {
-            "latitude": 47.052777777778,
-            "longitude": 8.3358333333333
+            "latitude": 64.14194444444445,
+            "longitude": -21.926944444444445
           }
         },
         "entitySourceType": {
@@ -3673,7 +2331,599 @@
           "field": "retrievedAt",
           "sourceType": "wikidata",
           "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q670595",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q271466",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": "2026-08-03T08:00:00.000Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-poi-baseline-p1b",
+      "entityId": "poi-4cef4d841745bcc3",
+      "entityType": "poi",
+      "parentCityEntityId": "city-8dfe7b39752eceb2",
+      "wikidataId": "Q684948",
+      "canonicalNameZh": "苏黎世大教堂",
+      "canonicalNameEn": "Grossmünster",
+      "aliases": [
+        "Großmünster",
+        "โกรสมึนส์เทอร์"
+      ],
+      "coordinates": {
+        "latitude": 47.37,
+        "longitude": 8.5441666666667
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-08-03T08:00:00.000Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 01",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": "poi-4cef4d841745bcc3"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 01",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": "poi"
+        },
+        "parentCityEntityId": {
+          "field": "parentCityEntityId",
+          "sourceType": "repository-reference",
+          "source": "Route V2 P1B City Baseline",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q72",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": "city-8dfe7b39752eceb2"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q684948",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": "Q684948"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "project-schema",
+          "source": "Curated Chinese display name for Knowledge Expansion Batch 01",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q684948",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": "苏黎世大教堂"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q684948",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": "Grossmünster"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q684948",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": [
+            "Großmünster",
+            "โกรสมึนส์เทอร์"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q684948",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": {
+            "latitude": 47.37,
+            "longitude": 8.5441666666667
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 01",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 01",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q684948",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": "2026-08-03T08:00:00.000Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-poi-baseline-p1b",
+      "entityId": "poi-86322cc1bce47e9c",
+      "entityType": "poi",
+      "parentCityEntityId": "city-2cb3e8890c6c7848",
+      "wikidataId": "Q7271100",
+      "canonicalNameZh": "皇后镇花园",
+      "canonicalNameEn": "Queenstown Gardens",
+      "aliases": [],
+      "coordinates": {
+        "latitude": -45.0377,
+        "longitude": 168.66
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-08-03T08:00:00.000Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 01",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": "poi-86322cc1bce47e9c"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 01",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": "poi"
+        },
+        "parentCityEntityId": {
+          "field": "parentCityEntityId",
+          "sourceType": "repository-reference",
+          "source": "Route V2 P1B City Baseline",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q613602",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": "city-2cb3e8890c6c7848"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q7271100",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": "Q7271100"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "project-schema",
+          "source": "Curated Chinese display name for Knowledge Expansion Batch 01",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q7271100",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": "皇后镇花园"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q7271100",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": "Queenstown Gardens"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q7271100",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": []
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q7271100",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": {
+            "latitude": -45.0377,
+            "longitude": 168.66
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 01",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 01",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q7271100",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": "2026-08-03T08:00:00.000Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-poi-baseline-p1b",
+      "entityId": "poi-b6d61b537ecfe53f",
+      "entityType": "poi",
+      "parentCityEntityId": "city-922253e414d069f3",
+      "wikidataId": "Q16430332",
+      "canonicalNameZh": "维克教堂",
+      "canonicalNameEn": "Víkurkirkja",
+      "aliases": [
+        "Church in Vík í Mýrdal",
+        "Kirche in Vík í Mýrdal",
+        "Vík Church",
+        "Vík í Mýrdal Church"
+      ],
+      "coordinates": {
+        "latitude": 63.420543,
+        "longitude": -19.002911
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-08-03T08:00:00.000Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 01",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": "poi-b6d61b537ecfe53f"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 01",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": "poi"
+        },
+        "parentCityEntityId": {
+          "field": "parentCityEntityId",
+          "sourceType": "repository-reference",
+          "source": "Route V2 P1B City Baseline",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q685369",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": "city-922253e414d069f3"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q16430332",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": "Q16430332"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "project-schema",
+          "source": "Curated Chinese display name for Knowledge Expansion Batch 01",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q16430332",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": "维克教堂"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q16430332",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": "Víkurkirkja"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q16430332",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": [
+            "Church in Vík í Mýrdal",
+            "Kirche in Vík í Mýrdal",
+            "Vík Church",
+            "Vík í Mýrdal Church"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q16430332",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": {
+            "latitude": 63.420543,
+            "longitude": -19.002911
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 01",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 01",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q16430332",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": "2026-08-03T08:00:00.000Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-poi-baseline-p1b",
+      "entityId": "poi-c117087ce07a1d3e",
+      "entityType": "poi",
+      "parentCityEntityId": "city-64a359ba87706a72",
+      "wikidataId": "Q54489",
+      "canonicalNameZh": "悉尼皇家植物园",
+      "canonicalNameEn": "Royal Botanic Garden, Sydney",
+      "aliases": [
+        "Königlicher Botanischer Garten Sydney",
+        "Royal Botanic Garden Sydney",
+        "Royal Botanic Gardens Sydney",
+        "Royal Botanic Gardens, Sydney",
+        "Sydney Botanic Gardens",
+        "悉尼皇家植物園"
+      ],
+      "coordinates": {
+        "latitude": -33.862222,
+        "longitude": 151.2175
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-08-03T08:00:00.000Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 01",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": "poi-c117087ce07a1d3e"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 01",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": "poi"
+        },
+        "parentCityEntityId": {
+          "field": "parentCityEntityId",
+          "sourceType": "repository-reference",
+          "source": "Route V2 P1B City Baseline",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q3130",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": "city-64a359ba87706a72"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q54489",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": "Q54489"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "project-schema",
+          "source": "Curated Chinese display name for Knowledge Expansion Batch 01",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q54489",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": "悉尼皇家植物园"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q54489",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": "Royal Botanic Garden, Sydney"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q54489",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": [
+            "Königlicher Botanischer Garten Sydney",
+            "Royal Botanic Garden Sydney",
+            "Royal Botanic Gardens Sydney",
+            "Royal Botanic Gardens, Sydney",
+            "Sydney Botanic Gardens",
+            "悉尼皇家植物園"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q54489",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": {
+            "latitude": -33.862222,
+            "longitude": 151.2175
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 01",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 01",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q54489",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": "2026-08-03T08:00:00.000Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-poi-baseline-p1b",
+      "entityId": "poi-e7a7ac63679e80ce",
+      "entityType": "poi",
+      "parentCityEntityId": "city-ec5f6eb44af88c19",
+      "wikidataId": "Q1783706",
+      "canonicalNameZh": "哈帕音乐厅",
+      "canonicalNameEn": "Harpa",
+      "aliases": [
+        "Harpan",
+        "Konzerthaus Harpa",
+        "Konzerthaus Reykjavik",
+        "Tónlistar- og ráðstefnuhús í Reykjavík",
+        "Tónlistar- og ráðstefnuhúsið í Reykjavík"
+      ],
+      "coordinates": {
+        "latitude": 64.15027778,
+        "longitude": -21.9325
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-08-03T08:00:00.000Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 01",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": "poi-e7a7ac63679e80ce"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 01",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": "poi"
+        },
+        "parentCityEntityId": {
+          "field": "parentCityEntityId",
+          "sourceType": "repository-reference",
+          "source": "Route V2 P1B City Baseline",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1764",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": "city-ec5f6eb44af88c19"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1783706",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": "Q1783706"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "project-schema",
+          "source": "Curated Chinese display name for Knowledge Expansion Batch 01",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1783706",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": "哈帕音乐厅"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1783706",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": "Harpa"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1783706",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": [
+            "Harpan",
+            "Konzerthaus Harpa",
+            "Konzerthaus Reykjavik",
+            "Tónlistar- og ráðstefnuhús í Reykjavík",
+            "Tónlistar- og ráðstefnuhúsið í Reykjavík"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1783706",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": {
+            "latitude": 64.15027778,
+            "longitude": -21.9325
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 01",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 01",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-03T08:00:00.000Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1783706",
           "retrievedAt": "2026-08-03T08:00:00.000Z",
           "value": "2026-08-03T08:00:00.000Z"
         }

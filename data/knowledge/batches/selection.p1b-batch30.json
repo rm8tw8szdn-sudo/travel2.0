@@ -1,0 +1,1934 @@
+{
+  "schemaVersion": "route-v2-knowledge-expansion-batch09-wave1-selection-v1",
+  "wave": 1,
+  "countries": [
+    {
+      "isoAlpha2": "DZ",
+      "wikidataId": "Q262",
+      "entityId": "country-e8df5f4fc1e18b51"
+    },
+    {
+      "isoAlpha2": "GH",
+      "wikidataId": "Q117",
+      "entityId": "country-037adaa09b882b93"
+    },
+    {
+      "isoAlpha2": "SN",
+      "wikidataId": "Q1041",
+      "entityId": "country-dbb08f246975e6ec"
+    },
+    {
+      "isoAlpha2": "ET",
+      "wikidataId": "Q115",
+      "entityId": "country-e18266482d5ba703"
+    },
+    {
+      "isoAlpha2": "NA",
+      "wikidataId": "Q1030",
+      "entityId": "country-84e112850c1b5fb2"
+    }
+  ],
+  "cities": [
+    {
+      "countryCode": "DZ",
+      "tier": "world",
+      "targetPoiCount": 10,
+      "selectedPoiCount": 8,
+      "reused": false,
+      "entityId": "city-a707fd8adfcb9fb6",
+      "wikidataId": "Q3561",
+      "canonicalNameEn": "Algiers",
+      "positiveTypePath": [
+        "Q486972"
+      ]
+    },
+    {
+      "countryCode": "DZ",
+      "tier": "world",
+      "targetPoiCount": 10,
+      "selectedPoiCount": 7,
+      "reused": false,
+      "entityId": "city-6ccc786152278eeb",
+      "wikidataId": "Q131818",
+      "canonicalNameEn": "Oran",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "DZ",
+      "tier": "core",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 5,
+      "reused": false,
+      "entityId": "city-c3f52396d514b212",
+      "wikidataId": "Q187346",
+      "canonicalNameEn": "Constantine",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "DZ",
+      "tier": "core",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 4,
+      "reused": false,
+      "entityId": "city-5167bd0ffd515210",
+      "wikidataId": "Q45942",
+      "canonicalNameEn": "Annaba",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "DZ",
+      "tier": "core",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 6,
+      "reused": false,
+      "entityId": "city-e4b7af2e9feb1a9a",
+      "wikidataId": "Q185134",
+      "canonicalNameEn": "Tlemcen",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "DZ",
+      "tier": "standard",
+      "targetPoiCount": 5,
+      "selectedPoiCount": 2,
+      "reused": false,
+      "entityId": "city-8d7d82b4d235f4d4",
+      "wikidataId": "Q622841",
+      "canonicalNameEn": "Ghardaïa",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "DZ",
+      "tier": "standard",
+      "targetPoiCount": 5,
+      "selectedPoiCount": 4,
+      "reused": false,
+      "entityId": "city-b2cdde928b74ee51",
+      "wikidataId": "Q59975",
+      "canonicalNameEn": "Béjaïa",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "GH",
+      "tier": "world",
+      "targetPoiCount": 10,
+      "selectedPoiCount": 7,
+      "reused": false,
+      "entityId": "city-c1a64708cf58bee2",
+      "wikidataId": "Q3761",
+      "canonicalNameEn": "Accra",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "GH",
+      "tier": "world",
+      "targetPoiCount": 10,
+      "selectedPoiCount": 7,
+      "reused": false,
+      "entityId": "city-1cd25320a3217855",
+      "wikidataId": "Q182059",
+      "canonicalNameEn": "Kumasi",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "GH",
+      "tier": "core",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 5,
+      "reused": false,
+      "entityId": "city-07419b54c8acb3db",
+      "wikidataId": "Q221283",
+      "canonicalNameEn": "Cape Coast",
+      "positiveTypePath": [
+        "Q1549591",
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "GH",
+      "tier": "core",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 1,
+      "reused": false,
+      "entityId": "city-83897ac07777d564",
+      "wikidataId": "Q217040",
+      "canonicalNameEn": "Tamale",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "GH",
+      "tier": "core",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 5,
+      "reused": false,
+      "entityId": "city-7dbfce9071316347",
+      "wikidataId": "Q243293",
+      "canonicalNameEn": "Sekondi-Takoradi",
+      "positiveTypePath": [
+        "Q1549591",
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "GH",
+      "tier": "standard",
+      "targetPoiCount": 5,
+      "selectedPoiCount": 1,
+      "reused": false,
+      "entityId": "city-15e9ebf790486ac4",
+      "wikidataId": "Q615006",
+      "canonicalNameEn": "Ho",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "GH",
+      "tier": "standard",
+      "targetPoiCount": 5,
+      "selectedPoiCount": 3,
+      "reused": false,
+      "entityId": "city-2f05eedc6e0304f4",
+      "wikidataId": "Q968662",
+      "canonicalNameEn": "Elmina",
+      "positiveTypePath": [
+        "Q486972"
+      ]
+    },
+    {
+      "countryCode": "SN",
+      "tier": "world",
+      "targetPoiCount": 10,
+      "selectedPoiCount": 8,
+      "reused": false,
+      "entityId": "city-fd020e5ecc4d06f9",
+      "wikidataId": "Q3718",
+      "canonicalNameEn": "Dakar",
+      "positiveTypePath": [
+        "Q2264924",
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "SN",
+      "tier": "world",
+      "targetPoiCount": 10,
+      "selectedPoiCount": 6,
+      "reused": false,
+      "entityId": "city-0f4afdcd6744ab53",
+      "wikidataId": "Q273779",
+      "canonicalNameEn": "Saint-Louis",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "SN",
+      "tier": "core",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 1,
+      "reused": false,
+      "entityId": "city-80c25c02d0b78733",
+      "wikidataId": "Q600693",
+      "canonicalNameEn": "Thiès",
+      "positiveTypePath": [
+        "Q1549591",
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "SN",
+      "tier": "core",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 0,
+      "reused": false,
+      "entityId": "city-51a0db66ad0eac77",
+      "wikidataId": "Q202776",
+      "canonicalNameEn": "Ziguinchor",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "SN",
+      "tier": "core",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 1,
+      "reused": false,
+      "entityId": "city-3451350486090345",
+      "wikidataId": "Q657072",
+      "canonicalNameEn": "Touba",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "SN",
+      "tier": "standard",
+      "targetPoiCount": 5,
+      "selectedPoiCount": 0,
+      "reused": false,
+      "entityId": "city-eec69e8589302abe",
+      "wikidataId": "Q847677",
+      "canonicalNameEn": "Kaolack",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "SN",
+      "tier": "standard",
+      "targetPoiCount": 5,
+      "selectedPoiCount": 1,
+      "reused": false,
+      "entityId": "city-cc840a206cb53491",
+      "wikidataId": "Q1019431",
+      "canonicalNameEn": "Mbour",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "ET",
+      "tier": "world",
+      "targetPoiCount": 10,
+      "selectedPoiCount": 9,
+      "reused": false,
+      "entityId": "city-6069097677031021",
+      "wikidataId": "Q3624",
+      "canonicalNameEn": "Addis Ababa",
+      "positiveTypePath": [
+        "Q257391",
+        "Q108178728",
+        "Q5119",
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "ET",
+      "tier": "world",
+      "targetPoiCount": 10,
+      "selectedPoiCount": 2,
+      "reused": false,
+      "entityId": "city-974a88bdfaebab9d",
+      "wikidataId": "Q218861",
+      "canonicalNameEn": "Gondar",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "ET",
+      "tier": "core",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 6,
+      "reused": false,
+      "entityId": "city-d4ebe0000c1108f8",
+      "wikidataId": "Q207590",
+      "canonicalNameEn": "Lalibela",
+      "positiveTypePath": [
+        "Q486972"
+      ]
+    },
+    {
+      "countryCode": "ET",
+      "tier": "core",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 3,
+      "reused": false,
+      "entityId": "city-ba84abe850dba990",
+      "wikidataId": "Q5832",
+      "canonicalNameEn": "Axum",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "ET",
+      "tier": "core",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 1,
+      "reused": false,
+      "entityId": "city-585b986998434a11",
+      "wikidataId": "Q464699",
+      "canonicalNameEn": "Bahir Dar",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "ET",
+      "tier": "core",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 1,
+      "reused": false,
+      "entityId": "city-007a6409557245ef",
+      "wikidataId": "Q190184",
+      "canonicalNameEn": "Harar",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "ET",
+      "tier": "standard",
+      "targetPoiCount": 5,
+      "selectedPoiCount": 1,
+      "reused": false,
+      "entityId": "city-c8bdfbcacd7a2103",
+      "wikidataId": "Q193486",
+      "canonicalNameEn": "Dire Dawa",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "NA",
+      "tier": "world",
+      "targetPoiCount": 10,
+      "selectedPoiCount": 6,
+      "reused": false,
+      "entityId": "city-d07e03ed035d1026",
+      "wikidataId": "Q3935",
+      "canonicalNameEn": "Windhoek",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "NA",
+      "tier": "world",
+      "targetPoiCount": 10,
+      "selectedPoiCount": 2,
+      "reused": false,
+      "entityId": "city-74e7adfc008a1332",
+      "wikidataId": "Q59698",
+      "canonicalNameEn": "Swakopmund",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "NA",
+      "tier": "core",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 2,
+      "reused": false,
+      "entityId": "city-76f102b47a024b4c",
+      "wikidataId": "Q220843",
+      "canonicalNameEn": "Walvis Bay",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "NA",
+      "tier": "core",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 7,
+      "reused": false,
+      "entityId": "city-37417d66a7d01133",
+      "wikidataId": "Q159325",
+      "canonicalNameEn": "Lüderitz",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "NA",
+      "tier": "core",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 0,
+      "reused": false,
+      "entityId": "city-2725febcff70a438",
+      "wikidataId": "Q160884",
+      "canonicalNameEn": "Keetmanshoop",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "NA",
+      "tier": "standard",
+      "targetPoiCount": 5,
+      "selectedPoiCount": 0,
+      "reused": false,
+      "entityId": "city-cafe7ca395a431a8",
+      "wikidataId": "Q993149",
+      "canonicalNameEn": "Otjiwarongo",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "NA",
+      "tier": "standard",
+      "targetPoiCount": 5,
+      "selectedPoiCount": 0,
+      "reused": false,
+      "entityId": "city-1f9afa5eb362ac9c",
+      "wikidataId": "Q639467",
+      "canonicalNameEn": "Tsumeb",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    }
+  ],
+  "pois": [
+    {
+      "entityId": "poi-a3c629ed97c7313c",
+      "parentCityEntityId": "city-a707fd8adfcb9fb6",
+      "wikidataId": "Q2471799",
+      "canonicalNameEn": "Ketchaoua Mosque",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 0.973
+    },
+    {
+      "entityId": "poi-10f3e2f3de844ca0",
+      "parentCityEntityId": "city-a707fd8adfcb9fb6",
+      "wikidataId": "Q2386475",
+      "canonicalNameEn": "Djamaa El Kebir of Algiers",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 1.105
+    },
+    {
+      "entityId": "poi-a3071a5908ba37a7",
+      "parentCityEntityId": "city-a707fd8adfcb9fb6",
+      "wikidataId": "Q2088381",
+      "canonicalNameEn": "Basilica of Notre-Dame-d'Afrique",
+      "positiveTypePath": [
+        "Q10631691",
+        "Q15135589",
+        "Q1370598"
+      ],
+      "distanceKm": 3.101
+    },
+    {
+      "entityId": "poi-5224e4672eb5ea7a",
+      "parentCityEntityId": "city-a707fd8adfcb9fb6",
+      "wikidataId": "Q5600070",
+      "canonicalNameEn": "Ben Farès Mosque",
+      "positiveTypePath": [
+        "Q34627",
+        "Q831219",
+        "Q1370598"
+      ],
+      "distanceKm": 0.856
+    },
+    {
+      "entityId": "poi-d90f63b4c4ecc749",
+      "parentCityEntityId": "city-a707fd8adfcb9fb6",
+      "wikidataId": "Q7179708",
+      "canonicalNameEn": "Peñón of Algiers",
+      "positiveTypePath": [
+        "Q1226252",
+        "Q23442",
+        "Q271669"
+      ],
+      "distanceKm": 1.434
+    },
+    {
+      "entityId": "poi-7315a54b83627b8b",
+      "parentCityEntityId": "city-a707fd8adfcb9fb6",
+      "wikidataId": "Q25453602",
+      "canonicalNameEn": "El Barani Mosque",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 0.934
+    },
+    {
+      "entityId": "poi-ae0ed545d8400794",
+      "parentCityEntityId": "city-a707fd8adfcb9fb6",
+      "wikidataId": "Q25453544",
+      "canonicalNameEn": "Ali Bitchin Mosque",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 1.22
+    },
+    {
+      "entityId": "poi-9e964de277d88b5d",
+      "parentCityEntityId": "city-6ccc786152278eeb",
+      "wikidataId": "Q1153491",
+      "canonicalNameEn": "Abdallah Ibn Salam Mosque",
+      "positiveTypePath": [
+        "Q34627",
+        "Q831219",
+        "Q1370598"
+      ],
+      "distanceKm": 1.592
+    },
+    {
+      "entityId": "poi-c5e877c189680c8b",
+      "parentCityEntityId": "city-6ccc786152278eeb",
+      "wikidataId": "Q1469697",
+      "canonicalNameEn": "Hassan Pasha Mosque",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 2.116
+    },
+    {
+      "entityId": "poi-78e78d997cdb1c63",
+      "parentCityEntityId": "city-6ccc786152278eeb",
+      "wikidataId": "Q20425154",
+      "canonicalNameEn": "Abdelhamid Ben Badis Mosque",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 2.437
+    },
+    {
+      "entityId": "poi-253eafc1259ba798",
+      "parentCityEntityId": "city-6ccc786152278eeb",
+      "wikidataId": "Q12242703",
+      "canonicalNameEn": "Imam el-Houari Mosque",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 2.12
+    },
+    {
+      "entityId": "poi-3b02c57c16bb17bd",
+      "parentCityEntityId": "city-c3f52396d514b212",
+      "wikidataId": "Q3846204",
+      "canonicalNameEn": "Emir Abdelkader Mosque",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 2.24
+    },
+    {
+      "entityId": "poi-285693f6b633e7e2",
+      "parentCityEntityId": "city-c3f52396d514b212",
+      "wikidataId": "Q97328004",
+      "canonicalNameEn": "Great Mosque of Constantine",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 0.197
+    },
+    {
+      "entityId": "poi-77dcf3457760e0b8",
+      "parentCityEntityId": "city-5167bd0ffd515210",
+      "wikidataId": "Q3480994",
+      "canonicalNameEn": "Seybouse River",
+      "positiveTypePath": [
+        "Q4022",
+        "Q2479431",
+        "Q15324"
+      ],
+      "distanceKm": 3.702
+    },
+    {
+      "entityId": "poi-9ef66d1de2513198",
+      "parentCityEntityId": "city-5167bd0ffd515210",
+      "wikidataId": "Q3324876",
+      "canonicalNameEn": "Salah Bey Mosque",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 0.409
+    },
+    {
+      "entityId": "poi-250ea57ec7ca2088",
+      "parentCityEntityId": "city-5167bd0ffd515210",
+      "wikidataId": "Q48789740",
+      "canonicalNameEn": "Oued Meboudja",
+      "positiveTypePath": [
+        "Q187971",
+        "Q39816",
+        "Q35145263"
+      ],
+      "distanceKm": 8.926
+    },
+    {
+      "entityId": "poi-393217a3490b1441",
+      "parentCityEntityId": "city-e4b7af2e9feb1a9a",
+      "wikidataId": "Q2989371",
+      "canonicalNameEn": "Great Mosque of Tlemcen",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 0.574
+    },
+    {
+      "entityId": "poi-d1857cf759ba98ec",
+      "parentCityEntityId": "city-e4b7af2e9feb1a9a",
+      "wikidataId": "Q3324913",
+      "canonicalNameEn": "Sidi Bel Hasan Mosque",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 0.508
+    },
+    {
+      "entityId": "poi-9593635748cde813",
+      "parentCityEntityId": "city-e4b7af2e9feb1a9a",
+      "wikidataId": "Q3324878",
+      "canonicalNameEn": "Sidi Boumediene Mosque",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 2.532
+    },
+    {
+      "entityId": "poi-7abf43b7bbb46e40",
+      "parentCityEntityId": "city-e4b7af2e9feb1a9a",
+      "wikidataId": "Q107319831",
+      "canonicalNameEn": "Sidi El Haloui Mosque",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 0.989
+    },
+    {
+      "entityId": "poi-d9f6a83178cd0513",
+      "parentCityEntityId": "city-8d7d82b4d235f4d4",
+      "wikidataId": "Q118792952",
+      "canonicalNameEn": "Grand Mosque of Gardaya",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 2.646
+    },
+    {
+      "entityId": "poi-79228c732fd3a47e",
+      "parentCityEntityId": "city-b2cdde928b74ee51",
+      "wikidataId": "Q3491757",
+      "canonicalNameEn": "Soummam River",
+      "positiveTypePath": [
+        "Q355304",
+        "Q15324"
+      ],
+      "distanceKm": 2.649
+    },
+    {
+      "entityId": "poi-d64658f7a9196736",
+      "parentCityEntityId": "city-b2cdde928b74ee51",
+      "wikidataId": "Q2664193",
+      "canonicalNameEn": "Gouraya National Park",
+      "positiveTypePath": [
+        "Q46169",
+        "Q22698"
+      ],
+      "distanceKm": 3.632
+    },
+    {
+      "entityId": "poi-639846e35b3fbcf5",
+      "parentCityEntityId": "city-b2cdde928b74ee51",
+      "wikidataId": "Q66019966",
+      "canonicalNameEn": "Great Mosque of Béjaïa",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 0
+    },
+    {
+      "entityId": "poi-311526ed8f4ce5cc",
+      "parentCityEntityId": "city-b2cdde928b74ee51",
+      "wikidataId": "Q125127220",
+      "canonicalNameEn": "Ibn Toumert Mosque",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 5.659
+    },
+    {
+      "entityId": "poi-223c676ff5baae96",
+      "parentCityEntityId": "city-c1a64708cf58bee2",
+      "wikidataId": "Q1967472",
+      "canonicalNameEn": "National Museum of Ghana",
+      "positiveTypePath": [
+        "Q17431399",
+        "Q33506"
+      ],
+      "distanceKm": 1.025
+    },
+    {
+      "entityId": "poi-685183a676767a74",
+      "parentCityEntityId": "city-c1a64708cf58bee2",
+      "wikidataId": "Q13848097",
+      "canonicalNameEn": "Kwame Nkrumah Mausoleum",
+      "positiveTypePath": [
+        "Q162875",
+        "Q4989906"
+      ],
+      "distanceKm": 1.443
+    },
+    {
+      "entityId": "poi-8b696cec2f496c9a",
+      "parentCityEntityId": "city-c1a64708cf58bee2",
+      "wikidataId": "Q5471403",
+      "canonicalNameEn": "Fort James",
+      "positiveTypePath": [
+        "Q4989906"
+      ],
+      "distanceKm": 2.938
+    },
+    {
+      "entityId": "poi-a2f13d085f42edbf",
+      "parentCityEntityId": "city-c1a64708cf58bee2",
+      "wikidataId": "Q98410976",
+      "canonicalNameEn": "Black Star Gate",
+      "positiveTypePath": [
+        "Q4989906"
+      ],
+      "distanceKm": 0.899
+    },
+    {
+      "entityId": "poi-cd7d479ebade4d24",
+      "parentCityEntityId": "city-1cd25320a3217855",
+      "wikidataId": "Q6749385",
+      "canonicalNameEn": "Manhyia Palace",
+      "positiveTypePath": [
+        "Q16560",
+        "Q41176"
+      ],
+      "distanceKm": 1.088
+    },
+    {
+      "entityId": "poi-4eeedb1a230f3069",
+      "parentCityEntityId": "city-1cd25320a3217855",
+      "wikidataId": "Q6385318",
+      "canonicalNameEn": "Kejetia Market",
+      "positiveTypePath": [
+        "Q41176"
+      ],
+      "distanceKm": 0.665
+    },
+    {
+      "entityId": "poi-14420301eda750c5",
+      "parentCityEntityId": "city-1cd25320a3217855",
+      "wikidataId": "Q16251736",
+      "canonicalNameEn": "Ghana Armed Forces Museum",
+      "positiveTypePath": [
+        "Q2772772",
+        "Q16735822",
+        "Q33506"
+      ],
+      "distanceKm": 0.96
+    },
+    {
+      "entityId": "poi-1b3ca96dbee4c190",
+      "parentCityEntityId": "city-1cd25320a3217855",
+      "wikidataId": "Q18344049",
+      "canonicalNameEn": "Kumasi Zoo",
+      "positiveTypePath": [
+        "Q43501",
+        "Q22698"
+      ],
+      "distanceKm": 0.157
+    },
+    {
+      "entityId": "poi-d364eaf1cf92d464",
+      "parentCityEntityId": "city-1cd25320a3217855",
+      "wikidataId": "Q16267976",
+      "canonicalNameEn": "Prempeh Jubilee Museum",
+      "positiveTypePath": [
+        "Q33506"
+      ],
+      "distanceKm": 0.576
+    },
+    {
+      "entityId": "poi-6fb6c7788898bfac",
+      "parentCityEntityId": "city-1cd25320a3217855",
+      "wikidataId": "Q16267974",
+      "canonicalNameEn": "Manhiya Palace Museum",
+      "positiveTypePath": [
+        "Q33506"
+      ],
+      "distanceKm": 1.4
+    },
+    {
+      "entityId": "poi-b62f682b410fa8bb",
+      "parentCityEntityId": "city-07419b54c8acb3db",
+      "wikidataId": "Q130537288",
+      "canonicalNameEn": "Kakum River",
+      "positiveTypePath": [
+        "Q4022",
+        "Q2479431",
+        "Q15324"
+      ],
+      "distanceKm": 7.457
+    },
+    {
+      "entityId": "poi-f3b8896c554b3d03",
+      "parentCityEntityId": "city-07419b54c8acb3db",
+      "wikidataId": "Q15045461",
+      "canonicalNameEn": "Cape Coast Castle Museum",
+      "positiveTypePath": [
+        "Q33506"
+      ],
+      "distanceKm": 1.033
+    },
+    {
+      "entityId": "poi-c95fb024d6ffc10d",
+      "parentCityEntityId": "city-83897ac07777d564",
+      "wikidataId": "Q140591039",
+      "canonicalNameEn": "Masjid Al-Noor",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 1.281
+    },
+    {
+      "entityId": "poi-5982e5a7a7a08b86",
+      "parentCityEntityId": "city-7dbfce9071316347",
+      "wikidataId": "Q104762344",
+      "canonicalNameEn": "Bisa Abrewa Museum",
+      "positiveTypePath": [
+        "Q33506"
+      ],
+      "distanceKm": 2.534
+    },
+    {
+      "entityId": "poi-7a22580c2ab5b0d5",
+      "parentCityEntityId": "city-7dbfce9071316347",
+      "wikidataId": "Q7678481",
+      "canonicalNameEn": "Takoradi Market Circle",
+      "positiveTypePath": [
+        "Q132510",
+        "Q37654"
+      ],
+      "distanceKm": 2.203
+    },
+    {
+      "entityId": "poi-0ad3a79f55d3dbf6",
+      "parentCityEntityId": "city-15e9ebf790486ac4",
+      "wikidataId": "Q1282665",
+      "canonicalNameEn": "Volta Regional Museum",
+      "positiveTypePath": [
+        "Q33506"
+      ],
+      "distanceKm": 0.345
+    },
+    {
+      "entityId": "poi-ef9cd54d602bbd3c",
+      "parentCityEntityId": "city-2f05eedc6e0304f4",
+      "wikidataId": "Q15045463",
+      "canonicalNameEn": "Elmina Java Museum",
+      "positiveTypePath": [
+        "Q33506"
+      ],
+      "distanceKm": 1.832
+    },
+    {
+      "entityId": "poi-950a907e201c8926",
+      "parentCityEntityId": "city-fd020e5ecc4d06f9",
+      "wikidataId": "Q470763",
+      "canonicalNameEn": "African Renaissance Monument",
+      "positiveTypePath": [
+        "Q5003624",
+        "Q4989906"
+      ],
+      "distanceKm": 8.742
+    },
+    {
+      "entityId": "poi-9fc17a215576d0c1",
+      "parentCityEntityId": "city-fd020e5ecc4d06f9",
+      "wikidataId": "Q691908",
+      "canonicalNameEn": "House of Slaves",
+      "positiveTypePath": [
+        "Q11755880",
+        "Q41176"
+      ],
+      "distanceKm": 3.779
+    },
+    {
+      "entityId": "poi-97f7ebe9bd5d7043",
+      "parentCityEntityId": "city-fd020e5ecc4d06f9",
+      "wikidataId": "Q292411",
+      "canonicalNameEn": "Magdalen Islands",
+      "positiveTypePath": [
+        "Q33837",
+        "Q1402592",
+        "Q20719696"
+      ],
+      "distanceKm": 4.696
+    },
+    {
+      "entityId": "poi-b5cc3afdf008c30f",
+      "parentCityEntityId": "city-fd020e5ecc4d06f9",
+      "wikidataId": "Q2629758",
+      "canonicalNameEn": "IFAN Museum of African Arts",
+      "positiveTypePath": [
+        "Q207694",
+        "Q33506"
+      ],
+      "distanceKm": 1.218
+    },
+    {
+      "entityId": "poi-564507e485eb19ef",
+      "parentCityEntityId": "city-fd020e5ecc4d06f9",
+      "wikidataId": "Q2477297",
+      "canonicalNameEn": "Dakar Grand Mosque",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 1.265
+    },
+    {
+      "entityId": "poi-a6a2fce30602e026",
+      "parentCityEntityId": "city-fd020e5ecc4d06f9",
+      "wikidataId": "Q86670502",
+      "canonicalNameEn": "Massalikoul Djinane Mosque",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 3.668
+    },
+    {
+      "entityId": "poi-8cfb1de916d4b237",
+      "parentCityEntityId": "city-0f4afdcd6744ab53",
+      "wikidataId": "Q1114640",
+      "canonicalNameEn": "Island of Saint-Louis",
+      "positiveTypePath": [
+        "Q23442",
+        "Q271669"
+      ],
+      "distanceKm": 0.779
+    },
+    {
+      "entityId": "poi-2905f9924228d323",
+      "parentCityEntityId": "city-0f4afdcd6744ab53",
+      "wikidataId": "Q109973470",
+      "canonicalNameEn": "Saint-Louis Photography Museum",
+      "positiveTypePath": [
+        "Q207694",
+        "Q33506"
+      ],
+      "distanceKm": 1.197
+    },
+    {
+      "entityId": "poi-8c4d6578b2754d8d",
+      "parentCityEntityId": "city-0f4afdcd6744ab53",
+      "wikidataId": "Q3330327",
+      "canonicalNameEn": "Musée du Centre de recherches et de documentation du Sénégal",
+      "positiveTypePath": [
+        "Q33506"
+      ],
+      "distanceKm": 1.827
+    },
+    {
+      "entityId": "poi-24b70836f001adb4",
+      "parentCityEntityId": "city-0f4afdcd6744ab53",
+      "wikidataId": "Q34790589",
+      "canonicalNameEn": "Île de Babagueye",
+      "positiveTypePath": [
+        "Q23442",
+        "Q271669"
+      ],
+      "distanceKm": 7.239
+    },
+    {
+      "entityId": "poi-b249481cd88c225c",
+      "parentCityEntityId": "city-0f4afdcd6744ab53",
+      "wikidataId": "Q111316774",
+      "canonicalNameEn": "Île de Bocos",
+      "positiveTypePath": [
+        "Q23442",
+        "Q271669"
+      ],
+      "distanceKm": 7.169
+    },
+    {
+      "entityId": "poi-18437fe25e445937",
+      "parentCityEntityId": "city-80c25c02d0b78733",
+      "wikidataId": "Q15260423",
+      "canonicalNameEn": "Musée Régional de Thiès",
+      "positiveTypePath": [
+        "Q33506"
+      ],
+      "distanceKm": 1.006
+    },
+    {
+      "entityId": "poi-280a7a43114ec7d9",
+      "parentCityEntityId": "city-3451350486090345",
+      "wikidataId": "Q3114987",
+      "canonicalNameEn": "Great Mosque of Touba",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 2.674
+    },
+    {
+      "entityId": "poi-fb1f1a538d3a50ce",
+      "parentCityEntityId": "city-6069097677031021",
+      "wikidataId": "Q2652168",
+      "canonicalNameEn": "National Museum of Ethiopia",
+      "positiveTypePath": [
+        "Q17431399",
+        "Q33506"
+      ],
+      "distanceKm": 1.069
+    },
+    {
+      "entityId": "poi-b193aa569b823c03",
+      "parentCityEntityId": "city-6069097677031021",
+      "wikidataId": "Q2567785",
+      "canonicalNameEn": "National Archives and Library of Ethiopia",
+      "positiveTypePath": [
+        "Q22806",
+        "Q65768782",
+        "Q385994",
+        "Q7075",
+        "Q101542346",
+        "Q13226383"
+      ],
+      "distanceKm": 1.995
+    },
+    {
+      "entityId": "poi-d3b2c6aa02950013",
+      "parentCityEntityId": "city-6069097677031021",
+      "wikidataId": "Q2920069",
+      "canonicalNameEn": "Addis Mercato",
+      "positiveTypePath": [
+        "Q132510",
+        "Q37654"
+      ],
+      "distanceKm": 1.604
+    },
+    {
+      "entityId": "poi-7d91a7544d74cac3",
+      "parentCityEntityId": "city-6069097677031021",
+      "wikidataId": "Q15856263",
+      "canonicalNameEn": "\"Red Terror\" Martyrs' Memorial Museum",
+      "positiveTypePath": [
+        "Q33506"
+      ],
+      "distanceKm": 3.084
+    },
+    {
+      "entityId": "poi-8359853cbbe73a8a",
+      "parentCityEntityId": "city-6069097677031021",
+      "wikidataId": "Q2916449",
+      "canonicalNameEn": "Yekatit 12 monument",
+      "positiveTypePath": [
+        "Q4989906"
+      ],
+      "distanceKm": 1.301
+    },
+    {
+      "entityId": "poi-34f3e662db42770c",
+      "parentCityEntityId": "city-6069097677031021",
+      "wikidataId": "Q3528328",
+      "canonicalNameEn": "Tiglachin Monument",
+      "positiveTypePath": [
+        "Q4989906"
+      ],
+      "distanceKm": 1.75
+    },
+    {
+      "entityId": "poi-220bdf933d040f78",
+      "parentCityEntityId": "city-974a88bdfaebab9d",
+      "wikidataId": "Q464695",
+      "canonicalNameEn": "Fasil Ghebbi",
+      "positiveTypePath": [
+        "Q57831",
+        "Q18691599",
+        "Q13226383"
+      ],
+      "distanceKm": 0.955
+    },
+    {
+      "entityId": "poi-bd56300c6343f9fe",
+      "parentCityEntityId": "city-974a88bdfaebab9d",
+      "wikidataId": "Q2894781",
+      "canonicalNameEn": "Lesser Angereb",
+      "positiveTypePath": [
+        "Q4022",
+        "Q2479431",
+        "Q15324"
+      ],
+      "distanceKm": 2.044
+    },
+    {
+      "entityId": "poi-f805fb03df116509",
+      "parentCityEntityId": "city-ba84abe850dba990",
+      "wikidataId": "Q2308606",
+      "canonicalNameEn": "Obelisk of Axum",
+      "positiveTypePath": [
+        "Q170980",
+        "Q4989906"
+      ],
+      "distanceKm": 2.268
+    },
+    {
+      "entityId": "poi-15038620a34493da",
+      "parentCityEntityId": "city-ba84abe850dba990",
+      "wikidataId": "Q2259366",
+      "canonicalNameEn": "King Ezana's Stele",
+      "positiveTypePath": [
+        "Q178743",
+        "Q4989906"
+      ],
+      "distanceKm": 2.274
+    },
+    {
+      "entityId": "poi-b88d5411758e1af6",
+      "parentCityEntityId": "city-585b986998434a11",
+      "wikidataId": "Q25050935",
+      "canonicalNameEn": "Martyrs Memorial Monument",
+      "positiveTypePath": [
+        "Q5003624",
+        "Q4989906"
+      ],
+      "distanceKm": 3.117
+    },
+    {
+      "entityId": "poi-60f0af41e1fc45bc",
+      "parentCityEntityId": "city-007a6409557245ef",
+      "wikidataId": "Q109657140",
+      "canonicalNameEn": "Jamia Mosque",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 1.219
+    },
+    {
+      "entityId": "poi-da2b0b5cfe9f5d3d",
+      "parentCityEntityId": "city-c8bdfbcacd7a2103",
+      "wikidataId": "Q85846956",
+      "canonicalNameEn": "Porc-Epic Cave",
+      "positiveTypePath": [
+        "Q839954"
+      ],
+      "distanceKm": 2.627
+    },
+    {
+      "entityId": "poi-e25b0f3252604140",
+      "parentCityEntityId": "city-d07e03ed035d1026",
+      "wikidataId": "Q325241",
+      "canonicalNameEn": "Alte Feste",
+      "positiveTypePath": [
+        "Q17431399",
+        "Q33506"
+      ],
+      "distanceKm": 0.494
+    },
+    {
+      "entityId": "poi-552450fff510eae7",
+      "parentCityEntityId": "city-d07e03ed035d1026",
+      "wikidataId": "Q2142113",
+      "canonicalNameEn": "Reiterdenkmal, Windhoek",
+      "positiveTypePath": [
+        "Q179700",
+        "Q220659",
+        "Q1791627",
+        "Q210272"
+      ],
+      "distanceKm": 0.455
+    },
+    {
+      "entityId": "poi-f826e2652cee57fe",
+      "parentCityEntityId": "city-d07e03ed035d1026",
+      "wikidataId": "Q28196088",
+      "canonicalNameEn": "Independence Memorial Museum",
+      "positiveTypePath": [
+        "Q16735822",
+        "Q33506"
+      ],
+      "distanceKm": 0.477
+    },
+    {
+      "entityId": "poi-d0f7b9f61cb999b2",
+      "parentCityEntityId": "city-74e7adfc008a1332",
+      "wikidataId": "Q1455877",
+      "canonicalNameEn": "Swakop River",
+      "positiveTypePath": [
+        "Q4022",
+        "Q2479431",
+        "Q15324"
+      ],
+      "distanceKm": 8.582
+    },
+    {
+      "entityId": "poi-b48010051eb26bc8",
+      "parentCityEntityId": "city-74e7adfc008a1332",
+      "wikidataId": "Q28863",
+      "canonicalNameEn": "National Marine Aquarium of Namibia",
+      "positiveTypePath": [
+        "Q2281788",
+        "Q570116"
+      ],
+      "distanceKm": 2.281
+    },
+    {
+      "entityId": "poi-6a3ad97c3da7188c",
+      "parentCityEntityId": "city-37417d66a7d01133",
+      "wikidataId": "Q1880264",
+      "canonicalNameEn": "Lüderitz Bay",
+      "positiveTypePath": [
+        "Q39594",
+        "Q2507626",
+        "Q15324"
+      ],
+      "distanceKm": 2.837
+    },
+    {
+      "entityId": "poi-341bcf5e5f919f2e",
+      "parentCityEntityId": "city-37417d66a7d01133",
+      "wikidataId": "Q1933532",
+      "canonicalNameEn": "Sperrgebiet",
+      "positiveTypePath": [
+        "Q473972"
+      ],
+      "distanceKm": 7.372
+    },
+    {
+      "entityId": "poi-1e307c585c30570a",
+      "parentCityEntityId": "city-37417d66a7d01133",
+      "wikidataId": "Q1457215",
+      "canonicalNameEn": "Shark Island",
+      "positiveTypePath": [
+        "Q93352",
+        "Q468756",
+        "Q20719696"
+      ],
+      "distanceKm": 1.365
+    },
+    {
+      "entityId": "poi-b0d8a345674dfc7f",
+      "parentCityEntityId": "city-37417d66a7d01133",
+      "wikidataId": "Q1569725",
+      "canonicalNameEn": "Halifax Island",
+      "positiveTypePath": [
+        "Q23442",
+        "Q271669"
+      ],
+      "distanceKm": 7.739
+    },
+    {
+      "entityId": "poi-86c03c9c08523a4e",
+      "parentCityEntityId": "city-37417d66a7d01133",
+      "wikidataId": "Q1489948",
+      "canonicalNameEn": "Seal Island",
+      "positiveTypePath": [
+        "Q23442",
+        "Q271669"
+      ],
+      "distanceKm": 5.778
+    },
+    {
+      "entityId": "poi-f312f40d21c21754",
+      "parentCityEntityId": "city-5167bd0ffd515210",
+      "wikidataId": "Q1015167",
+      "canonicalNameEn": "Saint Augustin Basilica",
+      "positiveTypePath": [
+        "Q120560",
+        "Q4846867",
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 2.8
+    },
+    {
+      "entityId": "poi-ada41876f4905e87",
+      "parentCityEntityId": "city-c1a64708cf58bee2",
+      "wikidataId": "Q1082964",
+      "canonicalNameEn": "Osu Castle",
+      "positiveTypePath": [
+        "Q23413",
+        "Q57821",
+        "Q811979"
+      ],
+      "distanceKm": 1.889
+    },
+    {
+      "entityId": "poi-d4d9fe66e7415e88",
+      "parentCityEntityId": "city-d07e03ed035d1026",
+      "wikidataId": "Q1087458",
+      "canonicalNameEn": "Christ Church, Windhoek",
+      "positiveTypePath": [
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 0.446
+    },
+    {
+      "entityId": "poi-7045e70b2cd79b67",
+      "parentCityEntityId": "city-cc840a206cb53491",
+      "wikidataId": "Q110752980",
+      "canonicalNameEn": "Church of the Epiphany of the Lord",
+      "positiveTypePath": [
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 7.985
+    },
+    {
+      "entityId": "poi-09ad6b1e03dd9f5f",
+      "parentCityEntityId": "city-ba84abe850dba990",
+      "wikidataId": "Q1150986",
+      "canonicalNameEn": "Church of Our Lady Mary of Zion",
+      "positiveTypePath": [
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 2.129
+    },
+    {
+      "entityId": "poi-4e987da522a00553",
+      "parentCityEntityId": "city-c3f52396d514b212",
+      "wikidataId": "Q12205505",
+      "canonicalNameEn": "Pont Sidi M'Cid",
+      "positiveTypePath": [
+        "Q12570",
+        "Q12280",
+        "Q811979"
+      ],
+      "distanceKm": 0.829
+    },
+    {
+      "entityId": "poi-d45aae9564550967",
+      "parentCityEntityId": "city-6ccc786152278eeb",
+      "wikidataId": "Q12232976",
+      "canonicalNameEn": "Bey's Palace",
+      "positiveTypePath": [
+        "Q16560",
+        "Q41176"
+      ],
+      "distanceKm": 1.719
+    },
+    {
+      "entityId": "poi-90f27d843ee2d7a2",
+      "parentCityEntityId": "city-76f102b47a024b4c",
+      "wikidataId": "Q13035757",
+      "canonicalNameEn": "Pelican Point Lighthouse",
+      "positiveTypePath": [
+        "Q39715",
+        "Q41176"
+      ],
+      "distanceKm": 9.731
+    },
+    {
+      "entityId": "poi-b764fac6a19565d2",
+      "parentCityEntityId": "city-7dbfce9071316347",
+      "wikidataId": "Q1438711",
+      "canonicalNameEn": "Fort Sekondi",
+      "positiveTypePath": [
+        "Q23413",
+        "Q57821",
+        "Q811979"
+      ],
+      "distanceKm": 6.909
+    },
+    {
+      "entityId": "poi-f819308c3afd19c5",
+      "parentCityEntityId": "city-fd020e5ecc4d06f9",
+      "wikidataId": "Q15116339",
+      "canonicalNameEn": "National Library of Senegal",
+      "positiveTypePath": [
+        "Q22806",
+        "Q65768782",
+        "Q385994",
+        "Q7075",
+        "Q101542346",
+        "Q13226383"
+      ],
+      "distanceKm": 1.058
+    },
+    {
+      "entityId": "poi-992674870aaf9005",
+      "parentCityEntityId": "city-fd020e5ecc4d06f9",
+      "wikidataId": "Q1670193",
+      "canonicalNameEn": "Our Lady of Victories Cathedral, Dakar",
+      "positiveTypePath": [
+        "Q56242215",
+        "Q2977",
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 1.02
+    },
+    {
+      "entityId": "poi-75e67f65a710c0ba",
+      "parentCityEntityId": "city-d07e03ed035d1026",
+      "wikidataId": "Q1897618",
+      "canonicalNameEn": "St. Mary's Cathedral, Windhoek",
+      "positiveTypePath": [
+        "Q56242215",
+        "Q2977",
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 0.609
+    },
+    {
+      "entityId": "poi-46eba370d7ae02a7",
+      "parentCityEntityId": "city-37417d66a7d01133",
+      "wikidataId": "Q19623215",
+      "canonicalNameEn": "Diaz Point lighthouse",
+      "positiveTypePath": [
+        "Q39715",
+        "Q41176"
+      ],
+      "distanceKm": 6.502
+    },
+    {
+      "entityId": "poi-5277bb0023c2a22a",
+      "parentCityEntityId": "city-c3f52396d514b212",
+      "wikidataId": "Q2103641",
+      "canonicalNameEn": "Sidi Rached Viaduct",
+      "positiveTypePath": [
+        "Q158438",
+        "Q12280",
+        "Q811979"
+      ],
+      "distanceKm": 0.294
+    },
+    {
+      "entityId": "poi-2550b3ef43f865f4",
+      "parentCityEntityId": "city-7dbfce9071316347",
+      "wikidataId": "Q2182050",
+      "canonicalNameEn": "Fort Orange",
+      "positiveTypePath": [
+        "Q1785071",
+        "Q57821",
+        "Q811979"
+      ],
+      "distanceKm": 6.909
+    },
+    {
+      "entityId": "poi-63df06812941c81f",
+      "parentCityEntityId": "city-8d7d82b4d235f4d4",
+      "wikidataId": "Q24289778",
+      "canonicalNameEn": "Pro-Cathedral of Ghardaïa",
+      "positiveTypePath": [
+        "Q1088552",
+        "Q140454931",
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 0.68
+    },
+    {
+      "entityId": "poi-6226afaed2985620",
+      "parentCityEntityId": "city-6ccc786152278eeb",
+      "wikidataId": "Q2440344",
+      "canonicalNameEn": "cathédrale du Sacré-Cœur d'Oran",
+      "positiveTypePath": [
+        "Q28564",
+        "Q13226383"
+      ],
+      "distanceKm": 1.26
+    },
+    {
+      "entityId": "poi-a97eae14098d0de9",
+      "parentCityEntityId": "city-2f05eedc6e0304f4",
+      "wikidataId": "Q24906755",
+      "canonicalNameEn": "St. Joseph's Minor Basilica Church",
+      "positiveTypePath": [
+        "Q120560",
+        "Q4846867",
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 0.563
+    },
+    {
+      "entityId": "poi-4c971f38a45465c1",
+      "parentCityEntityId": "city-6069097677031021",
+      "wikidataId": "Q2599114",
+      "canonicalNameEn": "Holy Trinity Cathedral",
+      "positiveTypePath": [
+        "Q56242225",
+        "Q2031836",
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 1.643
+    },
+    {
+      "entityId": "poi-1593e38964024be9",
+      "parentCityEntityId": "city-d4ebe0000c1108f8",
+      "wikidataId": "Q2900045",
+      "canonicalNameEn": "Bete Abba Libanos",
+      "positiveTypePath": [
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 0.49
+    },
+    {
+      "entityId": "poi-49ccc0bb47f45b34",
+      "parentCityEntityId": "city-d4ebe0000c1108f8",
+      "wikidataId": "Q2900049",
+      "canonicalNameEn": "Bete Gebriel-Rufael",
+      "positiveTypePath": [
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 0.492
+    },
+    {
+      "entityId": "poi-7586c9f4786b8ae3",
+      "parentCityEntityId": "city-d4ebe0000c1108f8",
+      "wikidataId": "Q2900053",
+      "canonicalNameEn": "Bete Maryam",
+      "positiveTypePath": [
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 0.374
+    },
+    {
+      "entityId": "poi-8ca4503d9b94da49",
+      "parentCityEntityId": "city-d4ebe0000c1108f8",
+      "wikidataId": "Q2900055",
+      "canonicalNameEn": "Biete Medhani Alem",
+      "positiveTypePath": [
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 0.332
+    },
+    {
+      "entityId": "poi-338691aafc1bd53f",
+      "parentCityEntityId": "city-d4ebe0000c1108f8",
+      "wikidataId": "Q2900058",
+      "canonicalNameEn": "Bete Merqorewos",
+      "positiveTypePath": [
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 0.445
+    },
+    {
+      "entityId": "poi-4315e4344f42b169",
+      "parentCityEntityId": "city-d4ebe0000c1108f8",
+      "wikidataId": "Q2900059",
+      "canonicalNameEn": "Bete Meskel",
+      "positiveTypePath": [
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 0.392
+    },
+    {
+      "entityId": "poi-f2393c4900be70a8",
+      "parentCityEntityId": "city-6069097677031021",
+      "wikidataId": "Q2915799",
+      "canonicalNameEn": "Meskel Square",
+      "positiveTypePath": [
+        "Q174782",
+        "Q811979"
+      ],
+      "distanceKm": 2.994
+    },
+    {
+      "entityId": "poi-632c64c2e0207d2a",
+      "parentCityEntityId": "city-0f4afdcd6744ab53",
+      "wikidataId": "Q2942386",
+      "canonicalNameEn": "St. Louis Cathedral",
+      "positiveTypePath": [
+        "Q56242215",
+        "Q2977",
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 1.069
+    },
+    {
+      "entityId": "poi-51cbf6af3c0ee365",
+      "parentCityEntityId": "city-e4b7af2e9feb1a9a",
+      "wikidataId": "Q3360854",
+      "canonicalNameEn": "El Mechouar Palace",
+      "positiveTypePath": [
+        "Q16560",
+        "Q41176"
+      ],
+      "distanceKm": 0.766
+    },
+    {
+      "entityId": "poi-134c0c26cf92c1f5",
+      "parentCityEntityId": "city-c3f52396d514b212",
+      "wikidataId": "Q3396829",
+      "canonicalNameEn": "Pont El Kantara",
+      "positiveTypePath": [
+        "Q158438",
+        "Q12280",
+        "Q811979"
+      ],
+      "distanceKm": 0.549
+    },
+    {
+      "entityId": "poi-b2e308db31632a60",
+      "parentCityEntityId": "city-2f05eedc6e0304f4",
+      "wikidataId": "Q478471",
+      "canonicalNameEn": "Fort Coenraadsburg",
+      "positiveTypePath": [
+        "Q1785071",
+        "Q57821",
+        "Q811979"
+      ],
+      "distanceKm": 0.18
+    },
+    {
+      "entityId": "poi-741f396b55fc0987",
+      "parentCityEntityId": "city-c1a64708cf58bee2",
+      "wikidataId": "Q4921908",
+      "canonicalNameEn": "Black Star Square",
+      "positiveTypePath": [
+        "Q174782",
+        "Q811979"
+      ],
+      "distanceKm": 1.05
+    },
+    {
+      "entityId": "poi-d0aec0281b19cdee",
+      "parentCityEntityId": "city-07419b54c8acb3db",
+      "wikidataId": "Q504406",
+      "canonicalNameEn": "Fort Nassau",
+      "positiveTypePath": [
+        "Q1785071",
+        "Q57821",
+        "Q811979"
+      ],
+      "distanceKm": 6.664
+    },
+    {
+      "entityId": "poi-4881c4d5f544ebe1",
+      "parentCityEntityId": "city-6ccc786152278eeb",
+      "wikidataId": "Q524667",
+      "canonicalNameEn": "Santa Cruz Fort",
+      "positiveTypePath": [
+        "Q1785071",
+        "Q57821",
+        "Q811979"
+      ],
+      "distanceKm": 3.126
+    },
+    {
+      "entityId": "poi-79e139b66bb0d065",
+      "parentCityEntityId": "city-7dbfce9071316347",
+      "wikidataId": "Q5472362",
+      "canonicalNameEn": "Fort Witsen",
+      "positiveTypePath": [
+        "Q1785071",
+        "Q57821",
+        "Q811979"
+      ],
+      "distanceKm": 1.856
+    },
+    {
+      "entityId": "poi-30503776106fd3a4",
+      "parentCityEntityId": "city-07419b54c8acb3db",
+      "wikidataId": "Q55611926",
+      "canonicalNameEn": "Fort William Lighthouse",
+      "positiveTypePath": [
+        "Q39715",
+        "Q41176"
+      ],
+      "distanceKm": 1.089
+    },
+    {
+      "entityId": "poi-be14d1074e822101",
+      "parentCityEntityId": "city-d07e03ed035d1026",
+      "wikidataId": "Q605007",
+      "canonicalNameEn": "National Library of Namibia",
+      "positiveTypePath": [
+        "Q22806",
+        "Q65768782",
+        "Q385994",
+        "Q7075",
+        "Q101542346",
+        "Q13226383"
+      ],
+      "distanceKm": 1.462
+    },
+    {
+      "entityId": "poi-917aba74416a65ed",
+      "parentCityEntityId": "city-6069097677031021",
+      "wikidataId": "Q641447",
+      "canonicalNameEn": "St. George's Cathedral",
+      "positiveTypePath": [
+        "Q2977",
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 0.153
+    },
+    {
+      "entityId": "poi-f07b9e8b32d0eb78",
+      "parentCityEntityId": "city-37417d66a7d01133",
+      "wikidataId": "Q65040241",
+      "canonicalNameEn": "Shark Island Lighthouse",
+      "positiveTypePath": [
+        "Q39715",
+        "Q41176"
+      ],
+      "distanceKm": 1.44
+    },
+    {
+      "entityId": "poi-04f3865938356a7c",
+      "parentCityEntityId": "city-c1a64708cf58bee2",
+      "wikidataId": "Q6978924",
+      "canonicalNameEn": "National Theatre of Ghana",
+      "positiveTypePath": [
+        "Q24354",
+        "Q114961210",
+        "Q294422",
+        "Q41176"
+      ],
+      "distanceKm": 0.485
+    },
+    {
+      "entityId": "poi-07bbea84c83f2cab",
+      "parentCityEntityId": "city-76f102b47a024b4c",
+      "wikidataId": "Q7590583",
+      "canonicalNameEn": "St. Matthew's Anglican Church",
+      "positiveTypePath": [
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 1.812
+    },
+    {
+      "entityId": "poi-0946c19fa655237d",
+      "parentCityEntityId": "city-1cd25320a3217855",
+      "wikidataId": "Q7595206",
+      "canonicalNameEn": "St Peter's Cathedral Basilica, Kumasi",
+      "positiveTypePath": [
+        "Q120560",
+        "Q4846867",
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 0.928
+    },
+    {
+      "entityId": "poi-69920f37ab490659",
+      "parentCityEntityId": "city-07419b54c8acb3db",
+      "wikidataId": "Q85850621",
+      "canonicalNameEn": "Fort Victoria",
+      "positiveTypePath": [
+        "Q1785071",
+        "Q57821",
+        "Q811979"
+      ],
+      "distanceKm": 0.763
+    },
+    {
+      "entityId": "poi-01552acb9219c2fc",
+      "parentCityEntityId": "city-a707fd8adfcb9fb6",
+      "wikidataId": "Q955819",
+      "canonicalNameEn": "Center of Research in Astronomy, Astrophysics and Geophysics",
+      "positiveTypePath": [
+        "Q1254933",
+        "Q62832",
+        "Q13226383"
+      ],
+      "distanceKm": 3.355
+    },
+    {
+      "entityId": "poi-7663c014bd3c8eba",
+      "parentCityEntityId": "city-e4b7af2e9feb1a9a",
+      "wikidataId": "Q2990530",
+      "canonicalNameEn": "Colonel Lotfi Stadium",
+      "positiveTypePath": [
+        "Q7579839",
+        "Q1497375"
+      ],
+      "distanceKm": 1.545
+    }
+  ],
+  "quarantineCount": 1235
+}

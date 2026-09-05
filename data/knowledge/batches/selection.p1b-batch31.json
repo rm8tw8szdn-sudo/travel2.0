@@ -1,0 +1,1565 @@
+{
+  "schemaVersion": "route-v2-knowledge-expansion-batch09-wave2-selection-v1",
+  "wave": 2,
+  "countries": [
+    {
+      "isoAlpha2": "BW",
+      "wikidataId": "Q963",
+      "entityId": "country-3dae0e6cd1ab6cdb"
+    },
+    {
+      "isoAlpha2": "MG",
+      "wikidataId": "Q1019",
+      "entityId": "country-c2455eb9ce752fa8"
+    },
+    {
+      "isoAlpha2": "MU",
+      "wikidataId": "Q1027",
+      "entityId": "country-3eac8dc426cecd34"
+    },
+    {
+      "isoAlpha2": "KZ",
+      "wikidataId": "Q232",
+      "entityId": "country-3eadc22a44a1d60b"
+    },
+    {
+      "isoAlpha2": "UZ",
+      "wikidataId": "Q265",
+      "entityId": "country-d93016e19c97e8ff"
+    }
+  ],
+  "cities": [
+    {
+      "countryCode": "BW",
+      "tier": "world",
+      "targetPoiCount": 10,
+      "selectedPoiCount": 5,
+      "reused": false,
+      "entityId": "city-61c9e8de06444224",
+      "wikidataId": "Q3919",
+      "canonicalNameEn": "Gaborone",
+      "positiveTypePath": [
+        "Q1549591",
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "BW",
+      "tier": "world",
+      "targetPoiCount": 10,
+      "selectedPoiCount": 2,
+      "reused": false,
+      "entityId": "city-7eadc5d1c1fda549",
+      "wikidataId": "Q165422",
+      "canonicalNameEn": "Francistown",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "BW",
+      "tier": "core",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 0,
+      "reused": false,
+      "entityId": "city-d65bbd4bbbe64233",
+      "wikidataId": "Q170732",
+      "canonicalNameEn": "Maun",
+      "positiveTypePath": [
+        "Q532",
+        "Q10354598",
+        "Q486972"
+      ]
+    },
+    {
+      "countryCode": "BW",
+      "tier": "core",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 1,
+      "reused": false,
+      "entityId": "city-078fdcb231338cae",
+      "wikidataId": "Q170715",
+      "canonicalNameEn": "Kasane",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "BW",
+      "tier": "standard",
+      "targetPoiCount": 5,
+      "selectedPoiCount": 1,
+      "reused": false,
+      "entityId": "city-60fcf7881b7a9067",
+      "wikidataId": "Q855634",
+      "canonicalNameEn": "Serowe",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "MG",
+      "tier": "world",
+      "targetPoiCount": 10,
+      "selectedPoiCount": 8,
+      "reused": false,
+      "entityId": "city-5d36fd8dbe63686c",
+      "wikidataId": "Q3915",
+      "canonicalNameEn": "Antananarivo",
+      "positiveTypePath": [
+        "Q1549591",
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "MG",
+      "tier": "world",
+      "targetPoiCount": 10,
+      "selectedPoiCount": 1,
+      "reused": false,
+      "entityId": "city-0199a84053aee738",
+      "wikidataId": "Q583184",
+      "canonicalNameEn": "Antsirabe",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "MG",
+      "tier": "core",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 0,
+      "reused": false,
+      "entityId": "city-dc81ca8856902002",
+      "wikidataId": "Q178067",
+      "canonicalNameEn": "Toamasina",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "MG",
+      "tier": "standard",
+      "targetPoiCount": 5,
+      "selectedPoiCount": 1,
+      "reused": false,
+      "entityId": "city-afa9f72eaf8750dd",
+      "wikidataId": "Q218928",
+      "canonicalNameEn": "Antsiranana",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "MU",
+      "tier": "world",
+      "targetPoiCount": 10,
+      "selectedPoiCount": 8,
+      "reused": false,
+      "entityId": "city-e165cde1e892af08",
+      "wikidataId": "Q3929",
+      "canonicalNameEn": "Port Louis",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "MU",
+      "tier": "core",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 5,
+      "reused": false,
+      "entityId": "city-48827fcadc556c4d",
+      "wikidataId": "Q1002525",
+      "canonicalNameEn": "Curepipe",
+      "positiveTypePath": [
+        "Q486972"
+      ]
+    },
+    {
+      "countryCode": "MU",
+      "tier": "core",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 1,
+      "reused": false,
+      "entityId": "city-53a66d71259f4703",
+      "wikidataId": "Q1341194",
+      "canonicalNameEn": "Quatre Bornes",
+      "positiveTypePath": [
+        "Q486972"
+      ]
+    },
+    {
+      "countryCode": "MU",
+      "tier": "core",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 7,
+      "reused": false,
+      "entityId": "city-5a0a0576776c3b85",
+      "wikidataId": "Q1291379",
+      "canonicalNameEn": "Mahébourg",
+      "positiveTypePath": [
+        "Q486972"
+      ]
+    },
+    {
+      "countryCode": "MU",
+      "tier": "standard",
+      "targetPoiCount": 5,
+      "selectedPoiCount": 1,
+      "reused": false,
+      "entityId": "city-2477a55cc93761aa",
+      "wikidataId": "Q992154",
+      "canonicalNameEn": "Grand Baie",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "MU",
+      "tier": "standard",
+      "targetPoiCount": 5,
+      "selectedPoiCount": 5,
+      "reused": false,
+      "entityId": "city-4a780b26bd605a3a",
+      "wikidataId": "Q3073702",
+      "canonicalNameEn": "Flic-en-Flac",
+      "positiveTypePath": [
+        "Q486972"
+      ]
+    },
+    {
+      "countryCode": "KZ",
+      "tier": "world",
+      "targetPoiCount": 10,
+      "selectedPoiCount": 5,
+      "reused": false,
+      "entityId": "city-e22b05c1b6ddf632",
+      "wikidataId": "Q35493",
+      "canonicalNameEn": "Almaty",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "KZ",
+      "tier": "world",
+      "targetPoiCount": 10,
+      "selectedPoiCount": 6,
+      "reused": false,
+      "entityId": "city-198c5080f9420bc0",
+      "wikidataId": "Q1520",
+      "canonicalNameEn": "Astana",
+      "positiveTypePath": [
+        "Q7930989",
+        "Q124250988",
+        "Q486972"
+      ]
+    },
+    {
+      "countryCode": "KZ",
+      "tier": "core",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 2,
+      "reused": false,
+      "entityId": "city-43b4b2bb8f3b7531",
+      "wikidataId": "Q485496",
+      "canonicalNameEn": "Shymkent",
+      "positiveTypePath": [
+        "Q1549591",
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "KZ",
+      "tier": "core",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 1,
+      "reused": false,
+      "entityId": "city-85fb4333ee87e55b",
+      "wikidataId": "Q848638",
+      "canonicalNameEn": "Turkistan",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "KZ",
+      "tier": "core",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 4,
+      "reused": false,
+      "entityId": "city-ede3b08e11cc2c30",
+      "wikidataId": "Q484706",
+      "canonicalNameEn": "Karaganda",
+      "positiveTypePath": [
+        "Q1549591",
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "KZ",
+      "tier": "standard",
+      "targetPoiCount": 5,
+      "selectedPoiCount": 1,
+      "reused": false,
+      "entityId": "city-9f583ffc9ce1c361",
+      "wikidataId": "Q198989",
+      "canonicalNameEn": "Aktau",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "KZ",
+      "tier": "standard",
+      "targetPoiCount": 5,
+      "selectedPoiCount": 3,
+      "reused": false,
+      "entityId": "city-0a08e0c804003b94",
+      "wikidataId": "Q486913",
+      "canonicalNameEn": "Atyrau",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "UZ",
+      "tier": "world",
+      "targetPoiCount": 10,
+      "selectedPoiCount": 7,
+      "reused": false,
+      "entityId": "city-feadc537a8ed8d29",
+      "wikidataId": "Q269",
+      "canonicalNameEn": "Tashkent",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "UZ",
+      "tier": "world",
+      "targetPoiCount": 10,
+      "selectedPoiCount": 7,
+      "reused": false,
+      "entityId": "city-b6b61c393ad48e4e",
+      "wikidataId": "Q5753",
+      "canonicalNameEn": "Samarkand",
+      "positiveTypePath": [
+        "Q1549591",
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "UZ",
+      "tier": "world",
+      "targetPoiCount": 10,
+      "selectedPoiCount": 8,
+      "reused": false,
+      "entityId": "city-d6a0aaac828e342c",
+      "wikidataId": "Q5764",
+      "canonicalNameEn": "Bukhara",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "UZ",
+      "tier": "core",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 3,
+      "reused": false,
+      "entityId": "city-43bb60573758ac51",
+      "wikidataId": "Q486195",
+      "canonicalNameEn": "Khiva",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "UZ",
+      "tier": "core",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 1,
+      "reused": false,
+      "entityId": "city-0bce97e9169bb389",
+      "wikidataId": "Q489898",
+      "canonicalNameEn": "Nukus",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "UZ",
+      "tier": "standard",
+      "targetPoiCount": 5,
+      "selectedPoiCount": 1,
+      "reused": false,
+      "entityId": "city-fd24286e82215161",
+      "wikidataId": "Q486329",
+      "canonicalNameEn": "Fergana",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "UZ",
+      "tier": "standard",
+      "targetPoiCount": 5,
+      "selectedPoiCount": 3,
+      "reused": false,
+      "entityId": "city-935617f85d8eaaff",
+      "wikidataId": "Q491879",
+      "canonicalNameEn": "Termez",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    }
+  ],
+  "pois": [
+    {
+      "entityId": "poi-f7edfc1418b19b3c",
+      "parentCityEntityId": "city-61c9e8de06444224",
+      "wikidataId": "Q4352520",
+      "canonicalNameEn": "Kgale Hill",
+      "positiveTypePath": [
+        "Q54050",
+        "Q271669"
+      ],
+      "distanceKm": 5.964
+    },
+    {
+      "entityId": "poi-e72376917a02035a",
+      "parentCityEntityId": "city-61c9e8de06444224",
+      "wikidataId": "Q859613",
+      "canonicalNameEn": "Botswana National Museum",
+      "positiveTypePath": [
+        "Q17431399",
+        "Q33506"
+      ],
+      "distanceKm": 1.116
+    },
+    {
+      "entityId": "poi-135d533c79b96034",
+      "parentCityEntityId": "city-61c9e8de06444224",
+      "wikidataId": "Q7797448",
+      "canonicalNameEn": "Three Dikgosi Monument",
+      "positiveTypePath": [
+        "Q860861",
+        "Q4502142",
+        "Q838948"
+      ],
+      "distanceKm": 1.344
+    },
+    {
+      "entityId": "poi-aaeeaca5a7ff76cf",
+      "parentCityEntityId": "city-61c9e8de06444224",
+      "wikidataId": "Q6971105",
+      "canonicalNameEn": "National Botanical Garden",
+      "positiveTypePath": [
+        "Q167346",
+        "Q13226383"
+      ],
+      "distanceKm": 3.825
+    },
+    {
+      "entityId": "poi-42ee15c0a5582d0f",
+      "parentCityEntityId": "city-7eadc5d1c1fda549",
+      "wikidataId": "Q3504025",
+      "canonicalNameEn": "Supa Ngwao Museum",
+      "positiveTypePath": [
+        "Q33506"
+      ],
+      "distanceKm": 0
+    },
+    {
+      "entityId": "poi-bedac55b7dcf650f",
+      "parentCityEntityId": "city-078fdcb231338cae",
+      "wikidataId": "Q849782",
+      "canonicalNameEn": "Kasikili Island",
+      "positiveTypePath": [
+        "Q162602",
+        "Q23442",
+        "Q271669"
+      ],
+      "distanceKm": 2.96
+    },
+    {
+      "entityId": "poi-91429fbfe3ddb659",
+      "parentCityEntityId": "city-60fcf7881b7a9067",
+      "wikidataId": "Q3196047",
+      "canonicalNameEn": "Khama III Memorial Museum",
+      "positiveTypePath": [
+        "Q33506"
+      ],
+      "distanceKm": 0.894
+    },
+    {
+      "entityId": "poi-61690763f822eb26",
+      "parentCityEntityId": "city-5d36fd8dbe63686c",
+      "wikidataId": "Q15278794",
+      "canonicalNameEn": "Lake Anosy",
+      "positiveTypePath": [
+        "Q23397",
+        "Q271669"
+      ],
+      "distanceKm": 0.68
+    },
+    {
+      "entityId": "poi-1fc3dfcdd2b19e04",
+      "parentCityEntityId": "city-5d36fd8dbe63686c",
+      "wikidataId": "Q7849674",
+      "canonicalNameEn": "Botanical and Zoological Garden of Tsimbazaza",
+      "positiveTypePath": [
+        "Q167346",
+        "Q13226383"
+      ],
+      "distanceKm": 2.227
+    },
+    {
+      "entityId": "poi-aa1d52128bd4d2b0",
+      "parentCityEntityId": "city-5d36fd8dbe63686c",
+      "wikidataId": "Q2370232",
+      "canonicalNameEn": "University of Madagascar's Museum of Art and Archaeology",
+      "positiveTypePath": [
+        "Q33506"
+      ],
+      "distanceKm": 0.479
+    },
+    {
+      "entityId": "poi-fa01c5fec9c074bc",
+      "parentCityEntityId": "city-5d36fd8dbe63686c",
+      "wikidataId": "Q24556604",
+      "canonicalNameEn": "Saint Laurent's Cathedral, Ambohimanoro",
+      "positiveTypePath": [
+        "Q56242250",
+        "Q58079064",
+        "Q24398318",
+        "Q1370598"
+      ],
+      "distanceKm": 1.169
+    },
+    {
+      "entityId": "poi-e6fcaf975e278f48",
+      "parentCityEntityId": "city-afa9f72eaf8750dd",
+      "wikidataId": "Q6904031",
+      "canonicalNameEn": "Montagne des Français",
+      "positiveTypePath": [
+        "Q473972"
+      ],
+      "distanceKm": 5.843
+    },
+    {
+      "entityId": "poi-e280e92fd3921833",
+      "parentCityEntityId": "city-e165cde1e892af08",
+      "wikidataId": "Q2398604",
+      "canonicalNameEn": "Le Pouce",
+      "positiveTypePath": [
+        "Q8502",
+        "Q35145263"
+      ],
+      "distanceKm": 4.994
+    },
+    {
+      "entityId": "poi-1d14e5034980a86f",
+      "parentCityEntityId": "city-e165cde1e892af08",
+      "wikidataId": "Q260580",
+      "canonicalNameEn": "Pieter Both",
+      "positiveTypePath": [
+        "Q8502",
+        "Q35145263"
+      ],
+      "distanceKm": 6.773
+    },
+    {
+      "entityId": "poi-e69628175b245758",
+      "parentCityEntityId": "city-e165cde1e892af08",
+      "wikidataId": "Q495247",
+      "canonicalNameEn": "Blue Penny Museum",
+      "positiveTypePath": [
+        "Q33506"
+      ],
+      "distanceKm": 0.186
+    },
+    {
+      "entityId": "poi-7a5ab92d3f3fec0f",
+      "parentCityEntityId": "city-e165cde1e892af08",
+      "wikidataId": "Q3329940",
+      "canonicalNameEn": "Mauritius Postal Museum",
+      "positiveTypePath": [
+        "Q33506"
+      ],
+      "distanceKm": 0.367
+    },
+    {
+      "entityId": "poi-d3123fc0ff34d3fb",
+      "parentCityEntityId": "city-e165cde1e892af08",
+      "wikidataId": "Q268180",
+      "canonicalNameEn": "Moka Range",
+      "positiveTypePath": [
+        "Q46831",
+        "Q271669"
+      ],
+      "distanceKm": 5.033
+    },
+    {
+      "entityId": "poi-f526289742a966e7",
+      "parentCityEntityId": "city-e165cde1e892af08",
+      "wikidataId": "Q6311002",
+      "canonicalNameEn": "Jummah Mosque",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 0.665
+    },
+    {
+      "entityId": "poi-854f8ef3995614cf",
+      "parentCityEntityId": "city-48827fcadc556c4d",
+      "wikidataId": "Q429442",
+      "canonicalNameEn": "Trou aux Cerfs",
+      "positiveTypePath": [
+        "Q8502",
+        "Q35145263"
+      ],
+      "distanceKm": 0.559
+    },
+    {
+      "entityId": "poi-d5268358c73bd3f4",
+      "parentCityEntityId": "city-48827fcadc556c4d",
+      "wikidataId": "Q2967742",
+      "canonicalNameEn": "Tamarind Falls",
+      "positiveTypePath": [
+        "Q34038",
+        "Q15324"
+      ],
+      "distanceKm": 6.085
+    },
+    {
+      "entityId": "poi-5f669dba7626d946",
+      "parentCityEntityId": "city-48827fcadc556c4d",
+      "wikidataId": "Q936834",
+      "canonicalNameEn": "Mare aux Vacoas",
+      "positiveTypePath": [
+        "Q23397",
+        "Q271669"
+      ],
+      "distanceKm": 5.825
+    },
+    {
+      "entityId": "poi-f978c05bb1b9a17f",
+      "parentCityEntityId": "city-48827fcadc556c4d",
+      "wikidataId": "Q2997727",
+      "canonicalNameEn": "Corps de Garde",
+      "positiveTypePath": [
+        "Q8502",
+        "Q35145263"
+      ],
+      "distanceKm": 9.945
+    },
+    {
+      "entityId": "poi-3bef23092b298364",
+      "parentCityEntityId": "city-53a66d71259f4703",
+      "wikidataId": "Q16885193",
+      "canonicalNameEn": "National Archives of Mauritius",
+      "positiveTypePath": [
+        "Q2122214",
+        "Q27031009",
+        "Q166118"
+      ],
+      "distanceKm": 6.851
+    },
+    {
+      "entityId": "poi-110f9488e17a2593",
+      "parentCityEntityId": "city-5a0a0576776c3b85",
+      "wikidataId": "Q292422",
+      "canonicalNameEn": "Île de la Passe",
+      "positiveTypePath": [
+        "Q23442",
+        "Q271669"
+      ],
+      "distanceKm": 7.007
+    },
+    {
+      "entityId": "poi-33bd6647e555c664",
+      "parentCityEntityId": "city-5a0a0576776c3b85",
+      "wikidataId": "Q292203",
+      "canonicalNameEn": "Île aux Aigrettes",
+      "positiveTypePath": [
+        "Q23442",
+        "Q271669"
+      ],
+      "distanceKm": 4.1
+    },
+    {
+      "entityId": "poi-00b3527332657895",
+      "parentCityEntityId": "city-5a0a0576776c3b85",
+      "wikidataId": "Q3593272",
+      "canonicalNameEn": "Île aux Fouquets",
+      "positiveTypePath": [
+        "Q23442",
+        "Q271669"
+      ],
+      "distanceKm": 7.455
+    },
+    {
+      "entityId": "poi-e9df6c8622d539d3",
+      "parentCityEntityId": "city-5a0a0576776c3b85",
+      "wikidataId": "Q7338940",
+      "canonicalNameEn": "Rivière des Créoles",
+      "positiveTypePath": [
+        "Q355304",
+        "Q15324"
+      ],
+      "distanceKm": 1.737
+    },
+    {
+      "entityId": "poi-09fccfe17d310641",
+      "parentCityEntityId": "city-5a0a0576776c3b85",
+      "wikidataId": "Q27762510",
+      "canonicalNameEn": "Lion Mountain",
+      "positiveTypePath": [
+        "Q8502",
+        "Q35145263"
+      ],
+      "distanceKm": 5.097
+    },
+    {
+      "entityId": "poi-6ac8cabb2ab5a24a",
+      "parentCityEntityId": "city-5a0a0576776c3b85",
+      "wikidataId": "Q3330742",
+      "canonicalNameEn": "Musée naval de l'île Maurice",
+      "positiveTypePath": [
+        "Q33506"
+      ],
+      "distanceKm": 1.839
+    },
+    {
+      "entityId": "poi-f124aa07ba26b900",
+      "parentCityEntityId": "city-5a0a0576776c3b85",
+      "wikidataId": "Q3553983",
+      "canonicalNameEn": "Vallée de Ferney",
+      "positiveTypePath": [
+        "Q179049",
+        "Q473972"
+      ],
+      "distanceKm": 4.242
+    },
+    {
+      "entityId": "poi-6264bce69c9cfc24",
+      "parentCityEntityId": "city-2477a55cc93761aa",
+      "wikidataId": "Q19893523",
+      "canonicalNameEn": "Maheswarnath Mandir",
+      "positiveTypePath": [
+        "Q842402",
+        "Q44539",
+        "Q697295",
+        "Q24398318",
+        "Q1370598"
+      ],
+      "distanceKm": 4.675
+    },
+    {
+      "entityId": "poi-3acd985d9aaa6195",
+      "parentCityEntityId": "city-4a780b26bd605a3a",
+      "wikidataId": "Q3539933",
+      "canonicalNameEn": "Trois Mamelles",
+      "positiveTypePath": [
+        "Q8502",
+        "Q35145263"
+      ],
+      "distanceKm": 9.379
+    },
+    {
+      "entityId": "poi-c208fe1f764e66df",
+      "parentCityEntityId": "city-4a780b26bd605a3a",
+      "wikidataId": "Q2879792",
+      "canonicalNameEn": "Baie du Tamarin",
+      "positiveTypePath": [
+        "Q39594",
+        "Q2507626",
+        "Q15324"
+      ],
+      "distanceKm": 4.943
+    },
+    {
+      "entityId": "poi-47ef8b4bb3de04a6",
+      "parentCityEntityId": "city-4a780b26bd605a3a",
+      "wikidataId": "Q16899197",
+      "canonicalNameEn": "Rempart Mountain",
+      "positiveTypePath": [
+        "Q8502",
+        "Q35145263"
+      ],
+      "distanceKm": 7.859
+    },
+    {
+      "entityId": "poi-659f7803646632a3",
+      "parentCityEntityId": "city-4a780b26bd605a3a",
+      "wikidataId": "Q2940908",
+      "canonicalNameEn": "Casela World of Adventures",
+      "positiveTypePath": [
+        "Q194195",
+        "Q13226383"
+      ],
+      "distanceKm": 4.889
+    },
+    {
+      "entityId": "poi-2aaaa9539739306a",
+      "parentCityEntityId": "city-e22b05c1b6ddf632",
+      "wikidataId": "Q190456",
+      "canonicalNameEn": "Central State Museum of Kazakhstan",
+      "positiveTypePath": [
+        "Q33506"
+      ],
+      "distanceKm": 2.932
+    },
+    {
+      "entityId": "poi-e43f09fbe26cd217",
+      "parentCityEntityId": "city-e22b05c1b6ddf632",
+      "wikidataId": "Q190682",
+      "canonicalNameEn": "Central Mosque (Almaty)",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 4.397
+    },
+    {
+      "entityId": "poi-05c2fed1216cc44d",
+      "parentCityEntityId": "city-e22b05c1b6ddf632",
+      "wikidataId": "Q2324596",
+      "canonicalNameEn": "A. Kasteyev State Museum of Arts",
+      "positiveTypePath": [
+        "Q33506"
+      ],
+      "distanceKm": 0.611
+    },
+    {
+      "entityId": "poi-fe6a5b54c4d4af9d",
+      "parentCityEntityId": "city-e22b05c1b6ddf632",
+      "wikidataId": "Q2498214",
+      "canonicalNameEn": "Kazakhstan National Museum of Instruments",
+      "positiveTypePath": [
+        "Q17431399",
+        "Q33506"
+      ],
+      "distanceKm": 4.02
+    },
+    {
+      "entityId": "poi-d14721975ad58765",
+      "parentCityEntityId": "city-198c5080f9420bc0",
+      "wikidataId": "Q1813417",
+      "canonicalNameEn": "Nur-Astana Mosque",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 1.44
+    },
+    {
+      "entityId": "poi-1d25f534c91587ea",
+      "parentCityEntityId": "city-198c5080f9420bc0",
+      "wikidataId": "Q804210",
+      "canonicalNameEn": "Bayterek",
+      "positiveTypePath": [
+        "Q4989906"
+      ],
+      "distanceKm": 0.589
+    },
+    {
+      "entityId": "poi-d5e7a5a4e85cf180",
+      "parentCityEntityId": "city-198c5080f9420bc0",
+      "wikidataId": "Q4494668",
+      "canonicalNameEn": "Khazret Sultan Mosque",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 2.868
+    },
+    {
+      "entityId": "poi-ffabaf000dd48895",
+      "parentCityEntityId": "city-198c5080f9420bc0",
+      "wikidataId": "Q1074528",
+      "canonicalNameEn": "Expo 2017",
+      "positiveTypePath": [
+        "Q172754"
+      ],
+      "distanceKm": 4.894
+    },
+    {
+      "entityId": "poi-5ad0c6c3dafd6751",
+      "parentCityEntityId": "city-198c5080f9420bc0",
+      "wikidataId": "Q113675887",
+      "canonicalNameEn": "Astana Grand Mosque",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 6.966
+    },
+    {
+      "entityId": "poi-46409dcd8171a153",
+      "parentCityEntityId": "city-43b4b2bb8f3b7531",
+      "wikidataId": "Q25503595",
+      "canonicalNameEn": "Independence Park",
+      "positiveTypePath": [
+        "Q22698"
+      ],
+      "distanceKm": 0.741
+    },
+    {
+      "entityId": "poi-a4dd1512f025e88d",
+      "parentCityEntityId": "city-43b4b2bb8f3b7531",
+      "wikidataId": "Q1046034",
+      "canonicalNameEn": "Shymkent Zoo",
+      "positiveTypePath": [
+        "Q43501",
+        "Q22698"
+      ],
+      "distanceKm": 8.949
+    },
+    {
+      "entityId": "poi-384142e98279c951",
+      "parentCityEntityId": "city-85fb4333ee87e55b",
+      "wikidataId": "Q46069",
+      "canonicalNameEn": "Mausoleum of Khoja Ahmed Yasawi",
+      "positiveTypePath": [
+        "Q162875",
+        "Q4989906"
+      ],
+      "distanceKm": 0.502
+    },
+    {
+      "entityId": "poi-bcbea45c279a78f7",
+      "parentCityEntityId": "city-ede3b08e11cc2c30",
+      "wikidataId": "Q290283",
+      "canonicalNameEn": "Karagandy Zoo",
+      "positiveTypePath": [
+        "Q43501",
+        "Q22698"
+      ],
+      "distanceKm": 4.311
+    },
+    {
+      "entityId": "poi-ab0d4ab08195560d",
+      "parentCityEntityId": "city-ede3b08e11cc2c30",
+      "wikidataId": "Q16431639",
+      "canonicalNameEn": "Monument Miner's Glory",
+      "positiveTypePath": [
+        "Q4989906"
+      ],
+      "distanceKm": 2.639
+    },
+    {
+      "entityId": "poi-19c564398ac77103",
+      "parentCityEntityId": "city-9f583ffc9ce1c361",
+      "wikidataId": "Q137755676",
+      "canonicalNameEn": "Oymasha Lake",
+      "positiveTypePath": [
+        "Q23397",
+        "Q271669"
+      ],
+      "distanceKm": 3.157
+    },
+    {
+      "entityId": "poi-303a0b34bc2f137a",
+      "parentCityEntityId": "city-0a08e0c804003b94",
+      "wikidataId": "Q12547115",
+      "canonicalNameEn": "Manjali Mosque",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 1.775
+    },
+    {
+      "entityId": "poi-8a1e6f6246f375f6",
+      "parentCityEntityId": "city-0a08e0c804003b94",
+      "wikidataId": "Q6992601",
+      "canonicalNameEn": "Neocomian Sands",
+      "positiveTypePath": [
+        "Q736917",
+        "Q3550897",
+        "Q3694119",
+        "Q9346860",
+        "Q61014863",
+        "Q35145263"
+      ],
+      "distanceKm": 2.242
+    },
+    {
+      "entityId": "poi-7c6f515c44a29aa9",
+      "parentCityEntityId": "city-feadc537a8ed8d29",
+      "wikidataId": "Q493304",
+      "canonicalNameEn": "Kukeldash Madrasah",
+      "positiveTypePath": [
+        "Q132834",
+        "Q1244442",
+        "Q13226383"
+      ],
+      "distanceKm": 3.887
+    },
+    {
+      "entityId": "poi-6c5ffa7d18ddda1a",
+      "parentCityEntityId": "city-feadc537a8ed8d29",
+      "wikidataId": "Q4120971",
+      "canonicalNameEn": "Amir Timur Museum",
+      "positiveTypePath": [
+        "Q33506"
+      ],
+      "distanceKm": 0.287
+    },
+    {
+      "entityId": "poi-97224059a472ab4c",
+      "parentCityEntityId": "city-feadc537a8ed8d29",
+      "wikidataId": "Q4146885",
+      "canonicalNameEn": "State Art Museum of Uzbekistan",
+      "positiveTypePath": [
+        "Q33506"
+      ],
+      "distanceKm": 0.942
+    },
+    {
+      "entityId": "poi-b3f1c5a63ba2bca4",
+      "parentCityEntityId": "city-feadc537a8ed8d29",
+      "wikidataId": "Q1835285",
+      "canonicalNameEn": "State Museum of History of Uzbekistan",
+      "positiveTypePath": [
+        "Q33506"
+      ],
+      "distanceKm": 0.874
+    },
+    {
+      "entityId": "poi-c9177a5abf717b41",
+      "parentCityEntityId": "city-b6b61c393ad48e4e",
+      "wikidataId": "Q1373583",
+      "canonicalNameEn": "Registan",
+      "positiveTypePath": [
+        "Q811430"
+      ],
+      "distanceKm": 0.024
+    },
+    {
+      "entityId": "poi-993993945db26da1",
+      "parentCityEntityId": "city-b6b61c393ad48e4e",
+      "wikidataId": "Q1256223",
+      "canonicalNameEn": "Gur-e Amir",
+      "positiveTypePath": [
+        "Q162875",
+        "Q4989906"
+      ],
+      "distanceKm": 0.926
+    },
+    {
+      "entityId": "poi-d69d5548abeeea6f",
+      "parentCityEntityId": "city-b6b61c393ad48e4e",
+      "wikidataId": "Q679218",
+      "canonicalNameEn": "Bibi-Khanym Mosque",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 0.729
+    },
+    {
+      "entityId": "poi-95a3c3466411ea04",
+      "parentCityEntityId": "city-b6b61c393ad48e4e",
+      "wikidataId": "Q671935",
+      "canonicalNameEn": "Shah-i-Zinda",
+      "positiveTypePath": [
+        "Q200141",
+        "Q839954"
+      ],
+      "distanceKm": 1.354
+    },
+    {
+      "entityId": "poi-8d2bbbed3fbd2193",
+      "parentCityEntityId": "city-b6b61c393ad48e4e",
+      "wikidataId": "Q2167520",
+      "canonicalNameEn": "Afrasiyab",
+      "positiveTypePath": [
+        "Q839954"
+      ],
+      "distanceKm": 2.107
+    },
+    {
+      "entityId": "poi-bb5f69836c0270f9",
+      "parentCityEntityId": "city-b6b61c393ad48e4e",
+      "wikidataId": "Q4306302",
+      "canonicalNameEn": "Afrasiab Museum of Samarkand",
+      "positiveTypePath": [
+        "Q33506"
+      ],
+      "distanceKm": 2.212
+    },
+    {
+      "entityId": "poi-cfd17fe4b99f3cd6",
+      "parentCityEntityId": "city-d6a0aaac828e342c",
+      "wikidataId": "Q4294007",
+      "canonicalNameEn": "Kalyan Minaret",
+      "positiveTypePath": [
+        "Q48356",
+        "Q117814118",
+        "Q12518",
+        "Q41176"
+      ],
+      "distanceKm": 1.167
+    },
+    {
+      "entityId": "poi-4450fddfd3146fcd",
+      "parentCityEntityId": "city-d6a0aaac828e342c",
+      "wikidataId": "Q1268850",
+      "canonicalNameEn": "Samanid Mausoleum",
+      "positiveTypePath": [
+        "Q162875",
+        "Q4989906"
+      ],
+      "distanceKm": 2.409
+    },
+    {
+      "entityId": "poi-4861f72057412db3",
+      "parentCityEntityId": "city-d6a0aaac828e342c",
+      "wikidataId": "Q10988029",
+      "canonicalNameEn": "Ulugh beg Madrassah",
+      "positiveTypePath": [
+        "Q132834",
+        "Q1244442",
+        "Q13226383"
+      ],
+      "distanceKm": 0.972
+    },
+    {
+      "entityId": "poi-14de2f6257f3d6be",
+      "parentCityEntityId": "city-d6a0aaac828e342c",
+      "wikidataId": "Q1649236",
+      "canonicalNameEn": "Chor-Bakr",
+      "positiveTypePath": [
+        "Q200141",
+        "Q839954"
+      ],
+      "distanceKm": 8.048
+    },
+    {
+      "entityId": "poi-5c95e8f820e48179",
+      "parentCityEntityId": "city-d6a0aaac828e342c",
+      "wikidataId": "Q4274143",
+      "canonicalNameEn": "Magok-i-Attari Mosque",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 0.893
+    },
+    {
+      "entityId": "poi-f6958c508457de00",
+      "parentCityEntityId": "city-d6a0aaac828e342c",
+      "wikidataId": "Q4273796",
+      "canonicalNameEn": "Chashma-Ayub Mausoleum",
+      "positiveTypePath": [
+        "Q162875",
+        "Q4989906"
+      ],
+      "distanceKm": 2.282
+    },
+    {
+      "entityId": "poi-cd7196e6f0bc553e",
+      "parentCityEntityId": "city-d6a0aaac828e342c",
+      "wikidataId": "Q4090820",
+      "canonicalNameEn": "Bolo Haouz Mosque",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 1.836
+    },
+    {
+      "entityId": "poi-3c79f79178a6a780",
+      "parentCityEntityId": "city-43bb60573758ac51",
+      "wikidataId": "Q4700038",
+      "canonicalNameEn": "Ak Mosque",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 0.456
+    },
+    {
+      "entityId": "poi-d16a61dd0455bb59",
+      "parentCityEntityId": "city-43bb60573758ac51",
+      "wikidataId": "Q4160568",
+      "canonicalNameEn": "Khiva Friday Mosque",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 0.433
+    },
+    {
+      "entityId": "poi-d4f8de21909dbb98",
+      "parentCityEntityId": "city-0bce97e9169bb389",
+      "wikidataId": "Q597055",
+      "canonicalNameEn": "Nukus Museum of Art",
+      "positiveTypePath": [
+        "Q33506"
+      ],
+      "distanceKm": 0.935
+    },
+    {
+      "entityId": "poi-3924bbbde4309343",
+      "parentCityEntityId": "city-935617f85d8eaaff",
+      "wikidataId": "Q7636738",
+      "canonicalNameEn": "Sultan Saodat",
+      "positiveTypePath": [
+        "Q838159",
+        "Q4989906"
+      ],
+      "distanceKm": 5.124
+    },
+    {
+      "entityId": "poi-f838d117d8c0b6aa",
+      "parentCityEntityId": "city-935617f85d8eaaff",
+      "wikidataId": "Q12831315",
+      "canonicalNameEn": "Termez Archaeological Museum",
+      "positiveTypePath": [
+        "Q3329412",
+        "Q16735822",
+        "Q33506"
+      ],
+      "distanceKm": 2.26
+    },
+    {
+      "entityId": "poi-30c66a3e487395a5",
+      "parentCityEntityId": "city-ede3b08e11cc2c30",
+      "wikidataId": "Q1135597",
+      "canonicalNameEn": "Cathedral of Our Lady of Fatima, Karaganda",
+      "positiveTypePath": [
+        "Q2977",
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 2.457
+    },
+    {
+      "entityId": "poi-293037cd435baf1d",
+      "parentCityEntityId": "city-ede3b08e11cc2c30",
+      "wikidataId": "Q12564043",
+      "canonicalNameEn": "Regional Kazakh Drama Theatre Saken Seyfullin",
+      "positiveTypePath": [
+        "Q24354",
+        "Q114961210",
+        "Q294422",
+        "Q41176"
+      ],
+      "distanceKm": 2.92
+    },
+    {
+      "entityId": "poi-ee1e55a7f13df39f",
+      "parentCityEntityId": "city-5d36fd8dbe63686c",
+      "wikidataId": "Q1290337",
+      "canonicalNameEn": "Rova of Antananarivo",
+      "positiveTypePath": [
+        "Q16560",
+        "Q41176"
+      ],
+      "distanceKm": 1.693
+    },
+    {
+      "entityId": "poi-9602ccab62ebe63f",
+      "parentCityEntityId": "city-0a08e0c804003b94",
+      "wikidataId": "Q16538419",
+      "canonicalNameEn": "Cathedral of the Transfiguration of Our Lord, Atyrau",
+      "positiveTypePath": [
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 2.783
+    },
+    {
+      "entityId": "poi-4214741da8a52d02",
+      "parentCityEntityId": "city-5d36fd8dbe63686c",
+      "wikidataId": "Q181663",
+      "canonicalNameEn": "Andafiavaratra Palace",
+      "positiveTypePath": [
+        "Q16560",
+        "Q41176"
+      ],
+      "distanceKm": 1.468
+    },
+    {
+      "entityId": "poi-c0f82b89691e98be",
+      "parentCityEntityId": "city-43bb60573758ac51",
+      "wikidataId": "Q20536333",
+      "canonicalNameEn": "Nurullabay's palace",
+      "positiveTypePath": [
+        "Q16560",
+        "Q41176"
+      ],
+      "distanceKm": 0.42
+    },
+    {
+      "entityId": "poi-f51d33774de3a0a4",
+      "parentCityEntityId": "city-935617f85d8eaaff",
+      "wikidataId": "Q20536463",
+      "canonicalNameEn": "Termezi memorial complex",
+      "positiveTypePath": [
+        "Q56190453",
+        "Q1497364",
+        "Q13226383"
+      ],
+      "distanceKm": 9.15
+    },
+    {
+      "entityId": "poi-c81fc981b76f43fa",
+      "parentCityEntityId": "city-5d36fd8dbe63686c",
+      "wikidataId": "Q20725766",
+      "canonicalNameEn": "Immaculate Conception Cathedral, Antananarivo",
+      "positiveTypePath": [
+        "Q56242215",
+        "Q2977",
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 1.056
+    },
+    {
+      "entityId": "poi-3bb1e0de4641bcaa",
+      "parentCityEntityId": "city-198c5080f9420bc0",
+      "wikidataId": "Q21371563",
+      "canonicalNameEn": "Astana Opera",
+      "positiveTypePath": [
+        "Q153562",
+        "Q41176"
+      ],
+      "distanceKm": 1.584
+    },
+    {
+      "entityId": "poi-f311cb8a03f929cb",
+      "parentCityEntityId": "city-7eadc5d1c1fda549",
+      "wikidataId": "Q2942262",
+      "canonicalNameEn": "Our Lady of the Desert Cathedral, Francistown",
+      "positiveTypePath": [
+        "Q56242215",
+        "Q2977",
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 0.962
+    },
+    {
+      "entityId": "poi-f03554f2ff253b63",
+      "parentCityEntityId": "city-e165cde1e892af08",
+      "wikidataId": "Q2942379",
+      "canonicalNameEn": "St. Louis Cathedral, Port-Louis",
+      "positiveTypePath": [
+        "Q56242215",
+        "Q2977",
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 0.844
+    },
+    {
+      "entityId": "poi-d73eda02acd501c9",
+      "parentCityEntityId": "city-feadc537a8ed8d29",
+      "wikidataId": "Q2942916",
+      "canonicalNameEn": "Sacred Heart Cathedral",
+      "positiveTypePath": [
+        "Q2977",
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 1.481
+    },
+    {
+      "entityId": "poi-21be947ecc045ec3",
+      "parentCityEntityId": "city-48827fcadc556c4d",
+      "wikidataId": "Q3162393",
+      "canonicalNameEn": "Curepipe Botanic Gardens",
+      "positiveTypePath": [
+        "Q167346",
+        "Q13226383"
+      ],
+      "distanceKm": 1.601
+    },
+    {
+      "entityId": "poi-53da73ccfb0315eb",
+      "parentCityEntityId": "city-feadc537a8ed8d29",
+      "wikidataId": "Q3390317",
+      "canonicalNameEn": "Mustaqillik Maydoni",
+      "positiveTypePath": [
+        "Q79007",
+        "Q811979"
+      ],
+      "distanceKm": 1.229
+    },
+    {
+      "entityId": "poi-e7cb64d02a0a5beb",
+      "parentCityEntityId": "city-d6a0aaac828e342c",
+      "wikidataId": "Q4069358",
+      "canonicalNameEn": "Ark of Bukhara",
+      "positiveTypePath": [
+        "Q57831",
+        "Q18691599",
+        "Q13226383"
+      ],
+      "distanceKm": 1.603
+    },
+    {
+      "entityId": "poi-43ced9d0c9b3284d",
+      "parentCityEntityId": "city-fd24286e82215161",
+      "wikidataId": "Q4501155",
+      "canonicalNameEn": "Church of St. Sergiuy Radonezhky in Fergana",
+      "positiveTypePath": [
+        "Q2031836",
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 1.478
+    },
+    {
+      "entityId": "poi-bba8e3181df6cd0a",
+      "parentCityEntityId": "city-b6b61c393ad48e4e",
+      "wikidataId": "Q608580",
+      "canonicalNameEn": "Ulugh Beg Observatory",
+      "positiveTypePath": [
+        "Q1254933",
+        "Q62832",
+        "Q13226383"
+      ],
+      "distanceKm": 3.379
+    },
+    {
+      "entityId": "poi-c31e0fb329333d3a",
+      "parentCityEntityId": "city-e22b05c1b6ddf632",
+      "wikidataId": "Q627207",
+      "canonicalNameEn": "National Library of Kazakhstan",
+      "positiveTypePath": [
+        "Q22806",
+        "Q65768782",
+        "Q385994",
+        "Q7075",
+        "Q101542346",
+        "Q13226383"
+      ],
+      "distanceKm": 2.292
+    },
+    {
+      "entityId": "poi-35374abfdf2be9ac",
+      "parentCityEntityId": "city-0199a84053aee738",
+      "wikidataId": "Q64597071",
+      "canonicalNameEn": "Our Lady of La Salette Cathedral",
+      "positiveTypePath": [
+        "Q56242215",
+        "Q2977",
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 0.472
+    },
+    {
+      "entityId": "poi-8327179a6bec2ea9",
+      "parentCityEntityId": "city-4a780b26bd605a3a",
+      "wikidataId": "Q6464588",
+      "canonicalNameEn": "La Preneuse",
+      "positiveTypePath": [
+        "Q40080",
+        "Q107123630",
+        "Q811979"
+      ],
+      "distanceKm": 8.253
+    },
+    {
+      "entityId": "poi-be40d2f59478cfe4",
+      "parentCityEntityId": "city-5d36fd8dbe63686c",
+      "wikidataId": "Q6974158",
+      "canonicalNameEn": "National Library of Madagascar",
+      "positiveTypePath": [
+        "Q22806",
+        "Q65768782",
+        "Q385994",
+        "Q7075",
+        "Q101542346",
+        "Q13226383"
+      ],
+      "distanceKm": 1.018
+    },
+    {
+      "entityId": "poi-78d774fe0dd9bad4",
+      "parentCityEntityId": "city-e165cde1e892af08",
+      "wikidataId": "Q6974161",
+      "canonicalNameEn": "National Library of Mauritius",
+      "positiveTypePath": [
+        "Q22806",
+        "Q65768782",
+        "Q385994",
+        "Q7075",
+        "Q101542346",
+        "Q13226383"
+      ],
+      "distanceKm": 0.325
+    },
+    {
+      "entityId": "poi-db235358fe441d7c",
+      "parentCityEntityId": "city-feadc537a8ed8d29",
+      "wikidataId": "Q6974177",
+      "canonicalNameEn": "National Library of Uzbekistan",
+      "positiveTypePath": [
+        "Q22806",
+        "Q65768782",
+        "Q385994",
+        "Q7075",
+        "Q101542346",
+        "Q13226383"
+      ],
+      "distanceKm": 0.796
+    },
+    {
+      "entityId": "poi-e847e4592c69008d",
+      "parentCityEntityId": "city-61c9e8de06444224",
+      "wikidataId": "Q926642",
+      "canonicalNameEn": "Christ the King Cathedral",
+      "positiveTypePath": [
+        "Q56242215",
+        "Q2977",
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 1.011
+    }
+  ],
+  "quarantineCount": 1046
+}

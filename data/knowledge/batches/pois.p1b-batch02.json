@@ -1,7 +1,7 @@
 {
   "schemaVersion": "route-v2-poi-baseline-p1b-batch02",
   "generatedFrom": "data/knowledge/raw/pois-p1b-batch02.wikidata.json",
-  "poiCount": 30,
+  "poiCount": 23,
   "pois": [
     {
       "schemaVersion": "route-v2-poi-baseline-p1b",
@@ -500,398 +500,6 @@
           "sourceType": "wikidata",
           "source": "Wikidata wbgetentities",
           "sourceUrl": "https://www.wikidata.org/wiki/Q243",
-          "retrievedAt": "2026-07-20T12:08:39.314Z",
-          "value": "2026-07-20T12:08:39.314Z"
-        }
-      }
-    },
-    {
-      "schemaVersion": "route-v2-poi-baseline-p1b",
-      "entityId": "poi-98e69389bef1f0f8",
-      "entityType": "poi",
-      "parentCityEntityId": "city-32da4cad2757df97",
-      "wikidataId": "Q19675",
-      "canonicalNameZh": "卢浮宫博物馆",
-      "canonicalNameEn": "Louvre Museum",
-      "aliases": [
-        "France. Musee du Louvre Paris",
-        "France. Musée du Louvre Paris",
-        "Musee Napoleon",
-        "Musée Napoléon",
-        "Musee national du Louvre",
-        "Musée national du Louvre",
-        "The Louvre",
-        "The Louvre Museum",
-        "卢浮宫",
-        "法國國家博物館",
-        "盧浮宮",
-        "罗浮宫",
-        "羅浮宮",
-        "羅浮宮博物館"
-      ],
-      "coordinates": {
-        "latitude": 48.861111111111114,
-        "longitude": 2.3358333333333334
-      },
-      "entitySourceType": "wikidata",
-      "confidence": 0.95,
-      "retrievedAt": "2026-07-20T12:08:39.314Z",
-      "provenance": {
-        "entityId": {
-          "field": "entityId",
-          "sourceType": "project-schema",
-          "source": "Route V2 P1B POI Pilot schema",
-          "sourceUrl": "",
-          "retrievedAt": "2026-07-20T12:08:39.314Z",
-          "value": "poi-98e69389bef1f0f8"
-        },
-        "entityType": {
-          "field": "entityType",
-          "sourceType": "project-schema",
-          "source": "Route V2 P1B POI Pilot schema",
-          "sourceUrl": "",
-          "retrievedAt": "2026-07-20T12:08:39.314Z",
-          "value": "poi"
-        },
-        "parentCityEntityId": {
-          "field": "parentCityEntityId",
-          "sourceType": "repository-reference",
-          "source": "Route V2 P1B City Entity Foundation",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q90",
-          "retrievedAt": "2026-07-20T12:08:39.314Z",
-          "value": "city-32da4cad2757df97"
-        },
-        "wikidataId": {
-          "field": "wikidataId",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q19675",
-          "retrievedAt": "2026-07-20T12:08:39.314Z",
-          "value": "Q19675"
-        },
-        "canonicalNameZh": {
-          "field": "canonicalNameZh",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q19675",
-          "retrievedAt": "2026-07-20T12:08:39.314Z",
-          "value": "卢浮宫博物馆"
-        },
-        "canonicalNameEn": {
-          "field": "canonicalNameEn",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q19675",
-          "retrievedAt": "2026-07-20T12:08:39.314Z",
-          "value": "Louvre Museum"
-        },
-        "aliases": {
-          "field": "aliases",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q19675",
-          "retrievedAt": "2026-07-20T12:08:39.314Z",
-          "value": [
-            "France. Musee du Louvre Paris",
-            "France. Musée du Louvre Paris",
-            "Musee Napoleon",
-            "Musée Napoléon",
-            "Musee national du Louvre",
-            "Musée national du Louvre",
-            "The Louvre",
-            "The Louvre Museum",
-            "卢浮宫",
-            "法國國家博物館",
-            "盧浮宮",
-            "罗浮宫",
-            "羅浮宮",
-            "羅浮宮博物館"
-          ]
-        },
-        "coordinates": {
-          "field": "coordinates",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q19675",
-          "retrievedAt": "2026-07-20T12:08:39.314Z",
-          "value": {
-            "latitude": 48.861111111111114,
-            "longitude": 2.3358333333333334
-          }
-        },
-        "entitySourceType": {
-          "field": "entitySourceType",
-          "sourceType": "project-schema",
-          "source": "Route V2 P1B POI Pilot schema",
-          "sourceUrl": "",
-          "retrievedAt": "2026-07-20T12:08:39.314Z",
-          "value": "wikidata"
-        },
-        "confidence": {
-          "field": "confidence",
-          "sourceType": "project-schema",
-          "source": "Route V2 P1B POI Pilot schema",
-          "sourceUrl": "",
-          "retrievedAt": "2026-07-20T12:08:39.314Z",
-          "value": 0.95
-        },
-        "retrievedAt": {
-          "field": "retrievedAt",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q19675",
-          "retrievedAt": "2026-07-20T12:08:39.314Z",
-          "value": "2026-07-20T12:08:39.314Z"
-        }
-      }
-    },
-    {
-      "schemaVersion": "route-v2-poi-baseline-p1b",
-      "entityId": "poi-fd1a9ae181a2f28c",
-      "entityType": "poi",
-      "parentCityEntityId": "city-32da4cad2757df97",
-      "wikidataId": "Q23402",
-      "canonicalNameZh": "奥赛博物馆",
-      "canonicalNameEn": "Musée d'Orsay",
-      "aliases": [
-        "D’Orsay",
-        "Musee d Orsay",
-        "Musée d Orsay",
-        "Musee D'Orsay",
-        "Musée D’Orsay",
-        "Musėe d'Orsay",
-        "Musee dOrsay",
-        "Musée dOrsay",
-        "Museum of Orsay",
-        "Orsay museum",
-        "奥塞博物馆",
-        "奥尔赛博物馆",
-        "奧塞美術館"
-      ],
-      "coordinates": {
-        "latitude": 48.859972,
-        "longitude": 2.326527
-      },
-      "entitySourceType": "wikidata",
-      "confidence": 0.95,
-      "retrievedAt": "2026-07-20T12:08:39.314Z",
-      "provenance": {
-        "entityId": {
-          "field": "entityId",
-          "sourceType": "project-schema",
-          "source": "Route V2 P1B POI Pilot schema",
-          "sourceUrl": "",
-          "retrievedAt": "2026-07-20T12:08:39.314Z",
-          "value": "poi-fd1a9ae181a2f28c"
-        },
-        "entityType": {
-          "field": "entityType",
-          "sourceType": "project-schema",
-          "source": "Route V2 P1B POI Pilot schema",
-          "sourceUrl": "",
-          "retrievedAt": "2026-07-20T12:08:39.314Z",
-          "value": "poi"
-        },
-        "parentCityEntityId": {
-          "field": "parentCityEntityId",
-          "sourceType": "repository-reference",
-          "source": "Route V2 P1B City Entity Foundation",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q90",
-          "retrievedAt": "2026-07-20T12:08:39.314Z",
-          "value": "city-32da4cad2757df97"
-        },
-        "wikidataId": {
-          "field": "wikidataId",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q23402",
-          "retrievedAt": "2026-07-20T12:08:39.314Z",
-          "value": "Q23402"
-        },
-        "canonicalNameZh": {
-          "field": "canonicalNameZh",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q23402",
-          "retrievedAt": "2026-07-20T12:08:39.314Z",
-          "value": "奥赛博物馆"
-        },
-        "canonicalNameEn": {
-          "field": "canonicalNameEn",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q23402",
-          "retrievedAt": "2026-07-20T12:08:39.314Z",
-          "value": "Musée d'Orsay"
-        },
-        "aliases": {
-          "field": "aliases",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q23402",
-          "retrievedAt": "2026-07-20T12:08:39.314Z",
-          "value": [
-            "D’Orsay",
-            "Musee d Orsay",
-            "Musée d Orsay",
-            "Musee D'Orsay",
-            "Musée D’Orsay",
-            "Musėe d'Orsay",
-            "Musee dOrsay",
-            "Musée dOrsay",
-            "Museum of Orsay",
-            "Orsay museum",
-            "奥塞博物馆",
-            "奥尔赛博物馆",
-            "奧塞美術館"
-          ]
-        },
-        "coordinates": {
-          "field": "coordinates",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q23402",
-          "retrievedAt": "2026-07-20T12:08:39.314Z",
-          "value": {
-            "latitude": 48.859972,
-            "longitude": 2.326527
-          }
-        },
-        "entitySourceType": {
-          "field": "entitySourceType",
-          "sourceType": "project-schema",
-          "source": "Route V2 P1B POI Pilot schema",
-          "sourceUrl": "",
-          "retrievedAt": "2026-07-20T12:08:39.314Z",
-          "value": "wikidata"
-        },
-        "confidence": {
-          "field": "confidence",
-          "sourceType": "project-schema",
-          "source": "Route V2 P1B POI Pilot schema",
-          "sourceUrl": "",
-          "retrievedAt": "2026-07-20T12:08:39.314Z",
-          "value": 0.95
-        },
-        "retrievedAt": {
-          "field": "retrievedAt",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q23402",
-          "retrievedAt": "2026-07-20T12:08:39.314Z",
-          "value": "2026-07-20T12:08:39.314Z"
-        }
-      }
-    },
-    {
-      "schemaVersion": "route-v2-poi-baseline-p1b",
-      "entityId": "poi-b6b05705097c6bb1",
-      "entityType": "poi",
-      "parentCityEntityId": "city-5bba0fc2f52dc8df",
-      "wikidataId": "Q1516",
-      "canonicalNameZh": "富维耶圣母院",
-      "canonicalNameEn": "Basilica of Notre-Dame de Fourvière",
-      "aliases": [
-        "Basilica of Notre-Dame de Fourviere"
-      ],
-      "coordinates": {
-        "latitude": 45.762291666667,
-        "longitude": 4.8225555555556
-      },
-      "entitySourceType": "wikidata",
-      "confidence": 0.95,
-      "retrievedAt": "2026-07-20T12:08:39.314Z",
-      "provenance": {
-        "entityId": {
-          "field": "entityId",
-          "sourceType": "project-schema",
-          "source": "Route V2 P1B POI Pilot schema",
-          "sourceUrl": "",
-          "retrievedAt": "2026-07-20T12:08:39.314Z",
-          "value": "poi-b6b05705097c6bb1"
-        },
-        "entityType": {
-          "field": "entityType",
-          "sourceType": "project-schema",
-          "source": "Route V2 P1B POI Pilot schema",
-          "sourceUrl": "",
-          "retrievedAt": "2026-07-20T12:08:39.314Z",
-          "value": "poi"
-        },
-        "parentCityEntityId": {
-          "field": "parentCityEntityId",
-          "sourceType": "repository-reference",
-          "source": "Route V2 P1B City Entity Foundation",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q456",
-          "retrievedAt": "2026-07-20T12:08:39.314Z",
-          "value": "city-5bba0fc2f52dc8df"
-        },
-        "wikidataId": {
-          "field": "wikidataId",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1516",
-          "retrievedAt": "2026-07-20T12:08:39.314Z",
-          "value": "Q1516"
-        },
-        "canonicalNameZh": {
-          "field": "canonicalNameZh",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1516",
-          "retrievedAt": "2026-07-20T12:08:39.314Z",
-          "value": "富维耶圣母院"
-        },
-        "canonicalNameEn": {
-          "field": "canonicalNameEn",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1516",
-          "retrievedAt": "2026-07-20T12:08:39.314Z",
-          "value": "Basilica of Notre-Dame de Fourvière"
-        },
-        "aliases": {
-          "field": "aliases",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1516",
-          "retrievedAt": "2026-07-20T12:08:39.314Z",
-          "value": [
-            "Basilica of Notre-Dame de Fourviere"
-          ]
-        },
-        "coordinates": {
-          "field": "coordinates",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1516",
-          "retrievedAt": "2026-07-20T12:08:39.314Z",
-          "value": {
-            "latitude": 45.762291666667,
-            "longitude": 4.8225555555556
-          }
-        },
-        "entitySourceType": {
-          "field": "entitySourceType",
-          "sourceType": "project-schema",
-          "source": "Route V2 P1B POI Pilot schema",
-          "sourceUrl": "",
-          "retrievedAt": "2026-07-20T12:08:39.314Z",
-          "value": "wikidata"
-        },
-        "confidence": {
-          "field": "confidence",
-          "sourceType": "project-schema",
-          "source": "Route V2 P1B POI Pilot schema",
-          "sourceUrl": "",
-          "retrievedAt": "2026-07-20T12:08:39.314Z",
-          "value": 0.95
-        },
-        "retrievedAt": {
-          "field": "retrievedAt",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1516",
           "retrievedAt": "2026-07-20T12:08:39.314Z",
           "value": "2026-07-20T12:08:39.314Z"
         }
@@ -1469,270 +1077,6 @@
     },
     {
       "schemaVersion": "route-v2-poi-baseline-p1b",
-      "entityId": "poi-f487afdb54891eff",
-      "entityType": "poi",
-      "parentCityEntityId": "city-6e97dec8890873f7",
-      "wikidataId": "Q48435",
-      "canonicalNameZh": "圣家堂",
-      "canonicalNameEn": "Basilica and Expiatory Church of the Holy Family",
-      "aliases": [
-        "Expiatory Temple of the Holy Family",
-        "Holy Family",
-        "La Sagrada Familia",
-        "Sagrada Familia",
-        "Sagrada Família",
-        "Temple Expiatori de la Sagrada Família",
-        "Temple of the Holy Family",
-        "圣家大教堂",
-        "神圣家族堂",
-        "神圣家族大教堂",
-        "神圣家族教堂",
-        "神聖家族教堂",
-        "聖家堂",
-        "聖家宗座聖殿暨贖罪殿"
-      ],
-      "coordinates": {
-        "latitude": 41.40369,
-        "longitude": 2.17433
-      },
-      "entitySourceType": "wikidata",
-      "confidence": 0.95,
-      "retrievedAt": "2026-07-20T12:08:39.314Z",
-      "provenance": {
-        "entityId": {
-          "field": "entityId",
-          "sourceType": "project-schema",
-          "source": "Route V2 P1B POI Pilot schema",
-          "sourceUrl": "",
-          "retrievedAt": "2026-07-20T12:08:39.314Z",
-          "value": "poi-f487afdb54891eff"
-        },
-        "entityType": {
-          "field": "entityType",
-          "sourceType": "project-schema",
-          "source": "Route V2 P1B POI Pilot schema",
-          "sourceUrl": "",
-          "retrievedAt": "2026-07-20T12:08:39.314Z",
-          "value": "poi"
-        },
-        "parentCityEntityId": {
-          "field": "parentCityEntityId",
-          "sourceType": "repository-reference",
-          "source": "Route V2 P1B City Entity Foundation",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1492",
-          "retrievedAt": "2026-07-20T12:08:39.314Z",
-          "value": "city-6e97dec8890873f7"
-        },
-        "wikidataId": {
-          "field": "wikidataId",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q48435",
-          "retrievedAt": "2026-07-20T12:08:39.314Z",
-          "value": "Q48435"
-        },
-        "canonicalNameZh": {
-          "field": "canonicalNameZh",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q48435",
-          "retrievedAt": "2026-07-20T12:08:39.314Z",
-          "value": "圣家堂"
-        },
-        "canonicalNameEn": {
-          "field": "canonicalNameEn",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q48435",
-          "retrievedAt": "2026-07-20T12:08:39.314Z",
-          "value": "Basilica and Expiatory Church of the Holy Family"
-        },
-        "aliases": {
-          "field": "aliases",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q48435",
-          "retrievedAt": "2026-07-20T12:08:39.314Z",
-          "value": [
-            "Expiatory Temple of the Holy Family",
-            "Holy Family",
-            "La Sagrada Familia",
-            "Sagrada Familia",
-            "Sagrada Família",
-            "Temple Expiatori de la Sagrada Família",
-            "Temple of the Holy Family",
-            "圣家大教堂",
-            "神圣家族堂",
-            "神圣家族大教堂",
-            "神圣家族教堂",
-            "神聖家族教堂",
-            "聖家堂",
-            "聖家宗座聖殿暨贖罪殿"
-          ]
-        },
-        "coordinates": {
-          "field": "coordinates",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q48435",
-          "retrievedAt": "2026-07-20T12:08:39.314Z",
-          "value": {
-            "latitude": 41.40369,
-            "longitude": 2.17433
-          }
-        },
-        "entitySourceType": {
-          "field": "entitySourceType",
-          "sourceType": "project-schema",
-          "source": "Route V2 P1B POI Pilot schema",
-          "sourceUrl": "",
-          "retrievedAt": "2026-07-20T12:08:39.314Z",
-          "value": "wikidata"
-        },
-        "confidence": {
-          "field": "confidence",
-          "sourceType": "project-schema",
-          "source": "Route V2 P1B POI Pilot schema",
-          "sourceUrl": "",
-          "retrievedAt": "2026-07-20T12:08:39.314Z",
-          "value": 0.95
-        },
-        "retrievedAt": {
-          "field": "retrievedAt",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q48435",
-          "retrievedAt": "2026-07-20T12:08:39.314Z",
-          "value": "2026-07-20T12:08:39.314Z"
-        }
-      }
-    },
-    {
-      "schemaVersion": "route-v2-poi-baseline-p1b",
-      "entityId": "poi-2c87151b3be6eca2",
-      "entityType": "poi",
-      "parentCityEntityId": "city-6e97dec8890873f7",
-      "wikidataId": "Q461371",
-      "canonicalNameZh": "巴特略之家",
-      "canonicalNameEn": "Casa Batlló",
-      "aliases": [
-        "巴特婁之家",
-        "巴特尤公寓",
-        "巴特洛住宅",
-        "巴特洛公寓",
-        "巴特略住宅",
-        "巴特略公寓"
-      ],
-      "coordinates": {
-        "latitude": 41.39158,
-        "longitude": 2.16492
-      },
-      "entitySourceType": "wikidata",
-      "confidence": 0.95,
-      "retrievedAt": "2026-07-20T12:08:39.314Z",
-      "provenance": {
-        "entityId": {
-          "field": "entityId",
-          "sourceType": "project-schema",
-          "source": "Route V2 P1B POI Pilot schema",
-          "sourceUrl": "",
-          "retrievedAt": "2026-07-20T12:08:39.314Z",
-          "value": "poi-2c87151b3be6eca2"
-        },
-        "entityType": {
-          "field": "entityType",
-          "sourceType": "project-schema",
-          "source": "Route V2 P1B POI Pilot schema",
-          "sourceUrl": "",
-          "retrievedAt": "2026-07-20T12:08:39.314Z",
-          "value": "poi"
-        },
-        "parentCityEntityId": {
-          "field": "parentCityEntityId",
-          "sourceType": "repository-reference",
-          "source": "Route V2 P1B City Entity Foundation",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1492",
-          "retrievedAt": "2026-07-20T12:08:39.314Z",
-          "value": "city-6e97dec8890873f7"
-        },
-        "wikidataId": {
-          "field": "wikidataId",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q461371",
-          "retrievedAt": "2026-07-20T12:08:39.314Z",
-          "value": "Q461371"
-        },
-        "canonicalNameZh": {
-          "field": "canonicalNameZh",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q461371",
-          "retrievedAt": "2026-07-20T12:08:39.314Z",
-          "value": "巴特略之家"
-        },
-        "canonicalNameEn": {
-          "field": "canonicalNameEn",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q461371",
-          "retrievedAt": "2026-07-20T12:08:39.314Z",
-          "value": "Casa Batlló"
-        },
-        "aliases": {
-          "field": "aliases",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q461371",
-          "retrievedAt": "2026-07-20T12:08:39.314Z",
-          "value": [
-            "巴特婁之家",
-            "巴特尤公寓",
-            "巴特洛住宅",
-            "巴特洛公寓",
-            "巴特略住宅",
-            "巴特略公寓"
-          ]
-        },
-        "coordinates": {
-          "field": "coordinates",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q461371",
-          "retrievedAt": "2026-07-20T12:08:39.314Z",
-          "value": {
-            "latitude": 41.39158,
-            "longitude": 2.16492
-          }
-        },
-        "entitySourceType": {
-          "field": "entitySourceType",
-          "sourceType": "project-schema",
-          "source": "Route V2 P1B POI Pilot schema",
-          "sourceUrl": "",
-          "retrievedAt": "2026-07-20T12:08:39.314Z",
-          "value": "wikidata"
-        },
-        "confidence": {
-          "field": "confidence",
-          "sourceType": "project-schema",
-          "source": "Route V2 P1B POI Pilot schema",
-          "sourceUrl": "",
-          "retrievedAt": "2026-07-20T12:08:39.314Z",
-          "value": 0.95
-        },
-        "retrievedAt": {
-          "field": "retrievedAt",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q461371",
-          "retrievedAt": "2026-07-20T12:08:39.314Z",
-          "value": "2026-07-20T12:08:39.314Z"
-        }
-      }
-    },
-    {
-      "schemaVersion": "route-v2-poi-baseline-p1b",
       "entityId": "poi-b36cbeac023bedca",
       "entityType": "poi",
       "parentCityEntityId": "city-6e97dec8890873f7",
@@ -1963,122 +1307,6 @@
     },
     {
       "schemaVersion": "route-v2-poi-baseline-p1b",
-      "entityId": "poi-8c8d8ddf70782e3f",
-      "entityType": "poi",
-      "parentCityEntityId": "city-6fdc557c860230e3",
-      "wikidataId": "Q490777",
-      "canonicalNameZh": "釜山塔",
-      "canonicalNameEn": "Diamond Tower",
-      "aliases": [
-        "Busan Diamond Tower",
-        "Busan Tower"
-      ],
-      "coordinates": {
-        "latitude": 35.101222222222,
-        "longitude": 129.03230555556
-      },
-      "entitySourceType": "wikidata",
-      "confidence": 0.95,
-      "retrievedAt": "2026-07-20T12:08:39.314Z",
-      "provenance": {
-        "entityId": {
-          "field": "entityId",
-          "sourceType": "project-schema",
-          "source": "Route V2 P1B POI Pilot schema",
-          "sourceUrl": "",
-          "retrievedAt": "2026-07-20T12:08:39.314Z",
-          "value": "poi-8c8d8ddf70782e3f"
-        },
-        "entityType": {
-          "field": "entityType",
-          "sourceType": "project-schema",
-          "source": "Route V2 P1B POI Pilot schema",
-          "sourceUrl": "",
-          "retrievedAt": "2026-07-20T12:08:39.314Z",
-          "value": "poi"
-        },
-        "parentCityEntityId": {
-          "field": "parentCityEntityId",
-          "sourceType": "repository-reference",
-          "source": "Route V2 P1B City Entity Foundation",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q16520",
-          "retrievedAt": "2026-07-20T12:08:39.314Z",
-          "value": "city-6fdc557c860230e3"
-        },
-        "wikidataId": {
-          "field": "wikidataId",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q490777",
-          "retrievedAt": "2026-07-20T12:08:39.314Z",
-          "value": "Q490777"
-        },
-        "canonicalNameZh": {
-          "field": "canonicalNameZh",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q490777",
-          "retrievedAt": "2026-07-20T12:08:39.314Z",
-          "value": "釜山塔"
-        },
-        "canonicalNameEn": {
-          "field": "canonicalNameEn",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q490777",
-          "retrievedAt": "2026-07-20T12:08:39.314Z",
-          "value": "Diamond Tower"
-        },
-        "aliases": {
-          "field": "aliases",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q490777",
-          "retrievedAt": "2026-07-20T12:08:39.314Z",
-          "value": [
-            "Busan Diamond Tower",
-            "Busan Tower"
-          ]
-        },
-        "coordinates": {
-          "field": "coordinates",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q490777",
-          "retrievedAt": "2026-07-20T12:08:39.314Z",
-          "value": {
-            "latitude": 35.101222222222,
-            "longitude": 129.03230555556
-          }
-        },
-        "entitySourceType": {
-          "field": "entitySourceType",
-          "sourceType": "project-schema",
-          "source": "Route V2 P1B POI Pilot schema",
-          "sourceUrl": "",
-          "retrievedAt": "2026-07-20T12:08:39.314Z",
-          "value": "wikidata"
-        },
-        "confidence": {
-          "field": "confidence",
-          "sourceType": "project-schema",
-          "source": "Route V2 P1B POI Pilot schema",
-          "sourceUrl": "",
-          "retrievedAt": "2026-07-20T12:08:39.314Z",
-          "value": 0.95
-        },
-        "retrievedAt": {
-          "field": "retrievedAt",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q490777",
-          "retrievedAt": "2026-07-20T12:08:39.314Z",
-          "value": "2026-07-20T12:08:39.314Z"
-        }
-      }
-    },
-    {
-      "schemaVersion": "route-v2-poi-baseline-p1b",
       "entityId": "poi-1e6269daf2168b42",
       "entityType": "poi",
       "parentCityEntityId": "city-6fdc557c860230e3",
@@ -2190,122 +1418,6 @@
           "sourceType": "wikidata",
           "source": "Wikidata wbgetentities",
           "sourceUrl": "https://www.wikidata.org/wiki/Q2494268",
-          "retrievedAt": "2026-07-20T12:08:39.314Z",
-          "value": "2026-07-20T12:08:39.314Z"
-        }
-      }
-    },
-    {
-      "schemaVersion": "route-v2-poi-baseline-p1b",
-      "entityId": "poi-712f538a30de741b",
-      "entityType": "poi",
-      "parentCityEntityId": "city-92d9ceba1c4a056d",
-      "wikidataId": "Q82425",
-      "canonicalNameZh": "勃兰登堡门",
-      "canonicalNameEn": "Brandenburg Gate",
-      "aliases": [
-        "Brandenburger Tor",
-        "布蘭登堡門"
-      ],
-      "coordinates": {
-        "latitude": 52.516272222222,
-        "longitude": 13.377722222222
-      },
-      "entitySourceType": "wikidata",
-      "confidence": 0.95,
-      "retrievedAt": "2026-07-20T12:08:39.314Z",
-      "provenance": {
-        "entityId": {
-          "field": "entityId",
-          "sourceType": "project-schema",
-          "source": "Route V2 P1B POI Pilot schema",
-          "sourceUrl": "",
-          "retrievedAt": "2026-07-20T12:08:39.314Z",
-          "value": "poi-712f538a30de741b"
-        },
-        "entityType": {
-          "field": "entityType",
-          "sourceType": "project-schema",
-          "source": "Route V2 P1B POI Pilot schema",
-          "sourceUrl": "",
-          "retrievedAt": "2026-07-20T12:08:39.314Z",
-          "value": "poi"
-        },
-        "parentCityEntityId": {
-          "field": "parentCityEntityId",
-          "sourceType": "repository-reference",
-          "source": "Route V2 P1B City Entity Foundation",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q64",
-          "retrievedAt": "2026-07-20T12:08:39.314Z",
-          "value": "city-92d9ceba1c4a056d"
-        },
-        "wikidataId": {
-          "field": "wikidataId",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q82425",
-          "retrievedAt": "2026-07-20T12:08:39.314Z",
-          "value": "Q82425"
-        },
-        "canonicalNameZh": {
-          "field": "canonicalNameZh",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q82425",
-          "retrievedAt": "2026-07-20T12:08:39.314Z",
-          "value": "勃兰登堡门"
-        },
-        "canonicalNameEn": {
-          "field": "canonicalNameEn",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q82425",
-          "retrievedAt": "2026-07-20T12:08:39.314Z",
-          "value": "Brandenburg Gate"
-        },
-        "aliases": {
-          "field": "aliases",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q82425",
-          "retrievedAt": "2026-07-20T12:08:39.314Z",
-          "value": [
-            "Brandenburger Tor",
-            "布蘭登堡門"
-          ]
-        },
-        "coordinates": {
-          "field": "coordinates",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q82425",
-          "retrievedAt": "2026-07-20T12:08:39.314Z",
-          "value": {
-            "latitude": 52.516272222222,
-            "longitude": 13.377722222222
-          }
-        },
-        "entitySourceType": {
-          "field": "entitySourceType",
-          "sourceType": "project-schema",
-          "source": "Route V2 P1B POI Pilot schema",
-          "sourceUrl": "",
-          "retrievedAt": "2026-07-20T12:08:39.314Z",
-          "value": "wikidata"
-        },
-        "confidence": {
-          "field": "confidence",
-          "sourceType": "project-schema",
-          "source": "Route V2 P1B POI Pilot schema",
-          "sourceUrl": "",
-          "retrievedAt": "2026-07-20T12:08:39.314Z",
-          "value": 0.95
-        },
-        "retrievedAt": {
-          "field": "retrievedAt",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q82425",
           "retrievedAt": "2026-07-20T12:08:39.314Z",
           "value": "2026-07-20T12:08:39.314Z"
         }
@@ -2663,116 +1775,6 @@
     },
     {
       "schemaVersion": "route-v2-poi-baseline-p1b",
-      "entityId": "poi-b2ac3803901f5d44",
-      "entityType": "poi",
-      "parentCityEntityId": "city-d40570b2aac4850d",
-      "wikidataId": "Q1348158",
-      "canonicalNameZh": "米开朗基罗广场",
-      "canonicalNameEn": "piazzale Michelangelo",
-      "aliases": [],
-      "coordinates": {
-        "latitude": 43.76292,
-        "longitude": 11.26516
-      },
-      "entitySourceType": "wikidata",
-      "confidence": 0.95,
-      "retrievedAt": "2026-07-20T12:08:39.314Z",
-      "provenance": {
-        "entityId": {
-          "field": "entityId",
-          "sourceType": "project-schema",
-          "source": "Route V2 P1B POI Pilot schema",
-          "sourceUrl": "",
-          "retrievedAt": "2026-07-20T12:08:39.314Z",
-          "value": "poi-b2ac3803901f5d44"
-        },
-        "entityType": {
-          "field": "entityType",
-          "sourceType": "project-schema",
-          "source": "Route V2 P1B POI Pilot schema",
-          "sourceUrl": "",
-          "retrievedAt": "2026-07-20T12:08:39.314Z",
-          "value": "poi"
-        },
-        "parentCityEntityId": {
-          "field": "parentCityEntityId",
-          "sourceType": "repository-reference",
-          "source": "Route V2 P1B City Entity Foundation",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q2044",
-          "retrievedAt": "2026-07-20T12:08:39.314Z",
-          "value": "city-d40570b2aac4850d"
-        },
-        "wikidataId": {
-          "field": "wikidataId",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1348158",
-          "retrievedAt": "2026-07-20T12:08:39.314Z",
-          "value": "Q1348158"
-        },
-        "canonicalNameZh": {
-          "field": "canonicalNameZh",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1348158",
-          "retrievedAt": "2026-07-20T12:08:39.314Z",
-          "value": "米开朗基罗广场"
-        },
-        "canonicalNameEn": {
-          "field": "canonicalNameEn",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1348158",
-          "retrievedAt": "2026-07-20T12:08:39.314Z",
-          "value": "piazzale Michelangelo"
-        },
-        "aliases": {
-          "field": "aliases",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1348158",
-          "retrievedAt": "2026-07-20T12:08:39.314Z",
-          "value": []
-        },
-        "coordinates": {
-          "field": "coordinates",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1348158",
-          "retrievedAt": "2026-07-20T12:08:39.314Z",
-          "value": {
-            "latitude": 43.76292,
-            "longitude": 11.26516
-          }
-        },
-        "entitySourceType": {
-          "field": "entitySourceType",
-          "sourceType": "project-schema",
-          "source": "Route V2 P1B POI Pilot schema",
-          "sourceUrl": "",
-          "retrievedAt": "2026-07-20T12:08:39.314Z",
-          "value": "wikidata"
-        },
-        "confidence": {
-          "field": "confidence",
-          "sourceType": "project-schema",
-          "source": "Route V2 P1B POI Pilot schema",
-          "sourceUrl": "",
-          "retrievedAt": "2026-07-20T12:08:39.314Z",
-          "value": 0.95
-        },
-        "retrievedAt": {
-          "field": "retrievedAt",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1348158",
-          "retrievedAt": "2026-07-20T12:08:39.314Z",
-          "value": "2026-07-20T12:08:39.314Z"
-        }
-      }
-    },
-    {
-      "schemaVersion": "route-v2-poi-baseline-p1b",
       "entityId": "poi-0bd83f5543263f9b",
       "entityType": "poi",
       "parentCityEntityId": "city-d40570b2aac4850d",
@@ -2882,130 +1884,6 @@
           "sourceType": "wikidata",
           "source": "Wikidata wbgetentities",
           "sourceUrl": "https://www.wikidata.org/wiki/Q51252",
-          "retrievedAt": "2026-07-20T12:08:39.314Z",
-          "value": "2026-07-20T12:08:39.314Z"
-        }
-      }
-    },
-    {
-      "schemaVersion": "route-v2-poi-baseline-p1b",
-      "entityId": "poi-91d002b53815a57e",
-      "entityType": "poi",
-      "parentCityEntityId": "city-f485961843960f06",
-      "wikidataId": "Q477157",
-      "canonicalNameZh": "昌德宫",
-      "canonicalNameEn": "Changdeokgung",
-      "aliases": [
-        "Ch'angdŏkkung",
-        "Changdeok Palace",
-        "Changdeokgung Palace",
-        "Changdok-kung Palace",
-        "Chʻangdŏkkung Palace",
-        "昌德宮"
-      ],
-      "coordinates": {
-        "latitude": 37.579444444444,
-        "longitude": 126.99166666667
-      },
-      "entitySourceType": "wikidata",
-      "confidence": 0.95,
-      "retrievedAt": "2026-07-20T12:08:39.314Z",
-      "provenance": {
-        "entityId": {
-          "field": "entityId",
-          "sourceType": "project-schema",
-          "source": "Route V2 P1B POI Pilot schema",
-          "sourceUrl": "",
-          "retrievedAt": "2026-07-20T12:08:39.314Z",
-          "value": "poi-91d002b53815a57e"
-        },
-        "entityType": {
-          "field": "entityType",
-          "sourceType": "project-schema",
-          "source": "Route V2 P1B POI Pilot schema",
-          "sourceUrl": "",
-          "retrievedAt": "2026-07-20T12:08:39.314Z",
-          "value": "poi"
-        },
-        "parentCityEntityId": {
-          "field": "parentCityEntityId",
-          "sourceType": "repository-reference",
-          "source": "Route V2 P1B City Entity Foundation",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q8684",
-          "retrievedAt": "2026-07-20T12:08:39.314Z",
-          "value": "city-f485961843960f06"
-        },
-        "wikidataId": {
-          "field": "wikidataId",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q477157",
-          "retrievedAt": "2026-07-20T12:08:39.314Z",
-          "value": "Q477157"
-        },
-        "canonicalNameZh": {
-          "field": "canonicalNameZh",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q477157",
-          "retrievedAt": "2026-07-20T12:08:39.314Z",
-          "value": "昌德宫"
-        },
-        "canonicalNameEn": {
-          "field": "canonicalNameEn",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q477157",
-          "retrievedAt": "2026-07-20T12:08:39.314Z",
-          "value": "Changdeokgung"
-        },
-        "aliases": {
-          "field": "aliases",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q477157",
-          "retrievedAt": "2026-07-20T12:08:39.314Z",
-          "value": [
-            "Ch'angdŏkkung",
-            "Changdeok Palace",
-            "Changdeokgung Palace",
-            "Changdok-kung Palace",
-            "Chʻangdŏkkung Palace",
-            "昌德宮"
-          ]
-        },
-        "coordinates": {
-          "field": "coordinates",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q477157",
-          "retrievedAt": "2026-07-20T12:08:39.314Z",
-          "value": {
-            "latitude": 37.579444444444,
-            "longitude": 126.99166666667
-          }
-        },
-        "entitySourceType": {
-          "field": "entitySourceType",
-          "sourceType": "project-schema",
-          "source": "Route V2 P1B POI Pilot schema",
-          "sourceUrl": "",
-          "retrievedAt": "2026-07-20T12:08:39.314Z",
-          "value": "wikidata"
-        },
-        "confidence": {
-          "field": "confidence",
-          "sourceType": "project-schema",
-          "source": "Route V2 P1B POI Pilot schema",
-          "sourceUrl": "",
-          "retrievedAt": "2026-07-20T12:08:39.314Z",
-          "value": 0.95
-        },
-        "retrievedAt": {
-          "field": "retrievedAt",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q477157",
           "retrievedAt": "2026-07-20T12:08:39.314Z",
           "value": "2026-07-20T12:08:39.314Z"
         }
@@ -3249,244 +2127,6 @@
     },
     {
       "schemaVersion": "route-v2-poi-baseline-p1b",
-      "entityId": "poi-b14a600e2be7f744",
-      "entityType": "poi",
-      "parentCityEntityId": "city-f833a342bb5b925a",
-      "wikidataId": "Q1131807",
-      "canonicalNameZh": "丽池公园",
-      "canonicalNameEn": "El Retiro Park",
-      "aliases": [
-        "Parco del Buen Retiro",
-        "Parque del Buen Retiro",
-        "Parque del Retiro",
-        "Retiro park"
-      ],
-      "coordinates": {
-        "latitude": 40.415,
-        "longitude": -3.6838888888888888
-      },
-      "entitySourceType": "wikidata",
-      "confidence": 0.95,
-      "retrievedAt": "2026-07-20T12:08:39.314Z",
-      "provenance": {
-        "entityId": {
-          "field": "entityId",
-          "sourceType": "project-schema",
-          "source": "Route V2 P1B POI Pilot schema",
-          "sourceUrl": "",
-          "retrievedAt": "2026-07-20T12:08:39.314Z",
-          "value": "poi-b14a600e2be7f744"
-        },
-        "entityType": {
-          "field": "entityType",
-          "sourceType": "project-schema",
-          "source": "Route V2 P1B POI Pilot schema",
-          "sourceUrl": "",
-          "retrievedAt": "2026-07-20T12:08:39.314Z",
-          "value": "poi"
-        },
-        "parentCityEntityId": {
-          "field": "parentCityEntityId",
-          "sourceType": "repository-reference",
-          "source": "Route V2 P1B City Entity Foundation",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q2807",
-          "retrievedAt": "2026-07-20T12:08:39.314Z",
-          "value": "city-f833a342bb5b925a"
-        },
-        "wikidataId": {
-          "field": "wikidataId",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1131807",
-          "retrievedAt": "2026-07-20T12:08:39.314Z",
-          "value": "Q1131807"
-        },
-        "canonicalNameZh": {
-          "field": "canonicalNameZh",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1131807",
-          "retrievedAt": "2026-07-20T12:08:39.314Z",
-          "value": "丽池公园"
-        },
-        "canonicalNameEn": {
-          "field": "canonicalNameEn",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1131807",
-          "retrievedAt": "2026-07-20T12:08:39.314Z",
-          "value": "El Retiro Park"
-        },
-        "aliases": {
-          "field": "aliases",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1131807",
-          "retrievedAt": "2026-07-20T12:08:39.314Z",
-          "value": [
-            "Parco del Buen Retiro",
-            "Parque del Buen Retiro",
-            "Parque del Retiro",
-            "Retiro park"
-          ]
-        },
-        "coordinates": {
-          "field": "coordinates",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1131807",
-          "retrievedAt": "2026-07-20T12:08:39.314Z",
-          "value": {
-            "latitude": 40.415,
-            "longitude": -3.6838888888888888
-          }
-        },
-        "entitySourceType": {
-          "field": "entitySourceType",
-          "sourceType": "project-schema",
-          "source": "Route V2 P1B POI Pilot schema",
-          "sourceUrl": "",
-          "retrievedAt": "2026-07-20T12:08:39.314Z",
-          "value": "wikidata"
-        },
-        "confidence": {
-          "field": "confidence",
-          "sourceType": "project-schema",
-          "source": "Route V2 P1B POI Pilot schema",
-          "sourceUrl": "",
-          "retrievedAt": "2026-07-20T12:08:39.314Z",
-          "value": 0.95
-        },
-        "retrievedAt": {
-          "field": "retrievedAt",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1131807",
-          "retrievedAt": "2026-07-20T12:08:39.314Z",
-          "value": "2026-07-20T12:08:39.314Z"
-        }
-      }
-    },
-    {
-      "schemaVersion": "route-v2-poi-baseline-p1b",
-      "entityId": "poi-40ca158eae634f04",
-      "entityType": "poi",
-      "parentCityEntityId": "city-f833a342bb5b925a",
-      "wikidataId": "Q160112",
-      "canonicalNameZh": "普拉多博物馆",
-      "canonicalNameEn": "Museo del Prado",
-      "aliases": [
-        "Prado Museum",
-        "Prado National Museum",
-        "普拉多美術館"
-      ],
-      "coordinates": {
-        "latitude": 40.41388888888889,
-        "longitude": -3.692222222222222
-      },
-      "entitySourceType": "wikidata",
-      "confidence": 0.95,
-      "retrievedAt": "2026-07-20T12:08:39.314Z",
-      "provenance": {
-        "entityId": {
-          "field": "entityId",
-          "sourceType": "project-schema",
-          "source": "Route V2 P1B POI Pilot schema",
-          "sourceUrl": "",
-          "retrievedAt": "2026-07-20T12:08:39.314Z",
-          "value": "poi-40ca158eae634f04"
-        },
-        "entityType": {
-          "field": "entityType",
-          "sourceType": "project-schema",
-          "source": "Route V2 P1B POI Pilot schema",
-          "sourceUrl": "",
-          "retrievedAt": "2026-07-20T12:08:39.314Z",
-          "value": "poi"
-        },
-        "parentCityEntityId": {
-          "field": "parentCityEntityId",
-          "sourceType": "repository-reference",
-          "source": "Route V2 P1B City Entity Foundation",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q2807",
-          "retrievedAt": "2026-07-20T12:08:39.314Z",
-          "value": "city-f833a342bb5b925a"
-        },
-        "wikidataId": {
-          "field": "wikidataId",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q160112",
-          "retrievedAt": "2026-07-20T12:08:39.314Z",
-          "value": "Q160112"
-        },
-        "canonicalNameZh": {
-          "field": "canonicalNameZh",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q160112",
-          "retrievedAt": "2026-07-20T12:08:39.314Z",
-          "value": "普拉多博物馆"
-        },
-        "canonicalNameEn": {
-          "field": "canonicalNameEn",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q160112",
-          "retrievedAt": "2026-07-20T12:08:39.314Z",
-          "value": "Museo del Prado"
-        },
-        "aliases": {
-          "field": "aliases",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q160112",
-          "retrievedAt": "2026-07-20T12:08:39.314Z",
-          "value": [
-            "Prado Museum",
-            "Prado National Museum",
-            "普拉多美術館"
-          ]
-        },
-        "coordinates": {
-          "field": "coordinates",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q160112",
-          "retrievedAt": "2026-07-20T12:08:39.314Z",
-          "value": {
-            "latitude": 40.41388888888889,
-            "longitude": -3.692222222222222
-          }
-        },
-        "entitySourceType": {
-          "field": "entitySourceType",
-          "sourceType": "project-schema",
-          "source": "Route V2 P1B POI Pilot schema",
-          "sourceUrl": "",
-          "retrievedAt": "2026-07-20T12:08:39.314Z",
-          "value": "wikidata"
-        },
-        "confidence": {
-          "field": "confidence",
-          "sourceType": "project-schema",
-          "source": "Route V2 P1B POI Pilot schema",
-          "sourceUrl": "",
-          "retrievedAt": "2026-07-20T12:08:39.314Z",
-          "value": 0.95
-        },
-        "retrievedAt": {
-          "field": "retrievedAt",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q160112",
-          "retrievedAt": "2026-07-20T12:08:39.314Z",
-          "value": "2026-07-20T12:08:39.314Z"
-        }
-      }
-    },
-    {
-      "schemaVersion": "route-v2-poi-baseline-p1b",
       "entityId": "poi-cff501905af55222",
       "entityType": "poi",
       "parentCityEntityId": "city-f833a342bb5b925a",
@@ -3598,6 +2238,494 @@
           "sourceType": "wikidata",
           "source": "Wikidata wbgetentities",
           "sourceUrl": "https://www.wikidata.org/wiki/Q171517",
+          "retrievedAt": "2026-07-20T12:08:39.314Z",
+          "value": "2026-07-20T12:08:39.314Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-poi-baseline-p1b",
+      "entityId": "poi-b6b05705097c6bb1",
+      "entityType": "poi",
+      "parentCityEntityId": "city-5bba0fc2f52dc8df",
+      "wikidataId": "Q1516",
+      "canonicalNameZh": "富维耶圣母院",
+      "canonicalNameEn": "Basilica of Notre-Dame de Fourvière",
+      "aliases": [
+        "Basilica of Notre-Dame de Fourviere"
+      ],
+      "coordinates": {
+        "latitude": 45.762291666667,
+        "longitude": 4.8225555555556
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-07-20T12:08:39.314Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 P1B POI Pilot schema",
+          "sourceUrl": "",
+          "retrievedAt": "2026-07-20T12:08:39.314Z",
+          "value": "poi-b6b05705097c6bb1"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 P1B POI Pilot schema",
+          "sourceUrl": "",
+          "retrievedAt": "2026-07-20T12:08:39.314Z",
+          "value": "poi"
+        },
+        "parentCityEntityId": {
+          "field": "parentCityEntityId",
+          "sourceType": "repository-reference",
+          "source": "Route V2 P1B City Entity Foundation",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q456",
+          "retrievedAt": "2026-07-20T12:08:39.314Z",
+          "value": "city-5bba0fc2f52dc8df"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1516",
+          "retrievedAt": "2026-07-20T12:08:39.314Z",
+          "value": "Q1516"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1516",
+          "retrievedAt": "2026-07-20T12:08:39.314Z",
+          "value": "富维耶圣母院"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1516",
+          "retrievedAt": "2026-07-20T12:08:39.314Z",
+          "value": "Basilica of Notre-Dame de Fourvière"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1516",
+          "retrievedAt": "2026-07-20T12:08:39.314Z",
+          "value": [
+            "Basilica of Notre-Dame de Fourviere"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1516",
+          "retrievedAt": "2026-07-20T12:08:39.314Z",
+          "value": {
+            "latitude": 45.762291666667,
+            "longitude": 4.8225555555556
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 P1B POI Pilot schema",
+          "sourceUrl": "",
+          "retrievedAt": "2026-07-20T12:08:39.314Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 P1B POI Pilot schema",
+          "sourceUrl": "",
+          "retrievedAt": "2026-07-20T12:08:39.314Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1516",
+          "retrievedAt": "2026-07-20T12:08:39.314Z",
+          "value": "2026-07-20T12:08:39.314Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-poi-baseline-p1b",
+      "entityId": "poi-f487afdb54891eff",
+      "entityType": "poi",
+      "parentCityEntityId": "city-6e97dec8890873f7",
+      "wikidataId": "Q48435",
+      "canonicalNameZh": "圣家堂",
+      "canonicalNameEn": "Basilica and Expiatory Church of the Holy Family",
+      "aliases": [
+        "Expiatory Temple of the Holy Family",
+        "Holy Family",
+        "La Sagrada Familia",
+        "Sagrada Familia",
+        "Sagrada Família",
+        "Temple Expiatori de la Sagrada Família",
+        "Temple of the Holy Family",
+        "圣家大教堂",
+        "神圣家族堂",
+        "神圣家族大教堂",
+        "神圣家族教堂",
+        "神聖家族教堂",
+        "聖家堂",
+        "聖家宗座聖殿暨贖罪殿"
+      ],
+      "coordinates": {
+        "latitude": 41.40369,
+        "longitude": 2.17433
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-07-20T12:08:39.314Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 P1B POI Pilot schema",
+          "sourceUrl": "",
+          "retrievedAt": "2026-07-20T12:08:39.314Z",
+          "value": "poi-f487afdb54891eff"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 P1B POI Pilot schema",
+          "sourceUrl": "",
+          "retrievedAt": "2026-07-20T12:08:39.314Z",
+          "value": "poi"
+        },
+        "parentCityEntityId": {
+          "field": "parentCityEntityId",
+          "sourceType": "repository-reference",
+          "source": "Route V2 P1B City Entity Foundation",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1492",
+          "retrievedAt": "2026-07-20T12:08:39.314Z",
+          "value": "city-6e97dec8890873f7"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q48435",
+          "retrievedAt": "2026-07-20T12:08:39.314Z",
+          "value": "Q48435"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q48435",
+          "retrievedAt": "2026-07-20T12:08:39.314Z",
+          "value": "圣家堂"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q48435",
+          "retrievedAt": "2026-07-20T12:08:39.314Z",
+          "value": "Basilica and Expiatory Church of the Holy Family"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q48435",
+          "retrievedAt": "2026-07-20T12:08:39.314Z",
+          "value": [
+            "Expiatory Temple of the Holy Family",
+            "Holy Family",
+            "La Sagrada Familia",
+            "Sagrada Familia",
+            "Sagrada Família",
+            "Temple Expiatori de la Sagrada Família",
+            "Temple of the Holy Family",
+            "圣家大教堂",
+            "神圣家族堂",
+            "神圣家族大教堂",
+            "神圣家族教堂",
+            "神聖家族教堂",
+            "聖家堂",
+            "聖家宗座聖殿暨贖罪殿"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q48435",
+          "retrievedAt": "2026-07-20T12:08:39.314Z",
+          "value": {
+            "latitude": 41.40369,
+            "longitude": 2.17433
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 P1B POI Pilot schema",
+          "sourceUrl": "",
+          "retrievedAt": "2026-07-20T12:08:39.314Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 P1B POI Pilot schema",
+          "sourceUrl": "",
+          "retrievedAt": "2026-07-20T12:08:39.314Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q48435",
+          "retrievedAt": "2026-07-20T12:08:39.314Z",
+          "value": "2026-07-20T12:08:39.314Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-poi-baseline-p1b",
+      "entityId": "poi-b2ac3803901f5d44",
+      "entityType": "poi",
+      "parentCityEntityId": "city-d40570b2aac4850d",
+      "wikidataId": "Q1348158",
+      "canonicalNameZh": "米开朗基罗广场",
+      "canonicalNameEn": "piazzale Michelangelo",
+      "aliases": [],
+      "coordinates": {
+        "latitude": 43.76292,
+        "longitude": 11.26516
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-07-20T12:08:39.314Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 P1B POI Pilot schema",
+          "sourceUrl": "",
+          "retrievedAt": "2026-07-20T12:08:39.314Z",
+          "value": "poi-b2ac3803901f5d44"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 P1B POI Pilot schema",
+          "sourceUrl": "",
+          "retrievedAt": "2026-07-20T12:08:39.314Z",
+          "value": "poi"
+        },
+        "parentCityEntityId": {
+          "field": "parentCityEntityId",
+          "sourceType": "repository-reference",
+          "source": "Route V2 P1B City Entity Foundation",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q2044",
+          "retrievedAt": "2026-07-20T12:08:39.314Z",
+          "value": "city-d40570b2aac4850d"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1348158",
+          "retrievedAt": "2026-07-20T12:08:39.314Z",
+          "value": "Q1348158"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1348158",
+          "retrievedAt": "2026-07-20T12:08:39.314Z",
+          "value": "米开朗基罗广场"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1348158",
+          "retrievedAt": "2026-07-20T12:08:39.314Z",
+          "value": "piazzale Michelangelo"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1348158",
+          "retrievedAt": "2026-07-20T12:08:39.314Z",
+          "value": []
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1348158",
+          "retrievedAt": "2026-07-20T12:08:39.314Z",
+          "value": {
+            "latitude": 43.76292,
+            "longitude": 11.26516
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 P1B POI Pilot schema",
+          "sourceUrl": "",
+          "retrievedAt": "2026-07-20T12:08:39.314Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 P1B POI Pilot schema",
+          "sourceUrl": "",
+          "retrievedAt": "2026-07-20T12:08:39.314Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1348158",
+          "retrievedAt": "2026-07-20T12:08:39.314Z",
+          "value": "2026-07-20T12:08:39.314Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-poi-baseline-p1b",
+      "entityId": "poi-91d002b53815a57e",
+      "entityType": "poi",
+      "parentCityEntityId": "city-f485961843960f06",
+      "wikidataId": "Q477157",
+      "canonicalNameZh": "昌德宫",
+      "canonicalNameEn": "Changdeokgung",
+      "aliases": [
+        "Ch'angdŏkkung",
+        "Changdeok Palace",
+        "Changdeokgung Palace",
+        "Changdok-kung Palace",
+        "Chʻangdŏkkung Palace",
+        "昌德宮"
+      ],
+      "coordinates": {
+        "latitude": 37.579444444444,
+        "longitude": 126.99166666667
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-07-20T12:08:39.314Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 P1B POI Pilot schema",
+          "sourceUrl": "",
+          "retrievedAt": "2026-07-20T12:08:39.314Z",
+          "value": "poi-91d002b53815a57e"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 P1B POI Pilot schema",
+          "sourceUrl": "",
+          "retrievedAt": "2026-07-20T12:08:39.314Z",
+          "value": "poi"
+        },
+        "parentCityEntityId": {
+          "field": "parentCityEntityId",
+          "sourceType": "repository-reference",
+          "source": "Route V2 P1B City Entity Foundation",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q8684",
+          "retrievedAt": "2026-07-20T12:08:39.314Z",
+          "value": "city-f485961843960f06"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q477157",
+          "retrievedAt": "2026-07-20T12:08:39.314Z",
+          "value": "Q477157"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q477157",
+          "retrievedAt": "2026-07-20T12:08:39.314Z",
+          "value": "昌德宫"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q477157",
+          "retrievedAt": "2026-07-20T12:08:39.314Z",
+          "value": "Changdeokgung"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q477157",
+          "retrievedAt": "2026-07-20T12:08:39.314Z",
+          "value": [
+            "Ch'angdŏkkung",
+            "Changdeok Palace",
+            "Changdeokgung Palace",
+            "Changdok-kung Palace",
+            "Chʻangdŏkkung Palace",
+            "昌德宮"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q477157",
+          "retrievedAt": "2026-07-20T12:08:39.314Z",
+          "value": {
+            "latitude": 37.579444444444,
+            "longitude": 126.99166666667
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 P1B POI Pilot schema",
+          "sourceUrl": "",
+          "retrievedAt": "2026-07-20T12:08:39.314Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 P1B POI Pilot schema",
+          "sourceUrl": "",
+          "retrievedAt": "2026-07-20T12:08:39.314Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q477157",
           "retrievedAt": "2026-07-20T12:08:39.314Z",
           "value": "2026-07-20T12:08:39.314Z"
         }

@@ -3,6 +3,7 @@ import {
   normalizeEntityLayerCoordinates,
   normalizeEntityLayerText,
 } from "./knowledge-entity-layer-primitives.mjs";
+import { evaluatePoiTypeIdsForConsumer } from "./knowledge-poi-semantic-admission.mjs";
 import { stableHash } from "./route-v2-utils.mjs";
 
 const TYPE_POLICY_SCHEMA_VERSION = "route-v2-knowledge-semantic-type-policy-v1";
@@ -374,11 +375,12 @@ function validateEntity({
     const cityPath = findClassifiedTypePath(instanceOfIds, "city", typePolicy);
     if (!cityPath) add("instance-type-not-allowed", { instanceOfIds, maximumSubclassDepth: typePolicy.maximumSubclassDepth });
   } else if (kind === "poi" && typePolicy) {
-    const poiPath = findClassifiedTypePath(instanceOfIds, "poi", typePolicy);
+    const poiAdmission = evaluatePoiTypeIdsForConsumer("semantic-gate", instanceOfIds, typePolicy);
     const settlementTypeDetected = instanceOfIds.some((instanceOfQid) => Boolean(typePolicy.typeClassifications.get(instanceOfQid)?.allowedKinds?.city));
     const independentPoiTypeDetected = instanceOfIds.some((instanceOfQid) => {
       const allowedKinds = typePolicy.typeClassifications.get(instanceOfQid)?.allowedKinds || {};
-      return Boolean(allowedKinds.poi) && !allowedKinds.city;
+      return Boolean(allowedKinds.poi) && !allowedKinds.city
+        && evaluatePoiTypeIdsForConsumer("semantic-gate", [instanceOfQid], typePolicy).accepted;
     });
     const composite = typePolicy.compositeAllowances.get(compositeAllowanceKey({
       entity,
@@ -387,12 +389,15 @@ function validateEntity({
       expectedCountryQid,
       instanceOfIds,
     }));
-    if (!composite && (!poiPath || (settlementTypeDetected && !independentPoiTypeDetected))) {
+    if (!composite && (!poiAdmission.accepted || (settlementTypeDetected && !independentPoiTypeDetected))) {
       add("instance-type-not-allowed", {
         instanceOfIds,
         maximumSubclassDepth: typePolicy.maximumSubclassDepth,
         settlementTypeDetected,
         independentPoiTypeDetected,
+        broadStructuralOnly: poiAdmission.broadStructuralOnly,
+        operationalTypeDetected: poiAdmission.operationalTypeDetected,
+        independentVisitorTypeDetected: poiAdmission.independentVisitorTypeDetected,
       });
     }
   }

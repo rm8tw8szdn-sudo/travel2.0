@@ -6,7 +6,7 @@ Generated: 2026-08-17T11:00:00.000Z
 
 - Countries expanded: 20 in 4 waves (Tier 1: 9; Tier 2: 8; Tier 3: 3)
 - Published additions: 4 Countries / 156 Cities / 1,029 POIs
-- Published totals: 99 Countries / 718 Cities / 4,766 POIs / 5,583 entities
+- Published totals: 59 Countries / 462 Cities / 3,130 POIs / 3,651 entities
 - Directed Transport Evidence added: 172
 - Objective Month Risk added: 80
 - Route consumption: 56/56 PASS across 20 target countries; external calls: 0
@@ -15,10 +15,10 @@ Generated: 2026-08-17T11:00:00.000Z
 
 ## Portfolio semantics
 
-- Country Entities (Catalog): 99
-- Plannable Countries: 98
-- Route Knowledge Covered Countries: 98
-- Evidence-backed Countries: 95
+- Country Entities (Catalog): 59
+- Plannable Countries: 58
+- Route Knowledge Covered Countries: 58
+- Evidence-backed Countries: 55
 - Catalog-only: CN
 
 China was retained as Catalog-only because Search V1 intentionally blocks it. Uruguay replaces it in the 20-country Route coverage matrix; no Route Engine policy was relaxed.
@@ -27,14 +27,14 @@ China was retained as Catalog-only because Search V1 intentionally blocks it. Ur
 
 - Historical image debt before Batch 06: 411
 - Historical dedicated destination images added: 47
-- Historical needsBackfill after Batch 06: 13
+- Historical needsBackfill after Batch 06: 364
 - Batch 06 Country Covers: 20/20
 - Batch 06 verified dedicated destination images: 49
-- Country Cover coverage: 98/98
-- Dedicated City coverage: 600/718 (83.6%)
-- Dedicated Core POI coverage: 212/282 (75.2%)
-- Neutral placeholders: 188 (118 City + 70 Core POI)
-- Remaining needsBackfill: 188
+- Country Cover coverage: 58/58
+- Dedicated City coverage: 66/462 (14.3%)
+- Dedicated Core POI coverage: 30/165 (18.2%)
+- Neutral placeholders: 531 (396 City + 135 Core POI)
+- Remaining needsBackfill: 531
 - invalidMapping: 0
 - Runtime external image requests allowed: false
 
@@ -51,8 +51,8 @@ Dedicated imagery is accepted only when bound to the exact entity QID through Wi
 
 ## Asset size and duplicate audit
 
-- Local image assets: 977
-- Total bytes: 202048252
+- Local image assets: 221
+- Total bytes: 33655098
 - >300KB: 18; >500KB: 9; >1MB: 1; >5MB: 0
 - Exact duplicate groups: 2; perceptual duplicate groups: 9
 

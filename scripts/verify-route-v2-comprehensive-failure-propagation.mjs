@@ -9,14 +9,17 @@ import {
   MandatoryVerifierStageError,
   runMandatoryVerifierStage,
 } from "../src/lib/routes/prelaunch-verifier-gate.mjs";
-import { calculateBatch05ReportData, comma } from "./lib/knowledge-expansion-batch05-report-data.mjs";
+import { SEALED_SNAPSHOT_PATH } from "./lib/historical-knowledge-report-snapshots.mjs";
 
 const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const batch05ReportData = calculateBatch05ReportData({ root: projectRoot });
+const sealedSnapshots = JSON.parse(fs.readFileSync(path.join(projectRoot, SEALED_SNAPSHOT_PATH), "utf8"));
+const batch05Snapshot = sealedSnapshots.batches["05"];
+const comma = (value) => Number(value).toLocaleString("en-US");
 const requiredNames = new Set(MANDATORY_PRELAUNCH_VERIFIERS.map((stage) => stage.name));
 for (const name of [
   "multi-city-hard-constraints",
   "homonymous-city-country-disambiguation",
+  "overlapping-country-city-entity-parser",
   "single-city-hard-constraint",
   "trip-footprint-knowledge-identity",
   "multi-country-hard-constraints",
@@ -35,6 +38,7 @@ for (const name of [
   "route-v2-image-quality-adversarial",
   "route-v2-city-detail-image-fallback",
   "knowledge-expansion-batch05-report-consistency",
+  "historical-knowledge-reports-git-anchored",
   "knowledge-expansion-batch06-integrity",
   "knowledge-expansion-batch06-route-consumption",
   "knowledge-expansion-batch06-report-consistency",
@@ -46,6 +50,18 @@ for (const name of [
   "knowledge-expansion-batch08-hard-constraint-stress",
   "knowledge-expansion-batch08-semantic-adversarial",
   "knowledge-expansion-batch08-report-consistency",
+  "knowledge-expansion-batch09-integrity",
+  "knowledge-expansion-batch09-sovereignty",
+  "knowledge-expansion-batch09-route-consumption",
+  "knowledge-expansion-batch09-hard-constraint-stress",
+  "knowledge-expansion-batch09-semantic-adversarial",
+  "knowledge-poi-positive-admission",
+  "knowledge-poi-ancestry-admission",
+  "knowledge-poi-policy-consistency",
+  "knowledge-poi-mixed-type-admission",
+  "knowledge-financial-market-admission",
+  "knowledge-expansion-batch09-browser-acceptance",
+  "knowledge-expansion-batch09-report-consistency",
   "publication-gate",
   "search-cache-semantic-migration",
   "cache-baseline-v2",
@@ -69,10 +85,26 @@ const imageProvenanceStage = MANDATORY_PRELAUNCH_VERIFIERS.find((stage) => stage
 assert(imageProvenanceStage, "Image provenance completeness verification must be registered");
 const homonymousCityStage = MANDATORY_PRELAUNCH_VERIFIERS.find((stage) => stage.name === "homonymous-city-country-disambiguation");
 assert(homonymousCityStage, "Homonymous City disambiguation verification must be registered");
+const overlappingEntityStage = MANDATORY_PRELAUNCH_VERIFIERS.find((stage) => stage.name === "overlapping-country-city-entity-parser");
+assert(overlappingEntityStage, "Overlapping Country/City parser verification must be registered");
 const batch07ReportConsistencyStage = MANDATORY_PRELAUNCH_VERIFIERS.find((stage) => stage.name === "knowledge-expansion-batch07-report-consistency");
 assert(batch07ReportConsistencyStage, "Batch 07 report consistency verification must be registered");
 const batch08ReportConsistencyStage = MANDATORY_PRELAUNCH_VERIFIERS.find((stage) => stage.name === "knowledge-expansion-batch08-report-consistency");
 assert(batch08ReportConsistencyStage, "Batch 08 report consistency verification must be registered");
+const batch09ReportConsistencyStage = MANDATORY_PRELAUNCH_VERIFIERS.find((stage) => stage.name === "knowledge-expansion-batch09-report-consistency");
+assert(batch09ReportConsistencyStage, "Batch 09 report consistency verification must be registered");
+const historicalReportStage = MANDATORY_PRELAUNCH_VERIFIERS.find((stage) => stage.name === "historical-knowledge-reports-git-anchored");
+assert(historicalReportStage, "Git-anchored historical report verification must be registered");
+const positivePoiAdmissionStage = MANDATORY_PRELAUNCH_VERIFIERS.find((stage) => stage.name === "knowledge-poi-positive-admission");
+assert(positivePoiAdmissionStage, "Positive POI admission verification must be registered");
+const poiAncestryAdmissionStage = MANDATORY_PRELAUNCH_VERIFIERS.find((stage) => stage.name === "knowledge-poi-ancestry-admission");
+assert(poiAncestryAdmissionStage, "POI ancestry admission verification must be registered");
+const poiPolicyConsistencyStage = MANDATORY_PRELAUNCH_VERIFIERS.find((stage) => stage.name === "knowledge-poi-policy-consistency");
+assert(poiPolicyConsistencyStage, "POI policy consistency verification must be registered");
+const poiMixedTypeStage = MANDATORY_PRELAUNCH_VERIFIERS.find((stage) => stage.name === "knowledge-poi-mixed-type-admission");
+assert(poiMixedTypeStage, "Mixed-type POI admission verification must be registered");
+const financialMarketStage = MANDATORY_PRELAUNCH_VERIFIERS.find((stage) => stage.name === "knowledge-financial-market-admission");
+assert(financialMarketStage, "Financial-market POI admission verification must be registered");
 
 function injectedFailure(result) {
   let thrown = null;
@@ -222,6 +254,47 @@ assert(batch08ReportFailure instanceof MandatoryVerifierStageError);
 assert.equal(batch08ReportFailure.stageResult.name, "knowledge-expansion-batch08-report-consistency");
 assert.equal(batch08ReportFailure.stageResult.exitCode, 47);
 
+let batch09ReportFailure = null;
+try {
+  runMandatoryVerifierStage({
+    stage: batch09ReportConsistencyStage,
+    projectRoot,
+    env: process.env,
+    spawnImpl: () => ({ status: 53, signal: null, stdout: "", stderr: "controlled Batch 09 report failure\n" }),
+  });
+} catch (error) {
+  batch09ReportFailure = error;
+}
+assert(batch09ReportFailure instanceof MandatoryVerifierStageError);
+assert.equal(batch09ReportFailure.stageResult.name, "knowledge-expansion-batch09-report-consistency");
+assert.equal(batch09ReportFailure.stageResult.exitCode, 53);
+
+function controlledStageFailure(stage, status, message) {
+  let failure = null;
+  try {
+    runMandatoryVerifierStage({
+      stage,
+      projectRoot,
+      env: process.env,
+      spawnImpl: () => ({ status, signal: null, stdout: "", stderr: `${message}\n` }),
+    });
+  } catch (error) {
+    failure = error;
+  }
+  assert(failure instanceof MandatoryVerifierStageError);
+  assert.equal(failure.stageResult.name, stage.name);
+  assert.equal(failure.stageResult.exitCode, status);
+  return failure.stageResult;
+}
+
+const historicalReportFailure = controlledStageFailure(historicalReportStage, 59, "controlled historical report failure");
+const positivePoiAdmissionFailure = controlledStageFailure(positivePoiAdmissionStage, 61, "controlled positive POI admission failure");
+const poiAncestryAdmissionFailure = controlledStageFailure(poiAncestryAdmissionStage, 67, "controlled POI ancestry admission failure");
+const poiPolicyConsistencyFailure = controlledStageFailure(poiPolicyConsistencyStage, 71, "controlled POI policy consistency failure");
+const overlappingEntityFailure = controlledStageFailure(overlappingEntityStage, 73, "controlled overlapping entity parser failure");
+const poiMixedTypeFailure = controlledStageFailure(poiMixedTypeStage, 79, "controlled mixed-type POI admission failure");
+const financialMarketFailure = controlledStageFailure(financialMarketStage, 83, "controlled financial-market POI admission failure");
+
 function realReportMutationFailure(search, replacement, label) {
   const sourcePath = path.join(projectRoot, "ROUTE_V2_KNOWLEDGE_EXPANSION_BATCH05_REPORT.md");
   const source = fs.readFileSync(sourcePath, "utf8");
@@ -250,13 +323,13 @@ function realReportMutationFailure(search, replacement, label) {
 }
 
 const reportPoiMutation = realReportMutationFailure(
-  `${comma(batch05ReportData.additions.pois)} POIs`,
-  `${comma(batch05ReportData.additions.pois + 1)} POIs`,
+  `${comma(batch05Snapshot.knowledge.additions.pois)} POIs`,
+  `${comma(batch05Snapshot.knowledge.additions.pois + 1)} POIs`,
   "POI total",
 );
 const reportCityImageMutation = realReportMutationFailure(
-  `Dedicated City covers: ${comma(batch05ReportData.images.dedicatedCities)}/${comma(batch05ReportData.images.cityTotal)}`,
-  `Dedicated City covers: ${comma(batch05ReportData.images.dedicatedCities + 1)}/${comma(batch05ReportData.images.cityTotal)}`,
+  `Dedicated City covers: ${comma(batch05Snapshot.images.dedicatedCities)}/${comma(batch05Snapshot.images.cityTotal)}`,
+  `Dedicated City covers: ${comma(batch05Snapshot.images.dedicatedCities + 1)}/${comma(batch05Snapshot.images.cityTotal)}`,
   "Dedicated City image total",
 );
 
@@ -275,6 +348,14 @@ process.stdout.write(`${JSON.stringify({
   homonymousCityFailurePropagated: homonymousCityFailure.stageResult.exitCode === 31,
   batch07ReportFailurePropagated: batch07ReportFailure.stageResult.exitCode === 37,
   batch08ReportFailurePropagated: batch08ReportFailure.stageResult.exitCode === 47,
+  batch09ReportFailurePropagated: batch09ReportFailure.stageResult.exitCode === 53,
+  historicalReportFailurePropagated: historicalReportFailure.exitCode === 59,
+  positivePoiAdmissionFailurePropagated: positivePoiAdmissionFailure.exitCode === 61,
+  poiAncestryAdmissionFailurePropagated: poiAncestryAdmissionFailure.exitCode === 67,
+  poiPolicyConsistencyFailurePropagated: poiPolicyConsistencyFailure.exitCode === 71,
+  overlappingEntityFailurePropagated: overlappingEntityFailure.exitCode === 73,
+  poiMixedTypeFailurePropagated: poiMixedTypeFailure.exitCode === 79,
+  financialMarketFailurePropagated: financialMarketFailure.exitCode === 83,
   reportPoiMutationPropagated: reportPoiMutation.exitCode !== 0,
   reportDedicatedCityMutationPropagated: reportCityImageMutation.exitCode !== 0,
 }, null, 2)}\n`);

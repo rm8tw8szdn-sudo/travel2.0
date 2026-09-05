@@ -1,130 +1,8 @@
 {
   "schemaVersion": "route-v2-poi-baseline-p1b-pilot",
   "generatedFrom": "data/knowledge/raw/pois-p1b-pilot.wikidata.json",
-  "poiCount": 15,
+  "poiCount": 14,
   "pois": [
-    {
-      "schemaVersion": "route-v2-poi-baseline-p1b",
-      "entityId": "poi-09f2974076dbfb55",
-      "entityType": "poi",
-      "parentCityEntityId": "city-5a21732f861ff7f1",
-      "wikidataId": "Q287165",
-      "canonicalNameZh": "明治神宫",
-      "canonicalNameEn": "Meiji Jingū",
-      "aliases": [
-        "Meiji Grand Shrine",
-        "Meiji Jingū Shrine",
-        "Meiji Shrine",
-        "Meiji Tapınağı",
-        "明治神宮"
-      ],
-      "coordinates": {
-        "latitude": 35.676111111111,
-        "longitude": 139.69916666667
-      },
-      "entitySourceType": "wikidata",
-      "confidence": 0.95,
-      "retrievedAt": "2026-07-15T03:26:50.585Z",
-      "provenance": {
-        "entityId": {
-          "field": "entityId",
-          "sourceType": "project-schema",
-          "source": "Route V2 P1B POI Pilot schema",
-          "sourceUrl": "",
-          "retrievedAt": "2026-07-15T03:26:50.585Z",
-          "value": "poi-09f2974076dbfb55"
-        },
-        "entityType": {
-          "field": "entityType",
-          "sourceType": "project-schema",
-          "source": "Route V2 P1B POI Pilot schema",
-          "sourceUrl": "",
-          "retrievedAt": "2026-07-15T03:26:50.585Z",
-          "value": "poi"
-        },
-        "parentCityEntityId": {
-          "field": "parentCityEntityId",
-          "sourceType": "repository-reference",
-          "source": "Route V2 P1B City Entity Foundation",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1490",
-          "retrievedAt": "2026-07-15T03:26:50.585Z",
-          "value": "city-5a21732f861ff7f1"
-        },
-        "wikidataId": {
-          "field": "wikidataId",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q287165",
-          "retrievedAt": "2026-07-15T03:26:50.585Z",
-          "value": "Q287165"
-        },
-        "canonicalNameZh": {
-          "field": "canonicalNameZh",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q287165",
-          "retrievedAt": "2026-07-15T03:26:50.585Z",
-          "value": "明治神宫"
-        },
-        "canonicalNameEn": {
-          "field": "canonicalNameEn",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q287165",
-          "retrievedAt": "2026-07-15T03:26:50.585Z",
-          "value": "Meiji Jingū"
-        },
-        "aliases": {
-          "field": "aliases",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q287165",
-          "retrievedAt": "2026-07-15T03:26:50.585Z",
-          "value": [
-            "Meiji Grand Shrine",
-            "Meiji Jingū Shrine",
-            "Meiji Shrine",
-            "Meiji Tapınağı",
-            "明治神宮"
-          ]
-        },
-        "coordinates": {
-          "field": "coordinates",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q287165",
-          "retrievedAt": "2026-07-15T03:26:50.585Z",
-          "value": {
-            "latitude": 35.676111111111,
-            "longitude": 139.69916666667
-          }
-        },
-        "entitySourceType": {
-          "field": "entitySourceType",
-          "sourceType": "project-schema",
-          "source": "Route V2 P1B POI Pilot schema",
-          "sourceUrl": "",
-          "retrievedAt": "2026-07-15T03:26:50.585Z",
-          "value": "wikidata"
-        },
-        "confidence": {
-          "field": "confidence",
-          "sourceType": "project-schema",
-          "source": "Route V2 P1B POI Pilot schema",
-          "sourceUrl": "",
-          "retrievedAt": "2026-07-15T03:26:50.585Z",
-          "value": 0.95
-        },
-        "retrievedAt": {
-          "field": "retrievedAt",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q287165",
-          "retrievedAt": "2026-07-15T03:26:50.585Z",
-          "value": "2026-07-15T03:26:50.585Z"
-        }
-      }
-    },
     {
       "schemaVersion": "route-v2-poi-baseline-p1b",
       "entityId": "poi-78c9ea631fbbb381",
@@ -394,140 +272,6 @@
           "sourceType": "wikidata",
           "source": "Wikidata wbgetentities",
           "sourceUrl": "https://www.wikidata.org/wiki/Q183536",
-          "retrievedAt": "2026-07-15T03:26:50.585Z",
-          "value": "2026-07-15T03:26:50.585Z"
-        }
-      }
-    },
-    {
-      "schemaVersion": "route-v2-poi-baseline-p1b",
-      "entityId": "poi-5d85a755073d8224",
-      "entityType": "poi",
-      "parentCityEntityId": "city-8acaf08893e5abf1",
-      "wikidataId": "Q714828",
-      "canonicalNameZh": "伏见稻荷大社",
-      "canonicalNameEn": "Fushimi Inari-taisha",
-      "aliases": [
-        "Fushimi Inari Grand Shrine",
-        "Fushimi inari tapınağı",
-        "Inarino Shrine",
-        "புசிமி இனாரி தையிசா",
-        "ふしみいなりたいしゃ",
-        "伏見稲荷",
-        "伏見稲荷大社",
-        "伏見稲荷神社",
-        "伏見稻荷大社",
-        "稲荷神社",
-        "稲荷神社 三座"
-      ],
-      "coordinates": {
-        "latitude": 34.967202,
-        "longitude": 135.773386
-      },
-      "entitySourceType": "wikidata",
-      "confidence": 0.95,
-      "retrievedAt": "2026-07-15T03:26:50.585Z",
-      "provenance": {
-        "entityId": {
-          "field": "entityId",
-          "sourceType": "project-schema",
-          "source": "Route V2 P1B POI Pilot schema",
-          "sourceUrl": "",
-          "retrievedAt": "2026-07-15T03:26:50.585Z",
-          "value": "poi-5d85a755073d8224"
-        },
-        "entityType": {
-          "field": "entityType",
-          "sourceType": "project-schema",
-          "source": "Route V2 P1B POI Pilot schema",
-          "sourceUrl": "",
-          "retrievedAt": "2026-07-15T03:26:50.585Z",
-          "value": "poi"
-        },
-        "parentCityEntityId": {
-          "field": "parentCityEntityId",
-          "sourceType": "repository-reference",
-          "source": "Route V2 P1B City Entity Foundation",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q34600",
-          "retrievedAt": "2026-07-15T03:26:50.585Z",
-          "value": "city-8acaf08893e5abf1"
-        },
-        "wikidataId": {
-          "field": "wikidataId",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q714828",
-          "retrievedAt": "2026-07-15T03:26:50.585Z",
-          "value": "Q714828"
-        },
-        "canonicalNameZh": {
-          "field": "canonicalNameZh",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q714828",
-          "retrievedAt": "2026-07-15T03:26:50.585Z",
-          "value": "伏见稻荷大社"
-        },
-        "canonicalNameEn": {
-          "field": "canonicalNameEn",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q714828",
-          "retrievedAt": "2026-07-15T03:26:50.585Z",
-          "value": "Fushimi Inari-taisha"
-        },
-        "aliases": {
-          "field": "aliases",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q714828",
-          "retrievedAt": "2026-07-15T03:26:50.585Z",
-          "value": [
-            "Fushimi Inari Grand Shrine",
-            "Fushimi inari tapınağı",
-            "Inarino Shrine",
-            "புசிமி இனாரி தையிசா",
-            "ふしみいなりたいしゃ",
-            "伏見稲荷",
-            "伏見稲荷大社",
-            "伏見稲荷神社",
-            "伏見稻荷大社",
-            "稲荷神社",
-            "稲荷神社 三座"
-          ]
-        },
-        "coordinates": {
-          "field": "coordinates",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q714828",
-          "retrievedAt": "2026-07-15T03:26:50.585Z",
-          "value": {
-            "latitude": 34.967202,
-            "longitude": 135.773386
-          }
-        },
-        "entitySourceType": {
-          "field": "entitySourceType",
-          "sourceType": "project-schema",
-          "source": "Route V2 P1B POI Pilot schema",
-          "sourceUrl": "",
-          "retrievedAt": "2026-07-15T03:26:50.585Z",
-          "value": "wikidata"
-        },
-        "confidence": {
-          "field": "confidence",
-          "sourceType": "project-schema",
-          "source": "Route V2 P1B POI Pilot schema",
-          "sourceUrl": "",
-          "retrievedAt": "2026-07-15T03:26:50.585Z",
-          "value": 0.95
-        },
-        "retrievedAt": {
-          "field": "retrievedAt",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q714828",
           "retrievedAt": "2026-07-15T03:26:50.585Z",
           "value": "2026-07-15T03:26:50.585Z"
         }
@@ -918,122 +662,6 @@
           "sourceType": "wikidata",
           "source": "Wikidata wbgetentities",
           "sourceUrl": "https://www.wikidata.org/wiki/Q615404",
-          "retrievedAt": "2026-07-15T03:26:50.585Z",
-          "value": "2026-07-15T03:26:50.585Z"
-        }
-      }
-    },
-    {
-      "schemaVersion": "route-v2-poi-baseline-p1b",
-      "entityId": "poi-88530140534e7031",
-      "entityType": "poi",
-      "parentCityEntityId": "city-d6f6bf7d2fca5cb4",
-      "wikidataId": "Q206225",
-      "canonicalNameZh": "安卡拉城堡",
-      "canonicalNameEn": "Ankara Castle",
-      "aliases": [
-        "Ankara Kalesi",
-        "アンカラ城"
-      ],
-      "coordinates": {
-        "latitude": 39.94166667,
-        "longitude": 32.865
-      },
-      "entitySourceType": "wikidata",
-      "confidence": 0.95,
-      "retrievedAt": "2026-07-15T03:26:50.585Z",
-      "provenance": {
-        "entityId": {
-          "field": "entityId",
-          "sourceType": "project-schema",
-          "source": "Route V2 P1B POI Pilot schema",
-          "sourceUrl": "",
-          "retrievedAt": "2026-07-15T03:26:50.585Z",
-          "value": "poi-88530140534e7031"
-        },
-        "entityType": {
-          "field": "entityType",
-          "sourceType": "project-schema",
-          "source": "Route V2 P1B POI Pilot schema",
-          "sourceUrl": "",
-          "retrievedAt": "2026-07-15T03:26:50.585Z",
-          "value": "poi"
-        },
-        "parentCityEntityId": {
-          "field": "parentCityEntityId",
-          "sourceType": "repository-reference",
-          "source": "Route V2 P1B City Entity Foundation",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q3640",
-          "retrievedAt": "2026-07-15T03:26:50.585Z",
-          "value": "city-d6f6bf7d2fca5cb4"
-        },
-        "wikidataId": {
-          "field": "wikidataId",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q206225",
-          "retrievedAt": "2026-07-15T03:26:50.585Z",
-          "value": "Q206225"
-        },
-        "canonicalNameZh": {
-          "field": "canonicalNameZh",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q206225",
-          "retrievedAt": "2026-07-15T03:26:50.585Z",
-          "value": "安卡拉城堡"
-        },
-        "canonicalNameEn": {
-          "field": "canonicalNameEn",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q206225",
-          "retrievedAt": "2026-07-15T03:26:50.585Z",
-          "value": "Ankara Castle"
-        },
-        "aliases": {
-          "field": "aliases",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q206225",
-          "retrievedAt": "2026-07-15T03:26:50.585Z",
-          "value": [
-            "Ankara Kalesi",
-            "アンカラ城"
-          ]
-        },
-        "coordinates": {
-          "field": "coordinates",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q206225",
-          "retrievedAt": "2026-07-15T03:26:50.585Z",
-          "value": {
-            "latitude": 39.94166667,
-            "longitude": 32.865
-          }
-        },
-        "entitySourceType": {
-          "field": "entitySourceType",
-          "sourceType": "project-schema",
-          "source": "Route V2 P1B POI Pilot schema",
-          "sourceUrl": "",
-          "retrievedAt": "2026-07-15T03:26:50.585Z",
-          "value": "wikidata"
-        },
-        "confidence": {
-          "field": "confidence",
-          "sourceType": "project-schema",
-          "source": "Route V2 P1B POI Pilot schema",
-          "sourceUrl": "",
-          "retrievedAt": "2026-07-15T03:26:50.585Z",
-          "value": 0.95
-        },
-        "retrievedAt": {
-          "field": "retrievedAt",
-          "sourceType": "wikidata",
-          "source": "Wikidata wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q206225",
           "retrievedAt": "2026-07-15T03:26:50.585Z",
           "value": "2026-07-15T03:26:50.585Z"
         }
@@ -1986,6 +1614,244 @@
           "sourceType": "wikidata",
           "source": "Wikidata wbgetentities",
           "sourceUrl": "https://www.wikidata.org/wiki/Q170495",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "2026-07-15T03:26:50.585Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-poi-baseline-p1b",
+      "entityId": "poi-09f2974076dbfb55",
+      "entityType": "poi",
+      "parentCityEntityId": "city-5a21732f861ff7f1",
+      "wikidataId": "Q287165",
+      "canonicalNameZh": "明治神宫",
+      "canonicalNameEn": "Meiji Jingū",
+      "aliases": [
+        "Meiji Grand Shrine",
+        "Meiji Jingū Shrine",
+        "Meiji Shrine",
+        "Meiji Tapınağı",
+        "明治神宮"
+      ],
+      "coordinates": {
+        "latitude": 35.676111111111,
+        "longitude": 139.69916666667
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-07-15T03:26:50.585Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 P1B POI Pilot schema",
+          "sourceUrl": "",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "poi-09f2974076dbfb55"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 P1B POI Pilot schema",
+          "sourceUrl": "",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "poi"
+        },
+        "parentCityEntityId": {
+          "field": "parentCityEntityId",
+          "sourceType": "repository-reference",
+          "source": "Route V2 P1B City Entity Foundation",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1490",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "city-5a21732f861ff7f1"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q287165",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "Q287165"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q287165",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "明治神宫"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q287165",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "Meiji Jingū"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q287165",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": [
+            "Meiji Grand Shrine",
+            "Meiji Jingū Shrine",
+            "Meiji Shrine",
+            "Meiji Tapınağı",
+            "明治神宮"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q287165",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": {
+            "latitude": 35.676111111111,
+            "longitude": 139.69916666667
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 P1B POI Pilot schema",
+          "sourceUrl": "",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 P1B POI Pilot schema",
+          "sourceUrl": "",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q287165",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "2026-07-15T03:26:50.585Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-poi-baseline-p1b",
+      "entityId": "poi-88530140534e7031",
+      "entityType": "poi",
+      "parentCityEntityId": "city-d6f6bf7d2fca5cb4",
+      "wikidataId": "Q206225",
+      "canonicalNameZh": "安卡拉城堡",
+      "canonicalNameEn": "Ankara Castle",
+      "aliases": [
+        "Ankara Kalesi",
+        "アンカラ城"
+      ],
+      "coordinates": {
+        "latitude": 39.94166667,
+        "longitude": 32.865
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-07-15T03:26:50.585Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 P1B POI Pilot schema",
+          "sourceUrl": "",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "poi-88530140534e7031"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 P1B POI Pilot schema",
+          "sourceUrl": "",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "poi"
+        },
+        "parentCityEntityId": {
+          "field": "parentCityEntityId",
+          "sourceType": "repository-reference",
+          "source": "Route V2 P1B City Entity Foundation",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q3640",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "city-d6f6bf7d2fca5cb4"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q206225",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "Q206225"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q206225",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "安卡拉城堡"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q206225",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "Ankara Castle"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q206225",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": [
+            "Ankara Kalesi",
+            "アンカラ城"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q206225",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": {
+            "latitude": 39.94166667,
+            "longitude": 32.865
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 P1B POI Pilot schema",
+          "sourceUrl": "",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 P1B POI Pilot schema",
+          "sourceUrl": "",
+          "retrievedAt": "2026-07-15T03:26:50.585Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q206225",
           "retrievedAt": "2026-07-15T03:26:50.585Z",
           "value": "2026-07-15T03:26:50.585Z"
         }

@@ -1,0 +1,3405 @@
+{
+  "schemaVersion": "route-v2-city-baseline-p1b-batch32",
+  "generatedFrom": "data/knowledge/raw/knowledge-expansion-batch09-wave3.wikidata.json",
+  "cityCount": 28,
+  "cities": [
+    {
+      "schemaVersion": "route-v2-city-baseline-p1b",
+      "entityId": "city-141a33b92dcc6c34",
+      "entityType": "city",
+      "parentCountryEntityId": "country-184a7b5ce0956340",
+      "wikidataId": "Q9361",
+      "canonicalNameZh": "比什凯克",
+      "canonicalNameEn": "Bishkek",
+      "aliases": [
+        "Pishpek",
+        "伏龙芝",
+        "皮什别克"
+      ],
+      "coordinates": {
+        "latitude": 42.866666666667,
+        "longitude": 74.566666666667
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-08-31T10:00:00.000Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 09",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "city-141a33b92dcc6c34"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 09",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "city"
+        },
+        "parentCountryEntityId": {
+          "field": "parentCountryEntityId",
+          "sourceType": "repository-reference",
+          "source": "Kyrgyzstan Country Entity",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q813",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "country-184a7b5ce0956340"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q9361",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "Q9361"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q9361",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "比什凯克"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q9361",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "Bishkek"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q9361",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": [
+            "Pishpek",
+            "伏龙芝",
+            "皮什别克"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q9361",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": {
+            "latitude": 42.866666666667,
+            "longitude": 74.566666666667
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 09",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 09",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q9361",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "2026-08-31T10:00:00.000Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-city-baseline-p1b",
+      "entityId": "city-b1c716c2393b40d8",
+      "entityType": "city",
+      "parentCountryEntityId": "country-3230bd8e619dabfb",
+      "wikidataId": "Q376749",
+      "canonicalNameZh": "吉大港",
+      "canonicalNameEn": "Chittagong",
+      "aliases": [
+        "Chatga",
+        "Chattala",
+        "Chattogram",
+        "吉大港市"
+      ],
+      "coordinates": {
+        "latitude": 22.335,
+        "longitude": 91.8325
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-08-31T10:00:00.000Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 09",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "city-b1c716c2393b40d8"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 09",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "city"
+        },
+        "parentCountryEntityId": {
+          "field": "parentCountryEntityId",
+          "sourceType": "repository-reference",
+          "source": "Bangladesh Country Entity",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q902",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "country-3230bd8e619dabfb"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q376749",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "Q376749"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q376749",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "吉大港"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q376749",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "Chittagong"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q376749",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": [
+            "Chatga",
+            "Chattala",
+            "Chattogram",
+            "吉大港市"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q376749",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": {
+            "latitude": 22.335,
+            "longitude": 91.8325
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 09",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 09",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q376749",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "2026-08-31T10:00:00.000Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-city-baseline-p1b",
+      "entityId": "city-848890e8d6304af0",
+      "entityType": "city",
+      "parentCountryEntityId": "country-3230bd8e619dabfb",
+      "wikidataId": "Q949746",
+      "canonicalNameZh": "科克斯巴扎尔",
+      "canonicalNameEn": "Cox's Bazar",
+      "aliases": [
+        "Cox's Bazaar",
+        "Palongkee",
+        "Panowa",
+        "科克斯巴扎爾"
+      ],
+      "coordinates": {
+        "latitude": 21.583333333333,
+        "longitude": 92.016666666667
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-08-31T10:00:00.000Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 09",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "city-848890e8d6304af0"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 09",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "city"
+        },
+        "parentCountryEntityId": {
+          "field": "parentCountryEntityId",
+          "sourceType": "repository-reference",
+          "source": "Bangladesh Country Entity",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q902",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "country-3230bd8e619dabfb"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q949746",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "Q949746"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q949746",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "科克斯巴扎尔"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q949746",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "Cox's Bazar"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q949746",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": [
+            "Cox's Bazaar",
+            "Palongkee",
+            "Panowa",
+            "科克斯巴扎爾"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q949746",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": {
+            "latitude": 21.583333333333,
+            "longitude": 92.016666666667
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 09",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 09",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q949746",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "2026-08-31T10:00:00.000Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-city-baseline-p1b",
+      "entityId": "city-aab32476f6c568e3",
+      "entityType": "city",
+      "parentCountryEntityId": "country-3230bd8e619dabfb",
+      "wikidataId": "Q1354",
+      "canonicalNameZh": "达卡市",
+      "canonicalNameEn": "Dhaka",
+      "aliases": [
+        "Dacca",
+        "Dhaka City",
+        "达卡"
+      ],
+      "coordinates": {
+        "latitude": 23.72888888888889,
+        "longitude": 90.39444444444445
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-08-31T10:00:00.000Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 09",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "city-aab32476f6c568e3"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 09",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "city"
+        },
+        "parentCountryEntityId": {
+          "field": "parentCountryEntityId",
+          "sourceType": "repository-reference",
+          "source": "Bangladesh Country Entity",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q902",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "country-3230bd8e619dabfb"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1354",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "Q1354"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1354",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "达卡市"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1354",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "Dhaka"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1354",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": [
+            "Dacca",
+            "Dhaka City",
+            "达卡"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1354",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": {
+            "latitude": 23.72888888888889,
+            "longitude": 90.39444444444445
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 09",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 09",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1354",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "2026-08-31T10:00:00.000Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-city-baseline-p1b",
+      "entityId": "city-64428b8fd19fa090",
+      "entityType": "city",
+      "parentCountryEntityId": "country-9de571d9d0059602",
+      "wikidataId": "Q609024",
+      "canonicalNameZh": "吉尔吉特",
+      "canonicalNameEn": "Gilgit",
+      "aliases": [
+        "Geelt",
+        "Gileet",
+        "Gilit",
+        "Gilt"
+      ],
+      "coordinates": {
+        "latitude": 35.920833333333334,
+        "longitude": 74.31444444444445
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-08-31T10:00:00.000Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 09",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "city-64428b8fd19fa090"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 09",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "city"
+        },
+        "parentCountryEntityId": {
+          "field": "parentCountryEntityId",
+          "sourceType": "repository-reference",
+          "source": "Pakistan Country Entity",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q843",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "country-9de571d9d0059602"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q609024",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "Q609024"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q609024",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "吉尔吉特"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q609024",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "Gilgit"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q609024",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": [
+            "Geelt",
+            "Gileet",
+            "Gilit",
+            "Gilt"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q609024",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": {
+            "latitude": 35.920833333333334,
+            "longitude": 74.31444444444445
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 09",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 09",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q609024",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "2026-08-31T10:00:00.000Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-city-baseline-p1b",
+      "entityId": "city-3e04d37f2aeee071",
+      "entityType": "city",
+      "parentCountryEntityId": "country-9de571d9d0059602",
+      "wikidataId": "Q1362",
+      "canonicalNameZh": "伊斯兰堡",
+      "canonicalNameEn": "Islamabad",
+      "aliases": [
+        "伊斯兰巴德",
+        "伊斯兰玛巴德",
+        "伊斯蘭堡",
+        "伊斯蘭瑪巴德"
+      ],
+      "coordinates": {
+        "latitude": 33.698888888889,
+        "longitude": 73.036944444444
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-08-31T10:00:00.000Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 09",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "city-3e04d37f2aeee071"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 09",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "city"
+        },
+        "parentCountryEntityId": {
+          "field": "parentCountryEntityId",
+          "sourceType": "repository-reference",
+          "source": "Pakistan Country Entity",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q843",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "country-9de571d9d0059602"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1362",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "Q1362"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1362",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "伊斯兰堡"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1362",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "Islamabad"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1362",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": [
+            "伊斯兰巴德",
+            "伊斯兰玛巴德",
+            "伊斯蘭堡",
+            "伊斯蘭瑪巴德"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1362",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": {
+            "latitude": 33.698888888889,
+            "longitude": 73.036944444444
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 09",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 09",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1362",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "2026-08-31T10:00:00.000Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-city-baseline-p1b",
+      "entityId": "city-b7e74d694f25929a",
+      "entityType": "city",
+      "parentCountryEntityId": "country-e3bcf0b6f0639562",
+      "wikidataId": "Q2468415",
+      "canonicalNameZh": "贾卡尔",
+      "canonicalNameEn": "Jakar",
+      "aliases": [],
+      "coordinates": {
+        "latitude": 27.559166666667,
+        "longitude": 90.733333333333
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-08-31T10:00:00.000Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 09",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "city-b7e74d694f25929a"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 09",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "city"
+        },
+        "parentCountryEntityId": {
+          "field": "parentCountryEntityId",
+          "sourceType": "repository-reference",
+          "source": "Bhutan Country Entity",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q917",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "country-e3bcf0b6f0639562"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q2468415",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "Q2468415"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q2468415",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "贾卡尔"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q2468415",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "Jakar"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q2468415",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": []
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q2468415",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": {
+            "latitude": 27.559166666667,
+            "longitude": 90.733333333333
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 09",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 09",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q2468415",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "2026-08-31T10:00:00.000Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-city-baseline-p1b",
+      "entityId": "city-b1eed976f677556e",
+      "entityType": "city",
+      "parentCountryEntityId": "country-9de571d9d0059602",
+      "wikidataId": "Q8660",
+      "canonicalNameZh": "卡拉奇",
+      "canonicalNameEn": "Karachi",
+      "aliases": [
+        "Crotchey",
+        "Heart of Pakistan",
+        "Karatchi",
+        "Kurrachee",
+        "The Lighting City",
+        "克拉嗤",
+        "喀拉蚩"
+      ],
+      "coordinates": {
+        "latitude": 24.86,
+        "longitude": 67.01
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-08-31T10:00:00.000Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 09",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "city-b1eed976f677556e"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 09",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "city"
+        },
+        "parentCountryEntityId": {
+          "field": "parentCountryEntityId",
+          "sourceType": "repository-reference",
+          "source": "Pakistan Country Entity",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q843",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "country-9de571d9d0059602"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q8660",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "Q8660"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q8660",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "卡拉奇"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q8660",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "Karachi"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q8660",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": [
+            "Crotchey",
+            "Heart of Pakistan",
+            "Karatchi",
+            "Kurrachee",
+            "The Lighting City",
+            "克拉嗤",
+            "喀拉蚩"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q8660",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": {
+            "latitude": 24.86,
+            "longitude": 67.01
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 09",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 09",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q8660",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "2026-08-31T10:00:00.000Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-city-baseline-p1b",
+      "entityId": "city-296d4b9f84ddcfb6",
+      "entityType": "city",
+      "parentCountryEntityId": "country-3230bd8e619dabfb",
+      "wikidataId": "Q243325",
+      "canonicalNameZh": "库尔纳市",
+      "canonicalNameEn": "Khulna",
+      "aliases": [
+        "库尔纳"
+      ],
+      "coordinates": {
+        "latitude": 22.816666666667,
+        "longitude": 89.55
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-08-31T10:00:00.000Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 09",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "city-296d4b9f84ddcfb6"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 09",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "city"
+        },
+        "parentCountryEntityId": {
+          "field": "parentCountryEntityId",
+          "sourceType": "repository-reference",
+          "source": "Bangladesh Country Entity",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q902",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "country-3230bd8e619dabfb"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q243325",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "Q243325"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q243325",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "库尔纳市"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q243325",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "Khulna"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q243325",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": [
+            "库尔纳"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q243325",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": {
+            "latitude": 22.816666666667,
+            "longitude": 89.55
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 09",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 09",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q243325",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "2026-08-31T10:00:00.000Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-city-baseline-p1b",
+      "entityId": "city-4c5c53bdc937ad66",
+      "entityType": "city",
+      "parentCountryEntityId": "country-9de571d9d0059602",
+      "wikidataId": "Q11739",
+      "canonicalNameZh": "拉合尔",
+      "canonicalNameEn": "Lahore",
+      "aliases": [
+        "LHR",
+        "拉合爾"
+      ],
+      "coordinates": {
+        "latitude": 31.549722222222,
+        "longitude": 74.343611111111
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-08-31T10:00:00.000Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 09",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "city-4c5c53bdc937ad66"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 09",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "city"
+        },
+        "parentCountryEntityId": {
+          "field": "parentCountryEntityId",
+          "sourceType": "repository-reference",
+          "source": "Pakistan Country Entity",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q843",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "country-9de571d9d0059602"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q11739",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "Q11739"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q11739",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "拉合尔"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q11739",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "Lahore"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q11739",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": [
+            "LHR",
+            "拉合爾"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q11739",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": {
+            "latitude": 31.549722222222,
+            "longitude": 74.343611111111
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 09",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 09",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q11739",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "2026-08-31T10:00:00.000Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-city-baseline-p1b",
+      "entityId": "city-da1e080d1316a155",
+      "entityType": "city",
+      "parentCountryEntityId": "country-61b83c295890771d",
+      "wikidataId": "Q190165",
+      "canonicalNameZh": "琅勃拉邦",
+      "canonicalNameEn": "Luang Prabang",
+      "aliases": [
+        "Luang Phabang",
+        "Լուանգպրաբանգ",
+        "琅勃拉邦县",
+        "龍坡邦"
+      ],
+      "coordinates": {
+        "latitude": 19.89,
+        "longitude": 102.13472222222222
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-08-31T10:00:00.000Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 09",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "city-da1e080d1316a155"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 09",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "city"
+        },
+        "parentCountryEntityId": {
+          "field": "parentCountryEntityId",
+          "sourceType": "repository-reference",
+          "source": "Laos Country Entity",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q819",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "country-61b83c295890771d"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q190165",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "Q190165"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q190165",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "琅勃拉邦"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q190165",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "Luang Prabang"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q190165",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": [
+            "Luang Phabang",
+            "Լուանգպրաբանգ",
+            "琅勃拉邦县",
+            "龍坡邦"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q190165",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": {
+            "latitude": 19.89,
+            "longitude": 102.13472222222222
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 09",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 09",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q190165",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "2026-08-31T10:00:00.000Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-city-baseline-p1b",
+      "entityId": "city-8555be273f25abdf",
+      "entityType": "city",
+      "parentCountryEntityId": "country-9de571d9d0059602",
+      "wikidataId": "Q185453",
+      "canonicalNameZh": "木尔坦",
+      "canonicalNameEn": "Multan",
+      "aliases": [
+        "Mooltan",
+        "Moultan",
+        "木尔丹",
+        "木爾坦"
+      ],
+      "coordinates": {
+        "latitude": 30.197777777777777,
+        "longitude": 71.47111111111111
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-08-31T10:00:00.000Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 09",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "city-8555be273f25abdf"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 09",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "city"
+        },
+        "parentCountryEntityId": {
+          "field": "parentCountryEntityId",
+          "sourceType": "repository-reference",
+          "source": "Pakistan Country Entity",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q843",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "country-9de571d9d0059602"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q185453",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "Q185453"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q185453",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "木尔坦"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q185453",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "Multan"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q185453",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": [
+            "Mooltan",
+            "Moultan",
+            "木尔丹",
+            "木爾坦"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q185453",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": {
+            "latitude": 30.197777777777777,
+            "longitude": 71.47111111111111
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 09",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 09",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q185453",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "2026-08-31T10:00:00.000Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-city-baseline-p1b",
+      "entityId": "city-755ab5138ab73d92",
+      "entityType": "city",
+      "parentCountryEntityId": "country-184a7b5ce0956340",
+      "wikidataId": "Q311946",
+      "canonicalNameZh": "纳伦",
+      "canonicalNameEn": "Naryn",
+      "aliases": [
+        "Fort Narin",
+        "Fort Naryn",
+        "Ft. Narin",
+        "Ft. Naryn",
+        "Narin",
+        "Narin (city)",
+        "Narin (town)",
+        "Naryn (city)",
+        "Naryn (town)",
+        "納倫",
+        "納林",
+        "纳林"
+      ],
+      "coordinates": {
+        "latitude": 41.433333333333,
+        "longitude": 76
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-08-31T10:00:00.000Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 09",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "city-755ab5138ab73d92"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 09",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "city"
+        },
+        "parentCountryEntityId": {
+          "field": "parentCountryEntityId",
+          "sourceType": "repository-reference",
+          "source": "Kyrgyzstan Country Entity",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q813",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "country-184a7b5ce0956340"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q311946",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "Q311946"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q311946",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "纳伦"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q311946",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "Naryn"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q311946",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": [
+            "Fort Narin",
+            "Fort Naryn",
+            "Ft. Narin",
+            "Ft. Naryn",
+            "Narin",
+            "Narin (city)",
+            "Narin (town)",
+            "Naryn (city)",
+            "Naryn (town)",
+            "納倫",
+            "納林",
+            "纳林"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q311946",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": {
+            "latitude": 41.433333333333,
+            "longitude": 76
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 09",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 09",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q311946",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "2026-08-31T10:00:00.000Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-city-baseline-p1b",
+      "entityId": "city-aaa57226cc6a5d42",
+      "entityType": "city",
+      "parentCountryEntityId": "country-184a7b5ce0956340",
+      "wikidataId": "Q47282",
+      "canonicalNameZh": "奥什",
+      "canonicalNameEn": "Osh",
+      "aliases": [
+        "Oš",
+        "Uš",
+        "Ush",
+        "奧什",
+        "貳師城",
+        "贰师"
+      ],
+      "coordinates": {
+        "latitude": 40.533333333333,
+        "longitude": 72.783333333333
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-08-31T10:00:00.000Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 09",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "city-aaa57226cc6a5d42"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 09",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "city"
+        },
+        "parentCountryEntityId": {
+          "field": "parentCountryEntityId",
+          "sourceType": "repository-reference",
+          "source": "Kyrgyzstan Country Entity",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q813",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "country-184a7b5ce0956340"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q47282",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "Q47282"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q47282",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "奥什"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q47282",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "Osh"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q47282",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": [
+            "Oš",
+            "Uš",
+            "Ush",
+            "奧什",
+            "貳師城",
+            "贰师"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q47282",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": {
+            "latitude": 40.533333333333,
+            "longitude": 72.783333333333
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 09",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 09",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q47282",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "2026-08-31T10:00:00.000Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-city-baseline-p1b",
+      "entityId": "city-094fa7d0de3daa08",
+      "entityType": "city",
+      "parentCountryEntityId": "country-61b83c295890771d",
+      "wikidataId": "Q383622",
+      "canonicalNameZh": "巴色",
+      "canonicalNameEn": "Pakse",
+      "aliases": [
+        "Pak se",
+        "Pāksē",
+        "Pakxé",
+        "巴色县"
+      ],
+      "coordinates": {
+        "latitude": 15.116666666667,
+        "longitude": 105.78333333333
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-08-31T10:00:00.000Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 09",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "city-094fa7d0de3daa08"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 09",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "city"
+        },
+        "parentCountryEntityId": {
+          "field": "parentCountryEntityId",
+          "sourceType": "repository-reference",
+          "source": "Laos Country Entity",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q819",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "country-61b83c295890771d"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q383622",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "Q383622"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q383622",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "巴色"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q383622",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "Pakse"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q383622",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": [
+            "Pak se",
+            "Pāksē",
+            "Pakxé",
+            "巴色县"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q383622",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": {
+            "latitude": 15.116666666667,
+            "longitude": 105.78333333333
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 09",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 09",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q383622",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "2026-08-31T10:00:00.000Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-city-baseline-p1b",
+      "entityId": "city-9ef994b032cc19c3",
+      "entityType": "city",
+      "parentCountryEntityId": "country-e3bcf0b6f0639562",
+      "wikidataId": "Q862041",
+      "canonicalNameZh": "帕罗",
+      "canonicalNameEn": "Paro",
+      "aliases": [
+        "Paro, Bhutan",
+        "帕羅"
+      ],
+      "coordinates": {
+        "latitude": 27.433333333333,
+        "longitude": 89.416666666667
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-08-31T10:00:00.000Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 09",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "city-9ef994b032cc19c3"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 09",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "city"
+        },
+        "parentCountryEntityId": {
+          "field": "parentCountryEntityId",
+          "sourceType": "repository-reference",
+          "source": "Bhutan Country Entity",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q917",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "country-e3bcf0b6f0639562"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q862041",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "Q862041"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q862041",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "帕罗"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q862041",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "Paro"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "repository-reference",
+          "source": "Batch 09 reviewed search aliases bound to the exact Wikidata city entity",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q862041",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": [
+            "Paro, Bhutan",
+            "帕羅"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q862041",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": {
+            "latitude": 27.433333333333,
+            "longitude": 89.416666666667
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 09",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 09",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q862041",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "2026-08-31T10:00:00.000Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-city-baseline-p1b",
+      "entityId": "city-4c109219ee0a9be4",
+      "entityType": "city",
+      "parentCountryEntityId": "country-9de571d9d0059602",
+      "wikidataId": "Q1113311",
+      "canonicalNameZh": "白沙瓦",
+      "canonicalNameEn": "Peshawar",
+      "aliases": [
+        "Pechaver",
+        "Pekhawar",
+        "Pesháwar",
+        "Peshawer",
+        "Peshawur",
+        "柏夏瓦",
+        "白夏瓦"
+      ],
+      "coordinates": {
+        "latitude": 34.01444444444444,
+        "longitude": 71.5675
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-08-31T10:00:00.000Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 09",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "city-4c109219ee0a9be4"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 09",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "city"
+        },
+        "parentCountryEntityId": {
+          "field": "parentCountryEntityId",
+          "sourceType": "repository-reference",
+          "source": "Pakistan Country Entity",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q843",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "country-9de571d9d0059602"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1113311",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "Q1113311"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1113311",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "白沙瓦"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1113311",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "Peshawar"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1113311",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": [
+            "Pechaver",
+            "Pekhawar",
+            "Pesháwar",
+            "Peshawer",
+            "Peshawur",
+            "柏夏瓦",
+            "白夏瓦"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1113311",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": {
+            "latitude": 34.01444444444444,
+            "longitude": 71.5675
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 09",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 09",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1113311",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "2026-08-31T10:00:00.000Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-city-baseline-p1b",
+      "entityId": "city-e81ec17a373169cf",
+      "entityType": "city",
+      "parentCountryEntityId": "country-e3bcf0b6f0639562",
+      "wikidataId": "Q826112",
+      "canonicalNameZh": "普那卡",
+      "canonicalNameEn": "Punakha",
+      "aliases": [],
+      "coordinates": {
+        "latitude": 27.616666666667,
+        "longitude": 89.866666666667
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-08-31T10:00:00.000Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 09",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "city-e81ec17a373169cf"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 09",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "city"
+        },
+        "parentCountryEntityId": {
+          "field": "parentCountryEntityId",
+          "sourceType": "repository-reference",
+          "source": "Bhutan Country Entity",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q917",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "country-e3bcf0b6f0639562"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q826112",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "Q826112"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q826112",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "普那卡"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q826112",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "Punakha"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q826112",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": []
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q826112",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": {
+            "latitude": 27.616666666667,
+            "longitude": 89.866666666667
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 09",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 09",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q826112",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "2026-08-31T10:00:00.000Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-city-baseline-p1b",
+      "entityId": "city-9a6a935e045e546c",
+      "entityType": "city",
+      "parentCountryEntityId": "country-9de571d9d0059602",
+      "wikidataId": "Q185458",
+      "canonicalNameZh": "奎达",
+      "canonicalNameEn": "Quetta",
+      "aliases": [
+        "奎塔",
+        "奎達"
+      ],
+      "coordinates": {
+        "latitude": 30.195833333333333,
+        "longitude": 67.01722222222222
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-08-31T10:00:00.000Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 09",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "city-9a6a935e045e546c"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 09",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "city"
+        },
+        "parentCountryEntityId": {
+          "field": "parentCountryEntityId",
+          "sourceType": "repository-reference",
+          "source": "Pakistan Country Entity",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q843",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "country-9de571d9d0059602"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q185458",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "Q185458"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q185458",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "奎达"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q185458",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "Quetta"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q185458",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": [
+            "奎塔",
+            "奎達"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q185458",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": {
+            "latitude": 30.195833333333333,
+            "longitude": 67.01722222222222
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 09",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 09",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q185458",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "2026-08-31T10:00:00.000Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-city-baseline-p1b",
+      "entityId": "city-14de570973ef9555",
+      "entityType": "city",
+      "parentCountryEntityId": "country-3230bd8e619dabfb",
+      "wikidataId": "Q322155",
+      "canonicalNameZh": "拉杰沙希市",
+      "canonicalNameEn": "Rajshahi",
+      "aliases": [
+        "Rājśāhī",
+        "拉杰沙希"
+      ],
+      "coordinates": {
+        "latitude": 24.366666666667,
+        "longitude": 88.6
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-08-31T10:00:00.000Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 09",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "city-14de570973ef9555"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 09",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "city"
+        },
+        "parentCountryEntityId": {
+          "field": "parentCountryEntityId",
+          "sourceType": "repository-reference",
+          "source": "Bangladesh Country Entity",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q902",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "country-3230bd8e619dabfb"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q322155",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "Q322155"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q322155",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "拉杰沙希市"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q322155",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "Rajshahi"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q322155",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": [
+            "Rājśāhī",
+            "拉杰沙希"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q322155",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": {
+            "latitude": 24.366666666667,
+            "longitude": 88.6
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 09",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 09",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q322155",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "2026-08-31T10:00:00.000Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-city-baseline-p1b",
+      "entityId": "city-e46d4726fe6f2c35",
+      "entityType": "city",
+      "parentCountryEntityId": "country-3230bd8e619dabfb",
+      "wikidataId": "Q994514",
+      "canonicalNameZh": "朗布尔",
+      "canonicalNameEn": "Rangpur",
+      "aliases": [
+        "Rangpur, Bangladesh",
+        "朗布尔市",
+        "朗普尔",
+        "郎普尔"
+      ],
+      "coordinates": {
+        "latitude": 25.75,
+        "longitude": 89.24444444444444
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-08-31T10:00:00.000Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 09",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "city-e46d4726fe6f2c35"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 09",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "city"
+        },
+        "parentCountryEntityId": {
+          "field": "parentCountryEntityId",
+          "sourceType": "repository-reference",
+          "source": "Bangladesh Country Entity",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q902",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "country-3230bd8e619dabfb"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q994514",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "Q994514"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q994514",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "朗布尔"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q994514",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "Rangpur"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "repository-reference",
+          "source": "Batch 09 reviewed search aliases bound to the exact Wikidata city entity",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q994514",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": [
+            "Rangpur, Bangladesh",
+            "朗布尔市",
+            "朗普尔",
+            "郎普尔"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q994514",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": {
+            "latitude": 25.75,
+            "longitude": 89.24444444444444
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 09",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 09",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q994514",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "2026-08-31T10:00:00.000Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-city-baseline-p1b",
+      "entityId": "city-1de66dcdd7ca182e",
+      "entityType": "city",
+      "parentCountryEntityId": "country-61b83c295890771d",
+      "wikidataId": "Q750443",
+      "canonicalNameZh": "凯山丰威汉市",
+      "canonicalNameEn": "Savannakhet",
+      "aliases": [
+        "Kaisǭn Phomvihān City",
+        "Kaysone Phomvihane",
+        "Kaysone Phomvihane City",
+        "Kaysone Phomvihane District",
+        "Khanthabouli",
+        "Khanthaboury",
+        "Khanthaboury District",
+        "Muang Kaysone Phomvihane",
+        "Muang Khanthabouli",
+        "Savannakhet District",
+        "沙灣拿吉",
+        "沙灣那吉"
+      ],
+      "coordinates": {
+        "latitude": 16.55,
+        "longitude": 104.75
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-08-31T10:00:00.000Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 09",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "city-1de66dcdd7ca182e"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 09",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "city"
+        },
+        "parentCountryEntityId": {
+          "field": "parentCountryEntityId",
+          "sourceType": "repository-reference",
+          "source": "Laos Country Entity",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q819",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "country-61b83c295890771d"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q750443",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "Q750443"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q750443",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "凯山丰威汉市"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q750443",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "Savannakhet"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q750443",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": [
+            "Kaisǭn Phomvihān City",
+            "Kaysone Phomvihane",
+            "Kaysone Phomvihane City",
+            "Kaysone Phomvihane District",
+            "Khanthabouli",
+            "Khanthaboury",
+            "Khanthaboury District",
+            "Muang Kaysone Phomvihane",
+            "Muang Khanthabouli",
+            "Savannakhet District",
+            "沙灣拿吉",
+            "沙灣那吉"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q750443",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": {
+            "latitude": 16.55,
+            "longitude": 104.75
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 09",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 09",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q750443",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "2026-08-31T10:00:00.000Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-city-baseline-p1b",
+      "entityId": "city-ee047f3d09518639",
+      "entityType": "city",
+      "parentCountryEntityId": "country-9de571d9d0059602",
+      "wikidataId": "Q976955",
+      "canonicalNameZh": "斯卡都",
+      "canonicalNameEn": "Skardu",
+      "aliases": [
+        "Askardo",
+        "Eskerdou",
+        "Iskardu",
+        "斯卡杜",
+        "錫卡都"
+      ],
+      "coordinates": {
+        "latitude": 35.3,
+        "longitude": 75.616666666667
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-08-31T10:00:00.000Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 09",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "city-ee047f3d09518639"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 09",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "city"
+        },
+        "parentCountryEntityId": {
+          "field": "parentCountryEntityId",
+          "sourceType": "repository-reference",
+          "source": "Pakistan Country Entity",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q843",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "country-9de571d9d0059602"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q976955",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "Q976955"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q976955",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "斯卡都"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q976955",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "Skardu"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q976955",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": [
+            "Askardo",
+            "Eskerdou",
+            "Iskardu",
+            "斯卡杜",
+            "錫卡都"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q976955",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": {
+            "latitude": 35.3,
+            "longitude": 75.616666666667
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 09",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 09",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q976955",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "2026-08-31T10:00:00.000Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-city-baseline-p1b",
+      "entityId": "city-d37a11d8ee0bcc01",
+      "entityType": "city",
+      "parentCountryEntityId": "country-3230bd8e619dabfb",
+      "wikidataId": "Q466221",
+      "canonicalNameZh": "锡尔赫特",
+      "canonicalNameEn": "Sylhet",
+      "aliases": [
+        "Srihatta nagara",
+        "Sylhet Mahanagar",
+        "Sylhet town",
+        "The city of Srihatta",
+        "夕列特",
+        "錫爾赫特",
+        "锡莱特"
+      ],
+      "coordinates": {
+        "latitude": 24.9,
+        "longitude": 91.866666666667
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-08-31T10:00:00.000Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 09",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "city-d37a11d8ee0bcc01"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 09",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "city"
+        },
+        "parentCountryEntityId": {
+          "field": "parentCountryEntityId",
+          "sourceType": "repository-reference",
+          "source": "Bangladesh Country Entity",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q902",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "country-3230bd8e619dabfb"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q466221",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "Q466221"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q466221",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "锡尔赫特"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q466221",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "Sylhet"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q466221",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": [
+            "Srihatta nagara",
+            "Sylhet Mahanagar",
+            "Sylhet town",
+            "The city of Srihatta",
+            "夕列特",
+            "錫爾赫特",
+            "锡莱特"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q466221",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": {
+            "latitude": 24.9,
+            "longitude": 91.866666666667
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 09",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 09",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q466221",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "2026-08-31T10:00:00.000Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-city-baseline-p1b",
+      "entityId": "city-f5714e39a7e65005",
+      "entityType": "city",
+      "parentCountryEntityId": "country-e3bcf0b6f0639562",
+      "wikidataId": "Q9270",
+      "canonicalNameZh": "廷布",
+      "canonicalNameEn": "Thimphu",
+      "aliases": [
+        "Thimpu",
+        "ཐིམ་ཕུ་"
+      ],
+      "coordinates": {
+        "latitude": 27.47135,
+        "longitude": 89.63367
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-08-31T10:00:00.000Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 09",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "city-f5714e39a7e65005"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 09",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "city"
+        },
+        "parentCountryEntityId": {
+          "field": "parentCountryEntityId",
+          "sourceType": "repository-reference",
+          "source": "Bhutan Country Entity",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q917",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "country-e3bcf0b6f0639562"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q9270",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "Q9270"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q9270",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "廷布"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q9270",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "Thimphu"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q9270",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": [
+            "Thimpu",
+            "ཐིམ་ཕུ་"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q9270",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": {
+            "latitude": 27.47135,
+            "longitude": 89.63367
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 09",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 09",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q9270",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "2026-08-31T10:00:00.000Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-city-baseline-p1b",
+      "entityId": "city-87598a85c699d0ec",
+      "entityType": "city",
+      "parentCountryEntityId": "country-184a7b5ce0956340",
+      "wikidataId": "Q854333",
+      "canonicalNameZh": "托克马克",
+      "canonicalNameEn": "Tokmok",
+      "aliases": [
+        "Tokmak",
+        "托克玛克",
+        "托克瑪克",
+        "托克莫克",
+        "托克马克市",
+        "碎葉國",
+        "素叶城",
+        "虎思斡耳朵"
+      ],
+      "coordinates": {
+        "latitude": 42.839,
+        "longitude": 75.291
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-08-31T10:00:00.000Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 09",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "city-87598a85c699d0ec"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 09",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "city"
+        },
+        "parentCountryEntityId": {
+          "field": "parentCountryEntityId",
+          "sourceType": "repository-reference",
+          "source": "Kyrgyzstan Country Entity",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q813",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "country-184a7b5ce0956340"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q854333",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "Q854333"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q854333",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "托克马克"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q854333",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "Tokmok"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q854333",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": [
+            "Tokmak",
+            "托克玛克",
+            "托克瑪克",
+            "托克莫克",
+            "托克马克市",
+            "碎葉國",
+            "素叶城",
+            "虎思斡耳朵"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q854333",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": {
+            "latitude": 42.839,
+            "longitude": 75.291
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 09",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 09",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q854333",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "2026-08-31T10:00:00.000Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-city-baseline-p1b",
+      "entityId": "city-9264d8b71fda5177",
+      "entityType": "city",
+      "parentCountryEntityId": "country-61b83c295890771d",
+      "wikidataId": "Q1012615",
+      "canonicalNameZh": "万荣",
+      "canonicalNameEn": "Vang Vieng",
+      "aliases": [
+        "Vangviang",
+        "旺陽",
+        "萬榮"
+      ],
+      "coordinates": {
+        "latitude": 18.926666666666666,
+        "longitude": 102.44944444444444
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-08-31T10:00:00.000Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 09",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "city-9264d8b71fda5177"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 09",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "city"
+        },
+        "parentCountryEntityId": {
+          "field": "parentCountryEntityId",
+          "sourceType": "repository-reference",
+          "source": "Laos Country Entity",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q819",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "country-61b83c295890771d"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1012615",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "Q1012615"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1012615",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "万荣"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1012615",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "Vang Vieng"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1012615",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": [
+            "Vangviang",
+            "旺陽",
+            "萬榮"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1012615",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": {
+            "latitude": 18.926666666666666,
+            "longitude": 102.44944444444444
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 09",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 09",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1012615",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "2026-08-31T10:00:00.000Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-city-baseline-p1b",
+      "entityId": "city-55005277884e682e",
+      "entityType": "city",
+      "parentCountryEntityId": "country-61b83c295890771d",
+      "wikidataId": "Q9326",
+      "canonicalNameZh": "万象",
+      "canonicalNameEn": "Vientiane",
+      "aliases": [
+        "Bientani",
+        "Nakhon Viangchan",
+        "urban Vientiane",
+        "Viang chan",
+        "Viangchan",
+        "Vieṅ Čan",
+        "Vien Chang",
+        "Vienchan",
+        "Vieng-Cæn",
+        "Vieṅg-Čăn",
+        "Viengchan",
+        "Vientane",
+        "Vyentyan",
+        "Wei-t'ien",
+        "Wiangcan",
+        "Wīangčhan",
+        "永珍"
+      ],
+      "coordinates": {
+        "latitude": 17.98,
+        "longitude": 102.63
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-08-31T10:00:00.000Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 09",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "city-55005277884e682e"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 09",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "city"
+        },
+        "parentCountryEntityId": {
+          "field": "parentCountryEntityId",
+          "sourceType": "repository-reference",
+          "source": "Laos Country Entity",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q819",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "country-61b83c295890771d"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q9326",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "Q9326"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q9326",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "万象"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q9326",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "Vientiane"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q9326",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": [
+            "Bientani",
+            "Nakhon Viangchan",
+            "urban Vientiane",
+            "Viang chan",
+            "Viangchan",
+            "Vieṅ Čan",
+            "Vien Chang",
+            "Vienchan",
+            "Vieng-Cæn",
+            "Vieṅg-Čăn",
+            "Viengchan",
+            "Vientane",
+            "Vyentyan",
+            "Wei-t'ien",
+            "Wiangcan",
+            "Wīangčhan",
+            "永珍"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q9326",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": {
+            "latitude": 17.98,
+            "longitude": 102.63
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 09",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 09",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q9326",
+          "retrievedAt": "2026-08-31T10:00:00.000Z",
+          "value": "2026-08-31T10:00:00.000Z"
+        }
+      }
+    }
+  ]
+}

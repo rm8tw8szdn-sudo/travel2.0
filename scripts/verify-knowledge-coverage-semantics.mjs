@@ -8,24 +8,38 @@ import { createPublishedKnowledgeEntityLayerRepository } from "../src/lib/routes
 
 const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const repository = createPublishedKnowledgeEntityLayerRepository({ projectRoot });
+const countries = repository.listCountries();
+const cities = repository.listCities();
+const pois = repository.listPois();
 const readJsonl = (relativePath) => fs.readFileSync(path.join(projectRoot, relativePath), "utf8")
   .split(/\r?\n/u)
   .filter(Boolean)
   .map((line) => JSON.parse(line));
 const report = createKnowledgeCoverageSemantics({
-  countries: repository.listCountries(),
-  cities: repository.listCities(),
-  pois: repository.listPois(),
+  countries,
+  cities,
+  pois,
   routeLegEvidence: readJsonl("data/route-v2/evidence-seed/route-leg-evidence.jsonl"),
   seasonEvidence: readJsonl("data/route-v2/evidence-seed/season-evidence.jsonl"),
 });
 
-assert.equal(report.catalogCountries, 99);
-assert.equal(report.plannableCountries, 98);
-assert.equal(report.evidenceBackedCountries, 95);
-assert.equal(report.countryOnlyCountries, 1);
-assert.equal(report.plannablePercentage, 99);
-assert.equal(report.evidenceBackedPercentage, 96);
+const publishedCountryCodes = new Set(countries.map((country) => country.isoAlpha2));
+const expectedPercentage = (value) => Number(((value / publishedCountryCodes.size) * 100).toFixed(1));
+const batch09CountryCodes = [
+  "DZ", "GH", "SN", "ET", "NA", "BW", "MG", "MU", "KZ", "UZ",
+  "KG", "BD", "BT", "PK", "LA", "BN", "HN", "SV", "WS", "VU",
+];
+
+assert.equal(report.catalogCountries, publishedCountryCodes.size, "catalog coverage must follow the published Country registry");
+assert.equal(report.plannableCountries + report.countryOnlyCountries, report.catalogCountries);
+assert.equal(report.evidenceBackedCountries, report.evidenceBackedCountryCodes.length);
+assert.equal(report.plannableCountries, report.plannableCountryCodes.length);
+assert.equal(report.countryOnlyCountries, report.countryOnlyCountryCodes.length);
+assert.equal(report.plannablePercentage, expectedPercentage(report.plannableCountries));
+assert.equal(report.evidenceBackedPercentage, expectedPercentage(report.evidenceBackedCountries));
+assert.equal(report.evidenceBackedCountryCodes.every((code) => report.plannableCountryCodes.includes(code)), true);
+assert.equal(batch09CountryCodes.every((code) => report.plannableCountryCodes.includes(code)), true, "all Batch 09 countries must be plannable");
+assert.equal(batch09CountryCodes.every((code) => report.evidenceBackedCountryCodes.includes(code)), true, "all Batch 09 countries must be Evidence-backed");
 assert.equal(report.plannableCountryCodes.includes("NO"), true, "Batch 05 Norway City/POI depth must be reflected as plannable");
 assert.equal(report.countryOnlyCountryCodes.includes("NO"), false);
 assert.equal(report.plannableCountryCodes.includes("AD"), true, "Batch 06 Andorra City/POI depth must be reflected as plannable");

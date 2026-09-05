@@ -327,6 +327,8 @@ function categoryFor({ imagePath, formalRecords, references }) {
   if (formalRecords.some((record) => record.entityType === "POI" && record.isDedicated)) return "dedicated-poi";
   if (SAFE_PLACEHOLDERS.has(imagePath)) return "neutral-placeholder";
   if (imagePath.startsWith("assets/ref/")) return "audit-source";
+  if (imagePath.startsWith("assets/route-v2-images/pois/")
+    && references.some((reference) => /^data\/route-v2\/images\/(?:batch\d{2}-dedicated-image-provenance|image-debt-elimination-provenance)\.json$/u.test(reference.sourcePath))) return "audit-source";
   if (UI_PATTERN.test(imagePath)) return "ui-decorative";
   if (DESTINATION_LEGACY_PATTERN.test(imagePath)) return references.some((reference) => reference.kind === "production") ? "route-generic-travel-ui" : "legacy-unused";
   return "unknown";

@@ -6,7 +6,7 @@ Generated: 2026-08-24T12:00:00.000Z
 
 - Countries expanded: 20 in 4 waves (Tier 1: 10; Tier 2: 9; Tier 3: 1)
 - Published additions: 20 Countries / 139 Cities / 908 POIs
-- Published totals: 99 Countries / 718 Cities / 4,766 POIs / 5,583 entities
+- Published totals: 79 Countries / 601 Cities / 4,038 POIs / 4,718 entities
 - Directed Transport Evidence added: 154
 - Objective Month Risk added: 80
 - Route consumption: 97/97 PASS across 20 target countries; external calls: 0
@@ -15,12 +15,12 @@ Generated: 2026-08-24T12:00:00.000Z
 
 ## Portfolio semantics
 
-- Country Entities (Catalog): 99
-- Plannable Countries: 98
-- Route Knowledge Covered Countries: 98
-- Evidence-backed Countries: 95
+- Country Entities (Catalog): 79
+- Plannable Countries: 78
+- Route Knowledge Covered Countries: 78
+- Evidence-backed Countries: 75
 - Catalog-only: CN
-- Remaining uncataloged Countries (approximately 195 global): 96
+- Remaining uncataloged Countries (approximately 195 global): 116
 
 China was retained as Catalog-only because Search V1 intentionally blocks it. All 20 Batch 07 targets were selected from the uncataloged inventory; no Route Engine policy was relaxed.
 
@@ -28,14 +28,14 @@ China was retained as Catalog-only because Search V1 intentionally blocks it. Al
 
 - Historical image debt before Batch 07: 531
 - Historical dedicated destination images added: 0
-- Historical needsBackfill after Batch 07: 13
+- Historical needsBackfill after Batch 07: 531
 - Batch 07 Country Covers: 20/20
 - Batch 07 verified dedicated destination images: 42
-- Country Cover coverage: 98/98
-- Dedicated City coverage: 600/718 (83.6%)
-- Dedicated Core POI coverage: 212/282 (75.2%)
-- Neutral placeholders: 188 (118 City + 70 Core POI)
-- Remaining needsBackfill: 188
+- Country Cover coverage: 78/78
+- Dedicated City coverage: 96/601 (16%)
+- Dedicated Core POI coverage: 42/224 (18.8%)
+- Neutral placeholders: 687 (505 City + 182 Core POI)
+- Remaining needsBackfill: 687
 - invalidMapping: 0
 - Runtime external image requests allowed: false
 
@@ -52,8 +52,8 @@ The suggested 100–150 image backfill was deliberately treated as non-binding: 
 
 ## Asset size and duplicate audit
 
-- Local image assets: 977
-- Total bytes: 202048252
+- Local image assets: 283
+- Total bytes: 43101273
 - >300KB: 18; >500KB: 9; >1MB: 1; >5MB: 0
 - Exact duplicate groups: 2; perceptual duplicate groups: 9
 

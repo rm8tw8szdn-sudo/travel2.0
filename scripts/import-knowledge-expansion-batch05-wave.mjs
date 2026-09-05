@@ -19,14 +19,16 @@ import {
 import { validateKnowledgeCityEntitySet } from "../src/lib/routes/knowledge-city-baseline-schema.mjs";
 import { validateKnowledgePoiEntitySet } from "../src/lib/routes/knowledge-poi-baseline-schema.mjs";
 import { KNOWLEDGE_ENTITY_LAYER_PUBLISHED_ASSETS } from "../src/lib/routes/knowledge-entity-layer-published-assets.mjs";
+import { evaluatePoiTypeIdsForConsumer } from "../src/lib/routes/knowledge-poi-semantic-admission.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const argument = (name) => process.argv.find((value) => value.startsWith(`--${name}=`))?.slice(name.length + 3) || "";
 const BATCH = argument("batch") || "05";
-if (!["05", "06", "07", "08"].includes(BATCH)) throw new Error("batch-argument-invalid:--batch=05|06|07|08");
+if (!["05", "06", "07", "08", "09"].includes(BATCH)) throw new Error("batch-argument-invalid:--batch=05|06|07|08|09");
 const BATCH_LABEL = `Batch ${BATCH}`;
 const SEED_PATH = `data/knowledge/seeds/knowledge-expansion-batch${BATCH}-20-country.json`;
 const COUNTRY_OUTPUT = `data/knowledge/batches/countries.p1a-batch${BATCH}.json`;
+const TYPE_POLICY_PATH = "data/knowledge/semantic/knowledge-semantic-type-policy.json";
 const WIKIDATA_API = "https://www.wikidata.org/w/api.php";
 const WIKIPEDIA_API = "https://en.wikipedia.org/w/api.php";
 const LOCAL_WIKIPEDIA_LANGUAGE = Object.freeze({
@@ -39,6 +41,9 @@ const LOCAL_WIKIPEDIA_LANGUAGE = Object.freeze({
   BH: "ar", KW: "ar", LB: "ar", DO: "es", JM: "en", CU: "es", BS: "en", BO: "es", PY: "es", NI: "es",
   BE: "nl", CA: "fr", CZ: "cs", DK: "da", FI: "fi", HR: "hr", HU: "hu", ID: "id", IE: "ga",
   MX: "es", MY: "ms", NO: "no", PE: "es", PL: "pl", SE: "sv", SI: "sl", VN: "vi",
+  DZ: "ar", GH: "en", SN: "fr", ET: "am", NA: "en", BW: "en", MG: "mg", MU: "fr",
+  KZ: "kk", UZ: "uz", KG: "ky", BD: "bn", BT: "dz", PK: "ur", LA: "lo", BN: "ms",
+  HN: "es", SV: "es", WS: "sm", VU: "bi",
 });
 const USER_AGENT = `travel2-route-v2-knowledge-expansion-batch${BATCH}/1.0 (https://github.com/rm8tw8szdn-sudo/travel2.0)`;
 const FETCH_CACHE_ROOT = path.join(ROOT, ".tmp", `route-v2-batch${BATCH}-import-cache`);
@@ -51,29 +56,6 @@ const POI_ROOTS = new Set([
   "Q172754", "Q35145263", "Q20719696", "Q15324", "Q271669", "Q811979", "Q811430", "Q1497375",
   "Q132911", "Q210272", "Q338112", "Q123705",
 ]);
-const OPERATIONAL_POI_ROOTS = new Set([
-  "Q1248784", // airport
-  "Q62447", // aerodrome
-  "Q695850", // airbase
-  "Q55488", // railway station
-  "Q928830", // metro station
-  "Q728937", // railway line
-  "Q5503", // rapid transit
-  "Q18325841", // public transport network
-  "Q2678338", // railway network
-  "Q2516436", // transportation system
-  "Q15984860", // transport system
-  "Q44782", // port
-  "Q3918", // university institution
-  "Q16917", // hospital
-  "Q40357", // prison
-  "Q861951", // police station
-  "Q917182", // military academy
-]);
-const VISITOR_POI_ROOTS = new Set([
-  "Q570116", "Q33506", "Q4989906", "Q1370598", "Q22698", "Q839954", "Q9259", "Q473972",
-  "Q294440", "Q166118", "Q172754", "Q35145263", "Q15324", "Q271669", "Q1497375", "Q37654",
-]);
 const ISO = Object.freeze({
   HU: ["HUN", "348"], HR: ["HRV", "191"], SE: ["SWE", "752"], SI: ["SVN", "705"],
   KH: ["KHM", "116"], RO: ["ROU", "642"], CR: ["CRI", "188"], UY: ["URY", "858"],
@@ -85,6 +67,10 @@ const ISO = Object.freeze({
   LU: ["LUX", "442"], MC: ["MCO", "492"], LI: ["LIE", "438"], OM: ["OMN", "512"], QA: ["QAT", "634"],
   BH: ["BHR", "048"], KW: ["KWT", "414"], LB: ["LBN", "422"], DO: ["DOM", "214"], JM: ["JAM", "388"],
   CU: ["CUB", "192"], BS: ["BHS", "044"], BO: ["BOL", "068"], PY: ["PRY", "600"], NI: ["NIC", "558"],
+  DZ: ["DZA", "012"], GH: ["GHA", "288"], SN: ["SEN", "686"], ET: ["ETH", "231"], NA: ["NAM", "516"],
+  BW: ["BWA", "072"], MG: ["MDG", "450"], MU: ["MUS", "480"], KZ: ["KAZ", "398"], UZ: ["UZB", "860"],
+  KG: ["KGZ", "417"], BD: ["BGD", "050"], BT: ["BTN", "064"], PK: ["PAK", "586"], LA: ["LAO", "418"],
+  BN: ["BRN", "096"], HN: ["HND", "340"], SV: ["SLV", "222"], WS: ["WSM", "882"], VU: ["VUT", "548"],
 });
 const COUNTRY_OUTPUT_CODES = BATCH === "05"
   ? new Set(["HU", "HR", "SE", "SI"])
@@ -92,7 +78,9 @@ const COUNTRY_OUTPUT_CODES = BATCH === "05"
     ? new Set(["KH", "RO", "CR", "UY"])
     : BATCH === "07"
       ? new Set(["AL", "BG", "CY", "EE", "LV", "LT", "MT", "ME", "RS", "SK", "GE", "JO", "LK", "NP", "MV", "TN", "TZ", "EC", "PA", "GT"])
-      : new Set(["AM", "AZ", "BA", "MK", "MD", "LU", "MC", "LI", "OM", "QA", "BH", "KW", "LB", "DO", "JM", "CU", "BS", "BO", "PY", "NI"]);
+      : BATCH === "08"
+        ? new Set(["AM", "AZ", "BA", "MK", "MD", "LU", "MC", "LI", "OM", "QA", "BH", "KW", "LB", "DO", "JM", "CU", "BS", "BO", "PY", "NI"])
+        : new Set(["DZ", "GH", "SN", "ET", "NA", "BW", "MG", "MU", "KZ", "UZ", "KG", "BD", "BT", "PK", "LA", "BN", "HN", "SV", "WS", "VU"]);
 
 const wave = Number(argument("wave"));
 if (![1, 2, 3, 4].includes(wave)) throw new Error("wave-argument-required:--wave=1|2|3|4");
@@ -280,22 +268,13 @@ function classified(entity, roots, graph) {
   return null;
 }
 
-function routePoiEligibility(entity, graph) {
-  const instanceQids = qids(entity, "P31");
-  const operationalTypePath = instanceQids.map((qid) => pathToRoot(qid, OPERATIONAL_POI_ROOTS, graph)).find(Boolean) || null;
-  // A separate, non-operational P31 must establish visitor value. This keeps
-  // broad facility ancestry from making a bare port or transit system pass,
-  // while still permitting an entity explicitly typed as both a station and
-  // a tourist attraction or heritage site.
-  const visitorTypePath = instanceQids
-    .filter((qid) => !pathToRoot(qid, OPERATIONAL_POI_ROOTS, graph))
-    .map((qid) => pathToRoot(qid, VISITOR_POI_ROOTS, graph))
-    .find(Boolean) || null;
-  return {
-    accepted: !operationalTypePath || Boolean(visitorTypePath),
-    operationalTypePath,
-    visitorTypePath,
-  };
+function productionClassified(entity, kind, typePolicy) {
+  const roots = new Set((typePolicy.roots?.[kind] || []).map((entry) => entry.qid));
+  for (const instanceQid of qids(entity, "P31")) {
+    const path = typePolicy.typeClassifications?.[instanceQid]?.allowedKinds?.[kind];
+    if (Array.isArray(path) && path.length > 0 && roots.has(path.at(-1))) return path;
+  }
+  return null;
 }
 
 function provenance(field, sourceType, source, sourceUrl, value, retrievedAt) {
@@ -443,6 +422,7 @@ function citySeed(country, tuple, targetByTier) {
 
 async function main() {
   const seedDocument = JSON.parse(await readFile(path.join(ROOT, SEED_PATH), "utf8"));
+  const productionTypePolicy = JSON.parse(await readFile(path.join(ROOT, TYPE_POLICY_PATH), "utf8"));
   const waveConfig = seedDocument.waves[String(wave)];
   const batchNumber = waveConfig.batchNumber;
   const currentCityPath = `data/knowledge/batches/cities.p1b-batch${batchNumber}.json`;
@@ -512,14 +492,23 @@ async function main() {
     const reasons = [];
     const coords = coordinate(entity);
     const typePath = classified(entity, CITY_ROOTS, cityTypeGraph);
+    const productionTypePath = productionClassified(entity, "city", productionTypePolicy);
     if (!coords) reasons.push("coordinate-missing");
     if (!qids(entity, "P17").includes(countrySeed.qid)) reasons.push("country-claim-mismatch");
     if (!typePath) reasons.push("positive-city-type-unconfirmed");
-    if (reasons.length) throw new Error(`city-semantic-rejected:${seed.title}:${reasons.join(",")}`);
+    if (!productionTypePath) reasons.push("production-city-type-unconfirmed");
+    if (reasons.length) {
+      reviews.push({
+        reviewId: `batch${BATCH}-wave${wave}-review-${String(reviews.length + 1).padStart(5, "0")}`,
+        entityType: "city-candidate", countryCode: seed.iso, requestedTitle: seed.title,
+        wikidataId: entity.id, reasonCodes: reasons, disposition: "quarantined-city-not-published",
+      });
+      continue;
+    }
     const existing = cityByQid.get(entity.id);
     if (existing && existing.parentCountryEntityId !== country.entityId) throw new Error(`existing-city-parent-mismatch:${entity.id}`);
     const city = existing || buildCity(seed, entity, country, retrievedAt);
-    selectedCities.push({ seed, city, typePath, reused: Boolean(existing) });
+    selectedCities.push({ seed, city, typePath: productionTypePath, reused: Boolean(existing) });
     if (!existing) newCities.push(city);
   }
 
@@ -543,14 +532,15 @@ async function main() {
       const reasons = [];
       const coords = coordinate(entity);
       const poiPath = classified(entity, POI_ROOTS, poiTypeGraph);
+      const poiAdmission = evaluatePoiTypeIdsForConsumer("importer", qids(entity, "P31"), productionTypePolicy);
+      const productionPoiPath = poiAdmission.paths.find((path, index) => poiAdmission.pathClassifications[index] === "travel-positive") || null;
       const cityPath = classified(entity, CITY_ROOTS, poiTypeGraph);
-      const routeEligibility = routePoiEligibility(entity, poiTypeGraph);
       if (!coords) reasons.push("coordinate-missing");
       if (!qids(entity, "P17").includes(countrySeed.qid)) reasons.push("country-claim-mismatch");
       if (!poiPath) reasons.push("positive-poi-type-unconfirmed");
+      if (!poiAdmission.accepted) reasons.push(`production-poi-type-${poiAdmission.classification}`);
       if (cityPath) reasons.push("settlement-not-published-as-poi");
       if (publishedCountryQids.has(candidate.qid)) reasons.push("country-not-published-as-poi");
-      if (!routeEligibility.accepted) reasons.push("operational-entity-not-route-poi");
       const distanceKm = coords ? entityLayerDistanceKm(selected.city.coordinates, coords) : Number.POSITIVE_INFINITY;
       if (distanceKm > MAX_POI_PARENT_DISTANCE_KM) reasons.push("parent-city-distance-exceeded");
       if (candidate.qid === selected.city.wikidataId) reasons.push("same-as-parent-city");
@@ -566,7 +556,7 @@ async function main() {
         continue;
       }
       accepted.push({
-        candidate, entity, poiPath, distanceKm,
+        candidate, entity, poiPath: productionPoiPath, distanceKm,
         score: Object.keys(entity.sitelinks || {}).length * 100 - distanceKm,
       });
     }
@@ -646,7 +636,7 @@ async function main() {
   await atomicJson(paths.pois, { schemaVersion: `route-v2-poi-baseline-p1b-batch${batchNumber}`, generatedFrom: paths.raw, poiCount: newPois.length, pois: newPois });
   await atomicJson(paths.provenance, {
     schemaVersion: `route-v2-${prefix}-provenance-v1`, retrievedAt,
-    sources: [WIKIDATA_API, WIKIPEDIA_API], sourcePolicy: "exact-enwiki-title plus positive P31/P279, exact P17, coordinates and parent distance",
+    sources: [WIKIDATA_API, WIKIPEDIA_API], sourcePolicy: "exact-enwiki-title plus sealed production-positive P31/P279 policy, exact P17, coordinates and parent distance",
     publishedEntityQids: [...publishableNewCities, ...newPois].map((entry) => entry.wikidataId).sort(),
   });
   await atomicJson(paths.conflicts, { schemaVersion: `route-v2-${prefix}-conflicts-v1`, conflictCount: 0, conflicts: [] });

@@ -7,6 +7,7 @@ import {
   validatePublishedKnowledgeSemantics,
 } from "../src/lib/routes/knowledge-semantic-gate.mjs";
 import { stableHash } from "../src/lib/routes/route-v2-utils.mjs";
+import { isBroadStructuralPoiPath } from "../src/lib/routes/knowledge-poi-semantic-admission.mjs";
 
 const ROOT = path.resolve(import.meta.dirname, "..");
 const RAW_ROOT = path.join(ROOT, "data/knowledge/raw");
@@ -244,7 +245,7 @@ const typeClassifications = Object.fromEntries(observedTypeQids.flatMap((typeQid
   }
   if (poiObservedTypes.has(typeQid)) {
     const poiPath = shortestPathToRoot(typeQid, ROOTS.poi.map(([rootQid]) => rootQid), fullGraph);
-    if (poiPath) allowedKinds.poi = poiPath;
+    if (poiPath && !isBroadStructuralPoiPath(poiPath)) allowedKinds.poi = poiPath;
   }
   if (!Object.keys(allowedKinds).length) return [];
   return [[typeQid, {

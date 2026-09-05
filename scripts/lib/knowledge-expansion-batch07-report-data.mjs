@@ -45,6 +45,10 @@ export function calculateKnowledgeExpansionReportData({ root, batchNumber = 7 } 
   const browserRelativePath = `data/knowledge/reports/knowledge-expansion-batch${batchTag}-browser-acceptance.json`;
   const browserPath = path.join(projectRoot, browserRelativePath);
   const browserAcceptance = fs.existsSync(browserPath) ? json(projectRoot, browserRelativePath) : null;
+  const positiveAdmissionAuditPath = "data/knowledge/reports/knowledge-poi-positive-admission-audit.json";
+  const positiveAdmissionAudit = batchNumber === 9 && fs.existsSync(path.join(projectRoot, positiveAdmissionAuditPath))
+    ? json(projectRoot, positiveAdmissionAuditPath)
+    : null;
   const priorAssetIds = new Set(priorImageProvenance.assets.map((record) => record.entityId));
   const targetImages = imageProvenance.assets.filter((record) => targetCodeSet.has(record.countryCode));
   const historicalBackfills = imageProvenance.assets.filter((record) => !targetCodeSet.has(record.countryCode) && !priorAssetIds.has(record.entityId));
@@ -77,14 +81,25 @@ export function calculateKnowledgeExpansionReportData({ root, batchNumber = 7 } 
   });
   const parentValidation = repository.validateParentReferences();
   return Object.freeze({
-    projectRoot, seed, baseline, browserAcceptance, imageManifest, imageBaseline, routeConsumption, targetCountryCoverage,
+    projectRoot, seed, baseline, browserAcceptance, imageManifest, imageBaseline, routeConsumption, targetCountryCoverage, positiveAdmissionAudit,
     targets: Object.freeze({ count: targetCodes.length, codes: targetCodes, waves: waveBatches.length, tier1: targetCodes.filter((code) => seed.countries[code].tier === 1).length, tier2: targetCodes.filter((code) => seed.countries[code].tier === 2).length, tier3: targetCodes.filter((code) => seed.countries[code].tier === 3).length }),
     portfolio: Object.freeze({ catalogCountries: countries.length, plannableCountries: imageManifest.countries.length, evidenceBackedCountries: evidenceCountryCodes.size, routeKnowledgeCoveredCountries: imageManifest.countries.length, catalogOnlyCountryCodes: countries.map((country) => country.isoAlpha2).filter((code) => !imageManifest.countries.some((record) => record.countryCode === code)).sort() }),
     published: Object.freeze({ countries: countries.length, cities: cities.length, pois: pois.length, total: countries.length + cities.length + pois.length }),
     additions: Object.freeze({ countries: addedCountries.length, cities: addedCities.length, pois: addedPois.length }),
     quality: Object.freeze({ duplicateEntityIds: duplicateCount([...countries, ...cities, ...pois].map((entity) => entity.entityId)), duplicateCityQids: duplicateCount(cities.map((entity) => entity.wikidataId)), duplicatePoiQids: duplicateCount(pois.map((entity) => entity.wikidataId)), orphans: parentValidation.accepted ? 0 : parentValidation.reasons.length, conflicts: conflicts.length, quarantined: reviews.length, quarantinedCities: reviews.filter((entry) => entry.disposition === "quarantined-city-not-published").length, acceptedBelowTarget: reviews.filter((entry) => entry.disposition === "accepted-below-target-without-padding").length, selectionCities: selections.length }),
+    semanticRepair: positiveAdmissionAudit ? Object.freeze({
+      originalPublishedPois: positiveAdmissionAudit.before.publishedPois,
+      publishedPois: positiveAdmissionAudit.after.publishedPois,
+      totalQuarantined: positiveAdmissionAudit.after.quarantinedPois,
+      classifications: positiveAdmissionAudit.before.classifications,
+      originalBatchPoiAdditions: positiveAdmissionAudit.before.publishedPois - baseline.knowledge.pois,
+      finalBatchPoiAdditions: addedPois.length,
+      batchQuarantined: positiveAdmissionAudit.quarantined.filter((entry) => /pois\.p1b-batch(?:30|31|32|33)\.json$/u.test(entry.sourceAssetPath || "")).length,
+      historicalQuarantined: positiveAdmissionAudit.after.quarantinedPois
+        - positiveAdmissionAudit.quarantined.filter((entry) => /pois\.p1b-batch(?:30|31|32|33)\.json$/u.test(entry.sourceAssetPath || "")).length,
+    }) : null,
     evidence: Object.freeze({ transport: batchRouteLegs.length, monthRisk: batchSeasons.length, totalTransport: allRouteLegs.length, totalMonthRisk: allSeasons.length, auditCountries: Object.keys(evidenceAudit.countries).length, retrievedAt: evidenceAudit.retrievedAt }),
-    images: Object.freeze({ countryCovers: imageManifest.coverage.overall.countryCoverCoverage.ready, countryTotal: imageManifest.coverage.overall.countryCoverCoverage.total, dedicatedCities: imageManifest.coverage.overall.cityDedicatedImageCoverage.ready, cityTotal: imageManifest.coverage.overall.cityDedicatedImageCoverage.total, dedicatedPois: imageManifest.coverage.overall.corePoiImageCoverage.ready, poiTotal: imageManifest.coverage.overall.corePoiImageCoverage.total, cityPlaceholders: imageManifest.coverage.overall.cityPlaceholderCount, poiPlaceholders: imageManifest.coverage.overall.poiPlaceholderCount, needsBackfill: imageManifest.coverage.overall.needsBackfillCount, invalidMappings: imageManifest.invalidMappings.length, batchVerifiedImages: targetImages.length, historicalBackfillImages: historicalBackfills.length, batchCountryCovers: imageManifest.countries.filter((record) => targetCodeSet.has(record.countryCode)).length, historicalDebtBefore: baseline.images.needsBackfill, historicalDebtAfter: imageManifest.coverage.historicalPlannableCountries.needsBackfillCount, assetCount: imageBaseline.summary.totalImages, totalBytes: imageBaseline.summary.totalBytes, largerThan300Kb: imageBaseline.summary.largerThan300Kb, largerThan500Kb: imageBaseline.summary.largerThan500Kb, largerThan1Mb: imageBaseline.summary.largerThan1Mb, largerThan5Mb: imageBaseline.summary.largerThan5Mb, exactDuplicates: imageBaseline.duplicates.exactGroups.length, perceptualDuplicates: imageBaseline.duplicates.perceptualGroups.length }),
+    images: Object.freeze({ countryCovers: imageManifest.coverage.overall.countryCoverCoverage.ready, countryTotal: imageManifest.coverage.overall.countryCoverCoverage.total, dedicatedCities: imageManifest.coverage.overall.cityDedicatedImageCoverage.ready, cityTotal: imageManifest.coverage.overall.cityDedicatedImageCoverage.total, dedicatedPois: imageManifest.coverage.overall.corePoiImageCoverage.ready, poiTotal: imageManifest.coverage.overall.corePoiImageCoverage.total, cityPlaceholders: imageManifest.coverage.overall.cityPlaceholderCount, poiPlaceholders: imageManifest.coverage.overall.poiPlaceholderCount, needsBackfill: imageManifest.coverage.overall.needsBackfillCount, invalidMappings: imageManifest.invalidMappings.length, batchVerifiedImages: targetImages.length, historicalBackfillImages: historicalBackfills.length, batchCountryCovers: imageManifest.countries.filter((record) => targetCodeSet.has(record.countryCode)).length, sealedHistoricalDebt: baseline.images.historicalFrozenDebt ?? null, totalNeedsBackfillBefore: baseline.images.needsBackfill, totalNeedsBackfillAfter: imageManifest.coverage.overall.needsBackfillCount, preBatchScopeNeedsBackfillAfter: imageManifest.coverage.historicalPlannableCountries.needsBackfillCount, historicalDebtBefore: baseline.images.needsBackfill, historicalDebtAfter: imageManifest.coverage.historicalPlannableCountries.needsBackfillCount, assetCount: imageBaseline.summary.totalImages, totalBytes: imageBaseline.summary.totalBytes, largerThan300Kb: imageBaseline.summary.largerThan300Kb, largerThan500Kb: imageBaseline.summary.largerThan500Kb, largerThan1Mb: imageBaseline.summary.largerThan1Mb, largerThan5Mb: imageBaseline.summary.largerThan5Mb, exactDuplicates: imageBaseline.duplicates.exactGroups.length, perceptualDuplicates: imageBaseline.duplicates.perceptualGroups.length }),
   });
 }
 

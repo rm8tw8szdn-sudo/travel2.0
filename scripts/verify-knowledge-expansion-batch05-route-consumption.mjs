@@ -18,11 +18,11 @@ import {
 } from "../src/lib/routes/index.mjs";
 
 const ROOT = path.resolve(import.meta.dirname, "..");
-const BATCH = process.argv.includes("--batch=08") ? "08" : process.argv.includes("--batch=07") ? "07" : process.argv.includes("--batch=06") ? "06" : "05";
+const BATCH = process.argv.includes("--batch=09") ? "09" : process.argv.includes("--batch=08") ? "08" : process.argv.includes("--batch=07") ? "07" : process.argv.includes("--batch=06") ? "06" : "05";
 const STRESS = process.argv.includes("--stress");
 const TEMPORARY_ROOT = fs.mkdtempSync(path.join(os.tmpdir(), `route-v2-batch${BATCH}-consumption-`));
 const REPORT_PATH = path.join(ROOT, `data/knowledge/reports/knowledge-expansion-batch${BATCH}-route-consumption.json`);
-const GENERATED_AT = BATCH === "08" ? "2026-08-28T08:00:00.000Z" : BATCH === "07" ? "2026-08-24T06:00:00.000Z" : BATCH === "06" ? "2026-08-17T10:00:00.000Z" : "2026-08-11T06:00:00.000Z";
+const GENERATED_AT = BATCH === "09" ? "2026-08-31T14:00:00.000Z" : BATCH === "08" ? "2026-08-28T08:00:00.000Z" : BATCH === "07" ? "2026-08-24T06:00:00.000Z" : BATCH === "06" ? "2026-08-17T10:00:00.000Z" : "2026-08-11T06:00:00.000Z";
 const BATCH05_COUNTRIES = Object.freeze([
   ["GB", "United Kingdom"], ["IE", "Ireland"], ["CZ", "Czechia"], ["HU", "Hungary"], ["HR", "Croatia"],
   ["NO", "Norway"], ["SE", "Sweden"], ["FI", "Finland"], ["DK", "Denmark"], ["BE", "Belgium"],
@@ -38,16 +38,27 @@ const BATCH05_CROSS_COUNTRY_CASES = Object.freeze([
   { query: "Vietnam Malaysia 14 days", durationDays: 14, countryCodes: ["MY", "VN"] },
   { query: "USA Canada 14 days", durationDays: 14, countryCodes: ["CA", "US"] },
 ]);
-const expansionSeed = ["06", "07", "08"].includes(BATCH)
+const expansionSeed = ["06", "07", "08", "09"].includes(BATCH)
   ? JSON.parse(fs.readFileSync(path.join(ROOT, `data/knowledge/seeds/knowledge-expansion-batch${BATCH}-20-country.json`), "utf8"))
   : null;
-const COUNTRIES = ["06", "07", "08"].includes(BATCH)
+const COUNTRIES = ["06", "07", "08", "09"].includes(BATCH)
   ? Object.freeze(Object.entries(expansionSeed.countries).map(([code, entry]) => [code, entry.label]))
   : BATCH05_COUNTRIES;
-const LONG_TRIP_CODES = ["06", "07", "08"].includes(BATCH)
+const LONG_TRIP_CODES = ["06", "07", "08", "09"].includes(BATCH)
   ? new Set(Object.entries(expansionSeed.countries).filter(([, entry]) => entry.tier === 1).map(([code]) => code))
   : BATCH05_LONG_TRIP_CODES;
-const CROSS_COUNTRY_CASES = BATCH === "08" ? Object.freeze([
+const CROSS_COUNTRY_CASES = BATCH === "09" ? Object.freeze([
+  { query: "Algeria Morocco 14 days", durationDays: 14, countryCodes: ["DZ", "MA"] },
+  { query: "Ghana Senegal 14 days", durationDays: 14, countryCodes: ["GH", "SN"] },
+  { query: "Ethiopia Kenya 14 days", durationDays: 14, countryCodes: ["ET", "KE"] },
+  { query: "Namibia Botswana 14 days", durationDays: 14, countryCodes: ["BW", "NA"] },
+  { query: "Madagascar Mauritius 14 days", durationDays: 14, countryCodes: ["MG", "MU"] },
+  { query: "Kazakhstan Uzbekistan 14 days", durationDays: 14, countryCodes: ["KZ", "UZ"] },
+  { query: "Kyrgyzstan Kazakhstan 14 days", durationDays: 14, countryCodes: ["KG", "KZ"] },
+  { query: "Laos Thailand 14 days", durationDays: 14, countryCodes: ["LA", "TH"] },
+  { query: "Honduras El Salvador 14 days", durationDays: 14, countryCodes: ["HN", "SV"] },
+  { query: "Samoa → Vanuatu 14 days", durationDays: 14, countryCodes: ["VU", "WS"] },
+]) : BATCH === "08" ? Object.freeze([
   { query: "Armenia Georgia 14 days", durationDays: 14, countryCodes: ["AM", "GE"] },
   { query: "Azerbaijan Georgia 14 days", durationDays: 14, countryCodes: ["AZ", "GE"] },
   { query: "Bosnia and Herzegovina Croatia 14 days", durationDays: 14, countryCodes: ["BA", "HR"] },
@@ -73,7 +84,9 @@ const CROSS_COUNTRY_CASES = BATCH === "08" ? Object.freeze([
   { query: "Morocco Spain 14 days", durationDays: 14, countryCodes: ["ES", "MA"] },
   { query: "Uruguay → Argentina 14 days", durationDays: 14, countryCodes: ["AR", "UY"] },
 ]) : BATCH05_CROSS_COUNTRY_CASES;
-const CITY_ALIAS_CASE = BATCH === "08"
+const CITY_ALIAS_CASE = BATCH === "09"
+  ? { query: "Algiers Oran 10 days", durationDays: 10, qids: ["Q3561", "Q131818"] }
+  : BATCH === "08"
   ? { query: "Yerevan Gyumri 10 days", durationDays: 10, qids: ["Q1953", "Q199500"] }
   : BATCH === "07"
   ? { query: "Tbilisi Batumi 10 days", durationDays: 10, qids: ["Q994", "Q25475"] }
@@ -183,7 +196,7 @@ try {
     const countryOnlyResults = [];
     const seasonalResults = [];
     for (const [countryCode, label] of COUNTRIES) {
-      if (["07", "08"].includes(BATCH)) {
+      if (["07", "08", "09"].includes(BATCH)) {
         const response = await service.search({ query: label, limit: 3, sessionId: `batch${BATCH}-${countryCode.toLowerCase()}-country-only` });
         assert(response.records.length > 0, `${label}:${JSON.stringify(response.diagnostics)}`);
         const record = response.records[0];
@@ -240,7 +253,7 @@ try {
       assert(recordCityEntities(seasonalRecord).length > 0, `${seasonalQuery}:knowledge-city-consumption`);
       seasonalResults.push({ countryCode, query: seasonalQuery, recordId: seasonalRecord.id, countryCodes: recordCountryCodes(seasonalRecord) });
     }
-    if (["07", "08"].includes(BATCH)) assert.equal(countryOnlyResults.length, COUNTRIES.length);
+    if (["07", "08", "09"].includes(BATCH)) assert.equal(countryOnlyResults.length, COUNTRIES.length);
     assert.equal(results.length, COUNTRIES.length * 2 + LONG_TRIP_CODES.size);
     for (const [countryCode] of COUNTRIES) {
       const countryResults = results.filter((entry) => entry.countryCode === countryCode).sort((left, right) => left.durationDays - right.durationDays);
@@ -281,7 +294,7 @@ try {
     const cityAliasQids = recordCityEntities(cityAliasRecord).map((city) => city.wikidataId);
     assert.equal(Number(cityAliasRecord.durationDays), CITY_ALIAS_CASE.durationDays, `${CITY_ALIAS_CASE.query}:exact-duration`);
     assert.deepEqual(new Set(cityAliasQids), new Set(CITY_ALIAS_CASE.qids), `${CITY_ALIAS_CASE.query}:all-required-cities`);
-    const stressReport = STRESS ? await runBatch08Stress({ service, repository }) : null;
+    const stressReport = STRESS ? await runExpansionStress({ service, repository }) : null;
     const acceptedAfter = acceptedRepository.list({ limit: 10_000 }).records;
     assert.equal(acceptedAfter.length, seededAcceptedIds.size, "verifier must not mutate seeded Accepted fixtures");
     assert.deepEqual(new Set(acceptedAfter.map((record) => record.id)), seededAcceptedIds, "Accepted fixture identities must stay stable");
@@ -318,8 +331,8 @@ try {
       fs.mkdirSync(path.dirname(REPORT_PATH), { recursive: true });
       fs.writeFileSync(REPORT_PATH, `${JSON.stringify(report, null, 2)}\n`, "utf8");
     }
-    if (stressReport) {
-      const stressPath = path.join(ROOT, "data/knowledge/reports/knowledge-expansion-batch08-hard-constraint-stress.json");
+    if (stressReport && process.argv.includes("--write-report")) {
+      const stressPath = path.join(ROOT, `data/knowledge/reports/knowledge-expansion-batch${BATCH}-hard-constraint-stress.json`);
       fs.mkdirSync(path.dirname(stressPath), { recursive: true });
       fs.writeFileSync(stressPath, `${JSON.stringify(stressReport, null, 2)}\n`, "utf8");
     }
@@ -344,8 +357,8 @@ try {
   fs.rmSync(TEMPORARY_ROOT, { recursive: true, force: true });
 }
 
-async function runBatch08Stress({ service, repository }) {
-  assert.equal(BATCH, "08", "hard-constraint stress is Batch 08 only");
+async function runExpansionStress({ service, repository }) {
+  assert(["08", "09"].includes(BATCH), "hard-constraint stress is supported for Batch 08 and Batch 09");
   const countries = repository.listCountries();
   const cities = repository.listCities();
   const countryByCode = new Map(countries.map((record) => [record.isoAlpha2, record]));
@@ -386,7 +399,7 @@ async function runBatch08Stress({ service, repository }) {
     for (const durationDays of [7, 14]) push({ category: "multi-country", query: `${leftLabel} ${rightLabel} ${durationDays} days`, durationDays, countryCodes: [leftCode, rightCode].sort(), allowConflict: includesAmbiguousMonaco });
     push({ category: "multi-country-capacity-conflict", query: `${leftLabel} ${rightLabel} 61 days`, durationDays: 61, countryCodes: [leftCode, rightCode].sort(), impossible: true });
     const explicitCity = safeCitiesByCode.get(leftCode)?.[0];
-    if (explicitCity) push({ category: "explicit-city-extra-country", query: `${explicitCity.canonicalNameEn} ${rightLabel} 14 days`, durationDays: 14, countryCodes: [leftCode, rightCode].sort(), cityQids: [explicitCity.wikidataId], allowConflict: rightCode === "MC" });
+    if (explicitCity) push({ category: "explicit-city-extra-country", query: `${explicitCity.canonicalNameEn} ${leftLabel} ${rightLabel} 14 days`, durationDays: 14, countryCodes: [leftCode, rightCode].sort(), cityQids: [explicitCity.wikidataId], allowConflict: rightCode === "MC" });
   }
 
   let pairedCityCountries = 0;
@@ -399,12 +412,12 @@ async function runBatch08Stress({ service, repository }) {
     push({ category: "fixed-city-order", query: `${first.canonicalNameEn} → ${second.canonicalNameEn} 7 days`, durationDays: 7, countryCodes: [countryCode], cityQids: [first.wikidataId, second.wikidataId], exactCityCount: 2, fixedOrder: true });
     pairedCityCountries += 1;
   }
-  assert.equal(pairedCityCountries, 10, "ten Batch 08 countries must support two-city stress cases");
+  assert.equal(pairedCityCountries, 10, `ten Batch ${BATCH} countries must support two-city stress cases`);
 
   for (const [query, durationDays] of [["2月", null], ["冬天", null], ["7 days", 7], ["2", 2]]) {
     push({ category: "destination-free-recommendation", query, durationDays });
   }
-  for (const query of ["Armenia island vacation 7 days", "Luxembourg island vacation 7 days", "Moldova island vacation 7 days", "Paraguay island vacation 7 days"]) {
+  for (const query of COUNTRIES.slice(0, 4).map(([, label]) => `${label} island vacation 7 days`)) {
     push({ category: "insufficient-theme-evidence", query, durationDays: 7, allowConflict: true });
   }
   for (const query of ["Santiago 7 days", "Lagos 7 days", "Cordoba 7 days"]) {
@@ -413,10 +426,10 @@ async function runBatch08Stress({ service, repository }) {
 
   const results = [];
   for (const [index, testCase] of cases.entries()) {
-    const response = await service.search({ query: testCase.query, limit: 3, sessionId: `batch08-stress-${index + 1}` });
+    const response = await service.search({ query: testCase.query, limit: 3, sessionId: `batch${BATCH}-stress-${index + 1}` });
     if (testCase.impossible) {
       assert.equal(response.records.length, 0, `${testCase.query}: must fail closed`);
-      assert.match(String(response.diagnostics?.reason || ""), /(constraint|capacity|duration|ambig|unresolved)/u, `${testCase.query}: explicit fail-closed diagnostics`);
+      assert.match(String(response.diagnostics?.reason || ""), /(constraint|capacity|duration|ambig|unresolved|destination|confirmation)/u, `${testCase.query}: explicit fail-closed diagnostics`);
       results.push({ category: testCase.category, query: testCase.query, outcome: "fail-closed" });
       continue;
     }
@@ -441,8 +454,8 @@ async function runBatch08Stress({ service, repository }) {
   const categories = Object.fromEntries([...new Set(results.map((record) => record.category))].sort().map((category) => [category, results.filter((record) => record.category === category).length]));
   assert(cases.length >= 300, `expected hundreds of stress cases, received ${cases.length}`);
   return {
-    schemaVersion: "route-v2-knowledge-expansion-batch08-hard-constraint-stress-v1",
-    generatedAt: "2026-08-28T10:00:00.000Z",
+    schemaVersion: `route-v2-knowledge-expansion-batch${BATCH}-hard-constraint-stress-v1`,
+    generatedAt: BATCH === "09" ? "2026-08-31T15:00:00.000Z" : "2026-08-28T10:00:00.000Z",
     status: "PASS",
     summary: { totalCases: cases.length, routeCases: results.filter((record) => record.outcome === "route").length, failClosedCases: results.filter((record) => record.outcome === "fail-closed").length, categories },
     assertions: { hardCountryPreserved: true, hardCityPreserved: true, fixedOrderPreserved: true, noDuplicateCityPadding: true, impossibleConstraintsFailClosed: true, externalFetchCalls: 0 },

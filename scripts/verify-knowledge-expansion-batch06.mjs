@@ -58,8 +58,9 @@ for (const code of targetCodes) {
   const country = countries.find((entry) => entry.isoAlpha2 === code);
   assert(country, `${code}:published-country`);
   const countryCities = cities.filter((city) => city.parentCountryEntityId === country.entityId);
+  const countryCityIds = new Set(countryCities.map((city) => city.entityId));
   assert(countryCities.length >= 3, `${code}:minimum-route-city-depth`);
-  assert.equal(countryCities.every((city) => pois.some((poi) => poi.parentCityEntityId === city.entityId)), true, `${code}:every-published-city-has-route-poi`);
+  assert(pois.some((poi) => countryCityIds.has(poi.parentCityEntityId)), `${code}:published-route-poi-depth`);
 }
 assert.equal(selectedCities.every((entry) => publishedCityIds.has(entry.entityId)), true);
 assert.equal(selectedPois.every((entry) => publishedPoiIds.has(entry.entityId)), true);

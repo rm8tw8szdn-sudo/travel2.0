@@ -1,0 +1,31 @@
+{
+  "schemaVersion": "route-v2-sovereign-country-policy-v1",
+  "referenceStandard": "193 United Nations member states plus Holy See and Palestine",
+  "referenceCount": 195,
+  "sovereignIsoAlpha2": [
+    "AF", "AL", "DZ", "AD", "AO", "AG", "AR", "AM", "AU", "AT", "AZ", "BS", "BH", "BD", "BB", "BY", "BE", "BZ", "BJ", "BT",
+    "BO", "BA", "BW", "BR", "BN", "BG", "BF", "BI", "CV", "KH", "CM", "CA", "CF", "TD", "CL", "CN", "CO", "KM", "CG", "CR",
+    "CI", "HR", "CU", "CY", "CZ", "CD", "DK", "DJ", "DM", "DO", "EC", "EG", "SV", "GQ", "ER", "EE", "SZ", "ET", "FJ", "FI",
+    "FR", "GA", "GM", "GE", "DE", "GH", "GR", "GD", "GT", "GN", "GW", "GY", "HT", "VA", "HN", "HU", "IS", "IN", "ID", "IR",
+    "IQ", "IE", "IL", "IT", "JM", "JP", "JO", "KZ", "KE", "KI", "KW", "KG", "LA", "LV", "LB", "LS", "LR", "LY", "LI", "LT",
+    "LU", "MG", "MW", "MY", "MV", "ML", "MT", "MH", "MR", "MU", "MX", "FM", "MD", "MC", "MN", "ME", "MA", "MZ", "MM", "NA",
+    "NR", "NP", "NL", "NZ", "NI", "NE", "NG", "KP", "MK", "NO", "OM", "PK", "PW", "PS", "PA", "PG", "PY", "PE", "PH", "PL",
+    "PT", "QA", "RO", "RU", "RW", "KN", "LC", "VC", "WS", "SM", "ST", "SA", "SN", "RS", "SC", "SL", "SG", "SK", "SI", "SB",
+    "SO", "ZA", "KR", "SS", "ES", "LK", "SD", "SR", "SE", "CH", "SY", "TJ", "TZ", "TH", "TL", "TG", "TO", "TT", "TN", "TR",
+    "TM", "TV", "UG", "UA", "AE", "GB", "US", "UY", "UZ", "VU", "VE", "VN", "YE", "ZM", "ZW"
+  ],
+  "catalogOnlyIsoAlpha2": ["CN"],
+  "nonSovereignExamples": [
+    { "code": "HK", "qid": "Q8646", "category": "special-administrative-region" },
+    { "code": "PR", "qid": "Q1183", "category": "unincorporated-territory" },
+    { "code": "GL", "qid": "Q223", "category": "autonomous-territory" },
+    { "code": "GB-ENG", "qid": "Q21", "category": "constituent-country" },
+    { "code": "EU", "qid": "Q458", "category": "supranational-region" }
+  ],
+  "batch09ExactBindings": {
+    "DZ": "Q262", "GH": "Q117", "SN": "Q1041", "ET": "Q115", "NA": "Q1030",
+    "BW": "Q963", "MG": "Q1019", "MU": "Q1027", "KZ": "Q232", "UZ": "Q265",
+    "KG": "Q813", "BD": "Q902", "BT": "Q917", "PK": "Q843", "LA": "Q819",
+    "BN": "Q921", "HN": "Q783", "SV": "Q792", "WS": "Q683", "VU": "Q686"
+  }
+}

@@ -1,128 +1,8 @@
 {
   "schemaVersion": "route-v2-poi-baseline-p1b-batch10",
   "generatedFrom": "data/knowledge/raw/knowledge-expansion-batch04b-austria.wikidata.json",
-  "poiCount": 55,
+  "poiCount": 47,
   "pois": [
-    {
-      "schemaVersion": "route-v2-poi-baseline-p1b",
-      "entityId": "poi-f6a40529c8f0b3f9",
-      "entityType": "poi",
-      "parentCityEntityId": "city-0699df842d819ca4",
-      "wikidataId": "Q115593",
-      "canonicalNameZh": "海尔布伦宫",
-      "canonicalNameEn": "Hellbrunn Palace",
-      "aliases": [
-        "Castelo de Hellbrunn",
-        "Palácio de Hellbrunn",
-        "Schloss Hellbrunn",
-        "Schlossanlage Hellbrunn, Gesamtanlage samt Gartenbaudenkmalen"
-      ],
-      "coordinates": {
-        "latitude": 47.762222,
-        "longitude": 13.060833
-      },
-      "entitySourceType": "wikidata",
-      "confidence": 0.95,
-      "retrievedAt": "2026-08-10T12:00:00.000Z",
-      "provenance": {
-        "entityId": {
-          "field": "entityId",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04b-austria",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "poi-f6a40529c8f0b3f9"
-        },
-        "entityType": {
-          "field": "entityType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04b-austria",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "poi"
-        },
-        "parentCityEntityId": {
-          "field": "parentCityEntityId",
-          "sourceType": "repository-reference",
-          "source": "Austria City Entity",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q34713",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "city-0699df842d819ca4"
-        },
-        "wikidataId": {
-          "field": "wikidataId",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q115593",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Q115593"
-        },
-        "canonicalNameZh": {
-          "field": "canonicalNameZh",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q115593",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "海尔布伦宫"
-        },
-        "canonicalNameEn": {
-          "field": "canonicalNameEn",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q115593",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Hellbrunn Palace"
-        },
-        "aliases": {
-          "field": "aliases",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q115593",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": [
-            "Castelo de Hellbrunn",
-            "Palácio de Hellbrunn",
-            "Schloss Hellbrunn",
-            "Schlossanlage Hellbrunn, Gesamtanlage samt Gartenbaudenkmalen"
-          ]
-        },
-        "coordinates": {
-          "field": "coordinates",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q115593",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": {
-            "latitude": 47.762222,
-            "longitude": 13.060833
-          }
-        },
-        "entitySourceType": {
-          "field": "entitySourceType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04b-austria",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "wikidata"
-        },
-        "confidence": {
-          "field": "confidence",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04b-austria",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": 0.95
-        },
-        "retrievedAt": {
-          "field": "retrievedAt",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q115593",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "2026-08-10T12:00:00.000Z"
-        }
-      }
-    },
     {
       "schemaVersion": "route-v2-poi-baseline-p1b",
       "entityId": "poi-3a9b7d7e764e1ebe",
@@ -240,134 +120,6 @@
           "sourceType": "wikidata",
           "source": "Wikidata enwiki title plus wbgetentities",
           "sourceUrl": "https://www.wikidata.org/wiki/Q679292",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "2026-08-10T12:00:00.000Z"
-        }
-      }
-    },
-    {
-      "schemaVersion": "route-v2-poi-baseline-p1b",
-      "entityId": "poi-971f8124ff7f8a0d",
-      "entityType": "poi",
-      "parentCityEntityId": "city-0699df842d819ca4",
-      "wikidataId": "Q688546",
-      "canonicalNameZh": "米拉贝尔宫",
-      "canonicalNameEn": "Mirabell Palace",
-      "aliases": [
-        "Mirabellplatz",
-        "Mirabellschloss",
-        "Palácio de Mirabell",
-        "Schloss Mirabell",
-        "Schloss Mirabell Gesamtanlage mit allen Nebengebäuden und Gartenbaudenkmalen",
-        "Slot Mirabell",
-        "Μιραμπέλ",
-        "Παλάτι Μιραμπέλ"
-      ],
-      "coordinates": {
-        "latitude": 47.8055,
-        "longitude": 13.042
-      },
-      "entitySourceType": "wikidata",
-      "confidence": 0.95,
-      "retrievedAt": "2026-08-10T12:00:00.000Z",
-      "provenance": {
-        "entityId": {
-          "field": "entityId",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04b-austria",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "poi-971f8124ff7f8a0d"
-        },
-        "entityType": {
-          "field": "entityType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04b-austria",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "poi"
-        },
-        "parentCityEntityId": {
-          "field": "parentCityEntityId",
-          "sourceType": "repository-reference",
-          "source": "Austria City Entity",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q34713",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "city-0699df842d819ca4"
-        },
-        "wikidataId": {
-          "field": "wikidataId",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q688546",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Q688546"
-        },
-        "canonicalNameZh": {
-          "field": "canonicalNameZh",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q688546",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "米拉贝尔宫"
-        },
-        "canonicalNameEn": {
-          "field": "canonicalNameEn",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q688546",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Mirabell Palace"
-        },
-        "aliases": {
-          "field": "aliases",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q688546",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": [
-            "Mirabellplatz",
-            "Mirabellschloss",
-            "Palácio de Mirabell",
-            "Schloss Mirabell",
-            "Schloss Mirabell Gesamtanlage mit allen Nebengebäuden und Gartenbaudenkmalen",
-            "Slot Mirabell",
-            "Μιραμπέλ",
-            "Παλάτι Μιραμπέλ"
-          ]
-        },
-        "coordinates": {
-          "field": "coordinates",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q688546",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": {
-            "latitude": 47.8055,
-            "longitude": 13.042
-          }
-        },
-        "entitySourceType": {
-          "field": "entitySourceType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04b-austria",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "wikidata"
-        },
-        "confidence": {
-          "field": "confidence",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04b-austria",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": 0.95
-        },
-        "retrievedAt": {
-          "field": "retrievedAt",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q688546",
           "retrievedAt": "2026-08-10T12:00:00.000Z",
           "value": "2026-08-10T12:00:00.000Z"
         }
@@ -985,122 +737,6 @@
     },
     {
       "schemaVersion": "route-v2-poi-baseline-p1b",
-      "entityId": "poi-b1490896081ba9cf",
-      "entityType": "poi",
-      "parentCityEntityId": "city-3f52e95430ac83e2",
-      "wikidataId": "Q1408816",
-      "canonicalNameZh": "Festspielhaus Bregenz",
-      "canonicalNameEn": "Festspielhaus Bregenz",
-      "aliases": [
-        "Bregenzer Festspiel- und Kongresshaus",
-        "Bregenzer Festspielhaus"
-      ],
-      "coordinates": {
-        "latitude": 47.5046,
-        "longitude": 9.73766
-      },
-      "entitySourceType": "wikidata",
-      "confidence": 0.95,
-      "retrievedAt": "2026-08-10T12:00:00.000Z",
-      "provenance": {
-        "entityId": {
-          "field": "entityId",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04b-austria",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "poi-b1490896081ba9cf"
-        },
-        "entityType": {
-          "field": "entityType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04b-austria",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "poi"
-        },
-        "parentCityEntityId": {
-          "field": "parentCityEntityId",
-          "sourceType": "repository-reference",
-          "source": "Austria City Entity",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1737",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "city-3f52e95430ac83e2"
-        },
-        "wikidataId": {
-          "field": "wikidataId",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1408816",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Q1408816"
-        },
-        "canonicalNameZh": {
-          "field": "canonicalNameZh",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1408816",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Festspielhaus Bregenz"
-        },
-        "canonicalNameEn": {
-          "field": "canonicalNameEn",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1408816",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Festspielhaus Bregenz"
-        },
-        "aliases": {
-          "field": "aliases",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1408816",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": [
-            "Bregenzer Festspiel- und Kongresshaus",
-            "Bregenzer Festspielhaus"
-          ]
-        },
-        "coordinates": {
-          "field": "coordinates",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1408816",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": {
-            "latitude": 47.5046,
-            "longitude": 9.73766
-          }
-        },
-        "entitySourceType": {
-          "field": "entitySourceType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04b-austria",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "wikidata"
-        },
-        "confidence": {
-          "field": "confidence",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04b-austria",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": 0.95
-        },
-        "retrievedAt": {
-          "field": "retrievedAt",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1408816",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "2026-08-10T12:00:00.000Z"
-        }
-      }
-    },
-    {
-      "schemaVersion": "route-v2-poi-baseline-p1b",
       "entityId": "poi-156c83db935ed26c",
       "entityType": "poi",
       "parentCityEntityId": "city-3f52e95430ac83e2",
@@ -1212,122 +848,6 @@
           "sourceType": "wikidata",
           "source": "Wikidata enwiki title plus wbgetentities",
           "sourceUrl": "https://www.wikidata.org/wiki/Q675326",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "2026-08-10T12:00:00.000Z"
-        }
-      }
-    },
-    {
-      "schemaVersion": "route-v2-poi-baseline-p1b",
-      "entityId": "poi-f71c63b6a5f89f00",
-      "entityType": "poi",
-      "parentCityEntityId": "city-3f52e95430ac83e2",
-      "wikidataId": "Q1905741",
-      "canonicalNameZh": "Martinsturm",
-      "canonicalNameEn": "Martinsturm",
-      "aliases": [
-        "Martinsturm (Bregenz)",
-        "Martinsturm und -kapelle"
-      ],
-      "coordinates": {
-        "latitude": 47.501,
-        "longitude": 9.74924
-      },
-      "entitySourceType": "wikidata",
-      "confidence": 0.95,
-      "retrievedAt": "2026-08-10T12:00:00.000Z",
-      "provenance": {
-        "entityId": {
-          "field": "entityId",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04b-austria",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "poi-f71c63b6a5f89f00"
-        },
-        "entityType": {
-          "field": "entityType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04b-austria",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "poi"
-        },
-        "parentCityEntityId": {
-          "field": "parentCityEntityId",
-          "sourceType": "repository-reference",
-          "source": "Austria City Entity",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1737",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "city-3f52e95430ac83e2"
-        },
-        "wikidataId": {
-          "field": "wikidataId",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1905741",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Q1905741"
-        },
-        "canonicalNameZh": {
-          "field": "canonicalNameZh",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1905741",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Martinsturm"
-        },
-        "canonicalNameEn": {
-          "field": "canonicalNameEn",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1905741",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Martinsturm"
-        },
-        "aliases": {
-          "field": "aliases",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1905741",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": [
-            "Martinsturm (Bregenz)",
-            "Martinsturm und -kapelle"
-          ]
-        },
-        "coordinates": {
-          "field": "coordinates",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1905741",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": {
-            "latitude": 47.501,
-            "longitude": 9.74924
-          }
-        },
-        "entitySourceType": {
-          "field": "entitySourceType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04b-austria",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "wikidata"
-        },
-        "confidence": {
-          "field": "confidence",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04b-austria",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": 0.95
-        },
-        "retrievedAt": {
-          "field": "retrievedAt",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1905741",
           "retrievedAt": "2026-08-10T12:00:00.000Z",
           "value": "2026-08-10T12:00:00.000Z"
         }
@@ -1693,664 +1213,6 @@
     },
     {
       "schemaVersion": "route-v2-poi-baseline-p1b",
-      "entityId": "poi-9f04f6796e9c4a4d",
-      "entityType": "poi",
-      "parentCityEntityId": "city-456578ab24d451ff",
-      "wikidataId": "Q304037",
-      "canonicalNameZh": "奥地利国家图书馆",
-      "canonicalNameEn": "Austrian National Library",
-      "aliases": [
-        "Bibl. Pal.",
-        "Biblioteca Nacional Austríaca",
-        "Biblioteca Nacional da Áustria",
-        "Hofbibliothek",
-        "National Library of Austria",
-        "Oesterreichische Nationalbibliothek",
-        "ÖNB",
-        "Osterreichische Nationalbibliothek",
-        "Österreichische Nationalbibliothek",
-        "Österreichischen Nationalbibliothek",
-        "Prunksaal",
-        "Εθνική Βιβλιοθήκη της Αυστρίας"
-      ],
-      "coordinates": {
-        "latitude": 48.20614167,
-        "longitude": 16.36626667
-      },
-      "entitySourceType": "wikidata",
-      "confidence": 0.95,
-      "retrievedAt": "2026-08-10T12:00:00.000Z",
-      "provenance": {
-        "entityId": {
-          "field": "entityId",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04b-austria",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "poi-9f04f6796e9c4a4d"
-        },
-        "entityType": {
-          "field": "entityType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04b-austria",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "poi"
-        },
-        "parentCityEntityId": {
-          "field": "parentCityEntityId",
-          "sourceType": "repository-reference",
-          "source": "Austria City Entity",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1741",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "city-456578ab24d451ff"
-        },
-        "wikidataId": {
-          "field": "wikidataId",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q304037",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Q304037"
-        },
-        "canonicalNameZh": {
-          "field": "canonicalNameZh",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q304037",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "奥地利国家图书馆"
-        },
-        "canonicalNameEn": {
-          "field": "canonicalNameEn",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q304037",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Austrian National Library"
-        },
-        "aliases": {
-          "field": "aliases",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q304037",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": [
-            "Bibl. Pal.",
-            "Biblioteca Nacional Austríaca",
-            "Biblioteca Nacional da Áustria",
-            "Hofbibliothek",
-            "National Library of Austria",
-            "Oesterreichische Nationalbibliothek",
-            "ÖNB",
-            "Osterreichische Nationalbibliothek",
-            "Österreichische Nationalbibliothek",
-            "Österreichischen Nationalbibliothek",
-            "Prunksaal",
-            "Εθνική Βιβλιοθήκη της Αυστρίας"
-          ]
-        },
-        "coordinates": {
-          "field": "coordinates",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q304037",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": {
-            "latitude": 48.20614167,
-            "longitude": 16.36626667
-          }
-        },
-        "entitySourceType": {
-          "field": "entitySourceType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04b-austria",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "wikidata"
-        },
-        "confidence": {
-          "field": "confidence",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04b-austria",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": 0.95
-        },
-        "retrievedAt": {
-          "field": "retrievedAt",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q304037",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "2026-08-10T12:00:00.000Z"
-        }
-      }
-    },
-    {
-      "schemaVersion": "route-v2-poi-baseline-p1b",
-      "entityId": "poi-78ce2e29bb87bafa",
-      "entityType": "poi",
-      "parentCityEntityId": "city-456578ab24d451ff",
-      "wikidataId": "Q211818",
-      "canonicalNameZh": "美景宫",
-      "canonicalNameEn": "Belvedere",
-      "aliases": [
-        "Belvederegarten",
-        "Obere Belvedere",
-        "Palácio Belvedere",
-        "Palácio de Belvedere",
-        "Palácio do Belvedere",
-        "Paleis Belvedere",
-        "Schloss Belvedere",
-        "Schloss Belvedere (Vídeň, Rakousko)",
-        "Schloss Belvedere samt Schlosspark mit Baulichkeiten",
-        "Slot Belvedere",
-        "Untere Belvedere",
-        "Μπελβεντέρε",
-        "柏爾威岱宮",
-        "百樂宮",
-        "美景宮",
-        "贝尔佛第宫"
-      ],
-      "coordinates": {
-        "latitude": 48.1934,
-        "longitude": 16.380519444444445
-      },
-      "entitySourceType": "wikidata",
-      "confidence": 0.95,
-      "retrievedAt": "2026-08-10T12:00:00.000Z",
-      "provenance": {
-        "entityId": {
-          "field": "entityId",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04b-austria",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "poi-78ce2e29bb87bafa"
-        },
-        "entityType": {
-          "field": "entityType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04b-austria",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "poi"
-        },
-        "parentCityEntityId": {
-          "field": "parentCityEntityId",
-          "sourceType": "repository-reference",
-          "source": "Austria City Entity",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1741",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "city-456578ab24d451ff"
-        },
-        "wikidataId": {
-          "field": "wikidataId",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q211818",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Q211818"
-        },
-        "canonicalNameZh": {
-          "field": "canonicalNameZh",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q211818",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "美景宫"
-        },
-        "canonicalNameEn": {
-          "field": "canonicalNameEn",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q211818",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Belvedere"
-        },
-        "aliases": {
-          "field": "aliases",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q211818",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": [
-            "Belvederegarten",
-            "Obere Belvedere",
-            "Palácio Belvedere",
-            "Palácio de Belvedere",
-            "Palácio do Belvedere",
-            "Paleis Belvedere",
-            "Schloss Belvedere",
-            "Schloss Belvedere (Vídeň, Rakousko)",
-            "Schloss Belvedere samt Schlosspark mit Baulichkeiten",
-            "Slot Belvedere",
-            "Untere Belvedere",
-            "Μπελβεντέρε",
-            "柏爾威岱宮",
-            "百樂宮",
-            "美景宮",
-            "贝尔佛第宫"
-          ]
-        },
-        "coordinates": {
-          "field": "coordinates",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q211818",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": {
-            "latitude": 48.1934,
-            "longitude": 16.380519444444445
-          }
-        },
-        "entitySourceType": {
-          "field": "entitySourceType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04b-austria",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "wikidata"
-        },
-        "confidence": {
-          "field": "confidence",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04b-austria",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": 0.95
-        },
-        "retrievedAt": {
-          "field": "retrievedAt",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q211818",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "2026-08-10T12:00:00.000Z"
-        }
-      }
-    },
-    {
-      "schemaVersion": "route-v2-poi-baseline-p1b",
-      "entityId": "poi-64a607a6585327dc",
-      "entityType": "poi",
-      "parentCityEntityId": "city-456578ab24d451ff",
-      "wikidataId": "Q46242",
-      "canonicalNameZh": "霍夫堡皇宮",
-      "canonicalNameEn": "Hofburg",
-      "aliases": [
-        "Hofburg Palace",
-        "Hofburg Wien",
-        "Hofburg,",
-        "Kaiserhof",
-        "Palácio Imperial de Hofburg",
-        "Palácio Imperial de Hofburg,",
-        "Wiener Burg",
-        "Wiener Hofburg",
-        "Χόφμπουργκ",
-        "霍夫堡"
-      ],
-      "coordinates": {
-        "latitude": 48.20638888888889,
-        "longitude": 16.365277777777777
-      },
-      "entitySourceType": "wikidata",
-      "confidence": 0.95,
-      "retrievedAt": "2026-08-10T12:00:00.000Z",
-      "provenance": {
-        "entityId": {
-          "field": "entityId",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04b-austria",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "poi-64a607a6585327dc"
-        },
-        "entityType": {
-          "field": "entityType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04b-austria",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "poi"
-        },
-        "parentCityEntityId": {
-          "field": "parentCityEntityId",
-          "sourceType": "repository-reference",
-          "source": "Austria City Entity",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1741",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "city-456578ab24d451ff"
-        },
-        "wikidataId": {
-          "field": "wikidataId",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q46242",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Q46242"
-        },
-        "canonicalNameZh": {
-          "field": "canonicalNameZh",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q46242",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "霍夫堡皇宮"
-        },
-        "canonicalNameEn": {
-          "field": "canonicalNameEn",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q46242",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Hofburg"
-        },
-        "aliases": {
-          "field": "aliases",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q46242",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": [
-            "Hofburg Palace",
-            "Hofburg Wien",
-            "Hofburg,",
-            "Kaiserhof",
-            "Palácio Imperial de Hofburg",
-            "Palácio Imperial de Hofburg,",
-            "Wiener Burg",
-            "Wiener Hofburg",
-            "Χόφμπουργκ",
-            "霍夫堡"
-          ]
-        },
-        "coordinates": {
-          "field": "coordinates",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q46242",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": {
-            "latitude": 48.20638888888889,
-            "longitude": 16.365277777777777
-          }
-        },
-        "entitySourceType": {
-          "field": "entitySourceType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04b-austria",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "wikidata"
-        },
-        "confidence": {
-          "field": "confidence",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04b-austria",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": 0.95
-        },
-        "retrievedAt": {
-          "field": "retrievedAt",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q46242",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "2026-08-10T12:00:00.000Z"
-        }
-      }
-    },
-    {
-      "schemaVersion": "route-v2-poi-baseline-p1b",
-      "entityId": "poi-00cb97a4a83700ce",
-      "entityType": "poi",
-      "parentCityEntityId": "city-456578ab24d451ff",
-      "wikidataId": "Q408847",
-      "canonicalNameZh": "查理教堂",
-      "canonicalNameEn": "Karlskirche",
-      "aliases": [
-        "Igreja de São Carlos Borromeu (Viena)",
-        "Karlskirche Wien",
-        "Kath. Pfarrkirche, Pfarrkirche Hl. Karl Borromäus (Karlskirche)",
-        "Wiener Karlskirche",
-        "Ναός του Αγίου Καρόλου"
-      ],
-      "coordinates": {
-        "latitude": 48.198280555555556,
-        "longitude": 16.371880555555556
-      },
-      "entitySourceType": "wikidata",
-      "confidence": 0.95,
-      "retrievedAt": "2026-08-10T12:00:00.000Z",
-      "provenance": {
-        "entityId": {
-          "field": "entityId",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04b-austria",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "poi-00cb97a4a83700ce"
-        },
-        "entityType": {
-          "field": "entityType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04b-austria",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "poi"
-        },
-        "parentCityEntityId": {
-          "field": "parentCityEntityId",
-          "sourceType": "repository-reference",
-          "source": "Austria City Entity",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1741",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "city-456578ab24d451ff"
-        },
-        "wikidataId": {
-          "field": "wikidataId",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q408847",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Q408847"
-        },
-        "canonicalNameZh": {
-          "field": "canonicalNameZh",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q408847",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "查理教堂"
-        },
-        "canonicalNameEn": {
-          "field": "canonicalNameEn",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q408847",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Karlskirche"
-        },
-        "aliases": {
-          "field": "aliases",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q408847",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": [
-            "Igreja de São Carlos Borromeu (Viena)",
-            "Karlskirche Wien",
-            "Kath. Pfarrkirche, Pfarrkirche Hl. Karl Borromäus (Karlskirche)",
-            "Wiener Karlskirche",
-            "Ναός του Αγίου Καρόλου"
-          ]
-        },
-        "coordinates": {
-          "field": "coordinates",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q408847",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": {
-            "latitude": 48.198280555555556,
-            "longitude": 16.371880555555556
-          }
-        },
-        "entitySourceType": {
-          "field": "entitySourceType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04b-austria",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "wikidata"
-        },
-        "confidence": {
-          "field": "confidence",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04b-austria",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": 0.95
-        },
-        "retrievedAt": {
-          "field": "retrievedAt",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q408847",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "2026-08-10T12:00:00.000Z"
-        }
-      }
-    },
-    {
-      "schemaVersion": "route-v2-poi-baseline-p1b",
-      "entityId": "poi-aea1e0e87b873c28",
-      "entityType": "poi",
-      "parentCityEntityId": "city-456578ab24d451ff",
-      "wikidataId": "Q95569",
-      "canonicalNameZh": "艺术史博物馆",
-      "canonicalNameEn": "Kunsthistorisches Museum",
-      "aliases": [
-        "KHM",
-        "Kunsthistorisches Museum Wien",
-        "Museu de História da Arte em Viena",
-        "Museum of Art History",
-        "Vienna Art History Museum",
-        "Μουσείο Ιστορίας της Τέχνης"
-      ],
-      "coordinates": {
-        "latitude": 48.20388055555556,
-        "longitude": 16.3616
-      },
-      "entitySourceType": "wikidata",
-      "confidence": 0.95,
-      "retrievedAt": "2026-08-10T12:00:00.000Z",
-      "provenance": {
-        "entityId": {
-          "field": "entityId",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04b-austria",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "poi-aea1e0e87b873c28"
-        },
-        "entityType": {
-          "field": "entityType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04b-austria",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "poi"
-        },
-        "parentCityEntityId": {
-          "field": "parentCityEntityId",
-          "sourceType": "repository-reference",
-          "source": "Austria City Entity",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1741",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "city-456578ab24d451ff"
-        },
-        "wikidataId": {
-          "field": "wikidataId",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q95569",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Q95569"
-        },
-        "canonicalNameZh": {
-          "field": "canonicalNameZh",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q95569",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "艺术史博物馆"
-        },
-        "canonicalNameEn": {
-          "field": "canonicalNameEn",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q95569",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Kunsthistorisches Museum"
-        },
-        "aliases": {
-          "field": "aliases",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q95569",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": [
-            "KHM",
-            "Kunsthistorisches Museum Wien",
-            "Museu de História da Arte em Viena",
-            "Museum of Art History",
-            "Vienna Art History Museum",
-            "Μουσείο Ιστορίας της Τέχνης"
-          ]
-        },
-        "coordinates": {
-          "field": "coordinates",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q95569",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": {
-            "latitude": 48.20388055555556,
-            "longitude": 16.3616
-          }
-        },
-        "entitySourceType": {
-          "field": "entitySourceType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04b-austria",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "wikidata"
-        },
-        "confidence": {
-          "field": "confidence",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04b-austria",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": 0.95
-        },
-        "retrievedAt": {
-          "field": "retrievedAt",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q95569",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "2026-08-10T12:00:00.000Z"
-        }
-      }
-    },
-    {
-      "schemaVersion": "route-v2-poi-baseline-p1b",
       "entityId": "poi-62222091234b10b4",
       "entityType": "poi",
       "parentCityEntityId": "city-456578ab24d451ff",
@@ -2582,146 +1444,6 @@
           "sourceType": "wikidata",
           "source": "Wikidata enwiki title plus wbgetentities",
           "sourceUrl": "https://www.wikidata.org/wiki/Q417645",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "2026-08-10T12:00:00.000Z"
-        }
-      }
-    },
-    {
-      "schemaVersion": "route-v2-poi-baseline-p1b",
-      "entityId": "poi-ba7cb5ead3b21fcd",
-      "entityType": "poi",
-      "parentCityEntityId": "city-456578ab24d451ff",
-      "wikidataId": "Q688704",
-      "canonicalNameZh": "自然史博物馆",
-      "canonicalNameEn": "Natural History Museum",
-      "aliases": [
-        "Imperial Natural History Museum",
-        "k.k. naturhistorisches Hof-Museum",
-        "Museum of Natural History Vienna",
-        "Natural History Museum Vienna",
-        "Natural History Museum, Vienna",
-        "Naturhistorisches Museum",
-        "Naturhistorisches Museum Wien",
-        "NHM",
-        "NHMW",
-        "NMW",
-        "Vienna Museum of Natural History",
-        "Μουσείο Φυσικής Ιστορίας της Βιένης",
-        "維也納自然史博物館",
-        "维也纳自然历史博物馆"
-      ],
-      "coordinates": {
-        "latitude": 48.205130555555556,
-        "longitude": 16.359930555555554
-      },
-      "entitySourceType": "wikidata",
-      "confidence": 0.95,
-      "retrievedAt": "2026-08-10T12:00:00.000Z",
-      "provenance": {
-        "entityId": {
-          "field": "entityId",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04b-austria",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "poi-ba7cb5ead3b21fcd"
-        },
-        "entityType": {
-          "field": "entityType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04b-austria",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "poi"
-        },
-        "parentCityEntityId": {
-          "field": "parentCityEntityId",
-          "sourceType": "repository-reference",
-          "source": "Austria City Entity",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1741",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "city-456578ab24d451ff"
-        },
-        "wikidataId": {
-          "field": "wikidataId",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q688704",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Q688704"
-        },
-        "canonicalNameZh": {
-          "field": "canonicalNameZh",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q688704",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "自然史博物馆"
-        },
-        "canonicalNameEn": {
-          "field": "canonicalNameEn",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q688704",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Natural History Museum"
-        },
-        "aliases": {
-          "field": "aliases",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q688704",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": [
-            "Imperial Natural History Museum",
-            "k.k. naturhistorisches Hof-Museum",
-            "Museum of Natural History Vienna",
-            "Natural History Museum Vienna",
-            "Natural History Museum, Vienna",
-            "Naturhistorisches Museum",
-            "Naturhistorisches Museum Wien",
-            "NHM",
-            "NHMW",
-            "NMW",
-            "Vienna Museum of Natural History",
-            "Μουσείο Φυσικής Ιστορίας της Βιένης",
-            "維也納自然史博物館",
-            "维也纳自然历史博物馆"
-          ]
-        },
-        "coordinates": {
-          "field": "coordinates",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q688704",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": {
-            "latitude": 48.205130555555556,
-            "longitude": 16.359930555555554
-          }
-        },
-        "entitySourceType": {
-          "field": "entitySourceType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04b-austria",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "wikidata"
-        },
-        "confidence": {
-          "field": "confidence",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04b-austria",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": 0.95
-        },
-        "retrievedAt": {
-          "field": "retrievedAt",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q688704",
           "retrievedAt": "2026-08-10T12:00:00.000Z",
           "value": "2026-08-10T12:00:00.000Z"
         }
@@ -3001,124 +1723,6 @@
     },
     {
       "schemaVersion": "route-v2-poi-baseline-p1b",
-      "entityId": "poi-620ac07256293172",
-      "entityType": "poi",
-      "parentCityEntityId": "city-456578ab24d451ff",
-      "wikidataId": "Q269273",
-      "canonicalNameZh": "西班牙骑术学校",
-      "canonicalNameEn": "Spanish Riding School",
-      "aliases": [
-        "Escola Espanhola de Equitação",
-        "Spaanse rijschool",
-        "Spanische Hofreitschule"
-      ],
-      "coordinates": {
-        "latitude": 48.2075,
-        "longitude": 16.366111111111
-      },
-      "entitySourceType": "wikidata",
-      "confidence": 0.95,
-      "retrievedAt": "2026-08-10T12:00:00.000Z",
-      "provenance": {
-        "entityId": {
-          "field": "entityId",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04b-austria",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "poi-620ac07256293172"
-        },
-        "entityType": {
-          "field": "entityType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04b-austria",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "poi"
-        },
-        "parentCityEntityId": {
-          "field": "parentCityEntityId",
-          "sourceType": "repository-reference",
-          "source": "Austria City Entity",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1741",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "city-456578ab24d451ff"
-        },
-        "wikidataId": {
-          "field": "wikidataId",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q269273",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Q269273"
-        },
-        "canonicalNameZh": {
-          "field": "canonicalNameZh",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q269273",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "西班牙骑术学校"
-        },
-        "canonicalNameEn": {
-          "field": "canonicalNameEn",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q269273",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Spanish Riding School"
-        },
-        "aliases": {
-          "field": "aliases",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q269273",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": [
-            "Escola Espanhola de Equitação",
-            "Spaanse rijschool",
-            "Spanische Hofreitschule"
-          ]
-        },
-        "coordinates": {
-          "field": "coordinates",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q269273",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": {
-            "latitude": 48.2075,
-            "longitude": 16.366111111111
-          }
-        },
-        "entitySourceType": {
-          "field": "entitySourceType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04b-austria",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "wikidata"
-        },
-        "confidence": {
-          "field": "confidence",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04b-austria",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": 0.95
-        },
-        "retrievedAt": {
-          "field": "retrievedAt",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q269273",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "2026-08-10T12:00:00.000Z"
-        }
-      }
-    },
-    {
-      "schemaVersion": "route-v2-poi-baseline-p1b",
       "entityId": "poi-1116883d21c18c19",
       "entityType": "poi",
       "parentCityEntityId": "city-456578ab24d451ff",
@@ -3242,280 +1846,6 @@
           "sourceType": "wikidata",
           "source": "Wikidata enwiki title plus wbgetentities",
           "sourceUrl": "https://www.wikidata.org/wiki/Q5943",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "2026-08-10T12:00:00.000Z"
-        }
-      }
-    },
-    {
-      "schemaVersion": "route-v2-poi-baseline-p1b",
-      "entityId": "poi-1ff71c962ce0443b",
-      "entityType": "poi",
-      "parentCityEntityId": "city-456578ab24d451ff",
-      "wikidataId": "Q686468",
-      "canonicalNameZh": "维也纳市政厅",
-      "canonicalNameEn": "Vienna City Hall",
-      "aliases": [
-        "Rathaus",
-        "Rathaus of Vienna",
-        "Stadhuis van Wenen",
-        "Wiener Rathaus",
-        "Δημαρχείο της Βιέννης"
-      ],
-      "coordinates": {
-        "latitude": 48.2108,
-        "longitude": 16.3574
-      },
-      "entitySourceType": "wikidata",
-      "confidence": 0.95,
-      "retrievedAt": "2026-08-10T12:00:00.000Z",
-      "provenance": {
-        "entityId": {
-          "field": "entityId",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04b-austria",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "poi-1ff71c962ce0443b"
-        },
-        "entityType": {
-          "field": "entityType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04b-austria",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "poi"
-        },
-        "parentCityEntityId": {
-          "field": "parentCityEntityId",
-          "sourceType": "repository-reference",
-          "source": "Austria City Entity",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1741",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "city-456578ab24d451ff"
-        },
-        "wikidataId": {
-          "field": "wikidataId",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q686468",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Q686468"
-        },
-        "canonicalNameZh": {
-          "field": "canonicalNameZh",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q686468",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "维也纳市政厅"
-        },
-        "canonicalNameEn": {
-          "field": "canonicalNameEn",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q686468",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Vienna City Hall"
-        },
-        "aliases": {
-          "field": "aliases",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q686468",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": [
-            "Rathaus",
-            "Rathaus of Vienna",
-            "Stadhuis van Wenen",
-            "Wiener Rathaus",
-            "Δημαρχείο της Βιέννης"
-          ]
-        },
-        "coordinates": {
-          "field": "coordinates",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q686468",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": {
-            "latitude": 48.2108,
-            "longitude": 16.3574
-          }
-        },
-        "entitySourceType": {
-          "field": "entitySourceType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04b-austria",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "wikidata"
-        },
-        "confidence": {
-          "field": "confidence",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04b-austria",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": 0.95
-        },
-        "retrievedAt": {
-          "field": "retrievedAt",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q686468",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "2026-08-10T12:00:00.000Z"
-        }
-      }
-    },
-    {
-      "schemaVersion": "route-v2-poi-baseline-p1b",
-      "entityId": "poi-b31286429c4bd18c",
-      "entityType": "poi",
-      "parentCityEntityId": "city-456578ab24d451ff",
-      "wikidataId": "Q209937",
-      "canonicalNameZh": "维也纳国家歌剧院",
-      "canonicalNameEn": "Vienna State Opera",
-      "aliases": [
-        "Erstes Haus am Ring",
-        "K. K. Hof-Operntheater",
-        "k.k. Hof-Operntheater",
-        "KK Hof Opera Theater",
-        "Neues Haus",
-        "Ópera da Corte de Viena",
-        "Ópera do Estado de Viena",
-        "Ópera Estatal de Viena",
-        "Operabal",
-        "Operntheater",
-        "Staatsoper",
-        "Staatsoper Wien",
-        "Vienna Operahouse",
-        "Vienna State Opera house",
-        "Weense Staatsopera",
-        "Wiener Hofoper",
-        "Wiener Oper",
-        "Wiener Staatsoper",
-        "Κρατική Όπερα της Βιέννης",
-        "維也納國立歌劇院"
-      ],
-      "coordinates": {
-        "latitude": 48.203333333333,
-        "longitude": 16.369166666667
-      },
-      "entitySourceType": "wikidata",
-      "confidence": 0.95,
-      "retrievedAt": "2026-08-10T12:00:00.000Z",
-      "provenance": {
-        "entityId": {
-          "field": "entityId",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04b-austria",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "poi-b31286429c4bd18c"
-        },
-        "entityType": {
-          "field": "entityType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04b-austria",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "poi"
-        },
-        "parentCityEntityId": {
-          "field": "parentCityEntityId",
-          "sourceType": "repository-reference",
-          "source": "Austria City Entity",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1741",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "city-456578ab24d451ff"
-        },
-        "wikidataId": {
-          "field": "wikidataId",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q209937",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Q209937"
-        },
-        "canonicalNameZh": {
-          "field": "canonicalNameZh",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q209937",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "维也纳国家歌剧院"
-        },
-        "canonicalNameEn": {
-          "field": "canonicalNameEn",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q209937",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Vienna State Opera"
-        },
-        "aliases": {
-          "field": "aliases",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q209937",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": [
-            "Erstes Haus am Ring",
-            "K. K. Hof-Operntheater",
-            "k.k. Hof-Operntheater",
-            "KK Hof Opera Theater",
-            "Neues Haus",
-            "Ópera da Corte de Viena",
-            "Ópera do Estado de Viena",
-            "Ópera Estatal de Viena",
-            "Operabal",
-            "Operntheater",
-            "Staatsoper",
-            "Staatsoper Wien",
-            "Vienna Operahouse",
-            "Vienna State Opera house",
-            "Weense Staatsopera",
-            "Wiener Hofoper",
-            "Wiener Oper",
-            "Wiener Staatsoper",
-            "Κρατική Όπερα της Βιέννης",
-            "維也納國立歌劇院"
-          ]
-        },
-        "coordinates": {
-          "field": "coordinates",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q209937",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": {
-            "latitude": 48.203333333333,
-            "longitude": 16.369166666667
-          }
-        },
-        "entitySourceType": {
-          "field": "entitySourceType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04b-austria",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "wikidata"
-        },
-        "confidence": {
-          "field": "confidence",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04b-austria",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": 0.95
-        },
-        "retrievedAt": {
-          "field": "retrievedAt",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q209937",
           "retrievedAt": "2026-08-10T12:00:00.000Z",
           "value": "2026-08-10T12:00:00.000Z"
         }
@@ -3748,244 +2078,6 @@
           "sourceType": "wikidata",
           "source": "Wikidata enwiki title plus wbgetentities",
           "sourceUrl": "https://www.wikidata.org/wiki/Q686531",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "2026-08-10T12:00:00.000Z"
-        }
-      }
-    },
-    {
-      "schemaVersion": "route-v2-poi-baseline-p1b",
-      "entityId": "poi-93764b4ab8abf8c2",
-      "entityType": "poi",
-      "parentCityEntityId": "city-60983c289d9ce9d3",
-      "wikidataId": "Q686508",
-      "canonicalNameZh": "林茨城堡",
-      "canonicalNameEn": "Linz Palace",
-      "aliases": [
-        "Linz Castle",
-        "Linzer Schloss"
-      ],
-      "coordinates": {
-        "latitude": 48.305,
-        "longitude": 14.283055555556
-      },
-      "entitySourceType": "wikidata",
-      "confidence": 0.95,
-      "retrievedAt": "2026-08-10T12:00:00.000Z",
-      "provenance": {
-        "entityId": {
-          "field": "entityId",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04b-austria",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "poi-93764b4ab8abf8c2"
-        },
-        "entityType": {
-          "field": "entityType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04b-austria",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "poi"
-        },
-        "parentCityEntityId": {
-          "field": "parentCityEntityId",
-          "sourceType": "repository-reference",
-          "source": "Austria City Entity",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q41329",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "city-60983c289d9ce9d3"
-        },
-        "wikidataId": {
-          "field": "wikidataId",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q686508",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Q686508"
-        },
-        "canonicalNameZh": {
-          "field": "canonicalNameZh",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q686508",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "林茨城堡"
-        },
-        "canonicalNameEn": {
-          "field": "canonicalNameEn",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q686508",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Linz Palace"
-        },
-        "aliases": {
-          "field": "aliases",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q686508",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": [
-            "Linz Castle",
-            "Linzer Schloss"
-          ]
-        },
-        "coordinates": {
-          "field": "coordinates",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q686508",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": {
-            "latitude": 48.305,
-            "longitude": 14.283055555556
-          }
-        },
-        "entitySourceType": {
-          "field": "entitySourceType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04b-austria",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "wikidata"
-        },
-        "confidence": {
-          "field": "confidence",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04b-austria",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": 0.95
-        },
-        "retrievedAt": {
-          "field": "retrievedAt",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q686508",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "2026-08-10T12:00:00.000Z"
-        }
-      }
-    },
-    {
-      "schemaVersion": "route-v2-poi-baseline-p1b",
-      "entityId": "poi-780aba5fc101f81b",
-      "entityType": "poi",
-      "parentCityEntityId": "city-60983c289d9ce9d3",
-      "wikidataId": "Q257481",
-      "canonicalNameZh": "林茨新主教座堂",
-      "canonicalNameEn": "New Cathedral",
-      "aliases": [
-        "Cathedral of the Immaculate Conception",
-        "Mariä-Empfängnis-Dom",
-        "Neuer Dom Maria Empfängnis",
-        "New Cathedral, Linz",
-        "Nieuwe Dom"
-      ],
-      "coordinates": {
-        "latitude": 48.30023,
-        "longitude": 14.28604
-      },
-      "entitySourceType": "wikidata",
-      "confidence": 0.95,
-      "retrievedAt": "2026-08-10T12:00:00.000Z",
-      "provenance": {
-        "entityId": {
-          "field": "entityId",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04b-austria",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "poi-780aba5fc101f81b"
-        },
-        "entityType": {
-          "field": "entityType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04b-austria",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "poi"
-        },
-        "parentCityEntityId": {
-          "field": "parentCityEntityId",
-          "sourceType": "repository-reference",
-          "source": "Austria City Entity",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q41329",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "city-60983c289d9ce9d3"
-        },
-        "wikidataId": {
-          "field": "wikidataId",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q257481",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Q257481"
-        },
-        "canonicalNameZh": {
-          "field": "canonicalNameZh",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q257481",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "林茨新主教座堂"
-        },
-        "canonicalNameEn": {
-          "field": "canonicalNameEn",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q257481",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "New Cathedral"
-        },
-        "aliases": {
-          "field": "aliases",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q257481",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": [
-            "Cathedral of the Immaculate Conception",
-            "Mariä-Empfängnis-Dom",
-            "Neuer Dom Maria Empfängnis",
-            "New Cathedral, Linz",
-            "Nieuwe Dom"
-          ]
-        },
-        "coordinates": {
-          "field": "coordinates",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q257481",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": {
-            "latitude": 48.30023,
-            "longitude": 14.28604
-          }
-        },
-        "entitySourceType": {
-          "field": "entitySourceType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04b-austria",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "wikidata"
-        },
-        "confidence": {
-          "field": "confidence",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04b-austria",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": 0.95
-        },
-        "retrievedAt": {
-          "field": "retrievedAt",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q257481",
           "retrievedAt": "2026-08-10T12:00:00.000Z",
           "value": "2026-08-10T12:00:00.000Z"
         }
@@ -4339,124 +2431,6 @@
     },
     {
       "schemaVersion": "route-v2-poi-baseline-p1b",
-      "entityId": "poi-a1127d7e78dee284",
-      "entityType": "poi",
-      "parentCityEntityId": "city-6d8bfa998b2fe3e1",
-      "wikidataId": "Q672833",
-      "canonicalNameZh": "伯吉瑟尔滑雪台",
-      "canonicalNameEn": "Bergisel Ski Jump",
-      "aliases": [
-        "Bergisel",
-        "Bergiselschans",
-        "Bergiselschanze"
-      ],
-      "coordinates": {
-        "latitude": 47.248888888889,
-        "longitude": 11.399166666667
-      },
-      "entitySourceType": "wikidata",
-      "confidence": 0.95,
-      "retrievedAt": "2026-08-10T12:00:00.000Z",
-      "provenance": {
-        "entityId": {
-          "field": "entityId",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04b-austria",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "poi-a1127d7e78dee284"
-        },
-        "entityType": {
-          "field": "entityType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04b-austria",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "poi"
-        },
-        "parentCityEntityId": {
-          "field": "parentCityEntityId",
-          "sourceType": "repository-reference",
-          "source": "Austria City Entity",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1735",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "city-6d8bfa998b2fe3e1"
-        },
-        "wikidataId": {
-          "field": "wikidataId",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q672833",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Q672833"
-        },
-        "canonicalNameZh": {
-          "field": "canonicalNameZh",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q672833",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "伯吉瑟尔滑雪台"
-        },
-        "canonicalNameEn": {
-          "field": "canonicalNameEn",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q672833",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Bergisel Ski Jump"
-        },
-        "aliases": {
-          "field": "aliases",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q672833",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": [
-            "Bergisel",
-            "Bergiselschans",
-            "Bergiselschanze"
-          ]
-        },
-        "coordinates": {
-          "field": "coordinates",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q672833",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": {
-            "latitude": 47.248888888889,
-            "longitude": 11.399166666667
-          }
-        },
-        "entitySourceType": {
-          "field": "entitySourceType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04b-austria",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "wikidata"
-        },
-        "confidence": {
-          "field": "confidence",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04b-austria",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": 0.95
-        },
-        "retrievedAt": {
-          "field": "retrievedAt",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q672833",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "2026-08-10T12:00:00.000Z"
-        }
-      }
-    },
-    {
-      "schemaVersion": "route-v2-poi-baseline-p1b",
       "entityId": "poi-6e83bda7c0a39dfe",
       "entityType": "poi",
       "parentCityEntityId": "city-6d8bfa998b2fe3e1",
@@ -4695,128 +2669,6 @@
     },
     {
       "schemaVersion": "route-v2-poi-baseline-p1b",
-      "entityId": "poi-594699422dc6dde3",
-      "entityType": "poi",
-      "parentCityEntityId": "city-6d8bfa998b2fe3e1",
-      "wikidataId": "Q258578",
-      "canonicalNameZh": "因斯布鲁克主教座堂",
-      "canonicalNameEn": "Innsbruck Cathedral",
-      "aliases": [
-        "Dom und Propsteipfarrkirche hl. Jakob",
-        "Dom van Innsbruck",
-        "Dom zu St. Jakob",
-        "Innsbrucker Dom",
-        "Insbrucker Dom"
-      ],
-      "coordinates": {
-        "latitude": 47.269356,
-        "longitude": 11.394174
-      },
-      "entitySourceType": "wikidata",
-      "confidence": 0.95,
-      "retrievedAt": "2026-08-10T12:00:00.000Z",
-      "provenance": {
-        "entityId": {
-          "field": "entityId",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04b-austria",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "poi-594699422dc6dde3"
-        },
-        "entityType": {
-          "field": "entityType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04b-austria",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "poi"
-        },
-        "parentCityEntityId": {
-          "field": "parentCityEntityId",
-          "sourceType": "repository-reference",
-          "source": "Austria City Entity",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q1735",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "city-6d8bfa998b2fe3e1"
-        },
-        "wikidataId": {
-          "field": "wikidataId",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q258578",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Q258578"
-        },
-        "canonicalNameZh": {
-          "field": "canonicalNameZh",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q258578",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "因斯布鲁克主教座堂"
-        },
-        "canonicalNameEn": {
-          "field": "canonicalNameEn",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q258578",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Innsbruck Cathedral"
-        },
-        "aliases": {
-          "field": "aliases",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q258578",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": [
-            "Dom und Propsteipfarrkirche hl. Jakob",
-            "Dom van Innsbruck",
-            "Dom zu St. Jakob",
-            "Innsbrucker Dom",
-            "Insbrucker Dom"
-          ]
-        },
-        "coordinates": {
-          "field": "coordinates",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q258578",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": {
-            "latitude": 47.269356,
-            "longitude": 11.394174
-          }
-        },
-        "entitySourceType": {
-          "field": "entitySourceType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04b-austria",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "wikidata"
-        },
-        "confidence": {
-          "field": "confidence",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04b-austria",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": 0.95
-        },
-        "retrievedAt": {
-          "field": "retrievedAt",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q258578",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "2026-08-10T12:00:00.000Z"
-        }
-      }
-    },
-    {
-      "schemaVersion": "route-v2-poi-baseline-p1b",
       "entityId": "poi-ba7f5e1dc08ccefb",
       "entityType": "poi",
       "parentCityEntityId": "city-6d8bfa998b2fe3e1",
@@ -5042,130 +2894,6 @@
           "sourceType": "wikidata",
           "source": "Wikidata enwiki title plus wbgetentities",
           "sourceUrl": "https://www.wikidata.org/wiki/Q109658974",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "2026-08-10T12:00:00.000Z"
-        }
-      }
-    },
-    {
-      "schemaVersion": "route-v2-poi-baseline-p1b",
-      "entityId": "poi-fb155f602bf53d55",
-      "entityType": "poi",
-      "parentCityEntityId": "city-85e356e0e514f090",
-      "wikidataId": "Q19796924",
-      "canonicalNameZh": "哈尔施塔特新教教堂",
-      "canonicalNameEn": "Evangelical Church of Hallstatt",
-      "aliases": [
-        "Christuskirche",
-        "Christuskirche Hallstatt",
-        "Evang. Pfarrkirche A.B.",
-        "Evangelische Pfarrkirche Hallstatt",
-        "Εκκλησία του Χριστού (Χάλστατ)",
-        "Ναός του Χριστού (Χάλστατ)"
-      ],
-      "coordinates": {
-        "latitude": 47.56271362,
-        "longitude": 13.64953136
-      },
-      "entitySourceType": "wikidata",
-      "confidence": 0.95,
-      "retrievedAt": "2026-08-10T12:00:00.000Z",
-      "provenance": {
-        "entityId": {
-          "field": "entityId",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04b-austria",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "poi-fb155f602bf53d55"
-        },
-        "entityType": {
-          "field": "entityType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04b-austria",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "poi"
-        },
-        "parentCityEntityId": {
-          "field": "parentCityEntityId",
-          "sourceType": "repository-reference",
-          "source": "Austria City Entity",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q131633",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "city-85e356e0e514f090"
-        },
-        "wikidataId": {
-          "field": "wikidataId",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q19796924",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Q19796924"
-        },
-        "canonicalNameZh": {
-          "field": "canonicalNameZh",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q19796924",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "哈尔施塔特新教教堂"
-        },
-        "canonicalNameEn": {
-          "field": "canonicalNameEn",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q19796924",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Evangelical Church of Hallstatt"
-        },
-        "aliases": {
-          "field": "aliases",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q19796924",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": [
-            "Christuskirche",
-            "Christuskirche Hallstatt",
-            "Evang. Pfarrkirche A.B.",
-            "Evangelische Pfarrkirche Hallstatt",
-            "Εκκλησία του Χριστού (Χάλστατ)",
-            "Ναός του Χριστού (Χάλστατ)"
-          ]
-        },
-        "coordinates": {
-          "field": "coordinates",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q19796924",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": {
-            "latitude": 47.56271362,
-            "longitude": 13.64953136
-          }
-        },
-        "entitySourceType": {
-          "field": "entitySourceType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04b-austria",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "wikidata"
-        },
-        "confidence": {
-          "field": "confidence",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04b-austria",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": 0.95
-        },
-        "retrievedAt": {
-          "field": "retrievedAt",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q19796924",
           "retrievedAt": "2026-08-10T12:00:00.000Z",
           "value": "2026-08-10T12:00:00.000Z"
         }
@@ -5637,128 +3365,6 @@
     },
     {
       "schemaVersion": "route-v2-poi-baseline-p1b",
-      "entityId": "poi-01f8c5cbe17fd3cf",
-      "entityType": "poi",
-      "parentCityEntityId": "city-c8106459287724ff",
-      "wikidataId": "Q17566011",
-      "canonicalNameZh": "St. Hippolytus Church",
-      "canonicalNameEn": "St. Hippolytus Church",
-      "aliases": [
-        "Kath. Pfarrkirche, hl. Hippolyth, Stadtpfarrkirche",
-        "Saint Hippolytus Church of Zell am See",
-        "Saint Hippolytus Church, Zell am See",
-        "St. Hippolytus Church, Zell am See",
-        "Stadtpfarrkirche zum Heiligen Hippolyt in Zell am See"
-      ],
-      "coordinates": {
-        "latitude": 47.323093,
-        "longitude": 12.798472
-      },
-      "entitySourceType": "wikidata",
-      "confidence": 0.95,
-      "retrievedAt": "2026-08-10T12:00:00.000Z",
-      "provenance": {
-        "entityId": {
-          "field": "entityId",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04b-austria",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "poi-01f8c5cbe17fd3cf"
-        },
-        "entityType": {
-          "field": "entityType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04b-austria",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "poi"
-        },
-        "parentCityEntityId": {
-          "field": "parentCityEntityId",
-          "sourceType": "repository-reference",
-          "source": "Austria City Entity",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q187572",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "city-c8106459287724ff"
-        },
-        "wikidataId": {
-          "field": "wikidataId",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q17566011",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Q17566011"
-        },
-        "canonicalNameZh": {
-          "field": "canonicalNameZh",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q17566011",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "St. Hippolytus Church"
-        },
-        "canonicalNameEn": {
-          "field": "canonicalNameEn",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q17566011",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "St. Hippolytus Church"
-        },
-        "aliases": {
-          "field": "aliases",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q17566011",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": [
-            "Kath. Pfarrkirche, hl. Hippolyth, Stadtpfarrkirche",
-            "Saint Hippolytus Church of Zell am See",
-            "Saint Hippolytus Church, Zell am See",
-            "St. Hippolytus Church, Zell am See",
-            "Stadtpfarrkirche zum Heiligen Hippolyt in Zell am See"
-          ]
-        },
-        "coordinates": {
-          "field": "coordinates",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q17566011",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": {
-            "latitude": 47.323093,
-            "longitude": 12.798472
-          }
-        },
-        "entitySourceType": {
-          "field": "entitySourceType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04b-austria",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "wikidata"
-        },
-        "confidence": {
-          "field": "confidence",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04b-austria",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": 0.95
-        },
-        "retrievedAt": {
-          "field": "retrievedAt",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q17566011",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "2026-08-10T12:00:00.000Z"
-        }
-      }
-    },
-    {
-      "schemaVersion": "route-v2-poi-baseline-p1b",
       "entityId": "poi-ccf6f66f438d0d5d",
       "entityType": "poi",
       "parentCityEntityId": "city-e2930ffae37e9bb6",
@@ -5879,372 +3485,6 @@
     },
     {
       "schemaVersion": "route-v2-poi-baseline-p1b",
-      "entityId": "poi-0b9b3caef25dafdf",
-      "entityType": "poi",
-      "parentCityEntityId": "city-e2930ffae37e9bb6",
-      "wikidataId": "Q262563",
-      "canonicalNameZh": "聖基爾斯主教座堂",
-      "canonicalNameEn": "Graz Cathedral",
-      "aliases": [
-        "Dom hl. Ägydius und Platzbereiche",
-        "Dom van Graz",
-        "Grazer Dom"
-      ],
-      "coordinates": {
-        "latitude": 47.071944444444,
-        "longitude": 15.442222222222
-      },
-      "entitySourceType": "wikidata",
-      "confidence": 0.95,
-      "retrievedAt": "2026-08-10T12:00:00.000Z",
-      "provenance": {
-        "entityId": {
-          "field": "entityId",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04b-austria",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "poi-0b9b3caef25dafdf"
-        },
-        "entityType": {
-          "field": "entityType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04b-austria",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "poi"
-        },
-        "parentCityEntityId": {
-          "field": "parentCityEntityId",
-          "sourceType": "repository-reference",
-          "source": "Austria City Entity",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q13298",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "city-e2930ffae37e9bb6"
-        },
-        "wikidataId": {
-          "field": "wikidataId",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q262563",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Q262563"
-        },
-        "canonicalNameZh": {
-          "field": "canonicalNameZh",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q262563",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "聖基爾斯主教座堂"
-        },
-        "canonicalNameEn": {
-          "field": "canonicalNameEn",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q262563",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Graz Cathedral"
-        },
-        "aliases": {
-          "field": "aliases",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q262563",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": [
-            "Dom hl. Ägydius und Platzbereiche",
-            "Dom van Graz",
-            "Grazer Dom"
-          ]
-        },
-        "coordinates": {
-          "field": "coordinates",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q262563",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": {
-            "latitude": 47.071944444444,
-            "longitude": 15.442222222222
-          }
-        },
-        "entitySourceType": {
-          "field": "entitySourceType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04b-austria",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "wikidata"
-        },
-        "confidence": {
-          "field": "confidence",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04b-austria",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": 0.95
-        },
-        "retrievedAt": {
-          "field": "retrievedAt",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q262563",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "2026-08-10T12:00:00.000Z"
-        }
-      }
-    },
-    {
-      "schemaVersion": "route-v2-poi-baseline-p1b",
-      "entityId": "poi-2b5235661c8863b3",
-      "entityType": "poi",
-      "parentCityEntityId": "city-e2930ffae37e9bb6",
-      "wikidataId": "Q353239",
-      "canonicalNameZh": "格拉茨鐘樓",
-      "canonicalNameEn": "Graz Clock Tower",
-      "aliases": [
-        "Clock tower in Graz",
-        "Grazer Uhrturm",
-        "Uhrturm",
-        "Uhrturm am Schlossberg"
-      ],
-      "coordinates": {
-        "latitude": 47.07356,
-        "longitude": 15.43771
-      },
-      "entitySourceType": "wikidata",
-      "confidence": 0.95,
-      "retrievedAt": "2026-08-10T12:00:00.000Z",
-      "provenance": {
-        "entityId": {
-          "field": "entityId",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04b-austria",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "poi-2b5235661c8863b3"
-        },
-        "entityType": {
-          "field": "entityType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04b-austria",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "poi"
-        },
-        "parentCityEntityId": {
-          "field": "parentCityEntityId",
-          "sourceType": "repository-reference",
-          "source": "Austria City Entity",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q13298",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "city-e2930ffae37e9bb6"
-        },
-        "wikidataId": {
-          "field": "wikidataId",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q353239",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Q353239"
-        },
-        "canonicalNameZh": {
-          "field": "canonicalNameZh",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q353239",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "格拉茨鐘樓"
-        },
-        "canonicalNameEn": {
-          "field": "canonicalNameEn",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q353239",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Graz Clock Tower"
-        },
-        "aliases": {
-          "field": "aliases",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q353239",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": [
-            "Clock tower in Graz",
-            "Grazer Uhrturm",
-            "Uhrturm",
-            "Uhrturm am Schlossberg"
-          ]
-        },
-        "coordinates": {
-          "field": "coordinates",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q353239",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": {
-            "latitude": 47.07356,
-            "longitude": 15.43771
-          }
-        },
-        "entitySourceType": {
-          "field": "entitySourceType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04b-austria",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "wikidata"
-        },
-        "confidence": {
-          "field": "confidence",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04b-austria",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": 0.95
-        },
-        "retrievedAt": {
-          "field": "retrievedAt",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q353239",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "2026-08-10T12:00:00.000Z"
-        }
-      }
-    },
-    {
-      "schemaVersion": "route-v2-poi-baseline-p1b",
-      "entityId": "poi-3c90962f8155a405",
-      "entityType": "poi",
-      "parentCityEntityId": "city-e2930ffae37e9bb6",
-      "wikidataId": "Q618239",
-      "canonicalNameZh": "格拉茨歌剧院",
-      "canonicalNameEn": "Graz Opera",
-      "aliases": [
-        "Graz Oper",
-        "Graz operahaus",
-        "Grazer Oper",
-        "Oper Graz",
-        "Opernhaus",
-        "Opernhaus Graz",
-        "Stadttheater",
-        "Όπερα του Γκρατς"
-      ],
-      "coordinates": {
-        "latitude": 47.069,
-        "longitude": 15.4456
-      },
-      "entitySourceType": "wikidata",
-      "confidence": 0.95,
-      "retrievedAt": "2026-08-10T12:00:00.000Z",
-      "provenance": {
-        "entityId": {
-          "field": "entityId",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04b-austria",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "poi-3c90962f8155a405"
-        },
-        "entityType": {
-          "field": "entityType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04b-austria",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "poi"
-        },
-        "parentCityEntityId": {
-          "field": "parentCityEntityId",
-          "sourceType": "repository-reference",
-          "source": "Austria City Entity",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q13298",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "city-e2930ffae37e9bb6"
-        },
-        "wikidataId": {
-          "field": "wikidataId",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q618239",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Q618239"
-        },
-        "canonicalNameZh": {
-          "field": "canonicalNameZh",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q618239",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "格拉茨歌剧院"
-        },
-        "canonicalNameEn": {
-          "field": "canonicalNameEn",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q618239",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Graz Opera"
-        },
-        "aliases": {
-          "field": "aliases",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q618239",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": [
-            "Graz Oper",
-            "Graz operahaus",
-            "Grazer Oper",
-            "Oper Graz",
-            "Opernhaus",
-            "Opernhaus Graz",
-            "Stadttheater",
-            "Όπερα του Γκρατς"
-          ]
-        },
-        "coordinates": {
-          "field": "coordinates",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q618239",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": {
-            "latitude": 47.069,
-            "longitude": 15.4456
-          }
-        },
-        "entitySourceType": {
-          "field": "entitySourceType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04b-austria",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "wikidata"
-        },
-        "confidence": {
-          "field": "confidence",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04b-austria",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": 0.95
-        },
-        "retrievedAt": {
-          "field": "retrievedAt",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q618239",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "2026-08-10T12:00:00.000Z"
-        }
-      }
-    },
-    {
-      "schemaVersion": "route-v2-poi-baseline-p1b",
       "entityId": "poi-3cb92f2fe62733fa",
       "entityType": "poi",
       "parentCityEntityId": "city-e2930ffae37e9bb6",
@@ -6352,126 +3592,6 @@
           "sourceType": "wikidata",
           "source": "Wikidata enwiki title plus wbgetentities",
           "sourceUrl": "https://www.wikidata.org/wiki/Q597137",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "2026-08-10T12:00:00.000Z"
-        }
-      }
-    },
-    {
-      "schemaVersion": "route-v2-poi-baseline-p1b",
-      "entityId": "poi-763d3a8d1796e159",
-      "entityType": "poi",
-      "parentCityEntityId": "city-e2930ffae37e9bb6",
-      "wikidataId": "Q872931",
-      "canonicalNameZh": "穆尔岛",
-      "canonicalNameEn": "Murinsel",
-      "aliases": [
-        "Aiola Island Bridge",
-        "Grazer Murinsel",
-        "Mur Island",
-        "Mur Island Bridge"
-      ],
-      "coordinates": {
-        "latitude": 47.073055555556,
-        "longitude": 15.434444444444
-      },
-      "entitySourceType": "wikidata",
-      "confidence": 0.95,
-      "retrievedAt": "2026-08-10T12:00:00.000Z",
-      "provenance": {
-        "entityId": {
-          "field": "entityId",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04b-austria",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "poi-763d3a8d1796e159"
-        },
-        "entityType": {
-          "field": "entityType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04b-austria",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "poi"
-        },
-        "parentCityEntityId": {
-          "field": "parentCityEntityId",
-          "sourceType": "repository-reference",
-          "source": "Austria City Entity",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q13298",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "city-e2930ffae37e9bb6"
-        },
-        "wikidataId": {
-          "field": "wikidataId",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q872931",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Q872931"
-        },
-        "canonicalNameZh": {
-          "field": "canonicalNameZh",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q872931",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "穆尔岛"
-        },
-        "canonicalNameEn": {
-          "field": "canonicalNameEn",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q872931",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "Murinsel"
-        },
-        "aliases": {
-          "field": "aliases",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q872931",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": [
-            "Aiola Island Bridge",
-            "Grazer Murinsel",
-            "Mur Island",
-            "Mur Island Bridge"
-          ]
-        },
-        "coordinates": {
-          "field": "coordinates",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q872931",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": {
-            "latitude": 47.073055555556,
-            "longitude": 15.434444444444
-          }
-        },
-        "entitySourceType": {
-          "field": "entitySourceType",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04b-austria",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": "wikidata"
-        },
-        "confidence": {
-          "field": "confidence",
-          "sourceType": "project-schema",
-          "source": "Route V2 Knowledge Expansion batch04b-austria",
-          "sourceUrl": "",
-          "retrievedAt": "2026-08-10T12:00:00.000Z",
-          "value": 0.95
-        },
-        "retrievedAt": {
-          "field": "retrievedAt",
-          "sourceType": "wikidata",
-          "source": "Wikidata enwiki title plus wbgetentities",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q872931",
           "retrievedAt": "2026-08-10T12:00:00.000Z",
           "value": "2026-08-10T12:00:00.000Z"
         }
@@ -6712,6 +3832,1876 @@
           "sourceType": "wikidata",
           "source": "Wikidata enwiki title plus wbgetentities",
           "sourceUrl": "https://www.wikidata.org/wiki/Q484911",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "2026-08-10T12:00:00.000Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-poi-baseline-p1b",
+      "entityId": "poi-f6a40529c8f0b3f9",
+      "entityType": "poi",
+      "parentCityEntityId": "city-0699df842d819ca4",
+      "wikidataId": "Q115593",
+      "canonicalNameZh": "海尔布伦宫",
+      "canonicalNameEn": "Hellbrunn Palace",
+      "aliases": [
+        "Castelo de Hellbrunn",
+        "Palácio de Hellbrunn",
+        "Schloss Hellbrunn",
+        "Schlossanlage Hellbrunn, Gesamtanlage samt Gartenbaudenkmalen"
+      ],
+      "coordinates": {
+        "latitude": 47.762222,
+        "longitude": 13.060833
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-08-10T12:00:00.000Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04b-austria",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "poi-f6a40529c8f0b3f9"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04b-austria",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "poi"
+        },
+        "parentCityEntityId": {
+          "field": "parentCityEntityId",
+          "sourceType": "repository-reference",
+          "source": "Austria City Entity",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q34713",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "city-0699df842d819ca4"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q115593",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "Q115593"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q115593",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "海尔布伦宫"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q115593",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "Hellbrunn Palace"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q115593",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": [
+            "Castelo de Hellbrunn",
+            "Palácio de Hellbrunn",
+            "Schloss Hellbrunn",
+            "Schlossanlage Hellbrunn, Gesamtanlage samt Gartenbaudenkmalen"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q115593",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": {
+            "latitude": 47.762222,
+            "longitude": 13.060833
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04b-austria",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04b-austria",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q115593",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "2026-08-10T12:00:00.000Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-poi-baseline-p1b",
+      "entityId": "poi-971f8124ff7f8a0d",
+      "entityType": "poi",
+      "parentCityEntityId": "city-0699df842d819ca4",
+      "wikidataId": "Q688546",
+      "canonicalNameZh": "米拉贝尔宫",
+      "canonicalNameEn": "Mirabell Palace",
+      "aliases": [
+        "Mirabellplatz",
+        "Mirabellschloss",
+        "Palácio de Mirabell",
+        "Schloss Mirabell",
+        "Schloss Mirabell Gesamtanlage mit allen Nebengebäuden und Gartenbaudenkmalen",
+        "Slot Mirabell",
+        "Μιραμπέλ",
+        "Παλάτι Μιραμπέλ"
+      ],
+      "coordinates": {
+        "latitude": 47.8055,
+        "longitude": 13.042
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-08-10T12:00:00.000Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04b-austria",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "poi-971f8124ff7f8a0d"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04b-austria",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "poi"
+        },
+        "parentCityEntityId": {
+          "field": "parentCityEntityId",
+          "sourceType": "repository-reference",
+          "source": "Austria City Entity",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q34713",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "city-0699df842d819ca4"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q688546",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "Q688546"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q688546",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "米拉贝尔宫"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q688546",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "Mirabell Palace"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q688546",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": [
+            "Mirabellplatz",
+            "Mirabellschloss",
+            "Palácio de Mirabell",
+            "Schloss Mirabell",
+            "Schloss Mirabell Gesamtanlage mit allen Nebengebäuden und Gartenbaudenkmalen",
+            "Slot Mirabell",
+            "Μιραμπέλ",
+            "Παλάτι Μιραμπέλ"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q688546",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": {
+            "latitude": 47.8055,
+            "longitude": 13.042
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04b-austria",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04b-austria",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q688546",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "2026-08-10T12:00:00.000Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-poi-baseline-p1b",
+      "entityId": "poi-b1490896081ba9cf",
+      "entityType": "poi",
+      "parentCityEntityId": "city-3f52e95430ac83e2",
+      "wikidataId": "Q1408816",
+      "canonicalNameZh": "Festspielhaus Bregenz",
+      "canonicalNameEn": "Festspielhaus Bregenz",
+      "aliases": [
+        "Bregenzer Festspiel- und Kongresshaus",
+        "Bregenzer Festspielhaus"
+      ],
+      "coordinates": {
+        "latitude": 47.5046,
+        "longitude": 9.73766
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-08-10T12:00:00.000Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04b-austria",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "poi-b1490896081ba9cf"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04b-austria",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "poi"
+        },
+        "parentCityEntityId": {
+          "field": "parentCityEntityId",
+          "sourceType": "repository-reference",
+          "source": "Austria City Entity",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1737",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "city-3f52e95430ac83e2"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1408816",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "Q1408816"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1408816",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "Festspielhaus Bregenz"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1408816",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "Festspielhaus Bregenz"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1408816",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": [
+            "Bregenzer Festspiel- und Kongresshaus",
+            "Bregenzer Festspielhaus"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1408816",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": {
+            "latitude": 47.5046,
+            "longitude": 9.73766
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04b-austria",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04b-austria",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1408816",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "2026-08-10T12:00:00.000Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-poi-baseline-p1b",
+      "entityId": "poi-f71c63b6a5f89f00",
+      "entityType": "poi",
+      "parentCityEntityId": "city-3f52e95430ac83e2",
+      "wikidataId": "Q1905741",
+      "canonicalNameZh": "Martinsturm",
+      "canonicalNameEn": "Martinsturm",
+      "aliases": [
+        "Martinsturm (Bregenz)",
+        "Martinsturm und -kapelle"
+      ],
+      "coordinates": {
+        "latitude": 47.501,
+        "longitude": 9.74924
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-08-10T12:00:00.000Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04b-austria",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "poi-f71c63b6a5f89f00"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04b-austria",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "poi"
+        },
+        "parentCityEntityId": {
+          "field": "parentCityEntityId",
+          "sourceType": "repository-reference",
+          "source": "Austria City Entity",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1737",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "city-3f52e95430ac83e2"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1905741",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "Q1905741"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1905741",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "Martinsturm"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1905741",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "Martinsturm"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1905741",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": [
+            "Martinsturm (Bregenz)",
+            "Martinsturm und -kapelle"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1905741",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": {
+            "latitude": 47.501,
+            "longitude": 9.74924
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04b-austria",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04b-austria",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1905741",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "2026-08-10T12:00:00.000Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-poi-baseline-p1b",
+      "entityId": "poi-78ce2e29bb87bafa",
+      "entityType": "poi",
+      "parentCityEntityId": "city-456578ab24d451ff",
+      "wikidataId": "Q211818",
+      "canonicalNameZh": "美景宫",
+      "canonicalNameEn": "Belvedere",
+      "aliases": [
+        "Belvederegarten",
+        "Obere Belvedere",
+        "Palácio Belvedere",
+        "Palácio de Belvedere",
+        "Palácio do Belvedere",
+        "Paleis Belvedere",
+        "Schloss Belvedere",
+        "Schloss Belvedere (Vídeň, Rakousko)",
+        "Schloss Belvedere samt Schlosspark mit Baulichkeiten",
+        "Slot Belvedere",
+        "Untere Belvedere",
+        "Μπελβεντέρε",
+        "柏爾威岱宮",
+        "百樂宮",
+        "美景宮",
+        "贝尔佛第宫"
+      ],
+      "coordinates": {
+        "latitude": 48.1934,
+        "longitude": 16.380519444444445
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-08-10T12:00:00.000Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04b-austria",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "poi-78ce2e29bb87bafa"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04b-austria",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "poi"
+        },
+        "parentCityEntityId": {
+          "field": "parentCityEntityId",
+          "sourceType": "repository-reference",
+          "source": "Austria City Entity",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1741",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "city-456578ab24d451ff"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q211818",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "Q211818"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q211818",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "美景宫"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q211818",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "Belvedere"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q211818",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": [
+            "Belvederegarten",
+            "Obere Belvedere",
+            "Palácio Belvedere",
+            "Palácio de Belvedere",
+            "Palácio do Belvedere",
+            "Paleis Belvedere",
+            "Schloss Belvedere",
+            "Schloss Belvedere (Vídeň, Rakousko)",
+            "Schloss Belvedere samt Schlosspark mit Baulichkeiten",
+            "Slot Belvedere",
+            "Untere Belvedere",
+            "Μπελβεντέρε",
+            "柏爾威岱宮",
+            "百樂宮",
+            "美景宮",
+            "贝尔佛第宫"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q211818",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": {
+            "latitude": 48.1934,
+            "longitude": 16.380519444444445
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04b-austria",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04b-austria",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q211818",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "2026-08-10T12:00:00.000Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-poi-baseline-p1b",
+      "entityId": "poi-00cb97a4a83700ce",
+      "entityType": "poi",
+      "parentCityEntityId": "city-456578ab24d451ff",
+      "wikidataId": "Q408847",
+      "canonicalNameZh": "查理教堂",
+      "canonicalNameEn": "Karlskirche",
+      "aliases": [
+        "Igreja de São Carlos Borromeu (Viena)",
+        "Karlskirche Wien",
+        "Kath. Pfarrkirche, Pfarrkirche Hl. Karl Borromäus (Karlskirche)",
+        "Wiener Karlskirche",
+        "Ναός του Αγίου Καρόλου"
+      ],
+      "coordinates": {
+        "latitude": 48.198280555555556,
+        "longitude": 16.371880555555556
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-08-10T12:00:00.000Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04b-austria",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "poi-00cb97a4a83700ce"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04b-austria",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "poi"
+        },
+        "parentCityEntityId": {
+          "field": "parentCityEntityId",
+          "sourceType": "repository-reference",
+          "source": "Austria City Entity",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1741",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "city-456578ab24d451ff"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q408847",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "Q408847"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q408847",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "查理教堂"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q408847",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "Karlskirche"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q408847",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": [
+            "Igreja de São Carlos Borromeu (Viena)",
+            "Karlskirche Wien",
+            "Kath. Pfarrkirche, Pfarrkirche Hl. Karl Borromäus (Karlskirche)",
+            "Wiener Karlskirche",
+            "Ναός του Αγίου Καρόλου"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q408847",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": {
+            "latitude": 48.198280555555556,
+            "longitude": 16.371880555555556
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04b-austria",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04b-austria",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q408847",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "2026-08-10T12:00:00.000Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-poi-baseline-p1b",
+      "entityId": "poi-b31286429c4bd18c",
+      "entityType": "poi",
+      "parentCityEntityId": "city-456578ab24d451ff",
+      "wikidataId": "Q209937",
+      "canonicalNameZh": "维也纳国家歌剧院",
+      "canonicalNameEn": "Vienna State Opera",
+      "aliases": [
+        "Erstes Haus am Ring",
+        "K. K. Hof-Operntheater",
+        "k.k. Hof-Operntheater",
+        "KK Hof Opera Theater",
+        "Neues Haus",
+        "Ópera da Corte de Viena",
+        "Ópera do Estado de Viena",
+        "Ópera Estatal de Viena",
+        "Operabal",
+        "Operntheater",
+        "Staatsoper",
+        "Staatsoper Wien",
+        "Vienna Operahouse",
+        "Vienna State Opera house",
+        "Weense Staatsopera",
+        "Wiener Hofoper",
+        "Wiener Oper",
+        "Wiener Staatsoper",
+        "Κρατική Όπερα της Βιέννης",
+        "維也納國立歌劇院"
+      ],
+      "coordinates": {
+        "latitude": 48.203333333333,
+        "longitude": 16.369166666667
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-08-10T12:00:00.000Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04b-austria",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "poi-b31286429c4bd18c"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04b-austria",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "poi"
+        },
+        "parentCityEntityId": {
+          "field": "parentCityEntityId",
+          "sourceType": "repository-reference",
+          "source": "Austria City Entity",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1741",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "city-456578ab24d451ff"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q209937",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "Q209937"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q209937",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "维也纳国家歌剧院"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q209937",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "Vienna State Opera"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q209937",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": [
+            "Erstes Haus am Ring",
+            "K. K. Hof-Operntheater",
+            "k.k. Hof-Operntheater",
+            "KK Hof Opera Theater",
+            "Neues Haus",
+            "Ópera da Corte de Viena",
+            "Ópera do Estado de Viena",
+            "Ópera Estatal de Viena",
+            "Operabal",
+            "Operntheater",
+            "Staatsoper",
+            "Staatsoper Wien",
+            "Vienna Operahouse",
+            "Vienna State Opera house",
+            "Weense Staatsopera",
+            "Wiener Hofoper",
+            "Wiener Oper",
+            "Wiener Staatsoper",
+            "Κρατική Όπερα της Βιέννης",
+            "維也納國立歌劇院"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q209937",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": {
+            "latitude": 48.203333333333,
+            "longitude": 16.369166666667
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04b-austria",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04b-austria",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q209937",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "2026-08-10T12:00:00.000Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-poi-baseline-p1b",
+      "entityId": "poi-93764b4ab8abf8c2",
+      "entityType": "poi",
+      "parentCityEntityId": "city-60983c289d9ce9d3",
+      "wikidataId": "Q686508",
+      "canonicalNameZh": "林茨城堡",
+      "canonicalNameEn": "Linz Palace",
+      "aliases": [
+        "Linz Castle",
+        "Linzer Schloss"
+      ],
+      "coordinates": {
+        "latitude": 48.305,
+        "longitude": 14.283055555556
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-08-10T12:00:00.000Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04b-austria",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "poi-93764b4ab8abf8c2"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04b-austria",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "poi"
+        },
+        "parentCityEntityId": {
+          "field": "parentCityEntityId",
+          "sourceType": "repository-reference",
+          "source": "Austria City Entity",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q41329",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "city-60983c289d9ce9d3"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q686508",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "Q686508"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q686508",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "林茨城堡"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q686508",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "Linz Palace"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q686508",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": [
+            "Linz Castle",
+            "Linzer Schloss"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q686508",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": {
+            "latitude": 48.305,
+            "longitude": 14.283055555556
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04b-austria",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04b-austria",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q686508",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "2026-08-10T12:00:00.000Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-poi-baseline-p1b",
+      "entityId": "poi-780aba5fc101f81b",
+      "entityType": "poi",
+      "parentCityEntityId": "city-60983c289d9ce9d3",
+      "wikidataId": "Q257481",
+      "canonicalNameZh": "林茨新主教座堂",
+      "canonicalNameEn": "New Cathedral",
+      "aliases": [
+        "Cathedral of the Immaculate Conception",
+        "Mariä-Empfängnis-Dom",
+        "Neuer Dom Maria Empfängnis",
+        "New Cathedral, Linz",
+        "Nieuwe Dom"
+      ],
+      "coordinates": {
+        "latitude": 48.30023,
+        "longitude": 14.28604
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-08-10T12:00:00.000Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04b-austria",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "poi-780aba5fc101f81b"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04b-austria",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "poi"
+        },
+        "parentCityEntityId": {
+          "field": "parentCityEntityId",
+          "sourceType": "repository-reference",
+          "source": "Austria City Entity",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q41329",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "city-60983c289d9ce9d3"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q257481",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "Q257481"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q257481",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "林茨新主教座堂"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q257481",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "New Cathedral"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q257481",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": [
+            "Cathedral of the Immaculate Conception",
+            "Mariä-Empfängnis-Dom",
+            "Neuer Dom Maria Empfängnis",
+            "New Cathedral, Linz",
+            "Nieuwe Dom"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q257481",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": {
+            "latitude": 48.30023,
+            "longitude": 14.28604
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04b-austria",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04b-austria",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q257481",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "2026-08-10T12:00:00.000Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-poi-baseline-p1b",
+      "entityId": "poi-594699422dc6dde3",
+      "entityType": "poi",
+      "parentCityEntityId": "city-6d8bfa998b2fe3e1",
+      "wikidataId": "Q258578",
+      "canonicalNameZh": "因斯布鲁克主教座堂",
+      "canonicalNameEn": "Innsbruck Cathedral",
+      "aliases": [
+        "Dom und Propsteipfarrkirche hl. Jakob",
+        "Dom van Innsbruck",
+        "Dom zu St. Jakob",
+        "Innsbrucker Dom",
+        "Insbrucker Dom"
+      ],
+      "coordinates": {
+        "latitude": 47.269356,
+        "longitude": 11.394174
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-08-10T12:00:00.000Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04b-austria",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "poi-594699422dc6dde3"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04b-austria",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "poi"
+        },
+        "parentCityEntityId": {
+          "field": "parentCityEntityId",
+          "sourceType": "repository-reference",
+          "source": "Austria City Entity",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1735",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "city-6d8bfa998b2fe3e1"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q258578",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "Q258578"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q258578",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "因斯布鲁克主教座堂"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q258578",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "Innsbruck Cathedral"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q258578",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": [
+            "Dom und Propsteipfarrkirche hl. Jakob",
+            "Dom van Innsbruck",
+            "Dom zu St. Jakob",
+            "Innsbrucker Dom",
+            "Insbrucker Dom"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q258578",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": {
+            "latitude": 47.269356,
+            "longitude": 11.394174
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04b-austria",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04b-austria",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q258578",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "2026-08-10T12:00:00.000Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-poi-baseline-p1b",
+      "entityId": "poi-fb155f602bf53d55",
+      "entityType": "poi",
+      "parentCityEntityId": "city-85e356e0e514f090",
+      "wikidataId": "Q19796924",
+      "canonicalNameZh": "哈尔施塔特新教教堂",
+      "canonicalNameEn": "Evangelical Church of Hallstatt",
+      "aliases": [
+        "Christuskirche",
+        "Christuskirche Hallstatt",
+        "Evang. Pfarrkirche A.B.",
+        "Evangelische Pfarrkirche Hallstatt",
+        "Εκκλησία του Χριστού (Χάλστατ)",
+        "Ναός του Χριστού (Χάλστατ)"
+      ],
+      "coordinates": {
+        "latitude": 47.56271362,
+        "longitude": 13.64953136
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-08-10T12:00:00.000Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04b-austria",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "poi-fb155f602bf53d55"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04b-austria",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "poi"
+        },
+        "parentCityEntityId": {
+          "field": "parentCityEntityId",
+          "sourceType": "repository-reference",
+          "source": "Austria City Entity",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q131633",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "city-85e356e0e514f090"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q19796924",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "Q19796924"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q19796924",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "哈尔施塔特新教教堂"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q19796924",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "Evangelical Church of Hallstatt"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q19796924",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": [
+            "Christuskirche",
+            "Christuskirche Hallstatt",
+            "Evang. Pfarrkirche A.B.",
+            "Evangelische Pfarrkirche Hallstatt",
+            "Εκκλησία του Χριστού (Χάλστατ)",
+            "Ναός του Χριστού (Χάλστατ)"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q19796924",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": {
+            "latitude": 47.56271362,
+            "longitude": 13.64953136
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04b-austria",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04b-austria",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q19796924",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "2026-08-10T12:00:00.000Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-poi-baseline-p1b",
+      "entityId": "poi-01f8c5cbe17fd3cf",
+      "entityType": "poi",
+      "parentCityEntityId": "city-c8106459287724ff",
+      "wikidataId": "Q17566011",
+      "canonicalNameZh": "St. Hippolytus Church",
+      "canonicalNameEn": "St. Hippolytus Church",
+      "aliases": [
+        "Kath. Pfarrkirche, hl. Hippolyth, Stadtpfarrkirche",
+        "Saint Hippolytus Church of Zell am See",
+        "Saint Hippolytus Church, Zell am See",
+        "St. Hippolytus Church, Zell am See",
+        "Stadtpfarrkirche zum Heiligen Hippolyt in Zell am See"
+      ],
+      "coordinates": {
+        "latitude": 47.323093,
+        "longitude": 12.798472
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-08-10T12:00:00.000Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04b-austria",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "poi-01f8c5cbe17fd3cf"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04b-austria",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "poi"
+        },
+        "parentCityEntityId": {
+          "field": "parentCityEntityId",
+          "sourceType": "repository-reference",
+          "source": "Austria City Entity",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q187572",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "city-c8106459287724ff"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q17566011",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "Q17566011"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q17566011",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "St. Hippolytus Church"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q17566011",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "St. Hippolytus Church"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q17566011",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": [
+            "Kath. Pfarrkirche, hl. Hippolyth, Stadtpfarrkirche",
+            "Saint Hippolytus Church of Zell am See",
+            "Saint Hippolytus Church, Zell am See",
+            "St. Hippolytus Church, Zell am See",
+            "Stadtpfarrkirche zum Heiligen Hippolyt in Zell am See"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q17566011",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": {
+            "latitude": 47.323093,
+            "longitude": 12.798472
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04b-austria",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04b-austria",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q17566011",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "2026-08-10T12:00:00.000Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-poi-baseline-p1b",
+      "entityId": "poi-0b9b3caef25dafdf",
+      "entityType": "poi",
+      "parentCityEntityId": "city-e2930ffae37e9bb6",
+      "wikidataId": "Q262563",
+      "canonicalNameZh": "聖基爾斯主教座堂",
+      "canonicalNameEn": "Graz Cathedral",
+      "aliases": [
+        "Dom hl. Ägydius und Platzbereiche",
+        "Dom van Graz",
+        "Grazer Dom"
+      ],
+      "coordinates": {
+        "latitude": 47.071944444444,
+        "longitude": 15.442222222222
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-08-10T12:00:00.000Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04b-austria",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "poi-0b9b3caef25dafdf"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04b-austria",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "poi"
+        },
+        "parentCityEntityId": {
+          "field": "parentCityEntityId",
+          "sourceType": "repository-reference",
+          "source": "Austria City Entity",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q13298",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "city-e2930ffae37e9bb6"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q262563",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "Q262563"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q262563",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "聖基爾斯主教座堂"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q262563",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "Graz Cathedral"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q262563",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": [
+            "Dom hl. Ägydius und Platzbereiche",
+            "Dom van Graz",
+            "Grazer Dom"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q262563",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": {
+            "latitude": 47.071944444444,
+            "longitude": 15.442222222222
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04b-austria",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04b-austria",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q262563",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "2026-08-10T12:00:00.000Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-poi-baseline-p1b",
+      "entityId": "poi-3c90962f8155a405",
+      "entityType": "poi",
+      "parentCityEntityId": "city-e2930ffae37e9bb6",
+      "wikidataId": "Q618239",
+      "canonicalNameZh": "格拉茨歌剧院",
+      "canonicalNameEn": "Graz Opera",
+      "aliases": [
+        "Graz Oper",
+        "Graz operahaus",
+        "Grazer Oper",
+        "Oper Graz",
+        "Opernhaus",
+        "Opernhaus Graz",
+        "Stadttheater",
+        "Όπερα του Γκρατς"
+      ],
+      "coordinates": {
+        "latitude": 47.069,
+        "longitude": 15.4456
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-08-10T12:00:00.000Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04b-austria",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "poi-3c90962f8155a405"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04b-austria",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "poi"
+        },
+        "parentCityEntityId": {
+          "field": "parentCityEntityId",
+          "sourceType": "repository-reference",
+          "source": "Austria City Entity",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q13298",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "city-e2930ffae37e9bb6"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q618239",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "Q618239"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q618239",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "格拉茨歌剧院"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q618239",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "Graz Opera"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q618239",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": [
+            "Graz Oper",
+            "Graz operahaus",
+            "Grazer Oper",
+            "Oper Graz",
+            "Opernhaus",
+            "Opernhaus Graz",
+            "Stadttheater",
+            "Όπερα του Γκρατς"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q618239",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": {
+            "latitude": 47.069,
+            "longitude": 15.4456
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04b-austria",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04b-austria",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q618239",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "2026-08-10T12:00:00.000Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-poi-baseline-p1b",
+      "entityId": "poi-763d3a8d1796e159",
+      "entityType": "poi",
+      "parentCityEntityId": "city-e2930ffae37e9bb6",
+      "wikidataId": "Q872931",
+      "canonicalNameZh": "穆尔岛",
+      "canonicalNameEn": "Murinsel",
+      "aliases": [
+        "Aiola Island Bridge",
+        "Grazer Murinsel",
+        "Mur Island",
+        "Mur Island Bridge"
+      ],
+      "coordinates": {
+        "latitude": 47.073055555556,
+        "longitude": 15.434444444444
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-08-10T12:00:00.000Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04b-austria",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "poi-763d3a8d1796e159"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04b-austria",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "poi"
+        },
+        "parentCityEntityId": {
+          "field": "parentCityEntityId",
+          "sourceType": "repository-reference",
+          "source": "Austria City Entity",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q13298",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "city-e2930ffae37e9bb6"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q872931",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "Q872931"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q872931",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "穆尔岛"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q872931",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "Murinsel"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q872931",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": [
+            "Aiola Island Bridge",
+            "Grazer Murinsel",
+            "Mur Island",
+            "Mur Island Bridge"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q872931",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": {
+            "latitude": 47.073055555556,
+            "longitude": 15.434444444444
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04b-austria",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion batch04b-austria",
+          "sourceUrl": "",
+          "retrievedAt": "2026-08-10T12:00:00.000Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata enwiki title plus wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q872931",
           "retrievedAt": "2026-08-10T12:00:00.000Z",
           "value": "2026-08-10T12:00:00.000Z"
         }

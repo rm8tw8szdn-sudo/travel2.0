@@ -1,0 +1,1650 @@
+{
+  "schemaVersion": "route-v2-knowledge-expansion-batch09-wave3-selection-v1",
+  "wave": 3,
+  "countries": [
+    {
+      "isoAlpha2": "KG",
+      "wikidataId": "Q813",
+      "entityId": "country-184a7b5ce0956340"
+    },
+    {
+      "isoAlpha2": "BD",
+      "wikidataId": "Q902",
+      "entityId": "country-3230bd8e619dabfb"
+    },
+    {
+      "isoAlpha2": "BT",
+      "wikidataId": "Q917",
+      "entityId": "country-e3bcf0b6f0639562"
+    },
+    {
+      "isoAlpha2": "PK",
+      "wikidataId": "Q843",
+      "entityId": "country-9de571d9d0059602"
+    },
+    {
+      "isoAlpha2": "LA",
+      "wikidataId": "Q819",
+      "entityId": "country-61b83c295890771d"
+    }
+  ],
+  "cities": [
+    {
+      "countryCode": "KG",
+      "tier": "world",
+      "targetPoiCount": 10,
+      "selectedPoiCount": 6,
+      "reused": false,
+      "entityId": "city-141a33b92dcc6c34",
+      "wikidataId": "Q9361",
+      "canonicalNameEn": "Bishkek",
+      "positiveTypePath": [
+        "Q1549591",
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "KG",
+      "tier": "world",
+      "targetPoiCount": 10,
+      "selectedPoiCount": 1,
+      "reused": false,
+      "entityId": "city-aaa57226cc6a5d42",
+      "wikidataId": "Q47282",
+      "canonicalNameEn": "Osh",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "KG",
+      "tier": "core",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 1,
+      "reused": false,
+      "entityId": "city-755ab5138ab73d92",
+      "wikidataId": "Q311946",
+      "canonicalNameEn": "Naryn",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "KG",
+      "tier": "standard",
+      "targetPoiCount": 5,
+      "selectedPoiCount": 1,
+      "reused": false,
+      "entityId": "city-87598a85c699d0ec",
+      "wikidataId": "Q854333",
+      "canonicalNameEn": "Tokmok",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "BD",
+      "tier": "world",
+      "targetPoiCount": 10,
+      "selectedPoiCount": 9,
+      "reused": false,
+      "entityId": "city-aab32476f6c568e3",
+      "wikidataId": "Q1354",
+      "canonicalNameEn": "Dhaka",
+      "positiveTypePath": [
+        "Q174844",
+        "Q1637706",
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "BD",
+      "tier": "world",
+      "targetPoiCount": 10,
+      "selectedPoiCount": 9,
+      "reused": false,
+      "entityId": "city-b1c716c2393b40d8",
+      "wikidataId": "Q376749",
+      "canonicalNameEn": "Chittagong",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "BD",
+      "tier": "core",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 2,
+      "reused": false,
+      "entityId": "city-d37a11d8ee0bcc01",
+      "wikidataId": "Q466221",
+      "canonicalNameEn": "Sylhet",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "BD",
+      "tier": "core",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 6,
+      "reused": false,
+      "entityId": "city-296d4b9f84ddcfb6",
+      "wikidataId": "Q243325",
+      "canonicalNameEn": "Khulna",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "BD",
+      "tier": "core",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 2,
+      "reused": false,
+      "entityId": "city-14de570973ef9555",
+      "wikidataId": "Q322155",
+      "canonicalNameEn": "Rajshahi",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "BD",
+      "tier": "core",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 2,
+      "reused": false,
+      "entityId": "city-848890e8d6304af0",
+      "wikidataId": "Q949746",
+      "canonicalNameEn": "Cox's Bazar",
+      "positiveTypePath": [
+        "Q1549591",
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "BD",
+      "tier": "standard",
+      "targetPoiCount": 5,
+      "selectedPoiCount": 4,
+      "reused": false,
+      "entityId": "city-e46d4726fe6f2c35",
+      "wikidataId": "Q994514",
+      "canonicalNameEn": "Rangpur",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "BT",
+      "tier": "world",
+      "targetPoiCount": 10,
+      "selectedPoiCount": 8,
+      "reused": false,
+      "entityId": "city-f5714e39a7e65005",
+      "wikidataId": "Q9270",
+      "canonicalNameEn": "Thimphu",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "BT",
+      "tier": "core",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 2,
+      "reused": false,
+      "entityId": "city-9ef994b032cc19c3",
+      "wikidataId": "Q862041",
+      "canonicalNameEn": "Paro",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "BT",
+      "tier": "core",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 1,
+      "reused": false,
+      "entityId": "city-e81ec17a373169cf",
+      "wikidataId": "Q826112",
+      "canonicalNameEn": "Punakha",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "BT",
+      "tier": "standard",
+      "targetPoiCount": 5,
+      "selectedPoiCount": 2,
+      "reused": false,
+      "entityId": "city-b7e74d694f25929a",
+      "wikidataId": "Q2468415",
+      "canonicalNameEn": "Jakar",
+      "positiveTypePath": [
+        "Q486972"
+      ]
+    },
+    {
+      "countryCode": "PK",
+      "tier": "world",
+      "targetPoiCount": 10,
+      "selectedPoiCount": 7,
+      "reused": false,
+      "entityId": "city-3e04d37f2aeee071",
+      "wikidataId": "Q1362",
+      "canonicalNameEn": "Islamabad",
+      "positiveTypePath": [
+        "Q1549591",
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "PK",
+      "tier": "world",
+      "targetPoiCount": 10,
+      "selectedPoiCount": 6,
+      "reused": false,
+      "entityId": "city-4c5c53bdc937ad66",
+      "wikidataId": "Q11739",
+      "canonicalNameEn": "Lahore",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "PK",
+      "tier": "world",
+      "targetPoiCount": 10,
+      "selectedPoiCount": 5,
+      "reused": false,
+      "entityId": "city-b1eed976f677556e",
+      "wikidataId": "Q8660",
+      "canonicalNameEn": "Karachi",
+      "positiveTypePath": [
+        "Q200250",
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "PK",
+      "tier": "core",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 7,
+      "reused": false,
+      "entityId": "city-4c109219ee0a9be4",
+      "wikidataId": "Q1113311",
+      "canonicalNameEn": "Peshawar",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "PK",
+      "tier": "core",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 4,
+      "reused": false,
+      "entityId": "city-8555be273f25abdf",
+      "wikidataId": "Q185453",
+      "canonicalNameEn": "Multan",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "PK",
+      "tier": "core",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 1,
+      "reused": false,
+      "entityId": "city-9a6a935e045e546c",
+      "wikidataId": "Q185458",
+      "canonicalNameEn": "Quetta",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "PK",
+      "tier": "standard",
+      "targetPoiCount": 5,
+      "selectedPoiCount": 2,
+      "reused": false,
+      "entityId": "city-64428b8fd19fa090",
+      "wikidataId": "Q609024",
+      "canonicalNameEn": "Gilgit",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "PK",
+      "tier": "standard",
+      "targetPoiCount": 5,
+      "selectedPoiCount": 4,
+      "reused": false,
+      "entityId": "city-ee047f3d09518639",
+      "wikidataId": "Q976955",
+      "canonicalNameEn": "Skardu",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "LA",
+      "tier": "world",
+      "targetPoiCount": 10,
+      "selectedPoiCount": 6,
+      "reused": false,
+      "entityId": "city-55005277884e682e",
+      "wikidataId": "Q9326",
+      "canonicalNameEn": "Vientiane",
+      "positiveTypePath": [
+        "Q702492",
+        "Q486972"
+      ]
+    },
+    {
+      "countryCode": "LA",
+      "tier": "world",
+      "targetPoiCount": 10,
+      "selectedPoiCount": 6,
+      "reused": false,
+      "entityId": "city-da1e080d1316a155",
+      "wikidataId": "Q190165",
+      "canonicalNameEn": "Luang Prabang",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "LA",
+      "tier": "core",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 0,
+      "reused": false,
+      "entityId": "city-094fa7d0de3daa08",
+      "wikidataId": "Q383622",
+      "canonicalNameEn": "Pakse",
+      "positiveTypePath": [
+        "Q486972"
+      ]
+    },
+    {
+      "countryCode": "LA",
+      "tier": "core",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 1,
+      "reused": false,
+      "entityId": "city-1de66dcdd7ca182e",
+      "wikidataId": "Q750443",
+      "canonicalNameEn": "Savannakhet",
+      "positiveTypePath": [
+        "Q902814",
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "LA",
+      "tier": "standard",
+      "targetPoiCount": 5,
+      "selectedPoiCount": 1,
+      "reused": false,
+      "entityId": "city-9264d8b71fda5177",
+      "wikidataId": "Q1012615",
+      "canonicalNameEn": "Vang Vieng",
+      "positiveTypePath": [
+        "Q486972"
+      ]
+    }
+  ],
+  "pois": [
+    {
+      "entityId": "poi-84aedf58d1b15467",
+      "parentCityEntityId": "city-141a33b92dcc6c34",
+      "wikidataId": "Q48945129",
+      "canonicalNameEn": "Bishkek Central Mosque",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 4.731
+    },
+    {
+      "entityId": "poi-e53fe59b9c4d3365",
+      "parentCityEntityId": "city-141a33b92dcc6c34",
+      "wikidataId": "Q4221185",
+      "canonicalNameEn": "Kyrgyz State Historical Museum",
+      "positiveTypePath": [
+        "Q33506"
+      ],
+      "distanceKm": 3.243
+    },
+    {
+      "entityId": "poi-4e1687978d1363ad",
+      "parentCityEntityId": "city-141a33b92dcc6c34",
+      "wikidataId": "Q5297637",
+      "canonicalNameEn": "Dordoy Bazaar",
+      "positiveTypePath": [
+        "Q132510",
+        "Q37654"
+      ],
+      "distanceKm": 8.627
+    },
+    {
+      "entityId": "poi-84accf9d49b8d26d",
+      "parentCityEntityId": "city-141a33b92dcc6c34",
+      "wikidataId": "Q7106560",
+      "canonicalNameEn": "Osh Bazaar",
+      "positiveTypePath": [
+        "Q219760",
+        "Q132510",
+        "Q37654"
+      ],
+      "distanceKm": 0.966
+    },
+    {
+      "entityId": "poi-02bf81b7f10d69ec",
+      "parentCityEntityId": "city-aaa57226cc6a5d42",
+      "wikidataId": "Q17512662",
+      "canonicalNameEn": "National Historical and Archaeological Museum Complex Sulayman",
+      "positiveTypePath": [
+        "Q33506"
+      ],
+      "distanceKm": 0.538
+    },
+    {
+      "entityId": "poi-08c7f3d141b15c40",
+      "parentCityEntityId": "city-755ab5138ab73d92",
+      "wikidataId": "Q13165844",
+      "canonicalNameEn": "Alamyshyk Too",
+      "positiveTypePath": [
+        "Q46831",
+        "Q271669"
+      ],
+      "distanceKm": 9.825
+    },
+    {
+      "entityId": "poi-73b185c12d170b6b",
+      "parentCityEntityId": "city-87598a85c699d0ec",
+      "wikidataId": "Q286640",
+      "canonicalNameEn": "Chuy Valley",
+      "positiveTypePath": [
+        "Q39816",
+        "Q35145263"
+      ],
+      "distanceKm": 0.892
+    },
+    {
+      "entityId": "poi-0358a211ba73604b",
+      "parentCityEntityId": "city-aab32476f6c568e3",
+      "wikidataId": "Q2425991",
+      "canonicalNameEn": "Shaheed Minar",
+      "positiveTypePath": [
+        "Q5003624",
+        "Q4989906"
+      ],
+      "distanceKm": 0.749
+    },
+    {
+      "entityId": "poi-443e112d90477247",
+      "parentCityEntityId": "city-aab32476f6c568e3",
+      "wikidataId": "Q51876",
+      "canonicalNameEn": "Bangladesh National Museum",
+      "positiveTypePath": [
+        "Q17431399",
+        "Q33506"
+      ],
+      "distanceKm": 0.964
+    },
+    {
+      "entityId": "poi-4e87f459b5ba454b",
+      "parentCityEntityId": "city-aab32476f6c568e3",
+      "wikidataId": "Q1207526",
+      "canonicalNameEn": "Dhakeshwari Temple",
+      "positiveTypePath": [
+        "Q842402",
+        "Q44539",
+        "Q697295",
+        "Q24398318",
+        "Q1370598"
+      ],
+      "distanceKm": 0.804
+    },
+    {
+      "entityId": "poi-a2f1f897417d5be7",
+      "parentCityEntityId": "city-aab32476f6c568e3",
+      "wikidataId": "Q3347442",
+      "canonicalNameEn": "Hussaini Dalan",
+      "positiveTypePath": [
+        "Q162875",
+        "Q4989906"
+      ],
+      "distanceKm": 0.772
+    },
+    {
+      "entityId": "poi-757f8ea7cc7cc15a",
+      "parentCityEntityId": "city-aab32476f6c568e3",
+      "wikidataId": "Q5619975",
+      "canonicalNameEn": "Gurdwara Nanak Shahi",
+      "positiveTypePath": [
+        "Q337986",
+        "Q1370598"
+      ],
+      "distanceKm": 0.531
+    },
+    {
+      "entityId": "poi-baa4038275278749",
+      "parentCityEntityId": "city-aab32476f6c568e3",
+      "wikidataId": "Q3410156",
+      "canonicalNameEn": "Katabon Mosque",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 1.104
+    },
+    {
+      "entityId": "poi-16f1ffc6f63c7321",
+      "parentCityEntityId": "city-aab32476f6c568e3",
+      "wikidataId": "Q4712667",
+      "canonicalNameEn": "Mausoleum of Three Leaders",
+      "positiveTypePath": [
+        "Q162875",
+        "Q4989906"
+      ],
+      "distanceKm": 0.537
+    },
+    {
+      "entityId": "poi-16ff5edf0d0af88b",
+      "parentCityEntityId": "city-aab32476f6c568e3",
+      "wikidataId": "Q1134433",
+      "canonicalNameEn": "Ramna Kali Temple",
+      "positiveTypePath": [
+        "Q842402",
+        "Q44539",
+        "Q697295",
+        "Q24398318",
+        "Q1370598"
+      ],
+      "distanceKm": 0.57
+    },
+    {
+      "entityId": "poi-ecfdffa54edbe126",
+      "parentCityEntityId": "city-aab32476f6c568e3",
+      "wikidataId": "Q13059380",
+      "canonicalNameEn": "Musa Khan Mosque",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 0.678
+    },
+    {
+      "entityId": "poi-d5d109ae77bacd7b",
+      "parentCityEntityId": "city-b1c716c2393b40d8",
+      "wikidataId": "Q4848745",
+      "canonicalNameEn": "Baitul Falah",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 1.943
+    },
+    {
+      "entityId": "poi-e0626a909df093d6",
+      "parentCityEntityId": "city-b1c716c2393b40d8",
+      "wikidataId": "Q3351553",
+      "canonicalNameEn": "Wali Khan Mosque",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 2.661
+    },
+    {
+      "entityId": "poi-160f82f076715909",
+      "parentCityEntityId": "city-b1c716c2393b40d8",
+      "wikidataId": "Q5087951",
+      "canonicalNameEn": "Chatteshwari Temple",
+      "positiveTypePath": [
+        "Q44539",
+        "Q697295",
+        "Q24398318",
+        "Q1370598"
+      ],
+      "distanceKm": 2.082
+    },
+    {
+      "entityId": "poi-591c99e4e119f7df",
+      "parentCityEntityId": "city-b1c716c2393b40d8",
+      "wikidataId": "Q5070970",
+      "canonicalNameEn": "Masjid-e-Siraj ud-Daulah",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 1.744
+    },
+    {
+      "entityId": "poi-f7944872a8e06716",
+      "parentCityEntityId": "city-b1c716c2393b40d8",
+      "wikidataId": "Q13056990",
+      "canonicalNameEn": "Anderkilla Shahi Jame Mosque",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 0.796
+    },
+    {
+      "entityId": "poi-60334cefce6bc95e",
+      "parentCityEntityId": "city-b1c716c2393b40d8",
+      "wikidataId": "Q4868562",
+      "canonicalNameEn": "Batali Hill",
+      "positiveTypePath": [
+        "Q54050",
+        "Q271669"
+      ],
+      "distanceKm": 1.956
+    },
+    {
+      "entityId": "poi-58636fb1dd440fab",
+      "parentCityEntityId": "city-b1c716c2393b40d8",
+      "wikidataId": "Q15217015",
+      "canonicalNameEn": "Ethnological Museum",
+      "positiveTypePath": [
+        "Q33506"
+      ],
+      "distanceKm": 2.168
+    },
+    {
+      "entityId": "poi-3ec0118c96ded776",
+      "parentCityEntityId": "city-d37a11d8ee0bcc01",
+      "wikidataId": "Q16345294",
+      "canonicalNameEn": "Khadimnagar National Park",
+      "positiveTypePath": [
+        "Q46169",
+        "Q22698"
+      ],
+      "distanceKm": 0.537
+    },
+    {
+      "entityId": "poi-37a29fcb66aea938",
+      "parentCityEntityId": "city-296d4b9f84ddcfb6",
+      "wikidataId": "Q7380443",
+      "canonicalNameEn": "Rupsha River",
+      "positiveTypePath": [
+        "Q4022",
+        "Q2479431",
+        "Q15324"
+      ],
+      "distanceKm": 7.413
+    },
+    {
+      "entityId": "poi-ac98834a401deaee",
+      "parentCityEntityId": "city-296d4b9f84ddcfb6",
+      "wikidataId": "Q16345312",
+      "canonicalNameEn": "Khulna Divisional Museum",
+      "positiveTypePath": [
+        "Q33506"
+      ],
+      "distanceKm": 0.531
+    },
+    {
+      "entityId": "poi-cdddaca94bbc598b",
+      "parentCityEntityId": "city-296d4b9f84ddcfb6",
+      "wikidataId": "Q133844310",
+      "canonicalNameEn": "Adamya Bangla",
+      "positiveTypePath": [
+        "Q860861",
+        "Q4502142",
+        "Q838948"
+      ],
+      "distanceKm": 2.264
+    },
+    {
+      "entityId": "poi-ba015af908f22469",
+      "parentCityEntityId": "city-14de570973ef9555",
+      "wikidataId": "Q7915600",
+      "canonicalNameEn": "Varendra Research Museum",
+      "positiveTypePath": [
+        "Q33506"
+      ],
+      "distanceKm": 0.771
+    },
+    {
+      "entityId": "poi-26b2d695a9a02a35",
+      "parentCityEntityId": "city-14de570973ef9555",
+      "wikidataId": "Q25588060",
+      "canonicalNameEn": "Shaheed Zia Shishu Park, Rajshahi",
+      "positiveTypePath": [
+        "Q22698"
+      ],
+      "distanceKm": 3.769
+    },
+    {
+      "entityId": "poi-c947b2b4b05b3ffb",
+      "parentCityEntityId": "city-848890e8d6304af0",
+      "wikidataId": "Q3250234",
+      "canonicalNameEn": "Adinath Temple",
+      "positiveTypePath": [
+        "Q842402",
+        "Q44539",
+        "Q697295",
+        "Q24398318",
+        "Q1370598"
+      ],
+      "distanceKm": 7.472
+    },
+    {
+      "entityId": "poi-53f3f8437585ee3e",
+      "parentCityEntityId": "city-848890e8d6304af0",
+      "wikidataId": "Q15243738",
+      "canonicalNameEn": "Maheshkhali Island",
+      "positiveTypePath": [
+        "Q23442",
+        "Q271669"
+      ],
+      "distanceKm": 9.727
+    },
+    {
+      "entityId": "poi-4d08eced67c99e01",
+      "parentCityEntityId": "city-e46d4726fe6f2c35",
+      "wikidataId": "Q13059506",
+      "canonicalNameEn": "Recreation Park and Rangpur Zoo",
+      "positiveTypePath": [
+        "Q43501",
+        "Q22698"
+      ],
+      "distanceKm": 0.942
+    },
+    {
+      "entityId": "poi-cd86f0da535518a4",
+      "parentCityEntityId": "city-e46d4726fe6f2c35",
+      "wikidataId": "Q138806709",
+      "canonicalNameEn": "Alokbortika",
+      "positiveTypePath": [
+        "Q860861",
+        "Q4502142",
+        "Q838948"
+      ],
+      "distanceKm": 1.658
+    },
+    {
+      "entityId": "poi-5c7e87ea320fed0e",
+      "parentCityEntityId": "city-e46d4726fe6f2c35",
+      "wikidataId": "Q3661445",
+      "canonicalNameEn": "Tajhat Palace",
+      "positiveTypePath": [
+        "Q16560",
+        "Q41176"
+      ],
+      "distanceKm": 4.543
+    },
+    {
+      "entityId": "poi-ecba43dc702a857c",
+      "parentCityEntityId": "city-e46d4726fe6f2c35",
+      "wikidataId": "Q107719292",
+      "canonicalNameEn": "Rangpur Town Hall",
+      "positiveTypePath": [
+        "Q84015776",
+        "Q2319498",
+        "Q570116"
+      ],
+      "distanceKm": 0.771
+    },
+    {
+      "entityId": "poi-22be5b0c17f0a4d5",
+      "parentCityEntityId": "city-f5714e39a7e65005",
+      "wikidataId": "Q2602355",
+      "canonicalNameEn": "National Library of Bhutan",
+      "positiveTypePath": [
+        "Q22806",
+        "Q65768782",
+        "Q385994",
+        "Q7075",
+        "Q101542346",
+        "Q13226383"
+      ],
+      "distanceKm": 1.34
+    },
+    {
+      "entityId": "poi-12793f90580d95c7",
+      "parentCityEntityId": "city-f5714e39a7e65005",
+      "wikidataId": "Q4097986",
+      "canonicalNameEn": "Buddha Dordenma statue",
+      "positiveTypePath": [
+        "Q179700",
+        "Q220659",
+        "Q1791627",
+        "Q210272"
+      ],
+      "distanceKm": 3.306
+    },
+    {
+      "entityId": "poi-417acc459f8fab6c",
+      "parentCityEntityId": "city-f5714e39a7e65005",
+      "wikidataId": "Q864865",
+      "canonicalNameEn": "Memorial Chorten",
+      "positiveTypePath": [
+        "Q24398318",
+        "Q1370598"
+      ],
+      "distanceKm": 0.685
+    },
+    {
+      "entityId": "poi-31da746b3d6d97cb",
+      "parentCityEntityId": "city-f5714e39a7e65005",
+      "wikidataId": "Q5459703",
+      "canonicalNameEn": "Motithang Takin Preserve",
+      "positiveTypePath": [
+        "Q473972"
+      ],
+      "distanceKm": 2.618
+    },
+    {
+      "entityId": "poi-f1547583822a08bf",
+      "parentCityEntityId": "city-f5714e39a7e65005",
+      "wikidataId": "Q28197153",
+      "canonicalNameEn": "Folk Heritage Museum",
+      "positiveTypePath": [
+        "Q33506"
+      ],
+      "distanceKm": 1.26
+    },
+    {
+      "entityId": "poi-bda942e2df22305b",
+      "parentCityEntityId": "city-f5714e39a7e65005",
+      "wikidataId": "Q109385874",
+      "canonicalNameEn": "Changangkha Lhakhang",
+      "positiveTypePath": [
+        "Q5393308",
+        "Q1370598"
+      ],
+      "distanceKm": 0.575
+    },
+    {
+      "entityId": "poi-83829bf31aff047a",
+      "parentCityEntityId": "city-9ef994b032cc19c3",
+      "wikidataId": "Q4315025",
+      "canonicalNameEn": "National Museum of Bhutan",
+      "positiveTypePath": [
+        "Q17431399",
+        "Q33506"
+      ],
+      "distanceKm": 1.01
+    },
+    {
+      "entityId": "poi-2812c782576013b9",
+      "parentCityEntityId": "city-9ef994b032cc19c3",
+      "wikidataId": "Q1795009",
+      "canonicalNameEn": "Kyichu Lhakhang",
+      "positiveTypePath": [
+        "Q5393308",
+        "Q1370598"
+      ],
+      "distanceKm": 4.148
+    },
+    {
+      "entityId": "poi-07dcca617b1d0fc4",
+      "parentCityEntityId": "city-e81ec17a373169cf",
+      "wikidataId": "Q20926016",
+      "canonicalNameEn": "Pho Chhu",
+      "positiveTypePath": [
+        "Q4022",
+        "Q2479431",
+        "Q15324"
+      ],
+      "distanceKm": 7.593
+    },
+    {
+      "entityId": "poi-704edc1b554fe9da",
+      "parentCityEntityId": "city-b7e74d694f25929a",
+      "wikidataId": "Q1207780",
+      "canonicalNameEn": "Dhur",
+      "positiveTypePath": [
+        "Q4022",
+        "Q2479431",
+        "Q15324"
+      ],
+      "distanceKm": 8.128
+    },
+    {
+      "entityId": "poi-e5e0de2556715007",
+      "parentCityEntityId": "city-b7e74d694f25929a",
+      "wikidataId": "Q4517108",
+      "canonicalNameEn": "Bumthang Valley",
+      "positiveTypePath": [
+        "Q39816",
+        "Q35145263"
+      ],
+      "distanceKm": 1.934
+    },
+    {
+      "entityId": "poi-b8546416bc4cd065",
+      "parentCityEntityId": "city-3e04d37f2aeee071",
+      "wikidataId": "Q500983",
+      "canonicalNameEn": "Faisal Mosque",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 3.429
+    },
+    {
+      "entityId": "poi-8219b62ed54f42a5",
+      "parentCityEntityId": "city-3e04d37f2aeee071",
+      "wikidataId": "Q915851",
+      "canonicalNameEn": "Lal Masjid",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 4.882
+    },
+    {
+      "entityId": "poi-22cb26d9fdc4134f",
+      "parentCityEntityId": "city-3e04d37f2aeee071",
+      "wikidataId": "Q3695640",
+      "canonicalNameEn": "Pakistan Monument",
+      "positiveTypePath": [
+        "Q4989906"
+      ],
+      "distanceKm": 2.969
+    },
+    {
+      "entityId": "poi-fab143b5248da579",
+      "parentCityEntityId": "city-3e04d37f2aeee071",
+      "wikidataId": "Q3694624",
+      "canonicalNameEn": "Lok Virsa Museum",
+      "positiveTypePath": [
+        "Q207694",
+        "Q33506"
+      ],
+      "distanceKm": 3.249
+    },
+    {
+      "entityId": "poi-00f6c4b831af0310",
+      "parentCityEntityId": "city-3e04d37f2aeee071",
+      "wikidataId": "Q2046672",
+      "canonicalNameEn": "Pakistan Museum of Natural History",
+      "positiveTypePath": [
+        "Q1970365",
+        "Q16735822",
+        "Q33506"
+      ],
+      "distanceKm": 3.905
+    },
+    {
+      "entityId": "poi-9254af72037c053a",
+      "parentCityEntityId": "city-3e04d37f2aeee071",
+      "wikidataId": "Q7462557",
+      "canonicalNameEn": "Shakarparian",
+      "positiveTypePath": [
+        "Q22698"
+      ],
+      "distanceKm": 4.392
+    },
+    {
+      "entityId": "poi-e2825cb16f14a2f9",
+      "parentCityEntityId": "city-3e04d37f2aeee071",
+      "wikidataId": "Q6970474",
+      "canonicalNameEn": "National Art Gallery, Pakistan",
+      "positiveTypePath": [
+        "Q207694",
+        "Q33506"
+      ],
+      "distanceKm": 6.112
+    },
+    {
+      "entityId": "poi-c5de969a48b4fb9a",
+      "parentCityEntityId": "city-4c5c53bdc937ad66",
+      "wikidataId": "Q3409597",
+      "canonicalNameEn": "Dai Anga Mosque",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 5.152
+    },
+    {
+      "entityId": "poi-4a51798625965f73",
+      "parentCityEntityId": "city-4c5c53bdc937ad66",
+      "wikidataId": "Q3695337",
+      "canonicalNameEn": "Lahore Zoo",
+      "positiveTypePath": [
+        "Q43501",
+        "Q22698"
+      ],
+      "distanceKm": 1.828
+    },
+    {
+      "entityId": "poi-9d70249533ea68e8",
+      "parentCityEntityId": "city-4c5c53bdc937ad66",
+      "wikidataId": "Q6082637",
+      "canonicalNameEn": "Islamic Summit Minar",
+      "positiveTypePath": [
+        "Q4989906"
+      ],
+      "distanceKm": 2.112
+    },
+    {
+      "entityId": "poi-ceeeff899284cd68",
+      "parentCityEntityId": "city-4c5c53bdc937ad66",
+      "wikidataId": "Q4903032",
+      "canonicalNameEn": "Bibi Pak Daman",
+      "positiveTypePath": [
+        "Q162875",
+        "Q4989906"
+      ],
+      "distanceKm": 2.17
+    },
+    {
+      "entityId": "poi-47dd868049bc2cac",
+      "parentCityEntityId": "city-b1eed976f677556e",
+      "wikidataId": "Q1967486",
+      "canonicalNameEn": "National Museum of Pakistan",
+      "positiveTypePath": [
+        "Q207694",
+        "Q33506"
+      ],
+      "distanceKm": 1.145
+    },
+    {
+      "entityId": "poi-66f95668299bb0ec",
+      "parentCityEntityId": "city-b1eed976f677556e",
+      "wikidataId": "Q2639803",
+      "canonicalNameEn": "Shri Swaminarayan Mandir",
+      "positiveTypePath": [
+        "Q842402",
+        "Q44539",
+        "Q697295",
+        "Q24398318",
+        "Q1370598"
+      ],
+      "distanceKm": 0.66
+    },
+    {
+      "entityId": "poi-44445a699f3d8d59",
+      "parentCityEntityId": "city-b1eed976f677556e",
+      "wikidataId": "Q85846777",
+      "canonicalNameEn": "New Memon Masjid",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 1.384
+    },
+    {
+      "entityId": "poi-1ab16c7ef76392b8",
+      "parentCityEntityId": "city-b1eed976f677556e",
+      "wikidataId": "Q111602905",
+      "canonicalNameEn": "MagnifiScience Centre",
+      "positiveTypePath": [
+        "Q33506"
+      ],
+      "distanceKm": 1.68
+    },
+    {
+      "entityId": "poi-30992c07ad142873",
+      "parentCityEntityId": "city-b1eed976f677556e",
+      "wikidataId": "Q5374577",
+      "canonicalNameEn": "Empress Market",
+      "positiveTypePath": [
+        "Q2080521",
+        "Q132510",
+        "Q37654"
+      ],
+      "distanceKm": 1.981
+    },
+    {
+      "entityId": "poi-d9e7c6c65ecd63d8",
+      "parentCityEntityId": "city-4c109219ee0a9be4",
+      "wikidataId": "Q2420356",
+      "canonicalNameEn": "Mohabbat Khan Mosque",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 0.672
+    },
+    {
+      "entityId": "poi-77cd2cfdc318e490",
+      "parentCityEntityId": "city-4c109219ee0a9be4",
+      "wikidataId": "Q1416493",
+      "canonicalNameEn": "Peshawar Museum",
+      "positiveTypePath": [
+        "Q33506"
+      ],
+      "distanceKm": 1.131
+    },
+    {
+      "entityId": "poi-6c94c76347042290",
+      "parentCityEntityId": "city-4c109219ee0a9be4",
+      "wikidataId": "Q9065080",
+      "canonicalNameEn": "Qissa Khwani Bazaar",
+      "positiveTypePath": [
+        "Q219760",
+        "Q132510",
+        "Q37654"
+      ],
+      "distanceKm": 0.851
+    },
+    {
+      "entityId": "poi-606278fe8e5f9179",
+      "parentCityEntityId": "city-4c109219ee0a9be4",
+      "wikidataId": "Q5586577",
+      "canonicalNameEn": "Gorkhatri",
+      "positiveTypePath": [
+        "Q839954"
+      ],
+      "distanceKm": 1.412
+    },
+    {
+      "entityId": "poi-67f334df8aa5d38e",
+      "parentCityEntityId": "city-4c109219ee0a9be4",
+      "wikidataId": "Q842918",
+      "canonicalNameEn": "Kanishka stupa",
+      "positiveTypePath": [
+        "Q180987",
+        "Q24398318",
+        "Q1370598"
+      ],
+      "distanceKm": 2.822
+    },
+    {
+      "entityId": "poi-96b5fae83caa2bcf",
+      "parentCityEntityId": "city-8555be273f25abdf",
+      "wikidataId": "Q15983527",
+      "canonicalNameEn": "Tomb of Shah Rukn-e-Alam",
+      "positiveTypePath": [
+        "Q162875",
+        "Q4989906"
+      ],
+      "distanceKm": 0.128
+    },
+    {
+      "entityId": "poi-5e0649ca7b385f39",
+      "parentCityEntityId": "city-8555be273f25abdf",
+      "wikidataId": "Q7237726",
+      "canonicalNameEn": "Prahladpuri Temple, Multan",
+      "positiveTypePath": [
+        "Q44539",
+        "Q697295",
+        "Q24398318",
+        "Q1370598"
+      ],
+      "distanceKm": 0.133
+    },
+    {
+      "entityId": "poi-0452e5b669bc92a0",
+      "parentCityEntityId": "city-8555be273f25abdf",
+      "wikidataId": "Q30595011",
+      "canonicalNameEn": "Shahi Eid Gah Mosque",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 1.631
+    },
+    {
+      "entityId": "poi-73d90861a5ed9569",
+      "parentCityEntityId": "city-8555be273f25abdf",
+      "wikidataId": "Q39061227",
+      "canonicalNameEn": "shrine of Bahauddin Zakariya",
+      "positiveTypePath": [
+        "Q381885",
+        "Q811979"
+      ],
+      "distanceKm": 0.594
+    },
+    {
+      "entityId": "poi-adbd510b72f7c61a",
+      "parentCityEntityId": "city-9a6a935e045e546c",
+      "wikidataId": "Q5648744",
+      "canonicalNameEn": "Hanna Valley",
+      "positiveTypePath": [
+        "Q39816",
+        "Q35145263"
+      ],
+      "distanceKm": 2.232
+    },
+    {
+      "entityId": "poi-136a9b9908525a91",
+      "parentCityEntityId": "city-64428b8fd19fa090",
+      "wikidataId": "Q1362563",
+      "canonicalNameEn": "Hunza River",
+      "positiveTypePath": [
+        "Q4022",
+        "Q2479431",
+        "Q15324"
+      ],
+      "distanceKm": 5.014
+    },
+    {
+      "entityId": "poi-3e36bd6aad472a3e",
+      "parentCityEntityId": "city-ee047f3d09518639",
+      "wikidataId": "Q1398191",
+      "canonicalNameEn": "Shigar River",
+      "positiveTypePath": [
+        "Q4022",
+        "Q2479431",
+        "Q15324"
+      ],
+      "distanceKm": 3.775
+    },
+    {
+      "entityId": "poi-3201f3b93b500d99",
+      "parentCityEntityId": "city-ee047f3d09518639",
+      "wikidataId": "Q796570",
+      "canonicalNameEn": "Satpara Lake",
+      "positiveTypePath": [
+        "Q11253318",
+        "Q23397",
+        "Q271669"
+      ],
+      "distanceKm": 7.935
+    },
+    {
+      "entityId": "poi-219c7fe3581086c5",
+      "parentCityEntityId": "city-ee047f3d09518639",
+      "wikidataId": "Q1438714",
+      "canonicalNameEn": "Skardu Fort",
+      "positiveTypePath": [
+        "Q1785071",
+        "Q57821",
+        "Q811979"
+      ],
+      "distanceKm": 2.064
+    },
+    {
+      "entityId": "poi-2bbff8cf6d0353ba",
+      "parentCityEntityId": "city-ee047f3d09518639",
+      "wikidataId": "Q19891208",
+      "canonicalNameEn": "Katpana Desert",
+      "positiveTypePath": [
+        "Q8514",
+        "Q271669"
+      ],
+      "distanceKm": 2.627
+    },
+    {
+      "entityId": "poi-204c262399b1eb9f",
+      "parentCityEntityId": "city-55005277884e682e",
+      "wikidataId": "Q1059720",
+      "canonicalNameEn": "Pha That Luang",
+      "positiveTypePath": [
+        "Q180987",
+        "Q24398318",
+        "Q1370598"
+      ],
+      "distanceKm": 0.619
+    },
+    {
+      "entityId": "poi-52856019798e6215",
+      "parentCityEntityId": "city-55005277884e682e",
+      "wikidataId": "Q17606819",
+      "canonicalNameEn": "Vientiane Jamia Mosque",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 2.819
+    },
+    {
+      "entityId": "poi-d5edbca4b03b9f51",
+      "parentCityEntityId": "city-55005277884e682e",
+      "wikidataId": "Q4466863",
+      "canonicalNameEn": "That Dam",
+      "positiveTypePath": [
+        "Q180987",
+        "Q24398318",
+        "Q1370598"
+      ],
+      "distanceKm": 2.542
+    },
+    {
+      "entityId": "poi-dec803433ac7bbbd",
+      "parentCityEntityId": "city-da1e080d1316a155",
+      "wikidataId": "Q7187956",
+      "canonicalNameEn": "Phou si",
+      "positiveTypePath": [
+        "Q54050",
+        "Q271669"
+      ],
+      "distanceKm": 0.232
+    },
+    {
+      "entityId": "poi-f8c3a0bd571a78fe",
+      "parentCityEntityId": "city-da1e080d1316a155",
+      "wikidataId": "Q7972957",
+      "canonicalNameEn": "Wat Sen",
+      "positiveTypePath": [
+        "Q5393308",
+        "Q1370598"
+      ],
+      "distanceKm": 0.983
+    },
+    {
+      "entityId": "poi-2afae02c7dd83e1b",
+      "parentCityEntityId": "city-da1e080d1316a155",
+      "wikidataId": "Q15947844",
+      "canonicalNameEn": "Nam Khan",
+      "positiveTypePath": [
+        "Q4022",
+        "Q2479431",
+        "Q15324"
+      ],
+      "distanceKm": 1.43
+    },
+    {
+      "entityId": "poi-463075354abd870f",
+      "parentCityEntityId": "city-da1e080d1316a155",
+      "wikidataId": "Q4739924",
+      "canonicalNameEn": "Amantaka",
+      "positiveTypePath": [
+        "Q27686",
+        "Q655686",
+        "Q41176"
+      ],
+      "distanceKm": 0.558
+    },
+    {
+      "entityId": "poi-82af5aee70c54c88",
+      "parentCityEntityId": "city-da1e080d1316a155",
+      "wikidataId": "Q54468244",
+      "canonicalNameEn": "Wat Phol Phao",
+      "positiveTypePath": [
+        "Q5393308",
+        "Q1370598"
+      ],
+      "distanceKm": 1.696
+    },
+    {
+      "entityId": "poi-930bcf3d35746098",
+      "parentCityEntityId": "city-9264d8b71fda5177",
+      "wikidataId": "Q7709769",
+      "canonicalNameEn": "Tham Jang",
+      "positiveTypePath": [
+        "Q35509",
+        "Q271669"
+      ],
+      "distanceKm": 2.115
+    },
+    {
+      "entityId": "poi-b733cb297b4cdb0f",
+      "parentCityEntityId": "city-64428b8fd19fa090",
+      "wikidataId": "Q113247573",
+      "canonicalNameEn": "Danyor Bridge",
+      "positiveTypePath": [
+        "Q12570",
+        "Q12280",
+        "Q811979"
+      ],
+      "distanceKm": 5.243
+    },
+    {
+      "entityId": "poi-9098086dcee04531",
+      "parentCityEntityId": "city-f5714e39a7e65005",
+      "wikidataId": "Q1181803",
+      "canonicalNameEn": "Dechencholing Palace",
+      "positiveTypePath": [
+        "Q16560",
+        "Q41176"
+      ],
+      "distanceKm": 5.871
+    },
+    {
+      "entityId": "poi-ebd78667b4d32b3b",
+      "parentCityEntityId": "city-55005277884e682e",
+      "wikidataId": "Q15116324",
+      "canonicalNameEn": "National Library of Laos",
+      "positiveTypePath": [
+        "Q22806",
+        "Q65768782",
+        "Q385994",
+        "Q7075",
+        "Q101542346",
+        "Q13226383"
+      ],
+      "distanceKm": 2.938
+    },
+    {
+      "entityId": "poi-4bc2de3d2dd35dc0",
+      "parentCityEntityId": "city-b1c716c2393b40d8",
+      "wikidataId": "Q15209425",
+      "canonicalNameEn": "Cheragi Pahar",
+      "positiveTypePath": [
+        "Q174782",
+        "Q811979"
+      ],
+      "distanceKm": 0.975
+    },
+    {
+      "entityId": "poi-dd72b0c5c8e4a4f0",
+      "parentCityEntityId": "city-f5714e39a7e65005",
+      "wikidataId": "Q15210985",
+      "canonicalNameEn": "Clock Tower Square",
+      "positiveTypePath": [
+        "Q174782",
+        "Q811979"
+      ],
+      "distanceKm": 0.606
+    },
+    {
+      "entityId": "poi-6a78fb81fc58e03b",
+      "parentCityEntityId": "city-55005277884e682e",
+      "wikidataId": "Q15268539",
+      "canonicalNameEn": "Presidential Palace",
+      "positiveTypePath": [
+        "Q2114972",
+        "Q16560",
+        "Q41176"
+      ],
+      "distanceKm": 2.919
+    },
+    {
+      "entityId": "poi-7e1703277381aeec",
+      "parentCityEntityId": "city-296d4b9f84ddcfb6",
+      "wikidataId": "Q18987368",
+      "canonicalNameEn": "Khan Jahan Ali Bridge",
+      "positiveTypePath": [
+        "Q12280",
+        "Q811979"
+      ],
+      "distanceKm": 5.565
+    },
+    {
+      "entityId": "poi-0e8f81e59e103bde",
+      "parentCityEntityId": "city-b1c716c2393b40d8",
+      "wikidataId": "Q23832227",
+      "canonicalNameEn": "Our Lady of the Holy Rosary Cathedral",
+      "positiveTypePath": [
+        "Q2977",
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 0.766
+    },
+    {
+      "entityId": "poi-300d9bac8daa7273",
+      "parentCityEntityId": "city-55005277884e682e",
+      "wikidataId": "Q25017398",
+      "canonicalNameEn": "Sacred Heart Cathedral, Vientiane",
+      "positiveTypePath": [
+        "Q2977",
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 2.607
+    },
+    {
+      "entityId": "poi-8f44ffe00485c6f9",
+      "parentCityEntityId": "city-1de66dcdd7ca182e",
+      "wikidataId": "Q25041111",
+      "canonicalNameEn": "Co-Cathedral of St. Therese, Savannakhet",
+      "positiveTypePath": [
+        "Q2977",
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 0.793
+    },
+    {
+      "entityId": "poi-79a907b2d26b3f34",
+      "parentCityEntityId": "city-296d4b9f84ddcfb6",
+      "wikidataId": "Q25714587",
+      "canonicalNameEn": "St. Joseph's Cathedral, Khulna",
+      "positiveTypePath": [
+        "Q2977",
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 1.953
+    },
+    {
+      "entityId": "poi-349d7188efc70493",
+      "parentCityEntityId": "city-141a33b92dcc6c34",
+      "wikidataId": "Q2988303",
+      "canonicalNameEn": "Ala-Too Square",
+      "positiveTypePath": [
+        "Q174782",
+        "Q811979"
+      ],
+      "distanceKm": 3.22
+    },
+    {
+      "entityId": "poi-034bd41ab5c02ace",
+      "parentCityEntityId": "city-da1e080d1316a155",
+      "wikidataId": "Q3361219",
+      "canonicalNameEn": "Royal Palace, Luang Prabang",
+      "positiveTypePath": [
+        "Q53536964",
+        "Q16560",
+        "Q41176"
+      ],
+      "distanceKm": 0.251
+    },
+    {
+      "entityId": "poi-7ed9801cf63151f3",
+      "parentCityEntityId": "city-4c5c53bdc937ad66",
+      "wikidataId": "Q3694552",
+      "canonicalNameEn": "Bagh-e-Jinnah",
+      "positiveTypePath": [
+        "Q167346",
+        "Q13226383"
+      ],
+      "distanceKm": 1.248
+    },
+    {
+      "entityId": "poi-33b789107eea0c85",
+      "parentCityEntityId": "city-4c5c53bdc937ad66",
+      "wikidataId": "Q3695615",
+      "canonicalNameEn": "Sacred Heart Cathedral",
+      "positiveTypePath": [
+        "Q2977",
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 3.04
+    },
+    {
+      "entityId": "poi-3b748c839a1ed628",
+      "parentCityEntityId": "city-4c109219ee0a9be4",
+      "wikidataId": "Q3696263",
+      "canonicalNameEn": "Bala Hisar Fort",
+      "positiveTypePath": [
+        "Q1785071",
+        "Q57821",
+        "Q811979"
+      ],
+      "distanceKm": 0.276
+    },
+    {
+      "entityId": "poi-1c8df1e38236d8f0",
+      "parentCityEntityId": "city-4c109219ee0a9be4",
+      "wikidataId": "Q4729512",
+      "canonicalNameEn": "All Saints Church, Peshawar",
+      "positiveTypePath": [
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 1.072
+    },
+    {
+      "entityId": "poi-8a0a80753f950efe",
+      "parentCityEntityId": "city-d37a11d8ee0bcc01",
+      "wikidataId": "Q484781",
+      "canonicalNameEn": "Keane bridge",
+      "positiveTypePath": [
+        "Q537127",
+        "Q12280",
+        "Q811979"
+      ],
+      "distanceKm": 1.386
+    },
+    {
+      "entityId": "poi-9c2352eedf7f668a",
+      "parentCityEntityId": "city-296d4b9f84ddcfb6",
+      "wikidataId": "Q55622568",
+      "canonicalNameEn": "Rupsha Rail Bridge",
+      "positiveTypePath": [
+        "Q1210334",
+        "Q12280",
+        "Q811979"
+      ],
+      "distanceKm": 6.253
+    },
+    {
+      "entityId": "poi-995696cbf13156a8",
+      "parentCityEntityId": "city-141a33b92dcc6c34",
+      "wikidataId": "Q6974182",
+      "canonicalNameEn": "National Library of the Kyrgyz Republic",
+      "positiveTypePath": [
+        "Q22806",
+        "Q65768782",
+        "Q385994",
+        "Q7075",
+        "Q101542346",
+        "Q13226383"
+      ],
+      "distanceKm": 3.953
+    }
+  ],
+  "quarantineCount": 1414
+}

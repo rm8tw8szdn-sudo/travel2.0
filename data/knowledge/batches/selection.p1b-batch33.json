@@ -1,0 +1,1216 @@
+{
+  "schemaVersion": "route-v2-knowledge-expansion-batch09-wave4-selection-v1",
+  "wave": 4,
+  "countries": [
+    {
+      "isoAlpha2": "BN",
+      "wikidataId": "Q921",
+      "entityId": "country-245639bf3af7ce82"
+    },
+    {
+      "isoAlpha2": "HN",
+      "wikidataId": "Q783",
+      "entityId": "country-b68053132c49192d"
+    },
+    {
+      "isoAlpha2": "SV",
+      "wikidataId": "Q792",
+      "entityId": "country-43cebe0100ef97fc"
+    },
+    {
+      "isoAlpha2": "WS",
+      "wikidataId": "Q683",
+      "entityId": "country-d07e475004eb2619"
+    },
+    {
+      "isoAlpha2": "VU",
+      "wikidataId": "Q686",
+      "entityId": "country-3d5ce12449962967"
+    }
+  ],
+  "cities": [
+    {
+      "countryCode": "BN",
+      "tier": "world",
+      "targetPoiCount": 10,
+      "selectedPoiCount": 7,
+      "reused": false,
+      "entityId": "city-f4ff0dfcae8b0989",
+      "wikidataId": "Q9279",
+      "canonicalNameEn": "Bandar Seri Begawan",
+      "positiveTypePath": [
+        "Q5119",
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "BN",
+      "tier": "core",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 5,
+      "reused": false,
+      "entityId": "city-bf28eaa9206f25d8",
+      "wikidataId": "Q588045",
+      "canonicalNameEn": "Kuala Belait",
+      "positiveTypePath": [
+        "Q3957",
+        "Q124250988",
+        "Q486972"
+      ]
+    },
+    {
+      "countryCode": "BN",
+      "tier": "core",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 5,
+      "reused": false,
+      "entityId": "city-0abc68e36ecc4f21",
+      "wikidataId": "Q2159472",
+      "canonicalNameEn": "Seria",
+      "positiveTypePath": [
+        "Q3957",
+        "Q124250988",
+        "Q486972"
+      ]
+    },
+    {
+      "countryCode": "BN",
+      "tier": "standard",
+      "targetPoiCount": 5,
+      "selectedPoiCount": 2,
+      "reused": false,
+      "entityId": "city-a77fb92c56a72ba1",
+      "wikidataId": "Q2299301",
+      "canonicalNameEn": "Tutong",
+      "positiveTypePath": [
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "HN",
+      "tier": "world",
+      "targetPoiCount": 10,
+      "selectedPoiCount": 4,
+      "reused": false,
+      "entityId": "city-22a9785e45535d40",
+      "wikidataId": "Q3238",
+      "canonicalNameEn": "Tegucigalpa",
+      "positiveTypePath": [
+        "Q1549591",
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "HN",
+      "tier": "world",
+      "targetPoiCount": 10,
+      "selectedPoiCount": 4,
+      "reused": false,
+      "entityId": "city-c6d668c46a560ce8",
+      "wikidataId": "Q274584",
+      "canonicalNameEn": "San Pedro Sula",
+      "positiveTypePath": [
+        "Q1549591",
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "HN",
+      "tier": "core",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 6,
+      "reused": false,
+      "entityId": "city-bfede837d84157d0",
+      "wikidataId": "Q679169",
+      "canonicalNameEn": "Comayagua",
+      "positiveTypePath": [
+        "Q1549591",
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "HN",
+      "tier": "standard",
+      "targetPoiCount": 5,
+      "selectedPoiCount": 0,
+      "reused": false,
+      "entityId": "city-e2083642815e3565",
+      "wikidataId": "Q2396956",
+      "canonicalNameEn": "Coxen Hole",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "SV",
+      "tier": "world",
+      "targetPoiCount": 10,
+      "selectedPoiCount": 6,
+      "reused": false,
+      "entityId": "city-7f2b7a1c12eb21ca",
+      "wikidataId": "Q3110",
+      "canonicalNameEn": "San Salvador",
+      "positiveTypePath": [
+        "Q1549591",
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "SV",
+      "tier": "world",
+      "targetPoiCount": 10,
+      "selectedPoiCount": 6,
+      "reused": false,
+      "entityId": "city-7237a90a8a19fcd9",
+      "wikidataId": "Q739664",
+      "canonicalNameEn": "Santa Ana",
+      "positiveTypePath": [
+        "Q1549591",
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "SV",
+      "tier": "core",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 4,
+      "reused": false,
+      "entityId": "city-549df2359e0d5a1e",
+      "wikidataId": "Q723246",
+      "canonicalNameEn": "Santa Tecla",
+      "positiveTypePath": [
+        "Q1549591",
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "SV",
+      "tier": "core",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 3,
+      "reused": false,
+      "entityId": "city-e45b96bef9dcc09f",
+      "wikidataId": "Q672458",
+      "canonicalNameEn": "San Miguel",
+      "positiveTypePath": [
+        "Q1549591",
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "SV",
+      "tier": "standard",
+      "targetPoiCount": 5,
+      "selectedPoiCount": 1,
+      "reused": false,
+      "entityId": "city-5f6859cecc3c2ae1",
+      "wikidataId": "Q1014248",
+      "canonicalNameEn": "Sonsonate",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "WS",
+      "tier": "world",
+      "targetPoiCount": 10,
+      "selectedPoiCount": 5,
+      "reused": false,
+      "entityId": "city-30b9c8c68f6655b3",
+      "wikidataId": "Q36260",
+      "canonicalNameEn": "Apia",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "WS",
+      "tier": "core",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 2,
+      "reused": false,
+      "entityId": "city-386684232a1412ed",
+      "wikidataId": "Q2214151",
+      "canonicalNameEn": "Salelologa",
+      "positiveTypePath": [
+        "Q486972"
+      ]
+    },
+    {
+      "countryCode": "WS",
+      "tier": "core",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 1,
+      "reused": false,
+      "entityId": "city-c08004fc05b48ec7",
+      "wikidataId": "Q9368101",
+      "canonicalNameEn": "Vaitele",
+      "positiveTypePath": [
+        "Q7930989",
+        "Q124250988",
+        "Q486972"
+      ]
+    },
+    {
+      "countryCode": "WS",
+      "tier": "standard",
+      "targetPoiCount": 5,
+      "selectedPoiCount": 0,
+      "reused": false,
+      "entityId": "city-8da39b8f46d86182",
+      "wikidataId": "Q2270858",
+      "canonicalNameEn": "Mulifanua",
+      "positiveTypePath": [
+        "Q486972"
+      ]
+    },
+    {
+      "countryCode": "WS",
+      "tier": "standard",
+      "targetPoiCount": 5,
+      "selectedPoiCount": 1,
+      "reused": false,
+      "entityId": "city-4ada31031a87680d",
+      "wikidataId": "Q2165046",
+      "canonicalNameEn": "Safotu",
+      "positiveTypePath": [
+        "Q486972"
+      ]
+    },
+    {
+      "countryCode": "VU",
+      "tier": "world",
+      "targetPoiCount": 10,
+      "selectedPoiCount": 6,
+      "reused": false,
+      "entityId": "city-79be302c459c8dc2",
+      "wikidataId": "Q37806",
+      "canonicalNameEn": "Port Vila",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "VU",
+      "tier": "core",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 1,
+      "reused": false,
+      "entityId": "city-1ae623f4aeab19a2",
+      "wikidataId": "Q876557",
+      "canonicalNameEn": "Luganville",
+      "positiveTypePath": [
+        "Q486972"
+      ]
+    },
+    {
+      "countryCode": "VU",
+      "tier": "core",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 0,
+      "reused": false,
+      "entityId": "city-8c068f0b8ab1ede7",
+      "wikidataId": "Q1070178",
+      "canonicalNameEn": "Isangel",
+      "positiveTypePath": [
+        "Q486972"
+      ]
+    },
+    {
+      "countryCode": "VU",
+      "tier": "standard",
+      "targetPoiCount": 5,
+      "selectedPoiCount": 1,
+      "reused": false,
+      "entityId": "city-390848dba4202b7f",
+      "wikidataId": "Q669361",
+      "canonicalNameEn": "Lakatoro",
+      "positiveTypePath": [
+        "Q3957",
+        "Q124250988",
+        "Q486972"
+      ]
+    },
+    {
+      "countryCode": "VU",
+      "tier": "standard",
+      "targetPoiCount": 5,
+      "selectedPoiCount": 4,
+      "reused": false,
+      "entityId": "city-a1225c747f4a32f8",
+      "wikidataId": "Q1423143",
+      "canonicalNameEn": "Sola",
+      "positiveTypePath": [
+        "Q486972"
+      ]
+    }
+  ],
+  "pois": [
+    {
+      "entityId": "poi-e9e0d9a50f644a52",
+      "parentCityEntityId": "city-f4ff0dfcae8b0989",
+      "wikidataId": "Q842921",
+      "canonicalNameEn": "Omar Ali Saifuddien Mosque",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 3.908
+    },
+    {
+      "entityId": "poi-9dfd7cd8d70deb4f",
+      "parentCityEntityId": "city-f4ff0dfcae8b0989",
+      "wikidataId": "Q20410627",
+      "canonicalNameEn": "Jame 'Asr Hassanil Bolkiah Mosque",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 2.157
+    },
+    {
+      "entityId": "poi-0636d7d5978fa89b",
+      "parentCityEntityId": "city-f4ff0dfcae8b0989",
+      "wikidataId": "Q21787576",
+      "canonicalNameEn": "Royal Regalia Museum",
+      "positiveTypePath": [
+        "Q33506"
+      ],
+      "distanceKm": 3.821
+    },
+    {
+      "entityId": "poi-88c14b6019b6f701",
+      "parentCityEntityId": "city-f4ff0dfcae8b0989",
+      "wikidataId": "Q29830347",
+      "canonicalNameEn": "Ash-Shaliheen Mosque",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 2.141
+    },
+    {
+      "entityId": "poi-dca0bbb8e8ef443a",
+      "parentCityEntityId": "city-f4ff0dfcae8b0989",
+      "wikidataId": "Q48791736",
+      "canonicalNameEn": "Taman Mahkota Jubli Emas",
+      "positiveTypePath": [
+        "Q22746",
+        "Q22698"
+      ],
+      "distanceKm": 3.882
+    },
+    {
+      "entityId": "poi-4231d42b85291083",
+      "parentCityEntityId": "city-bf28eaa9206f25d8",
+      "wikidataId": "Q7443386",
+      "canonicalNameEn": "Sungai Belait",
+      "positiveTypePath": [
+        "Q4022",
+        "Q2479431",
+        "Q15324"
+      ],
+      "distanceKm": 1.589
+    },
+    {
+      "entityId": "poi-144b57292ed9d409",
+      "parentCityEntityId": "city-bf28eaa9206f25d8",
+      "wikidataId": "Q27964110",
+      "canonicalNameEn": "Belait District Museum",
+      "positiveTypePath": [
+        "Q33506"
+      ],
+      "distanceKm": 0.676
+    },
+    {
+      "entityId": "poi-ef3c74e2c853a21a",
+      "parentCityEntityId": "city-0abc68e36ecc4f21",
+      "wikidataId": "Q17055766",
+      "canonicalNameEn": "Seria Oil Field",
+      "positiveTypePath": [
+        "Q211748",
+        "Q15104915",
+        "Q35145263"
+      ],
+      "distanceKm": 1.498
+    },
+    {
+      "entityId": "poi-6a5fbd3caf488c90",
+      "parentCityEntityId": "city-0abc68e36ecc4f21",
+      "wikidataId": "Q4912008",
+      "canonicalNameEn": "Billionth Barrel Monument",
+      "positiveTypePath": [
+        "Q4989906"
+      ],
+      "distanceKm": 1.484
+    },
+    {
+      "entityId": "poi-b99bd0f258e8c14f",
+      "parentCityEntityId": "city-a77fb92c56a72ba1",
+      "wikidataId": "Q48769540",
+      "canonicalNameEn": "Hassanal Bolkiah Mosque",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 0.327
+    },
+    {
+      "entityId": "poi-368f9d588d975699",
+      "parentCityEntityId": "city-22a9785e45535d40",
+      "wikidataId": "Q17043107",
+      "canonicalNameEn": "National Gallery of Art",
+      "positiveTypePath": [
+        "Q207694",
+        "Q33506"
+      ],
+      "distanceKm": 0.184
+    },
+    {
+      "entityId": "poi-2247b44656465ee9",
+      "parentCityEntityId": "city-22a9785e45535d40",
+      "wikidataId": "Q7694766",
+      "canonicalNameEn": "Tegucigalpa Honduras Temple",
+      "positiveTypePath": [
+        "Q2142152",
+        "Q1370598"
+      ],
+      "distanceKm": 6.896
+    },
+    {
+      "entityId": "poi-2eb5acb748032d24",
+      "parentCityEntityId": "city-c6d668c46a560ce8",
+      "wikidataId": "Q6732501",
+      "canonicalNameEn": "Maguen David Synagogue",
+      "positiveTypePath": [
+        "Q34627",
+        "Q831219",
+        "Q1370598"
+      ],
+      "distanceKm": 1.152
+    },
+    {
+      "entityId": "poi-e2f5131286511661",
+      "parentCityEntityId": "city-c6d668c46a560ce8",
+      "wikidataId": "Q6033817",
+      "canonicalNameEn": "Museo de Antropología e Historia de San Pedro Sula",
+      "positiveTypePath": [
+        "Q33506"
+      ],
+      "distanceKm": 0.336
+    },
+    {
+      "entityId": "poi-12cf328369a4dda9",
+      "parentCityEntityId": "city-c6d668c46a560ce8",
+      "wikidataId": "Q100388394",
+      "canonicalNameEn": "Museo de la Infancia El Pequeño Sula",
+      "positiveTypePath": [
+        "Q33506"
+      ],
+      "distanceKm": 3.066
+    },
+    {
+      "entityId": "poi-3981513d031b5bf4",
+      "parentCityEntityId": "city-bfede837d84157d0",
+      "wikidataId": "Q2942492",
+      "canonicalNameEn": "Immaculate Conception Cathedral, Comayagua",
+      "positiveTypePath": [
+        "Q2977",
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 0.878
+    },
+    {
+      "entityId": "poi-f2aa7912cbe6e5ae",
+      "parentCityEntityId": "city-bfede837d84157d0",
+      "wikidataId": "Q8049601",
+      "canonicalNameEn": "Yarumela",
+      "positiveTypePath": [
+        "Q839954"
+      ],
+      "distanceKm": 9.958
+    },
+    {
+      "entityId": "poi-60c893fc56387bd9",
+      "parentCityEntityId": "city-bfede837d84157d0",
+      "wikidataId": "Q16918504",
+      "canonicalNameEn": "Humuya River",
+      "positiveTypePath": [
+        "Q4022",
+        "Q2479431",
+        "Q15324"
+      ],
+      "distanceKm": 1.623
+    },
+    {
+      "entityId": "poi-be0bd61914b8d768",
+      "parentCityEntityId": "city-bfede837d84157d0",
+      "wikidataId": "Q98203467",
+      "canonicalNameEn": "Museum of Comayagua",
+      "positiveTypePath": [
+        "Q41176"
+      ],
+      "distanceKm": 1.061
+    },
+    {
+      "entityId": "poi-60e372be0bcbd559",
+      "parentCityEntityId": "city-bfede837d84157d0",
+      "wikidataId": "Q97173174",
+      "canonicalNameEn": "La Merced Church (Honduras)",
+      "positiveTypePath": [
+        "Q358",
+        "Q210272"
+      ],
+      "distanceKm": 0.541
+    },
+    {
+      "entityId": "poi-43e7593aad3fefaf",
+      "parentCityEntityId": "city-bfede837d84157d0",
+      "wikidataId": "Q85866300",
+      "canonicalNameEn": "Caxa Real (Honduras)",
+      "positiveTypePath": [
+        "Q41176"
+      ],
+      "distanceKm": 0.958
+    },
+    {
+      "entityId": "poi-ddf204f08dc2e2f4",
+      "parentCityEntityId": "city-7f2b7a1c12eb21ca",
+      "wikidataId": "Q1541926",
+      "canonicalNameEn": "Museo de la Palabra y la Imagen",
+      "positiveTypePath": [
+        "Q16735822",
+        "Q33506"
+      ],
+      "distanceKm": 1.957
+    },
+    {
+      "entityId": "poi-5158c9de30785d3b",
+      "parentCityEntityId": "city-7f2b7a1c12eb21ca",
+      "wikidataId": "Q4352971",
+      "canonicalNameEn": "Monumento al Divino",
+      "positiveTypePath": [
+        "Q860861",
+        "Q4502142",
+        "Q838948"
+      ],
+      "distanceKm": 3.62
+    },
+    {
+      "entityId": "poi-768db26c2959b264",
+      "parentCityEntityId": "city-7f2b7a1c12eb21ca",
+      "wikidataId": "Q5668865",
+      "canonicalNameEn": "Museo de la Fuerza Armada de El Salvador",
+      "positiveTypePath": [
+        "Q2772772",
+        "Q16735822",
+        "Q33506"
+      ],
+      "distanceKm": 1.8
+    },
+    {
+      "entityId": "poi-a76cbef138451175",
+      "parentCityEntityId": "city-7f2b7a1c12eb21ca",
+      "wikidataId": "Q3566311",
+      "canonicalNameEn": "Teatro Nacional de San Salvador",
+      "positiveTypePath": [
+        "Q153562",
+        "Q41176"
+      ],
+      "distanceKm": 0.14
+    },
+    {
+      "entityId": "poi-ab1cfbc18c181fbb",
+      "parentCityEntityId": "city-7237a90a8a19fcd9",
+      "wikidataId": "Q6139962",
+      "canonicalNameEn": "National Theatre of Santa Ana",
+      "positiveTypePath": [
+        "Q2065736",
+        "Q210272"
+      ],
+      "distanceKm": 0.079
+    },
+    {
+      "entityId": "poi-7d5994e48f569eba",
+      "parentCityEntityId": "city-7237a90a8a19fcd9",
+      "wikidataId": "Q42794376",
+      "canonicalNameEn": "Iglesia El Calvario",
+      "positiveTypePath": [
+        "Q2065736",
+        "Q210272"
+      ],
+      "distanceKm": 0.515
+    },
+    {
+      "entityId": "poi-8d4849a74a053482",
+      "parentCityEntityId": "city-549df2359e0d5a1e",
+      "wikidataId": "Q2577068",
+      "canonicalNameEn": "San Salvador Volcano",
+      "positiveTypePath": [
+        "Q8502",
+        "Q35145263"
+      ],
+      "distanceKm": 6.715
+    },
+    {
+      "entityId": "poi-68eeb65b84a264d1",
+      "parentCityEntityId": "city-549df2359e0d5a1e",
+      "wikidataId": "Q7415282",
+      "canonicalNameEn": "San Salvador El Salvador Temple",
+      "positiveTypePath": [
+        "Q2142152",
+        "Q1370598"
+      ],
+      "distanceKm": 4.635
+    },
+    {
+      "entityId": "poi-95bdfd8f6a6dcc73",
+      "parentCityEntityId": "city-549df2359e0d5a1e",
+      "wikidataId": "Q6033911",
+      "canonicalNameEn": "Museo de Arte de El Salvador",
+      "positiveTypePath": [
+        "Q207694",
+        "Q33506"
+      ],
+      "distanceKm": 5.448
+    },
+    {
+      "entityId": "poi-5bab7a178d48aadd",
+      "parentCityEntityId": "city-549df2359e0d5a1e",
+      "wikidataId": "Q108570143",
+      "canonicalNameEn": "Dar-Ibrahim Mosque",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 8.977
+    },
+    {
+      "entityId": "poi-fd9ac2d129e1274f",
+      "parentCityEntityId": "city-e45b96bef9dcc09f",
+      "wikidataId": "Q5758579",
+      "canonicalNameEn": "Cathedral Basilica of Queen of Peace, San Miguel",
+      "positiveTypePath": [
+        "Q120560",
+        "Q4846867",
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 0.398
+    },
+    {
+      "entityId": "poi-584b95ac81fae09b",
+      "parentCityEntityId": "city-e45b96bef9dcc09f",
+      "wikidataId": "Q5243466",
+      "canonicalNameEn": "Quelepa",
+      "positiveTypePath": [
+        "Q839954"
+      ],
+      "distanceKm": 7.272
+    },
+    {
+      "entityId": "poi-1ea70a591c40044a",
+      "parentCityEntityId": "city-30b9c8c68f6655b3",
+      "wikidataId": "Q618565",
+      "canonicalNameEn": "Apia Samoa Temple",
+      "positiveTypePath": [
+        "Q2142152",
+        "Q1370598"
+      ],
+      "distanceKm": 5.4
+    },
+    {
+      "entityId": "poi-2505d714510434be",
+      "parentCityEntityId": "city-30b9c8c68f6655b3",
+      "wikidataId": "Q106628284",
+      "canonicalNameEn": "Museum of Samoa",
+      "positiveTypePath": [
+        "Q33506"
+      ],
+      "distanceKm": 7.637
+    },
+    {
+      "entityId": "poi-485061224f8a13f6",
+      "parentCityEntityId": "city-30b9c8c68f6655b3",
+      "wikidataId": "Q27925684",
+      "canonicalNameEn": "Lake Lanoto'o",
+      "positiveTypePath": [
+        "Q23397",
+        "Q271669"
+      ],
+      "distanceKm": 8.569
+    },
+    {
+      "entityId": "poi-e228acaf28b460bf",
+      "parentCityEntityId": "city-30b9c8c68f6655b3",
+      "wikidataId": "Q5431851",
+      "canonicalNameEn": "Falemauga Caves",
+      "positiveTypePath": [
+        "Q839954"
+      ],
+      "distanceKm": 9.282
+    },
+    {
+      "entityId": "poi-9bc1cc52af81eb18",
+      "parentCityEntityId": "city-30b9c8c68f6655b3",
+      "wikidataId": "Q108195527",
+      "canonicalNameEn": "Lake Lanoto'o National Park",
+      "positiveTypePath": [
+        "Q46169",
+        "Q22698"
+      ],
+      "distanceKm": 7.413
+    },
+    {
+      "entityId": "poi-5e236828985a0844",
+      "parentCityEntityId": "city-4ada31031a87680d",
+      "wikidataId": "Q6922059",
+      "canonicalNameEn": "Mount Matavanu",
+      "positiveTypePath": [
+        "Q8502",
+        "Q35145263"
+      ],
+      "distanceKm": 8.966
+    },
+    {
+      "entityId": "poi-4825de25885f8e37",
+      "parentCityEntityId": "city-79be302c459c8dc2",
+      "wikidataId": "Q1835725",
+      "canonicalNameEn": "Vanuatu Cultural Centre",
+      "positiveTypePath": [
+        "Q17431399",
+        "Q33506"
+      ],
+      "distanceKm": 1.324
+    },
+    {
+      "entityId": "poi-01a8c81c5ba09e73",
+      "parentCityEntityId": "city-79be302c459c8dc2",
+      "wikidataId": "Q1835708",
+      "canonicalNameEn": "National Museum of Vanuatu",
+      "positiveTypePath": [
+        "Q17431399",
+        "Q33506"
+      ],
+      "distanceKm": 1.327
+    },
+    {
+      "entityId": "poi-e63ee54ae068caaf",
+      "parentCityEntityId": "city-79be302c459c8dc2",
+      "wikidataId": "Q3305011",
+      "canonicalNameEn": "Mele",
+      "positiveTypePath": [
+        "Q23442",
+        "Q271669"
+      ],
+      "distanceKm": 6.914
+    },
+    {
+      "entityId": "poi-64601444bdddb27f",
+      "parentCityEntityId": "city-79be302c459c8dc2",
+      "wikidataId": "Q25042619",
+      "canonicalNameEn": "Mele Bay",
+      "positiveTypePath": [
+        "Q39594",
+        "Q2507626",
+        "Q15324"
+      ],
+      "distanceKm": 7.067
+    },
+    {
+      "entityId": "poi-211682052ffab366",
+      "parentCityEntityId": "city-1ae623f4aeab19a2",
+      "wikidataId": "Q32476874",
+      "canonicalNameEn": "Maltinérava Island",
+      "positiveTypePath": [
+        "Q23442",
+        "Q271669"
+      ],
+      "distanceKm": 9.281
+    },
+    {
+      "entityId": "poi-b5f08ac158f69eb9",
+      "parentCityEntityId": "city-390848dba4202b7f",
+      "wikidataId": "Q32606516",
+      "canonicalNameEn": "Îlot Sowan",
+      "positiveTypePath": [
+        "Q23442",
+        "Q271669"
+      ],
+      "distanceKm": 4.28
+    },
+    {
+      "entityId": "poi-73f77b1c28a90ab5",
+      "parentCityEntityId": "city-a1225c747f4a32f8",
+      "wikidataId": "Q537817",
+      "canonicalNameEn": "Banks Islands",
+      "positiveTypePath": [
+        "Q1402592",
+        "Q20719696"
+      ],
+      "distanceKm": 6.315
+    },
+    {
+      "entityId": "poi-2828eda46f76f6b4",
+      "parentCityEntityId": "city-a1225c747f4a32f8",
+      "wikidataId": "Q32497348",
+      "canonicalNameEn": "Ngéré Néwet",
+      "positiveTypePath": [
+        "Q23442",
+        "Q271669"
+      ],
+      "distanceKm": 7.206
+    },
+    {
+      "entityId": "poi-7f030e44576f7b12",
+      "parentCityEntityId": "city-a1225c747f4a32f8",
+      "wikidataId": "Q25067586",
+      "canonicalNameEn": "Port Patteson",
+      "positiveTypePath": [
+        "Q17018380",
+        "Q15324"
+      ],
+      "distanceKm": 3.336
+    },
+    {
+      "entityId": "poi-9590e601c9c689c2",
+      "parentCityEntityId": "city-a1225c747f4a32f8",
+      "wikidataId": "Q56277412",
+      "canonicalNameEn": "Leneu",
+      "positiveTypePath": [
+        "Q23442",
+        "Q271669"
+      ],
+      "distanceKm": 5.183
+    },
+    {
+      "entityId": "poi-42f4a3349972625b",
+      "parentCityEntityId": "city-bf28eaa9206f25d8",
+      "wikidataId": "Q108770702",
+      "canonicalNameEn": "St John's Church, Kuala Belait",
+      "positiveTypePath": [
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 0.237
+    },
+    {
+      "entityId": "poi-3a3386008d3e86cc",
+      "parentCityEntityId": "city-a77fb92c56a72ba1",
+      "wikidataId": "Q112623130",
+      "canonicalNameEn": "Penanjong Beach",
+      "positiveTypePath": [
+        "Q40080",
+        "Q107123630",
+        "Q811979"
+      ],
+      "distanceKm": 3.972
+    },
+    {
+      "entityId": "poi-3afd4000d7fbf2b1",
+      "parentCityEntityId": "city-bf28eaa9206f25d8",
+      "wikidataId": "Q113002996",
+      "canonicalNameEn": "Belait Beach",
+      "positiveTypePath": [
+        "Q40080",
+        "Q107123630",
+        "Q811979"
+      ],
+      "distanceKm": 2.49
+    },
+    {
+      "entityId": "poi-af891bc82126e614",
+      "parentCityEntityId": "city-bf28eaa9206f25d8",
+      "wikidataId": "Q113009997",
+      "canonicalNameEn": "Istana Kota Manggalela",
+      "positiveTypePath": [
+        "Q16560",
+        "Q41176"
+      ],
+      "distanceKm": 6.827
+    },
+    {
+      "entityId": "poi-166c33f0fb944093",
+      "parentCityEntityId": "city-f4ff0dfcae8b0989",
+      "wikidataId": "Q115951068",
+      "canonicalNameEn": "Istana Darussalam",
+      "positiveTypePath": [
+        "Q16560",
+        "Q41176"
+      ],
+      "distanceKm": 3.551
+    },
+    {
+      "entityId": "poi-066fee3f5eed7799",
+      "parentCityEntityId": "city-7f2b7a1c12eb21ca",
+      "wikidataId": "Q123457274",
+      "canonicalNameEn": "National Library of El Salvador",
+      "positiveTypePath": [
+        "Q22806",
+        "Q65768782",
+        "Q385994",
+        "Q7075",
+        "Q101542346",
+        "Q13226383"
+      ],
+      "distanceKm": 0.099
+    },
+    {
+      "entityId": "poi-5651f810bd3d61d6",
+      "parentCityEntityId": "city-e45b96bef9dcc09f",
+      "wikidataId": "Q15297660",
+      "canonicalNameEn": "Teatro Nacional Francisco Gavidia",
+      "positiveTypePath": [
+        "Q24354",
+        "Q114961210",
+        "Q294422",
+        "Q41176"
+      ],
+      "distanceKm": 0.403
+    },
+    {
+      "entityId": "poi-1968571b7e5197d8",
+      "parentCityEntityId": "city-c6d668c46a560ce8",
+      "wikidataId": "Q16473176",
+      "canonicalNameEn": "St. Peter Apostle Metropolitan Cathedral",
+      "positiveTypePath": [
+        "Q56242215",
+        "Q2977",
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 0.118
+    },
+    {
+      "entityId": "poi-2797cb2b6fc5048b",
+      "parentCityEntityId": "city-c08004fc05b48ec7",
+      "wikidataId": "Q18416912",
+      "canonicalNameEn": "Immaculate Conception Cathedral, Apia",
+      "positiveTypePath": [
+        "Q2977",
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 1.983
+    },
+    {
+      "entityId": "poi-2a979e169676f10c",
+      "parentCityEntityId": "city-5f6859cecc3c2ae1",
+      "wikidataId": "Q28584590",
+      "canonicalNameEn": "Most Holy Trinity Cathedral, Sonsonate",
+      "positiveTypePath": [
+        "Q56242215",
+        "Q2977",
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 0.046
+    },
+    {
+      "entityId": "poi-ab2b1a6325a5a141",
+      "parentCityEntityId": "city-79be302c459c8dc2",
+      "wikidataId": "Q2942912",
+      "canonicalNameEn": "Cathédrale du Sacré-Coeur, Port Vila",
+      "positiveTypePath": [
+        "Q2977",
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 0.214
+    },
+    {
+      "entityId": "poi-fe1d65ea8f3a45dc",
+      "parentCityEntityId": "city-7f2b7a1c12eb21ca",
+      "wikidataId": "Q2942929",
+      "canonicalNameEn": "Metropolitan Cathedral of San Salvador",
+      "positiveTypePath": [
+        "Q2977",
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 0.111
+    },
+    {
+      "entityId": "poi-7fbab2d6dbef67e3",
+      "parentCityEntityId": "city-0abc68e36ecc4f21",
+      "wikidataId": "Q33060523",
+      "canonicalNameEn": "Lumut Lighthouse",
+      "positiveTypePath": [
+        "Q39715",
+        "Q41176"
+      ],
+      "distanceKm": 9.522
+    },
+    {
+      "entityId": "poi-bfe84f6490c0179f",
+      "parentCityEntityId": "city-f4ff0dfcae8b0989",
+      "wikidataId": "Q44484274",
+      "canonicalNameEn": "Brunei Language and Literature Bureau library",
+      "positiveTypePath": [
+        "Q28564",
+        "Q13226383"
+      ],
+      "distanceKm": 3.935
+    },
+    {
+      "entityId": "poi-f94e34e20fc83609",
+      "parentCityEntityId": "city-0abc68e36ecc4f21",
+      "wikidataId": "Q46091673",
+      "canonicalNameEn": "Seria Library",
+      "positiveTypePath": [
+        "Q28564",
+        "Q13226383"
+      ],
+      "distanceKm": 0.908
+    },
+    {
+      "entityId": "poi-1cbd3bd475d15411",
+      "parentCityEntityId": "city-7237a90a8a19fcd9",
+      "wikidataId": "Q5051807",
+      "canonicalNameEn": "Santa Ana Cathedral, El Salvador",
+      "positiveTypePath": [
+        "Q2977",
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 0.126
+    },
+    {
+      "entityId": "poi-1e71528f17d680b5",
+      "parentCityEntityId": "city-0abc68e36ecc4f21",
+      "wikidataId": "Q5116972",
+      "canonicalNameEn": "Church of Our Lady of Immaculate Conception, Seria",
+      "positiveTypePath": [
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 0.562
+    },
+    {
+      "entityId": "poi-516f158f2eaf9f7a",
+      "parentCityEntityId": "city-22a9785e45535d40",
+      "wikidataId": "Q5758583",
+      "canonicalNameEn": "St. Michael the Archangel Cathedral, Tegucigalpa",
+      "positiveTypePath": [
+        "Q2977",
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 0.075
+    },
+    {
+      "entityId": "poi-a304cc292022fdb8",
+      "parentCityEntityId": "city-7237a90a8a19fcd9",
+      "wikidataId": "Q5909210",
+      "canonicalNameEn": "Iglesia de El Carmen (Santa Ana)",
+      "positiveTypePath": [
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 0.414
+    },
+    {
+      "entityId": "poi-7e1c1e824d4e5a43",
+      "parentCityEntityId": "city-7237a90a8a19fcd9",
+      "wikidataId": "Q5910642",
+      "canonicalNameEn": "Iglesia de San Lorenzo (Santa Ana)",
+      "positiveTypePath": [
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 0.428
+    },
+    {
+      "entityId": "poi-69f25cfb223cc37e",
+      "parentCityEntityId": "city-79be302c459c8dc2",
+      "wikidataId": "Q618517",
+      "canonicalNameEn": "National Library of Vanuatu",
+      "positiveTypePath": [
+        "Q22806",
+        "Q65768782",
+        "Q385994",
+        "Q7075",
+        "Q101542346",
+        "Q13226383"
+      ],
+      "distanceKm": 1.323
+    },
+    {
+      "entityId": "poi-cdb86155c19d76d3",
+      "parentCityEntityId": "city-386684232a1412ed",
+      "wikidataId": "Q621945",
+      "canonicalNameEn": "Savai'i Public Library",
+      "positiveTypePath": [
+        "Q28564",
+        "Q13226383"
+      ],
+      "distanceKm": 0.023
+    },
+    {
+      "entityId": "poi-479a99ec760b90d3",
+      "parentCityEntityId": "city-7237a90a8a19fcd9",
+      "wikidataId": "Q6447020",
+      "canonicalNameEn": "St. Lucia Church, Santa Ana",
+      "positiveTypePath": [
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 0.891
+    },
+    {
+      "entityId": "poi-780696f5b025bd69",
+      "parentCityEntityId": "city-386684232a1412ed",
+      "wikidataId": "Q669175",
+      "canonicalNameEn": "Aganoa Beach",
+      "positiveTypePath": [
+        "Q40080",
+        "Q107123630",
+        "Q811979"
+      ],
+      "distanceKm": 7.785
+    },
+    {
+      "entityId": "poi-a192c57b1f4033dc",
+      "parentCityEntityId": "city-22a9785e45535d40",
+      "wikidataId": "Q6974150",
+      "canonicalNameEn": "Juan Ramón Molina National Library",
+      "positiveTypePath": [
+        "Q22806",
+        "Q65768782",
+        "Q385994",
+        "Q7075",
+        "Q101542346",
+        "Q13226383"
+      ],
+      "distanceKm": 0.203
+    }
+  ],
+  "quarantineCount": 975
+}

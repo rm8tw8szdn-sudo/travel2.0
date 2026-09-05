@@ -422,6 +422,7 @@ function baseState(overrides = {}) {
 
   for (const scenario of [
     { name: "Germany Austria 14 days", countryCodes: ["DE", "AT"], citiesPerCountry: 3, durationDays: 14 },
+    { name: "Kazakhstan Uzbekistan 14 days", countryCodes: ["KZ", "UZ"], citiesPerCountry: 3, durationDays: 14 },
     { name: "Japan 14 days", countryCodes: ["JP"], citiesPerCountry: 3, durationDays: 14 },
     { name: "Italy 14 days", countryCodes: ["IT"], citiesPerCountry: 3, durationDays: 14 },
   ]) {

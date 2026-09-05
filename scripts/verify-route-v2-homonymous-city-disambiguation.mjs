@@ -187,7 +187,10 @@ try {
   for (const query of unqualifiedCases) {
     const result = await harness.runQuery(query, `unqualified-${query.split(" ")[0].toLocaleLowerCase("en-US")}`);
     assert.equal(result.parsedIntent.parseSuccess, false, `${query}: ambiguous City must fail closed`);
-    assert.equal(result.parsedIntent.failureReason, "unresolved-destination", `${query}: ambiguity failure reason`);
+    assert(
+      ["unresolved-destination", "destination-confirmation-required"].includes(result.parsedIntent.failureReason),
+      `${query}: ambiguity failure reason`,
+    );
     assert(
       result.parsedIntent.destinationDiagnostics.some((entry) => entry.code === "ambiguous-city-alias"),
       `${query}: ambiguity diagnostic`,

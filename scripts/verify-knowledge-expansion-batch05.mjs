@@ -20,10 +20,10 @@ const ACCEPTED_SHA256 = "aea28bcc03eaf6ccce5fd7453f88ece4f0060789f135eaf837b568d
 const IMMUTABLE_EVIDENCE_SHA256 = "4bb9e7b702de1c9b981f0ed53a649632e2a7149bd7f2dabedfa120dcde13c376";
 const BATCH05_PUBLISHED_BASELINE = { countries: 55, cities: 306, pois: 2101, total: 2462 };
 const WAVES = Object.freeze({
-  1: { batch: "14", countries: ["GB","IE","CZ","HU","HR"], newCities: 44, reusedCities: 2, newPois: 296 },
-  2: { batch: "15", countries: ["NO","SE","FI","DK","BE"], newCities: 34, reusedCities: 2, newPois: 248 },
-  3: { batch: "16", countries: ["PL","SI","VN","MY","ID"], newCities: 37, reusedCities: 2, newPois: 277 },
-  4: { batch: "17", countries: ["PH","CA","US","MX","PE"], newCities: 47, reusedCities: 0, newPois: 376 },
+  1: { batch: "14", countries: ["GB","IE","CZ","HU","HR"], newCities: 44, reusedCities: 2, sealedNewPois: 296 },
+  2: { batch: "15", countries: ["NO","SE","FI","DK","BE"], newCities: 34, reusedCities: 2, sealedNewPois: 248 },
+  3: { batch: "16", countries: ["PL","SI","VN","MY","ID"], newCities: 37, reusedCities: 2, sealedNewPois: 277 },
+  4: { batch: "17", countries: ["PH","CA","US","MX","PE"], newCities: 47, reusedCities: 0, sealedNewPois: 376 },
 });
 const readJson = (relativePath) => JSON.parse(fs.readFileSync(path.join(ROOT, relativePath), "utf8"));
 const readJsonl = (relativePath) => fs.readFileSync(path.join(ROOT, relativePath), "utf8").trim().split(/\r?\n/u).filter(Boolean).map((line) => JSON.parse(line));
@@ -47,6 +47,9 @@ assert.equal(new Set(cities.map((entry) => entry.wikidataId)).size, cities.lengt
 assert.equal(new Set(pois.map((entry) => entry.wikidataId)).size, pois.length);
 
 const targetCodes = new Set(Object.values(WAVES).flatMap((entry) => entry.countries));
+const positiveAdmissionAudit = readJson("data/knowledge/reports/knowledge-poi-positive-admission-audit.json");
+assert.equal(positiveAdmissionAudit.after.publishedPois, currentTotals.pois);
+assert.equal(positiveAdmissionAudit.before.publishedPois - positiveAdmissionAudit.after.quarantinedPois, currentTotals.pois);
 assert.equal(targetCodes.size, 20);
 for (const [wave, config] of Object.entries(WAVES)) {
   const cityAsset = readJson(`data/knowledge/batches/cities.p1b-batch${config.batch}.json`);
@@ -55,11 +58,20 @@ for (const [wave, config] of Object.entries(WAVES)) {
   const provenance = readJson(`data/knowledge/batches/provenance.knowledge-expansion-batch05-wave${wave}.json`);
   const conflicts = readJson(`data/knowledge/batches/conflicts.knowledge-expansion-batch05-wave${wave}.json`);
   const review = readJson(`data/knowledge/batches/review-queue.knowledge-expansion-batch05-wave${wave}.json`);
+  const postSealQuarantine = positiveAdmissionAudit.quarantined.filter((entry) => (
+    entry.identityEvidence?.sourcePath === `data/knowledge/raw/knowledge-expansion-batch05-wave${wave}.wikidata.json`
+  ));
+  const currentNewPois = poiAsset.pois.length;
+  const removedSinceSeal = config.sealedNewPois - currentNewPois;
+  assert(removedSinceSeal >= postSealQuarantine.length, `wave ${wave}: current POI removals must cover scoped semantic quarantine`);
   assert.equal(cityAsset.cityCount, config.newCities);
-  assert.equal(poiAsset.poiCount, config.newPois);
+  assert.equal(poiAsset.poiCount, currentNewPois);
+  assert.equal(poiAsset.pois.length, currentNewPois);
   assert.equal(selection.cities.length, config.newCities + config.reusedCities);
+  assert.equal(selection.pois.length, currentNewPois);
+  assert.equal(poiAsset.poiCount + removedSinceSeal, config.sealedNewPois);
   assert.deepEqual(selection.countries.map((entry) => entry.isoAlpha2).sort(), [...config.countries].sort());
-  assert.equal(selection.cities.every((entry) => entry.selectedPoiCount >= 1 && entry.selectedPoiCount <= entry.targetPoiCount), true);
+  assert.equal(selection.cities.every((entry) => entry.selectedPoiCount >= 0 && entry.selectedPoiCount <= entry.targetPoiCount), true);
   assert.equal(selection.cities.every((entry) => entry.positiveTypePath.length >= 1 && entry.positiveTypePath.length <= 9), true);
   assert.equal(selection.pois.every((entry) => entry.positiveTypePath.length >= 1 && entry.positiveTypePath.length <= 9), true);
   assert.equal(conflicts.conflictCount, 0);
@@ -67,11 +79,19 @@ for (const [wave, config] of Object.entries(WAVES)) {
   assert.equal(review.reviewCount, review.entries.length);
   assert.equal(review.entries.every((entry) => ["quarantined-not-published", "accepted-below-target-without-padding", "quarantined-city-not-published"].includes(entry.disposition)), true);
   for (const city of selection.cities.filter((entry) => entry.selectedPoiCount < entry.targetPoiCount)) {
-    assert.ok(review.entries.some((entry) => entry.parentCityEntityId === city.entityId && entry.disposition === "accepted-below-target-without-padding"));
+    assert.ok(
+      review.entries.some((entry) => entry.parentCityEntityId === city.entityId && entry.disposition === "accepted-below-target-without-padding")
+      || positiveAdmissionAudit.quarantined.some((entry) => entry.parentCityEntityId === city.entityId),
+    );
   }
   const hardSemanticReasons = new Set(["coordinate-missing", "country-claim-mismatch", "positive-poi-type-unconfirmed", "settlement-not-published-as-poi", "parent-city-distance-exceeded", "operational-entity-not-route-poi"]);
   assert.equal(review.entries.filter((entry) => entry.reasonCodes.some((reason) => hardSemanticReasons.has(reason))).every((entry) => !selection.pois.some((selected) => selected.wikidataId === entry.wikidataId && selected.parentCityEntityId === entry.parentCityEntityId)), true);
-  assert.equal(provenance.publishedEntityQids.length, config.newCities + config.newPois);
+  assert.equal(provenance.publishedEntityQids.length, config.newCities + currentNewPois);
+  for (const quarantined of postSealQuarantine) {
+    assert.equal(poiAsset.pois.some((entry) => entry.entityId === quarantined.entityId), false);
+    assert.equal(selection.pois.some((entry) => entry.entityId === quarantined.entityId), false);
+    assert.equal(provenance.publishedEntityQids.includes(quarantined.wikidataId), false);
+  }
 }
 
 for (const countryCode of targetCodes) {

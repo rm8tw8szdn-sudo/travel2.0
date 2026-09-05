@@ -27,6 +27,11 @@ export const MANDATORY_PRELAUNCH_VERIFIERS = Object.freeze([
     phase: "static",
   }),
   Object.freeze({
+    name: "overlapping-country-city-entity-parser",
+    relativePath: "scripts/verify-route-v2-overlapping-entity-parser.mjs",
+    phase: "static",
+  }),
+  Object.freeze({
     name: "single-city-hard-constraint",
     relativePath: "scripts/verify-route-v2-single-city-hard-constraint.mjs",
     phase: "static",
@@ -172,6 +177,11 @@ export const MANDATORY_PRELAUNCH_VERIFIERS = Object.freeze([
     phase: "static",
   }),
   Object.freeze({
+    name: "historical-knowledge-reports-git-anchored",
+    relativePath: "scripts/verify-historical-knowledge-reports-git-anchored.mjs",
+    phase: "static",
+  }),
+  Object.freeze({
     name: "knowledge-expansion-batch06-integrity",
     relativePath: "scripts/verify-knowledge-expansion-batch06.mjs",
     phase: "static",
@@ -225,6 +235,67 @@ export const MANDATORY_PRELAUNCH_VERIFIERS = Object.freeze([
   Object.freeze({
     name: "knowledge-expansion-batch08-report-consistency",
     relativePath: "scripts/verify-knowledge-expansion-batch08-report-consistency.mjs",
+    phase: "static",
+  }),
+  Object.freeze({
+    name: "knowledge-expansion-batch09-integrity",
+    relativePath: "scripts/verify-knowledge-expansion-batch09.mjs",
+    phase: "static",
+  }),
+  Object.freeze({
+    name: "knowledge-expansion-batch09-sovereignty",
+    relativePath: "scripts/verify-knowledge-expansion-batch09-sovereignty.mjs",
+    phase: "static",
+  }),
+  Object.freeze({
+    name: "knowledge-expansion-batch09-route-consumption",
+    relativePath: "scripts/verify-knowledge-expansion-batch09-route-consumption.mjs",
+    phase: "static",
+  }),
+  Object.freeze({
+    name: "knowledge-expansion-batch09-hard-constraint-stress",
+    relativePath: "scripts/verify-knowledge-expansion-batch09-hard-constraint-stress.mjs",
+    phase: "static",
+    timeoutMs: 720_000,
+  }),
+  Object.freeze({
+    name: "knowledge-expansion-batch09-semantic-adversarial",
+    relativePath: "scripts/verify-knowledge-expansion-batch09-semantic-adversarial.mjs",
+    phase: "static",
+  }),
+  Object.freeze({
+    name: "knowledge-poi-positive-admission",
+    relativePath: "scripts/verify-knowledge-poi-positive-admission.mjs",
+    phase: "static",
+  }),
+  Object.freeze({
+    name: "knowledge-poi-ancestry-admission",
+    relativePath: "scripts/verify-knowledge-poi-ancestry-admission.mjs",
+    phase: "static",
+  }),
+  Object.freeze({
+    name: "knowledge-poi-policy-consistency",
+    relativePath: "scripts/verify-knowledge-poi-policy-consistency.mjs",
+    phase: "static",
+  }),
+  Object.freeze({
+    name: "knowledge-poi-mixed-type-admission",
+    relativePath: "scripts/verify-knowledge-poi-mixed-type-admission.mjs",
+    phase: "static",
+  }),
+  Object.freeze({
+    name: "knowledge-financial-market-admission",
+    relativePath: "scripts/verify-knowledge-financial-market-admission.mjs",
+    phase: "static",
+  }),
+  Object.freeze({
+    name: "knowledge-expansion-batch09-browser-acceptance",
+    relativePath: "scripts/verify-knowledge-expansion-batch09-browser.mjs",
+    phase: "static",
+  }),
+  Object.freeze({
+    name: "knowledge-expansion-batch09-report-consistency",
+    relativePath: "scripts/verify-knowledge-expansion-batch09-report-consistency.mjs",
     phase: "static",
   }),
   Object.freeze({

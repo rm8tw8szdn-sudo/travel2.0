@@ -1,21 +1,21 @@
 # Route V2 Image Coverage Backfill Batch 07 Audit
 
-Generated: 2026-08-28T09:00:00.000Z
+Generated: 2026-08-24T05:00:00.000Z
 
 ## Outcome
 
 - Historical image debt before Batch 07: 531
-- Historical image debt after Batch 07: 13
-- Plannable Country graphic covers: 98/98
+- Historical image debt after Batch 07: 531
+- Plannable Country graphic covers: 78/78
 - Batch 07 Country graphic covers added: 20
-- Verified destination City images: 600
-- Dedicated City image coverage: 600/718 (83.6%)
-- City neutral placeholders: 118
-- Verified Core POI image coverage: 212/282 (75.2%)
-- POI neutral placeholders: 70
+- Verified destination City images: 96
+- Dedicated City image coverage: 96/601 (16%)
+- City neutral placeholders: 505
+- Verified Core POI image coverage: 42/224 (18.8%)
+- POI neutral placeholders: 182
 - Batch 07 verified destination images: 42
 - Active invalid mappings: 0
-- Needs backfill: 188
+- Needs backfill: 687
 - Runtime external image requests: disabled
 
 Country covers are non-photographic entity label graphics and are not counted as City or POI imagery. Dedicated destination assets require an exact Wikidata entity P18, a fixed local Commons file, and auditable free-license metadata. All other destinations retain the shared neutral placeholder and needsBackfill.
@@ -24,295 +24,774 @@ Country covers are non-photographic entity label graphics and are not counted as
 
 | Code | Country | Scope | High City | Normal City | Low City | Core POI | Total |
 | --- | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: |
-| AD | Andorra | Batch 06 | 0 | 0 | 0 | 0 | 0 |
-| AE | United Arab Emirates | Batch 06 | 0 | 0 | 0 | 1 | 1 |
-| AL | Albania | Batch 07 | 0 | 0 | 0 | 0 | 0 |
-| AM | Armenia | Batch 08 | 3 | 3 | 1 | 3 | 10 |
-| AR | Argentina | Batch 06 | 0 | 0 | 0 | 0 | 0 |
-| AT | Austria | Historical | 0 | 0 | 0 | 0 | 0 |
-| AU | Australia | Historical | 0 | 0 | 0 | 0 | 0 |
-| AZ | Azerbaijan | Batch 08 | 3 | 3 | 1 | 3 | 10 |
-| BA | Bosnia and Herzegovina | Batch 08 | 3 | 2 | 2 | 3 | 10 |
-| BE | Belgium | Batch 05 | 0 | 0 | 0 | 0 | 0 |
-| BG | Bulgaria | Batch 07 | 0 | 0 | 0 | 1 | 1 |
-| BH | Bahrain | Batch 08 | 3 | 2 | 0 | 3 | 8 |
-| BO | Bolivia | Batch 08 | 3 | 3 | 0 | 3 | 9 |
-| BR | Brazil | Batch 06 | 0 | 0 | 0 | 0 | 0 |
-| BS | The Bahamas | Batch 08 | 3 | 0 | 1 | 3 | 7 |
-| CA | Canada | Batch 05 | 0 | 0 | 0 | 0 | 0 |
-| CD | Democratic Republic of the Congo | Batch 06 | 0 | 0 | 0 | 1 | 1 |
-| CH | Switzerland | Historical | 0 | 0 | 0 | 0 | 0 |
-| CL | Chile | Batch 06 | 0 | 0 | 0 | 0 | 0 |
-| CO | Colombia | Historical | 0 | 0 | 0 | 0 | 0 |
-| CR | Costa Rica | Batch 06 | 0 | 0 | 0 | 1 | 1 |
-| CU | Cuba | Batch 08 | 3 | 4 | 0 | 3 | 10 |
-| CY | Cyprus | Batch 07 | 0 | 0 | 0 | 0 | 0 |
-| CZ | Czechia | Batch 05 | 0 | 0 | 0 | 0 | 0 |
-| DE | Germany | Historical | 0 | 0 | 0 | 0 | 0 |
-| DK | Denmark | Batch 05 | 0 | 0 | 0 | 0 | 0 |
-| DO | Dominican Republic | Batch 08 | 3 | 1 | 3 | 3 | 10 |
-| EC | Ecuador | Batch 07 | 0 | 0 | 0 | 0 | 0 |
-| EE | Estonia | Batch 07 | 0 | 0 | 0 | 0 | 0 |
-| EG | Egypt | Batch 06 | 0 | 0 | 0 | 0 | 0 |
-| ES | Spain | Historical | 0 | 0 | 0 | 0 | 0 |
-| FI | Finland | Batch 05 | 0 | 0 | 0 | 0 | 0 |
-| FJ | Fiji | Batch 06 | 0 | 0 | 0 | 1 | 1 |
-| FR | France | Historical | 0 | 0 | 0 | 0 | 0 |
-| GB | United Kingdom | Batch 05 | 0 | 0 | 0 | 0 | 0 |
-| GE | Georgia | Batch 07 | 0 | 0 | 0 | 0 | 0 |
-| GR | Greece | Historical | 0 | 0 | 0 | 0 | 0 |
-| GT | Guatemala | Batch 07 | 0 | 0 | 0 | 0 | 0 |
-| HR | Croatia | Batch 05 | 0 | 0 | 0 | 0 | 0 |
-| HU | Hungary | Batch 05 | 0 | 0 | 0 | 0 | 0 |
-| ID | Indonesia | Batch 05 | 0 | 0 | 0 | 1 | 1 |
-| IE | Ireland | Batch 05 | 0 | 0 | 0 | 0 | 0 |
-| IL | Israel | Batch 06 | 0 | 0 | 0 | 0 | 0 |
-| IN | India | Batch 06 | 0 | 0 | 0 | 0 | 0 |
-| IS | Iceland | Historical | 0 | 0 | 0 | 0 | 0 |
-| IT | Italy | Historical | 0 | 0 | 0 | 0 | 0 |
-| JM | Jamaica | Batch 08 | 3 | 3 | 1 | 3 | 10 |
-| JO | Jordan | Batch 07 | 0 | 0 | 0 | 0 | 0 |
-| JP | Japan | Historical | 0 | 0 | 0 | 0 | 0 |
-| KE | Kenya | Batch 06 | 0 | 0 | 0 | 1 | 1 |
-| KH | Cambodia | Batch 06 | 0 | 0 | 0 | 0 | 0 |
-| KR | South Korea | Historical | 0 | 0 | 0 | 0 | 0 |
-| KW | Kuwait | Batch 08 | 3 | 0 | 1 | 3 | 7 |
-| LB | Lebanon | Batch 08 | 3 | 3 | 1 | 3 | 10 |
-| LI | Liechtenstein | Batch 08 | 3 | 1 | 0 | 3 | 7 |
-| LK | Sri Lanka | Batch 07 | 0 | 0 | 0 | 0 | 0 |
-| LT | Lithuania | Batch 07 | 0 | 0 | 0 | 0 | 0 |
-| LU | Luxembourg | Batch 08 | 3 | 2 | 0 | 3 | 8 |
-| LV | Latvia | Batch 07 | 0 | 0 | 0 | 0 | 0 |
-| MA | Morocco | Batch 06 | 0 | 0 | 0 | 1 | 1 |
-| MC | Monaco | Batch 08 | 1 | 0 | 0 | 1 | 2 |
-| MD | Moldova | Batch 08 | 3 | 1 | 3 | 3 | 10 |
-| ME | Montenegro | Batch 07 | 0 | 0 | 0 | 0 | 0 |
-| MK | North Macedonia | Batch 08 | 3 | 2 | 2 | 3 | 10 |
-| MT | Malta | Batch 07 | 0 | 0 | 0 | 0 | 0 |
+| AD | Andorra | Batch 06 | 1 | 0 | 1 | 2 | 4 |
+| AE | United Arab Emirates | Batch 06 | 1 | 3 | 2 | 3 | 9 |
+| AL | Albania | Batch 07 | 1 | 4 | 0 | 2 | 7 |
+| AR | Argentina | Batch 06 | 3 | 5 | 2 | 2 | 12 |
+| AT | Austria | Historical | 2 | 3 | 2 | 2 | 9 |
+| AU | Australia | Historical | 1 | 0 | 0 | 2 | 3 |
+| BE | Belgium | Batch 05 | 2 | 3 | 1 | 3 | 9 |
+| BG | Bulgaria | Batch 07 | 2 | 5 | 0 | 3 | 10 |
+| BR | Brazil | Batch 06 | 1 | 7 | 1 | 2 | 11 |
+| CA | Canada | Batch 05 | 2 | 7 | 0 | 3 | 12 |
+| CD | Democratic Republic of the Congo | Batch 06 | 1 | 0 | 1 | 3 | 5 |
+| CH | Switzerland | Historical | 1 | 0 | 0 | 2 | 3 |
+| CL | Chile | Batch 06 | 1 | 6 | 0 | 2 | 9 |
+| CO | Colombia | Historical | 1 | 0 | 0 | 2 | 3 |
+| CR | Costa Rica | Batch 06 | 1 | 5 | 0 | 2 | 8 |
+| CY | Cyprus | Batch 07 | 2 | 3 | 0 | 3 | 8 |
+| CZ | Czechia | Batch 05 | 2 | 4 | 0 | 3 | 9 |
+| DE | Germany | Historical | 2 | 7 | 2 | 3 | 14 |
+| DK | Denmark | Batch 05 | 2 | 3 | 1 | 3 | 9 |
+| EC | Ecuador | Batch 07 | 2 | 4 | 1 | 2 | 9 |
+| EE | Estonia | Batch 07 | 2 | 3 | 0 | 2 | 7 |
+| EG | Egypt | Batch 06 | 2 | 4 | 1 | 2 | 9 |
+| ES | Spain | Historical | 2 | 9 | 1 | 2 | 14 |
+| FI | Finland | Batch 05 | 2 | 4 | 0 | 3 | 9 |
+| FJ | Fiji | Batch 06 | 2 | 0 | 0 | 2 | 4 |
+| FR | France | Historical | 2 | 6 | 4 | 2 | 14 |
+| GB | United Kingdom | Batch 05 | 2 | 10 | 2 | 2 | 16 |
+| GE | Georgia | Batch 07 | 1 | 1 | 4 | 2 | 8 |
+| GR | Greece | Historical | 2 | 4 | 2 | 2 | 10 |
+| GT | Guatemala | Batch 07 | 1 | 4 | 1 | 2 | 8 |
+| HR | Croatia | Batch 05 | 2 | 3 | 2 | 3 | 10 |
+| HU | Hungary | Batch 05 | 2 | 3 | 1 | 3 | 9 |
+| ID | Indonesia | Batch 05 | 3 | 6 | 0 | 3 | 12 |
+| IE | Ireland | Batch 05 | 2 | 5 | 1 | 3 | 11 |
+| IL | Israel | Batch 06 | 1 | 4 | 0 | 2 | 7 |
+| IN | India | Batch 06 | 2 | 10 | 0 | 3 | 15 |
+| IS | Iceland | Historical | 1 | 0 | 0 | 1 | 2 |
+| IT | Italy | Historical | 2 | 10 | 0 | 2 | 14 |
+| JO | Jordan | Batch 07 | 1 | 2 | 3 | 2 | 8 |
+| JP | Japan | Historical | 2 | 13 | 6 | 2 | 23 |
+| KE | Kenya | Batch 06 | 1 | 2 | 2 | 2 | 7 |
+| KH | Cambodia | Batch 06 | 1 | 0 | 3 | 2 | 6 |
+| KR | South Korea | Historical | 2 | 2 | 8 | 2 | 14 |
+| LK | Sri Lanka | Batch 07 | 2 | 5 | 0 | 3 | 10 |
+| LT | Lithuania | Batch 07 | 2 | 3 | 0 | 3 | 8 |
+| LV | Latvia | Batch 07 | 1 | 3 | 0 | 3 | 7 |
+| MA | Morocco | Batch 06 | 1 | 5 | 1 | 3 | 10 |
+| ME | Montenegro | Batch 07 | 1 | 2 | 1 | 2 | 6 |
+| MT | Malta | Batch 07 | 1 | 3 | 0 | 3 | 7 |
 | MV | Maldives | Batch 07 | 0 | 0 | 0 | 1 | 1 |
-| MX | Mexico | Batch 05 | 0 | 0 | 0 | 0 | 0 |
-| MY | Malaysia | Batch 05 | 0 | 0 | 0 | 0 | 0 |
-| NG | Nigeria | Batch 06 | 0 | 0 | 0 | 0 | 0 |
-| NI | Nicaragua | Batch 08 | 3 | 1 | 4 | 3 | 11 |
-| NL | Netherlands | Historical | 0 | 0 | 0 | 0 | 0 |
-| NO | Norway | Batch 05 | 0 | 0 | 0 | 0 | 0 |
-| NP | Nepal | Batch 07 | 0 | 0 | 0 | 0 | 0 |
-| NZ | New Zealand | Historical | 0 | 0 | 0 | 0 | 0 |
-| OM | Oman | Batch 08 | 3 | 0 | 4 | 3 | 10 |
-| PA | Panama | Batch 07 | 0 | 0 | 0 | 0 | 0 |
-| PE | Peru | Batch 05 | 0 | 0 | 0 | 1 | 1 |
-| PH | Philippines | Batch 05 | 0 | 0 | 0 | 0 | 0 |
-| PL | Poland | Batch 05 | 0 | 0 | 0 | 0 | 0 |
-| PT | Portugal | Historical | 0 | 0 | 0 | 0 | 0 |
-| PY | Paraguay | Batch 08 | 3 | 2 | 1 | 3 | 9 |
-| QA | Qatar | Batch 08 | 3 | 0 | 1 | 3 | 7 |
-| RO | Romania | Batch 06 | 0 | 0 | 0 | 0 | 0 |
-| RS | Serbia | Batch 07 | 0 | 0 | 0 | 0 | 0 |
-| RU | Russia | Batch 06 | 0 | 0 | 0 | 0 | 0 |
-| SA | Saudi Arabia | Batch 06 | 0 | 0 | 0 | 1 | 1 |
-| SE | Sweden | Batch 05 | 0 | 0 | 0 | 0 | 0 |
+| MX | Mexico | Batch 05 | 2 | 6 | 0 | 3 | 11 |
+| MY | Malaysia | Batch 05 | 2 | 4 | 0 | 3 | 9 |
+| NG | Nigeria | Batch 06 | 1 | 3 | 0 | 2 | 6 |
+| NL | Netherlands | Historical | 3 | 6 | 1 | 3 | 13 |
+| NO | Norway | Batch 05 | 3 | 4 | 1 | 3 | 11 |
+| NP | Nepal | Batch 07 | 2 | 2 | 3 | 2 | 9 |
+| NZ | New Zealand | Historical | 1 | 0 | 0 | 1 | 2 |
+| PA | Panama | Batch 07 | 1 | 3 | 2 | 2 | 8 |
+| PE | Peru | Batch 05 | 2 | 3 | 1 | 3 | 9 |
+| PH | Philippines | Batch 05 | 2 | 3 | 1 | 3 | 9 |
+| PL | Poland | Batch 05 | 2 | 5 | 0 | 3 | 10 |
+| PT | Portugal | Historical | 3 | 7 | 0 | 2 | 12 |
+| RO | Romania | Batch 06 | 1 | 5 | 0 | 2 | 8 |
+| RS | Serbia | Batch 07 | 2 | 3 | 1 | 3 | 9 |
+| RU | Russia | Batch 06 | 1 | 7 | 0 | 2 | 10 |
+| SA | Saudi Arabia | Batch 06 | 2 | 4 | 1 | 2 | 9 |
+| SE | Sweden | Batch 05 | 2 | 4 | 0 | 3 | 9 |
 | SG | Singapore | Historical | 0 | 0 | 0 | 0 | 0 |
-| SI | Slovenia | Batch 05 | 0 | 0 | 0 | 0 | 0 |
-| SK | Slovakia | Batch 07 | 0 | 1 | 0 | 0 | 1 |
-| TH | Thailand | Historical | 0 | 0 | 0 | 0 | 0 |
-| TN | Tunisia | Batch 07 | 0 | 0 | 0 | 1 | 1 |
-| TR | Turkey | Historical | 0 | 0 | 0 | 0 | 0 |
-| TZ | Tanzania | Batch 07 | 0 | 0 | 0 | 0 | 0 |
-| US | United States of America | Batch 05 | 0 | 0 | 0 | 0 | 0 |
-| UY | Uruguay | Batch 06 | 0 | 0 | 0 | 0 | 0 |
-| VN | Vietnam | Batch 05 | 0 | 0 | 0 | 0 | 0 |
-| ZA | South Africa | Batch 06 | 0 | 0 | 0 | 0 | 0 |
+| SI | Slovenia | Batch 05 | 2 | 2 | 1 | 3 | 8 |
+| SK | Slovakia | Batch 07 | 2 | 4 | 0 | 2 | 8 |
+| TH | Thailand | Historical | 1 | 0 | 0 | 1 | 2 |
+| TN | Tunisia | Batch 07 | 1 | 4 | 1 | 2 | 8 |
+| TR | Turkey | Historical | 1 | 0 | 0 | 2 | 3 |
+| TZ | Tanzania | Batch 07 | 2 | 2 | 3 | 3 | 10 |
+| US | United States of America | Batch 05 | 3 | 11 | 0 | 2 | 16 |
+| UY | Uruguay | Batch 06 | 2 | 1 | 3 | 2 | 8 |
+| VN | Vietnam | Batch 05 | 2 | 4 | 2 | 3 | 11 |
+| ZA | South Africa | Batch 06 | 1 | 6 | 1 | 2 | 10 |
 
 ## Remaining City backfill
 
-- AM | high | Gyumri | city-3dffd363f7958077
-- AM | high | Yerevan | city-9082323b951d39e7
-- AM | high | Dilijan | city-0d01b05a839fbfed
-- AM | normal | Vagharshapat | city-02a5b64f82b2448a
-- AM | normal | Vanadzor | city-25925d7ab7e0c91a
-- AM | normal | Jermuk | city-5db7eba6fe944fb9
-- AM | low | Goris | city-4b5e51f54fcb22a3
-- AZ | high | Baku | city-8123a5be3a55f552
-- AZ | high | Ganja | city-759d293f3100939e
-- AZ | high | Shaki | city-f8fac1c0f9e1a1b5
-- AZ | normal | Sumgait | city-4e8f2c52d98e728f
-- AZ | normal | Quba | city-7fd57666a9d5a477
-- AZ | normal | Shusha | city-77d7e97ce079f61a
-- AZ | low | Lankaran | city-9f4cb4a7b65fd496
-- BA | high | Mostar | city-35f10853fe9f78f4
-- BA | high | Sarajevo | city-ba7e1d4f71643546
-- BA | high | Banja Luka | city-49bba0a94ae8f868
-- BA | normal | Tuzla | city-db6cc6f004d1b454
-- BA | normal | Jajce | city-544a474c9021e382
-- BA | low | Bihać | city-56275182536e4b10
-- BA | low | Trebinje | city-b1965e662285240f
-- BH | high | Manama | city-6c5e86f172e3df95
-- BH | high | Muharraq | city-e6658c2107efd6fc
-- BH | high | Riffa | city-fb746e0c936a63bc
-- BH | normal | Hamad Town | city-fc0a7455eb4e2ccb
-- BH | normal | Isa Town | city-506cbf104ee95c8f
-- BO | high | La Paz | city-d7b78bef35976de2
-- BO | high | Sucre | city-cba8649cc1fc66f3
-- BO | high | Cochabamba | city-1b7080708955fefa
-- BO | normal | Potosí | city-9be078532962b7ae
-- BO | normal | Santa Cruz de la Sierra | city-bc37468567c14612
-- BO | normal | Tarija | city-b6fca7844d133a29
-- BS | high | Nassau | city-011dc37de1d1105d
-- BS | high | Marsh Harbour | city-aecbbe85072d5226
-- BS | high | Freeport | city-4735f8ffe1877bb1
-- BS | low | George Town | city-c3ddfaa254f9f1c4
-- CU | high | Havana | city-213bbc3fdad19e18
-- CU | high | Cienfuegos | city-6b77c7943a4625eb
-- CU | high | Santa Clara | city-3ae806dc1aa42b60
-- CU | normal | Santiago de Cuba | city-321a8fd1115dd143
-- CU | normal | Camagüey | city-196f0cd77875e5ee
-- CU | normal | Holguín | city-39f334d6aac24168
-- CU | normal | Trinidad | city-487f3bd812eb4ca7
-- DO | high | Santiago de los Caballeros | city-b739482acb320f31
-- DO | high | Santo Domingo | city-22ef6455337aae7e
-- DO | high | La Romana | city-fea2afe3e9b507b1
-- DO | normal | Puerto Plata | city-6013948c4cdd658e
-- DO | low | Samaná | city-ea749824888407a1
-- DO | low | San Pedro de Macorís | city-eef2913206c5f42c
-- DO | low | Higüey | city-801607a89db8cc88
-- JM | high | Kingston | city-451ec94a93f1cfe6
-- JM | high | Montego Bay | city-b113dc988ed082aa
-- JM | high | Ocho Rios | city-b3b66ed2685e67d2
-- JM | normal | Spanish Town | city-de860b4a8158d34a
-- JM | normal | Port Antonio | city-31a20c427459d852
-- JM | normal | Negril | city-e4ffdef2a58238b8
-- JM | low | Falmouth | city-ef9d0b17e9f06886
-- KW | high | Kuwait City | city-4328ba9d162914a0
-- KW | high | Salmiya | city-6a1b93e3d448a576
-- KW | high | Al Ahmadi | city-009926bcaefb1679
-- KW | low | Salwa | city-e7ffcfc32d53c9ac
-- LB | high | Beirut | city-52859d31ae1cbfd5
-- LB | high | Tripoli | city-d423295b7dd3dc87
-- LB | high | Byblos | city-8ee3071b9baa3f75
-- LB | normal | Sidon | city-9375f68c52c77286
-- LB | normal | Tyre | city-54868d69ee2eeabe
-- LB | normal | Baalbek | city-0ea6d8e6d40afbc0
-- LB | low | Zahle | city-9e3107be9d31e066
-- LI | high | Vaduz | city-77bb30ec8267434b
-- LI | high | Balzers | city-6310fbe9967ce353
-- LI | high | Schaan | city-c6aeba872d925adb
-- LI | normal | Triesen | city-447231750f9ae926
-- LU | high | Luxembourg City | city-90befdef0209b78d
-- LU | high | Esch-sur-Alzette | city-2281bb47d0717f2d
-- LU | high | Vianden | city-3fa3d3595d32e1a0
-- LU | normal | Echternach | city-02477cee7f9354b7
-- LU | normal | Wiltz | city-9751abaca72c928b
-- MC | high | Monaco | city-adb1ba1df65f5d61
-- MD | high | Chișinău | city-5e6560d4df64b0e5
-- MD | high | Orhei | city-f9456dda3aabfef6
-- MD | high | Soroca | city-30552c7527ad2aac
-- MD | normal | Cahul | city-2f82b3bd1873db8d
-- MD | low | Bălți | city-6adbf292fc9abe82
-- MD | low | Comrat | city-9cc62a5e50f1cd33
-- MD | low | Ungheni | city-a4c5b8ef639a2130
-- MK | high | Ohrid | city-13fc21353a0b3fe9
-- MK | high | Skopje | city-b76f8ba0fb77d402
-- MK | high | Bitola | city-24e129aefcca40fd
-- MK | normal | Prilep | city-424669ccd4e444b6
-- MK | normal | Struga | city-6aa86ac65a642f1d
-- MK | low | Tetovo | city-cb7a0802ce4796a9
-- MK | low | Kruševo | city-f675852c38b31ccf
-- NI | high | Managua | city-5ab9322fa9bc2e84
-- NI | high | León | city-7454283967357389
-- NI | high | Masaya | city-11f86aa7a4bf927f
-- NI | normal | Estelí | city-d1c0cd374558120f
-- NI | low | Granada | city-83df414f1b29dcd3
-- NI | low | Matagalpa | city-5a4ab22cc12eb80e
-- NI | low | Bluefields | city-eba8623fad6b4fe9
-- NI | low | San Juan del Sur | city-12137611f42c03cf
-- OM | high | Muscat | city-4f96b8c4788c63f0
-- OM | high | Nizwa | city-d8ee91cb7b1fa1e5
-- OM | high | Salalah | city-fadc4d017e1e4a2e
-- OM | low | Sohar | city-677766744ebbea8f
-- OM | low | Ibri | city-167d63435f2282f7
-- OM | low | Rustaq | city-223a6b4854ccc01e
-- OM | low | Sur | city-0877aa175586db81
-- PY | high | Asunción | city-63fb3b0f534801b8
-- PY | high | Luque | city-82daafa979738bfc
-- PY | high | Ciudad del Este | city-e0a9416f2c3589ea
-- PY | normal | Encarnación | city-2955e29305c39f48
-- PY | normal | Areguá | city-7ce604b190b4de61
-- PY | low | San Bernardino | city-892ad1a89b8f1178
-- QA | high | Doha | city-c4f64a92126f6bea
-- QA | high | Al Rayyan | city-4eaecd952deaa15c
-- QA | high | Lusail | city-790a3a6e33d73e9a
-- QA | low | Al Wakrah | city-fbf77a9fc2f467e0
+- AD | high | Encamp | city-4547d2313c8ba03a
+- AD | low | Ordino | city-9806d31899a9e26e
+- AE | high | Al Ain | city-c623302bae28ff5a
+- AE | normal | Sharjah | city-b49601183a26f84d
+- AE | normal | Ajman | city-6f67ef1849143150
+- AE | normal | Fujairah | city-d4b77d7daa27e5f5
+- AE | low | Khor Fakkan | city-93a2d6a697532ef5
+- AE | low | Ras Al Khaimah | city-3349a64b0643f725
+- AL | high | Durrës | city-ee0bb26cfd8cb42b
+- AL | normal | Gjirokastër | city-38903ca8e6524334
+- AL | normal | Shkodër | city-20e3e829169edc4e
+- AL | normal | Korçë | city-c313824e619c7ec4
+- AL | normal | Vlorë | city-ef1dce8d1a6b31ac
+- AR | high | Buenos Aires | city-d18920037862503a
+- AR | high | Bariloche | city-ab137758f46c1326
+- AR | high | Córdoba | city-90d70af2967179eb
+- AR | normal | Mendoza | city-302bb5b2ebee1eae
+- AR | normal | Rosario | city-5b3abda833b694fd
+- AR | normal | Salta | city-40ed56e2195d0562
+- AR | normal | Ushuaia | city-450ce390b2c20e40
+- AR | normal | San Miguel de Tucumán | city-d5ea3cc4e7c122cd
+- AR | low | El Calafate | city-465dcb068ef44e64
+- AR | low | Puerto Iguazú | city-c9752606f04f30dc
+- AT | high | Graz | city-e2930ffae37e9bb6
+- AT | high | Innsbruck | city-6d8bfa998b2fe3e1
+- AT | normal | Salzburg | city-0699df842d819ca4
+- AT | normal | Bregenz | city-3f52e95430ac83e2
+- AT | normal | Linz | city-60983c289d9ce9d3
+- AT | low | Hallstatt | city-85e356e0e514f090
+- AT | low | Zell am See | city-c8106459287724ff
+- AU | high | Sydney | city-64a359ba87706a72
+- BE | high | Antwerp | city-2379d38efd7a0d92
+- BE | high | Bruges | city-7fa1315cc6058d08
+- BE | normal | Ghent | city-567aca625098d09b
+- BE | normal | Leuven | city-8896853114ec6d46
+- BE | normal | Liège | city-39b17ae0551d2929
+- BE | low | Dinant | city-b8f568d203bce192
+- BG | high | Sofia | city-457e6817e0669d12
+- BG | high | Burgas | city-f8173292543b80e1
+- BG | normal | Nesebar | city-16efce86103eda2c
+- BG | normal | Varna | city-c1a60f1e26a530c2
+- BG | normal | Veliko Tarnovo | city-627cca3a11c76917
+- BG | normal | Bansko | city-c3bca7aaced2c6a5
+- BG | normal | Ruse | city-165cdce01fb56e96
+- BR | high | Brasília | city-6f45425881ae5c76
+- BR | normal | Florianópolis | city-49ca34157b0bc20d
+- BR | normal | Fortaleza | city-af9be76f7cb53a22
+- BR | normal | Manaus | city-27f1893e7d82b85d
+- BR | normal | Recife | city-ce1a9346c630ab86
+- BR | normal | Salvador | city-38fc358bbc358cb9
+- BR | normal | Ouro Preto | city-6ba8072f94eaf5dd
+- BR | normal | Paraty | city-6980e461e5b333e2
+- BR | low | Foz do Iguaçu | city-f692a4840c0d253e
+- CA | high | Toronto | city-0634eba240864940
+- CA | high | Vancouver | city-e28f1e57abe5d071
+- CA | normal | Calgary | city-caac7e9129b49c1a
+- CA | normal | Ottawa | city-ebab6142ff8d73f7
+- CA | normal | Quebec City | city-7d4280aac6b5016a
+- CA | normal | Victoria | city-5c6be2bb844c746b
+- CA | normal | Banff | city-d029e97d08ae18b0
+- CA | normal | Halifax | city-ace4fa6b86e141a0
+- CA | normal | Jasper | city-c6d2534bcb1a2557
+- CD | high | Kisangani | city-c1c1739e130db57d
+- CD | low | Goma | city-2d6e04ecf3005b7f
+- CH | high | Zürich | city-8dfe7b39752eceb2
+- CL | high | San Pedro de Atacama | city-ecff50b6dfff6688
+- CL | normal | Valparaíso | city-8f4445522ce5c169
+- CL | normal | Viña del Mar | city-d6b9912a793aac8c
+- CL | normal | La Serena | city-3edf03aa9cb40fef
+- CL | normal | Pucón | city-e8a65baba2205af2
+- CL | normal | Puerto Natales | city-d25e97c1bde9e09c
+- CL | normal | Puerto Varas | city-3a867e52ee2e0b4d
+- CO | high | Medellín | city-5766a6c5c46b184b
+- CR | high | Puntarenas | city-51a0f1561bbcdd08
+- CR | normal | Alajuela | city-979c3750767f29bc
+- CR | normal | Cartago | city-21f03bba97a2e2a2
+- CR | normal | Heredia | city-c06719ebf4192345
+- CR | normal | Limón | city-272c5c1939c309e2
+- CR | normal | San Isidro | city-b1062de88a48bcf5
+- CY | high | Nicosia | city-329b0cbe28d8c1f9
+- CY | high | Larnaca | city-f0301ca1cc536970
+- CY | normal | Paphos | city-111ccbe353f6c218
+- CY | normal | Ayia Napa | city-f14dd30804ae34c1
+- CY | normal | Polis | city-4debde6874a42528
+- CZ | high | Brno | city-498e80bf490697fd
+- CZ | high | Český Krumlov | city-c39223c2cd05297f
+- CZ | normal | Karlovy Vary | city-ebbbc5dfc5b2cb0c
+- CZ | normal | Kutná Hora | city-a58978ee641f9081
+- CZ | normal | Olomouc | city-64fc6d3de2c9948d
+- CZ | normal | Plzeň | city-9255a28fe4d7f19b
+- DE | high | Munich | city-6dd5cc0f5d9b27be
+- DE | high | Cologne | city-4c0072d93c40af15
+- DE | normal | Dresden | city-9191f5c8ad23559d
+- DE | normal | Frankfurt | city-eb3b0543a44c1a6a
+- DE | normal | Hamburg | city-35d40ad856b5217d
+- DE | normal | Nuremberg | city-486403ae2fe80a8e
+- DE | normal | Heidelberg | city-04043a41b9e40b7c
+- DE | normal | Leipzig | city-b0c1c518937f5849
+- DE | normal | Stuttgart | city-cb1036743b005670
+- DE | low | Füssen | city-0e2167f7aa866944
+- DE | low | Rothenburg ob der Tauber | city-cc58ce9627425138
+- DK | high | Aarhus | city-3ddab7f670e90afa
+- DK | high | Odense | city-5828c678a083189d
+- DK | normal | Aalborg | city-f02ab28c44007d48
+- DK | normal | Helsingør | city-de47ecdaa72970d3
+- DK | normal | Roskilde | city-a95e8eb6e438477c
+- DK | low | Ribe | city-9ecfbe14bb1d7923
+- EC | high | Guayaquil | city-a880e930de457d8d
+- EC | high | Baños | city-d0c066e88f251190
+- EC | normal | Cuenca | city-bac8823bb40c09a2
+- EC | normal | Loja | city-7db72d074dc027c1
+- EC | normal | Otavalo | city-e3bcc3d4a0bdd170
+- EC | normal | Riobamba | city-c94bd707ab76e354
+- EC | low | Manta | city-50abf9d4187fe5d3
+- EE | high | Tallinn | city-b60298568e650251
+- EE | high | Tartu | city-f5bb9646058c170d
+- EE | normal | Kuressaare | city-29a3512165ab72fa
+- EE | normal | Narva | city-91beaf179e63c192
+- EE | normal | Viljandi | city-1b42f0839d5c958b
+- EG | high | Luxor | city-c0a01367e67ce539
+- EG | high | Alexandria | city-370420a4073e0350
+- EG | normal | Aswan | city-831852f6389b4176
+- EG | normal | Giza | city-50d4180045b7005a
+- EG | normal | Hurghada | city-80f7fd325bb05d77
+- EG | normal | Sharm El Sheikh | city-e5acb48ab5b61f7a
+- EG | low | Marsa Alam | city-3c2a73ecf71b9e53
+- ES | high | Madrid | city-f833a342bb5b925a
+- ES | high | Bilbao | city-13465734fe974589
+- ES | normal | Córdoba | city-b58a1f56e1537c03
+- ES | normal | Granada | city-283e3d48eecca2f3
+- ES | normal | Seville | city-8ee23d7f47e3d887
+- ES | normal | Valencia | city-b5bbb6cb608fb43d
+- ES | normal | Málaga | city-4e3642962d726a6c
+- ES | normal | Salamanca | city-3a8e93bbd8ea3695
+- ES | normal | San Sebastián | city-6a7dac50969d1f2d
+- ES | normal | Santiago de Compostela | city-7cc50855c97464fe
+- ES | normal | Toledo | city-8430a47b14ffd429
+- ES | low | Ronda | city-5098b736342d402d
+- FI | high | Turku | city-51d172b9e24e3620
+- FI | high | Rovaniemi | city-429a3933fcf72f52
+- FI | normal | Tampere | city-999501a1081be244
+- FI | normal | Kuopio | city-9160fdd17b9c562f
+- FI | normal | Oulu | city-d85e4f336213d064
+- FI | normal | Porvoo | city-1169803b507f0a75
+- FJ | high | Nadi | city-1f87fd311633421b
+- FJ | high | Lautoka | city-be32e388b00f18d0
+- FR | high | Bordeaux | city-367a0dbc6e8792b6
+- FR | high | Lyon | city-5bba0fc2f52dc8df
+- FR | normal | Marseille | city-60de7be23c539c87
+- FR | normal | Nice | city-d224602f49c126a0
+- FR | normal | Strasbourg | city-c88b8e0a78d41f2a
+- FR | normal | Aix-en-Provence | city-ced7cb4a11f9e3e9
+- FR | normal | Avignon | city-4a6737e5c37fcb6b
+- FR | normal | Toulouse | city-f3b90177b0da59bf
+- FR | low | Annecy | city-62c57792a6bd2f46
+- FR | low | Cannes | city-c370066a6f8d9a36
+- FR | low | Chamonix | city-3b93b2804c63706e
+- FR | low | Colmar | city-f366b4cb18028d85
+- GB | high | Belfast | city-a5c13de09b454c1c
+- GB | high | Cardiff | city-921e6278451dd6d8
+- GB | normal | Edinburgh | city-65b1aca3904788fe
+- GB | normal | Glasgow | city-4a330ecde03b4bcf
+- GB | normal | Manchester | city-c14ea9275d560480
+- GB | normal | Bath | city-53617dc1a4e72d29
+- GB | normal | Brighton | city-3f4f26f63b098928
+- GB | normal | Bristol | city-28b5dc0644526a55
+- GB | normal | Cambridge | city-86cc244c0a5a7aa5
+- GB | normal | Liverpool | city-e301917587abb680
+- GB | normal | Oxford | city-1e3c0261578026a0
+- GB | normal | York | city-ee28d5dc14fd9967
+- GB | low | Canterbury | city-13d4b2991a591819
+- GB | low | Inverness | city-0c5f16f24966ecc1
+- GE | high | Gori | city-3e5c8c01d4bd946a
+- GE | normal | Kutaisi | city-711d1843cb963a33
+- GE | low | Mtskheta | city-8e759e84812787a7
+- GE | low | Zugdidi | city-4dfe11463cc9c9ec
+- GE | low | Akhaltsikhe | city-f5d45597635ecc86
+- GE | low | Telavi | city-66c58eb6837fda40
+- GR | high | Chania | city-50bab3faba488ced
+- GR | high | Corfu Town | city-8b50df8117d56136
+- GR | normal | Heraklion | city-1ae2bf785c1f74bc
+- GR | normal | Rhodes Town | city-771fa7d75414482c
+- GR | normal | Thessaloniki | city-adda424dbaf38725
+- GR | normal | Nafplio | city-074db4d4b49a85e5
+- GR | low | Delphi | city-6e4ba9ec0c2f0f00
+- GR | low | Kalabaka | city-d325ab7cc4450e38
+- GT | high | Flores | city-ea318285b003f888
+- GT | normal | Panajachel | city-6084e95dc7481a19
+- GT | normal | Quetzaltenango | city-fc365814a06ed9a6
+- GT | normal | Cobán | city-43081ff09daac6ed
+- GT | normal | Livingston | city-dcf9139a7d167309
+- GT | low | Chichicastenango | city-af1149d86f7da7c1
+- HR | high | Dubrovnik | city-7cacd1fb1304df51
+- HR | high | Split | city-f8acfc46483ac5f3
+- HR | normal | Zadar | city-7f0fbcf9789cca06
+- HR | normal | Pula | city-1046a89f4d07b594
+- HR | normal | Šibenik | city-59f6e6f56d6ec3ae
+- HR | low | Rovinj | city-7f2ac96ad1cf93fc
+- HR | low | Trogir | city-872844e43bef302a
+- HU | high | Debrecen | city-d3ff5daf8ed68e18
+- HU | high | Pécs | city-d8feb521dfebb139
+- HU | normal | Szeged | city-44edb4b5caecb65d
+- HU | normal | Eger | city-aad4a016af406593
+- HU | normal | Győr | city-bb280f8f5762e9c8
+- HU | low | Szentendre | city-d9d86d455b0e5f3e
+- ID | high | Jakarta | city-25008f3980057dc6
+- ID | high | Bandung | city-e1be65f85ec6dcba
+- ID | high | Surabaya | city-2919c25138c3d0fd
+- ID | normal | Ubud | city-982451e3a3c530d0
+- ID | normal | Yogyakarta | city-4f860ef96fedbd1f
+- ID | normal | Denpasar | city-3bea25263e94af5b
+- ID | normal | Makassar | city-389d19c84f2f9c30
+- ID | normal | Malang | city-4ffdffdd0f029f7f
+- ID | normal | Semarang | city-9cf52ce619057b10
+- IE | high | Cork | city-6ddc11780af61808
+- IE | high | Galway | city-63dfc636699e6461
+- IE | normal | Kilkenny | city-2c224d4669e71336
+- IE | normal | Killarney | city-4fd91a8d8db74fad
+- IE | normal | Limerick | city-44730a29a4a100b2
+- IE | normal | Sligo | city-97da6efeb487bb2e
+- IE | normal | Waterford | city-645bbf4e680a7ba6
+- IE | low | Doolin | city-8b979679b5fbbdd3
+- IL | high | Eilat | city-e07b29ee3b00831f
+- IL | normal | Haifa | city-1c68a6013e3d6642
+- IL | normal | Nazareth | city-2e966a5f1d85b635
+- IL | normal | Acre | city-a170d3626fa265d6
+- IL | normal | Tiberias | city-0033a8715fcfabea
+- IN | high | Delhi | city-93a9f2f033a32177
+- IN | high | Jaipur | city-39edd483189fe5fa
+- IN | normal | Mumbai | city-a606474412eadec2
+- IN | normal | Amritsar | city-41ba13fcdeb5dfd0
+- IN | normal | Bengaluru | city-dad1fbc2e08889af
+- IN | normal | Chennai | city-02868d00d8a55160
+- IN | normal | Jodhpur | city-cf9463853b729b34
+- IN | normal | Kochi | city-8950b6716e00c558
+- IN | normal | Kolkata | city-b576aff8ea2b67bc
+- IN | normal | Udaipur | city-de99ce08bdd0735f
+- IN | normal | Varanasi | city-63e7bc5dfa7247b0
+- IN | normal | Panaji | city-7643d5e46f1f94bf
+- IS | high | Vík í Mýrdal | city-922253e414d069f3
+- IT | high | Florence | city-d40570b2aac4850d
+- IT | high | Milan | city-c2ce5de4c930921c
+- IT | normal | Naples | city-f4ab4ac7c8c65aac
+- IT | normal | Palermo | city-e8f0c07a3b186851
+- IT | normal | Venice | city-c85060ff1bf40bda
+- IT | normal | Bologna | city-c35a51f0cb5d2021
+- IT | normal | Catania | city-42fa7d7ec2a164f4
+- IT | normal | Como | city-df3c42866a11edba
+- IT | normal | Pisa | city-164dd28088aa25f4
+- IT | normal | Siena | city-b83b9960445cd188
+- IT | normal | Turin | city-0a37bf91d42410d6
+- IT | normal | Verona | city-66bc37ecc403b7eb
+- JO | high | Karak | city-92c960fc4a1810d9
+- JO | normal | Aqaba | city-cad0d2674c75e7fa
+- JO | normal | Wadi Musa | city-5d90fc5bc97a7e0d
+- JO | low | Irbid | city-d43e6edac3906d62
+- JO | low | Madaba | city-bde19ee75a02b4c3
+- JO | low | Salt | city-83123965d748ccdb
+- JP | high | Tokyo | city-5a21732f861ff7f1
+- JP | high | Osaka | city-bb2b8072fca1d274
+- JP | normal | Nagoya | city-f17cb016449ab40e
+- JP | normal | Nara | city-8e7ea972d32813e9
+- JP | normal | Fukuoka | city-11aadb65744f16c8
+- JP | normal | Hiroshima | city-684cf7eb16759f74
+- JP | normal | Sapporo | city-45d08342ab6298be
+- JP | normal | Hatsukaichi | city-47c9ca41467ed3e5
+- JP | normal | Kamakura | city-130a47f528e210f3
+- JP | normal | Kobe | city-f94e894e88837154
+- JP | normal | Hakodate | city-8604e98af5a0bf75
+- JP | normal | Hakone | city-963a6186abb8bb90
+- JP | normal | Kanazawa | city-7b76928f557485f6
+- JP | normal | Kumamoto | city-e4c829354d7edc8a
+- JP | normal | Naha | city-a537532044875bb1
+- JP | low | Fujikawaguchiko | city-2e866e33dbb9ed15
+- JP | low | Takayama | city-9eb941dc4cc899ef
+- JP | low | Beppu | city-2a35c76c6ffed88a
+- JP | low | Okinawa City | city-52661544a7a4388d
+- JP | low | Otaru | city-b584cab6bd222b8d
+- JP | low | Yufuin (Yufu) | city-ec98c79ca52bdb7f
+- KE | high | Nakuru | city-be9bfa5ff5c6d7cd
+- KE | normal | Kisumu | city-39f72910b4074236
+- KE | normal | Malindi | city-e944c4f97feefe74
+- KE | low | Lamu | city-f5b11028e7b707ff
+- KE | low | Naivasha | city-73576df07a5b7cc5
+- KH | high | Sihanoukville | city-d4f155a3d8ae0c4e
+- KH | low | Kampong Cham | city-0b712370bc52b649
+- KH | low | Kampot | city-1de46e4475fc50b7
+- KH | low | Battambang | city-a3ebfc3d8b1f1db7
+- KR | high | Busan | city-6fdc557c860230e3
+- KR | high | Gyeongju | city-d886736d18965d48
+- KR | normal | Jeju City | city-b2e7474b951f723e
+- KR | normal | Incheon | city-b747cf52e4bc20f6
+- KR | low | Daegu | city-955b93bc3404f668
+- KR | low | Yeosu | city-f204bf635ee5ea16
+- KR | low | Andong | city-6456f3aa5d07ca1e
+- KR | low | Gangneung | city-f97862dc82774ea9
+- KR | low | Jeonju | city-f6091553326ae92e
+- KR | low | Sokcho | city-8e4cd3ee52eca954
+- KR | low | Suwon | city-adcc5add2dc37dc8
+- KR | low | Tongyeong | city-db8501edb4e1335d
+- LK | high | Kandy | city-665132a5271740ff
+- LK | high | Anuradhapura | city-6ebcec7ab5eaefd2
+- LK | normal | Galle | city-6b5ea6ba9449c964
+- LK | normal | Jaffna | city-4cee20026277bdb0
+- LK | normal | Nuwara Eliya | city-19b27d438e9cfd55
+- LK | normal | Matara | city-264f7283df5e8d2b
+- LK | normal | Negombo | city-13040d61677690cb
+- LT | high | Vilnius | city-3218123cda21a052
+- LT | high | Klaipėda | city-aa986d210ab3364c
+- LT | normal | Trakai | city-fd268a60febe1082
+- LT | normal | Panevėžys | city-a7168daf6ebc4cfa
+- LT | normal | Šiauliai | city-bd206ae943f51f57
+- LV | high | Liepāja | city-0b33252699e4d521
+- LV | normal | Cēsis | city-53c8c0035cdb0ff5
+- LV | normal | Jelgava | city-333f17efde0d99a7
+- LV | normal | Ventspils | city-68dfdddf976b4b4d
+- MA | high | Casablanca | city-7f445ec817f8eacf
+- MA | normal | Essaouira | city-583293f7f89c81d4
+- MA | normal | Rabat | city-c759ae8e4c36508f
+- MA | normal | Tangier | city-6e8d1c8d348323dd
+- MA | normal | Chefchaouen | city-8af390081fd7e36c
+- MA | normal | Meknes | city-7a25e34f774d492f
+- MA | low | Ouarzazate | city-e79b1faca8fe283b
+- ME | high | Cetinje | city-5ccbce45ae6a43ae
+- ME | normal | Budva | city-8a6c60c5b23a528c
+- ME | normal | Bar | city-8f2203f417278175
+- ME | low | Herceg Novi | city-3c565d46fa23f131
+- MT | high | Sliema | city-3dec310c255cb3e9
+- MT | normal | St. Julian's | city-c0597395d20f858b
+- MT | normal | Birgu | city-e661aea8f6a743df
+- MT | normal | Rabat | city-7ed1dad406a87916
+- MX | high | Cancún | city-7d67be5cb83e1485
+- MX | high | Guadalajara | city-258a16d7e3a6b561
+- MX | normal | Mérida | city-2bb58506d297fedd
+- MX | normal | Oaxaca | city-809769d6e4ea12e0
+- MX | normal | Puebla | city-d8821f411fd0711e
+- MX | normal | Guanajuato | city-bf2e678a44a19bc6
+- MX | normal | Playa del Carmen | city-9e1481413119dfc3
+- MX | normal | San Miguel de Allende | city-df4112a82a2b4519
+- MY | high | George Town | city-a12f0a59f07b75f1
+- MY | high | Kota Kinabalu | city-b0f38f4d2ec1fbf4
+- MY | normal | Kuching | city-50645031fe7e62a5
+- MY | normal | Malacca City | city-bc20c9d6ca2573f9
+- MY | normal | Ipoh | city-b8ae7d31fb5cfd18
+- MY | normal | Johor Bahru | city-8b438984cffef51f
+- NG | high | Calabar | city-642efb8751a8e3b4
+- NG | normal | Kano | city-e8b7da17c36780fc
+- NG | normal | Benin City | city-b550b5e215ae8d6c
+- NG | normal | Ibadan | city-36de256bafbee102
+- NL | high | Amsterdam | city-66a343aed16e37a4
+- NL | high | Rotterdam | city-bf507de627cbfc1e
+- NL | high | The Hague | city-e05bc954475d4069
+- NL | normal | Utrecht | city-48c618f238f3263d
+- NL | normal | Delft | city-e9334e2f8591e78c
+- NL | normal | Groningen | city-eda8b459459267a5
+- NL | normal | Haarlem | city-4e037309f993aff4
+- NL | normal | Leiden | city-32ccd44f6e63dcb9
+- NL | normal | Maastricht | city-42d1de1ad3362df7
+- NL | low | Giethoorn | city-e9def10b7a0cdea7
+- NO | high | Oslo | city-25addacaf4743504
+- NO | high | Bergen | city-9a09aa14302ec54f
+- NO | high | Tromsø | city-f2256a3b9b503d5d
+- NO | normal | Trondheim | city-709539223e144546
+- NO | normal | Ålesund | city-3feffb92e64ea397
+- NO | normal | Bodø | city-5540afe0ce541593
+- NO | normal | Stavanger | city-e446cff2b1de8c7c
+- NO | low | Lillehammer | city-e296c5f0e95d5bb3
+- NP | high | Kathmandu | city-08d83a1dc91c566d
+- NP | high | Bhaktapur | city-6236dd6b31a2c3cd
+- NP | normal | Lalitpur | city-7f313d2e71b49a4d
+- NP | normal | Bharatpur | city-0c628aa360000445
+- NP | low | Janakpur | city-21497a799b66b49b
+- NP | low | Biratnagar | city-87f9b2371a53dd1b
+- NP | low | Nepalgunj | city-c6a80dce12621342
+- NZ | high | Queenstown | city-2cb3e8890c6c7848
+- PA | high | Colón | city-499b28f9c807c8a0
+- PA | normal | David | city-a9b16554bbd775d8
+- PA | normal | Portobelo | city-0c0eb393a15790e1
+- PA | normal | Santiago de Veraguas | city-2152c5ce6a8d6b8d
+- PA | low | Boquete | city-349039e547288da5
+- PA | low | Chitré | city-6f32ae5edc95cc3b
+- PE | high | Lima | city-54e3b945011b3295
+- PE | high | Arequipa | city-c53e89efdcd37dfe
+- PE | normal | Huaraz | city-70016b1a4282de88
+- PE | normal | Puno | city-b063448da22824fd
+- PE | normal | Trujillo | city-30dca9649cefe803
+- PE | low | Ica | city-20f11e603aef8ebd
+- PH | high | Cebu City | city-2de17a2bc6043fc0
+- PH | high | Davao City | city-e21ca783f3d984fc
+- PH | normal | Baguio | city-604193e42a5d9f31
+- PH | normal | Iloilo City | city-251735e9e17b600f
+- PH | normal | Vigan | city-6dbca898f0d17e6d
+- PH | low | Puerto Princesa | city-7b2cab1ae5a4c63e
+- PL | high | Kraków | city-7c5e7e54c0cc73d4
+- PL | high | Gdańsk | city-e9ddfb5c811a7673
+- PL | normal | Poznań | city-3d736d05d7e11912
+- PL | normal | Wrocław | city-7835c8c3eafec695
+- PL | normal | Lublin | city-46d5c7517db93e4a
+- PL | normal | Toruń | city-f4462cd2a1212e8c
+- PL | normal | Zakopane | city-c08bc01a26eed6dd
+- PT | high | Lisbon | city-0b698dc2d0543b0e
+- PT | high | Coimbra | city-3afec41980a016c2
+- PT | high | Porto | city-6f31bde299eab111
+- PT | normal | Sintra | city-4258f12373d3c348
+- PT | normal | Aveiro | city-abdd80683790dc81
+- PT | normal | Braga | city-ed958a6d1d2dcc7d
+- PT | normal | Évora | city-5bf2ba95e40c608e
+- PT | normal | Faro | city-c159dcf369a61f40
+- PT | normal | Guimarães | city-e522715ce542e2ca
+- PT | normal | Lagos | city-23e4523c57c5ac2a
+- RO | high | Cluj-Napoca | city-8338219da4b081e4
+- RO | normal | Sibiu | city-37d634de60db8a36
+- RO | normal | Timișoara | city-2de9ecdaa09305c4
+- RO | normal | Constanța | city-a449e82c55118a81
+- RO | normal | Iași | city-e5292a3c5cdd691f
+- RO | normal | Sighișoara | city-5682ab1567a884fc
+- RS | high | Belgrade | city-e7fac4d1bf968a80
+- RS | high | Niš | city-2d152543abf9dfb7
+- RS | normal | Subotica | city-4b05095bafad2961
+- RS | normal | Kragujevac | city-857cbd9702ae6bea
+- RS | normal | Užice | city-d05a6591df5084ad
+- RS | low | Novi Pazar | city-b8047465b6630d46
+- RU | high | Kazan | city-27cc7ad1800e2aa5
+- RU | normal | Nizhny Novgorod | city-f9fe2a4724ddc2e2
+- RU | normal | Sochi | city-bc0c7789e6d04ced
+- RU | normal | Vladivostok | city-d03b69c909b15bc5
+- RU | normal | Yekaterinburg | city-ac95e64f59a94b71
+- RU | normal | Irkutsk | city-5c0e7369b887ed96
+- RU | normal | Kaliningrad | city-71207b0f6642298b
+- RU | normal | Veliky Novgorod | city-7cb168684b6e0cae
+- SA | high | Jeddah | city-d66308af429fe98f
+- SA | high | Mecca | city-75a3031f2e06bd11
+- SA | normal | Medina | city-8374dd46e0b8d1a4
+- SA | normal | Abha | city-d46b0b97215f8cb3
+- SA | normal | Dammam | city-f56658eea5af4c54
+- SA | normal | Taif | city-de94e977e0f5436d
+- SA | low | Tabuk | city-ad40a087703ae8fc
+- SE | high | Gothenburg | city-b84d2c11f89fa4c2
+- SE | high | Malmö | city-6e7b3c3b9490e8b9
+- SE | normal | Kiruna | city-db7a96547625c19f
+- SE | normal | Lund | city-cf01417966fb6e7b
+- SE | normal | Uppsala | city-a94b312a4103b0da
+- SE | normal | Visby | city-5f291da6070af599
+- SI | high | Bled | city-ddb9df8e3b769e04
+- SI | high | Maribor | city-acb0423f7fa0d7e7
+- SI | normal | Koper | city-157aa18beb222874
+- SI | normal | Piran | city-662396baf7e7346e
+- SI | low | Kranjska Gora | city-2d710f6259cc1454
+- SK | high | Košice | city-1bc3e9b307cdfd93
+- SK | high | Banská Bystrica | city-1036d6be42f766ae
+- SK | normal | Žilina | city-1f423b09420361fa
 - SK | normal | Nitra | city-7b557b748910ebe8
+- SK | normal | Poprad | city-e57ee143e4a2f74a
+- SK | normal | Trnava | city-b558de7120e6366f
+- TH | high | Chiang Mai | city-dde5b708a62ae273
+- TN | high | Hammamet | city-59658a68d7e36b19
+- TN | normal | Kairouan | city-d54fd3d70eabed20
+- TN | normal | Sfax | city-76f184fd2dc1b0fb
+- TN | normal | Monastir | city-8cbc2a4d89601937
+- TN | normal | Tozeur | city-f94c0952b3270835
+- TN | low | Bizerte | city-df9ee34320af905c
+- TR | high | Istanbul | city-fc91a9c6c7b389cf
+- TZ | high | Dar es Salaam | city-371ef9f5bec43a25
+- TZ | high | Arusha | city-f2bdb846d057110d
+- TZ | normal | Mbeya | city-e7e24badf24c56e8
+- TZ | normal | Tanga | city-648453877eaa1c2a
+- TZ | low | Dodoma | city-7af16210200c3a5b
+- TZ | low | Moshi | city-c3f0b1fb3f5e13cc
+- TZ | low | Mwanza | city-5a8b9184d53b5e47
+- US | high | Chicago | city-9c500879d4604b46
+- US | high | Los Angeles | city-acc77da3ec924a7d
+- US | high | New York City | city-1b035830a43bec55
+- US | normal | San Francisco | city-3ebb5f1726c3ac6a
+- US | normal | Washington, D.C. | city-e1aeb0472fea9f6c
+- US | normal | Boston | city-e9c5ca89d86c9b06
+- US | normal | Denver | city-461119780811d24f
+- US | normal | Honolulu | city-872e81620b136129
+- US | normal | Las Vegas | city-e4701b3935371283
+- US | normal | Miami | city-8a3ead331f5d086c
+- US | normal | New Orleans | city-58e0b68e36021c6f
+- US | normal | Orlando | city-c26220d9c7fd85c9
+- US | normal | San Diego | city-07c243032c44b063
+- US | normal | Seattle | city-38b11835f3b6e0cb
+- UY | high | Colonia del Sacramento | city-287feea88a1f2bbd
+- UY | high | Punta del Este | city-5a385e0893ba80d9
+- UY | normal | Maldonado | city-e1ef3a61097e155c
+- UY | low | Piriápolis | city-114e789b836e193c
+- UY | low | Carmelo | city-13b6a18dc04ad860
+- UY | low | Salto | city-92615c0bfaa36735
+- VN | high | Ho Chi Minh City | city-e321c6d35c4b62da
+- VN | high | Da Nang | city-3534e10ea2259139
+- VN | normal | Huế | city-6f7577d16778bfce
+- VN | normal | Da Lat | city-1489fedbf28c09fd
+- VN | normal | Hội An | city-185e6e1e3f131407
+- VN | normal | Nha Trang | city-6c2fe9a829ecf2d5
+- VN | low | Haiphong | city-e431d604e55c2218
+- VN | low | Cần Thơ | city-58c9dc2086482e5b
+- ZA | high | Durban | city-a3bb1c8dabf2b63c
+- ZA | normal | Gqeberha | city-bc2e5c7914f3d5ee
+- ZA | normal | Pretoria | city-3243e1623fa2b8f3
+- ZA | normal | Stellenbosch | city-d2c59cf3c9b76937
+- ZA | normal | Bloemfontein | city-a39d626dea650040
+- ZA | normal | Hermanus | city-36c09ee2524778d4
+- ZA | normal | Kimberley | city-a6fe3ad27cd430d5
+- ZA | low | Knysna | city-9ec37834c48a5380
 
 ## Remaining Core POI backfill
 
+- AD | high | Caldea | poi-e813ca8606eeb05c
+- AD | high | Església de la Santa Creu de Canillo | poi-2b6fd4502f7c36c0
 - AE | high | Abu Dhabi Securities Exchange | poi-d0cb01c46e212be6
-- AM | high | Cathedral of the Holy Cross | poi-2215b1b272bf4814
-- AM | high | Blue Mosque | poi-060e046e344298a9
-- AM | high | Dilijan tunnel | poi-f21ee5dfdbe63528
-- AZ | high | Alexander Nevsky Cathedral | poi-051f78c59ae6eae5
-- AZ | high | Alexander Nevsky Church | poi-7c19a1d110e06844
-- AZ | high | Church of Kish | poi-783df8799380fdc7
-- BA | high | Cathedral of the Holy Trinity, Mostar | poi-0d8ef4183b7128db
-- BA | high | Ali Pasha's Mosque | poi-e4c2f8c58772358b
-- BA | high | Archives of Republika Srpska | poi-54ef334bd3d8420c
+- AE | high | Al Bastakiya | poi-63495fb818a96e6e
+- AE | high | Al Ain National Museum | poi-6f84a9afda9d1518
+- AL | high | Halveti Teqe | poi-37d98f23fb63d999
+- AL | high | Beach of Durrës | poi-2d4f0c5bb7b16eca
+- AR | high | Cathedral of Our Lady of Nahuel Huapi | poi-d2f280ec4dfeea7f
+- AR | high | Argentine National Observatory | poi-f3f59a548a9fd5b0
+- AT | high | Eggenberg Palace | poi-ccf6f66f438d0d5d
+- AT | high | Alpine Zoo Innsbruck | poi-a545ba786d11a469
+- AU | high | Melbourne Museum | poi-69de0ee7fc58e11d
+- AU | high | Royal Botanic Garden, Sydney | poi-c117087ce07a1d3e
+- BE | high | Bourse Palace | poi-518bea221a0be78c
+- BE | high | Antwerp City Hall | poi-5e1ec61554ca98d4
+- BE | high | Belfry of Bruges | poi-b5f780790c07acfa
+- BG | high | Alyosha Monument | poi-79568596e9a47104
+- BG | high | Alexander Nevsky Cathedral | poi-e90298df84233c35
 - BG | high | Arena Burgas | poi-d4f1b47996cb7317
-- BH | high | Al Ahli Stadium | poi-211b6cafa977b330
-- BH | high | Al Hasan Mosque | poi-6a5bed39e685688a
-- BH | high | Al Darah Mosque | poi-1ab9590169ee4e1f
-- BO | high | Basilica of San Francisco, La Paz, Bolivia | poi-f69d009ee508fcf7
-- BO | high | Basílica de San Francisco, Sucre, Bolivia | poi-b9501c407010e497
-- BO | high | Alalay Lake | poi-2fcc782d5684ca4e
-- BS | high | Ardastra Gardens, Zoo and Conservation Centre | poi-524238fd5541b02c
-- BS | high | Abaco Islands | poi-5380f1c3c6fe879c
-- BS | high | Grand Bahama Stadium | poi-c2cc7d2f0750f825
+- BR | high | Edifício Altino Arantes | poi-fd25abb26c69b253
+- BR | high | Cathedral of Brasília | poi-4b77c8c5908711da
+- CA | high | Church of St. Andrew and St. Paul | poi-3f518c09904aa8a8
+- CA | high | Bloor Street | poi-8f0269ebd51e4343
+- CA | high | City of Vancouver Archives | poi-02472e59fd8ba8ba
 - CD | high | Mampeza | poi-e7a187ae9e3829d7
+- CD | high | National Museum of Lubumbashi | poi-4e82fdec04bf11ca
+- CD | high | Boyoma Falls | poi-8340e4af4b6d7722
+- CH | high | Chapel Bridge | poi-67ff3980626e150c
+- CH | high | Grossmünster | poi-4cef4d841745bcc3
+- CL | high | Cemetery of Punta Arenas | poi-384aef534bd26742
+- CL | high | Cordillera de la Sal | poi-fffa6a9b34d1a41d
+- CO | high | Bogotá Primatial Cathedral | poi-ddc7b7bdd1f9dc2d
+- CO | high | Medellín Museum of Modern Art | poi-cc15b69a5d3397c6
 - CR | high | Africa Safari Adventure Park | poi-df61ca53e90345b5
-- CU | high | Christ of Havana | poi-47a795c28814d65b
-- CU | high | Castillo de Jagua | poi-d124abfd92e4524e
-- CU | high | Catedral de Santa Clara de Asis | poi-7cbaf8d4c7f1e650
-- DO | high | El Mamey Formation | poi-4106380cda3ddbe9
-- DO | high | Altar of the Homeland | poi-7048f739511fbf43
-- DO | high | Altos de Chavón | poi-1489ee6a078aaea4
+- CR | high | Aranjuez River | poi-1a607d7a5110096b
+- CY | high | Akrotiri Bay | poi-46852544da52d343
+- CY | high | Arabahmet Mosque | poi-2e2a1f7bb9a15427
+- CY | high | AEK Arena - Georgios Karapatakis | poi-57a3d7d2ab87a0ea
+- CZ | high | Bethlehem Chapel | poi-74c4f69929e1f918
+- CZ | high | AZ Tower | poi-4db44bb328b578d9
+- CZ | high | Český Krumlov Castle | poi-0417f69e4ad93a24
+- DE | high | Alexanderplatz | poi-c35ac75d524146a5
+- DE | high | Allianz Arena | poi-c186033602d1c87d
+- DE | high | Cologne Cathedral | poi-7d626e4e649f46a7
+- DK | high | Caritas Well | poi-b9e7939120e97cb5
+- DK | high | Aarhus Cathedral | poi-5c7f510bfab708c8
+- DK | high | Funen | poi-9e7e7bd7605c1ca6
+- EC | high | Basilica of La Merced | poi-99dbcd4382819951
+- EC | high | Agoyán | poi-7bb7d328420262d5
+- EE | high | Ammende Villa | poi-f6fddc4f11b889df
+- EE | high | main building of the University of Tartu | poi-0d93f0a234f7d322
+- EG | high | Colossi of Memnon | poi-69ec671176f79db9
+- EG | high | Alexandria Stadium | poi-3c665a2866fc927e
+- ES | high | Almudena Cathedral | poi-e1af6231a8050bae
+- ES | high | Azkuna Zentroa | poi-225ba7fb8ec2c420
+- FI | high | Ateneum | poi-578c1e1c46b6eec6
+- FI | high | Åbo Svenska Teater | poi-cc8db649938bade8
+- FI | high | Arktikum Science Museum | poi-6cb487c8ce2df6f9
+- FJ | high | Denarau | poi-9193940e3836baa1
 - FJ | high | Churchill Park | poi-122727c6f428db14
+- FR | high | Basilica of Saint Michael | poi-44b0234d65db147d
+- FR | high | Basilica of Notre-Dame de Fourvière | poi-b6b05705097c6bb1
+- GB | high | Albert Memorial Clock | poi-9355e26f3258af59
+- GB | high | Cardiff Arms Park | poi-832167259be358ab
+- GE | high | Art Museum of Georgia | poi-85fff512730b3ade
+- GE | high | Ateni Sioni Church | poi-4cc0a490932a32f9
+- GR | high | Archaeological Museum of Chania | poi-ce0a372babdb1ad5
+- GR | high | Archaeological Museum of Corfu | poi-2affed51932097bd
+- GT | high | Cathedral of Guatemala City | poi-6f9fd08042925a34
+- GT | high | Actún Can | poi-c10065bfec84a63f
+- HR | high | Archaeological Museum of Zagreb | poi-8f85e9f971a61d2f
+- HR | high | Dubrovnik Cathedral | poi-2c2aec6cf59867a3
+- HR | high | Cathedral of Saint Domnius | poi-feb613ff95927a0c
+- HU | high | Buda Castle | poi-93041eee37e48a52
+- HU | high | Csokonai Theatre | poi-a44d5b64595f3bd0
+- HU | high | Gandhi School | poi-46e6a5ac919ec7dd
+- ID | high | Cut Mutiah Mosque | poi-246c5f4cbdc650aa
+- ID | high | Bandung Cathedral | poi-6552faff8a5c3578
 - ID | high | Ampel Mosque | poi-988e10280ee01879
-- JM | high | Bob Marley Museum | poi-066c246b602afd91
-- JM | high | Catherine Hall Sports Complex | poi-8c98aef57e1120d5
-- JM | high | Dolphin Cove Jamaica | poi-b9cb42f36480259e
+- IE | high | Abbey Street | poi-ee0c64d215256bbd
+- IE | high | Cathedral of St Mary and St Anne | poi-1d6ee221366e33fd
+- IE | high | An Taibhdhearc - Amharclann Náisiúnta na Gaeilge | poi-06da0eb3d5e340ea
+- IL | high | Azrieli Center | poi-bba595705a7b54bd
+- IL | high | Coral World Underwater Observatory | poi-5d8f9cb56909f573
+- IN | high | Agra Fort | poi-26824c4549fcc7e4
+- IN | high | Fatehpuri Masjid | poi-2a944e32037953ab
+- IN | high | Albert Hall Museum | poi-dfb42e9dda8fccfc
+- IS | high | Reynisdrangar | poi-11552d7158b391bd
+- IT | high | Basilica of Santa Croce | poi-1f03bd299a2a68e5
+- IT | high | Basilica of Sant'Ambrogio | poi-99ca42e432383064
+- JO | high | Arch of Hadrian | poi-eb45efdd9f1feabe
+- JO | high | Bab edh-Dhra | poi-8b651779a1a39409
+- JP | high | Akihabara | poi-0f686b97b037b62d
+- JP | high | Abeno Harukas | poi-205373acb3f61851
+- KE | high | Fort Jesus Museum | poi-1a910f9bbf1fd33d
 - KE | high | Afraha Stadium | poi-574215b1feaedc18
-- KW | high | Al Hamra Tower | poi-a0ebb97adbb47b1d
-- KW | high | Bayan Palace | poi-6b791f90c22832f1
-- KW | high | Abu Halifa City Stadium | poi-b6e7dc97bbe9a678
-- LB | high | Al-Omari Grand Mosque | poi-03ab324dce9df520
-- LB | high | Al-Tawbat Mosque | poi-cb3d286fa32c732d
-- LB | high | Abraham River | poi-e449abaffff4638d
-- LI | high | Drei Schwestern | poi-94ee7301fa3ed5d7
-- LI | high | Falknis | poi-2fcfe5d47c2fafc2
-- LI | high | Alpspitz | poi-2f7dd29fd1db9bbf
-- LU | high | Adolphe Bridge | poi-63ddca4eab5c8718
-- LU | high | Mess | poi-1d0c02e75cc2e59b
-- LU | high | Bettendorf Castle | poi-014dc26db6454334
+- KH | high | Angkor Wat | poi-b6c78a3d9c306feb
+- KH | high | Bay of Kampong Som | poi-688201416a5f1ab5
+- KR | high | Beomeosa | poi-8b5e85f2115504cc
+- KR | high | Bulguksa | poi-cc64bdc058f4268f
+- LK | high | Altair | poi-ba99b6476175f7c0
+- LK | high | Asgiriya Stadium | poi-e28f4fd5f3d1f017
+- LK | high | Abhayavapi | poi-334c141ed6b36331
+- LT | high | Christ's Resurrection Church | poi-b3386b3a4002794a
+- LT | high | Cathedral Square | poi-8a2fcc6bdce56e24
+- LT | high | Kiaulės Nugara | poi-c01f58a2f73fdaf9
+- LV | high | Eurovision Song Contest 2003 | poi-b6e2446b9bed0dbe
+- LV | high | Daugavpils Fortress | poi-db8fc2320abb4ac8
+- LV | high | Daugava Stadium | poi-5862ee1eed9bed08
+- MA | high | Al-Attarine Madrasa | poi-9b678916208b9f5d
+- MA | high | Almoravid Koubba | poi-0694f32efd286fc6
 - MA | high | Ain-Diab Circuit | poi-dede442041af184f
-- MC | high | Cathedral of Our Lady Immaculate | poi-f3becf28761587c7
-- MD | high | Alley of Classics | poi-8be65bae84734178
-- MD | high | CSR Orhei | poi-302b7fd5da51c5d7
-- MD | high | Building of the former girls' gymnasium in Soroca | poi-404794443afb7c5e
-- MK | high | Ali Pasha Mosque | poi-b0ee72df06fbe6b2
-- MK | high | Arena ”Philip II. of Macedonia / Toše Proeski / Todor” | poi-0f43cfbd28cb22cc
-- MK | high | Bitola Zoo | poi-ed22162cd0e9883f
+- ME | high | Cathedral of the Resurrection of Christ | poi-8c0e48f03e35193b
+- ME | high | Biljarda | poi-3edf49e957f0d8b3
+- MT | high | Basilica of Our Lady of Mount Carmel | poi-13a5c5b71883dc09
+- MT | high | Buskett Gardens | poi-962e2b0f21faa44f
+- MT | high | Fort Manoel | poi-ac036120c9090ddc
 - MV | high | Equatorial Convention Centre | poi-2f7f73fdd13bc487
-- NI | high | Dennis Martínez National Stadium | poi-73056cf2d9f8109d
-- NI | high | Church of la Recolección, León, Nicaragua | poi-c6c0188386095ff0
-- NI | high | Estadio Roberto Clemente | poi-4600eeb0347f779e
-- OM | high | Al Alam Palace | poi-9516ce4139178984
-- OM | high | Aflaj Irrigation System of Oman | poi-c7aa1e7e2445ba36
-- OM | high | Al Baleed Archeological Park | poi-b67de888bfda6860
+- MX | high | Alberca Olímpica Francisco Márquez | poi-dda2188a94d1ba0d
+- MX | high | Andrés Quintana Roo Olympic Stadium | poi-267d2a426a2ab742
+- MX | high | Guadalajara Cathedral | poi-05bd98bd1b4f0a1b
+- MY | high | Bursa Malaysia | poi-06518918251ff66b
+- MY | high | Cheong Fatt Tze Mansion | poi-5a22795b93727e42
+- MY | high | Atkinson Clock Tower | poi-b49dffbc230fb82c
+- NG | high | Cathedral Church of Christ, Lagos | poi-cabb60ec295e5cdc
+- NG | high | Calabar Old Residency Museum | poi-a68dac3d8f0ce964
+- NL | high | Amsterdam Museum | poi-75281c04e1ab27ca
+- NL | high | Cube Houses | poi-1fc98c7d3d0e3a5c
+- NL | high | Binnenhof | poi-c8ab11f7d24339ba
+- NO | high | Christiania Theatre | poi-5f75f1ebc5e63513
+- NO | high | Bergen Cathedral | poi-0d54abefe1ec72da
+- NO | high | Arctic Cathedral | poi-7931d7714510f76c
+- NP | high | Bat Cave | poi-e54d1ff349439794
+- NP | high | Bhaktapur Durbar Square | poi-55e36b5fc5ba31f6
+- NZ | high | Lake Wakatipu | poi-0eb1228d4c6fbdb9
+- PA | high | Bastimentos Island | poi-5b733512bc74857c
+- PA | high | Atlantic Bridge | poi-808b7eb161b7b5e3
+- PE | high | Church of the Society of Jesus | poi-83aea39ff88db267
+- PE | high | Basílica María Auxiliadora | poi-8380fdaf565ed6f0
 - PE | high | Arequipa Peru Temple | poi-8302f74ba1bc1d76
-- PY | high | Estadio Defensores del Chaco | poi-a0bebe3c00c5b715
-- PY | high | Botanical Garden and Zoo of Asunción | poi-a92f89ed8dfab2be
-- PY | high | Acaray Dam | poi-9b0a3cc6df3d708c
-- QA | high | Doha Corniche | poi-bf62dacefb62b5c3
-- QA | high | Ahmad bin Ali Stadium | poi-d606f6c9aa4ffd69
-- QA | high | Lekhwiya Sports Stadium | poi-150daa47918d8fc9
+- PH | high | Binondo Church | poi-db3cddc3bb5b1c49
+- PH | high | Cebu City Philippines Temple | poi-502780932afb589c
+- PH | high | Abreeza | poi-1be3a9362f98e12e
+- PL | high | Aleje Jerozolimskie | poi-6d8ebdf4180d8fed
+- PL | high | Altarpiece of Veit Stoss in Kraków | poi-ff9bbc748643c5d1
+- PL | high | European Solidarity Centre | poi-116abcdd3a621451
+- PT | high | Biblioteca Joanina | poi-6f1c660d80318e8b
+- PT | high | Church of São Francisco | poi-977c43c698e8c372
+- RO | high | Black Church | poi-c2654699286f46ec
+- RO | high | Cluj Arena | poi-97b7d7a69423c27f
+- RS | high | ? | poi-35f310fda12c8252
+- RS | high | Karađorđe Stadium | poi-52164861c6fccf20
+- RS | high | Čair Sports Center | poi-453dcdcb2e908c77
+- RU | high | Alexander Column | poi-b6f9781e8a011bca
+- RU | high | Ak Bars Arena | poi-d9a7ed146870321a
 - SA | high | Al Madi Mosque | poi-83ac5861b276d133
+- SA | high | Abraj Al Bait | poi-39a6f9503458a7f3
+- SE | high | Drottninggatan | poi-f8dde456e2b39d3b
+- SE | high | Gamla Ullevi | poi-714068f9ec7005f0
+- SE | high | Eleda Stadion | poi-b94e6d06cb37b1af
+- SI | high | Arch. Plečnik's Marketplace | poi-9c318a43e0dce3fb
+- SI | high | Ajdna | poi-73853ceaf4bbb254
+- SI | high | Basilica of Our Mother of Mercy | poi-67c84ea5b6649d46
+- SK | high | Cathedral of St. Elizabeth | poi-9f293d301b91e2dd
+- SK | high | Banská Bystrica Castle | poi-b79c15461ced72fb
+- TH | high | Wat Chedi Luang | poi-dcd7f51accdfb88a
 - TN | high | Bou Ali Lahouar Stadium | poi-54c0d5baca355011
+- TN | high | Djebel Ressas | poi-fb2a0783be10c2e3
+- TR | high | Anıtkabir | poi-85f5ccba3f115856
+- TR | high | Hagia Sophia | poi-9a98993feb59f773
+- TZ | high | Askari Monument | poi-63850697ffee0e93
+- TZ | high | Amaan Stadium | poi-2e8bc8b6ed81f6f9
+- TZ | high | Arusha Declaration Monument | poi-38cf85eb3cd78db3
+- US | high | Bradbury Building | poi-16cc50a0b2e2f1dc
+- US | high | 30 Park Place | poi-2f453a160b61d8c2
+- UY | high | Anchorena Park | poi-170c14cbaf91d9fd
+- UY | high | Cathedral of Maldonado | poi-26819f3d9609cd51
+- VN | high | Ba Ðình Square | poi-10058d148f5cf5f4
+- VN | high | Bến Thành Market | poi-57520887c364aaf8
+- VN | high | Chi Lang Stadium | poi-ecb7c8076e72b54b
+- ZA | high | ABSA Tower | poi-810bdb1f46a07be5
+- ZA | high | Durban Botanic Gardens | poi-18eb7dc459d54343

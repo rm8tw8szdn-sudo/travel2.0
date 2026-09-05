@@ -1,0 +1,11 @@
+{
+  "schemaVersion": "route-v2-batch09-sovereignty-negative-fixtures-v1",
+  "fixtures": [
+    { "id": "territory-as-country", "operation": "append", "code": "HK", "qid": "Q8646", "expectedCode": "not-sovereign-iso" },
+    { "id": "region-as-country", "operation": "append", "code": "EU", "qid": "Q458", "expectedCode": "not-sovereign-iso" },
+    { "id": "constituent-country-as-sovereign", "operation": "append", "code": "GB-ENG", "qid": "Q21", "expectedCode": "not-sovereign-iso" },
+    { "id": "duplicate-sovereign-identity", "operation": "replace-qid", "code": "GH", "qid": "Q262", "expectedCode": "duplicate-sovereign-qid" },
+    { "id": "changed-target-qid", "operation": "replace-qid", "code": "KZ", "qid": "Q265", "expectedCode": "batch09-binding-mismatch" },
+    { "id": "changed-target-code", "operation": "replace-code", "code": "DZ", "replacementCode": "HK", "expectedCode": "not-sovereign-iso" }
+  ]
+}

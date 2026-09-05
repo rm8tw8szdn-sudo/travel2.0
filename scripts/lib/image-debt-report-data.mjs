@@ -28,7 +28,21 @@ export function calculateImageDebtReportData({ root } = {}) {
   const successful = provenance.assets.filter((record) => record.status === "imageReady" && record.visualAuditStatus === "passed");
   const remaining = provenance.attempts.filter((record) => record.status === "needsBackfill");
   const sizes = successful.map((record) => record.bytes);
-  const historicalCoverage = manifest.coverage.historicalPlannableCountries;
+  const historicalCoverage = {
+    countryCoverCoverage: {
+      ready: phaseBaseline.images.countryCovers,
+      total: phaseBaseline.images.countryCovers,
+    },
+    cityDedicatedImageCoverage: {
+      ready: phaseBaseline.images.dedicatedCities + successful.filter((record) => record.entityType === "City").length,
+      total: phaseBaseline.images.cityTotal,
+    },
+    corePoiImageCoverage: {
+      ready: phaseBaseline.images.dedicatedCorePois + successful.filter((record) => record.entityType === "POI").length,
+      total: phaseBaseline.images.corePoiTotal,
+    },
+    needsBackfillCount: remaining.length,
+  };
   const sealedFinalBytes = phaseBaseline.images.totalBytes + sizes.reduce((sum, value) => sum + value, 0);
   const successesByCountry = [...new Set(inventory.records.map((record) => record.countryCode))].sort().map((countryCode) => ({
     countryCode,

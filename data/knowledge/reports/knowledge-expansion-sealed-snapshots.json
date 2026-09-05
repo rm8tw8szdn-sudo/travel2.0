@@ -1,0 +1,120 @@
+{
+  "schemaVersion": "route-v2-knowledge-expansion-sealed-snapshots-v1",
+  "canonicalization": "CRLF and CR are normalized to LF; no whitespace or content is otherwise ignored.",
+  "protectedAssets": {
+    "acceptedSha256": "aea28bcc03eaf6ccce5fd7453f88ece4f0060789f135eaf837b568d9c43e7e3f",
+    "formalEvidenceSha256": "4bb9e7b702de1c9b981f0ed53a649632e2a7149bd7f2dabedfa120dcde13c376",
+    "immutableAggregateSha256": "61e243e0c0756d53513ab7205281f8c796eeb074317f484d08784cbc5fe9505c",
+    "cacheFiles": 331,
+    "runtimeStateFiles": 329,
+    "metricsFiles": 0
+  },
+  "batches": {
+    "05": {
+      "sourceMergeCommit": "8f63d1f814df050c577a0c0bc6286ccb74618f65",
+      "sourcePullRequest": 22,
+      "knowledge": {
+        "before": { "countries": 51, "cities": 144, "pois": 904, "entities": 1099 },
+        "additions": { "countries": 4, "cities": 162, "pois": 1197 },
+        "after": { "countries": 55, "cities": 306, "pois": 2101, "entities": 2462 }
+      },
+      "evidence": {
+        "before": { "transport": 196, "monthRisk": 76 },
+        "additions": { "transport": 218, "monthRisk": 80 },
+        "after": { "transport": 414, "monthRisk": 156 }
+      },
+      "routeConsumption": 52,
+      "images": { "countryCovers": 38, "countryTotal": 38, "dedicatedCities": 0, "cityTotal": 306, "dedicatedPois": 0, "poiTotal": 105, "needsBackfill": 411 },
+      "performanceConclusion": "PASS at the sealed PR release gate; the aggregate p95 contract was not changed.",
+      "finalStatus": "merged-and-sealed",
+      "files": {
+        "ROUTE_V2_KNOWLEDGE_EXPANSION_BATCH05_REPORT.md": "f474ba4651bbc5e244116a74b66b75c66ec88fe689df88999914528302483261",
+        "ROUTE_V2_KNOWLEDGE_EXPANSION_BATCH05_DASHBOARD.md": "02ea2166311c171508865872b929115741b13a842824887a6502cda2c7da44db",
+        "data/knowledge/reports/knowledge-expansion-batch05-route-consumption.json": "c5015acd9fec86683d14836dc4cd745bda714a33fa2d0937f460a9c3b48b35bb",
+        "data/knowledge/reports/knowledge-expansion-batch05-browser-acceptance.json": "810c0813995ca7e34cd743f3cd719e9c948a6078a085129669e48396ebee0bf4"
+      }
+    },
+    "06": {
+      "sourceMergeCommit": "034a40e13967b73bcc84940f2d0347a5c7cd1037",
+      "sourcePullRequest": 25,
+      "knowledge": {
+        "before": { "countries": 55, "cities": 306, "pois": 2101, "entities": 2462 },
+        "additions": { "countries": 4, "cities": 156, "pois": 1029 },
+        "after": { "countries": 59, "cities": 462, "pois": 3130, "entities": 3651 }
+      },
+      "evidence": {
+        "before": { "transport": 414, "monthRisk": 156 },
+        "additions": { "transport": 172, "monthRisk": 80 },
+        "after": { "transport": 586, "monthRisk": 236 }
+      },
+      "routeConsumption": 56,
+      "images": { "assets": 221, "countryCovers": 58, "countryTotal": 58, "dedicatedCities": 66, "cityTotal": 462, "dedicatedPois": 30, "poiTotal": 165, "needsBackfill": 531 },
+      "performanceConclusion": "The sealed PR recorded aggregate p95 0.236049 ms under the unchanged <0.25 ms contract; later same-host checks were environment-sensitive with no Batch06-specific regression.",
+      "finalStatus": "merged-and-functionally-sealed",
+      "files": {
+        "ROUTE_V2_KNOWLEDGE_EXPANSION_BATCH06_REPORT.md": "e405c5d7adb25109f9ee015e76082711e83fe19f7d6724c15877aca3de7fc824",
+        "ROUTE_V2_KNOWLEDGE_EXPANSION_BATCH06_DASHBOARD.md": "c770cf2ca6a361b25a5f36c0bef71657ad53ec916728da61a3ec0ee496356317",
+        "ROUTE_V2_IMAGE_COVERAGE_BACKFILL_BATCH06_AUDIT.md": "b0f36e7878258c58da4f60ff936f0f3ee09a7a03937206ce43b1ecc66762e095",
+        "ROUTE_V2_IMAGE_ASSET_SIZE_BATCH06_AUDIT.md": "e24dcf337d4bc2c1319768ff373ce7a337ee8873d8267351ed89b40b62020527",
+        "data/knowledge/reports/knowledge-expansion-batch06-baseline.json": "9dabc8a4ac122970f83cfd6a45f5974fc291a1067f8dae7f08608d50de191ca5",
+        "data/knowledge/reports/knowledge-expansion-batch06-route-consumption.json": "522865ea896d97df885951d59f749f4b74f5efe773f20df87858a44840bfb0d5",
+        "data/knowledge/reports/knowledge-expansion-batch06-browser-acceptance.json": "8711a09f6419b521595895ba61aa270c970a5d0c4b83624339ae6638303d1c27"
+      }
+    },
+    "07": {
+      "sourceMergeCommit": "c2e7fb1e0f371ddf3291d4480617057f43fee52c",
+      "sourcePullRequest": 26,
+      "knowledge": {
+        "before": { "countries": 59, "cities": 462, "pois": 3130, "entities": 3651 },
+        "additions": { "countries": 20, "cities": 139, "pois": 908 },
+        "after": { "countries": 79, "cities": 601, "pois": 4038, "entities": 4718 }
+      },
+      "evidence": {
+        "before": { "transport": 586, "monthRisk": 236 },
+        "additions": { "transport": 154, "monthRisk": 80 },
+        "after": { "transport": 740, "monthRisk": 316 }
+      },
+      "routeConsumption": 97,
+      "images": { "assets": 283, "countryCovers": 78, "countryTotal": 78, "dedicatedCities": 96, "cityTotal": 601, "dedicatedPois": 42, "poiTotal": 224, "needsBackfill": 687 },
+      "performanceConclusion": "Environment-sensitive on the sealed Windows host; same-host main 0.255555 ms versus Batch07 0.256289 ms (about +0.29%), with no Batch07-specific stable regression and no contract change.",
+      "finalStatus": "merged-and-functionally-sealed",
+      "files": {
+        "ROUTE_V2_KNOWLEDGE_EXPANSION_BATCH07_REPORT.md": "e0fbb427050a534d54e49f5b336393fab492d095ede0e645426c79e273c626de",
+        "ROUTE_V2_KNOWLEDGE_EXPANSION_BATCH07_DASHBOARD.md": "0bcc2d65b1657d959d2c6a744ab3c9e58181361f8a93cb7935242ea40a4c1298",
+        "ROUTE_V2_IMAGE_COVERAGE_BACKFILL_BATCH07_AUDIT.md": "f0e64116d450ffaade4ddd218e4d99b2dc8ce2af562c90ef15f0c38b94a50757",
+        "ROUTE_V2_IMAGE_ASSET_SIZE_BATCH07_AUDIT.md": "2dc577209dc647f0454d4260d47916e32cd4b81b33da0bf85ca548c1f7675775",
+        "data/knowledge/reports/knowledge-expansion-batch07-baseline.json": "352865192e98e9baed5d014d5957b7bcffdf0bc44001838f7c979cb335c09a71",
+        "data/knowledge/reports/knowledge-expansion-batch07-route-consumption.json": "d006254e78bf65b0879ffb37126d5e0ae4d72f69157bd4e6288ff2406e879fb3",
+        "data/knowledge/reports/knowledge-expansion-batch07-browser-acceptance.json": "69a51ca399491779b97c5776693f016c8bd098a9b7bc428ba88b7f90f428d210"
+      }
+    },
+    "08": {
+      "sourceMergeCommit": "2a079974aae8864dba3ce828b2a97b322f49f2bb",
+      "sourcePullRequest": 28,
+      "knowledge": {
+        "before": { "countries": 79, "cities": 601, "pois": 4038, "entities": 4718 },
+        "additions": { "countries": 20, "cities": 117, "pois": 728 },
+        "after": { "countries": 99, "cities": 718, "pois": 4766, "entities": 5583 }
+      },
+      "evidence": {
+        "before": { "transport": 740, "monthRisk": 316 },
+        "additions": { "transport": 146, "monthRisk": 78 },
+        "after": { "transport": 886, "monthRisk": 394 }
+      },
+      "routeConsumption": 101,
+      "images": { "assets": 977, "countryCovers": 98, "countryTotal": 98, "dedicatedCities": 600, "cityTotal": 718, "dedicatedPois": 212, "poiTotal": 282, "historicalFrozenDebt": 13, "needsBackfill": 188 },
+      "performanceConclusion": "PASS under the unchanged <0.25 ms contract; the sealed committed-tree run recorded 0.195520 ms.",
+      "finalStatus": "merged-and-sealed",
+      "files": {
+        "ROUTE_V2_KNOWLEDGE_EXPANSION_BATCH08_REPORT.md": "749361f11f1280f843ef7ada04720469796c96affed21a6fa7ec61749d67a478",
+        "ROUTE_V2_KNOWLEDGE_EXPANSION_BATCH08_DASHBOARD.md": "6c4aa6ad70cd870b89a7f25751c39d7cf70b4c5735dbf9fb9366b521357fe53f",
+        "ROUTE_V2_IMAGE_COVERAGE_BACKFILL_BATCH08_AUDIT.md": "87c3b3d15fca3813a668c7ffb73ffa6a8ca3c57e503df4c38a285edd1ec397a4",
+        "ROUTE_V2_IMAGE_ASSET_SIZE_BATCH08_AUDIT.md": "1f933a4542bdbac08147ebd4e1bdaade171b18c2e279c7189c948a4f63ebd397",
+        "data/knowledge/reports/knowledge-expansion-batch08-baseline.json": "75835bdcc010aeec15dcb98536b57a4b63089827d73158d42eec0e552b6a1480",
+        "data/knowledge/reports/knowledge-expansion-batch08-route-consumption.json": "22a19212bbc58f0b55e41138d25fcbf6c55a431a71a64c951fabef0bca14ac0f",
+        "data/knowledge/reports/knowledge-expansion-batch08-browser-acceptance.json": "f54f891bdb0325c6bdbf2ab8afd2fbea5e5cc2279e9f825b604d861a76cff7e8",
+        "data/knowledge/reports/knowledge-expansion-batch08-hard-constraint-stress.json": "a92783bc0978e8c79a7c09017059913a97772b4761b460cd399c3e9a92e81ed7"
+      }
+    }
+  }
+}

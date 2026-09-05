@@ -3,6 +3,7 @@ import crypto from "node:crypto";
 import fs from "node:fs";
 import path from "node:path";
 
+import { createPublishedKnowledgeEntityLayerRepository } from "../src/lib/routes/index.mjs";
 import { calculateImageDebtReportData, comma, mb } from "./lib/image-debt-report-data.mjs";
 import { runImageDebtFinalReportMutationFixtures, verifyImageDebtFinalReport } from "./lib/image-debt-report-consistency.mjs";
 import { auditImageProvenance } from "./lib/image-provenance-license.mjs";
@@ -19,6 +20,12 @@ const sha256 = (bytes) => crypto.createHash("sha256").update(bytes).digest("hex"
 const stats = calculateImageDebtReportData({ root: ROOT });
 const reportPath = process.env.ROUTE_V2_IMAGE_DEBT_REPORT_PATH || path.join(ROOT, "ROUTE_V2_IMAGE_DEBT_ELIMINATION_REPORT.md");
 const report = fs.readFileSync(reportPath, "utf8").replaceAll("\r\n", "\n");
+const semanticQuarantinePath = path.join(ROOT, "data/knowledge/reports/knowledge-poi-positive-admission-audit.json");
+const semanticQuarantine = fs.existsSync(semanticQuarantinePath)
+  ? JSON.parse(fs.readFileSync(semanticQuarantinePath, "utf8")).quarantined || []
+  : [];
+const semanticQuarantineByEntityId = new Map(semanticQuarantine.map((record) => [record.entityId, record]));
+const publishedPoiByEntityId = new Map(createPublishedKnowledgeEntityLayerRepository({ projectRoot: ROOT }).listPois().map((record) => [record.entityId, record]));
 
 function verifyBindings({ inventory, provenance, audit, manifest }) {
   assert.equal(inventory.schemaVersion, "route-v2-image-debt-inventory-v1");
@@ -44,13 +51,17 @@ function verifyBindings({ inventory, provenance, audit, manifest }) {
   assert.doesNotMatch(manifest.fallbackPolicy.city, /^https?:/iu);
   assert.doesNotMatch(manifest.fallbackPolicy.poi, /^https?:/iu);
   assert.deepEqual(manifest.invalidMappings, []);
+  for (const corePoi of manifest.pois) {
+    assert.equal(semanticQuarantineByEntityId.has(corePoi.entityId), false, `quarantined POI retained as Core POI:${corePoi.entityId}`);
+    assert(publishedPoiByEntityId.has(corePoi.entityId), `Core POI is not in canonical published set:${corePoi.entityId}`);
+  }
 
   for (const asset of provenance.assets) {
     const frozen = inventoryById.get(asset.entityId);
     const destination = manifestById.get(asset.entityId);
     const decision = auditById.get(asset.entityId);
+    const semanticRetirement = semanticQuarantineByEntityId.get(asset.entityId);
     assert(frozen, `unfrozen dedicated entity:${asset.entityId}`);
-    assert(destination, `dedicated manifest entity missing:${asset.entityId}`);
     assert(decision, `visual audit missing:${asset.entityId}`);
     assert.equal(asset.wikidataId, frozen.qid);
     assert.equal(asset.entityType, frozen.entityType);
@@ -80,6 +91,18 @@ function verifyBindings({ inventory, provenance, audit, manifest }) {
     assert.equal(decision.qid, asset.wikidataId);
     assert.equal(decision.assetPath, asset.assetPath);
     assert.equal(decision.processedHash, asset.processedHash);
+    if (!destination) {
+      const publishedNonCorePoi = asset.entityType === "POI" ? publishedPoiByEntityId.get(asset.entityId) : null;
+      assert(semanticRetirement || publishedNonCorePoi, `dedicated manifest entity missing:${asset.entityId}`);
+      if (semanticRetirement) {
+        assert.equal(semanticRetirement.wikidataId, asset.wikidataId, `semantic retirement QID mismatch:${asset.entityId}`);
+        assert.match(semanticRetirement.classification, /^[BCD]$/u, `semantic retirement classification:${asset.entityId}`);
+        assert.equal(semanticRetirement.disposition, "quarantined-not-published", `semantic retirement disposition:${asset.entityId}`);
+      } else {
+        assert.equal(publishedNonCorePoi.wikidataId, asset.wikidataId, `non-core POI QID mismatch:${asset.entityId}`);
+      }
+      continue;
+    }
     assert.equal(destination.status, "imageReady");
     assert.equal(destination.needsBackfill, false);
     assert.equal(destination.assetPath, asset.assetPath);
@@ -98,6 +121,13 @@ function verifyBindings({ inventory, provenance, audit, manifest }) {
     const attempt = attemptsById.get(frozen.entityId);
     const destination = manifestById.get(frozen.entityId);
     assert(attempt, `attempt missing:${frozen.entityId}`);
+    if (!destination) {
+      const semanticRetirement = semanticQuarantineByEntityId.get(frozen.entityId);
+      const publishedNonCorePoi = frozen.entityType === "POI" ? publishedPoiByEntityId.get(frozen.entityId) : null;
+      assert(semanticRetirement || publishedNonCorePoi, `manifest record missing:${frozen.entityId}`);
+      assert.equal((semanticRetirement || publishedNonCorePoi).wikidataId, frozen.qid, `archived inventory QID mismatch:${frozen.entityId}`);
+      continue;
+    }
     assert(destination, `manifest record missing:${frozen.entityId}`);
     if (attempt.status === "imageReady") continue;
     assert.equal(attempt.status, "needsBackfill");
@@ -127,7 +157,13 @@ function verifyBindings({ inventory, provenance, audit, manifest }) {
     }
   }
   assert.equal(provenance.assets.length + provenance.attempts.filter((record) => record.status === "needsBackfill").length, inventory.records.length);
-  assert.equal(manifest.coverage.historicalPlannableCountries.needsBackfillCount, provenance.attempts.filter((record) => record.status === "needsBackfill").length);
+  const activeNeedsBackfillAttempts = provenance.attempts.filter((record) => (
+    record.status === "needsBackfill" && manifestById.get(record.entityId)?.needsBackfill
+  ));
+  assert.equal(
+    inventory.records.filter((record) => manifestById.get(record.entityId)?.needsBackfill).length,
+    activeNeedsBackfillAttempts.length,
+  );
 }
 
 verifyBindings({ inventory: stats.inventory, provenance: stats.provenance, audit: stats.visualAudit, manifest: stats.manifest });
@@ -203,7 +239,12 @@ assert.equal(stats.browserAcceptance.assertions.wrongSemanticImages, 0);
 assert.equal(stats.browserAcceptance.assertions.runtimeExternalImageRequests, 0);
 assert.equal(stats.browserAcceptance.assertions.consoleErrors, 0);
 assert.equal(stats.browserAcceptance.assertions.consoleWarnings, 0);
-assert.doesNotMatch(fs.readFileSync(path.join(ROOT, "route-v2-image-coverage.js"), "utf8"), /https?:\/\//u);
+const imageCoverageSource = fs.readFileSync(path.join(ROOT, "route-v2-image-coverage.js"), "utf8");
+assert.doesNotMatch(imageCoverageSource, /https?:\/\//u);
+const currentImageEntityIds = new Set([...stats.manifest.cities, ...stats.manifest.pois].map((record) => record.entityId));
+for (const archived of stats.provenance.assets.filter((asset) => !currentImageEntityIds.has(asset.entityId))) {
+  assert.doesNotMatch(imageCoverageSource, new RegExp(archived.entityId, "u"), `archived image binding remained consumable:${archived.entityId}`);
+}
 assert.doesNotMatch(fs.readFileSync(path.join(ROOT, "route-v2-image-assets.js"), "utf8"), /(?:fetch\(|XMLHttpRequest)/u);
 const imageAssetConsumerSource = fs.readFileSync(path.join(ROOT, "route-v2-image-assets.js"), "utf8");
 assert.match(imageAssetConsumerSource, /RouteV2ImageCoverage\?\.poiByEntityId\?\.\[entityId\]/u);

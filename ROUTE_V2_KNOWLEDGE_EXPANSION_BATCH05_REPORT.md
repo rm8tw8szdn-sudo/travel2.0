@@ -7,7 +7,7 @@ Generated: 2026-08-11T06:30:00.000Z
 - Waves: 4 (5 countries each)
 - Countries expanded: 20
 - Published additions: 4 Countries / 162 Cities / 1,197 POIs
-- Published totals: 99 Countries / 718 Cities / 4,766 POIs / 5,583 entities
+- Published totals: 55 Countries / 306 Cities / 2,101 POIs / 2,462 entities
 - Directed transport Evidence added: 218 (194 domestic + 24 cross-border)
 - Objective month-risk Evidence added: 80
 - Route-consumption checks: 52/52 PASS; external network calls: 0
@@ -29,18 +29,18 @@ Every Batch 05 country produced an exact-duration, single-country Route V2 resul
 
 ## Image asset expansion and historical backfill
 
-- Historical image debt discovered: 13
-- Country graphic covers available: 98/98
+- Historical image debt discovered: 183
+- Country graphic covers available: 38/38
 - Batch 05 Country graphic covers added: 20
-- Dedicated City covers: 600/718
-- Dedicated Core POI images: 212/282
-- Neutral placeholders: 188 (118 City + 70 Core POI)
-- Batch 05 trusted local images added: 246
+- Dedicated City covers: 0/306
+- Dedicated Core POI images: 0/105
+- Neutral placeholders: 411 (306 City + 105 Core POI)
+- Batch 05 trusted local images added: 20
 - Active invalid mappings: 0
-- Remaining needsBackfill: 188
+- Remaining needsBackfill: 411
 - Runtime external image requests: disabled
 
-Country resources are explicitly classified as non-photographic Country graphic covers. Verified dedicated destination images cover 600/718 Cities and 212/282 Core POIs; the remaining 188 images use neutral placeholders and remain in needsBackfill.
+Country resources are explicitly classified as non-photographic Country graphic covers. No City or POI currently has a verified dedicated destination image; all 411 missing City/Core POI images use the shared neutral placeholder and remain in needsBackfill.
 
 ## Evidence discipline
 
@@ -57,4 +57,4 @@ Country resources are explicitly classified as non-photographic Country graphic 
 - Explicit city alias regression: New York Toronto 10 days PASS with Q60 and Q172.
 - Extra cross-city checks: 5/5 PASS.
 - Back/Forward: PASS; Console error/warning: 0; external Evidence requests: 0; external image requests: 0.
-- Image semantic samples: correct local GB Country Cover, manifest-verified City imagery, and neutral multi-country placeholder.
+- Image semantic samples: correct local GB Country Cover, neutral London City placeholder, and neutral multi-country placeholder.

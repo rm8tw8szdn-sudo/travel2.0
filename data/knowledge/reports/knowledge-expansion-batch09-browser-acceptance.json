@@ -1,0 +1,90 @@
+{
+  "schemaVersion": "route-v2-knowledge-expansion-batch09-browser-acceptance-v1",
+  "testedAt": "2026-09-01T12:00:00.000Z",
+  "status": "PASS",
+  "runtime": {
+    "browser": "Codex In-app Browser",
+    "routeV2Enabled": true,
+    "canaryPercentage": 100,
+    "onlineEvidenceEnabled": false,
+    "isolatedRuntimeState": true
+  },
+  "searchAcceptance": {
+    "countryQueries": 20,
+    "successfulQueries": 20,
+    "focusedConstraintQueries": 5,
+    "focusedConstraintSuccesses": 5,
+    "routeDetailChecks": 1,
+    "countryDetailChecks": 1,
+    "cityDetailChecks": 1,
+    "backForwardChecks": 1,
+    "constraintPreservationFailures": 0,
+    "countryCodesObserved": [
+      "DZ", "GH", "SN", "ET", "NA", "BW", "MG", "MU", "KZ", "UZ",
+      "KG", "BD", "BT", "PK", "LA", "BN", "HN", "SV", "WS", "VU"
+    ]
+  },
+  "tripFootprintAcceptance": {
+    "flows": 1,
+    "crossCountry": {
+      "query": "Kazakhstan Uzbekistan 14 days",
+      "routeCountryCount": 2,
+      "routeCityCount": 6,
+      "tripCountryCount": 2,
+      "tripCityCount": 6,
+      "completedFootprintCountryDelta": 2,
+      "completedFootprintCityDelta": 6
+    },
+    "preExistingCompletedFootprintCountryCount": 0,
+    "preExistingCompletedFootprintCityCount": 0,
+    "completedFootprintCountryCount": 2,
+    "completedFootprintCityCount": 6,
+    "duplicateCityCount": 0,
+    "knowledgeEntityIdsPreserved": true,
+    "wikidataIdsPreserved": true,
+    "identityValidation": "real UI counts plus mandatory production TravelState identity verifier"
+  },
+  "p1TargetedAcceptance": {
+    "testedAt": "2026-09-04T10:00:00.000Z",
+    "browser": "Codex In-app Browser",
+    "cases": [
+      {
+        "query": "Accra 7 days",
+        "countryCodes": ["GH"],
+        "ghanaStockExchangeRendered": false
+      },
+      {
+        "query": "San Salvador El Salvador 7 days",
+        "countryCodes": ["SV"],
+        "cityQids": ["Q3110"],
+        "spuriousCountryCodes": []
+      },
+      {
+        "query": "Honduras 7 days",
+        "countryCodes": ["HN"],
+        "centroPenalRendered": false
+      }
+    ],
+    "brokenImages": 0,
+    "runtimeExternalImageRequests": 0,
+    "runtimeExternalEvidenceRequests": 0,
+    "consoleErrors": 0,
+    "consoleWarnings": 0
+  },
+  "imageAcceptance": {
+    "routeCardsRendered": 25,
+    "routeDetailsRendered": 1,
+    "countryDetailsRendered": 1,
+    "cityDetailsRendered": 1,
+    "neutralPlaceholdersRendered": true,
+    "wrongSemanticImages": 0,
+    "watermarkedImages": 0,
+    "brokenImages": 0,
+    "runtimeExternalImageRequests": 0,
+    "runtimeExternalEvidenceRequests": 0
+  },
+  "console": {
+    "errors": 0,
+    "warnings": 0
+  }
+}

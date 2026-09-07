@@ -3,6 +3,7 @@ const http = require("node:http");
 const path = require("node:path");
 const crypto = require("node:crypto");
 const { pathToFileURL } = require("node:url");
+const { createImageResponseCache } = require("./image-response-cache.js");
 const {
   DEFAULT_IMAGE_MAX_BYTES,
   DEFAULT_REQUEST_BODY_MAX_BYTES,
@@ -21,7 +22,7 @@ const routeImageCachePath = process.env.ROUTE_IMAGE_CACHE_PATH || path.join(root
 const routeImageCacheVersion = "verified-country-v9";
 const acceptedRoutesPath = process.env.ROUTE_ACCEPTED_REPOSITORY_PATH || path.join(root, ".route-v2-cache", "accepted-routes.json");
 const proxiedImageDiskCacheDir = process.env.ROUTE_IMAGE_PROXY_CACHE_DIR || path.join(root, ".route-v2-cache", "proxied-images");
-const proxiedImageCache = new Map();
+const proxiedImageCache = createImageResponseCache();
 const proxiedImageMaxBytes = DEFAULT_IMAGE_MAX_BYTES;
 const proxiedImageTimeoutMs = Number(process.env.ROUTE_IMAGE_PROXY_TIMEOUT_MS || 12000);
 const configuredRequestBodyMaxBytes = Number(process.env.ROUTE_REQUEST_BODY_MAX_BYTES || DEFAULT_REQUEST_BODY_MAX_BYTES);
@@ -277,10 +278,6 @@ async function proxyRemoteImage(url, response, signal, dependencies = {}) {
   const { body, contentType } = downloaded;
   proxiedImageCache.set(cacheKey, { body, contentType });
   writeProxiedImageDiskCache(cacheKey, body, contentType);
-  if (proxiedImageCache.size > 200) {
-    const oldestKey = proxiedImageCache.keys().next().value;
-    proxiedImageCache.delete(oldestKey);
-  }
   send(response, 200, body, {
     "content-type": contentType,
     "cache-control": "public, max-age=86400",

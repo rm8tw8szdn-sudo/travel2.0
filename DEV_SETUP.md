@@ -110,7 +110,7 @@ Temporary bundled runtime paths are not part of the project standard.
 
 ## Standard Project Startup
 
-This project currently has no `package.json`, so use the direct Node command:
+The private `package.json` defines `preview:travel`, `test`, and `test:smoke`. No dependencies are needed for these tests. You can start the server with `npm.cmd run preview:travel` or the direct Node command:
 
 ```powershell
 cd "<PROJECT_ROOT>"
@@ -134,7 +134,14 @@ Routes/Search page: http://127.0.0.1:4173/travel-collection/routes.html
 
 ## Standard Test Commands
 
-There is no package-level `test` script yet. After formal Node is installed, run targeted scripts directly:
+After formal Node is installed, run the dependency-free offline checks:
+
+```powershell
+npm.cmd test
+npm.cmd run test:smoke
+```
+
+These commands cover runtime regression tests and four existing offline verifiers. Other targeted scripts may require full data, browser dependencies, or services; classify them before running:
 
 ```powershell
 node scripts/verify-route-feed.mjs

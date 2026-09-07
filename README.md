@@ -29,6 +29,21 @@ npm run preview:travel
 
 也可以部署为普通静态网站，入口文件是 `index.html`。
 
+## 自动化验证
+
+使用正式安装的 Node.js 24，无需安装依赖即可运行本轮新增的离线测试：
+
+```bash
+npm test
+npm run test:smoke
+```
+
+PowerShell 中如遇脚本执行策略限制，使用 `npm.cmd`；也可使用 `pnpm.CMD test`。
+单元测试覆盖任务去重、任务历史、缓存容量、图片响应流释放和字节限制。
+Smoke 检查覆盖安全边界、图片代理缓存、详情加载及仓库架构。
+`scripts/` 下其他专项验证可能依赖 Playwright、完整数据或外部服务，不属于此离线测试入口。
+完整审查结果和验证范围见 [代码审查报告](docs/code-review-2026-09-07.md)。
+
 ## 数据与旧原型说明
 
 - 新版数据源是 `travel-data.js`，搜索入口是 `travel-search.js`，用户状态与同步规则在 `travel-state.js`。

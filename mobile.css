@@ -5727,7 +5727,7 @@ bottom-tab-bar {
 
 .route-detail-summary {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   margin-top: 12px;
   padding: 9px 0;
   border-radius: var(--radius-card);
@@ -5737,7 +5737,7 @@ bottom-tab-bar {
 
 .route-detail-summary span {
   display: grid;
-  grid-template-columns: 16px 1fr;
+  grid-template-columns: 16px minmax(0, 1fr);
   gap: 2px 5px;
   align-items: center;
   min-width: 0;
@@ -5771,6 +5771,9 @@ bottom-tab-bar {
 
 .route-detail-summary strong,
 .route-detail-summary a {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
   color: var(--color-text-main);
   font-size: 13px;
   line-height: 1;

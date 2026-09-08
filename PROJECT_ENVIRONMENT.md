@@ -83,8 +83,8 @@ Expected:
 
 Current project state:
 
-- Private `package.json` with preview, offline unit tests, and smoke checks (added 2026-09-07)
-- No `package-lock.json`
+- Private `package.json` with preview, offline unit tests, smoke checks, and Playwright browser acceptance
+- `package-lock.json` pins the browser test dev dependency; use `npm.cmd ci` to reproduce it
 - No `pnpm-lock.yaml`
 - Static frontend pages plus `server.js`
 - Local preview server is `server.js`
@@ -123,10 +123,12 @@ Do not use:
 
 Run `npm.cmd test` for deterministic runtime unit tests and `npm.cmd run test:smoke` for four offline integration/contract verifiers. Neither requires dependencies. Other script-level verifiers retain their own data/browser/service prerequisites.
 
+Real browser acceptance uses `npm.cmd ci`, `npm.cmd run browser:install`, then `npm.cmd run test:browser`. It starts an isolated production server and runs Chromium at three viewport widths. See `docs/browser-acceptance-2026-09-08.md` for tested scope and output locations.
+
 Examples after formal Node is installed:
 
 ```powershell
-node scripts/verify-route-feed.mjs
+node scripts/verify-route-v2-prelaunch-browser.mjs
 node scripts/verify-search-v1.mjs
 node scripts/phase-regression-test.js
 ```

@@ -3,10 +3,18 @@
   "version": "0.0.0",
   "private": true,
   "type": "commonjs",
-  "engines": { "node": ">=24" },
+  "engines": {
+    "node": ">=24"
+  },
   "scripts": {
     "preview:travel": "node server.js",
     "test": "node --test tests/*.test.mjs",
+    "browser:install": "node scripts/browser-test.cjs install chromium",
+    "test:browser": "node scripts/browser-test.cjs test",
+    "test:browser:report": "node scripts/browser-test.cjs show-report",
     "test:smoke": "node scripts/verify-route-v2-server-security-boundaries.mjs && node scripts/verify-route-v2-image-proxy-network-boundary.mjs && node scripts/verify-route-v2-generated-detail-stability.mjs && node scripts/verify-route-repository-architecture.mjs"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.63.0"
   }
 }

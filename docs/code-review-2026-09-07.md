@@ -22,7 +22,7 @@
 - 修复后 `npm.cmd test`：22/22 通过。
 - `npm.cmd run test:smoke` 覆盖已有安全边界、图片代理网络边界、详情加载稳定性及仓库架构验证。全部通过；图片上游使用 mock，真实外网请求为零。
 - 修改后的生产 JS/MJS 语法检查通过；`git diff --check` 通过。
-- 另行尝试 `node scripts/verify-route-feed.mjs`：因缺少 `playwright` 无法启动。未将其计入通过结果，也未运行完整浏览器/线上路线生成验收。
+- 首轮尝试 `node scripts/verify-route-feed.mjs` 因缺少 `playwright` 无法启动。后续确认该脚本已退役、硬编码 macOS 路径和旧八卡规则，因此不能仅靠安装依赖恢复它。2026-09-08 已新增跨平台 Playwright 验收：21/21 通过，并发现修复详情来源长文本溢出；范围与证据见 [浏览器验收报告](browser-acceptance-2026-09-08.md)。未执行线上路线生成验收。
 
 性能结论限定为资源上限与算法行为：TTL 写入淘汰 O(1)，图片缓存淘汰按被移除项数计费，图片内容保留量最多 64 MiB。没有实际线上流量基准，因此不宣称延迟或吞吐提升百分比。总进程 RSS、并发下载中的缓冲和磁盘缓存不包含在此内存缓存上限内。
 
@@ -33,7 +33,7 @@
 - `server.js` 仍混合 HTTP 路由、图片选取与磁盘持久化，并在请求路径使用同步文件读写。建议下一轮以请求负载测量为依据，逐步拆分图片服务与异步存储；本次仅提取可独立验证的图片缓存职责。
 - `route-composition-planner.mjs`、`search-intent-parser.mjs` 和 `routes.js` 仍是大型模块。后续应先补跨模块行为测试，再按策略选择、意图解析和页面状态拆分，避免一次迁移全部历史规则。
 - 任务历史仍没有保留期限，图片磁盘缓存也没有整体字节预算。这些需要独立的保留/失效策略；本次未删除已有数据。
-- 获取源码时 Git 大资源下载过慢，使用 GitHub API 获取并逐个核对 blob SHA。当前本地检出省略 assets/vendor/legacy/data 等资源，Git 用 skip-worktree 标记，不构成提交删除。完整页面验收需完整资源及浏览器依赖。
+- 获取源码时 Git 大资源下载过慢，首轮省略 assets/vendor/legacy/data 等资源，用 skip-worktree 标记。后续浏览器验收已按原提交恢复并校验 assets/data/vendor 下 1,347 个资源文件；legacy 归档仍未加载，不构成提交删除。
 - 没有修改已接受路线、生成缓存、知识库数据或发布开关。
 
 ## 执行

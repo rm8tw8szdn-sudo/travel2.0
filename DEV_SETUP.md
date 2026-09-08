@@ -141,10 +141,23 @@ npm.cmd test
 npm.cmd run test:smoke
 ```
 
-These commands cover runtime regression tests and four existing offline verifiers. Other targeted scripts may require full data, browser dependencies, or services; classify them before running:
+These commands cover runtime regression tests and four existing offline verifiers. For real Chromium acceptance, use a full checkout with published assets and data:
 
 ```powershell
-node scripts/verify-route-feed.mjs
+npm.cmd ci
+npm.cmd run browser:install
+npm.cmd run test:browser
+npm.cmd run test:browser:report
+```
+
+The npm lockfile pins Playwright. Browsers are stored under `.cache/ms-playwright/` by the cross-platform launcher. On Linux, `npm run browser:install -- --with-deps` can install required system libraries. The tests launch the production server automatically on localhost port 4287 (`PW_PORT` overrides it), isolate all runtime storage, disable generation/refill, and close the server using IPC before cleaning temporary data. They do not require a running preview server. HTML reports and screenshots/traces are ignored Git output.
+
+`verify-route-feed.mjs` is retired and hardcodes an old macOS/eight-card contract. The supported Playwright entry point is `npm.cmd run test:browser`. The files named `verify-route-v2-prelaunch-browser.mjs` and `verify-route-v2-six-card-infinite-scroll.mjs` provide source/logic checks, not real browser automation.
+
+Other targeted scripts may require full data, browser dependencies, or services; classify them before running:
+
+```powershell
+node scripts/verify-route-v2-prelaunch-browser.mjs
 node scripts/verify-search-v1.mjs
 node scripts/phase-regression-test.js
 ```

@@ -1,102 +1,58 @@
 const path = require("node:path");
-const { spawn, spawnSync } = require("node:child_process");
+const { spawn } = require("node:child_process");
+const { once } = require("node:events");
+
+async function withTimeout(promise, milliseconds, message) {
+  let timer;
+  try {
+    return await Promise.race([
+      promise,
+      new Promise((_, reject) => { timer = setTimeout(() => reject(new Error(message)), milliseconds); }),
+    ]);
+  } finally {
+    clearTimeout(timer);
+  }
+}
 
 module.exports = async function globalSetup() {
   const port = Number(process.env.PW_PORT || 4287);
   if (!Number.isSafeInteger(port) || port < 1 || port > 65535) {
     throw new Error("PW_PORT must be an integer from 1 to 65535.");
   }
-  const wrapper = spawn(process.execPath, [path.join(__dirname, "server.cjs")], {
+  const child = spawn(process.execPath, [path.join(__dirname, "server.cjs")], {
     cwd: path.resolve(__dirname, "../.."),
     env: { ...process.env, PW_PORT: String(port) },
     stdio: ["ignore", "inherit", "inherit", "ipc"],
-    detached: process.platform !== "win32",
     windowsHide: true,
   });
-  let closed = null;
-  const closedPromise = new Promise((resolve) => {
-    wrapper.once("close", (code, signal) => {
-      closed = { code, signal };
-      resolve(closed);
-    });
-  });
-
-  async function waitForExit(timeoutMs) {
-    let timer;
-    try {
-      return await Promise.race([
-        closedPromise,
-        new Promise((_, reject) => {
-          timer = setTimeout(() => reject(new Error("Browser test server did not stop within the shutdown timeout.")), timeoutMs);
-        }),
-      ]);
-    } finally {
-      clearTimeout(timer);
-    }
-  }
-
+  const closed = new Promise(resolve => child.once("close", code => resolve(code)));
   let teardownPromise;
   function teardown() {
-    if (teardownPromise) return teardownPromise;
-    teardownPromise = (async () => {
-      if (!closed && wrapper.connected) {
-        wrapper.send({ type: "stop" }, (error) => {
-          // Closing IPC is also a shutdown request understood by the wrapper.
-          if (error && wrapper.connected) wrapper.disconnect();
-        });
-      }
-      let result;
+    return teardownPromise ||= (async () => {
+      if (child.connected) child.send({ type: "stop" }, error => { if (error && child.connected) child.disconnect(); });
+      let code;
       try {
-        result = await waitForExit(15_000);
+        code = await withTimeout(closed, 15_000, "Browser test server did not stop; temporary data may remain.");
       } catch (error) {
-        // Last resort for an unresponsive wrapper: terminate only this run's
-        // owned process tree. Normal teardown uses IPC and cleans its temp data.
-        if (!closed && Number.isSafeInteger(wrapper.pid) && wrapper.pid > 0) {
-          if (process.platform === "win32") {
-            spawnSync("taskkill.exe", ["/PID", String(wrapper.pid), "/T", "/F"], {
-              stdio: "ignore", windowsHide: true, timeout: 5000,
-            });
-          } else {
-            try { process.kill(-wrapper.pid, "SIGKILL"); } catch (killError) {
-              if (killError.code !== "ESRCH") throw killError;
-            }
-          }
-        }
-        throw new Error(`${error.message} The logged temporary directory may remain.`, { cause: error });
+        // The child now hosts HTTP directly, so no process-tree kill is needed.
+        child.kill("SIGKILL");
+        if (child.connected) child.disconnect();
+        child.unref();
+        throw error;
       }
-      if (result.code !== 0) {
-        throw new Error(`Browser test server exited unexpectedly (code ${result.code}, signal ${result.signal || "none"}).`);
-      }
+      if (code !== 0) throw new Error("Browser test server exited unexpectedly (code " + code + ").");
     })();
-    return teardownPromise;
   }
 
   try {
-    await new Promise((resolve, reject) => {
-      const timer = setTimeout(() => complete(new Error("Browser test server did not become ready within 90 seconds.")), 90_000);
-      function complete(error) {
-        clearTimeout(timer);
-        wrapper.off("message", onMessage);
-        wrapper.off("error", onError);
-        wrapper.off("close", onClose);
-        if (error) reject(error);
-        else resolve();
-      }
-      function onMessage(message) {
-        if (message?.type === "ready" && message.port === port) complete();
-      }
-      function onError(error) { complete(error); }
-      function onClose(code, signal) {
-        complete(new Error(`Browser test server exited before readiness (code ${code}, signal ${signal || "none"}).`));
-      }
-      wrapper.on("message", onMessage);
-      wrapper.once("error", onError);
-      wrapper.once("close", onClose);
-    });
+    const [message] = await withTimeout(Promise.race([
+      once(child, "message"),
+      closed.then(code => { throw new Error("Browser test server exited before readiness (code " + code + ")."); }),
+    ]), 90_000, "Browser test server did not become ready within 90 seconds.");
+    if (message?.type !== "ready" || message.port !== port) throw new Error("Unexpected browser server readiness message.");
   } catch (error) {
-    await teardown().catch((cleanupError) => console.error(cleanupError.message));
+    await teardown().catch(cleanupError => console.error(cleanupError.message));
     throw error;
   }
-
   return teardown;
 };

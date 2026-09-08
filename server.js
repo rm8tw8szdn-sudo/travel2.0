@@ -1552,11 +1552,17 @@ async function main() {
     }
   });
 
-  server.listen(port, host, () => {
-    console.log(`Knowledge Entity Layer: ${knowledgeEntitySummary.countries} countries, ${knowledgeEntitySummary.cities} cities, ${knowledgeEntitySummary.pois} POIs`);
-    console.log(`Travel Collection preview: http://${host}:${port}/travel-collection/`);
-    console.log(`Routes/Search page: http://${host}:${port}/travel-collection/routes.html`);
+  await new Promise((resolve, reject) => {
+    server.once("error", reject);
+    server.listen(port, host, () => {
+      server.off("error", reject);
+      resolve();
+    });
   });
+  console.log(`Knowledge Entity Layer: ${knowledgeEntitySummary.countries} countries, ${knowledgeEntitySummary.cities} cities, ${knowledgeEntitySummary.pois} POIs`);
+  console.log(`Travel Collection preview: http://${host}:${port}/travel-collection/`);
+  console.log(`Routes/Search page: http://${host}:${port}/travel-collection/routes.html`);
+  return server;
 }
 
 if (require.main === module) {

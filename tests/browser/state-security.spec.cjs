@@ -39,3 +39,16 @@ test('malformed city fragments fall back without a page error', async ({ page })
   await expect(page.locator('[data-city-name]')).toHaveText('奥斯陆');
   expect(pageErrors).toEqual([]);
 });
+
+test('server rejects internal files and malformed discovery payloads', async ({ request }) => {
+  for (const path of ['.git/HEAD', '.cache/runtime.json', 'server.js', 'package.json']) {
+    expect((await request.get(`/travel-collection/${path}`)).status()).toBe(404);
+  }
+  for (const data of [null, [], { mode: 'feed', query: { text: '东京' } }]) {
+    const response = await request.post('/api/routes/discovery', { data });
+    expect(response.status()).toBe(400);
+    const payload = await response.json();
+    expect(payload.error.code).toBe('INVALID_INPUT');
+    expect(payload.error.details).toBeUndefined();
+  }
+});

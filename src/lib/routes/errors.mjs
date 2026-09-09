@@ -12,6 +12,5 @@ export function asRouteDiscoveryError(error) {
   if (error instanceof RouteDiscoveryError) return error;
   return new RouteDiscoveryError("DISCOVERY_FAILED", "Route discovery failed.", {
     status: 502,
-    details: error instanceof Error ? error.message : String(error),
   });
 }

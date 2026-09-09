@@ -3,6 +3,7 @@ import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { reportMissingVerifierPrerequisites } from "./lib/verifier-prerequisites.mjs";
 
 import { auditRouteV2Cache } from "../src/lib/routes/cache-baseline-v2.mjs";
 import {
@@ -61,6 +62,11 @@ const requiredFiles = [
 ];
 
 try {
+  reportMissingVerifierPrerequisites({
+    verifier: "route-v2-cache-semantic-integrity",
+    files: requiredFiles.map((relativePath) => path.join(cacheRoot, relativePath)),
+    restore: "Materialize the route-v2 runtime cache fixture before running this integration verifier.",
+  });
   fs.mkdirSync(isolatedCache, { recursive: true });
   for (const relativePath of requiredFiles) {
     fs.copyFileSync(path.join(cacheRoot, relativePath), path.join(isolatedCache, relativePath));

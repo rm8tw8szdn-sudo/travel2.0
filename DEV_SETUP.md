@@ -154,6 +154,8 @@ The npm lockfile pins Playwright. Browsers are stored under `.cache/ms-playwrigh
 
 `verify-route-feed.mjs` is retired and hardcodes an old macOS/eight-card contract. The supported Playwright entry point is `npm.cmd run test:browser`. The files named `verify-route-v2-prelaunch-browser.mjs` and `verify-route-v2-six-card-infinite-scroll.mjs` provide source/logic checks, not real browser automation.
 
+Some integration verifiers require generated `.route-v2-cache` fixtures or the Git LFS objects under `data/knowledge/raw`. Missing prerequisites are reported as structured `BLOCKED` output with exit code 2; the mandatory verifier gate treats that as a failure, never as a pass. Restore LFS data with `git lfs pull`. The current raw knowledge corpus is approximately 1.51 GB.
+
 Other targeted scripts may require full data, browser dependencies, or services; classify them before running:
 
 ```powershell

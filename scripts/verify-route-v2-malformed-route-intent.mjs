@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
+import { reportMissingVerifierPrerequisites } from "./lib/verifier-prerequisites.mjs";
 import {
   attachRouteIntentEnvelope,
   createAcceptedRouteRepository,
@@ -271,7 +272,13 @@ fs.writeFileSync(readyPath, JSON.stringify(readyPayload, null, 2), "utf8");
 assert.deepEqual(readyPool.list().map((route) => route.id), ["ready-valid"]);
 
 const acceptedPath = path.join(temporaryRoot, "accepted-routes.json");
-const acceptedControlPayload = JSON.parse(fs.readFileSync(path.resolve(".route-v2-cache", "accepted-routes.json"), "utf8"));
+const acceptedControlPath = path.resolve(".route-v2-cache", "accepted-routes.json");
+reportMissingVerifierPrerequisites({
+  verifier: "route-v2-malformed-route-intent",
+  files: [acceptedControlPath],
+  restore: "Materialize the accepted-route runtime fixture before running this integration verifier.",
+});
+const acceptedControlPayload = JSON.parse(fs.readFileSync(acceptedControlPath, "utf8"));
 const acceptedControl = acceptedControlPayload.records.find((record) => (
   record.id === "gold-case-accepted-gold-c45-45-mekong-discovery"
 ));

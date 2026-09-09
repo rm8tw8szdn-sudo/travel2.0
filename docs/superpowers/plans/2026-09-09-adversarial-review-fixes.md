@@ -124,4 +124,4 @@
 
 - [x] Run `npm.cmd test`, `npm.cmd run test:smoke`, `npm.cmd run test:browser`, the adversarial probes, and `npm.cmd audit`.
 - [x] Re-run the previously passing constraint, mutation, semantic, and failure-propagation verifiers; report LFS-dependent results separately.
-- [ ] Check `git diff --check`, inspect every changed file, update review evidence, push the branch, and update draft PR #30 without merging it.
+- [x] Check `git diff --check`, inspect every changed file, update review evidence, push the branch, and update draft PR #30 without merging it.

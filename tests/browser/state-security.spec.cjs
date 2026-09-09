@@ -16,3 +16,18 @@ test('trip names render as text on the home page', async ({ page }) => {
   await expect(page.getByText(payload, { exact: true }).first()).toBeVisible();
   expect(await page.evaluate(() => window.__auditExecuted === true)).toBe(false);
 });
+
+test('reset query parameters cannot erase travel state', async ({ page }) => {
+  await page.goto('/travel-collection/mobile.html');
+  await page.evaluate(() => window.TravelState.updateTravelState(state => {
+    state.trips = [{
+      id: 'state-preservation-trip', name: '必须保留的行程', status: 'upcoming',
+      start: '2099.01.01', end: '2099.01.04', countryIds: ['JP'], cityIds: ['JP-TYO'],
+    }];
+    return state;
+  }));
+
+  await page.goto('/travel-collection/mobile.html?reset=empty');
+  expect(await page.evaluate(() => window.TravelState.readTravelState().trips.map(trip => trip.id)))
+    .toContain('state-preservation-trip');
+});

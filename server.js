@@ -12,7 +12,7 @@ const {
   downloadTrustedImage,
   parseTrustedImageUrl,
   readRequestBody,
-  safeStaticPath: resolveSafeStaticPath,
+  resolvePublicStaticPath,
 } = require("./server-security.js");
 
 const root = __dirname;
@@ -49,7 +49,7 @@ function send(response, status, body, headers = {}) {
 }
 
 function safeStaticPath(urlPath) {
-  return resolveSafeStaticPath(root, urlPath);
+  return resolvePublicStaticPath(root, urlPath);
 }
 
 async function readBody(request) {

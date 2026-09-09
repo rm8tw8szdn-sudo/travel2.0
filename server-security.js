@@ -20,6 +20,18 @@ const ALLOWED_RASTER_IMAGE_TYPES = new Set([
   "image/png",
   "image/webp",
 ]);
+const PUBLIC_DIRECTORIES = new Set(["assets", "data", "vendor"]);
+const PUBLIC_TOP_LEVEL_FILES = new Set([
+  "app-shared.js", "atlas.html", "atlas.js", "city-detail.js", "city-oslo.html",
+  "country-detail.js", "country-japan.html", "detail-enrichment.js", "favorites.html",
+  "favorites.js", "footprint.html", "footprint.js", "home-components.js", "index.html",
+  "knowledge-city-detail.js", "mobile.css", "mobile.html", "profile.html", "profile.js",
+  "route-detail-load-controller.js", "route-detail.html", "route-detail.js",
+  "route-feed-bootstrap.js", "route-feed-preload.js", "route-v2-cache-manifest-v2.json",
+  "route-v2-image-assets.js", "route-v2-image-coverage.js", "routes.html", "routes.js",
+  "travel-data.js", "travel-search.js", "travel-state.js", "trips.html", "trips.js",
+  "world-map.js",
+]);
 
 const blockedAddresses = new net.BlockList();
 for (const [network, prefix] of [
@@ -80,6 +92,15 @@ function safeStaticPath(root, urlPath) {
   const relative = path.relative(base, resolved);
   if (!relative || relative === ".." || relative.startsWith(`..${path.sep}`) || path.isAbsolute(relative)) return "";
   return resolved;
+}
+
+function resolvePublicStaticPath(root, urlPath) {
+  const resolved = safeStaticPath(root, urlPath);
+  if (!resolved) return "";
+  const relative = path.relative(path.resolve(String(root || "")), resolved).replaceAll("\\", "/");
+  if (!relative || relative.split("/").some((part) => part.startsWith("."))) return "";
+  if (!relative.includes("/")) return PUBLIC_TOP_LEVEL_FILES.has(relative) ? resolved : "";
+  return PUBLIC_DIRECTORIES.has(relative.split("/", 1)[0]) ? resolved : "";
 }
 
 async function collectBoundedBody(body, maxBytes, createLimitError) {
@@ -251,6 +272,7 @@ module.exports = Object.freeze({
   isBlockedIpAddress,
   parseTrustedImageUrl,
   readRequestBody,
+  resolvePublicStaticPath,
   safeStaticPath,
   validateTrustedImageUrl,
 });

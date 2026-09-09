@@ -1,10 +1,32 @@
 import test from "node:test";
 import assert from "node:assert/strict";
+import path from "node:path";
 import { Readable } from "node:stream";
 import security from "../server-security.js";
 
 const lookup = async () => [{ address: "8.8.8.8", family: 4 }];
 const url = "https://upload.wikimedia.org/test.jpg";
+
+test("public static paths expose only application assets", () => {
+  const root = path.resolve("C:/audit/travel");
+  assert.equal(security.resolvePublicStaticPath(root, "/travel-collection/mobile.html"), path.join(root, "mobile.html"));
+  assert.equal(security.resolvePublicStaticPath(root, "/travel-collection/assets/icon.svg"), path.join(root, "assets", "icon.svg"));
+  assert.equal(security.resolvePublicStaticPath(root, "/travel-collection/data/countries.zh.json"), path.join(root, "data", "countries.zh.json"));
+  assert.equal(security.resolvePublicStaticPath(root, "/travel-collection/vendor/d3.min.js"), path.join(root, "vendor", "d3.min.js"));
+  for (const internal of [
+    "/travel-collection/.git/HEAD",
+    "/travel-collection/.cache/runtime.json",
+    "/travel-collection/.env",
+    "/travel-collection/server.js",
+    "/travel-collection/server-security.js",
+    "/travel-collection/package.json",
+    "/travel-collection/tests/server-security.test.mjs",
+    "/travel-collection/scripts/verify.mjs",
+    "/travel-collection/src/lib/routes/index.mjs",
+    "/travel-collection/docs/report.md",
+    "/travel-collection/%2egit/HEAD",
+  ]) assert.equal(security.resolvePublicStaticPath(root, internal), "", internal);
+});
 
 for (const [name, statusCode, headers, error] of [
   ["HTTP failure", 503, {}, /image_upstream_unavailable/],

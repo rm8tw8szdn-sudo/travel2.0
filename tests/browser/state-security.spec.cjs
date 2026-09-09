@@ -31,3 +31,11 @@ test('reset query parameters cannot erase travel state', async ({ page }) => {
   expect(await page.evaluate(() => window.TravelState.readTravelState().trips.map(trip => trip.id)))
     .toContain('state-preservation-trip');
 });
+
+test('malformed city fragments fall back without a page error', async ({ page }) => {
+  const pageErrors = [];
+  page.on('pageerror', error => pageErrors.push(error.message));
+  await page.goto('/travel-collection/city-oslo.html#%');
+  await expect(page.locator('[data-city-name]')).toHaveText('奥斯陆');
+  expect(pageErrors).toEqual([]);
+});

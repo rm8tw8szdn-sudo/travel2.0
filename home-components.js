@@ -11,6 +11,7 @@ const icons = {
     </svg>
   `,
 };
+const escapeHomeHtml = (value) => window.TravelState?.escapeHtml?.(value) ?? String(value ?? "");
 
 const tabs = [
   {
@@ -47,8 +48,8 @@ class GreetingHeader extends HTMLElement {
     this.innerHTML = `
       <section class="home-greeting" aria-label="问候">
         <div data-profile-home-link>
-          <h1>${this.getAttribute("title") || `你好，${nickname}`} <span aria-hidden="true">${this.getAttribute("emoji") || "👋"}</span></h1>
-          <p>${this.getAttribute("subtitle") || "每一次出发，都是世界给你的礼物。"}</p>
+          <h1>${escapeHomeHtml(this.getAttribute("title") || `你好，${nickname}`)} <span aria-hidden="true">${escapeHomeHtml(this.getAttribute("emoji") || "👋")}</span></h1>
+          <p>${escapeHomeHtml(this.getAttribute("subtitle") || "每一次出发，都是世界给你的礼物。")}</p>
         </div>
         <button class="home-bell-button notification-bell" type="button" aria-label="通知" data-notification-bell>${icons.bell}<i data-notification-badge>3</i></button>
       </section>
@@ -97,13 +98,13 @@ class TripPreviewCard extends HTMLElement {
     const date = start ? `出发日期：${start}` : this.getAttribute("empty-date") || "从行程页添加计划";
     const cover = homeTripCover(trip, state);
     this.innerHTML = `
-      <section class="home-next-section" aria-label="${this.getAttribute("label") || "下一目标"}">
-        <h2>${this.getAttribute("label") || "下一目标"}</h2>
+      <section class="home-next-section" aria-label="${escapeHomeHtml(this.getAttribute("label") || "下一目标")}">
+        <h2>${escapeHomeHtml(this.getAttribute("label") || "下一目标")}</h2>
         <article class="home-next-card ${trip ? "" : "is-empty"}">
-          ${trip ? `<img class="home-next-cover" src="${this.getAttribute("cover-src") || cover}" alt="${this.getAttribute("cover-alt") || `${title}封面图`}" loading="lazy" decoding="async" />` : `<span class="home-next-cover home-next-empty-cover" aria-hidden="true"></span>`}
+          ${trip ? `<img class="home-next-cover" src="${escapeHomeHtml(this.getAttribute("cover-src") || cover)}" alt="${escapeHomeHtml(this.getAttribute("cover-alt") || `${title}封面图`)}" loading="lazy" decoding="async" />` : `<span class="home-next-cover home-next-empty-cover" aria-hidden="true"></span>`}
           <div class="home-next-copy">
-            <h3>${title}</h3>
-            <p>${date}</p>
+            <h3>${escapeHomeHtml(title)}</h3>
+            <p>${escapeHomeHtml(date)}</p>
           </div>
           ${trip ? icons.arrow : ""}
         </article>
@@ -124,7 +125,7 @@ class RecentTripCard extends HTMLElement {
     const countryName = tripPlaceNames(trip || {}, state).split("、")[0] || "目的地";
     const chips = (this.getAttribute("chips") || `${countryName},${cityCount}城市,${countryCount}国家`)
       .split(",")
-      .map((chip) => `<span>${chip.trim()}</span>`)
+      .map((chip) => `<span>${escapeHomeHtml(chip.trim())}</span>`)
       .join("");
     const title = trip?.name || this.getAttribute("empty-title") || "还没有完成旅程";
     const date = trip?.start && trip?.end ? `${trip.start} - ${shortDate(trip.end)}` : this.getAttribute("empty-date") || "完成旅程后会显示在这里";
@@ -132,12 +133,12 @@ class RecentTripCard extends HTMLElement {
 
     this.innerHTML = `
       <section class="home-recent-section" aria-label="最近旅程">
-        <h2>${this.getAttribute("section-title") || "最近旅程"}</h2>
+        <h2>${escapeHomeHtml(this.getAttribute("section-title") || "最近旅程")}</h2>
         <article class="home-recent-card ${trip ? "" : "is-empty"}">
-          ${trip ? `<img class="home-recent-cover" src="${this.getAttribute("cover-src") || cover}" alt="${this.getAttribute("cover-alt") || `${title}封面图`}" loading="lazy" decoding="async" />` : `<span class="home-recent-cover home-recent-empty-cover" aria-hidden="true"></span>`}
+          ${trip ? `<img class="home-recent-cover" src="${escapeHomeHtml(this.getAttribute("cover-src") || cover)}" alt="${escapeHomeHtml(this.getAttribute("cover-alt") || `${title}封面图`)}" loading="lazy" decoding="async" />` : `<span class="home-recent-cover home-recent-empty-cover" aria-hidden="true"></span>`}
           <div class="home-recent-copy">
-            <h3>${title}</h3>
-            <p>${date}</p>
+            <h3>${escapeHomeHtml(title)}</h3>
+            <p>${escapeHomeHtml(date)}</p>
             ${trip ? `<div class="home-recent-chips" aria-label="旅程标签">${chips}</div>` : ""}
           </div>
           ${icons.arrow}

@@ -232,6 +232,12 @@
     return JSON.parse(JSON.stringify(value));
   }
 
+  function escapeHtml(value) {
+    return String(value ?? "").replace(/[&<>"']/g, (character) => ({
+      "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;",
+    })[character]);
+  }
+
   function defaultData(key, fallback) {
     return clone(TravelData[key] || fallback);
   }
@@ -1179,6 +1185,7 @@
   const api = {
     TRAVEL_STATE_STORAGE_KEY,
     DEFAULT_TRIP_COVER,
+    escapeHtml,
     createDefaultTravelState,
     createEmptyTravelState,
     recalculateTravelState,

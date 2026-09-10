@@ -1,0 +1,405 @@
+{
+  "schemaVersion": "route-v2-image-debt-recovery02-final-summary/v1",
+  "generatedAt": "2026-09-09T09:00:00.000Z",
+  "errors": [],
+  "publishedTruth": {
+    "countries": 119,
+    "cities": 833,
+    "pois": 3963,
+    "entities": 4915,
+    "quarantinedPois": 1416
+  },
+  "before": {
+    "sourceMain": "826439f41523500ad805d0bcb9966a630e90b859",
+    "assets": 997,
+    "dedicatedCity": 600,
+    "dedicatedCorePoi": 132,
+    "needsBackfill": 443,
+    "cityDebt": 233,
+    "corePoiDebt": 210
+  },
+  "auditedDebt": 443,
+  "recovered": {
+    "total": 404,
+    "city": 223,
+    "corePoi": 181
+  },
+  "remaining": {
+    "total": 39,
+    "city": 10,
+    "corePoi": 29,
+    "reasonBreakdown": {
+      "ENTITY_AMBIGUOUS": 4,
+      "IMAGE_TOO_LOW_QUALITY": 25,
+      "LICENSE_UNVERIFIED": 1,
+      "NO_EXACT_IMAGE": 7,
+      "ONLY_DUPLICATE_SOURCE": 1,
+      "SOURCE_UNAVAILABLE": 1
+    },
+    "exhausted": 39
+  },
+  "visualAudit": {
+    "reviewed": 417,
+    "passed": 404,
+    "rejected": 13,
+    "pages": 21,
+    "rounds": [
+      {
+        "roundId": "remaining56-resume-20260909",
+        "reviewed": 30,
+        "passed": 11,
+        "rejected": 19,
+        "previousReviewed": 416,
+        "previousPassed": 387,
+        "previousRejected": 29
+      },
+      {
+        "roundId": "remaining45-20260909",
+        "reviewed": 8,
+        "passed": 3,
+        "rejected": 5,
+        "previousReviewed": 413,
+        "previousPassed": 398,
+        "previousRejected": 15
+      },
+      {
+        "roundId": "hard42-20260909-final",
+        "reviewed": 24,
+        "passed": 3,
+        "rejected": 21,
+        "previousReviewed": 414,
+        "previousPassed": 401,
+        "previousRejected": 13
+      }
+    ]
+  },
+  "current": {
+    "assets": 1401,
+    "countryCover": "118/118",
+    "dedicatedCity": "823/833",
+    "dedicatedCorePoi": "313/342",
+    "needsBackfill": 39,
+    "invalidMapping": 0
+  },
+  "newAssets": {
+    "files": 404,
+    "bytes": 87917096,
+    "averageBytes": 217617,
+    "medianBytes": 254066,
+    "p95Bytes": 298018,
+    "largerThan300Kb": 0,
+    "largerThan500Kb": 0
+  },
+  "provenance": {
+    "total": 404,
+    "complete": 404,
+    "licenseComplete": 404,
+    "licenseUrlComplete": 404,
+    "attributionRequired": 357,
+    "creatorCompleteWhereRequired": 357,
+    "attributionCompleteWhereRequired": 357
+  },
+  "quality": {
+    "exactDuplicateGroups": 0,
+    "unsafeVisualDuplicatePairs": 0,
+    "missingFiles": 0,
+    "invalidMappings": 0,
+    "quarantinedTargets": 0
+  },
+  "hardRecovery": [
+    {
+      "qid": "Q27044947",
+      "name": "Africa Safari Adventure Park",
+      "type": "Core POI",
+      "conclusion": "remaining/exhausted",
+      "reason": "Wikidata P18, exact structured depicts, multilingual Wikipedia, QID-linked Commons categories, official source, Openverse and bounded Commons name search produced no admissible exact photograph."
+    },
+    {
+      "qid": "Q12242728",
+      "name": "Al Darah Mosque",
+      "type": "Core POI",
+      "conclusion": "remaining/exhausted",
+      "reason": "Wikidata P18, exact structured depicts, multilingual Wikipedia, QID-linked Commons categories, official source, Openverse and bounded Commons name search produced no admissible exact photograph."
+    },
+    {
+      "qid": "Q131686938",
+      "name": "Al Madi Mosque",
+      "type": "Core POI",
+      "conclusion": "remaining/exhausted",
+      "reason": "Wikidata P18, exact structured depicts, multilingual Wikipedia, QID-linked Commons categories, official source, Openverse and bounded Commons name search produced no admissible exact photograph."
+    },
+    {
+      "qid": "Q13165844",
+      "name": "Alamyshyk Too",
+      "type": "Core POI",
+      "conclusion": "remaining/exhausted",
+      "reason": "Wikidata P18, exact structured depicts, multilingual Wikipedia, QID-linked Commons categories, official source, Openverse and bounded Commons name search produced no admissible exact photograph."
+    },
+    {
+      "qid": "Q1817541",
+      "name": "Alexander Nevsky Cathedral",
+      "type": "Core POI",
+      "conclusion": "recovered",
+      "reason": "Accepted after exact-entity, license, source-file and visual review."
+    },
+    {
+      "qid": "Q4729512",
+      "name": "All Saints Church, Peshawar",
+      "type": "Core POI",
+      "conclusion": "remaining/exhausted",
+      "reason": "Wikidata P18, exact structured depicts, multilingual Wikipedia, QID-linked Commons categories, official source, Openverse and bounded Commons name search produced no admissible exact photograph."
+    },
+    {
+      "qid": "Q4063561",
+      "name": "Alpspitz",
+      "type": "Core POI",
+      "conclusion": "remaining/exhausted",
+      "reason": "Only a relief map survived; maps are excluded."
+    },
+    {
+      "qid": "Q618565",
+      "name": "Apia Samoa Temple",
+      "type": "Core POI",
+      "conclusion": "remaining/exhausted",
+      "reason": "Wikidata P18, exact structured depicts, multilingual Wikipedia, QID-linked Commons categories, official source, Openverse and bounded Commons name search produced no admissible exact photograph."
+    },
+    {
+      "qid": "Q2740693",
+      "name": "Bahrain Island",
+      "type": "Core POI",
+      "conclusion": "remaining/exhausted",
+      "reason": "Only astronaut/satellite imagery survived; satellite images are excluded."
+    },
+    {
+      "qid": "Q537817",
+      "name": "Banks Islands",
+      "type": "Core POI",
+      "conclusion": "remaining/exhausted",
+      "reason": "Only satellite imagery survived; satellite images are excluded."
+    },
+    {
+      "qid": "Q3637051",
+      "name": "Bawe Island",
+      "type": "Core POI",
+      "conclusion": "remaining/exhausted",
+      "reason": "Wikidata P18, exact structured depicts, multilingual Wikipedia, QID-linked Commons categories, official source, Openverse and bounded Commons name search produced no admissible exact photograph."
+    },
+    {
+      "qid": "Q65158084",
+      "name": "Biserica de rit vechi ortodox rus din Cahul",
+      "type": "Core POI",
+      "conclusion": "remaining/exhausted",
+      "reason": "Wikidata P18, exact structured depicts, multilingual Wikipedia, QID-linked Commons categories, official source, Openverse and bounded Commons name search produced no admissible exact photograph."
+    },
+    {
+      "qid": "Q1283675",
+      "name": "Bistarac Lake",
+      "type": "Core POI",
+      "conclusion": "remaining/exhausted",
+      "reason": "Wikidata P18, exact structured depicts, multilingual Wikipedia, QID-linked Commons categories, official source, Openverse and bounded Commons name search produced no admissible exact photograph."
+    },
+    {
+      "qid": "Q5048229",
+      "name": "Cascajal River",
+      "type": "Core POI",
+      "conclusion": "remaining/exhausted",
+      "reason": "Wikidata P18, exact structured depicts, multilingual Wikipedia, QID-linked Commons categories, official source, Openverse and bounded Commons name search produced no admissible exact photograph."
+    },
+    {
+      "qid": "Q8537802",
+      "name": "Cashán",
+      "type": "Core POI",
+      "conclusion": "remaining/exhausted",
+      "reason": "A summit selfie does not provide adequate visual or metadata proof of the exact Cashán peak."
+    },
+    {
+      "qid": "Q5096051",
+      "name": "Chichicastenango Regional Museum",
+      "type": "Core POI",
+      "conclusion": "remaining/exhausted",
+      "reason": "Wikidata P18, exact structured depicts, multilingual Wikipedia, QID-linked Commons categories, official source, Openverse and bounded Commons name search produced no admissible exact photograph."
+    },
+    {
+      "qid": "Q1150986",
+      "name": "Church of Our Lady Mary of Zion",
+      "type": "Core POI",
+      "conclusion": "remaining/exhausted",
+      "reason": "The candidate shows archaeological remains near the church and does not establish the exact named structure."
+    },
+    {
+      "qid": "Q2997727",
+      "name": "Corps de Garde",
+      "type": "Core POI",
+      "conclusion": "remaining/exhausted",
+      "reason": "Wikidata P18, exact structured depicts, multilingual Wikipedia, QID-linked Commons categories, official source, Openverse and bounded Commons name search produced no admissible exact photograph."
+    },
+    {
+      "qid": "Q108570143",
+      "name": "Dar-Ibrahim Mosque",
+      "type": "Core POI",
+      "conclusion": "remaining/exhausted",
+      "reason": "Wikidata P18, exact structured depicts, multilingual Wikipedia, QID-linked Commons categories, official source, Openverse and bounded Commons name search produced no admissible exact photograph."
+    },
+    {
+      "qid": "Q5287272",
+      "name": "Doctor's Cave Beach Club",
+      "type": "Core POI",
+      "conclusion": "remaining/exhausted",
+      "reason": "Wikidata P18, exact structured depicts, multilingual Wikipedia, QID-linked Commons categories, official source, Openverse and bounded Commons name search produced no admissible exact photograph."
+    },
+    {
+      "qid": "Q5289616",
+      "name": "Dolphin Cove Jamaica",
+      "type": "Core POI",
+      "conclusion": "remaining/exhausted",
+      "reason": "Wikidata P18, exact structured depicts, multilingual Wikipedia, QID-linked Commons categories, official source, Openverse and bounded Commons name search produced no admissible exact photograph."
+    },
+    {
+      "qid": "Q715174",
+      "name": "Eastern Bosphorus",
+      "type": "Core POI",
+      "conclusion": "remaining/exhausted",
+      "reason": "Only a satellite-style overview survived; it is not an acceptable POI photograph."
+    },
+    {
+      "qid": "Q17508365",
+      "name": "El Mamey Formation",
+      "type": "Core POI",
+      "conclusion": "remaining/exhausted",
+      "reason": "Wikidata P18, exact structured depicts, multilingual Wikipedia, QID-linked Commons categories, official source, Openverse and bounded Commons name search produced no admissible exact photograph."
+    },
+    {
+      "qid": "Q9259362",
+      "name": "Feydhoo",
+      "type": "Core POI",
+      "conclusion": "remaining/exhausted",
+      "reason": "Wikidata P18, exact structured depicts, multilingual Wikipedia, QID-linked Commons categories, official source, Openverse and bounded Commons name search produced no admissible exact photograph."
+    },
+    {
+      "qid": "Q34790589",
+      "name": "Île de Babagueye",
+      "type": "Core POI",
+      "conclusion": "remaining/exhausted",
+      "reason": "Wikidata P18, exact structured depicts, multilingual Wikipedia, QID-linked Commons categories, official source, Openverse and bounded Commons name search produced no admissible exact photograph."
+    },
+    {
+      "qid": "Q32606516",
+      "name": "Îlot Sowan",
+      "type": "Core POI",
+      "conclusion": "remaining/exhausted",
+      "reason": "Wikidata P18, exact structured depicts, multilingual Wikipedia, QID-linked Commons categories, official source, Openverse and bounded Commons name search produced no admissible exact photograph."
+    },
+    {
+      "qid": "Q4357258",
+      "name": "Luis de Torres Synagogue",
+      "type": "Core POI",
+      "conclusion": "remaining/exhausted",
+      "reason": "Wikidata P18, exact structured depicts, multilingual Wikipedia, QID-linked Commons categories, official source, Openverse and bounded Commons name search produced no admissible exact photograph."
+    },
+    {
+      "qid": "Q11703417",
+      "name": "Machángara River",
+      "type": "Core POI",
+      "conclusion": "remaining/exhausted",
+      "reason": "Wikidata P18, exact structured depicts, multilingual Wikipedia, QID-linked Commons categories, official source, Openverse and bounded Commons name search produced no admissible exact photograph."
+    },
+    {
+      "qid": "Q22396625",
+      "name": "Mampeza",
+      "type": "Core POI",
+      "conclusion": "remaining/exhausted",
+      "reason": "Wikidata P18, exact structured depicts, multilingual Wikipedia, QID-linked Commons categories, official source, Openverse and bounded Commons name search produced no admissible exact photograph."
+    },
+    {
+      "qid": "Q2942262",
+      "name": "Our Lady of the Desert Cathedral, Francistown",
+      "type": "Core POI",
+      "conclusion": "remaining/exhausted",
+      "reason": "Wikidata P18, exact structured depicts, multilingual Wikipedia, QID-linked Commons categories, official source, Openverse and bounded Commons name search produced no admissible exact photograph."
+    },
+    {
+      "qid": "Q980396",
+      "name": "Al Ahmadi",
+      "type": "City",
+      "conclusion": "remaining/exhausted",
+      "reason": "A deer close-up is not a representative Al Ahmadi city image."
+    },
+    {
+      "qid": "Q310893",
+      "name": "Al Wakrah",
+      "type": "City",
+      "conclusion": "remaining/exhausted",
+      "reason": "Boat-only, watermarked, and soft video-frame candidates fail city representativeness."
+    },
+    {
+      "qid": "Q59975",
+      "name": "Béjaïa",
+      "type": "City",
+      "conclusion": "remaining/exhausted",
+      "reason": "The automatic candidate is a collage and the manual alternative is only a boundary-road sign."
+    },
+    {
+      "qid": "Q2088687",
+      "name": "Hamad Town",
+      "type": "City",
+      "conclusion": "remaining/exhausted",
+      "reason": "The only surviving candidate is a satellite view and cannot be used."
+    },
+    {
+      "qid": "Q1070178",
+      "name": "Isangel",
+      "type": "City",
+      "conclusion": "remaining/exhausted",
+      "reason": "Wikidata P18, exact structured depicts, multilingual Wikipedia, QID-linked Commons categories, official source, Openverse and bounded Commons name search produced no admissible exact photograph."
+    },
+    {
+      "qid": "Q669361",
+      "name": "Lakatoro",
+      "type": "City",
+      "conclusion": "remaining/exhausted",
+      "reason": "Wikidata P18, exact structured depicts, multilingual Wikipedia, QID-linked Commons categories, official source, Openverse and bounded Commons name search produced no admissible exact photograph."
+    },
+    {
+      "qid": "Q1179881",
+      "name": "Salwa",
+      "type": "City",
+      "conclusion": "remaining/exhausted",
+      "reason": "Wikidata P18, exact structured depicts, multilingual Wikipedia, QID-linked Commons categories, official source, Openverse and bounded Commons name search produced no admissible exact photograph."
+    },
+    {
+      "qid": "Q672458",
+      "name": "San Miguel",
+      "type": "City",
+      "conclusion": "recovered",
+      "reason": "Accepted after exact-entity, license, source-file and visual review."
+    },
+    {
+      "qid": "Q855634",
+      "name": "Serowe",
+      "type": "City",
+      "conclusion": "remaining/exhausted",
+      "reason": "Available satellite/landscape candidates do not visibly establish Serowe as a city."
+    },
+    {
+      "qid": "Q158903",
+      "name": "Shusha",
+      "type": "City",
+      "conclusion": "recovered",
+      "reason": "Accepted after exact-entity, license, source-file and visual review."
+    },
+    {
+      "qid": "Q943270",
+      "name": "Sohar",
+      "type": "City",
+      "conclusion": "remaining/exhausted",
+      "reason": "The surviving candidate depicts a cement factory, not Sohar as a city."
+    },
+    {
+      "qid": "Q1423143",
+      "name": "Sola",
+      "type": "City",
+      "conclusion": "remaining/exhausted",
+      "reason": "Wikidata P18, exact structured depicts, multilingual Wikipedia, QID-linked Commons categories, official source, Openverse and bounded Commons name search produced no admissible exact photograph."
+    }
+  ]
+}

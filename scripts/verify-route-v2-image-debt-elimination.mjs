@@ -26,6 +26,8 @@ const semanticQuarantine = fs.existsSync(semanticQuarantinePath)
   : [];
 const semanticQuarantineByEntityId = new Map(semanticQuarantine.map((record) => [record.entityId, record]));
 const publishedPoiByEntityId = new Map(createPublishedKnowledgeEntityLayerRepository({ projectRoot: ROOT }).listPois().map((record) => [record.entityId, record]));
+const recovery02Provenance = json("data/route-v2/images/image-debt-recovery02-provenance.json");
+const recovery02ByEntityId = new Map(recovery02Provenance.assets.map((record) => [record.entityId, record]));
 
 function verifyBindings({ inventory, provenance, audit, manifest }) {
   assert.equal(inventory.schemaVersion, "route-v2-image-debt-inventory-v1");
@@ -135,10 +137,25 @@ function verifyBindings({ inventory, provenance, audit, manifest }) {
     assert.equal(typeof attempt.reasonDetail, "string");
     assert(attempt.reasonDetail.trim().length > 0);
     assert.doesNotMatch(attempt.reasonDetail, /^(?:unknown|todo|misc|other)$/iu);
-    assert.equal(destination.status, "placeholder");
-    assert.equal(destination.needsBackfill, true);
-    assert.equal(destination.isDedicated, false);
-    assert.equal(destination.assetPath, frozen.entityType === "City" ? manifest.fallbackPolicy.city : manifest.fallbackPolicy.poi);
+    if (destination.status === "imageReady") {
+      const recovered = recovery02ByEntityId.get(frozen.entityId);
+      assert(recovered, `historical debt recovered without Recovery02 provenance:${frozen.entityId}`);
+      assert.equal(destination.sourcePath, "data/route-v2/images/image-debt-recovery02-provenance.json");
+      assert.equal(destination.needsBackfill, false);
+      assert.equal(destination.isDedicated, true);
+      assert.equal(destination.wikidataId, frozen.qid);
+      assert.equal(destination.assetPath, recovered.assetPath);
+      assert.equal(destination.processedHash, recovered.processedHash);
+      assert.equal(destination.countryCode, recovered.countryCode);
+      assert.equal(destination.parentCityEntityId || null, recovered.parentCityEntityId || null);
+      assert.equal(recovered.status, "imageReady");
+      assert.equal(recovered.visualAuditStatus, "passed");
+    } else {
+      assert.equal(destination.status, "placeholder");
+      assert.equal(destination.needsBackfill, true);
+      assert.equal(destination.isDedicated, false);
+      assert.equal(destination.assetPath, frozen.entityType === "City" ? manifest.fallbackPolicy.city : manifest.fallbackPolicy.poi);
+    }
     if (attempt.visualAuditId) {
       const decision = auditById.get(frozen.entityId);
       assert(decision, `visual-audit-history-missing:${frozen.entityId}`);

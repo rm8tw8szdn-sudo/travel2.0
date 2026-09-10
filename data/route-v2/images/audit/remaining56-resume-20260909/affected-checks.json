@@ -1,0 +1,83 @@
+[
+  {
+    "script": "verify-route-v2-image-debt-recovery02-round.mjs",
+    "startedAt": "2026-09-08T16:35:37.263Z",
+    "finishedAt": "2026-09-08T16:35:37.407Z",
+    "exitCode": 0,
+    "error": null,
+    "stdout": "{\"verifier\":\"recovery02-round\",\"status\":\"PASS\",\"bindingMutationsKilled\":10,\"priorPassedDecisionsUnchanged\":387,\"formerlyRejectedQidsRecovered\":11,\"reviewEventsPreserved\":446,\"currentDecisions\":413}\n",
+    "stderr": ""
+  },
+  {
+    "script": "verify-route-v2-image-debt-retry-isolation.mjs",
+    "startedAt": "2026-09-08T16:35:37.409Z",
+    "finishedAt": "2026-09-08T16:35:38.036Z",
+    "exitCode": 0,
+    "error": null,
+    "stdout": "{\n  \"verifier\": \"image-debt-retry-isolation\",\n  \"status\": \"PASS\",\n  \"debtSelected\": 45,\n  \"priorRejectionsSkipped\": 15,\n  \"approvedReplacementRejected\": true,\n  \"unsafeOutputRejected\": true,\n  \"dryRunWrites\": 0\n}\n",
+    "stderr": ""
+  },
+  {
+    "script": "verify-route-v2-image-provenance-completeness.mjs",
+    "startedAt": "2026-09-08T16:35:38.036Z",
+    "finishedAt": "2026-09-08T16:35:38.170Z",
+    "exitCode": 0,
+    "error": null,
+    "stdout": "{\n  \"verifier\": \"route-v2-image-provenance-completeness\",\n  \"status\": \"PASS\",\n  \"verifiedDedicated\": 674,\n  \"provenanceComplete\": 674,\n  \"attributionRequired\": 596,\n  \"creatorCompleteWhereRequired\": 596,\n  \"attributionCompleteWhereRequired\": 596,\n  \"licenseUrlComplete\": 674,\n  \"withdrawn\": 2,\n  \"mutationCasesKilled\": 10\n}\n",
+    "stderr": ""
+  },
+  {
+    "script": "verify-route-v2-image-coverage-batch05.mjs",
+    "startedAt": "2026-09-08T16:35:38.171Z",
+    "finishedAt": "2026-09-08T16:35:39.921Z",
+    "exitCode": 0,
+    "error": null,
+    "stdout": "{\n  \"status\": \"PASS\",\n  \"verifier\": \"route-v2-image-coverage-batch05\",\n  \"plannableCountries\": 118,\n  \"countryCovers\": 118,\n  \"dedicatedCities\": 819,\n  \"placeholders\": 14,\n  \"corePois\": 342,\n  \"invalidMappings\": 0,\n  \"externalRuntimeRequests\": 0\n}\n",
+    "stderr": ""
+  },
+  {
+    "script": "verify-route-v2-image-debt-elimination.mjs",
+    "startedAt": "2026-09-08T16:35:39.921Z",
+    "finishedAt": "2026-09-08T16:35:42.075Z",
+    "exitCode": 0,
+    "error": null,
+    "stdout": "{\n  \"verifier\": \"route-v2-image-debt-elimination\",\n  \"status\": \"PASS\",\n  \"startingNeedsBackfill\": 687,\n  \"attempted\": 687,\n  \"successful\": 674,\n  \"citySuccessful\": 504,\n  \"poiSuccessful\": 170,\n  \"remainingNeedsBackfill\": 13,\n  \"visualAudit\": {\n    \"pages\": 36,\n    \"passed\": 676,\n    \"rejected\": 0\n  },\n  \"newBytes\": 158926868,\n  \"exactDuplicates\": 0,\n  \"perceptualDuplicates\": 0,\n  \"mutationCasesKilled\": 7,\n  \"finalReportSummary\": {\n    \"totalAssets\": 957,\n    \"countryCovers\": 78,\n    \"countryTotal\": 78,\n    \"dedicatedCities\": 600,\n    \"cityTotal\": 601,\n    \"dedicatedCorePois\": 212,\n    \"corePoiTotal\": 224,\n    \"needsBackfill\": 13,\n    \"remainingCities\": 1,\n    \"remainingCorePois\": 12,\n    \"initialSuccessfulDedicated\": 676,\n    \"withdrawn\": 2,\n    \"verifiedDedicated\": 674,\n    \"provenanceComplete\": 674,\n    \"provenanceTotal\": 674,\n    \"licenseComplete\": 674,\n    \"licenseTotal\": 674,\n    \"licenseUrlComplete\": 674,\n    \"licenseUrlTotal\": 674,\n    \"creatorCompleteWhereRequired\": 596,\n    \"creatorRequired\": 596,\n    \"attributionCompleteWhereRequired\": 596,\n    \"attributionRequired\": 596,\n    \"invalidMappings\": 0\n  },\n  \"reportConsistencyMutations\": {\n    \"total\": 10,\n    \"matchedExpectation\": 10,\n    \"rejected\": 9,\n    \"accepted\": 1,\n    \"results\": [\n      {\n        \"name\": \"final-needsBackfill-stale\",\n        \"expected\": \"FAIL\",\n        \"actual\": \"FAIL\"\n      },\n      {\n        \"name\": \"remaining-city-stale\",\n        \"expected\": \"FAIL\",\n        \"actual\": \"FAIL\"\n      },\n      {\n        \"name\": \"remaining-core-poi-stale\",\n        \"expected\": \"FAIL\",\n        \"actual\": \"FAIL\"\n      },\n      {\n        \"name\": \"dedicated-city-stale\",\n        \"expected\": \"FAIL\",\n        \"actual\": \"FAIL\"\n      },\n      {\n        \"name\": \"dedicated-core-poi-stale\",\n        \"expected\": \"FAIL\",\n        \"actual\": \"FAIL\"\n      },\n      {\n        \"name\": \"verified-dedicated-stale\",\n        \"expected\": \"FAIL\",\n        \"actual\": \"FAIL\"\n      },\n      {\n        \"name\": \"intermediate-old-final-current\",\n        \"expected\": \"PASS\",\n        \"actual\": \"PASS\"\n      },\n      {\n        \"name\": \"intermediate-old-final-stale\",\n        \"expected\": \"FAIL\",\n        \"actual\": \"FAIL\"\n      },\n      {\n        \"name\": \"correct-total-wrong-split\",\n        \"expected\": \"FAIL\",\n        \"actual\": \"FAIL\"\n      },\n      {\n        \"name\": \"correct-split-wrong-total\",\n        \"expected\": \"FAIL\",\n        \"actual\": \"FAIL\"\n      }\n    ]\n  },\n  \"invalidMappings\": 0,\n  \"runtimeExternalImages\": 0\n}\n",
+    "stderr": ""
+  },
+  {
+    "script": "verify-route-v2-image-debt-report-consistency.mjs",
+    "startedAt": "2026-09-08T16:35:42.076Z",
+    "finishedAt": "2026-09-08T16:35:42.875Z",
+    "exitCode": 0,
+    "error": null,
+    "stdout": "{\n  \"verifier\": \"route-v2-image-debt-report-consistency\",\n  \"status\": \"PASS\",\n  \"summary\": {\n    \"totalAssets\": 957,\n    \"countryCovers\": 78,\n    \"countryTotal\": 78,\n    \"dedicatedCities\": 600,\n    \"cityTotal\": 601,\n    \"dedicatedCorePois\": 212,\n    \"corePoiTotal\": 224,\n    \"needsBackfill\": 13,\n    \"remainingCities\": 1,\n    \"remainingCorePois\": 12,\n    \"initialSuccessfulDedicated\": 676,\n    \"withdrawn\": 2,\n    \"verifiedDedicated\": 674,\n    \"provenanceComplete\": 674,\n    \"provenanceTotal\": 674,\n    \"licenseComplete\": 674,\n    \"licenseTotal\": 674,\n    \"licenseUrlComplete\": 674,\n    \"licenseUrlTotal\": 674,\n    \"creatorCompleteWhereRequired\": 596,\n    \"creatorRequired\": 596,\n    \"attributionCompleteWhereRequired\": 596,\n    \"attributionRequired\": 596,\n    \"invalidMappings\": 0\n  },\n  \"mutations\": {\n    \"total\": 10,\n    \"matchedExpectation\": 10,\n    \"rejected\": 9,\n    \"accepted\": 1,\n    \"results\": [\n      {\n        \"name\": \"final-needsBackfill-stale\",\n        \"expected\": \"FAIL\",\n        \"actual\": \"FAIL\"\n      },\n      {\n        \"name\": \"remaining-city-stale\",\n        \"expected\": \"FAIL\",\n        \"actual\": \"FAIL\"\n      },\n      {\n        \"name\": \"remaining-core-poi-stale\",\n        \"expected\": \"FAIL\",\n        \"actual\": \"FAIL\"\n      },\n      {\n        \"name\": \"dedicated-city-stale\",\n        \"expected\": \"FAIL\",\n        \"actual\": \"FAIL\"\n      },\n      {\n        \"name\": \"dedicated-core-poi-stale\",\n        \"expected\": \"FAIL\",\n        \"actual\": \"FAIL\"\n      },\n      {\n        \"name\": \"verified-dedicated-stale\",\n        \"expected\": \"FAIL\",\n        \"actual\": \"FAIL\"\n      },\n      {\n        \"name\": \"intermediate-old-final-current\",\n        \"expected\": \"PASS\",\n        \"actual\": \"PASS\"\n      },\n      {\n        \"name\": \"intermediate-old-final-stale\",\n        \"expected\": \"FAIL\",\n        \"actual\": \"FAIL\"\n      },\n      {\n        \"name\": \"correct-total-wrong-split\",\n        \"expected\": \"FAIL\",\n        \"actual\": \"FAIL\"\n      },\n      {\n        \"name\": \"correct-split-wrong-total\",\n        \"expected\": \"FAIL\",\n        \"actual\": \"FAIL\"\n      }\n    ]\n  }\n}\n",
+    "stderr": ""
+  },
+  {
+    "script": "verify-knowledge-expansion-batch09-report-consistency.mjs",
+    "startedAt": "2026-09-08T16:35:42.876Z",
+    "finishedAt": "2026-09-08T16:35:45.708Z",
+    "exitCode": 0,
+    "error": null,
+    "stdout": "{\n  \"verifier\": \"knowledge-expansion-batch09-report-consistency\",\n  \"status\": \"PASS\",\n  \"comparedDocuments\": 7,\n  \"mutationCasesKilled\": 10,\n  \"published\": {\n    \"countries\": 119,\n    \"cities\": 833,\n    \"pois\": 3963,\n    \"total\": 4915\n  },\n  \"additions\": {\n    \"countries\": 20,\n    \"cities\": 115,\n    \"pois\": 400\n  },\n  \"evidence\": {\n    \"transport\": 150,\n    \"monthRisk\": 80,\n    \"totalTransport\": 1036,\n    \"totalMonthRisk\": 474,\n    \"auditCountries\": 20,\n    \"retrievedAt\": \"2026-08-31T12:00:00.000Z\"\n  },\n  \"images\": {\n    \"countryCovers\": 118,\n    \"countryTotal\": 118,\n    \"dedicatedCities\": 600,\n    \"cityTotal\": 833,\n    \"dedicatedPois\": 132,\n    \"poiTotal\": 342,\n    \"cityPlaceholders\": 233,\n    \"poiPlaceholders\": 210,\n    \"needsBackfill\": 443,\n    \"invalidMappings\": 0,\n    \"batchVerifiedImages\": 0,\n    \"historicalBackfillImages\": 0,\n    \"batchCountryCovers\": 20,\n    \"sealedHistoricalDebt\": 13,\n    \"totalNeedsBackfillBefore\": 188,\n    \"totalNeedsBackfillAfter\": 443,\n    \"preBatchScopeNeedsBackfillAfter\": 268,\n    \"historicalDebtBefore\": 188,\n    \"historicalDebtAfter\": 268,\n    \"assetCount\": 997,\n    \"totalBytes\": 202068310,\n    \"largerThan300Kb\": 18,\n    \"largerThan500Kb\": 9,\n    \"largerThan1Mb\": 1,\n    \"largerThan5Mb\": 0,\n    \"exactDuplicates\": 2,\n    \"perceptualDuplicates\": 9\n  }\n}\n",
+    "stderr": ""
+  },
+  {
+    "script": "verify-route-v2-image-quality-adversarial.mjs",
+    "startedAt": "2026-09-08T16:35:45.709Z",
+    "finishedAt": "2026-09-08T16:35:46.279Z",
+    "exitCode": 0,
+    "error": null,
+    "stdout": "{\n  \"verifier\": \"route-v2-image-quality-adversarial\",\n  \"status\": \"PASS\",\n  \"auditedAssets\": 1248,\n  \"countryGraphicCovers\": 118,\n  \"dedicatedCityImages\": 819,\n  \"dedicatedPoiImages\": 311,\n  \"neutralCityPlaceholders\": 14,\n  \"neutralPoiPlaceholders\": 31,\n  \"exactDuplicateGroups\": 0,\n  \"suspiciousTemplateGroups\": 1,\n  \"largestTemplateGroup\": 118,\n  \"invalidMappings\": 0\n}\n",
+    "stderr": ""
+  },
+  {
+    "script": "verify-route-v2-image-debt-recovery02.mjs",
+    "startedAt": "2026-09-08T16:35:46.280Z",
+    "finishedAt": "2026-09-08T16:38:13.042Z",
+    "exitCode": 0,
+    "error": null,
+    "stdout": "{\n  \"verifier\": \"route-v2-image-debt-recovery02\",\n  \"status\": \"PASS\",\n  \"bindingMutationsKilled\": 10,\n  \"audited\": 443,\n  \"recovered\": {\n    \"total\": 398,\n    \"city\": 219,\n    \"corePoi\": 179\n  },\n  \"remaining\": {\n    \"total\": 45,\n    \"city\": 14,\n    \"corePoi\": 31,\n    \"reasonBreakdown\": {\n      \"ENTITY_AMBIGUOUS\": 7,\n      \"IMAGE_TOO_LOW_QUALITY\": 25,\n      \"LICENSE_UNVERIFIED\": 2,\n      \"NO_EXACT_IMAGE\": 8,\n      \"ONLY_DUPLICATE_SOURCE\": 1,\n      \"ONLY_WATERMARKED_SOURCE\": 1,\n      \"SOURCE_UNAVAILABLE\": 1\n    },\n    \"exhausted\": 0\n  },\n  \"current\": {\n    \"assets\": 1395,\n    \"countryCover\": \"118/118\",\n    \"dedicatedCity\": \"819/833\",\n    \"dedicatedCorePoi\": \"311/342\",\n    \"needsBackfill\": 45,\n    \"invalidMapping\": 0\n  },\n  \"provenance\": {\n    \"total\": 398,\n    \"complete\": 398,\n    \"licenseComplete\": 398,\n    \"licenseUrlComplete\": 398,\n    \"attributionRequired\": 353,\n    \"creatorCompleteWhereRequired\": 353,\n    \"attributionCompleteWhereRequired\": 353\n  },\n  \"quality\": {\n    \"exactDuplicateGroups\": 0,\n    \"unsafeVisualDuplicatePairs\": 0,\n    \"missingFiles\": 0,\n    \"invalidMappings\": 0,\n    \"quarantinedTargets\": 0\n  }\n}\n",
+    "stderr": ""
+  }
+]

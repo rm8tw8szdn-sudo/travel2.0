@@ -11,7 +11,7 @@ const jsonl = (root, relativePath) => {
 const duplicateCount = (values) => values.length - new Set(values).size;
 const imageReady = (record, scope) => record?.status === "imageReady" && record.semanticScope === scope && record.assetKind === "verified-destination-image";
 
-export function calculateKnowledgeExpansionReportData({ root, batchNumber = 7 } = {}) {
+export function calculateKnowledgeExpansionReportData({ root, batchNumber = 7, imageSnapshot = null } = {}) {
   const projectRoot = path.resolve(root || path.join(import.meta.dirname, "..", ".."));
   const batchTag = String(batchNumber).padStart(2, "0");
   const previousBatchTag = String(batchNumber - 1).padStart(2, "0");
@@ -37,10 +37,10 @@ export function calculateKnowledgeExpansionReportData({ root, batchNumber = 7 } 
   const allSeasons = jsonl(projectRoot, "data/route-v2/evidence-seed/season-evidence.jsonl");
   const batchRouteLegs = allRouteLegs.filter((record) => record.retrievedAt === evidenceAudit.retrievedAt);
   const batchSeasons = allSeasons.filter((record) => record.retrievedAt === evidenceAudit.retrievedAt);
-  const imageManifest = json(projectRoot, "data/route-v2/images/image-coverage-manifest.json");
+  const imageManifest = imageSnapshot?.manifest || json(projectRoot, "data/route-v2/images/image-coverage-manifest.json");
   const imageProvenance = json(projectRoot, `data/route-v2/images/batch${batchTag}-dedicated-image-provenance.json`);
   const priorImageProvenance = json(projectRoot, `data/route-v2/images/batch${previousBatchTag}-dedicated-image-provenance.json`);
-  const imageBaseline = json(projectRoot, "data/route-v2/images/image-asset-baseline.json");
+  const imageBaseline = imageSnapshot?.baseline || json(projectRoot, "data/route-v2/images/image-asset-baseline.json");
   const routeConsumption = json(projectRoot, `data/knowledge/reports/knowledge-expansion-batch${batchTag}-route-consumption.json`);
   const browserRelativePath = `data/knowledge/reports/knowledge-expansion-batch${batchTag}-browser-acceptance.json`;
   const browserPath = path.join(projectRoot, browserRelativePath);

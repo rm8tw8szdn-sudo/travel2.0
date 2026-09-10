@@ -1,3 +1,11 @@
+import {
+  attributionRequiredForLicense,
+  canonicalLicenseUrl,
+  licenseUrlMatches,
+  meaningfulCreator,
+  meaningfulText,
+} from "./image-provenance-license.mjs";
+
 const WIKIDATA_API = "https://www.wikidata.org/w/api.php";
 const COMMONS_API = "https://commons.wikimedia.org/w/api.php";
 const USER_AGENT = "travel2-route-v2-image-debt/1.0 (https://github.com/rm8tw8szdn-sudo/travel2.0)";
@@ -240,7 +248,8 @@ export async function openverseSourceAttempts({ record, limit = 3 }) {
   const endpoint = new URL("https://api.openverse.org/v1/images/");
   endpoint.search = new URLSearchParams({ q: query, license: "cc0,by,by-sa,pdm", page_size: String(limit) });
   try {
-    const payload = await fetchJson(endpoint);
+    const response = await fetchResponse(endpoint, { maxAttempts: 1, timeoutMs: 5_000 });
+    const payload = await response.json();
     const results = (payload.results || []).slice(0, limit);
     if (!results.length) return [{ sourcePath: "openverse", queryIdentity: query, candidateUrl: endpoint.href, candidateFile: null, status: "rejected", reasonCode: "NO_EXACT_IMAGE", reasonDetail: "no-open-license-search-result" }];
     return results.map((result) => ({
@@ -307,7 +316,17 @@ export async function commonsImageInfo(fileTitle, width = 1600) {
   const descriptionUrl = normalizeHttps(info.descriptionurl);
   const originalUrl = normalizeHttps(info.url);
   if (!thumbnailUrl || !descriptionUrl || !originalUrl) return { accepted: false, reasonCode: "SOURCE_UNAVAILABLE", reasonDetail: "commons-url-incomplete" };
-  const licenseUrl = normalizeHttps(info.extmetadata?.LicenseUrl?.value) || canonicalCommonsLicenseUrl(license, descriptionUrl);
+  const licenseUrl = normalizeHttps(info.extmetadata?.LicenseUrl?.value)
+    || canonicalLicenseUrl(license, descriptionUrl)
+    || canonicalCommonsLicenseUrl(license, descriptionUrl);
+  const creator = clean(info.extmetadata?.Artist?.value) || null;
+  const attribution = clean(info.extmetadata?.Credit?.value) || null;
+  if (!licenseUrl || !licenseUrlMatches(license, licenseUrl, descriptionUrl)) {
+    return { accepted: false, reasonCode: "LICENSE_UNVERIFIED", reasonDetail: `canonical-license-url-invalid:${license || "missing"}` };
+  }
+  if (attributionRequiredForLicense(license) && (!meaningfulCreator(creator) || !meaningfulText(attribution))) {
+    return { accepted: false, reasonCode: "LICENSE_UNVERIFIED", reasonDetail: "attribution-license-creator-or-credit-missing" };
+  }
   return {
     accepted: true,
     fileTitle,
@@ -321,9 +340,9 @@ export async function commonsImageInfo(fileTitle, width = 1600) {
     thumbnailWidth: Number(info.thumbwidth || 0),
     thumbnailHeight: Number(info.thumbheight || 0),
     mime: clean(info.mime),
-    author: clean(info.extmetadata?.Artist?.value) || null,
-    creator: clean(info.extmetadata?.Artist?.value) || null,
-    attribution: clean(info.extmetadata?.Credit?.value) || null,
+    author: creator,
+    creator,
+    attribution,
     license,
     licenseUrl,
     description: clean(info.extmetadata?.ImageDescription?.value) || null,

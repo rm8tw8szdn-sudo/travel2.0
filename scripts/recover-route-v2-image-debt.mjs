@@ -21,11 +21,43 @@ import {
 } from "./lib/image-debt-source.mjs";
 
 const ROOT = path.resolve(import.meta.dirname, "..");
-const RECOVERY_INVENTORY_PATH = "data/route-v2/images/image-debt-recovery-inventory.json";
-const PROVENANCE_PATH = "data/route-v2/images/image-debt-elimination-provenance.json";
-const RESULTS_PATH = "data/route-v2/images/image-debt-recovery-results.json";
+const outputRootArgument = process.argv.find((value) => value.startsWith("--output-root="))?.slice("--output-root=".length);
+const OUTPUT_ROOT = outputRootArgument ? path.resolve(outputRootArgument) : ROOT;
+if (outputRootArgument && (!path.isAbsolute(outputRootArgument) || OUTPUT_ROOT === ROOT || !path.relative(ROOT, OUTPUT_ROOT).startsWith(".."))) {
+  throw new Error("isolated-output-root-must-be-absolute-and-outside-project");
+}
+const PROFILE_NAME = process.argv.find((value) => value.startsWith("--profile="))?.slice("--profile=".length) || "legacy";
+const PROFILES = Object.freeze({
+  legacy: Object.freeze({
+    inventoryPath: "data/route-v2/images/image-debt-recovery-inventory.json",
+    provenancePath: "data/route-v2/images/image-debt-elimination-provenance.json",
+    resultsPath: "data/route-v2/images/image-debt-recovery-results.json",
+    inventorySchema: "route-v2-image-debt-recovery-inventory-v1",
+    provenanceSchema: "route-v2-image-debt-elimination-provenance-v1",
+    resultsSchema: "route-v2-image-debt-multi-source-recovery-v1",
+    recoveredAt: "2026-08-24T13:00:00.000Z",
+    acquisitionRound: "multi-source-recovery",
+    assetRoot: "assets/route-v2-images",
+  }),
+  recovery02: Object.freeze({
+    inventoryPath: "data/route-v2/images/image-debt-recovery02-inventory.json",
+    provenancePath: "data/route-v2/images/image-debt-recovery02-provenance.json",
+    resultsPath: "data/route-v2/images/image-debt-recovery02-results.json",
+    inventorySchema: "route-v2-image-debt-recovery02-inventory-v1",
+    provenanceSchema: "route-v2-image-debt-recovery02-provenance-v1",
+    resultsSchema: "route-v2-image-debt-recovery02-results-v1",
+    recoveredAt: "2026-09-06T01:00:00.000Z",
+    acquisitionRound: "image-debt-recovery-02",
+    assetRoot: "assets/route-v2-images/recovery02",
+  }),
+});
+const PROFILE = PROFILES[PROFILE_NAME];
+if (!PROFILE) throw new Error(`image-recovery-profile-invalid:${PROFILE_NAME}`);
+const RECOVERY_INVENTORY_PATH = PROFILE.inventoryPath;
+const PROVENANCE_PATH = PROFILE.provenancePath;
+const RESULTS_PATH = PROFILE.resultsPath;
 const BASELINE_PATH = "data/route-v2/images/image-asset-baseline.json";
-const RECOVERED_AT = "2026-08-24T13:00:00.000Z";
+const RECOVERED_AT = PROFILE.recoveredAt;
 const ALLOWED_FAILURE_REASONS = new Set([
   "NO_EXACT_IMAGE", "LICENSE_UNVERIFIED", "ENTITY_AMBIGUOUS", "IMAGE_TOO_LOW_QUALITY",
   "ONLY_WATERMARKED_SOURCE", "ONLY_DUPLICATE_SOURCE", "SOURCE_UNAVAILABLE", "SIZE_QUALITY_CONFLICT",
@@ -41,11 +73,13 @@ const hammingDistance = (left, right) => {
 };
 
 async function readJson(relativePath, fallback = null) {
-  return fs.existsSync(path.join(ROOT, relativePath)) ? JSON.parse(await readFile(path.join(ROOT, relativePath), "utf8")) : fallback;
+  const isolatedState = [PROVENANCE_PATH, RESULTS_PATH].includes(relativePath) && fs.existsSync(path.join(OUTPUT_ROOT, relativePath));
+  const source = path.join(isolatedState ? OUTPUT_ROOT : ROOT, relativePath);
+  return fs.existsSync(source) ? JSON.parse(await readFile(source, "utf8")) : fallback;
 }
 
 async function atomicWrite(relativePath, contents) {
-  const target = path.join(ROOT, relativePath);
+  const target = path.join(OUTPUT_ROOT, relativePath);
   await mkdir(path.dirname(target), { recursive: true });
   const temporary = `${target}.${process.pid}.tmp`;
   try { await writeFile(temporary, contents); await rename(temporary, target); }
@@ -98,25 +132,77 @@ function cityRepresentativeProblem(record, candidate, info) {
   return null;
 }
 
+function recoveryRecordExhausted(sourceAttempts, transientSourceFailure) {
+  if (transientSourceFailure) return false;
+  const paths = new Set(sourceAttempts.map((attempt) => attempt.sourcePath));
+  return [
+    "wikidata-p18",
+    "commons-structured-depicts",
+    "wikipedia-multilingual",
+    "official-source",
+    "openverse",
+  ].every((sourcePath) => paths.has(sourcePath))
+    && [...paths].some((sourcePath) => sourcePath.startsWith("commons-qid-linked-category"));
+}
+
 async function main() {
   const forcedRetryQids = new Set((process.argv.find((value) => value.startsWith("--retry="))?.slice("--retry=".length) || "").split(",").filter(Boolean));
   const inventory = await readJson(RECOVERY_INVENTORY_PATH);
-  const provenance = await readJson(PROVENANCE_PATH);
-  if (inventory?.schemaVersion !== "route-v2-image-debt-recovery-inventory-v1") throw new Error("recovery-inventory-missing-or-invalid");
-  if (provenance?.schemaVersion !== "route-v2-image-debt-elimination-provenance-v1") throw new Error("image-debt-provenance-missing-or-invalid");
-  if (sha256(await readFile(path.join(ROOT, PROVENANCE_PATH))) !== inventory.firstPassProvenanceSha256) {
+  if (inventory?.schemaVersion !== PROFILE.inventorySchema) throw new Error("recovery-inventory-missing-or-invalid");
+  const inventorySha256 = sha256(await readFile(path.join(ROOT, RECOVERY_INVENTORY_PATH)));
+  let provenance = await readJson(PROVENANCE_PATH);
+  if (!provenance && PROFILE_NAME === "recovery02") {
+    provenance = {
+      schemaVersion: PROFILE.provenanceSchema,
+      acquiredAt: RECOVERED_AT,
+      sourcePolicy: "exact entity-bound Wikidata/Commons/Wikipedia sources; canonical file-level open license; local WebP; visual audit required before publication",
+      inventoryPath: RECOVERY_INVENTORY_PATH,
+      inventorySha256,
+      assets: [],
+      attempts: inventory.records.map((record) => ({
+        entityId: record.entityId,
+        qid: record.qid,
+        entityType: record.entityType,
+        canonicalNameEn: record.canonicalNameEn,
+        countryCode: record.countryCode,
+        countryNameEn: record.countryNameEn,
+        parentCityEntityId: record.parentCityEntityId,
+        parentCityQid: record.parentCityQid,
+        parentCityNameEn: record.parentCityNameEn,
+        currentPlaceholder: record.currentFallback,
+        priority: record.priority,
+        routeExposure: record.routeExposure,
+        isCorePoi: record.isCorePoi,
+        status: "needsBackfill",
+        reasonCode: record.failureReason?.reasonCode || "NOT_ATTEMPTED_IN_CURRENT_SCOPE",
+        reasonDetail: record.failureReason?.reasonDetail || "Pending Recovery 02 multi-source audit.",
+        previousAttemptCount: record.previousAttemptCount,
+        exhausted: false,
+      })),
+      assetCount: 0,
+      cityAssetCount: 0,
+      poiAssetCount: 0,
+    };
+    await atomicWrite(PROVENANCE_PATH, `${JSON.stringify(provenance, null, 2)}\n`);
+  }
+  if (provenance?.schemaVersion !== PROFILE.provenanceSchema) throw new Error("image-debt-provenance-missing-or-invalid");
+  if (PROFILE_NAME === "recovery02" && provenance.inventorySha256 !== inventorySha256) {
+    throw new Error("recovery02-provenance-inventory-hash-mismatch");
+  }
+  if (PROFILE_NAME === "legacy" && sha256(await readFile(path.join(ROOT, PROVENANCE_PATH))) !== inventory.firstPassProvenanceSha256) {
     const existingResults = await readJson(RESULTS_PATH, null);
     if (!existingResults) throw new Error("first-pass-provenance-changed-before-recovery");
   }
 
   const results = await readJson(RESULTS_PATH, {
-    schemaVersion: "route-v2-image-debt-multi-source-recovery-v1",
+    schemaVersion: PROFILE.resultsSchema,
     recoveredAt: RECOVERED_AT,
     recoveryInventorySha256: sha256(await readFile(path.join(ROOT, RECOVERY_INVENTORY_PATH))),
     startingNeedsBackfill: inventory.startingNeedsBackfill,
     records: [],
   });
-  if (results.recoveryInventorySha256 !== sha256(await readFile(path.join(ROOT, RECOVERY_INVENTORY_PATH)))) throw new Error("recovery-inventory-hash-changed");
+  if (results.schemaVersion !== PROFILE.resultsSchema) throw new Error("recovery-results-schema-invalid");
+  if (results.recoveryInventorySha256 !== inventorySha256) throw new Error("recovery-inventory-hash-changed");
 
   const resultById = new Map(results.records.map((record) => [record.entityId, record]));
   const assetById = new Map(provenance.assets.map((record) => [record.entityId, record]));
@@ -124,10 +210,37 @@ async function main() {
   const pending = inventory.records.filter((record) => !resultById.has(record.entityId)
     || resultById.get(record.entityId)?.retryRequested === true
     || forcedRetryQids.has(record.qid));
+  if (outputRootArgument && pending.some((record) => assetById.get(record.entityId)?.status === "imageReady")) {
+    throw new Error("isolated-retry-cannot-replace-already-approved-image");
+  }
+  const previouslyRejectedTitles = (record) => {
+    const previous = resultById.get(record.entityId);
+    return [...new Set([
+      ...(record.firstPass.candidateTitles || []),
+      ...(previous?.visualRejections || []).map((entry) => entry.candidateFile),
+      ...((previous?.visualRejections?.length && previous.finalStatus === "needsBackfill") ? [previous.chosenCandidate?.candidateFile] : []),
+    ].filter(Boolean).map((title) => clean(title).replaceAll("_", " ").toLocaleLowerCase("en-US")))];
+  };
+  if (process.argv.includes("--dry-run")) {
+    console.log(JSON.stringify({ profile: PROFILE_NAME, outputRoot: OUTPUT_ROOT, count: pending.length,
+      pending: pending.map(record => ({ qid: record.qid, entityId: record.entityId, rejectedTitles: previouslyRejectedTitles(record) })) }, null, 2));
+    return;
+  }
   const entities = pending.length ? await fetchWikidataRecoveryEntities(pending.map((record) => record.qid)) : {};
   const baseline = await readJson(BASELINE_PATH, { inventory: [] });
-  const boundFiles = new Map(provenance.assets.filter((record) => record.commonsFileTitle).map((record) => [candidateKey(record), record.entityId]));
-  const boundHashes = new Map(provenance.assets.filter((record) => record.processedHash).map((record) => [record.processedHash, record.entityId]));
+  const historicalProvenancePaths = [
+    "data/route-v2/images/batch06-dedicated-image-provenance.json",
+    "data/route-v2/images/batch07-dedicated-image-provenance.json",
+    "data/route-v2/images/batch08-dedicated-image-provenance.json",
+    "data/route-v2/images/batch09-dedicated-image-provenance.json",
+    "data/route-v2/images/image-debt-elimination-provenance.json",
+  ];
+  const historicalAssets = historicalProvenancePaths
+    .filter((relativePath) => fs.existsSync(path.join(ROOT, relativePath)))
+    .flatMap((relativePath) => JSON.parse(fs.readFileSync(path.join(ROOT, relativePath), "utf8")).assets || []);
+  const boundFiles = new Map([...historicalAssets, ...provenance.assets].filter((record) => record.commonsFileTitle).map((record) => [candidateKey(record), record.entityId]));
+  const boundHashes = new Map((baseline.inventory || []).filter((record) => record.sha256).map((record) => [record.sha256, record.entityIds?.[0] || record.path]));
+  for (const record of provenance.assets.filter((record) => record.processedHash)) boundHashes.set(record.processedHash, record.entityId);
   const perceptual = (baseline.inventory || []).filter((record) => record.perceptualHash?.dhash64).map((record) => ({ hash: record.perceptualHash.dhash64, entityId: record.entityIds?.[0] || null, path: record.path }));
   const temporaryRoot = await mkdtemp(path.join(os.tmpdir(), "route-v2-image-debt-recovery-"));
 
@@ -167,10 +280,7 @@ async function main() {
       const sourceAttempts = [];
       const failures = [];
       const candidates = [];
-      const rejectedFirstPassTitles = new Set([
-        ...(record.firstPass.candidateTitles || []),
-        ...((previousRecovery?.visualRejections || []).map((entry) => entry.candidateFile)),
-      ].map((title) => clean(title).toLocaleLowerCase("en-US")));
+      const rejectedFirstPassTitles = new Set(previouslyRejectedTitles(record));
 
       const p18 = preferredP18(wikidataEntity, record.qid);
       if (p18) {
@@ -206,10 +316,13 @@ async function main() {
         .sort((left, right) => candidatePriority(right) - candidatePriority(left)
           || candidateRelevance(record, right) - candidateRelevance(record, left)
           || left.fileTitle.localeCompare(right.fileTitle, "en"));
+      const candidateInfoByKey = new Map();
+      const candidateInfoConcurrency = 6;
       let chosen = null;
-      for (const candidate of uniqueCandidates) {
+      for (let candidateIndex = 0; candidateIndex < uniqueCandidates.length; candidateIndex += 1) {
+        const candidate = uniqueCandidates[candidateIndex];
         const candidateTitleKey = candidateKey(candidate);
-        if (rejectedFirstPassTitles.has(candidateTitleKey)) {
+        if (rejectedFirstPassTitles.has(candidateTitleKey.replaceAll("_", " "))) {
           sourceAttempts.push({ sourcePath: candidate.sourcePath, queryIdentity: candidate.semanticStatementId, candidateUrl: candidate.identityUrl || null, candidateFile: candidate.fileTitle, status: "rejected", reasonCode: record.firstPass.reasonCode, reasonDetail: `first-pass-rejected:${record.firstPass.reasonDetail}` });
           continue;
         }
@@ -225,9 +338,15 @@ async function main() {
           sourceAttempts.push({ sourcePath: candidate.sourcePath, queryIdentity: candidate.semanticStatementId, candidateUrl: candidate.identityUrl || null, candidateFile: candidate.fileTitle, status: "rejected", ...failure });
           continue;
         }
-        let info;
-        try { info = await commonsImageInfo(candidate.fileTitle); }
-        catch (error) { info = { accepted: false, ...classifySourceError(error) }; }
+        if (!candidateInfoByKey.has(candidateTitleKey)) {
+          const batch = uniqueCandidates.slice(candidateIndex, candidateIndex + candidateInfoConcurrency);
+          const resolved = await Promise.all(batch.map(async (batchCandidate) => {
+            try { return [candidateKey(batchCandidate), await commonsImageInfo(batchCandidate.fileTitle)]; }
+            catch (error) { return [candidateKey(batchCandidate), { accepted: false, ...classifySourceError(error) }]; }
+          }));
+          for (const [key, candidateInfo] of resolved) candidateInfoByKey.set(key, candidateInfo);
+        }
+        const info = candidateInfoByKey.get(candidateTitleKey);
         if (!info.accepted) {
           const failure = { reasonCode: info.reasonCode, reasonDetail: info.reasonDetail }; failures.push(failure);
           sourceAttempts.push({ sourcePath: candidate.sourcePath, queryIdentity: candidate.semanticStatementId, candidateUrl: candidate.identityUrl || null, candidateFile: candidate.fileTitle, status: "rejected", ...failure });
@@ -271,7 +390,7 @@ async function main() {
         }
         const kind = record.entityType === "City" ? "cities" : "pois";
         const prefix = record.entityType === "City" ? "city" : "poi";
-        const assetPath = `assets/route-v2-images/${kind}/${prefix}-${record.qid.toLocaleLowerCase("en-US")}.webp`;
+        const assetPath = `${PROFILE.assetRoot}/${kind}/${prefix}-${record.qid.toLocaleLowerCase("en-US")}.webp`;
         await atomicWrite(assetPath, await readFile(processedPath));
         const asset = {
           entityId: record.entityId,
@@ -286,7 +405,7 @@ async function main() {
           localPath: assetPath,
           status: "pendingVisualAudit",
           needsBackfill: true,
-          acquisitionRound: "multi-source-recovery",
+          acquisitionRound: PROFILE.acquisitionRound,
           recoveryGeneration: (previousRecovery?.visualRejections || []).length + 1,
           assetKind: "verified-destination-image",
           assetType: "dedicated-destination-image",
@@ -338,6 +457,8 @@ async function main() {
       }
 
       const failure = chosen ? null : chooseFailure(failures);
+      const transientSourceFailure = sourceAttempts.some((attempt) => attempt.reasonCode === "SOURCE_UNAVAILABLE"
+        && /(?:fetch failed|remote-fetch-failed|timeout|network|ECONN|ENOTFOUND)/iu.test(attempt.reasonDetail || ""));
       const recoveryRecord = {
         entityId: record.entityId,
         qid: record.qid,
@@ -351,9 +472,17 @@ async function main() {
         independentSourcePathsAttempted: [...new Set(sourceAttempts.map((attempt) => attempt.sourcePath))],
         candidateCount: uniqueCandidates.length,
         chosenCandidate: chosen,
+        ...(outputRootArgument ? { retryHistory: [...(previousRecovery?.retryHistory || []), {
+          recordedAt: new Date().toISOString(), sourceAttempts: previousRecovery?.sourceAttempts || [],
+          chosenCandidate: previousRecovery?.chosenCandidate || null, finalStatus: previousRecovery?.finalStatus || null,
+          finalFailureReason: previousRecovery?.finalFailureReason || null,
+        }] } : {}),
         visualRejections: previousRecovery?.visualRejections || [],
         finalStatus: chosen ? "pendingVisualAudit" : "needsBackfill",
         finalFailureReason: failure,
+        recoveryAttempts: sourceAttempts.length,
+        lastAttemptSource: sourceAttempts.at(-1)?.sourcePath || null,
+        exhausted: chosen ? false : recoveryRecordExhausted(sourceAttempts, transientSourceFailure),
         retryRequested: false,
       };
       resultById.set(record.entityId, recoveryRecord);
@@ -365,6 +494,8 @@ async function main() {
         recoveryAttemptCount: sourceAttempts.length,
         recoveryIndependentSourcePaths: recoveryRecord.independentSourcePathsAttempted,
         recoveryFinalFailureReason: failure,
+        lastAttemptSource: recoveryRecord.lastAttemptSource,
+        exhausted: recoveryRecord.exhausted,
       });
       completed += 1;
       await checkpoint();

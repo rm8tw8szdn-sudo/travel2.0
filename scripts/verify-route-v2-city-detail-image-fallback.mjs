@@ -4,6 +4,7 @@ import net from "node:net";
 import os from "node:os";
 import path from "node:path";
 import { spawn } from "node:child_process";
+import { verifyRecovery02ProductImages } from "./lib/image-debt-recovery02-browser-smoke.mjs";
 
 const ROOT = path.resolve(import.meta.dirname, "..");
 const PLACEHOLDER_PATH = "/travel-collection/assets/route-city-placeholder.svg";
@@ -11,18 +12,54 @@ const PLACEHOLDER_SOURCE = "assets/route-city-placeholder.svg";
 const CITY_SHELL_PATH = path.join(ROOT, "city-oslo.html");
 const COUNTRY_SHELL_PATH = path.join(ROOT, "country-japan.html");
 const COUNTRY_DETAIL_SOURCE_PATH = path.join(ROOT, "country-detail.js");
+const resumedManifest = JSON.parse(fs.readFileSync(path.join(ROOT, "data/route-v2/images/image-coverage-manifest.json"), "utf8"));
+const resumedProvenance = JSON.parse(fs.readFileSync(path.join(ROOT, "data/route-v2/images/image-debt-recovery02-provenance.json"), "utf8"));
+const resumedCities = resumedProvenance.assets.filter(a => a.roundAuditPath && a.entityType === "City" && a.wikidataId !== "Q39569");
+const unresolvedCity = resumedManifest.cities.find(a => a.wikidataId === "Q158903" && a.needsBackfill);
+const resumedCases = [...resumedCities, ...(unresolvedCity ? [unresolvedCity] : [])].map(a => ({
+  id: 'RESUME-' + a.wikidataId, name: a.canonicalNameEn,
+  scope: a.needsBackfill ? "recovery02-unresolved" : "recovery02-resumed-dedicated",
+  injectState: {
+    country: { id: a.countryCode, name: a.countryCode, englishName: a.countryCode, cover: "assets/trip-cover-placeholder.svg" },
+    city: { id: 'RESUME-' + a.wikidataId, name: a.canonicalNameEn, englishName: a.canonicalNameEn,
+      countryId: a.countryCode, entityId: a.entityId, wikidataId: a.wikidataId, cover: PLACEHOLDER_SOURCE },
+  },
+}));
 const CASES = Object.freeze([
   { id: "GB-LON", name: "London", scope: "batch05" },
   { id: "JP-NAR", name: "Nara", scope: "legacy" },
   { id: "DE-BER", name: "Berlin", scope: "historical" },
   { id: "NO-OSL", name: "Oslo", scope: "batch05" },
   { id: "JP-TYO", name: "Tokyo", scope: "legacy" },
+  {
+    id: "KG-BSK",
+    name: "Bishkek",
+    scope: "recovery02-dedicated",
+    injectState: {
+      country: { id: "KG", name: "Kyrgyzstan", englishName: "Kyrgyzstan", cover: "assets/trip-cover-placeholder.svg" },
+      city: { id: "KG-BSK", name: "Bishkek", englishName: "Bishkek", countryId: "KG", entityId: "city-141a33b92dcc6c34", wikidataId: "Q9361", cover: "assets/route-city-placeholder.svg" },
+    },
+  },
+  {
+    id: "AM-DIL",
+    name: "Dilijan",
+    scope: "recovery02-resumed-dedicated",
+    injectState: {
+      country: { id: "AM", name: "Armenia", englishName: "Armenia", cover: "assets/trip-cover-placeholder.svg" },
+      city: { id: "AM-DIL", name: "Dilijan", englishName: "Dilijan", countryId: "AM", entityId: "city-0d01b05a839fbfed", wikidataId: "Q39569", cover: "assets/route-city-placeholder.svg" },
+    },
+  },
+  ...resumedCases,
 ]);
 const COUNTRY_CASES = Object.freeze([
   { code: "GB", label: "United Kingdom / York" },
   { code: "JP", label: "Japan" },
   { code: "DE", label: "Germany" },
   { code: "VN", label: "Batch 05 / Vietnam" },
+  { code: "KG", label: "Recovery 02 dedicated City / Kyrgyzstan" },
+  { code: "AM", label: "Recovery 02 resumed Dilijan / Armenia" },
+  { code: "AZ", label: "Recovery 02 resumed images and unresolved Shusha / Azerbaijan" },
+  { code: "BW", label: "Recovery 02 resumed Francistown / Botswana" },
 ]);
 
 function htmlAttribute(tag, name) {
@@ -88,7 +125,7 @@ function assertNeutralInitialImageRequests(id, requests, verifiedDedicatedPath =
   assert.equal(paths.filter((candidate) => candidate === PLACEHOLDER_PATH).length, 1, `${id}:neutral City hero must load once`);
   assert.deepEqual(
     paths.filter((candidate) => candidate !== verifiedDedicatedPath
-      && /(?:city-oslo-cover|\/countries\/|\/route-v2-images\/cities\/)/iu.test(candidate)),
+      && /(?:city-oslo-cover|\/countries\/|\/route-v2-images\/(?:recovery02\/)?cities\/)/iu.test(candidate)),
     [],
     `${id}:navigation requested a specific City or Country image before verified identity resolution`,
   );
@@ -250,7 +287,26 @@ const isolatedEnv = {
   ROUTE_IMAGE_CACHE_PATH: path.join(temporaryRoot, "route-image-cache.json"),
   ROUTE_IMAGE_PROXY_CACHE_DIR: path.join(temporaryRoot, "image-proxy-cache"),
   ROUTE_V2_LOCAL_EVIDENCE_ROOT: path.join(temporaryRoot, "local-evidence"),
+  ROUTE_V2_CANDIDATE_POOL_PATH: path.join(temporaryRoot, "candidate-pool.jsonl"),
+  ROUTE_V2_TRACE_PATH: path.join(temporaryRoot, "decision-traces.jsonl"),
+  ROUTE_V2_EVIDENCE_BUNDLE_PATH: path.join(temporaryRoot, "evidence-bundles.jsonl"),
+  ROUTE_V2_ROUTE_LEG_EVIDENCE_PATH: path.join(temporaryRoot, "local-evidence", "route-legs.jsonl"),
+  ROUTE_V2_SEASON_EVIDENCE_PATH: path.join(temporaryRoot, "local-evidence", "season.jsonl"),
+  ROUTE_V2_MISSING_EVIDENCE_MANIFEST_PATH: path.join(temporaryRoot, "local-evidence", "missing.jsonl"),
+  ROUTE_V2_READY_POOL_PATH: path.join(temporaryRoot, "ready-routes.json"),
   ROUTE_V2_RUNTIME_METRICS_PATH: path.join(temporaryRoot, "runtime-metrics.json"),
+  ROUTE_V2_RUNTIME_ENABLED: "true",
+  ROUTE_V2_CANARY_PERCENTAGE: "100",
+  ROUTE_V2_INTENT_ENABLED: "true",
+  ROUTE_V2_TIME_INTENT_ENABLED: "true",
+  ROUTE_V2_CANDIDATE_POOL_ENABLED: "true",
+  ROUTE_V2_TRACE_ENABLED: "true",
+  ROUTE_V2_EVIDENCE_BUNDLE_ENABLED: "true",
+  ROUTE_V2_LOCAL_EVIDENCE_INDEX_ENABLED: "true",
+  ROUTE_V2_EVIDENCE_LOCAL_ENABLED: "true",
+  ROUTE_V2_EVIDENCE_VALIDATION_ENABLED: "true",
+  ROUTE_V2_PUBLICATION_GATE_ENABLED: "true",
+  ROUTE_V2_READY_POOL_ENABLED: "true",
   ROUTE_V2_EVIDENCE_ONLINE_ENABLED: "false",
   ROUTE_V2_TAVILY_EVIDENCE_ENABLED: "false",
   ROUTE_V2_WIKIVOYAGE_EVIDENCE_ENABLED: "false",
@@ -342,6 +398,20 @@ try {
   for (const fixture of CASES) {
     navigationMode = "normal";
     imageRequests = [];
+    if (fixture.injectState) {
+      const injected = JSON.stringify(fixture.injectState);
+      const injection = await client.send("Runtime.evaluate", {
+        expression: `(() => {
+          const fixture = ${injected};
+          window.TravelState.updateTravelState((state) => ({
+            ...state,
+            countries: [...(state.countries || []).filter((record) => record.id !== fixture.country.id), fixture.country],
+            cities: [...(state.cities || []).filter((record) => record.id !== fixture.city.id), fixture.city],
+          }));
+        })()`,
+      }, sessionId);
+      assert(!injection.exceptionDetails, "fixture-state-injection-failed:" + fixture.id);
+    }
     const url = `${baseUrl}/travel-collection/city-oslo.html?localOnly=1&cityImageVerifier=${encodeURIComponent(fixture.id)}#${encodeURIComponent(fixture.id)}`;
     await client.send("Page.navigate", { url }, sessionId);
     await new Promise((resolve) => setTimeout(resolve, 1_000));
@@ -349,6 +419,7 @@ try {
       expression: `(() => {
         const image = document.querySelector("[data-city-cover]");
         return {
+          entityId: document.querySelector("[data-knowledge-city-id]")?.getAttribute("data-knowledge-city-id") || "",
           cityName: document.querySelector("[data-city-name]")?.textContent || "",
           src: image?.currentSrc || image?.src || "",
           path: image ? new URL(image.currentSrc || image.src, location.href).pathname : "",
@@ -370,11 +441,18 @@ try {
       returnByValue: true,
     }, sessionId);
     const rendered = evaluation.result?.value || {};
+    if (fixture.injectState) {
+      assert.equal(rendered.entityId, fixture.injectState.city.entityId, fixture.id + ":exact entity must render");
+      const expected = resumedManifest.cities.find(c => c.entityId === fixture.injectState.city.entityId);
+      assert.equal(rendered.path, "/travel-collection/" + expected.assetPath, fixture.id + ":exact bound asset must render");
+    }
     assert.equal(rendered.path, rendered.verifiedDedicatedPath || PLACEHOLDER_PATH, `${fixture.id}:City Detail must use only a manifest-verified City image or the neutral placeholder`);
     assert.doesNotMatch(rendered.path, /\/countries\//u, `${fixture.id}:Country cover must not render as a City cover`);
     assert.equal(rendered.complete, true, `${fixture.id}:City cover must finish loading`);
     assert.ok(rendered.naturalWidth > 0 && rendered.naturalHeight > 0, `${fixture.id}:City cover must not be broken`);
     assert.equal(rendered.coverSource, rendered.verifiedDedicatedPath ? "verified-city-image" : "neutral-placeholder", `${fixture.id}:City cover source must be explicit`);
+    if (fixture.scope === "recovery02-resumed-dedicated") assert(rendered.verifiedDedicatedPath, fixture.id + ":new image must be consumed");
+    if (fixture.scope === "recovery02-unresolved") assert.equal(rendered.verifiedDedicatedPath, "", fixture.id + ":unresolved must stay neutral");
     const localOnly = rendered.localOnly ? JSON.parse(rendered.localOnly) : {};
     assert.deepEqual(localOnly.blockedRequests || [], [], `${fixture.id}:City Detail attempted a blocked request`);
     const requestedImagePaths = assertNeutralInitialImageRequests(fixture.id, imageRequests, rendered.verifiedDedicatedPath);
@@ -413,9 +491,19 @@ try {
         })(),
         cards: [...document.querySelectorAll(".country-mini-card")].map((card) => {
           const image = card.querySelector("img");
+          const cityId = card.dataset.cityId || "";
+          const state = window.TravelState?.readTravelState?.() || {};
+          const city = state.citiesById?.[cityId] || (state.cities || []).find((candidate) => candidate.id === cityId);
+          const entityId = String(city?.entityId || city?.id || "").trim();
+          const coverage = window.RouteV2ImageCoverage?.cityByEntityId?.[entityId];
+          const verified = coverage?.status === "imageReady"
+            && coverage.assetKind === "verified-destination-image"
+            && coverage.semanticScope === "exact-city";
           return {
             name: card.querySelector("strong")?.textContent || card.dataset.city || "",
             path: image ? new URL(image.currentSrc || image.src, location.href).pathname : "",
+            expectedPath: verified ? new URL(coverage.assetPath, location.href).pathname : "${PLACEHOLDER_PATH}",
+            expectedPlaceholder: !verified,
             complete: image?.complete === true,
             naturalWidth: image?.naturalWidth || 0,
             naturalHeight: image?.naturalHeight || 0,
@@ -428,19 +516,24 @@ try {
     assert.ok(rendered.cards?.length > 0, `${fixture.code}:Country Detail must render City cards`);
     if (fixture.code === "GB") assert.ok(rendered.cards.some((card) => card.name === "约克"), "GB:York City card must be included in the regression fixture");
     for (const card of rendered.cards) {
-      assert.equal(card.path, PLACEHOLDER_PATH, `${fixture.code}/${card.name}:City card without a verified dedicated image must use the neutral placeholder`);
+      assert.equal(card.path, card.expectedPath, `${fixture.code}/${card.name}:City card must use only the exact manifest-bound image or neutral placeholder`);
       assert.doesNotMatch(card.path, /\/countries\//u, `${fixture.code}/${card.name}:Country cover must not render in a City card`);
       assert.equal(card.complete, true, `${fixture.code}/${card.name}:City-card image must finish loading`);
       assert.ok(card.naturalWidth > 0 && card.naturalHeight > 0, `${fixture.code}/${card.name}:City-card image must not be broken`);
     }
     const requestedImagePaths = imageRequests.map(requestPath);
-    assert.ok(requestedImagePaths.includes(PLACEHOLDER_PATH), `${fixture.code}:navigation must request the neutral City placeholder`);
+    for (const card of rendered.cards) assert.ok(requestedImagePaths.includes(card.expectedPath), `${fixture.code}/${card.name}:expected City-card image request missing`);
     const requestedCountryCovers = requestedImagePaths.filter((candidate) => /\/route-v2-images\/countries\/[a-z]{2}\.svg$/u.test(candidate));
     const expectedCountryCover = `/travel-collection/assets/route-v2-images/countries/${fixture.code.toLowerCase()}.svg`;
     assert.deepEqual([...new Set(requestedCountryCovers)], [expectedCountryCover], `${fixture.code}:navigation must not request another Country cover before identity resolution`);
     countryCardResults.push({ ...fixture, countryName: rendered.countryName, heroPath: rendered.heroPath, cards: rendered.cards, requestedImagePaths });
   }
+  assert.ok(countryCardResults.some((fixture) => fixture.cards.some((card) => card.expectedPlaceholder)), "Country Detail browser cases must retain one unresolved neutral City placeholder");
+  assert.ok(countryCardResults.some((fixture) => fixture.cards.some((card) => !card.expectedPlaceholder)), "Country Detail browser cases must consume one verified dedicated City image");
   await client.send("Page.removeScriptToEvaluateOnNewDocument", { identifier: countryEvidenceStubIdentifier }, sessionId);
+
+  const recovery02Product = await verifyRecovery02ProductImages({ client, sessionId, baseUrl });
+  assert.deepEqual(externalRequests, [], "Recovery 02 product flow attempted external runtime requests");
 
   navigationMode = "script-failure";
   imageRequests = [];
@@ -488,6 +581,7 @@ try {
     countryCoverFallbackMutationKilled,
     cases: results,
     countryCardCases: countryCardResults,
+    recovery02Product,
     scriptFailure: {
       blockedScriptRequests: blockedCityDetailScriptRequests,
       blockedScriptFailures: blockedCityDetailScriptFailures,

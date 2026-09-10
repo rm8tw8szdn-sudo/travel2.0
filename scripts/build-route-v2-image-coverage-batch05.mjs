@@ -2,6 +2,7 @@ import crypto from "node:crypto";
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import fs from "node:fs";
 import path from "node:path";
+import { readBatch09SealedText } from "./lib/knowledge-expansion-batch09-report-data.mjs";
 
 import { createPublishedKnowledgeEntityLayerRepository } from "../src/lib/routes/index.mjs";
 import { evaluatePoiTypeIdsForConsumer } from "../src/lib/routes/knowledge-poi-semantic-admission.mjs";
@@ -16,6 +17,7 @@ if (!["06", "07", "08", "09"].includes(BATCH)) throw new Error("batch-argument-i
 const BATCH_AUDIT_PATH = `ROUTE_V2_IMAGE_COVERAGE_BACKFILL_BATCH${BATCH}_AUDIT.md`;
 const PROVENANCE_PATH = `data/route-v2/images/batch${BATCH}-dedicated-image-provenance.json`;
 const DEBT_PROVENANCE_PATH = "data/route-v2/images/image-debt-elimination-provenance.json";
+const DEBT_RECOVERY02_PROVENANCE_PATH = "data/route-v2/images/image-debt-recovery02-provenance.json";
 const BATCH_BASELINE_PATH = `data/knowledge/reports/knowledge-expansion-batch${BATCH}-baseline.json`;
 const RETRIEVED_AT = BATCH === "09" ? "2026-08-31T16:00:00.000Z" : BATCH === "08" ? "2026-08-28T09:00:00.000Z" : BATCH === "07" ? "2026-08-24T05:00:00.000Z" : "2026-08-17T09:00:00.000Z";
 const BATCH05_CODES = new Set(["GB", "IE", "CZ", "HU", "HR", "NO", "SE", "FI", "DK", "BE", "PL", "SI", "VN", "MY", "ID", "PH", "CA", "US", "MX", "PE"]);
@@ -123,12 +125,19 @@ const cumulativeProvenance = ["06", "07", "08", "09"]
 const debtProvenance = fs.existsSync(path.join(ROOT, DEBT_PROVENANCE_PATH))
   ? JSON.parse(await readFile(path.join(ROOT, DEBT_PROVENANCE_PATH), "utf8"))
   : { assets: [] };
+const debtRecovery02Provenance = fs.existsSync(path.join(ROOT, DEBT_RECOVERY02_PROVENANCE_PATH))
+  ? JSON.parse(await readFile(path.join(ROOT, DEBT_RECOVERY02_PROVENANCE_PATH), "utf8"))
+  : { assets: [], attempts: [] };
+const debtRecovery02AttemptByEntityId = new Map((debtRecovery02Provenance.attempts || []).map((record) => [record.entityId, record]));
 const batchBaseline = JSON.parse(await readFile(path.join(ROOT, BATCH_BASELINE_PATH), "utf8"));
 const dedicatedRecords = [
   ...cumulativeProvenance,
   ...(debtProvenance.assets || [])
     .filter((record) => record.status === "imageReady" && record.visualAuditStatus === "passed")
     .map((record) => ({ ...record, provenancePath: DEBT_PROVENANCE_PATH })),
+  ...(debtRecovery02Provenance.assets || [])
+    .filter((record) => record.status === "imageReady" && record.visualAuditStatus === "passed")
+    .map((record) => ({ ...record, provenancePath: DEBT_RECOVERY02_PROVENANCE_PATH })),
 ];
 const dedicatedByEntityId = new Map(dedicatedRecords.map((record) => [record.entityId, record]));
 const countryRecords = [];
@@ -147,6 +156,7 @@ const neutralPlaceholderMetadata = localAssetMetadata(PLACEHOLDER, {
 function destinationRecord(entity, { entityType, countryCode, parentCityEntityId = null, core = false, publishedPoiCount = 0, backfillPriority = "high" } = {}) {
   const dedicated = dedicatedByEntityId.get(entity.entityId);
   if (!dedicated) {
+    const recoveryAttempt = debtRecovery02AttemptByEntityId.get(entity.entityId);
     return {
       entityId: entity.entityId,
       wikidataId: entity.wikidataId,
@@ -159,6 +169,13 @@ function destinationRecord(entity, { entityType, countryCode, parentCityEntityId
       backfillPriority,
       status: "placeholder",
       needsBackfill: true,
+      ...(recoveryAttempt ? {
+        failureReason: recoveryAttempt.reasonCode,
+        failureDetail: recoveryAttempt.reasonDetail,
+        recoveryAttempts: recoveryAttempt.recoveryAttemptCount,
+        lastAttemptSource: recoveryAttempt.lastAttemptSource,
+        exhausted: recoveryAttempt.exhausted === true,
+      } : {}),
       assetKind: "neutral-placeholder",
       semanticScope: "neutral-placeholder",
       visualTruthStatus: "neutral-non-geographic-placeholder",
@@ -333,8 +350,18 @@ const debtScope = BATCH === "09"
   ? `- Sealed PR #27 historical Image Debt list: ${batchBaseline.images.historicalFrozenDebt}\n- Batch 09 total needsBackfill before: ${batchBaseline.images.needsBackfill}\n- Batch 09 total needsBackfill after: ${manifest.coverage.overall.needsBackfillCount}\n- Pre-Batch09 scope needsBackfill after semantic repair: ${manifest.coverage.historicalPlannableCountries.needsBackfillCount}`
   : `- Historical image debt before Batch ${BATCH}: ${batchBaseline.images.needsBackfill}\n- Historical image debt after Batch ${BATCH}: ${manifest.coverage.historicalPlannableCountries.needsBackfillCount}`;
 const audit = `# Route V2 Image Coverage Backfill Audit\n\nGenerated: ${RETRIEVED_AT}\n\n## Outcome\n\n${debtScope}\n- Plannable Country graphic covers: ${manifest.coverage.overall.countryCoverCoverage.ready}/${manifest.coverage.overall.countryCoverCoverage.total}\n- Batch ${BATCH} Country graphic covers added: ${scope(CURRENT_BATCH_CODES, countryRecords).length}\n- Verified destination City images: ${manifest.coverage.overall.cityDedicatedImageCoverage.ready}\n- Dedicated City image coverage: ${manifest.coverage.overall.cityDedicatedImageCoverage.ready}/${manifest.coverage.overall.cityDedicatedImageCoverage.total} (${manifest.coverage.overall.cityDedicatedImageCoverage.percent}%)\n- City neutral placeholders: ${manifest.coverage.overall.cityPlaceholderCount}\n- Verified Core POI image coverage: ${manifest.coverage.overall.corePoiImageCoverage.ready}/${manifest.coverage.overall.corePoiImageCoverage.total} (${manifest.coverage.overall.corePoiImageCoverage.percent}%)\n- POI neutral placeholders: ${manifest.coverage.overall.poiPlaceholderCount}\n- Batch ${BATCH} verified destination images: ${batchAdded}\n- Active invalid mappings: ${invalidMappings.length}\n- Needs backfill: ${manifest.coverage.overall.needsBackfillCount}\n- Runtime external image requests: disabled\n\nCountry covers are non-photographic entity label graphics and are not counted as City or POI imagery. Dedicated destination assets require an exact Wikidata entity P18, a fixed local Commons file, and auditable free-license metadata. All other destinations retain the shared neutral placeholder and needsBackfill.\n\n## Debt by country and priority\n\n| Code | Country | Scope | High City | Normal City | Low City | Core POI | Total |\n| --- | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: |\n${debtTable}\n\n## Remaining City backfill\n\n${cityBackfill || "None"}\n\n## Remaining Core POI backfill\n\n${poiBackfill || "None"}\n`;
-await write(AUDIT_PATH, audit);
-await write(BATCH_AUDIT_PATH, audit.replace("# Route V2 Image Coverage Backfill Audit", `# Route V2 Image Coverage Backfill Batch ${BATCH} Audit`));
+const recovery02Active = BATCH === "09" && fs.existsSync(path.join(ROOT, DEBT_RECOVERY02_PROVENANCE_PATH));
+const currentAudit = recovery02Active ? audit
+  .replace(`Generated: ${RETRIEVED_AT}`, "Phase: Image Debt Recovery 02 (current manifest; Batch09 historical reports remain Git-sealed)")
+  .replace(/- Batch 09 total needsBackfill before:.*\n/u, "")
+  .replace("Batch 09 total needsBackfill after:", "Current Recovery 02 needsBackfill:")
+  .replace("Pre-Batch09 scope needsBackfill after semantic repair:", "Current debt in pre-Batch09 country scope:")
+  .replace("Batch 09 Country graphic covers added:", "Sealed Batch 09 Country graphic covers (not added by Recovery 02):")
+  .replace("Batch 09 verified destination images:", "Sealed Batch 09 dedicated-image additions (not Recovery 02):") : audit;
+await write(AUDIT_PATH, currentAudit);
+await write(BATCH_AUDIT_PATH, recovery02Active
+  ? readBatch09SealedText(ROOT, BATCH_AUDIT_PATH)
+  : audit.replace("# Route V2 Image Coverage Backfill Audit", `# Route V2 Image Coverage Backfill Batch ${BATCH} Audit`));
 
 console.log(JSON.stringify({
   status: invalidMappings.length === 0 ? "PASS" : "FAIL",

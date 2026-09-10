@@ -33,6 +33,7 @@ for (const name of [
   "knowledge-expansion-batch05-route-consumption",
   "route-v2-image-coverage-batch05",
   "route-v2-image-debt-elimination",
+  "route-v2-image-debt-recovery02",
   "route-v2-image-provenance-completeness",
   "route-v2-image-asset-baseline",
   "route-v2-image-quality-adversarial",
@@ -294,6 +295,8 @@ const poiPolicyConsistencyFailure = controlledStageFailure(poiPolicyConsistencyS
 const overlappingEntityFailure = controlledStageFailure(overlappingEntityStage, 73, "controlled overlapping entity parser failure");
 const poiMixedTypeFailure = controlledStageFailure(poiMixedTypeStage, 79, "controlled mixed-type POI admission failure");
 const financialMarketFailure = controlledStageFailure(financialMarketStage, 83, "controlled financial-market POI admission failure");
+const recovery02Stage = MANDATORY_PRELAUNCH_VERIFIERS.find((stage) => stage.name === "route-v2-image-debt-recovery02");
+const recovery02Failure = controlledStageFailure(recovery02Stage, 89, "controlled Recovery 02 failure");
 
 function realReportMutationFailure(search, replacement, label) {
   const sourcePath = path.join(projectRoot, "ROUTE_V2_KNOWLEDGE_EXPANSION_BATCH05_REPORT.md");
@@ -356,6 +359,7 @@ process.stdout.write(`${JSON.stringify({
   overlappingEntityFailurePropagated: overlappingEntityFailure.exitCode === 73,
   poiMixedTypeFailurePropagated: poiMixedTypeFailure.exitCode === 79,
   financialMarketFailurePropagated: financialMarketFailure.exitCode === 83,
+  recovery02FailurePropagated: recovery02Failure.exitCode === 89,
   reportPoiMutationPropagated: reportPoiMutation.exitCode !== 0,
   reportDedicatedCityMutationPropagated: reportCityImageMutation.exitCode !== 0,
 }, null, 2)}\n`);

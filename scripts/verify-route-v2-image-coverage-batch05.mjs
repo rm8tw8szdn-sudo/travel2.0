@@ -12,7 +12,7 @@ const read = (relativePath) => fs.readFileSync(path.join(ROOT, relativePath), "u
 const manifest = JSON.parse(read("data/route-v2/images/image-coverage-manifest.json"));
 const provenanceByPath = new Map();
 function exactProvenance(record) {
-  assert.match(record.sourcePath, /^data\/route-v2\/images\/(?:batch\d{2}-dedicated-image-provenance|image-debt-elimination-provenance)\.json$/u);
+  assert.match(record.sourcePath, /^data\/route-v2\/images\/(?:batch\d{2}-dedicated-image-provenance|image-debt-(?:elimination|recovery02)-provenance)\.json$/u);
   if (!provenanceByPath.has(record.sourcePath)) {
     provenanceByPath.set(record.sourcePath, JSON.parse(read(record.sourcePath)).assets || []);
   }
@@ -89,7 +89,7 @@ for (const record of [...manifest.countries, ...manifest.cities, ...manifest.poi
   }
   assert.equal(record.isDedicated, true);
   assert.equal(record.isPlaceholder, false);
-  assert.match(record.assetPath, /^assets\/route-v2-images\/(?:countries|cities|pois)\/[a-z0-9-]+\.(?:svg|jpe?g|png|webp)$/u);
+  assert.match(record.assetPath, /^assets\/route-v2-images\/(?:countries|cities|pois|recovery02\/(?:cities|pois))\/[a-z0-9-]+\.(?:svg|jpe?g|png|webp)$/u);
   assert.equal(fs.existsSync(path.join(ROOT, record.assetPath)), true, record.assetPath);
   if (record.entityType === "Country") {
     assert.equal(record.sourceUrl, null);

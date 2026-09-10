@@ -303,10 +303,20 @@ if (parseRelativeBaselineP95Ms > 0) {
 assert(local.normalizeRouteIntent.p95Ms < 0.1, "intent normalization p95 must remain below 0.1ms");
 assert(local.validateNormalizedRouteIntent.p95Ms < 0.1, "intent schema validation p95 must remain below 0.1ms");
 assert(local.fingerprint.p95Ms < 0.1, "fingerprint p95 must remain below 0.1ms");
+const reliabilityProcess = spawnSync(process.execPath, [
+  "scripts/verify-route-v2-performance-reliability.mjs",
+  "--normal-only",
+], {
+  cwd: projectRoot,
+  encoding: "utf8",
+  timeout: 180_000,
+  windowsHide: true,
+});
 assert(
-  local.finalInvariantGate.p95Ms < 0.25,
-  `full invariant gate p95 ${local.finalInvariantGate.p95Ms}ms must remain below 0.25ms`,
+  reliabilityProcess.status === 0 || reliabilityProcess.status === 1,
+  reliabilityProcess.stderr || reliabilityProcess.stdout || "paired performance verifier did not complete",
 );
+const reliability = JSON.parse(reliabilityProcess.stdout);
 
 const cache = createRouteSearchCache({
   storagePath: path.join(temporaryRoot, "search-cache.json"),
@@ -405,9 +415,10 @@ const legacyBaseline = {
 };
 const gateP95DeltaPercent = Number((((local.finalInvariantGate.p95Ms / legacyBaseline.legacyFallbackValidator.p95Ms) - 1) * 100).toFixed(2));
 
+const verifierStatus = reliability.status === "PASS" ? "PASS" : "FAIL";
 process.stdout.write(`${JSON.stringify({
   verifier: "route-v2-intent-performance",
-  status: "PASS",
+  status: verifierStatus,
   environment: {
     platform: process.platform,
     architecture: process.arch,
@@ -429,10 +440,14 @@ process.stdout.write(`${JSON.stringify({
     parseP95DeltaPercent: Number((((local.parseSearchIntent.p95Ms / legacyBaseline.parseSearchIntent.p95Ms) - 1) * 100).toFixed(2)),
     fullGateVsLegacyNarrowValidatorP95DeltaPercent: gateP95DeltaPercent,
     investigated: gateP95DeltaPercent > 10,
-    explanation: "The legacy baseline checked a narrow fallback subset. The new gate also normalizes the complete contract, verifies a versioned SHA-256 fingerprint, detects envelope tampering, and checks every hard constraint. Its measured p95 remains below 0.25ms per record, so even 100 records stay below the existing user-path latency budget.",
-    unresolvedPerformanceRisk: false,
+    explanation: "The legacy baseline checked a narrow fallback subset. The fixed same-host paired gate now reports the full invariant contract's absolute p95 and its relative result against the sealed Git baseline separately; NO REGRESSION cannot override an absolute failure.",
+    unresolvedPerformanceRisk: reliability.status !== "PASS",
   },
   performanceGate: {
+    absoluteContract: reliability.normal.absoluteResult,
+    regressionGate: reliability.normal.regressionVerdict,
+    combinedGate: reliability.status,
+    pairedReliability: reliability,
     methodology: "10 rounds after a 20,000-operation JIT warm-up; each round measures 40 batches of 100 operations so round p95 is not determined by one scheduler outlier.",
     localDiagnostic: {
       absoluteSafetyLimitMs: parseAbsoluteSafetyLimitMs,
@@ -455,5 +470,7 @@ process.stdout.write(`${JSON.stringify({
     evidence: "Same-host A/B/C forensics on 2026-07-28 measured aggregate parse p99 no higher than 1.343198ms and round-p95 CV no higher than 6.12%. The prior 1ms assertion was a single-host snapshot introduced in 739a2a8, not a cross-machine contract. The 2ms limit is an absolute safety ceiling, while controlled comparisons additionally enforce the 10% relative regression limit.",
   },
 }, null, 2)}\n`);
+
+if (verifierStatus !== "PASS") process.exitCode = 1;
 
 fs.rmSync(temporaryRoot, { recursive: true, force: true });

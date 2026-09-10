@@ -68,6 +68,55 @@ function invalidEvaluation(errors, protocol) {
   };
 }
 
+function measurementValidationErrors(measurement, prefix, protocol) {
+  if (!measurement || typeof measurement !== "object" || Array.isArray(measurement)) return [`${prefix}:malformed`];
+  const errors = [];
+  if (!Number.isFinite(measurement.p95Ms) || measurement.p95Ms <= 0) errors.push(`${prefix}:invalid-p95`);
+  if (!Array.isArray(measurement.samplesMs) || measurement.samplesMs.length !== protocol.samplesPerSide) {
+    errors.push(`${prefix}:invalid-sample-count`);
+    return errors;
+  }
+  if (measurement.samplesMs.some((sample) => !Number.isFinite(sample) || sample <= 0)) {
+    errors.push(`${prefix}:invalid-sample`);
+    return errors;
+  }
+  if (Number.isFinite(measurement.p95Ms) && measurement.p95Ms !== percentile(measurement.samplesMs, 0.95)) {
+    errors.push(`${prefix}:p95-sample-mismatch`);
+  }
+  return errors;
+}
+
+export function validateWorkerEnvelope(workerResult, expected = {}, protocol = ROUTE_V2_PERFORMANCE_PROTOCOL) {
+  const errors = [];
+  if (!workerResult || typeof workerResult !== "object" || Array.isArray(workerResult)) {
+    return { valid: false, errors: ["worker-envelope:malformed"], pair: null };
+  }
+  if (workerResult.worker !== "route-v2-invariant-pair") errors.push("worker-envelope:invalid-worker");
+  if (workerResult.valid === false) errors.push("worker-envelope:invalid-marker");
+  if (workerResult.success === false) errors.push("worker-envelope:unsuccessful-marker");
+  if (!["baseline-current", "current-baseline"].includes(workerResult.order)) errors.push("worker-envelope:invalid-order");
+  if (expected.order !== undefined && workerResult.order !== expected.order) errors.push("worker-envelope:unexpected-order");
+  if (!Number.isFinite(workerResult.currentMultiplier) || workerResult.currentMultiplier <= 0) {
+    errors.push("worker-envelope:invalid-current-multiplier");
+  } else if (expected.currentMultiplier !== undefined && workerResult.currentMultiplier !== expected.currentMultiplier) {
+    errors.push("worker-envelope:unexpected-current-multiplier");
+  }
+  errors.push(...measurementValidationErrors(workerResult.baseline, "worker-envelope:baseline", protocol));
+  errors.push(...measurementValidationErrors(workerResult.current, "worker-envelope:current", protocol));
+  return { valid: errors.length === 0, errors, pair: errors.length === 0 ? workerResult : null };
+}
+
+export function parseWorkerEnvelope(output, expected = {}, protocol = ROUTE_V2_PERFORMANCE_PROTOCOL) {
+  if (typeof output !== "string" || output.trim() === "") {
+    return { valid: false, errors: ["worker-envelope:missing-output"], pair: null };
+  }
+  try {
+    return validateWorkerEnvelope(JSON.parse(output), expected, protocol);
+  } catch {
+    return { valid: false, errors: ["worker-envelope:invalid-json"], pair: null };
+  }
+}
+
 function validatePairs(pairs, protocol) {
   const errors = [];
   if (!Array.isArray(pairs)) return ["pairs:not-array"];
@@ -78,27 +127,8 @@ function validatePairs(pairs, protocol) {
       continue;
     }
     if (!["baseline-current", "current-baseline"].includes(pair.order)) errors.push(`pair-${pairIndex + 1}:invalid-order`);
-    for (const side of ["baseline", "current"]) {
-      const measurement = pair[side];
-      if (!measurement || typeof measurement !== "object" || Array.isArray(measurement)) {
-        errors.push(`pair-${pairIndex + 1}:${side}:malformed`);
-        continue;
-      }
-      if (!Number.isFinite(measurement.p95Ms) || measurement.p95Ms <= 0) {
-        errors.push(`pair-${pairIndex + 1}:${side}:invalid-p95`);
-      }
-      if (!Array.isArray(measurement.samplesMs) || measurement.samplesMs.length !== protocol.samplesPerSide) {
-        errors.push(`pair-${pairIndex + 1}:${side}:invalid-sample-count`);
-        continue;
-      }
-      if (measurement.samplesMs.some((sample) => !Number.isFinite(sample) || sample <= 0)) {
-        errors.push(`pair-${pairIndex + 1}:${side}:invalid-sample`);
-        continue;
-      }
-      if (Number.isFinite(measurement.p95Ms) && measurement.p95Ms !== percentile(measurement.samplesMs, 0.95)) {
-        errors.push(`pair-${pairIndex + 1}:${side}:p95-sample-mismatch`);
-      }
-    }
+    errors.push(...measurementValidationErrors(pair.baseline, `pair-${pairIndex + 1}:baseline`, protocol));
+    errors.push(...measurementValidationErrors(pair.current, `pair-${pairIndex + 1}:current`, protocol));
   }
   return errors;
 }

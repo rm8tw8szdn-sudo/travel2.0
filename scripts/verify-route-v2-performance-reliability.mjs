@@ -1,4 +1,3 @@
-import assert from "node:assert/strict";
 import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
@@ -7,6 +6,7 @@ import { fileURLToPath } from "node:url";
 import {
   ROUTE_V2_PERFORMANCE_PROTOCOL,
   evaluatePairedPerformance,
+  parseWorkerEnvelope,
   performanceGateStatus,
 } from "./lib/route-v2-performance-reliability.mjs";
 
@@ -39,18 +39,29 @@ function runPair({ baselineSubjectRoot, currentSubjectRoot, pairIndex, multiplie
     timeout: 120_000,
     windowsHide: true,
   });
-  assert.equal(result.status, 0, result.stderr || result.stdout || `pair ${pairIndex + 1} failed`);
-  return JSON.parse(result.stdout);
+  if (result.status !== 0) {
+    return {
+      valid: false,
+      errors: [`worker-process:pair-${pairIndex + 1}:exit-${result.status ?? "missing"}`],
+      pair: null,
+    };
+  }
+  return parseWorkerEnvelope(result.stdout, { order, currentMultiplier: multiplier });
 }
 
 function runProtocol({ label, baselineSubjectRoot, currentSubjectRoot, multiplier }) {
-  const pairs = Array.from({ length: ROUTE_V2_PERFORMANCE_PROTOCOL.pairs }, (_, pairIndex) => runPair({
+  const workerResults = Array.from({ length: ROUTE_V2_PERFORMANCE_PROTOCOL.pairs }, (_, pairIndex) => runPair({
     baselineSubjectRoot,
     currentSubjectRoot,
     pairIndex,
     multiplier,
   }));
-  const evaluated = evaluatePairedPerformance(pairs);
+  const workerErrors = workerResults.flatMap((result, pairIndex) => result.errors.map((error) => `pair-${pairIndex + 1}:${error}`));
+  const evaluated = evaluatePairedPerformance(workerResults.map((result) => result.pair));
+  if (workerErrors.length > 0) evaluated.validationErrors = [...workerErrors, ...evaluated.validationErrors];
+  if (!evaluated.valid) {
+    return { label, syntheticCurrentWorkMultiplier: multiplier, ...evaluated };
+  }
   return {
     label,
     syntheticCurrentWorkMultiplier: multiplier,

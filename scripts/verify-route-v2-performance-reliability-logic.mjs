@@ -2,7 +2,9 @@ import assert from "node:assert/strict";
 import {
   ROUTE_V2_PERFORMANCE_PROTOCOL,
   evaluatePairedPerformance,
+  parseWorkerEnvelope,
   performanceGateStatus,
+  validateWorkerEnvelope,
 } from "./lib/route-v2-performance-reliability.mjs";
 
 function pairs(ratios, baselineValues = [0.2, 0.201, 0.199, 0.202, 0.198, 0.2]) {
@@ -20,6 +22,25 @@ function assertBlocked(candidate, label) {
   assert.equal(result.reliable, false, `${label}: reliability must be false`);
   assert.equal(result.regressionVerdict, "INCONCLUSIVE", `${label}: regression must be inconclusive`);
   assert.equal(performanceGateStatus(result), "BLOCKED_INCONCLUSIVE", `${label}: combined gate must block`);
+}
+
+function workerEnvelope(pairIndex = 0) {
+  return {
+    worker: "route-v2-invariant-pair",
+    currentMultiplier: 1,
+    ...pairs([1, 1, 1, 1, 1, 1])[pairIndex],
+  };
+}
+
+function assertWorkerValidationBlocked(validation, label) {
+  assert.equal(validation.valid, false, `${label}: worker envelope must be invalid`);
+  const candidatePairs = Array.from({ length: 6 }, (_, index) => workerEnvelope(index));
+  candidatePairs[0] = validation.pair;
+  assertBlocked(candidatePairs, label);
+}
+
+function assertEnvelopeBlocked(workerResult, label, expected = { order: "baseline-current", currentMultiplier: 1 }) {
+  assertWorkerValidationBlocked(validateWorkerEnvelope(workerResult, expected), label);
 }
 
 const equivalent = evaluatePairedPerformance(pairs([1, 1.01, 0.99, 1.02, 0.98, 1]));
@@ -77,5 +98,39 @@ assertBlocked(missingRatioInput, "missing ratio input");
 const malformedWorkerOutput = pairs([1, 1, 1, 1, 1, 1]);
 malformedWorkerOutput[0] = { worker: "unexpected-payload" };
 assertBlocked(malformedWorkerOutput, "malformed worker output");
+
+assertEnvelopeBlocked(null, "null worker result");
+assertEnvelopeBlocked(undefined, "undefined worker result");
+assertEnvelopeBlocked({}, "empty worker result");
+assertEnvelopeBlocked("route-v2-invariant-pair", "primitive worker result");
+assertEnvelopeBlocked({ worker: "route-v2-invariant-pair", order: "baseline-current", currentMultiplier: 1 }, "missing measurements");
+const missingBaseline = workerEnvelope();
+delete missingBaseline.baseline;
+assertEnvelopeBlocked(missingBaseline, "missing baseline identity");
+const missingCurrent = workerEnvelope();
+delete missingCurrent.current;
+assertEnvelopeBlocked(missingCurrent, "missing current identity");
+const missingOrder = workerEnvelope();
+delete missingOrder.order;
+assertEnvelopeBlocked(missingOrder, "missing order metadata");
+assertEnvelopeBlocked({ error: "worker failed", success: false }, "worker error envelope");
+const malformedNestedSamples = workerEnvelope();
+malformedNestedSamples.current.samplesMs[0] = null;
+assertEnvelopeBlocked(malformedNestedSamples, "malformed nested samples");
+const falseValidMarker = workerEnvelope();
+falseValidMarker.valid = false;
+assertEnvelopeBlocked(falseValidMarker, "valid false envelope");
+const falseSuccessMarker = workerEnvelope();
+falseSuccessMarker.success = false;
+assertEnvelopeBlocked(falseSuccessMarker, "success false envelope");
+const wrongMultiplier = workerEnvelope();
+wrongMultiplier.currentMultiplier = 1.2;
+assertEnvelopeBlocked(wrongMultiplier, "unexpected multiplier");
+const wrongBalancedOrder = workerEnvelope();
+wrongBalancedOrder.order = "current-baseline";
+assertEnvelopeBlocked(wrongBalancedOrder, "unexpected pair order");
+assertWorkerValidationBlocked(parseWorkerEnvelope("", {}), "missing worker output");
+assertWorkerValidationBlocked(parseWorkerEnvelope("{not-json", {}), "unparsable worker output");
+assert.equal(parseWorkerEnvelope(JSON.stringify(workerEnvelope()), { order: "baseline-current", currentMultiplier: 1 }).valid, true);
 
 process.stdout.write(`${JSON.stringify({ verifier: "route-v2-performance-reliability-logic", status: "PASS" }, null, 2)}\n`);

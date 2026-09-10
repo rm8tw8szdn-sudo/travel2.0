@@ -21,6 +21,7 @@ const SHARE_PRESETS = {
     meta: "日期待定",
   },
 };
+const escapeSharedHtml = (value) => window.TravelState?.escapeHtml?.(value) ?? String(value ?? "");
 
 function ensureModal(name, html) {
   const kebabName = name.replace(/[A-Z]/g, (letter) => `-${letter.toLowerCase()}`);
@@ -46,14 +47,14 @@ function openShareCard(kind, overrides = {}) {
       <div class="flow-overlay shared-overlay">
         <section class="share-card-modal" role="dialog" aria-modal="true" data-share-card-modal>
           <button class="shared-close" type="button" aria-label="关闭" data-close-modal>×</button>
-          <article class="share-card-preview" style="--share-cover: url('${data.cover}')">
-            <img src="${data.cover}" alt="${data.name}封面图" />
+          <article class="share-card-preview">
+            <img src="${escapeSharedHtml(data.cover)}" alt="${escapeSharedHtml(data.name)}封面图" />
             <span class="share-card-shade"></span>
             <div class="share-card-copy">
-              <em>${data.type}</em>
-              <strong>${data.name}</strong>
-              <p>${data.description}</p>
-              <small>${data.meta}</small>
+              <em>${escapeSharedHtml(data.type)}</em>
+              <strong>${escapeSharedHtml(data.name)}</strong>
+              <p>${escapeSharedHtml(data.description)}</p>
+              <small>${escapeSharedHtml(data.meta)}</small>
             </div>
             <div class="share-qr" aria-label="二维码占位" data-qr-placeholder><i></i><i></i><i></i><i></i></div>
           </article>
@@ -76,10 +77,10 @@ function openNotifications() {
           <div>
             ${notifications.map((item) => `
               <article class="${item.read ? "" : "unread"}">
-                <strong>${item.type}</strong>
-                <p>${item.text}</p>
-                <small>${item.time}${item.read ? " · 已读" : " · 未读"}</small>
-                ${item.read ? "" : `<button type="button" data-mark-notification-read="${item.id}">标为已读</button>`}
+                <strong>${escapeSharedHtml(item.type)}</strong>
+                <p>${escapeSharedHtml(item.text)}</p>
+                <small>${escapeSharedHtml(item.time)}${item.read ? " · 已读" : " · 未读"}</small>
+                ${item.read ? "" : `<button type="button" data-mark-notification-read="${escapeSharedHtml(item.id)}">标为已读</button>`}
               </article>
             `).join("")}
           </div>
@@ -117,9 +118,9 @@ function openAddToTripModal(payload = {}) {
   const trips = (state.trips || []).filter((trip) => trip.status !== "completed");
   const itemName = payload.name || "目的地";
   const options = trips.map((trip) => `
-    <button type="button" data-confirm-add-trip="${trip.id}">
-      <strong>${trip.name}</strong>
-      <small>${trip.start || trip.startDate || "日期待定"}</small>
+    <button type="button" data-confirm-add-trip="${escapeSharedHtml(trip.id)}">
+      <strong>${escapeSharedHtml(trip.name)}</strong>
+      <small>${escapeSharedHtml(trip.start || trip.startDate || "日期待定")}</small>
     </button>
   `).join("");
 
@@ -131,7 +132,7 @@ function openAddToTripModal(payload = {}) {
           <button class="shared-close" type="button" aria-label="关闭" data-close-modal>×</button>
           <h2>加入行程</h2>
           <article>
-            <strong>${itemName}</strong>
+            <strong>${escapeSharedHtml(itemName)}</strong>
             <p>选择一个待出行行程，或创建新的轻量行程。</p>
             <div class="add-trip-options">
               ${options || `<small>暂无待出行行程</small>`}

@@ -34,10 +34,13 @@ function parseCountries(value, fallback) {
   return [...new Set((items.length ? items : fallback).filter((code) => code && code !== "CN"))];
 }
 
-function withTimeout(promise, timeoutMs) {
+function withTimeout(promise, timeoutMs, controller) {
   let timeout = null;
   const timer = new Promise((_, reject) => {
-    timeout = setTimeout(() => reject(new Error(`feed-refill-timeout:${timeoutMs}`)), timeoutMs);
+    timeout = setTimeout(() => {
+      controller.abort(new Error(`feed-refill-timeout:${timeoutMs}`));
+      reject(new Error(`feed-refill-timeout:${timeoutMs}`));
+    }, timeoutMs);
   });
   return Promise.race([promise, timer]).finally(() => clearTimeout(timeout));
 }
@@ -88,7 +91,7 @@ export function createRouteFeedRefillWorker({
     const routeType = request.routeType === "single" || request.routeType === "cross" ? request.routeType : "";
     const key = refillKey(routeType);
     const active = running.get(key);
-    if (active) return { started: false, reused: true, promise: active };
+    if (active) return { started: false, reused: true, promise: active.promise };
 
     const storagePath = env.ROUTE_ACCEPTED_REPOSITORY_PATH || path.join(root, ".route-v2-cache", "accepted-routes.json");
     const evidenceStoragePath = env.ROUTE_EVIDENCE_REPOSITORY_PATH || path.join(root, ".route-v2-cache", "route-evidence.json");
@@ -103,8 +106,8 @@ export function createRouteFeedRefillWorker({
 
     jobStore?.transition?.(job?.id, "fetchingEvidence", { reason, routeType: routeType || "all" });
 
-    const task = Promise.resolve().then(async () => {
-      const report = await withTimeout(runWarmup({
+    const controller = new AbortController();
+    const work = Promise.resolve().then(() => runWarmup({
         env,
         storagePath,
         evidenceStoragePath,
@@ -128,7 +131,9 @@ export function createRouteFeedRefillWorker({
         minimumTotal: Math.min(targets.targetSize, Number(targets.status.total || 0) + 1),
         fetchImpl,
         log,
-      }), deadlineMs + 2_000);
+        signal: controller.signal,
+      }));
+    const task = withTimeout(work, deadlineMs + 2_000, controller).then((report) => {
       const accepted = Number(report?.plannerPhase?.accepted || 0) + Number((report?.results || []).filter((item) => item.status === "accepted").length);
       jobStore?.transition?.(job?.id, accepted > 0 ? "accepted" : "rejected", {
         routeType: routeType || "all",
@@ -141,11 +146,14 @@ export function createRouteFeedRefillWorker({
     }).catch((error) => {
       jobStore?.transition?.(job?.id, "failed", { reason: error.message, routeType: routeType || "all" });
       throw error;
-    }).finally(() => {
-      running.delete(key);
     });
 
-    running.set(key, task);
+    const activeEntry = { promise: task, work, controller };
+    running.set(key, activeEntry);
+    work.then(
+      () => { if (running.get(key) === activeEntry) running.delete(key); },
+      () => { if (running.get(key) === activeEntry) running.delete(key); },
+    );
     return { started: true, reused: false, promise: task };
   }
 

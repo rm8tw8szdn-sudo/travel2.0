@@ -12,33 +12,45 @@ function clone(value) {
   return structuredClone(value);
 }
 
-function identity(input) {
-  return [input.type, input.providerId, input.evidenceHash, input.sourceIdentity, input.query].filter(Boolean).join("::");
+function normalizeIdentity(input) {
+  return {
+    type: input.type || "repository-build",
+    providerId: input.providerId || "",
+    evidenceHash: input.evidenceHash || "",
+    sourceIdentity: input.sourceIdentity || "",
+    query: input.query || "",
+  };
 }
 
 export function createRouteJobStore({ now = () => Date.now() } = {}) {
   const jobs = new Map();
   const identities = new Map();
+  let sequence = 0;
 
   function enqueue(input = {}) {
-    const key = identity(input);
+    const fields = normalizeIdentity(input);
+    // Preserve empty field positions and escape delimiters in user queries.
+    const key = JSON.stringify(Object.values(fields));
     const existingId = identities.get(key);
     if (existingId) {
       const existing = jobs.get(existingId);
       if (existing && RUNNING_STATUSES.has(existing.status)) return { job: clone(existing), reused: true };
       identities.delete(key);
     }
-    const id = input.id || `job:${key || "route"}:${now()}`;
+    const timestamp = now();
+    let id = input.id;
+    if (id && jobs.has(id)) throw new Error("job_id_already_exists");
+    if (!id) {
+      do {
+        id = `job:${timestamp}:${++sequence}`;
+      } while (jobs.has(id));
+    }
     const job = {
       id,
-      type: input.type || "repository-build",
-      providerId: input.providerId || "",
-      evidenceHash: input.evidenceHash || "",
-      sourceIdentity: input.sourceIdentity || "",
-      query: input.query || "",
+      ...fields,
       status: "queued",
-      createdAt: now(),
-      updatedAt: now(),
+      createdAt: timestamp,
+      updatedAt: timestamp,
       diagnostics: [],
     };
     jobs.set(id, job);
@@ -51,7 +63,7 @@ export function createRouteJobStore({ now = () => Date.now() } = {}) {
     if (!job) return null;
     job.status = status;
     job.updatedAt = now();
-    if (diagnostic) job.diagnostics.push(diagnostic);
+    if (diagnostic) job.diagnostics.push(clone(diagnostic));
     return clone(job);
   }
 

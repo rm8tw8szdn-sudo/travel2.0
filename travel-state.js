@@ -232,6 +232,12 @@
     return JSON.parse(JSON.stringify(value));
   }
 
+  function escapeHtml(value) {
+    return String(value ?? "").replace(/[&<>"']/g, (character) => ({
+      "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;",
+    })[character]);
+  }
+
   function defaultData(key, fallback) {
     return clone(TravelData[key] || fallback);
   }
@@ -962,15 +968,6 @@
   function readTravelState() {
     if (!global.localStorage) return recalculateTravelState(createDefaultTravelState());
     ROUTE_V1_STORAGE_KEYS.forEach((key) => global.localStorage.removeItem(key));
-    const params = new URLSearchParams(global.location?.search || "");
-    if (params.get("reset") === "empty") {
-      const emptyState = writeTravelState(createEmptyTravelState());
-      params.delete("reset");
-      const nextQuery = params.toString();
-      const nextUrl = `${global.location.pathname}${nextQuery ? `?${nextQuery}` : ""}${global.location.hash || ""}`;
-      global.history?.replaceState?.(null, "", nextUrl);
-      return emptyState;
-    }
     try {
       const stored = JSON.parse(global.localStorage.getItem(TRAVEL_STATE_STORAGE_KEY) || "{}");
       return recalculateTravelState(stored);
@@ -1179,6 +1176,7 @@
   const api = {
     TRAVEL_STATE_STORAGE_KEY,
     DEFAULT_TRIP_COVER,
+    escapeHtml,
     createDefaultTravelState,
     createEmptyTravelState,
     recalculateTravelState,

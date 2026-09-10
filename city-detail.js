@@ -1,4 +1,12 @@
-const cityId = decodeURIComponent(window.location.hash.replace(/^#/, "")) || "NO-OSL";
+function cityIdFromFragment(fragment, fallback = "NO-OSL") {
+  try {
+    return decodeURIComponent(String(fragment || "").replace(/^#/, "")) || fallback;
+  } catch {
+    return fallback;
+  }
+}
+
+const cityId = cityIdFromFragment(window.location.hash);
 const localOnlyMode = new URLSearchParams(window.location.search).get("localOnly") === "1";
 const localOnlyPlaceholderCover = "assets/route-city-placeholder.svg";
 const localOnlyDiagnostics = localOnlyMode ? { requests: [], blockedRequests: [] } : null;

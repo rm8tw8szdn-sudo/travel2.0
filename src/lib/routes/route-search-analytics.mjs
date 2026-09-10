@@ -13,15 +13,28 @@ export function createRouteSearchAnalytics({
   storagePath = defaultStoragePath(),
   now = () => Date.now(),
 } = {}) {
+  const diagnostics = [];
+
   function append(event) {
-    if (!storagePath) return;
-    const payload = {
-      schemaVersion: 1,
-      timestamp: new Date(now()).toISOString(),
-      ...clone(event || {}),
-    };
-    fs.mkdirSync(path.dirname(storagePath), { recursive: true });
-    fs.appendFileSync(storagePath, `${JSON.stringify(payload)}\n`);
+    if (!storagePath) return { written: false, reason: "analytics-disabled" };
+    try {
+      const payload = {
+        schemaVersion: 1,
+        timestamp: new Date(now()).toISOString(),
+        ...clone(event || {}),
+      };
+      fs.mkdirSync(path.dirname(storagePath), { recursive: true });
+      fs.appendFileSync(storagePath, `${JSON.stringify(payload)}\n`);
+      return { written: true };
+    } catch (error) {
+      diagnostics.push({
+        type: "analytics-write-failed",
+        code: String(error?.code || "write_failed"),
+        timestamp: new Date(now()).toISOString(),
+      });
+      if (diagnostics.length > 20) diagnostics.splice(0, diagnostics.length - 20);
+      return { written: false, reason: "analytics-write-failed" };
+    }
   }
 
   function logSearch(event) {
@@ -32,5 +45,5 @@ export function createRouteSearchAnalytics({
     append({ type: "detail-click", ...event });
   }
 
-  return { append, logSearch, logDetailClick };
+  return { append, logSearch, logDetailClick, diagnostics: () => clone(diagnostics) };
 }

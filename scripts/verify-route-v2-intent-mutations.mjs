@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
+import { reportMissingVerifierPrerequisites } from "./lib/verifier-prerequisites.mjs";
 
 import {
   attachRouteIntentEnvelope,
@@ -499,6 +500,15 @@ kill(
   "search-cache-safe-miss",
 );
 
+const requiredRuntimeCacheFiles = [
+  "accepted-routes.json", "route-evidence.json", "provider-sync-state.json",
+  "knowledge-graph-pool.json", "search-analytics.jsonl", "search-review-candidates.json",
+].map((file) => path.resolve(".route-v2-cache", file));
+reportMissingVerifierPrerequisites({
+  verifier: "route-v2-intent-mutations",
+  files: requiredRuntimeCacheFiles,
+  restore: "Materialize the route-v2 runtime cache fixture before running this integration verifier.",
+});
 const auditRoot = path.join(temporaryRoot, "cache-audit");
 fs.mkdirSync(auditRoot, { recursive: true });
 for (const file of [

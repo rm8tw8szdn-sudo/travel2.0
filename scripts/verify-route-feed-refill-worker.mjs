@@ -121,4 +121,29 @@ import { createRouteDiscovery, createRouteFeedRefillWorker, createRouteJobStore 
   await waited[0];
 }
 
+{
+  let observedAbort = false;
+  let releaseUnderlying;
+  const release = new Promise((resolve) => { releaseUnderlying = resolve; });
+  const worker = createRouteFeedRefillWorker({
+    repository: { status: () => ({ total: 0, single: 0, cross: 0, targets: {}, minimums: {} }) },
+    env: { ROUTE_FEED_REFILL_DEADLINE_MS: "0" },
+    runWarmup: ({ signal }) => new Promise((resolve) => {
+      signal.addEventListener("abort", async () => {
+        observedAbort = true;
+        await release;
+        resolve({ results: [], plannerPhase: {} });
+      }, { once: true });
+    }),
+  });
+  const first = worker.schedule({ request: { routeType: "single" } });
+  await assert.rejects(first.promise, /feed-refill-timeout/u);
+  assert.equal(observedAbort, true, "deadline must abort the underlying warmup signal");
+  const second = worker.schedule({ request: { routeType: "single" } });
+  assert.equal(second.reused, true, "the key must remain occupied until aborted work settles");
+  releaseUnderlying();
+  await new Promise((resolve) => setTimeout(resolve, 0));
+  assert.deepEqual(worker.activeKeys(), []);
+}
+
 console.log("Route feed refill worker verified: terminal jobs requeue, cross refill dedupes, and discovery schedules background production.");

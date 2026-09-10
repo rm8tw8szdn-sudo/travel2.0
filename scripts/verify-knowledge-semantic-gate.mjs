@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import fs from "node:fs";
 import path from "node:path";
+import { readVerifierJson } from "./lib/verifier-prerequisites.mjs";
 
 import { createPublishedKnowledgeEntityLayerRepository } from "../src/lib/routes/index.mjs";
 import { validateKnowledgeCityEntity } from "../src/lib/routes/knowledge-city-baseline-schema.mjs";
@@ -19,7 +20,10 @@ const EXCEPTIONS_PATH = path.join(ROOT, "data/knowledge/semantic/knowledge-seman
 const TYPE_POLICY_PATH = path.join(ROOT, "data/knowledge/semantic/knowledge-semantic-type-policy.json");
 
 function readJson(filePath) {
-  return JSON.parse(fs.readFileSync(filePath, "utf8"));
+  return readVerifierJson(filePath, {
+    verifier: "knowledge-semantic-gate",
+    restore: "Run git lfs pull for data/knowledge/raw, then rerun this verifier.",
+  });
 }
 
 function semanticFacts() {

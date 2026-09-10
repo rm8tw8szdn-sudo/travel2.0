@@ -13,6 +13,7 @@ import {
 import { acceptedPoolWatermarks } from "./route-pool-watermarks.mjs";
 import { encodeDiscoveryCursor, decodeDiscoveryCursor } from "./cursor.mjs";
 import { validateEmbeddedRouteIntent } from "./route-intent-invariant-gate.mjs";
+import { acquireOwnedFileLock } from "./file-owner-lock.mjs";
 
 function clone(value) {
   return structuredClone(value);
@@ -42,8 +43,12 @@ function writeStoredRecords(storagePath, payload) {
   if (!storagePath) return;
   fs.mkdirSync(path.dirname(storagePath), { recursive: true });
   const tempPath = `${storagePath}.${process.pid}.tmp`;
-  fs.writeFileSync(tempPath, JSON.stringify(payload, null, 2));
-  fs.renameSync(tempPath, storagePath);
+  try {
+    fs.writeFileSync(tempPath, JSON.stringify(payload, null, 2));
+    fs.renameSync(tempPath, storagePath);
+  } finally {
+    if (fs.existsSync(tempPath)) fs.rmSync(tempPath, { force: true });
+  }
 }
 
 function routeKind(record) {
@@ -392,45 +397,68 @@ export function createAcceptedRouteRepository({
       || "";
   }
 
-  const storedItems = readStoredRecords(storagePath);
-  for (const item of storedItems) {
-    if (isUnpublishableRouteGenerationV2(item)) continue;
-    const routeIntentValidation = validateBoundRouteIntent(item, "accepted-repository-load");
-    if (!routeIntentValidation.matched) continue;
-    const record = normalizeDiscoveredRoute(item);
-    const quality = validateRouteContent(record);
-    const composition = validateCompositionRecord(record);
-    if (record?.contentQualityStatus === "accepted" && quality.accepted && composition.accepted && record.coverAsset?.imageUrl) {
-      const stored = {
-        ...record,
-        classification: record.classification || quality.classification,
-        repositoryStatus: record.enrichmentStatus === "mediaReady" ? "mediaReady" : "accepted",
-        dedupeFingerprint: record.dedupeFingerprint || routeDedupeFingerprint(record),
-      };
-      const duplicateId = loadedDuplicateId(stored);
-      if (duplicateId) {
-        const existing = records.get(duplicateId);
-        if (existing) {
-          const merged = mergeRecord(existing, stored);
-          records.delete(existing.id);
-          records.set(merged.id, clone(merged));
-          indexLoadedRecord(merged);
+  function loadStoredItems(storedItems) {
+    records.clear();
+    Object.values(loadIndexes).forEach((index) => index.clear());
+    for (const item of storedItems) {
+      if (isUnpublishableRouteGenerationV2(item)) continue;
+      const routeIntentValidation = validateBoundRouteIntent(item, "accepted-repository-load");
+      if (!routeIntentValidation.matched) continue;
+      const record = normalizeDiscoveredRoute(item);
+      const quality = validateRouteContent(record);
+      const composition = validateCompositionRecord(record);
+      if (record?.contentQualityStatus === "accepted" && quality.accepted && composition.accepted && record.coverAsset?.imageUrl) {
+        const stored = {
+          ...record,
+          classification: record.classification || quality.classification,
+          repositoryStatus: record.enrichmentStatus === "mediaReady" ? "mediaReady" : "accepted",
+          dedupeFingerprint: record.dedupeFingerprint || routeDedupeFingerprint(record),
+        };
+        const duplicateId = loadedDuplicateId(stored);
+        if (duplicateId) {
+          const existing = records.get(duplicateId);
+          if (existing) {
+            const merged = mergeRecord(existing, stored);
+            records.delete(existing.id);
+            records.set(merged.id, clone(merged));
+            indexLoadedRecord(merged);
+          }
+          continue;
         }
-        continue;
+        const cluster = feedClusterKey(stored);
+        const clusterLimit = maxClusterSize(stored);
+        if (cluster && Number.isFinite(clusterLimit)) {
+          const clusterSize = [...records.values()].filter((existing) => feedClusterKey(existing) === cluster).length;
+          if (clusterSize >= clusterLimit) continue;
+        }
+        records.set(stored.id, clone(stored));
+        indexLoadedRecord(stored);
       }
-      const cluster = feedClusterKey(stored);
-      const clusterLimit = maxClusterSize(stored);
-      if (cluster && Number.isFinite(clusterLimit)) {
-        const clusterSize = [...records.values()].filter((existing) => feedClusterKey(existing) === cluster).length;
-        if (clusterSize >= clusterLimit) continue;
-      }
-      records.set(stored.id, clone(stored));
-      indexLoadedRecord(stored);
     }
   }
-  if (storedItems.length !== records.size) persist();
+
+  function withStorageLock(action) {
+    if (!storagePath) return action();
+    fs.mkdirSync(path.dirname(storagePath), { recursive: true });
+    const lockPath = `${storagePath}.lock`;
+    const lock = acquireOwnedFileLock(lockPath);
+    try {
+      loadStoredItems(readStoredRecords(storagePath));
+      return action();
+    } finally {
+      lock.release();
+    }
+  }
+
+  const storedItems = readStoredRecords(storagePath);
+  loadStoredItems(storedItems);
+  if (storedItems.length !== records.size) withStorageLock(persist);
 
   function upsert(input) {
+    return withStorageLock(() => upsertLoaded(input));
+  }
+
+  function upsertLoaded(input) {
     if (isUnpublishableRouteGenerationV2(input)) {
       return { accepted: false, reasons: ["v2-not-publishable-yet"] };
     }
@@ -659,6 +687,10 @@ export function createAcceptedRouteRepository({
   }
 
   function mark(routeId, patch) {
+    return withStorageLock(() => markLoaded(routeId, patch));
+  }
+
+  function markLoaded(routeId, patch) {
     const current = records.get(routeId);
     if (!current) return null;
     const next = { ...current, ...patch };

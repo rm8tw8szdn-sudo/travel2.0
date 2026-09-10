@@ -20,6 +20,22 @@ const ALLOWED_RASTER_IMAGE_TYPES = new Set([
   "image/png",
   "image/webp",
 ]);
+const PUBLIC_DIRECTORIES = new Set(["assets", "vendor"]);
+const PUBLIC_NESTED_FILES = new Set([
+  "data/countries-50m.json",
+  "data/countries.zh.json",
+]);
+const PUBLIC_TOP_LEVEL_FILES = new Set([
+  "app-shared.js", "atlas.html", "atlas.js", "city-detail.js", "city-oslo.html",
+  "country-detail.js", "country-japan.html", "detail-enrichment.js", "favorites.html",
+  "favorites.js", "footprint.html", "footprint.js", "home-components.js", "index.html",
+  "knowledge-city-detail.js", "mobile.css", "mobile.html", "profile.html", "profile.js",
+  "route-detail-load-controller.js", "route-detail.html", "route-detail.js",
+  "route-feed-bootstrap.js", "route-feed-preload.js", "route-v2-cache-manifest-v2.json",
+  "route-v2-image-assets.js", "route-v2-image-coverage.js", "routes.html", "routes.js",
+  "travel-data.js", "travel-search.js", "travel-state.js", "trips.html", "trips.js",
+  "world-map.js",
+]);
 
 const blockedAddresses = new net.BlockList();
 for (const [network, prefix] of [
@@ -82,20 +98,33 @@ function safeStaticPath(root, urlPath) {
   return resolved;
 }
 
+function resolvePublicStaticPath(root, urlPath) {
+  const resolved = safeStaticPath(root, urlPath);
+  if (!resolved) return "";
+  const relative = path.relative(path.resolve(String(root || "")), resolved).replaceAll("\\", "/");
+  if (!relative || relative.split("/").some((part) => part.startsWith("."))) return "";
+  if (!relative.includes("/")) return PUBLIC_TOP_LEVEL_FILES.has(relative) ? resolved : "";
+  return PUBLIC_DIRECTORIES.has(relative.split("/", 1)[0]) || PUBLIC_NESTED_FILES.has(relative) ? resolved : "";
+}
+
+async function collectBoundedBody(body, maxBytes, createLimitError) {
+  const chunks = [];
+  let totalBytes = 0;
+  for await (const chunk of body) {
+    const buffer = Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk);
+    totalBytes += buffer.length;
+    if (totalBytes > maxBytes) throw createLimitError();
+    chunks.push(buffer);
+  }
+  return Buffer.concat(chunks, totalBytes);
+}
+
 async function readRequestBody(request, { maxBytes = DEFAULT_REQUEST_BODY_MAX_BYTES } = {}) {
   const limit = Number(maxBytes);
   if (!Number.isSafeInteger(limit) || limit <= 0) throw new TypeError("request_body_limit_invalid");
   const declaredLength = Number(request?.headers?.["content-length"] || 0);
   if (Number.isFinite(declaredLength) && declaredLength > limit) throw new RequestBodyTooLargeError();
-  const chunks = [];
-  let totalBytes = 0;
-  for await (const chunk of request) {
-    const buffer = Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk);
-    totalBytes += buffer.length;
-    if (totalBytes > limit) throw new RequestBodyTooLargeError();
-    chunks.push(buffer);
-  }
-  return Buffer.concat(chunks, totalBytes);
+  return collectBoundedBody(request, limit, () => new RequestBodyTooLargeError());
 }
 
 function parseTrustedImageUrl(rawUrl) {
@@ -161,16 +190,9 @@ async function bufferResponseBody(body, maxBytes) {
     if (buffer.length > maxBytes) throw new ServerBoundaryError("image_too_large", 413);
     return buffer;
   }
-  const chunks = [];
-  let totalBytes = 0;
-  for await (const chunk of body || []) {
-    const buffer = Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk);
-    totalBytes += buffer.length;
-    if (totalBytes > maxBytes) throw new ServerBoundaryError("image_too_large", 413);
-    chunks.push(buffer);
-  }
-  if (!totalBytes) throw new ServerBoundaryError("image_empty_body", 502);
-  return Buffer.concat(chunks, totalBytes);
+  const buffer = await collectBoundedBody(body || [], maxBytes, () => new ServerBoundaryError("image_too_large", 413));
+  if (!buffer.length) throw new ServerBoundaryError("image_empty_body", 502);
+  return buffer;
 }
 
 function defaultRequestHop({ url, address, signal, timeoutMs }) {
@@ -191,11 +213,6 @@ function defaultRequestHop({ url, address, signal, timeoutMs }) {
       signal,
     }, (response) => {
       const statusCode = Number(response.statusCode || 0);
-      if (statusCode >= 300 && statusCode < 400) {
-        response.resume();
-        resolve({ statusCode, headers: response.headers, body: Buffer.alloc(0) });
-        return;
-      }
       resolve({ statusCode, headers: response.headers, body: response });
     });
     request.setTimeout(timeoutMs, () => request.destroy(new ServerBoundaryError("image_timeout", 502)));
@@ -224,22 +241,27 @@ async function downloadTrustedImage(rawUrl, {
       timeoutMs,
       maxBytes,
     });
-    const statusCode = Number(upstream?.statusCode || 0);
-    if (statusCode >= 300 && statusCode < 400) {
-      if (redirects >= maxRedirects) throw new ServerBoundaryError("image_redirect_limit", 502);
-      const location = headerValue(upstream.headers, "location");
-      if (!location) throw new ServerBoundaryError("image_redirect_invalid", 502);
-      currentUrl = new URL(location, validated.url).href;
-      continue;
+    try {
+      const statusCode = Number(upstream?.statusCode || 0);
+      if (statusCode >= 300 && statusCode < 400) {
+        if (redirects >= maxRedirects) throw new ServerBoundaryError("image_redirect_limit", 502);
+        const location = headerValue(upstream.headers, "location");
+        if (!location) throw new ServerBoundaryError("image_redirect_invalid", 502);
+        currentUrl = new URL(location, validated.url).href;
+        continue;
+      }
+      if (statusCode < 200 || statusCode >= 300) throw new ServerBoundaryError("image_upstream_unavailable", 502);
+      const contentType = rasterContentType(upstream.headers);
+      const contentLength = Number(headerValue(upstream.headers, "content-length") || 0);
+      if (Number.isFinite(contentLength) && contentLength > maxBytes) {
+        throw new ServerBoundaryError("image_too_large", 413);
+      }
+      const body = await bufferResponseBody(upstream.body, maxBytes);
+      return { body, contentType, finalUrl: validated.url.href };
+    } finally {
+      // Header rejection and redirects must also release unconsumed sockets.
+      upstream?.body?.destroy?.();
     }
-    if (statusCode < 200 || statusCode >= 300) throw new ServerBoundaryError("image_upstream_unavailable", 502);
-    const contentType = rasterContentType(upstream.headers);
-    const contentLength = Number(headerValue(upstream.headers, "content-length") || 0);
-    if (Number.isFinite(contentLength) && contentLength > maxBytes) {
-      throw new ServerBoundaryError("image_too_large", 413);
-    }
-    const body = await bufferResponseBody(upstream.body, maxBytes);
-    return { body, contentType, finalUrl: validated.url.href };
   }
 }
 
@@ -254,6 +276,7 @@ module.exports = Object.freeze({
   isBlockedIpAddress,
   parseTrustedImageUrl,
   readRequestBody,
+  resolvePublicStaticPath,
   safeStaticPath,
   validateTrustedImageUrl,
 });

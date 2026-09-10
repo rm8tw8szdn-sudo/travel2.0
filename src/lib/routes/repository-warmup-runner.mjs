@@ -27,8 +27,19 @@ const GOLD_CASES_EXPORT = GOLD_CASES;
 const WIKIVOYAGE_API = "https://en.wikivoyage.org/w/api.php";
 const PROVIDER_ID = "wikivoyage";
 
-function wait(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
+function wait(ms, signal = null) {
+  if (signal?.aborted) return Promise.reject(signal.reason || new Error("route-warmup-aborted"));
+  return new Promise((resolve, reject) => {
+    const timer = setTimeout(resolve, ms);
+    signal?.addEventListener("abort", () => {
+      clearTimeout(timer);
+      reject(signal.reason || new Error("route-warmup-aborted"));
+    }, { once: true });
+  });
+}
+
+function throwIfAborted(signal) {
+  if (signal?.aborted) throw signal.reason || new Error("route-warmup-aborted");
 }
 
 function countByReason(bucket, result) {
@@ -119,7 +130,7 @@ function isEnabledRoute(record) {
     && !(record.destinationEntities || []).some((item) => item.countryCode === "CN");
 }
 
-async function fetchCategoryBatch({ continuation = null, batchSize = 30, cooldownMs = 60_000 } = {}) {
+async function fetchCategoryBatch({ continuation = null, batchSize = 30, cooldownMs = 60_000, fetchImpl = globalThis.fetch, signal = null } = {}) {
   const url = new URL(WIKIVOYAGE_API);
   Object.entries({
     origin: "*",
@@ -138,14 +149,16 @@ async function fetchCategoryBatch({ continuation = null, batchSize = 30, cooldow
   }
   let response = null;
   for (let attempt = 0; attempt < 4; attempt += 1) {
-    response = await fetch(url, {
+    throwIfAborted(signal);
+    const timeoutSignal = AbortSignal.timeout(15_000);
+    response = await fetchImpl(url, {
       headers: { "Api-User-Agent": "TravelCollectionRouteV2/2.0 (https://github.com/rm8tw8szdn-sudo/travel-collection)" },
-      signal: AbortSignal.timeout(15_000),
+      signal: signal ? AbortSignal.any([signal, timeoutSignal]) : timeoutSignal,
     });
     if (response.ok) break;
     if (response.status !== 429 && response.status < 500) break;
     const retryAfter = Number(response.headers.get("retry-after")) || 0;
-    await wait(Math.max(retryAfter * 1000, Math.min(cooldownMs, 2_000 * (attempt + 1))));
+    await wait(Math.max(retryAfter * 1000, Math.min(cooldownMs, 2_000 * (attempt + 1))), signal);
   }
   if (!response?.ok) {
     const error = new Error(`Wikivoyage category request failed (${response?.status || "network"})`);
@@ -783,6 +796,8 @@ async function runPlannerPhase({
   plannerCountries, fetchImpl, now, log,
   plannerStrategy, jobStore = null, signals = {},
 }) {
+  const abortSignal = signals.abortSignal || null;
+  throwIfAborted(abortSignal);
   const startedAt = now().toISOString();
   const deadlineAt = Date.now() + plannerDeadlineMs;
   // 每日配额（env 可调，默认值即用户指定 Planner 100/LLM 300/Evidence 300/Image 100）。
@@ -869,6 +884,7 @@ async function runPlannerPhase({
   }));
 
   for (const context of contexts) {
+    throwIfAborted(abortSignal);
     // planner 配额耗尽 → 停止补路线
     if (quotaUsage.planner >= quotaLimits.planner) { phase.quotaExhausted = "planner"; break; }
     if (Date.now() >= deadlineAt) { phase.timedOut = true; break; }
@@ -876,9 +892,11 @@ async function runPlannerPhase({
     const candidateDeadline = Math.min(deadlineAt, Date.now() + 45_000); // 单候选 LLM+Tavily 上限
     try {
       const result = await planner.buildCandidates({
-        limit: 1, context: { ...context, deadlineAt: candidateDeadline, quota },
+        limit: 1, context: { ...context, deadlineAt: candidateDeadline, quota, abortSignal },
       });
+      throwIfAborted(abortSignal);
       for (const accepted of (result.accepted || [])) {
+        throwIfAborted(abortSignal);
         const record = accepted.record;
         const cover = await resolvePlannerCover(record, imageProvider, candidateDeadline, quota);
         if (!cover) { phase.rejected += 1; continue; } // 无封面→跳过（acceptedRepository.upsert 需 coverAsset.imageUrl）
@@ -941,7 +959,9 @@ export async function runRouteRepositoryWarmup({
   fetchImpl = globalThis.fetch,
   // 可选注入：不传则从 env 构建（生产默认）。测试 / admin CLI 可注入 stub provider 跳过真实 LLM 富化
   textEnrichmentProvider = null,
+  signal = null,
 } = {}) {
+  throwIfAborted(signal);
   const textProvider = textEnrichmentProvider || createConfiguredTextEnrichmentProvider(env);
   if (!textProvider && batchSize > 0) {
     return {
@@ -988,7 +1008,7 @@ export async function runRouteRepositoryWarmup({
   try {
     const batch = batchSize <= 0
       ? { members: [], continuation: previousSync.continuation || null }
-      : await fetchCategoryBatch({ continuation: previousSync.continuation || null, batchSize, cooldownMs });
+      : await fetchCategoryBatch({ continuation: previousSync.continuation || null, batchSize, cooldownMs, fetchImpl, signal });
     nextContinuation = batch.continuation;
     scannedCount = batch.members.length;
     const seenIds = new Set(repositoryRecords(repository).map((record) => record.id));
@@ -997,6 +1017,7 @@ export async function runRouteRepositoryWarmup({
     log({ stage: "provider-batch", scannedCount, candidateCount, continuation: nextContinuation });
 
     for (const member of candidates) {
+      throwIfAborted(signal);
       if (!shouldContinueWarmup(repository, watermarks)) break;
       try {
         const result = await buildCandidate({ member, repository, evidenceRepository, liveProvider, enricher, imageProvider: warmupImageProvider });
@@ -1017,9 +1038,10 @@ export async function runRouteRepositoryWarmup({
         results.push(result);
         countByReason(reasonCounts, result);
         log(result);
-        if (/429|Too Many Requests|rate/i.test(error.message)) await wait(cooldownMs);
+        if (signal?.aborted) throw error;
+        if (/429|Too Many Requests|rate/i.test(error.message)) await wait(cooldownMs, signal);
       }
-      await wait(delayMs);
+      await wait(delayMs, signal);
     }
   } catch (error) {
     rateLimit = error.status === 429 ? "wikivoyage-category" : null;
@@ -1040,6 +1062,7 @@ export async function runRouteRepositoryWarmup({
   let plannerPhase = { ran: false, accepted: 0, rejected: 0, llmEnabled: false, evidenceEnabled: false };
   if (plannerEnabled && shouldContinueWarmup(repository, watermarks)) {
     try {
+      throwIfAborted(signal);
       plannerPhase = await runPlannerPhase({
         repository, evidenceRepository, env, stats: after,
         knowledgeGraphPoolPath, plannerBatchSize, plannerDeadlineMs,
@@ -1050,15 +1073,19 @@ export async function runRouteRepositoryWarmup({
           now: now().toISOString(),
           operatorCountries: env.ROUTE_PLANNER_OPERATOR_COUNTRIES || "",
           ...plannerSignals,
+          abortSignal: signal,
         },
       });
+      throwIfAborted(signal);
     } catch (error) {
+      if (signal?.aborted) throw error;
       plannerPhase = { ran: true, error: `planner-phase-crashed: ${error.message}`, accepted: 0, rejected: 0 };
     }
   }
   const finalAfter = poolStats(repository, watermarks);
 
   const nextRunAt = new Date(Date.now() + (retryAfter ? retryAfter * 1000 : 24 * 60 * 60 * 1000)).toISOString();
+  throwIfAborted(signal);
   const providerSync = syncStateStore.update(PROVIDER_ID, {
     lastSyncAt: finishedAt,
     cursor: nextContinuation ? JSON.stringify(nextContinuation) : "",

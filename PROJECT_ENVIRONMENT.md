@@ -83,14 +83,14 @@ Expected:
 
 Current project state:
 
-- No `package.json`
-- No `package-lock.json`
+- Private `package.json` with preview, offline unit tests, smoke checks, and Playwright browser acceptance
+- `package-lock.json` pins the browser test dev dependency; use `npm.cmd ci` to reproduce it
 - No `pnpm-lock.yaml`
 - Static frontend pages plus `server.js`
 - Local preview server is `server.js`
-- Existing README mentions `npm run preview:travel`, but no package manifest currently defines that script
+- `npm.cmd run preview:travel` starts `node server.js`
 
-Because there is no package manifest, the current canonical startup command is the direct Node command:
+The direct Node startup command remains supported alongside the package script:
 
 ```powershell
 $env:PORT = "4173"
@@ -106,7 +106,7 @@ http://127.0.0.1:4173/travel-collection/routes.html
 
 ## Standard Startup
 
-Until a package manifest is created, use:
+Use the direct command or `npm.cmd run preview:travel`:
 
 ```powershell
 $env:PORT = "4173"
@@ -121,12 +121,14 @@ Do not use:
 
 ## Standard Test Commands
 
-Because there is no package manifest, tests are currently script-level commands, not `npm test` or `pnpm test`.
+Run `npm.cmd test` for deterministic runtime unit tests and `npm.cmd run test:smoke` for four offline integration/contract verifiers. Neither requires dependencies. Other script-level verifiers retain their own data/browser/service prerequisites.
+
+Real browser acceptance uses `npm.cmd ci`, `npm.cmd run browser:install`, then `npm.cmd run test:browser`. It starts an isolated production server and runs Chromium at three viewport widths. See `docs/browser-acceptance-2026-09-08.md` for tested scope and output locations.
 
 Examples after formal Node is installed:
 
 ```powershell
-node scripts/verify-route-feed.mjs
+node scripts/verify-route-v2-prelaunch-browser.mjs
 node scripts/verify-search-v1.mjs
 node scripts/phase-regression-test.js
 ```

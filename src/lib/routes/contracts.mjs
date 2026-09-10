@@ -15,6 +15,35 @@ function cleanText(value) {
   return typeof value === "string" ? value.trim().replace(/\s+/g, " ") : "";
 }
 
+function invalidInput(message) {
+  throw new RouteDiscoveryError("INVALID_INPUT", message, { status: 400 });
+}
+
+function validateDiscoveryInput(input) {
+  if (!input || typeof input !== "object" || Array.isArray(input)) {
+    invalidInput("Discovery input must be a JSON object.");
+  }
+  const prototype = Object.getPrototypeOf(input);
+  if (prototype !== Object.prototype && prototype !== null) invalidInput("Discovery input must be a plain object.");
+  for (const field of [
+    "mode", "query", "q", "locale", "cursor", "sessionId", "routeType", "classification", "tab",
+    "routeId", "source", "searchSessionId", "queryId",
+  ]) {
+    if (input[field] != null && typeof input[field] !== "string") invalidInput(`${field} must be a string.`);
+  }
+  if (input.limit != null && !(
+    (typeof input.limit === "number" && Number.isFinite(input.limit))
+    || (typeof input.limit === "string" && /^\d+$/u.test(input.limit.trim()))
+  )) invalidInput("limit must be a number.");
+  for (const [field, maximum] of [["excludeIds", MAX_EXCLUDE_IDS], ["excludeClusters", MAX_EXCLUDE_CLUSTERS]]) {
+    if (input[field] == null) continue;
+    if (!Array.isArray(input[field]) || input[field].some((value) => typeof value !== "string")) {
+      invalidInput(`${field} must be an array of strings.`);
+    }
+    if (input[field].length > maximum) invalidInput(`${field} exceeds its maximum size.`);
+  }
+}
+
 function uniqueTextList(value) {
   if (!Array.isArray(value)) return [];
   return [...new Set(value.map(cleanText).filter(Boolean))];
@@ -102,6 +131,7 @@ function feedCoverAsset(value) {
 }
 
 export function normalizeDiscoveryRequest(input = {}) {
+  validateDiscoveryInput(input);
   const mode = cleanText(input.mode) || "feed";
   if (!new Set(["feed", "detail", "search", "search-detail"]).has(mode)) {
     throw new RouteDiscoveryError("INVALID_MODE", "Discovery mode must be feed, detail, search, or search-detail.", { status: 400 });
@@ -134,8 +164,8 @@ export function normalizeDiscoveryRequest(input = {}) {
     throw new RouteDiscoveryError("INVALID_CURSOR", "Discovery cursor is too long.", { status: 400 });
   }
   const sessionId = cleanText(input.sessionId) || null;
-  const excludeIds = uniqueTextList(input.excludeIds).slice(0, MAX_EXCLUDE_IDS);
-  const excludeClusters = uniqueTextList(input.excludeClusters).slice(0, MAX_EXCLUDE_CLUSTERS);
+  const excludeIds = uniqueTextList(input.excludeIds);
+  const excludeClusters = uniqueTextList(input.excludeClusters);
   const routeType = cleanText(input.routeType || input.classification || input.tab);
   const normalizedRouteType = routeType === "single" || routeType === "cross" ? routeType : "";
 

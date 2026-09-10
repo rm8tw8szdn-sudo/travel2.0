@@ -33,16 +33,22 @@ def main() -> None:
     parser.add_argument("--output", required=True)
     parser.add_argument("--round", choices=["all", "multi-source-recovery"], default="all")
     parser.add_argument("--retry-only", action="store_true")
+    parser.add_argument("--pending-only", action="store_true")
+    parser.add_argument("--provenance", default="data/route-v2/images/image-debt-elimination-provenance.json")
+    parser.add_argument("--results", default="data/route-v2/images/image-debt-recovery-results.json")
+    parser.add_argument("--prefix", default="image-debt-contact-sheet")
     args = parser.parse_args()
     root = Path(args.root).resolve()
     output = Path(args.output).resolve()
     output.mkdir(parents=True, exist_ok=True)
-    provenance = json.loads((root / "data/route-v2/images/image-debt-elimination-provenance.json").read_text(encoding="utf-8"))
+    provenance = json.loads((root / args.provenance).read_text(encoding="utf-8"))
     assets = sorted(provenance.get("assets", []), key=lambda item: (item["countryCode"], item["entityType"], item["canonicalNameEn"], item["entityId"]))
+    if args.pending_only:
+        assets = [item for item in assets if item.get("status") == "pendingVisualAudit"]
     if args.round != "all":
         assets = [item for item in assets if item.get("acquisitionRound") == args.round]
     if args.retry_only:
-        results = json.loads((root / "data/route-v2/images/image-debt-recovery-results.json").read_text(encoding="utf-8"))
+        results = json.loads((root / args.results).read_text(encoding="utf-8"))
         retry_qids = {item["qid"] for item in results.get("records", []) if item.get("visualRejections")}
         assets = [item for item in assets if item.get("wikidataId") in retry_qids]
     font = load_font(14)
@@ -65,7 +71,7 @@ def main() -> None:
             draw.text((x + 10, y + 195), label, fill="#111", font=font)
             draw.text((x + 10, y + 214), f"#{page_index + 1:02d}-{cell_index + 1:02d}", fill="#555", font=small)
             page_rows.append({"slot": cell_index + 1, "entityId": asset["entityId"], "qid": asset["wikidataId"], "name": asset["canonicalNameEn"], "path": asset["assetPath"]})
-        filename = f"image-debt-contact-sheet-{page_index + 1:02d}.jpg"
+        filename = f"{args.prefix}-{page_index + 1:02d}.jpg"
         sheet.save(output / filename, "JPEG", quality=88, optimize=True)
         index.append({"page": page_index + 1, "file": filename, "records": page_rows})
     (output / "index.json").write_text(json.dumps({"pages": len(index), "assets": len(assets), "index": index}, indent=2) + "\n", encoding="utf-8")

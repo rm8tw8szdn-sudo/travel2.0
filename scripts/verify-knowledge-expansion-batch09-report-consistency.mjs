@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import fs from "node:fs";
 import path from "node:path";
 
-import { calculateBatch09ReportData, comma, percent } from "./lib/knowledge-expansion-batch09-report-data.mjs";
+import { calculateBatch09ReportData, comma, percent, readBatch09SealedText } from "./lib/knowledge-expansion-batch09-report-data.mjs";
 import { verifyHistoricalKnowledgeReportSnapshots } from "./lib/historical-knowledge-report-snapshots.mjs";
 
 const ROOT = path.resolve(import.meta.dirname, "..");
@@ -14,6 +14,12 @@ const report = normalize(fs.readFileSync(reportPath, "utf8"));
 const dashboard = read("ROUTE_V2_KNOWLEDGE_EXPANSION_BATCH09_DASHBOARD.md");
 const imageAudit = read("ROUTE_V2_IMAGE_COVERAGE_BACKFILL_BATCH09_AUDIT.md");
 const sizeAudit = read("ROUTE_V2_IMAGE_ASSET_SIZE_BATCH09_AUDIT.md");
+for (const [file, text] of [
+  ["ROUTE_V2_KNOWLEDGE_EXPANSION_BATCH09_REPORT.md", report],
+  ["ROUTE_V2_KNOWLEDGE_EXPANSION_BATCH09_DASHBOARD.md", dashboard],
+  ["ROUTE_V2_IMAGE_COVERAGE_BACKFILL_BATCH09_AUDIT.md", imageAudit],
+  ["ROUTE_V2_IMAGE_ASSET_SIZE_BATCH09_AUDIT.md", sizeAudit],
+]) assert.equal(text, readBatch09SealedText(ROOT, file), `sealed-Batch09-Git-blob-mismatch:${file}`);
 const browser = JSON.parse(read("data/knowledge/reports/knowledge-expansion-batch09-browser-acceptance.json"));
 const stress = JSON.parse(read("data/knowledge/reports/knowledge-expansion-batch09-hard-constraint-stress.json"));
 const historical = verifyHistoricalKnowledgeReportSnapshots({ root: ROOT });

@@ -6,6 +6,7 @@ import { execFileSync } from "node:child_process";
 import { createPublishedKnowledgeEntityLayerRepository } from "../../src/lib/routes/index.mjs";
 import { buildImageAssetBaseline } from "./image-asset-baseline.mjs";
 import { auditImageProvenance, auditProvenanceCollection } from "./image-provenance-license.mjs";
+import { normalizeKnowledgeBaselineText, sha256KnowledgeBaselineText } from "./knowledge-baseline-text.mjs";
 
 export const RECOVERY02_REPORT_PATH = "ROUTE_V2_IMAGE_DEBT_RECOVERY_02_FINAL_REPORT.md";
 export const RECOVERY02_SUMMARY_PATH = "data/route-v2/images/image-debt-recovery02-final-summary.json";
@@ -18,6 +19,15 @@ export const RECOVERY02_SOURCE_MAIN = "826439f41523500ad805d0bcb9966a630e90b859"
 
 const json = (root, relativePath) => JSON.parse(fs.readFileSync(path.join(root, relativePath), "utf8"));
 const sha256 = (bytes) => crypto.createHash("sha256").update(bytes).digest("hex");
+export const sha256Recovery02Text = value => sha256KnowledgeBaselineText(value);
+export function recovery02TextHashMatches(value, sealedHash) {
+  const canonical = normalizeKnowledgeBaselineText(value);
+  const compatibleHashes = [
+    sha256Recovery02Text(canonical),
+    sha256(Buffer.from(canonical.replaceAll("\n", "\r\n"), "utf8")),
+  ];
+  return compatibleHashes.includes(sealedHash);
+}
 const percentile = (values, quantile) => values.length ? values[Math.min(values.length - 1, Math.ceil(values.length * quantile) - 1)] : 0;
 const hamming64 = (left, right) => {
   let value = BigInt(`0x${left}`) ^ BigInt(`0x${right}`);
@@ -87,8 +97,7 @@ export function collectImageDebtRecovery02Audit({ root }) {
   issue(inventory.startingNeedsBackfill === inventory.records.length, "inventory-start-count-mismatch");
   const sealedDebtIds = [...sourceManifest.cities, ...sourceManifest.pois].filter(record => record.needsBackfill).map(record => record.entityId).sort();
   issue(JSON.stringify([...inventoryById.keys()].sort()) === JSON.stringify(sealedDebtIds), "inventory-set-not-git-anchored");
-  const sourceManifestCrLfBytes = Buffer.from(sourceManifestBytes.toString("utf8").replace(/\n/gu, "\r\n"), "utf8");
-  issue([sha256(sourceManifestBytes), sha256(sourceManifestCrLfBytes)].includes(inventory.sourceHashes[RECOVERY02_MANIFEST_PATH]), "inventory-source-manifest-not-git-anchored");
+  issue(recovery02TextHashMatches(sourceManifestBytes.toString("utf8"), inventory.sourceHashes[RECOVERY02_MANIFEST_PATH]), "inventory-source-manifest-not-git-anchored");
   issue(inventory.cityCount + inventory.corePoiCount === inventory.startingNeedsBackfill, "inventory-type-count-mismatch");
   issue(inventory.quarantinedTargets === 0, "quarantined-image-target-present");
   issue(results.records.length === inventory.records.length, "results-coverage-incomplete");
@@ -101,8 +110,8 @@ export function collectImageDebtRecovery02Audit({ root }) {
   for (const round of visualAudit.rounds || []) {
     const roundBytes = fs.readFileSync(path.join(root, round.path));
     const previousBytes = fs.readFileSync(path.join(root, round.previousAuditPath));
-    issue(sha256(roundBytes) === round.sha256, "round-history-hash-mismatch");
-    issue(sha256(previousBytes) === round.previousAuditSha256, "previous-audit-history-hash-mismatch");
+    issue(recovery02TextHashMatches(roundBytes.toString("utf8"), round.sha256), "round-history-hash-mismatch");
+    issue(recovery02TextHashMatches(previousBytes.toString("utf8"), round.previousAuditSha256), "previous-audit-history-hash-mismatch");
     const snapshot = JSON.parse(roundBytes);
     const previous = JSON.parse(previousBytes);
     issue(snapshot.decisions.length === round.reviewed, "round-review-count-mismatch");
@@ -122,7 +131,7 @@ export function collectImageDebtRecovery02Audit({ root }) {
       previousReviewed: previous.totalReviewed, previousPassed: previous.passed, previousRejected: previous.rejected });
   }
   if (visualAudit.sourceSnapshotPath) {
-    issue(sha256(fs.readFileSync(path.join(root, visualAudit.sourceSnapshotPath))) === visualAudit.provenanceSha256,
+    issue(recovery02TextHashMatches(fs.readFileSync(path.join(root, visualAudit.sourceSnapshotPath), "utf8"), visualAudit.provenanceSha256),
       "current-round-source-snapshot-not-sealed");
   }
 

@@ -12,6 +12,7 @@ export const ROUTE_V2_PERFORMANCE_PROTOCOL = Object.freeze({
   requiredRegressingPairs: 5,
 });
 export const ROUTE_V2_PERFORMANCE_WORKER_SCHEMA_VERSION = 1;
+const validatedWorkerPairs = new WeakSet();
 
 export function percentile(values, fraction) {
   if (!Array.isArray(values) || values.length === 0) throw new Error("percentile requires samples");
@@ -153,7 +154,25 @@ export function validateWorkerResult(execution, expected = {}, protocol = ROUTE_
   if (execution.signal !== undefined && execution.signal !== null) errors.push(`worker-execution:signal-${execution.signal}`);
   if (typeof execution.stderr !== "string" || execution.stderr.trim() !== "") errors.push("worker-execution:stderr");
   if (errors.length > 0) return { valid: false, errors, pair: null };
-  return parseWorkerEnvelope(execution.stdout, expected, protocol);
+  const parsed = parseWorkerEnvelope(execution.stdout, expected, protocol);
+  if (!parsed.valid) return parsed;
+  const normalizedPair = Object.freeze({
+    order: parsed.pair.order,
+    baseline: Object.freeze({
+      p95Ms: parsed.pair.baseline.p95Ms,
+      samplesMs: Object.freeze([...parsed.pair.baseline.samplesMs]),
+      logicalOperations: parsed.pair.baseline.logicalOperations,
+      actualOperations: parsed.pair.baseline.actualOperations,
+    }),
+    current: Object.freeze({
+      p95Ms: parsed.pair.current.p95Ms,
+      samplesMs: Object.freeze([...parsed.pair.current.samplesMs]),
+      logicalOperations: parsed.pair.current.logicalOperations,
+      actualOperations: parsed.pair.current.actualOperations,
+    }),
+  });
+  validatedWorkerPairs.add(normalizedPair);
+  return { valid: true, errors: [], pair: normalizedPair };
 }
 
 function validatePairs(pairs, protocol) {
@@ -173,6 +192,15 @@ function validatePairs(pairs, protocol) {
 }
 
 export function evaluatePairedPerformance(pairs, protocol = ROUTE_V2_PERFORMANCE_PROTOCOL) {
+  if (!Array.isArray(pairs) || pairs.length !== protocol.pairs) {
+    return invalidEvaluation([`pairs:expected-${protocol.pairs}:actual-${Array.isArray(pairs) ? pairs.length : "not-array"}`], protocol);
+  }
+  const unvalidatedPairIndexes = pairs
+    .map((pair, index) => validatedWorkerPairs.has(pair) ? null : index + 1)
+    .filter((index) => index !== null);
+  if (unvalidatedPairIndexes.length > 0) {
+    return invalidEvaluation([`pairs:unvalidated:${unvalidatedPairIndexes.join(",")}`], protocol);
+  }
   const validationErrors = validatePairs(pairs, protocol);
   if (validationErrors.length > 0) return invalidEvaluation(validationErrors, protocol);
   const baselineP95Values = pairs.map((pair) => pair.baseline.p95Ms);

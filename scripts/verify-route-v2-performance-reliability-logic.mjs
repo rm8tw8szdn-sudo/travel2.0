@@ -25,8 +25,8 @@ function assertBlocked(candidate, label) {
   assert.equal(performanceGateStatus(result), "BLOCKED_INCONCLUSIVE", `${label}: combined gate must block`);
 }
 
-function workerEnvelope(pairIndex = 0) {
-  const pair = pairs([1, 1, 1, 1, 1, 1])[pairIndex];
+function workerEnvelope(pairIndex = 0, ratios = [1, 1, 1, 1, 1, 1], baselineValues) {
+  const pair = pairs(ratios, baselineValues)[pairIndex];
   return {
     worker: "route-v2-invariant-pair",
     schemaVersion: 1,
@@ -39,9 +39,21 @@ function workerEnvelope(pairIndex = 0) {
   };
 }
 
+function validatedPairs(ratios, baselineValues) {
+  return Array.from({ length: 6 }, (_, index) => {
+    const envelope = workerEnvelope(index, ratios, baselineValues);
+    const validation = validateWorkerResult(
+      { status: 0, stdout: JSON.stringify(envelope), stderr: "", signal: null },
+      { order: envelope.order, currentMultiplier: 1 },
+    );
+    assert.equal(validation.valid, true, `pair ${index + 1} must pass worker admission`);
+    return validation.pair;
+  });
+}
+
 function assertWorkerValidationBlocked(validation, label) {
   assert.equal(validation.valid, false, `${label}: worker envelope must be invalid`);
-  const candidatePairs = Array.from({ length: 6 }, (_, index) => workerEnvelope(index));
+  const candidatePairs = validatedPairs([1, 1, 1, 1, 1, 1]);
   candidatePairs[0] = validation.pair;
   assertBlocked(candidatePairs, label);
 }
@@ -50,21 +62,21 @@ function assertEnvelopeBlocked(workerResult, label, expected = { order: "baselin
   assertWorkerValidationBlocked(validateWorkerEnvelope(workerResult, expected), label);
 }
 
-const equivalent = evaluatePairedPerformance(pairs([1, 1.01, 0.99, 1.02, 0.98, 1]));
+const equivalent = evaluatePairedPerformance(validatedPairs([1, 1.01, 0.99, 1.02, 0.98, 1]));
 assert.equal(equivalent.regressionVerdict, "NO REGRESSION");
 assert.equal(equivalent.absoluteResult, "PASS");
 assert.equal(performanceGateStatus(equivalent), "PASS");
 assert.deepEqual(equivalent.retainedSampleCounts, { baseline: 240, current: 240 });
 
-const regression = evaluatePairedPerformance(pairs([1.2, 1.19, 1.21, 1.2, 1.18, 1.22]));
+const regression = evaluatePairedPerformance(validatedPairs([1.2, 1.19, 1.21, 1.2, 1.18, 1.22]));
 assert.equal(regression.regressionVerdict, "REGRESSION");
 assert.equal(performanceGateStatus(regression), "BLOCKED_REGRESSION");
 
-const noisy = evaluatePairedPerformance(pairs([0.7, 1.3, 0.8, 1.4, 0.75, 1.35]));
+const noisy = evaluatePairedPerformance(validatedPairs([0.7, 1.3, 0.8, 1.4, 0.75, 1.35]));
 assert.equal(noisy.regressionVerdict, "INCONCLUSIVE");
 assert.equal(performanceGateStatus(noisy), "BLOCKED_ABSOLUTE_CONTRACT");
 
-const absoluteFail = evaluatePairedPerformance(pairs([1, 1, 1, 1, 1, 1], [0.26, 0.261, 0.259, 0.262, 0.258, 0.26]));
+const absoluteFail = evaluatePairedPerformance(validatedPairs([1, 1, 1, 1, 1, 1], [0.26, 0.261, 0.259, 0.262, 0.258, 0.26]));
 assert.equal(absoluteFail.absoluteResult, "FAIL");
 assert.equal(absoluteFail.regressionVerdict, "NO REGRESSION");
 assert.equal(performanceGateStatus(absoluteFail), "BLOCKED_ABSOLUTE_CONTRACT");
@@ -105,6 +117,13 @@ assertBlocked(missingRatioInput, "missing ratio input");
 const malformedWorkerOutput = pairs([1, 1, 1, 1, 1, 1]);
 malformedWorkerOutput[0] = { worker: "unexpected-payload" };
 assertBlocked(malformedWorkerOutput, "malformed worker output");
+
+assertBlocked(pairs([1, 1, 1, 1, 1, 1]), "raw valid-looking pairs bypass");
+const forgedPairs = pairs([1, 1, 1, 1, 1, 1]).map((pair) => ({ ...pair, validated: true }));
+assertBlocked(forgedPairs, "forged validation marker bypass");
+const mixedValidatedAndRaw = validatedPairs([1, 1, 1, 1, 1, 1]);
+mixedValidatedAndRaw[3] = pairs([1, 1, 1, 1, 1, 1])[3];
+assertBlocked(mixedValidatedAndRaw, "mixed validated and raw pairs bypass");
 
 assertEnvelopeBlocked(null, "null worker result");
 assertEnvelopeBlocked(undefined, "undefined worker result");

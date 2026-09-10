@@ -41,8 +41,25 @@ test('malformed city fragments fall back without a page error', async ({ page })
 });
 
 test('server rejects internal files and malformed discovery payloads', async ({ request }) => {
-  for (const path of ['.git/HEAD', '.cache/runtime.json', 'server.js', 'package.json']) {
+  for (const path of [
+    '.git/HEAD', '.cache/runtime.json', 'server.js', 'package.json',
+    'data/knowledge/raw/knowledge-expansion-batch05-wave1.wikidata.json',
+    'data/knowledge/reports/knowledge-expansion-batch09-baseline.json',
+    'data/route-v2/images/image-debt-visual-audit.json',
+    'data/knowledge/raw/nested/lfs-object.json',
+    'data/%2e%2e/server.js', 'data/%252e%252e/server.js',
+    'data%2fknowledge%2fraw%2fobject.json',
+    'data%252fknowledge%252fraw%252fobject.json',
+    'data/%5c..%5cserver.js',
+  ]) {
     expect((await request.get(`/travel-collection/${path}`)).status()).toBe(404);
+  }
+  for (const path of [
+    'mobile.html', 'mobile.css', 'travel-state.js',
+    'assets/footprint-achievement-ten.svg', 'vendor/d3.min.js',
+    'data/countries.zh.json', 'data/countries-50m.json',
+  ]) {
+    expect((await request.get(`/travel-collection/${path}`)).status(), path).toBe(200);
   }
   for (const data of [null, [], { mode: 'feed', query: { text: '东京' } }]) {
     const response = await request.post('/api/routes/discovery', { data });

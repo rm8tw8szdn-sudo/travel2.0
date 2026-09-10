@@ -13,6 +13,7 @@ import {
 import { acceptedPoolWatermarks } from "./route-pool-watermarks.mjs";
 import { encodeDiscoveryCursor, decodeDiscoveryCursor } from "./cursor.mjs";
 import { validateEmbeddedRouteIntent } from "./route-intent-invariant-gate.mjs";
+import { acquireOwnedFileLock } from "./file-owner-lock.mjs";
 
 function clone(value) {
   return structuredClone(value);
@@ -440,19 +441,12 @@ export function createAcceptedRouteRepository({
     if (!storagePath) return action();
     fs.mkdirSync(path.dirname(storagePath), { recursive: true });
     const lockPath = `${storagePath}.lock`;
-    let descriptor;
-    try {
-      descriptor = fs.openSync(lockPath, "wx");
-    } catch (error) {
-      if (error?.code === "EEXIST") throw new Error("accepted_repository_write_conflict");
-      throw error;
-    }
+    const lock = acquireOwnedFileLock(lockPath);
     try {
       loadStoredItems(readStoredRecords(storagePath));
       return action();
     } finally {
-      fs.closeSync(descriptor);
-      fs.rmSync(lockPath, { force: true });
+      lock.release();
     }
   }
 

@@ -12,6 +12,7 @@ test("public static paths expose only application assets", () => {
   assert.equal(security.resolvePublicStaticPath(root, "/travel-collection/mobile.html"), path.join(root, "mobile.html"));
   assert.equal(security.resolvePublicStaticPath(root, "/travel-collection/assets/icon.svg"), path.join(root, "assets", "icon.svg"));
   assert.equal(security.resolvePublicStaticPath(root, "/travel-collection/data/countries.zh.json"), path.join(root, "data", "countries.zh.json"));
+  assert.equal(security.resolvePublicStaticPath(root, "/travel-collection/data/countries-50m.json"), path.join(root, "data", "countries-50m.json"));
   assert.equal(security.resolvePublicStaticPath(root, "/travel-collection/vendor/d3.min.js"), path.join(root, "vendor", "d3.min.js"));
   for (const internal of [
     "/travel-collection/.git/HEAD",
@@ -25,6 +26,17 @@ test("public static paths expose only application assets", () => {
     "/travel-collection/src/lib/routes/index.mjs",
     "/travel-collection/docs/report.md",
     "/travel-collection/%2egit/HEAD",
+    "/travel-collection/data/knowledge/raw/knowledge-expansion-batch05-wave1.wikidata.json",
+    "/travel-collection/data/knowledge/reports/knowledge-expansion-batch09-baseline.json",
+    "/travel-collection/data/route-v2/images/image-debt-visual-audit.json",
+    "/travel-collection/data/knowledge/raw/nested/lfs-object.json",
+    "/travel-collection/data/../server.js",
+    "/travel-collection/data/%2e%2e/server.js",
+    "/travel-collection/data/%252e%252e/server.js",
+    "/travel-collection/data%2fknowledge%2fraw%2fobject.json",
+    "/travel-collection/data%252fknowledge%252fraw%252fobject.json",
+    "/travel-collection/data\\knowledge\\raw\\object.json",
+    "/travel-collection/data/%5c..%5cserver.js",
   ]) assert.equal(security.resolvePublicStaticPath(root, internal), "", internal);
 });
 

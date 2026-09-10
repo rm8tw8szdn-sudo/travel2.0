@@ -18,7 +18,7 @@ Playwright Test 1.63.0 + Chromium 153.0.8010.12，在正式 Node.js 24.18.0 / Wi
 | 行程名称注入载荷仅按文字显示，不执行 HTML | PASS | PASS | PASS |
 | `reset=empty` 查询参数不清空已有旅行状态 | PASS | PASS | PASS |
 | 畸形城市 hash 安全回退且无页面错误 | PASS | PASS | PASS |
-| 内部文件返回 404，畸形发现请求返回稳定 400 | PASS | PASS | PASS |
+| 内部文件及 data/raw/reports/audit/LFS、编码路径和混合分隔符绕过返回 404；正常公开资源返回 200；畸形发现请求返回稳定 400 | PASS | PASS | PASS |
 
 正常场景无未捕获页面错误、未预期控制台错误或失败资源请求。故障场景只允许显式注入的 503/404 及对应错误日志，仍严格检查其他错误。浏览器发起的外域网络请求会被阻断并使测试失败；最终均无此类请求。
 
@@ -35,6 +35,7 @@ Playwright Test 1.63.0 + Chromium 153.0.8010.12，在正式 Node.js 24.18.0 / Wi
 - 六个交互场景替换 `/api/routes/discovery` 为明确标记的固定测试数据，并禁用旧 bootstrap 快照。该部分证明前端交互和资源回退行为，不证明真实规划器会生成对应路线。
 - 第七个场景让发现接口和知识接口到达真实服务：返回 119 国家、833 城市、3,963 POI，共 4,915 条发布知识；Accepted 路线库特意隔离为空，验证成功空状态。只禁用了 bundled bootstrap 快照。
 - 服务在本轮临时目录中运行，存储路径显式隔离，在线证据、LLM、refill 和路线生成关闭。通过 IPC 停止真实服务，等待退出后校验所有权并删除临时目录；最终运行的临时目录已确认不存在。
+- 静态边界通过真实 HTTP 请求验证。知识原始数据、内部报告、图片审计与 LFS 路径在文件读取前被公开清单拒绝；`data/countries-50m.json`、`data/countries.zh.json` 及页面所需 HTML、JS、CSS、assets、vendor 保持可用。
 - 采用三个实际 viewport 宽度；没有宣称验证 Safari、Firefox、触屏设备或所有页面。
 
 ## 启动代码精简复验

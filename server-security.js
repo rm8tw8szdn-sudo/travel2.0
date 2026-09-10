@@ -20,7 +20,11 @@ const ALLOWED_RASTER_IMAGE_TYPES = new Set([
   "image/png",
   "image/webp",
 ]);
-const PUBLIC_DIRECTORIES = new Set(["assets", "data", "vendor"]);
+const PUBLIC_DIRECTORIES = new Set(["assets", "vendor"]);
+const PUBLIC_NESTED_FILES = new Set([
+  "data/countries-50m.json",
+  "data/countries.zh.json",
+]);
 const PUBLIC_TOP_LEVEL_FILES = new Set([
   "app-shared.js", "atlas.html", "atlas.js", "city-detail.js", "city-oslo.html",
   "country-detail.js", "country-japan.html", "detail-enrichment.js", "favorites.html",
@@ -100,7 +104,7 @@ function resolvePublicStaticPath(root, urlPath) {
   const relative = path.relative(path.resolve(String(root || "")), resolved).replaceAll("\\", "/");
   if (!relative || relative.split("/").some((part) => part.startsWith("."))) return "";
   if (!relative.includes("/")) return PUBLIC_TOP_LEVEL_FILES.has(relative) ? resolved : "";
-  return PUBLIC_DIRECTORIES.has(relative.split("/", 1)[0]) ? resolved : "";
+  return PUBLIC_DIRECTORIES.has(relative.split("/", 1)[0]) || PUBLIC_NESTED_FILES.has(relative) ? resolved : "";
 }
 
 async function collectBoundedBody(body, maxBytes, createLimitError) {

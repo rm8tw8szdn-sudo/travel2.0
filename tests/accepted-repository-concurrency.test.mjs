@@ -8,7 +8,7 @@ import os from "node:os";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
 import { createAcceptedRouteRepository } from "../src/lib/routes/accepted-repository.mjs";
-import { acquireOwnedFileLock } from "../src/lib/routes/file-owner-lock.mjs";
+import { acquireOwnedFileLock, processStartIdentity } from "../src/lib/routes/file-owner-lock.mjs";
 
 function route() {
   return {
@@ -115,6 +115,59 @@ test("dead owner locks recover across repository restart", async () => {
   }
 });
 
+test("a reused PID with a different process start identity is recovered", () => {
+  const temporaryRoot = temporaryRepositoryRoot();
+  try {
+    const storagePath = path.join(temporaryRoot, "accepted.json");
+    const lockPath = `${storagePath}.lock`;
+    const actualIdentity = processStartIdentity(process.pid);
+    assert.ok(actualIdentity, "the current process start identity must be observable");
+    const staleOwner = lockOwner(process.pid);
+    staleOwner.processStartedAt = actualIdentity.replace(/\d+$/u, (value) => String(Number(value) - 1));
+    fs.writeFileSync(lockPath, JSON.stringify(staleOwner));
+    const repository = createAcceptedRouteRepository({ storagePath });
+    assert.equal(repository.upsert(route()).accepted, true);
+    assert.equal(fs.existsSync(lockPath), false);
+  } finally {
+    removeTemporaryRoot(temporaryRoot);
+  }
+});
+
+test("a dead recovery owner is reclaimed before recovering the main lock", async () => {
+  const temporaryRoot = temporaryRepositoryRoot();
+  try {
+    const storagePath = path.join(temporaryRoot, "accepted.json");
+    const lockPath = `${storagePath}.lock`;
+    const recoveryPath = `${lockPath}.recovery`;
+    fs.writeFileSync(lockPath, JSON.stringify(lockOwner(await exitedProcessId())));
+    fs.writeFileSync(recoveryPath, JSON.stringify(lockOwner(await exitedProcessId())));
+    const restarted = createAcceptedRouteRepository({ storagePath });
+    assert.equal(restarted.upsert(route()).accepted, true);
+    assert.equal(fs.existsSync(lockPath), false);
+    assert.equal(fs.existsSync(recoveryPath), false);
+  } finally {
+    removeTemporaryRoot(temporaryRoot);
+  }
+});
+
+test("an active recovery owner is never removed", async () => {
+  const temporaryRoot = temporaryRepositoryRoot();
+  try {
+    const storagePath = path.join(temporaryRoot, "accepted.json");
+    const lockPath = `${storagePath}.lock`;
+    const recoveryPath = `${lockPath}.recovery`;
+    fs.writeFileSync(lockPath, JSON.stringify(lockOwner(await exitedProcessId())));
+    const activeRecovery = acquireOwnedFileLock(recoveryPath);
+    const repository = createAcceptedRouteRepository({ storagePath });
+    assert.throws(() => repository.upsert(route()), /accepted_repository_write_conflict/);
+    assert.equal(JSON.parse(fs.readFileSync(recoveryPath, "utf8")).token, activeRecovery.owner.token);
+    assert.equal(fs.existsSync(lockPath), true);
+    activeRecovery.release();
+  } finally {
+    removeTemporaryRoot(temporaryRoot);
+  }
+});
+
 test("malformed lock metadata fails safe without deleting the lock", () => {
   const temporaryRoot = temporaryRepositoryRoot();
   try {
@@ -136,7 +189,7 @@ test("indeterminate owner liveness fails safe", () => {
     const owner = lockOwner(424242);
     fs.writeFileSync(lockPath, JSON.stringify(owner));
     assert.throws(
-      () => acquireOwnedFileLock(lockPath, { liveness: () => "unknown" }),
+      () => acquireOwnedFileLock(lockPath, { ownerState: () => "unknown" }),
       /accepted_repository_write_conflict/,
     );
     assert.equal(JSON.parse(fs.readFileSync(lockPath, "utf8")).token, owner.token);
@@ -154,6 +207,22 @@ test("exceptions during mutation release the owned lock", () => {
     assert.throws(() => repository.mark("concurrent-japan", { summary: () => "cannot clone" }), /clone|function|DataCloneError/iu);
     assert.equal(fs.existsSync(`${storagePath}.lock`), false);
     assert.equal(repository.mark("concurrent-japan", { summary: "异常后仍可写入。" }).summary, "异常后仍可写入。");
+  } finally {
+    removeTemporaryRoot(temporaryRoot);
+  }
+});
+
+test("release never removes a replacement owner lock", () => {
+  const temporaryRoot = temporaryRepositoryRoot();
+  try {
+    const lockPath = path.join(temporaryRoot, "accepted.json.lock");
+    const owned = acquireOwnedFileLock(lockPath);
+    fs.rmSync(lockPath, { force: true });
+    const replacement = lockOwner(process.pid);
+    replacement.processStartedAt = processStartIdentity(process.pid);
+    fs.writeFileSync(lockPath, JSON.stringify(replacement));
+    owned.release();
+    assert.equal(JSON.parse(fs.readFileSync(lockPath, "utf8")).token, replacement.token);
   } finally {
     removeTemporaryRoot(temporaryRoot);
   }

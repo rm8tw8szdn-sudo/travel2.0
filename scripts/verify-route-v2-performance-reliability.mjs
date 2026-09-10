@@ -6,8 +6,8 @@ import { fileURLToPath } from "node:url";
 import {
   ROUTE_V2_PERFORMANCE_PROTOCOL,
   evaluatePairedPerformance,
-  parseWorkerEnvelope,
   performanceGateStatus,
+  validateWorkerResult,
 } from "./lib/route-v2-performance-reliability.mjs";
 
 const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
@@ -39,14 +39,7 @@ function runPair({ baselineSubjectRoot, currentSubjectRoot, pairIndex, multiplie
     timeout: 120_000,
     windowsHide: true,
   });
-  if (result.status !== 0) {
-    return {
-      valid: false,
-      errors: [`worker-process:pair-${pairIndex + 1}:exit-${result.status ?? "missing"}`],
-      pair: null,
-    };
-  }
-  return parseWorkerEnvelope(result.stdout, { order, currentMultiplier: multiplier });
+  return validateWorkerResult(result, { order, currentMultiplier: multiplier });
 }
 
 function runProtocol({ label, baselineSubjectRoot, currentSubjectRoot, multiplier }) {

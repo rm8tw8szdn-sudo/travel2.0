@@ -11,6 +11,7 @@ export const ROUTE_V2_PERFORMANCE_PROTOCOL = Object.freeze({
   regressionPairRatioFloor: 1.05,
   requiredRegressingPairs: 5,
 });
+export const ROUTE_V2_PERFORMANCE_WORKER_SCHEMA_VERSION = 1;
 
 export function percentile(values, fraction) {
   if (!Array.isArray(values) || values.length === 0) throw new Error("percentile requires samples");
@@ -68,9 +69,14 @@ function invalidEvaluation(errors, protocol) {
   };
 }
 
-function measurementValidationErrors(measurement, prefix, protocol) {
+function measurementValidationErrors(measurement, prefix, protocol, { requireWorkerFields = false } = {}) {
   if (!measurement || typeof measurement !== "object" || Array.isArray(measurement)) return [`${prefix}:malformed`];
   const errors = [];
+  if (requireWorkerFields) {
+    const allowedKeys = ["actualOperations", "logicalOperations", "p95Ms", "samplesMs"];
+    const unknownKeys = Object.keys(measurement).filter((key) => !allowedKeys.includes(key));
+    if (unknownKeys.length > 0) errors.push(`${prefix}:unknown-fields:${unknownKeys.join(",")}`);
+  }
   if (!Number.isFinite(measurement.p95Ms) || measurement.p95Ms <= 0) errors.push(`${prefix}:invalid-p95`);
   if (!Array.isArray(measurement.samplesMs) || measurement.samplesMs.length !== protocol.samplesPerSide) {
     errors.push(`${prefix}:invalid-sample-count`);
@@ -83,6 +89,14 @@ function measurementValidationErrors(measurement, prefix, protocol) {
   if (Number.isFinite(measurement.p95Ms) && measurement.p95Ms !== percentile(measurement.samplesMs, 0.95)) {
     errors.push(`${prefix}:p95-sample-mismatch`);
   }
+  if (requireWorkerFields) {
+    if (!Number.isInteger(measurement.logicalOperations) || measurement.logicalOperations <= 0) {
+      errors.push(`${prefix}:invalid-logical-operations`);
+    }
+    if (!Number.isInteger(measurement.actualOperations) || measurement.actualOperations <= 0) {
+      errors.push(`${prefix}:invalid-actual-operations`);
+    }
+  }
   return errors;
 }
 
@@ -91,9 +105,13 @@ export function validateWorkerEnvelope(workerResult, expected = {}, protocol = R
   if (!workerResult || typeof workerResult !== "object" || Array.isArray(workerResult)) {
     return { valid: false, errors: ["worker-envelope:malformed"], pair: null };
   }
+  const allowedKeys = ["baseline", "current", "currentMultiplier", "error", "order", "schemaVersion", "success", "worker"];
+  const unknownKeys = Object.keys(workerResult).filter((key) => !allowedKeys.includes(key));
+  if (unknownKeys.length > 0) errors.push(`worker-envelope:unknown-fields:${unknownKeys.join(",")}`);
   if (workerResult.worker !== "route-v2-invariant-pair") errors.push("worker-envelope:invalid-worker");
-  if (workerResult.valid === false) errors.push("worker-envelope:invalid-marker");
-  if (workerResult.success === false) errors.push("worker-envelope:unsuccessful-marker");
+  if (workerResult.schemaVersion !== ROUTE_V2_PERFORMANCE_WORKER_SCHEMA_VERSION) errors.push("worker-envelope:invalid-schema-version");
+  if (workerResult.success !== true) errors.push("worker-envelope:success-not-true");
+  if (workerResult.error !== null) errors.push("worker-envelope:error-not-null");
   if (!["baseline-current", "current-baseline"].includes(workerResult.order)) errors.push("worker-envelope:invalid-order");
   if (expected.order !== undefined && workerResult.order !== expected.order) errors.push("worker-envelope:unexpected-order");
   if (!Number.isFinite(workerResult.currentMultiplier) || workerResult.currentMultiplier <= 0) {
@@ -101,8 +119,16 @@ export function validateWorkerEnvelope(workerResult, expected = {}, protocol = R
   } else if (expected.currentMultiplier !== undefined && workerResult.currentMultiplier !== expected.currentMultiplier) {
     errors.push("worker-envelope:unexpected-current-multiplier");
   }
-  errors.push(...measurementValidationErrors(workerResult.baseline, "worker-envelope:baseline", protocol));
-  errors.push(...measurementValidationErrors(workerResult.current, "worker-envelope:current", protocol));
+  errors.push(...measurementValidationErrors(workerResult.baseline, "worker-envelope:baseline", protocol, { requireWorkerFields: true }));
+  errors.push(...measurementValidationErrors(workerResult.current, "worker-envelope:current", protocol, { requireWorkerFields: true }));
+  const expectedLogicalOperations = protocol.samplesPerSide * protocol.batchSize;
+  if (workerResult.baseline?.logicalOperations !== expectedLogicalOperations) errors.push("worker-envelope:baseline:unexpected-logical-operations");
+  if (workerResult.current?.logicalOperations !== expectedLogicalOperations) errors.push("worker-envelope:current:unexpected-logical-operations");
+  if (workerResult.baseline?.actualOperations !== expectedLogicalOperations) errors.push("worker-envelope:baseline:unexpected-actual-operations");
+  if (Number.isFinite(expected.currentMultiplier)
+    && workerResult.current?.actualOperations !== Math.round(expectedLogicalOperations * expected.currentMultiplier)) {
+    errors.push("worker-envelope:current:unexpected-actual-operations");
+  }
   return { valid: errors.length === 0, errors, pair: errors.length === 0 ? workerResult : null };
 }
 
@@ -115,6 +141,19 @@ export function parseWorkerEnvelope(output, expected = {}, protocol = ROUTE_V2_P
   } catch {
     return { valid: false, errors: ["worker-envelope:invalid-json"], pair: null };
   }
+}
+
+export function validateWorkerResult(execution, expected = {}, protocol = ROUTE_V2_PERFORMANCE_PROTOCOL) {
+  if (!execution || typeof execution !== "object" || Array.isArray(execution)) {
+    return { valid: false, errors: ["worker-execution:malformed"], pair: null };
+  }
+  const errors = [];
+  if (execution.status !== 0) errors.push(`worker-execution:exit-${execution.status ?? "missing"}`);
+  if (execution.error !== undefined && execution.error !== null) errors.push("worker-execution:error");
+  if (execution.signal !== undefined && execution.signal !== null) errors.push(`worker-execution:signal-${execution.signal}`);
+  if (typeof execution.stderr !== "string" || execution.stderr.trim() !== "") errors.push("worker-execution:stderr");
+  if (errors.length > 0) return { valid: false, errors, pair: null };
+  return parseWorkerEnvelope(execution.stdout, expected, protocol);
 }
 
 function validatePairs(pairs, protocol) {

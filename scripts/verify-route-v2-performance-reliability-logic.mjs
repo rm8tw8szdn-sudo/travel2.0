@@ -5,6 +5,7 @@ import {
   parseWorkerEnvelope,
   performanceGateStatus,
   validateWorkerEnvelope,
+  validateWorkerResult,
 } from "./lib/route-v2-performance-reliability.mjs";
 
 function pairs(ratios, baselineValues = [0.2, 0.201, 0.199, 0.202, 0.198, 0.2]) {
@@ -25,10 +26,16 @@ function assertBlocked(candidate, label) {
 }
 
 function workerEnvelope(pairIndex = 0) {
+  const pair = pairs([1, 1, 1, 1, 1, 1])[pairIndex];
   return {
     worker: "route-v2-invariant-pair",
+    schemaVersion: 1,
+    success: true,
+    error: null,
     currentMultiplier: 1,
-    ...pairs([1, 1, 1, 1, 1, 1])[pairIndex],
+    ...pair,
+    baseline: { ...pair.baseline, logicalOperations: 10_000, actualOperations: 10_000 },
+    current: { ...pair.current, logicalOperations: 10_000, actualOperations: 10_000 },
   };
 }
 
@@ -123,6 +130,24 @@ assertEnvelopeBlocked(falseValidMarker, "valid false envelope");
 const falseSuccessMarker = workerEnvelope();
 falseSuccessMarker.success = false;
 assertEnvelopeBlocked(falseSuccessMarker, "success false envelope");
+const explicitError = workerEnvelope();
+explicitError.error = "worker failed";
+assertEnvelopeBlocked(explicitError, "explicit worker error");
+const explicitErrors = workerEnvelope();
+explicitErrors.errors = ["worker failed"];
+assertEnvelopeBlocked(explicitErrors, "explicit worker error list");
+const explicitOkFalse = workerEnvelope();
+explicitOkFalse.ok = false;
+assertEnvelopeBlocked(explicitOkFalse, "explicit ok false");
+const explicitFailed = workerEnvelope();
+explicitFailed.failed = true;
+assertEnvelopeBlocked(explicitFailed, "explicit failed marker");
+const explicitWorkerError = workerEnvelope();
+explicitWorkerError.workerError = "worker failed";
+assertEnvelopeBlocked(explicitWorkerError, "explicit workerError marker");
+const explicitExecutionError = workerEnvelope();
+explicitExecutionError.executionError = "worker failed";
+assertEnvelopeBlocked(explicitExecutionError, "explicit executionError marker");
 const wrongMultiplier = workerEnvelope();
 wrongMultiplier.currentMultiplier = 1.2;
 assertEnvelopeBlocked(wrongMultiplier, "unexpected multiplier");
@@ -132,5 +157,9 @@ assertEnvelopeBlocked(wrongBalancedOrder, "unexpected pair order");
 assertWorkerValidationBlocked(parseWorkerEnvelope("", {}), "missing worker output");
 assertWorkerValidationBlocked(parseWorkerEnvelope("{not-json", {}), "unparsable worker output");
 assert.equal(parseWorkerEnvelope(JSON.stringify(workerEnvelope()), { order: "baseline-current", currentMultiplier: 1 }).valid, true);
+assertWorkerValidationBlocked(validateWorkerResult({ status: 1, stdout: "", stderr: "worker failed", signal: null }, {}), "non-zero process exit");
+assertWorkerValidationBlocked(validateWorkerResult({ status: 0, stdout: JSON.stringify(workerEnvelope()), stderr: "warning", signal: null }, {}), "worker stderr");
+assertWorkerValidationBlocked(validateWorkerResult({ status: 0, stdout: JSON.stringify(workerEnvelope()), stderr: "", signal: null, error: new Error("spawn failed") }, {}), "worker execution error");
+assert.equal(validateWorkerResult({ status: 0, stdout: JSON.stringify(workerEnvelope()), stderr: "", signal: null }, { order: "baseline-current", currentMultiplier: 1 }).valid, true);
 
 process.stdout.write(`${JSON.stringify({ verifier: "route-v2-performance-reliability-logic", status: "PASS" }, null, 2)}\n`);

@@ -95,6 +95,9 @@ for (const side of order.split("-")) {
 
 process.stdout.write(`${JSON.stringify({
   worker: "route-v2-invariant-pair",
+  schemaVersion: 1,
+  success: true,
+  error: null,
   order,
   currentMultiplier,
   baseline: measured.baseline,

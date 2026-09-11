@@ -1,0 +1,137 @@
+name: Route V2 Dedicated Reliability Qualification (NON-FORMAL)
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: route-v2-dedicated-reliability-qualification
+  cancel-in-progress: false
+
+env:
+  CONTROLLED_CURRENT_SHA: 1a9234f14e11aebe63eb043c78eeb73040ab7452
+  SEALED_BASELINE_SHA: 826439f41523500ad805d0bcb9966a630e90b859
+  QUALIFICATION_CPU: "0"
+  QUALIFICATION_RUNS: "5"
+
+jobs:
+  dedicated-reliability-qualification:
+    runs-on: [self-hosted, linux, x64, route-v2-performance-dedicated]
+    timeout-minutes: 30
+    steps:
+      - name: Require trusted main dispatch
+        shell: bash
+        run: test "${GITHUB_REF}" = "refs/heads/main"
+
+      - name: Checkout trusted qualification revision
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          fetch-depth: 0
+          lfs: false
+
+      - name: Verify trusted identities and lineage
+        shell: bash
+        run: |
+          test "$(git rev-parse HEAD)" = "${GITHUB_SHA}"
+          test "${QUALIFICATION_RUNS}" = "5"
+          [[ "${CONTROLLED_CURRENT_SHA}" =~ ^[0-9a-f]{40}$ ]]
+          [[ "${SEALED_BASELINE_SHA}" =~ ^[0-9a-f]{40}$ ]]
+          git cat-file -e "${CONTROLLED_CURRENT_SHA}^{commit}"
+          git cat-file -e "${SEALED_BASELINE_SHA}^{commit}"
+          git merge-base --is-ancestor "${CONTROLLED_CURRENT_SHA}" HEAD
+
+      - name: Pin Node.js
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
+        with:
+          node-version: 24.18.0
+          cache: npm
+
+      - name: Install locked dependencies
+        run: npm ci --ignore-scripts
+
+      - name: Validate qualification infrastructure
+        run: |
+          node scripts/verify-route-v2-performance-reliability-logic.mjs
+          node scripts/verify-route-v2-performance-raw-evidence.mjs
+          node scripts/verify-route-v2-dedicated-performance-environment.mjs
+          node scripts/verify-route-v2-dedicated-reliability-qualification.mjs
+          node scripts/verify-route-v2-performance-reliability-qualification-workflow.mjs
+
+      - name: Dedicated environment preflight
+        id: preflight
+        shell: bash
+        run: |
+          command -v taskset
+          test "${RUNNER_OS}" = "Linux"
+          test "${RUNNER_ARCH}" = "X64"
+          mkdir -p qualification-artifacts
+          taskset --cpu-list "${QUALIFICATION_CPU}" node scripts/collect-route-v2-dedicated-performance-environment.mjs \
+            --phase before \
+            --cpu "${QUALIFICATION_CPU}" \
+            --coordinator-sha "${GITHUB_SHA}" \
+            --current-sha "${CONTROLLED_CURRENT_SHA}" \
+            --baseline-sha "${SEALED_BASELINE_SHA}" \
+            --output qualification-artifacts/environment-before.json
+
+      - name: Run exactly five non-formal qualifications
+        id: qualification-runs
+        shell: bash
+        run: |
+          : > qualification-artifacts/qualification-exit-codes.txt
+          for qualification_run in 1 2 3 4 5; do
+            set +e
+            taskset --cpu-list "${QUALIFICATION_CPU}" node scripts/run-route-v2-performance-reliability-qualification.mjs \
+              --current-ref "${CONTROLLED_CURRENT_SHA}" \
+              --run-index "${qualification_run}" \
+              > "qualification-artifacts/qualification-run-${qualification_run}.json" \
+              2> "qualification-artifacts/qualification-run-${qualification_run}.stderr.log"
+            exit_code=$?
+            set -e
+            echo "${exit_code}" >> qualification-artifacts/qualification-exit-codes.txt
+          done
+
+      - name: Record post-qualification environment
+        shell: bash
+        run: |
+          taskset --cpu-list "${QUALIFICATION_CPU}" node scripts/collect-route-v2-dedicated-performance-environment.mjs \
+            --phase after \
+            --cpu "${QUALIFICATION_CPU}" \
+            --coordinator-sha "${GITHUB_SHA}" \
+            --current-sha "${CONTROLLED_CURRENT_SHA}" \
+            --baseline-sha "${SEALED_BASELINE_SHA}" \
+            --output qualification-artifacts/environment-after.json
+
+      - name: Finalize non-formal qualification
+        id: qualification
+        shell: bash
+        run: |
+          set +e
+          node scripts/finalize-route-v2-dedicated-reliability-qualification.mjs \
+            --evidence-directory qualification-artifacts \
+            --cpu "${QUALIFICATION_CPU}" \
+            --coordinator-sha "${GITHUB_SHA}" \
+            --current-sha "${CONTROLLED_CURRENT_SHA}" \
+            --baseline-sha "${SEALED_BASELINE_SHA}"
+          exit_code=$?
+          set -e
+          echo "exit_code=${exit_code}" >> "${GITHUB_OUTPUT}"
+
+      - name: Upload complete qualification evidence
+        id: evidence
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: route-v2-dedicated-reliability-qualification-${{ github.run_id }}
+          path: qualification-artifacts/
+          if-no-files-found: error
+          retention-days: 30
+
+      - name: Enforce qualification verdict
+        if: always()
+        shell: bash
+        run: |
+          test "${{ steps.preflight.outcome }}" = "success"
+          test "${{ steps.qualification.outputs.exit_code }}" = "0"
+          test "${{ steps.evidence.outcome }}" = "success"

@@ -23,6 +23,8 @@ The workflow verifier parses YAML with unique-key enforcement and checks the act
 
 Security-sensitive effective configuration is fail-closed. Job-level permission overrides are forbidden, and `CONTROLLED_CURRENT_SHA` plus `SEALED_BASELINE_SHA` may be declared only in the exact top-level environment contract. Seven additional negative fixtures reject job-level write permissions, current/baseline overrides at job or step scope, an unrelated-step current override, and even a same-value duplicate declaration.
 
+Spoof fixture mutation normalizes only CRLF and standalone CR to LF before matching. Every fixture asserts that its target exists and that the mutation changes the source before invoking the structural verifier, so Windows and Linux checkouts exercise identical mutations and fixture drift fails explicitly.
+
 Every dispatch retains:
 
 - `environment.txt`: OS, architecture, runner and CPU information, Node/npm versions, lockfile SHA-256, trusted workflow SHA, requested fixed current SHA, resolved current SHA, and baseline SHA.

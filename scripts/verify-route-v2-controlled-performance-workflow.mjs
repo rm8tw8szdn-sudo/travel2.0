@@ -19,6 +19,18 @@ function normalizedRun(value) {
   return String(value || "").replaceAll("\r\n", "\n").trim();
 }
 
+function normalizeWorkflowFixtureNewlines(value) {
+  return String(value).replaceAll("\r\n", "\n").replaceAll("\r", "\n");
+}
+
+function applyFixtureMutation(workflowSource, target, replacement, label) {
+  const normalizedSource = normalizeWorkflowFixtureNewlines(workflowSource);
+  assert(normalizedSource.includes(target), `${label} fixture target must match`);
+  const mutatedSource = normalizedSource.replace(target, replacement);
+  assert.notEqual(mutatedSource, normalizedSource, `${label} fixture must change workflow source`);
+  return mutatedSource;
+}
+
 function stepByName(steps, name) {
   const matches = steps.filter((step) => step?.name === name);
   assert.equal(matches.length, 1, `workflow requires exactly one step named ${name}`);
@@ -156,27 +168,27 @@ export function verifyControlledPerformanceWorkflow(workflowSource) {
 verifyControlledPerformanceWorkflow(source);
 
 const spoofCases = [
-  ["runner hidden by comment", source.replace("runs-on: ubuntu-24.04", "runs-on: windows-2025 # runs-on: ubuntu-24.04")],
-  ["floating Node hidden by comment", source.replace("node-version: 24.18.0", "node-version: 24 # node-version: 24.18.0")],
-  ["changed baseline hidden by comment", source.replace(`SEALED_BASELINE_SHA: ${BASELINE_SHA}`, `SEALED_BASELINE_SHA: ${"0".repeat(40)} # ${BASELINE_SHA}`)],
-  ["second performance invocation", source.replace("    exit_code=$?", "    node scripts/verify-route-v2-performance-reliability.mjs\n    exit_code=$?")],
-  ["push trigger", source.replace("  workflow_dispatch:", "  workflow_dispatch:\n  push:")],
-  ["arbitrary target checkout", source.replace("          fetch-depth: 0", "          ref: ${{ inputs.current_ref }}\n          fetch-depth: 0")],
-  ["artifact not always", source.replace("      - name: Upload complete performance evidence\n        if: always()", "      - name: Upload complete performance evidence\n        if: success()")],
-  ["verdict swallowed", source.replace('run: test "${{ steps.performance.outputs.exit_code }}" = "0"', "run: true")],
+  ["runner hidden by comment", applyFixtureMutation(source, "runs-on: ubuntu-24.04", "runs-on: windows-2025 # runs-on: ubuntu-24.04", "runner hidden by comment")],
+  ["floating Node hidden by comment", applyFixtureMutation(source, "node-version: 24.18.0", "node-version: 24 # node-version: 24.18.0", "floating Node hidden by comment")],
+  ["changed baseline hidden by comment", applyFixtureMutation(source, `SEALED_BASELINE_SHA: ${BASELINE_SHA}`, `SEALED_BASELINE_SHA: ${"0".repeat(40)} # ${BASELINE_SHA}`, "changed baseline hidden by comment")],
+  ["second performance invocation", applyFixtureMutation(source, "    exit_code=$?", "    node scripts/verify-route-v2-performance-reliability.mjs\n    exit_code=$?", "second performance invocation")],
+  ["push trigger", applyFixtureMutation(source, "  workflow_dispatch:", "  workflow_dispatch:\n  push:", "push trigger")],
+  ["arbitrary target checkout", applyFixtureMutation(source, "          fetch-depth: 0", "          ref: ${{ inputs.current_ref }}\n          fetch-depth: 0", "arbitrary target checkout")],
+  ["artifact not always", applyFixtureMutation(source, "      - name: Upload complete performance evidence\n        if: always()", "      - name: Upload complete performance evidence\n        if: success()", "artifact not always")],
+  ["verdict swallowed", applyFixtureMutation(source, 'run: test "${{ steps.performance.outputs.exit_code }}" = "0"', "run: true", "verdict swallowed")],
 ];
 for (const [name, spoofedSource] of spoofCases) {
   assert.throws(() => verifyControlledPerformanceWorkflow(spoofedSource), `${name} must fail structural verification`);
 }
 
 const securityOverrideCases = [
-  ["job write permissions", source.replace("    runs-on: ubuntu-24.04", "    permissions:\n      contents: write\n    runs-on: ubuntu-24.04")],
-  ["job current SHA", source.replace("    runs-on: ubuntu-24.04", `    env:\n      CONTROLLED_CURRENT_SHA: ${"0".repeat(40)}\n    runs-on: ubuntu-24.04`)],
-  ["benchmark-step current SHA", source.replace("        id: performance", `        id: performance\n        env:\n          CONTROLLED_CURRENT_SHA: ${"0".repeat(40)}`)],
-  ["unrelated-step current SHA", source.replace("      - name: Record controlled environment", `      - name: Record controlled environment\n        env:\n          CONTROLLED_CURRENT_SHA: ${"0".repeat(40)}`)],
-  ["job baseline SHA", source.replace("    runs-on: ubuntu-24.04", `    env:\n      SEALED_BASELINE_SHA: ${"0".repeat(40)}\n    runs-on: ubuntu-24.04`)],
-  ["benchmark-step baseline SHA", source.replace("        id: performance", `        id: performance\n        env:\n          SEALED_BASELINE_SHA: ${"0".repeat(40)}`)],
-  ["same-value duplicate current SHA", source.replace("    runs-on: ubuntu-24.04", `    env:\n      CONTROLLED_CURRENT_SHA: ${CURRENT_SHA}\n    runs-on: ubuntu-24.04`)],
+  ["job write permissions", applyFixtureMutation(source, "    runs-on: ubuntu-24.04", "    permissions:\n      contents: write\n    runs-on: ubuntu-24.04", "job write permissions")],
+  ["job current SHA", applyFixtureMutation(source, "    runs-on: ubuntu-24.04", `    env:\n      CONTROLLED_CURRENT_SHA: ${"0".repeat(40)}\n    runs-on: ubuntu-24.04`, "job current SHA")],
+  ["benchmark-step current SHA", applyFixtureMutation(source, "        id: performance", `        id: performance\n        env:\n          CONTROLLED_CURRENT_SHA: ${"0".repeat(40)}`, "benchmark-step current SHA")],
+  ["unrelated-step current SHA", applyFixtureMutation(source, "      - name: Record controlled environment", `      - name: Record controlled environment\n        env:\n          CONTROLLED_CURRENT_SHA: ${"0".repeat(40)}`, "unrelated-step current SHA")],
+  ["job baseline SHA", applyFixtureMutation(source, "    runs-on: ubuntu-24.04", `    env:\n      SEALED_BASELINE_SHA: ${"0".repeat(40)}\n    runs-on: ubuntu-24.04`, "job baseline SHA")],
+  ["benchmark-step baseline SHA", applyFixtureMutation(source, "        id: performance", `        id: performance\n        env:\n          SEALED_BASELINE_SHA: ${"0".repeat(40)}`, "benchmark-step baseline SHA")],
+  ["same-value duplicate current SHA", applyFixtureMutation(source, "    runs-on: ubuntu-24.04", `    env:\n      CONTROLLED_CURRENT_SHA: ${CURRENT_SHA}\n    runs-on: ubuntu-24.04`, "same-value duplicate current SHA")],
 ];
 for (const [name, spoofedSource] of securityOverrideCases) {
   assert.throws(() => verifyControlledPerformanceWorkflow(spoofedSource), `${name} must fail effective override verification`);

@@ -1,3 +1,4 @@
+import assert from "node:assert/strict";
 import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
@@ -14,8 +15,13 @@ const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "
 const temporaryRoot = fs.mkdtempSync(path.join(os.tmpdir(), "route-v2-performance-reliability-"));
 const baselineRoot = path.join(temporaryRoot, "baseline");
 const archivePath = path.join(temporaryRoot, "baseline.tar");
+const currentArchivePath = path.join(temporaryRoot, "current.tar");
+const archivedCurrentRoot = path.join(temporaryRoot, "current");
 const normalOnly = process.argv.includes("--normal-only");
+const currentRefOptionIndex = process.argv.indexOf("--current-ref");
+const requestedCurrentRef = currentRefOptionIndex >= 0 ? String(process.argv[currentRefOptionIndex + 1] || "") : "";
 fs.mkdirSync(baselineRoot, { recursive: true });
+if (requestedCurrentRef) fs.mkdirSync(archivedCurrentRoot, { recursive: true });
 
 function round(value) {
   return Number(value.toFixed(6));
@@ -84,23 +90,34 @@ try {
     ROUTE_V2_PERFORMANCE_PROTOCOL.baselineRef, "src",
   ], { cwd: projectRoot, stdio: "pipe" });
   execFileSync("tar", ["-xf", archivePath, "-C", baselineRoot], { stdio: "pipe" });
+  let currentSubjectRoot = projectRoot;
+  let resolvedCurrentRef = execFileSync("git", ["rev-parse", "HEAD"], { cwd: projectRoot, encoding: "utf8" }).trim();
+  if (requestedCurrentRef) {
+    assert.match(requestedCurrentRef, /^[0-9a-f]{40}$/u, "--current-ref must be an exact lowercase commit SHA");
+    execFileSync("git", ["cat-file", "-e", `${requestedCurrentRef}^{commit}`], { cwd: projectRoot, stdio: "pipe" });
+    resolvedCurrentRef = execFileSync("git", ["rev-parse", `${requestedCurrentRef}^{commit}`], { cwd: projectRoot, encoding: "utf8" }).trim();
+    assert.equal(resolvedCurrentRef, requestedCurrentRef, "--current-ref must resolve exactly");
+    execFileSync("git", ["archive", "--format=tar", `--output=${currentArchivePath}`, requestedCurrentRef, "src"], { cwd: projectRoot, stdio: "pipe" });
+    execFileSync("tar", ["-xf", currentArchivePath, "-C", archivedCurrentRoot], { stdio: "pipe" });
+    currentSubjectRoot = archivedCurrentRoot;
+  }
 
   const normal = runProtocol({
     label: "sealed-baseline-vs-current",
     baselineSubjectRoot: baselineRoot,
-    currentSubjectRoot: projectRoot,
+    currentSubjectRoot,
     multiplier: 1,
   });
   const synthetic10 = normalOnly ? null : runProtocol({
     label: "synthetic-10-percent",
-    baselineSubjectRoot: projectRoot,
-    currentSubjectRoot: projectRoot,
+    baselineSubjectRoot: currentSubjectRoot,
+    currentSubjectRoot,
     multiplier: 1.1,
   });
   const synthetic20 = normalOnly ? null : runProtocol({
     label: "synthetic-20-percent",
-    baselineSubjectRoot: projectRoot,
-    currentSubjectRoot: projectRoot,
+    baselineSubjectRoot: currentSubjectRoot,
+    currentSubjectRoot,
     multiplier: 1.2,
   });
   const detectsTwentyPercentRegression = synthetic20 === null ? null : synthetic20.reliable
@@ -115,6 +132,8 @@ try {
       cpu: os.cpus()[0]?.model || "unknown",
       logicalCpuCount: os.cpus().length,
       sameHost: true,
+      coordinatorSha: execFileSync("git", ["rev-parse", "HEAD"], { cwd: projectRoot, encoding: "utf8" }).trim(),
+      currentSha: resolvedCurrentRef,
       childProcessFlags: ["--expose-gc"],
     },
     protocol: {

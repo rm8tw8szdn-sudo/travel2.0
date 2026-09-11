@@ -1,0 +1,103 @@
+name: Route V2 Controlled Performance Validation
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: route-v2-controlled-performance
+  cancel-in-progress: false
+
+env:
+  CONTROLLED_CURRENT_SHA: 1a9234f14e11aebe63eb043c78eeb73040ab7452
+  SEALED_BASELINE_SHA: 826439f41523500ad805d0bcb9966a630e90b859
+
+jobs:
+  controlled-performance:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - name: Require trusted main dispatch
+        shell: bash
+        run: test "${GITHUB_REF}" = "refs/heads/main"
+
+      - name: Checkout trusted workflow revision
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          lfs: false
+
+      - name: Verify trusted execution and target lineage
+        shell: bash
+        run: |
+          test "$(git rev-parse HEAD)" = "${GITHUB_SHA}"
+          [[ "${CONTROLLED_CURRENT_SHA}" =~ ^[0-9a-f]{40}$ ]]
+          [[ "${SEALED_BASELINE_SHA}" =~ ^[0-9a-f]{40}$ ]]
+          git cat-file -e "${CONTROLLED_CURRENT_SHA}^{commit}"
+          git cat-file -e "${SEALED_BASELINE_SHA}^{commit}"
+          git merge-base --is-ancestor "${CONTROLLED_CURRENT_SHA}" HEAD
+
+      - name: Pin Node.js
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 24.18.0
+          cache: npm
+
+      - name: Install locked dependencies
+        run: npm ci --ignore-scripts
+
+      - name: Record controlled environment
+        shell: bash
+        run: |
+          test "${RUNNER_ARCH}" = "X64"
+          mkdir -p performance-artifacts
+          {
+            echo "runner_os=${RUNNER_OS}"
+            echo "runner_arch=${RUNNER_ARCH}"
+            echo "runner_name=${RUNNER_NAME}"
+            echo "workflow_sha=${GITHUB_SHA}"
+            echo "requested_current_sha=${CONTROLLED_CURRENT_SHA}"
+            echo "actual_current_sha=$(git rev-parse "${CONTROLLED_CURRENT_SHA}^{commit}")"
+            echo "baseline_sha=$(git rev-parse "${SEALED_BASELINE_SHA}^{commit}")"
+            echo "node=$(node --version)"
+            echo "npm=$(npm --version)"
+            echo "lockfile_sha256=$(sha256sum package-lock.json | cut -d' ' -f1)"
+            uname -a
+            lscpu
+          } | tee performance-artifacts/environment.txt
+
+      - name: Validate reliability infrastructure
+        run: node scripts/verify-route-v2-performance-reliability-logic.mjs
+
+      - name: Validate controlled workflow contract
+        run: node scripts/verify-route-v2-controlled-performance-workflow.mjs
+
+      - name: Run one sealed controlled performance validation
+        id: performance
+        shell: bash
+        run: |
+          set +e
+          node scripts/verify-route-v2-performance-reliability.mjs \
+            --current-ref "${CONTROLLED_CURRENT_SHA}" \
+            > performance-artifacts/result.json \
+            2> performance-artifacts/stderr.log
+          exit_code=$?
+          set -e
+          echo "exit_code=${exit_code}" >> "${GITHUB_OUTPUT}"
+          cat performance-artifacts/result.json
+
+      - name: Upload complete performance evidence
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: route-v2-controlled-performance-1a9234f14e11aebe63eb043c78eeb73040ab7452
+          path: performance-artifacts/
+          if-no-files-found: error
+          retention-days: 30
+
+      - name: Enforce controlled performance verdict
+        if: always()
+        shell: bash
+        run: test "${{ steps.performance.outputs.exit_code }}" = "0"

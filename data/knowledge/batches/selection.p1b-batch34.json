@@ -1,0 +1,986 @@
+{
+  "schemaVersion": "route-v2-knowledge-expansion-batch10-wave1-selection-v1",
+  "wave": 1,
+  "countries": [
+    {
+      "isoAlpha2": "AO",
+      "wikidataId": "Q916",
+      "entityId": "country-470d98bb241b22ec"
+    },
+    {
+      "isoAlpha2": "CM",
+      "wikidataId": "Q1009",
+      "entityId": "country-e4121a172e3bf9dc"
+    },
+    {
+      "isoAlpha2": "CI",
+      "wikidataId": "Q1008",
+      "entityId": "country-dbd102947a79bb8d"
+    },
+    {
+      "isoAlpha2": "RW",
+      "wikidataId": "Q1037",
+      "entityId": "country-aebbc06911d68974"
+    },
+    {
+      "isoAlpha2": "UG",
+      "wikidataId": "Q1036",
+      "entityId": "country-ddc6a6e5874ed167"
+    }
+  ],
+  "cities": [
+    {
+      "countryCode": "AO",
+      "tier": "world",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 7,
+      "reused": false,
+      "entityId": "city-ec86f948d5cfe821",
+      "wikidataId": "Q3897",
+      "canonicalNameEn": "Luanda",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "AO",
+      "tier": "core",
+      "targetPoiCount": 5,
+      "selectedPoiCount": 2,
+      "reused": false,
+      "entityId": "city-8072eb9ee3a0831c",
+      "wikidataId": "Q214248",
+      "canonicalNameEn": "Benguela",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "AO",
+      "tier": "core",
+      "targetPoiCount": 5,
+      "selectedPoiCount": 1,
+      "reused": false,
+      "entityId": "city-7a7f677f510d9f6e",
+      "wikidataId": "Q122044",
+      "canonicalNameEn": "Lubango",
+      "positiveTypePath": [
+        "Q486972"
+      ]
+    },
+    {
+      "countryCode": "CM",
+      "tier": "world",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 6,
+      "reused": false,
+      "entityId": "city-1e4e8e5c247d7a1b",
+      "wikidataId": "Q3808",
+      "canonicalNameEn": "Yaoundé",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "CM",
+      "tier": "world",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 7,
+      "reused": false,
+      "entityId": "city-999f998d2955d071",
+      "wikidataId": "Q132830",
+      "canonicalNameEn": "Douala",
+      "positiveTypePath": [
+        "Q2264924",
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "CM",
+      "tier": "core",
+      "targetPoiCount": 5,
+      "selectedPoiCount": 1,
+      "reused": false,
+      "entityId": "city-bdf464a9ed2c7ca8",
+      "wikidataId": "Q312209",
+      "canonicalNameEn": "Buea",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "CI",
+      "tier": "world",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 7,
+      "reused": false,
+      "entityId": "city-dddcb743a7c5b440",
+      "wikidataId": "Q1515",
+      "canonicalNameEn": "Abidjan",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "CI",
+      "tier": "world",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 1,
+      "reused": false,
+      "entityId": "city-4f08d650dd59697a",
+      "wikidataId": "Q3768",
+      "canonicalNameEn": "Yamoussoukro",
+      "positiveTypePath": [
+        "Q1549591",
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "CI",
+      "tier": "core",
+      "targetPoiCount": 5,
+      "selectedPoiCount": 5,
+      "reused": false,
+      "entityId": "city-3ae3e55afc2ba40b",
+      "wikidataId": "Q582922",
+      "canonicalNameEn": "Grand-Bassam",
+      "positiveTypePath": [
+        "Q2264924",
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "RW",
+      "tier": "world",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 5,
+      "reused": false,
+      "entityId": "city-6a59f5483e3c9c81",
+      "wikidataId": "Q3859",
+      "canonicalNameEn": "Kigali",
+      "positiveTypePath": [
+        "Q1549591",
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "RW",
+      "tier": "core",
+      "targetPoiCount": 5,
+      "selectedPoiCount": 1,
+      "reused": false,
+      "entityId": "city-9a11ad4ae85fb0ac",
+      "wikidataId": "Q509739",
+      "canonicalNameEn": "Butare",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "RW",
+      "tier": "core",
+      "targetPoiCount": 5,
+      "selectedPoiCount": 2,
+      "reused": false,
+      "entityId": "city-8d227f2462243f10",
+      "wikidataId": "Q830631",
+      "canonicalNameEn": "Gisenyi",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "RW",
+      "tier": "standard",
+      "targetPoiCount": 3,
+      "selectedPoiCount": 1,
+      "reused": false,
+      "entityId": "city-034edb5d02897aaf",
+      "wikidataId": "Q246145",
+      "canonicalNameEn": "Ruhengeri",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "UG",
+      "tier": "world",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 7,
+      "reused": false,
+      "entityId": "city-12eabeee3a7a14d0",
+      "wikidataId": "Q3894",
+      "canonicalNameEn": "Kampala",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "UG",
+      "tier": "core",
+      "targetPoiCount": 5,
+      "selectedPoiCount": 3,
+      "reused": false,
+      "entityId": "city-cf93ae1e3582d497",
+      "wikidataId": "Q211970",
+      "canonicalNameEn": "Entebbe",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "UG",
+      "tier": "core",
+      "targetPoiCount": 5,
+      "selectedPoiCount": 5,
+      "reused": false,
+      "entityId": "city-a3ca46b81dd7dc2e",
+      "wikidataId": "Q501709",
+      "canonicalNameEn": "Jinja",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    }
+  ],
+  "pois": [
+    {
+      "entityId": "poi-ef57a300c76f4d97",
+      "parentCityEntityId": "city-ec86f948d5cfe821",
+      "wikidataId": "Q6974138",
+      "canonicalNameEn": "National Library of Angola",
+      "positiveTypePath": [
+        "Q22806",
+        "Q65768782",
+        "Q385994",
+        "Q7075",
+        "Q101542346",
+        "Q13226383"
+      ],
+      "distanceKm": 1.247
+    },
+    {
+      "entityId": "poi-0682a765aa7770f7",
+      "parentCityEntityId": "city-ec86f948d5cfe821",
+      "wikidataId": "Q1408988",
+      "canonicalNameEn": "Fortress of São Miguel",
+      "positiveTypePath": [
+        "Q210272"
+      ],
+      "distanceKm": 3.606
+    },
+    {
+      "entityId": "poi-f9f00380e01d52bc",
+      "parentCityEntityId": "city-ec86f948d5cfe821",
+      "wikidataId": "Q15043323",
+      "canonicalNameEn": "Church of Our Lady of Remedies",
+      "positiveTypePath": [
+        "Q210272"
+      ],
+      "distanceKm": 2.798
+    },
+    {
+      "entityId": "poi-2b6e241f216dffba",
+      "parentCityEntityId": "city-ec86f948d5cfe821",
+      "wikidataId": "Q868147",
+      "canonicalNameEn": "Museum of the Armed Forces",
+      "positiveTypePath": [
+        "Q2772772",
+        "Q16735822",
+        "Q33506"
+      ],
+      "distanceKm": 3.65
+    },
+    {
+      "entityId": "poi-a82ba47a06adfb66",
+      "parentCityEntityId": "city-ec86f948d5cfe821",
+      "wikidataId": "Q9292748",
+      "canonicalNameEn": "Saint Peter of the Bar Fortress",
+      "positiveTypePath": [
+        "Q57831",
+        "Q18691599",
+        "Q13226383"
+      ],
+      "distanceKm": 9.192
+    },
+    {
+      "entityId": "poi-2c624499bd0f32fe",
+      "parentCityEntityId": "city-ec86f948d5cfe821",
+      "wikidataId": "Q2272674",
+      "canonicalNameEn": "Fortress of São Francisco do Penedo",
+      "positiveTypePath": [
+        "Q1785071",
+        "Q57821",
+        "Q811979"
+      ],
+      "distanceKm": 9.215
+    },
+    {
+      "entityId": "poi-28bff61d19d8f32a",
+      "parentCityEntityId": "city-ec86f948d5cfe821",
+      "wikidataId": "Q4795789",
+      "canonicalNameEn": "Arquivo Histórico Nacional",
+      "positiveTypePath": [
+        "Q2122214",
+        "Q27031009",
+        "Q166118"
+      ],
+      "distanceKm": 2.326
+    },
+    {
+      "entityId": "poi-a7ba41dd12b9f7d8",
+      "parentCityEntityId": "city-8072eb9ee3a0831c",
+      "wikidataId": "Q9060630",
+      "canonicalNameEn": "Playa Morena",
+      "positiveTypePath": [
+        "Q40080",
+        "Q107123630",
+        "Q811979"
+      ],
+      "distanceKm": 4.857
+    },
+    {
+      "entityId": "poi-46bdfd57e68b1ed1",
+      "parentCityEntityId": "city-8072eb9ee3a0831c",
+      "wikidataId": "Q10283975",
+      "canonicalNameEn": "Fort of Saint Philip of  Benguela",
+      "positiveTypePath": [
+        "Q1785071",
+        "Q57821",
+        "Q811979"
+      ],
+      "distanceKm": 4.606
+    },
+    {
+      "entityId": "poi-37758a1c6f4893fb",
+      "parentCityEntityId": "city-7a7f677f510d9f6e",
+      "wikidataId": "Q19892276",
+      "canonicalNameEn": "Cristo Rei, Lubango",
+      "positiveTypePath": [
+        "Q29168169",
+        "Q1779653",
+        "Q3476533",
+        "Q4989906"
+      ],
+      "distanceKm": 2.883
+    },
+    {
+      "entityId": "poi-3eec3f7b95ab39f7",
+      "parentCityEntityId": "city-1e4e8e5c247d7a1b",
+      "wikidataId": "Q6974144",
+      "canonicalNameEn": "National Library of Cameroon",
+      "positiveTypePath": [
+        "Q22806",
+        "Q65768782",
+        "Q385994",
+        "Q7075",
+        "Q101542346",
+        "Q13226383"
+      ],
+      "distanceKm": 0.417
+    },
+    {
+      "entityId": "poi-aee71b8979373942",
+      "parentCityEntityId": "city-1e4e8e5c247d7a1b",
+      "wikidataId": "Q15957739",
+      "canonicalNameEn": "Our Lady of Victories Cathedral, Yaoundé",
+      "positiveTypePath": [
+        "Q56242215",
+        "Q2977",
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 0.655
+    },
+    {
+      "entityId": "poi-15792be1f2ddeec4",
+      "parentCityEntityId": "city-1e4e8e5c247d7a1b",
+      "wikidataId": "Q15961646",
+      "canonicalNameEn": "Blackitude Museum",
+      "positiveTypePath": [
+        "Q207694",
+        "Q33506"
+      ],
+      "distanceKm": 0.716
+    },
+    {
+      "entityId": "poi-f4a7315f4335b9d1",
+      "parentCityEntityId": "city-1e4e8e5c247d7a1b",
+      "wikidataId": "Q6356988",
+      "canonicalNameEn": "Mvog-Betsi Zoo",
+      "positiveTypePath": [
+        "Q43501",
+        "Q22698"
+      ],
+      "distanceKm": 3.477
+    },
+    {
+      "entityId": "poi-11fe896eda32366d",
+      "parentCityEntityId": "city-1e4e8e5c247d7a1b",
+      "wikidataId": "Q2886897",
+      "canonicalNameEn": "Basilique Marie-Reine-des-Apôtres",
+      "positiveTypePath": [
+        "Q120560",
+        "Q4846867",
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 2.046
+    },
+    {
+      "entityId": "poi-e8abbbe53e6d07d2",
+      "parentCityEntityId": "city-1e4e8e5c247d7a1b",
+      "wikidataId": "Q16509753",
+      "canonicalNameEn": "Reunification Monument",
+      "positiveTypePath": [
+        "Q2065736",
+        "Q210272"
+      ],
+      "distanceKm": 0.777
+    },
+    {
+      "entityId": "poi-2124746ef94b4263",
+      "parentCityEntityId": "city-999f998d2955d071",
+      "wikidataId": "Q1405842",
+      "canonicalNameEn": "Wouri River",
+      "positiveTypePath": [
+        "Q355304",
+        "Q15324"
+      ],
+      "distanceKm": 3.703
+    },
+    {
+      "entityId": "poi-8f43a292b3447363",
+      "parentCityEntityId": "city-999f998d2955d071",
+      "wikidataId": "Q2942426",
+      "canonicalNameEn": "Cathedral of Saints Peter and Paul, Douala",
+      "positiveTypePath": [
+        "Q56242215",
+        "Q2977",
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 1.055
+    },
+    {
+      "entityId": "poi-ddc1e43922c95473",
+      "parentCityEntityId": "city-999f998d2955d071",
+      "wikidataId": "Q3211132",
+      "canonicalNameEn": "La Nouvelle Liberté",
+      "positiveTypePath": [
+        "Q2065736",
+        "Q210272"
+      ],
+      "distanceKm": 1.76
+    },
+    {
+      "entityId": "poi-cd257ee381a7882b",
+      "parentCityEntityId": "city-999f998d2955d071",
+      "wikidataId": "Q3891237",
+      "canonicalNameEn": "Palace of the Kings Bell",
+      "positiveTypePath": [
+        "Q16560",
+        "Q41176"
+      ],
+      "distanceKm": 1.606
+    },
+    {
+      "entityId": "poi-6e527c59d9d1760d",
+      "parentCityEntityId": "city-999f998d2955d071",
+      "wikidataId": "Q47484927",
+      "canonicalNameEn": "Sud Obelisk",
+      "positiveTypePath": [
+        "Q170980",
+        "Q4989906"
+      ],
+      "distanceKm": 2.102
+    },
+    {
+      "entityId": "poi-ac704e0b73b02b1e",
+      "parentCityEntityId": "city-999f998d2955d071",
+      "wikidataId": "Q47485629",
+      "canonicalNameEn": "Colonne Pascale",
+      "positiveTypePath": [
+        "Q838948"
+      ],
+      "distanceKm": 2.743
+    },
+    {
+      "entityId": "poi-fa7ce155853aa768",
+      "parentCityEntityId": "city-999f998d2955d071",
+      "wikidataId": "Q47484912",
+      "canonicalNameEn": "Njé Mo Yé",
+      "positiveTypePath": [
+        "Q860861",
+        "Q4502142",
+        "Q838948"
+      ],
+      "distanceKm": 5.653
+    },
+    {
+      "entityId": "poi-964bd2510c160447",
+      "parentCityEntityId": "city-bdf464a9ed2c7ca8",
+      "wikidataId": "Q190562",
+      "canonicalNameEn": "Mount Cameroon",
+      "positiveTypePath": [
+        "Q8072",
+        "Q29025902",
+        "Q271669"
+      ],
+      "distanceKm": 8.742
+    },
+    {
+      "entityId": "poi-436274793b9c303c",
+      "parentCityEntityId": "city-dddcb743a7c5b440",
+      "wikidataId": "Q1858100",
+      "canonicalNameEn": "Banco National Park",
+      "positiveTypePath": [
+        "Q46169",
+        "Q22698"
+      ],
+      "distanceKm": 7.047
+    },
+    {
+      "entityId": "poi-8fbcd5fcb672ba8c",
+      "parentCityEntityId": "city-dddcb743a7c5b440",
+      "wikidataId": "Q626855",
+      "canonicalNameEn": "National Library of Ivory Coast",
+      "positiveTypePath": [
+        "Q22806",
+        "Q65768782",
+        "Q385994",
+        "Q7075",
+        "Q101542346",
+        "Q13226383"
+      ],
+      "distanceKm": 0.275
+    },
+    {
+      "entityId": "poi-6440ab20d302a4da",
+      "parentCityEntityId": "city-dddcb743a7c5b440",
+      "wikidataId": "Q2441417",
+      "canonicalNameEn": "St. Paul's Cathedral",
+      "positiveTypePath": [
+        "Q56242215",
+        "Q2977",
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 0.825
+    },
+    {
+      "entityId": "poi-8fb2d3f3a3ed4af5",
+      "parentCityEntityId": "city-dddcb743a7c5b440",
+      "wikidataId": "Q3396536",
+      "canonicalNameEn": "Houphouët-Boigny Bridge",
+      "positiveTypePath": [
+        "Q12280",
+        "Q811979"
+      ],
+      "distanceKm": 2.823
+    },
+    {
+      "entityId": "poi-29107e694e25f13b",
+      "parentCityEntityId": "city-dddcb743a7c5b440",
+      "wikidataId": "Q16888110",
+      "canonicalNameEn": "Museum of Civilizations in Ivory Coast",
+      "positiveTypePath": [
+        "Q33506"
+      ],
+      "distanceKm": 0.423
+    },
+    {
+      "entityId": "poi-4b378734e18a8be1",
+      "parentCityEntityId": "city-dddcb743a7c5b440",
+      "wikidataId": "Q4274688",
+      "canonicalNameEn": "Second Abidjan Bridge",
+      "positiveTypePath": [
+        "Q12280",
+        "Q811979"
+      ],
+      "distanceKm": 2.921
+    },
+    {
+      "entityId": "poi-c795e3dc600bb5d9",
+      "parentCityEntityId": "city-dddcb743a7c5b440",
+      "wikidataId": "Q3396565",
+      "canonicalNameEn": "Henri Konan Bédié Bridge",
+      "positiveTypePath": [
+        "Q12280",
+        "Q811979"
+      ],
+      "distanceKm": 5.344
+    },
+    {
+      "entityId": "poi-6113add54251d229",
+      "parentCityEntityId": "city-4f08d650dd59697a",
+      "wikidataId": "Q815584",
+      "canonicalNameEn": "Basilica of Our Lady of Peace of Yamoussoukro",
+      "positiveTypePath": [
+        "Q1088552",
+        "Q140454931",
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 2.576
+    },
+    {
+      "entityId": "poi-ee04e02590bfaeea",
+      "parentCityEntityId": "city-3ae3e55afc2ba40b",
+      "wikidataId": "Q2942291",
+      "canonicalNameEn": "Sacred Heart Catheral of Grand-Bassam",
+      "positiveTypePath": [
+        "Q56242215",
+        "Q2977",
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 0.482
+    },
+    {
+      "entityId": "poi-9bedbcfec4b6bc39",
+      "parentCityEntityId": "city-3ae3e55afc2ba40b",
+      "wikidataId": "Q16885363",
+      "canonicalNameEn": "Musée National du Costume de Grand-Bassam",
+      "positiveTypePath": [
+        "Q16735822",
+        "Q33506"
+      ],
+      "distanceKm": 0.592
+    },
+    {
+      "entityId": "poi-2728523ff8e2c0c8",
+      "parentCityEntityId": "city-3ae3e55afc2ba40b",
+      "wikidataId": "Q108103114",
+      "canonicalNameEn": "Bibliothèque municipale de Grand-Bassam",
+      "positiveTypePath": [
+        "Q7075",
+        "Q101542346",
+        "Q13226383"
+      ],
+      "distanceKm": 0.471
+    },
+    {
+      "entityId": "poi-408e39096d026144",
+      "parentCityEntityId": "city-3ae3e55afc2ba40b",
+      "wikidataId": "Q17623887",
+      "canonicalNameEn": "Centre de céramique of Grand-Bassam",
+      "positiveTypePath": [
+        "Q33506"
+      ],
+      "distanceKm": 0.543
+    },
+    {
+      "entityId": "poi-fb79ce98eb6bbb84",
+      "parentCityEntityId": "city-3ae3e55afc2ba40b",
+      "wikidataId": "Q91461663",
+      "canonicalNameEn": "Grand-Bassam Lightouse",
+      "positiveTypePath": [
+        "Q39715",
+        "Q41176"
+      ],
+      "distanceKm": 0.606
+    },
+    {
+      "entityId": "poi-f2a370b38a7303ad",
+      "parentCityEntityId": "city-6a59f5483e3c9c81",
+      "wikidataId": "Q3585836",
+      "canonicalNameEn": "Sainte-Famille Church",
+      "positiveTypePath": [
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 5.776
+    },
+    {
+      "entityId": "poi-8be607cc1e6ad193",
+      "parentCityEntityId": "city-6a59f5483e3c9c81",
+      "wikidataId": "Q1741160",
+      "canonicalNameEn": "Mount Kigali",
+      "positiveTypePath": [
+        "Q8502",
+        "Q35145263"
+      ],
+      "distanceKm": 5.379
+    },
+    {
+      "entityId": "poi-c12f6c6b53fd8bc0",
+      "parentCityEntityId": "city-6a59f5483e3c9c81",
+      "wikidataId": "Q16678464",
+      "canonicalNameEn": "Rwanda Art Museum",
+      "positiveTypePath": [
+        "Q207694",
+        "Q33506"
+      ],
+      "distanceKm": 6.929
+    },
+    {
+      "entityId": "poi-ad21ae0ebc4eb738",
+      "parentCityEntityId": "city-6a59f5483e3c9c81",
+      "wikidataId": "Q107348237",
+      "canonicalNameEn": "Anti-corruption Monument of Rwanda",
+      "positiveTypePath": [
+        "Q4989906"
+      ],
+      "distanceKm": 2.309
+    },
+    {
+      "entityId": "poi-5effefbc56a5af97",
+      "parentCityEntityId": "city-6a59f5483e3c9c81",
+      "wikidataId": "Q107365835",
+      "canonicalNameEn": "Inema Art Centre",
+      "positiveTypePath": [
+        "Q1007870",
+        "Q15090615",
+        "Q811979"
+      ],
+      "distanceKm": 2.871
+    },
+    {
+      "entityId": "poi-07173e3396febbb0",
+      "parentCityEntityId": "city-9a11ad4ae85fb0ac",
+      "wikidataId": "Q2110810",
+      "canonicalNameEn": "Ethnographic Museum",
+      "positiveTypePath": [
+        "Q12104174",
+        "Q28737012",
+        "Q33506"
+      ],
+      "distanceKm": 1.358
+    },
+    {
+      "entityId": "poi-31e0045115a9609c",
+      "parentCityEntityId": "city-8d227f2462243f10",
+      "wikidataId": "Q15275774",
+      "canonicalNameEn": "Sebeya River",
+      "positiveTypePath": [
+        "Q4022",
+        "Q2479431",
+        "Q15324"
+      ],
+      "distanceKm": 1.882
+    },
+    {
+      "entityId": "poi-e9cc3f62736d9462",
+      "parentCityEntityId": "city-8d227f2462243f10",
+      "wikidataId": "Q116222167",
+      "canonicalNameEn": "Nyamyumba hot springs",
+      "positiveTypePath": [
+        "Q177380",
+        "Q124714",
+        "Q15324"
+      ],
+      "distanceKm": 5.864
+    },
+    {
+      "entityId": "poi-0689f707571f64e3",
+      "parentCityEntityId": "city-034edb5d02897aaf",
+      "wikidataId": "Q84496209",
+      "canonicalNameEn": "Mukungwa",
+      "positiveTypePath": [
+        "Q4022",
+        "Q2479431",
+        "Q15324"
+      ],
+      "distanceKm": 8.253
+    },
+    {
+      "entityId": "poi-019951eb86f6c204",
+      "parentCityEntityId": "city-12eabeee3a7a14d0",
+      "wikidataId": "Q618252",
+      "canonicalNameEn": "National Library of Uganda",
+      "positiveTypePath": [
+        "Q22806",
+        "Q65768782",
+        "Q385994",
+        "Q7075",
+        "Q101542346",
+        "Q13226383"
+      ],
+      "distanceKm": 1.246
+    },
+    {
+      "entityId": "poi-147734d49628c5ff",
+      "parentCityEntityId": "city-12eabeee3a7a14d0",
+      "wikidataId": "Q121464134",
+      "canonicalNameEn": "Aga Khan Mosque",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 0.387
+    },
+    {
+      "entityId": "poi-d1331853282b6236",
+      "parentCityEntityId": "city-12eabeee3a7a14d0",
+      "wikidataId": "Q7974756",
+      "canonicalNameEn": "Watoto Church",
+      "positiveTypePath": [
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 0.909
+    },
+    {
+      "entityId": "poi-61e0c816e74c5f36",
+      "parentCityEntityId": "city-12eabeee3a7a14d0",
+      "wikidataId": "Q5594671",
+      "canonicalNameEn": "Grand Imperial Hotel",
+      "positiveTypePath": [
+        "Q4989906"
+      ],
+      "distanceKm": 0.154
+    },
+    {
+      "entityId": "poi-ec161ce3397835d3",
+      "parentCityEntityId": "city-12eabeee3a7a14d0",
+      "wikidataId": "Q67758661",
+      "canonicalNameEn": "Independence Monument",
+      "positiveTypePath": [
+        "Q179700",
+        "Q220659",
+        "Q1791627",
+        "Q210272"
+      ],
+      "distanceKm": 0.24
+    },
+    {
+      "entityId": "poi-4b24a88def252684",
+      "parentCityEntityId": "city-12eabeee3a7a14d0",
+      "wikidataId": "Q96371787",
+      "canonicalNameEn": "All Saints' Cathedral, Kampala",
+      "positiveTypePath": [
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 0
+    },
+    {
+      "entityId": "poi-40b85610c55fdb3e",
+      "parentCityEntityId": "city-12eabeee3a7a14d0",
+      "wikidataId": "Q28447845",
+      "canonicalNameEn": "Christ the King Catholic Church",
+      "positiveTypePath": [
+        "Q1088552",
+        "Q140454931",
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 0.382
+    },
+    {
+      "entityId": "poi-02a12ce2faa3ea41",
+      "parentCityEntityId": "city-cf93ae1e3582d497",
+      "wikidataId": "Q3726249",
+      "canonicalNameEn": "National Botanical Gardens (Uganda)",
+      "positiveTypePath": [
+        "Q167346",
+        "Q13226383"
+      ],
+      "distanceKm": 2.525
+    },
+    {
+      "entityId": "poi-e29f2fa398c1cdcd",
+      "parentCityEntityId": "city-cf93ae1e3582d497",
+      "wikidataId": "Q122933018",
+      "canonicalNameEn": "Amansi and Mapeera monument",
+      "positiveTypePath": [
+        "Q4989906"
+      ],
+      "distanceKm": 3.647
+    },
+    {
+      "entityId": "poi-be4b494757031dfe",
+      "parentCityEntityId": "city-cf93ae1e3582d497",
+      "wikidataId": "Q118976280",
+      "canonicalNameEn": "Kitubulu Central Forest Reserve",
+      "positiveTypePath": [
+        "Q473972"
+      ],
+      "distanceKm": 5.398
+    },
+    {
+      "entityId": "poi-cb87999ab5698e58",
+      "parentCityEntityId": "city-a3ca46b81dd7dc2e",
+      "wikidataId": "Q487912",
+      "canonicalNameEn": "Ripon Falls",
+      "positiveTypePath": [
+        "Q34038",
+        "Q15324"
+      ],
+      "distanceKm": 1.347
+    },
+    {
+      "entityId": "poi-4fc7a248f2dfd8fe",
+      "parentCityEntityId": "city-a3ca46b81dd7dc2e",
+      "wikidataId": "Q2967735",
+      "canonicalNameEn": "Owen Falls",
+      "positiveTypePath": [
+        "Q34038",
+        "Q15324"
+      ],
+      "distanceKm": 2.278
+    },
+    {
+      "entityId": "poi-66408368657b94fa",
+      "parentCityEntityId": "city-a3ca46b81dd7dc2e",
+      "wikidataId": "Q14629102",
+      "canonicalNameEn": "New Jinja Bridge",
+      "positiveTypePath": [
+        "Q12280",
+        "Q811979"
+      ],
+      "distanceKm": 2.023
+    },
+    {
+      "entityId": "poi-04e1b45cd404dd9e",
+      "parentCityEntityId": "city-a3ca46b81dd7dc2e",
+      "wikidataId": "Q111924939",
+      "canonicalNameEn": "Uganda Railway Museum",
+      "positiveTypePath": [
+        "Q18704634",
+        "Q2516357",
+        "Q2398990",
+        "Q588140",
+        "Q33506"
+      ],
+      "distanceKm": 1.444
+    },
+    {
+      "entityId": "poi-372e953d16e4ec74",
+      "parentCityEntityId": "city-a3ca46b81dd7dc2e",
+      "wikidataId": "Q22082371",
+      "canonicalNameEn": "Buwenda",
+      "positiveTypePath": [
+        "Q54050",
+        "Q271669"
+      ],
+      "distanceKm": 4.274
+    }
+  ],
+  "quarantineCount": 649
+}

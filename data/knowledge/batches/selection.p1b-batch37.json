@@ -1,0 +1,900 @@
+{
+  "schemaVersion": "route-v2-knowledge-expansion-batch10-wave4-selection-v1",
+  "wave": 4,
+  "countries": [
+    {
+      "isoAlpha2": "TT",
+      "wikidataId": "Q754",
+      "entityId": "country-c51d9da3fddaf5d2"
+    },
+    {
+      "isoAlpha2": "GY",
+      "wikidataId": "Q734",
+      "entityId": "country-1c8269744bc9e10c"
+    },
+    {
+      "isoAlpha2": "UA",
+      "wikidataId": "Q212",
+      "entityId": "country-f3768c075e99c85b"
+    },
+    {
+      "isoAlpha2": "SM",
+      "wikidataId": "Q238",
+      "entityId": "country-83b52e81bbbc412c"
+    },
+    {
+      "isoAlpha2": "PG",
+      "wikidataId": "Q691",
+      "entityId": "country-b26b5c61eabe99b9"
+    }
+  ],
+  "cities": [
+    {
+      "countryCode": "TT",
+      "tier": "world",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 7,
+      "reused": false,
+      "entityId": "city-f8e7938698d274cb",
+      "wikidataId": "Q39178",
+      "canonicalNameEn": "Port of Spain",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "TT",
+      "tier": "core",
+      "targetPoiCount": 5,
+      "selectedPoiCount": 5,
+      "reused": false,
+      "entityId": "city-94fbe7319f3f241e",
+      "wikidataId": "Q1023712",
+      "canonicalNameEn": "San Fernando",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "TT",
+      "tier": "standard",
+      "targetPoiCount": 3,
+      "selectedPoiCount": 2,
+      "reused": false,
+      "entityId": "city-e1e545b8fe38ab50",
+      "wikidataId": "Q1444575",
+      "canonicalNameEn": "Chaguanas",
+      "positiveTypePath": [
+        "Q51929311",
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "GY",
+      "tier": "world",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 7,
+      "reused": false,
+      "entityId": "city-304d8fa6571a29e8",
+      "wikidataId": "Q10717",
+      "canonicalNameEn": "Georgetown",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "GY",
+      "tier": "core",
+      "targetPoiCount": 5,
+      "selectedPoiCount": 4,
+      "reused": false,
+      "entityId": "city-3fc66d21aa6978d8",
+      "wikidataId": "Q923811",
+      "canonicalNameEn": "New Amsterdam",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "UA",
+      "tier": "world",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 7,
+      "reused": false,
+      "entityId": "city-ba04206e1546a3d3",
+      "wikidataId": "Q1899",
+      "canonicalNameEn": "Kyiv",
+      "positiveTypePath": [
+        "Q51929311",
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "UA",
+      "tier": "core",
+      "targetPoiCount": 5,
+      "selectedPoiCount": 5,
+      "reused": false,
+      "entityId": "city-f2f641d79ebbd4d9",
+      "wikidataId": "Q1874",
+      "canonicalNameEn": "Odesa",
+      "positiveTypePath": [
+        "Q2264924",
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "UA",
+      "tier": "core",
+      "targetPoiCount": 5,
+      "selectedPoiCount": 5,
+      "reused": false,
+      "entityId": "city-efeaf752d6769593",
+      "wikidataId": "Q42308",
+      "canonicalNameEn": "Kharkiv",
+      "positiveTypePath": [
+        "Q12134916",
+        "Q486972"
+      ]
+    },
+    {
+      "countryCode": "SM",
+      "tier": "world",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 7,
+      "reused": false,
+      "entityId": "city-b9e5f660ba76a806",
+      "wikidataId": "Q1848",
+      "canonicalNameEn": "San Marino",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "PG",
+      "tier": "world",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 4,
+      "reused": false,
+      "entityId": "city-a038bb8de99e95c3",
+      "wikidataId": "Q36526",
+      "canonicalNameEn": "Port Moresby",
+      "positiveTypePath": [
+        "Q2264924",
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "PG",
+      "tier": "core",
+      "targetPoiCount": 5,
+      "selectedPoiCount": 4,
+      "reused": false,
+      "entityId": "city-b1acc6bc710ce996",
+      "wikidataId": "Q612250",
+      "canonicalNameEn": "Lae",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "PG",
+      "tier": "core",
+      "targetPoiCount": 5,
+      "selectedPoiCount": 2,
+      "reused": false,
+      "entityId": "city-f6e316a3e0ca7523",
+      "wikidataId": "Q586673",
+      "canonicalNameEn": "Madang",
+      "positiveTypePath": [
+        "Q486972"
+      ]
+    }
+  ],
+  "pois": [
+    {
+      "entityId": "poi-37340a733f8aa6c4",
+      "parentCityEntityId": "city-f8e7938698d274cb",
+      "wikidataId": "Q16825924",
+      "canonicalNameEn": "Cathedral of the Immaculate Conception, Port of Spain",
+      "positiveTypePath": [
+        "Q120560",
+        "Q4846867",
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 1.695
+    },
+    {
+      "entityId": "poi-d9803606b13d59bb",
+      "parentCityEntityId": "city-f8e7938698d274cb",
+      "wikidataId": "Q5045524",
+      "canonicalNameEn": "Caroni River",
+      "positiveTypePath": [
+        "Q4022",
+        "Q2479431",
+        "Q15324"
+      ],
+      "distanceKm": 5.85
+    },
+    {
+      "entityId": "poi-e2e9cb616d0b2d1c",
+      "parentCityEntityId": "city-f8e7938698d274cb",
+      "wikidataId": "Q6974436",
+      "canonicalNameEn": "National Museum and Art Gallery",
+      "positiveTypePath": [
+        "Q17431399",
+        "Q33506"
+      ],
+      "distanceKm": 0.812
+    },
+    {
+      "entityId": "poi-9734e1f404b65e17",
+      "parentCityEntityId": "city-f8e7938698d274cb",
+      "wikidataId": "Q7270070",
+      "canonicalNameEn": "Queen's Park Savannah, Port of Spain",
+      "positiveTypePath": [
+        "Q22698"
+      ],
+      "distanceKm": 0.407
+    },
+    {
+      "entityId": "poi-798a60ea8aa9574c",
+      "parentCityEntityId": "city-f8e7938698d274cb",
+      "wikidataId": "Q16844445",
+      "canonicalNameEn": "Holy Trinity Cathedral, Port of Spain",
+      "positiveTypePath": [
+        "Q56242250",
+        "Q58079064",
+        "Q24398318",
+        "Q1370598"
+      ],
+      "distanceKm": 1.875
+    },
+    {
+      "entityId": "poi-df6e1c528cfd9120",
+      "parentCityEntityId": "city-f8e7938698d274cb",
+      "wikidataId": "Q734178",
+      "canonicalNameEn": "Caledonia Island",
+      "positiveTypePath": [
+        "Q23442",
+        "Q271669"
+      ],
+      "distanceKm": 8.803
+    },
+    {
+      "entityId": "poi-d0052d6e08d97fd8",
+      "parentCityEntityId": "city-f8e7938698d274cb",
+      "wikidataId": "Q2198266",
+      "canonicalNameEn": "Emperor Valley Zoo",
+      "positiveTypePath": [
+        "Q43501",
+        "Q22698"
+      ],
+      "distanceKm": 0.868
+    },
+    {
+      "entityId": "poi-f463646a0ee7dd33",
+      "parentCityEntityId": "city-94fbe7319f3f241e",
+      "wikidataId": "Q4151227",
+      "canonicalNameEn": "Guaracara River",
+      "positiveTypePath": [
+        "Q4022",
+        "Q2479431",
+        "Q15324"
+      ],
+      "distanceKm": 1.853
+    },
+    {
+      "entityId": "poi-66a8a46570fe28a7",
+      "parentCityEntityId": "city-94fbe7319f3f241e",
+      "wikidataId": "Q108581912",
+      "canonicalNameEn": "Iere Village Mosque",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 8.672
+    },
+    {
+      "entityId": "poi-8014f87f20414ee3",
+      "parentCityEntityId": "city-94fbe7319f3f241e",
+      "wikidataId": "Q17509679",
+      "canonicalNameEn": "Cipero Marl",
+      "positiveTypePath": [
+        "Q736917",
+        "Q3550897",
+        "Q3694119",
+        "Q9346860",
+        "Q61014863",
+        "Q35145263"
+      ],
+      "distanceKm": 9.958
+    },
+    {
+      "entityId": "poi-f56e331abc0e307a",
+      "parentCityEntityId": "city-94fbe7319f3f241e",
+      "wikidataId": "Q5434803",
+      "canonicalNameEn": "Faralon Rock",
+      "positiveTypePath": [
+        "Q23442",
+        "Q271669"
+      ],
+      "distanceKm": 2.184
+    },
+    {
+      "entityId": "poi-9f9ab0567777bee1",
+      "parentCityEntityId": "city-94fbe7319f3f241e",
+      "wikidataId": "Q18354333",
+      "canonicalNameEn": "San Fernando Formation",
+      "positiveTypePath": [
+        "Q736917",
+        "Q3550897",
+        "Q3694119",
+        "Q9346860",
+        "Q61014863",
+        "Q35145263"
+      ],
+      "distanceKm": 4.091
+    },
+    {
+      "entityId": "poi-b7ff9ff8e3c45eb8",
+      "parentCityEntityId": "city-e1e545b8fe38ab50",
+      "wikidataId": "Q27964107",
+      "canonicalNameEn": "Temple in the Sea",
+      "positiveTypePath": [
+        "Q842402",
+        "Q44539",
+        "Q697295",
+        "Q24398318",
+        "Q1370598"
+      ],
+      "distanceKm": 8.281
+    },
+    {
+      "entityId": "poi-ded7303babe90514",
+      "parentCityEntityId": "city-e1e545b8fe38ab50",
+      "wikidataId": "Q1960555",
+      "canonicalNameEn": "Indian Caribbean Museum of Trinidad and Tobago",
+      "positiveTypePath": [
+        "Q33506"
+      ],
+      "distanceKm": 6.761
+    },
+    {
+      "entityId": "poi-1d115c94dac8181e",
+      "parentCityEntityId": "city-304d8fa6571a29e8",
+      "wikidataId": "Q1185369",
+      "canonicalNameEn": "Demerara River",
+      "positiveTypePath": [
+        "Q4022",
+        "Q2479431",
+        "Q15324"
+      ],
+      "distanceKm": 2.436
+    },
+    {
+      "entityId": "poi-29f4b72ec140ea55",
+      "parentCityEntityId": "city-304d8fa6571a29e8",
+      "wikidataId": "Q1557640",
+      "canonicalNameEn": "Guyana Zoo",
+      "positiveTypePath": [
+        "Q43501",
+        "Q22698"
+      ],
+      "distanceKm": 0.5
+    },
+    {
+      "entityId": "poi-ddced8487e275c99",
+      "parentCityEntityId": "city-304d8fa6571a29e8",
+      "wikidataId": "Q4256289",
+      "canonicalNameEn": "Brickdam Cathedral",
+      "positiveTypePath": [
+        "Q2977",
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 1.25
+    },
+    {
+      "entityId": "poi-9e17499bbbba5cd6",
+      "parentCityEntityId": "city-304d8fa6571a29e8",
+      "wikidataId": "Q4256302",
+      "canonicalNameEn": "St. George's Cathedral",
+      "positiveTypePath": [
+        "Q56242250",
+        "Q58079064",
+        "Q24398318",
+        "Q1370598"
+      ],
+      "distanceKm": 1.613
+    },
+    {
+      "entityId": "poi-5fb5fc9195129413",
+      "parentCityEntityId": "city-304d8fa6571a29e8",
+      "wikidataId": "Q15116317",
+      "canonicalNameEn": "National Library of Guyana",
+      "positiveTypePath": [
+        "Q22806",
+        "Q65768782",
+        "Q385994",
+        "Q7075",
+        "Q101542346",
+        "Q13226383"
+      ],
+      "distanceKm": 1.761
+    },
+    {
+      "entityId": "poi-19fa4b189b9a0442",
+      "parentCityEntityId": "city-304d8fa6571a29e8",
+      "wikidataId": "Q2586282",
+      "canonicalNameEn": "Guyana National Museum",
+      "positiveTypePath": [
+        "Q17431399",
+        "Q33506"
+      ],
+      "distanceKm": 1.859
+    },
+    {
+      "entityId": "poi-7d87b3a5bc1a4411",
+      "parentCityEntityId": "city-304d8fa6571a29e8",
+      "wikidataId": "Q5049685",
+      "canonicalNameEn": "Castellani House, Guyana",
+      "positiveTypePath": [
+        "Q207694",
+        "Q33506"
+      ],
+      "distanceKm": 0.103
+    },
+    {
+      "entityId": "poi-3f85db5abb37581b",
+      "parentCityEntityId": "city-3fc66d21aa6978d8",
+      "wikidataId": "Q2896921",
+      "canonicalNameEn": "Berbice River",
+      "positiveTypePath": [
+        "Q4022",
+        "Q2479431",
+        "Q15324"
+      ],
+      "distanceKm": 4.139
+    },
+    {
+      "entityId": "poi-bdfea937811f32ea",
+      "parentCityEntityId": "city-3fc66d21aa6978d8",
+      "wikidataId": "Q5032492",
+      "canonicalNameEn": "Canje River",
+      "positiveTypePath": [
+        "Q4022",
+        "Q2479431",
+        "Q15324"
+      ],
+      "distanceKm": 1.368
+    },
+    {
+      "entityId": "poi-85c6c1e15f956559",
+      "parentCityEntityId": "city-3fc66d21aa6978d8",
+      "wikidataId": "Q5180218",
+      "canonicalNameEn": "Crab Island",
+      "positiveTypePath": [
+        "Q23442",
+        "Q271669"
+      ],
+      "distanceKm": 3.67
+    },
+    {
+      "entityId": "poi-07d57290b8f89b3f",
+      "parentCityEntityId": "city-3fc66d21aa6978d8",
+      "wikidataId": "Q4891083",
+      "canonicalNameEn": "Berbice Bridge",
+      "positiveTypePath": [
+        "Q12280",
+        "Q811979"
+      ],
+      "distanceKm": 3.707
+    },
+    {
+      "entityId": "poi-93a2b9c8a553c260",
+      "parentCityEntityId": "city-ba04206e1546a3d3",
+      "wikidataId": "Q1440653",
+      "canonicalNameEn": "House with Chimaeras",
+      "positiveTypePath": [
+        "Q811165",
+        "Q210272"
+      ],
+      "distanceKm": 0.659
+    },
+    {
+      "entityId": "poi-772fc9b1e5b6be47",
+      "parentCityEntityId": "city-ba04206e1546a3d3",
+      "wikidataId": "Q1076911",
+      "canonicalNameEn": "Khreshchatyk",
+      "positiveTypePath": [
+        "Q79007",
+        "Q811979"
+      ],
+      "distanceKm": 0.331
+    },
+    {
+      "entityId": "poi-803a359b25ba30cc",
+      "parentCityEntityId": "city-ba04206e1546a3d3",
+      "wikidataId": "Q3917633",
+      "canonicalNameEn": "Independence Monument",
+      "positiveTypePath": [
+        "Q4989906"
+      ],
+      "distanceKm": 0.135
+    },
+    {
+      "entityId": "poi-a7cc47d601f3ed29",
+      "parentCityEntityId": "city-ba04206e1546a3d3",
+      "wikidataId": "Q2997168",
+      "canonicalNameEn": "European Square",
+      "positiveTypePath": [
+        "Q174782",
+        "Q811979"
+      ],
+      "distanceKm": 0.37
+    },
+    {
+      "entityId": "poi-a2d55dd55c1d736b",
+      "parentCityEntityId": "city-ba04206e1546a3d3",
+      "wikidataId": "Q633737",
+      "canonicalNameEn": "Hotel Ukraine",
+      "positiveTypePath": [
+        "Q811165",
+        "Q210272"
+      ],
+      "distanceKm": 0.302
+    },
+    {
+      "entityId": "poi-2104a066f8587ed4",
+      "parentCityEntityId": "city-ba04206e1546a3d3",
+      "wikidataId": "Q2093733",
+      "canonicalNameEn": "Co-Cathedral of St. Alexander, Kyiv",
+      "positiveTypePath": [
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 0.378
+    },
+    {
+      "entityId": "poi-576e0bcc9a766865",
+      "parentCityEntityId": "city-ba04206e1546a3d3",
+      "wikidataId": "Q4470581",
+      "canonicalNameEn": "Ukrainian House",
+      "positiveTypePath": [
+        "Q811165",
+        "Q210272"
+      ],
+      "distanceKm": 0.414
+    },
+    {
+      "entityId": "poi-e00354cd62c5fcd6",
+      "parentCityEntityId": "city-f2f641d79ebbd4d9",
+      "wikidataId": "Q1413595",
+      "canonicalNameEn": "Potemkin Stairs",
+      "positiveTypePath": [
+        "Q28662786",
+        "Q811979"
+      ],
+      "distanceKm": 1.425
+    },
+    {
+      "entityId": "poi-ac3bd1f2b28175a0",
+      "parentCityEntityId": "city-f2f641d79ebbd4d9",
+      "wikidataId": "Q2299324",
+      "canonicalNameEn": "Transfiguration Cathedral",
+      "positiveTypePath": [
+        "Q2031836",
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 0.646
+    },
+    {
+      "entityId": "poi-7020ef63899be0db",
+      "parentCityEntityId": "city-f2f641d79ebbd4d9",
+      "wikidataId": "Q4331480",
+      "canonicalNameEn": "Odesa Fine Arts Museum",
+      "positiveTypePath": [
+        "Q207694",
+        "Q33506"
+      ],
+      "distanceKm": 1.795
+    },
+    {
+      "entityId": "poi-df947d0c5b2d0e15",
+      "parentCityEntityId": "city-f2f641d79ebbd4d9",
+      "wikidataId": "Q4068391",
+      "canonicalNameEn": "Al-Salam Mosque",
+      "positiveTypePath": [
+        "Q1329623",
+        "Q41176"
+      ],
+      "distanceKm": 0.74
+    },
+    {
+      "entityId": "poi-4baa8c2fa21243a8",
+      "parentCityEntityId": "city-f2f641d79ebbd4d9",
+      "wikidataId": "Q1974519",
+      "canonicalNameEn": "Odesa Zoo",
+      "positiveTypePath": [
+        "Q43501",
+        "Q22698"
+      ],
+      "distanceKm": 1.111
+    },
+    {
+      "entityId": "poi-a766d0f0922018f2",
+      "parentCityEntityId": "city-efeaf752d6769593",
+      "wikidataId": "Q961993",
+      "canonicalNameEn": "Freedom Square",
+      "positiveTypePath": [
+        "Q174782",
+        "Q811979"
+      ],
+      "distanceKm": 1.346
+    },
+    {
+      "entityId": "poi-80193e517245d874",
+      "parentCityEntityId": "city-efeaf752d6769593",
+      "wikidataId": "Q4496277",
+      "canonicalNameEn": "Kharkiv Choral Synagogue",
+      "positiveTypePath": [
+        "Q34627",
+        "Q831219",
+        "Q1370598"
+      ],
+      "distanceKm": 0.268
+    },
+    {
+      "entityId": "poi-9d0ac7d819f47c4a",
+      "parentCityEntityId": "city-efeaf752d6769593",
+      "wikidataId": "Q578671",
+      "canonicalNameEn": "Annunciation Cathedral",
+      "positiveTypePath": [
+        "Q56242225",
+        "Q2031836",
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 0.56
+    },
+    {
+      "entityId": "poi-2888aae9969b77ce",
+      "parentCityEntityId": "city-efeaf752d6769593",
+      "wikidataId": "Q4496319",
+      "canonicalNameEn": "M. F. Sumtsov Kharkiv Historical Museum",
+      "positiveTypePath": [
+        "Q16735822",
+        "Q33506"
+      ],
+      "distanceKm": 0.04
+    },
+    {
+      "entityId": "poi-99158f4615bd6a80",
+      "parentCityEntityId": "city-efeaf752d6769593",
+      "wikidataId": "Q4496358",
+      "canonicalNameEn": "Fine Arts Museum Kharkiv",
+      "positiveTypePath": [
+        "Q207694",
+        "Q33506"
+      ],
+      "distanceKm": 0.905
+    },
+    {
+      "entityId": "poi-9734a7b74a9e198a",
+      "parentCityEntityId": "city-b9e5f660ba76a806",
+      "wikidataId": "Q158526",
+      "canonicalNameEn": "Monte Titano",
+      "positiveTypePath": [
+        "Q8502",
+        "Q35145263"
+      ],
+      "distanceKm": 0.508
+    },
+    {
+      "entityId": "poi-af3aa35c80fb81f3",
+      "parentCityEntityId": "city-b9e5f660ba76a806",
+      "wikidataId": "Q2287080",
+      "canonicalNameEn": "Three Towers of San Marino",
+      "positiveTypePath": [
+        "Q1195705",
+        "Q271669"
+      ],
+      "distanceKm": 0.355
+    },
+    {
+      "entityId": "poi-72768eac30a67f5e",
+      "parentCityEntityId": "city-b9e5f660ba76a806",
+      "wikidataId": "Q2711604",
+      "canonicalNameEn": "Guaita",
+      "positiveTypePath": [
+        "Q8502",
+        "Q35145263"
+      ],
+      "distanceKm": 0.388
+    },
+    {
+      "entityId": "poi-c90289c1797e0e88",
+      "parentCityEntityId": "city-b9e5f660ba76a806",
+      "wikidataId": "Q810102",
+      "canonicalNameEn": "Basilica di San Marino",
+      "positiveTypePath": [
+        "Q120560",
+        "Q4846867",
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 0.592
+    },
+    {
+      "entityId": "poi-472dbf00afc9585f",
+      "parentCityEntityId": "city-b9e5f660ba76a806",
+      "wikidataId": "Q1705125",
+      "canonicalNameEn": "Palazzo Pubblico",
+      "positiveTypePath": [
+        "Q16560",
+        "Q41176"
+      ],
+      "distanceKm": 0.555
+    },
+    {
+      "entityId": "poi-a8795ca6543c7f2c",
+      "parentCityEntityId": "city-b9e5f660ba76a806",
+      "wikidataId": "Q2465198",
+      "canonicalNameEn": "San Marino River",
+      "positiveTypePath": [
+        "Q4022",
+        "Q2479431",
+        "Q15324"
+      ],
+      "distanceKm": 6.114
+    },
+    {
+      "entityId": "poi-735bcc30707a7692",
+      "parentCityEntityId": "city-b9e5f660ba76a806",
+      "wikidataId": "Q2592701",
+      "canonicalNameEn": "De La Fratta",
+      "positiveTypePath": [
+        "Q16735822",
+        "Q33506"
+      ],
+      "distanceKm": 0.26
+    },
+    {
+      "entityId": "poi-2a785fde87be39e1",
+      "parentCityEntityId": "city-a038bb8de99e95c3",
+      "wikidataId": "Q106322306",
+      "canonicalNameEn": "Hohola Mosque",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 3.8
+    },
+    {
+      "entityId": "poi-23647ce96fea2981",
+      "parentCityEntityId": "city-a038bb8de99e95c3",
+      "wikidataId": "Q55628557",
+      "canonicalNameEn": "Papua New Guinea National Museum and Art Gallery",
+      "positiveTypePath": [
+        "Q33506"
+      ],
+      "distanceKm": 7.416
+    },
+    {
+      "entityId": "poi-da731ecd755cf8c3",
+      "parentCityEntityId": "city-a038bb8de99e95c3",
+      "wikidataId": "Q23729819",
+      "canonicalNameEn": "St. Mary's Cathedral, Port Moresby",
+      "positiveTypePath": [
+        "Q56242215",
+        "Q2977",
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 0.215
+    },
+    {
+      "entityId": "poi-9d4a569bdb17afed",
+      "parentCityEntityId": "city-a038bb8de99e95c3",
+      "wikidataId": "Q47672813",
+      "canonicalNameEn": "Tatana",
+      "positiveTypePath": [
+        "Q139595919",
+        "Q184358",
+        "Q28337",
+        "Q271669"
+      ],
+      "distanceKm": 4.072
+    },
+    {
+      "entityId": "poi-6f6b84e80388292c",
+      "parentCityEntityId": "city-b1acc6bc710ce996",
+      "wikidataId": "Q1900767",
+      "canonicalNameEn": "Markham River",
+      "positiveTypePath": [
+        "Q4022",
+        "Q2479431",
+        "Q15324"
+      ],
+      "distanceKm": 3.744
+    },
+    {
+      "entityId": "poi-23d9afb973965b8a",
+      "parentCityEntityId": "city-b1acc6bc710ce996",
+      "wikidataId": "Q1422372",
+      "canonicalNameEn": "Markham Valley",
+      "positiveTypePath": [
+        "Q39816",
+        "Q35145263"
+      ],
+      "distanceKm": 3.744
+    },
+    {
+      "entityId": "poi-76ad9f89bb33a5ad",
+      "parentCityEntityId": "city-b1acc6bc710ce996",
+      "wikidataId": "Q16894529",
+      "canonicalNameEn": "Malahang Mission Station, Lae",
+      "positiveTypePath": [
+        "Q1564373",
+        "Q24398318",
+        "Q1370598"
+      ],
+      "distanceKm": 3.949
+    },
+    {
+      "entityId": "poi-0060007d0c023d0c",
+      "parentCityEntityId": "city-b1acc6bc710ce996",
+      "wikidataId": "Q17052559",
+      "canonicalNameEn": "Lae Botanic Gardens",
+      "positiveTypePath": [
+        "Q167346",
+        "Q13226383"
+      ],
+      "distanceKm": 1.341
+    },
+    {
+      "entityId": "poi-e275f777ec578d24",
+      "parentCityEntityId": "city-f6e316a3e0ca7523",
+      "wikidataId": "Q16918527",
+      "canonicalNameEn": "Hansemann Mountains",
+      "positiveTypePath": [
+        "Q46831",
+        "Q271669"
+      ],
+      "distanceKm": 0
+    },
+    {
+      "entityId": "poi-82a89d2cca5a50f3",
+      "parentCityEntityId": "city-f6e316a3e0ca7523",
+      "wikidataId": "Q107610289",
+      "canonicalNameEn": "Gum River",
+      "positiveTypePath": [
+        "Q4022",
+        "Q2479431",
+        "Q15324"
+      ],
+      "distanceKm": 5.586
+    }
+  ],
+  "quarantineCount": 754
+}

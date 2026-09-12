@@ -1,0 +1,1227 @@
+{
+  "schemaVersion": "route-v2-knowledge-expansion-batch10-wave3-selection-v1",
+  "wave": 3,
+  "countries": [
+    {
+      "isoAlpha2": "IR",
+      "wikidataId": "Q794",
+      "entityId": "country-5448751e792d2f68"
+    },
+    {
+      "isoAlpha2": "MM",
+      "wikidataId": "Q836",
+      "entityId": "country-fb3419aa7752e46f"
+    },
+    {
+      "isoAlpha2": "TL",
+      "wikidataId": "Q574",
+      "entityId": "country-f270482e85e509f7"
+    },
+    {
+      "isoAlpha2": "BZ",
+      "wikidataId": "Q242",
+      "entityId": "country-510d7bdffedde15b"
+    },
+    {
+      "isoAlpha2": "BB",
+      "wikidataId": "Q244",
+      "entityId": "country-8b569ea96aff660e"
+    }
+  ],
+  "cities": [
+    {
+      "countryCode": "IR",
+      "tier": "world",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 7,
+      "reused": false,
+      "entityId": "city-8085b959bf17a13f",
+      "wikidataId": "Q3616",
+      "canonicalNameEn": "Tehran",
+      "positiveTypePath": [
+        "Q174844",
+        "Q1637706",
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "IR",
+      "tier": "world",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 7,
+      "reused": false,
+      "entityId": "city-12621d634455cc3b",
+      "wikidataId": "Q42053",
+      "canonicalNameEn": "Isfahan",
+      "positiveTypePath": [
+        "Q1549591",
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "IR",
+      "tier": "core",
+      "targetPoiCount": 5,
+      "selectedPoiCount": 3,
+      "reused": false,
+      "entityId": "city-7483b05682d4b69a",
+      "wikidataId": "Q182394",
+      "canonicalNameEn": "Yazd",
+      "positiveTypePath": [
+        "Q1549591",
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "MM",
+      "tier": "world",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 7,
+      "reused": false,
+      "entityId": "city-6df5500f24892a8a",
+      "wikidataId": "Q37995",
+      "canonicalNameEn": "Yangon",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "MM",
+      "tier": "world",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 7,
+      "reused": false,
+      "entityId": "city-c55c86dd44a5821f",
+      "wikidataId": "Q185518",
+      "canonicalNameEn": "Mandalay",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "MM",
+      "tier": "core",
+      "targetPoiCount": 5,
+      "selectedPoiCount": 5,
+      "reused": false,
+      "entityId": "city-07b9853015cc765f",
+      "wikidataId": "Q29317",
+      "canonicalNameEn": "Bagan",
+      "positiveTypePath": [
+        "Q15661340",
+        "Q22674925",
+        "Q486972"
+      ]
+    },
+    {
+      "countryCode": "MM",
+      "tier": "standard",
+      "targetPoiCount": 3,
+      "selectedPoiCount": 3,
+      "reused": false,
+      "entityId": "city-e7af8386538c3871",
+      "wikidataId": "Q37400",
+      "canonicalNameEn": "Naypyidaw",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "TL",
+      "tier": "world",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 7,
+      "reused": false,
+      "entityId": "city-c99e249c394ba4de",
+      "wikidataId": "Q9310",
+      "canonicalNameEn": "Dili",
+      "positiveTypePath": [
+        "Q5119",
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "TL",
+      "tier": "core",
+      "targetPoiCount": 5,
+      "selectedPoiCount": 3,
+      "reused": false,
+      "entityId": "city-422d392e780b89a7",
+      "wikidataId": "Q811130",
+      "canonicalNameEn": "Baucau",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "BZ",
+      "tier": "world",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 7,
+      "reused": false,
+      "entityId": "city-6ec906c9527fa58c",
+      "wikidataId": "Q108223",
+      "canonicalNameEn": "Belize City",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "BZ",
+      "tier": "core",
+      "targetPoiCount": 5,
+      "selectedPoiCount": 5,
+      "reused": false,
+      "entityId": "city-ada97841bcc43314",
+      "wikidataId": "Q3043",
+      "canonicalNameEn": "Belmopan",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "BZ",
+      "tier": "core",
+      "targetPoiCount": 5,
+      "selectedPoiCount": 4,
+      "reused": false,
+      "entityId": "city-364c92a54ef6ea30",
+      "wikidataId": "Q724815",
+      "canonicalNameEn": "San Ignacio",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "BZ",
+      "tier": "standard",
+      "targetPoiCount": 3,
+      "selectedPoiCount": 1,
+      "reused": false,
+      "entityId": "city-09e784f122af849f",
+      "wikidataId": "Q882964",
+      "canonicalNameEn": "Orange Walk Town",
+      "positiveTypePath": [
+        "Q3957",
+        "Q124250988",
+        "Q486972"
+      ]
+    },
+    {
+      "countryCode": "BB",
+      "tier": "world",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 7,
+      "reused": false,
+      "entityId": "city-f1a22d8c758501f8",
+      "wikidataId": "Q36168",
+      "canonicalNameEn": "Bridgetown",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "BB",
+      "tier": "core",
+      "targetPoiCount": 5,
+      "selectedPoiCount": 5,
+      "reused": false,
+      "entityId": "city-98d052aeea2558ca",
+      "wikidataId": "Q2544610",
+      "canonicalNameEn": "Speightstown",
+      "positiveTypePath": [
+        "Q3957",
+        "Q124250988",
+        "Q486972"
+      ]
+    },
+    {
+      "countryCode": "BB",
+      "tier": "standard",
+      "targetPoiCount": 3,
+      "selectedPoiCount": 3,
+      "reused": false,
+      "entityId": "city-0c71d6e0327e28d1",
+      "wikidataId": "Q2290478",
+      "canonicalNameEn": "Holetown",
+      "positiveTypePath": [
+        "Q3957",
+        "Q124250988",
+        "Q486972"
+      ]
+    }
+  ],
+  "pois": [
+    {
+      "entityId": "poi-c7f27bcdde5863a9",
+      "parentCityEntityId": "city-8085b959bf17a13f",
+      "wikidataId": "Q1631008",
+      "canonicalNameEn": "National Museum of Iran",
+      "positiveTypePath": [
+        "Q17431399",
+        "Q33506"
+      ],
+      "distanceKm": 2.257
+    },
+    {
+      "entityId": "poi-c195e8f92b661c64",
+      "parentCityEntityId": "city-8085b959bf17a13f",
+      "wikidataId": "Q1756399",
+      "canonicalNameEn": "Tehran Museum of Contemporary Art",
+      "positiveTypePath": [
+        "Q108860927",
+        "Q207694",
+        "Q33506"
+      ],
+      "distanceKm": 2.503
+    },
+    {
+      "entityId": "poi-6e57b5bc978eb3cf",
+      "parentCityEntityId": "city-8085b959bf17a13f",
+      "wikidataId": "Q15075626",
+      "canonicalNameEn": "Marble Palace",
+      "positiveTypePath": [
+        "Q16560",
+        "Q41176"
+      ],
+      "distanceKm": 1.106
+    },
+    {
+      "entityId": "poi-4bf234a6522faf57",
+      "parentCityEntityId": "city-8085b959bf17a13f",
+      "wikidataId": "Q2389872",
+      "canonicalNameEn": "Vahdat Hall",
+      "positiveTypePath": [
+        "Q1060829",
+        "Q57660343",
+        "Q18674739",
+        "Q41176"
+      ],
+      "distanceKm": 2.266
+    },
+    {
+      "entityId": "poi-bb90e4a760eb3ddc",
+      "parentCityEntityId": "city-8085b959bf17a13f",
+      "wikidataId": "Q6743603",
+      "canonicalNameEn": "Malek National Library and Museum",
+      "positiveTypePath": [
+        "Q17431399",
+        "Q33506"
+      ],
+      "distanceKm": 2.41
+    },
+    {
+      "entityId": "poi-318b20a64fd5ae95",
+      "parentCityEntityId": "city-8085b959bf17a13f",
+      "wikidataId": "Q5949273",
+      "canonicalNameEn": "Treasury of National Jewels",
+      "positiveTypePath": [
+        "Q16735822",
+        "Q33506"
+      ],
+      "distanceKm": 2.714
+    },
+    {
+      "entityId": "poi-957f0646cec77206",
+      "parentCityEntityId": "city-8085b959bf17a13f",
+      "wikidataId": "Q913711",
+      "canonicalNameEn": "City Park",
+      "positiveTypePath": [
+        "Q22746",
+        "Q22698"
+      ],
+      "distanceKm": 2.301
+    },
+    {
+      "entityId": "poi-38d87b6588cb99a7",
+      "parentCityEntityId": "city-12621d634455cc3b",
+      "wikidataId": "Q4519",
+      "canonicalNameEn": "Naqsh-e Jahan Square",
+      "positiveTypePath": [
+        "Q174782",
+        "Q811979"
+      ],
+      "distanceKm": 0.682
+    },
+    {
+      "entityId": "poi-dd141c61a92da801",
+      "parentCityEntityId": "city-12621d634455cc3b",
+      "wikidataId": "Q1256501",
+      "canonicalNameEn": "Jameh Mosque of Isfahan",
+      "positiveTypePath": [
+        "Q2065736",
+        "Q210272"
+      ],
+      "distanceKm": 2.155
+    },
+    {
+      "entityId": "poi-fd948a9fdc943596",
+      "parentCityEntityId": "city-12621d634455cc3b",
+      "wikidataId": "Q643098",
+      "canonicalNameEn": "Shah Mosque",
+      "positiveTypePath": [
+        "Q2065736",
+        "Q210272"
+      ],
+      "distanceKm": 0.384
+    },
+    {
+      "entityId": "poi-2875799f32f2965d",
+      "parentCityEntityId": "city-12621d634455cc3b",
+      "wikidataId": "Q856356",
+      "canonicalNameEn": "Sheikh Lotfollah Mosque",
+      "positiveTypePath": [
+        "Q2065736",
+        "Q210272"
+      ],
+      "distanceKm": 0.656
+    },
+    {
+      "entityId": "poi-5798a20ea593b8f4",
+      "parentCityEntityId": "city-12621d634455cc3b",
+      "wikidataId": "Q667674",
+      "canonicalNameEn": "Si-o-se Pol",
+      "positiveTypePath": [
+        "Q158438",
+        "Q12280",
+        "Q811979"
+      ],
+      "distanceKm": 1.08
+    },
+    {
+      "entityId": "poi-a440b9a324bc1ada",
+      "parentCityEntityId": "city-12621d634455cc3b",
+      "wikidataId": "Q16566",
+      "canonicalNameEn": "Chehel Sotun",
+      "positiveTypePath": [
+        "Q16560",
+        "Q41176"
+      ],
+      "distanceKm": 0.606
+    },
+    {
+      "entityId": "poi-0b166780a9dbac9c",
+      "parentCityEntityId": "city-12621d634455cc3b",
+      "wikidataId": "Q1398856",
+      "canonicalNameEn": "Vank Cathedral",
+      "positiveTypePath": [
+        "Q2065736",
+        "Q210272"
+      ],
+      "distanceKm": 2.644
+    },
+    {
+      "entityId": "poi-a753629432034e5d",
+      "parentCityEntityId": "city-7483b05682d4b69a",
+      "wikidataId": "Q1454816",
+      "canonicalNameEn": "Jameh Mosque of Yazd",
+      "positiveTypePath": [
+        "Q2065736",
+        "Q210272"
+      ],
+      "distanceKm": 0.475
+    },
+    {
+      "entityId": "poi-2dc362c832d738d8",
+      "parentCityEntityId": "city-7483b05682d4b69a",
+      "wikidataId": "Q5957873",
+      "canonicalNameEn": "Amir Chakhmaq Square",
+      "positiveTypePath": [
+        "Q174782",
+        "Q811979"
+      ],
+      "distanceKm": 0.441
+    },
+    {
+      "entityId": "poi-f012a858385c526d",
+      "parentCityEntityId": "city-7483b05682d4b69a",
+      "wikidataId": "Q5949393",
+      "canonicalNameEn": "Amir Chakhmaq Mosque",
+      "positiveTypePath": [
+        "Q2065736",
+        "Q210272"
+      ],
+      "distanceKm": 0.401
+    },
+    {
+      "entityId": "poi-69da2b66194e371b",
+      "parentCityEntityId": "city-6df5500f24892a8a",
+      "wikidataId": "Q464535",
+      "canonicalNameEn": "Shwedagon Pagoda",
+      "positiveTypePath": [
+        "Q5393308",
+        "Q1370598"
+      ],
+      "distanceKm": 1.183
+    },
+    {
+      "entityId": "poi-a970d1782e1dd0a2",
+      "parentCityEntityId": "city-6df5500f24892a8a",
+      "wikidataId": "Q2756611",
+      "canonicalNameEn": "National Museum (Yangon)",
+      "positiveTypePath": [
+        "Q17431399",
+        "Q33506"
+      ],
+      "distanceKm": 2.001
+    },
+    {
+      "entityId": "poi-b9c3edaffee9ad2f",
+      "parentCityEntityId": "city-6df5500f24892a8a",
+      "wikidataId": "Q1136334",
+      "canonicalNameEn": "Yangon Zoological Gardens",
+      "positiveTypePath": [
+        "Q43501",
+        "Q22698"
+      ],
+      "distanceKm": 0.375
+    },
+    {
+      "entityId": "poi-8ebf2f74f3bf8067",
+      "parentCityEntityId": "city-6df5500f24892a8a",
+      "wikidataId": "Q20683398",
+      "canonicalNameEn": "Chaukhtatgyi Buddha Temple",
+      "positiveTypePath": [
+        "Q5393308",
+        "Q1370598"
+      ],
+      "distanceKm": 1.907
+    },
+    {
+      "entityId": "poi-157e34ee97d5994d",
+      "parentCityEntityId": "city-6df5500f24892a8a",
+      "wikidataId": "Q7401804",
+      "canonicalNameEn": "Saint Mary's Cathedral, Yangon",
+      "positiveTypePath": [
+        "Q2977",
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 1.918
+    },
+    {
+      "entityId": "poi-176c6ea1dac3f93d",
+      "parentCityEntityId": "city-6df5500f24892a8a",
+      "wikidataId": "Q385991",
+      "canonicalNameEn": "Kandawgyi Lake",
+      "positiveTypePath": [
+        "Q131681",
+        "Q11727010",
+        "Q23397",
+        "Q271669"
+      ],
+      "distanceKm": 0.701
+    },
+    {
+      "entityId": "poi-5bcc38b7bc89feca",
+      "parentCityEntityId": "city-6df5500f24892a8a",
+      "wikidataId": "Q7503799",
+      "canonicalNameEn": "Shri Kali Temple, Burma",
+      "positiveTypePath": [
+        "Q842402",
+        "Q44539",
+        "Q697295",
+        "Q24398318",
+        "Q1370598"
+      ],
+      "distanceKm": 2.06
+    },
+    {
+      "entityId": "poi-2ddd99db5add4fd4",
+      "parentCityEntityId": "city-c55c86dd44a5821f",
+      "wikidataId": "Q2655670",
+      "canonicalNameEn": "Mandalay Palace",
+      "positiveTypePath": [
+        "Q16560",
+        "Q41176"
+      ],
+      "distanceKm": 1.614
+    },
+    {
+      "entityId": "poi-2a86bf09ab6db3b1",
+      "parentCityEntityId": "city-c55c86dd44a5821f",
+      "wikidataId": "Q946518",
+      "canonicalNameEn": "Mahamuni Buddha Temple",
+      "positiveTypePath": [
+        "Q5393308",
+        "Q1370598"
+      ],
+      "distanceKm": 3.518
+    },
+    {
+      "entityId": "poi-0fbef4b1dc293174",
+      "parentCityEntityId": "city-c55c86dd44a5821f",
+      "wikidataId": "Q949750",
+      "canonicalNameEn": "Kuthodaw Pagoda",
+      "positiveTypePath": [
+        "Q199451",
+        "Q1370598"
+      ],
+      "distanceKm": 3.78
+    },
+    {
+      "entityId": "poi-5158c54d5075b675",
+      "parentCityEntityId": "city-c55c86dd44a5821f",
+      "wikidataId": "Q3285419",
+      "canonicalNameEn": "Mandalay Hill",
+      "positiveTypePath": [
+        "Q54050",
+        "Q271669"
+      ],
+      "distanceKm": 4.192
+    },
+    {
+      "entityId": "poi-6e1aa429189a0866",
+      "parentCityEntityId": "city-c55c86dd44a5821f",
+      "wikidataId": "Q8046515",
+      "canonicalNameEn": "Yadanabon Zoological Gardens",
+      "positiveTypePath": [
+        "Q43501",
+        "Q22698"
+      ],
+      "distanceKm": 3.014
+    },
+    {
+      "entityId": "poi-f45ee96559465712",
+      "parentCityEntityId": "city-c55c86dd44a5821f",
+      "wikidataId": "Q23760608",
+      "canonicalNameEn": "Sacred Heart Cathedral, Mandalay",
+      "positiveTypePath": [
+        "Q56242215",
+        "Q2977",
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 0.478
+    },
+    {
+      "entityId": "poi-1fd086cc5a94e9f1",
+      "parentCityEntityId": "city-c55c86dd44a5821f",
+      "wikidataId": "Q13062180",
+      "canonicalNameEn": "Kyauktawgyi Buddha Temple",
+      "positiveTypePath": [
+        "Q842402",
+        "Q44539",
+        "Q697295",
+        "Q24398318",
+        "Q1370598"
+      ],
+      "distanceKm": 3.299
+    },
+    {
+      "entityId": "poi-43dc66d8785f5490",
+      "parentCityEntityId": "city-07b9853015cc765f",
+      "wikidataId": "Q485727",
+      "canonicalNameEn": "Ananda Temple",
+      "positiveTypePath": [
+        "Q5393308",
+        "Q1370598"
+      ],
+      "distanceKm": 0.819
+    },
+    {
+      "entityId": "poi-30173879c106d1b7",
+      "parentCityEntityId": "city-07b9853015cc765f",
+      "wikidataId": "Q3336294",
+      "canonicalNameEn": "Nathlaung Kyaung Temple",
+      "positiveTypePath": [
+        "Q842402",
+        "Q44539",
+        "Q697295",
+        "Q24398318",
+        "Q1370598"
+      ],
+      "distanceKm": 0.485
+    },
+    {
+      "entityId": "poi-6e00cc712d688446",
+      "parentCityEntityId": "city-07b9853015cc765f",
+      "wikidataId": "Q2747222",
+      "canonicalNameEn": "Shwezigon Pagoda",
+      "positiveTypePath": [
+        "Q199451",
+        "Q1370598"
+      ],
+      "distanceKm": 4.107
+    },
+    {
+      "entityId": "poi-de200b5d6402eea3",
+      "parentCityEntityId": "city-07b9853015cc765f",
+      "wikidataId": "Q2093752",
+      "canonicalNameEn": "Thatbyinnyu Temple",
+      "positiveTypePath": [
+        "Q44539",
+        "Q697295",
+        "Q24398318",
+        "Q1370598"
+      ],
+      "distanceKm": 0.517
+    },
+    {
+      "entityId": "poi-c5ec3d560d6eb0b0",
+      "parentCityEntityId": "city-07b9853015cc765f",
+      "wikidataId": "Q1207545",
+      "canonicalNameEn": "Dhammayangyi Temple",
+      "positiveTypePath": [
+        "Q44539",
+        "Q697295",
+        "Q24398318",
+        "Q1370598"
+      ],
+      "distanceKm": 1.87
+    },
+    {
+      "entityId": "poi-066950b7bd455e50",
+      "parentCityEntityId": "city-e7af8386538c3871",
+      "wikidataId": "Q631130",
+      "canonicalNameEn": "National Library of Myanmar",
+      "positiveTypePath": [
+        "Q22806",
+        "Q65768782",
+        "Q385994",
+        "Q7075",
+        "Q101542346",
+        "Q13226383"
+      ],
+      "distanceKm": 4.058
+    },
+    {
+      "entityId": "poi-6d2e457c1d1ddf53",
+      "parentCityEntityId": "city-e7af8386538c3871",
+      "wikidataId": "Q608474",
+      "canonicalNameEn": "Uppatasanti Pagoda",
+      "positiveTypePath": [
+        "Q199451",
+        "Q1370598"
+      ],
+      "distanceKm": 7.585
+    },
+    {
+      "entityId": "poi-8927561b30ca6e17",
+      "parentCityEntityId": "city-e7af8386538c3871",
+      "wikidataId": "Q117376811",
+      "canonicalNameEn": "Maravijaya Buddha",
+      "positiveTypePath": [
+        "Q179700",
+        "Q220659",
+        "Q1791627",
+        "Q210272"
+      ],
+      "distanceKm": 7.749
+    },
+    {
+      "entityId": "poi-a9f3b1269f07425a",
+      "parentCityEntityId": "city-c99e249c394ba4de",
+      "wikidataId": "Q23693634",
+      "canonicalNameEn": "National Library of East Timor",
+      "positiveTypePath": [
+        "Q2122214",
+        "Q27031009",
+        "Q166118"
+      ],
+      "distanceKm": 1.87
+    },
+    {
+      "entityId": "poi-f48ab15e4125f01d",
+      "parentCityEntityId": "city-c99e249c394ba4de",
+      "wikidataId": "Q680813",
+      "canonicalNameEn": "Cristo Rei of Dili",
+      "positiveTypePath": [
+        "Q29168169",
+        "Q1779653",
+        "Q3476533",
+        "Q4989906"
+      ],
+      "distanceKm": 4.94
+    },
+    {
+      "entityId": "poi-df2f455f765ca9ec",
+      "parentCityEntityId": "city-c99e249c394ba4de",
+      "wikidataId": "Q1736176",
+      "canonicalNameEn": "Immaculate Conception Cathedral",
+      "positiveTypePath": [
+        "Q2977",
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 1.292
+    },
+    {
+      "entityId": "poi-a8596ddbef8e3f44",
+      "parentCityEntityId": "city-c99e249c394ba4de",
+      "wikidataId": "Q15051400",
+      "canonicalNameEn": "An-Nur Mosque",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 2.036
+    },
+    {
+      "entityId": "poi-46055f20ecb8520a",
+      "parentCityEntityId": "city-c99e249c394ba4de",
+      "wikidataId": "Q4245248",
+      "canonicalNameEn": "Nicolau Lobato Presidential Palace",
+      "positiveTypePath": [
+        "Q2114972",
+        "Q16560",
+        "Q41176"
+      ],
+      "distanceKm": 1.69
+    },
+    {
+      "entityId": "poi-57cece431674200b",
+      "parentCityEntityId": "city-c99e249c394ba4de",
+      "wikidataId": "Q16493993",
+      "canonicalNameEn": "Timorese Resistance Archive and Museum",
+      "positiveTypePath": [
+        "Q166118"
+      ],
+      "distanceKm": 0.235
+    },
+    {
+      "entityId": "poi-0424bc3001206574",
+      "parentCityEntityId": "city-c99e249c394ba4de",
+      "wikidataId": "Q21540492",
+      "canonicalNameEn": "Hindu temple in Dili",
+      "positiveTypePath": [
+        "Q3124902",
+        "Q842402",
+        "Q44539",
+        "Q697295",
+        "Q24398318",
+        "Q1370598"
+      ],
+      "distanceKm": 2.327
+    },
+    {
+      "entityId": "poi-8618b8f12c3ed5ae",
+      "parentCityEntityId": "city-422d392e780b89a7",
+      "wikidataId": "Q2267147",
+      "canonicalNameEn": "Seiçal River",
+      "positiveTypePath": [
+        "Q4022",
+        "Q2479431",
+        "Q15324"
+      ],
+      "distanceKm": 8.829
+    },
+    {
+      "entityId": "poi-cc7ea56b7729a329",
+      "parentCityEntityId": "city-422d392e780b89a7",
+      "wikidataId": "Q14549207",
+      "canonicalNameEn": "Saint Anthony Cathedral",
+      "positiveTypePath": [
+        "Q2977",
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 0.677
+    },
+    {
+      "entityId": "poi-e0eb14f301d6850b",
+      "parentCityEntityId": "city-422d392e780b89a7",
+      "wikidataId": "Q15987305",
+      "canonicalNameEn": "Municipal Market of Baucau",
+      "positiveTypePath": [
+        "Q210272"
+      ],
+      "distanceKm": 0.522
+    },
+    {
+      "entityId": "poi-91a24f16e3207577",
+      "parentCityEntityId": "city-6ec906c9527fa58c",
+      "wikidataId": "Q4163413",
+      "canonicalNameEn": "St. John's Cathedral",
+      "positiveTypePath": [
+        "Q56242250",
+        "Q58079064",
+        "Q24398318",
+        "Q1370598"
+      ],
+      "distanceKm": 1.117
+    },
+    {
+      "entityId": "poi-512946773f5e4cdc",
+      "parentCityEntityId": "city-6ec906c9527fa58c",
+      "wikidataId": "Q7658544",
+      "canonicalNameEn": "Swing Bridge",
+      "positiveTypePath": [
+        "Q12280",
+        "Q811979"
+      ],
+      "distanceKm": 0.396
+    },
+    {
+      "entityId": "poi-bd0f3cc16ea4f875",
+      "parentCityEntityId": "city-6ec906c9527fa58c",
+      "wikidataId": "Q4163667",
+      "canonicalNameEn": "Holy Redeemer Cathedral",
+      "positiveTypePath": [
+        "Q2977",
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 0.329
+    },
+    {
+      "entityId": "poi-e702ae39ad401247",
+      "parentCityEntityId": "city-6ec906c9527fa58c",
+      "wikidataId": "Q21870703",
+      "canonicalNameEn": "Haulover Creek",
+      "positiveTypePath": [
+        "Q4022",
+        "Q2479431",
+        "Q15324"
+      ],
+      "distanceKm": 0.58
+    },
+    {
+      "entityId": "poi-c83cfe269f86f61e",
+      "parentCityEntityId": "city-6ec906c9527fa58c",
+      "wikidataId": "Q597227",
+      "canonicalNameEn": "Bliss Institute",
+      "positiveTypePath": [
+        "Q24354",
+        "Q114961210",
+        "Q294422",
+        "Q41176"
+      ],
+      "distanceKm": 0.631
+    },
+    {
+      "entityId": "poi-ef50866d78dcbd6a",
+      "parentCityEntityId": "city-6ec906c9527fa58c",
+      "wikidataId": "Q4862170",
+      "canonicalNameEn": "Baron Bliss Light",
+      "positiveTypePath": [
+        "Q39715",
+        "Q41176"
+      ],
+      "distanceKm": 1.11
+    },
+    {
+      "entityId": "poi-4dacb7e772d4f341",
+      "parentCityEntityId": "city-6ec906c9527fa58c",
+      "wikidataId": "Q3084093",
+      "canonicalNameEn": "Maritime Museum",
+      "positiveTypePath": [
+        "Q1863818",
+        "Q2516357",
+        "Q2398990",
+        "Q588140",
+        "Q33506"
+      ],
+      "distanceKm": 0.411
+    },
+    {
+      "entityId": "poi-b0c52409100518c7",
+      "parentCityEntityId": "city-ada97841bcc43314",
+      "wikidataId": "Q973934",
+      "canonicalNameEn": "Guanacaste National Park",
+      "positiveTypePath": [
+        "Q46169",
+        "Q22698"
+      ],
+      "distanceKm": 2.534
+    },
+    {
+      "entityId": "poi-2b9cfbe3736c79f0",
+      "parentCityEntityId": "city-ada97841bcc43314",
+      "wikidataId": "Q7110822",
+      "canonicalNameEn": "Our Lady of Guadalupe Co-Cathedral",
+      "positiveTypePath": [
+        "Q2977",
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 0.442
+    },
+    {
+      "entityId": "poi-e1425e351a5677fd",
+      "parentCityEntityId": "city-ada97841bcc43314",
+      "wikidataId": "Q609946",
+      "canonicalNameEn": "Belmopan Public Library",
+      "positiveTypePath": [
+        "Q7075",
+        "Q101542346",
+        "Q13226383"
+      ],
+      "distanceKm": 0.217
+    },
+    {
+      "entityId": "poi-bc6b0825da8ea529",
+      "parentCityEntityId": "city-ada97841bcc43314",
+      "wikidataId": "Q3083341",
+      "canonicalNameEn": "Belize Archaeology Museum",
+      "positiveTypePath": [
+        "Q17431399",
+        "Q33506"
+      ],
+      "distanceKm": 0.645
+    },
+    {
+      "entityId": "poi-9a62752fe36949a7",
+      "parentCityEntityId": "city-ada97841bcc43314",
+      "wikidataId": "Q6970423",
+      "canonicalNameEn": "National Archives of Belize",
+      "positiveTypePath": [
+        "Q2122214",
+        "Q27031009",
+        "Q166118"
+      ],
+      "distanceKm": 0.271
+    },
+    {
+      "entityId": "poi-7b9fae02d1214a3e",
+      "parentCityEntityId": "city-364c92a54ef6ea30",
+      "wikidataId": "Q815650",
+      "canonicalNameEn": "Belize River",
+      "positiveTypePath": [
+        "Q4022",
+        "Q2479431",
+        "Q15324"
+      ],
+      "distanceKm": 2.452
+    },
+    {
+      "entityId": "poi-adea230bca2d95e2",
+      "parentCityEntityId": "city-364c92a54ef6ea30",
+      "wikidataId": "Q427979",
+      "canonicalNameEn": "Belize Botanic Gardens",
+      "positiveTypePath": [
+        "Q167346",
+        "Q13226383"
+      ],
+      "distanceKm": 8.397
+    },
+    {
+      "entityId": "poi-376038ff7bda393d",
+      "parentCityEntityId": "city-364c92a54ef6ea30",
+      "wikidataId": "Q17985538",
+      "canonicalNameEn": "St. Andrew's Anglican Church",
+      "positiveTypePath": [
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 0.097
+    },
+    {
+      "entityId": "poi-6f98a8d368f6e9d5",
+      "parentCityEntityId": "city-364c92a54ef6ea30",
+      "wikidataId": "Q5685301",
+      "canonicalNameEn": "Hawkesworth Bridge",
+      "positiveTypePath": [
+        "Q12280",
+        "Q811979"
+      ],
+      "distanceKm": 0.257
+    },
+    {
+      "entityId": "poi-bb193899672f2a4d",
+      "parentCityEntityId": "city-09e784f122af849f",
+      "wikidataId": "Q899503",
+      "canonicalNameEn": "Cuello",
+      "positiveTypePath": [
+        "Q839954"
+      ],
+      "distanceKm": 4.501
+    },
+    {
+      "entityId": "poi-4e4968005ee766d8",
+      "parentCityEntityId": "city-f1a22d8c758501f8",
+      "wikidataId": "Q2975704",
+      "canonicalNameEn": "Nidhe Israel Synagogue",
+      "positiveTypePath": [
+        "Q34627",
+        "Q831219",
+        "Q1370598"
+      ],
+      "distanceKm": 0.264
+    },
+    {
+      "entityId": "poi-000dee59ddde7706",
+      "parentCityEntityId": "city-f1a22d8c758501f8",
+      "wikidataId": "Q5164145",
+      "canonicalNameEn": "Constitution River",
+      "positiveTypePath": [
+        "Q4022",
+        "Q2479431",
+        "Q15324"
+      ],
+      "distanceKm": 0.291
+    },
+    {
+      "entityId": "poi-32dc9d6d64e910d5",
+      "parentCityEntityId": "city-f1a22d8c758501f8",
+      "wikidataId": "Q629924",
+      "canonicalNameEn": "National Library Service of Barbados",
+      "positiveTypePath": [
+        "Q22806",
+        "Q65768782",
+        "Q385994",
+        "Q7075",
+        "Q101542346",
+        "Q13226383"
+      ],
+      "distanceKm": 0.386
+    },
+    {
+      "entityId": "poi-4a99cb2a4e5f5eb3",
+      "parentCityEntityId": "city-f1a22d8c758501f8",
+      "wikidataId": "Q108619529",
+      "canonicalNameEn": "Jama Mosque",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 0.813
+    },
+    {
+      "entityId": "poi-28f963b009c11578",
+      "parentCityEntityId": "city-f1a22d8c758501f8",
+      "wikidataId": "Q2879612",
+      "canonicalNameEn": "Carlisle Bay",
+      "positiveTypePath": [
+        "Q39594",
+        "Q2507626",
+        "Q15324"
+      ],
+      "distanceKm": 1.575
+    },
+    {
+      "entityId": "poi-4b77652b9170cc16",
+      "parentCityEntityId": "city-f1a22d8c758501f8",
+      "wikidataId": "Q7161401",
+      "canonicalNameEn": "Pelican Island, Bridgetown",
+      "positiveTypePath": [
+        "Q52103661",
+        "Q23442",
+        "Q271669"
+      ],
+      "distanceKm": 1.826
+    },
+    {
+      "entityId": "poi-fe2ba7329f10e339",
+      "parentCityEntityId": "city-f1a22d8c758501f8",
+      "wikidataId": "Q14519408",
+      "canonicalNameEn": "Needham's Point Lighthouse",
+      "positiveTypePath": [
+        "Q39715",
+        "Q41176"
+      ],
+      "distanceKm": 2.19
+    },
+    {
+      "entityId": "poi-227a412dc8835d6a",
+      "parentCityEntityId": "city-98d052aeea2558ca",
+      "wikidataId": "Q1854502",
+      "canonicalNameEn": "Mount Hillaby",
+      "positiveTypePath": [
+        "Q8502",
+        "Q35145263"
+      ],
+      "distanceKm": 7.871
+    },
+    {
+      "entityId": "poi-c365e0b09c30fc80",
+      "parentCityEntityId": "city-98d052aeea2558ca",
+      "wikidataId": "Q21746169",
+      "canonicalNameEn": "Pico Teneriffe",
+      "positiveTypePath": [
+        "Q8502",
+        "Q35145263"
+      ],
+      "distanceKm": 8.645
+    },
+    {
+      "entityId": "poi-2264826061fca601",
+      "parentCityEntityId": "city-98d052aeea2558ca",
+      "wikidataId": "Q5856466",
+      "canonicalNameEn": "Harrison Point Lighthouse",
+      "positiveTypePath": [
+        "Q39715",
+        "Q41176"
+      ],
+      "distanceKm": 6.066
+    },
+    {
+      "entityId": "poi-3530766d69b55c4d",
+      "parentCityEntityId": "city-98d052aeea2558ca",
+      "wikidataId": "Q4764807",
+      "canonicalNameEn": "Animal Flower Cave",
+      "positiveTypePath": [
+        "Q35509",
+        "Q271669"
+      ],
+      "distanceKm": 9.405
+    },
+    {
+      "entityId": "poi-7413d6e156696686",
+      "parentCityEntityId": "city-98d052aeea2558ca",
+      "wikidataId": "Q7156847",
+      "canonicalNameEn": "Paynes Bay",
+      "positiveTypePath": [
+        "Q39594",
+        "Q2507626",
+        "Q15324"
+      ],
+      "distanceKm": 9.794
+    },
+    {
+      "entityId": "poi-0470a01062178496",
+      "parentCityEntityId": "city-0c71d6e0327e28d1",
+      "wikidataId": "Q108619475",
+      "canonicalNameEn": "Madina Mosque",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 9.779
+    },
+    {
+      "entityId": "poi-c8ef9ae4ef3c3d03",
+      "parentCityEntityId": "city-0c71d6e0327e28d1",
+      "wikidataId": "Q5503103",
+      "canonicalNameEn": "Freshwater Bay, Barbados",
+      "positiveTypePath": [
+        "Q39594",
+        "Q2507626",
+        "Q15324"
+      ],
+      "distanceKm": 6.367
+    },
+    {
+      "entityId": "poi-10103a1699ed2c1a",
+      "parentCityEntityId": "city-0c71d6e0327e28d1",
+      "wikidataId": "Q21746124",
+      "canonicalNameEn": "Heywoods Beach",
+      "positiveTypePath": [
+        "Q40080",
+        "Q107123630",
+        "Q811979"
+      ],
+      "distanceKm": 7.061
+    }
+  ],
+  "quarantineCount": 907
+}

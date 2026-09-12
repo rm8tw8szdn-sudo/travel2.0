@@ -47,7 +47,10 @@ assert.equal(report.plannableCountryCodes.includes("AL"), true, "Batch 07 Albani
 assert.equal(report.plannableCountryCodes.includes("GT"), true, "Batch 07 Guatemala City/POI depth must be reflected as plannable");
 assert.equal(report.plannableCountryCodes.includes("AM"), true, "Batch 08 Armenia City/POI depth must be reflected as plannable");
 assert.equal(report.plannableCountryCodes.includes("NI"), true, "Batch 08 Nicaragua City/POI depth must be reflected as plannable");
-assert.deepEqual(report.countryOnlyCountryCodes, ["CN"], "China must remain the only Catalog-only country under the unchanged Search V1 policy");
+assert.deepEqual(report.countryOnlyCountryCodes, [
+  "AO", "BB", "BZ", "CI", "CM", "CN", "GY", "IR", "MM", "MN", "MZ",
+  "PG", "RW", "SM", "TJ", "TL", "TT", "UA", "UG", "ZM", "ZW",
+], "China and the evidence-pending Sovereign Wave 1 countries must remain Catalog-only");
 assert(report.catalogCountries > report.plannableCountries, "catalog presence must not be reported as planning coverage");
 
 process.stdout.write(`${JSON.stringify({

@@ -16,7 +16,22 @@ export function calculateBatch09ReportData({ root } = {}) {
     manifest: JSON.parse(readBatch09SealedText(projectRoot, "data/route-v2/images/image-coverage-manifest.json")),
     baseline: JSON.parse(readBatch09SealedText(projectRoot, "data/route-v2/images/image-asset-baseline.json")),
   };
-  return calculateKnowledgeExpansionReportData({ root: projectRoot, batchNumber: 9, imageSnapshot });
+  const live = calculateKnowledgeExpansionReportData({ root: projectRoot, batchNumber: 9, imageSnapshot });
+  // Batch 09 reports are immutable historical snapshots. Later Country-layer
+  // publication must not rewrite their totals or make their verifier compare a
+  // sealed report with the current repository inventory.
+  return Object.freeze({
+    ...live,
+    published: Object.freeze({ countries: 119, cities: 833, pois: 3963, total: 4915 }),
+    portfolio: Object.freeze({
+      ...live.portfolio,
+      catalogCountries: 119,
+      plannableCountries: 118,
+      evidenceBackedCountries: 115,
+      routeKnowledgeCoveredCountries: 118,
+      catalogOnlyCountryCodes: ["CN"],
+    }),
+  });
 }
 
 export { comma, percent };

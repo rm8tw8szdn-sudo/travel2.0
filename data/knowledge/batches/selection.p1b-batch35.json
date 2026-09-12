@@ -1,0 +1,912 @@
+{
+  "schemaVersion": "route-v2-knowledge-expansion-batch10-wave2-selection-v1",
+  "wave": 2,
+  "countries": [
+    {
+      "isoAlpha2": "ZM",
+      "wikidataId": "Q953",
+      "entityId": "country-cdde3f0cbf80314a"
+    },
+    {
+      "isoAlpha2": "ZW",
+      "wikidataId": "Q954",
+      "entityId": "country-7561cf912a06d6c7"
+    },
+    {
+      "isoAlpha2": "MZ",
+      "wikidataId": "Q1029",
+      "entityId": "country-bbda95b4c649d057"
+    },
+    {
+      "isoAlpha2": "MN",
+      "wikidataId": "Q711",
+      "entityId": "country-bea943b938e45c46"
+    },
+    {
+      "isoAlpha2": "TJ",
+      "wikidataId": "Q863",
+      "entityId": "country-ec2572666ccd7aaa"
+    }
+  ],
+  "cities": [
+    {
+      "countryCode": "ZM",
+      "tier": "world",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 3,
+      "reused": false,
+      "entityId": "city-4374865b0ace9042",
+      "wikidataId": "Q3881",
+      "canonicalNameEn": "Lusaka",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "ZM",
+      "tier": "world",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 2,
+      "reused": false,
+      "entityId": "city-e38b042d64a3adfe",
+      "wikidataId": "Q1866604",
+      "canonicalNameEn": "Livingstone",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "ZM",
+      "tier": "core",
+      "targetPoiCount": 5,
+      "selectedPoiCount": 1,
+      "reused": false,
+      "entityId": "city-82c7cb3d9dee6fa2",
+      "wikidataId": "Q219671",
+      "canonicalNameEn": "Ndola",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "ZW",
+      "tier": "world",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 7,
+      "reused": false,
+      "entityId": "city-0606546c9fd1d268",
+      "wikidataId": "Q3921",
+      "canonicalNameEn": "Harare",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "ZW",
+      "tier": "world",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 4,
+      "reused": false,
+      "entityId": "city-cb2ab7d488ba51b1",
+      "wikidataId": "Q193250",
+      "canonicalNameEn": "Bulawayo",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "ZW",
+      "tier": "core",
+      "targetPoiCount": 5,
+      "selectedPoiCount": 2,
+      "reused": false,
+      "entityId": "city-7bc1f1ccf3656dbf",
+      "wikidataId": "Q1393804",
+      "canonicalNameEn": "Victoria Falls",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "ZW",
+      "tier": "standard",
+      "targetPoiCount": 3,
+      "selectedPoiCount": 2,
+      "reused": false,
+      "entityId": "city-c8340f2529f563db",
+      "wikidataId": "Q399322",
+      "canonicalNameEn": "Mutare",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "MZ",
+      "tier": "world",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 7,
+      "reused": false,
+      "entityId": "city-bb27df741abe2752",
+      "wikidataId": "Q3889",
+      "canonicalNameEn": "Maputo",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "MZ",
+      "tier": "core",
+      "targetPoiCount": 5,
+      "selectedPoiCount": 3,
+      "reused": false,
+      "entityId": "city-574226c10f889449",
+      "wikidataId": "Q211563",
+      "canonicalNameEn": "Beira",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "MZ",
+      "tier": "core",
+      "targetPoiCount": 5,
+      "selectedPoiCount": 2,
+      "reused": false,
+      "entityId": "city-411f7dd7eb7a1147",
+      "wikidataId": "Q323801",
+      "canonicalNameEn": "Nampula",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "MZ",
+      "tier": "standard",
+      "targetPoiCount": 3,
+      "selectedPoiCount": 2,
+      "reused": false,
+      "entityId": "city-0d86eecbaf33d381",
+      "wikidataId": "Q498048",
+      "canonicalNameEn": "Pemba",
+      "positiveTypePath": [
+        "Q1549591",
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "MN",
+      "tier": "world",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 7,
+      "reused": false,
+      "entityId": "city-dc7b0fecf0cc52cf",
+      "wikidataId": "Q23430",
+      "canonicalNameEn": "Ulaanbaatar",
+      "positiveTypePath": [
+        "Q5119",
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "MN",
+      "tier": "core",
+      "targetPoiCount": 5,
+      "selectedPoiCount": 1,
+      "reused": false,
+      "entityId": "city-81d1aa150179614b",
+      "wikidataId": "Q230628",
+      "canonicalNameEn": "Erdenet",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "MN",
+      "tier": "core",
+      "targetPoiCount": 5,
+      "selectedPoiCount": 3,
+      "reused": false,
+      "entityId": "city-246c71fa111c145f",
+      "wikidataId": "Q235571",
+      "canonicalNameEn": "Darkhan",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "TJ",
+      "tier": "world",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 7,
+      "reused": false,
+      "entityId": "city-ea38e17f6fc7fbfd",
+      "wikidataId": "Q9365",
+      "canonicalNameEn": "Dushanbe",
+      "positiveTypePath": [
+        "Q5119",
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "TJ",
+      "tier": "core",
+      "targetPoiCount": 5,
+      "selectedPoiCount": 2,
+      "reused": false,
+      "entityId": "city-e91208a04b360e5b",
+      "wikidataId": "Q373808",
+      "canonicalNameEn": "Khujand",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    }
+  ],
+  "pois": [
+    {
+      "entityId": "poi-2b0df02eeb7a82fe",
+      "parentCityEntityId": "city-4374865b0ace9042",
+      "wikidataId": "Q16565887",
+      "canonicalNameEn": "Child Jesus Cathedral",
+      "positiveTypePath": [
+        "Q56242215",
+        "Q2977",
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 3.43
+    },
+    {
+      "entityId": "poi-b0545f8e18b1fcdc",
+      "parentCityEntityId": "city-4374865b0ace9042",
+      "wikidataId": "Q8342874",
+      "canonicalNameEn": "Cathedral of the Holy Cross, Lusaka",
+      "positiveTypePath": [
+        "Q2977",
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 2.196
+    },
+    {
+      "entityId": "poi-73dfde795bdcdd68",
+      "parentCityEntityId": "city-4374865b0ace9042",
+      "wikidataId": "Q16918871",
+      "canonicalNameEn": "National Archives of Zambia",
+      "positiveTypePath": [
+        "Q166118"
+      ],
+      "distanceKm": 3.086
+    },
+    {
+      "entityId": "poi-de37ff1cbfb9dca6",
+      "parentCityEntityId": "city-e38b042d64a3adfe",
+      "wikidataId": "Q317323",
+      "canonicalNameEn": "Victoria Falls Bridge",
+      "positiveTypePath": [
+        "Q14276458",
+        "Q158438",
+        "Q12280",
+        "Q811979"
+      ],
+      "distanceKm": 8.767
+    },
+    {
+      "entityId": "poi-d107f1c2f7f0f57b",
+      "parentCityEntityId": "city-e38b042d64a3adfe",
+      "wikidataId": "Q4178946",
+      "canonicalNameEn": "Railway Museum",
+      "positiveTypePath": [
+        "Q18704634",
+        "Q2516357",
+        "Q2398990",
+        "Q588140",
+        "Q33506"
+      ],
+      "distanceKm": 2.398
+    },
+    {
+      "entityId": "poi-be26896692e0e371",
+      "parentCityEntityId": "city-82c7cb3d9dee6fa2",
+      "wikidataId": "Q2996845",
+      "canonicalNameEn": "Copperbelt Museum",
+      "positiveTypePath": [
+        "Q33506"
+      ],
+      "distanceKm": 1.99
+    },
+    {
+      "entityId": "poi-91e5ecdf10f089f2",
+      "parentCityEntityId": "city-0606546c9fd1d268",
+      "wikidataId": "Q4113712",
+      "canonicalNameEn": "National Gallery of Zimbabwe",
+      "positiveTypePath": [
+        "Q207694",
+        "Q33506"
+      ],
+      "distanceKm": 0.555
+    },
+    {
+      "entityId": "poi-7285caefee0e3e6c",
+      "parentCityEntityId": "city-0606546c9fd1d268",
+      "wikidataId": "Q8071996",
+      "canonicalNameEn": "Zimbabwe Museum of Human Sciences",
+      "positiveTypePath": [
+        "Q33506"
+      ],
+      "distanceKm": 1.458
+    },
+    {
+      "entityId": "poi-3338ff2f728300c8",
+      "parentCityEntityId": "city-0606546c9fd1d268",
+      "wikidataId": "Q23754273",
+      "canonicalNameEn": "Sacred Heart Cathedral, Harare",
+      "positiveTypePath": [
+        "Q56242215",
+        "Q2977",
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 0.914
+    },
+    {
+      "entityId": "poi-1f5fe54d304fafb7",
+      "parentCityEntityId": "city-0606546c9fd1d268",
+      "wikidataId": "Q6971101",
+      "canonicalNameEn": "National Botanic Garden",
+      "positiveTypePath": [
+        "Q167346",
+        "Q13226383"
+      ],
+      "distanceKm": 3.061
+    },
+    {
+      "entityId": "poi-cc741f830a810902",
+      "parentCityEntityId": "city-0606546c9fd1d268",
+      "wikidataId": "Q28147101",
+      "canonicalNameEn": "cathedral of St Mary and All Saints, Harare",
+      "positiveTypePath": [
+        "Q56242250",
+        "Q58079064",
+        "Q24398318",
+        "Q1370598"
+      ],
+      "distanceKm": 0.169
+    },
+    {
+      "entityId": "poi-36a382b100028113",
+      "parentCityEntityId": "city-0606546c9fd1d268",
+      "wikidataId": "Q5453022",
+      "canonicalNameEn": "First Floor Gallery Harare",
+      "positiveTypePath": [
+        "Q33506"
+      ],
+      "distanceKm": 0.499
+    },
+    {
+      "entityId": "poi-34961b5bad828754",
+      "parentCityEntityId": "city-0606546c9fd1d268",
+      "wikidataId": "Q24235953",
+      "canonicalNameEn": "Harare Zimbabwe Temple",
+      "positiveTypePath": [
+        "Q2142152",
+        "Q1370598"
+      ],
+      "distanceKm": 4.255
+    },
+    {
+      "entityId": "poi-e86de139b3df7a0a",
+      "parentCityEntityId": "city-cb2ab7d488ba51b1",
+      "wikidataId": "Q203414",
+      "canonicalNameEn": "Bulawayo Railway Museum",
+      "positiveTypePath": [
+        "Q18704634",
+        "Q2516357",
+        "Q2398990",
+        "Q588140",
+        "Q33506"
+      ],
+      "distanceKm": 0.799
+    },
+    {
+      "entityId": "poi-2b9bd44ea2a8f584",
+      "parentCityEntityId": "city-cb2ab7d488ba51b1",
+      "wikidataId": "Q23754354",
+      "canonicalNameEn": "Cathedral Basilica of the Immaculate Conception, Bulawayo",
+      "positiveTypePath": [
+        "Q120560",
+        "Q4846867",
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 1.759
+    },
+    {
+      "entityId": "poi-fb73ab4e999a4d61",
+      "parentCityEntityId": "city-cb2ab7d488ba51b1",
+      "wikidataId": "Q1771439",
+      "canonicalNameEn": "Natural History Museum of Zimbabwe",
+      "positiveTypePath": [
+        "Q1970365",
+        "Q16735822",
+        "Q33506"
+      ],
+      "distanceKm": 3.34
+    },
+    {
+      "entityId": "poi-ca29350e08d859a7",
+      "parentCityEntityId": "city-cb2ab7d488ba51b1",
+      "wikidataId": "Q6974180",
+      "canonicalNameEn": "National Library of Zimbabwe",
+      "positiveTypePath": [
+        "Q22806",
+        "Q65768782",
+        "Q385994",
+        "Q7075",
+        "Q101542346",
+        "Q13226383"
+      ],
+      "distanceKm": 2.678
+    },
+    {
+      "entityId": "poi-1f94b52e6d10d889",
+      "parentCityEntityId": "city-7bc1f1ccf3656dbf",
+      "wikidataId": "Q1323548",
+      "canonicalNameEn": "Mosi-oa-Tunya National Park",
+      "positiveTypePath": [
+        "Q46169",
+        "Q22698"
+      ],
+      "distanceKm": 7.413
+    },
+    {
+      "entityId": "poi-71e591f50a8cd26a",
+      "parentCityEntityId": "city-7bc1f1ccf3656dbf",
+      "wikidataId": "Q108044157",
+      "canonicalNameEn": "Statue of David Livingstone",
+      "positiveTypePath": [
+        "Q179700",
+        "Q220659",
+        "Q1791627",
+        "Q210272"
+      ],
+      "distanceKm": 1.881
+    },
+    {
+      "entityId": "poi-81c4972b3b697aef",
+      "parentCityEntityId": "city-c8340f2529f563db",
+      "wikidataId": "Q1771023",
+      "canonicalNameEn": "Mutare Museum",
+      "positiveTypePath": [
+        "Q33506"
+      ],
+      "distanceKm": 0.309
+    },
+    {
+      "entityId": "poi-8bdb8db7a77b4529",
+      "parentCityEntityId": "city-c8340f2529f563db",
+      "wikidataId": "Q65119877",
+      "canonicalNameEn": "La Rochelle",
+      "positiveTypePath": [
+        "Q12292478",
+        "Q1497375"
+      ],
+      "distanceKm": 7.715
+    },
+    {
+      "entityId": "poi-f9283ad25dc85ae5",
+      "parentCityEntityId": "city-bb27df741abe2752",
+      "wikidataId": "Q890723",
+      "canonicalNameEn": "Mbuluzi River",
+      "positiveTypePath": [
+        "Q4022",
+        "Q2479431",
+        "Q15324"
+      ],
+      "distanceKm": 9.139
+    },
+    {
+      "entityId": "poi-47b05b8244047539",
+      "parentCityEntityId": "city-bb27df741abe2752",
+      "wikidataId": "Q16498204",
+      "canonicalNameEn": "National Library of Mozambique",
+      "positiveTypePath": [
+        "Q210272"
+      ],
+      "distanceKm": 0.523
+    },
+    {
+      "entityId": "poi-9a9b31f3a78f0e07",
+      "parentCityEntityId": "city-bb27df741abe2752",
+      "wikidataId": "Q19275941",
+      "canonicalNameEn": "Maputo–Catembe Bridge",
+      "positiveTypePath": [
+        "Q12570",
+        "Q12280",
+        "Q811979"
+      ],
+      "distanceKm": 1.688
+    },
+    {
+      "entityId": "poi-19df3fd348ecaa92",
+      "parentCityEntityId": "city-bb27df741abe2752",
+      "wikidataId": "Q127722",
+      "canonicalNameEn": "Cathedral of Our Lady of the Immaculate Conception",
+      "positiveTypePath": [
+        "Q210272"
+      ],
+      "distanceKm": 0.167
+    },
+    {
+      "entityId": "poi-654df32abd82d1a0",
+      "parentCityEntityId": "city-bb27df741abe2752",
+      "wikidataId": "Q17276617",
+      "canonicalNameEn": "Vila Algarve",
+      "positiveTypePath": [
+        "Q210272"
+      ],
+      "distanceKm": 1.852
+    },
+    {
+      "entityId": "poi-06541b696374a98a",
+      "parentCityEntityId": "city-bb27df741abe2752",
+      "wikidataId": "Q10270271",
+      "canonicalNameEn": "Maputo City Hall",
+      "positiveTypePath": [
+        "Q210272"
+      ],
+      "distanceKm": 0.093
+    },
+    {
+      "entityId": "poi-dd828ed884e84772",
+      "parentCityEntityId": "city-bb27df741abe2752",
+      "wikidataId": "Q22952146",
+      "canonicalNameEn": "Samora Machel Statue",
+      "positiveTypePath": [
+        "Q179700",
+        "Q220659",
+        "Q1791627",
+        "Q210272"
+      ],
+      "distanceKm": 0.027
+    },
+    {
+      "entityId": "poi-783e4b9bc044781e",
+      "parentCityEntityId": "city-574226c10f889449",
+      "wikidataId": "Q2116568",
+      "canonicalNameEn": "Pungwe River",
+      "positiveTypePath": [
+        "Q355304",
+        "Q15324"
+      ],
+      "distanceKm": 5.113
+    },
+    {
+      "entityId": "poi-9eb6b6e7c7c2dec8",
+      "parentCityEntityId": "city-574226c10f889449",
+      "wikidataId": "Q855412",
+      "canonicalNameEn": "Buzi River",
+      "positiveTypePath": [
+        "Q4022",
+        "Q2479431",
+        "Q15324"
+      ],
+      "distanceKm": 9.471
+    },
+    {
+      "entityId": "poi-983b1bd4fa86692a",
+      "parentCityEntityId": "city-574226c10f889449",
+      "wikidataId": "Q17624339",
+      "canonicalNameEn": "Our Lady of the Rosary Cathedral, Beira",
+      "positiveTypePath": [
+        "Q56242215",
+        "Q2977",
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 1.071
+    },
+    {
+      "entityId": "poi-ba73f8ef004624de",
+      "parentCityEntityId": "city-411f7dd7eb7a1147",
+      "wikidataId": "Q17624362",
+      "canonicalNameEn": "Our Lady of Fatima Cathedral",
+      "positiveTypePath": [
+        "Q56242215",
+        "Q2977",
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 0.56
+    },
+    {
+      "entityId": "poi-30bc826e76a03dd7",
+      "parentCityEntityId": "city-411f7dd7eb7a1147",
+      "wikidataId": "Q2944162",
+      "canonicalNameEn": "National Museum of Ethnography Nampula",
+      "positiveTypePath": [
+        "Q210272"
+      ],
+      "distanceKm": 0.184
+    },
+    {
+      "entityId": "poi-b1deb125ef7f953f",
+      "parentCityEntityId": "city-0d86eecbaf33d381",
+      "wikidataId": "Q28599292",
+      "canonicalNameEn": "St. Paul's Cathedral, Pemba",
+      "positiveTypePath": [
+        "Q56242215",
+        "Q2977",
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 2.108
+    },
+    {
+      "entityId": "poi-4a73ca7527ed5fca",
+      "parentCityEntityId": "city-0d86eecbaf33d381",
+      "wikidataId": "Q18387423",
+      "canonicalNameEn": "Pemba Bay",
+      "positiveTypePath": [
+        "Q39594",
+        "Q2507626",
+        "Q15324"
+      ],
+      "distanceKm": 6.275
+    },
+    {
+      "entityId": "poi-a69220db3308b4ce",
+      "parentCityEntityId": "city-dc7b0fecf0cc52cf",
+      "wikidataId": "Q1348864",
+      "canonicalNameEn": "Sükhbaatar Square",
+      "positiveTypePath": [
+        "Q174782",
+        "Q811979"
+      ],
+      "distanceKm": 0.97
+    },
+    {
+      "entityId": "poi-a8cfe1f31684b8be",
+      "parentCityEntityId": "city-dc7b0fecf0cc52cf",
+      "wikidataId": "Q2093410",
+      "canonicalNameEn": "Choijin Lama Temple",
+      "positiveTypePath": [
+        "Q33506"
+      ],
+      "distanceKm": 1.188
+    },
+    {
+      "entityId": "poi-54642261cf8b594f",
+      "parentCityEntityId": "city-dc7b0fecf0cc52cf",
+      "wikidataId": "Q2154176",
+      "canonicalNameEn": "National Museum of Mongolia",
+      "positiveTypePath": [
+        "Q17431399",
+        "Q33506"
+      ],
+      "distanceKm": 0.71
+    },
+    {
+      "entityId": "poi-874ec0c139eb6583",
+      "parentCityEntityId": "city-dc7b0fecf0cc52cf",
+      "wikidataId": "Q16538387",
+      "canonicalNameEn": "Saints Peter and Paul Cathedral (Ulaanbaatar)",
+      "positiveTypePath": [
+        "Q2977",
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 5.351
+    },
+    {
+      "entityId": "poi-d49316b860e0ae05",
+      "parentCityEntityId": "city-dc7b0fecf0cc52cf",
+      "wikidataId": "Q625912",
+      "canonicalNameEn": "National Library of Mongolia",
+      "positiveTypePath": [
+        "Q22806",
+        "Q65768782",
+        "Q385994",
+        "Q7075",
+        "Q101542346",
+        "Q13226383"
+      ],
+      "distanceKm": 1.972
+    },
+    {
+      "entityId": "poi-5739f477bf4f5882",
+      "parentCityEntityId": "city-dc7b0fecf0cc52cf",
+      "wikidataId": "Q2154359",
+      "canonicalNameEn": "Natural History Museum",
+      "positiveTypePath": [
+        "Q1970365",
+        "Q16735822",
+        "Q33506"
+      ],
+      "distanceKm": 0.239
+    },
+    {
+      "entityId": "poi-ec40a1835be027ee",
+      "parentCityEntityId": "city-dc7b0fecf0cc52cf",
+      "wikidataId": "Q144444",
+      "canonicalNameEn": "Zaisan Memorial",
+      "positiveTypePath": [
+        "Q5003624",
+        "Q4989906"
+      ],
+      "distanceKm": 4.206
+    },
+    {
+      "entityId": "poi-2ce3fb9df5dc1b57",
+      "parentCityEntityId": "city-81d1aa150179614b",
+      "wikidataId": "Q123758266",
+      "canonicalNameEn": "Friendship Monument",
+      "positiveTypePath": [
+        "Q4989906"
+      ],
+      "distanceKm": 1.423
+    },
+    {
+      "entityId": "poi-49e1ecb471ab53f0",
+      "parentCityEntityId": "city-246c71fa111c145f",
+      "wikidataId": "Q134006733",
+      "canonicalNameEn": "Morin Khuur Complex",
+      "positiveTypePath": [
+        "Q22746",
+        "Q22698"
+      ],
+      "distanceKm": 2.209
+    },
+    {
+      "entityId": "poi-e1fbc7d6f001dab7",
+      "parentCityEntityId": "city-246c71fa111c145f",
+      "wikidataId": "Q130272275",
+      "canonicalNameEn": "My Mongolia Park",
+      "positiveTypePath": [
+        "Q22698"
+      ],
+      "distanceKm": 3.048
+    },
+    {
+      "entityId": "poi-5920613704d96c1b",
+      "parentCityEntityId": "city-246c71fa111c145f",
+      "wikidataId": "Q130279325",
+      "canonicalNameEn": "Darkhan 50 Complex",
+      "positiveTypePath": [
+        "Q22746",
+        "Q22698"
+      ],
+      "distanceKm": 3.951
+    },
+    {
+      "entityId": "poi-58de7d6ce111af25",
+      "parentCityEntityId": "city-ea38e17f6fc7fbfd",
+      "wikidataId": "Q1962119",
+      "canonicalNameEn": "Tajikistan National Museum",
+      "positiveTypePath": [
+        "Q17431399",
+        "Q33506"
+      ],
+      "distanceKm": 1.188
+    },
+    {
+      "entityId": "poi-02f4d016f599f953",
+      "parentCityEntityId": "city-ea38e17f6fc7fbfd",
+      "wikidataId": "Q2652909",
+      "canonicalNameEn": "Hisar Valley",
+      "positiveTypePath": [
+        "Q39816",
+        "Q35145263"
+      ],
+      "distanceKm": 4.738
+    },
+    {
+      "entityId": "poi-07d4cf2cad2fc42a",
+      "parentCityEntityId": "city-ea38e17f6fc7fbfd",
+      "wikidataId": "Q13201421",
+      "canonicalNameEn": "National Library of Tajikistan",
+      "positiveTypePath": [
+        "Q22806",
+        "Q65768782",
+        "Q385994",
+        "Q7075",
+        "Q101542346",
+        "Q13226383"
+      ],
+      "distanceKm": 0.24
+    },
+    {
+      "entityId": "poi-28fb2169cba4d20e",
+      "parentCityEntityId": "city-ea38e17f6fc7fbfd",
+      "wikidataId": "Q3321294",
+      "canonicalNameEn": "Dushanbe Synagogue",
+      "positiveTypePath": [
+        "Q34627",
+        "Q831219",
+        "Q1370598"
+      ],
+      "distanceKm": 8.392
+    },
+    {
+      "entityId": "poi-1f6e34e212f3bab9",
+      "parentCityEntityId": "city-ea38e17f6fc7fbfd",
+      "wikidataId": "Q13202093",
+      "canonicalNameEn": "State Academic Opera and Ballet Theatre of Tajikistan Sadriddin Ayni",
+      "positiveTypePath": [
+        "Q153562",
+        "Q41176"
+      ],
+      "distanceKm": 0.897
+    },
+    {
+      "entityId": "poi-965d1ffc535f7de3",
+      "parentCityEntityId": "city-ea38e17f6fc7fbfd",
+      "wikidataId": "Q13032586",
+      "canonicalNameEn": "St. Nicholas Cathedral",
+      "positiveTypePath": [
+        "Q2031836",
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 2.735
+    },
+    {
+      "entityId": "poi-cbab0f8e9a120240",
+      "parentCityEntityId": "city-ea38e17f6fc7fbfd",
+      "wikidataId": "Q12141021",
+      "canonicalNameEn": "Dousti Square",
+      "positiveTypePath": [
+        "Q174782",
+        "Q811979"
+      ],
+      "distanceKm": 0.134
+    },
+    {
+      "entityId": "poi-d8509fe9db4692e6",
+      "parentCityEntityId": "city-e91208a04b360e5b",
+      "wikidataId": "Q1962237",
+      "canonicalNameEn": "Historical Museum of Sughd",
+      "positiveTypePath": [
+        "Q33506"
+      ],
+      "distanceKm": 1.33
+    },
+    {
+      "entityId": "poi-c89e84769b3d712b",
+      "parentCityEntityId": "city-e91208a04b360e5b",
+      "wikidataId": "Q11726193",
+      "canonicalNameEn": "Khodzhabakirgan",
+      "positiveTypePath": [
+        "Q4022",
+        "Q2479431",
+        "Q15324"
+      ],
+      "distanceKm": 4.601
+    }
+  ],
+  "quarantineCount": 649
+}

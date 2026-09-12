@@ -24,7 +24,7 @@ import { evaluatePoiTypeIdsForConsumer } from "../src/lib/routes/knowledge-poi-s
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const argument = (name) => process.argv.find((value) => value.startsWith(`--${name}=`))?.slice(name.length + 3) || "";
 const BATCH = argument("batch") || "05";
-if (!["05", "06", "07", "08", "09"].includes(BATCH)) throw new Error("batch-argument-invalid:--batch=05|06|07|08|09");
+if (!["05", "06", "07", "08", "09", "10"].includes(BATCH)) throw new Error("batch-argument-invalid:--batch=05|06|07|08|09|10");
 const BATCH_LABEL = `Batch ${BATCH}`;
 const SEED_PATH = `data/knowledge/seeds/knowledge-expansion-batch${BATCH}-20-country.json`;
 const COUNTRY_OUTPUT = `data/knowledge/batches/countries.p1a-batch${BATCH}.json`;
@@ -44,6 +44,9 @@ const LOCAL_WIKIPEDIA_LANGUAGE = Object.freeze({
   DZ: "ar", GH: "en", SN: "fr", ET: "am", NA: "en", BW: "en", MG: "mg", MU: "fr",
   KZ: "kk", UZ: "uz", KG: "ky", BD: "bn", BT: "dz", PK: "ur", LA: "lo", BN: "ms",
   HN: "es", SV: "es", WS: "sm", VU: "bi",
+  AO: "pt", CM: "fr", CI: "fr", RW: "rw", UG: "en", ZM: "en", ZW: "en", MZ: "pt",
+  MN: "mn", TJ: "tg", IR: "fa", MM: "my", TL: "pt", BZ: "en", BB: "en", TT: "en",
+  GY: "en", UA: "uk", SM: "it", PG: "en",
 });
 const USER_AGENT = `travel2-route-v2-knowledge-expansion-batch${BATCH}/1.0 (https://github.com/rm8tw8szdn-sudo/travel2.0)`;
 const FETCH_CACHE_ROOT = path.join(ROOT, ".tmp", `route-v2-batch${BATCH}-import-cache`);
@@ -71,6 +74,11 @@ const ISO = Object.freeze({
   BW: ["BWA", "072"], MG: ["MDG", "450"], MU: ["MUS", "480"], KZ: ["KAZ", "398"], UZ: ["UZB", "860"],
   KG: ["KGZ", "417"], BD: ["BGD", "050"], BT: ["BTN", "064"], PK: ["PAK", "586"], LA: ["LAO", "418"],
   BN: ["BRN", "096"], HN: ["HND", "340"], SV: ["SLV", "222"], WS: ["WSM", "882"], VU: ["VUT", "548"],
+  AO: ["AGO", "024"], CM: ["CMR", "120"], CI: ["CIV", "384"], RW: ["RWA", "646"],
+  UG: ["UGA", "800"], ZM: ["ZMB", "894"], ZW: ["ZWE", "716"], MZ: ["MOZ", "508"],
+  MN: ["MNG", "496"], TJ: ["TJK", "762"], IR: ["IRN", "364"], MM: ["MMR", "104"],
+  TL: ["TLS", "626"], BZ: ["BLZ", "084"], BB: ["BRB", "052"], TT: ["TTO", "780"],
+  GY: ["GUY", "328"], UA: ["UKR", "804"], SM: ["SMR", "674"], PG: ["PNG", "598"],
 });
 const COUNTRY_OUTPUT_CODES = BATCH === "05"
   ? new Set(["HU", "HR", "SE", "SI"])
@@ -80,7 +88,9 @@ const COUNTRY_OUTPUT_CODES = BATCH === "05"
       ? new Set(["AL", "BG", "CY", "EE", "LV", "LT", "MT", "ME", "RS", "SK", "GE", "JO", "LK", "NP", "MV", "TN", "TZ", "EC", "PA", "GT"])
       : BATCH === "08"
         ? new Set(["AM", "AZ", "BA", "MK", "MD", "LU", "MC", "LI", "OM", "QA", "BH", "KW", "LB", "DO", "JM", "CU", "BS", "BO", "PY", "NI"])
-        : new Set(["DZ", "GH", "SN", "ET", "NA", "BW", "MG", "MU", "KZ", "UZ", "KG", "BD", "BT", "PK", "LA", "BN", "HN", "SV", "WS", "VU"]);
+        : BATCH === "09"
+          ? new Set(["DZ", "GH", "SN", "ET", "NA", "BW", "MG", "MU", "KZ", "UZ", "KG", "BD", "BT", "PK", "LA", "BN", "HN", "SV", "WS", "VU"])
+          : new Set(["AO", "CM", "CI", "RW", "UG", "ZM", "ZW", "MZ", "MN", "TJ", "IR", "MM", "TL", "BZ", "BB", "TT", "GY", "UA", "SM", "PG"]);
 
 const wave = Number(argument("wave"));
 if (![1, 2, 3, 4].includes(wave)) throw new Error("wave-argument-required:--wave=1|2|3|4");

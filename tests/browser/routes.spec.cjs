@@ -141,7 +141,7 @@ test('actual server returns published knowledge and an empty isolated repository
     return { summaryStatus: summaryResponse.status, summary: await summaryResponse.json(), feedStatus: feedResponse.status, feed: await feedResponse.json() };
   }, API);
   expect(result.summaryStatus).toBe(200);
-  expect(result.summary).toMatchObject({ countries: 119, cities: 833, pois: 3963, total: 4915 });
+  expect(result.summary).toMatchObject({ countries: 139, cities: 833, pois: 3963, total: 4935 });
   expect(result.feedStatus).toBe(200);
   expect(result.feed.ok).toBe(true);
   expect(result.feed.records).toEqual([]);

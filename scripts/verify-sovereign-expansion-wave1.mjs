@@ -56,6 +56,8 @@ assert.equal(policy.nonSovereignExamples.every((entry) => !expectedCodes.include
 const plan = json("data/knowledge/reports/sovereign-country-expansion-plan.json");
 assert.equal(plan.supportedBeforeWave1.length, 119);
 assert.equal(plan.wave1.length, 20);
+assert.equal(plan.wave1.every((entry) => entry.routeReadiness === "wave1-catalog-only-evidence-pending"), true);
+assert.equal(plan.wave1.every((entry) => !entry.routeReadiness.toLowerCase().includes("plannable")), true);
 assert.deepEqual(plan.futureWaves.map((entry) => entry.countries.length), [18, 18, 17]);
 assert.equal(plan.specialReview.length, 3);
 const plannedCodes = new Set([...plan.supportedBeforeWave1, ...plan.wave1, ...plan.futureWaves.flatMap((entry) => entry.countries), ...plan.specialReview].map((entry) => entry.isoAlpha2));
@@ -69,6 +71,7 @@ assert.equal(report.classifications.knowledgeReadyAdded, 20);
 assert.equal(report.classifications.plannableAdded, 0);
 assert.equal(report.classifications.evidenceBackedAdded, 0);
 assert.equal(report.classifications.catalogOnlyAdded, 20);
+assert.deepEqual(report.classifications.evidencePending, expectedCodes);
 assert.equal(report.countryStatusMatrix.length, 20);
 assert.equal(report.countryStatusMatrix.every((entry) => entry.knowledgeReady && entry.validPreparedCityDestination && entry.validPreparedPoi), true);
 assert.equal(report.countryStatusMatrix.every((entry) => !entry.validEvidence && !entry.evidenceBacked && !entry.plannable && entry.evidencePending), true);

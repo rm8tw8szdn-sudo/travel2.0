@@ -51,7 +51,7 @@ const planRow = (code) => {
     modelingType: special ? "special-review" : code === "VA" || code === "SM" ? "microstate-single-destination" : "country-with-destinations",
     evidenceDifficulty: special ? "high" : ["KI", "MH", "FM", "NR", "PW", "TV"].includes(code) ? "high" : "medium",
     imageDifficulty: ["KP", "SY", "SS", "SD", "ER"].includes(code) ? "high" : "medium",
-    routeReadiness: seeded ? "wave1-plannable-evidence-pending" : special ? "requires-policy-review" : "planned",
+    routeReadiness: seeded ? "wave1-catalog-only-evidence-pending" : special ? "requires-policy-review" : "planned",
     wave: seeded ? 1 : special ? "SPECIAL_REVIEW" : futureWaveByCode.get(code),
   };
 };

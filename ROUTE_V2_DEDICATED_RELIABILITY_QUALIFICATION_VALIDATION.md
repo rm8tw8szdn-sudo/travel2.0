@@ -20,15 +20,20 @@ The dedicated host contract pins Node.js 24.18.0, locked dependencies, CPU 0 aff
 
 ## Exactly-five and isolation contract
 
-One manual dispatch performs exactly five sequential qualification executions with five distinct `qualificationRunId` values. Every result and exit code is retained; the loop has no retry, replacement, early-success, or hosted fallback path. Qualification passes only when all five executions have unique run and pair occurrence identities, valid raw reconstruction, reliable normal results with spread at or below 0.10, reliable 20% synthetic `REGRESSION`, successful environment preflight, fixed identities, and zero execution errors. Cloned or replacement evidence remains invalid even if its run index or run identity prefix is edited.
+One manual dispatch starts one trusted Node coordinator. The coordinator creates an in-memory session secret and execution plan, performs exactly five sequential child qualification executions, compares every returned pair against the expected occurrence held in memory, reconstructs the raw evidence, and only then emits the authoritative runtime `QUALIFICATION PASS` or `QUALIFICATION FAIL`. The secret is zeroed before exit and is never written to evidence, logs, workflow output, or JSON.
 
-The aggregator emits only `QUALIFICATION PASS` or `QUALIFICATION FAIL`. The structural verifier rejects formal performance-pass, blocker-cleared, or Batch10-unblock wording and paths. It also rejects any workflow-, job-, or step-level `continue-on-error` declaration regardless of value, including expressions, so final enforcement failures cannot be tolerated. Qualification results cannot replace formal run `34622976529`.
+The production coordinator accepts no serialized run collection or artifact input. It owns the five-attempt loop and has no sixth-run, retry, or replacement interface. Qualification passes only when all five live attempts exit successfully, match their in-memory provenance plans, and produce an `AUDIT VALID` result with successful environment preflight.
+
+Serialized evidence is deliberately non-authoritative. `auditDedicatedReliabilityQualificationEvidence()` can reconstruct statistics and return only `AUDIT VALID` or `AUDIT INVALID`; it has no `qualificationVerdict` or legacy `verdict` output. Rewriting UUIDs in cloned artifacts may leave a statistically valid audit record, but cannot create a new authoritative qualification result or affect workflow success.
+
+Only the live coordinator emits `QUALIFICATION PASS` or `QUALIFICATION FAIL`. The structural verifier rejects formal performance-pass, blocker-cleared, or Batch10-unblock wording and paths. It also rejects any workflow-, job-, or step-level `continue-on-error` declaration regardless of value, including expressions, so final enforcement failures cannot be tolerated. Qualification results cannot replace formal run `34622976529`.
 
 ## Automated validation
 
 - Raw evidence verifier: PASS; independent reconstruction PASS; 17 fail-closed cases.
 - Dedicated environment verifier: PASS; 7 fail-closed cases.
 - Exactly-five aggregator verifier: PASS; 17 fail-closed cases.
+- Trusted coordinator verifier: PASS; live execution is the only authoritative input, exact attempts 5, retry absent, secret serialization absent.
 - Qualification workflow structural verifier: PASS; 15 spoof/security cases, including four `continue-on-error` scope and expression regressions.
 - Existing controlled workflow verifier: required to remain PASS.
 - Existing reliability logic verifier and PR #33 protections: required to remain PASS.

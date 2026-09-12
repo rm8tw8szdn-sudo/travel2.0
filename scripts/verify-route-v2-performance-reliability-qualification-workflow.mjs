@@ -8,6 +8,7 @@ import { ROUTE_V2_PERFORMANCE_PROTOCOL } from "./lib/route-v2-performance-reliab
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const workflowPath = path.join(root, ".github/workflows/route-v2-performance-reliability-qualification.yml");
 const source = fs.readFileSync(workflowPath, "utf8");
+const coordinatorSource = fs.readFileSync(path.join(root, "scripts/run-route-v2-dedicated-reliability-coordinator.mjs"), "utf8");
 const CURRENT_SHA = "1a9234f14e11aebe63eb043c78eeb73040ab7452";
 const BASELINE_SHA = "826439f41523500ad805d0bcb9966a630e90b859";
 const SENSITIVE_ENV = ["CONTROLLED_CURRENT_SHA", "SEALED_BASELINE_SHA", "QUALIFICATION_CPU", "QUALIFICATION_RUNS"];
@@ -64,8 +65,7 @@ export function verifyDedicatedQualificationWorkflow(sourceText) {
   }
   assert.deepEqual(job.steps.map((item) => item.name), [
     "Require trusted main dispatch", "Checkout trusted qualification revision", "Verify trusted identities and lineage",
-    "Pin Node.js", "Install locked dependencies", "Validate qualification infrastructure", "Dedicated environment preflight",
-    "Run exactly five non-formal qualifications", "Record post-qualification environment", "Finalize non-formal qualification",
+    "Pin Node.js", "Install locked dependencies", "Validate qualification infrastructure", "Run trusted single-process qualification coordinator",
     "Upload complete qualification evidence", "Enforce qualification verdict",
   ]);
 
@@ -83,33 +83,19 @@ export function verifyDedicatedQualificationWorkflow(sourceText) {
     "node scripts/verify-route-v2-performance-raw-evidence.mjs",
     "node scripts/verify-route-v2-dedicated-performance-environment.mjs",
     "node scripts/verify-route-v2-dedicated-reliability-qualification.mjs",
+    "node scripts/verify-route-v2-dedicated-reliability-coordinator.mjs",
     "node scripts/verify-route-v2-performance-reliability-qualification-workflow.mjs",
   ]);
-  const preflight = normalizedRun(step(job.steps, "Dedicated environment preflight").run);
-  for (const required of ["command -v taskset", 'test "${RUNNER_OS}" = "Linux"', 'test "${RUNNER_ARCH}" = "X64"', '--coordinator-sha "${GITHUB_SHA}"', "environment-before.json"]) assert(preflight.includes(required));
-  const runs = normalizedRun(step(job.steps, "Run exactly five non-formal qualifications").run);
-  assert.equal(runs, [
-    ": > qualification-artifacts/qualification-exit-codes.txt",
-    "for qualification_run in 1 2 3 4 5; do",
-    "  set +e",
-    '  taskset --cpu-list "${QUALIFICATION_CPU}" node scripts/run-route-v2-performance-reliability-qualification.mjs \\',
-    '    --current-ref "${CONTROLLED_CURRENT_SHA}" \\',
-    '    --run-index "${qualification_run}" \\',
-    '    > "qualification-artifacts/qualification-run-${qualification_run}.json" \\',
-    '    2> "qualification-artifacts/qualification-run-${qualification_run}.stderr.log"',
-    "  exit_code=$?",
-    "  set -e",
-    '  echo "${exit_code}" >> qualification-artifacts/qualification-exit-codes.txt',
-    "done",
-  ].join("\n"));
-  const postflight = normalizedRun(step(job.steps, "Record post-qualification environment").run);
-  assert(postflight.includes("environment-after.json"));
-  assert(postflight.includes('--coordinator-sha "${GITHUB_SHA}"'));
-  const finalize = normalizedRun(step(job.steps, "Finalize non-formal qualification").run);
-  for (const required of [
+  const coordinator = normalizedRun(step(job.steps, "Run trusted single-process qualification coordinator").run);
+  for (const required of ["command -v taskset", 'test "${RUNNER_OS}" = "Linux"', 'test "${RUNNER_ARCH}" = "X64"',
+    "scripts/run-route-v2-dedicated-reliability-coordinator.mjs", "--evidence-directory qualification-artifacts",
     "--evidence-directory qualification-artifacts", '--cpu "${QUALIFICATION_CPU}"', '--coordinator-sha "${GITHUB_SHA}"',
     '--current-sha "${CONTROLLED_CURRENT_SHA}"', '--baseline-sha "${SEALED_BASELINE_SHA}"',
-  ]) assert(finalize.includes(required));
+  ]) assert(coordinator.includes(required));
+  assert.equal((coordinator.match(/run-route-v2-dedicated-reliability-coordinator\.mjs/gu) || []).length, 1);
+  assert(coordinatorSource.includes("for (let runIndex = 1; runIndex <= 5; runIndex += 1)"));
+  assert(coordinatorSource.includes("const sessionSecret = randomBytes(32)"));
+  assert(coordinatorSource.includes("sessionSecret.fill(0)"));
   const upload = step(job.steps, "Upload complete qualification evidence");
   assert.equal(upload.if, "always()");
   assert.equal(upload.uses, "actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a");
@@ -118,7 +104,6 @@ export function verifyDedicatedQualificationWorkflow(sourceText) {
   const enforce = step(job.steps, "Enforce qualification verdict");
   assert.equal(enforce.if, "always()");
   assert.equal(normalizedRun(enforce.run), [
-    'test "${{ steps.preflight.outcome }}" = "success"',
     'test "${{ steps.qualification.outputs.exit_code }}" = "0"',
     'test "${{ steps.evidence.outcome }}" = "success"',
   ].join("\n"));
@@ -131,11 +116,11 @@ verifyDedicatedQualificationWorkflow(source);
 const mutations = [
   ["hosted runner fallback", "runs-on: [self-hosted, linux, x64, route-v2-performance-dedicated]", "runs-on: ubuntu-24.04"],
   ["missing dedicated label", "runs-on: [self-hosted, linux, x64, route-v2-performance-dedicated]", "runs-on: [self-hosted, linux, x64]"],
-  ["qualification count four", "for qualification_run in 1 2 3 4 5; do", "for qualification_run in 1 2 3 4; do"],
-  ["retry path", "done\n\n      - name: Record post-qualification environment", "done\n          node scripts/run-route-v2-performance-reliability-qualification.mjs\n\n      - name: Record post-qualification environment"],
+  ["qualification count four", '  QUALIFICATION_RUNS: "5"', '  QUALIFICATION_RUNS: "4"'],
+  ["retry path", "          exit_code=$?", "          node scripts/run-route-v2-dedicated-reliability-coordinator.mjs\n          exit_code=$?"],
   ["current override", "    timeout-minutes: 30", `    env:\n      CONTROLLED_CURRENT_SHA: ${"0".repeat(40)}\n    timeout-minutes: 30`],
-  ["baseline step override", "        id: qualification-runs", `        id: qualification-runs\n        env:\n          SEALED_BASELINE_SHA: ${"0".repeat(40)}`],
-  ["missing telemetry", "environment-after.json", "environment-after-missing.json"],
+  ["baseline step override", "        id: qualification", `        id: qualification\n        env:\n          SEALED_BASELINE_SHA: ${"0".repeat(40)}`],
+  ["missing telemetry", "--evidence-directory qualification-artifacts", "--evidence-directory incomplete-artifacts"],
   ["artifact failure loss", "        if: always()", "        if: success()"],
   ["swallowed verdict", 'test "${{ steps.qualification.outputs.exit_code }}" = "0"', "true"],
   ["formal unblock wording", "name: Route V2 Dedicated Reliability Qualification (NON-FORMAL)", "name: PERFORMANCE BLOCKER CLEARED"],
@@ -143,7 +128,7 @@ const mutations = [
   ["job continue-on-error", "    timeout-minutes: 30", "    continue-on-error: true\n    timeout-minutes: 30"],
   ["normal step continue-on-error", "      - name: Validate qualification infrastructure", "      - name: Validate qualification infrastructure\n        continue-on-error: true"],
   ["final enforcement continue-on-error", "      - name: Enforce qualification verdict\n        if: always()", "      - name: Enforce qualification verdict\n        continue-on-error: true\n        if: always()"],
-  ["expression continue-on-error", "      - name: Dedicated environment preflight\n        id: preflight", "      - name: Dedicated environment preflight\n        continue-on-error: ${{ inputs.tolerate_failure }}\n        id: preflight"],
+  ["expression continue-on-error", "      - name: Run trusted single-process qualification coordinator\n        id: qualification", "      - name: Run trusted single-process qualification coordinator\n        continue-on-error: ${{ inputs.tolerate_failure }}\n        id: qualification"],
 ];
 for (const [label, target, replacement] of mutations) {
   assert.throws(() => verifyDedicatedQualificationWorkflow(mutate(source, target, replacement, label)), label);

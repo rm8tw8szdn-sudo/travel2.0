@@ -1,7 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { ROUTE_V2_PERFORMANCE_PROTOCOL as protocol } from "./lib/route-v2-performance-reliability.mjs";
-import { evaluateDedicatedReliabilityQualification } from "./lib/route-v2-dedicated-reliability-qualification.mjs";
+import { auditDedicatedReliabilityQualificationEvidence } from "./lib/route-v2-dedicated-reliability-qualification.mjs";
 
 const directory = path.resolve(option("evidence-directory"));
 const expected = {
@@ -19,7 +19,7 @@ const readJson = (name) => JSON.parse(fs.readFileSync(path.join(directory, name)
 const runs = Array.from({ length: 5 }, (_, index) => readJson(`qualification-run-${index + 1}.json`));
 const exitCodes = fs.readFileSync(path.join(directory, "qualification-exit-codes.txt"), "utf8").trim().split("\n").map(Number);
 if (expected.baselineSha !== protocol.baselineRef) throw new Error("baseline identity mismatch");
-const result = evaluateDedicatedReliabilityQualification({ runs, before: readJson("environment-before.json"), after: readJson("environment-after.json"), exitCodes }, expected);
+const result = auditDedicatedReliabilityQualificationEvidence({ runs, before: readJson("environment-before.json"), after: readJson("environment-after.json"), exitCodes }, expected);
 fs.writeFileSync(path.join(directory, "qualification-result.json"), `${JSON.stringify(result, null, 2)}\n`);
-process.stdout.write(`${result.verdict}\n`);
-if (result.verdict !== "QUALIFICATION PASS") process.exitCode = 1;
+process.stdout.write(`${result.auditVerdict}\n`);
+if (result.auditVerdict !== "AUDIT VALID") process.exitCode = 1;

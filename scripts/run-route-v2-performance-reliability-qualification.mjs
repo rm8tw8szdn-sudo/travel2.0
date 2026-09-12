@@ -3,7 +3,6 @@ import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import { execFileSync, spawnSync } from "node:child_process";
-import { randomUUID } from "node:crypto";
 import { fileURLToPath } from "node:url";
 import {
   ROUTE_V2_PERFORMANCE_PROTOCOL as protocol,
@@ -21,7 +20,9 @@ const baselineRoot = path.join(temporaryRoot, "baseline");
 const currentRoot = path.join(temporaryRoot, "current");
 const currentRef = option("current-ref");
 const runIndex = Number(option("run-index"));
-const qualificationRunId = randomUUID();
+const executionPlan = JSON.parse(process.env.ROUTE_V2_QUALIFICATION_EXECUTION_PLAN || "null");
+assert(executionPlan && typeof executionPlan === "object", "trusted execution plan is required");
+const qualificationRunId = executionPlan.qualificationRunId;
 
 function option(name) {
   const index = process.argv.indexOf(`--${name}`);
@@ -43,7 +44,9 @@ function archiveSource(ref, destination, archiveName) {
 }
 
 function runPair({ baselineSubjectRoot, currentSubjectRoot, pairIndex, multiplier }) {
-  const occurrenceId = randomUUID();
+  const protocolLabel = multiplier === 1 ? "normal" : multiplier === 1.1 ? "synthetic10" : "synthetic20";
+  const planned = executionPlan.pairs.find((pair) => pair.protocolLabel === protocolLabel && pair.pairIndex === pairIndex + 1);
+  assert(planned, "missing trusted pair execution plan");
   const order = pairIndex % 2 === 0 ? "baseline-current" : "current-baseline";
   const execution = spawnSync(process.execPath, [
     "--expose-gc",
@@ -56,7 +59,7 @@ function runPair({ baselineSubjectRoot, currentSubjectRoot, pairIndex, multiplie
     "--samples-per-side", String(protocol.samplesPerSide),
     "--batch-size", String(protocol.batchSize),
   ], { cwd: projectRoot, encoding: "utf8", timeout: 120_000, windowsHide: true });
-  return { validation: validateWorkerResult(execution, { order, currentMultiplier: multiplier }), occurrenceId };
+  return { validation: validateWorkerResult(execution, { order, currentMultiplier: multiplier }), occurrenceId: planned.occurrenceId };
 }
 
 function runProtocol(label, baselineSubjectRoot, currentSubjectRoot, multiplier) {
@@ -84,6 +87,7 @@ function runProtocol(label, baselineSubjectRoot, currentSubjectRoot, multiplier)
 
 try {
   assert(Number.isInteger(runIndex) && runIndex >= 1 && runIndex <= 5, "run-index must be 1..5");
+  assert.equal(executionPlan.runIndex, runIndex, "execution plan run index mismatch");
   exactCommit(currentRef, "current-ref");
   exactCommit(protocol.baselineRef, "baseline-ref");
   archiveSource(protocol.baselineRef, baselineRoot, "baseline.tar");
@@ -110,7 +114,7 @@ try {
     normal,
     synthetic10,
     synthetic20,
-    qualificationVerdict: passed ? "QUALIFICATION PASS" : "QUALIFICATION FAIL",
+    auditDeclaredResult: passed ? "RUN VALID" : "RUN INVALID",
   };
   process.stdout.write(`${JSON.stringify(result, null, 2)}\n`);
   if (!passed) process.exitCode = 1;

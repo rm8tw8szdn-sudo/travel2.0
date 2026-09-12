@@ -10,6 +10,10 @@
 
 ---
 
+## Trusted coordinator amendment
+
+Execution authenticity is owned by `scripts/run-route-v2-dedicated-reliability-coordinator.mjs`. A single trusted runtime creates an ephemeral internal capability, plans and spawns exactly five sequential qualification executions, admits their worker results against in-memory expected occurrences, computes the runtime verdict, and only then serializes audit artifacts. Serialized artifacts can be checked by the offline audit API but cannot produce an authoritative `QUALIFICATION PASS`.
+
 ### Task 1: Raw sample evidence and independent reconstruction
 
 **Files:**

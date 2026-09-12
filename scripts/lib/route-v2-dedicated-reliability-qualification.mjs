@@ -6,7 +6,7 @@ function sameProtocol(actual) {
   return JSON.stringify(actual) === JSON.stringify(ROUTE_V2_PERFORMANCE_PROTOCOL);
 }
 
-export function evaluateDedicatedReliabilityQualification({ runs, before, after, exitCodes }, expected) {
+export function auditDedicatedReliabilityQualificationEvidence({ runs, before, after, exitCodes }, expected) {
   const errors = [];
   const qualificationRunIds = new Set();
   const pairExecutionIds = new Set();
@@ -47,17 +47,17 @@ export function evaluateDedicatedReliabilityQualification({ runs, before, after,
       if (!synthetic20.valid) runErrors.push(...synthetic20.errors.map((error) => `${prefix}:synthetic20:${error}`));
       if (normal.valid && (!normal.reliable || normal.pairedRatioSpread > ROUTE_V2_PERFORMANCE_PROTOCOL.maximumPairedRatioSpread)) runErrors.push(`${prefix}:normal-unreliable`);
       if (synthetic20.valid && (!synthetic20.reliable || synthetic20.regressionVerdict !== "REGRESSION")) runErrors.push(`${prefix}:synthetic20-not-detected`);
-      if (run.qualificationVerdict !== (runErrors.length === 0 ? "QUALIFICATION PASS" : "QUALIFICATION FAIL")) runErrors.push(`${prefix}:declared-verdict`);
+      if (run.auditDeclaredResult !== (runErrors.length === 0 ? "RUN VALID" : "RUN INVALID")) runErrors.push(`${prefix}:declared-result`);
       runResults.push({ runIndex: index + 1, valid: runErrors.length === 0, normal, synthetic10, synthetic20 });
     }
     errors.push(...runErrors);
   });
   if (Array.isArray(exitCodes) && exitCodes.some((code) => code !== 0)) errors.push("qualification:execution-failure");
   return {
-    kind: "NON_FORMAL_DEDICATED_RELIABILITY_QUALIFICATION",
+    kind: "NON_FORMAL_DEDICATED_RELIABILITY_QUALIFICATION_AUDIT",
     formal: false,
     gating: false,
-    verdict: errors.length === 0 ? "QUALIFICATION PASS" : "QUALIFICATION FAIL",
+    auditVerdict: errors.length === 0 ? "AUDIT VALID" : "AUDIT INVALID",
     errors,
     requiredRuns: 5,
     acceptedRuns: runResults.filter((run) => run.valid).length,

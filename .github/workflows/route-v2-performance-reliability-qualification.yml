@@ -57,58 +57,18 @@ jobs:
           node scripts/verify-route-v2-performance-raw-evidence.mjs
           node scripts/verify-route-v2-dedicated-performance-environment.mjs
           node scripts/verify-route-v2-dedicated-reliability-qualification.mjs
+          node scripts/verify-route-v2-dedicated-reliability-coordinator.mjs
           node scripts/verify-route-v2-performance-reliability-qualification-workflow.mjs
 
-      - name: Dedicated environment preflight
-        id: preflight
+      - name: Run trusted single-process qualification coordinator
+        id: qualification
         shell: bash
         run: |
           command -v taskset
           test "${RUNNER_OS}" = "Linux"
           test "${RUNNER_ARCH}" = "X64"
-          mkdir -p qualification-artifacts
-          taskset --cpu-list "${QUALIFICATION_CPU}" node scripts/collect-route-v2-dedicated-performance-environment.mjs \
-            --phase before \
-            --cpu "${QUALIFICATION_CPU}" \
-            --coordinator-sha "${GITHUB_SHA}" \
-            --current-sha "${CONTROLLED_CURRENT_SHA}" \
-            --baseline-sha "${SEALED_BASELINE_SHA}" \
-            --output qualification-artifacts/environment-before.json
-
-      - name: Run exactly five non-formal qualifications
-        id: qualification-runs
-        shell: bash
-        run: |
-          : > qualification-artifacts/qualification-exit-codes.txt
-          for qualification_run in 1 2 3 4 5; do
-            set +e
-            taskset --cpu-list "${QUALIFICATION_CPU}" node scripts/run-route-v2-performance-reliability-qualification.mjs \
-              --current-ref "${CONTROLLED_CURRENT_SHA}" \
-              --run-index "${qualification_run}" \
-              > "qualification-artifacts/qualification-run-${qualification_run}.json" \
-              2> "qualification-artifacts/qualification-run-${qualification_run}.stderr.log"
-            exit_code=$?
-            set -e
-            echo "${exit_code}" >> qualification-artifacts/qualification-exit-codes.txt
-          done
-
-      - name: Record post-qualification environment
-        shell: bash
-        run: |
-          taskset --cpu-list "${QUALIFICATION_CPU}" node scripts/collect-route-v2-dedicated-performance-environment.mjs \
-            --phase after \
-            --cpu "${QUALIFICATION_CPU}" \
-            --coordinator-sha "${GITHUB_SHA}" \
-            --current-sha "${CONTROLLED_CURRENT_SHA}" \
-            --baseline-sha "${SEALED_BASELINE_SHA}" \
-            --output qualification-artifacts/environment-after.json
-
-      - name: Finalize non-formal qualification
-        id: qualification
-        shell: bash
-        run: |
           set +e
-          node scripts/finalize-route-v2-dedicated-reliability-qualification.mjs \
+          taskset --cpu-list "${QUALIFICATION_CPU}" node scripts/run-route-v2-dedicated-reliability-coordinator.mjs \
             --evidence-directory qualification-artifacts \
             --cpu "${QUALIFICATION_CPU}" \
             --coordinator-sha "${GITHUB_SHA}" \
@@ -132,6 +92,5 @@ jobs:
         if: always()
         shell: bash
         run: |
-          test "${{ steps.preflight.outcome }}" = "success"
           test "${{ steps.qualification.outputs.exit_code }}" = "0"
           test "${{ steps.evidence.outcome }}" = "success"

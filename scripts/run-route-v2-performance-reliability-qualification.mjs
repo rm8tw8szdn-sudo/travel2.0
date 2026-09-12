@@ -3,6 +3,7 @@ import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import { execFileSync, spawnSync } from "node:child_process";
+import { randomUUID } from "node:crypto";
 import { fileURLToPath } from "node:url";
 import {
   ROUTE_V2_PERFORMANCE_PROTOCOL as protocol,
@@ -20,6 +21,7 @@ const baselineRoot = path.join(temporaryRoot, "baseline");
 const currentRoot = path.join(temporaryRoot, "current");
 const currentRef = option("current-ref");
 const runIndex = Number(option("run-index"));
+const qualificationRunId = randomUUID();
 
 function option(name) {
   const index = process.argv.indexOf(`--${name}`);
@@ -41,6 +43,7 @@ function archiveSource(ref, destination, archiveName) {
 }
 
 function runPair({ baselineSubjectRoot, currentSubjectRoot, pairIndex, multiplier }) {
+  const occurrenceId = randomUUID();
   const order = pairIndex % 2 === 0 ? "baseline-current" : "current-baseline";
   const execution = spawnSync(process.execPath, [
     "--expose-gc",
@@ -53,20 +56,24 @@ function runPair({ baselineSubjectRoot, currentSubjectRoot, pairIndex, multiplie
     "--samples-per-side", String(protocol.samplesPerSide),
     "--batch-size", String(protocol.batchSize),
   ], { cwd: projectRoot, encoding: "utf8", timeout: 120_000, windowsHide: true });
-  return validateWorkerResult(execution, { order, currentMultiplier: multiplier });
+  return { validation: validateWorkerResult(execution, { order, currentMultiplier: multiplier }), occurrenceId };
 }
 
 function runProtocol(label, baselineSubjectRoot, currentSubjectRoot, multiplier) {
   const workers = Array.from({ length: protocol.pairs }, (_, pairIndex) => runPair({
     baselineSubjectRoot, currentSubjectRoot, pairIndex, multiplier,
   }));
-  const workerErrors = workers.flatMap((worker, index) => worker.errors.map((error) => `pair-${index + 1}:${error}`));
-  const rawPairs = workers.map((worker) => rawPairEvidenceFromValidatedPair(worker.pair, multiplier));
-  const reconstruction = reconstructRawPerformanceEvidence(rawPairs, protocol, { expectedMultiplier: multiplier });
+  const workerErrors = workers.flatMap((worker, index) => worker.validation.errors.map((error) => `pair-${index + 1}:${error}`));
+  const rawPairs = workers.map((worker, pairIndex) => rawPairEvidenceFromValidatedPair(worker.validation.pair, multiplier, {
+    qualificationRunId, protocolLabel: label, pairIndex: pairIndex + 1, occurrenceId: worker.occurrenceId,
+  }));
+  const reconstruction = reconstructRawPerformanceEvidence(rawPairs, protocol, {
+    expectedMultiplier: multiplier, qualificationRunId, protocolLabel: label,
+  });
   if (workerErrors.length > 0 || !reconstruction.valid) {
     return { label, multiplier, valid: false, errors: [...workerErrors, ...(reconstruction.errors || [])], rawPairs, reconstruction };
   }
-  const sealedEvaluation = evaluatePairedPerformance(workers.map((worker) => worker.pair));
+  const sealedEvaluation = evaluatePairedPerformance(workers.map((worker) => worker.validation.pair));
   assert.equal(sealedEvaluation.valid, true);
   for (const key of [
     "baselineAbsoluteP95Ms", "currentAbsoluteP95Ms", "absoluteResult", "medianRatio",
@@ -82,8 +89,8 @@ try {
   archiveSource(protocol.baselineRef, baselineRoot, "baseline.tar");
   archiveSource(currentRef, currentRoot, "current.tar");
   const normal = runProtocol("normal", baselineRoot, currentRoot, 1);
-  const synthetic10 = runProtocol("synthetic-10-percent", currentRoot, currentRoot, 1.1);
-  const synthetic20 = runProtocol("synthetic-20-percent", currentRoot, currentRoot, 1.2);
+  const synthetic10 = runProtocol("synthetic10", currentRoot, currentRoot, 1.1);
+  const synthetic20 = runProtocol("synthetic20", currentRoot, currentRoot, 1.2);
   const passed = normal.valid && normal.reconstruction.reliable
     && normal.reconstruction.pairedRatioSpread <= protocol.maximumPairedRatioSpread
     && synthetic20.valid && synthetic20.reconstruction.reliable
@@ -94,6 +101,7 @@ try {
     formal: false,
     gating: false,
     runIndex,
+    qualificationRunId,
     coordinatorSha: execFileSync("git", ["rev-parse", "HEAD"], { cwd: projectRoot, encoding: "utf8" }).trim(),
     currentSha: currentRef,
     baselineSha: protocol.baselineRef,

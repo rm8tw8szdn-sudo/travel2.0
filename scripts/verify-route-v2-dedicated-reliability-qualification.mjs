@@ -4,25 +4,29 @@ import { reconstructRawPerformanceEvidence } from "./lib/route-v2-performance-ra
 import { evaluateDedicatedReliabilityQualification } from "./lib/route-v2-dedicated-reliability-qualification.mjs";
 
 const expected = { cpu: "0", coordinatorSha: "a".repeat(40), currentSha: "b".repeat(40), baselineSha: protocol.baselineRef };
+const uuid = (index) => `00000000-0000-4000-8000-${String(index).padStart(12, "0")}`;
 function measurement(value, multiplier = 1) {
   const logicalOperations = protocol.samplesPerSide * protocol.batchSize;
   return { p95Ms: value, samplesMs: Array(protocol.samplesPerSide).fill(value), logicalOperations, actualOperations: Math.round(logicalOperations * multiplier) };
 }
-function pairs(multiplier) {
+function pairs(multiplier, qualificationRunId, protocolLabel, identityOffset) {
   return Array.from({ length: protocol.pairs }, (_, index) => ({
     worker: "route-v2-invariant-pair", schemaVersion: 1,
+    qualificationRunId, protocolLabel, pairIndex: index + 1,
+    pairExecutionId: `${qualificationRunId}:${protocolLabel}:${index + 1}:${uuid(identityOffset + index)}`,
     order: index % 2 === 0 ? "baseline-current" : "current-baseline",
     currentMultiplier: multiplier, baseline: measurement(0.2), current: measurement(0.2 * multiplier, multiplier),
   }));
 }
 function run(index) {
-  const normalPairs = pairs(1); const synthetic10Pairs = pairs(1.1); const synthetic20Pairs = pairs(1.2);
+  const qualificationRunId = uuid(index);
+  const normalPairs = pairs(1, qualificationRunId, "normal", index * 100 + 1);
+  const synthetic10Pairs = pairs(1.1, qualificationRunId, "synthetic10", index * 100 + 21);
+  const synthetic20Pairs = pairs(1.2, qualificationRunId, "synthetic20", index * 100 + 41);
   return {
     kind: "NON_FORMAL_DEDICATED_RELIABILITY_QUALIFICATION_RUN", schemaVersion: 1, formal: false, gating: false,
-    runIndex: index, coordinatorSha: expected.coordinatorSha, currentSha: expected.currentSha, baselineSha: expected.baselineSha,
-    protocol: { ...protocol }, normal: { rawPairs: normalPairs, reconstruction: reconstructRawPerformanceEvidence(normalPairs, protocol) },
-    synthetic10: { rawPairs: synthetic10Pairs, reconstruction: reconstructRawPerformanceEvidence(synthetic10Pairs, protocol) },
-    synthetic20: { rawPairs: synthetic20Pairs, reconstruction: reconstructRawPerformanceEvidence(synthetic20Pairs, protocol) },
+    runIndex: index, qualificationRunId, coordinatorSha: expected.coordinatorSha, currentSha: expected.currentSha, baselineSha: expected.baselineSha,
+    protocol: { ...protocol }, normal: { rawPairs: normalPairs }, synthetic10: { rawPairs: synthetic10Pairs }, synthetic20: { rawPairs: synthetic20Pairs },
     qualificationVerdict: "QUALIFICATION PASS",
   };
 }
@@ -48,8 +52,25 @@ for (const [name, mutate] of [
   ["identity drift", (value) => { value.runs[4].currentSha = "e".repeat(40); value.runs[4].qualificationVerdict = "QUALIFICATION FAIL"; }],
   ["execution failure", (value) => { value.exitCodes[1] = 1; }],
   ["protocol mutation", (value) => { value.runs[0].protocol.pairs = 5; value.runs[0].qualificationVerdict = "QUALIFICATION FAIL"; }],
+  ["cloned run identity", (value) => { value.runs[2] = structuredClone(value.runs[0]); value.runs[2].runIndex = 3; }],
+  ["five cloned runs", (value) => { const first = structuredClone(value.runs[0]); value.runs = Array.from({ length: 5 }, (_, index) => ({ ...structuredClone(first), runIndex: index + 1 })); }],
+  ["replaced failed run", (value) => { value.runs[2] = structuredClone(value.runs[1]); value.runs[2].runIndex = 3; }],
+  ["mixed-run pair", (value) => { value.runs[0].normal.rawPairs[2].qualificationRunId = value.runs[1].qualificationRunId; }],
+  ["duplicate pair", (value) => { value.runs[0].normal.rawPairs[2] = structuredClone(value.runs[0].normal.rawPairs[0]); }],
+  ["duplicate pair identity with modified measurements", (value) => { const pair = value.runs[0].normal.rawPairs[2]; pair.pairExecutionId = `${pair.qualificationRunId}:normal:3:${uuid(101)}`; pair.current.samplesMs.fill(0.21); pair.current.p95Ms = 0.21; }],
+  ["pair index binding mismatch", (value) => { value.runs[0].normal.rawPairs[2].pairIndex = 1; }],
+  ["clone with edited qualification identity", (value) => {
+    const clone = structuredClone(value.runs[0]);
+    clone.runIndex = 3;
+    clone.qualificationRunId = uuid(99);
+    for (const result of [clone.normal, clone.synthetic10, clone.synthetic20]) for (const pair of result.rawPairs) {
+      pair.qualificationRunId = clone.qualificationRunId;
+      pair.pairExecutionId = pair.pairExecutionId.replace(value.runs[0].qualificationRunId, clone.qualificationRunId);
+    }
+    value.runs[2] = clone;
+  }],
 ]) {
   const changed = structuredClone(input()); mutate(changed);
   assert.equal(evaluateDedicatedReliabilityQualification(changed, expected).verdict, "QUALIFICATION FAIL", name);
 }
-process.stdout.write(`${JSON.stringify({ verifier: "route-v2-dedicated-reliability-qualification", status: "PASS", exactRuns: 5, failClosedCases: 9 }, null, 2)}\n`);
+process.stdout.write(`${JSON.stringify({ verifier: "route-v2-dedicated-reliability-qualification", status: "PASS", exactRuns: 5, uniqueRunIds: 5, failClosedCases: 17 }, null, 2)}\n`);

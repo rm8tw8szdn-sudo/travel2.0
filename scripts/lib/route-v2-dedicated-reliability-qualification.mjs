@@ -8,6 +8,9 @@ function sameProtocol(actual) {
 
 export function evaluateDedicatedReliabilityQualification({ runs, before, after, exitCodes }, expected) {
   const errors = [];
+  const qualificationRunIds = new Set();
+  const pairExecutionIds = new Set();
+  const pairOccurrenceIds = new Set();
   if (!Array.isArray(runs) || runs.length !== 5) errors.push(`qualification:run-count:${Array.isArray(runs) ? runs.length : "malformed"}`);
   if (!Array.isArray(exitCodes) || exitCodes.length !== 5 || exitCodes.some((code) => !Number.isInteger(code))) errors.push("qualification:exit-codes");
   const beforeValidation = validateDedicatedEnvironmentSnapshot(before, expected);
@@ -23,11 +26,22 @@ export function evaluateDedicatedReliabilityQualification({ runs, before, after,
       if (run.kind !== "NON_FORMAL_DEDICATED_RELIABILITY_QUALIFICATION_RUN") runErrors.push(`${prefix}:kind`);
       if (run.formal !== false || run.gating !== false) runErrors.push(`${prefix}:isolation`);
       if (run.runIndex !== index + 1) runErrors.push(`${prefix}:index`);
+      if (typeof run.qualificationRunId !== "string" || qualificationRunIds.has(run.qualificationRunId)) runErrors.push(`${prefix}:qualification-run-id`);
+      qualificationRunIds.add(run.qualificationRunId);
       if (run.coordinatorSha !== expected.coordinatorSha || run.currentSha !== expected.currentSha || run.baselineSha !== expected.baselineSha) runErrors.push(`${prefix}:identity`);
       if (!sameProtocol(run.protocol)) runErrors.push(`${prefix}:protocol`);
-      const normal = reconstructRawPerformanceEvidence(run.normal?.rawPairs, ROUTE_V2_PERFORMANCE_PROTOCOL, { expectedMultiplier: 1 });
-      const synthetic10 = reconstructRawPerformanceEvidence(run.synthetic10?.rawPairs, ROUTE_V2_PERFORMANCE_PROTOCOL, { expectedMultiplier: 1.1 });
-      const synthetic20 = reconstructRawPerformanceEvidence(run.synthetic20?.rawPairs, ROUTE_V2_PERFORMANCE_PROTOCOL, { expectedMultiplier: 1.2 });
+      const normal = reconstructRawPerformanceEvidence(run.normal?.rawPairs, ROUTE_V2_PERFORMANCE_PROTOCOL, { expectedMultiplier: 1, qualificationRunId: run.qualificationRunId, protocolLabel: "normal" });
+      const synthetic10 = reconstructRawPerformanceEvidence(run.synthetic10?.rawPairs, ROUTE_V2_PERFORMANCE_PROTOCOL, { expectedMultiplier: 1.1, qualificationRunId: run.qualificationRunId, protocolLabel: "synthetic10" });
+      const synthetic20 = reconstructRawPerformanceEvidence(run.synthetic20?.rawPairs, ROUTE_V2_PERFORMANCE_PROTOCOL, { expectedMultiplier: 1.2, qualificationRunId: run.qualificationRunId, protocolLabel: "synthetic20" });
+      for (const pair of [run.normal, run.synthetic10, run.synthetic20].flatMap((result) => result?.rawPairs || [])) {
+        if (pairExecutionIds.has(pair?.pairExecutionId)) runErrors.push(`${prefix}:duplicate-pair-execution-id`);
+        if (typeof pair?.pairExecutionId === "string") {
+          pairExecutionIds.add(pair.pairExecutionId);
+          const occurrenceId = pair.pairExecutionId.split(":").at(-1);
+          if (pairOccurrenceIds.has(occurrenceId)) runErrors.push(`${prefix}:reused-pair-occurrence-id`);
+          pairOccurrenceIds.add(occurrenceId);
+        }
+      }
       if (!normal.valid) runErrors.push(...normal.errors.map((error) => `${prefix}:normal:${error}`));
       if (!synthetic10.valid) runErrors.push(...synthetic10.errors.map((error) => `${prefix}:synthetic10:${error}`));
       if (!synthetic20.valid) runErrors.push(...synthetic20.errors.map((error) => `${prefix}:synthetic20:${error}`));

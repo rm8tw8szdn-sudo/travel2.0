@@ -1,5 +1,6 @@
 const WORKER = "route-v2-invariant-pair";
 const SCHEMA_VERSION = 1;
+const EXECUTION_ID = /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/u;
 
 function percentile(values, fraction) {
   const sorted = [...values].sort((left, right) => left - right);
@@ -50,17 +51,39 @@ function validateMeasurement(measurement, label, expectedActualOperations, proto
   if (!Number.isFinite(measurement.p95Ms) || measurement.p95Ms !== reconstructedP95) errors.push(`${label}:p95`);
 }
 
-export function reconstructRawPerformanceEvidence(rawPairs, protocol, { expectedMultiplier } = {}) {
+export function reconstructRawPerformanceEvidence(rawPairs, protocol, {
+  expectedMultiplier,
+  qualificationRunId,
+  protocolLabel,
+} = {}) {
   const errors = [];
+  if (!EXECUTION_ID.test(qualificationRunId || "")) errors.push("pairs:qualification-run-id");
+  if (!['normal', 'synthetic10', 'synthetic20'].includes(protocolLabel)) errors.push("pairs:protocol-label");
   if (!Array.isArray(rawPairs) || rawPairs.length !== protocol.pairs) {
     return { valid: false, errors: [`pairs:count:${Array.isArray(rawPairs) ? rawPairs.length : "malformed"}`] };
   }
+  const occurrenceIds = new Set();
   rawPairs.forEach((pair, pairIndex) => {
     const label = `pair-${pairIndex + 1}`;
-    if (!exactKeys(pair, ["baseline", "current", "currentMultiplier", "order", "schemaVersion", "worker"], label, errors)) return;
+    if (!exactKeys(pair, [
+      "baseline", "current", "currentMultiplier", "order", "pairExecutionId", "pairIndex",
+      "protocolLabel", "qualificationRunId", "schemaVersion", "worker",
+    ], label, errors)) return;
     const expectedOrder = pairIndex % 2 === 0 ? "baseline-current" : "current-baseline";
+    const executionPrefix = `${qualificationRunId}:${protocolLabel}:${pairIndex + 1}:`;
     if (pair.worker !== WORKER) errors.push(`${label}:worker`);
     if (pair.schemaVersion !== SCHEMA_VERSION) errors.push(`${label}:schema-version`);
+    if (pair.qualificationRunId !== qualificationRunId) errors.push(`${label}:qualification-run-id`);
+    if (pair.protocolLabel !== protocolLabel) errors.push(`${label}:protocol-label`);
+    if (pair.pairIndex !== pairIndex + 1) errors.push(`${label}:pair-index`);
+    if (typeof pair.pairExecutionId !== "string" || !pair.pairExecutionId.startsWith(executionPrefix)) {
+      errors.push(`${label}:pair-execution-id`);
+    } else {
+      const occurrenceId = pair.pairExecutionId.slice(executionPrefix.length);
+      if (!EXECUTION_ID.test(occurrenceId)) errors.push(`${label}:pair-execution-id`);
+      if (occurrenceIds.has(occurrenceId)) errors.push(`${label}:duplicate-execution`);
+      occurrenceIds.add(occurrenceId);
+    }
     if (pair.order !== expectedOrder) errors.push(`${label}:order`);
     if (![1, 1.1, 1.2].includes(pair.currentMultiplier)) errors.push(`${label}:multiplier`);
     if (expectedMultiplier !== undefined && pair.currentMultiplier !== expectedMultiplier) errors.push(`${label}:unexpected-multiplier`);
@@ -109,11 +132,16 @@ export function reconstructRawPerformanceEvidence(rawPairs, protocol, { expected
   };
 }
 
-export function rawPairEvidenceFromValidatedPair(pair, currentMultiplier) {
+export function rawPairEvidenceFromValidatedPair(pair, currentMultiplier, identity) {
   if (!pair) return null;
+  const { qualificationRunId, protocolLabel, pairIndex, occurrenceId } = identity;
   return {
     worker: WORKER,
     schemaVersion: SCHEMA_VERSION,
+    qualificationRunId,
+    protocolLabel,
+    pairIndex,
+    pairExecutionId: `${qualificationRunId}:${protocolLabel}:${pairIndex}:${occurrenceId}`,
     order: pair.order,
     currentMultiplier,
     baseline: {

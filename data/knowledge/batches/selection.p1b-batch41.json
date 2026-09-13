@@ -1,0 +1,502 @@
+{
+  "schemaVersion": "route-v2-knowledge-expansion-batch11-wave4-selection-v1",
+  "wave": 4,
+  "countries": [
+    {
+      "isoAlpha2": "ER",
+      "wikidataId": "Q986",
+      "entityId": "country-6c4974e584e95633"
+    },
+    {
+      "isoAlpha2": "SZ",
+      "wikidataId": "Q1050",
+      "entityId": "country-5efc736f3b93790f"
+    },
+    {
+      "isoAlpha2": "GA",
+      "wikidataId": "Q1000",
+      "entityId": "country-6f73b5c5317bf838"
+    },
+    {
+      "isoAlpha2": "GM",
+      "wikidataId": "Q1005",
+      "entityId": "country-af703b6d20ceb63e"
+    }
+  ],
+  "cities": [
+    {
+      "countryCode": "ER",
+      "tier": "world",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 7,
+      "reused": false,
+      "entityId": "city-889ab770585b4430",
+      "wikidataId": "Q3642",
+      "canonicalNameEn": "Asmara",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "ER",
+      "tier": "core",
+      "targetPoiCount": 5,
+      "selectedPoiCount": 1,
+      "reused": false,
+      "entityId": "city-11a45f65055eadda",
+      "wikidataId": "Q275635",
+      "canonicalNameEn": "Massawa",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "SZ",
+      "tier": "world",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 3,
+      "reused": false,
+      "entityId": "city-1ab1bd6cbc62b230",
+      "wikidataId": "Q3904",
+      "canonicalNameEn": "Mbabane",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "SZ",
+      "tier": "core",
+      "targetPoiCount": 5,
+      "selectedPoiCount": 5,
+      "reused": false,
+      "entityId": "city-a53237851e024b81",
+      "wikidataId": "Q101418",
+      "canonicalNameEn": "Lobamba",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "SZ",
+      "tier": "core",
+      "targetPoiCount": 5,
+      "selectedPoiCount": 1,
+      "reused": false,
+      "entityId": "city-0df180268afeca04",
+      "wikidataId": "Q495730",
+      "canonicalNameEn": "Manzini",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "GA",
+      "tier": "world",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 2,
+      "reused": false,
+      "entityId": "city-3b0c2ef9a56701d4",
+      "wikidataId": "Q3825",
+      "canonicalNameEn": "Libreville",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "GA",
+      "tier": "core",
+      "targetPoiCount": 5,
+      "selectedPoiCount": 1,
+      "reused": false,
+      "entityId": "city-9a1b7586c4919621",
+      "wikidataId": "Q501715",
+      "canonicalNameEn": "Port-Gentil",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "GM",
+      "tier": "world",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 7,
+      "reused": false,
+      "entityId": "city-dd386d521ac4ce11",
+      "wikidataId": "Q3726",
+      "canonicalNameEn": "Banjul",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "GM",
+      "tier": "core",
+      "targetPoiCount": 5,
+      "selectedPoiCount": 3,
+      "reused": false,
+      "entityId": "city-2628cfaa45b85a20",
+      "wikidataId": "Q217568",
+      "canonicalNameEn": "Serekunda",
+      "positiveTypePath": [
+        "Q486972"
+      ]
+    }
+  ],
+  "pois": [
+    {
+      "entityId": "poi-e6304acbbcfce6f4",
+      "parentCityEntityId": "city-889ab770585b4430",
+      "wikidataId": "Q11957212",
+      "canonicalNameEn": "Great Mosque of Asmara",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 2.751
+    },
+    {
+      "entityId": "poi-fff7055e3537ca5c",
+      "parentCityEntityId": "city-889ab770585b4430",
+      "wikidataId": "Q2061047",
+      "canonicalNameEn": "Church of Our Lady of the Rosary",
+      "positiveTypePath": [
+        "Q1088552",
+        "Q140454931",
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 2.308
+    },
+    {
+      "entityId": "poi-65e904582db6e907",
+      "parentCityEntityId": "city-889ab770585b4430",
+      "wikidataId": "Q954653",
+      "canonicalNameEn": "Cinema Impero",
+      "positiveTypePath": [
+        "Q41253",
+        "Q41176"
+      ],
+      "distanceKm": 2.559
+    },
+    {
+      "entityId": "poi-a83a368788ff801b",
+      "parentCityEntityId": "city-889ab770585b4430",
+      "wikidataId": "Q1972822",
+      "canonicalNameEn": "Enda Mariam Coptic Cathedral",
+      "positiveTypePath": [
+        "Q2977",
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 3.036
+    },
+    {
+      "entityId": "poi-0387c5b4256c38ea",
+      "parentCityEntityId": "city-889ab770585b4430",
+      "wikidataId": "Q256573",
+      "canonicalNameEn": "Asmara Synagogue",
+      "positiveTypePath": [
+        "Q34627",
+        "Q831219",
+        "Q1370598"
+      ],
+      "distanceKm": 2.618
+    },
+    {
+      "entityId": "poi-ccdb254b8063d985",
+      "parentCityEntityId": "city-889ab770585b4430",
+      "wikidataId": "Q1652119",
+      "canonicalNameEn": "Asmara Cinema-Teatro",
+      "positiveTypePath": [
+        "Q153562",
+        "Q41176"
+      ],
+      "distanceKm": 2.009
+    },
+    {
+      "entityId": "poi-067e4a0668ab9bee",
+      "parentCityEntityId": "city-889ab770585b4430",
+      "wikidataId": "Q28800021",
+      "canonicalNameEn": "Kidane Mehret Cathedral, Asmara",
+      "positiveTypePath": [
+        "Q2977",
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 2.339
+    },
+    {
+      "entityId": "poi-3f4e59b5b160a997",
+      "parentCityEntityId": "city-11a45f65055eadda",
+      "wikidataId": "Q55147092",
+      "canonicalNameEn": "Mosque of the Companions, Massawa",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 5.236
+    },
+    {
+      "entityId": "poi-647b63714894b320",
+      "parentCityEntityId": "city-1ab1bd6cbc62b230",
+      "wikidataId": "Q1960512",
+      "canonicalNameEn": "Indingilizi Gallery",
+      "positiveTypePath": [
+        "Q207694",
+        "Q33506"
+      ],
+      "distanceKm": 1.189
+    },
+    {
+      "entityId": "poi-1fa2711ae3ec1f4b",
+      "parentCityEntityId": "city-1ab1bd6cbc62b230",
+      "wikidataId": "Q106371762",
+      "canonicalNameEn": "Ezulwini Mosque",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 9.849
+    },
+    {
+      "entityId": "poi-c85bf5625ba5b8b9",
+      "parentCityEntityId": "city-1ab1bd6cbc62b230",
+      "wikidataId": "Q24054414",
+      "canonicalNameEn": "Mater Dolorosa Church, Mbabane",
+      "positiveTypePath": [
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 1.893
+    },
+    {
+      "entityId": "poi-15dde7d6131e23ac",
+      "parentCityEntityId": "city-a53237851e024b81",
+      "wikidataId": "Q4789096",
+      "canonicalNameEn": "Mbabane River",
+      "positiveTypePath": [
+        "Q4022",
+        "Q2479431",
+        "Q15324"
+      ],
+      "distanceKm": 1.595
+    },
+    {
+      "entityId": "poi-0a8229a8c2515b83",
+      "parentCityEntityId": "city-a53237851e024b81",
+      "wikidataId": "Q1941204",
+      "canonicalNameEn": "Mlilwane Wildlife Sanctuary",
+      "positiveTypePath": [
+        "Q473972"
+      ],
+      "distanceKm": 6.069
+    },
+    {
+      "entityId": "poi-03a3dd357ef8320e",
+      "parentCityEntityId": "city-a53237851e024b81",
+      "wikidataId": "Q5423444",
+      "canonicalNameEn": "Ezulwini Valley",
+      "positiveTypePath": [
+        "Q39816",
+        "Q35145263"
+      ],
+      "distanceKm": 4.957
+    },
+    {
+      "entityId": "poi-90ee49bfeedd0531",
+      "parentCityEntityId": "city-a53237851e024b81",
+      "wikidataId": "Q1960575",
+      "canonicalNameEn": "Ezulwini Handicrafts Centre",
+      "positiveTypePath": [
+        "Q33506"
+      ],
+      "distanceKm": 4.319
+    },
+    {
+      "entityId": "poi-93aebae4dc94f349",
+      "parentCityEntityId": "city-a53237851e024b81",
+      "wikidataId": "Q6802848",
+      "canonicalNameEn": "Mdimba",
+      "positiveTypePath": [
+        "Q8502",
+        "Q35145263"
+      ],
+      "distanceKm": 9.236
+    },
+    {
+      "entityId": "poi-265bdc10d850c363",
+      "parentCityEntityId": "city-0df180268afeca04",
+      "wikidataId": "Q2942235",
+      "canonicalNameEn": "Our Lady of Assumption Cathedral, Manzini",
+      "positiveTypePath": [
+        "Q2977",
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 2.197
+    },
+    {
+      "entityId": "poi-f41e9e2894f45fea",
+      "parentCityEntityId": "city-3b0c2ef9a56701d4",
+      "wikidataId": "Q63064951",
+      "canonicalNameEn": "Palais du bord de mer",
+      "positiveTypePath": [
+        "Q15848826",
+        "Q16560",
+        "Q41176"
+      ],
+      "distanceKm": 1.713
+    },
+    {
+      "entityId": "poi-61bf52a2089d4a82",
+      "parentCityEntityId": "city-3b0c2ef9a56701d4",
+      "wikidataId": "Q6970433",
+      "canonicalNameEn": "National Archives of Gabon",
+      "positiveTypePath": [
+        "Q2122214",
+        "Q27031009",
+        "Q166118"
+      ],
+      "distanceKm": 1.627
+    },
+    {
+      "entityId": "poi-c482484c586d4fa5",
+      "parentCityEntityId": "city-9a1b7586c4919621",
+      "wikidataId": "Q63400348",
+      "canonicalNameEn": "Saint-Louis Cathedral of Port-Gentil",
+      "positiveTypePath": [
+        "Q2977",
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 0.782
+    },
+    {
+      "entityId": "poi-711991698aae8069",
+      "parentCityEntityId": "city-dd386d521ac4ce11",
+      "wikidataId": "Q335818",
+      "canonicalNameEn": "Abuko Nature Reserve",
+      "positiveTypePath": [
+        "Q179049",
+        "Q473972"
+      ],
+      "distanceKm": 9.73
+    },
+    {
+      "entityId": "poi-61c07233f145f242",
+      "parentCityEntityId": "city-dd386d521ac4ce11",
+      "wikidataId": "Q6974175",
+      "canonicalNameEn": "National Library of The Gambia",
+      "positiveTypePath": [
+        "Q22806",
+        "Q65768782",
+        "Q385994",
+        "Q7075",
+        "Q101542346",
+        "Q13226383"
+      ],
+      "distanceKm": 1.087
+    },
+    {
+      "entityId": "poi-c3d25f0c45da0c3f",
+      "parentCityEntityId": "city-dd386d521ac4ce11",
+      "wikidataId": "Q325000",
+      "canonicalNameEn": "Albert Market",
+      "positiveTypePath": null,
+      "distanceKm": 0.617
+    },
+    {
+      "entityId": "poi-47f1a086a790c4f9",
+      "parentCityEntityId": "city-dd386d521ac4ce11",
+      "wikidataId": "Q632012",
+      "canonicalNameEn": "Arch 22",
+      "positiveTypePath": [
+        "Q143912",
+        "Q97466153",
+        "Q4989906"
+      ],
+      "distanceKm": 0.956
+    },
+    {
+      "entityId": "poi-eec7f50e7a06f17a",
+      "parentCityEntityId": "city-dd386d521ac4ce11",
+      "wikidataId": "Q2179688",
+      "canonicalNameEn": "Our Lady of the Assumption Cathedral, Banjul",
+      "positiveTypePath": [
+        "Q56242215",
+        "Q2977",
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 0.395
+    },
+    {
+      "entityId": "poi-d5a0cde5ac33d0aa",
+      "parentCityEntityId": "city-dd386d521ac4ce11",
+      "wikidataId": "Q1253433",
+      "canonicalNameEn": "Tanbi Wetland Complex",
+      "positiveTypePath": [
+        "Q473972"
+      ],
+      "distanceKm": 5.858
+    },
+    {
+      "entityId": "poi-dd3045b31f71a630",
+      "parentCityEntityId": "city-dd386d521ac4ce11",
+      "wikidataId": "Q1189924",
+      "canonicalNameEn": "Denton Bridge",
+      "positiveTypePath": [
+        "Q1055465",
+        "Q12280",
+        "Q811979"
+      ],
+      "distanceKm": 5.707
+    },
+    {
+      "entityId": "poi-c9c80b55681c1582",
+      "parentCityEntityId": "city-2628cfaa45b85a20",
+      "wikidataId": "Q859906",
+      "canonicalNameEn": "Bijilo Forest Park",
+      "positiveTypePath": [
+        "Q473972"
+      ],
+      "distanceKm": 5.721
+    },
+    {
+      "entityId": "poi-b66d7dbf65a46403",
+      "parentCityEntityId": "city-2628cfaa45b85a20",
+      "wikidataId": "Q1720898",
+      "canonicalNameEn": "Kachikally Museum and Crocodile Pool",
+      "positiveTypePath": [
+        "Q1370598"
+      ],
+      "distanceKm": 3.517
+    },
+    {
+      "entityId": "poi-3c2e0abc24dc7b90",
+      "parentCityEntityId": "city-2628cfaa45b85a20",
+      "wikidataId": "Q1720678",
+      "canonicalNameEn": "Salagi Forest Park",
+      "positiveTypePath": [
+        "Q473972"
+      ],
+      "distanceKm": 8.585
+    }
+  ],
+  "quarantineCount": 207
+}

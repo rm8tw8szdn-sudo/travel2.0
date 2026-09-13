@@ -1,0 +1,957 @@
+{
+  "schemaVersion": "route-v2-knowledge-expansion-batch11-wave1-selection-v1",
+  "wave": 1,
+  "countries": [
+    {
+      "isoAlpha2": "AF",
+      "wikidataId": "Q889",
+      "entityId": "country-d99802246f848e6e"
+    },
+    {
+      "isoAlpha2": "AG",
+      "wikidataId": "Q781",
+      "entityId": "country-bd9fb0d58daf38e8"
+    },
+    {
+      "isoAlpha2": "BY",
+      "wikidataId": "Q184",
+      "entityId": "country-315b3181b7ae770e"
+    },
+    {
+      "isoAlpha2": "BJ",
+      "wikidataId": "Q962",
+      "entityId": "country-52193f8927b92dd5"
+    },
+    {
+      "isoAlpha2": "BF",
+      "wikidataId": "Q965",
+      "entityId": "country-525d7ff5890284ed"
+    }
+  ],
+  "cities": [
+    {
+      "countryCode": "AF",
+      "tier": "world",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 7,
+      "reused": false,
+      "entityId": "city-622724cd27d620bd",
+      "wikidataId": "Q5838",
+      "canonicalNameEn": "Kabul",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "AF",
+      "tier": "core",
+      "targetPoiCount": 5,
+      "selectedPoiCount": 5,
+      "reused": false,
+      "entityId": "city-2b64a28100236160",
+      "wikidataId": "Q45313",
+      "canonicalNameEn": "Herat",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "AF",
+      "tier": "core",
+      "targetPoiCount": 5,
+      "selectedPoiCount": 1,
+      "reused": false,
+      "entityId": "city-0cb22ab1560f3d62",
+      "wikidataId": "Q130469",
+      "canonicalNameEn": "Mazar-i-Sharif",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "AG",
+      "tier": "world",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 7,
+      "reused": false,
+      "entityId": "city-b42fb7994a854ea5",
+      "wikidataId": "Q36262",
+      "canonicalNameEn": "St. John's",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "AG",
+      "tier": "standard",
+      "targetPoiCount": 3,
+      "selectedPoiCount": 3,
+      "reused": false,
+      "entityId": "city-8cbde2ce68a8bf1f",
+      "wikidataId": "Q31578200",
+      "canonicalNameEn": "English Harbour",
+      "positiveTypePath": [
+        "Q486972"
+      ]
+    },
+    {
+      "countryCode": "BY",
+      "tier": "world",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 7,
+      "reused": false,
+      "entityId": "city-112c0170dc0c9510",
+      "wikidataId": "Q2280",
+      "canonicalNameEn": "Minsk",
+      "positiveTypePath": [
+        "Q7930989",
+        "Q124250988",
+        "Q486972"
+      ]
+    },
+    {
+      "countryCode": "BY",
+      "tier": "core",
+      "targetPoiCount": 5,
+      "selectedPoiCount": 5,
+      "reused": false,
+      "entityId": "city-922749630466d376",
+      "wikidataId": "Q140147",
+      "canonicalNameEn": "Brest",
+      "positiveTypePath": [
+        "Q902814",
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "BY",
+      "tier": "core",
+      "targetPoiCount": 5,
+      "selectedPoiCount": 5,
+      "reused": false,
+      "entityId": "city-83f33b3921666ee2",
+      "wikidataId": "Q181376",
+      "canonicalNameEn": "Grodno",
+      "positiveTypePath": [
+        "Q7930989",
+        "Q124250988",
+        "Q486972"
+      ]
+    },
+    {
+      "countryCode": "BJ",
+      "tier": "world",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 6,
+      "reused": false,
+      "entityId": "city-3b3c9457618c868e",
+      "wikidataId": "Q43595",
+      "canonicalNameEn": "Cotonou",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "BJ",
+      "tier": "core",
+      "targetPoiCount": 5,
+      "selectedPoiCount": 4,
+      "reused": false,
+      "entityId": "city-17793b277caddfed",
+      "wikidataId": "Q3799",
+      "canonicalNameEn": "Porto-Novo",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "BJ",
+      "tier": "core",
+      "targetPoiCount": 5,
+      "selectedPoiCount": 5,
+      "reused": false,
+      "entityId": "city-736f6f9f243c8718",
+      "wikidataId": "Q850031",
+      "canonicalNameEn": "Ouidah",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "BF",
+      "tier": "world",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 3,
+      "reused": false,
+      "entityId": "city-65e19c58854745ec",
+      "wikidataId": "Q3777",
+      "canonicalNameEn": "Ouagadougou",
+      "positiveTypePath": [
+        "Q1549591",
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "BF",
+      "tier": "core",
+      "targetPoiCount": 5,
+      "selectedPoiCount": 4,
+      "reused": false,
+      "entityId": "city-bf7306c75f4c457f",
+      "wikidataId": "Q223761",
+      "canonicalNameEn": "Bobo-Dioulasso",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    }
+  ],
+  "pois": [
+    {
+      "entityId": "poi-cb9b97b7a852617e",
+      "parentCityEntityId": "city-622724cd27d620bd",
+      "wikidataId": "Q1900234",
+      "canonicalNameEn": "Gardens of Babur",
+      "positiveTypePath": [
+        "Q22698"
+      ],
+      "distanceKm": 3.354
+    },
+    {
+      "entityId": "poi-1b324d523d340040",
+      "parentCityEntityId": "city-622724cd27d620bd",
+      "wikidataId": "Q3409617",
+      "canonicalNameEn": "Abdul Rahman Mosque",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 1.552
+    },
+    {
+      "entityId": "poi-a75b67f4117f8344",
+      "parentCityEntityId": "city-622724cd27d620bd",
+      "wikidataId": "Q2393709",
+      "canonicalNameEn": "Pul-e Khishti Mosque",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 2.328
+    },
+    {
+      "entityId": "poi-fc9ce44b4a5b1e07",
+      "parentCityEntityId": "city-622724cd27d620bd",
+      "wikidataId": "Q7461208",
+      "canonicalNameEn": "Shah-Do Shamshira Mosque",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 1.971
+    },
+    {
+      "entityId": "poi-c2c001492e8e4a91",
+      "parentCityEntityId": "city-622724cd27d620bd",
+      "wikidataId": "Q3407426",
+      "canonicalNameEn": "Id Gah Mosque",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 2.77
+    },
+    {
+      "entityId": "poi-5c317d2ed8f09acc",
+      "parentCityEntityId": "city-622724cd27d620bd",
+      "wikidataId": "Q833625",
+      "canonicalNameEn": "Kabul Zoo",
+      "positiveTypePath": [
+        "Q43501",
+        "Q22698"
+      ],
+      "distanceKm": 2.769
+    },
+    {
+      "entityId": "poi-2cb296dc894b3f5b",
+      "parentCityEntityId": "city-622724cd27d620bd",
+      "wikidataId": "Q50844233",
+      "canonicalNameEn": "Sakhi Shrine",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 2.259
+    },
+    {
+      "entityId": "poi-4d5be2281cf37396",
+      "parentCityEntityId": "city-2b64a28100236160",
+      "wikidataId": "Q1291612",
+      "canonicalNameEn": "Friday Mosque of Herat",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 0.675
+    },
+    {
+      "entityId": "poi-b3dc71b69a8e9fce",
+      "parentCityEntityId": "city-2b64a28100236160",
+      "wikidataId": "Q10859317",
+      "canonicalNameEn": "Herat Citadel",
+      "positiveTypePath": [
+        "Q23413",
+        "Q57821",
+        "Q811979"
+      ],
+      "distanceKm": 1.395
+    },
+    {
+      "entityId": "poi-41f6580129b0c4bc",
+      "parentCityEntityId": "city-2b64a28100236160",
+      "wikidataId": "Q6403410",
+      "canonicalNameEn": "Khwaja Abdullah Ansari Mausoleum",
+      "positiveTypePath": [
+        "Q162875",
+        "Q4989906"
+      ],
+      "distanceKm": 4.988
+    },
+    {
+      "entityId": "poi-517a24a1a81eaa17",
+      "parentCityEntityId": "city-2b64a28100236160",
+      "wikidataId": "Q6925987",
+      "canonicalNameEn": "Mousallah Complex",
+      "positiveTypePath": [
+        "Q839954"
+      ],
+      "distanceKm": 2.467
+    },
+    {
+      "entityId": "poi-b82a8db83ffe3913",
+      "parentCityEntityId": "city-2b64a28100236160",
+      "wikidataId": "Q4809497",
+      "canonicalNameEn": "Yu Aw Synagogue",
+      "positiveTypePath": [
+        "Q34627",
+        "Q831219",
+        "Q1370598"
+      ],
+      "distanceKm": 1.539
+    },
+    {
+      "entityId": "poi-4e55e320cea3a150",
+      "parentCityEntityId": "city-0cb22ab1560f3d62",
+      "wikidataId": "Q138388",
+      "canonicalNameEn": "Blue Mosque",
+      "positiveTypePath": [
+        "Q15135589",
+        "Q1370598"
+      ],
+      "distanceKm": 1.117
+    },
+    {
+      "entityId": "poi-e3dc14dc05b9d6e1",
+      "parentCityEntityId": "city-b42fb7994a854ea5",
+      "wikidataId": "Q630708",
+      "canonicalNameEn": "Antigua Public Library",
+      "positiveTypePath": [
+        "Q22806",
+        "Q65768782",
+        "Q385994",
+        "Q7075",
+        "Q101542346",
+        "Q13226383"
+      ],
+      "distanceKm": 0.644
+    },
+    {
+      "entityId": "poi-8d8e92e4df899707",
+      "parentCityEntityId": "city-b42fb7994a854ea5",
+      "wikidataId": "Q2912720",
+      "canonicalNameEn": "Museum of Antigua and Barbuda",
+      "positiveTypePath": [
+        "Q33506"
+      ],
+      "distanceKm": 0.149
+    },
+    {
+      "entityId": "poi-92dceaf42c5e9ba1",
+      "parentCityEntityId": "city-b42fb7994a854ea5",
+      "wikidataId": "Q4265706",
+      "canonicalNameEn": "St. John's Cathedral",
+      "positiveTypePath": [
+        "Q56242250",
+        "Q58079064",
+        "Q24398318",
+        "Q1370598"
+      ],
+      "distanceKm": 0.348
+    },
+    {
+      "entityId": "poi-0ff84311e87ae80e",
+      "parentCityEntityId": "city-b42fb7994a854ea5",
+      "wikidataId": "Q5471402",
+      "canonicalNameEn": "Fort James",
+      "positiveTypePath": [
+        "Q1785071",
+        "Q57821",
+        "Q811979"
+      ],
+      "distanceKm": 2.265
+    },
+    {
+      "entityId": "poi-23def205595fa426",
+      "parentCityEntityId": "city-b42fb7994a854ea5",
+      "wikidataId": "Q5167174",
+      "canonicalNameEn": "Cooks Creek",
+      "positiveTypePath": [
+        "Q4022",
+        "Q2479431",
+        "Q15324"
+      ],
+      "distanceKm": 3.309
+    },
+    {
+      "entityId": "poi-dfc11b339e9355cf",
+      "parentCityEntityId": "city-b42fb7994a854ea5",
+      "wikidataId": "Q6801990",
+      "canonicalNameEn": "McKinnon's Pond",
+      "positiveTypePath": [
+        "Q188025",
+        "Q23397",
+        "Q271669"
+      ],
+      "distanceKm": 2.874
+    },
+    {
+      "entityId": "poi-f7521b6b02b090d8",
+      "parentCityEntityId": "city-b42fb7994a854ea5",
+      "wikidataId": "Q25041774",
+      "canonicalNameEn": "Runaway Beach",
+      "positiveTypePath": [
+        "Q40080",
+        "Q107123630",
+        "Q811979"
+      ],
+      "distanceKm": 2.97
+    },
+    {
+      "entityId": "poi-d8bd157adac36d79",
+      "parentCityEntityId": "city-8cbde2ce68a8bf1f",
+      "wikidataId": "Q5432586",
+      "canonicalNameEn": "Falmouth Harbour",
+      "positiveTypePath": [
+        "Q39594",
+        "Q2507626",
+        "Q15324"
+      ],
+      "distanceKm": 0.616
+    },
+    {
+      "entityId": "poi-5f331824a80561aa",
+      "parentCityEntityId": "city-8cbde2ce68a8bf1f",
+      "wikidataId": "Q124402010",
+      "canonicalNameEn": "Antigua Naval Dockyard and Related Archaeological Sites",
+      "positiveTypePath": [
+        "Q283202",
+        "Q39594",
+        "Q2507626",
+        "Q15324"
+      ],
+      "distanceKm": 1.519
+    },
+    {
+      "entityId": "poi-15681a21ee957b09",
+      "parentCityEntityId": "city-8cbde2ce68a8bf1f",
+      "wikidataId": "Q8022209",
+      "canonicalNameEn": "Willoughby Bay",
+      "positiveTypePath": [
+        "Q39594",
+        "Q2507626",
+        "Q15324"
+      ],
+      "distanceKm": 4.001
+    },
+    {
+      "entityId": "poi-3ec3960c1faec89b",
+      "parentCityEntityId": "city-112c0170dc0c9510",
+      "wikidataId": "Q1742825",
+      "canonicalNameEn": "Church of Saints Simon and Helena",
+      "positiveTypePath": [
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 1.136
+    },
+    {
+      "entityId": "poi-40991feac00ea1fc",
+      "parentCityEntityId": "city-112c0170dc0c9510",
+      "wikidataId": "Q2584571",
+      "canonicalNameEn": "Belarusian National Arts Museum",
+      "positiveTypePath": [
+        "Q207694",
+        "Q33506"
+      ],
+      "distanceKm": 0.443
+    },
+    {
+      "entityId": "poi-5ca2079e9b412e31",
+      "parentCityEntityId": "city-112c0170dc0c9510",
+      "wikidataId": "Q1637149",
+      "canonicalNameEn": "Cathedral of the Holy Name of Saint Virgin Mary",
+      "positiveTypePath": [
+        "Q1088552",
+        "Q140454931",
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 0.484
+    },
+    {
+      "entityId": "poi-6115cff69a843c4d",
+      "parentCityEntityId": "city-112c0170dc0c9510",
+      "wikidataId": "Q2588857",
+      "canonicalNameEn": "Holy Spirit Cathedral",
+      "positiveTypePath": [
+        "Q1088552",
+        "Q140454931",
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 0.484
+    },
+    {
+      "entityId": "poi-579d61cbe574dab9",
+      "parentCityEntityId": "city-112c0170dc0c9510",
+      "wikidataId": "Q2635425",
+      "canonicalNameEn": "Victory Square",
+      "positiveTypePath": [
+        "Q174782",
+        "Q811979"
+      ],
+      "distanceKm": 1.099
+    },
+    {
+      "entityId": "poi-26b4010b1324c648",
+      "parentCityEntityId": "city-112c0170dc0c9510",
+      "wikidataId": "Q2034395",
+      "canonicalNameEn": "Belarusian National History and Culture Museum",
+      "positiveTypePath": [
+        "Q33506"
+      ],
+      "distanceKm": 0.744
+    },
+    {
+      "entityId": "poi-edc56fa8ef1210d6",
+      "parentCityEntityId": "city-112c0170dc0c9510",
+      "wikidataId": "Q1995558",
+      "canonicalNameEn": "Independence Square, Minsk",
+      "positiveTypePath": [
+        "Q174782",
+        "Q811979"
+      ],
+      "distanceKm": 1.184
+    },
+    {
+      "entityId": "poi-fd582557bc553016",
+      "parentCityEntityId": "city-922749630466d376",
+      "wikidataId": "Q23868",
+      "canonicalNameEn": "Brest Fortress",
+      "positiveTypePath": [
+        "Q12057999",
+        "Q18247357",
+        "Q811979"
+      ],
+      "distanceKm": 0.324
+    },
+    {
+      "entityId": "poi-2351dfbc524b7e77",
+      "parentCityEntityId": "city-922749630466d376",
+      "wikidataId": "Q2499504",
+      "canonicalNameEn": "Berestye Archeological Museum",
+      "positiveTypePath": [
+        "Q3329412",
+        "Q16735822",
+        "Q33506"
+      ],
+      "distanceKm": 0.55
+    },
+    {
+      "entityId": "poi-c8de64f459596417",
+      "parentCityEntityId": "city-922749630466d376",
+      "wikidataId": "Q1189908",
+      "canonicalNameEn": "Brest Castle",
+      "positiveTypePath": [
+        "Q23413",
+        "Q57821",
+        "Q811979"
+      ],
+      "distanceKm": 0.492
+    },
+    {
+      "entityId": "poi-4cfc5c06a5ed2e3e",
+      "parentCityEntityId": "city-922749630466d376",
+      "wikidataId": "Q9349056",
+      "canonicalNameEn": "Choral Synagogue",
+      "positiveTypePath": [
+        "Q34627",
+        "Q831219",
+        "Q1370598"
+      ],
+      "distanceKm": 2.664
+    },
+    {
+      "entityId": "poi-86f2d9b0c1711751",
+      "parentCityEntityId": "city-922749630466d376",
+      "wikidataId": "Q2509602",
+      "canonicalNameEn": "Brest Railway Museum",
+      "positiveTypePath": [
+        "Q18704634",
+        "Q2516357",
+        "Q2398990",
+        "Q588140",
+        "Q33506"
+      ],
+      "distanceKm": 1.029
+    },
+    {
+      "entityId": "poi-b4ffb0ad0e842731",
+      "parentCityEntityId": "city-83f33b3921666ee2",
+      "wikidataId": "Q2630583",
+      "canonicalNameEn": "St. Francis Xavier Cathedral, Grodno",
+      "positiveTypePath": [
+        "Q120560",
+        "Q4846867",
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 1.596
+    },
+    {
+      "entityId": "poi-e7b022de74a88052",
+      "parentCityEntityId": "city-83f33b3921666ee2",
+      "wikidataId": "Q2986701",
+      "canonicalNameEn": "Kaloža Church",
+      "positiveTypePath": [
+        "Q2031836",
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 1.312
+    },
+    {
+      "entityId": "poi-9170b496a11c0b79",
+      "parentCityEntityId": "city-83f33b3921666ee2",
+      "wikidataId": "Q2659535",
+      "canonicalNameEn": "Old Grodno Castle",
+      "positiveTypePath": [
+        "Q23413",
+        "Q57821",
+        "Q811979"
+      ],
+      "distanceKm": 1.222
+    },
+    {
+      "entityId": "poi-98766513bd69f3c0",
+      "parentCityEntityId": "city-83f33b3921666ee2",
+      "wikidataId": "Q268433",
+      "canonicalNameEn": "New Grodno Castle",
+      "positiveTypePath": [
+        "Q16560",
+        "Q41176"
+      ],
+      "distanceKm": 1.199
+    },
+    {
+      "entityId": "poi-6b96b2c0aa1b9410",
+      "parentCityEntityId": "city-83f33b3921666ee2",
+      "wikidataId": "Q2665045",
+      "canonicalNameEn": "Great Synagogue",
+      "positiveTypePath": [
+        "Q34627",
+        "Q831219",
+        "Q1370598"
+      ],
+      "distanceKm": 1.491
+    },
+    {
+      "entityId": "poi-841ae75ada2ae22e",
+      "parentCityEntityId": "city-3b3c9457618c868e",
+      "wikidataId": "Q268631",
+      "canonicalNameEn": "Lake Nokoué",
+      "positiveTypePath": [
+        "Q187223",
+        "Q135951980",
+        "Q23397",
+        "Q271669"
+      ],
+      "distanceKm": 7.417
+    },
+    {
+      "entityId": "poi-4765ef9eb12ae006",
+      "parentCityEntityId": "city-3b3c9457618c868e",
+      "wikidataId": "Q2942229",
+      "canonicalNameEn": "Cotonou Cathedral",
+      "positiveTypePath": [
+        "Q56242215",
+        "Q2977",
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 2.738
+    },
+    {
+      "entityId": "poi-adbf8e78fcde0ae5",
+      "parentCityEntityId": "city-3b3c9457618c868e",
+      "wikidataId": "Q112032217",
+      "canonicalNameEn": "Amazon Monument",
+      "positiveTypePath": [
+        "Q4989906"
+      ],
+      "distanceKm": 2.207
+    },
+    {
+      "entityId": "poi-f7a6f16931a12a27",
+      "parentCityEntityId": "city-3b3c9457618c868e",
+      "wikidataId": "Q4752787",
+      "canonicalNameEn": "Ancien Pont Bridge",
+      "positiveTypePath": [
+        "Q12280",
+        "Q811979"
+      ],
+      "distanceKm": 2.904
+    },
+    {
+      "entityId": "poi-d1c998bd93fdeda6",
+      "parentCityEntityId": "city-3b3c9457618c868e",
+      "wikidataId": "Q106195578",
+      "canonicalNameEn": "Presidential Palace, Cotonou",
+      "positiveTypePath": [
+        "Q2114972",
+        "Q16560",
+        "Q41176"
+      ],
+      "distanceKm": 1.867
+    },
+    {
+      "entityId": "poi-0153c318af13b013",
+      "parentCityEntityId": "city-3b3c9457618c868e",
+      "wikidataId": "Q5175452",
+      "canonicalNameEn": "Cotonou Central Mosque",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 2.153
+    },
+    {
+      "entityId": "poi-28651ed298b0b59c",
+      "parentCityEntityId": "city-17793b277caddfed",
+      "wikidataId": "Q4781577",
+      "canonicalNameEn": "Okpara River",
+      "positiveTypePath": [
+        "Q4022",
+        "Q2479431",
+        "Q15324"
+      ],
+      "distanceKm": 9.229
+    },
+    {
+      "entityId": "poi-3fbf0d351127958b",
+      "parentCityEntityId": "city-17793b277caddfed",
+      "wikidataId": "Q6974139",
+      "canonicalNameEn": "National Library of Benin",
+      "positiveTypePath": [
+        "Q22806",
+        "Q65768782",
+        "Q385994",
+        "Q7075",
+        "Q101542346",
+        "Q13226383"
+      ],
+      "distanceKm": 3.374
+    },
+    {
+      "entityId": "poi-f8ee959ece5094f2",
+      "parentCityEntityId": "city-17793b277caddfed",
+      "wikidataId": "Q2784858",
+      "canonicalNameEn": "Royal Palace Museum",
+      "positiveTypePath": [
+        "Q16560",
+        "Q41176"
+      ],
+      "distanceKm": 1.806
+    },
+    {
+      "entityId": "poi-e3076330e15eb22b",
+      "parentCityEntityId": "city-17793b277caddfed",
+      "wikidataId": "Q94238736",
+      "canonicalNameEn": "Great Mosque of Porto-Novo",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 1.816
+    },
+    {
+      "entityId": "poi-152aa7684eb80c9d",
+      "parentCityEntityId": "city-736f6f9f243c8718",
+      "wikidataId": "Q1969968",
+      "canonicalNameEn": "São João Baptista d’Ajudá",
+      "positiveTypePath": [
+        "Q57831",
+        "Q18691599",
+        "Q13226383"
+      ],
+      "distanceKm": 1.136
+    },
+    {
+      "entityId": "poi-ff5ee760bc908cee",
+      "parentCityEntityId": "city-736f6f9f243c8718",
+      "wikidataId": "Q18467833",
+      "canonicalNameEn": "Door of No Return",
+      "positiveTypePath": [
+        "Q4989906"
+      ],
+      "distanceKm": 4.791
+    },
+    {
+      "entityId": "poi-26cc879ecd370083",
+      "parentCityEntityId": "city-736f6f9f243c8718",
+      "wikidataId": "Q7110333",
+      "canonicalNameEn": "Ouidah Museum of History",
+      "positiveTypePath": [
+        "Q16735822",
+        "Q33506"
+      ],
+      "distanceKm": 1.124
+    },
+    {
+      "entityId": "poi-e9d07df98d001077",
+      "parentCityEntityId": "city-736f6f9f243c8718",
+      "wikidataId": "Q2091236",
+      "canonicalNameEn": "Basilique de l'Immaculée Conception",
+      "positiveTypePath": [
+        "Q120560",
+        "Q4846867",
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 0.686
+    },
+    {
+      "entityId": "poi-f850dd560cce22b7",
+      "parentCityEntityId": "city-736f6f9f243c8718",
+      "wikidataId": "Q136148430",
+      "canonicalNameEn": "Jardin d'Essai (Ouidah)",
+      "positiveTypePath": [
+        "Q167346",
+        "Q13226383"
+      ],
+      "distanceKm": 4.62
+    },
+    {
+      "entityId": "poi-5584d455d0acd796",
+      "parentCityEntityId": "city-65e19c58854745ec",
+      "wikidataId": "Q1736205",
+      "canonicalNameEn": "Ouagadougou Cathedral",
+      "positiveTypePath": [
+        "Q56242215",
+        "Q2977",
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 0.74
+    },
+    {
+      "entityId": "poi-a3899d4ace4d56e4",
+      "parentCityEntityId": "city-65e19c58854745ec",
+      "wikidataId": "Q15116315",
+      "canonicalNameEn": "National Library of Burkina Faso",
+      "positiveTypePath": [
+        "Q22806",
+        "Q65768782",
+        "Q385994",
+        "Q7075",
+        "Q101542346",
+        "Q13226383"
+      ],
+      "distanceKm": 0.8
+    },
+    {
+      "entityId": "poi-32e386aa38f047b6",
+      "parentCityEntityId": "city-65e19c58854745ec",
+      "wikidataId": "Q1955714",
+      "canonicalNameEn": "Musée de la musique de Ouagadougou",
+      "positiveTypePath": [
+        "Q17431399",
+        "Q33506"
+      ],
+      "distanceKm": 1.281
+    },
+    {
+      "entityId": "poi-c1ea73fd8e17635f",
+      "parentCityEntityId": "city-bf7306c75f4c457f",
+      "wikidataId": "Q21008042",
+      "canonicalNameEn": "Cathedral Notre-Dame-de-Lourdes of Bobo-Dioulasso",
+      "positiveTypePath": [
+        "Q2977",
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 2.227
+    },
+    {
+      "entityId": "poi-86b1d811252ce462",
+      "parentCityEntityId": "city-bf7306c75f4c457f",
+      "wikidataId": "Q108590941",
+      "canonicalNameEn": "Mosquée de Dioulasso-bâ",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 1.508
+    },
+    {
+      "entityId": "poi-439cdd969e88f08d",
+      "parentCityEntityId": "city-bf7306c75f4c457f",
+      "wikidataId": "Q130395088",
+      "canonicalNameEn": "Musée Communal Sogossira Sanon",
+      "positiveTypePath": [
+        "Q33506"
+      ],
+      "distanceKm": 2.203
+    },
+    {
+      "entityId": "poi-dd0e8546894bb445",
+      "parentCityEntityId": "city-bf7306c75f4c457f",
+      "wikidataId": "Q138784124",
+      "canonicalNameEn": "House of Culture of Bobo-Dioulasso",
+      "positiveTypePath": [
+        "Q1329623",
+        "Q41176"
+      ],
+      "distanceKm": 2.375
+    }
+  ],
+  "quarantineCount": 682
+}

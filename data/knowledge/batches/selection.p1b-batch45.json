@@ -1,0 +1,291 @@
+{
+  "schemaVersion": "route-v2-knowledge-expansion-batch12-wave4-selection-v1",
+  "wave": 4,
+  "countries": [
+    {
+      "isoAlpha2": "NR",
+      "wikidataId": "Q697",
+      "entityId": "country-4dda512b83254de0"
+    },
+    {
+      "isoAlpha2": "NE",
+      "wikidataId": "Q1032",
+      "entityId": "country-42602ed6250e3524"
+    },
+    {
+      "isoAlpha2": "PW",
+      "wikidataId": "Q695",
+      "entityId": "country-569763cec15f7200"
+    },
+    {
+      "isoAlpha2": "KN",
+      "wikidataId": "Q763",
+      "entityId": "country-9fc06f1782655c56"
+    }
+  ],
+  "cities": [
+    {
+      "countryCode": "NE",
+      "tier": "world",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 5,
+      "reused": false,
+      "entityId": "city-847addbc12a78e55",
+      "wikidataId": "Q3674",
+      "canonicalNameEn": "Niamey",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "PW",
+      "tier": "world",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 3,
+      "reused": false,
+      "entityId": "city-9b5c034b3920c8ca",
+      "wikidataId": "Q515229",
+      "canonicalNameEn": "Ngerulmud",
+      "positiveTypePath": [
+        "Q486972"
+      ]
+    },
+    {
+      "countryCode": "KN",
+      "tier": "world",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 7,
+      "reused": false,
+      "entityId": "city-c2ab81fa714c618e",
+      "wikidataId": "Q41295",
+      "canonicalNameEn": "Basseterre",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "KN",
+      "tier": "standard",
+      "targetPoiCount": 3,
+      "selectedPoiCount": 3,
+      "reused": false,
+      "entityId": "city-79ceb5a70825c90f",
+      "wikidataId": "Q992311",
+      "canonicalNameEn": "Charlestown",
+      "positiveTypePath": [
+        "Q486972"
+      ]
+    }
+  ],
+  "pois": [
+    {
+      "entityId": "poi-3188deedd5dcd2da",
+      "parentCityEntityId": "city-847addbc12a78e55",
+      "wikidataId": "Q279545",
+      "canonicalNameEn": "Niamey Grand Mosque",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 1.843
+    },
+    {
+      "entityId": "poi-2fa694af56cebd26",
+      "parentCityEntityId": "city-847addbc12a78e55",
+      "wikidataId": "Q1989844",
+      "canonicalNameEn": "Boubou Hama National Museum",
+      "positiveTypePath": [
+        "Q17431399",
+        "Q33506"
+      ],
+      "distanceKm": 1.192
+    },
+    {
+      "entityId": "poi-b1cf8674c79bd505",
+      "parentCityEntityId": "city-847addbc12a78e55",
+      "wikidataId": "Q1101213",
+      "canonicalNameEn": "Kennedy Bridge",
+      "positiveTypePath": [
+        "Q537127",
+        "Q12280",
+        "Q811979"
+      ],
+      "distanceKm": 1.854
+    },
+    {
+      "entityId": "poi-71215dce7f9159ad",
+      "parentCityEntityId": "city-847addbc12a78e55",
+      "wikidataId": "Q24060612",
+      "canonicalNameEn": "Our Lady of Perpetual Help Cathedral",
+      "positiveTypePath": [
+        "Q56242215",
+        "Q2977",
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 0.802
+    },
+    {
+      "entityId": "poi-97a93d7da7d965a4",
+      "parentCityEntityId": "city-847addbc12a78e55",
+      "wikidataId": "Q3114716",
+      "canonicalNameEn": "Niamey Grand Market",
+      "positiveTypePath": null,
+      "distanceKm": 0.163
+    },
+    {
+      "entityId": "poi-14ed8c5281848f28",
+      "parentCityEntityId": "city-9b5c034b3920c8ca",
+      "wikidataId": "Q746861",
+      "canonicalNameEn": "Babeldaob",
+      "positiveTypePath": [
+        "Q23442",
+        "Q271669"
+      ],
+      "distanceKm": 7.339
+    },
+    {
+      "entityId": "poi-d5444c8059c5f540",
+      "parentCityEntityId": "city-9b5c034b3920c8ca",
+      "wikidataId": "Q1191219",
+      "canonicalNameEn": "Mount Ngerchelchuus",
+      "positiveTypePath": [
+        "Q8502",
+        "Q35145263"
+      ],
+      "distanceKm": 9.391
+    },
+    {
+      "entityId": "poi-88dda0345a9d4886",
+      "parentCityEntityId": "city-9b5c034b3920c8ca",
+      "wikidataId": "Q1813703",
+      "canonicalNameEn": "Lake Ngardok",
+      "positiveTypePath": [
+        "Q23397",
+        "Q271669"
+      ],
+      "distanceKm": 2.627
+    },
+    {
+      "entityId": "poi-98e58c19aeb1e10b",
+      "parentCityEntityId": "city-c2ab81fa714c618e",
+      "wikidataId": "Q5504478",
+      "canonicalNameEn": "Frigate Bay",
+      "positiveTypePath": [
+        "Q39594",
+        "Q2507626",
+        "Q15324"
+      ],
+      "distanceKm": 6.444
+    },
+    {
+      "entityId": "poi-0395a4d727206ff4",
+      "parentCityEntityId": "city-c2ab81fa714c618e",
+      "wikidataId": "Q4868078",
+      "canonicalNameEn": "Co-Cathedral of Immaculate Conception, Basseterre",
+      "positiveTypePath": [
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 1.37
+    },
+    {
+      "entityId": "poi-d982bf0f365a6b46",
+      "parentCityEntityId": "city-c2ab81fa714c618e",
+      "wikidataId": "Q4892058",
+      "canonicalNameEn": "Berkeley Memorial",
+      "positiveTypePath": [
+        "Q483453",
+        "Q811979"
+      ],
+      "distanceKm": 1.159
+    },
+    {
+      "entityId": "poi-fca9bd13265a492b",
+      "parentCityEntityId": "city-c2ab81fa714c618e",
+      "wikidataId": "Q7588089",
+      "canonicalNameEn": "St. George's Anglican Church",
+      "positiveTypePath": [
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 1.617
+    },
+    {
+      "entityId": "poi-5ec9bf3829a42fa1",
+      "parentCityEntityId": "city-c2ab81fa714c618e",
+      "wikidataId": "Q7087246",
+      "canonicalNameEn": "Olivees Mountain",
+      "positiveTypePath": [
+        "Q8502",
+        "Q35145263"
+      ],
+      "distanceKm": 2.642
+    },
+    {
+      "entityId": "poi-6739f9404ca77c70",
+      "parentCityEntityId": "city-c2ab81fa714c618e",
+      "wikidataId": "Q7921002",
+      "canonicalNameEn": "Verchild's Peak",
+      "positiveTypePath": [
+        "Q8502",
+        "Q35145263"
+      ],
+      "distanceKm": 7.762
+    },
+    {
+      "entityId": "poi-1f733b83eeb5071c",
+      "parentCityEntityId": "city-c2ab81fa714c618e",
+      "wikidataId": "Q5074840",
+      "canonicalNameEn": "Charles A. Halbert Public Library",
+      "positiveTypePath": [
+        "Q22806",
+        "Q65768782",
+        "Q385994",
+        "Q7075",
+        "Q101542346",
+        "Q13226383"
+      ],
+      "distanceKm": 0.379
+    },
+    {
+      "entityId": "poi-e0e6df1c822a8c2d",
+      "parentCityEntityId": "city-79ceb5a70825c90f",
+      "wikidataId": "Q1982346",
+      "canonicalNameEn": "Nevis Peak",
+      "positiveTypePath": [
+        "Q8502",
+        "Q35145263"
+      ],
+      "distanceKm": 4.811
+    },
+    {
+      "entityId": "poi-0de5d1c72175ed68",
+      "parentCityEntityId": "city-79ceb5a70825c90f",
+      "wikidataId": "Q892946",
+      "canonicalNameEn": "Booby Island",
+      "positiveTypePath": [
+        "Q23442",
+        "Q271669"
+      ],
+      "distanceKm": 9.485
+    },
+    {
+      "entityId": "poi-a12671def0584ea0",
+      "parentCityEntityId": "city-79ceb5a70825c90f",
+      "wikidataId": "Q3495992",
+      "canonicalNameEn": "The Narrows",
+      "positiveTypePath": [
+        "Q1210950",
+        "Q271669"
+      ],
+      "distanceKm": 7.682
+    }
+  ],
+  "quarantineCount": 211
+}

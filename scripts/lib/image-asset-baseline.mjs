@@ -213,8 +213,9 @@ function lfsInventory(root) {
   return records.sort((left, right) => left.path.localeCompare(right.path, "en"));
 }
 
-function referenceKind(sourcePath) {
+export function imageReferenceKind(sourcePath) {
   if (/^scripts\/verify-/u.test(sourcePath)) return "test";
+  if (/^tests\//u.test(sourcePath)) return "test";
   if (/^data\/knowledge\/(?:raw|reports|batches)\//u.test(sourcePath)) return "audit";
   if (/^data\/route-v2\/images\/(?:batch\d{2}-dedicated-image-provenance|image-debt-[a-z0-9-]+)\.json$/u.test(sourcePath)) return "audit";
   if (/^data\/route-v2\/images\/audit\//u.test(sourcePath)) return "audit";
@@ -251,7 +252,7 @@ function collectReferences({ root, allFiles, imagePathSet }) {
     } catch {
       continue;
     }
-    const kind = referenceKind(sourcePath);
+    const kind = imageReferenceKind(sourcePath);
     for (const match of source.matchAll(localPattern)) {
       if (/[${}]/u.test(match[0])) continue;
       const assetPath = cleanPath(match[0]);
@@ -789,6 +790,42 @@ ${markdownList(model.git.invalidLfsPointers)}
 
 export function stableBaselineJson(model) {
   return `${JSON.stringify(model, null, 2)}\n`;
+}
+
+const SEALED_REFERENCE_KINDS = new Set(["production", "manifest"]);
+
+function sealedReference(reference) {
+  return {
+    ...reference,
+    line: undefined,
+  };
+}
+
+export function imageAssetBaselineContractView(model) {
+  const view = structuredClone(model);
+  for (const asset of view.inventory || []) {
+    asset.references = (asset.references || [])
+      .filter((reference) => SEALED_REFERENCE_KINDS.has(reference.kind))
+      .map(sealedReference);
+  }
+  view.references = {
+    missingLocalAssets: (view.references?.missingLocalAssets || [])
+      .filter((reference) => SEALED_REFERENCE_KINDS.has(reference.kind))
+      .map(sealedReference),
+    blockingMissingLocalAssets: (view.references?.blockingMissingLocalAssets || [])
+      .filter((reference) => SEALED_REFERENCE_KINDS.has(reference.kind))
+      .map(sealedReference),
+    externalImageReferences: (view.references?.externalImageReferences || [])
+      .filter((reference) => SEALED_REFERENCE_KINDS.has(reference.kind))
+      .map(sealedReference),
+    unsafeProductionImages: (view.references?.unsafeProductionImages || []).map((asset) => ({
+      ...asset,
+      references: (asset.references || [])
+        .filter((reference) => SEALED_REFERENCE_KINDS.has(reference.kind))
+        .map(sealedReference),
+    })),
+  };
+  return view;
 }
 
 export function compareImageAssetBaselineInventories(currentInventory, sealedInventory) {

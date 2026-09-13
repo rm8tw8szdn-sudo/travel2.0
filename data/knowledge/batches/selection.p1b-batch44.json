@@ -1,0 +1,381 @@
+{
+  "schemaVersion": "route-v2-knowledge-expansion-batch12-wave3-selection-v1",
+  "wave": 3,
+  "countries": [
+    {
+      "isoAlpha2": "ML",
+      "wikidataId": "Q912",
+      "entityId": "country-a7f5c0130fd69bb1"
+    },
+    {
+      "isoAlpha2": "MH",
+      "wikidataId": "Q709",
+      "entityId": "country-f93b285e7fe9b395"
+    },
+    {
+      "isoAlpha2": "MR",
+      "wikidataId": "Q1025",
+      "entityId": "country-f4be80fbaadcef7c"
+    },
+    {
+      "isoAlpha2": "FM",
+      "wikidataId": "Q702",
+      "entityId": "country-ad119929aa32bea4"
+    }
+  ],
+  "cities": [
+    {
+      "countryCode": "ML",
+      "tier": "world",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 7,
+      "reused": false,
+      "entityId": "city-2ec40fc509ebfaea",
+      "wikidataId": "Q3703",
+      "canonicalNameEn": "Bamako",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "ML",
+      "tier": "core",
+      "targetPoiCount": 5,
+      "selectedPoiCount": 2,
+      "reused": false,
+      "entityId": "city-7d07c3f3a6ae56b5",
+      "wikidataId": "Q9427",
+      "canonicalNameEn": "Timbuktu",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "MH",
+      "tier": "world",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 3,
+      "reused": false,
+      "entityId": "city-0533f969c308cb75",
+      "wikidataId": "Q12919",
+      "canonicalNameEn": "Majuro",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "MR",
+      "tier": "world",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 7,
+      "reused": false,
+      "entityId": "city-a110652808f4bf46",
+      "wikidataId": "Q3688",
+      "canonicalNameEn": "Nouakchott",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "MR",
+      "tier": "core",
+      "targetPoiCount": 5,
+      "selectedPoiCount": 1,
+      "reused": false,
+      "entityId": "city-c7c154aff033e816",
+      "wikidataId": "Q312357",
+      "canonicalNameEn": "Chinguetti",
+      "positiveTypePath": [
+        "Q486972"
+      ]
+    },
+    {
+      "countryCode": "FM",
+      "tier": "world",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 3,
+      "reused": false,
+      "entityId": "city-98e17336c2dffdd3",
+      "wikidataId": "Q42751",
+      "canonicalNameEn": "Palikir",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    }
+  ],
+  "pois": [
+    {
+      "entityId": "poi-197146f7b8e3f9de",
+      "parentCityEntityId": "city-2ec40fc509ebfaea",
+      "wikidataId": "Q2477311",
+      "canonicalNameEn": "Bamako Grand Mosque",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 0.153
+    },
+    {
+      "entityId": "poi-79d9e147522f1dc4",
+      "parentCityEntityId": "city-2ec40fc509ebfaea",
+      "wikidataId": "Q1867505",
+      "canonicalNameEn": "National Museum of Mali",
+      "positiveTypePath": [
+        "Q17431399",
+        "Q33506"
+      ],
+      "distanceKm": 1.617
+    },
+    {
+      "entityId": "poi-41c98cc4b685d297",
+      "parentCityEntityId": "city-2ec40fc509ebfaea",
+      "wikidataId": "Q2090403",
+      "canonicalNameEn": "National Library of Mali",
+      "positiveTypePath": [
+        "Q22806",
+        "Q65768782",
+        "Q385994",
+        "Q7075",
+        "Q101542346",
+        "Q13226383"
+      ],
+      "distanceKm": 2.908
+    },
+    {
+      "entityId": "poi-c0f9e5d4863a04cb",
+      "parentCityEntityId": "city-2ec40fc509ebfaea",
+      "wikidataId": "Q2942903",
+      "canonicalNameEn": "Sacred Heart Cathedral",
+      "positiveTypePath": [
+        "Q56242215",
+        "Q2977",
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 0.846
+    },
+    {
+      "entityId": "poi-f83d881002604018",
+      "parentCityEntityId": "city-2ec40fc509ebfaea",
+      "wikidataId": "Q105706883",
+      "canonicalNameEn": "Muso Kunda Museum of Women",
+      "positiveTypePath": [
+        "Q33506"
+      ],
+      "distanceKm": 4.981
+    },
+    {
+      "entityId": "poi-deeae6d59108008c",
+      "parentCityEntityId": "city-2ec40fc509ebfaea",
+      "wikidataId": "Q3397394",
+      "canonicalNameEn": "Martyrs Bridge",
+      "positiveTypePath": [
+        "Q12280",
+        "Q811979"
+      ],
+      "distanceKm": 1.776
+    },
+    {
+      "entityId": "poi-af9560bd748bc972",
+      "parentCityEntityId": "city-2ec40fc509ebfaea",
+      "wikidataId": "Q3397513",
+      "canonicalNameEn": "King Fahd Bridge",
+      "positiveTypePath": [
+        "Q12280",
+        "Q811979"
+      ],
+      "distanceKm": 2.822
+    },
+    {
+      "entityId": "poi-076227cbbf9077de",
+      "parentCityEntityId": "city-7d07c3f3a6ae56b5",
+      "wikidataId": "Q2480949",
+      "canonicalNameEn": "Djinguereber Mosque",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 1.144
+    },
+    {
+      "entityId": "poi-c6ac1bcb8a7abc35",
+      "parentCityEntityId": "city-7d07c3f3a6ae56b5",
+      "wikidataId": "Q2843735",
+      "canonicalNameEn": "Sidi Yahya Mosque",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 0.83
+    },
+    {
+      "entityId": "poi-c50f51d081f0922c",
+      "parentCityEntityId": "city-0533f969c308cb75",
+      "wikidataId": "Q16825920",
+      "canonicalNameEn": "Cathedral of the Assumption, Majuro",
+      "positiveTypePath": [
+        "Q56242215",
+        "Q2977",
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 1.166
+    },
+    {
+      "entityId": "poi-650ba0c7623211de",
+      "parentCityEntityId": "city-0533f969c308cb75",
+      "wikidataId": "Q108559299",
+      "canonicalNameEn": "Baet-Ul-Ahad Mosque",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 1.903
+    },
+    {
+      "entityId": "poi-d96803732ecfd3f9",
+      "parentCityEntityId": "city-0533f969c308cb75",
+      "wikidataId": "Q16888259",
+      "canonicalNameEn": "National Archives of the Marshall Islands",
+      "positiveTypePath": [
+        "Q2122214",
+        "Q27031009",
+        "Q166118"
+      ],
+      "distanceKm": 1.899
+    },
+    {
+      "entityId": "poi-8ea0f692b43c2185",
+      "parentCityEntityId": "city-a110652808f4bf46",
+      "wikidataId": "Q2370438",
+      "canonicalNameEn": "National Museum of Mauritania",
+      "positiveTypePath": [
+        "Q17431399",
+        "Q33506"
+      ],
+      "distanceKm": 0.4
+    },
+    {
+      "entityId": "poi-5908567c5c8ce82f",
+      "parentCityEntityId": "city-a110652808f4bf46",
+      "wikidataId": "Q15116328",
+      "canonicalNameEn": "National Library of Mauritania",
+      "positiveTypePath": [
+        "Q22806",
+        "Q65768782",
+        "Q385994",
+        "Q7075",
+        "Q101542346",
+        "Q13226383"
+      ],
+      "distanceKm": 0.365
+    },
+    {
+      "entityId": "poi-ecf287b1426ada67",
+      "parentCityEntityId": "city-a110652808f4bf46",
+      "wikidataId": "Q6916429",
+      "canonicalNameEn": "Saudi Mosque",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 0.513
+    },
+    {
+      "entityId": "poi-6d51627232977fee",
+      "parentCityEntityId": "city-a110652808f4bf46",
+      "wikidataId": "Q6916425",
+      "canonicalNameEn": "Mosque Marocaine",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 1.003
+    },
+    {
+      "entityId": "poi-64826566b513461b",
+      "parentCityEntityId": "city-a110652808f4bf46",
+      "wikidataId": "Q5503502",
+      "canonicalNameEn": "Friday Mosque of Nouakchott",
+      "positiveTypePath": [
+        "Q1454820",
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 1.531
+    },
+    {
+      "entityId": "poi-401857c9a4646339",
+      "parentCityEntityId": "city-a110652808f4bf46",
+      "wikidataId": "Q6916432",
+      "canonicalNameEn": "Mosque Tevragh Zeina",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 1.701
+    },
+    {
+      "entityId": "poi-7bcce34f2d38d469",
+      "parentCityEntityId": "city-a110652808f4bf46",
+      "wikidataId": "Q7315255",
+      "canonicalNameEn": "Reserve Naturel de Sel Iode",
+      "positiveTypePath": [
+        "Q473972"
+      ],
+      "distanceKm": 1.979
+    },
+    {
+      "entityId": "poi-19c6d3910af0f9d8",
+      "parentCityEntityId": "city-c7c154aff033e816",
+      "wikidataId": "Q2667425",
+      "canonicalNameEn": "Chinguetti Mosque",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 0.798
+    },
+    {
+      "entityId": "poi-b3967b1b40babf45",
+      "parentCityEntityId": "city-98e17336c2dffdd3",
+      "wikidataId": "Q1236265",
+      "canonicalNameEn": "Dolohmwar",
+      "positiveTypePath": [
+        "Q8502",
+        "Q35145263"
+      ],
+      "distanceKm": 8.991
+    },
+    {
+      "entityId": "poi-bcefeda2c20331aa",
+      "parentCityEntityId": "city-98e17336c2dffdd3",
+      "wikidataId": "Q15256944",
+      "canonicalNameEn": "Mount Nanlaud",
+      "positiveTypePath": [
+        "Q8502",
+        "Q35145263"
+      ],
+      "distanceKm": 6.659
+    },
+    {
+      "entityId": "poi-bd1944fe131b2ef2",
+      "parentCityEntityId": "city-98e17336c2dffdd3",
+      "wikidataId": "Q2623745",
+      "canonicalNameEn": "Deke Sokehs",
+      "positiveTypePath": [
+        "Q34763",
+        "Q271669"
+      ],
+      "distanceKm": 5.439
+    }
+  ],
+  "quarantineCount": 174
+}

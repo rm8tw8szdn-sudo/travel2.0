@@ -1,0 +1,375 @@
+{
+  "schemaVersion": "route-v2-knowledge-expansion-batch12-wave2-selection-v1",
+  "wave": 2,
+  "countries": [
+    {
+      "isoAlpha2": "KI",
+      "wikidataId": "Q710",
+      "entityId": "country-6d048078a91dc686"
+    },
+    {
+      "isoAlpha2": "LS",
+      "wikidataId": "Q1013",
+      "entityId": "country-3ae707cc2f067b51"
+    },
+    {
+      "isoAlpha2": "LR",
+      "wikidataId": "Q1014",
+      "entityId": "country-8710e464286c43b9"
+    },
+    {
+      "isoAlpha2": "LY",
+      "wikidataId": "Q1016",
+      "entityId": "country-29f3a9ce524218fb"
+    },
+    {
+      "isoAlpha2": "MW",
+      "wikidataId": "Q1020",
+      "entityId": "country-45251c029bdbbbc1"
+    }
+  ],
+  "cities": [
+    {
+      "countryCode": "KI",
+      "tier": "world",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 2,
+      "reused": false,
+      "entityId": "city-74fb360513374242",
+      "wikidataId": "Q131233",
+      "canonicalNameEn": "South Tarawa",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "LS",
+      "tier": "world",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 1,
+      "reused": false,
+      "entityId": "city-831b40c2589c468a",
+      "wikidataId": "Q3909",
+      "canonicalNameEn": "Maseru",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "LR",
+      "tier": "world",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 6,
+      "reused": false,
+      "entityId": "city-2eda6d8af18b52ae",
+      "wikidataId": "Q3748",
+      "canonicalNameEn": "Monrovia",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "LR",
+      "tier": "standard",
+      "targetPoiCount": 3,
+      "selectedPoiCount": 1,
+      "reused": false,
+      "entityId": "city-6af7820caa4fbe90",
+      "wikidataId": "Q985291",
+      "canonicalNameEn": "Gbarnga",
+      "positiveTypePath": [
+        "Q486972"
+      ]
+    },
+    {
+      "countryCode": "LY",
+      "tier": "core",
+      "targetPoiCount": 5,
+      "selectedPoiCount": 5,
+      "reused": false,
+      "entityId": "city-6f52ea80f4e4c3af",
+      "wikidataId": "Q40816",
+      "canonicalNameEn": "Benghazi",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "MW",
+      "tier": "world",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 1,
+      "reused": false,
+      "entityId": "city-f10c2536cb14051b",
+      "wikidataId": "Q3876",
+      "canonicalNameEn": "Lilongwe",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "MW",
+      "tier": "core",
+      "targetPoiCount": 5,
+      "selectedPoiCount": 4,
+      "reused": false,
+      "entityId": "city-08c226bcc47b724e",
+      "wikidataId": "Q188693",
+      "canonicalNameEn": "Blantyre",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    }
+  ],
+  "pois": [
+    {
+      "entityId": "poi-525a8500834ef111",
+      "parentCityEntityId": "city-74fb360513374242",
+      "wikidataId": "Q544297",
+      "canonicalNameEn": "Bikeman Island",
+      "positiveTypePath": [
+        "Q23442",
+        "Q271669"
+      ],
+      "distanceKm": 6.681
+    },
+    {
+      "entityId": "poi-e989e2a20d27f5d8",
+      "parentCityEntityId": "city-74fb360513374242",
+      "wikidataId": "Q2942914",
+      "canonicalNameEn": "Sacred Heart Cathedral",
+      "positiveTypePath": [
+        "Q2977",
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 4.484
+    },
+    {
+      "entityId": "poi-bab8765dcb391a01",
+      "parentCityEntityId": "city-831b40c2589c468a",
+      "wikidataId": "Q24249528",
+      "canonicalNameEn": "Our Lady of Victories Cathedral, Maseru",
+      "positiveTypePath": [
+        "Q56242215",
+        "Q2977",
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 1.63
+    },
+    {
+      "entityId": "poi-de0e3ce833c22036",
+      "parentCityEntityId": "city-2eda6d8af18b52ae",
+      "wikidataId": "Q1479922",
+      "canonicalNameEn": "Cape Mesurado",
+      "positiveTypePath": [
+        "Q191992",
+        "Q1245089",
+        "Q271669"
+      ],
+      "distanceKm": 0.458
+    },
+    {
+      "entityId": "poi-98e5966f030dbcfa",
+      "parentCityEntityId": "city-2eda6d8af18b52ae",
+      "wikidataId": "Q2093421",
+      "canonicalNameEn": "Bushrod Island",
+      "positiveTypePath": [
+        "Q23442",
+        "Q271669"
+      ],
+      "distanceKm": 5.73
+    },
+    {
+      "entityId": "poi-6d23c1eaf52976f8",
+      "parentCityEntityId": "city-2eda6d8af18b52ae",
+      "wikidataId": "Q1107151",
+      "canonicalNameEn": "Mesurado River",
+      "positiveTypePath": [
+        "Q4022",
+        "Q2479431",
+        "Q15324"
+      ],
+      "distanceKm": 1.08
+    },
+    {
+      "entityId": "poi-bd4215086d66ea14",
+      "parentCityEntityId": "city-2eda6d8af18b52ae",
+      "wikidataId": "Q27459317",
+      "canonicalNameEn": "Providence Island",
+      "positiveTypePath": [
+        "Q162602",
+        "Q23442",
+        "Q271669"
+      ],
+      "distanceKm": 1.093
+    },
+    {
+      "entityId": "poi-2397293e324fa805",
+      "parentCityEntityId": "city-2eda6d8af18b52ae",
+      "wikidataId": "Q1345859",
+      "canonicalNameEn": "Liberian National Museum",
+      "positiveTypePath": [
+        "Q17431399",
+        "Q33506"
+      ],
+      "distanceKm": 0.705
+    },
+    {
+      "entityId": "poi-0a49e17480221c62",
+      "parentCityEntityId": "city-2eda6d8af18b52ae",
+      "wikidataId": "Q5515889",
+      "canonicalNameEn": "Gabriel Tucker Bridge",
+      "positiveTypePath": [
+        "Q537127",
+        "Q12280",
+        "Q811979"
+      ],
+      "distanceKm": 1.026
+    },
+    {
+      "entityId": "poi-9345bbefa0f3429b",
+      "parentCityEntityId": "city-6af7820caa4fbe90",
+      "wikidataId": "Q23929074",
+      "canonicalNameEn": "Holy Spirit Cathedral, Gbarnga",
+      "positiveTypePath": [
+        "Q56242215",
+        "Q2977",
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 0.961
+    },
+    {
+      "entityId": "poi-fc2a4eccef0ff1c7",
+      "parentCityEntityId": "city-6f52ea80f4e4c3af",
+      "wikidataId": "Q773980",
+      "canonicalNameEn": "Benghazi Cathedral",
+      "positiveTypePath": [
+        "Q2977",
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 0.747
+    },
+    {
+      "entityId": "poi-3d90387fbf3aa1a0",
+      "parentCityEntityId": "city-6f52ea80f4e4c3af",
+      "wikidataId": "Q6401414",
+      "canonicalNameEn": "Atiq Mosque",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 0.727
+    },
+    {
+      "entityId": "poi-030fa2abf5989a2c",
+      "parentCityEntityId": "city-6f52ea80f4e4c3af",
+      "wikidataId": "Q938648",
+      "canonicalNameEn": "23rd July Lake",
+      "positiveTypePath": [
+        "Q23397",
+        "Q271669"
+      ],
+      "distanceKm": 1.414
+    },
+    {
+      "entityId": "poi-73e697da5bc79ac9",
+      "parentCityEntityId": "city-6f52ea80f4e4c3af",
+      "wikidataId": "Q15116325",
+      "canonicalNameEn": "National Library of Libya",
+      "positiveTypePath": [
+        "Q22806",
+        "Q65768782",
+        "Q385994",
+        "Q7075",
+        "Q101542346",
+        "Q13226383"
+      ],
+      "distanceKm": 0.383
+    },
+    {
+      "entityId": "poi-428d4adecb50076f",
+      "parentCityEntityId": "city-6f52ea80f4e4c3af",
+      "wikidataId": "Q4115649",
+      "canonicalNameEn": "Maydan al Shajara",
+      "positiveTypePath": [
+        "Q174782",
+        "Q811979"
+      ],
+      "distanceKm": 0.434
+    },
+    {
+      "entityId": "poi-8230d684c9a1ccfd",
+      "parentCityEntityId": "city-f10c2536cb14051b",
+      "wikidataId": "Q124818664",
+      "canonicalNameEn": "Kamuzu Mausoleum",
+      "positiveTypePath": [
+        "Q162875",
+        "Q4989906"
+      ],
+      "distanceKm": 4.22
+    },
+    {
+      "entityId": "poi-95e0bcf64d84dab1",
+      "parentCityEntityId": "city-08c226bcc47b724e",
+      "wikidataId": "Q1488889",
+      "canonicalNameEn": "Chichiri Museum",
+      "positiveTypePath": [
+        "Q17431399",
+        "Q33506"
+      ],
+      "distanceKm": 3.981
+    },
+    {
+      "entityId": "poi-5c4919af8ec1cc38",
+      "parentCityEntityId": "city-08c226bcc47b724e",
+      "wikidataId": "Q7594852",
+      "canonicalNameEn": "St Michael and All Angels Church, Blantyre, Malawi",
+      "positiveTypePath": [
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 1.606
+    },
+    {
+      "entityId": "poi-fef842807649b8ab",
+      "parentCityEntityId": "city-08c226bcc47b724e",
+      "wikidataId": "Q16895079",
+      "canonicalNameEn": "Michiru Mountain",
+      "positiveTypePath": [
+        "Q8502",
+        "Q35145263"
+      ],
+      "distanceKm": 5.802
+    },
+    {
+      "entityId": "poi-486dd5523a927d9b",
+      "parentCityEntityId": "city-08c226bcc47b724e",
+      "wikidataId": "Q23928817",
+      "canonicalNameEn": "Our Lady of Wisdom Cathedral, Blantyre",
+      "positiveTypePath": [
+        "Q56242215",
+        "Q2977",
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 7.323
+    }
+  ],
+  "quarantineCount": 226
+}

@@ -1,0 +1,758 @@
+{
+  "schemaVersion": "route-v2-knowledge-expansion-batch12-wave1-selection-v1",
+  "wave": 1,
+  "countries": [
+    {
+      "isoAlpha2": "GD",
+      "wikidataId": "Q769",
+      "entityId": "country-8c5c3ded4c84c0a7"
+    },
+    {
+      "isoAlpha2": "GN",
+      "wikidataId": "Q1006",
+      "entityId": "country-61184763959aa58a"
+    },
+    {
+      "isoAlpha2": "GW",
+      "wikidataId": "Q1007",
+      "entityId": "country-7a72b88179d405a0"
+    },
+    {
+      "isoAlpha2": "HT",
+      "wikidataId": "Q790",
+      "entityId": "country-1cc5ee79363acf4f"
+    },
+    {
+      "isoAlpha2": "IQ",
+      "wikidataId": "Q796",
+      "entityId": "country-12cc0eff11bba368"
+    }
+  ],
+  "cities": [
+    {
+      "countryCode": "GD",
+      "tier": "world",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 7,
+      "reused": false,
+      "entityId": "city-c8aa57e633cd1289",
+      "wikidataId": "Q41547",
+      "canonicalNameEn": "St. George's",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "GD",
+      "tier": "standard",
+      "targetPoiCount": 3,
+      "selectedPoiCount": 3,
+      "reused": false,
+      "entityId": "city-ba825291250c2c61",
+      "wikidataId": "Q375507",
+      "canonicalNameEn": "Gouyave",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "GN",
+      "tier": "world",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 7,
+      "reused": false,
+      "entityId": "city-c8ced73483e5a38d",
+      "wikidataId": "Q3733",
+      "canonicalNameEn": "Conakry",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "GN",
+      "tier": "core",
+      "targetPoiCount": 5,
+      "selectedPoiCount": 2,
+      "reused": false,
+      "entityId": "city-69bf2f0b7fc76fcc",
+      "wikidataId": "Q874317",
+      "canonicalNameEn": "Kankan",
+      "positiveTypePath": [
+        "Q486972"
+      ]
+    },
+    {
+      "countryCode": "GW",
+      "tier": "world",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 4,
+      "reused": false,
+      "entityId": "city-f662461042684edc",
+      "wikidataId": "Q3739",
+      "canonicalNameEn": "Bissau",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "GW",
+      "tier": "standard",
+      "targetPoiCount": 3,
+      "selectedPoiCount": 1,
+      "reused": false,
+      "entityId": "city-621c68aff8107318",
+      "wikidataId": "Q799788",
+      "canonicalNameEn": "Bafatá",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "HT",
+      "tier": "world",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 7,
+      "reused": false,
+      "entityId": "city-5f21accbbe27a9d0",
+      "wikidataId": "Q34261",
+      "canonicalNameEn": "Port-au-Prince",
+      "positiveTypePath": [
+        "Q7930989",
+        "Q124250988",
+        "Q486972"
+      ]
+    },
+    {
+      "countryCode": "HT",
+      "tier": "core",
+      "targetPoiCount": 5,
+      "selectedPoiCount": 2,
+      "reused": false,
+      "entityId": "city-a8013c90b8013352",
+      "wikidataId": "Q216835",
+      "canonicalNameEn": "Cap-Haïtien",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "IQ",
+      "tier": "world",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 7,
+      "reused": false,
+      "entityId": "city-f26010be3695478b",
+      "wikidataId": "Q1530",
+      "canonicalNameEn": "Baghdad",
+      "positiveTypePath": [
+        "Q1549591",
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "IQ",
+      "tier": "core",
+      "targetPoiCount": 5,
+      "selectedPoiCount": 5,
+      "reused": false,
+      "entityId": "city-a45f9dbce4564d52",
+      "wikidataId": "Q132754",
+      "canonicalNameEn": "Erbil",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "IQ",
+      "tier": "core",
+      "targetPoiCount": 5,
+      "selectedPoiCount": 4,
+      "reused": false,
+      "entityId": "city-f9a18de704e67f04",
+      "wikidataId": "Q48195",
+      "canonicalNameEn": "Basra",
+      "positiveTypePath": [
+        "Q2264924",
+        "Q515",
+        "Q15284"
+      ]
+    }
+  ],
+  "pois": [
+    {
+      "entityId": "poi-e7779140ac5d1b05",
+      "parentCityEntityId": "city-c8aa57e633cd1289",
+      "wikidataId": "Q5594534",
+      "canonicalNameEn": "Grand Etang Lake",
+      "positiveTypePath": [
+        "Q23397",
+        "Q271669"
+      ],
+      "distanceKm": 6.711
+    },
+    {
+      "entityId": "poi-61d0af24a7096bee",
+      "parentCityEntityId": "city-c8aa57e633cd1289",
+      "wikidataId": "Q23831971",
+      "canonicalNameEn": "Immaculate Conception Cathedral",
+      "positiveTypePath": [
+        "Q2977",
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 0.144
+    },
+    {
+      "entityId": "poi-0e7aa049573fde0f",
+      "parentCityEntityId": "city-c8aa57e633cd1289",
+      "wikidataId": "Q15222142",
+      "canonicalNameEn": "Grenada National Museum",
+      "positiveTypePath": [
+        "Q17431399",
+        "Q33506"
+      ],
+      "distanceKm": 0.433
+    },
+    {
+      "entityId": "poi-c89ac20b171996bc",
+      "parentCityEntityId": "city-c8aa57e633cd1289",
+      "wikidataId": "Q6896200",
+      "canonicalNameEn": "Molinere Underwater Sculpture Park",
+      "positiveTypePath": [
+        "Q860861",
+        "Q4502142",
+        "Q838948"
+      ],
+      "distanceKm": 3.574
+    },
+    {
+      "entityId": "poi-37e7e4233272760d",
+      "parentCityEntityId": "city-c8aa57e633cd1289",
+      "wikidataId": "Q24679916",
+      "canonicalNameEn": "Glover Island",
+      "positiveTypePath": [
+        "Q23442",
+        "Q271669"
+      ],
+      "distanceKm": 8.143
+    },
+    {
+      "entityId": "poi-80ff41a0fb5c6bf4",
+      "parentCityEntityId": "city-c8aa57e633cd1289",
+      "wikidataId": "Q65129375",
+      "canonicalNameEn": "Fort George",
+      "positiveTypePath": [
+        "Q1785071",
+        "Q57821",
+        "Q811979"
+      ],
+      "distanceKm": 0.382
+    },
+    {
+      "entityId": "poi-a5b1493e0ebfeb7e",
+      "parentCityEntityId": "city-c8aa57e633cd1289",
+      "wikidataId": "Q7401492",
+      "canonicalNameEn": "Saint Johns River",
+      "positiveTypePath": [
+        "Q4022",
+        "Q2479431",
+        "Q15324"
+      ],
+      "distanceKm": 0.433
+    },
+    {
+      "entityId": "poi-47d8bbeb6ec43ea7",
+      "parentCityEntityId": "city-ba825291250c2c61",
+      "wikidataId": "Q525281",
+      "canonicalNameEn": "Mount Saint Catherine",
+      "positiveTypePath": [
+        "Q1330974",
+        "Q8072",
+        "Q29025902",
+        "Q271669"
+      ],
+      "distanceKm": 5.966
+    },
+    {
+      "entityId": "poi-c8e144c3635584cd",
+      "parentCityEntityId": "city-ba825291250c2c61",
+      "wikidataId": "Q5588514",
+      "canonicalNameEn": "Gouyave River",
+      "positiveTypePath": [
+        "Q4022",
+        "Q2479431",
+        "Q15324"
+      ],
+      "distanceKm": 1.858
+    },
+    {
+      "entityId": "poi-38305513cb0ff697",
+      "parentCityEntityId": "city-ba825291250c2c61",
+      "wikidataId": "Q6651625",
+      "canonicalNameEn": "Little River",
+      "positiveTypePath": [
+        "Q4022",
+        "Q2479431",
+        "Q15324"
+      ],
+      "distanceKm": 1.45
+    },
+    {
+      "entityId": "poi-d9a051e29a9b6f94",
+      "parentCityEntityId": "city-c8ced73483e5a38d",
+      "wikidataId": "Q254925",
+      "canonicalNameEn": "Grand Mosque of Conakry",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 4.077
+    },
+    {
+      "entityId": "poi-c21d69e8bfeefe8e",
+      "parentCityEntityId": "city-c8ced73483e5a38d",
+      "wikidataId": "Q1572991",
+      "canonicalNameEn": "Tombo Island",
+      "positiveTypePath": [
+        "Q23442",
+        "Q271669"
+      ],
+      "distanceKm": 0.261
+    },
+    {
+      "entityId": "poi-094e6fc2880e164d",
+      "parentCityEntityId": "city-c8ced73483e5a38d",
+      "wikidataId": "Q2586343",
+      "canonicalNameEn": "Conakry National Museum",
+      "positiveTypePath": [
+        "Q17431399",
+        "Q33506"
+      ],
+      "distanceKm": 0.61
+    },
+    {
+      "entityId": "poi-220e649a53af311d",
+      "parentCityEntityId": "city-c8ced73483e5a38d",
+      "wikidataId": "Q4255937",
+      "canonicalNameEn": "Cathedrale Sainte-Marie",
+      "positiveTypePath": [
+        "Q56242215",
+        "Q2977",
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 0.387
+    },
+    {
+      "entityId": "poi-c346ca42a77531ef",
+      "parentCityEntityId": "city-c8ced73483e5a38d",
+      "wikidataId": "Q6906858",
+      "canonicalNameEn": "Monument du 22 Novembre 1970",
+      "positiveTypePath": [
+        "Q179700",
+        "Q220659",
+        "Q1791627",
+        "Q210272"
+      ],
+      "distanceKm": 2.746
+    },
+    {
+      "entityId": "poi-232bff4e217806b7",
+      "parentCityEntityId": "city-c8ced73483e5a38d",
+      "wikidataId": "Q3611476",
+      "canonicalNameEn": "Presidential Palace",
+      "positiveTypePath": [
+        "Q2114972",
+        "Q16560",
+        "Q41176"
+      ],
+      "distanceKm": 0.592
+    },
+    {
+      "entityId": "poi-e3d81a5b42015762",
+      "parentCityEntityId": "city-c8ced73483e5a38d",
+      "wikidataId": "Q5158067",
+      "canonicalNameEn": "Conakry Botanical Garden",
+      "positiveTypePath": [
+        "Q167346",
+        "Q13226383"
+      ],
+      "distanceKm": 3.749
+    },
+    {
+      "entityId": "poi-90cd2fdc0a341d7d",
+      "parentCityEntityId": "city-69bf2f0b7fc76fcc",
+      "wikidataId": "Q123058472",
+      "canonicalNameEn": "Cathedral of Our Lady of Victories and Peace",
+      "positiveTypePath": [
+        "Q2977",
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 1.172
+    },
+    {
+      "entityId": "poi-769353b87a22651a",
+      "parentCityEntityId": "city-69bf2f0b7fc76fcc",
+      "wikidataId": "Q87476937",
+      "canonicalNameEn": "Musée du Camp Soundiata Keita",
+      "positiveTypePath": [
+        "Q33506"
+      ],
+      "distanceKm": 1.525
+    },
+    {
+      "entityId": "poi-feade860146a2a0e",
+      "parentCityEntityId": "city-f662461042684edc",
+      "wikidataId": "Q10280205",
+      "canonicalNameEn": "The Cathedral of Bissau",
+      "positiveTypePath": [
+        "Q210272"
+      ],
+      "distanceKm": 0.232
+    },
+    {
+      "entityId": "poi-8c1a811ac26f8383",
+      "parentCityEntityId": "city-f662461042684edc",
+      "wikidataId": "Q1665221",
+      "canonicalNameEn": "National Library of Guinea-Bissau",
+      "positiveTypePath": [
+        "Q22806",
+        "Q65768782",
+        "Q385994",
+        "Q7075",
+        "Q101542346",
+        "Q13226383"
+      ],
+      "distanceKm": 2.944
+    },
+    {
+      "entityId": "poi-c0fcc41e0ddc6c11",
+      "parentCityEntityId": "city-f662461042684edc",
+      "wikidataId": "Q20716917",
+      "canonicalNameEn": "Presidential Palace, Bissau",
+      "positiveTypePath": [
+        "Q210272"
+      ],
+      "distanceKm": 0.478
+    },
+    {
+      "entityId": "poi-aea6204e84fb9f3d",
+      "parentCityEntityId": "city-f662461042684edc",
+      "wikidataId": "Q10283638",
+      "canonicalNameEn": "Fortaleza de São José da Amura",
+      "positiveTypePath": [
+        "Q1785071",
+        "Q57821",
+        "Q811979"
+      ],
+      "distanceKm": 0.514
+    },
+    {
+      "entityId": "poi-f215d07c88612752",
+      "parentCityEntityId": "city-621c68aff8107318",
+      "wikidataId": "Q24050907",
+      "canonicalNameEn": "Our Lady of Grace Cathedral, Bafatá",
+      "positiveTypePath": [
+        "Q210272"
+      ],
+      "distanceKm": 0.606
+    },
+    {
+      "entityId": "poi-5904764fdcf98f05",
+      "parentCityEntityId": "city-5f21accbbe27a9d0",
+      "wikidataId": "Q509638",
+      "canonicalNameEn": "National Palace",
+      "positiveTypePath": [
+        "Q16560",
+        "Q41176"
+      ],
+      "distanceKm": 0.452
+    },
+    {
+      "entityId": "poi-4087732a0e778b85",
+      "parentCityEntityId": "city-5f21accbbe27a9d0",
+      "wikidataId": "Q1461247",
+      "canonicalNameEn": "Cathedral of Our Lady of the Assumption",
+      "positiveTypePath": [
+        "Q2977",
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 0.28
+    },
+    {
+      "entityId": "poi-60200e7a182fcb43",
+      "parentCityEntityId": "city-5f21accbbe27a9d0",
+      "wikidataId": "Q15116319",
+      "canonicalNameEn": "National Library of Haiti",
+      "positiveTypePath": [
+        "Q22806",
+        "Q65768782",
+        "Q385994",
+        "Q7075",
+        "Q101542346",
+        "Q13226383"
+      ],
+      "distanceKm": 0.218
+    },
+    {
+      "entityId": "poi-1da0a8634c16ee36",
+      "parentCityEntityId": "city-5f21accbbe27a9d0",
+      "wikidataId": "Q5421623",
+      "canonicalNameEn": "Exposition internationale du bicentenaire de Port-au-Prince",
+      "positiveTypePath": [
+        "Q172754"
+      ],
+      "distanceKm": 0.895
+    },
+    {
+      "entityId": "poi-09c82330db5ebc7e",
+      "parentCityEntityId": "city-5f21accbbe27a9d0",
+      "wikidataId": "Q2586373",
+      "canonicalNameEn": "National Pantheon Museum of Haiti",
+      "positiveTypePath": [
+        "Q1007870",
+        "Q15090615",
+        "Q811979"
+      ],
+      "distanceKm": 0.519
+    },
+    {
+      "entityId": "poi-b09c0e4f34132f8a",
+      "parentCityEntityId": "city-5f21accbbe27a9d0",
+      "wikidataId": "Q2942886",
+      "canonicalNameEn": "Holy Trinity Cathedral, Port-au-Prince",
+      "positiveTypePath": [
+        "Q56242250",
+        "Q58079064",
+        "Q24398318",
+        "Q1370598"
+      ],
+      "distanceKm": 0.178
+    },
+    {
+      "entityId": "poi-4eb77e83ede64f03",
+      "parentCityEntityId": "city-5f21accbbe27a9d0",
+      "wikidataId": "Q108607363",
+      "canonicalNameEn": "Al Fatiha Mosque",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 1.525
+    },
+    {
+      "entityId": "poi-976a2c74dbfc7204",
+      "parentCityEntityId": "city-a8013c90b8013352",
+      "wikidataId": "Q11737318",
+      "canonicalNameEn": "Our Lady of the Assumption Cathedral, Cap-Haïtien",
+      "positiveTypePath": [
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 1.225
+    },
+    {
+      "entityId": "poi-bb7f84e8c441fd6b",
+      "parentCityEntityId": "city-a8013c90b8013352",
+      "wikidataId": "Q3115020",
+      "canonicalNameEn": "Grande Rivière du Nord",
+      "positiveTypePath": [
+        "Q4022",
+        "Q2479431",
+        "Q15324"
+      ],
+      "distanceKm": 8.72
+    },
+    {
+      "entityId": "poi-53d627531fe92516",
+      "parentCityEntityId": "city-f26010be3695478b",
+      "wikidataId": "Q521251",
+      "canonicalNameEn": "National Museum of Iraq",
+      "positiveTypePath": [
+        "Q17431399",
+        "Q33506"
+      ],
+      "distanceKm": 2.357
+    },
+    {
+      "entityId": "poi-af0cc19277e754ff",
+      "parentCityEntityId": "city-f26010be3695478b",
+      "wikidataId": "Q1340523",
+      "canonicalNameEn": "Victory Arch",
+      "positiveTypePath": [
+        "Q143912",
+        "Q97466153",
+        "Q4989906"
+      ],
+      "distanceKm": 2.2
+    },
+    {
+      "entityId": "poi-0f9b25c71fb59441",
+      "parentCityEntityId": "city-f26010be3695478b",
+      "wikidataId": "Q10424690",
+      "canonicalNameEn": "Baghdadi Museum",
+      "positiveTypePath": [
+        "Q33506"
+      ],
+      "distanceKm": 3.513
+    },
+    {
+      "entityId": "poi-f237c6ed2b40df84",
+      "parentCityEntityId": "city-f26010be3695478b",
+      "wikidataId": "Q2349688",
+      "canonicalNameEn": "Baghdad Zoo",
+      "positiveTypePath": [
+        "Q43501",
+        "Q22698"
+      ],
+      "distanceKm": 0.959
+    },
+    {
+      "entityId": "poi-a7c9cea7d9b00070",
+      "parentCityEntityId": "city-f26010be3695478b",
+      "wikidataId": "Q4703121",
+      "canonicalNameEn": "Al-Rahman Mosque",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 1.594
+    },
+    {
+      "entityId": "poi-0445857db9edf8bf",
+      "parentCityEntityId": "city-f26010be3695478b",
+      "wikidataId": "Q12204184",
+      "canonicalNameEn": "Mosque of Ahmadiyah",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 3.645
+    },
+    {
+      "entityId": "poi-b16a4880c4fe009b",
+      "parentCityEntityId": "city-f26010be3695478b",
+      "wikidataId": "Q22689849",
+      "canonicalNameEn": "Zumurrud Khatun Mosque",
+      "positiveTypePath": [
+        "Q162875",
+        "Q4989906"
+      ],
+      "distanceKm": 1.924
+    },
+    {
+      "entityId": "poi-6cef9dc3949dc88a",
+      "parentCityEntityId": "city-a45f9dbce4564d52",
+      "wikidataId": "Q206236",
+      "canonicalNameEn": "Citadel of Erbil",
+      "positiveTypePath": [
+        "Q755017",
+        "Q839954"
+      ],
+      "distanceKm": 0.042
+    },
+    {
+      "entityId": "poi-a2f52f60312a9a2d",
+      "parentCityEntityId": "city-a45f9dbce4564d52",
+      "wikidataId": "Q19960324",
+      "canonicalNameEn": "Jalil Khayat Mosque",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 1.376
+    },
+    {
+      "entityId": "poi-bea6ca302ee1cfd5",
+      "parentCityEntityId": "city-a45f9dbce4564d52",
+      "wikidataId": "Q20873259",
+      "canonicalNameEn": "St. Joseph's Cathedral, Ankawa",
+      "positiveTypePath": [
+        "Q2977",
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 4.317
+    },
+    {
+      "entityId": "poi-3844306ccd0992ae",
+      "parentCityEntityId": "city-a45f9dbce4564d52",
+      "wikidataId": "Q2302612",
+      "canonicalNameEn": "Kurdish Textile and Cultural Museum",
+      "positiveTypePath": [
+        "Q33506"
+      ],
+      "distanceKm": 0.113
+    },
+    {
+      "entityId": "poi-79747d6c1b3bf161",
+      "parentCityEntityId": "city-a45f9dbce4564d52",
+      "wikidataId": "Q28716288",
+      "canonicalNameEn": "Erbil Civilization Museum",
+      "positiveTypePath": [
+        "Q33506"
+      ],
+      "distanceKm": 1.563
+    },
+    {
+      "entityId": "poi-3bb224073677d46f",
+      "parentCityEntityId": "city-f9a18de704e67f04",
+      "wikidataId": "Q28114309",
+      "canonicalNameEn": "Basrah Museum",
+      "positiveTypePath": [
+        "Q33506"
+      ],
+      "distanceKm": 5.263
+    },
+    {
+      "entityId": "poi-7061ede17eef7e87",
+      "parentCityEntityId": "city-f9a18de704e67f04",
+      "wikidataId": "Q20410450",
+      "canonicalNameEn": "Al-Maqam Mosque",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 2.719
+    },
+    {
+      "entityId": "poi-94d2be9d97932cf8",
+      "parentCityEntityId": "city-f9a18de704e67f04",
+      "wikidataId": "Q26821309",
+      "canonicalNameEn": "Imam Mosa Al Kadhim Grand Mousque",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 3.088
+    },
+    {
+      "entityId": "poi-6f7931f148f72789",
+      "parentCityEntityId": "city-f9a18de704e67f04",
+      "wikidataId": "Q26879363",
+      "canonicalNameEn": "Mosque Scorpio",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 4.115
+    }
+  ],
+  "quarantineCount": 445
+}

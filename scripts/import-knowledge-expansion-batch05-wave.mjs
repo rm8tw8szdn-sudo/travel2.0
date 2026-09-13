@@ -24,9 +24,9 @@ import { evaluatePoiTypeIdsForConsumer } from "../src/lib/routes/knowledge-poi-s
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const argument = (name) => process.argv.find((value) => value.startsWith(`--${name}=`))?.slice(name.length + 3) || "";
 const BATCH = argument("batch") || "05";
-if (!["05", "06", "07", "08", "09", "10", "11"].includes(BATCH)) throw new Error("batch-argument-invalid:--batch=05|06|07|08|09|10|11");
+if (!["05", "06", "07", "08", "09", "10", "11", "12"].includes(BATCH)) throw new Error("batch-argument-invalid:--batch=05|06|07|08|09|10|11|12");
 const BATCH_LABEL = `Batch ${BATCH}`;
-const SEED_PATH = `data/knowledge/seeds/knowledge-expansion-batch${BATCH}-${BATCH === "11" ? "18" : "20"}-country.json`;
+const SEED_PATH = `data/knowledge/seeds/knowledge-expansion-batch${BATCH}-${["11", "12"].includes(BATCH) ? "18" : "20"}-country.json`;
 const COUNTRY_OUTPUT = `data/knowledge/batches/countries.p1a-batch${BATCH}.json`;
 const TYPE_POLICY_PATH = "data/knowledge/semantic/knowledge-semantic-type-policy.json";
 const WIKIDATA_API = "https://www.wikidata.org/w/api.php";
@@ -50,6 +50,9 @@ const LOCAL_WIKIPEDIA_LANGUAGE = Object.freeze({
   AF: "fa", AG: "en", BY: "be", BJ: "fr", BF: "fr", BI: "rn", CV: "pt", CF: "fr",
   TD: "fr", KM: "fr", CG: "fr", DJ: "fr", DM: "en", GQ: "es", ER: "ti", SZ: "en",
   GA: "fr", GM: "en",
+  GD: "en", GN: "fr", GW: "pt", HT: "fr", IQ: "ar", KI: "en", LS: "en", LR: "en",
+  LY: "ar", MW: "en", ML: "fr", MH: "en", MR: "ar", FM: "en", NR: "en", NE: "fr",
+  PW: "en", KN: "en",
 });
 const USER_AGENT = `travel2-route-v2-knowledge-expansion-batch${BATCH}/1.0 (https://github.com/rm8tw8szdn-sudo/travel2.0)`;
 const FETCH_CACHE_ROOT = path.join(ROOT, ".tmp", `route-v2-batch${BATCH}-import-cache`);
@@ -87,6 +90,11 @@ const ISO = Object.freeze({
   TD: ["TCD", "148"], KM: ["COM", "174"], CG: ["COG", "178"], DJ: ["DJI", "262"],
   DM: ["DMA", "212"], GQ: ["GNQ", "226"], ER: ["ERI", "232"], SZ: ["SWZ", "748"],
   GA: ["GAB", "266"], GM: ["GMB", "270"],
+  GD: ["GRD", "308"], GN: ["GIN", "324"], GW: ["GNB", "624"], HT: ["HTI", "332"],
+  IQ: ["IRQ", "368"], KI: ["KIR", "296"], LS: ["LSO", "426"], LR: ["LBR", "430"],
+  LY: ["LBY", "434"], MW: ["MWI", "454"], ML: ["MLI", "466"], MH: ["MHL", "584"],
+  MR: ["MRT", "478"], FM: ["FSM", "583"], NR: ["NRU", "520"], NE: ["NER", "562"],
+  PW: ["PLW", "585"], KN: ["KNA", "659"],
 });
 const COUNTRY_OUTPUT_CODES = BATCH === "05"
   ? new Set(["HU", "HR", "SE", "SI"])
@@ -100,7 +108,9 @@ const COUNTRY_OUTPUT_CODES = BATCH === "05"
           ? new Set(["DZ", "GH", "SN", "ET", "NA", "BW", "MG", "MU", "KZ", "UZ", "KG", "BD", "BT", "PK", "LA", "BN", "HN", "SV", "WS", "VU"])
           : BATCH === "10"
             ? new Set(["AO", "CM", "CI", "RW", "UG", "ZM", "ZW", "MZ", "MN", "TJ", "IR", "MM", "TL", "BZ", "BB", "TT", "GY", "UA", "SM", "PG"])
-            : new Set(["AF", "AG", "BY", "BJ", "BF", "BI", "CV", "CF", "TD", "KM", "CG", "DJ", "DM", "GQ", "ER", "SZ", "GA", "GM"]);
+            : BATCH === "11"
+              ? new Set(["AF", "AG", "BY", "BJ", "BF", "BI", "CV", "CF", "TD", "KM", "CG", "DJ", "DM", "GQ", "ER", "SZ", "GA", "GM"])
+              : new Set(["GD", "GN", "GW", "HT", "IQ", "KI", "LS", "LR", "LY", "MW", "ML", "MH", "MR", "FM", "NR", "NE", "PW", "KN"]);
 
 const wave = Number(argument("wave"));
 if (![1, 2, 3, 4].includes(wave)) throw new Error("wave-argument-required:--wave=1|2|3|4");

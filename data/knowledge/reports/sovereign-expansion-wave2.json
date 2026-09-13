@@ -1,0 +1,307 @@
+{
+  "schemaVersion": "route-v2-sovereign-expansion-wave2-report-v1",
+  "status": "READY_FOR_FINAL_REVIEW",
+  "baseline": {
+    "countries": 139,
+    "cities": 833,
+    "pois": 3963,
+    "totalEntities": 4935,
+    "plannableCountries": 118,
+    "evidenceBackedCountries": 115,
+    "catalogOnlyCountries": 21
+  },
+  "wave2Countries": [
+    "AF",
+    "AG",
+    "BY",
+    "BJ",
+    "BF",
+    "BI",
+    "CV",
+    "CF",
+    "TD",
+    "KM",
+    "CG",
+    "DJ",
+    "DM",
+    "GQ",
+    "ER",
+    "SZ",
+    "GA",
+    "GM"
+  ],
+  "additions": {
+    "publishedCountries": 18,
+    "preparedCities": 37,
+    "preparedPois": 157,
+    "publishedEvidenceRecords": 0,
+    "plannableCountries": 0,
+    "evidenceBackedCountries": 0,
+    "catalogOnlyCountries": 18
+  },
+  "after": {
+    "countries": 157,
+    "cities": 833,
+    "pois": 3963,
+    "totalEntities": 4953,
+    "plannableCountries": 118,
+    "evidenceBackedCountries": 115,
+    "catalogOnlyCountries": 39,
+    "remainingSovereignGap": 38
+  },
+  "statusMatrix": [
+    {
+      "countryCode": "AF",
+      "published": true,
+      "preparedCityCount": 3,
+      "preparedPoiCount": 13,
+      "validEvidence": false,
+      "plannable": false,
+      "evidenceBacked": false,
+      "catalogOnly": true,
+      "evidencePending": true,
+      "routeReadiness": "wave2-catalog-only-evidence-pending"
+    },
+    {
+      "countryCode": "AG",
+      "published": true,
+      "preparedCityCount": 2,
+      "preparedPoiCount": 10,
+      "validEvidence": false,
+      "plannable": false,
+      "evidenceBacked": false,
+      "catalogOnly": true,
+      "evidencePending": true,
+      "routeReadiness": "wave2-catalog-only-evidence-pending"
+    },
+    {
+      "countryCode": "BY",
+      "published": true,
+      "preparedCityCount": 3,
+      "preparedPoiCount": 17,
+      "validEvidence": false,
+      "plannable": false,
+      "evidenceBacked": false,
+      "catalogOnly": true,
+      "evidencePending": true,
+      "routeReadiness": "wave2-catalog-only-evidence-pending"
+    },
+    {
+      "countryCode": "BJ",
+      "published": true,
+      "preparedCityCount": 3,
+      "preparedPoiCount": 15,
+      "validEvidence": false,
+      "plannable": false,
+      "evidenceBacked": false,
+      "catalogOnly": true,
+      "evidencePending": true,
+      "routeReadiness": "wave2-catalog-only-evidence-pending"
+    },
+    {
+      "countryCode": "BF",
+      "published": true,
+      "preparedCityCount": 2,
+      "preparedPoiCount": 7,
+      "validEvidence": false,
+      "plannable": false,
+      "evidenceBacked": false,
+      "catalogOnly": true,
+      "evidencePending": true,
+      "routeReadiness": "wave2-catalog-only-evidence-pending"
+    },
+    {
+      "countryCode": "BI",
+      "published": true,
+      "preparedCityCount": 2,
+      "preparedPoiCount": 9,
+      "validEvidence": false,
+      "plannable": false,
+      "evidenceBacked": false,
+      "catalogOnly": true,
+      "evidencePending": true,
+      "routeReadiness": "wave2-catalog-only-evidence-pending"
+    },
+    {
+      "countryCode": "CV",
+      "published": true,
+      "preparedCityCount": 2,
+      "preparedPoiCount": 12,
+      "validEvidence": false,
+      "plannable": false,
+      "evidenceBacked": false,
+      "catalogOnly": true,
+      "evidencePending": true,
+      "routeReadiness": "wave2-catalog-only-evidence-pending"
+    },
+    {
+      "countryCode": "CF",
+      "published": true,
+      "preparedCityCount": 1,
+      "preparedPoiCount": 4,
+      "validEvidence": false,
+      "plannable": false,
+      "evidenceBacked": false,
+      "catalogOnly": true,
+      "evidencePending": true,
+      "routeReadiness": "wave2-catalog-only-evidence-pending"
+    },
+    {
+      "countryCode": "TD",
+      "published": true,
+      "preparedCityCount": 2,
+      "preparedPoiCount": 7,
+      "validEvidence": false,
+      "plannable": false,
+      "evidenceBacked": false,
+      "catalogOnly": true,
+      "evidencePending": true,
+      "routeReadiness": "wave2-catalog-only-evidence-pending"
+    },
+    {
+      "countryCode": "KM",
+      "published": true,
+      "preparedCityCount": 1,
+      "preparedPoiCount": 2,
+      "validEvidence": false,
+      "plannable": false,
+      "evidenceBacked": false,
+      "catalogOnly": true,
+      "evidencePending": true,
+      "routeReadiness": "wave2-catalog-only-evidence-pending"
+    },
+    {
+      "countryCode": "CG",
+      "published": true,
+      "preparedCityCount": 2,
+      "preparedPoiCount": 10,
+      "validEvidence": false,
+      "plannable": false,
+      "evidenceBacked": false,
+      "catalogOnly": true,
+      "evidencePending": true,
+      "routeReadiness": "wave2-catalog-only-evidence-pending"
+    },
+    {
+      "countryCode": "DJ",
+      "published": true,
+      "preparedCityCount": 1,
+      "preparedPoiCount": 4,
+      "validEvidence": false,
+      "plannable": false,
+      "evidenceBacked": false,
+      "catalogOnly": true,
+      "evidencePending": true,
+      "routeReadiness": "wave2-catalog-only-evidence-pending"
+    },
+    {
+      "countryCode": "DM",
+      "published": true,
+      "preparedCityCount": 2,
+      "preparedPoiCount": 12,
+      "validEvidence": false,
+      "plannable": false,
+      "evidenceBacked": false,
+      "catalogOnly": true,
+      "evidencePending": true,
+      "routeReadiness": "wave2-catalog-only-evidence-pending"
+    },
+    {
+      "countryCode": "GQ",
+      "published": true,
+      "preparedCityCount": 2,
+      "preparedPoiCount": 5,
+      "validEvidence": false,
+      "plannable": false,
+      "evidenceBacked": false,
+      "catalogOnly": true,
+      "evidencePending": true,
+      "routeReadiness": "wave2-catalog-only-evidence-pending"
+    },
+    {
+      "countryCode": "ER",
+      "published": true,
+      "preparedCityCount": 2,
+      "preparedPoiCount": 8,
+      "validEvidence": false,
+      "plannable": false,
+      "evidenceBacked": false,
+      "catalogOnly": true,
+      "evidencePending": true,
+      "routeReadiness": "wave2-catalog-only-evidence-pending"
+    },
+    {
+      "countryCode": "SZ",
+      "published": true,
+      "preparedCityCount": 3,
+      "preparedPoiCount": 9,
+      "validEvidence": false,
+      "plannable": false,
+      "evidenceBacked": false,
+      "catalogOnly": true,
+      "evidencePending": true,
+      "routeReadiness": "wave2-catalog-only-evidence-pending"
+    },
+    {
+      "countryCode": "GA",
+      "published": true,
+      "preparedCityCount": 2,
+      "preparedPoiCount": 3,
+      "validEvidence": false,
+      "plannable": false,
+      "evidenceBacked": false,
+      "catalogOnly": true,
+      "evidencePending": true,
+      "routeReadiness": "wave2-catalog-only-evidence-pending"
+    },
+    {
+      "countryCode": "GM",
+      "published": true,
+      "preparedCityCount": 2,
+      "preparedPoiCount": 10,
+      "validEvidence": false,
+      "plannable": false,
+      "evidenceBacked": false,
+      "catalogOnly": true,
+      "evidencePending": true,
+      "routeReadiness": "wave2-catalog-only-evidence-pending"
+    }
+  ],
+  "quarantine": {
+    "historicalSealed": 1416,
+    "wave1Candidates": 2959,
+    "newCandidateEntries": 1566
+  },
+  "images": {
+    "assets": 1401,
+    "countryCovers": "118/118 plannable countries",
+    "dedicatedCities": "823/833",
+    "dedicatedCorePois": "313/342",
+    "activeDebt": 39,
+    "invalidMappings": 0,
+    "productionChanges": 0
+  },
+  "historical": {
+    "wave1": "SEALED",
+    "wave1Published": {
+      "countries": 139,
+      "cities": 833,
+      "pois": 3963,
+      "total": 4935
+    },
+    "batch09": {
+      "countries": 119,
+      "cities": 833,
+      "pois": 3963,
+      "total": 4915
+    },
+    "gitAnchoredSnapshotFiles": 26
+  },
+  "performance": {
+    "dedicatedRunner": "NOT_AVAILABLE",
+    "realQualificationExecutions": 0,
+    "formalExperimentExecutions": 1,
+    "formalRun34622976529": "BLOCKED_INCONCLUSIVE",
+    "clearance": "NOT_CLEARED"
+  }
+}

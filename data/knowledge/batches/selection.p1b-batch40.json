@@ -1,0 +1,504 @@
+{
+  "schemaVersion": "route-v2-knowledge-expansion-batch11-wave3-selection-v1",
+  "wave": 3,
+  "countries": [
+    {
+      "isoAlpha2": "CG",
+      "wikidataId": "Q971",
+      "entityId": "country-dce80c640d753754"
+    },
+    {
+      "isoAlpha2": "DJ",
+      "wikidataId": "Q977",
+      "entityId": "country-1e373ff724b6a098"
+    },
+    {
+      "isoAlpha2": "DM",
+      "wikidataId": "Q784",
+      "entityId": "country-41f3a8da535d4601"
+    },
+    {
+      "isoAlpha2": "GQ",
+      "wikidataId": "Q983",
+      "entityId": "country-a95dd94c833cf05c"
+    }
+  ],
+  "cities": [
+    {
+      "countryCode": "CG",
+      "tier": "world",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 5,
+      "reused": false,
+      "entityId": "city-b8651ce35876fbfe",
+      "wikidataId": "Q3844",
+      "canonicalNameEn": "Brazzaville",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "CG",
+      "tier": "core",
+      "targetPoiCount": 5,
+      "selectedPoiCount": 5,
+      "reused": false,
+      "entityId": "city-e34cdc0b0362d926",
+      "wikidataId": "Q223920",
+      "canonicalNameEn": "Pointe-Noire",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "DJ",
+      "tier": "world",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 4,
+      "reused": false,
+      "entityId": "city-91b2570c5f33d842",
+      "wikidataId": "Q3604",
+      "canonicalNameEn": "Djibouti City",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "DM",
+      "tier": "world",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 7,
+      "reused": false,
+      "entityId": "city-4e646805968aa7b9",
+      "wikidataId": "Q36281",
+      "canonicalNameEn": "Roseau",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "DM",
+      "tier": "core",
+      "targetPoiCount": 5,
+      "selectedPoiCount": 5,
+      "reused": false,
+      "entityId": "city-3f9f3579e6cd3ee4",
+      "wikidataId": "Q1014235",
+      "canonicalNameEn": "Portsmouth",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "GQ",
+      "tier": "world",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 2,
+      "reused": false,
+      "entityId": "city-e1b6ad4fe38b87f2",
+      "wikidataId": "Q3818",
+      "canonicalNameEn": "Malabo",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "GQ",
+      "tier": "core",
+      "targetPoiCount": 5,
+      "selectedPoiCount": 3,
+      "reused": false,
+      "entityId": "city-32ba3c0fafbb78ad",
+      "wikidataId": "Q320792",
+      "canonicalNameEn": "Bata",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    }
+  ],
+  "pois": [
+    {
+      "entityId": "poi-8cf61af9f6762896",
+      "parentCityEntityId": "city-b8651ce35876fbfe",
+      "wikidataId": "Q559340",
+      "canonicalNameEn": "Livingstone Falls",
+      "positiveTypePath": [
+        "Q34038",
+        "Q15324"
+      ],
+      "distanceKm": 9.132
+    },
+    {
+      "entityId": "poi-b0e67c8a941a0982",
+      "parentCityEntityId": "city-b8651ce35876fbfe",
+      "wikidataId": "Q22636927",
+      "canonicalNameEn": "Djoué",
+      "positiveTypePath": [
+        "Q4022",
+        "Q2479431",
+        "Q15324"
+      ],
+      "distanceKm": 6.63
+    },
+    {
+      "entityId": "poi-4a30d9c496a2a349",
+      "parentCityEntityId": "city-b8651ce35876fbfe",
+      "wikidataId": "Q2942910",
+      "canonicalNameEn": "Sacred Heart Cathedral, Brazzaville",
+      "positiveTypePath": [
+        "Q56242215",
+        "Q2977",
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 0.327
+    },
+    {
+      "entityId": "poi-fffd4691bb555e9d",
+      "parentCityEntityId": "city-b8651ce35876fbfe",
+      "wikidataId": "Q3397525",
+      "canonicalNameEn": "Brazzaville–Kinshasa Bridge",
+      "positiveTypePath": [
+        "Q1210334",
+        "Q12280",
+        "Q811979"
+      ],
+      "distanceKm": 1.893
+    },
+    {
+      "entityId": "poi-22173b57304a2669",
+      "parentCityEntityId": "city-b8651ce35876fbfe",
+      "wikidataId": "Q2887058",
+      "canonicalNameEn": "basilique Sainte-Anne-du-Congo de Brazzaville",
+      "positiveTypePath": [
+        "Q120560",
+        "Q4846867",
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 1.49
+    },
+    {
+      "entityId": "poi-efab8c368f9e30de",
+      "parentCityEntityId": "city-e34cdc0b0362d926",
+      "wikidataId": "Q21484147",
+      "canonicalNameEn": "St. Peter the Apostle Cathedral, Pointe-Noire",
+      "positiveTypePath": [
+        "Q56242215",
+        "Q2977",
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 2.611
+    },
+    {
+      "entityId": "poi-cdbebbb64a9e9eb1",
+      "parentCityEntityId": "city-e34cdc0b0362d926",
+      "wikidataId": "Q22470172",
+      "canonicalNameEn": "Tchimpounga",
+      "positiveTypePath": [
+        "Q23397",
+        "Q271669"
+      ],
+      "distanceKm": 7.89
+    },
+    {
+      "entityId": "poi-f42da89664c9e338",
+      "parentCityEntityId": "city-e34cdc0b0362d926",
+      "wikidataId": "Q42293623",
+      "canonicalNameEn": "Église Notre-Dame-de-l'Assomption de Pointe-Noire (république du Congo)",
+      "positiveTypePath": [
+        "Q1088552",
+        "Q140454931",
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 0.493
+    },
+    {
+      "entityId": "poi-cb2d680767a5ff96",
+      "parentCityEntityId": "city-e34cdc0b0362d926",
+      "wikidataId": "Q59485217",
+      "canonicalNameEn": "African Circle Museum of Pointe-Noire",
+      "positiveTypePath": [
+        "Q207694",
+        "Q33506"
+      ],
+      "distanceKm": 2.564
+    },
+    {
+      "entityId": "poi-2b331f6240067ac0",
+      "parentCityEntityId": "city-e34cdc0b0362d926",
+      "wikidataId": "Q7208308",
+      "canonicalNameEn": "Pointe-Noire Bay",
+      "positiveTypePath": [
+        "Q39594",
+        "Q2507626",
+        "Q15324"
+      ],
+      "distanceKm": 8.047
+    },
+    {
+      "entityId": "poi-76fac12e65516281",
+      "parentCityEntityId": "city-91b2570c5f33d842",
+      "wikidataId": "Q10856947",
+      "canonicalNameEn": "Hamoudi Mosque",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 0.364
+    },
+    {
+      "entityId": "poi-749bedf20c88012d",
+      "parentCityEntityId": "city-91b2570c5f33d842",
+      "wikidataId": "Q105477513",
+      "canonicalNameEn": "Abdülhamid II Mosque",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 0.698
+    },
+    {
+      "entityId": "poi-be90642022ba115b",
+      "parentCityEntityId": "city-91b2570c5f33d842",
+      "wikidataId": "Q26258414",
+      "canonicalNameEn": "Salman Mosque",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 2.933
+    },
+    {
+      "entityId": "poi-348831b2b4627e3d",
+      "parentCityEntityId": "city-91b2570c5f33d842",
+      "wikidataId": "Q16538426",
+      "canonicalNameEn": "Our Lady of the Good Shepherd Cathedral, Djibouti",
+      "positiveTypePath": [
+        "Q56242215",
+        "Q2977",
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 0.583
+    },
+    {
+      "entityId": "poi-d50d76e9d3f2e431",
+      "parentCityEntityId": "city-4e646805968aa7b9",
+      "wikidataId": "Q1535776",
+      "canonicalNameEn": "Morne Watt",
+      "positiveTypePath": [
+        "Q8072",
+        "Q29025902",
+        "Q271669"
+      ],
+      "distanceKm": 8.437
+    },
+    {
+      "entityId": "poi-2dbe00d26e95c3c8",
+      "parentCityEntityId": "city-4e646805968aa7b9",
+      "wikidataId": "Q3018552",
+      "canonicalNameEn": "Roseau River",
+      "positiveTypePath": [
+        "Q4022",
+        "Q2479431",
+        "Q15324"
+      ],
+      "distanceKm": 1.788
+    },
+    {
+      "entityId": "poi-1e4e3b9dbaaa9b9e",
+      "parentCityEntityId": "city-4e646805968aa7b9",
+      "wikidataId": "Q13388092",
+      "canonicalNameEn": "Morne Plat Pays",
+      "positiveTypePath": [
+        "Q8072",
+        "Q29025902",
+        "Q271669"
+      ],
+      "distanceKm": 6.866
+    },
+    {
+      "entityId": "poi-300625bc9af2b8e3",
+      "parentCityEntityId": "city-4e646805968aa7b9",
+      "wikidataId": "Q3456644",
+      "canonicalNameEn": "Dominica Botanical Gardens",
+      "positiveTypePath": [
+        "Q167346",
+        "Q13226383"
+      ],
+      "distanceKm": 0.206
+    },
+    {
+      "entityId": "poi-fa789c2ddeaed25f",
+      "parentCityEntityId": "city-4e646805968aa7b9",
+      "wikidataId": "Q7337452",
+      "canonicalNameEn": "River Gillon",
+      "positiveTypePath": [
+        "Q4022",
+        "Q2479431",
+        "Q15324"
+      ],
+      "distanceKm": 3.707
+    },
+    {
+      "entityId": "poi-77c712288d79c0aa",
+      "parentCityEntityId": "city-4e646805968aa7b9",
+      "wikidataId": "Q4245116",
+      "canonicalNameEn": "Roseau Cathedral",
+      "positiveTypePath": [
+        "Q2977",
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 0.349
+    },
+    {
+      "entityId": "poi-f6a911c723ced0c6",
+      "parentCityEntityId": "city-4e646805968aa7b9",
+      "wikidataId": "Q3556861",
+      "canonicalNameEn": "Woodbridge Bay",
+      "positiveTypePath": [
+        "Q39594",
+        "Q2507626",
+        "Q15324"
+      ],
+      "distanceKm": 1.697
+    },
+    {
+      "entityId": "poi-1aa8c9d99ae50529",
+      "parentCityEntityId": "city-3f9f3579e6cd3ee4",
+      "wikidataId": "Q12771972",
+      "canonicalNameEn": "Morne aux Diables",
+      "positiveTypePath": [
+        "Q8072",
+        "Q29025902",
+        "Q271669"
+      ],
+      "distanceKm": 5.015
+    },
+    {
+      "entityId": "poi-3ec0af185b37dea3",
+      "parentCityEntityId": "city-3f9f3579e6cd3ee4",
+      "wikidataId": "Q5015852",
+      "canonicalNameEn": "Cabrits National Park",
+      "positiveTypePath": [
+        "Q46169",
+        "Q22698"
+      ],
+      "distanceKm": 1.98
+    },
+    {
+      "entityId": "poi-435a2f2898ae2978",
+      "parentCityEntityId": "city-3f9f3579e6cd3ee4",
+      "wikidataId": "Q6021427",
+      "canonicalNameEn": "Indian River",
+      "positiveTypePath": [
+        "Q4022",
+        "Q2479431",
+        "Q15324"
+      ],
+      "distanceKm": 1.072
+    },
+    {
+      "entityId": "poi-2a9d3485072f9407",
+      "parentCityEntityId": "city-3f9f3579e6cd3ee4",
+      "wikidataId": "Q7190503",
+      "canonicalNameEn": "Picard River",
+      "positiveTypePath": [
+        "Q4022",
+        "Q2479431",
+        "Q15324"
+      ],
+      "distanceKm": 1.072
+    },
+    {
+      "entityId": "poi-3be2c83e22c56a3c",
+      "parentCityEntityId": "city-3f9f3579e6cd3ee4",
+      "wikidataId": "Q7056504",
+      "canonicalNameEn": "North River",
+      "positiveTypePath": [
+        "Q4022",
+        "Q2479431",
+        "Q15324"
+      ],
+      "distanceKm": 1.312
+    },
+    {
+      "entityId": "poi-650144d55a5eef2c",
+      "parentCityEntityId": "city-e1b6ad4fe38b87f2",
+      "wikidataId": "Q8342845",
+      "canonicalNameEn": "St. Elisabeth Cathedral",
+      "positiveTypePath": [
+        "Q56242215",
+        "Q2977",
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 1.144
+    },
+    {
+      "entityId": "poi-8fdac9a88ab76bb6",
+      "parentCityEntityId": "city-e1b6ad4fe38b87f2",
+      "wikidataId": "Q20921734",
+      "canonicalNameEn": "Malabo Mosque",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 7.344
+    },
+    {
+      "entityId": "poi-a27cef7927ebf3b2",
+      "parentCityEntityId": "city-32ba3c0fafbb78ad",
+      "wikidataId": "Q16773580",
+      "canonicalNameEn": "Torre de La Libertad",
+      "positiveTypePath": [
+        "Q4989906"
+      ],
+      "distanceKm": 0.608
+    },
+    {
+      "entityId": "poi-389a29336631da94",
+      "parentCityEntityId": "city-32ba3c0fafbb78ad",
+      "wikidataId": "Q21074954",
+      "canonicalNameEn": "St. James and Our Lady of the Pillar Cathedral, Bata",
+      "positiveTypePath": [
+        "Q56242215",
+        "Q2977",
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 0.219
+    },
+    {
+      "entityId": "poi-a7a0002ba882225f",
+      "parentCityEntityId": "city-32ba3c0fafbb78ad",
+      "wikidataId": "Q16627185",
+      "canonicalNameEn": "Río Ekuku",
+      "positiveTypePath": [
+        "Q47521",
+        "Q15324"
+      ],
+      "distanceKm": 8.001
+    }
+  ],
+  "quarantineCount": 321
+}

@@ -12,6 +12,8 @@ import {
   REPORT_PATH,
   buildImageAssetBaseline, compareImageAssetBaselineInventories,
   evaluateNormalGitImageSizePolicy,
+  imageAssetBaselineContractView,
+  imageReferenceKind,
   renderImageAssetBaselineReport,
   stableBaselineJson,
 } from "./lib/image-asset-baseline.mjs";
@@ -103,6 +105,81 @@ function verifyCanonicalTextComparisonFixtures() {
   };
 }
 
+function assertImageAssetBaselineContractMatches(model, sealedModel) {
+  assert.deepEqual(
+    imageAssetBaselineContractView(model),
+    imageAssetBaselineContractView(sealedModel),
+    `${INVENTORY_PATH}:sealed production image contract changed`,
+  );
+}
+
+function verifyReferenceAuthorityBoundaryFixtures() {
+  assert.equal(imageReferenceKind("data/knowledge/raw/fixture.wikidata.json"), "audit");
+  assert.equal(imageReferenceKind("data/knowledge/batches/provenance.fixture.json"), "audit");
+  assert.equal(imageReferenceKind("src/lib/routes/runtime-image-map.mjs"), "production");
+  assert.equal(imageReferenceKind("tests/browser/image-fixture.spec.cjs"), "test");
+
+  const fixture = (kind, overrides = {}) => ({
+    schemaVersion: "fixture",
+    inventory: [{
+      path: "assets/fixture.webp",
+      bytes: 100,
+      sha256: FIXTURE_HASH,
+      references: [{ sourcePath: "fixture", line: 10, kind }],
+    }],
+    references: {
+      missingLocalAssets: [],
+      blockingMissingLocalAssets: [],
+      externalImageReferences: [{ url: "https://example.test/image.webp", sourcePath: "fixture", line: 10, kind }],
+      unsafeProductionImages: [],
+    },
+    ...overrides,
+  });
+  const audit = imageAssetBaselineContractView(fixture("audit"));
+  assert.deepEqual(audit.inventory[0].references, [], "candidate/raw audit references must not enter the sealed production reference contract");
+  assert.deepEqual(audit.references.externalImageReferences, [], "candidate/raw external URLs must remain outside the sealed production reference contract");
+  const changedAudit = fixture("audit");
+  changedAudit.inventory[0].references[0].line = 999;
+  changedAudit.references.externalImageReferences[0].url = "https://example.test/changed-audit-image.webp";
+  changedAudit.references.externalImageReferences[0].line = 999;
+  assert.doesNotThrow(
+    () => assertImageAssetBaselineContractMatches(changedAudit, fixture("audit")),
+    "candidate/raw audit metadata mutations must remain outside the authoritative seal",
+  );
+
+  const production = fixture("production");
+  const productionView = imageAssetBaselineContractView(production);
+  assert.equal(productionView.inventory[0].references.length, 1, "production references must remain sealed");
+  assert.equal(productionView.references.externalImageReferences.length, 1, "production external references must remain sealed");
+  const changedReference = structuredClone(production);
+  changedReference.inventory[0].references[0].sourcePath = "src/changed-production-consumer.mjs";
+  assert.throws(
+    () => assertImageAssetBaselineContractMatches(changedReference, production),
+    /sealed production image contract changed/u,
+    "production reference mutation must be rejected by the authoritative seal assertion",
+  );
+  const changedHash = structuredClone(production);
+  changedHash.inventory[0].sha256 = OTHER_FIXTURE_HASH;
+  assert.throws(
+    () => assertImageAssetBaselineContractMatches(changedHash, production),
+    /sealed production image contract changed/u,
+    "production asset hash mutation must be rejected by the authoritative seal assertion",
+  );
+  const changedBytes = structuredClone(production);
+  changedBytes.inventory[0].bytes += 1;
+  assert.throws(
+    () => assertImageAssetBaselineContractMatches(changedBytes, production),
+    /sealed production image contract changed/u,
+    "production asset byte-size mutation must be rejected by the authoritative seal assertion",
+  );
+  return {
+    auditMetadataMutationAccepted: true,
+    productionReferenceMutationRejected: true,
+    productionHashMutationRejected: true,
+    productionByteSizeMutationRejected: true,
+  };
+}
+
 function hasInventoryMismatch(result) {
   return result.trackedStateMismatches.length > 0
     || result.hashMismatches.length > 0
@@ -158,6 +235,7 @@ const sealedModel = JSON.parse(fs.readFileSync(inventoryPath, "utf8"));
 const inventoryComparison = compareImageAssetBaselineInventories(model.inventory, sealedModel.inventory || []);
 const sizePolicyMutations = verifyNormalGitSizePolicyMutations();
 const canonicalTextComparisonFixtures = verifyCanonicalTextComparisonFixtures();
+const referenceAuthorityBoundaryFixtures = verifyReferenceAuthorityBoundaryFixtures();
 const trackedStateMutationCases = verifyTrackedStateSealingMutations();
 assert.equal(model.schemaVersion, BASELINE_SCHEMA_VERSION);
 assert.equal(model.inventory.filter((asset) => !asset.isTracked).length, 0, `untracked image assets cannot be sealed:${JSON.stringify(model.inventory.filter((asset) => !asset.isTracked).map((asset) => asset.path))}`);
@@ -166,13 +244,9 @@ assert.equal(inventoryComparison.hashMismatches.length, 0, `image hash baseline 
 assert.equal(inventoryComparison.byteMismatches.length, 0, `image byte-size baseline mismatches:${JSON.stringify(inventoryComparison.byteMismatches)}`);
 assert.equal(inventoryComparison.missingAssets.length, 0, `missing baseline image assets:${JSON.stringify(inventoryComparison.missingAssets)}`);
 assert.equal(inventoryComparison.unexpectedAssets.length, 0, `unexpected baseline image assets:${JSON.stringify(inventoryComparison.unexpectedAssets)}`);
+assertImageAssetBaselineContractMatches(model, sealedModel);
 assert.equal(
-  artifactTextMatches(stableBaselineJson(model), fs.readFileSync(inventoryPath, "utf8")),
-  true,
-  `${INVENTORY_PATH}:stale or manually edited`,
-);
-assert.equal(
-  artifactTextMatches(renderImageAssetBaselineReport(model), fs.readFileSync(reportPath, "utf8")),
+  artifactTextMatches(renderImageAssetBaselineReport(sealedModel), fs.readFileSync(reportPath, "utf8")),
   true,
   `${REPORT_PATH}:stale or manually edited`,
 );
@@ -242,6 +316,7 @@ process.stdout.write(`${JSON.stringify({
   trackedStateMutationCases,
   sizePolicyMutations,
   canonicalTextComparisonFixtures,
+  referenceAuthorityBoundaryFixtures,
   unknownAssets: 0,
   invalidMappings: 0,
 }, null, 2)}\n`);

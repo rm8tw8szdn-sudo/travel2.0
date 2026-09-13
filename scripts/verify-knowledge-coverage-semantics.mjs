@@ -49,9 +49,10 @@ assert.equal(report.plannableCountryCodes.includes("AM"), true, "Batch 08 Armeni
 assert.equal(report.plannableCountryCodes.includes("NI"), true, "Batch 08 Nicaragua City/POI depth must be reflected as plannable");
 assert.deepEqual(report.countryOnlyCountryCodes, [
   "AF", "AG", "AO", "BB", "BF", "BI", "BJ", "BY", "BZ", "CF", "CG", "CI", "CM", "CN",
-  "CV", "DJ", "DM", "ER", "GA", "GM", "GQ", "GY", "IR", "KM", "MM", "MN", "MZ", "PG",
-  "RW", "SM", "SZ", "TD", "TJ", "TL", "TT", "UA", "UG", "ZM", "ZW",
-], "China and the evidence-pending Sovereign Wave 1 and Wave 2 countries must remain Catalog-only");
+  "CV", "DJ", "DM", "ER", "FM", "GA", "GD", "GM", "GN", "GQ", "GW", "GY", "HT", "IQ",
+  "IR", "KI", "KM", "KN", "LR", "LS", "LY", "MH", "ML", "MM", "MN", "MR", "MW", "MZ", "NE",
+  "NR", "PG", "PW", "RW", "SM", "SZ", "TD", "TJ", "TL", "TT", "UA", "UG", "ZM", "ZW",
+], "China and the evidence-pending Sovereign Wave 1, Wave 2, and Wave 3 countries must remain Catalog-only");
 assert(report.catalogCountries > report.plannableCountries, "catalog presence must not be reported as planning coverage");
 
 process.stdout.write(`${JSON.stringify({

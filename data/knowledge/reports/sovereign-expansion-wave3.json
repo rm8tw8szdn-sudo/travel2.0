@@ -1,0 +1,313 @@
+{
+  "schemaVersion": "route-v2-sovereign-expansion-wave3-report-v1",
+  "status": "READY_FOR_FINAL_REVIEW",
+  "baseline": {
+    "countries": 157,
+    "cities": 833,
+    "pois": 3963,
+    "totalEntities": 4953,
+    "plannableCountries": 118,
+    "evidenceBackedCountries": 115,
+    "catalogOnlyCountries": 39
+  },
+  "wave3Countries": [
+    "GD",
+    "GN",
+    "GW",
+    "HT",
+    "IQ",
+    "KI",
+    "LS",
+    "LR",
+    "LY",
+    "MW",
+    "ML",
+    "MH",
+    "MR",
+    "FM",
+    "NR",
+    "NE",
+    "PW",
+    "KN"
+  ],
+  "additions": {
+    "publishedCountries": 18,
+    "preparedCities": 28,
+    "preparedPois": 110,
+    "publishedEvidenceRecords": 0,
+    "plannableCountries": 0,
+    "evidenceBackedCountries": 0,
+    "catalogOnlyCountries": 18
+  },
+  "after": {
+    "countries": 175,
+    "cities": 833,
+    "pois": 3963,
+    "totalEntities": 4971,
+    "plannableCountries": 118,
+    "evidenceBackedCountries": 115,
+    "catalogOnlyCountries": 57,
+    "remainingSovereignGap": 20
+  },
+  "statusMatrix": [
+    {
+      "countryCode": "GD",
+      "published": true,
+      "preparedCityCount": 2,
+      "preparedPoiCount": 10,
+      "validEvidence": false,
+      "plannable": false,
+      "evidenceBacked": false,
+      "catalogOnly": true,
+      "evidencePending": true,
+      "routeReadiness": "wave3-catalog-only-evidence-pending"
+    },
+    {
+      "countryCode": "GN",
+      "published": true,
+      "preparedCityCount": 2,
+      "preparedPoiCount": 9,
+      "validEvidence": false,
+      "plannable": false,
+      "evidenceBacked": false,
+      "catalogOnly": true,
+      "evidencePending": true,
+      "routeReadiness": "wave3-catalog-only-evidence-pending"
+    },
+    {
+      "countryCode": "GW",
+      "published": true,
+      "preparedCityCount": 2,
+      "preparedPoiCount": 5,
+      "validEvidence": false,
+      "plannable": false,
+      "evidenceBacked": false,
+      "catalogOnly": true,
+      "evidencePending": true,
+      "routeReadiness": "wave3-catalog-only-evidence-pending"
+    },
+    {
+      "countryCode": "HT",
+      "published": true,
+      "preparedCityCount": 2,
+      "preparedPoiCount": 9,
+      "validEvidence": false,
+      "plannable": false,
+      "evidenceBacked": false,
+      "catalogOnly": true,
+      "evidencePending": true,
+      "routeReadiness": "wave3-catalog-only-evidence-pending"
+    },
+    {
+      "countryCode": "IQ",
+      "published": true,
+      "preparedCityCount": 3,
+      "preparedPoiCount": 16,
+      "validEvidence": false,
+      "plannable": false,
+      "evidenceBacked": false,
+      "catalogOnly": true,
+      "evidencePending": true,
+      "routeReadiness": "wave3-catalog-only-evidence-pending"
+    },
+    {
+      "countryCode": "KI",
+      "published": true,
+      "preparedCityCount": 1,
+      "preparedPoiCount": 2,
+      "validEvidence": false,
+      "plannable": false,
+      "evidenceBacked": false,
+      "catalogOnly": true,
+      "evidencePending": true,
+      "routeReadiness": "wave3-catalog-only-evidence-pending"
+    },
+    {
+      "countryCode": "LS",
+      "published": true,
+      "preparedCityCount": 1,
+      "preparedPoiCount": 1,
+      "validEvidence": false,
+      "plannable": false,
+      "evidenceBacked": false,
+      "catalogOnly": true,
+      "evidencePending": true,
+      "routeReadiness": "wave3-catalog-only-evidence-pending"
+    },
+    {
+      "countryCode": "LR",
+      "published": true,
+      "preparedCityCount": 2,
+      "preparedPoiCount": 7,
+      "validEvidence": false,
+      "plannable": false,
+      "evidenceBacked": false,
+      "catalogOnly": true,
+      "evidencePending": true,
+      "routeReadiness": "wave3-catalog-only-evidence-pending"
+    },
+    {
+      "countryCode": "LY",
+      "published": true,
+      "preparedCityCount": 1,
+      "preparedPoiCount": 5,
+      "validEvidence": false,
+      "plannable": false,
+      "evidenceBacked": false,
+      "catalogOnly": true,
+      "evidencePending": true,
+      "routeReadiness": "wave3-catalog-only-evidence-pending"
+    },
+    {
+      "countryCode": "MW",
+      "published": true,
+      "preparedCityCount": 2,
+      "preparedPoiCount": 5,
+      "validEvidence": false,
+      "plannable": false,
+      "evidenceBacked": false,
+      "catalogOnly": true,
+      "evidencePending": true,
+      "routeReadiness": "wave3-catalog-only-evidence-pending"
+    },
+    {
+      "countryCode": "ML",
+      "published": true,
+      "preparedCityCount": 2,
+      "preparedPoiCount": 9,
+      "validEvidence": false,
+      "plannable": false,
+      "evidenceBacked": false,
+      "catalogOnly": true,
+      "evidencePending": true,
+      "routeReadiness": "wave3-catalog-only-evidence-pending"
+    },
+    {
+      "countryCode": "MH",
+      "published": true,
+      "preparedCityCount": 1,
+      "preparedPoiCount": 3,
+      "validEvidence": false,
+      "plannable": false,
+      "evidenceBacked": false,
+      "catalogOnly": true,
+      "evidencePending": true,
+      "routeReadiness": "wave3-catalog-only-evidence-pending"
+    },
+    {
+      "countryCode": "MR",
+      "published": true,
+      "preparedCityCount": 2,
+      "preparedPoiCount": 8,
+      "validEvidence": false,
+      "plannable": false,
+      "evidenceBacked": false,
+      "catalogOnly": true,
+      "evidencePending": true,
+      "routeReadiness": "wave3-catalog-only-evidence-pending"
+    },
+    {
+      "countryCode": "FM",
+      "published": true,
+      "preparedCityCount": 1,
+      "preparedPoiCount": 3,
+      "validEvidence": false,
+      "plannable": false,
+      "evidenceBacked": false,
+      "catalogOnly": true,
+      "evidencePending": true,
+      "routeReadiness": "wave3-catalog-only-evidence-pending"
+    },
+    {
+      "countryCode": "NR",
+      "published": true,
+      "preparedCityCount": 0,
+      "preparedPoiCount": 0,
+      "validEvidence": false,
+      "plannable": false,
+      "evidenceBacked": false,
+      "catalogOnly": true,
+      "evidencePending": true,
+      "routeReadiness": "wave3-catalog-only-evidence-pending"
+    },
+    {
+      "countryCode": "NE",
+      "published": true,
+      "preparedCityCount": 1,
+      "preparedPoiCount": 5,
+      "validEvidence": false,
+      "plannable": false,
+      "evidenceBacked": false,
+      "catalogOnly": true,
+      "evidencePending": true,
+      "routeReadiness": "wave3-catalog-only-evidence-pending"
+    },
+    {
+      "countryCode": "PW",
+      "published": true,
+      "preparedCityCount": 1,
+      "preparedPoiCount": 3,
+      "validEvidence": false,
+      "plannable": false,
+      "evidenceBacked": false,
+      "catalogOnly": true,
+      "evidencePending": true,
+      "routeReadiness": "wave3-catalog-only-evidence-pending"
+    },
+    {
+      "countryCode": "KN",
+      "published": true,
+      "preparedCityCount": 2,
+      "preparedPoiCount": 10,
+      "validEvidence": false,
+      "plannable": false,
+      "evidenceBacked": false,
+      "catalogOnly": true,
+      "evidencePending": true,
+      "routeReadiness": "wave3-catalog-only-evidence-pending"
+    }
+  ],
+  "quarantine": {
+    "historicalSealed": 1416,
+    "wave1Candidates": 2959,
+    "wave2Candidates": 1566,
+    "newCandidateEntries": 1056
+  },
+  "images": {
+    "assets": 1401,
+    "countryCovers": "118/118 plannable countries",
+    "dedicatedCities": "823/833",
+    "dedicatedCorePois": "313/342",
+    "activeDebt": 39,
+    "invalidMappings": 0,
+    "productionChanges": 0
+  },
+  "historical": {
+    "wave1": {
+      "countries": 139,
+      "cities": 833,
+      "pois": 3963,
+      "total": 4935
+    },
+    "wave2": {
+      "countries": 157,
+      "cities": 833,
+      "pois": 3963,
+      "total": 4953
+    },
+    "batch09": {
+      "countries": 119,
+      "cities": 833,
+      "pois": 3963,
+      "total": 4915
+    },
+    "gitAnchoredSnapshotFiles": 26
+  },
+  "performance": {
+    "dedicatedRunner": "NOT_AVAILABLE",
+    "realQualificationExecutions": 0,
+    "formalExperimentExecutions": 1,
+    "formalRun34622976529": "BLOCKED_INCONCLUSIVE",
+    "clearance": "NOT_CLEARED"
+  }
+}

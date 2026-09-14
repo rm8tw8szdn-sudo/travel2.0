@@ -1,0 +1,431 @@
+{
+  "schemaVersion": "route-v2-knowledge-expansion-batch13-wave4-selection-v1",
+  "wave": 4,
+  "countries": [
+    {
+      "isoAlpha2": "TM",
+      "wikidataId": "Q874",
+      "entityId": "country-3a168e9b5343a013"
+    },
+    {
+      "isoAlpha2": "TV",
+      "wikidataId": "Q672",
+      "entityId": "country-12c34702674ce0b2"
+    },
+    {
+      "isoAlpha2": "VE",
+      "wikidataId": "Q717",
+      "entityId": "country-94c20a6d1dd95280"
+    },
+    {
+      "isoAlpha2": "YE",
+      "wikidataId": "Q805",
+      "entityId": "country-058acc384fb20eec"
+    }
+  ],
+  "cities": [
+    {
+      "countryCode": "TM",
+      "tier": "world",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 7,
+      "reused": false,
+      "entityId": "city-caec21868a98aec1",
+      "wikidataId": "Q23438",
+      "canonicalNameEn": "Ashgabat",
+      "positiveTypePath": [
+        "Q1549591",
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "VE",
+      "tier": "world",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 7,
+      "reused": false,
+      "entityId": "city-bd51deabb58751ad",
+      "wikidataId": "Q1533",
+      "canonicalNameEn": "Caracas",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "VE",
+      "tier": "core",
+      "targetPoiCount": 5,
+      "selectedPoiCount": 5,
+      "reused": false,
+      "entityId": "city-876605e3e5cea3f3",
+      "wikidataId": "Q23551",
+      "canonicalNameEn": "Mérida",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "YE",
+      "tier": "world",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 7,
+      "reused": false,
+      "entityId": "city-c8f48e83c5de3192",
+      "wikidataId": "Q2471",
+      "canonicalNameEn": "Sanaa",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "YE",
+      "tier": "core",
+      "targetPoiCount": 5,
+      "selectedPoiCount": 3,
+      "reused": false,
+      "entityId": "city-91d74aa5b7363945",
+      "wikidataId": "Q131694",
+      "canonicalNameEn": "Aden",
+      "positiveTypePath": [
+        "Q486972"
+      ]
+    }
+  ],
+  "pois": [
+    {
+      "entityId": "poi-51576ad84899ca6e",
+      "parentCityEntityId": "city-caec21868a98aec1",
+      "wikidataId": "Q2564552",
+      "canonicalNameEn": "Arch of Neutrality",
+      "positiveTypePath": [
+        "Q4989906"
+      ],
+      "distanceKm": 1.481
+    },
+    {
+      "entityId": "poi-1a96549fe020d7be",
+      "parentCityEntityId": "city-caec21868a98aec1",
+      "wikidataId": "Q993863",
+      "canonicalNameEn": "Ertuğrul Gazi Mosque",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 2.326
+    },
+    {
+      "entityId": "poi-4d63e2eae804a2b9",
+      "parentCityEntityId": "city-caec21868a98aec1",
+      "wikidataId": "Q3323339",
+      "canonicalNameEn": "Independence Monument, Ashgabat",
+      "positiveTypePath": [
+        "Q1440300",
+        "Q570116"
+      ],
+      "distanceKm": 7.652
+    },
+    {
+      "entityId": "poi-274cee811409d032",
+      "parentCityEntityId": "city-caec21868a98aec1",
+      "wikidataId": "Q1835821",
+      "canonicalNameEn": "Turkmen Carpet Museum",
+      "positiveTypePath": [
+        "Q33506"
+      ],
+      "distanceKm": 2.928
+    },
+    {
+      "entityId": "poi-b674144abcf401c8",
+      "parentCityEntityId": "city-caec21868a98aec1",
+      "wikidataId": "Q12016613",
+      "canonicalNameEn": "National Library of Turkmenistan",
+      "positiveTypePath": [
+        "Q22806",
+        "Q65768782",
+        "Q385994",
+        "Q7075",
+        "Q101542346",
+        "Q13226383"
+      ],
+      "distanceKm": 1.569
+    },
+    {
+      "entityId": "poi-e8654015a2621a5c",
+      "parentCityEntityId": "city-caec21868a98aec1",
+      "wikidataId": "Q4302176",
+      "canonicalNameEn": "Monument to the Constitution",
+      "positiveTypePath": [
+        "Q4989906"
+      ],
+      "distanceKm": 7.944
+    },
+    {
+      "entityId": "poi-300a8efbb4558e1c",
+      "parentCityEntityId": "city-caec21868a98aec1",
+      "wikidataId": "Q18404626",
+      "canonicalNameEn": "Ashgabat Memorial Complex",
+      "positiveTypePath": [
+        "Q4989906"
+      ],
+      "distanceKm": 6.056
+    },
+    {
+      "entityId": "poi-95af28d77660f1ab",
+      "parentCityEntityId": "city-bd51deabb58751ad",
+      "wikidataId": "Q1815635",
+      "canonicalNameEn": "Mosque of Sheikh Ibrahim Al-Ibrahim",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 2.153
+    },
+    {
+      "entityId": "poi-13a5f74f95160fb6",
+      "parentCityEntityId": "city-bd51deabb58751ad",
+      "wikidataId": "Q610753",
+      "canonicalNameEn": "National Library of Venezuela",
+      "positiveTypePath": [
+        "Q22806",
+        "Q65768782",
+        "Q385994",
+        "Q7075",
+        "Q101542346",
+        "Q13226383"
+      ],
+      "distanceKm": 0.692
+    },
+    {
+      "entityId": "poi-c23cbdc92ef8fe34",
+      "parentCityEntityId": "city-bd51deabb58751ad",
+      "wikidataId": "Q1736173",
+      "canonicalNameEn": "Caracas Cathedral",
+      "positiveTypePath": [
+        "Q56242215",
+        "Q2977",
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 0.05
+    },
+    {
+      "entityId": "poi-e26c754f5f07cdc7",
+      "parentCityEntityId": "city-bd51deabb58751ad",
+      "wikidataId": "Q994694",
+      "canonicalNameEn": "National Pantheon",
+      "positiveTypePath": [
+        "Q162875",
+        "Q4989906"
+      ],
+      "distanceKm": 0.781
+    },
+    {
+      "entityId": "poi-e5404ccdacbc18a2",
+      "parentCityEntityId": "city-bd51deabb58751ad",
+      "wikidataId": "Q2630111",
+      "canonicalNameEn": "Caracas Museum of Fine Arts",
+      "positiveTypePath": [
+        "Q207694",
+        "Q33506"
+      ],
+      "distanceKm": 2.005
+    },
+    {
+      "entityId": "poi-aa8d22e40ceb2958",
+      "parentCityEntityId": "city-bd51deabb58751ad",
+      "wikidataId": "Q6079441",
+      "canonicalNameEn": "Bolívar Square",
+      "positiveTypePath": [
+        "Q174782",
+        "Q811979"
+      ],
+      "distanceKm": 0.021
+    },
+    {
+      "entityId": "poi-3d2c15c2c28256b4",
+      "parentCityEntityId": "city-bd51deabb58751ad",
+      "wikidataId": "Q6079839",
+      "canonicalNameEn": "Plaza Venezuela",
+      "positiveTypePath": [
+        "Q22746",
+        "Q22698"
+      ],
+      "distanceKm": 3.3
+    },
+    {
+      "entityId": "poi-9d49ed383ad63b06",
+      "parentCityEntityId": "city-876605e3e5cea3f3",
+      "wikidataId": "Q153541",
+      "canonicalNameEn": "Botanical Garden of Mérida",
+      "positiveTypePath": [
+        "Q167346",
+        "Q13226383"
+      ],
+      "distanceKm": 7.151
+    },
+    {
+      "entityId": "poi-6669b037a6a846c3",
+      "parentCityEntityId": "city-876605e3e5cea3f3",
+      "wikidataId": "Q5758503",
+      "canonicalNameEn": "Cathedral Basilica of the Immaculate Conception",
+      "positiveTypePath": [
+        "Q2065736",
+        "Q210272"
+      ],
+      "distanceKm": 4.993
+    },
+    {
+      "entityId": "poi-550ad6641fbbc075",
+      "parentCityEntityId": "city-876605e3e5cea3f3",
+      "wikidataId": "Q3458519",
+      "canonicalNameEn": "Río Albarregas",
+      "positiveTypePath": [
+        "Q47521",
+        "Q15324"
+      ],
+      "distanceKm": 5.574
+    },
+    {
+      "entityId": "poi-9f6ed42034003f4f",
+      "parentCityEntityId": "city-876605e3e5cea3f3",
+      "wikidataId": "Q6062578",
+      "canonicalNameEn": "Parque Zoológico Chorros de Milla",
+      "positiveTypePath": [
+        "Q43501",
+        "Q22698"
+      ],
+      "distanceKm": 7.823
+    },
+    {
+      "entityId": "poi-763649d21b94a8d1",
+      "parentCityEntityId": "city-876605e3e5cea3f3",
+      "wikidataId": "Q112859116",
+      "canonicalNameEn": "Science and Technology Museum of  Merida",
+      "positiveTypePath": [
+        "Q33506"
+      ],
+      "distanceKm": 1.346
+    },
+    {
+      "entityId": "poi-548deb77b2ef064b",
+      "parentCityEntityId": "city-c8f48e83c5de3192",
+      "wikidataId": "Q2548705",
+      "canonicalNameEn": "Great Mosque of Sana'a",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 1.637
+    },
+    {
+      "entityId": "poi-9ba5ad99dec3d359",
+      "parentCityEntityId": "city-c8f48e83c5de3192",
+      "wikidataId": "Q4115837",
+      "canonicalNameEn": "Al Saleh Mosque",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 2.815
+    },
+    {
+      "entityId": "poi-52b166ff2d3d6703",
+      "parentCityEntityId": "city-c8f48e83c5de3192",
+      "wikidataId": "Q12204207",
+      "canonicalNameEn": "Al-Bakiriyya Mosque",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 1.644
+    },
+    {
+      "entityId": "poi-36893fc3e6189a1d",
+      "parentCityEntityId": "city-c8f48e83c5de3192",
+      "wikidataId": "Q618450",
+      "canonicalNameEn": "National Library of Yemen",
+      "positiveTypePath": [
+        "Q22806",
+        "Q65768782",
+        "Q385994",
+        "Q7075",
+        "Q101542346",
+        "Q13226383"
+      ],
+      "distanceKm": 0.284
+    },
+    {
+      "entityId": "poi-0e98746c5a218fd0",
+      "parentCityEntityId": "city-c8f48e83c5de3192",
+      "wikidataId": "Q13668725",
+      "canonicalNameEn": "Al-Mahdi Mosque",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 1.041
+    },
+    {
+      "entityId": "poi-f506b5bd8f52df0f",
+      "parentCityEntityId": "city-c8f48e83c5de3192",
+      "wikidataId": "Q1521987",
+      "canonicalNameEn": "Ghumdan Palace",
+      "positiveTypePath": [
+        "Q16560",
+        "Q41176"
+      ],
+      "distanceKm": 1.582
+    },
+    {
+      "entityId": "poi-b711c55273794b22",
+      "parentCityEntityId": "city-c8f48e83c5de3192",
+      "wikidataId": "Q13668727",
+      "canonicalNameEn": "Talha Mosque",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 1.408
+    },
+    {
+      "entityId": "poi-2f7af112e0247ea3",
+      "parentCityEntityId": "city-91d74aa5b7363945",
+      "wikidataId": "Q16207731",
+      "canonicalNameEn": "Aidrus Mosque",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 3.087
+    },
+    {
+      "entityId": "poi-6d1a573c1ccfbaa4",
+      "parentCityEntityId": "city-91d74aa5b7363945",
+      "wikidataId": "Q1527588",
+      "canonicalNameEn": "Sira Fortress",
+      "positiveTypePath": [
+        "Q1785071",
+        "Q57821",
+        "Q811979"
+      ],
+      "distanceKm": 2.85
+    },
+    {
+      "entityId": "poi-3b02b7a23239b5e2",
+      "parentCityEntityId": "city-91d74aa5b7363945",
+      "wikidataId": "Q24951022",
+      "canonicalNameEn": "Al-Maashiq Palace",
+      "positiveTypePath": [
+        "Q16560",
+        "Q41176"
+      ],
+      "distanceKm": 4.554
+    }
+  ],
+  "quarantineCount": 332
+}

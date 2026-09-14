@@ -104,8 +104,10 @@ function mergeDestinations(primary = [], fallback = []) {
 }
 
 function countryCatalogItem(country = {}) {
+  const code = clean(country.isoAlpha2).toUpperCase();
+  const lowercaseIsoAlpha2 = code.toLocaleLowerCase("en-US");
   return Object.freeze({
-    code: clean(country.isoAlpha2).toUpperCase(),
+    code,
     label: clean(country.canonicalNameEn || country.canonicalNameZh),
     normalizedLabel: normalizedKey(country.canonicalNameEn || country.canonicalNameZh),
     aliases: Object.freeze(uniqueText([
@@ -113,7 +115,7 @@ function countryCatalogItem(country = {}) {
       country.canonicalNameZh,
       normalizedKey(country.canonicalNameEn || country.canonicalNameZh),
       ...(country.aliases || []),
-    ])),
+    ]).filter((alias) => clean(alias).toLocaleLowerCase("en-US") !== lowercaseIsoAlpha2)),
     entityId: clean(country.entityId),
     wikidataId: clean(country.wikidataId),
     continent: clean(country.continent?.canonicalNameEn || country.continent?.canonicalNameZh),

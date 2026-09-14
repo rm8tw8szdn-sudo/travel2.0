@@ -1,0 +1,385 @@
+{
+  "schemaVersion": "route-v2-knowledge-expansion-batch13-wave2-selection-v1",
+  "wave": 2,
+  "countries": [
+    {
+      "isoAlpha2": "SB",
+      "wikidataId": "Q685",
+      "entityId": "country-297ccf11f6aee769"
+    },
+    {
+      "isoAlpha2": "SO",
+      "wikidataId": "Q1045",
+      "entityId": "country-9e67472b2600e2e9"
+    },
+    {
+      "isoAlpha2": "SS",
+      "wikidataId": "Q958",
+      "entityId": "country-94ad2195ec4b5fd4"
+    },
+    {
+      "isoAlpha2": "SD",
+      "wikidataId": "Q1049",
+      "entityId": "country-8f4000826876b62b"
+    }
+  ],
+  "cities": [
+    {
+      "countryCode": "SB",
+      "tier": "world",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 7,
+      "reused": false,
+      "entityId": "city-49974cebb0f97983",
+      "wikidataId": "Q40921",
+      "canonicalNameEn": "Honiara",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "SO",
+      "tier": "world",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 7,
+      "reused": false,
+      "entityId": "city-529d29a0d3aad52b",
+      "wikidataId": "Q2449",
+      "canonicalNameEn": "Mogadishu",
+      "positiveTypePath": [
+        "Q2264924",
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "SS",
+      "tier": "world",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 4,
+      "reused": false,
+      "entityId": "city-fbbf0da83f5622c7",
+      "wikidataId": "Q1947",
+      "canonicalNameEn": "Juba",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "SD",
+      "tier": "world",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 7,
+      "reused": false,
+      "entityId": "city-1d2a0c06b9a1738d",
+      "wikidataId": "Q1963",
+      "canonicalNameEn": "Khartoum",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    }
+  ],
+  "pois": [
+    {
+      "entityId": "poi-632828ea4e042cd3",
+      "parentCityEntityId": "city-49974cebb0f97983",
+      "wikidataId": "Q349382",
+      "canonicalNameEn": "Matanikau River",
+      "positiveTypePath": [
+        "Q4022",
+        "Q2479431",
+        "Q15324"
+      ],
+      "distanceKm": 1.865
+    },
+    {
+      "entityId": "poi-9378181228765d91",
+      "parentCityEntityId": "city-49974cebb0f97983",
+      "wikidataId": "Q28747002",
+      "canonicalNameEn": "Holy Cross Cathedral",
+      "positiveTypePath": [
+        "Q56242215",
+        "Q2977",
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 1.513
+    },
+    {
+      "entityId": "poi-5075bfac7196a14e",
+      "parentCityEntityId": "city-49974cebb0f97983",
+      "wikidataId": "Q16891911",
+      "canonicalNameEn": "Guadalcanal American Memorial",
+      "positiveTypePath": [
+        "Q5003624",
+        "Q4989906"
+      ],
+      "distanceKm": 1.354
+    },
+    {
+      "entityId": "poi-9b6a2086dc106820",
+      "parentCityEntityId": "city-49974cebb0f97983",
+      "wikidataId": "Q130718410",
+      "canonicalNameEn": "National Library of Solomon Islands",
+      "positiveTypePath": [
+        "Q22806",
+        "Q65768782",
+        "Q385994",
+        "Q7075",
+        "Q101542346",
+        "Q13226383"
+      ],
+      "distanceKm": 1.629
+    },
+    {
+      "entityId": "poi-01ce931de5292a36",
+      "parentCityEntityId": "city-49974cebb0f97983",
+      "wikidataId": "Q25083458",
+      "canonicalNameEn": "National Archives of Solomon Islands",
+      "positiveTypePath": [
+        "Q2122214",
+        "Q27031009",
+        "Q166118"
+      ],
+      "distanceKm": 0.453
+    },
+    {
+      "entityId": "poi-ec38e3cf2e22484f",
+      "parentCityEntityId": "city-49974cebb0f97983",
+      "wikidataId": "Q106512453",
+      "canonicalNameEn": "Solomon Islands National Museum",
+      "positiveTypePath": [
+        "Q33506"
+      ],
+      "distanceKm": 0.52
+    },
+    {
+      "entityId": "poi-8047a70ce913e1ae",
+      "parentCityEntityId": "city-49974cebb0f97983",
+      "wikidataId": "Q28224122",
+      "canonicalNameEn": "Honiara Central Market",
+      "positiveTypePath": null,
+      "distanceKm": 0.629
+    },
+    {
+      "entityId": "poi-d78f9a883d8430f0",
+      "parentCityEntityId": "city-529d29a0d3aad52b",
+      "wikidataId": "Q2474798",
+      "canonicalNameEn": "Mosque of Islamic Solidarity",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 1.293
+    },
+    {
+      "entityId": "poi-b3188f79fe26dfed",
+      "parentCityEntityId": "city-529d29a0d3aad52b",
+      "wikidataId": "Q8247531",
+      "canonicalNameEn": "National Library of Somalia",
+      "positiveTypePath": [
+        "Q22806",
+        "Q65768782",
+        "Q385994",
+        "Q7075",
+        "Q101542346",
+        "Q13226383"
+      ],
+      "distanceKm": 0.462
+    },
+    {
+      "entityId": "poi-93edcd2f75b08d5a",
+      "parentCityEntityId": "city-529d29a0d3aad52b",
+      "wikidataId": "Q186169",
+      "canonicalNameEn": "Fakr ad-Din Mosque",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 0.644
+    },
+    {
+      "entityId": "poi-a9858b31d49b48f2",
+      "parentCityEntityId": "city-529d29a0d3aad52b",
+      "wikidataId": "Q15186773",
+      "canonicalNameEn": "Arba'a Rukun Mosque",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 0.456
+    },
+    {
+      "entityId": "poi-605de79c5857cf7c",
+      "parentCityEntityId": "city-529d29a0d3aad52b",
+      "wikidataId": "Q2033310",
+      "canonicalNameEn": "National Museum of Somalia",
+      "positiveTypePath": [
+        "Q17431399",
+        "Q33506"
+      ],
+      "distanceKm": 0.466
+    },
+    {
+      "entityId": "poi-e929c6b1a2d445e7",
+      "parentCityEntityId": "city-529d29a0d3aad52b",
+      "wikidataId": "Q17068907",
+      "canonicalNameEn": "National Theatre of Somalia",
+      "positiveTypePath": [
+        "Q24354",
+        "Q114961210",
+        "Q294422",
+        "Q41176"
+      ],
+      "distanceKm": 0.538
+    },
+    {
+      "entityId": "poi-8320f355de358e51",
+      "parentCityEntityId": "city-529d29a0d3aad52b",
+      "wikidataId": "Q2047637",
+      "canonicalNameEn": "Governor's Palace of Mogadishu",
+      "positiveTypePath": [
+        "Q16560",
+        "Q41176"
+      ],
+      "distanceKm": 0.483
+    },
+    {
+      "entityId": "poi-aaf2c4b8ffd14902",
+      "parentCityEntityId": "city-fbbf0da83f5622c7",
+      "wikidataId": "Q2942508",
+      "canonicalNameEn": "St. Theresa Cathedral, Juba",
+      "positiveTypePath": [
+        "Q56242215",
+        "Q2977",
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 3.557
+    },
+    {
+      "entityId": "poi-770691fca9c685cb",
+      "parentCityEntityId": "city-fbbf0da83f5622c7",
+      "wikidataId": "Q2892755",
+      "canonicalNameEn": "Juba Game Reserve",
+      "positiveTypePath": [
+        "Q179049",
+        "Q473972"
+      ],
+      "distanceKm": 4.078
+    },
+    {
+      "entityId": "poi-3a45f891a2d362c5",
+      "parentCityEntityId": "city-fbbf0da83f5622c7",
+      "wikidataId": "Q48789861",
+      "canonicalNameEn": "Juba Nile Bridge",
+      "positiveTypePath": [
+        "Q1055465",
+        "Q12280",
+        "Q811979"
+      ],
+      "distanceKm": 4.49
+    },
+    {
+      "entityId": "poi-07b483a1a918e55a",
+      "parentCityEntityId": "city-fbbf0da83f5622c7",
+      "wikidataId": "Q48789869",
+      "canonicalNameEn": "Freedom Bridge",
+      "positiveTypePath": [
+        "Q12280",
+        "Q811979"
+      ],
+      "distanceKm": 5.328
+    },
+    {
+      "entityId": "poi-2b320657d879fbe7",
+      "parentCityEntityId": "city-1d2a0c06b9a1738d",
+      "wikidataId": "Q643453",
+      "canonicalNameEn": "National Museum of Sudan",
+      "positiveTypePath": [
+        "Q17431399",
+        "Q33506"
+      ],
+      "distanceKm": 2.012
+    },
+    {
+      "entityId": "poi-1f4cba2c1464a61d",
+      "parentCityEntityId": "city-1d2a0c06b9a1738d",
+      "wikidataId": "Q1703518",
+      "canonicalNameEn": "Tuti Island",
+      "positiveTypePath": [
+        "Q162602",
+        "Q23442",
+        "Q271669"
+      ],
+      "distanceKm": 2.878
+    },
+    {
+      "entityId": "poi-436148a09b1793e5",
+      "parentCityEntityId": "city-1d2a0c06b9a1738d",
+      "wikidataId": "Q4022362",
+      "canonicalNameEn": "Al-Nilin Mosque",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 4.464
+    },
+    {
+      "entityId": "poi-d59df8ffafc11d59",
+      "parentCityEntityId": "city-1d2a0c06b9a1738d",
+      "wikidataId": "Q1411286",
+      "canonicalNameEn": "St. Matthew's Cathedral",
+      "positiveTypePath": [
+        "Q56242215",
+        "Q2977",
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 1.141
+    },
+    {
+      "entityId": "poi-aa0b776ce7d7c8c9",
+      "parentCityEntityId": "city-1d2a0c06b9a1738d",
+      "wikidataId": "Q652705",
+      "canonicalNameEn": "Tuti Bridge",
+      "positiveTypePath": [
+        "Q12570",
+        "Q12280",
+        "Q811979"
+      ],
+      "distanceKm": 1.625
+    },
+    {
+      "entityId": "poi-b1a496154240c98f",
+      "parentCityEntityId": "city-1d2a0c06b9a1738d",
+      "wikidataId": "Q259912",
+      "canonicalNameEn": "Mac Nimir Bridge",
+      "positiveTypePath": [
+        "Q158555",
+        "Q12280",
+        "Q811979"
+      ],
+      "distanceKm": 1.276
+    },
+    {
+      "entityId": "poi-71fa3f805aa37250",
+      "parentCityEntityId": "city-1d2a0c06b9a1738d",
+      "wikidataId": "Q2230795",
+      "canonicalNameEn": "Shambat Bridge",
+      "positiveTypePath": [
+        "Q158438",
+        "Q12280",
+        "Q811979"
+      ],
+      "distanceKm": 5.076
+    }
+  ],
+  "quarantineCount": 322
+}

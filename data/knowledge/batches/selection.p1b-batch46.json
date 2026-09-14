@@ -1,0 +1,547 @@
+{
+  "schemaVersion": "route-v2-knowledge-expansion-batch13-wave1-selection-v1",
+  "wave": 1,
+  "countries": [
+    {
+      "isoAlpha2": "LC",
+      "wikidataId": "Q760",
+      "entityId": "country-9926832fb3a11b85"
+    },
+    {
+      "isoAlpha2": "VC",
+      "wikidataId": "Q757",
+      "entityId": "country-03adefcf8e5ee28d"
+    },
+    {
+      "isoAlpha2": "ST",
+      "wikidataId": "Q1039",
+      "entityId": "country-0a039215c9a6233e"
+    },
+    {
+      "isoAlpha2": "SC",
+      "wikidataId": "Q1042",
+      "entityId": "country-00b4a4ddf326425f"
+    },
+    {
+      "isoAlpha2": "SL",
+      "wikidataId": "Q1044",
+      "entityId": "country-77965beff7d8b0b5"
+    }
+  ],
+  "cities": [
+    {
+      "countryCode": "LC",
+      "tier": "world",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 7,
+      "reused": false,
+      "entityId": "city-431d56ce0f110a8f",
+      "wikidataId": "Q41699",
+      "canonicalNameEn": "Castries",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "VC",
+      "tier": "world",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 7,
+      "reused": false,
+      "entityId": "city-efcf6ab20f4a3584",
+      "wikidataId": "Q41474",
+      "canonicalNameEn": "Kingstown",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "ST",
+      "tier": "world",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 7,
+      "reused": false,
+      "entityId": "city-403d5fec2fb5fbda",
+      "wikidataId": "Q3932",
+      "canonicalNameEn": "São Tomé",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "SC",
+      "tier": "world",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 7,
+      "reused": false,
+      "entityId": "city-80aba01c4401092f",
+      "wikidataId": "Q3940",
+      "canonicalNameEn": "Victoria",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "SL",
+      "tier": "world",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 7,
+      "reused": false,
+      "entityId": "city-84997cca03e56fbc",
+      "wikidataId": "Q3780",
+      "canonicalNameEn": "Freetown",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "SL",
+      "tier": "standard",
+      "targetPoiCount": 3,
+      "selectedPoiCount": 1,
+      "reused": false,
+      "entityId": "city-dc507b30f064ab26",
+      "wikidataId": "Q844878",
+      "canonicalNameEn": "Bo",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    }
+  ],
+  "pois": [
+    {
+      "entityId": "poi-b065c978f66307bd",
+      "parentCityEntityId": "city-431d56ce0f110a8f",
+      "wikidataId": "Q93259",
+      "canonicalNameEn": "Lesser Antilles",
+      "positiveTypePath": [
+        "Q33837",
+        "Q1402592",
+        "Q20719696"
+      ],
+      "distanceKm": 1.658
+    },
+    {
+      "entityId": "poi-ff3ff952ccc2fe4a",
+      "parentCityEntityId": "city-431d56ce0f110a8f",
+      "wikidataId": "Q7193299",
+      "canonicalNameEn": "Pigeon Island",
+      "positiveTypePath": [
+        "Q23442",
+        "Q271669"
+      ],
+      "distanceKm": 9.57
+    },
+    {
+      "entityId": "poi-6309b085316100c0",
+      "parentCityEntityId": "city-431d56ce0f110a8f",
+      "wikidataId": "Q5052198",
+      "canonicalNameEn": "Cathedral Basilica of the Immaculate Conception in Castries",
+      "positiveTypePath": [
+        "Q120560",
+        "Q4846867",
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 0.201
+    },
+    {
+      "entityId": "poi-aebef77068f7f04b",
+      "parentCityEntityId": "city-431d56ce0f110a8f",
+      "wikidataId": "Q6763299",
+      "canonicalNameEn": "Marigot Bay",
+      "positiveTypePath": [
+        "Q39594",
+        "Q2507626",
+        "Q15324"
+      ],
+      "distanceKm": 6.211
+    },
+    {
+      "entityId": "poi-2920c263df86ef0c",
+      "parentCityEntityId": "city-431d56ce0f110a8f",
+      "wikidataId": "Q7356852",
+      "canonicalNameEn": "Rodney Bay",
+      "positiveTypePath": [
+        "Q39594",
+        "Q2507626",
+        "Q15324"
+      ],
+      "distanceKm": 8.428
+    },
+    {
+      "entityId": "poi-258e2d100f44b4d3",
+      "parentCityEntityId": "city-431d56ce0f110a8f",
+      "wikidataId": "Q1128510",
+      "canonicalNameEn": "Cul de Sac River",
+      "positiveTypePath": [
+        "Q4022",
+        "Q2479431",
+        "Q15324"
+      ],
+      "distanceKm": 3.263
+    },
+    {
+      "entityId": "poi-9a147a150f4b3239",
+      "parentCityEntityId": "city-431d56ce0f110a8f",
+      "wikidataId": "Q7928894",
+      "canonicalNameEn": "Vigie Beach",
+      "positiveTypePath": [
+        "Q40080",
+        "Q107123630",
+        "Q811979"
+      ],
+      "distanceKm": 1.625
+    },
+    {
+      "entityId": "poi-8994621dd37ba62d",
+      "parentCityEntityId": "city-efcf6ab20f4a3584",
+      "wikidataId": "Q28653599",
+      "canonicalNameEn": "Assumption Cathedral, Kingstown",
+      "positiveTypePath": [
+        "Q56242215",
+        "Q2977",
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 0.395
+    },
+    {
+      "entityId": "poi-f758a13fcc4022ca",
+      "parentCityEntityId": "city-efcf6ab20f4a3584",
+      "wikidataId": "Q4948422",
+      "canonicalNameEn": "Botanic Gardens St. Vincent",
+      "positiveTypePath": [
+        "Q167346",
+        "Q13226383"
+      ],
+      "distanceKm": 1.42
+    },
+    {
+      "entityId": "poi-0a89b16deb13ea9f",
+      "parentCityEntityId": "city-efcf6ab20f4a3584",
+      "wikidataId": "Q5594324",
+      "canonicalNameEn": "Grand Bonhomme",
+      "positiveTypePath": [
+        "Q8502",
+        "Q35145263"
+      ],
+      "distanceKm": 8.704
+    },
+    {
+      "entityId": "poi-cd723e8bb4084fbe",
+      "parentCityEntityId": "city-efcf6ab20f4a3584",
+      "wikidataId": "Q28448431",
+      "canonicalNameEn": "Fort Charlotte",
+      "positiveTypePath": [
+        "Q1785071",
+        "Q57821",
+        "Q811979"
+      ],
+      "distanceKm": 1.617
+    },
+    {
+      "entityId": "poi-608d801ed97ad2e0",
+      "parentCityEntityId": "city-efcf6ab20f4a3584",
+      "wikidataId": "Q5003913",
+      "canonicalNameEn": "Byahaut Bat Cave",
+      "positiveTypePath": [
+        "Q35509",
+        "Q271669"
+      ],
+      "distanceKm": 5.183
+    },
+    {
+      "entityId": "poi-b2e5a25ec81fd123",
+      "parentCityEntityId": "city-efcf6ab20f4a3584",
+      "wikidataId": "Q1254282",
+      "canonicalNameEn": "Young Island",
+      "positiveTypePath": [
+        "Q23442",
+        "Q271669"
+      ],
+      "distanceKm": 3.851
+    },
+    {
+      "entityId": "poi-bb7f666fef5bdc35",
+      "parentCityEntityId": "city-efcf6ab20f4a3584",
+      "wikidataId": "Q31839495",
+      "canonicalNameEn": "Fort Duvernette",
+      "positiveTypePath": [
+        "Q1785071",
+        "Q57821",
+        "Q811979"
+      ],
+      "distanceKm": 3.956
+    },
+    {
+      "entityId": "poi-3f59bd5620ed60d7",
+      "parentCityEntityId": "city-403d5fec2fb5fbda",
+      "wikidataId": "Q748931",
+      "canonicalNameEn": "Ilhéu das Cabras",
+      "positiveTypePath": [
+        "Q23442",
+        "Q271669"
+      ],
+      "distanceKm": 7.978
+    },
+    {
+      "entityId": "poi-d6f3a93824629608",
+      "parentCityEntityId": "city-403d5fec2fb5fbda",
+      "wikidataId": "Q2426165",
+      "canonicalNameEn": "Estádio Nacional 12 de Julho",
+      "positiveTypePath": [
+        "Q210272"
+      ],
+      "distanceKm": 1.056
+    },
+    {
+      "entityId": "poi-e2e323143b80b9a8",
+      "parentCityEntityId": "city-403d5fec2fb5fbda",
+      "wikidataId": "Q2110836",
+      "canonicalNameEn": "São Sebastião Museum",
+      "positiveTypePath": [
+        "Q33506"
+      ],
+      "distanceKm": 1.544
+    },
+    {
+      "entityId": "poi-575cdbc23299de89",
+      "parentCityEntityId": "city-403d5fec2fb5fbda",
+      "wikidataId": "Q2607864",
+      "canonicalNameEn": "Our Lady of Grace Cathedral",
+      "positiveTypePath": [
+        "Q56242215",
+        "Q2977",
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 0.472
+    },
+    {
+      "entityId": "poi-b55e6f0684b60d89",
+      "parentCityEntityId": "city-403d5fec2fb5fbda",
+      "wikidataId": "Q23647843",
+      "canonicalNameEn": "National Library of São Tomé and Príncipe",
+      "positiveTypePath": [
+        "Q7075",
+        "Q101542346",
+        "Q13226383"
+      ],
+      "distanceKm": 0.373
+    },
+    {
+      "entityId": "poi-05744b00b355359b",
+      "parentCityEntityId": "city-403d5fec2fb5fbda",
+      "wikidataId": "Q4750333",
+      "canonicalNameEn": "Ana Chaves Bay",
+      "positiveTypePath": [
+        "Q283202",
+        "Q39594",
+        "Q2507626",
+        "Q15324"
+      ],
+      "distanceKm": 1.497
+    },
+    {
+      "entityId": "poi-816a762abba3ff64",
+      "parentCityEntityId": "city-403d5fec2fb5fbda",
+      "wikidataId": "Q10280174",
+      "canonicalNameEn": "São Sebastião Lighthouse",
+      "positiveTypePath": [
+        "Q210272"
+      ],
+      "distanceKm": 1.569
+    },
+    {
+      "entityId": "poi-522559f4705ef9e1",
+      "parentCityEntityId": "city-80aba01c4401092f",
+      "wikidataId": "Q219642",
+      "canonicalNameEn": "Mahé",
+      "positiveTypePath": [
+        "Q23442",
+        "Q271669"
+      ],
+      "distanceKm": 6.88
+    },
+    {
+      "entityId": "poi-9450f6c3460d022e",
+      "parentCityEntityId": "city-80aba01c4401092f",
+      "wikidataId": "Q40411",
+      "canonicalNameEn": "Moyenne Island",
+      "positiveTypePath": [
+        "Q23442",
+        "Q271669"
+      ],
+      "distanceKm": 5.108
+    },
+    {
+      "entityId": "poi-3e730a1747f42c72",
+      "parentCityEntityId": "city-80aba01c4401092f",
+      "wikidataId": "Q1579060",
+      "canonicalNameEn": "Morne Seychellois",
+      "positiveTypePath": [
+        "Q8502",
+        "Q35145263"
+      ],
+      "distanceKm": 2.833
+    },
+    {
+      "entityId": "poi-7ebf0b1dbabe5de6",
+      "parentCityEntityId": "city-80aba01c4401092f",
+      "wikidataId": "Q965672",
+      "canonicalNameEn": "Sainte Anne Marine National Park",
+      "positiveTypePath": [
+        "Q46169",
+        "Q22698"
+      ],
+      "distanceKm": 5.087
+    },
+    {
+      "entityId": "poi-00b82ac90c0b57ed",
+      "parentCityEntityId": "city-80aba01c4401092f",
+      "wikidataId": "Q2066419",
+      "canonicalNameEn": "Ste. Anne Island",
+      "positiveTypePath": [
+        "Q23442",
+        "Q271669"
+      ],
+      "distanceKm": 5.691
+    },
+    {
+      "entityId": "poi-a02b73082c3af45d",
+      "parentCityEntityId": "city-80aba01c4401092f",
+      "wikidataId": "Q28685",
+      "canonicalNameEn": "Cerf Island",
+      "positiveTypePath": [
+        "Q23442",
+        "Q271669"
+      ],
+      "distanceKm": 5.103
+    },
+    {
+      "entityId": "poi-5363edae47240d1a",
+      "parentCityEntityId": "city-80aba01c4401092f",
+      "wikidataId": "Q16507143",
+      "canonicalNameEn": "Immaculate Conception Cathedral, Seychelles",
+      "positiveTypePath": [
+        "Q56242215",
+        "Q2977",
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 0.531
+    },
+    {
+      "entityId": "poi-010b439bfda4a63e",
+      "parentCityEntityId": "city-84997cca03e56fbc",
+      "wikidataId": "Q3330698",
+      "canonicalNameEn": "Sierra Leone National Museum",
+      "positiveTypePath": [
+        "Q17431399",
+        "Q33506"
+      ],
+      "distanceKm": 0.066
+    },
+    {
+      "entityId": "poi-4a73ea8006fdbc3a",
+      "parentCityEntityId": "city-84997cca03e56fbc",
+      "wikidataId": "Q7588097",
+      "canonicalNameEn": "St. George's Cathedral, Freetown",
+      "positiveTypePath": [
+        "Q2977",
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 0.312
+    },
+    {
+      "entityId": "poi-a6430fb057509b93",
+      "parentCityEntityId": "city-84997cca03e56fbc",
+      "wikidataId": "Q24046104",
+      "canonicalNameEn": "Sacred Heart Cathedral, Freetown",
+      "positiveTypePath": [
+        "Q56242215",
+        "Q2977",
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 0.357
+    },
+    {
+      "entityId": "poi-11618a35770a2005",
+      "parentCityEntityId": "city-84997cca03e56fbc",
+      "wikidataId": "Q56293711",
+      "canonicalNameEn": "Freetown Central Mosque",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 0.604
+    },
+    {
+      "entityId": "poi-800315d409de164d",
+      "parentCityEntityId": "city-84997cca03e56fbc",
+      "wikidataId": "Q7588787",
+      "canonicalNameEn": "St. John's Maroon Church",
+      "positiveTypePath": [
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 0.2
+    },
+    {
+      "entityId": "poi-f66f91a0bbf15ee3",
+      "parentCityEntityId": "city-84997cca03e56fbc",
+      "wikidataId": "Q39054366",
+      "canonicalNameEn": "Jamiatul Atiq Masjid",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 2.324
+    },
+    {
+      "entityId": "poi-bc57449c35a470b2",
+      "parentCityEntityId": "city-84997cca03e56fbc",
+      "wikidataId": "Q15122535",
+      "canonicalNameEn": "Sierra Leone National Railway Museum",
+      "positiveTypePath": [
+        "Q18704634",
+        "Q2516357",
+        "Q2398990",
+        "Q588140",
+        "Q33506"
+      ],
+      "distanceKm": 3.263
+    },
+    {
+      "entityId": "poi-0ce5e007150fe381",
+      "parentCityEntityId": "city-dc507b30f064ab26",
+      "wikidataId": "Q24046128",
+      "canonicalNameEn": "Immaculate Heart of Mary Cathedral, Bo",
+      "positiveTypePath": [
+        "Q56242215",
+        "Q2977",
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 0.788
+    }
+  ],
+  "quarantineCount": 319
+}

@@ -1,0 +1,26 @@
+{
+  "schemaVersion": "route-v2-sovereign-special-country-identity-policy-v1",
+  "readiness": "special-review-catalog-only-evidence-pending",
+  "entities": {
+    "VA": {
+      "geographicCountryIdentity": { "canonicalNameEn": "Vatican City", "wikidataId": "Q237", "isoAlpha2": "VA" },
+      "relatedIdentities": [{ "canonicalNameEn": "Holy See", "wikidataId": "Q159583", "relationship": "distinct-related-sovereign-identity", "ordinaryCountryAlias": false }],
+      "authoritativeAliases": ["Vatican City", "Vatican City State"],
+      "qualifiedOnly": ["Vatican"],
+      "rejectedOrdinaryAliases": ["Holy See"]
+    },
+    "PS": {
+      "geographicCountryIdentity": { "canonicalNameEn": "State of Palestine", "wikidataId": "Q219060", "isoAlpha2": "PS" },
+      "authoritativeAliases": ["State of Palestine", "Palestine"],
+      "qualifiedOnly": ["Palestinian Territories", "Palestinian Territory"],
+      "rejectedOrdinaryAliases": ["West Bank", "Gaza", "Gaza Strip"]
+    },
+    "KP": {
+      "geographicCountryIdentity": { "canonicalNameEn": "North Korea", "wikidataId": "Q423", "isoAlpha2": "KP" },
+      "officialEnglishName": "Democratic People's Republic of Korea",
+      "authoritativeAliases": ["North Korea", "Democratic People's Republic of Korea", "Democratic People’s Republic of Korea", "DPRK"],
+      "qualifiedOnly": ["Korea DPR", "D.P.R.K."],
+      "rejectedOrdinaryAliases": ["Korea"]
+    }
+  }
+}

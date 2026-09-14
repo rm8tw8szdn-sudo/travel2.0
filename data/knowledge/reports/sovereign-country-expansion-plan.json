@@ -2409,47 +2409,7 @@
       ]
     }
   ],
-  "specialReview": [
-    {
-      "canonicalCountryName": "Vatican City",
-      "isoAlpha2": "VA",
-      "stableIdentity": "iso-3166-1:VA",
-      "wikidataId": null,
-      "region": "Europe",
-      "expectedDestinations": 1,
-      "modelingType": "special-review",
-      "evidenceDifficulty": "high",
-      "imageDifficulty": "medium",
-      "routeReadiness": "requires-policy-review",
-      "wave": "SPECIAL_REVIEW"
-    },
-    {
-      "canonicalCountryName": "Palestinian Territories",
-      "isoAlpha2": "PS",
-      "stableIdentity": "iso-3166-1:PS",
-      "wikidataId": null,
-      "region": "Latin America and the Caribbean",
-      "expectedDestinations": 1,
-      "modelingType": "special-review",
-      "evidenceDifficulty": "high",
-      "imageDifficulty": "medium",
-      "routeReadiness": "requires-policy-review",
-      "wave": "SPECIAL_REVIEW"
-    },
-    {
-      "canonicalCountryName": "North Korea",
-      "isoAlpha2": "KP",
-      "stableIdentity": "iso-3166-1:KP",
-      "wikidataId": null,
-      "region": "Asia",
-      "expectedDestinations": 1,
-      "modelingType": "special-review",
-      "evidenceDifficulty": "high",
-      "imageDifficulty": "high",
-      "routeReadiness": "requires-policy-review",
-      "wave": "SPECIAL_REVIEW"
-    }
-  ],
+  "specialReview": [],
   "nonSovereignExamples": [
     {
       "code": "HK",
@@ -2482,5 +2442,49 @@
     "catalogOnlyDoesNotMeanPlannable": true,
     "plannableDoesNotMeanEvidenceBacked": true,
     "neutralPlaceholderPreferredToWrongImage": true
-  }
+  },
+  "resolvedSpecialReview": [
+    {
+      "canonicalCountryName": "Vatican City",
+      "isoAlpha2": "VA",
+      "stableIdentity": "iso-3166-1:VA",
+      "wikidataId": "Q237",
+      "region": "Southern Europe",
+      "expectedDestinations": 0,
+      "modelingType": "country-only-related-identity",
+      "evidenceDifficulty": "high",
+      "imageDifficulty": "medium",
+      "routeReadiness": "special-review-catalog-only-evidence-pending",
+      "wave": "SPECIAL_REVIEW",
+      "resolution": "published-catalog-only"
+    },
+    {
+      "canonicalCountryName": "State of Palestine",
+      "isoAlpha2": "PS",
+      "stableIdentity": "iso-3166-1:PS",
+      "wikidataId": "Q219060",
+      "region": "Western Asia",
+      "expectedDestinations": 0,
+      "modelingType": "country-only",
+      "evidenceDifficulty": "high",
+      "imageDifficulty": "medium",
+      "routeReadiness": "special-review-catalog-only-evidence-pending",
+      "wave": "SPECIAL_REVIEW",
+      "resolution": "published-catalog-only"
+    },
+    {
+      "canonicalCountryName": "North Korea",
+      "isoAlpha2": "KP",
+      "stableIdentity": "iso-3166-1:KP",
+      "wikidataId": "Q423",
+      "region": "Eastern Asia",
+      "expectedDestinations": 0,
+      "modelingType": "country-only",
+      "evidenceDifficulty": "high",
+      "imageDifficulty": "high",
+      "routeReadiness": "special-review-catalog-only-evidence-pending",
+      "wave": "SPECIAL_REVIEW",
+      "resolution": "published-catalog-only"
+    }
+  ]
 }

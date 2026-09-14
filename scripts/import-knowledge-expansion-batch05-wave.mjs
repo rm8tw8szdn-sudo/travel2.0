@@ -24,9 +24,9 @@ import { evaluatePoiTypeIdsForConsumer } from "../src/lib/routes/knowledge-poi-s
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const argument = (name) => process.argv.find((value) => value.startsWith(`--${name}=`))?.slice(name.length + 3) || "";
 const BATCH = argument("batch") || "05";
-if (!["05", "06", "07", "08", "09", "10", "11", "12"].includes(BATCH)) throw new Error("batch-argument-invalid:--batch=05|06|07|08|09|10|11|12");
+if (!["05", "06", "07", "08", "09", "10", "11", "12", "13"].includes(BATCH)) throw new Error("batch-argument-invalid:--batch=05|06|07|08|09|10|11|12|13");
 const BATCH_LABEL = `Batch ${BATCH}`;
-const SEED_PATH = `data/knowledge/seeds/knowledge-expansion-batch${BATCH}-${["11", "12"].includes(BATCH) ? "18" : "20"}-country.json`;
+const SEED_PATH = `data/knowledge/seeds/knowledge-expansion-batch${BATCH}-${BATCH === "13" ? "17" : ["11", "12"].includes(BATCH) ? "18" : "20"}-country.json`;
 const COUNTRY_OUTPUT = `data/knowledge/batches/countries.p1a-batch${BATCH}.json`;
 const TYPE_POLICY_PATH = "data/knowledge/semantic/knowledge-semantic-type-policy.json";
 const WIKIDATA_API = "https://www.wikidata.org/w/api.php";
@@ -53,6 +53,8 @@ const LOCAL_WIKIPEDIA_LANGUAGE = Object.freeze({
   GD: "en", GN: "fr", GW: "pt", HT: "fr", IQ: "ar", KI: "en", LS: "en", LR: "en",
   LY: "ar", MW: "en", ML: "fr", MH: "en", MR: "ar", FM: "en", NR: "en", NE: "fr",
   PW: "en", KN: "en",
+  LC: "en", VC: "en", ST: "pt", SC: "en", SL: "en", SB: "en", SO: "so", SS: "en",
+  SD: "ar", SR: "nl", SY: "ar", TG: "fr", TO: "to", TM: "tk", TV: "en", VE: "es", YE: "ar",
 });
 const USER_AGENT = `travel2-route-v2-knowledge-expansion-batch${BATCH}/1.0 (https://github.com/rm8tw8szdn-sudo/travel2.0)`;
 const FETCH_CACHE_ROOT = path.join(ROOT, ".tmp", `route-v2-batch${BATCH}-import-cache`);
@@ -95,6 +97,10 @@ const ISO = Object.freeze({
   LY: ["LBY", "434"], MW: ["MWI", "454"], ML: ["MLI", "466"], MH: ["MHL", "584"],
   MR: ["MRT", "478"], FM: ["FSM", "583"], NR: ["NRU", "520"], NE: ["NER", "562"],
   PW: ["PLW", "585"], KN: ["KNA", "659"],
+  LC: ["LCA", "662"], VC: ["VCT", "670"], ST: ["STP", "678"], SC: ["SYC", "690"],
+  SL: ["SLE", "694"], SB: ["SLB", "090"], SO: ["SOM", "706"], SS: ["SSD", "728"],
+  SD: ["SDN", "729"], SR: ["SUR", "740"], SY: ["SYR", "760"], TG: ["TGO", "768"],
+  TO: ["TON", "776"], TM: ["TKM", "795"], TV: ["TUV", "798"], VE: ["VEN", "862"], YE: ["YEM", "887"],
 });
 const COUNTRY_OUTPUT_CODES = BATCH === "05"
   ? new Set(["HU", "HR", "SE", "SI"])
@@ -110,7 +116,9 @@ const COUNTRY_OUTPUT_CODES = BATCH === "05"
             ? new Set(["AO", "CM", "CI", "RW", "UG", "ZM", "ZW", "MZ", "MN", "TJ", "IR", "MM", "TL", "BZ", "BB", "TT", "GY", "UA", "SM", "PG"])
             : BATCH === "11"
               ? new Set(["AF", "AG", "BY", "BJ", "BF", "BI", "CV", "CF", "TD", "KM", "CG", "DJ", "DM", "GQ", "ER", "SZ", "GA", "GM"])
-              : new Set(["GD", "GN", "GW", "HT", "IQ", "KI", "LS", "LR", "LY", "MW", "ML", "MH", "MR", "FM", "NR", "NE", "PW", "KN"]);
+              : BATCH === "12"
+                ? new Set(["GD", "GN", "GW", "HT", "IQ", "KI", "LS", "LR", "LY", "MW", "ML", "MH", "MR", "FM", "NR", "NE", "PW", "KN"])
+                : new Set(["LC", "VC", "ST", "SC", "SL", "SB", "SO", "SS", "SD", "SR", "SY", "TG", "TO", "TM", "TV", "VE", "YE"]);
 
 const wave = Number(argument("wave"));
 if (![1, 2, 3, 4].includes(wave)) throw new Error("wave-argument-required:--wave=1|2|3|4");
@@ -383,8 +391,12 @@ function buildCountry(seed, entity, relatedEntities, retrievedAt) {
   const wiki = `https://www.wikidata.org/wiki/${seed.qid}`;
   const canonicalNameZh = localizedLabel(entity, "zh-hans", localizedLabel(entity, "zh", seed.label));
   const excludedAliases = new Set((seed.excludedAliases || []).map((value) => clean(value).toLocaleLowerCase("en-US")));
+  const lowercaseIsoAlpha2 = clean(seed.iso).toLocaleLowerCase("en-US");
   const countryAliases = canonicalizeCountryAliases(aliases(entity, seed.aliases || [], [canonicalNameZh, seed.label]))
-    .filter((value) => !excludedAliases.has(clean(value).toLocaleLowerCase("en-US")));
+    .filter((value) => {
+      const normalized = clean(value).toLocaleLowerCase("en-US");
+      return normalized !== lowercaseIsoAlpha2 && !excludedAliases.has(normalized);
+    });
   const continentValue = {
     wikidataId: continentQid,
     canonicalNameZh: localizedLabel(continent, "zh-hans", localizedLabel(continent, "zh", localizedLabel(continent, "en", "Continent"))),

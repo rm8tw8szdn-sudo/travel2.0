@@ -1,0 +1,506 @@
+{
+  "schemaVersion": "route-v2-knowledge-expansion-batch13-wave3-selection-v1",
+  "wave": 3,
+  "countries": [
+    {
+      "isoAlpha2": "SR",
+      "wikidataId": "Q730",
+      "entityId": "country-98902fdbda082d07"
+    },
+    {
+      "isoAlpha2": "SY",
+      "wikidataId": "Q858",
+      "entityId": "country-e750a85bf11312ea"
+    },
+    {
+      "isoAlpha2": "TG",
+      "wikidataId": "Q945",
+      "entityId": "country-eb70cec2b5d16f8b"
+    },
+    {
+      "isoAlpha2": "TO",
+      "wikidataId": "Q678",
+      "entityId": "country-1cefd3ecf1a77a60"
+    }
+  ],
+  "cities": [
+    {
+      "countryCode": "SR",
+      "tier": "world",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 7,
+      "reused": false,
+      "entityId": "city-64afbd9cecfedd43",
+      "wikidataId": "Q3001",
+      "canonicalNameEn": "Paramaribo",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "SR",
+      "tier": "standard",
+      "targetPoiCount": 3,
+      "selectedPoiCount": 1,
+      "reused": false,
+      "entityId": "city-90ac29da379efceb",
+      "wikidataId": "Q738313",
+      "canonicalNameEn": "Nieuw Nickerie",
+      "positiveTypePath": [
+        "Q902814",
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "SY",
+      "tier": "world",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 7,
+      "reused": false,
+      "entityId": "city-5fbfbc8bf7f3e516",
+      "wikidataId": "Q3766",
+      "canonicalNameEn": "Damascus",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "SY",
+      "tier": "core",
+      "targetPoiCount": 5,
+      "selectedPoiCount": 5,
+      "reused": false,
+      "entityId": "city-e4d7b66c53b834a6",
+      "wikidataId": "Q41183",
+      "canonicalNameEn": "Aleppo",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "TG",
+      "tier": "world",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 6,
+      "reused": false,
+      "entityId": "city-38995d15db6b543b",
+      "wikidataId": "Q3792",
+      "canonicalNameEn": "Lomé",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    },
+    {
+      "countryCode": "TO",
+      "tier": "world",
+      "targetPoiCount": 7,
+      "selectedPoiCount": 7,
+      "reused": false,
+      "entityId": "city-0d24db45467b9828",
+      "wikidataId": "Q38834",
+      "canonicalNameEn": "Nukuʻalofa",
+      "positiveTypePath": [
+        "Q515",
+        "Q15284"
+      ]
+    }
+  ],
+  "pois": [
+    {
+      "entityId": "poi-231338e8e2ff28b1",
+      "parentCityEntityId": "city-64afbd9cecfedd43",
+      "wikidataId": "Q635545",
+      "canonicalNameEn": "Suriname River",
+      "positiveTypePath": [
+        "Q4022",
+        "Q2479431",
+        "Q15324"
+      ],
+      "distanceKm": 5.46
+    },
+    {
+      "entityId": "poi-46e0508447af486d",
+      "parentCityEntityId": "city-64afbd9cecfedd43",
+      "wikidataId": "Q1948977",
+      "canonicalNameEn": "Mosque Keizerstraat",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 4.304
+    },
+    {
+      "entityId": "poi-e554019f4185b750",
+      "parentCityEntityId": "city-64afbd9cecfedd43",
+      "wikidataId": "Q656587",
+      "canonicalNameEn": "Fort Zeelandia",
+      "positiveTypePath": [
+        "Q1785071",
+        "Q57821",
+        "Q811979"
+      ],
+      "distanceKm": 4.958
+    },
+    {
+      "entityId": "poi-a496d32ba27593ef",
+      "parentCityEntityId": "city-64afbd9cecfedd43",
+      "wikidataId": "Q2736107",
+      "canonicalNameEn": "Saint Peter and Paul Cathedral",
+      "positiveTypePath": [
+        "Q120560",
+        "Q4846867",
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 4.447
+    },
+    {
+      "entityId": "poi-bcf6e77b9f0f3c9d",
+      "parentCityEntityId": "city-64afbd9cecfedd43",
+      "wikidataId": "Q1115486",
+      "canonicalNameEn": "Commewijne River",
+      "positiveTypePath": [
+        "Q4022",
+        "Q2479431",
+        "Q15324"
+      ],
+      "distanceKm": 9.935
+    },
+    {
+      "entityId": "poi-198c2dd75eb16b16",
+      "parentCityEntityId": "city-64afbd9cecfedd43",
+      "wikidataId": "Q2488071",
+      "canonicalNameEn": "Neveh Shalom Synagogue",
+      "positiveTypePath": [
+        "Q34627",
+        "Q831219",
+        "Q1370598"
+      ],
+      "distanceKm": 4.335
+    },
+    {
+      "entityId": "poi-3cb5bd770b20d737",
+      "parentCityEntityId": "city-64afbd9cecfedd43",
+      "wikidataId": "Q2717827",
+      "canonicalNameEn": "Arya Diwaker",
+      "positiveTypePath": [
+        "Q44539",
+        "Q697295",
+        "Q24398318",
+        "Q1370598"
+      ],
+      "distanceKm": 5.309
+    },
+    {
+      "entityId": "poi-363080f29e493d22",
+      "parentCityEntityId": "city-90ac29da379efceb",
+      "wikidataId": "Q182396",
+      "canonicalNameEn": "Nickerie River",
+      "positiveTypePath": [
+        "Q4022",
+        "Q2479431",
+        "Q15324"
+      ],
+      "distanceKm": 7.026
+    },
+    {
+      "entityId": "poi-ecdf68341e2c76ee",
+      "parentCityEntityId": "city-5fbfbc8bf7f3e516",
+      "wikidataId": "Q765106",
+      "canonicalNameEn": "Barada",
+      "positiveTypePath": [
+        "Q4022",
+        "Q2479431",
+        "Q15324"
+      ],
+      "distanceKm": 1.212
+    },
+    {
+      "entityId": "poi-5d15295c1ed22890",
+      "parentCityEntityId": "city-5fbfbc8bf7f3e516",
+      "wikidataId": "Q617254",
+      "canonicalNameEn": "National Museum in Damascus",
+      "positiveTypePath": [
+        "Q17431399",
+        "Q33506"
+      ],
+      "distanceKm": 0.184
+    },
+    {
+      "entityId": "poi-ce4476e4090e215b",
+      "parentCityEntityId": "city-5fbfbc8bf7f3e516",
+      "wikidataId": "Q793784",
+      "canonicalNameEn": "Al-Azm Palace",
+      "positiveTypePath": [
+        "Q16560",
+        "Q41176"
+      ],
+      "distanceKm": 1.425
+    },
+    {
+      "entityId": "poi-6fa0e1787c6672b3",
+      "parentCityEntityId": "city-5fbfbc8bf7f3e516",
+      "wikidataId": "Q257153",
+      "canonicalNameEn": "Mausoleum of Saladin",
+      "positiveTypePath": [
+        "Q162875",
+        "Q4989906"
+      ],
+      "distanceKm": 1.301
+    },
+    {
+      "entityId": "poi-a66a5dfcc3e0160f",
+      "parentCityEntityId": "city-5fbfbc8bf7f3e516",
+      "wikidataId": "Q206246",
+      "canonicalNameEn": "Citadel of Damascus",
+      "positiveTypePath": [
+        "Q23413",
+        "Q57821",
+        "Q811979"
+      ],
+      "distanceKm": 0.94
+    },
+    {
+      "entityId": "poi-e34fc3d8f3e10a46",
+      "parentCityEntityId": "city-5fbfbc8bf7f3e516",
+      "wikidataId": "Q3399051",
+      "canonicalNameEn": "National Library of Syria",
+      "positiveTypePath": [
+        "Q22806",
+        "Q65768782",
+        "Q385994",
+        "Q7075",
+        "Q101542346",
+        "Q13226383"
+      ],
+      "distanceKm": 1.352
+    },
+    {
+      "entityId": "poi-37652944e7820aa2",
+      "parentCityEntityId": "city-5fbfbc8bf7f3e516",
+      "wikidataId": "Q3399936",
+      "canonicalNameEn": "Sayyidah Ruqayya Mosque",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 1.417
+    },
+    {
+      "entityId": "poi-1243425cc078f8e0",
+      "parentCityEntityId": "city-e4d7b66c53b834a6",
+      "wikidataId": "Q1481968",
+      "canonicalNameEn": "Great Mosque of Aleppo",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 0.283
+    },
+    {
+      "entityId": "poi-47e6ac68ead9b825",
+      "parentCityEntityId": "city-e4d7b66c53b834a6",
+      "wikidataId": "Q206231",
+      "canonicalNameEn": "Citadel of Aleppo",
+      "positiveTypePath": [
+        "Q23413",
+        "Q57821",
+        "Q811979"
+      ],
+      "distanceKm": 0.243
+    },
+    {
+      "entityId": "poi-88be15e9aafe683d",
+      "parentCityEntityId": "city-e4d7b66c53b834a6",
+      "wikidataId": "Q7401200",
+      "canonicalNameEn": "Saint Elias Cathedral",
+      "positiveTypePath": [
+        "Q2977",
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 0.875
+    },
+    {
+      "entityId": "poi-e7a4301e2eb2b732",
+      "parentCityEntityId": "city-e4d7b66c53b834a6",
+      "wikidataId": "Q5472979",
+      "canonicalNameEn": "Forty Martyrs Cathedral",
+      "positiveTypePath": [
+        "Q2977",
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 0.807
+    },
+    {
+      "entityId": "poi-ba8d511b3753d834",
+      "parentCityEntityId": "city-e4d7b66c53b834a6",
+      "wikidataId": "Q1164599",
+      "canonicalNameEn": "National Museum of Aleppo",
+      "positiveTypePath": [
+        "Q33506"
+      ],
+      "distanceKm": 1.056
+    },
+    {
+      "entityId": "poi-7258b6b75135d72c",
+      "parentCityEntityId": "city-38995d15db6b543b",
+      "wikidataId": "Q766138",
+      "canonicalNameEn": "Sacred Heart Cathedral",
+      "positiveTypePath": [
+        "Q56242215",
+        "Q2977",
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 1.278
+    },
+    {
+      "entityId": "poi-67b54655bad5e2cd",
+      "parentCityEntityId": "city-38995d15db6b543b",
+      "wikidataId": "Q618258",
+      "canonicalNameEn": "National Library of Togo",
+      "positiveTypePath": [
+        "Q22806",
+        "Q65768782",
+        "Q385994",
+        "Q7075",
+        "Q101542346",
+        "Q13226383"
+      ],
+      "distanceKm": 0.303
+    },
+    {
+      "entityId": "poi-05fa5ac2361a2533",
+      "parentCityEntityId": "city-38995d15db6b543b",
+      "wikidataId": "Q27030937",
+      "canonicalNameEn": "Akodessawa Fetish Market",
+      "positiveTypePath": null,
+      "distanceKm": 6.443
+    },
+    {
+      "entityId": "poi-48e2fcdbaadace10",
+      "parentCityEntityId": "city-38995d15db6b543b",
+      "wikidataId": "Q6669569",
+      "canonicalNameEn": "Lomé Grand Market",
+      "positiveTypePath": null,
+      "distanceKm": 1.166
+    },
+    {
+      "entityId": "poi-dbf7f4babe3e859b",
+      "parentCityEntityId": "city-38995d15db6b543b",
+      "wikidataId": "Q39048890",
+      "canonicalNameEn": "Independence Monument, Lome",
+      "positiveTypePath": [
+        "Q4989906"
+      ],
+      "distanceKm": 0.018
+    },
+    {
+      "entityId": "poi-c77d8d5941d47538",
+      "parentCityEntityId": "city-38995d15db6b543b",
+      "wikidataId": "Q16875664",
+      "canonicalNameEn": "National Archives of Togo",
+      "positiveTypePath": [
+        "Q2122214",
+        "Q27031009",
+        "Q166118"
+      ],
+      "distanceKm": 0.301
+    },
+    {
+      "entityId": "poi-b3042d66ec4bf411",
+      "parentCityEntityId": "city-0d24db45467b9828",
+      "wikidataId": "Q2992825",
+      "canonicalNameEn": "Royal Palace of Nukuʻalofa",
+      "positiveTypePath": [
+        "Q53536964",
+        "Q16560",
+        "Q41176"
+      ],
+      "distanceKm": 0.353
+    },
+    {
+      "entityId": "poi-3390c45fec76ce65",
+      "parentCityEntityId": "city-0d24db45467b9828",
+      "wikidataId": "Q7361669",
+      "canonicalNameEn": "Roman Catholic Church of Tonga",
+      "positiveTypePath": [
+        "Q2977",
+        "Q16970",
+        "Q17350442",
+        "Q13226383"
+      ],
+      "distanceKm": 2.21
+    },
+    {
+      "entityId": "poi-e6430f993688b68d",
+      "parentCityEntityId": "city-0d24db45467b9828",
+      "wikidataId": "Q3845259",
+      "canonicalNameEn": "Nukuʻalofa Tonga Temple",
+      "positiveTypePath": [
+        "Q2142152",
+        "Q1370598"
+      ],
+      "distanceKm": 7.957
+    },
+    {
+      "entityId": "poi-21114e55fbd249f1",
+      "parentCityEntityId": "city-0d24db45467b9828",
+      "wikidataId": "Q24249438",
+      "canonicalNameEn": "Basilica of St. Anthony of Padua",
+      "positiveTypePath": [
+        "Q44539",
+        "Q697295",
+        "Q24398318",
+        "Q1370598"
+      ],
+      "distanceKm": 0.259
+    },
+    {
+      "entityId": "poi-ae4bbbbbd3a48d0c",
+      "parentCityEntityId": "city-0d24db45467b9828",
+      "wikidataId": "Q25048076",
+      "canonicalNameEn": "Tonga National Museum",
+      "positiveTypePath": [
+        "Q33506"
+      ],
+      "distanceKm": 0.191
+    },
+    {
+      "entityId": "poi-d3637df73e830cf4",
+      "parentCityEntityId": "city-0d24db45467b9828",
+      "wikidataId": "Q109535973",
+      "canonicalNameEn": "Al-Khadeejah Mosque",
+      "positiveTypePath": [
+        "Q32815",
+        "Q1370598"
+      ],
+      "distanceKm": 0.691
+    },
+    {
+      "entityId": "poi-9f55cfc7a29a6629",
+      "parentCityEntityId": "city-0d24db45467b9828",
+      "wikidataId": "Q22668306",
+      "canonicalNameEn": "Monūafe",
+      "positiveTypePath": [
+        "Q139595919",
+        "Q184358",
+        "Q28337",
+        "Q271669"
+      ],
+      "distanceKm": 7.183
+    }
+  ],
+  "quarantineCount": 377
+}

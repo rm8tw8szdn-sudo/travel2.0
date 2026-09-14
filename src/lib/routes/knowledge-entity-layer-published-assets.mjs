@@ -11,10 +11,10 @@ const moduleDirectory = path.dirname(fileURLToPath(import.meta.url));
 const defaultProjectRoot = path.resolve(moduleDirectory, "../../..");
 
 export const KNOWLEDGE_ENTITY_LAYER_PUBLISHED_TOTALS = Object.freeze({
-  countries: 175,
+  countries: 192,
   cities: 833,
   pois: 3963,
-  total: 4971,
+  total: 4988,
 });
 
 export const KNOWLEDGE_ENTITY_LAYER_PUBLISHED_ASSETS = Object.freeze({
@@ -32,6 +32,7 @@ export const KNOWLEDGE_ENTITY_LAYER_PUBLISHED_ASSETS = Object.freeze({
     "data/knowledge/batches/countries.p1a-batch10.json",
     "data/knowledge/batches/countries.p1a-batch11.json",
     "data/knowledge/batches/countries.p1a-batch12.json",
+    "data/knowledge/batches/countries.p1a-batch13.json",
   ]),
   cities: Object.freeze([
     "data/knowledge/cities.p1b-pilot.json",

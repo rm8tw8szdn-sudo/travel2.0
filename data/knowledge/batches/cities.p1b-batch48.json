@@ -1,0 +1,721 @@
+{
+  "schemaVersion": "route-v2-city-baseline-p1b-batch48",
+  "generatedFrom": "data/knowledge/raw/knowledge-expansion-batch13-wave3.wikidata.json",
+  "cityCount": 6,
+  "cities": [
+    {
+      "schemaVersion": "route-v2-city-baseline-p1b",
+      "entityId": "city-e4d7b66c53b834a6",
+      "entityType": "city",
+      "parentCountryEntityId": "country-e750a85bf11312ea",
+      "wikidataId": "Q41183",
+      "canonicalNameZh": "阿勒颇",
+      "canonicalNameEn": "Aleppo",
+      "aliases": [
+        "Alebbo",
+        "Alep",
+        "Aleppo City",
+        "Aleppo, Aleppo",
+        "Aleppo, Mount Simeon",
+        "Aleppo, Syria",
+        "Halab",
+        "阿勒坡"
+      ],
+      "coordinates": {
+        "latitude": 36.2,
+        "longitude": 37.16
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-09-14T06:00:00.000Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 13",
+          "sourceUrl": "",
+          "retrievedAt": "2026-09-14T06:00:00.000Z",
+          "value": "city-e4d7b66c53b834a6"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 13",
+          "sourceUrl": "",
+          "retrievedAt": "2026-09-14T06:00:00.000Z",
+          "value": "city"
+        },
+        "parentCountryEntityId": {
+          "field": "parentCountryEntityId",
+          "sourceType": "repository-reference",
+          "source": "Syria Country Entity",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q858",
+          "retrievedAt": "2026-09-14T06:00:00.000Z",
+          "value": "country-e750a85bf11312ea"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q41183",
+          "retrievedAt": "2026-09-14T06:00:00.000Z",
+          "value": "Q41183"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q41183",
+          "retrievedAt": "2026-09-14T06:00:00.000Z",
+          "value": "阿勒颇"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q41183",
+          "retrievedAt": "2026-09-14T06:00:00.000Z",
+          "value": "Aleppo"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q41183",
+          "retrievedAt": "2026-09-14T06:00:00.000Z",
+          "value": [
+            "Alebbo",
+            "Alep",
+            "Aleppo City",
+            "Aleppo, Aleppo",
+            "Aleppo, Mount Simeon",
+            "Aleppo, Syria",
+            "Halab",
+            "阿勒坡"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q41183",
+          "retrievedAt": "2026-09-14T06:00:00.000Z",
+          "value": {
+            "latitude": 36.2,
+            "longitude": 37.16
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 13",
+          "sourceUrl": "",
+          "retrievedAt": "2026-09-14T06:00:00.000Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 13",
+          "sourceUrl": "",
+          "retrievedAt": "2026-09-14T06:00:00.000Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q41183",
+          "retrievedAt": "2026-09-14T06:00:00.000Z",
+          "value": "2026-09-14T06:00:00.000Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-city-baseline-p1b",
+      "entityId": "city-5fbfbc8bf7f3e516",
+      "entityType": "city",
+      "parentCountryEntityId": "country-e750a85bf11312ea",
+      "wikidataId": "Q3766",
+      "canonicalNameZh": "大马士革",
+      "canonicalNameEn": "Damascus",
+      "aliases": [
+        "Jasmine city",
+        "Mint of Damascus",
+        "Sham city",
+        "大馬士革",
+        "沙姆"
+      ],
+      "coordinates": {
+        "latitude": 33.513055555556,
+        "longitude": 36.291944444444
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-09-14T06:00:00.000Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 13",
+          "sourceUrl": "",
+          "retrievedAt": "2026-09-14T06:00:00.000Z",
+          "value": "city-5fbfbc8bf7f3e516"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 13",
+          "sourceUrl": "",
+          "retrievedAt": "2026-09-14T06:00:00.000Z",
+          "value": "city"
+        },
+        "parentCountryEntityId": {
+          "field": "parentCountryEntityId",
+          "sourceType": "repository-reference",
+          "source": "Syria Country Entity",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q858",
+          "retrievedAt": "2026-09-14T06:00:00.000Z",
+          "value": "country-e750a85bf11312ea"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q3766",
+          "retrievedAt": "2026-09-14T06:00:00.000Z",
+          "value": "Q3766"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q3766",
+          "retrievedAt": "2026-09-14T06:00:00.000Z",
+          "value": "大马士革"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q3766",
+          "retrievedAt": "2026-09-14T06:00:00.000Z",
+          "value": "Damascus"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q3766",
+          "retrievedAt": "2026-09-14T06:00:00.000Z",
+          "value": [
+            "Jasmine city",
+            "Mint of Damascus",
+            "Sham city",
+            "大馬士革",
+            "沙姆"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q3766",
+          "retrievedAt": "2026-09-14T06:00:00.000Z",
+          "value": {
+            "latitude": 33.513055555556,
+            "longitude": 36.291944444444
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 13",
+          "sourceUrl": "",
+          "retrievedAt": "2026-09-14T06:00:00.000Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 13",
+          "sourceUrl": "",
+          "retrievedAt": "2026-09-14T06:00:00.000Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q3766",
+          "retrievedAt": "2026-09-14T06:00:00.000Z",
+          "value": "2026-09-14T06:00:00.000Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-city-baseline-p1b",
+      "entityId": "city-38995d15db6b543b",
+      "entityType": "city",
+      "parentCountryEntityId": "country-eb70cec2b5d16f8b",
+      "wikidataId": "Q3792",
+      "canonicalNameZh": "洛美",
+      "canonicalNameEn": "Lomé",
+      "aliases": [
+        "Lome",
+        "Lome, Togo",
+        "Lomé, Togo"
+      ],
+      "coordinates": {
+        "latitude": 6.13,
+        "longitude": 1.2158333333333333
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-09-14T06:00:00.000Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 13",
+          "sourceUrl": "",
+          "retrievedAt": "2026-09-14T06:00:00.000Z",
+          "value": "city-38995d15db6b543b"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 13",
+          "sourceUrl": "",
+          "retrievedAt": "2026-09-14T06:00:00.000Z",
+          "value": "city"
+        },
+        "parentCountryEntityId": {
+          "field": "parentCountryEntityId",
+          "sourceType": "repository-reference",
+          "source": "Togo Country Entity",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q945",
+          "retrievedAt": "2026-09-14T06:00:00.000Z",
+          "value": "country-eb70cec2b5d16f8b"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q3792",
+          "retrievedAt": "2026-09-14T06:00:00.000Z",
+          "value": "Q3792"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q3792",
+          "retrievedAt": "2026-09-14T06:00:00.000Z",
+          "value": "洛美"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q3792",
+          "retrievedAt": "2026-09-14T06:00:00.000Z",
+          "value": "Lomé"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q3792",
+          "retrievedAt": "2026-09-14T06:00:00.000Z",
+          "value": [
+            "Lome",
+            "Lome, Togo",
+            "Lomé, Togo"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q3792",
+          "retrievedAt": "2026-09-14T06:00:00.000Z",
+          "value": {
+            "latitude": 6.13,
+            "longitude": 1.2158333333333333
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 13",
+          "sourceUrl": "",
+          "retrievedAt": "2026-09-14T06:00:00.000Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 13",
+          "sourceUrl": "",
+          "retrievedAt": "2026-09-14T06:00:00.000Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q3792",
+          "retrievedAt": "2026-09-14T06:00:00.000Z",
+          "value": "2026-09-14T06:00:00.000Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-city-baseline-p1b",
+      "entityId": "city-90ac29da379efceb",
+      "entityType": "city",
+      "parentCountryEntityId": "country-98902fdbda082d07",
+      "wikidataId": "Q738313",
+      "canonicalNameZh": "新尼克里",
+      "canonicalNameEn": "Nieuw Nickerie",
+      "aliases": [],
+      "coordinates": {
+        "latitude": 5.9261111111111,
+        "longitude": -56.973055555556
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-09-14T06:00:00.000Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 13",
+          "sourceUrl": "",
+          "retrievedAt": "2026-09-14T06:00:00.000Z",
+          "value": "city-90ac29da379efceb"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 13",
+          "sourceUrl": "",
+          "retrievedAt": "2026-09-14T06:00:00.000Z",
+          "value": "city"
+        },
+        "parentCountryEntityId": {
+          "field": "parentCountryEntityId",
+          "sourceType": "repository-reference",
+          "source": "Suriname Country Entity",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q730",
+          "retrievedAt": "2026-09-14T06:00:00.000Z",
+          "value": "country-98902fdbda082d07"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q738313",
+          "retrievedAt": "2026-09-14T06:00:00.000Z",
+          "value": "Q738313"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q738313",
+          "retrievedAt": "2026-09-14T06:00:00.000Z",
+          "value": "新尼克里"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q738313",
+          "retrievedAt": "2026-09-14T06:00:00.000Z",
+          "value": "Nieuw Nickerie"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q738313",
+          "retrievedAt": "2026-09-14T06:00:00.000Z",
+          "value": []
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q738313",
+          "retrievedAt": "2026-09-14T06:00:00.000Z",
+          "value": {
+            "latitude": 5.9261111111111,
+            "longitude": -56.973055555556
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 13",
+          "sourceUrl": "",
+          "retrievedAt": "2026-09-14T06:00:00.000Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 13",
+          "sourceUrl": "",
+          "retrievedAt": "2026-09-14T06:00:00.000Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q738313",
+          "retrievedAt": "2026-09-14T06:00:00.000Z",
+          "value": "2026-09-14T06:00:00.000Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-city-baseline-p1b",
+      "entityId": "city-0d24db45467b9828",
+      "entityType": "city",
+      "parentCountryEntityId": "country-1cefd3ecf1a77a60",
+      "wikidataId": "Q38834",
+      "canonicalNameZh": "努库阿洛法",
+      "canonicalNameEn": "Nukuʻalofa",
+      "aliases": [
+        "Nuku'alofa",
+        "努庫阿洛發",
+        "努瓜婁發",
+        "努瓜娄发",
+        "奴瓜婁發"
+      ],
+      "coordinates": {
+        "latitude": -21.1343401,
+        "longitude": -175.201808
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-09-14T06:00:00.000Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 13",
+          "sourceUrl": "",
+          "retrievedAt": "2026-09-14T06:00:00.000Z",
+          "value": "city-0d24db45467b9828"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 13",
+          "sourceUrl": "",
+          "retrievedAt": "2026-09-14T06:00:00.000Z",
+          "value": "city"
+        },
+        "parentCountryEntityId": {
+          "field": "parentCountryEntityId",
+          "sourceType": "repository-reference",
+          "source": "Tonga Country Entity",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q678",
+          "retrievedAt": "2026-09-14T06:00:00.000Z",
+          "value": "country-1cefd3ecf1a77a60"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q38834",
+          "retrievedAt": "2026-09-14T06:00:00.000Z",
+          "value": "Q38834"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q38834",
+          "retrievedAt": "2026-09-14T06:00:00.000Z",
+          "value": "努库阿洛法"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q38834",
+          "retrievedAt": "2026-09-14T06:00:00.000Z",
+          "value": "Nukuʻalofa"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q38834",
+          "retrievedAt": "2026-09-14T06:00:00.000Z",
+          "value": [
+            "Nuku'alofa",
+            "努庫阿洛發",
+            "努瓜婁發",
+            "努瓜娄发",
+            "奴瓜婁發"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q38834",
+          "retrievedAt": "2026-09-14T06:00:00.000Z",
+          "value": {
+            "latitude": -21.1343401,
+            "longitude": -175.201808
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 13",
+          "sourceUrl": "",
+          "retrievedAt": "2026-09-14T06:00:00.000Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 13",
+          "sourceUrl": "",
+          "retrievedAt": "2026-09-14T06:00:00.000Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q38834",
+          "retrievedAt": "2026-09-14T06:00:00.000Z",
+          "value": "2026-09-14T06:00:00.000Z"
+        }
+      }
+    },
+    {
+      "schemaVersion": "route-v2-city-baseline-p1b",
+      "entityId": "city-64afbd9cecfedd43",
+      "entityType": "city",
+      "parentCountryEntityId": "country-98902fdbda082d07",
+      "wikidataId": "Q3001",
+      "canonicalNameZh": "帕拉马里博",
+      "canonicalNameEn": "Paramaribo",
+      "aliases": [
+        "Parbo"
+      ],
+      "coordinates": {
+        "latitude": 5.8666666666667,
+        "longitude": -55.166666666667
+      },
+      "entitySourceType": "wikidata",
+      "confidence": 0.95,
+      "retrievedAt": "2026-09-14T06:00:00.000Z",
+      "provenance": {
+        "entityId": {
+          "field": "entityId",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 13",
+          "sourceUrl": "",
+          "retrievedAt": "2026-09-14T06:00:00.000Z",
+          "value": "city-64afbd9cecfedd43"
+        },
+        "entityType": {
+          "field": "entityType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 13",
+          "sourceUrl": "",
+          "retrievedAt": "2026-09-14T06:00:00.000Z",
+          "value": "city"
+        },
+        "parentCountryEntityId": {
+          "field": "parentCountryEntityId",
+          "sourceType": "repository-reference",
+          "source": "Suriname Country Entity",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q730",
+          "retrievedAt": "2026-09-14T06:00:00.000Z",
+          "value": "country-98902fdbda082d07"
+        },
+        "wikidataId": {
+          "field": "wikidataId",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q3001",
+          "retrievedAt": "2026-09-14T06:00:00.000Z",
+          "value": "Q3001"
+        },
+        "canonicalNameZh": {
+          "field": "canonicalNameZh",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q3001",
+          "retrievedAt": "2026-09-14T06:00:00.000Z",
+          "value": "帕拉马里博"
+        },
+        "canonicalNameEn": {
+          "field": "canonicalNameEn",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q3001",
+          "retrievedAt": "2026-09-14T06:00:00.000Z",
+          "value": "Paramaribo"
+        },
+        "aliases": {
+          "field": "aliases",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q3001",
+          "retrievedAt": "2026-09-14T06:00:00.000Z",
+          "value": [
+            "Parbo"
+          ]
+        },
+        "coordinates": {
+          "field": "coordinates",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q3001",
+          "retrievedAt": "2026-09-14T06:00:00.000Z",
+          "value": {
+            "latitude": 5.8666666666667,
+            "longitude": -55.166666666667
+          }
+        },
+        "entitySourceType": {
+          "field": "entitySourceType",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 13",
+          "sourceUrl": "",
+          "retrievedAt": "2026-09-14T06:00:00.000Z",
+          "value": "wikidata"
+        },
+        "confidence": {
+          "field": "confidence",
+          "sourceType": "project-schema",
+          "source": "Route V2 Knowledge Expansion Batch 13",
+          "sourceUrl": "",
+          "retrievedAt": "2026-09-14T06:00:00.000Z",
+          "value": 0.95
+        },
+        "retrievedAt": {
+          "field": "retrievedAt",
+          "sourceType": "wikidata",
+          "source": "Wikidata exact enwiki title and wbgetentities",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q3001",
+          "retrievedAt": "2026-09-14T06:00:00.000Z",
+          "value": "2026-09-14T06:00:00.000Z"
+        }
+      }
+    }
+  ]
+}

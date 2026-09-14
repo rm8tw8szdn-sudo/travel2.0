@@ -1,0 +1,3537 @@
+{
+  "schemaVersion": "route-v2-country-baseline-p1a-batch13",
+  "generatedFrom": "data/knowledge/seeds/knowledge-expansion-batch13-17-country.json",
+  "countryCount": 17,
+  "countries": [
+    {
+      "schemaVersion": "route-v2-country-baseline-p1a",
+      "entityId": "country-9926832fb3a11b85",
+      "entityType": "country",
+      "isoAlpha2": "LC",
+      "isoAlpha3": "LCA",
+      "isoNumeric": "662",
+      "wikidataId": "Q760",
+      "canonicalNameZh": "圣卢西亚",
+      "canonicalNameEn": "Saint Lucia",
+      "aliases": [
+        "Hewanorra",
+        "Iyonola",
+        "lca",
+        "St Lucia",
+        "St. Lucia",
+        "聖露西亞"
+      ],
+      "continent": {
+        "wikidataId": "Q49",
+        "canonicalNameZh": "北美洲",
+        "canonicalNameEn": "North America"
+      },
+      "region": "北美洲",
+      "subregion": "Caribbean",
+      "capital": {
+        "wikidataId": "Q41699",
+        "canonicalNameZh": "卡斯特里",
+        "canonicalNameEn": "Castries",
+        "aliases": [
+          "卡斯特里",
+          "卡斯翠"
+        ]
+      },
+      "coordinates": {
+        "latitude": 13.883333333333333,
+        "longitude": -60.96666666666667
+      },
+      "entitySourceType": "wikidata",
+      "provenance": {
+        "entityId": [
+          {
+            "sourceType": "iso",
+            "source": "ISO 3166 Batch 13 reviewed seed",
+            "field": "entityId",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "LC"
+          },
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "entityId",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q760",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "Q760"
+          }
+        ],
+        "isoAlpha2": [
+          {
+            "sourceType": "iso",
+            "source": "ISO 3166 Batch 13 reviewed seed",
+            "field": "isoAlpha2",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "LC"
+          }
+        ],
+        "isoAlpha3": [
+          {
+            "sourceType": "iso",
+            "source": "ISO 3166 Batch 13 reviewed seed",
+            "field": "isoAlpha3",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "LCA"
+          }
+        ],
+        "isoNumeric": [
+          {
+            "sourceType": "iso",
+            "source": "ISO 3166 Batch 13 reviewed seed",
+            "field": "isoNumeric",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "662"
+          }
+        ],
+        "wikidataId": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "wikidataId",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q760",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "Q760"
+          }
+        ],
+        "canonicalNameZh": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "canonicalNameZh",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q760",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "圣卢西亚"
+          }
+        ],
+        "canonicalNameEn": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "canonicalNameEn",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q760",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "Saint Lucia"
+          }
+        ],
+        "aliases": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "aliases",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q760",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": [
+              "Hewanorra",
+              "Iyonola",
+              "lca",
+              "St Lucia",
+              "St. Lucia",
+              "聖露西亞"
+            ]
+          }
+        ],
+        "continent": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "continent",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q760",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": {
+              "wikidataId": "Q49",
+              "canonicalNameZh": "北美洲",
+              "canonicalNameEn": "North America"
+            }
+          }
+        ],
+        "region": [
+          {
+            "sourceType": "project-country-catalog",
+            "source": "Batch 13 reviewed country catalog",
+            "field": "region",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "北美洲"
+          }
+        ],
+        "subregion": [
+          {
+            "sourceType": "project-country-catalog",
+            "source": "Batch 13 reviewed country catalog",
+            "field": "subregion",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "Caribbean"
+          }
+        ],
+        "capital": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "capital",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q760",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": {
+              "wikidataId": "Q41699",
+              "canonicalNameZh": "卡斯特里",
+              "canonicalNameEn": "Castries",
+              "aliases": [
+                "卡斯特里",
+                "卡斯翠"
+              ]
+            }
+          }
+        ],
+        "coordinates": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "coordinates",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q760",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": {
+              "latitude": 13.883333333333333,
+              "longitude": -60.96666666666667
+            }
+          }
+        ]
+      },
+      "confidence": 0.95,
+      "retrievedAt": "2026-09-14T06:00:00.000Z"
+    },
+    {
+      "schemaVersion": "route-v2-country-baseline-p1a",
+      "entityId": "country-297ccf11f6aee769",
+      "entityType": "country",
+      "isoAlpha2": "SB",
+      "isoAlpha3": "SLB",
+      "isoNumeric": "090",
+      "wikidataId": "Q685",
+      "canonicalNameZh": "所罗门群岛",
+      "canonicalNameEn": "Solomon Islands",
+      "aliases": [
+        "SOL",
+        "the Solomon Islands",
+        "所國",
+        "所島",
+        "所羅門群島",
+        "索羅門群島"
+      ],
+      "continent": {
+        "wikidataId": "Q55643",
+        "canonicalNameZh": "大洋洲",
+        "canonicalNameEn": "Oceania"
+      },
+      "region": "大洋洲",
+      "subregion": "Melanesia",
+      "capital": {
+        "wikidataId": "Q40921",
+        "canonicalNameZh": "霍尼亚拉",
+        "canonicalNameEn": "Honiara",
+        "aliases": [
+          "荷尼亞拉",
+          "荷尼阿拉",
+          "霍尼亚拉",
+          "霍尼亞拉"
+        ]
+      },
+      "coordinates": {
+        "latitude": -9.4666666666667,
+        "longitude": 159.81666666667
+      },
+      "entitySourceType": "wikidata",
+      "provenance": {
+        "entityId": [
+          {
+            "sourceType": "iso",
+            "source": "ISO 3166 Batch 13 reviewed seed",
+            "field": "entityId",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "SB"
+          },
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "entityId",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q685",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "Q685"
+          }
+        ],
+        "isoAlpha2": [
+          {
+            "sourceType": "iso",
+            "source": "ISO 3166 Batch 13 reviewed seed",
+            "field": "isoAlpha2",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "SB"
+          }
+        ],
+        "isoAlpha3": [
+          {
+            "sourceType": "iso",
+            "source": "ISO 3166 Batch 13 reviewed seed",
+            "field": "isoAlpha3",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "SLB"
+          }
+        ],
+        "isoNumeric": [
+          {
+            "sourceType": "iso",
+            "source": "ISO 3166 Batch 13 reviewed seed",
+            "field": "isoNumeric",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "090"
+          }
+        ],
+        "wikidataId": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "wikidataId",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q685",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "Q685"
+          }
+        ],
+        "canonicalNameZh": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "canonicalNameZh",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q685",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "所罗门群岛"
+          }
+        ],
+        "canonicalNameEn": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "canonicalNameEn",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q685",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "Solomon Islands"
+          }
+        ],
+        "aliases": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "aliases",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q685",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": [
+              "SOL",
+              "the Solomon Islands",
+              "所國",
+              "所島",
+              "所羅門群島",
+              "索羅門群島"
+            ]
+          }
+        ],
+        "continent": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "continent",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q685",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": {
+              "wikidataId": "Q55643",
+              "canonicalNameZh": "大洋洲",
+              "canonicalNameEn": "Oceania"
+            }
+          }
+        ],
+        "region": [
+          {
+            "sourceType": "project-country-catalog",
+            "source": "Batch 13 reviewed country catalog",
+            "field": "region",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "大洋洲"
+          }
+        ],
+        "subregion": [
+          {
+            "sourceType": "project-country-catalog",
+            "source": "Batch 13 reviewed country catalog",
+            "field": "subregion",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "Melanesia"
+          }
+        ],
+        "capital": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "capital",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q685",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": {
+              "wikidataId": "Q40921",
+              "canonicalNameZh": "霍尼亚拉",
+              "canonicalNameEn": "Honiara",
+              "aliases": [
+                "荷尼亞拉",
+                "荷尼阿拉",
+                "霍尼亚拉",
+                "霍尼亞拉"
+              ]
+            }
+          }
+        ],
+        "coordinates": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "coordinates",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q685",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": {
+              "latitude": -9.4666666666667,
+              "longitude": 159.81666666667
+            }
+          }
+        ]
+      },
+      "confidence": 0.95,
+      "retrievedAt": "2026-09-14T06:00:00.000Z"
+    },
+    {
+      "schemaVersion": "route-v2-country-baseline-p1a",
+      "entityId": "country-00b4a4ddf326425f",
+      "entityType": "country",
+      "isoAlpha2": "SC",
+      "isoAlpha3": "SYC",
+      "isoNumeric": "690",
+      "wikidataId": "Q1042",
+      "canonicalNameZh": "塞舌尔",
+      "canonicalNameEn": "Seychelles",
+      "aliases": [
+        "Republic of Seychelles",
+        "SEY",
+        "塞席爾",
+        "塞舌爾"
+      ],
+      "continent": {
+        "wikidataId": "Q15",
+        "canonicalNameZh": "非洲",
+        "canonicalNameEn": "Africa"
+      },
+      "region": "非洲",
+      "subregion": "Eastern Africa",
+      "capital": {
+        "wikidataId": "Q3940",
+        "canonicalNameZh": "维多利亚",
+        "canonicalNameEn": "Victoria",
+        "aliases": [
+          "Port Victoria",
+          "Victoria, Seychelles",
+          "維多利亞",
+          "维多利亚"
+        ]
+      },
+      "coordinates": {
+        "latitude": -7.1,
+        "longitude": 52.766667
+      },
+      "entitySourceType": "wikidata",
+      "provenance": {
+        "entityId": [
+          {
+            "sourceType": "iso",
+            "source": "ISO 3166 Batch 13 reviewed seed",
+            "field": "entityId",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "SC"
+          },
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "entityId",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q1042",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "Q1042"
+          }
+        ],
+        "isoAlpha2": [
+          {
+            "sourceType": "iso",
+            "source": "ISO 3166 Batch 13 reviewed seed",
+            "field": "isoAlpha2",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "SC"
+          }
+        ],
+        "isoAlpha3": [
+          {
+            "sourceType": "iso",
+            "source": "ISO 3166 Batch 13 reviewed seed",
+            "field": "isoAlpha3",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "SYC"
+          }
+        ],
+        "isoNumeric": [
+          {
+            "sourceType": "iso",
+            "source": "ISO 3166 Batch 13 reviewed seed",
+            "field": "isoNumeric",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "690"
+          }
+        ],
+        "wikidataId": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "wikidataId",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q1042",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "Q1042"
+          }
+        ],
+        "canonicalNameZh": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "canonicalNameZh",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q1042",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "塞舌尔"
+          }
+        ],
+        "canonicalNameEn": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "canonicalNameEn",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q1042",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "Seychelles"
+          }
+        ],
+        "aliases": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "aliases",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q1042",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": [
+              "Republic of Seychelles",
+              "SEY",
+              "塞席爾",
+              "塞舌爾"
+            ]
+          }
+        ],
+        "continent": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "continent",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q1042",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": {
+              "wikidataId": "Q15",
+              "canonicalNameZh": "非洲",
+              "canonicalNameEn": "Africa"
+            }
+          }
+        ],
+        "region": [
+          {
+            "sourceType": "project-country-catalog",
+            "source": "Batch 13 reviewed country catalog",
+            "field": "region",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "非洲"
+          }
+        ],
+        "subregion": [
+          {
+            "sourceType": "project-country-catalog",
+            "source": "Batch 13 reviewed country catalog",
+            "field": "subregion",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "Eastern Africa"
+          }
+        ],
+        "capital": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "capital",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q1042",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": {
+              "wikidataId": "Q3940",
+              "canonicalNameZh": "维多利亚",
+              "canonicalNameEn": "Victoria",
+              "aliases": [
+                "Port Victoria",
+                "Victoria, Seychelles",
+                "維多利亞",
+                "维多利亚"
+              ]
+            }
+          }
+        ],
+        "coordinates": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "coordinates",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q1042",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": {
+              "latitude": -7.1,
+              "longitude": 52.766667
+            }
+          }
+        ]
+      },
+      "confidence": 0.95,
+      "retrievedAt": "2026-09-14T06:00:00.000Z"
+    },
+    {
+      "schemaVersion": "route-v2-country-baseline-p1a",
+      "entityId": "country-8f4000826876b62b",
+      "entityType": "country",
+      "isoAlpha2": "SD",
+      "isoAlpha3": "SDN",
+      "isoNumeric": "729",
+      "wikidataId": "Q1049",
+      "canonicalNameZh": "苏丹",
+      "canonicalNameEn": "Sudan",
+      "aliases": [
+        "al-Sudan",
+        "as-Sudan",
+        "as-Sūdān",
+        "North Sudan",
+        "Republic of Sudan",
+        "Republic of the Sudan",
+        "Soudan",
+        "SUD",
+        "the Sudan",
+        "苏丹共和国",
+        "蘇丹",
+        "蘇丹共和國"
+      ],
+      "continent": {
+        "wikidataId": "Q15",
+        "canonicalNameZh": "非洲",
+        "canonicalNameEn": "Africa"
+      },
+      "region": "非洲",
+      "subregion": "Northern Africa",
+      "capital": {
+        "wikidataId": "Q1963",
+        "canonicalNameZh": "喀土穆",
+        "canonicalNameEn": "Khartoum",
+        "aliases": [
+          "Khartum",
+          "喀土穆"
+        ]
+      },
+      "coordinates": {
+        "latitude": 15,
+        "longitude": 32
+      },
+      "entitySourceType": "wikidata",
+      "provenance": {
+        "entityId": [
+          {
+            "sourceType": "iso",
+            "source": "ISO 3166 Batch 13 reviewed seed",
+            "field": "entityId",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "SD"
+          },
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "entityId",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q1049",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "Q1049"
+          }
+        ],
+        "isoAlpha2": [
+          {
+            "sourceType": "iso",
+            "source": "ISO 3166 Batch 13 reviewed seed",
+            "field": "isoAlpha2",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "SD"
+          }
+        ],
+        "isoAlpha3": [
+          {
+            "sourceType": "iso",
+            "source": "ISO 3166 Batch 13 reviewed seed",
+            "field": "isoAlpha3",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "SDN"
+          }
+        ],
+        "isoNumeric": [
+          {
+            "sourceType": "iso",
+            "source": "ISO 3166 Batch 13 reviewed seed",
+            "field": "isoNumeric",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "729"
+          }
+        ],
+        "wikidataId": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "wikidataId",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q1049",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "Q1049"
+          }
+        ],
+        "canonicalNameZh": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "canonicalNameZh",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q1049",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "苏丹"
+          }
+        ],
+        "canonicalNameEn": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "canonicalNameEn",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q1049",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "Sudan"
+          }
+        ],
+        "aliases": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "aliases",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q1049",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": [
+              "al-Sudan",
+              "as-Sudan",
+              "as-Sūdān",
+              "North Sudan",
+              "Republic of Sudan",
+              "Republic of the Sudan",
+              "Soudan",
+              "SUD",
+              "the Sudan",
+              "苏丹共和国",
+              "蘇丹",
+              "蘇丹共和國"
+            ]
+          }
+        ],
+        "continent": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "continent",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q1049",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": {
+              "wikidataId": "Q15",
+              "canonicalNameZh": "非洲",
+              "canonicalNameEn": "Africa"
+            }
+          }
+        ],
+        "region": [
+          {
+            "sourceType": "project-country-catalog",
+            "source": "Batch 13 reviewed country catalog",
+            "field": "region",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "非洲"
+          }
+        ],
+        "subregion": [
+          {
+            "sourceType": "project-country-catalog",
+            "source": "Batch 13 reviewed country catalog",
+            "field": "subregion",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "Northern Africa"
+          }
+        ],
+        "capital": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "capital",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q1049",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": {
+              "wikidataId": "Q1963",
+              "canonicalNameZh": "喀土穆",
+              "canonicalNameEn": "Khartoum",
+              "aliases": [
+                "Khartum",
+                "喀土穆"
+              ]
+            }
+          }
+        ],
+        "coordinates": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "coordinates",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q1049",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": {
+              "latitude": 15,
+              "longitude": 32
+            }
+          }
+        ]
+      },
+      "confidence": 0.95,
+      "retrievedAt": "2026-09-14T06:00:00.000Z"
+    },
+    {
+      "schemaVersion": "route-v2-country-baseline-p1a",
+      "entityId": "country-77965beff7d8b0b5",
+      "entityType": "country",
+      "isoAlpha2": "SL",
+      "isoAlpha3": "SLE",
+      "isoNumeric": "694",
+      "wikidataId": "Q1044",
+      "canonicalNameZh": "塞拉利昂",
+      "canonicalNameEn": "Sierra Leone",
+      "aliases": [
+        "Republic of Sierra Leone",
+        "SLE",
+        "獅子山"
+      ],
+      "continent": {
+        "wikidataId": "Q15",
+        "canonicalNameZh": "非洲",
+        "canonicalNameEn": "Africa"
+      },
+      "region": "非洲",
+      "subregion": "Western Africa",
+      "capital": {
+        "wikidataId": "Q3780",
+        "canonicalNameZh": "弗里敦",
+        "canonicalNameEn": "Freetown",
+        "aliases": [
+          "弗里敦",
+          "自由城"
+        ]
+      },
+      "coordinates": {
+        "latitude": 8.5,
+        "longitude": -12.1
+      },
+      "entitySourceType": "wikidata",
+      "provenance": {
+        "entityId": [
+          {
+            "sourceType": "iso",
+            "source": "ISO 3166 Batch 13 reviewed seed",
+            "field": "entityId",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "SL"
+          },
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "entityId",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q1044",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "Q1044"
+          }
+        ],
+        "isoAlpha2": [
+          {
+            "sourceType": "iso",
+            "source": "ISO 3166 Batch 13 reviewed seed",
+            "field": "isoAlpha2",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "SL"
+          }
+        ],
+        "isoAlpha3": [
+          {
+            "sourceType": "iso",
+            "source": "ISO 3166 Batch 13 reviewed seed",
+            "field": "isoAlpha3",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "SLE"
+          }
+        ],
+        "isoNumeric": [
+          {
+            "sourceType": "iso",
+            "source": "ISO 3166 Batch 13 reviewed seed",
+            "field": "isoNumeric",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "694"
+          }
+        ],
+        "wikidataId": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "wikidataId",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q1044",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "Q1044"
+          }
+        ],
+        "canonicalNameZh": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "canonicalNameZh",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q1044",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "塞拉利昂"
+          }
+        ],
+        "canonicalNameEn": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "canonicalNameEn",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q1044",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "Sierra Leone"
+          }
+        ],
+        "aliases": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "aliases",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q1044",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": [
+              "Republic of Sierra Leone",
+              "SLE",
+              "獅子山"
+            ]
+          }
+        ],
+        "continent": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "continent",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q1044",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": {
+              "wikidataId": "Q15",
+              "canonicalNameZh": "非洲",
+              "canonicalNameEn": "Africa"
+            }
+          }
+        ],
+        "region": [
+          {
+            "sourceType": "project-country-catalog",
+            "source": "Batch 13 reviewed country catalog",
+            "field": "region",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "非洲"
+          }
+        ],
+        "subregion": [
+          {
+            "sourceType": "project-country-catalog",
+            "source": "Batch 13 reviewed country catalog",
+            "field": "subregion",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "Western Africa"
+          }
+        ],
+        "capital": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "capital",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q1044",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": {
+              "wikidataId": "Q3780",
+              "canonicalNameZh": "弗里敦",
+              "canonicalNameEn": "Freetown",
+              "aliases": [
+                "弗里敦",
+                "自由城"
+              ]
+            }
+          }
+        ],
+        "coordinates": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "coordinates",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q1044",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": {
+              "latitude": 8.5,
+              "longitude": -12.1
+            }
+          }
+        ]
+      },
+      "confidence": 0.95,
+      "retrievedAt": "2026-09-14T06:00:00.000Z"
+    },
+    {
+      "schemaVersion": "route-v2-country-baseline-p1a",
+      "entityId": "country-9e67472b2600e2e9",
+      "entityType": "country",
+      "isoAlpha2": "SO",
+      "isoAlpha3": "SOM",
+      "isoNumeric": "706",
+      "wikidataId": "Q1045",
+      "canonicalNameZh": "索马里",
+      "canonicalNameEn": "Somalia",
+      "aliases": [
+        "Federal Republic of Somalia",
+        "索馬利亞",
+        "索馬里",
+        "索马里联邦共和国"
+      ],
+      "continent": {
+        "wikidataId": "Q15",
+        "canonicalNameZh": "非洲",
+        "canonicalNameEn": "Africa"
+      },
+      "region": "非洲",
+      "subregion": "Eastern Africa",
+      "capital": {
+        "wikidataId": "Q2449",
+        "canonicalNameZh": "摩加迪休",
+        "canonicalNameEn": "Mogadishu",
+        "aliases": [
+          "Hamar",
+          "Maqadīshū",
+          "Mogadishu, Somalia",
+          "The Seat of the Shah",
+          "Xamar",
+          "哈馬",
+          "摩加迪休",
+          "摩加迪沙",
+          "木骨都束"
+        ]
+      },
+      "coordinates": {
+        "latitude": 6,
+        "longitude": 47
+      },
+      "entitySourceType": "wikidata",
+      "provenance": {
+        "entityId": [
+          {
+            "sourceType": "iso",
+            "source": "ISO 3166 Batch 13 reviewed seed",
+            "field": "entityId",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "SO"
+          },
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "entityId",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q1045",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "Q1045"
+          }
+        ],
+        "isoAlpha2": [
+          {
+            "sourceType": "iso",
+            "source": "ISO 3166 Batch 13 reviewed seed",
+            "field": "isoAlpha2",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "SO"
+          }
+        ],
+        "isoAlpha3": [
+          {
+            "sourceType": "iso",
+            "source": "ISO 3166 Batch 13 reviewed seed",
+            "field": "isoAlpha3",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "SOM"
+          }
+        ],
+        "isoNumeric": [
+          {
+            "sourceType": "iso",
+            "source": "ISO 3166 Batch 13 reviewed seed",
+            "field": "isoNumeric",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "706"
+          }
+        ],
+        "wikidataId": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "wikidataId",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q1045",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "Q1045"
+          }
+        ],
+        "canonicalNameZh": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "canonicalNameZh",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q1045",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "索马里"
+          }
+        ],
+        "canonicalNameEn": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "canonicalNameEn",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q1045",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "Somalia"
+          }
+        ],
+        "aliases": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "aliases",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q1045",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": [
+              "Federal Republic of Somalia",
+              "索馬利亞",
+              "索馬里",
+              "索马里联邦共和国"
+            ]
+          }
+        ],
+        "continent": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "continent",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q1045",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": {
+              "wikidataId": "Q15",
+              "canonicalNameZh": "非洲",
+              "canonicalNameEn": "Africa"
+            }
+          }
+        ],
+        "region": [
+          {
+            "sourceType": "project-country-catalog",
+            "source": "Batch 13 reviewed country catalog",
+            "field": "region",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "非洲"
+          }
+        ],
+        "subregion": [
+          {
+            "sourceType": "project-country-catalog",
+            "source": "Batch 13 reviewed country catalog",
+            "field": "subregion",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "Eastern Africa"
+          }
+        ],
+        "capital": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "capital",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q1045",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": {
+              "wikidataId": "Q2449",
+              "canonicalNameZh": "摩加迪休",
+              "canonicalNameEn": "Mogadishu",
+              "aliases": [
+                "Hamar",
+                "Maqadīshū",
+                "Mogadishu, Somalia",
+                "The Seat of the Shah",
+                "Xamar",
+                "哈馬",
+                "摩加迪休",
+                "摩加迪沙",
+                "木骨都束"
+              ]
+            }
+          }
+        ],
+        "coordinates": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "coordinates",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q1045",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": {
+              "latitude": 6,
+              "longitude": 47
+            }
+          }
+        ]
+      },
+      "confidence": 0.95,
+      "retrievedAt": "2026-09-14T06:00:00.000Z"
+    },
+    {
+      "schemaVersion": "route-v2-country-baseline-p1a",
+      "entityId": "country-98902fdbda082d07",
+      "entityType": "country",
+      "isoAlpha2": "SR",
+      "isoAlpha3": "SUR",
+      "isoNumeric": "740",
+      "wikidataId": "Q730",
+      "canonicalNameZh": "苏里南",
+      "canonicalNameEn": "Suriname",
+      "aliases": [
+        "Dutch Guiana",
+        "Republic of Surinam",
+        "Republic of Suriname",
+        "Surinam",
+        "Surrinam",
+        "苏里南共和国",
+        "荷属圭亚那",
+        "蘇利南",
+        "蘇里南"
+      ],
+      "continent": {
+        "wikidataId": "Q18",
+        "canonicalNameZh": "南美洲",
+        "canonicalNameEn": "South America"
+      },
+      "region": "南美洲",
+      "subregion": "South America",
+      "capital": {
+        "wikidataId": "Q3001",
+        "canonicalNameZh": "帕拉马里博",
+        "canonicalNameEn": "Paramaribo",
+        "aliases": [
+          "Parbo",
+          "帕拉马里博"
+        ]
+      },
+      "coordinates": {
+        "latitude": 4,
+        "longitude": -56
+      },
+      "entitySourceType": "wikidata",
+      "provenance": {
+        "entityId": [
+          {
+            "sourceType": "iso",
+            "source": "ISO 3166 Batch 13 reviewed seed",
+            "field": "entityId",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "SR"
+          },
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "entityId",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q730",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "Q730"
+          }
+        ],
+        "isoAlpha2": [
+          {
+            "sourceType": "iso",
+            "source": "ISO 3166 Batch 13 reviewed seed",
+            "field": "isoAlpha2",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "SR"
+          }
+        ],
+        "isoAlpha3": [
+          {
+            "sourceType": "iso",
+            "source": "ISO 3166 Batch 13 reviewed seed",
+            "field": "isoAlpha3",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "SUR"
+          }
+        ],
+        "isoNumeric": [
+          {
+            "sourceType": "iso",
+            "source": "ISO 3166 Batch 13 reviewed seed",
+            "field": "isoNumeric",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "740"
+          }
+        ],
+        "wikidataId": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "wikidataId",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q730",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "Q730"
+          }
+        ],
+        "canonicalNameZh": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "canonicalNameZh",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q730",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "苏里南"
+          }
+        ],
+        "canonicalNameEn": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "canonicalNameEn",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q730",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "Suriname"
+          }
+        ],
+        "aliases": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "aliases",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q730",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": [
+              "Dutch Guiana",
+              "Republic of Surinam",
+              "Republic of Suriname",
+              "Surinam",
+              "Surrinam",
+              "苏里南共和国",
+              "荷属圭亚那",
+              "蘇利南",
+              "蘇里南"
+            ]
+          }
+        ],
+        "continent": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "continent",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q730",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": {
+              "wikidataId": "Q18",
+              "canonicalNameZh": "南美洲",
+              "canonicalNameEn": "South America"
+            }
+          }
+        ],
+        "region": [
+          {
+            "sourceType": "project-country-catalog",
+            "source": "Batch 13 reviewed country catalog",
+            "field": "region",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "南美洲"
+          }
+        ],
+        "subregion": [
+          {
+            "sourceType": "project-country-catalog",
+            "source": "Batch 13 reviewed country catalog",
+            "field": "subregion",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "South America"
+          }
+        ],
+        "capital": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "capital",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q730",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": {
+              "wikidataId": "Q3001",
+              "canonicalNameZh": "帕拉马里博",
+              "canonicalNameEn": "Paramaribo",
+              "aliases": [
+                "Parbo",
+                "帕拉马里博"
+              ]
+            }
+          }
+        ],
+        "coordinates": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "coordinates",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q730",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": {
+              "latitude": 4,
+              "longitude": -56
+            }
+          }
+        ]
+      },
+      "confidence": 0.95,
+      "retrievedAt": "2026-09-14T06:00:00.000Z"
+    },
+    {
+      "schemaVersion": "route-v2-country-baseline-p1a",
+      "entityId": "country-94ad2195ec4b5fd4",
+      "entityType": "country",
+      "isoAlpha2": "SS",
+      "isoAlpha3": "SSD",
+      "isoNumeric": "728",
+      "wikidataId": "Q958",
+      "canonicalNameZh": "南苏丹",
+      "canonicalNameEn": "South Sudan",
+      "aliases": [
+        "Republic of South Sudan",
+        "Southern Sudan",
+        "SSD",
+        "南苏丹共和国",
+        "南蘇丹"
+      ],
+      "continent": {
+        "wikidataId": "Q15",
+        "canonicalNameZh": "非洲",
+        "canonicalNameEn": "Africa"
+      },
+      "region": "非洲",
+      "subregion": "Eastern Africa",
+      "capital": {
+        "wikidataId": "Q1947",
+        "canonicalNameZh": "朱巴",
+        "canonicalNameEn": "Juba",
+        "aliases": [
+          "朱巴"
+        ]
+      },
+      "coordinates": {
+        "latitude": 7,
+        "longitude": 30
+      },
+      "entitySourceType": "wikidata",
+      "provenance": {
+        "entityId": [
+          {
+            "sourceType": "iso",
+            "source": "ISO 3166 Batch 13 reviewed seed",
+            "field": "entityId",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "SS"
+          },
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "entityId",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q958",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "Q958"
+          }
+        ],
+        "isoAlpha2": [
+          {
+            "sourceType": "iso",
+            "source": "ISO 3166 Batch 13 reviewed seed",
+            "field": "isoAlpha2",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "SS"
+          }
+        ],
+        "isoAlpha3": [
+          {
+            "sourceType": "iso",
+            "source": "ISO 3166 Batch 13 reviewed seed",
+            "field": "isoAlpha3",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "SSD"
+          }
+        ],
+        "isoNumeric": [
+          {
+            "sourceType": "iso",
+            "source": "ISO 3166 Batch 13 reviewed seed",
+            "field": "isoNumeric",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "728"
+          }
+        ],
+        "wikidataId": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "wikidataId",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q958",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "Q958"
+          }
+        ],
+        "canonicalNameZh": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "canonicalNameZh",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q958",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "南苏丹"
+          }
+        ],
+        "canonicalNameEn": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "canonicalNameEn",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q958",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "South Sudan"
+          }
+        ],
+        "aliases": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "aliases",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q958",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": [
+              "Republic of South Sudan",
+              "Southern Sudan",
+              "SSD",
+              "南苏丹共和国",
+              "南蘇丹"
+            ]
+          }
+        ],
+        "continent": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "continent",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q958",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": {
+              "wikidataId": "Q15",
+              "canonicalNameZh": "非洲",
+              "canonicalNameEn": "Africa"
+            }
+          }
+        ],
+        "region": [
+          {
+            "sourceType": "project-country-catalog",
+            "source": "Batch 13 reviewed country catalog",
+            "field": "region",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "非洲"
+          }
+        ],
+        "subregion": [
+          {
+            "sourceType": "project-country-catalog",
+            "source": "Batch 13 reviewed country catalog",
+            "field": "subregion",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "Eastern Africa"
+          }
+        ],
+        "capital": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "capital",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q958",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": {
+              "wikidataId": "Q1947",
+              "canonicalNameZh": "朱巴",
+              "canonicalNameEn": "Juba",
+              "aliases": [
+                "朱巴"
+              ]
+            }
+          }
+        ],
+        "coordinates": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "coordinates",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q958",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": {
+              "latitude": 7,
+              "longitude": 30
+            }
+          }
+        ]
+      },
+      "confidence": 0.95,
+      "retrievedAt": "2026-09-14T06:00:00.000Z"
+    },
+    {
+      "schemaVersion": "route-v2-country-baseline-p1a",
+      "entityId": "country-0a039215c9a6233e",
+      "entityType": "country",
+      "isoAlpha2": "ST",
+      "isoAlpha3": "STP",
+      "isoNumeric": "678",
+      "wikidataId": "Q1039",
+      "canonicalNameZh": "圣多美和普林西比",
+      "canonicalNameEn": "São Tomé and Príncipe",
+      "aliases": [
+        "Democratic Republic of São Tomé and Príncipe",
+        "Sao Tome & Principe",
+        "São Tomé & Príncipe",
+        "Sao Tome and Principe",
+        "São Tomé og Príncipe",
+        "圣多美和普林西比民主共和国",
+        "圣普"
+      ],
+      "continent": {
+        "wikidataId": "Q15",
+        "canonicalNameZh": "非洲",
+        "canonicalNameEn": "Africa"
+      },
+      "region": "非洲",
+      "subregion": "Middle Africa",
+      "capital": {
+        "wikidataId": "Q3932",
+        "canonicalNameZh": "圣多美",
+        "canonicalNameEn": "São Tomé",
+        "aliases": [
+          "圣多美"
+        ]
+      },
+      "coordinates": {
+        "latitude": 0.316667,
+        "longitude": 6.6
+      },
+      "entitySourceType": "wikidata",
+      "provenance": {
+        "entityId": [
+          {
+            "sourceType": "iso",
+            "source": "ISO 3166 Batch 13 reviewed seed",
+            "field": "entityId",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "ST"
+          },
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "entityId",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q1039",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "Q1039"
+          }
+        ],
+        "isoAlpha2": [
+          {
+            "sourceType": "iso",
+            "source": "ISO 3166 Batch 13 reviewed seed",
+            "field": "isoAlpha2",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "ST"
+          }
+        ],
+        "isoAlpha3": [
+          {
+            "sourceType": "iso",
+            "source": "ISO 3166 Batch 13 reviewed seed",
+            "field": "isoAlpha3",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "STP"
+          }
+        ],
+        "isoNumeric": [
+          {
+            "sourceType": "iso",
+            "source": "ISO 3166 Batch 13 reviewed seed",
+            "field": "isoNumeric",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "678"
+          }
+        ],
+        "wikidataId": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "wikidataId",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q1039",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "Q1039"
+          }
+        ],
+        "canonicalNameZh": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "canonicalNameZh",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q1039",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "圣多美和普林西比"
+          }
+        ],
+        "canonicalNameEn": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "canonicalNameEn",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q1039",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "São Tomé and Príncipe"
+          }
+        ],
+        "aliases": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "aliases",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q1039",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": [
+              "Democratic Republic of São Tomé and Príncipe",
+              "Sao Tome & Principe",
+              "São Tomé & Príncipe",
+              "Sao Tome and Principe",
+              "São Tomé og Príncipe",
+              "圣多美和普林西比民主共和国",
+              "圣普"
+            ]
+          }
+        ],
+        "continent": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "continent",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q1039",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": {
+              "wikidataId": "Q15",
+              "canonicalNameZh": "非洲",
+              "canonicalNameEn": "Africa"
+            }
+          }
+        ],
+        "region": [
+          {
+            "sourceType": "project-country-catalog",
+            "source": "Batch 13 reviewed country catalog",
+            "field": "region",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "非洲"
+          }
+        ],
+        "subregion": [
+          {
+            "sourceType": "project-country-catalog",
+            "source": "Batch 13 reviewed country catalog",
+            "field": "subregion",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "Middle Africa"
+          }
+        ],
+        "capital": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "capital",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q1039",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": {
+              "wikidataId": "Q3932",
+              "canonicalNameZh": "圣多美",
+              "canonicalNameEn": "São Tomé",
+              "aliases": [
+                "圣多美"
+              ]
+            }
+          }
+        ],
+        "coordinates": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "coordinates",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q1039",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": {
+              "latitude": 0.316667,
+              "longitude": 6.6
+            }
+          }
+        ]
+      },
+      "confidence": 0.95,
+      "retrievedAt": "2026-09-14T06:00:00.000Z"
+    },
+    {
+      "schemaVersion": "route-v2-country-baseline-p1a",
+      "entityId": "country-e750a85bf11312ea",
+      "entityType": "country",
+      "isoAlpha2": "SY",
+      "isoAlpha3": "SYR",
+      "isoNumeric": "760",
+      "wikidataId": "Q858",
+      "canonicalNameZh": "叙利亚",
+      "canonicalNameEn": "Syria",
+      "aliases": [
+        "Surya",
+        "Syrian Arab Republic",
+        "敘利亞",
+        "西里亚",
+        "西里亞",
+        "阿拉伯敘利亞共和國"
+      ],
+      "continent": {
+        "wikidataId": "Q48",
+        "canonicalNameZh": "亚洲",
+        "canonicalNameEn": "Asia"
+      },
+      "region": "亚洲",
+      "subregion": "Western Asia",
+      "capital": {
+        "wikidataId": "Q3766",
+        "canonicalNameZh": "大马士革",
+        "canonicalNameEn": "Damascus",
+        "aliases": [
+          "Jasmine city",
+          "Mint of Damascus",
+          "Sham city",
+          "大馬士革",
+          "大马士革",
+          "沙姆"
+        ]
+      },
+      "coordinates": {
+        "latitude": 35.216667,
+        "longitude": 38.583333
+      },
+      "entitySourceType": "wikidata",
+      "provenance": {
+        "entityId": [
+          {
+            "sourceType": "iso",
+            "source": "ISO 3166 Batch 13 reviewed seed",
+            "field": "entityId",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "SY"
+          },
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "entityId",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q858",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "Q858"
+          }
+        ],
+        "isoAlpha2": [
+          {
+            "sourceType": "iso",
+            "source": "ISO 3166 Batch 13 reviewed seed",
+            "field": "isoAlpha2",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "SY"
+          }
+        ],
+        "isoAlpha3": [
+          {
+            "sourceType": "iso",
+            "source": "ISO 3166 Batch 13 reviewed seed",
+            "field": "isoAlpha3",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "SYR"
+          }
+        ],
+        "isoNumeric": [
+          {
+            "sourceType": "iso",
+            "source": "ISO 3166 Batch 13 reviewed seed",
+            "field": "isoNumeric",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "760"
+          }
+        ],
+        "wikidataId": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "wikidataId",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q858",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "Q858"
+          }
+        ],
+        "canonicalNameZh": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "canonicalNameZh",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q858",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "叙利亚"
+          }
+        ],
+        "canonicalNameEn": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "canonicalNameEn",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q858",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "Syria"
+          }
+        ],
+        "aliases": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "aliases",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q858",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": [
+              "Surya",
+              "Syrian Arab Republic",
+              "敘利亞",
+              "西里亚",
+              "西里亞",
+              "阿拉伯敘利亞共和國"
+            ]
+          }
+        ],
+        "continent": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "continent",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q858",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": {
+              "wikidataId": "Q48",
+              "canonicalNameZh": "亚洲",
+              "canonicalNameEn": "Asia"
+            }
+          }
+        ],
+        "region": [
+          {
+            "sourceType": "project-country-catalog",
+            "source": "Batch 13 reviewed country catalog",
+            "field": "region",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "亚洲"
+          }
+        ],
+        "subregion": [
+          {
+            "sourceType": "project-country-catalog",
+            "source": "Batch 13 reviewed country catalog",
+            "field": "subregion",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "Western Asia"
+          }
+        ],
+        "capital": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "capital",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q858",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": {
+              "wikidataId": "Q3766",
+              "canonicalNameZh": "大马士革",
+              "canonicalNameEn": "Damascus",
+              "aliases": [
+                "Jasmine city",
+                "Mint of Damascus",
+                "Sham city",
+                "大馬士革",
+                "大马士革",
+                "沙姆"
+              ]
+            }
+          }
+        ],
+        "coordinates": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "coordinates",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q858",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": {
+              "latitude": 35.216667,
+              "longitude": 38.583333
+            }
+          }
+        ]
+      },
+      "confidence": 0.95,
+      "retrievedAt": "2026-09-14T06:00:00.000Z"
+    },
+    {
+      "schemaVersion": "route-v2-country-baseline-p1a",
+      "entityId": "country-eb70cec2b5d16f8b",
+      "entityType": "country",
+      "isoAlpha2": "TG",
+      "isoAlpha3": "TGO",
+      "isoNumeric": "768",
+      "wikidataId": "Q945",
+      "canonicalNameZh": "多哥",
+      "canonicalNameEn": "Togo",
+      "aliases": [
+        "Togolese Republic",
+        "多哥共和国"
+      ],
+      "continent": {
+        "wikidataId": "Q15",
+        "canonicalNameZh": "非洲",
+        "canonicalNameEn": "Africa"
+      },
+      "region": "非洲",
+      "subregion": "Western Africa",
+      "capital": {
+        "wikidataId": "Q3792",
+        "canonicalNameZh": "洛美",
+        "canonicalNameEn": "Lomé",
+        "aliases": [
+          "Lome",
+          "Lome, Togo",
+          "Lomé, Togo",
+          "洛美"
+        ]
+      },
+      "coordinates": {
+        "latitude": 8.25,
+        "longitude": 1.183333
+      },
+      "entitySourceType": "wikidata",
+      "provenance": {
+        "entityId": [
+          {
+            "sourceType": "iso",
+            "source": "ISO 3166 Batch 13 reviewed seed",
+            "field": "entityId",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "TG"
+          },
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "entityId",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q945",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "Q945"
+          }
+        ],
+        "isoAlpha2": [
+          {
+            "sourceType": "iso",
+            "source": "ISO 3166 Batch 13 reviewed seed",
+            "field": "isoAlpha2",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "TG"
+          }
+        ],
+        "isoAlpha3": [
+          {
+            "sourceType": "iso",
+            "source": "ISO 3166 Batch 13 reviewed seed",
+            "field": "isoAlpha3",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "TGO"
+          }
+        ],
+        "isoNumeric": [
+          {
+            "sourceType": "iso",
+            "source": "ISO 3166 Batch 13 reviewed seed",
+            "field": "isoNumeric",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "768"
+          }
+        ],
+        "wikidataId": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "wikidataId",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q945",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "Q945"
+          }
+        ],
+        "canonicalNameZh": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "canonicalNameZh",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q945",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "多哥"
+          }
+        ],
+        "canonicalNameEn": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "canonicalNameEn",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q945",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "Togo"
+          }
+        ],
+        "aliases": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "aliases",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q945",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": [
+              "Togolese Republic",
+              "多哥共和国"
+            ]
+          }
+        ],
+        "continent": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "continent",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q945",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": {
+              "wikidataId": "Q15",
+              "canonicalNameZh": "非洲",
+              "canonicalNameEn": "Africa"
+            }
+          }
+        ],
+        "region": [
+          {
+            "sourceType": "project-country-catalog",
+            "source": "Batch 13 reviewed country catalog",
+            "field": "region",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "非洲"
+          }
+        ],
+        "subregion": [
+          {
+            "sourceType": "project-country-catalog",
+            "source": "Batch 13 reviewed country catalog",
+            "field": "subregion",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "Western Africa"
+          }
+        ],
+        "capital": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "capital",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q945",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": {
+              "wikidataId": "Q3792",
+              "canonicalNameZh": "洛美",
+              "canonicalNameEn": "Lomé",
+              "aliases": [
+                "Lome",
+                "Lome, Togo",
+                "Lomé, Togo",
+                "洛美"
+              ]
+            }
+          }
+        ],
+        "coordinates": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "coordinates",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q945",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": {
+              "latitude": 8.25,
+              "longitude": 1.183333
+            }
+          }
+        ]
+      },
+      "confidence": 0.95,
+      "retrievedAt": "2026-09-14T06:00:00.000Z"
+    },
+    {
+      "schemaVersion": "route-v2-country-baseline-p1a",
+      "entityId": "country-3a168e9b5343a013",
+      "entityType": "country",
+      "isoAlpha2": "TM",
+      "isoAlpha3": "TKM",
+      "isoNumeric": "795",
+      "wikidataId": "Q874",
+      "canonicalNameZh": "土库曼斯坦",
+      "canonicalNameEn": "Turkmenistan",
+      "aliases": [
+        "TKM",
+        "Turkmenia",
+        "土庫曼"
+      ],
+      "continent": {
+        "wikidataId": "Q48",
+        "canonicalNameZh": "亚洲",
+        "canonicalNameEn": "Asia"
+      },
+      "region": "亚洲",
+      "subregion": "Central Asia",
+      "capital": {
+        "wikidataId": "Q23438",
+        "canonicalNameZh": "阿什哈巴德",
+        "canonicalNameEn": "Ashgabat",
+        "aliases": [
+          "'Ishqabad",
+          "`Ishqabad",
+          "`Ishqábád",
+          "Ak-Gaudan",
+          "Aschchabad",
+          "Ashabad",
+          "Ashkabad",
+          "Ashkabat",
+          "Ashqabad",
+          "Askabad",
+          "Askhabad",
+          "Ishqabad",
+          "Ishqabat",
+          "Konjikala",
+          "阿什哈巴德",
+          "阿什哈巴特"
+        ]
+      },
+      "coordinates": {
+        "latitude": 39,
+        "longitude": 60
+      },
+      "entitySourceType": "wikidata",
+      "provenance": {
+        "entityId": [
+          {
+            "sourceType": "iso",
+            "source": "ISO 3166 Batch 13 reviewed seed",
+            "field": "entityId",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "TM"
+          },
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "entityId",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q874",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "Q874"
+          }
+        ],
+        "isoAlpha2": [
+          {
+            "sourceType": "iso",
+            "source": "ISO 3166 Batch 13 reviewed seed",
+            "field": "isoAlpha2",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "TM"
+          }
+        ],
+        "isoAlpha3": [
+          {
+            "sourceType": "iso",
+            "source": "ISO 3166 Batch 13 reviewed seed",
+            "field": "isoAlpha3",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "TKM"
+          }
+        ],
+        "isoNumeric": [
+          {
+            "sourceType": "iso",
+            "source": "ISO 3166 Batch 13 reviewed seed",
+            "field": "isoNumeric",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "795"
+          }
+        ],
+        "wikidataId": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "wikidataId",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q874",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "Q874"
+          }
+        ],
+        "canonicalNameZh": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "canonicalNameZh",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q874",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "土库曼斯坦"
+          }
+        ],
+        "canonicalNameEn": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "canonicalNameEn",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q874",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "Turkmenistan"
+          }
+        ],
+        "aliases": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "aliases",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q874",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": [
+              "TKM",
+              "Turkmenia",
+              "土庫曼"
+            ]
+          }
+        ],
+        "continent": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "continent",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q874",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": {
+              "wikidataId": "Q48",
+              "canonicalNameZh": "亚洲",
+              "canonicalNameEn": "Asia"
+            }
+          }
+        ],
+        "region": [
+          {
+            "sourceType": "project-country-catalog",
+            "source": "Batch 13 reviewed country catalog",
+            "field": "region",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "亚洲"
+          }
+        ],
+        "subregion": [
+          {
+            "sourceType": "project-country-catalog",
+            "source": "Batch 13 reviewed country catalog",
+            "field": "subregion",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "Central Asia"
+          }
+        ],
+        "capital": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "capital",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q874",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": {
+              "wikidataId": "Q23438",
+              "canonicalNameZh": "阿什哈巴德",
+              "canonicalNameEn": "Ashgabat",
+              "aliases": [
+                "'Ishqabad",
+                "`Ishqabad",
+                "`Ishqábád",
+                "Ak-Gaudan",
+                "Aschchabad",
+                "Ashabad",
+                "Ashkabad",
+                "Ashkabat",
+                "Ashqabad",
+                "Askabad",
+                "Askhabad",
+                "Ishqabad",
+                "Ishqabat",
+                "Konjikala",
+                "阿什哈巴德",
+                "阿什哈巴特"
+              ]
+            }
+          }
+        ],
+        "coordinates": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "coordinates",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q874",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": {
+              "latitude": 39,
+              "longitude": 60
+            }
+          }
+        ]
+      },
+      "confidence": 0.95,
+      "retrievedAt": "2026-09-14T06:00:00.000Z"
+    },
+    {
+      "schemaVersion": "route-v2-country-baseline-p1a",
+      "entityId": "country-1cefd3ecf1a77a60",
+      "entityType": "country",
+      "isoAlpha2": "TO",
+      "isoAlpha3": "TON",
+      "isoNumeric": "776",
+      "wikidataId": "Q678",
+      "canonicalNameZh": "汤加",
+      "canonicalNameEn": "Tonga",
+      "aliases": [
+        "Friendly Islands",
+        "Kingdom of Tonga",
+        "TGA",
+        "Tonga Islands",
+        "東加",
+        "湯加"
+      ],
+      "continent": {
+        "wikidataId": "Q538",
+        "canonicalNameZh": "太平洋岛屿地区",
+        "canonicalNameEn": "Insular Oceania"
+      },
+      "region": "大洋洲",
+      "subregion": "Polynesia",
+      "capital": {
+        "wikidataId": "Q38834",
+        "canonicalNameZh": "努库阿洛法",
+        "canonicalNameEn": "Nukuʻalofa",
+        "aliases": [
+          "Nuku'alofa",
+          "努库阿洛法",
+          "努庫阿洛發",
+          "努瓜婁發",
+          "努瓜娄发",
+          "奴瓜婁發"
+        ]
+      },
+      "coordinates": {
+        "latitude": -20.587778,
+        "longitude": -174.810278
+      },
+      "entitySourceType": "wikidata",
+      "provenance": {
+        "entityId": [
+          {
+            "sourceType": "iso",
+            "source": "ISO 3166 Batch 13 reviewed seed",
+            "field": "entityId",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "TO"
+          },
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "entityId",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q678",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "Q678"
+          }
+        ],
+        "isoAlpha2": [
+          {
+            "sourceType": "iso",
+            "source": "ISO 3166 Batch 13 reviewed seed",
+            "field": "isoAlpha2",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "TO"
+          }
+        ],
+        "isoAlpha3": [
+          {
+            "sourceType": "iso",
+            "source": "ISO 3166 Batch 13 reviewed seed",
+            "field": "isoAlpha3",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "TON"
+          }
+        ],
+        "isoNumeric": [
+          {
+            "sourceType": "iso",
+            "source": "ISO 3166 Batch 13 reviewed seed",
+            "field": "isoNumeric",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "776"
+          }
+        ],
+        "wikidataId": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "wikidataId",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q678",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "Q678"
+          }
+        ],
+        "canonicalNameZh": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "canonicalNameZh",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q678",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "汤加"
+          }
+        ],
+        "canonicalNameEn": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "canonicalNameEn",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q678",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "Tonga"
+          }
+        ],
+        "aliases": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "aliases",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q678",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": [
+              "Friendly Islands",
+              "Kingdom of Tonga",
+              "TGA",
+              "Tonga Islands",
+              "東加",
+              "湯加"
+            ]
+          }
+        ],
+        "continent": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "continent",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q678",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": {
+              "wikidataId": "Q538",
+              "canonicalNameZh": "太平洋岛屿地区",
+              "canonicalNameEn": "Insular Oceania"
+            }
+          }
+        ],
+        "region": [
+          {
+            "sourceType": "project-country-catalog",
+            "source": "Batch 13 reviewed country catalog",
+            "field": "region",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "大洋洲"
+          }
+        ],
+        "subregion": [
+          {
+            "sourceType": "project-country-catalog",
+            "source": "Batch 13 reviewed country catalog",
+            "field": "subregion",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "Polynesia"
+          }
+        ],
+        "capital": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "capital",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q678",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": {
+              "wikidataId": "Q38834",
+              "canonicalNameZh": "努库阿洛法",
+              "canonicalNameEn": "Nukuʻalofa",
+              "aliases": [
+                "Nuku'alofa",
+                "努库阿洛法",
+                "努庫阿洛發",
+                "努瓜婁發",
+                "努瓜娄发",
+                "奴瓜婁發"
+              ]
+            }
+          }
+        ],
+        "coordinates": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "coordinates",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q678",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": {
+              "latitude": -20.587778,
+              "longitude": -174.810278
+            }
+          }
+        ]
+      },
+      "confidence": 0.95,
+      "retrievedAt": "2026-09-14T06:00:00.000Z"
+    },
+    {
+      "schemaVersion": "route-v2-country-baseline-p1a",
+      "entityId": "country-12c34702674ce0b2",
+      "entityType": "country",
+      "isoAlpha2": "TV",
+      "isoAlpha3": "TUV",
+      "isoNumeric": "798",
+      "wikidataId": "Q672",
+      "canonicalNameZh": "图瓦卢",
+      "canonicalNameEn": "Tuvalu",
+      "aliases": [
+        "Ellice Islands",
+        "TUV",
+        "吐瓦魯",
+        "圖瓦盧"
+      ],
+      "continent": {
+        "wikidataId": "Q538",
+        "canonicalNameZh": "太平洋岛屿地区",
+        "canonicalNameEn": "Insular Oceania"
+      },
+      "region": "大洋洲",
+      "subregion": "Polynesia",
+      "capital": {
+        "wikidataId": "Q34126",
+        "canonicalNameZh": "富纳富提",
+        "canonicalNameEn": "Funafuti",
+        "aliases": [
+          "Funafuti Island",
+          "富纳富提",
+          "福納佛提"
+        ]
+      },
+      "coordinates": {
+        "latitude": -7.475,
+        "longitude": 178.005556
+      },
+      "entitySourceType": "wikidata",
+      "provenance": {
+        "entityId": [
+          {
+            "sourceType": "iso",
+            "source": "ISO 3166 Batch 13 reviewed seed",
+            "field": "entityId",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "TV"
+          },
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "entityId",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q672",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "Q672"
+          }
+        ],
+        "isoAlpha2": [
+          {
+            "sourceType": "iso",
+            "source": "ISO 3166 Batch 13 reviewed seed",
+            "field": "isoAlpha2",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "TV"
+          }
+        ],
+        "isoAlpha3": [
+          {
+            "sourceType": "iso",
+            "source": "ISO 3166 Batch 13 reviewed seed",
+            "field": "isoAlpha3",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "TUV"
+          }
+        ],
+        "isoNumeric": [
+          {
+            "sourceType": "iso",
+            "source": "ISO 3166 Batch 13 reviewed seed",
+            "field": "isoNumeric",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "798"
+          }
+        ],
+        "wikidataId": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "wikidataId",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q672",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "Q672"
+          }
+        ],
+        "canonicalNameZh": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "canonicalNameZh",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q672",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "图瓦卢"
+          }
+        ],
+        "canonicalNameEn": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "canonicalNameEn",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q672",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "Tuvalu"
+          }
+        ],
+        "aliases": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "aliases",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q672",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": [
+              "Ellice Islands",
+              "TUV",
+              "吐瓦魯",
+              "圖瓦盧"
+            ]
+          }
+        ],
+        "continent": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "continent",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q672",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": {
+              "wikidataId": "Q538",
+              "canonicalNameZh": "太平洋岛屿地区",
+              "canonicalNameEn": "Insular Oceania"
+            }
+          }
+        ],
+        "region": [
+          {
+            "sourceType": "project-country-catalog",
+            "source": "Batch 13 reviewed country catalog",
+            "field": "region",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "大洋洲"
+          }
+        ],
+        "subregion": [
+          {
+            "sourceType": "project-country-catalog",
+            "source": "Batch 13 reviewed country catalog",
+            "field": "subregion",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "Polynesia"
+          }
+        ],
+        "capital": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "capital",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q672",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": {
+              "wikidataId": "Q34126",
+              "canonicalNameZh": "富纳富提",
+              "canonicalNameEn": "Funafuti",
+              "aliases": [
+                "Funafuti Island",
+                "富纳富提",
+                "福納佛提"
+              ]
+            }
+          }
+        ],
+        "coordinates": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "coordinates",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q672",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": {
+              "latitude": -7.475,
+              "longitude": 178.005556
+            }
+          }
+        ]
+      },
+      "confidence": 0.95,
+      "retrievedAt": "2026-09-14T06:00:00.000Z"
+    },
+    {
+      "schemaVersion": "route-v2-country-baseline-p1a",
+      "entityId": "country-03adefcf8e5ee28d",
+      "entityType": "country",
+      "isoAlpha2": "VC",
+      "isoAlpha3": "VCT",
+      "isoNumeric": "670",
+      "wikidataId": "Q757",
+      "canonicalNameZh": "圣文森特和格林纳丁斯",
+      "canonicalNameEn": "Saint Vincent and the Grenadines",
+      "aliases": [
+        "Saint Vincent",
+        "St Vincent",
+        "St Vincent and the Grenadines",
+        "St. Vincent",
+        "St. Vincent & the Grenadines",
+        "St. Vincent and the Grenadines",
+        "vct",
+        "聖文森",
+        "聖文森及格瑞那丁"
+      ],
+      "continent": {
+        "wikidataId": "Q49",
+        "canonicalNameZh": "北美洲",
+        "canonicalNameEn": "North America"
+      },
+      "region": "北美洲",
+      "subregion": "Caribbean",
+      "capital": {
+        "wikidataId": "Q41474",
+        "canonicalNameZh": "金斯敦",
+        "canonicalNameEn": "Kingstown",
+        "aliases": [
+          "金斯敦"
+        ]
+      },
+      "coordinates": {
+        "latitude": 13.0139,
+        "longitude": -61.2296
+      },
+      "entitySourceType": "wikidata",
+      "provenance": {
+        "entityId": [
+          {
+            "sourceType": "iso",
+            "source": "ISO 3166 Batch 13 reviewed seed",
+            "field": "entityId",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "VC"
+          },
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "entityId",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q757",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "Q757"
+          }
+        ],
+        "isoAlpha2": [
+          {
+            "sourceType": "iso",
+            "source": "ISO 3166 Batch 13 reviewed seed",
+            "field": "isoAlpha2",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "VC"
+          }
+        ],
+        "isoAlpha3": [
+          {
+            "sourceType": "iso",
+            "source": "ISO 3166 Batch 13 reviewed seed",
+            "field": "isoAlpha3",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "VCT"
+          }
+        ],
+        "isoNumeric": [
+          {
+            "sourceType": "iso",
+            "source": "ISO 3166 Batch 13 reviewed seed",
+            "field": "isoNumeric",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "670"
+          }
+        ],
+        "wikidataId": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "wikidataId",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q757",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "Q757"
+          }
+        ],
+        "canonicalNameZh": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "canonicalNameZh",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q757",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "圣文森特和格林纳丁斯"
+          }
+        ],
+        "canonicalNameEn": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "canonicalNameEn",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q757",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "Saint Vincent and the Grenadines"
+          }
+        ],
+        "aliases": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "aliases",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q757",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": [
+              "Saint Vincent",
+              "St Vincent",
+              "St Vincent and the Grenadines",
+              "St. Vincent",
+              "St. Vincent & the Grenadines",
+              "St. Vincent and the Grenadines",
+              "vct",
+              "聖文森",
+              "聖文森及格瑞那丁"
+            ]
+          }
+        ],
+        "continent": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "continent",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q757",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": {
+              "wikidataId": "Q49",
+              "canonicalNameZh": "北美洲",
+              "canonicalNameEn": "North America"
+            }
+          }
+        ],
+        "region": [
+          {
+            "sourceType": "project-country-catalog",
+            "source": "Batch 13 reviewed country catalog",
+            "field": "region",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "北美洲"
+          }
+        ],
+        "subregion": [
+          {
+            "sourceType": "project-country-catalog",
+            "source": "Batch 13 reviewed country catalog",
+            "field": "subregion",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "Caribbean"
+          }
+        ],
+        "capital": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "capital",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q757",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": {
+              "wikidataId": "Q41474",
+              "canonicalNameZh": "金斯敦",
+              "canonicalNameEn": "Kingstown",
+              "aliases": [
+                "金斯敦"
+              ]
+            }
+          }
+        ],
+        "coordinates": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "coordinates",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q757",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": {
+              "latitude": 13.0139,
+              "longitude": -61.2296
+            }
+          }
+        ]
+      },
+      "confidence": 0.95,
+      "retrievedAt": "2026-09-14T06:00:00.000Z"
+    },
+    {
+      "schemaVersion": "route-v2-country-baseline-p1a",
+      "entityId": "country-94c20a6d1dd95280",
+      "entityType": "country",
+      "isoAlpha2": "VE",
+      "isoAlpha3": "VEN",
+      "isoNumeric": "862",
+      "wikidataId": "Q717",
+      "canonicalNameZh": "委内瑞拉",
+      "canonicalNameEn": "Venezuela",
+      "aliases": [
+        "Bolivarian Republic of Venezuela",
+        "BR Venezuela",
+        "Republic of Venezuela",
+        "委內瑞拉"
+      ],
+      "continent": {
+        "wikidataId": "Q18",
+        "canonicalNameZh": "南美洲",
+        "canonicalNameEn": "South America"
+      },
+      "region": "南美洲",
+      "subregion": "South America",
+      "capital": {
+        "wikidataId": "Q1533",
+        "canonicalNameZh": "加拉加斯",
+        "canonicalNameEn": "Caracas",
+        "aliases": [
+          "Carracas",
+          "CCS",
+          "Santiago de León de Caracas",
+          "加拉加斯",
+          "卡拉卡斯"
+        ]
+      },
+      "coordinates": {
+        "latitude": 8,
+        "longitude": -67
+      },
+      "entitySourceType": "wikidata",
+      "provenance": {
+        "entityId": [
+          {
+            "sourceType": "iso",
+            "source": "ISO 3166 Batch 13 reviewed seed",
+            "field": "entityId",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "VE"
+          },
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "entityId",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q717",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "Q717"
+          }
+        ],
+        "isoAlpha2": [
+          {
+            "sourceType": "iso",
+            "source": "ISO 3166 Batch 13 reviewed seed",
+            "field": "isoAlpha2",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "VE"
+          }
+        ],
+        "isoAlpha3": [
+          {
+            "sourceType": "iso",
+            "source": "ISO 3166 Batch 13 reviewed seed",
+            "field": "isoAlpha3",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "VEN"
+          }
+        ],
+        "isoNumeric": [
+          {
+            "sourceType": "iso",
+            "source": "ISO 3166 Batch 13 reviewed seed",
+            "field": "isoNumeric",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "862"
+          }
+        ],
+        "wikidataId": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "wikidataId",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q717",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "Q717"
+          }
+        ],
+        "canonicalNameZh": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "canonicalNameZh",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q717",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "委内瑞拉"
+          }
+        ],
+        "canonicalNameEn": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "canonicalNameEn",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q717",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "Venezuela"
+          }
+        ],
+        "aliases": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "aliases",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q717",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": [
+              "Bolivarian Republic of Venezuela",
+              "BR Venezuela",
+              "Republic of Venezuela",
+              "委內瑞拉"
+            ]
+          }
+        ],
+        "continent": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "continent",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q717",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": {
+              "wikidataId": "Q18",
+              "canonicalNameZh": "南美洲",
+              "canonicalNameEn": "South America"
+            }
+          }
+        ],
+        "region": [
+          {
+            "sourceType": "project-country-catalog",
+            "source": "Batch 13 reviewed country catalog",
+            "field": "region",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "南美洲"
+          }
+        ],
+        "subregion": [
+          {
+            "sourceType": "project-country-catalog",
+            "source": "Batch 13 reviewed country catalog",
+            "field": "subregion",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "South America"
+          }
+        ],
+        "capital": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "capital",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q717",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": {
+              "wikidataId": "Q1533",
+              "canonicalNameZh": "加拉加斯",
+              "canonicalNameEn": "Caracas",
+              "aliases": [
+                "Carracas",
+                "CCS",
+                "Santiago de León de Caracas",
+                "加拉加斯",
+                "卡拉卡斯"
+              ]
+            }
+          }
+        ],
+        "coordinates": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "coordinates",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q717",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": {
+              "latitude": 8,
+              "longitude": -67
+            }
+          }
+        ]
+      },
+      "confidence": 0.95,
+      "retrievedAt": "2026-09-14T06:00:00.000Z"
+    },
+    {
+      "schemaVersion": "route-v2-country-baseline-p1a",
+      "entityId": "country-058acc384fb20eec",
+      "entityType": "country",
+      "isoAlpha2": "YE",
+      "isoAlpha3": "YEM",
+      "isoNumeric": "887",
+      "wikidataId": "Q805",
+      "canonicalNameZh": "也门",
+      "canonicalNameEn": "Yemen",
+      "aliases": [
+        "Rep. Yemen",
+        "Republic of Yemen",
+        "葉門"
+      ],
+      "continent": {
+        "wikidataId": "Q48",
+        "canonicalNameZh": "亚洲",
+        "canonicalNameEn": "Asia"
+      },
+      "region": "亚洲",
+      "subregion": "Western Asia",
+      "capital": {
+        "wikidataId": "Q2471",
+        "canonicalNameZh": "萨那",
+        "canonicalNameEn": "Sanaa",
+        "aliases": [
+          "San'a'",
+          "Sana",
+          "Sana'a",
+          "Ṣanʻāʼ",
+          "Ṣanʿāʾ",
+          "萨那"
+        ]
+      },
+      "coordinates": {
+        "latitude": 15.5,
+        "longitude": 48
+      },
+      "entitySourceType": "wikidata",
+      "provenance": {
+        "entityId": [
+          {
+            "sourceType": "iso",
+            "source": "ISO 3166 Batch 13 reviewed seed",
+            "field": "entityId",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "YE"
+          },
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "entityId",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q805",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "Q805"
+          }
+        ],
+        "isoAlpha2": [
+          {
+            "sourceType": "iso",
+            "source": "ISO 3166 Batch 13 reviewed seed",
+            "field": "isoAlpha2",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "YE"
+          }
+        ],
+        "isoAlpha3": [
+          {
+            "sourceType": "iso",
+            "source": "ISO 3166 Batch 13 reviewed seed",
+            "field": "isoAlpha3",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "YEM"
+          }
+        ],
+        "isoNumeric": [
+          {
+            "sourceType": "iso",
+            "source": "ISO 3166 Batch 13 reviewed seed",
+            "field": "isoNumeric",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "887"
+          }
+        ],
+        "wikidataId": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "wikidataId",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q805",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "Q805"
+          }
+        ],
+        "canonicalNameZh": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "canonicalNameZh",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q805",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "也门"
+          }
+        ],
+        "canonicalNameEn": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "canonicalNameEn",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q805",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "Yemen"
+          }
+        ],
+        "aliases": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "aliases",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q805",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": [
+              "Rep. Yemen",
+              "Republic of Yemen",
+              "葉門"
+            ]
+          }
+        ],
+        "continent": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "continent",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q805",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": {
+              "wikidataId": "Q48",
+              "canonicalNameZh": "亚洲",
+              "canonicalNameEn": "Asia"
+            }
+          }
+        ],
+        "region": [
+          {
+            "sourceType": "project-country-catalog",
+            "source": "Batch 13 reviewed country catalog",
+            "field": "region",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "亚洲"
+          }
+        ],
+        "subregion": [
+          {
+            "sourceType": "project-country-catalog",
+            "source": "Batch 13 reviewed country catalog",
+            "field": "subregion",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "Western Asia"
+          }
+        ],
+        "capital": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "capital",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q805",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": {
+              "wikidataId": "Q2471",
+              "canonicalNameZh": "萨那",
+              "canonicalNameEn": "Sanaa",
+              "aliases": [
+                "San'a'",
+                "Sana",
+                "Sana'a",
+                "Ṣanʻāʼ",
+                "Ṣanʿāʾ",
+                "萨那"
+              ]
+            }
+          }
+        ],
+        "coordinates": [
+          {
+            "sourceType": "wikidata",
+            "source": "Wikidata wbgetentities",
+            "field": "coordinates",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q805",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": {
+              "latitude": 15.5,
+              "longitude": 48
+            }
+          }
+        ]
+      },
+      "confidence": 0.95,
+      "retrievedAt": "2026-09-14T06:00:00.000Z"
+    }
+  ]
+}

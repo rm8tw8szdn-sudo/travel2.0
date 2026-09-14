@@ -1,0 +1,88 @@
+{
+  "schemaVersion": "route-v2-sovereign-special-review-report-v1",
+  "status": "READY_FOR_FINAL_REVIEW",
+  "baseline": {
+    "countries": 192,
+    "cities": 833,
+    "pois": 3963,
+    "totalEntities": 4988,
+    "plannableCountries": 118,
+    "evidenceBackedCountries": 115,
+    "catalogOnlyCountries": 74
+  },
+  "additions": {
+    "publishedCountries": 3,
+    "publishedCities": 0,
+    "publishedPois": 0,
+    "publishedEvidenceRecords": 0,
+    "plannableCountries": 0,
+    "evidenceBackedCountries": 0,
+    "catalogOnlyCountries": 3
+  },
+  "after": {
+    "countries": 195,
+    "cities": 833,
+    "pois": 3963,
+    "totalEntities": 4991,
+    "plannableCountries": 118,
+    "evidenceBackedCountries": 115,
+    "catalogOnlyCountries": 77,
+    "remainingNormalGap": 0,
+    "remainingSpecialReviewGap": 0
+  },
+  "countries": [
+    {
+      "countryCode": "VA",
+      "canonicalNameEn": "Vatican City",
+      "wikidataId": "Q237",
+      "published": true,
+      "validEvidence": false,
+      "plannable": false,
+      "evidenceBacked": false,
+      "catalogOnly": true,
+      "evidencePending": true,
+      "routeReadiness": "special-review-catalog-only-evidence-pending"
+    },
+    {
+      "countryCode": "PS",
+      "canonicalNameEn": "State of Palestine",
+      "wikidataId": "Q219060",
+      "published": true,
+      "validEvidence": false,
+      "plannable": false,
+      "evidenceBacked": false,
+      "catalogOnly": true,
+      "evidencePending": true,
+      "routeReadiness": "special-review-catalog-only-evidence-pending"
+    },
+    {
+      "countryCode": "KP",
+      "canonicalNameEn": "North Korea",
+      "wikidataId": "Q423",
+      "published": true,
+      "validEvidence": false,
+      "plannable": false,
+      "evidenceBacked": false,
+      "catalogOnly": true,
+      "evidencePending": true,
+      "routeReadiness": "special-review-catalog-only-evidence-pending"
+    }
+  ],
+  "identityPolicyPath": "data/knowledge/semantic/sovereign-special-country-identity-policy.json",
+  "historical": {
+    "batch09": "119/833/3963/4915",
+    "wave1": "139/833/3963/4935",
+    "wave2": "157/833/3963/4953",
+    "wave3": "175/833/3963/4971",
+    "wave4": "192/833/3963/4988",
+    "historicalQuarantine": 1416,
+    "gitAnchoredSnapshots": 26
+  },
+  "performance": {
+    "dedicatedRunner": "NOT_AVAILABLE",
+    "realQualificationExecutions": 0,
+    "formalExperimentExecutions": 1,
+    "formalRun34622976529": "BLOCKED_INCONCLUSIVE",
+    "clearance": "NOT_CLEARED"
+  }
+}

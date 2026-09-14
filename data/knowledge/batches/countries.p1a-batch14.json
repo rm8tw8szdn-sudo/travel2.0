@@ -1,0 +1,575 @@
+{
+  "schemaVersion": "route-v2-country-baseline-p1a-batch14",
+  "generatedFrom": "data/knowledge/seeds/sovereign-special-review-3-country.json",
+  "countryCount": 3,
+  "countries": [
+    {
+      "schemaVersion": "route-v2-country-baseline-p1a",
+      "entityType": "country",
+      "entityId": "country-0775afe9d2fe9ed6",
+      "isoAlpha2": "VA",
+      "isoAlpha3": "VAT",
+      "isoNumeric": "336",
+      "wikidataId": "Q237",
+      "canonicalNameZh": "梵蒂冈",
+      "canonicalNameEn": "Vatican City",
+      "aliases": [
+        "Vatican City State",
+        "梵蒂岡"
+      ],
+      "continent": {
+        "wikidataId": "Q46",
+        "canonicalNameZh": "欧洲",
+        "canonicalNameEn": "Europe"
+      },
+      "region": "欧洲",
+      "subregion": "Southern Europe",
+      "capital": {
+        "wikidataId": "Q237",
+        "canonicalNameZh": "梵蒂冈",
+        "canonicalNameEn": "Vatican City",
+        "aliases": [
+          "梵蒂冈"
+        ]
+      },
+      "coordinates": {
+        "latitude": 41.904,
+        "longitude": 12.453
+      },
+      "entitySourceType": "wikidata",
+      "provenance": {
+        "entityId": [
+          {
+            "sourceType": "iso",
+            "source": "ISO 3166 reviewed special-country seed",
+            "field": "entityId",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T10:00:00.000Z",
+            "value": "country-0775afe9d2fe9ed6"
+          }
+        ],
+        "isoAlpha2": [
+          {
+            "sourceType": "iso",
+            "source": "ISO 3166 reviewed special-country seed",
+            "field": "isoAlpha2",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T10:00:00.000Z",
+            "value": "VA"
+          }
+        ],
+        "isoAlpha3": [
+          {
+            "sourceType": "iso",
+            "source": "ISO 3166 reviewed special-country seed",
+            "field": "isoAlpha3",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T10:00:00.000Z",
+            "value": "VAT"
+          }
+        ],
+        "isoNumeric": [
+          {
+            "sourceType": "iso",
+            "source": "ISO 3166 reviewed special-country seed",
+            "field": "isoNumeric",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T10:00:00.000Z",
+            "value": "336"
+          }
+        ],
+        "wikidataId": [
+          {
+            "sourceType": "wikidata",
+            "source": "Reviewed sovereign special-country identity",
+            "field": "wikidataId",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q237",
+            "retrievedAt": "2026-09-14T10:00:00.000Z",
+            "value": "Q237"
+          }
+        ],
+        "canonicalNameZh": [
+          {
+            "sourceType": "wikidata",
+            "source": "Reviewed sovereign special-country identity",
+            "field": "canonicalNameZh",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q237",
+            "retrievedAt": "2026-09-14T10:00:00.000Z",
+            "value": "梵蒂冈"
+          }
+        ],
+        "canonicalNameEn": [
+          {
+            "sourceType": "wikidata",
+            "source": "Reviewed sovereign special-country identity",
+            "field": "canonicalNameEn",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q237",
+            "retrievedAt": "2026-09-14T10:00:00.000Z",
+            "value": "Vatican City"
+          }
+        ],
+        "aliases": [
+          {
+            "sourceType": "wikidata",
+            "source": "Reviewed sovereign special-country identity",
+            "field": "aliases",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q237",
+            "retrievedAt": "2026-09-14T10:00:00.000Z",
+            "value": [
+              "Vatican City State",
+              "梵蒂岡"
+            ]
+          }
+        ],
+        "continent": [
+          {
+            "sourceType": "wikidata",
+            "source": "Reviewed sovereign special-country identity",
+            "field": "continent",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q237",
+            "retrievedAt": "2026-09-14T10:00:00.000Z",
+            "value": {
+              "wikidataId": "Q46",
+              "canonicalNameZh": "欧洲",
+              "canonicalNameEn": "Europe"
+            }
+          }
+        ],
+        "region": [
+          {
+            "sourceType": "wikidata",
+            "source": "Reviewed sovereign special-country identity",
+            "field": "region",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q237",
+            "retrievedAt": "2026-09-14T10:00:00.000Z",
+            "value": "欧洲"
+          }
+        ],
+        "subregion": [
+          {
+            "sourceType": "wikidata",
+            "source": "Reviewed sovereign special-country identity",
+            "field": "subregion",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q237",
+            "retrievedAt": "2026-09-14T10:00:00.000Z",
+            "value": "Southern Europe"
+          }
+        ],
+        "capital": [
+          {
+            "sourceType": "wikidata",
+            "source": "Reviewed sovereign special-country identity",
+            "field": "capital",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q237",
+            "retrievedAt": "2026-09-14T10:00:00.000Z",
+            "value": {
+              "wikidataId": "Q237",
+              "canonicalNameZh": "梵蒂冈",
+              "canonicalNameEn": "Vatican City",
+              "aliases": [
+                "梵蒂冈"
+              ]
+            }
+          }
+        ],
+        "coordinates": [
+          {
+            "sourceType": "wikidata",
+            "source": "Reviewed sovereign special-country identity",
+            "field": "coordinates",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q237",
+            "retrievedAt": "2026-09-14T10:00:00.000Z",
+            "value": {
+              "latitude": 41.904,
+              "longitude": 12.453
+            }
+          }
+        ]
+      },
+      "confidence": 1,
+      "retrievedAt": "2026-09-14T10:00:00.000Z"
+    },
+    {
+      "schemaVersion": "route-v2-country-baseline-p1a",
+      "entityType": "country",
+      "entityId": "country-28ad082951637bf8",
+      "isoAlpha2": "PS",
+      "isoAlpha3": "PSE",
+      "isoNumeric": "275",
+      "wikidataId": "Q219060",
+      "canonicalNameZh": "巴勒斯坦国",
+      "canonicalNameEn": "State of Palestine",
+      "aliases": [
+        "Palestine",
+        "巴勒斯坦"
+      ],
+      "continent": {
+        "wikidataId": "Q48",
+        "canonicalNameZh": "亚洲",
+        "canonicalNameEn": "Asia"
+      },
+      "region": "亚洲",
+      "subregion": "Western Asia",
+      "capital": {
+        "wikidataId": "Q158119",
+        "canonicalNameZh": "拉姆安拉",
+        "canonicalNameEn": "Ramallah",
+        "aliases": [
+          "拉姆安拉"
+        ]
+      },
+      "coordinates": {
+        "latitude": 32,
+        "longitude": 35.25
+      },
+      "entitySourceType": "wikidata",
+      "provenance": {
+        "entityId": [
+          {
+            "sourceType": "iso",
+            "source": "ISO 3166 reviewed special-country seed",
+            "field": "entityId",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T10:00:00.000Z",
+            "value": "country-28ad082951637bf8"
+          }
+        ],
+        "isoAlpha2": [
+          {
+            "sourceType": "iso",
+            "source": "ISO 3166 reviewed special-country seed",
+            "field": "isoAlpha2",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T10:00:00.000Z",
+            "value": "PS"
+          }
+        ],
+        "isoAlpha3": [
+          {
+            "sourceType": "iso",
+            "source": "ISO 3166 reviewed special-country seed",
+            "field": "isoAlpha3",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T10:00:00.000Z",
+            "value": "PSE"
+          }
+        ],
+        "isoNumeric": [
+          {
+            "sourceType": "iso",
+            "source": "ISO 3166 reviewed special-country seed",
+            "field": "isoNumeric",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T10:00:00.000Z",
+            "value": "275"
+          }
+        ],
+        "wikidataId": [
+          {
+            "sourceType": "wikidata",
+            "source": "Reviewed sovereign special-country identity",
+            "field": "wikidataId",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q219060",
+            "retrievedAt": "2026-09-14T10:00:00.000Z",
+            "value": "Q219060"
+          }
+        ],
+        "canonicalNameZh": [
+          {
+            "sourceType": "wikidata",
+            "source": "Reviewed sovereign special-country identity",
+            "field": "canonicalNameZh",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q219060",
+            "retrievedAt": "2026-09-14T10:00:00.000Z",
+            "value": "巴勒斯坦国"
+          }
+        ],
+        "canonicalNameEn": [
+          {
+            "sourceType": "wikidata",
+            "source": "Reviewed sovereign special-country identity",
+            "field": "canonicalNameEn",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q219060",
+            "retrievedAt": "2026-09-14T10:00:00.000Z",
+            "value": "State of Palestine"
+          }
+        ],
+        "aliases": [
+          {
+            "sourceType": "wikidata",
+            "source": "Reviewed sovereign special-country identity",
+            "field": "aliases",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q219060",
+            "retrievedAt": "2026-09-14T10:00:00.000Z",
+            "value": [
+              "Palestine",
+              "巴勒斯坦"
+            ]
+          }
+        ],
+        "continent": [
+          {
+            "sourceType": "wikidata",
+            "source": "Reviewed sovereign special-country identity",
+            "field": "continent",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q219060",
+            "retrievedAt": "2026-09-14T10:00:00.000Z",
+            "value": {
+              "wikidataId": "Q48",
+              "canonicalNameZh": "亚洲",
+              "canonicalNameEn": "Asia"
+            }
+          }
+        ],
+        "region": [
+          {
+            "sourceType": "wikidata",
+            "source": "Reviewed sovereign special-country identity",
+            "field": "region",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q219060",
+            "retrievedAt": "2026-09-14T10:00:00.000Z",
+            "value": "亚洲"
+          }
+        ],
+        "subregion": [
+          {
+            "sourceType": "wikidata",
+            "source": "Reviewed sovereign special-country identity",
+            "field": "subregion",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q219060",
+            "retrievedAt": "2026-09-14T10:00:00.000Z",
+            "value": "Western Asia"
+          }
+        ],
+        "capital": [
+          {
+            "sourceType": "wikidata",
+            "source": "Reviewed sovereign special-country identity",
+            "field": "capital",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q219060",
+            "retrievedAt": "2026-09-14T10:00:00.000Z",
+            "value": {
+              "wikidataId": "Q158119",
+              "canonicalNameZh": "拉姆安拉",
+              "canonicalNameEn": "Ramallah",
+              "aliases": [
+                "拉姆安拉"
+              ]
+            }
+          }
+        ],
+        "coordinates": [
+          {
+            "sourceType": "wikidata",
+            "source": "Reviewed sovereign special-country identity",
+            "field": "coordinates",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q219060",
+            "retrievedAt": "2026-09-14T10:00:00.000Z",
+            "value": {
+              "latitude": 32,
+              "longitude": 35.25
+            }
+          }
+        ]
+      },
+      "confidence": 1,
+      "retrievedAt": "2026-09-14T10:00:00.000Z"
+    },
+    {
+      "schemaVersion": "route-v2-country-baseline-p1a",
+      "entityType": "country",
+      "entityId": "country-96d8dad371ca59c6",
+      "isoAlpha2": "KP",
+      "isoAlpha3": "PRK",
+      "isoNumeric": "408",
+      "wikidataId": "Q423",
+      "canonicalNameZh": "朝鲜",
+      "canonicalNameEn": "North Korea",
+      "aliases": [
+        "Democratic People's Republic of Korea",
+        "Democratic People’s Republic of Korea",
+        "DPRK",
+        "北朝鲜",
+        "北韓",
+        "北韩",
+        "朝鲜民主主义人民共和国"
+      ],
+      "continent": {
+        "wikidataId": "Q48",
+        "canonicalNameZh": "亚洲",
+        "canonicalNameEn": "Asia"
+      },
+      "region": "亚洲",
+      "subregion": "Eastern Asia",
+      "capital": {
+        "wikidataId": "Q18808",
+        "canonicalNameZh": "平壤",
+        "canonicalNameEn": "Pyongyang",
+        "aliases": [
+          "平壤"
+        ]
+      },
+      "coordinates": {
+        "latitude": 40,
+        "longitude": 127
+      },
+      "entitySourceType": "wikidata",
+      "provenance": {
+        "entityId": [
+          {
+            "sourceType": "iso",
+            "source": "ISO 3166 reviewed special-country seed",
+            "field": "entityId",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T10:00:00.000Z",
+            "value": "country-96d8dad371ca59c6"
+          }
+        ],
+        "isoAlpha2": [
+          {
+            "sourceType": "iso",
+            "source": "ISO 3166 reviewed special-country seed",
+            "field": "isoAlpha2",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T10:00:00.000Z",
+            "value": "KP"
+          }
+        ],
+        "isoAlpha3": [
+          {
+            "sourceType": "iso",
+            "source": "ISO 3166 reviewed special-country seed",
+            "field": "isoAlpha3",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T10:00:00.000Z",
+            "value": "PRK"
+          }
+        ],
+        "isoNumeric": [
+          {
+            "sourceType": "iso",
+            "source": "ISO 3166 reviewed special-country seed",
+            "field": "isoNumeric",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T10:00:00.000Z",
+            "value": "408"
+          }
+        ],
+        "wikidataId": [
+          {
+            "sourceType": "wikidata",
+            "source": "Reviewed sovereign special-country identity",
+            "field": "wikidataId",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q423",
+            "retrievedAt": "2026-09-14T10:00:00.000Z",
+            "value": "Q423"
+          }
+        ],
+        "canonicalNameZh": [
+          {
+            "sourceType": "wikidata",
+            "source": "Reviewed sovereign special-country identity",
+            "field": "canonicalNameZh",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q423",
+            "retrievedAt": "2026-09-14T10:00:00.000Z",
+            "value": "朝鲜"
+          }
+        ],
+        "canonicalNameEn": [
+          {
+            "sourceType": "wikidata",
+            "source": "Reviewed sovereign special-country identity",
+            "field": "canonicalNameEn",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q423",
+            "retrievedAt": "2026-09-14T10:00:00.000Z",
+            "value": "North Korea"
+          }
+        ],
+        "aliases": [
+          {
+            "sourceType": "wikidata",
+            "source": "Reviewed sovereign special-country identity",
+            "field": "aliases",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q423",
+            "retrievedAt": "2026-09-14T10:00:00.000Z",
+            "value": [
+              "Democratic People's Republic of Korea",
+              "Democratic People’s Republic of Korea",
+              "DPRK",
+              "北朝鲜",
+              "北韓",
+              "北韩",
+              "朝鲜民主主义人民共和国"
+            ]
+          }
+        ],
+        "continent": [
+          {
+            "sourceType": "wikidata",
+            "source": "Reviewed sovereign special-country identity",
+            "field": "continent",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q423",
+            "retrievedAt": "2026-09-14T10:00:00.000Z",
+            "value": {
+              "wikidataId": "Q48",
+              "canonicalNameZh": "亚洲",
+              "canonicalNameEn": "Asia"
+            }
+          }
+        ],
+        "region": [
+          {
+            "sourceType": "wikidata",
+            "source": "Reviewed sovereign special-country identity",
+            "field": "region",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q423",
+            "retrievedAt": "2026-09-14T10:00:00.000Z",
+            "value": "亚洲"
+          }
+        ],
+        "subregion": [
+          {
+            "sourceType": "wikidata",
+            "source": "Reviewed sovereign special-country identity",
+            "field": "subregion",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q423",
+            "retrievedAt": "2026-09-14T10:00:00.000Z",
+            "value": "Eastern Asia"
+          }
+        ],
+        "capital": [
+          {
+            "sourceType": "wikidata",
+            "source": "Reviewed sovereign special-country identity",
+            "field": "capital",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q423",
+            "retrievedAt": "2026-09-14T10:00:00.000Z",
+            "value": {
+              "wikidataId": "Q18808",
+              "canonicalNameZh": "平壤",
+              "canonicalNameEn": "Pyongyang",
+              "aliases": [
+                "平壤"
+              ]
+            }
+          }
+        ],
+        "coordinates": [
+          {
+            "sourceType": "wikidata",
+            "source": "Reviewed sovereign special-country identity",
+            "field": "coordinates",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q423",
+            "retrievedAt": "2026-09-14T10:00:00.000Z",
+            "value": {
+              "latitude": 40,
+              "longitude": 127
+            }
+          }
+        ]
+      },
+      "confidence": 1,
+      "retrievedAt": "2026-09-14T10:00:00.000Z"
+    }
+  ]
+}

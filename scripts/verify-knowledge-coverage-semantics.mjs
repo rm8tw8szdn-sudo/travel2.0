@@ -53,7 +53,8 @@ assert.deepEqual(report.countryOnlyCountryCodes, [
   "IR", "KI", "KM", "KN", "LR", "LS", "LY", "MH", "ML", "MM", "MN", "MR", "MW", "MZ", "NE",
   "NR", "PG", "PW", "RW", "SM", "SZ", "TD", "TJ", "TL", "TT", "UA", "UG", "ZM", "ZW",
   "LC", "SB", "SC", "SD", "SL", "SO", "SR", "SS", "ST", "SY", "TG", "TM", "TO", "TV", "VC", "VE", "YE",
-].sort(), "China and the evidence-pending Sovereign Wave 1 through Wave 4 countries must remain Catalog-only");
+  "VA", "PS", "KP",
+].sort(), "China and all evidence-pending sovereign expansion Countries must remain Catalog-only");
 assert(report.catalogCountries > report.plannableCountries, "catalog presence must not be reported as planning coverage");
 
 process.stdout.write(`${JSON.stringify({

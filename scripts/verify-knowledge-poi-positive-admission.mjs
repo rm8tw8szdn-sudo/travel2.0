@@ -48,6 +48,8 @@ const publishedPois = repository.listPois();
 const countryByEntityId = new Map(countries.map((entity) => [entity.entityId, entity]));
 const cityByEntityId = new Map(cities.map((entity) => [entity.entityId, entity]));
 const publishedIds = new Set(publishedPois.map((entry) => entry.entityId));
+const entityFoundationPois = readJson("data/knowledge/batches/pois.p1b-batch50.json").pois || [];
+const entityFoundationIds = new Set(entityFoundationPois.map((entry) => entry.entityId));
 const quarantinedIds = new Set(audit.quarantined.map((entry) => entry.entityId));
 const quarantinedQids = new Set(audit.quarantined.map((entry) => entry.wikidataId));
 const compositeIds = new Set((policy.compositeAllowances || []).map((entry) => entry.entityId));
@@ -73,10 +75,14 @@ for (const poi of publishedPois) {
 assert.deepEqual(failures, [], "all published POIs must have specific visitor-facing type admission");
 assert.equal(audit.before.publishedPois, audit.after.publishedPois + audit.after.quarantinedPois);
 assert.equal(audit.before.candidatePois, audit.before.publishedPois);
-assert.equal(audit.after.publishedPois, publishedPois.length);
+assert.equal(audit.after.publishedPois + entityFoundationPois.length, publishedPois.length);
 assert.equal(audit.quarantined.length, audit.after.quarantinedPois);
-assert.equal(audit.publishedAdmissions.length, publishedPois.length);
-assert.deepEqual(new Set(audit.publishedAdmissions.map((entry) => entry.entityId)), publishedIds);
+assert.equal(audit.publishedAdmissions.length + entityFoundationPois.length, publishedPois.length);
+assert.deepEqual(
+  new Set([...audit.publishedAdmissions.map((entry) => entry.entityId), ...entityFoundationIds]),
+  publishedIds,
+  "sealed admission audit plus the Batch 01 reviewed entity foundation must cover every published POI",
+);
 assert.equal(audit.quarantined.every((entry) => !publishedIds.has(entry.entityId)), true, "quarantined POIs must not remain published");
 const selectionFiles = fs.readdirSync(path.join(ROOT, "data/knowledge/batches")).filter((name) => /^selection\.p1b-batch\d+\.json$/u.test(name));
 for (const name of selectionFiles) {
@@ -147,6 +153,7 @@ console.log(JSON.stringify({
   verifier: "knowledge-poi-positive-admission",
   status: "PASS",
   publishedPoisChecked: publishedPois.length,
+  entityFoundationPoisChecked: entityFoundationPois.length,
   quarantinedPoisChecked: audit.quarantined.length,
   selectionFilesChecked: selectionFiles.length,
   provenanceFilesChecked: provenanceFiles.length,

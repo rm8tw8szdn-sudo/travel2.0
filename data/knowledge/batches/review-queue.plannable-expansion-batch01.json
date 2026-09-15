@@ -1,0 +1,3920 @@
+{
+  "schemaVersion": "route-v2-plannable-expansion-batch01-review-v1",
+  "reviewCount": 32,
+  "reviews": [
+    {
+      "entityId": "poi-2e813f8df6f9b9d3",
+      "wikidataId": "Q112031",
+      "canonicalNameEn": "São Vicente",
+      "countryCode": "CV",
+      "sourceBatch": 39,
+      "sourceEntity": {
+        "schemaVersion": "route-v2-poi-baseline-p1b",
+        "entityId": "poi-2e813f8df6f9b9d3",
+        "entityType": "poi",
+        "parentCityEntityId": "city-babb525024c5895b",
+        "wikidataId": "Q112031",
+        "canonicalNameZh": "圣维森特岛",
+        "canonicalNameEn": "São Vicente",
+        "aliases": [
+          "São Vicente Island",
+          "São Vicente, Cape Verde"
+        ],
+        "coordinates": {
+          "latitude": 16.85,
+          "longitude": -24.966666666667
+        },
+        "entitySourceType": "wikidata",
+        "confidence": 0.9,
+        "retrievedAt": "2026-09-13T04:00:00.000Z",
+        "provenance": {
+          "entityId": {
+            "field": "entityId",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 11",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-13T04:00:00.000Z",
+            "value": "poi-2e813f8df6f9b9d3"
+          },
+          "entityType": {
+            "field": "entityType",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 11",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-13T04:00:00.000Z",
+            "value": "poi"
+          },
+          "parentCityEntityId": {
+            "field": "parentCityEntityId",
+            "sourceType": "repository-reference",
+            "source": "Mindelo City Entity",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q495547",
+            "retrievedAt": "2026-09-13T04:00:00.000Z",
+            "value": "city-babb525024c5895b"
+          },
+          "wikidataId": {
+            "field": "wikidataId",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q112031",
+            "retrievedAt": "2026-09-13T04:00:00.000Z",
+            "value": "Q112031"
+          },
+          "canonicalNameZh": {
+            "field": "canonicalNameZh",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q112031",
+            "retrievedAt": "2026-09-13T04:00:00.000Z",
+            "value": "圣维森特岛"
+          },
+          "canonicalNameEn": {
+            "field": "canonicalNameEn",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q112031",
+            "retrievedAt": "2026-09-13T04:00:00.000Z",
+            "value": "São Vicente"
+          },
+          "aliases": {
+            "field": "aliases",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q112031",
+            "retrievedAt": "2026-09-13T04:00:00.000Z",
+            "value": [
+              "São Vicente Island",
+              "São Vicente, Cape Verde"
+            ]
+          },
+          "coordinates": {
+            "field": "coordinates",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q112031",
+            "retrievedAt": "2026-09-13T04:00:00.000Z",
+            "value": {
+              "latitude": 16.85,
+              "longitude": -24.966666666667
+            }
+          },
+          "entitySourceType": {
+            "field": "entitySourceType",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 11",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-13T04:00:00.000Z",
+            "value": "wikidata"
+          },
+          "confidence": {
+            "field": "confidence",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 11",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-13T04:00:00.000Z",
+            "value": 0.9
+          },
+          "retrievedAt": {
+            "field": "retrievedAt",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q112031",
+            "retrievedAt": "2026-09-13T04:00:00.000Z",
+            "value": "2026-09-13T04:00:00.000Z"
+          }
+        }
+      },
+      "disposition": "candidate-quarantine-retained",
+      "reason": "island-not-city-scoped-poi"
+    },
+    {
+      "entityId": "poi-e29f2fa398c1cdcd",
+      "wikidataId": "Q122933018",
+      "canonicalNameEn": "Amansi and Mapeera monument",
+      "countryCode": "UG",
+      "sourceBatch": 34,
+      "sourceEntity": {
+        "schemaVersion": "route-v2-poi-baseline-p1b",
+        "entityId": "poi-e29f2fa398c1cdcd",
+        "entityType": "poi",
+        "parentCityEntityId": "city-cf93ae1e3582d497",
+        "wikidataId": "Q122933018",
+        "canonicalNameZh": "Amansi and Mapeera monument",
+        "canonicalNameEn": "Amansi and Mapeera monument",
+        "aliases": [
+          "Fr. Lourdel and Brother Amans monument",
+          "Fr. Mapeera and Brother Amansi monument in Uganda",
+          "Mapeera and Amansi monument"
+        ],
+        "coordinates": {
+          "latitude": 0.02765,
+          "longitude": 32.43599
+        },
+        "entitySourceType": "wikidata",
+        "confidence": 0.9,
+        "retrievedAt": "2026-09-12T14:00:00.000Z",
+        "provenance": {
+          "entityId": {
+            "field": "entityId",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 10",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "poi-e29f2fa398c1cdcd"
+          },
+          "entityType": {
+            "field": "entityType",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 10",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "poi"
+          },
+          "parentCityEntityId": {
+            "field": "parentCityEntityId",
+            "sourceType": "repository-reference",
+            "source": "Entebbe City Entity",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q211970",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "city-cf93ae1e3582d497"
+          },
+          "wikidataId": {
+            "field": "wikidataId",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q122933018",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "Q122933018"
+          },
+          "canonicalNameZh": {
+            "field": "canonicalNameZh",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q122933018",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "Amansi and Mapeera monument"
+          },
+          "canonicalNameEn": {
+            "field": "canonicalNameEn",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q122933018",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "Amansi and Mapeera monument"
+          },
+          "aliases": {
+            "field": "aliases",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q122933018",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": [
+              "Fr. Lourdel and Brother Amans monument",
+              "Fr. Mapeera and Brother Amansi monument in Uganda",
+              "Mapeera and Amansi monument"
+            ]
+          },
+          "coordinates": {
+            "field": "coordinates",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q122933018",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": {
+              "latitude": 0.02765,
+              "longitude": 32.43599
+            }
+          },
+          "entitySourceType": {
+            "field": "entitySourceType",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 10",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "wikidata"
+          },
+          "confidence": {
+            "field": "confidence",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 10",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": 0.9
+          },
+          "retrievedAt": {
+            "field": "retrievedAt",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q122933018",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "2026-09-12T14:00:00.000Z"
+          }
+        }
+      },
+      "disposition": "candidate-quarantine-retained",
+      "reason": "low-value-monument"
+    },
+    {
+      "entityId": "poi-31e0045115a9609c",
+      "wikidataId": "Q15275774",
+      "canonicalNameEn": "Sebeya River",
+      "countryCode": "RW",
+      "sourceBatch": 34,
+      "sourceEntity": {
+        "schemaVersion": "route-v2-poi-baseline-p1b",
+        "entityId": "poi-31e0045115a9609c",
+        "entityType": "poi",
+        "parentCityEntityId": "city-8d227f2462243f10",
+        "wikidataId": "Q15275774",
+        "canonicalNameZh": "塞贝亚河",
+        "canonicalNameEn": "Sebeya River",
+        "aliases": [
+          "塞貝亞河"
+        ],
+        "coordinates": {
+          "latitude": -1.705783,
+          "longitude": 29.26083
+        },
+        "entitySourceType": "wikidata",
+        "confidence": 0.9,
+        "retrievedAt": "2026-09-12T14:00:00.000Z",
+        "provenance": {
+          "entityId": {
+            "field": "entityId",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 10",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "poi-31e0045115a9609c"
+          },
+          "entityType": {
+            "field": "entityType",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 10",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "poi"
+          },
+          "parentCityEntityId": {
+            "field": "parentCityEntityId",
+            "sourceType": "repository-reference",
+            "source": "Gisenyi City Entity",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q830631",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "city-8d227f2462243f10"
+          },
+          "wikidataId": {
+            "field": "wikidataId",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q15275774",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "Q15275774"
+          },
+          "canonicalNameZh": {
+            "field": "canonicalNameZh",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q15275774",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "塞贝亚河"
+          },
+          "canonicalNameEn": {
+            "field": "canonicalNameEn",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q15275774",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "Sebeya River"
+          },
+          "aliases": {
+            "field": "aliases",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q15275774",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": [
+              "塞貝亞河"
+            ]
+          },
+          "coordinates": {
+            "field": "coordinates",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q15275774",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": {
+              "latitude": -1.705783,
+              "longitude": 29.26083
+            }
+          },
+          "entitySourceType": {
+            "field": "entitySourceType",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 10",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "wikidata"
+          },
+          "confidence": {
+            "field": "confidence",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 10",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": 0.9
+          },
+          "retrievedAt": {
+            "field": "retrievedAt",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q15275774",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "2026-09-12T14:00:00.000Z"
+          }
+        }
+      },
+      "disposition": "candidate-quarantine-retained",
+      "reason": "generic-watercourse"
+    },
+    {
+      "entityId": "poi-73dfde795bdcdd68",
+      "wikidataId": "Q16918871",
+      "canonicalNameEn": "National Archives of Zambia",
+      "countryCode": "ZM",
+      "sourceBatch": 35,
+      "sourceEntity": {
+        "schemaVersion": "route-v2-poi-baseline-p1b",
+        "entityId": "poi-73dfde795bdcdd68",
+        "entityType": "poi",
+        "parentCityEntityId": "city-4374865b0ace9042",
+        "wikidataId": "Q16918871",
+        "canonicalNameZh": "尚比亚国家档案馆",
+        "canonicalNameEn": "National Archives of Zambia",
+        "aliases": [
+          "NAZ",
+          "尚比亞國家檔案館"
+        ],
+        "coordinates": {
+          "latitude": -15.426613,
+          "longitude": 28.310213
+        },
+        "entitySourceType": "wikidata",
+        "confidence": 0.9,
+        "retrievedAt": "2026-09-12T14:00:00.000Z",
+        "provenance": {
+          "entityId": {
+            "field": "entityId",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 10",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "poi-73dfde795bdcdd68"
+          },
+          "entityType": {
+            "field": "entityType",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 10",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "poi"
+          },
+          "parentCityEntityId": {
+            "field": "parentCityEntityId",
+            "sourceType": "repository-reference",
+            "source": "Lusaka City Entity",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q3881",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "city-4374865b0ace9042"
+          },
+          "wikidataId": {
+            "field": "wikidataId",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q16918871",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "Q16918871"
+          },
+          "canonicalNameZh": {
+            "field": "canonicalNameZh",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q16918871",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "尚比亚国家档案馆"
+          },
+          "canonicalNameEn": {
+            "field": "canonicalNameEn",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q16918871",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "National Archives of Zambia"
+          },
+          "aliases": {
+            "field": "aliases",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q16918871",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": [
+              "NAZ",
+              "尚比亞國家檔案館"
+            ]
+          },
+          "coordinates": {
+            "field": "coordinates",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q16918871",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": {
+              "latitude": -15.426613,
+              "longitude": 28.310213
+            }
+          },
+          "entitySourceType": {
+            "field": "entitySourceType",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 10",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "wikidata"
+          },
+          "confidence": {
+            "field": "confidence",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 10",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": 0.9
+          },
+          "retrievedAt": {
+            "field": "retrievedAt",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q16918871",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "2026-09-12T14:00:00.000Z"
+          }
+        }
+      },
+      "disposition": "candidate-quarantine-retained",
+      "reason": "operational-archive"
+    },
+    {
+      "entityId": "poi-8014f87f20414ee3",
+      "wikidataId": "Q17509679",
+      "canonicalNameEn": "Cipero Marl",
+      "countryCode": "TT",
+      "sourceBatch": 37,
+      "sourceEntity": {
+        "schemaVersion": "route-v2-poi-baseline-p1b",
+        "entityId": "poi-8014f87f20414ee3",
+        "entityType": "poi",
+        "parentCityEntityId": "city-94fbe7319f3f241e",
+        "wikidataId": "Q17509679",
+        "canonicalNameZh": "Cipero Marl",
+        "canonicalNameEn": "Cipero Marl",
+        "aliases": [],
+        "coordinates": {
+          "latitude": 10.2,
+          "longitude": -61.5
+        },
+        "entitySourceType": "wikidata",
+        "confidence": 0.9,
+        "retrievedAt": "2026-09-12T14:00:00.000Z",
+        "provenance": {
+          "entityId": {
+            "field": "entityId",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 10",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "poi-8014f87f20414ee3"
+          },
+          "entityType": {
+            "field": "entityType",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 10",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "poi"
+          },
+          "parentCityEntityId": {
+            "field": "parentCityEntityId",
+            "sourceType": "repository-reference",
+            "source": "San Fernando City Entity",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q1023712",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "city-94fbe7319f3f241e"
+          },
+          "wikidataId": {
+            "field": "wikidataId",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q17509679",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "Q17509679"
+          },
+          "canonicalNameZh": {
+            "field": "canonicalNameZh",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q17509679",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "Cipero Marl"
+          },
+          "canonicalNameEn": {
+            "field": "canonicalNameEn",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q17509679",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "Cipero Marl"
+          },
+          "aliases": {
+            "field": "aliases",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q17509679",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": []
+          },
+          "coordinates": {
+            "field": "coordinates",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q17509679",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": {
+              "latitude": 10.2,
+              "longitude": -61.5
+            }
+          },
+          "entitySourceType": {
+            "field": "entitySourceType",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 10",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "wikidata"
+          },
+          "confidence": {
+            "field": "confidence",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 10",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": 0.9
+          },
+          "retrievedAt": {
+            "field": "retrievedAt",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q17509679",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "2026-09-12T14:00:00.000Z"
+          }
+        }
+      },
+      "disposition": "candidate-quarantine-retained",
+      "reason": "geological-unit-not-travel-poi"
+    },
+    {
+      "entityId": "poi-9f9ab0567777bee1",
+      "wikidataId": "Q18354333",
+      "canonicalNameEn": "San Fernando Formation",
+      "countryCode": "TT",
+      "sourceBatch": 37,
+      "sourceEntity": {
+        "schemaVersion": "route-v2-poi-baseline-p1b",
+        "entityId": "poi-9f9ab0567777bee1",
+        "entityType": "poi",
+        "parentCityEntityId": "city-94fbe7319f3f241e",
+        "wikidataId": "Q18354333",
+        "canonicalNameZh": "San Fernando Formation",
+        "canonicalNameEn": "San Fernando Formation",
+        "aliases": [
+          "San Fernando Formation, Trinidad and Tobago"
+        ],
+        "coordinates": {
+          "latitude": 10.3,
+          "longitude": -61.5
+        },
+        "entitySourceType": "wikidata",
+        "confidence": 0.9,
+        "retrievedAt": "2026-09-12T14:00:00.000Z",
+        "provenance": {
+          "entityId": {
+            "field": "entityId",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 10",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "poi-9f9ab0567777bee1"
+          },
+          "entityType": {
+            "field": "entityType",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 10",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "poi"
+          },
+          "parentCityEntityId": {
+            "field": "parentCityEntityId",
+            "sourceType": "repository-reference",
+            "source": "San Fernando City Entity",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q1023712",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "city-94fbe7319f3f241e"
+          },
+          "wikidataId": {
+            "field": "wikidataId",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q18354333",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "Q18354333"
+          },
+          "canonicalNameZh": {
+            "field": "canonicalNameZh",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q18354333",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "San Fernando Formation"
+          },
+          "canonicalNameEn": {
+            "field": "canonicalNameEn",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q18354333",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "San Fernando Formation"
+          },
+          "aliases": {
+            "field": "aliases",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q18354333",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": [
+              "San Fernando Formation, Trinidad and Tobago"
+            ]
+          },
+          "coordinates": {
+            "field": "coordinates",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q18354333",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": {
+              "latitude": 10.3,
+              "longitude": -61.5
+            }
+          },
+          "entitySourceType": {
+            "field": "entitySourceType",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 10",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "wikidata"
+          },
+          "confidence": {
+            "field": "confidence",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 10",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": 0.9
+          },
+          "retrievedAt": {
+            "field": "retrievedAt",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q18354333",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "2026-09-12T14:00:00.000Z"
+          }
+        }
+      },
+      "disposition": "candidate-quarantine-retained",
+      "reason": "geological-unit-not-travel-poi"
+    },
+    {
+      "entityId": "poi-00b82ac90c0b57ed",
+      "wikidataId": "Q2066419",
+      "canonicalNameEn": "Ste. Anne Island",
+      "countryCode": "SC",
+      "sourceBatch": 46,
+      "sourceEntity": {
+        "schemaVersion": "route-v2-poi-baseline-p1b",
+        "entityId": "poi-00b82ac90c0b57ed",
+        "entityType": "poi",
+        "parentCityEntityId": "city-80aba01c4401092f",
+        "wikidataId": "Q2066419",
+        "canonicalNameZh": "圣安娜岛",
+        "canonicalNameEn": "Ste. Anne Island",
+        "aliases": [
+          "聖安娜島"
+        ],
+        "coordinates": {
+          "latitude": -4.6,
+          "longitude": 55.5
+        },
+        "entitySourceType": "wikidata",
+        "confidence": 0.9,
+        "retrievedAt": "2026-09-14T06:00:00.000Z",
+        "provenance": {
+          "entityId": {
+            "field": "entityId",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 13",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "poi-00b82ac90c0b57ed"
+          },
+          "entityType": {
+            "field": "entityType",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 13",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "poi"
+          },
+          "parentCityEntityId": {
+            "field": "parentCityEntityId",
+            "sourceType": "repository-reference",
+            "source": "Victoria City Entity",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q3940",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "city-80aba01c4401092f"
+          },
+          "wikidataId": {
+            "field": "wikidataId",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q2066419",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "Q2066419"
+          },
+          "canonicalNameZh": {
+            "field": "canonicalNameZh",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q2066419",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "圣安娜岛"
+          },
+          "canonicalNameEn": {
+            "field": "canonicalNameEn",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q2066419",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "Ste. Anne Island"
+          },
+          "aliases": {
+            "field": "aliases",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q2066419",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": [
+              "聖安娜島"
+            ]
+          },
+          "coordinates": {
+            "field": "coordinates",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q2066419",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": {
+              "latitude": -4.6,
+              "longitude": 55.5
+            }
+          },
+          "entitySourceType": {
+            "field": "entitySourceType",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 13",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "wikidata"
+          },
+          "confidence": {
+            "field": "confidence",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 13",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": 0.9
+          },
+          "retrievedAt": {
+            "field": "retrievedAt",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q2066419",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "2026-09-14T06:00:00.000Z"
+          }
+        }
+      },
+      "disposition": "candidate-quarantine-retained",
+      "reason": "island-not-city-scoped-poi"
+    },
+    {
+      "entityId": "poi-e702ae39ad401247",
+      "wikidataId": "Q21870703",
+      "canonicalNameEn": "Haulover Creek",
+      "countryCode": "BZ",
+      "sourceBatch": 36,
+      "sourceEntity": {
+        "schemaVersion": "route-v2-poi-baseline-p1b",
+        "entityId": "poi-e702ae39ad401247",
+        "entityType": "poi",
+        "parentCityEntityId": "city-6ec906c9527fa58c",
+        "wikidataId": "Q21870703",
+        "canonicalNameZh": "Haulover Creek",
+        "canonicalNameEn": "Haulover Creek",
+        "aliases": [],
+        "coordinates": {
+          "latitude": 17.49414,
+          "longitude": -88.1858
+        },
+        "entitySourceType": "wikidata",
+        "confidence": 0.9,
+        "retrievedAt": "2026-09-12T14:00:00.000Z",
+        "provenance": {
+          "entityId": {
+            "field": "entityId",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 10",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "poi-e702ae39ad401247"
+          },
+          "entityType": {
+            "field": "entityType",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 10",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "poi"
+          },
+          "parentCityEntityId": {
+            "field": "parentCityEntityId",
+            "sourceType": "repository-reference",
+            "source": "Belize City City Entity",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q108223",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "city-6ec906c9527fa58c"
+          },
+          "wikidataId": {
+            "field": "wikidataId",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q21870703",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "Q21870703"
+          },
+          "canonicalNameZh": {
+            "field": "canonicalNameZh",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q21870703",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "Haulover Creek"
+          },
+          "canonicalNameEn": {
+            "field": "canonicalNameEn",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q21870703",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "Haulover Creek"
+          },
+          "aliases": {
+            "field": "aliases",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q21870703",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": []
+          },
+          "coordinates": {
+            "field": "coordinates",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q21870703",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": {
+              "latitude": 17.49414,
+              "longitude": -88.1858
+            }
+          },
+          "entitySourceType": {
+            "field": "entitySourceType",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 10",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "wikidata"
+          },
+          "confidence": {
+            "field": "confidence",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 10",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": 0.9
+          },
+          "retrievedAt": {
+            "field": "retrievedAt",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q21870703",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "2026-09-12T14:00:00.000Z"
+          }
+        }
+      },
+      "disposition": "candidate-quarantine-retained",
+      "reason": "generic-watercourse"
+    },
+    {
+      "entityId": "poi-522559f4705ef9e1",
+      "wikidataId": "Q219642",
+      "canonicalNameEn": "Mahé",
+      "countryCode": "SC",
+      "sourceBatch": 46,
+      "sourceEntity": {
+        "schemaVersion": "route-v2-poi-baseline-p1b",
+        "entityId": "poi-522559f4705ef9e1",
+        "entityType": "poi",
+        "parentCityEntityId": "city-80aba01c4401092f",
+        "wikidataId": "Q219642",
+        "canonicalNameZh": "马埃岛",
+        "canonicalNameEn": "Mahé",
+        "aliases": [
+          "Mahe",
+          "Mahe Island",
+          "Mahé Island",
+          "馬埃島",
+          "馬赫島"
+        ],
+        "coordinates": {
+          "latitude": -4.68,
+          "longitude": 55.48
+        },
+        "entitySourceType": "wikidata",
+        "confidence": 0.9,
+        "retrievedAt": "2026-09-14T06:00:00.000Z",
+        "provenance": {
+          "entityId": {
+            "field": "entityId",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 13",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "poi-522559f4705ef9e1"
+          },
+          "entityType": {
+            "field": "entityType",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 13",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "poi"
+          },
+          "parentCityEntityId": {
+            "field": "parentCityEntityId",
+            "sourceType": "repository-reference",
+            "source": "Victoria City Entity",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q3940",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "city-80aba01c4401092f"
+          },
+          "wikidataId": {
+            "field": "wikidataId",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q219642",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "Q219642"
+          },
+          "canonicalNameZh": {
+            "field": "canonicalNameZh",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q219642",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "马埃岛"
+          },
+          "canonicalNameEn": {
+            "field": "canonicalNameEn",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q219642",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "Mahé"
+          },
+          "aliases": {
+            "field": "aliases",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q219642",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": [
+              "Mahe",
+              "Mahe Island",
+              "Mahé Island",
+              "馬埃島",
+              "馬赫島"
+            ]
+          },
+          "coordinates": {
+            "field": "coordinates",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q219642",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": {
+              "latitude": -4.68,
+              "longitude": 55.48
+            }
+          },
+          "entitySourceType": {
+            "field": "entitySourceType",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 13",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "wikidata"
+          },
+          "confidence": {
+            "field": "confidence",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 13",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": 0.9
+          },
+          "retrievedAt": {
+            "field": "retrievedAt",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q219642",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "2026-09-14T06:00:00.000Z"
+          }
+        }
+      },
+      "disposition": "candidate-quarantine-retained",
+      "reason": "island-not-city-scoped-poi"
+    },
+    {
+      "entityId": "poi-372e953d16e4ec74",
+      "wikidataId": "Q22082371",
+      "canonicalNameEn": "Buwenda",
+      "countryCode": "UG",
+      "sourceBatch": 34,
+      "sourceEntity": {
+        "schemaVersion": "route-v2-poi-baseline-p1b",
+        "entityId": "poi-372e953d16e4ec74",
+        "entityType": "poi",
+        "parentCityEntityId": "city-a3ca46b81dd7dc2e",
+        "wikidataId": "Q22082371",
+        "canonicalNameZh": "Buwenda",
+        "canonicalNameEn": "Buwenda",
+        "aliases": [],
+        "coordinates": {
+          "latitude": 0.46666667,
+          "longitude": 33.18333333
+        },
+        "entitySourceType": "wikidata",
+        "confidence": 0.9,
+        "retrievedAt": "2026-09-12T14:00:00.000Z",
+        "provenance": {
+          "entityId": {
+            "field": "entityId",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 10",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "poi-372e953d16e4ec74"
+          },
+          "entityType": {
+            "field": "entityType",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 10",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "poi"
+          },
+          "parentCityEntityId": {
+            "field": "parentCityEntityId",
+            "sourceType": "repository-reference",
+            "source": "Jinja City Entity",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q501709",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "city-a3ca46b81dd7dc2e"
+          },
+          "wikidataId": {
+            "field": "wikidataId",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q22082371",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "Q22082371"
+          },
+          "canonicalNameZh": {
+            "field": "canonicalNameZh",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q22082371",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "Buwenda"
+          },
+          "canonicalNameEn": {
+            "field": "canonicalNameEn",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q22082371",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "Buwenda"
+          },
+          "aliases": {
+            "field": "aliases",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q22082371",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": []
+          },
+          "coordinates": {
+            "field": "coordinates",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q22082371",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": {
+              "latitude": 0.46666667,
+              "longitude": 33.18333333
+            }
+          },
+          "entitySourceType": {
+            "field": "entitySourceType",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 10",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "wikidata"
+          },
+          "confidence": {
+            "field": "confidence",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 10",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": 0.9
+          },
+          "retrievedAt": {
+            "field": "retrievedAt",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q22082371",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "2026-09-12T14:00:00.000Z"
+          }
+        }
+      },
+      "disposition": "candidate-quarantine-retained",
+      "reason": "locality-not-travel-poi"
+    },
+    {
+      "entityId": "poi-34961b5bad828754",
+      "wikidataId": "Q24235953",
+      "canonicalNameEn": "Harare Zimbabwe Temple",
+      "countryCode": "ZW",
+      "sourceBatch": 35,
+      "sourceEntity": {
+        "schemaVersion": "route-v2-poi-baseline-p1b",
+        "entityId": "poi-34961b5bad828754",
+        "entityType": "poi",
+        "parentCityEntityId": "city-0606546c9fd1d268",
+        "wikidataId": "Q24235953",
+        "canonicalNameZh": "Harare Zimbabwe Temple",
+        "canonicalNameEn": "Harare Zimbabwe Temple",
+        "aliases": [],
+        "coordinates": {
+          "latitude": -17.804,
+          "longitude": 31.0825
+        },
+        "entitySourceType": "wikidata",
+        "confidence": 0.9,
+        "retrievedAt": "2026-09-12T14:00:00.000Z",
+        "provenance": {
+          "entityId": {
+            "field": "entityId",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 10",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "poi-34961b5bad828754"
+          },
+          "entityType": {
+            "field": "entityType",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 10",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "poi"
+          },
+          "parentCityEntityId": {
+            "field": "parentCityEntityId",
+            "sourceType": "repository-reference",
+            "source": "Harare City Entity",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q3921",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "city-0606546c9fd1d268"
+          },
+          "wikidataId": {
+            "field": "wikidataId",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q24235953",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "Q24235953"
+          },
+          "canonicalNameZh": {
+            "field": "canonicalNameZh",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q24235953",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "Harare Zimbabwe Temple"
+          },
+          "canonicalNameEn": {
+            "field": "canonicalNameEn",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q24235953",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "Harare Zimbabwe Temple"
+          },
+          "aliases": {
+            "field": "aliases",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q24235953",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": []
+          },
+          "coordinates": {
+            "field": "coordinates",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q24235953",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": {
+              "latitude": -17.804,
+              "longitude": 31.0825
+            }
+          },
+          "entitySourceType": {
+            "field": "entitySourceType",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 10",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "wikidata"
+          },
+          "confidence": {
+            "field": "confidence",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 10",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": 0.9
+          },
+          "retrievedAt": {
+            "field": "retrievedAt",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q24235953",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "2026-09-12T14:00:00.000Z"
+          }
+        }
+      },
+      "disposition": "candidate-quarantine-retained",
+      "reason": "low-value-operational-religious-site"
+    },
+    {
+      "entityId": "poi-a8795ca6543c7f2c",
+      "wikidataId": "Q2465198",
+      "canonicalNameEn": "San Marino River",
+      "countryCode": "SM",
+      "sourceBatch": 37,
+      "sourceEntity": {
+        "schemaVersion": "route-v2-poi-baseline-p1b",
+        "entityId": "poi-a8795ca6543c7f2c",
+        "entityType": "poi",
+        "parentCityEntityId": "city-b9e5f660ba76a806",
+        "wikidataId": "Q2465198",
+        "canonicalNameZh": "圣马力诺河",
+        "canonicalNameEn": "San Marino River",
+        "aliases": [
+          "San Marino (river)",
+          "聖馬力諾河"
+        ],
+        "coordinates": {
+          "latitude": 43.8788,
+          "longitude": 12.4292
+        },
+        "entitySourceType": "wikidata",
+        "confidence": 0.9,
+        "retrievedAt": "2026-09-12T14:00:00.000Z",
+        "provenance": {
+          "entityId": {
+            "field": "entityId",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 10",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "poi-a8795ca6543c7f2c"
+          },
+          "entityType": {
+            "field": "entityType",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 10",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "poi"
+          },
+          "parentCityEntityId": {
+            "field": "parentCityEntityId",
+            "sourceType": "repository-reference",
+            "source": "San Marino City Entity",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q1848",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "city-b9e5f660ba76a806"
+          },
+          "wikidataId": {
+            "field": "wikidataId",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q2465198",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "Q2465198"
+          },
+          "canonicalNameZh": {
+            "field": "canonicalNameZh",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q2465198",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "圣马力诺河"
+          },
+          "canonicalNameEn": {
+            "field": "canonicalNameEn",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q2465198",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "San Marino River"
+          },
+          "aliases": {
+            "field": "aliases",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q2465198",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": [
+              "San Marino (river)",
+              "聖馬力諾河"
+            ]
+          },
+          "coordinates": {
+            "field": "coordinates",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q2465198",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": {
+              "latitude": 43.8788,
+              "longitude": 12.4292
+            }
+          },
+          "entitySourceType": {
+            "field": "entitySourceType",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 10",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "wikidata"
+          },
+          "confidence": {
+            "field": "confidence",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 10",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": 0.9
+          },
+          "retrievedAt": {
+            "field": "retrievedAt",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q2465198",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "2026-09-12T14:00:00.000Z"
+          }
+        }
+      },
+      "disposition": "candidate-quarantine-retained",
+      "reason": "generic-watercourse"
+    },
+    {
+      "entityId": "poi-a02b73082c3af45d",
+      "wikidataId": "Q28685",
+      "canonicalNameEn": "Cerf Island",
+      "countryCode": "SC",
+      "sourceBatch": 46,
+      "sourceEntity": {
+        "schemaVersion": "route-v2-poi-baseline-p1b",
+        "entityId": "poi-a02b73082c3af45d",
+        "entityType": "poi",
+        "parentCityEntityId": "city-80aba01c4401092f",
+        "wikidataId": "Q28685",
+        "canonicalNameZh": "塞尔夫岛",
+        "canonicalNameEn": "Cerf Island",
+        "aliases": [
+          "塞爾夫島"
+        ],
+        "coordinates": {
+          "latitude": -4.6333333333333,
+          "longitude": 55.499444444444
+        },
+        "entitySourceType": "wikidata",
+        "confidence": 0.9,
+        "retrievedAt": "2026-09-14T06:00:00.000Z",
+        "provenance": {
+          "entityId": {
+            "field": "entityId",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 13",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "poi-a02b73082c3af45d"
+          },
+          "entityType": {
+            "field": "entityType",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 13",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "poi"
+          },
+          "parentCityEntityId": {
+            "field": "parentCityEntityId",
+            "sourceType": "repository-reference",
+            "source": "Victoria City Entity",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q3940",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "city-80aba01c4401092f"
+          },
+          "wikidataId": {
+            "field": "wikidataId",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q28685",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "Q28685"
+          },
+          "canonicalNameZh": {
+            "field": "canonicalNameZh",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q28685",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "塞尔夫岛"
+          },
+          "canonicalNameEn": {
+            "field": "canonicalNameEn",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q28685",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "Cerf Island"
+          },
+          "aliases": {
+            "field": "aliases",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q28685",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": [
+              "塞爾夫島"
+            ]
+          },
+          "coordinates": {
+            "field": "coordinates",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q28685",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": {
+              "latitude": -4.6333333333333,
+              "longitude": 55.499444444444
+            }
+          },
+          "entitySourceType": {
+            "field": "entitySourceType",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 13",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "wikidata"
+          },
+          "confidence": {
+            "field": "confidence",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 13",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": 0.9
+          },
+          "retrievedAt": {
+            "field": "retrievedAt",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q28685",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "2026-09-14T06:00:00.000Z"
+          }
+        }
+      },
+      "disposition": "candidate-quarantine-retained",
+      "reason": "island-not-city-scoped-poi"
+    },
+    {
+      "entityId": "poi-2dbe00d26e95c3c8",
+      "wikidataId": "Q3018552",
+      "canonicalNameEn": "Roseau River",
+      "countryCode": "DM",
+      "sourceBatch": 40,
+      "sourceEntity": {
+        "schemaVersion": "route-v2-poi-baseline-p1b",
+        "entityId": "poi-2dbe00d26e95c3c8",
+        "entityType": "poi",
+        "parentCityEntityId": "city-4e646805968aa7b9",
+        "wikidataId": "Q3018552",
+        "canonicalNameZh": "罗索河",
+        "canonicalNameEn": "Roseau River",
+        "aliases": [
+          "Queen's River",
+          "Roseau River (Dominica)"
+        ],
+        "coordinates": {
+          "latitude": 15.3,
+          "longitude": -61.4
+        },
+        "entitySourceType": "wikidata",
+        "confidence": 0.9,
+        "retrievedAt": "2026-09-13T04:00:00.000Z",
+        "provenance": {
+          "entityId": {
+            "field": "entityId",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 11",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-13T04:00:00.000Z",
+            "value": "poi-2dbe00d26e95c3c8"
+          },
+          "entityType": {
+            "field": "entityType",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 11",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-13T04:00:00.000Z",
+            "value": "poi"
+          },
+          "parentCityEntityId": {
+            "field": "parentCityEntityId",
+            "sourceType": "repository-reference",
+            "source": "Roseau City Entity",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q36281",
+            "retrievedAt": "2026-09-13T04:00:00.000Z",
+            "value": "city-4e646805968aa7b9"
+          },
+          "wikidataId": {
+            "field": "wikidataId",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q3018552",
+            "retrievedAt": "2026-09-13T04:00:00.000Z",
+            "value": "Q3018552"
+          },
+          "canonicalNameZh": {
+            "field": "canonicalNameZh",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q3018552",
+            "retrievedAt": "2026-09-13T04:00:00.000Z",
+            "value": "罗索河"
+          },
+          "canonicalNameEn": {
+            "field": "canonicalNameEn",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q3018552",
+            "retrievedAt": "2026-09-13T04:00:00.000Z",
+            "value": "Roseau River"
+          },
+          "aliases": {
+            "field": "aliases",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q3018552",
+            "retrievedAt": "2026-09-13T04:00:00.000Z",
+            "value": [
+              "Queen's River",
+              "Roseau River (Dominica)"
+            ]
+          },
+          "coordinates": {
+            "field": "coordinates",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q3018552",
+            "retrievedAt": "2026-09-13T04:00:00.000Z",
+            "value": {
+              "latitude": 15.3,
+              "longitude": -61.4
+            }
+          },
+          "entitySourceType": {
+            "field": "entitySourceType",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 11",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-13T04:00:00.000Z",
+            "value": "wikidata"
+          },
+          "confidence": {
+            "field": "confidence",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 11",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-13T04:00:00.000Z",
+            "value": 0.9
+          },
+          "retrievedAt": {
+            "field": "retrievedAt",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q3018552",
+            "retrievedAt": "2026-09-13T04:00:00.000Z",
+            "value": "2026-09-13T04:00:00.000Z"
+          }
+        }
+      },
+      "disposition": "candidate-quarantine-retained",
+      "reason": "generic-watercourse"
+    },
+    {
+      "entityId": "poi-9450f6c3460d022e",
+      "wikidataId": "Q40411",
+      "canonicalNameEn": "Moyenne Island",
+      "countryCode": "SC",
+      "sourceBatch": 46,
+      "sourceEntity": {
+        "schemaVersion": "route-v2-poi-baseline-p1b",
+        "entityId": "poi-9450f6c3460d022e",
+        "entityType": "poi",
+        "parentCityEntityId": "city-80aba01c4401092f",
+        "wikidataId": "Q40411",
+        "canonicalNameZh": "中岛",
+        "canonicalNameEn": "Moyenne Island",
+        "aliases": [
+          "中島"
+        ],
+        "coordinates": {
+          "latitude": -4.6166666666667,
+          "longitude": 55.5
+        },
+        "entitySourceType": "wikidata",
+        "confidence": 0.9,
+        "retrievedAt": "2026-09-14T06:00:00.000Z",
+        "provenance": {
+          "entityId": {
+            "field": "entityId",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 13",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "poi-9450f6c3460d022e"
+          },
+          "entityType": {
+            "field": "entityType",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 13",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "poi"
+          },
+          "parentCityEntityId": {
+            "field": "parentCityEntityId",
+            "sourceType": "repository-reference",
+            "source": "Victoria City Entity",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q3940",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "city-80aba01c4401092f"
+          },
+          "wikidataId": {
+            "field": "wikidataId",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q40411",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "Q40411"
+          },
+          "canonicalNameZh": {
+            "field": "canonicalNameZh",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q40411",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "中岛"
+          },
+          "canonicalNameEn": {
+            "field": "canonicalNameEn",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q40411",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "Moyenne Island"
+          },
+          "aliases": {
+            "field": "aliases",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q40411",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": [
+              "中島"
+            ]
+          },
+          "coordinates": {
+            "field": "coordinates",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q40411",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": {
+              "latitude": -4.6166666666667,
+              "longitude": 55.5
+            }
+          },
+          "entitySourceType": {
+            "field": "entitySourceType",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 13",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "wikidata"
+          },
+          "confidence": {
+            "field": "confidence",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 13",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": 0.9
+          },
+          "retrievedAt": {
+            "field": "retrievedAt",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q40411",
+            "retrievedAt": "2026-09-14T06:00:00.000Z",
+            "value": "2026-09-14T06:00:00.000Z"
+          }
+        }
+      },
+      "disposition": "candidate-quarantine-retained",
+      "reason": "island-not-city-scoped-poi"
+    },
+    {
+      "entityId": "poi-f463646a0ee7dd33",
+      "wikidataId": "Q4151227",
+      "canonicalNameEn": "Guaracara River",
+      "countryCode": "TT",
+      "sourceBatch": 37,
+      "sourceEntity": {
+        "schemaVersion": "route-v2-poi-baseline-p1b",
+        "entityId": "poi-f463646a0ee7dd33",
+        "entityType": "poi",
+        "parentCityEntityId": "city-94fbe7319f3f241e",
+        "wikidataId": "Q4151227",
+        "canonicalNameZh": "Guaracara River",
+        "canonicalNameEn": "Guaracara River",
+        "aliases": [],
+        "coordinates": {
+          "latitude": 10.3,
+          "longitude": -61.466666666667
+        },
+        "entitySourceType": "wikidata",
+        "confidence": 0.9,
+        "retrievedAt": "2026-09-12T14:00:00.000Z",
+        "provenance": {
+          "entityId": {
+            "field": "entityId",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 10",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "poi-f463646a0ee7dd33"
+          },
+          "entityType": {
+            "field": "entityType",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 10",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "poi"
+          },
+          "parentCityEntityId": {
+            "field": "parentCityEntityId",
+            "sourceType": "repository-reference",
+            "source": "San Fernando City Entity",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q1023712",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "city-94fbe7319f3f241e"
+          },
+          "wikidataId": {
+            "field": "wikidataId",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q4151227",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "Q4151227"
+          },
+          "canonicalNameZh": {
+            "field": "canonicalNameZh",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q4151227",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "Guaracara River"
+          },
+          "canonicalNameEn": {
+            "field": "canonicalNameEn",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q4151227",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "Guaracara River"
+          },
+          "aliases": {
+            "field": "aliases",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q4151227",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": []
+          },
+          "coordinates": {
+            "field": "coordinates",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q4151227",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": {
+              "latitude": 10.3,
+              "longitude": -61.466666666667
+            }
+          },
+          "entitySourceType": {
+            "field": "entitySourceType",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 10",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "wikidata"
+          },
+          "confidence": {
+            "field": "confidence",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 10",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": 0.9
+          },
+          "retrievedAt": {
+            "field": "retrievedAt",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q4151227",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "2026-09-12T14:00:00.000Z"
+          }
+        }
+      },
+      "disposition": "candidate-quarantine-retained",
+      "reason": "generic-watercourse"
+    },
+    {
+      "entityId": "poi-d9803606b13d59bb",
+      "wikidataId": "Q5045524",
+      "canonicalNameEn": "Caroni River",
+      "countryCode": "TT",
+      "sourceBatch": 37,
+      "sourceEntity": {
+        "schemaVersion": "route-v2-poi-baseline-p1b",
+        "entityId": "poi-d9803606b13d59bb",
+        "entityType": "poi",
+        "parentCityEntityId": "city-f8e7938698d274cb",
+        "wikidataId": "Q5045524",
+        "canonicalNameZh": "卡罗尼河",
+        "canonicalNameEn": "Caroni River",
+        "aliases": [
+          "Caroni River (Trinidad and Tobago)"
+        ],
+        "coordinates": {
+          "latitude": 10.61666667,
+          "longitude": -61.5
+        },
+        "entitySourceType": "wikidata",
+        "confidence": 0.9,
+        "retrievedAt": "2026-09-12T14:00:00.000Z",
+        "provenance": {
+          "entityId": {
+            "field": "entityId",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 10",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "poi-d9803606b13d59bb"
+          },
+          "entityType": {
+            "field": "entityType",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 10",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "poi"
+          },
+          "parentCityEntityId": {
+            "field": "parentCityEntityId",
+            "sourceType": "repository-reference",
+            "source": "Port of Spain City Entity",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q39178",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "city-f8e7938698d274cb"
+          },
+          "wikidataId": {
+            "field": "wikidataId",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q5045524",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "Q5045524"
+          },
+          "canonicalNameZh": {
+            "field": "canonicalNameZh",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q5045524",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "卡罗尼河"
+          },
+          "canonicalNameEn": {
+            "field": "canonicalNameEn",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q5045524",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "Caroni River"
+          },
+          "aliases": {
+            "field": "aliases",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q5045524",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": [
+              "Caroni River (Trinidad and Tobago)"
+            ]
+          },
+          "coordinates": {
+            "field": "coordinates",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q5045524",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": {
+              "latitude": 10.61666667,
+              "longitude": -61.5
+            }
+          },
+          "entitySourceType": {
+            "field": "entitySourceType",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 10",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "wikidata"
+          },
+          "confidence": {
+            "field": "confidence",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 10",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": 0.9
+          },
+          "retrievedAt": {
+            "field": "retrievedAt",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q5045524",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "2026-09-12T14:00:00.000Z"
+          }
+        }
+      },
+      "disposition": "candidate-quarantine-retained",
+      "reason": "generic-watercourse"
+    },
+    {
+      "entityId": "poi-000dee59ddde7706",
+      "wikidataId": "Q5164145",
+      "canonicalNameEn": "Constitution River",
+      "countryCode": "BB",
+      "sourceBatch": 36,
+      "sourceEntity": {
+        "schemaVersion": "route-v2-poi-baseline-p1b",
+        "entityId": "poi-000dee59ddde7706",
+        "entityType": "poi",
+        "parentCityEntityId": "city-f1a22d8c758501f8",
+        "wikidataId": "Q5164145",
+        "canonicalNameZh": "Constitution River",
+        "canonicalNameEn": "Constitution River",
+        "aliases": [],
+        "coordinates": {
+          "latitude": 13.0961,
+          "longitude": -59.6144
+        },
+        "entitySourceType": "wikidata",
+        "confidence": 0.9,
+        "retrievedAt": "2026-09-12T14:00:00.000Z",
+        "provenance": {
+          "entityId": {
+            "field": "entityId",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 10",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "poi-000dee59ddde7706"
+          },
+          "entityType": {
+            "field": "entityType",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 10",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "poi"
+          },
+          "parentCityEntityId": {
+            "field": "parentCityEntityId",
+            "sourceType": "repository-reference",
+            "source": "Bridgetown City Entity",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q36168",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "city-f1a22d8c758501f8"
+          },
+          "wikidataId": {
+            "field": "wikidataId",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q5164145",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "Q5164145"
+          },
+          "canonicalNameZh": {
+            "field": "canonicalNameZh",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q5164145",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "Constitution River"
+          },
+          "canonicalNameEn": {
+            "field": "canonicalNameEn",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q5164145",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "Constitution River"
+          },
+          "aliases": {
+            "field": "aliases",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q5164145",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": []
+          },
+          "coordinates": {
+            "field": "coordinates",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q5164145",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": {
+              "latitude": 13.0961,
+              "longitude": -59.6144
+            }
+          },
+          "entitySourceType": {
+            "field": "entitySourceType",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 10",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "wikidata"
+          },
+          "confidence": {
+            "field": "confidence",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 10",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": 0.9
+          },
+          "retrievedAt": {
+            "field": "retrievedAt",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q5164145",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "2026-09-12T14:00:00.000Z"
+          }
+        }
+      },
+      "disposition": "candidate-quarantine-retained",
+      "reason": "generic-watercourse"
+    },
+    {
+      "entityId": "poi-61e0c816e74c5f36",
+      "wikidataId": "Q5594671",
+      "canonicalNameEn": "Grand Imperial Hotel",
+      "countryCode": "UG",
+      "sourceBatch": 34,
+      "sourceEntity": {
+        "schemaVersion": "route-v2-poi-baseline-p1b",
+        "entityId": "poi-61e0c816e74c5f36",
+        "entityType": "poi",
+        "parentCityEntityId": "city-12eabeee3a7a14d0",
+        "wikidataId": "Q5594671",
+        "canonicalNameZh": "Grand Imperial Hotel",
+        "canonicalNameEn": "Grand Imperial Hotel",
+        "aliases": [
+          "Grand Hotel",
+          "Grand Imperial Hotel (Uganda)"
+        ],
+        "coordinates": {
+          "latitude": 0.315,
+          "longitude": 32.581111
+        },
+        "entitySourceType": "wikidata",
+        "confidence": 0.9,
+        "retrievedAt": "2026-09-12T14:00:00.000Z",
+        "provenance": {
+          "entityId": {
+            "field": "entityId",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 10",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "poi-61e0c816e74c5f36"
+          },
+          "entityType": {
+            "field": "entityType",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 10",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "poi"
+          },
+          "parentCityEntityId": {
+            "field": "parentCityEntityId",
+            "sourceType": "repository-reference",
+            "source": "Kampala City Entity",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q3894",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "city-12eabeee3a7a14d0"
+          },
+          "wikidataId": {
+            "field": "wikidataId",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q5594671",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "Q5594671"
+          },
+          "canonicalNameZh": {
+            "field": "canonicalNameZh",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q5594671",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "Grand Imperial Hotel"
+          },
+          "canonicalNameEn": {
+            "field": "canonicalNameEn",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q5594671",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "Grand Imperial Hotel"
+          },
+          "aliases": {
+            "field": "aliases",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q5594671",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": [
+              "Grand Hotel",
+              "Grand Imperial Hotel (Uganda)"
+            ]
+          },
+          "coordinates": {
+            "field": "coordinates",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q5594671",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": {
+              "latitude": 0.315,
+              "longitude": 32.581111
+            }
+          },
+          "entitySourceType": {
+            "field": "entitySourceType",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 10",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "wikidata"
+          },
+          "confidence": {
+            "field": "confidence",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 10",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": 0.9
+          },
+          "retrievedAt": {
+            "field": "retrievedAt",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q5594671",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "2026-09-12T14:00:00.000Z"
+          }
+        }
+      },
+      "disposition": "candidate-quarantine-retained",
+      "reason": "accommodation-business"
+    },
+    {
+      "entityId": "poi-e1425e351a5677fd",
+      "wikidataId": "Q609946",
+      "canonicalNameEn": "Belmopan Public Library",
+      "countryCode": "BZ",
+      "sourceBatch": 36,
+      "sourceEntity": {
+        "schemaVersion": "route-v2-poi-baseline-p1b",
+        "entityId": "poi-e1425e351a5677fd",
+        "entityType": "poi",
+        "parentCityEntityId": "city-ada97841bcc43314",
+        "wikidataId": "Q609946",
+        "canonicalNameZh": "Belmopan Public Library",
+        "canonicalNameEn": "Belmopan Public Library",
+        "aliases": [],
+        "coordinates": {
+          "latitude": 17.25015234,
+          "longitude": -88.7654647
+        },
+        "entitySourceType": "wikidata",
+        "confidence": 0.9,
+        "retrievedAt": "2026-09-12T14:00:00.000Z",
+        "provenance": {
+          "entityId": {
+            "field": "entityId",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 10",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "poi-e1425e351a5677fd"
+          },
+          "entityType": {
+            "field": "entityType",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 10",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "poi"
+          },
+          "parentCityEntityId": {
+            "field": "parentCityEntityId",
+            "sourceType": "repository-reference",
+            "source": "Belmopan City Entity",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q3043",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "city-ada97841bcc43314"
+          },
+          "wikidataId": {
+            "field": "wikidataId",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q609946",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "Q609946"
+          },
+          "canonicalNameZh": {
+            "field": "canonicalNameZh",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q609946",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "Belmopan Public Library"
+          },
+          "canonicalNameEn": {
+            "field": "canonicalNameEn",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q609946",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "Belmopan Public Library"
+          },
+          "aliases": {
+            "field": "aliases",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q609946",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": []
+          },
+          "coordinates": {
+            "field": "coordinates",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q609946",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": {
+              "latitude": 17.25015234,
+              "longitude": -88.7654647
+            }
+          },
+          "entitySourceType": {
+            "field": "entitySourceType",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 10",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "wikidata"
+          },
+          "confidence": {
+            "field": "confidence",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 10",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": 0.9
+          },
+          "retrievedAt": {
+            "field": "retrievedAt",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q609946",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "2026-09-12T14:00:00.000Z"
+          }
+        }
+      },
+      "disposition": "candidate-quarantine-retained",
+      "reason": "operational-library"
+    },
+    {
+      "entityId": "poi-019951eb86f6c204",
+      "wikidataId": "Q618252",
+      "canonicalNameEn": "National Library of Uganda",
+      "countryCode": "UG",
+      "sourceBatch": 34,
+      "sourceEntity": {
+        "schemaVersion": "route-v2-poi-baseline-p1b",
+        "entityId": "poi-019951eb86f6c204",
+        "entityType": "poi",
+        "parentCityEntityId": "city-12eabeee3a7a14d0",
+        "wikidataId": "Q618252",
+        "canonicalNameZh": "乌干达国家图书馆",
+        "canonicalNameEn": "National Library of Uganda",
+        "aliases": [],
+        "coordinates": {
+          "latitude": 0.3228,
+          "longitude": 32.5747
+        },
+        "entitySourceType": "wikidata",
+        "confidence": 0.9,
+        "retrievedAt": "2026-09-12T14:00:00.000Z",
+        "provenance": {
+          "entityId": {
+            "field": "entityId",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 10",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "poi-019951eb86f6c204"
+          },
+          "entityType": {
+            "field": "entityType",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 10",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "poi"
+          },
+          "parentCityEntityId": {
+            "field": "parentCityEntityId",
+            "sourceType": "repository-reference",
+            "source": "Kampala City Entity",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q3894",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "city-12eabeee3a7a14d0"
+          },
+          "wikidataId": {
+            "field": "wikidataId",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q618252",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "Q618252"
+          },
+          "canonicalNameZh": {
+            "field": "canonicalNameZh",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q618252",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "乌干达国家图书馆"
+          },
+          "canonicalNameEn": {
+            "field": "canonicalNameEn",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q618252",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "National Library of Uganda"
+          },
+          "aliases": {
+            "field": "aliases",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q618252",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": []
+          },
+          "coordinates": {
+            "field": "coordinates",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q618252",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": {
+              "latitude": 0.3228,
+              "longitude": 32.5747
+            }
+          },
+          "entitySourceType": {
+            "field": "entitySourceType",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 10",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "wikidata"
+          },
+          "confidence": {
+            "field": "confidence",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 10",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": 0.9
+          },
+          "retrievedAt": {
+            "field": "retrievedAt",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q618252",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "2026-09-12T14:00:00.000Z"
+          }
+        }
+      },
+      "disposition": "candidate-quarantine-retained",
+      "reason": "operational-library"
+    },
+    {
+      "entityId": "poi-d49316b860e0ae05",
+      "wikidataId": "Q625912",
+      "canonicalNameEn": "National Library of Mongolia",
+      "countryCode": "MN",
+      "sourceBatch": 35,
+      "sourceEntity": {
+        "schemaVersion": "route-v2-poi-baseline-p1b",
+        "entityId": "poi-d49316b860e0ae05",
+        "entityType": "poi",
+        "parentCityEntityId": "city-dc7b0fecf0cc52cf",
+        "wikidataId": "Q625912",
+        "canonicalNameZh": "蒙古国家图书馆",
+        "canonicalNameEn": "National Library of Mongolia",
+        "aliases": [],
+        "coordinates": {
+          "latitude": 47.92686111111111,
+          "longitude": 106.93066666666667
+        },
+        "entitySourceType": "wikidata",
+        "confidence": 0.9,
+        "retrievedAt": "2026-09-12T14:00:00.000Z",
+        "provenance": {
+          "entityId": {
+            "field": "entityId",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 10",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "poi-d49316b860e0ae05"
+          },
+          "entityType": {
+            "field": "entityType",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 10",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "poi"
+          },
+          "parentCityEntityId": {
+            "field": "parentCityEntityId",
+            "sourceType": "repository-reference",
+            "source": "Ulaanbaatar City Entity",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q23430",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "city-dc7b0fecf0cc52cf"
+          },
+          "wikidataId": {
+            "field": "wikidataId",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q625912",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "Q625912"
+          },
+          "canonicalNameZh": {
+            "field": "canonicalNameZh",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q625912",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "蒙古国家图书馆"
+          },
+          "canonicalNameEn": {
+            "field": "canonicalNameEn",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q625912",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "National Library of Mongolia"
+          },
+          "aliases": {
+            "field": "aliases",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q625912",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": []
+          },
+          "coordinates": {
+            "field": "coordinates",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q625912",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": {
+              "latitude": 47.92686111111111,
+              "longitude": 106.93066666666667
+            }
+          },
+          "entitySourceType": {
+            "field": "entitySourceType",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 10",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "wikidata"
+          },
+          "confidence": {
+            "field": "confidence",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 10",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": 0.9
+          },
+          "retrievedAt": {
+            "field": "retrievedAt",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q625912",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "2026-09-12T14:00:00.000Z"
+          }
+        }
+      },
+      "disposition": "candidate-quarantine-retained",
+      "reason": "operational-library"
+    },
+    {
+      "entityId": "poi-32dc9d6d64e910d5",
+      "wikidataId": "Q629924",
+      "canonicalNameEn": "National Library Service of Barbados",
+      "countryCode": "BB",
+      "sourceBatch": 36,
+      "sourceEntity": {
+        "schemaVersion": "route-v2-poi-baseline-p1b",
+        "entityId": "poi-32dc9d6d64e910d5",
+        "entityType": "poi",
+        "parentCityEntityId": "city-f1a22d8c758501f8",
+        "wikidataId": "Q629924",
+        "canonicalNameZh": "巴贝多国家图书馆服务",
+        "canonicalNameEn": "National Library Service of Barbados",
+        "aliases": [
+          "巴貝多國家圖書館服務"
+        ],
+        "coordinates": {
+          "latitude": 13.10068832656326,
+          "longitude": -59.61524707362912
+        },
+        "entitySourceType": "wikidata",
+        "confidence": 0.9,
+        "retrievedAt": "2026-09-12T14:00:00.000Z",
+        "provenance": {
+          "entityId": {
+            "field": "entityId",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 10",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "poi-32dc9d6d64e910d5"
+          },
+          "entityType": {
+            "field": "entityType",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 10",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "poi"
+          },
+          "parentCityEntityId": {
+            "field": "parentCityEntityId",
+            "sourceType": "repository-reference",
+            "source": "Bridgetown City Entity",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q36168",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "city-f1a22d8c758501f8"
+          },
+          "wikidataId": {
+            "field": "wikidataId",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q629924",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "Q629924"
+          },
+          "canonicalNameZh": {
+            "field": "canonicalNameZh",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q629924",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "巴贝多国家图书馆服务"
+          },
+          "canonicalNameEn": {
+            "field": "canonicalNameEn",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q629924",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "National Library Service of Barbados"
+          },
+          "aliases": {
+            "field": "aliases",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q629924",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": [
+              "巴貝多國家圖書館服務"
+            ]
+          },
+          "coordinates": {
+            "field": "coordinates",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q629924",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": {
+              "latitude": 13.10068832656326,
+              "longitude": -59.61524707362912
+            }
+          },
+          "entitySourceType": {
+            "field": "entitySourceType",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 10",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "wikidata"
+          },
+          "confidence": {
+            "field": "confidence",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 10",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": 0.9
+          },
+          "retrievedAt": {
+            "field": "retrievedAt",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q629924",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "2026-09-12T14:00:00.000Z"
+          }
+        }
+      },
+      "disposition": "candidate-quarantine-retained",
+      "reason": "operational-library"
+    },
+    {
+      "entityId": "poi-9a62752fe36949a7",
+      "wikidataId": "Q6970423",
+      "canonicalNameEn": "National Archives of Belize",
+      "countryCode": "BZ",
+      "sourceBatch": 36,
+      "sourceEntity": {
+        "schemaVersion": "route-v2-poi-baseline-p1b",
+        "entityId": "poi-9a62752fe36949a7",
+        "entityType": "poi",
+        "parentCityEntityId": "city-ada97841bcc43314",
+        "wikidataId": "Q6970423",
+        "canonicalNameZh": "贝里斯国家档案馆",
+        "canonicalNameEn": "National Archives of Belize",
+        "aliases": [
+          "Belize Archives and Records Service",
+          "Belize Archives and Records Service‏",
+          "貝里斯國家檔案館"
+        ],
+        "coordinates": {
+          "latitude": 17.25218,
+          "longitude": -88.768631
+        },
+        "entitySourceType": "wikidata",
+        "confidence": 0.9,
+        "retrievedAt": "2026-09-12T14:00:00.000Z",
+        "provenance": {
+          "entityId": {
+            "field": "entityId",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 10",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "poi-9a62752fe36949a7"
+          },
+          "entityType": {
+            "field": "entityType",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 10",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "poi"
+          },
+          "parentCityEntityId": {
+            "field": "parentCityEntityId",
+            "sourceType": "repository-reference",
+            "source": "Belmopan City Entity",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q3043",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "city-ada97841bcc43314"
+          },
+          "wikidataId": {
+            "field": "wikidataId",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q6970423",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "Q6970423"
+          },
+          "canonicalNameZh": {
+            "field": "canonicalNameZh",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q6970423",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "贝里斯国家档案馆"
+          },
+          "canonicalNameEn": {
+            "field": "canonicalNameEn",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q6970423",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "National Archives of Belize"
+          },
+          "aliases": {
+            "field": "aliases",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q6970423",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": [
+              "Belize Archives and Records Service",
+              "Belize Archives and Records Service‏",
+              "貝里斯國家檔案館"
+            ]
+          },
+          "coordinates": {
+            "field": "coordinates",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q6970423",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": {
+              "latitude": 17.25218,
+              "longitude": -88.768631
+            }
+          },
+          "entitySourceType": {
+            "field": "entitySourceType",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 10",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "wikidata"
+          },
+          "confidence": {
+            "field": "confidence",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 10",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": 0.9
+          },
+          "retrievedAt": {
+            "field": "retrievedAt",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q6970423",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "2026-09-12T14:00:00.000Z"
+          }
+        }
+      },
+      "disposition": "candidate-quarantine-retained",
+      "reason": "operational-archive"
+    },
+    {
+      "entityId": "poi-95a6f4eca7a9099c",
+      "wikidataId": "Q6974145",
+      "canonicalNameEn": "National Library of Cape Verde",
+      "countryCode": "CV",
+      "sourceBatch": 39,
+      "sourceEntity": {
+        "schemaVersion": "route-v2-poi-baseline-p1b",
+        "entityId": "poi-95a6f4eca7a9099c",
+        "entityType": "poi",
+        "parentCityEntityId": "city-978446d3b0128242",
+        "wikidataId": "Q6974145",
+        "canonicalNameZh": "维德角国家图书馆",
+        "canonicalNameEn": "National Library of Cape Verde",
+        "aliases": [
+          "維德角國家圖書館"
+        ],
+        "coordinates": {
+          "latitude": 14.91608333,
+          "longitude": -23.51208333
+        },
+        "entitySourceType": "wikidata",
+        "confidence": 0.9,
+        "retrievedAt": "2026-09-13T04:00:00.000Z",
+        "provenance": {
+          "entityId": {
+            "field": "entityId",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 11",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-13T04:00:00.000Z",
+            "value": "poi-95a6f4eca7a9099c"
+          },
+          "entityType": {
+            "field": "entityType",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 11",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-13T04:00:00.000Z",
+            "value": "poi"
+          },
+          "parentCityEntityId": {
+            "field": "parentCityEntityId",
+            "sourceType": "repository-reference",
+            "source": "Praia City Entity",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q3751",
+            "retrievedAt": "2026-09-13T04:00:00.000Z",
+            "value": "city-978446d3b0128242"
+          },
+          "wikidataId": {
+            "field": "wikidataId",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q6974145",
+            "retrievedAt": "2026-09-13T04:00:00.000Z",
+            "value": "Q6974145"
+          },
+          "canonicalNameZh": {
+            "field": "canonicalNameZh",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q6974145",
+            "retrievedAt": "2026-09-13T04:00:00.000Z",
+            "value": "维德角国家图书馆"
+          },
+          "canonicalNameEn": {
+            "field": "canonicalNameEn",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q6974145",
+            "retrievedAt": "2026-09-13T04:00:00.000Z",
+            "value": "National Library of Cape Verde"
+          },
+          "aliases": {
+            "field": "aliases",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q6974145",
+            "retrievedAt": "2026-09-13T04:00:00.000Z",
+            "value": [
+              "維德角國家圖書館"
+            ]
+          },
+          "coordinates": {
+            "field": "coordinates",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q6974145",
+            "retrievedAt": "2026-09-13T04:00:00.000Z",
+            "value": {
+              "latitude": 14.91608333,
+              "longitude": -23.51208333
+            }
+          },
+          "entitySourceType": {
+            "field": "entitySourceType",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 11",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-13T04:00:00.000Z",
+            "value": "wikidata"
+          },
+          "confidence": {
+            "field": "confidence",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 11",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-13T04:00:00.000Z",
+            "value": 0.9
+          },
+          "retrievedAt": {
+            "field": "retrievedAt",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q6974145",
+            "retrievedAt": "2026-09-13T04:00:00.000Z",
+            "value": "2026-09-13T04:00:00.000Z"
+          }
+        }
+      },
+      "disposition": "candidate-quarantine-retained",
+      "reason": "operational-library"
+    },
+    {
+      "entityId": "poi-ca29350e08d859a7",
+      "wikidataId": "Q6974180",
+      "canonicalNameEn": "National Library of Zimbabwe",
+      "countryCode": "ZW",
+      "sourceBatch": 35,
+      "sourceEntity": {
+        "schemaVersion": "route-v2-poi-baseline-p1b",
+        "entityId": "poi-ca29350e08d859a7",
+        "entityType": "poi",
+        "parentCityEntityId": "city-cb2ab7d488ba51b1",
+        "wikidataId": "Q6974180",
+        "canonicalNameZh": "National Library of Zimbabwe",
+        "canonicalNameEn": "National Library of Zimbabwe",
+        "aliases": [
+          "National Free Library of Zimbabwe"
+        ],
+        "coordinates": {
+          "latitude": -20.1623,
+          "longitude": 28.5919
+        },
+        "entitySourceType": "wikidata",
+        "confidence": 0.9,
+        "retrievedAt": "2026-09-12T14:00:00.000Z",
+        "provenance": {
+          "entityId": {
+            "field": "entityId",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 10",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "poi-ca29350e08d859a7"
+          },
+          "entityType": {
+            "field": "entityType",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 10",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "poi"
+          },
+          "parentCityEntityId": {
+            "field": "parentCityEntityId",
+            "sourceType": "repository-reference",
+            "source": "Bulawayo City Entity",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q193250",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "city-cb2ab7d488ba51b1"
+          },
+          "wikidataId": {
+            "field": "wikidataId",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q6974180",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "Q6974180"
+          },
+          "canonicalNameZh": {
+            "field": "canonicalNameZh",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q6974180",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "National Library of Zimbabwe"
+          },
+          "canonicalNameEn": {
+            "field": "canonicalNameEn",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q6974180",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "National Library of Zimbabwe"
+          },
+          "aliases": {
+            "field": "aliases",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q6974180",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": [
+              "National Free Library of Zimbabwe"
+            ]
+          },
+          "coordinates": {
+            "field": "coordinates",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q6974180",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": {
+              "latitude": -20.1623,
+              "longitude": 28.5919
+            }
+          },
+          "entitySourceType": {
+            "field": "entitySourceType",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 10",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "wikidata"
+          },
+          "confidence": {
+            "field": "confidence",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 10",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": 0.9
+          },
+          "retrievedAt": {
+            "field": "retrievedAt",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q6974180",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "2026-09-12T14:00:00.000Z"
+          }
+        }
+      },
+      "disposition": "candidate-quarantine-retained",
+      "reason": "operational-library"
+    },
+    {
+      "entityId": "poi-3be2c83e22c56a3c",
+      "wikidataId": "Q7056504",
+      "canonicalNameEn": "North River",
+      "countryCode": "DM",
+      "sourceBatch": 40,
+      "sourceEntity": {
+        "schemaVersion": "route-v2-poi-baseline-p1b",
+        "entityId": "poi-3be2c83e22c56a3c",
+        "entityType": "poi",
+        "parentCityEntityId": "city-3f9f3579e6cd3ee4",
+        "wikidataId": "Q7056504",
+        "canonicalNameZh": "North River",
+        "canonicalNameEn": "North River",
+        "aliases": [
+          "North River (Dominica)"
+        ],
+        "coordinates": {
+          "latitude": 15.58333333,
+          "longitude": -61.46666667
+        },
+        "entitySourceType": "wikidata",
+        "confidence": 0.9,
+        "retrievedAt": "2026-09-13T04:00:00.000Z",
+        "provenance": {
+          "entityId": {
+            "field": "entityId",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 11",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-13T04:00:00.000Z",
+            "value": "poi-3be2c83e22c56a3c"
+          },
+          "entityType": {
+            "field": "entityType",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 11",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-13T04:00:00.000Z",
+            "value": "poi"
+          },
+          "parentCityEntityId": {
+            "field": "parentCityEntityId",
+            "sourceType": "repository-reference",
+            "source": "Portsmouth City Entity",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q1014235",
+            "retrievedAt": "2026-09-13T04:00:00.000Z",
+            "value": "city-3f9f3579e6cd3ee4"
+          },
+          "wikidataId": {
+            "field": "wikidataId",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q7056504",
+            "retrievedAt": "2026-09-13T04:00:00.000Z",
+            "value": "Q7056504"
+          },
+          "canonicalNameZh": {
+            "field": "canonicalNameZh",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q7056504",
+            "retrievedAt": "2026-09-13T04:00:00.000Z",
+            "value": "North River"
+          },
+          "canonicalNameEn": {
+            "field": "canonicalNameEn",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q7056504",
+            "retrievedAt": "2026-09-13T04:00:00.000Z",
+            "value": "North River"
+          },
+          "aliases": {
+            "field": "aliases",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q7056504",
+            "retrievedAt": "2026-09-13T04:00:00.000Z",
+            "value": [
+              "North River (Dominica)"
+            ]
+          },
+          "coordinates": {
+            "field": "coordinates",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q7056504",
+            "retrievedAt": "2026-09-13T04:00:00.000Z",
+            "value": {
+              "latitude": 15.58333333,
+              "longitude": -61.46666667
+            }
+          },
+          "entitySourceType": {
+            "field": "entitySourceType",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 11",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-13T04:00:00.000Z",
+            "value": "wikidata"
+          },
+          "confidence": {
+            "field": "confidence",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 11",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-13T04:00:00.000Z",
+            "value": 0.9
+          },
+          "retrievedAt": {
+            "field": "retrievedAt",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q7056504",
+            "retrievedAt": "2026-09-13T04:00:00.000Z",
+            "value": "2026-09-13T04:00:00.000Z"
+          }
+        }
+      },
+      "disposition": "candidate-quarantine-retained",
+      "reason": "generic-watercourse"
+    },
+    {
+      "entityId": "poi-4b77652b9170cc16",
+      "wikidataId": "Q7161401",
+      "canonicalNameEn": "Pelican Island, Bridgetown",
+      "countryCode": "BB",
+      "sourceBatch": 36,
+      "sourceEntity": {
+        "schemaVersion": "route-v2-poi-baseline-p1b",
+        "entityId": "poi-4b77652b9170cc16",
+        "entityType": "poi",
+        "parentCityEntityId": "city-f1a22d8c758501f8",
+        "wikidataId": "Q7161401",
+        "canonicalNameZh": "Pelican Island, Bridgetown",
+        "canonicalNameEn": "Pelican Island, Bridgetown",
+        "aliases": [
+          "Pelican Island (Barbados)"
+        ],
+        "coordinates": {
+          "latitude": 13.1,
+          "longitude": -59.63333333
+        },
+        "entitySourceType": "wikidata",
+        "confidence": 0.9,
+        "retrievedAt": "2026-09-12T14:00:00.000Z",
+        "provenance": {
+          "entityId": {
+            "field": "entityId",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 10",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "poi-4b77652b9170cc16"
+          },
+          "entityType": {
+            "field": "entityType",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 10",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "poi"
+          },
+          "parentCityEntityId": {
+            "field": "parentCityEntityId",
+            "sourceType": "repository-reference",
+            "source": "Bridgetown City Entity",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q36168",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "city-f1a22d8c758501f8"
+          },
+          "wikidataId": {
+            "field": "wikidataId",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q7161401",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "Q7161401"
+          },
+          "canonicalNameZh": {
+            "field": "canonicalNameZh",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q7161401",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "Pelican Island, Bridgetown"
+          },
+          "canonicalNameEn": {
+            "field": "canonicalNameEn",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q7161401",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "Pelican Island, Bridgetown"
+          },
+          "aliases": {
+            "field": "aliases",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q7161401",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": [
+              "Pelican Island (Barbados)"
+            ]
+          },
+          "coordinates": {
+            "field": "coordinates",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q7161401",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": {
+              "latitude": 13.1,
+              "longitude": -59.63333333
+            }
+          },
+          "entitySourceType": {
+            "field": "entitySourceType",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 10",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "wikidata"
+          },
+          "confidence": {
+            "field": "confidence",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 10",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": 0.9
+          },
+          "retrievedAt": {
+            "field": "retrievedAt",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q7161401",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "2026-09-12T14:00:00.000Z"
+          }
+        }
+      },
+      "disposition": "candidate-quarantine-retained",
+      "reason": "former-island-not-current-poi"
+    },
+    {
+      "entityId": "poi-2a9d3485072f9407",
+      "wikidataId": "Q7190503",
+      "canonicalNameEn": "Picard River",
+      "countryCode": "DM",
+      "sourceBatch": 40,
+      "sourceEntity": {
+        "schemaVersion": "route-v2-poi-baseline-p1b",
+        "entityId": "poi-2a9d3485072f9407",
+        "entityType": "poi",
+        "parentCityEntityId": "city-3f9f3579e6cd3ee4",
+        "wikidataId": "Q7190503",
+        "canonicalNameZh": "Picard River",
+        "canonicalNameEn": "Picard River",
+        "aliases": [],
+        "coordinates": {
+          "latitude": 15.566666666667,
+          "longitude": -61.466666666667
+        },
+        "entitySourceType": "wikidata",
+        "confidence": 0.9,
+        "retrievedAt": "2026-09-13T04:00:00.000Z",
+        "provenance": {
+          "entityId": {
+            "field": "entityId",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 11",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-13T04:00:00.000Z",
+            "value": "poi-2a9d3485072f9407"
+          },
+          "entityType": {
+            "field": "entityType",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 11",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-13T04:00:00.000Z",
+            "value": "poi"
+          },
+          "parentCityEntityId": {
+            "field": "parentCityEntityId",
+            "sourceType": "repository-reference",
+            "source": "Portsmouth City Entity",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q1014235",
+            "retrievedAt": "2026-09-13T04:00:00.000Z",
+            "value": "city-3f9f3579e6cd3ee4"
+          },
+          "wikidataId": {
+            "field": "wikidataId",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q7190503",
+            "retrievedAt": "2026-09-13T04:00:00.000Z",
+            "value": "Q7190503"
+          },
+          "canonicalNameZh": {
+            "field": "canonicalNameZh",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q7190503",
+            "retrievedAt": "2026-09-13T04:00:00.000Z",
+            "value": "Picard River"
+          },
+          "canonicalNameEn": {
+            "field": "canonicalNameEn",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q7190503",
+            "retrievedAt": "2026-09-13T04:00:00.000Z",
+            "value": "Picard River"
+          },
+          "aliases": {
+            "field": "aliases",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q7190503",
+            "retrievedAt": "2026-09-13T04:00:00.000Z",
+            "value": []
+          },
+          "coordinates": {
+            "field": "coordinates",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q7190503",
+            "retrievedAt": "2026-09-13T04:00:00.000Z",
+            "value": {
+              "latitude": 15.566666666667,
+              "longitude": -61.466666666667
+            }
+          },
+          "entitySourceType": {
+            "field": "entitySourceType",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 11",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-13T04:00:00.000Z",
+            "value": "wikidata"
+          },
+          "confidence": {
+            "field": "confidence",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 11",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-13T04:00:00.000Z",
+            "value": 0.9
+          },
+          "retrievedAt": {
+            "field": "retrievedAt",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q7190503",
+            "retrievedAt": "2026-09-13T04:00:00.000Z",
+            "value": "2026-09-13T04:00:00.000Z"
+          }
+        }
+      },
+      "disposition": "candidate-quarantine-retained",
+      "reason": "generic-watercourse"
+    },
+    {
+      "entityId": "poi-fa789c2ddeaed25f",
+      "wikidataId": "Q7337452",
+      "canonicalNameEn": "River Gillon",
+      "countryCode": "DM",
+      "sourceBatch": 40,
+      "sourceEntity": {
+        "schemaVersion": "route-v2-poi-baseline-p1b",
+        "entityId": "poi-fa789c2ddeaed25f",
+        "entityType": "poi",
+        "parentCityEntityId": "city-4e646805968aa7b9",
+        "wikidataId": "Q7337452",
+        "canonicalNameZh": "River Gillon",
+        "canonicalNameEn": "River Gillon",
+        "aliases": [],
+        "coordinates": {
+          "latitude": 15.266666666667,
+          "longitude": -61.383333333333
+        },
+        "entitySourceType": "wikidata",
+        "confidence": 0.9,
+        "retrievedAt": "2026-09-13T04:00:00.000Z",
+        "provenance": {
+          "entityId": {
+            "field": "entityId",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 11",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-13T04:00:00.000Z",
+            "value": "poi-fa789c2ddeaed25f"
+          },
+          "entityType": {
+            "field": "entityType",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 11",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-13T04:00:00.000Z",
+            "value": "poi"
+          },
+          "parentCityEntityId": {
+            "field": "parentCityEntityId",
+            "sourceType": "repository-reference",
+            "source": "Roseau City Entity",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q36281",
+            "retrievedAt": "2026-09-13T04:00:00.000Z",
+            "value": "city-4e646805968aa7b9"
+          },
+          "wikidataId": {
+            "field": "wikidataId",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q7337452",
+            "retrievedAt": "2026-09-13T04:00:00.000Z",
+            "value": "Q7337452"
+          },
+          "canonicalNameZh": {
+            "field": "canonicalNameZh",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q7337452",
+            "retrievedAt": "2026-09-13T04:00:00.000Z",
+            "value": "River Gillon"
+          },
+          "canonicalNameEn": {
+            "field": "canonicalNameEn",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q7337452",
+            "retrievedAt": "2026-09-13T04:00:00.000Z",
+            "value": "River Gillon"
+          },
+          "aliases": {
+            "field": "aliases",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q7337452",
+            "retrievedAt": "2026-09-13T04:00:00.000Z",
+            "value": []
+          },
+          "coordinates": {
+            "field": "coordinates",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q7337452",
+            "retrievedAt": "2026-09-13T04:00:00.000Z",
+            "value": {
+              "latitude": 15.266666666667,
+              "longitude": -61.383333333333
+            }
+          },
+          "entitySourceType": {
+            "field": "entitySourceType",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 11",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-13T04:00:00.000Z",
+            "value": "wikidata"
+          },
+          "confidence": {
+            "field": "confidence",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 11",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-13T04:00:00.000Z",
+            "value": 0.9
+          },
+          "retrievedAt": {
+            "field": "retrievedAt",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q7337452",
+            "retrievedAt": "2026-09-13T04:00:00.000Z",
+            "value": "2026-09-13T04:00:00.000Z"
+          }
+        }
+      },
+      "disposition": "candidate-quarantine-retained",
+      "reason": "generic-watercourse"
+    },
+    {
+      "entityId": "poi-7b9fae02d1214a3e",
+      "wikidataId": "Q815650",
+      "canonicalNameEn": "Belize River",
+      "countryCode": "BZ",
+      "sourceBatch": 36,
+      "sourceEntity": {
+        "schemaVersion": "route-v2-poi-baseline-p1b",
+        "entityId": "poi-7b9fae02d1214a3e",
+        "entityType": "poi",
+        "parentCityEntityId": "city-364c92a54ef6ea30",
+        "wikidataId": "Q815650",
+        "canonicalNameZh": "伯利兹河",
+        "canonicalNameEn": "Belize River",
+        "aliases": [],
+        "coordinates": {
+          "latitude": 17.17841,
+          "longitude": -89.08016
+        },
+        "entitySourceType": "wikidata",
+        "confidence": 0.9,
+        "retrievedAt": "2026-09-12T14:00:00.000Z",
+        "provenance": {
+          "entityId": {
+            "field": "entityId",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 10",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "poi-7b9fae02d1214a3e"
+          },
+          "entityType": {
+            "field": "entityType",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 10",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "poi"
+          },
+          "parentCityEntityId": {
+            "field": "parentCityEntityId",
+            "sourceType": "repository-reference",
+            "source": "San Ignacio City Entity",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q724815",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "city-364c92a54ef6ea30"
+          },
+          "wikidataId": {
+            "field": "wikidataId",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q815650",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "Q815650"
+          },
+          "canonicalNameZh": {
+            "field": "canonicalNameZh",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q815650",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "伯利兹河"
+          },
+          "canonicalNameEn": {
+            "field": "canonicalNameEn",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q815650",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "Belize River"
+          },
+          "aliases": {
+            "field": "aliases",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q815650",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": []
+          },
+          "coordinates": {
+            "field": "coordinates",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q815650",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": {
+              "latitude": 17.17841,
+              "longitude": -89.08016
+            }
+          },
+          "entitySourceType": {
+            "field": "entitySourceType",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 10",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "wikidata"
+          },
+          "confidence": {
+            "field": "confidence",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 10",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": 0.9
+          },
+          "retrievedAt": {
+            "field": "retrievedAt",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q815650",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "2026-09-12T14:00:00.000Z"
+          }
+        }
+      },
+      "disposition": "candidate-quarantine-retained",
+      "reason": "generic-watercourse"
+    },
+    {
+      "entityId": "poi-0689f707571f64e3",
+      "wikidataId": "Q84496209",
+      "canonicalNameEn": "Mukungwa",
+      "countryCode": "RW",
+      "sourceBatch": 34,
+      "sourceEntity": {
+        "schemaVersion": "route-v2-poi-baseline-p1b",
+        "entityId": "poi-0689f707571f64e3",
+        "entityType": "poi",
+        "parentCityEntityId": "city-034edb5d02897aaf",
+        "wikidataId": "Q84496209",
+        "canonicalNameZh": "Mukungwa",
+        "canonicalNameEn": "Mukungwa",
+        "aliases": [
+          "Mukungwa River"
+        ],
+        "coordinates": {
+          "latitude": -1.521,
+          "longitude": 29.711
+        },
+        "entitySourceType": "wikidata",
+        "confidence": 0.9,
+        "retrievedAt": "2026-09-12T14:00:00.000Z",
+        "provenance": {
+          "entityId": {
+            "field": "entityId",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 10",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "poi-0689f707571f64e3"
+          },
+          "entityType": {
+            "field": "entityType",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 10",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "poi"
+          },
+          "parentCityEntityId": {
+            "field": "parentCityEntityId",
+            "sourceType": "repository-reference",
+            "source": "Ruhengeri City Entity",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q246145",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "city-034edb5d02897aaf"
+          },
+          "wikidataId": {
+            "field": "wikidataId",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q84496209",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "Q84496209"
+          },
+          "canonicalNameZh": {
+            "field": "canonicalNameZh",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q84496209",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "Mukungwa"
+          },
+          "canonicalNameEn": {
+            "field": "canonicalNameEn",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q84496209",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "Mukungwa"
+          },
+          "aliases": {
+            "field": "aliases",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q84496209",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": [
+              "Mukungwa River"
+            ]
+          },
+          "coordinates": {
+            "field": "coordinates",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q84496209",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": {
+              "latitude": -1.521,
+              "longitude": 29.711
+            }
+          },
+          "entitySourceType": {
+            "field": "entitySourceType",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 10",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "wikidata"
+          },
+          "confidence": {
+            "field": "confidence",
+            "sourceType": "project-schema",
+            "source": "Route V2 Knowledge Expansion Batch 10",
+            "sourceUrl": "",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": 0.9
+          },
+          "retrievedAt": {
+            "field": "retrievedAt",
+            "sourceType": "wikidata",
+            "source": "Wikidata plus English Wikipedia geosearch",
+            "sourceUrl": "https://www.wikidata.org/wiki/Q84496209",
+            "retrievedAt": "2026-09-12T14:00:00.000Z",
+            "value": "2026-09-12T14:00:00.000Z"
+          }
+        }
+      },
+      "disposition": "candidate-quarantine-retained",
+      "reason": "low-value-watercourse"
+    }
+  ]
+}

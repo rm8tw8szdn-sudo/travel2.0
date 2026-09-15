@@ -21,7 +21,7 @@ const sovereignPolicy = json("data/knowledge/semantic/sovereign-country-policy.j
 const plan = json("data/knowledge/reports/sovereign-country-expansion-plan.json");
 const report = json("data/knowledge/reports/sovereign-special-review.json");
 
-assert.deepEqual(KNOWLEDGE_ENTITY_LAYER_PUBLISHED_TOTALS, { countries: 195, cities: 833, pois: 3963, total: 4991 });
+assert.deepEqual(KNOWLEDGE_ENTITY_LAYER_PUBLISHED_TOTALS, { countries: 195, cities: 866, pois: 4071, total: 5132 });
 assert.equal(KNOWLEDGE_ENTITY_LAYER_PUBLISHED_ASSETS.countries.at(-1), "data/knowledge/batches/countries.p1a-batch14.json");
 assert.equal(countries.length, sovereignPolicy.referenceCount);
 assert.equal(CODES.every((code) => sovereignPolicy.sovereignIsoAlpha2.includes(code)), true);

@@ -1,3 +1,5 @@
+import { getAuthoritativeKnowledgeReadiness } from "./knowledge-readiness-authority.mjs";
+
 function roundedPercentage(value, total) {
   return total ? Number(((value / total) * 100).toFixed(1)) : 0;
 }
@@ -9,6 +11,7 @@ export function createKnowledgeCoverageSemantics({
   routeLegEvidence = [],
   seasonEvidence = [],
 } = {}) {
+  const readinessAuthority = getAuthoritativeKnowledgeReadiness();
   const countryCodeByEntityId = new Map(countries.map((country) => [
     country.entityId,
     String(country.isoAlpha2 || country.countryCode || "").toUpperCase(),
@@ -29,10 +32,11 @@ export function createKnowledgeCoverageSemantics({
   const seasonCodes = new Set(seasonEvidence
     .map((entry) => cityCountryCodeByEntityId.get(entry.entityId))
     .filter(Boolean));
+  const authoritativePlannableCodes = new Set(readinessAuthority.plannableCountryCodes);
 
   const sorted = (values) => [...values].sort();
-  const plannableCodes = sorted([...catalogCodes].filter((code) => cityCodes.has(code) && poiCodes.has(code)));
-  const evidenceBackedCodes = plannableCodes.filter((code) => transportCodes.has(code) && seasonCodes.has(code));
+  const plannableCodes = sorted([...catalogCodes].filter((code) => cityCodes.has(code) && poiCodes.has(code) && authoritativePlannableCodes.has(code)));
+  const evidenceBackedCodes = plannableCodes.filter((code) => readinessAuthority.evidenceBackedCountryCodes.includes(code) && transportCodes.has(code) && seasonCodes.has(code));
   const countryOnlyCodes = sorted([...catalogCodes].filter((code) => !plannableCodes.includes(code)));
   const catalogCountries = catalogCodes.size;
 
@@ -48,7 +52,7 @@ export function createKnowledgeCoverageSemantics({
     countryOnlyCountryCodes: Object.freeze(countryOnlyCodes),
     definitions: Object.freeze({
       catalogCountries: "Published Country entities.",
-      plannableCountries: "Catalog countries with at least one typed City and one published POI.",
+      plannableCountries: "Catalog countries with published City/POI depth and explicit readiness authority; entity publication alone does not promote Evidence-pending Countries.",
       evidenceBackedCountries: "Plannable countries also touched by directed transport and objective month-risk Evidence.",
     }),
   });

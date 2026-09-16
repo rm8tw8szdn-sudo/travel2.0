@@ -1,0 +1,1543 @@
+{
+  "schemaVersion": "route-v2-reviewed-claim-catalog-v1",
+  "catalogId": "plannable-expansion-batch01",
+  "transportClaims": [
+    {
+      "claimId": "batch01-bb-1",
+      "countryCode": "BB",
+      "source": {
+        "url": "https://www.transportboard.com/wp-content/uploads/Secondary-School-Bus-Service.pdf",
+        "authority": "Barbados Transport Board",
+        "pageIdentity": "Transport Board route list: Bridgetown, Holetown and Speightstown corridor",
+        "locator": "Transport Board route list: Bridgetown, Holetown and Speightstown corridor"
+      },
+      "reviewedFact": "The Barbados Transport Board route list identifies Bridgetown service via Holetown and Speightstown on the Route 1 corridor and establishes service in both directions along that corridor.",
+      "origin": {
+        "canonicalNameEn": "Bridgetown",
+        "entityId": "city-f1a22d8c758501f8"
+      },
+      "destination": {
+        "canonicalNameEn": "Holetown",
+        "entityId": "city-0c71d6e0327e28d1"
+      },
+      "directionality": "bidirectional",
+      "transportMode": "bus",
+      "retrievedAt": "2026-09-16T08:00:00.000Z",
+      "reviewedPayloadHash": "b7d9f4df8e36ce9acd2469be9c80450a8e31cbff12e7b7e3e9b0d6b6a8fdcd69",
+      "supports": [
+        "route-leg:city-f1a22d8c758501f8>city-0c71d6e0327e28d1:feasibility",
+        "route-leg:city-0c71d6e0327e28d1>city-f1a22d8c758501f8:feasibility"
+      ]
+    },
+    {
+      "claimId": "batch01-bb-2",
+      "countryCode": "BB",
+      "source": {
+        "url": "https://www.transportboard.com/wp-content/uploads/Secondary-School-Bus-Service.pdf",
+        "authority": "Barbados Transport Board",
+        "pageIdentity": "Transport Board route list: Bridgetown, Holetown and Speightstown corridor",
+        "locator": "Transport Board route list: Bridgetown, Holetown and Speightstown corridor"
+      },
+      "reviewedFact": "The Barbados Transport Board route list identifies Bridgetown service via Holetown and Speightstown on the Route 1 corridor and establishes service in both directions along that corridor.",
+      "origin": {
+        "canonicalNameEn": "Bridgetown",
+        "entityId": "city-f1a22d8c758501f8"
+      },
+      "destination": {
+        "canonicalNameEn": "Speightstown",
+        "entityId": "city-98d052aeea2558ca"
+      },
+      "directionality": "bidirectional",
+      "transportMode": "bus",
+      "retrievedAt": "2026-09-16T08:00:00.000Z",
+      "reviewedPayloadHash": "63cbe43e043887ab82c9998f5477d708308bc5c1cbbb6435ee9cfe80918ff82c",
+      "supports": [
+        "route-leg:city-f1a22d8c758501f8>city-98d052aeea2558ca:feasibility",
+        "route-leg:city-98d052aeea2558ca>city-f1a22d8c758501f8:feasibility"
+      ]
+    },
+    {
+      "claimId": "batch01-dm-1",
+      "countryCode": "DM",
+      "source": {
+        "url": "https://cdn.discoverdominica.com/production/20250909124137-new-bus-fares-feb-2023-rev.pdf",
+        "authority": "Discover Dominica Authority",
+        "pageIdentity": "Dominica official bus fare schedule: Roseau-Portsmouth route",
+        "locator": "Dominica official bus fare schedule: Roseau-Portsmouth route"
+      },
+      "reviewedFact": "The official Dominica bus fare schedule lists the Roseau-Portsmouth passenger route as a reciprocal fare corridor.",
+      "origin": {
+        "canonicalNameEn": "Roseau",
+        "entityId": "city-4e646805968aa7b9"
+      },
+      "destination": {
+        "canonicalNameEn": "Portsmouth",
+        "entityId": "city-3f9f3579e6cd3ee4"
+      },
+      "directionality": "bidirectional",
+      "transportMode": "bus",
+      "retrievedAt": "2026-09-16T08:00:00.000Z",
+      "reviewedPayloadHash": "7fa913ca407e091b6e3e69eaa47283ee356a26ec5fcbe2ef4e689c85fe74fd59",
+      "supports": [
+        "route-leg:city-4e646805968aa7b9>city-3f9f3579e6cd3ee4:feasibility",
+        "route-leg:city-3f9f3579e6cd3ee4>city-4e646805968aa7b9:feasibility"
+      ]
+    },
+    {
+      "claimId": "batch01-mn-1",
+      "countryCode": "MN",
+      "source": {
+        "url": "https://news.mnb.mn/i/327521",
+        "authority": "Mongolian National Broadcaster",
+        "pageIdentity": "Mongolian public broadcaster passenger-rail timetable",
+        "locator": "Mongolian public broadcaster passenger-rail timetable"
+      },
+      "reviewedFact": "The published passenger timetable separately lists Ulaanbaatar-Darkhan, Darkhan-Ulaanbaatar, Ulaanbaatar-Erdenet and Erdenet-Ulaanbaatar services.",
+      "origin": {
+        "canonicalNameEn": "Ulaanbaatar",
+        "entityId": "city-dc7b0fecf0cc52cf"
+      },
+      "destination": {
+        "canonicalNameEn": "Darkhan",
+        "entityId": "city-246c71fa111c145f"
+      },
+      "directionality": "bidirectional",
+      "transportMode": "rail",
+      "retrievedAt": "2026-09-16T08:00:00.000Z",
+      "reviewedPayloadHash": "0c9afed9b2bbdc3316bc10604bf55d880fcc9a2cdbd6a03554332b598b527c51",
+      "supports": [
+        "route-leg:city-dc7b0fecf0cc52cf>city-246c71fa111c145f:feasibility",
+        "route-leg:city-246c71fa111c145f>city-dc7b0fecf0cc52cf:feasibility"
+      ]
+    },
+    {
+      "claimId": "batch01-mn-2",
+      "countryCode": "MN",
+      "source": {
+        "url": "https://news.mnb.mn/i/327521",
+        "authority": "Mongolian National Broadcaster",
+        "pageIdentity": "Mongolian public broadcaster passenger-rail timetable",
+        "locator": "Mongolian public broadcaster passenger-rail timetable"
+      },
+      "reviewedFact": "The published passenger timetable separately lists Ulaanbaatar-Darkhan, Darkhan-Ulaanbaatar, Ulaanbaatar-Erdenet and Erdenet-Ulaanbaatar services.",
+      "origin": {
+        "canonicalNameEn": "Ulaanbaatar",
+        "entityId": "city-dc7b0fecf0cc52cf"
+      },
+      "destination": {
+        "canonicalNameEn": "Erdenet",
+        "entityId": "city-81d1aa150179614b"
+      },
+      "directionality": "bidirectional",
+      "transportMode": "rail",
+      "retrievedAt": "2026-09-16T08:00:00.000Z",
+      "reviewedPayloadHash": "1e06300d78f516887d63b3d37938a76fb6938616eeb1cd2ad8ad1f580e0dde46",
+      "supports": [
+        "route-leg:city-dc7b0fecf0cc52cf>city-81d1aa150179614b:feasibility",
+        "route-leg:city-81d1aa150179614b>city-dc7b0fecf0cc52cf:feasibility"
+      ]
+    },
+    {
+      "claimId": "batch01-rw-1",
+      "countryCode": "RW",
+      "source": {
+        "url": "https://www.rura.rw/fileadmin/docs/PUBLIC_TRANSPORT_OPERATORS.pdf",
+        "authority": "Rwanda Utilities Regulatory Authority",
+        "pageIdentity": "RURA licensed public-transport routes: Kigali-Huye/Rubavu/Musanze",
+        "locator": "RURA licensed public-transport routes: Kigali-Huye/Rubavu/Musanze"
+      },
+      "reviewedFact": "RURA's licensed operator register identifies reciprocal passenger routes between Kigali and Huye, Rubavu and Musanze, corresponding to Butare, Gisenyi and Ruhengeri.",
+      "origin": {
+        "canonicalNameEn": "Kigali",
+        "entityId": "city-6a59f5483e3c9c81"
+      },
+      "destination": {
+        "canonicalNameEn": "Butare",
+        "entityId": "city-9a11ad4ae85fb0ac"
+      },
+      "directionality": "bidirectional",
+      "transportMode": "bus",
+      "retrievedAt": "2026-09-16T08:00:00.000Z",
+      "reviewedPayloadHash": "7598a2bfa8f0393739f3658e07cab12c4b642630732c81f6811271df28a27be6",
+      "supports": [
+        "route-leg:city-6a59f5483e3c9c81>city-9a11ad4ae85fb0ac:feasibility",
+        "route-leg:city-9a11ad4ae85fb0ac>city-6a59f5483e3c9c81:feasibility"
+      ]
+    },
+    {
+      "claimId": "batch01-rw-2",
+      "countryCode": "RW",
+      "source": {
+        "url": "https://www.rura.rw/fileadmin/docs/PUBLIC_TRANSPORT_OPERATORS.pdf",
+        "authority": "Rwanda Utilities Regulatory Authority",
+        "pageIdentity": "RURA licensed public-transport routes: Kigali-Huye/Rubavu/Musanze",
+        "locator": "RURA licensed public-transport routes: Kigali-Huye/Rubavu/Musanze"
+      },
+      "reviewedFact": "RURA's licensed operator register identifies reciprocal passenger routes between Kigali and Huye, Rubavu and Musanze, corresponding to Butare, Gisenyi and Ruhengeri.",
+      "origin": {
+        "canonicalNameEn": "Kigali",
+        "entityId": "city-6a59f5483e3c9c81"
+      },
+      "destination": {
+        "canonicalNameEn": "Gisenyi",
+        "entityId": "city-8d227f2462243f10"
+      },
+      "directionality": "bidirectional",
+      "transportMode": "bus",
+      "retrievedAt": "2026-09-16T08:00:00.000Z",
+      "reviewedPayloadHash": "15bd58d65ca3de5284c73499c0e593e66b802621cb0d75113b2c14ebb7c81894",
+      "supports": [
+        "route-leg:city-6a59f5483e3c9c81>city-8d227f2462243f10:feasibility",
+        "route-leg:city-8d227f2462243f10>city-6a59f5483e3c9c81:feasibility"
+      ]
+    },
+    {
+      "claimId": "batch01-rw-3",
+      "countryCode": "RW",
+      "source": {
+        "url": "https://www.rura.rw/fileadmin/docs/PUBLIC_TRANSPORT_OPERATORS.pdf",
+        "authority": "Rwanda Utilities Regulatory Authority",
+        "pageIdentity": "RURA licensed public-transport routes: Kigali-Huye/Rubavu/Musanze",
+        "locator": "RURA licensed public-transport routes: Kigali-Huye/Rubavu/Musanze"
+      },
+      "reviewedFact": "RURA's licensed operator register identifies reciprocal passenger routes between Kigali and Huye, Rubavu and Musanze, corresponding to Butare, Gisenyi and Ruhengeri.",
+      "origin": {
+        "canonicalNameEn": "Kigali",
+        "entityId": "city-6a59f5483e3c9c81"
+      },
+      "destination": {
+        "canonicalNameEn": "Ruhengeri",
+        "entityId": "city-034edb5d02897aaf"
+      },
+      "directionality": "bidirectional",
+      "transportMode": "bus",
+      "retrievedAt": "2026-09-16T08:00:00.000Z",
+      "reviewedPayloadHash": "ec561e46cd976223f384b32ebd98cd2dbaa2f8ed6c31a84057d390d7aa85d746",
+      "supports": [
+        "route-leg:city-6a59f5483e3c9c81>city-034edb5d02897aaf:feasibility",
+        "route-leg:city-034edb5d02897aaf>city-6a59f5483e3c9c81:feasibility"
+      ]
+    },
+    {
+      "claimId": "batch01-tt-1",
+      "countryCode": "TT",
+      "source": {
+        "url": "https://ptsc.co.tt/from/pos/",
+        "authority": "Public Transport Service Corporation",
+        "pageIdentity": "PTSC Port of Spain route archive: POS / Chaguanas",
+        "locator": "PTSC Port of Spain route archive: POS / Chaguanas"
+      },
+      "reviewedFact": "The official PTSC Port of Spain route archive lists POS / Chaguanas service.",
+      "origin": {
+        "canonicalNameEn": "Port of Spain",
+        "entityId": "city-f8e7938698d274cb"
+      },
+      "destination": {
+        "canonicalNameEn": "Chaguanas",
+        "entityId": "city-e1e545b8fe38ab50"
+      },
+      "directionality": "directional",
+      "transportMode": "bus",
+      "retrievedAt": "2026-09-16T08:00:00.000Z",
+      "reviewedPayloadHash": "a87004e129adb4a1829c0ff22a1b773e9b304a77ca871909c2186bfe367deab5",
+      "supports": [
+        "route-leg:city-f8e7938698d274cb>city-e1e545b8fe38ab50:feasibility"
+      ]
+    },
+    {
+      "claimId": "batch01-tt-2",
+      "countryCode": "TT",
+      "source": {
+        "url": "https://ptsc.co.tt/from/chaguanas/",
+        "authority": "Public Transport Service Corporation",
+        "pageIdentity": "PTSC Chaguanas route archive: Chaguanas / San Fernando",
+        "locator": "PTSC Chaguanas route archive: Chaguanas / San Fernando"
+      },
+      "reviewedFact": "The official PTSC Chaguanas route archive lists Chaguanas / San Fernando service.",
+      "origin": {
+        "canonicalNameEn": "Chaguanas",
+        "entityId": "city-e1e545b8fe38ab50"
+      },
+      "destination": {
+        "canonicalNameEn": "San Fernando",
+        "entityId": "city-94fbe7319f3f241e"
+      },
+      "directionality": "directional",
+      "transportMode": "bus",
+      "retrievedAt": "2026-09-16T08:00:00.000Z",
+      "reviewedPayloadHash": "2544c83c3e065cb44ad6f822a279f8176f0042ab2ba149f9e2690fd3145f57fd",
+      "supports": [
+        "route-leg:city-e1e545b8fe38ab50>city-94fbe7319f3f241e:feasibility"
+      ]
+    },
+    {
+      "claimId": "batch01-zm-1",
+      "countryCode": "ZM",
+      "source": {
+        "url": "https://www.zambia-airways.com/Cms_Data/Contents/ZambiaAirways/Media/Documents/Domestic-Schedule.pdf",
+        "authority": "Zambia Airways",
+        "pageIdentity": "Zambia Airways domestic schedule: both directions",
+        "locator": "Zambia Airways domestic schedule: both directions"
+      },
+      "reviewedFact": "The official schedule separately lists Lusaka-Livingstone, Livingstone-Lusaka, Lusaka-Ndola and Ndola-Lusaka flights.",
+      "origin": {
+        "canonicalNameEn": "Lusaka",
+        "entityId": "city-4374865b0ace9042"
+      },
+      "destination": {
+        "canonicalNameEn": "Livingstone",
+        "entityId": "city-e38b042d64a3adfe"
+      },
+      "directionality": "bidirectional",
+      "transportMode": "air",
+      "retrievedAt": "2026-09-16T08:00:00.000Z",
+      "reviewedPayloadHash": "528d4935e57bbc85d4bf07bcc58cb8758d34e4fa83f608349f9c3e1afa195d4b",
+      "supports": [
+        "route-leg:city-4374865b0ace9042>city-e38b042d64a3adfe:feasibility",
+        "route-leg:city-e38b042d64a3adfe>city-4374865b0ace9042:feasibility"
+      ]
+    },
+    {
+      "claimId": "batch01-zm-2",
+      "countryCode": "ZM",
+      "source": {
+        "url": "https://www.zambia-airways.com/Cms_Data/Contents/ZambiaAirways/Media/Documents/Domestic-Schedule.pdf",
+        "authority": "Zambia Airways",
+        "pageIdentity": "Zambia Airways domestic schedule: both directions",
+        "locator": "Zambia Airways domestic schedule: both directions"
+      },
+      "reviewedFact": "The official schedule separately lists Lusaka-Livingstone, Livingstone-Lusaka, Lusaka-Ndola and Ndola-Lusaka flights.",
+      "origin": {
+        "canonicalNameEn": "Lusaka",
+        "entityId": "city-4374865b0ace9042"
+      },
+      "destination": {
+        "canonicalNameEn": "Ndola",
+        "entityId": "city-82c7cb3d9dee6fa2"
+      },
+      "directionality": "bidirectional",
+      "transportMode": "air",
+      "retrievedAt": "2026-09-16T08:00:00.000Z",
+      "reviewedPayloadHash": "1a17f67d2ef5ff9a75c149d4143138201060c9ca57eb5e0ee9baae476f11baa4",
+      "supports": [
+        "route-leg:city-4374865b0ace9042>city-82c7cb3d9dee6fa2:feasibility",
+        "route-leg:city-82c7cb3d9dee6fa2>city-4374865b0ace9042:feasibility"
+      ]
+    },
+    {
+      "claimId": "batch01-zw-1",
+      "countryCode": "ZW",
+      "source": {
+        "url": "https://nrz.co.zw/train-schedules/",
+        "authority": "National Railways of Zimbabwe",
+        "pageIdentity": "National Railways of Zimbabwe intercity passenger schedules",
+        "locator": "National Railways of Zimbabwe intercity passenger schedules"
+      },
+      "reviewedFact": "NRZ separately lists both directions for Harare-Bulawayo, Harare-Mutare and Bulawayo-Victoria Falls passenger services.",
+      "origin": {
+        "canonicalNameEn": "Harare",
+        "entityId": "city-0606546c9fd1d268"
+      },
+      "destination": {
+        "canonicalNameEn": "Bulawayo",
+        "entityId": "city-cb2ab7d488ba51b1"
+      },
+      "directionality": "bidirectional",
+      "transportMode": "rail",
+      "retrievedAt": "2026-09-16T08:00:00.000Z",
+      "reviewedPayloadHash": "e7efae1f7a533c29e40b454978dcf620cbc8883cefdac8c794424b70577daa5e",
+      "supports": [
+        "route-leg:city-0606546c9fd1d268>city-cb2ab7d488ba51b1:feasibility",
+        "route-leg:city-cb2ab7d488ba51b1>city-0606546c9fd1d268:feasibility"
+      ]
+    },
+    {
+      "claimId": "batch01-zw-2",
+      "countryCode": "ZW",
+      "source": {
+        "url": "https://nrz.co.zw/train-schedules/",
+        "authority": "National Railways of Zimbabwe",
+        "pageIdentity": "National Railways of Zimbabwe intercity passenger schedules",
+        "locator": "National Railways of Zimbabwe intercity passenger schedules"
+      },
+      "reviewedFact": "NRZ separately lists both directions for Harare-Bulawayo, Harare-Mutare and Bulawayo-Victoria Falls passenger services.",
+      "origin": {
+        "canonicalNameEn": "Harare",
+        "entityId": "city-0606546c9fd1d268"
+      },
+      "destination": {
+        "canonicalNameEn": "Mutare",
+        "entityId": "city-c8340f2529f563db"
+      },
+      "directionality": "bidirectional",
+      "transportMode": "rail",
+      "retrievedAt": "2026-09-16T08:00:00.000Z",
+      "reviewedPayloadHash": "0872d92b0fb67153f7ca7150c84dfd965244858652ee7e2bb4e2a22f699bbe73",
+      "supports": [
+        "route-leg:city-0606546c9fd1d268>city-c8340f2529f563db:feasibility",
+        "route-leg:city-c8340f2529f563db>city-0606546c9fd1d268:feasibility"
+      ]
+    },
+    {
+      "claimId": "batch01-zw-3",
+      "countryCode": "ZW",
+      "source": {
+        "url": "https://nrz.co.zw/train-schedules/",
+        "authority": "National Railways of Zimbabwe",
+        "pageIdentity": "National Railways of Zimbabwe intercity passenger schedules",
+        "locator": "National Railways of Zimbabwe intercity passenger schedules"
+      },
+      "reviewedFact": "NRZ separately lists both directions for Harare-Bulawayo, Harare-Mutare and Bulawayo-Victoria Falls passenger services.",
+      "origin": {
+        "canonicalNameEn": "Bulawayo",
+        "entityId": "city-cb2ab7d488ba51b1"
+      },
+      "destination": {
+        "canonicalNameEn": "Victoria Falls",
+        "entityId": "city-7bc1f1ccf3656dbf"
+      },
+      "directionality": "bidirectional",
+      "transportMode": "rail",
+      "retrievedAt": "2026-09-16T08:00:00.000Z",
+      "reviewedPayloadHash": "cb8e762aabb3f89403cfa058da2f3d2ab77f8d7e8dbafec0f0760a6bcbd8ce46",
+      "supports": [
+        "route-leg:city-cb2ab7d488ba51b1>city-7bc1f1ccf3656dbf:feasibility",
+        "route-leg:city-7bc1f1ccf3656dbf>city-cb2ab7d488ba51b1:feasibility"
+      ]
+    }
+  ],
+  "seasonClaims": [
+    {
+      "claimId": "batch01-season-bb-city-f1a22d8c758501f8",
+      "countryCode": "BB",
+      "source": {
+        "url": "https://www.barbadosweather.org/PDF_Uploads/Climat%20Data.pdf",
+        "authority": "Barbados Meteorological Services",
+        "pageIdentity": "Barbados Meteorological Services climatological data and extreme events",
+        "locator": "Barbados Meteorological Services climatological data and extreme events"
+      },
+      "reviewedFact": "The official climatological record identifies a September maximum-temperature extreme and the highest daily rainfall observation in September.",
+      "destination": {
+        "canonicalNameEn": "Bridgetown",
+        "entityId": "city-f1a22d8c758501f8"
+      },
+      "geographicScope": {
+        "kind": "country",
+        "identity": "BB",
+        "reviewedApplicability": "The reviewed national fact applies to Bridgetown; no conflicting local climate scope is present in this batch."
+      },
+      "supportedMonths": [
+        9
+      ],
+      "admittedMonth": 9,
+      "factType": "seasonal-climate-risk",
+      "factualPayload": {
+        "risks": [
+          "extreme-heat-risk",
+          "heavy-rain-risk"
+        ],
+        "conditions": "The official climatological record identifies a September maximum-temperature extreme and the highest daily rainfall observation in September."
+      },
+      "supports": [
+        "season:city-f1a22d8c758501f8:9:risk"
+      ],
+      "retrievedAt": "2026-09-16T08:00:00.000Z",
+      "reviewedPayloadHash": "32e067db489876f74e966f709bc1203c83ad8a81456f74c5c4cae4dfb166e552"
+    },
+    {
+      "claimId": "batch01-season-bb-city-0c71d6e0327e28d1",
+      "countryCode": "BB",
+      "source": {
+        "url": "https://www.barbadosweather.org/PDF_Uploads/Climat%20Data.pdf",
+        "authority": "Barbados Meteorological Services",
+        "pageIdentity": "Barbados Meteorological Services climatological data and extreme events",
+        "locator": "Barbados Meteorological Services climatological data and extreme events"
+      },
+      "reviewedFact": "The official climatological record identifies a September maximum-temperature extreme and the highest daily rainfall observation in September.",
+      "destination": {
+        "canonicalNameEn": "Holetown",
+        "entityId": "city-0c71d6e0327e28d1"
+      },
+      "geographicScope": {
+        "kind": "country",
+        "identity": "BB",
+        "reviewedApplicability": "The reviewed national fact applies to Holetown; no conflicting local climate scope is present in this batch."
+      },
+      "supportedMonths": [
+        9
+      ],
+      "admittedMonth": 9,
+      "factType": "seasonal-climate-risk",
+      "factualPayload": {
+        "risks": [
+          "extreme-heat-risk",
+          "heavy-rain-risk"
+        ],
+        "conditions": "The official climatological record identifies a September maximum-temperature extreme and the highest daily rainfall observation in September."
+      },
+      "supports": [
+        "season:city-0c71d6e0327e28d1:9:risk"
+      ],
+      "retrievedAt": "2026-09-16T08:00:00.000Z",
+      "reviewedPayloadHash": "efbb9a42fc2fe647e6781ad2fe0d75317ae70253753b97bc49351abdb17542d9"
+    },
+    {
+      "claimId": "batch01-season-bb-city-98d052aeea2558ca",
+      "countryCode": "BB",
+      "source": {
+        "url": "https://www.barbadosweather.org/PDF_Uploads/Climat%20Data.pdf",
+        "authority": "Barbados Meteorological Services",
+        "pageIdentity": "Barbados Meteorological Services climatological data and extreme events",
+        "locator": "Barbados Meteorological Services climatological data and extreme events"
+      },
+      "reviewedFact": "The official climatological record identifies a September maximum-temperature extreme and the highest daily rainfall observation in September.",
+      "destination": {
+        "canonicalNameEn": "Speightstown",
+        "entityId": "city-98d052aeea2558ca"
+      },
+      "geographicScope": {
+        "kind": "country",
+        "identity": "BB",
+        "reviewedApplicability": "The reviewed national fact applies to Speightstown; no conflicting local climate scope is present in this batch."
+      },
+      "supportedMonths": [
+        9
+      ],
+      "admittedMonth": 9,
+      "factType": "seasonal-climate-risk",
+      "factualPayload": {
+        "risks": [
+          "extreme-heat-risk",
+          "heavy-rain-risk"
+        ],
+        "conditions": "The official climatological record identifies a September maximum-temperature extreme and the highest daily rainfall observation in September."
+      },
+      "supports": [
+        "season:city-98d052aeea2558ca:9:risk"
+      ],
+      "retrievedAt": "2026-09-16T08:00:00.000Z",
+      "reviewedPayloadHash": "e1da9919f64f1f9de51b585186ae4b941e3d4706b1f5e65b5377f870581ce410"
+    },
+    {
+      "claimId": "batch01-season-bz-city-6ec906c9527fa58c",
+      "countryCode": "BZ",
+      "source": {
+        "url": "https://nms.gov.bz/climate-services/climate-summary/",
+        "authority": "National Meteorological Service of Belize",
+        "pageIdentity": "National Meteorological Service climate summary: June-November rainy season",
+        "locator": "National Meteorological Service climate summary: June-November rainy season"
+      },
+      "reviewedFact": "Belize's official climate summary identifies June to November as the rainy season and September as the peak month for tropical storms and hurricanes affecting the country.",
+      "destination": {
+        "canonicalNameEn": "Belize City",
+        "entityId": "city-6ec906c9527fa58c"
+      },
+      "geographicScope": {
+        "kind": "country",
+        "identity": "BZ",
+        "reviewedApplicability": "The reviewed national fact applies to Belize City; no conflicting local climate scope is present in this batch."
+      },
+      "supportedMonths": [
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "admittedMonth": 9,
+      "factType": "cyclone-period",
+      "factualPayload": {
+        "risks": [
+          "tropical-cyclone-risk",
+          "heavy-rain-risk",
+          "flood-risk"
+        ],
+        "conditions": "Belize's official climate summary identifies June to November as the rainy season and September as the peak month for tropical storms and hurricanes affecting the country."
+      },
+      "supports": [
+        "season:city-6ec906c9527fa58c:9:risk"
+      ],
+      "retrievedAt": "2026-09-16T08:00:00.000Z",
+      "reviewedPayloadHash": "3bc723af201662d526af771dd3458063f7dd1230ae03c0e33b842b34a57e9a12"
+    },
+    {
+      "claimId": "batch01-season-bz-city-ada97841bcc43314",
+      "countryCode": "BZ",
+      "source": {
+        "url": "https://nms.gov.bz/climate-services/climate-summary/",
+        "authority": "National Meteorological Service of Belize",
+        "pageIdentity": "National Meteorological Service climate summary: June-November rainy season",
+        "locator": "National Meteorological Service climate summary: June-November rainy season"
+      },
+      "reviewedFact": "Belize's official climate summary identifies June to November as the rainy season and September as the peak month for tropical storms and hurricanes affecting the country.",
+      "destination": {
+        "canonicalNameEn": "Belmopan",
+        "entityId": "city-ada97841bcc43314"
+      },
+      "geographicScope": {
+        "kind": "country",
+        "identity": "BZ",
+        "reviewedApplicability": "The reviewed national fact applies to Belmopan; no conflicting local climate scope is present in this batch."
+      },
+      "supportedMonths": [
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "admittedMonth": 9,
+      "factType": "cyclone-period",
+      "factualPayload": {
+        "risks": [
+          "tropical-cyclone-risk",
+          "heavy-rain-risk",
+          "flood-risk"
+        ],
+        "conditions": "Belize's official climate summary identifies June to November as the rainy season and September as the peak month for tropical storms and hurricanes affecting the country."
+      },
+      "supports": [
+        "season:city-ada97841bcc43314:9:risk"
+      ],
+      "retrievedAt": "2026-09-16T08:00:00.000Z",
+      "reviewedPayloadHash": "f008a2caa7ffeadcb120943d890598b9091417104fc3663bd8a9d70333d91ead"
+    },
+    {
+      "claimId": "batch01-season-bz-city-09e784f122af849f",
+      "countryCode": "BZ",
+      "source": {
+        "url": "https://nms.gov.bz/climate-services/climate-summary/",
+        "authority": "National Meteorological Service of Belize",
+        "pageIdentity": "National Meteorological Service climate summary: June-November rainy season",
+        "locator": "National Meteorological Service climate summary: June-November rainy season"
+      },
+      "reviewedFact": "Belize's official climate summary identifies June to November as the rainy season and September as the peak month for tropical storms and hurricanes affecting the country.",
+      "destination": {
+        "canonicalNameEn": "Orange Walk Town",
+        "entityId": "city-09e784f122af849f"
+      },
+      "geographicScope": {
+        "kind": "country",
+        "identity": "BZ",
+        "reviewedApplicability": "The reviewed national fact applies to Orange Walk Town; no conflicting local climate scope is present in this batch."
+      },
+      "supportedMonths": [
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "admittedMonth": 9,
+      "factType": "cyclone-period",
+      "factualPayload": {
+        "risks": [
+          "tropical-cyclone-risk",
+          "heavy-rain-risk",
+          "flood-risk"
+        ],
+        "conditions": "Belize's official climate summary identifies June to November as the rainy season and September as the peak month for tropical storms and hurricanes affecting the country."
+      },
+      "supports": [
+        "season:city-09e784f122af849f:9:risk"
+      ],
+      "retrievedAt": "2026-09-16T08:00:00.000Z",
+      "reviewedPayloadHash": "089a87a60202d2e51917f78bbcd8e0c150ff70531846a291f61166efe605beec"
+    },
+    {
+      "claimId": "batch01-season-bz-city-364c92a54ef6ea30",
+      "countryCode": "BZ",
+      "source": {
+        "url": "https://nms.gov.bz/climate-services/climate-summary/",
+        "authority": "National Meteorological Service of Belize",
+        "pageIdentity": "National Meteorological Service climate summary: June-November rainy season",
+        "locator": "National Meteorological Service climate summary: June-November rainy season"
+      },
+      "reviewedFact": "Belize's official climate summary identifies June to November as the rainy season and September as the peak month for tropical storms and hurricanes affecting the country.",
+      "destination": {
+        "canonicalNameEn": "San Ignacio",
+        "entityId": "city-364c92a54ef6ea30"
+      },
+      "geographicScope": {
+        "kind": "country",
+        "identity": "BZ",
+        "reviewedApplicability": "The reviewed national fact applies to San Ignacio; no conflicting local climate scope is present in this batch."
+      },
+      "supportedMonths": [
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "admittedMonth": 9,
+      "factType": "cyclone-period",
+      "factualPayload": {
+        "risks": [
+          "tropical-cyclone-risk",
+          "heavy-rain-risk",
+          "flood-risk"
+        ],
+        "conditions": "Belize's official climate summary identifies June to November as the rainy season and September as the peak month for tropical storms and hurricanes affecting the country."
+      },
+      "supports": [
+        "season:city-364c92a54ef6ea30:9:risk"
+      ],
+      "retrievedAt": "2026-09-16T08:00:00.000Z",
+      "reviewedPayloadHash": "713758aefe8e22af8939ab194eb97a3f0be0256f9d7f84a9c39609a00f16c76f"
+    },
+    {
+      "claimId": "batch01-season-cv-city-babb525024c5895b",
+      "countryCode": "CV",
+      "source": {
+        "url": "https://www.inmg.gov.cv/index.php/servico-educativo/blog/133-previsao-sazonal-2025",
+        "authority": "Cabo Verde National Institute of Meteorology and Geophysics",
+        "pageIdentity": "INMG Cabo Verde June-September seasonal forecast",
+        "locator": "INMG Cabo Verde June-September seasonal forecast"
+      },
+      "reviewedFact": "INMG identifies the June-to-September season and warns that intense rain, tropical depressions, strong winds and rough seas can affect the archipelago.",
+      "destination": {
+        "canonicalNameEn": "Mindelo",
+        "entityId": "city-babb525024c5895b"
+      },
+      "geographicScope": {
+        "kind": "country",
+        "identity": "CV",
+        "reviewedApplicability": "The reviewed national fact applies to Mindelo; no conflicting local climate scope is present in this batch."
+      },
+      "supportedMonths": [
+        6,
+        7,
+        8,
+        9
+      ],
+      "admittedMonth": 9,
+      "factType": "seasonal-climate-risk",
+      "factualPayload": {
+        "risks": [
+          "heavy-rain-risk",
+          "strong-wind-risk",
+          "rough-sea-risk"
+        ],
+        "conditions": "INMG identifies the June-to-September season and warns that intense rain, tropical depressions, strong winds and rough seas can affect the archipelago."
+      },
+      "supports": [
+        "season:city-babb525024c5895b:9:risk"
+      ],
+      "retrievedAt": "2026-09-16T08:00:00.000Z",
+      "reviewedPayloadHash": "08d0dd2bff7239ffea544a63977c64e6ef4a3e1670b9e4ae08834f3e7decf608"
+    },
+    {
+      "claimId": "batch01-season-cv-city-978446d3b0128242",
+      "countryCode": "CV",
+      "source": {
+        "url": "https://www.inmg.gov.cv/index.php/servico-educativo/blog/133-previsao-sazonal-2025",
+        "authority": "Cabo Verde National Institute of Meteorology and Geophysics",
+        "pageIdentity": "INMG Cabo Verde June-September seasonal forecast",
+        "locator": "INMG Cabo Verde June-September seasonal forecast"
+      },
+      "reviewedFact": "INMG identifies the June-to-September season and warns that intense rain, tropical depressions, strong winds and rough seas can affect the archipelago.",
+      "destination": {
+        "canonicalNameEn": "Praia",
+        "entityId": "city-978446d3b0128242"
+      },
+      "geographicScope": {
+        "kind": "country",
+        "identity": "CV",
+        "reviewedApplicability": "The reviewed national fact applies to Praia; no conflicting local climate scope is present in this batch."
+      },
+      "supportedMonths": [
+        6,
+        7,
+        8,
+        9
+      ],
+      "admittedMonth": 9,
+      "factType": "seasonal-climate-risk",
+      "factualPayload": {
+        "risks": [
+          "heavy-rain-risk",
+          "strong-wind-risk",
+          "rough-sea-risk"
+        ],
+        "conditions": "INMG identifies the June-to-September season and warns that intense rain, tropical depressions, strong winds and rough seas can affect the archipelago."
+      },
+      "supports": [
+        "season:city-978446d3b0128242:9:risk"
+      ],
+      "retrievedAt": "2026-09-16T08:00:00.000Z",
+      "reviewedPayloadHash": "62cf9a7405549616359431f4f10c291cdbbb7ef1c9ebe66dc7a2f7d798035fea"
+    },
+    {
+      "claimId": "batch01-season-rw-city-9a11ad4ae85fb0ac",
+      "countryCode": "RW",
+      "source": {
+        "url": "https://www.meteorwanda.gov.rw/fileadmin/user_upload/Meteorwanda/Seasonal_Forecast/____2024/Rainfall_Outlook_for_MAM_2024.pdf",
+        "authority": "Rwanda Meteorology Agency",
+        "pageIdentity": "Meteo Rwanda March-May seasonal rainfall outlook",
+        "locator": "Meteo Rwanda March-May seasonal rainfall outlook"
+      },
+      "reviewedFact": "Meteo Rwanda identifies March through May as a rainy season with above-normal rainfall risk and district-level rainfall outlooks.",
+      "destination": {
+        "canonicalNameEn": "Butare",
+        "entityId": "city-9a11ad4ae85fb0ac"
+      },
+      "geographicScope": {
+        "kind": "country",
+        "identity": "RW",
+        "reviewedApplicability": "The reviewed national fact applies to Butare; no conflicting local climate scope is present in this batch."
+      },
+      "supportedMonths": [
+        3,
+        4,
+        5
+      ],
+      "admittedMonth": 4,
+      "factType": "seasonal-climate-risk",
+      "factualPayload": {
+        "risks": [
+          "heavy-rain-risk",
+          "flood-risk",
+          "landslide-risk"
+        ],
+        "conditions": "Meteo Rwanda identifies March through May as a rainy season with above-normal rainfall risk and district-level rainfall outlooks."
+      },
+      "supports": [
+        "season:city-9a11ad4ae85fb0ac:4:risk"
+      ],
+      "retrievedAt": "2026-09-16T08:00:00.000Z",
+      "reviewedPayloadHash": "122bd43fa3bf76172194a278acc3649033c94ed0708f46360bcaa59d2efbc92e"
+    },
+    {
+      "claimId": "batch01-season-rw-city-8d227f2462243f10",
+      "countryCode": "RW",
+      "source": {
+        "url": "https://www.meteorwanda.gov.rw/fileadmin/user_upload/Meteorwanda/Seasonal_Forecast/____2024/Rainfall_Outlook_for_MAM_2024.pdf",
+        "authority": "Rwanda Meteorology Agency",
+        "pageIdentity": "Meteo Rwanda March-May seasonal rainfall outlook",
+        "locator": "Meteo Rwanda March-May seasonal rainfall outlook"
+      },
+      "reviewedFact": "Meteo Rwanda identifies March through May as a rainy season with above-normal rainfall risk and district-level rainfall outlooks.",
+      "destination": {
+        "canonicalNameEn": "Gisenyi",
+        "entityId": "city-8d227f2462243f10"
+      },
+      "geographicScope": {
+        "kind": "country",
+        "identity": "RW",
+        "reviewedApplicability": "The reviewed national fact applies to Gisenyi; no conflicting local climate scope is present in this batch."
+      },
+      "supportedMonths": [
+        3,
+        4,
+        5
+      ],
+      "admittedMonth": 4,
+      "factType": "seasonal-climate-risk",
+      "factualPayload": {
+        "risks": [
+          "heavy-rain-risk",
+          "flood-risk",
+          "landslide-risk"
+        ],
+        "conditions": "Meteo Rwanda identifies March through May as a rainy season with above-normal rainfall risk and district-level rainfall outlooks."
+      },
+      "supports": [
+        "season:city-8d227f2462243f10:4:risk"
+      ],
+      "retrievedAt": "2026-09-16T08:00:00.000Z",
+      "reviewedPayloadHash": "def7cd16ec596a238e68f6a2a81e899dc75c2f69bad52b2efc72b76001795e68"
+    },
+    {
+      "claimId": "batch01-season-rw-city-6a59f5483e3c9c81",
+      "countryCode": "RW",
+      "source": {
+        "url": "https://www.meteorwanda.gov.rw/fileadmin/user_upload/Meteorwanda/Seasonal_Forecast/____2024/Rainfall_Outlook_for_MAM_2024.pdf",
+        "authority": "Rwanda Meteorology Agency",
+        "pageIdentity": "Meteo Rwanda March-May seasonal rainfall outlook",
+        "locator": "Meteo Rwanda March-May seasonal rainfall outlook"
+      },
+      "reviewedFact": "Meteo Rwanda identifies March through May as a rainy season with above-normal rainfall risk and district-level rainfall outlooks.",
+      "destination": {
+        "canonicalNameEn": "Kigali",
+        "entityId": "city-6a59f5483e3c9c81"
+      },
+      "geographicScope": {
+        "kind": "country",
+        "identity": "RW",
+        "reviewedApplicability": "The reviewed national fact applies to Kigali; no conflicting local climate scope is present in this batch."
+      },
+      "supportedMonths": [
+        3,
+        4,
+        5
+      ],
+      "admittedMonth": 4,
+      "factType": "seasonal-climate-risk",
+      "factualPayload": {
+        "risks": [
+          "heavy-rain-risk",
+          "flood-risk",
+          "landslide-risk"
+        ],
+        "conditions": "Meteo Rwanda identifies March through May as a rainy season with above-normal rainfall risk and district-level rainfall outlooks."
+      },
+      "supports": [
+        "season:city-6a59f5483e3c9c81:4:risk"
+      ],
+      "retrievedAt": "2026-09-16T08:00:00.000Z",
+      "reviewedPayloadHash": "ed5206fb1561b5a3645eeb049d764bcd11f9d587e9820c96396538bcda284220"
+    },
+    {
+      "claimId": "batch01-season-rw-city-034edb5d02897aaf",
+      "countryCode": "RW",
+      "source": {
+        "url": "https://www.meteorwanda.gov.rw/fileadmin/user_upload/Meteorwanda/Seasonal_Forecast/____2024/Rainfall_Outlook_for_MAM_2024.pdf",
+        "authority": "Rwanda Meteorology Agency",
+        "pageIdentity": "Meteo Rwanda March-May seasonal rainfall outlook",
+        "locator": "Meteo Rwanda March-May seasonal rainfall outlook"
+      },
+      "reviewedFact": "Meteo Rwanda identifies March through May as a rainy season with above-normal rainfall risk and district-level rainfall outlooks.",
+      "destination": {
+        "canonicalNameEn": "Ruhengeri",
+        "entityId": "city-034edb5d02897aaf"
+      },
+      "geographicScope": {
+        "kind": "country",
+        "identity": "RW",
+        "reviewedApplicability": "The reviewed national fact applies to Ruhengeri; no conflicting local climate scope is present in this batch."
+      },
+      "supportedMonths": [
+        3,
+        4,
+        5
+      ],
+      "admittedMonth": 4,
+      "factType": "seasonal-climate-risk",
+      "factualPayload": {
+        "risks": [
+          "heavy-rain-risk",
+          "flood-risk",
+          "landslide-risk"
+        ],
+        "conditions": "Meteo Rwanda identifies March through May as a rainy season with above-normal rainfall risk and district-level rainfall outlooks."
+      },
+      "supports": [
+        "season:city-034edb5d02897aaf:4:risk"
+      ],
+      "retrievedAt": "2026-09-16T08:00:00.000Z",
+      "reviewedPayloadHash": "c569d63a68a1791ad955a36f79234aea482a2bcea84bea521c00ecad3e5989dd"
+    },
+    {
+      "claimId": "batch01-season-sc-city-80aba01c4401092f",
+      "countryCode": "SC",
+      "source": {
+        "url": "https://www.meteo.sc/alerts/",
+        "authority": "Seychelles Meteorological Authority",
+        "pageIdentity": "Seychelles Meteorological Authority alerts archive",
+        "locator": "Seychelles Meteorological Authority alerts archive"
+      },
+      "reviewedFact": "The official September alert archive records heavy-rain and strong-wind warnings affecting Mahé, including Victoria.",
+      "destination": {
+        "canonicalNameEn": "Victoria",
+        "entityId": "city-80aba01c4401092f"
+      },
+      "geographicScope": {
+        "kind": "country",
+        "identity": "SC",
+        "reviewedApplicability": "The reviewed national fact applies to Victoria; no conflicting local climate scope is present in this batch."
+      },
+      "supportedMonths": [
+        9
+      ],
+      "admittedMonth": 9,
+      "factType": "seasonal-climate-risk",
+      "factualPayload": {
+        "risks": [
+          "heavy-rain-risk",
+          "strong-wind-risk"
+        ],
+        "conditions": "The official September alert archive records heavy-rain and strong-wind warnings affecting Mahé, including Victoria."
+      },
+      "supports": [
+        "season:city-80aba01c4401092f:9:risk"
+      ],
+      "retrievedAt": "2026-09-16T08:00:00.000Z",
+      "reviewedPayloadHash": "c0b53589789176fa822a51d105adba8a424e58fc3f94bd3665159a2f9bba02a2"
+    },
+    {
+      "claimId": "batch01-season-sm-city-b9e5f660ba76a806",
+      "countryCode": "SM",
+      "source": {
+        "url": "https://www.gov.sm/pub2/upav/dam/jcr%3A2c7a7808-5bdc-4deb-a044-203e0bdf3ea3/Legge%203%20aprile%202014%20n.%2048.pdf",
+        "authority": "Republic of San Marino",
+        "pageIdentity": "San Marino official monthly climatic design-temperature table",
+        "locator": "San Marino official monthly climatic design-temperature table"
+      },
+      "reviewedFact": "The official San Marino climatic table records January as the coldest monthly mean for the City of San Marino and defines sub-zero winter design temperatures.",
+      "destination": {
+        "canonicalNameEn": "San Marino",
+        "entityId": "city-b9e5f660ba76a806"
+      },
+      "geographicScope": {
+        "kind": "country",
+        "identity": "SM",
+        "reviewedApplicability": "The reviewed national fact applies to San Marino; no conflicting local climate scope is present in this batch."
+      },
+      "supportedMonths": [
+        1
+      ],
+      "admittedMonth": 1,
+      "factType": "seasonal-climate-risk",
+      "factualPayload": {
+        "risks": [
+          "extreme-cold-risk"
+        ],
+        "conditions": "The official San Marino climatic table records January as the coldest monthly mean for the City of San Marino and defines sub-zero winter design temperatures."
+      },
+      "supports": [
+        "season:city-b9e5f660ba76a806:1:risk"
+      ],
+      "retrievedAt": "2026-09-16T08:00:00.000Z",
+      "reviewedPayloadHash": "9b582c4cc583ead9d9ae1db534bebc914addf4a9ad059529ec1b2ad7e4e23e50"
+    },
+    {
+      "claimId": "batch01-season-tt-city-e1e545b8fe38ab50",
+      "countryCode": "TT",
+      "source": {
+        "url": "https://metproducts.gov.tt/ttms/public/api/rainTempWetDrySeason/public",
+        "authority": "Trinidad and Tobago Meteorological Service",
+        "pageIdentity": "Trinidad and Tobago Meteorological Service wet-season outlook",
+        "locator": "Trinidad and Tobago Meteorological Service wet-season outlook"
+      },
+      "reviewedFact": "The official June-November wet-season outlook identifies flooding potential and elevated heat risk, with the heat season peaking from August to October.",
+      "destination": {
+        "canonicalNameEn": "Chaguanas",
+        "entityId": "city-e1e545b8fe38ab50"
+      },
+      "geographicScope": {
+        "kind": "country",
+        "identity": "TT",
+        "reviewedApplicability": "The reviewed national fact applies to Chaguanas; no conflicting local climate scope is present in this batch."
+      },
+      "supportedMonths": [
+        8,
+        9,
+        10
+      ],
+      "admittedMonth": 9,
+      "factType": "seasonal-climate-risk",
+      "factualPayload": {
+        "risks": [
+          "heavy-rain-risk",
+          "flood-risk",
+          "extreme-heat-risk"
+        ],
+        "conditions": "The official June-November wet-season outlook identifies flooding potential and elevated heat risk, with the heat season peaking from August to October."
+      },
+      "supports": [
+        "season:city-e1e545b8fe38ab50:9:risk"
+      ],
+      "retrievedAt": "2026-09-16T08:00:00.000Z",
+      "reviewedPayloadHash": "0ed183480bdcce100b24313fb471018e60c835472ed7ee100564a98c83415ecb"
+    },
+    {
+      "claimId": "batch01-season-tt-city-f8e7938698d274cb",
+      "countryCode": "TT",
+      "source": {
+        "url": "https://metproducts.gov.tt/ttms/public/api/rainTempWetDrySeason/public",
+        "authority": "Trinidad and Tobago Meteorological Service",
+        "pageIdentity": "Trinidad and Tobago Meteorological Service wet-season outlook",
+        "locator": "Trinidad and Tobago Meteorological Service wet-season outlook"
+      },
+      "reviewedFact": "The official June-November wet-season outlook identifies flooding potential and elevated heat risk, with the heat season peaking from August to October.",
+      "destination": {
+        "canonicalNameEn": "Port of Spain",
+        "entityId": "city-f8e7938698d274cb"
+      },
+      "geographicScope": {
+        "kind": "country",
+        "identity": "TT",
+        "reviewedApplicability": "The reviewed national fact applies to Port of Spain; no conflicting local climate scope is present in this batch."
+      },
+      "supportedMonths": [
+        8,
+        9,
+        10
+      ],
+      "admittedMonth": 9,
+      "factType": "seasonal-climate-risk",
+      "factualPayload": {
+        "risks": [
+          "heavy-rain-risk",
+          "flood-risk",
+          "extreme-heat-risk"
+        ],
+        "conditions": "The official June-November wet-season outlook identifies flooding potential and elevated heat risk, with the heat season peaking from August to October."
+      },
+      "supports": [
+        "season:city-f8e7938698d274cb:9:risk"
+      ],
+      "retrievedAt": "2026-09-16T08:00:00.000Z",
+      "reviewedPayloadHash": "de7d016709f243cf5b0456ab6ab051d0d7d6c6fb39d11106dea289790e02e08d"
+    },
+    {
+      "claimId": "batch01-season-tt-city-94fbe7319f3f241e",
+      "countryCode": "TT",
+      "source": {
+        "url": "https://metproducts.gov.tt/ttms/public/api/rainTempWetDrySeason/public",
+        "authority": "Trinidad and Tobago Meteorological Service",
+        "pageIdentity": "Trinidad and Tobago Meteorological Service wet-season outlook",
+        "locator": "Trinidad and Tobago Meteorological Service wet-season outlook"
+      },
+      "reviewedFact": "The official June-November wet-season outlook identifies flooding potential and elevated heat risk, with the heat season peaking from August to October.",
+      "destination": {
+        "canonicalNameEn": "San Fernando",
+        "entityId": "city-94fbe7319f3f241e"
+      },
+      "geographicScope": {
+        "kind": "country",
+        "identity": "TT",
+        "reviewedApplicability": "The reviewed national fact applies to San Fernando; no conflicting local climate scope is present in this batch."
+      },
+      "supportedMonths": [
+        8,
+        9,
+        10
+      ],
+      "admittedMonth": 9,
+      "factType": "seasonal-climate-risk",
+      "factualPayload": {
+        "risks": [
+          "heavy-rain-risk",
+          "flood-risk",
+          "extreme-heat-risk"
+        ],
+        "conditions": "The official June-November wet-season outlook identifies flooding potential and elevated heat risk, with the heat season peaking from August to October."
+      },
+      "supports": [
+        "season:city-94fbe7319f3f241e:9:risk"
+      ],
+      "retrievedAt": "2026-09-16T08:00:00.000Z",
+      "reviewedPayloadHash": "7390024aa1167cc371b798f070884c347871c78c80f3c77a3ff0511d6434f4f4"
+    },
+    {
+      "claimId": "batch01-season-ug-city-cf93ae1e3582d497",
+      "countryCode": "UG",
+      "source": {
+        "url": "https://www.mwe.go.ug/publications/meteorological/seasonal/september-to-december-sond-2025-seasonal-rainfall-outlook",
+        "authority": "Uganda Ministry of Water and Environment",
+        "pageIdentity": "Uganda Department of Meteorological Services SOND outlook",
+        "locator": "Uganda Department of Meteorological Services SOND outlook"
+      },
+      "reviewedFact": "The official September-December climate outlook identifies Uganda's second rainy season and risks from heavy rain, flooding, landslides and strong winds.",
+      "destination": {
+        "canonicalNameEn": "Entebbe",
+        "entityId": "city-cf93ae1e3582d497"
+      },
+      "geographicScope": {
+        "kind": "country",
+        "identity": "UG",
+        "reviewedApplicability": "The reviewed national fact applies to Entebbe; no conflicting local climate scope is present in this batch."
+      },
+      "supportedMonths": [
+        9,
+        10,
+        11,
+        12
+      ],
+      "admittedMonth": 10,
+      "factType": "seasonal-climate-risk",
+      "factualPayload": {
+        "risks": [
+          "heavy-rain-risk",
+          "flood-risk",
+          "landslide-risk",
+          "strong-wind-risk"
+        ],
+        "conditions": "The official September-December climate outlook identifies Uganda's second rainy season and risks from heavy rain, flooding, landslides and strong winds."
+      },
+      "supports": [
+        "season:city-cf93ae1e3582d497:10:risk"
+      ],
+      "retrievedAt": "2026-09-16T08:00:00.000Z",
+      "reviewedPayloadHash": "7e76d004a9af74aeb03f9b74a698f1d54188b7cfdf4f6cbd29333499fe22f493"
+    },
+    {
+      "claimId": "batch01-season-ug-city-a3ca46b81dd7dc2e",
+      "countryCode": "UG",
+      "source": {
+        "url": "https://www.mwe.go.ug/publications/meteorological/seasonal/september-to-december-sond-2025-seasonal-rainfall-outlook",
+        "authority": "Uganda Ministry of Water and Environment",
+        "pageIdentity": "Uganda Department of Meteorological Services SOND outlook",
+        "locator": "Uganda Department of Meteorological Services SOND outlook"
+      },
+      "reviewedFact": "The official September-December climate outlook identifies Uganda's second rainy season and risks from heavy rain, flooding, landslides and strong winds.",
+      "destination": {
+        "canonicalNameEn": "Jinja",
+        "entityId": "city-a3ca46b81dd7dc2e"
+      },
+      "geographicScope": {
+        "kind": "country",
+        "identity": "UG",
+        "reviewedApplicability": "The reviewed national fact applies to Jinja; no conflicting local climate scope is present in this batch."
+      },
+      "supportedMonths": [
+        9,
+        10,
+        11,
+        12
+      ],
+      "admittedMonth": 10,
+      "factType": "seasonal-climate-risk",
+      "factualPayload": {
+        "risks": [
+          "heavy-rain-risk",
+          "flood-risk",
+          "landslide-risk",
+          "strong-wind-risk"
+        ],
+        "conditions": "The official September-December climate outlook identifies Uganda's second rainy season and risks from heavy rain, flooding, landslides and strong winds."
+      },
+      "supports": [
+        "season:city-a3ca46b81dd7dc2e:10:risk"
+      ],
+      "retrievedAt": "2026-09-16T08:00:00.000Z",
+      "reviewedPayloadHash": "2cd6fd86c8ecd31e40b1e00c29983e80377326021219b670e27288f7e124b404"
+    },
+    {
+      "claimId": "batch01-season-ug-city-12eabeee3a7a14d0",
+      "countryCode": "UG",
+      "source": {
+        "url": "https://www.mwe.go.ug/publications/meteorological/seasonal/september-to-december-sond-2025-seasonal-rainfall-outlook",
+        "authority": "Uganda Ministry of Water and Environment",
+        "pageIdentity": "Uganda Department of Meteorological Services SOND outlook",
+        "locator": "Uganda Department of Meteorological Services SOND outlook"
+      },
+      "reviewedFact": "The official September-December climate outlook identifies Uganda's second rainy season and risks from heavy rain, flooding, landslides and strong winds.",
+      "destination": {
+        "canonicalNameEn": "Kampala",
+        "entityId": "city-12eabeee3a7a14d0"
+      },
+      "geographicScope": {
+        "kind": "country",
+        "identity": "UG",
+        "reviewedApplicability": "The reviewed national fact applies to Kampala; no conflicting local climate scope is present in this batch."
+      },
+      "supportedMonths": [
+        9,
+        10,
+        11,
+        12
+      ],
+      "admittedMonth": 10,
+      "factType": "seasonal-climate-risk",
+      "factualPayload": {
+        "risks": [
+          "heavy-rain-risk",
+          "flood-risk",
+          "landslide-risk",
+          "strong-wind-risk"
+        ],
+        "conditions": "The official September-December climate outlook identifies Uganda's second rainy season and risks from heavy rain, flooding, landslides and strong winds."
+      },
+      "supports": [
+        "season:city-12eabeee3a7a14d0:10:risk"
+      ],
+      "retrievedAt": "2026-09-16T08:00:00.000Z",
+      "reviewedPayloadHash": "657a8e92da9b1c294825b5e0254772e4101e6805bdf0078d18ebab3badd4adf8"
+    },
+    {
+      "claimId": "batch01-season-zm-city-e38b042d64a3adfe",
+      "countryCode": "ZM",
+      "source": {
+        "url": "https://zmd.gov.zm/products/seasonal-forecast/seasonal-rainfall-forecast-20252026/",
+        "authority": "Zambia Meteorological Department",
+        "pageIdentity": "Zambia Meteorological Department December-February outlook",
+        "locator": "Zambia Meteorological Department December-February outlook"
+      },
+      "reviewedFact": "The national seasonal forecast identifies December through February as the main rainfall period and warns of flash-flood and localized flooding risk.",
+      "destination": {
+        "canonicalNameEn": "Livingstone",
+        "entityId": "city-e38b042d64a3adfe"
+      },
+      "geographicScope": {
+        "kind": "country",
+        "identity": "ZM",
+        "reviewedApplicability": "The reviewed national fact applies to Livingstone; no conflicting local climate scope is present in this batch."
+      },
+      "supportedMonths": [
+        12,
+        1,
+        2
+      ],
+      "admittedMonth": 2,
+      "factType": "seasonal-climate-risk",
+      "factualPayload": {
+        "risks": [
+          "heavy-rain-risk",
+          "flash-flood-risk",
+          "flood-risk"
+        ],
+        "conditions": "The national seasonal forecast identifies December through February as the main rainfall period and warns of flash-flood and localized flooding risk."
+      },
+      "supports": [
+        "season:city-e38b042d64a3adfe:2:risk"
+      ],
+      "retrievedAt": "2026-09-16T08:00:00.000Z",
+      "reviewedPayloadHash": "62f86c2cb86cc5777b1169f062307ac67c360f0170a1ef9d39d5bddd3c334361"
+    },
+    {
+      "claimId": "batch01-season-zm-city-4374865b0ace9042",
+      "countryCode": "ZM",
+      "source": {
+        "url": "https://zmd.gov.zm/products/seasonal-forecast/seasonal-rainfall-forecast-20252026/",
+        "authority": "Zambia Meteorological Department",
+        "pageIdentity": "Zambia Meteorological Department December-February outlook",
+        "locator": "Zambia Meteorological Department December-February outlook"
+      },
+      "reviewedFact": "The national seasonal forecast identifies December through February as the main rainfall period and warns of flash-flood and localized flooding risk.",
+      "destination": {
+        "canonicalNameEn": "Lusaka",
+        "entityId": "city-4374865b0ace9042"
+      },
+      "geographicScope": {
+        "kind": "country",
+        "identity": "ZM",
+        "reviewedApplicability": "The reviewed national fact applies to Lusaka; no conflicting local climate scope is present in this batch."
+      },
+      "supportedMonths": [
+        12,
+        1,
+        2
+      ],
+      "admittedMonth": 2,
+      "factType": "seasonal-climate-risk",
+      "factualPayload": {
+        "risks": [
+          "heavy-rain-risk",
+          "flash-flood-risk",
+          "flood-risk"
+        ],
+        "conditions": "The national seasonal forecast identifies December through February as the main rainfall period and warns of flash-flood and localized flooding risk."
+      },
+      "supports": [
+        "season:city-4374865b0ace9042:2:risk"
+      ],
+      "retrievedAt": "2026-09-16T08:00:00.000Z",
+      "reviewedPayloadHash": "51a242142a545e8cdf787940314b0d6a6629ab95f6d578ce430d7062a6d7bdad"
+    },
+    {
+      "claimId": "batch01-season-zm-city-82c7cb3d9dee6fa2",
+      "countryCode": "ZM",
+      "source": {
+        "url": "https://zmd.gov.zm/products/seasonal-forecast/seasonal-rainfall-forecast-20252026/",
+        "authority": "Zambia Meteorological Department",
+        "pageIdentity": "Zambia Meteorological Department December-February outlook",
+        "locator": "Zambia Meteorological Department December-February outlook"
+      },
+      "reviewedFact": "The national seasonal forecast identifies December through February as the main rainfall period and warns of flash-flood and localized flooding risk.",
+      "destination": {
+        "canonicalNameEn": "Ndola",
+        "entityId": "city-82c7cb3d9dee6fa2"
+      },
+      "geographicScope": {
+        "kind": "country",
+        "identity": "ZM",
+        "reviewedApplicability": "The reviewed national fact applies to Ndola; no conflicting local climate scope is present in this batch."
+      },
+      "supportedMonths": [
+        12,
+        1,
+        2
+      ],
+      "admittedMonth": 2,
+      "factType": "seasonal-climate-risk",
+      "factualPayload": {
+        "risks": [
+          "heavy-rain-risk",
+          "flash-flood-risk",
+          "flood-risk"
+        ],
+        "conditions": "The national seasonal forecast identifies December through February as the main rainfall period and warns of flash-flood and localized flooding risk."
+      },
+      "supports": [
+        "season:city-82c7cb3d9dee6fa2:2:risk"
+      ],
+      "retrievedAt": "2026-09-16T08:00:00.000Z",
+      "reviewedPayloadHash": "f313d7c48bb460941760911eab5f253cf4bf61468618acc01220afca1ace1e25"
+    },
+    {
+      "claimId": "batch01-season-zw-city-cb2ab7d488ba51b1",
+      "countryCode": "ZW",
+      "source": {
+        "url": "https://www.weatherzw.org.zw/products/seasonal-forecast/2025-2026-seasonal-forecast-update/",
+        "authority": "Zimbabwe Meteorological Services Department",
+        "pageIdentity": "Zimbabwe Meteorological Services Department November-March outlook",
+        "locator": "Zimbabwe Meteorological Services Department November-March outlook"
+      },
+      "reviewedFact": "The official November-March outlook identifies normal-to-above-normal rainfall and continuing risks from violent storms and flash floods.",
+      "destination": {
+        "canonicalNameEn": "Bulawayo",
+        "entityId": "city-cb2ab7d488ba51b1"
+      },
+      "geographicScope": {
+        "kind": "country",
+        "identity": "ZW",
+        "reviewedApplicability": "The reviewed national fact applies to Bulawayo; no conflicting local climate scope is present in this batch."
+      },
+      "supportedMonths": [
+        11,
+        12,
+        1,
+        2,
+        3
+      ],
+      "admittedMonth": 1,
+      "factType": "seasonal-climate-risk",
+      "factualPayload": {
+        "risks": [
+          "heavy-rain-risk",
+          "flash-flood-risk",
+          "severe-thunderstorm-risk"
+        ],
+        "conditions": "The official November-March outlook identifies normal-to-above-normal rainfall and continuing risks from violent storms and flash floods."
+      },
+      "supports": [
+        "season:city-cb2ab7d488ba51b1:1:risk"
+      ],
+      "retrievedAt": "2026-09-16T08:00:00.000Z",
+      "reviewedPayloadHash": "b8f501e4cc7697e4e0deb83625f8ff51c840dbf5b9d9856fdaa2810cf5151d63"
+    },
+    {
+      "claimId": "batch01-season-zw-city-0606546c9fd1d268",
+      "countryCode": "ZW",
+      "source": {
+        "url": "https://www.weatherzw.org.zw/products/seasonal-forecast/2025-2026-seasonal-forecast-update/",
+        "authority": "Zimbabwe Meteorological Services Department",
+        "pageIdentity": "Zimbabwe Meteorological Services Department November-March outlook",
+        "locator": "Zimbabwe Meteorological Services Department November-March outlook"
+      },
+      "reviewedFact": "The official November-March outlook identifies normal-to-above-normal rainfall and continuing risks from violent storms and flash floods.",
+      "destination": {
+        "canonicalNameEn": "Harare",
+        "entityId": "city-0606546c9fd1d268"
+      },
+      "geographicScope": {
+        "kind": "country",
+        "identity": "ZW",
+        "reviewedApplicability": "The reviewed national fact applies to Harare; no conflicting local climate scope is present in this batch."
+      },
+      "supportedMonths": [
+        11,
+        12,
+        1,
+        2,
+        3
+      ],
+      "admittedMonth": 1,
+      "factType": "seasonal-climate-risk",
+      "factualPayload": {
+        "risks": [
+          "heavy-rain-risk",
+          "flash-flood-risk",
+          "severe-thunderstorm-risk"
+        ],
+        "conditions": "The official November-March outlook identifies normal-to-above-normal rainfall and continuing risks from violent storms and flash floods."
+      },
+      "supports": [
+        "season:city-0606546c9fd1d268:1:risk"
+      ],
+      "retrievedAt": "2026-09-16T08:00:00.000Z",
+      "reviewedPayloadHash": "85f125688f9ead88e7da74211b6b4a18d48a1d464d130b171530817709cbf96d"
+    },
+    {
+      "claimId": "batch01-season-zw-city-c8340f2529f563db",
+      "countryCode": "ZW",
+      "source": {
+        "url": "https://www.weatherzw.org.zw/products/seasonal-forecast/2025-2026-seasonal-forecast-update/",
+        "authority": "Zimbabwe Meteorological Services Department",
+        "pageIdentity": "Zimbabwe Meteorological Services Department November-March outlook",
+        "locator": "Zimbabwe Meteorological Services Department November-March outlook"
+      },
+      "reviewedFact": "The official November-March outlook identifies normal-to-above-normal rainfall and continuing risks from violent storms and flash floods.",
+      "destination": {
+        "canonicalNameEn": "Mutare",
+        "entityId": "city-c8340f2529f563db"
+      },
+      "geographicScope": {
+        "kind": "country",
+        "identity": "ZW",
+        "reviewedApplicability": "The reviewed national fact applies to Mutare; no conflicting local climate scope is present in this batch."
+      },
+      "supportedMonths": [
+        11,
+        12,
+        1,
+        2,
+        3
+      ],
+      "admittedMonth": 1,
+      "factType": "seasonal-climate-risk",
+      "factualPayload": {
+        "risks": [
+          "heavy-rain-risk",
+          "flash-flood-risk",
+          "severe-thunderstorm-risk"
+        ],
+        "conditions": "The official November-March outlook identifies normal-to-above-normal rainfall and continuing risks from violent storms and flash floods."
+      },
+      "supports": [
+        "season:city-c8340f2529f563db:1:risk"
+      ],
+      "retrievedAt": "2026-09-16T08:00:00.000Z",
+      "reviewedPayloadHash": "f931d103c298e25bc711f97716636ddd079ba474d62bc32a97684f9cb51461eb"
+    },
+    {
+      "claimId": "batch01-season-zw-city-7bc1f1ccf3656dbf",
+      "countryCode": "ZW",
+      "source": {
+        "url": "https://www.weatherzw.org.zw/products/seasonal-forecast/2025-2026-seasonal-forecast-update/",
+        "authority": "Zimbabwe Meteorological Services Department",
+        "pageIdentity": "Zimbabwe Meteorological Services Department November-March outlook",
+        "locator": "Zimbabwe Meteorological Services Department November-March outlook"
+      },
+      "reviewedFact": "The official November-March outlook identifies normal-to-above-normal rainfall and continuing risks from violent storms and flash floods.",
+      "destination": {
+        "canonicalNameEn": "Victoria Falls",
+        "entityId": "city-7bc1f1ccf3656dbf"
+      },
+      "geographicScope": {
+        "kind": "country",
+        "identity": "ZW",
+        "reviewedApplicability": "The reviewed national fact applies to Victoria Falls; no conflicting local climate scope is present in this batch."
+      },
+      "supportedMonths": [
+        11,
+        12,
+        1,
+        2,
+        3
+      ],
+      "admittedMonth": 1,
+      "factType": "seasonal-climate-risk",
+      "factualPayload": {
+        "risks": [
+          "heavy-rain-risk",
+          "flash-flood-risk",
+          "severe-thunderstorm-risk"
+        ],
+        "conditions": "The official November-March outlook identifies normal-to-above-normal rainfall and continuing risks from violent storms and flash floods."
+      },
+      "supports": [
+        "season:city-7bc1f1ccf3656dbf:1:risk"
+      ],
+      "retrievedAt": "2026-09-16T08:00:00.000Z",
+      "reviewedPayloadHash": "e104fb8817dac5ac87ceff6871f84817f6a6919f35110e8e160f631d5462974e"
+    }
+  ]
+}

@@ -12,9 +12,9 @@ const defaultProjectRoot = path.resolve(moduleDirectory, "../../..");
 
 export const KNOWLEDGE_ENTITY_LAYER_PUBLISHED_TOTALS = Object.freeze({
   countries: 195,
-  cities: 833,
-  pois: 3963,
-  total: 4991,
+  cities: 866,
+  pois: 4071,
+  total: 5132,
 });
 
 export const KNOWLEDGE_ENTITY_LAYER_PUBLISHED_ASSETS = Object.freeze({
@@ -70,6 +70,7 @@ export const KNOWLEDGE_ENTITY_LAYER_PUBLISHED_ASSETS = Object.freeze({
     "data/knowledge/batches/cities.p1b-batch31.json",
     "data/knowledge/batches/cities.p1b-batch32.json",
     "data/knowledge/batches/cities.p1b-batch33.json",
+    "data/knowledge/batches/cities.p1b-batch50.json",
   ]),
   pois: Object.freeze([
     "data/knowledge/pois.p1b-pilot.json",
@@ -106,6 +107,7 @@ export const KNOWLEDGE_ENTITY_LAYER_PUBLISHED_ASSETS = Object.freeze({
     "data/knowledge/batches/pois.p1b-batch31.json",
     "data/knowledge/batches/pois.p1b-batch32.json",
     "data/knowledge/batches/pois.p1b-batch33.json",
+    "data/knowledge/batches/pois.p1b-batch50.json",
   ]),
 });
 
@@ -122,6 +124,19 @@ function readPublishedAsset(projectRoot, relativePath, collectionKey) {
 function loadEntityType(projectRoot, type) {
   return KNOWLEDGE_ENTITY_LAYER_PUBLISHED_ASSETS[type]
     .flatMap((relativePath) => readPublishedAsset(projectRoot, relativePath, type));
+}
+
+export function getPublishedKnowledgeCountryCodes({ projectRoot = defaultProjectRoot } = {}) {
+  const countries = loadEntityType(projectRoot, "countries");
+  assertValidEntitySet("countries", validateCountryEntitySet(countries));
+  if (countries.length !== KNOWLEDGE_ENTITY_LAYER_PUBLISHED_TOTALS.countries) {
+    throw new Error(`Published Knowledge Entity Layer Country total mismatch: expected ${KNOWLEDGE_ENTITY_LAYER_PUBLISHED_TOTALS.countries}, received ${countries.length}`);
+  }
+  const codes = countries.map((country) => String(country.isoAlpha2 || "").trim().toUpperCase()).sort();
+  if (codes.some((code) => !/^[A-Z]{2}$/u.test(code)) || new Set(codes).size !== codes.length) {
+    throw new Error("Published Knowledge Entity Layer Country codes must be unique ISO alpha-2 identities");
+  }
+  return Object.freeze(codes);
 }
 
 function assertValidEntitySet(label, validation) {

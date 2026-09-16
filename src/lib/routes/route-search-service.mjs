@@ -3,6 +3,7 @@ import { normalizeDiscoveredRoute } from "./contracts.mjs";
 import { routeDedupeFingerprint, routeTitleKey } from "./route-dedupe.mjs";
 import { buildRouteDestinationSuggestion } from "./route-destination-suggestion.mjs";
 import { finalizeRouteResult } from "./route-intent-invariant-gate.mjs";
+import { getAuthoritativeKnowledgeReadiness } from "./knowledge-readiness-authority.mjs";
 import { compareRouteIntentShadow } from "./route-intent-shadow-validation.mjs";
 import { isRouteV2TimeIntentEnabled, parseSearchIntent } from "./search-intent-parser.mjs";
 import { ensureSearchGeneratedMedia } from "./search-generated-media.mjs";
@@ -624,6 +625,8 @@ export function createRouteSearchService({
 } = {}) {
   if (!acceptedRepository?.list) throw new Error("ACCEPTED_REPOSITORY_REQUIRED");
   if (!searchCache?.get || !searchCache?.put) throw new Error("SEARCH_CACHE_REQUIRED");
+  const readinessAuthority = getAuthoritativeKnowledgeReadiness();
+  const authoritativePlannableCountryCodes = new Set(readinessAuthority.plannableCountryCodes);
   const plannerTimeoutMs = Math.max(1, Number(env.SEARCH_PLANNER_TIMEOUT_MS || 2000));
   const maxPlannerCalls = Math.max(0, Number(env.SEARCH_MAX_PLANNER_CALLS_PER_REQUEST || 1));
   const autoAcceptGenerated = String(env.SEARCH_AUTO_ACCEPT_GENERATED || "false").toLocaleLowerCase("en-US") === "true";
@@ -653,7 +656,9 @@ export function createRouteSearchService({
       catalogs: intentCatalog,
       timeIntentEnabled: isRouteV2TimeIntentEnabled(requestEnv),
     });
-    const plannableCountryCodes = unique((intentCatalog?.cities || []).map((city) => city?.countryCode));
+    const plannableCountryCodes = unique((intentCatalog?.cities || [])
+      .map((city) => city?.countryCode)
+      .filter((code) => authoritativePlannableCountryCodes.has(String(code || "").toUpperCase())));
     const requiredCountryCodes = unique(
       (intent.requiredCountryCodes || []).length ? intent.requiredCountryCodes : intent.countryCodes,
     );
@@ -953,7 +958,8 @@ export function createRouteSearchService({
     acceptedHit = ranked.length > 0;
 
     const destinationSuggestionMode = intent.intentMode === "destination-suggestion";
-    const plannerEligible = intent.canGenerate && (!destinationSuggestionMode || Boolean(destinationSuggestion));
+    const explicitlyReadyForPlanning = requiredCountryCodes.every((code) => authoritativePlannableCountryCodes.has(String(code || "").toUpperCase()));
+    const plannerEligible = intent.canGenerate && explicitlyReadyForPlanning && (!destinationSuggestionMode || Boolean(destinationSuggestion));
     const cacheRawQueryFingerprint = stableHash({ rawQuery: clean(intent.rawQuery) }).slice(0, 12);
     const cacheIntent = destinationSuggestion
       ? {

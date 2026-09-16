@@ -1,0 +1,676 @@
+{
+  "schemaVersion": "route-v2-plannable-expansion-batch01-entity-review-v1",
+  "phase": "A-C-entity-foundation",
+  "countries": [
+    "BB",
+    "BZ",
+    "CV",
+    "DM",
+    "MN",
+    "RW",
+    "SC",
+    "SM",
+    "TT",
+    "UG",
+    "ZM",
+    "ZW"
+  ],
+  "sourceBatches": [
+    34,
+    35,
+    36,
+    37,
+    39,
+    40,
+    46
+  ],
+  "baseline": {
+    "countries": 195,
+    "cities": 833,
+    "pois": 3963,
+    "totalEntities": 4991,
+    "plannable": 118,
+    "evidenceBacked": 115,
+    "catalogOnly": 77
+  },
+  "review": {
+    "existingDestinationCandidates": 33,
+    "existingPoiCandidates": 140,
+    "newDestinationCandidates": 0,
+    "newPoiCandidates": 0,
+    "admittedDestinations": 33,
+    "admittedPois": 108,
+    "rejectedDestinations": 0,
+    "rejectedPois": 32
+  },
+  "after": {
+    "countries": 195,
+    "cities": 866,
+    "pois": 4071,
+    "totalEntities": 5132,
+    "plannable": 118,
+    "evidenceBacked": 115,
+    "catalogOnly": 77
+  },
+  "evidenceAdditions": {
+    "transport": 0,
+    "seasonMonth": 0,
+    "theme": 0
+  },
+  "readinessPromotions": 0,
+  "candidateLeakage": "NONE",
+  "countriesReviewed": [
+    {
+      "countryCode": "BB",
+      "reviewedDestinationCandidates": 3,
+      "admittedProductionDestinations": 3,
+      "rejectedDestinations": 0,
+      "reviewedPoiCandidates": 15,
+      "admittedProductionPois": 12,
+      "rejectedPois": 3,
+      "productionDestinationQids": [
+        "Q2290478",
+        "Q2544610",
+        "Q36168"
+      ],
+      "rejectedPoiDecisions": [
+        {
+          "entityId": "poi-000dee59ddde7706",
+          "wikidataId": "Q5164145",
+          "canonicalNameEn": "Constitution River",
+          "sourceBatch": 36,
+          "disposition": "candidate-quarantine-retained",
+          "reason": "generic-watercourse"
+        },
+        {
+          "entityId": "poi-32dc9d6d64e910d5",
+          "wikidataId": "Q629924",
+          "canonicalNameEn": "National Library Service of Barbados",
+          "sourceBatch": 36,
+          "disposition": "candidate-quarantine-retained",
+          "reason": "operational-library"
+        },
+        {
+          "entityId": "poi-4b77652b9170cc16",
+          "wikidataId": "Q7161401",
+          "canonicalNameEn": "Pelican Island, Bridgetown",
+          "sourceBatch": 36,
+          "disposition": "candidate-quarantine-retained",
+          "reason": "former-island-not-current-poi"
+        }
+      ],
+      "validEvidence": false,
+      "plannable": false,
+      "evidenceBacked": false,
+      "catalogOnly": true,
+      "evidencePending": true,
+      "requiredDirectedTransportSegments": 4,
+      "requiredSeasonMonthProfiles": 3,
+      "routeModel": "multi-destination"
+    },
+    {
+      "countryCode": "BZ",
+      "reviewedDestinationCandidates": 4,
+      "admittedProductionDestinations": 4,
+      "rejectedDestinations": 0,
+      "reviewedPoiCandidates": 17,
+      "admittedProductionPois": 13,
+      "rejectedPois": 4,
+      "productionDestinationQids": [
+        "Q108223",
+        "Q3043",
+        "Q724815",
+        "Q882964"
+      ],
+      "rejectedPoiDecisions": [
+        {
+          "entityId": "poi-e702ae39ad401247",
+          "wikidataId": "Q21870703",
+          "canonicalNameEn": "Haulover Creek",
+          "sourceBatch": 36,
+          "disposition": "candidate-quarantine-retained",
+          "reason": "generic-watercourse"
+        },
+        {
+          "entityId": "poi-e1425e351a5677fd",
+          "wikidataId": "Q609946",
+          "canonicalNameEn": "Belmopan Public Library",
+          "sourceBatch": 36,
+          "disposition": "candidate-quarantine-retained",
+          "reason": "operational-library"
+        },
+        {
+          "entityId": "poi-9a62752fe36949a7",
+          "wikidataId": "Q6970423",
+          "canonicalNameEn": "National Archives of Belize",
+          "sourceBatch": 36,
+          "disposition": "candidate-quarantine-retained",
+          "reason": "operational-archive"
+        },
+        {
+          "entityId": "poi-7b9fae02d1214a3e",
+          "wikidataId": "Q815650",
+          "canonicalNameEn": "Belize River",
+          "sourceBatch": 36,
+          "disposition": "candidate-quarantine-retained",
+          "reason": "generic-watercourse"
+        }
+      ],
+      "validEvidence": false,
+      "plannable": false,
+      "evidenceBacked": false,
+      "catalogOnly": true,
+      "evidencePending": true,
+      "requiredDirectedTransportSegments": 6,
+      "requiredSeasonMonthProfiles": 4,
+      "routeModel": "multi-destination"
+    },
+    {
+      "countryCode": "CV",
+      "reviewedDestinationCandidates": 2,
+      "admittedProductionDestinations": 2,
+      "rejectedDestinations": 0,
+      "reviewedPoiCandidates": 12,
+      "admittedProductionPois": 10,
+      "rejectedPois": 2,
+      "productionDestinationQids": [
+        "Q3751",
+        "Q495547"
+      ],
+      "rejectedPoiDecisions": [
+        {
+          "entityId": "poi-2e813f8df6f9b9d3",
+          "wikidataId": "Q112031",
+          "canonicalNameEn": "São Vicente",
+          "sourceBatch": 39,
+          "disposition": "candidate-quarantine-retained",
+          "reason": "island-not-city-scoped-poi"
+        },
+        {
+          "entityId": "poi-95a6f4eca7a9099c",
+          "wikidataId": "Q6974145",
+          "canonicalNameEn": "National Library of Cape Verde",
+          "sourceBatch": 39,
+          "disposition": "candidate-quarantine-retained",
+          "reason": "operational-library"
+        }
+      ],
+      "validEvidence": false,
+      "plannable": false,
+      "evidenceBacked": false,
+      "catalogOnly": true,
+      "evidencePending": true,
+      "requiredDirectedTransportSegments": 2,
+      "requiredSeasonMonthProfiles": 2,
+      "routeModel": "multi-destination"
+    },
+    {
+      "countryCode": "DM",
+      "reviewedDestinationCandidates": 2,
+      "admittedProductionDestinations": 2,
+      "rejectedDestinations": 0,
+      "reviewedPoiCandidates": 12,
+      "admittedProductionPois": 8,
+      "rejectedPois": 4,
+      "productionDestinationQids": [
+        "Q1014235",
+        "Q36281"
+      ],
+      "rejectedPoiDecisions": [
+        {
+          "entityId": "poi-2dbe00d26e95c3c8",
+          "wikidataId": "Q3018552",
+          "canonicalNameEn": "Roseau River",
+          "sourceBatch": 40,
+          "disposition": "candidate-quarantine-retained",
+          "reason": "generic-watercourse"
+        },
+        {
+          "entityId": "poi-3be2c83e22c56a3c",
+          "wikidataId": "Q7056504",
+          "canonicalNameEn": "North River",
+          "sourceBatch": 40,
+          "disposition": "candidate-quarantine-retained",
+          "reason": "generic-watercourse"
+        },
+        {
+          "entityId": "poi-2a9d3485072f9407",
+          "wikidataId": "Q7190503",
+          "canonicalNameEn": "Picard River",
+          "sourceBatch": 40,
+          "disposition": "candidate-quarantine-retained",
+          "reason": "generic-watercourse"
+        },
+        {
+          "entityId": "poi-fa789c2ddeaed25f",
+          "wikidataId": "Q7337452",
+          "canonicalNameEn": "River Gillon",
+          "sourceBatch": 40,
+          "disposition": "candidate-quarantine-retained",
+          "reason": "generic-watercourse"
+        }
+      ],
+      "validEvidence": false,
+      "plannable": false,
+      "evidenceBacked": false,
+      "catalogOnly": true,
+      "evidencePending": true,
+      "requiredDirectedTransportSegments": 2,
+      "requiredSeasonMonthProfiles": 2,
+      "routeModel": "multi-destination"
+    },
+    {
+      "countryCode": "MN",
+      "reviewedDestinationCandidates": 3,
+      "admittedProductionDestinations": 3,
+      "rejectedDestinations": 0,
+      "reviewedPoiCandidates": 11,
+      "admittedProductionPois": 10,
+      "rejectedPois": 1,
+      "productionDestinationQids": [
+        "Q230628",
+        "Q23430",
+        "Q235571"
+      ],
+      "rejectedPoiDecisions": [
+        {
+          "entityId": "poi-d49316b860e0ae05",
+          "wikidataId": "Q625912",
+          "canonicalNameEn": "National Library of Mongolia",
+          "sourceBatch": 35,
+          "disposition": "candidate-quarantine-retained",
+          "reason": "operational-library"
+        }
+      ],
+      "validEvidence": false,
+      "plannable": false,
+      "evidenceBacked": false,
+      "catalogOnly": true,
+      "evidencePending": true,
+      "requiredDirectedTransportSegments": 4,
+      "requiredSeasonMonthProfiles": 3,
+      "routeModel": "multi-destination"
+    },
+    {
+      "countryCode": "RW",
+      "reviewedDestinationCandidates": 4,
+      "admittedProductionDestinations": 4,
+      "rejectedDestinations": 0,
+      "reviewedPoiCandidates": 9,
+      "admittedProductionPois": 7,
+      "rejectedPois": 2,
+      "productionDestinationQids": [
+        "Q246145",
+        "Q3859",
+        "Q509739",
+        "Q830631"
+      ],
+      "rejectedPoiDecisions": [
+        {
+          "entityId": "poi-31e0045115a9609c",
+          "wikidataId": "Q15275774",
+          "canonicalNameEn": "Sebeya River",
+          "sourceBatch": 34,
+          "disposition": "candidate-quarantine-retained",
+          "reason": "generic-watercourse"
+        },
+        {
+          "entityId": "poi-0689f707571f64e3",
+          "wikidataId": "Q84496209",
+          "canonicalNameEn": "Mukungwa",
+          "sourceBatch": 34,
+          "disposition": "candidate-quarantine-retained",
+          "reason": "low-value-watercourse"
+        }
+      ],
+      "validEvidence": false,
+      "plannable": false,
+      "evidenceBacked": false,
+      "catalogOnly": true,
+      "evidencePending": true,
+      "requiredDirectedTransportSegments": 6,
+      "requiredSeasonMonthProfiles": 4,
+      "routeModel": "multi-destination"
+    },
+    {
+      "countryCode": "SC",
+      "reviewedDestinationCandidates": 1,
+      "admittedProductionDestinations": 1,
+      "rejectedDestinations": 0,
+      "reviewedPoiCandidates": 7,
+      "admittedProductionPois": 3,
+      "rejectedPois": 4,
+      "productionDestinationQids": [
+        "Q3940"
+      ],
+      "rejectedPoiDecisions": [
+        {
+          "entityId": "poi-00b82ac90c0b57ed",
+          "wikidataId": "Q2066419",
+          "canonicalNameEn": "Ste. Anne Island",
+          "sourceBatch": 46,
+          "disposition": "candidate-quarantine-retained",
+          "reason": "island-not-city-scoped-poi"
+        },
+        {
+          "entityId": "poi-522559f4705ef9e1",
+          "wikidataId": "Q219642",
+          "canonicalNameEn": "Mahé",
+          "sourceBatch": 46,
+          "disposition": "candidate-quarantine-retained",
+          "reason": "island-not-city-scoped-poi"
+        },
+        {
+          "entityId": "poi-a02b73082c3af45d",
+          "wikidataId": "Q28685",
+          "canonicalNameEn": "Cerf Island",
+          "sourceBatch": 46,
+          "disposition": "candidate-quarantine-retained",
+          "reason": "island-not-city-scoped-poi"
+        },
+        {
+          "entityId": "poi-9450f6c3460d022e",
+          "wikidataId": "Q40411",
+          "canonicalNameEn": "Moyenne Island",
+          "sourceBatch": 46,
+          "disposition": "candidate-quarantine-retained",
+          "reason": "island-not-city-scoped-poi"
+        }
+      ],
+      "validEvidence": false,
+      "plannable": false,
+      "evidenceBacked": false,
+      "catalogOnly": true,
+      "evidencePending": true,
+      "requiredDirectedTransportSegments": 0,
+      "requiredSeasonMonthProfiles": 1,
+      "routeModel": "single-destination"
+    },
+    {
+      "countryCode": "SM",
+      "reviewedDestinationCandidates": 1,
+      "admittedProductionDestinations": 1,
+      "rejectedDestinations": 0,
+      "reviewedPoiCandidates": 7,
+      "admittedProductionPois": 6,
+      "rejectedPois": 1,
+      "productionDestinationQids": [
+        "Q1848"
+      ],
+      "rejectedPoiDecisions": [
+        {
+          "entityId": "poi-a8795ca6543c7f2c",
+          "wikidataId": "Q2465198",
+          "canonicalNameEn": "San Marino River",
+          "sourceBatch": 37,
+          "disposition": "candidate-quarantine-retained",
+          "reason": "generic-watercourse"
+        }
+      ],
+      "validEvidence": false,
+      "plannable": false,
+      "evidenceBacked": false,
+      "catalogOnly": true,
+      "evidencePending": true,
+      "requiredDirectedTransportSegments": 0,
+      "requiredSeasonMonthProfiles": 1,
+      "routeModel": "single-destination"
+    },
+    {
+      "countryCode": "TT",
+      "reviewedDestinationCandidates": 3,
+      "admittedProductionDestinations": 3,
+      "rejectedDestinations": 0,
+      "reviewedPoiCandidates": 14,
+      "admittedProductionPois": 10,
+      "rejectedPois": 4,
+      "productionDestinationQids": [
+        "Q1023712",
+        "Q1444575",
+        "Q39178"
+      ],
+      "rejectedPoiDecisions": [
+        {
+          "entityId": "poi-8014f87f20414ee3",
+          "wikidataId": "Q17509679",
+          "canonicalNameEn": "Cipero Marl",
+          "sourceBatch": 37,
+          "disposition": "candidate-quarantine-retained",
+          "reason": "geological-unit-not-travel-poi"
+        },
+        {
+          "entityId": "poi-9f9ab0567777bee1",
+          "wikidataId": "Q18354333",
+          "canonicalNameEn": "San Fernando Formation",
+          "sourceBatch": 37,
+          "disposition": "candidate-quarantine-retained",
+          "reason": "geological-unit-not-travel-poi"
+        },
+        {
+          "entityId": "poi-f463646a0ee7dd33",
+          "wikidataId": "Q4151227",
+          "canonicalNameEn": "Guaracara River",
+          "sourceBatch": 37,
+          "disposition": "candidate-quarantine-retained",
+          "reason": "generic-watercourse"
+        },
+        {
+          "entityId": "poi-d9803606b13d59bb",
+          "wikidataId": "Q5045524",
+          "canonicalNameEn": "Caroni River",
+          "sourceBatch": 37,
+          "disposition": "candidate-quarantine-retained",
+          "reason": "generic-watercourse"
+        }
+      ],
+      "validEvidence": false,
+      "plannable": false,
+      "evidenceBacked": false,
+      "catalogOnly": true,
+      "evidencePending": true,
+      "requiredDirectedTransportSegments": 4,
+      "requiredSeasonMonthProfiles": 3,
+      "routeModel": "multi-destination"
+    },
+    {
+      "countryCode": "UG",
+      "reviewedDestinationCandidates": 3,
+      "admittedProductionDestinations": 3,
+      "rejectedDestinations": 0,
+      "reviewedPoiCandidates": 15,
+      "admittedProductionPois": 11,
+      "rejectedPois": 4,
+      "productionDestinationQids": [
+        "Q211970",
+        "Q3894",
+        "Q501709"
+      ],
+      "rejectedPoiDecisions": [
+        {
+          "entityId": "poi-e29f2fa398c1cdcd",
+          "wikidataId": "Q122933018",
+          "canonicalNameEn": "Amansi and Mapeera monument",
+          "sourceBatch": 34,
+          "disposition": "candidate-quarantine-retained",
+          "reason": "low-value-monument"
+        },
+        {
+          "entityId": "poi-372e953d16e4ec74",
+          "wikidataId": "Q22082371",
+          "canonicalNameEn": "Buwenda",
+          "sourceBatch": 34,
+          "disposition": "candidate-quarantine-retained",
+          "reason": "locality-not-travel-poi"
+        },
+        {
+          "entityId": "poi-61e0c816e74c5f36",
+          "wikidataId": "Q5594671",
+          "canonicalNameEn": "Grand Imperial Hotel",
+          "sourceBatch": 34,
+          "disposition": "candidate-quarantine-retained",
+          "reason": "accommodation-business"
+        },
+        {
+          "entityId": "poi-019951eb86f6c204",
+          "wikidataId": "Q618252",
+          "canonicalNameEn": "National Library of Uganda",
+          "sourceBatch": 34,
+          "disposition": "candidate-quarantine-retained",
+          "reason": "operational-library"
+        }
+      ],
+      "validEvidence": false,
+      "plannable": false,
+      "evidenceBacked": false,
+      "catalogOnly": true,
+      "evidencePending": true,
+      "requiredDirectedTransportSegments": 4,
+      "requiredSeasonMonthProfiles": 3,
+      "routeModel": "multi-destination"
+    },
+    {
+      "countryCode": "ZM",
+      "reviewedDestinationCandidates": 3,
+      "admittedProductionDestinations": 3,
+      "rejectedDestinations": 0,
+      "reviewedPoiCandidates": 6,
+      "admittedProductionPois": 5,
+      "rejectedPois": 1,
+      "productionDestinationQids": [
+        "Q1866604",
+        "Q219671",
+        "Q3881"
+      ],
+      "rejectedPoiDecisions": [
+        {
+          "entityId": "poi-73dfde795bdcdd68",
+          "wikidataId": "Q16918871",
+          "canonicalNameEn": "National Archives of Zambia",
+          "sourceBatch": 35,
+          "disposition": "candidate-quarantine-retained",
+          "reason": "operational-archive"
+        }
+      ],
+      "validEvidence": false,
+      "plannable": false,
+      "evidenceBacked": false,
+      "catalogOnly": true,
+      "evidencePending": true,
+      "requiredDirectedTransportSegments": 4,
+      "requiredSeasonMonthProfiles": 3,
+      "routeModel": "multi-destination"
+    },
+    {
+      "countryCode": "ZW",
+      "reviewedDestinationCandidates": 4,
+      "admittedProductionDestinations": 4,
+      "rejectedDestinations": 0,
+      "reviewedPoiCandidates": 15,
+      "admittedProductionPois": 13,
+      "rejectedPois": 2,
+      "productionDestinationQids": [
+        "Q1393804",
+        "Q193250",
+        "Q3921",
+        "Q399322"
+      ],
+      "rejectedPoiDecisions": [
+        {
+          "entityId": "poi-34961b5bad828754",
+          "wikidataId": "Q24235953",
+          "canonicalNameEn": "Harare Zimbabwe Temple",
+          "sourceBatch": 35,
+          "disposition": "candidate-quarantine-retained",
+          "reason": "low-value-operational-religious-site"
+        },
+        {
+          "entityId": "poi-ca29350e08d859a7",
+          "wikidataId": "Q6974180",
+          "canonicalNameEn": "National Library of Zimbabwe",
+          "sourceBatch": 35,
+          "disposition": "candidate-quarantine-retained",
+          "reason": "operational-library"
+        }
+      ],
+      "validEvidence": false,
+      "plannable": false,
+      "evidenceBacked": false,
+      "catalogOnly": true,
+      "evidencePending": true,
+      "requiredDirectedTransportSegments": 6,
+      "requiredSeasonMonthProfiles": 4,
+      "routeModel": "multi-destination"
+    }
+  ],
+  "nextEvidencePhase": {
+    "requiredDirectedTransportSegments": 42,
+    "requiredSeasonMonthProfiles": 33,
+    "singleDestinationCountries": [
+      "SC",
+      "SM"
+    ],
+    "multiDestinationCountries": [
+      "BB",
+      "BZ",
+      "CV",
+      "DM",
+      "MN",
+      "RW",
+      "TT",
+      "UG",
+      "ZM",
+      "ZW"
+    ],
+    "unresolvedBlockers": [
+      "directed-transport-evidence-missing",
+      "season-month-evidence-missing",
+      "independent-theme-evidence-missing"
+    ]
+  },
+  "historical": {
+    "batch09": {
+      "countries": 119,
+      "cities": 833,
+      "pois": 3963,
+      "total": 4915
+    },
+    "wave1": {
+      "countries": 139,
+      "cities": 833,
+      "pois": 3963,
+      "total": 4935
+    },
+    "wave2": {
+      "countries": 157,
+      "cities": 833,
+      "pois": 3963,
+      "total": 4953
+    },
+    "wave3": {
+      "countries": 175,
+      "cities": 833,
+      "pois": 3963,
+      "total": 4971
+    },
+    "wave4": {
+      "countries": 192,
+      "cities": 833,
+      "pois": 3963,
+      "total": 4988
+    },
+    "sovereignCatalogFinal": {
+      "countries": 195,
+      "cities": 833,
+      "pois": 3963,
+      "total": 4991
+    },
+    "historicalQuarantine": 1416
+  },
+  "performance": {
+    "dedicatedRunner": "NOT_AVAILABLE",
+    "realQualificationExecutions": 0,
+    "formalExperimentExecutions": 1,
+    "formalRun34622976529": "BLOCKED_INCONCLUSIVE",
+    "clearance": "NOT_CLEARED"
+  }
+}

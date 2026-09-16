@@ -217,6 +217,9 @@ export function imageReferenceKind(sourcePath) {
   if (/^scripts\/verify-/u.test(sourcePath)) return "test";
   if (/^tests\//u.test(sourcePath)) return "test";
   if (/^data\/knowledge\/(?:raw|reports|batches)\//u.test(sourcePath)) return "audit";
+  if (/^data\/route-v2\/evidence-seed\//u.test(sourcePath)) return "evidence-source";
+  if (/^data\/knowledge\/seeds\/[^/]*evidence[^/]*\.json$/u.test(sourcePath)) return "evidence-source";
+  if (/^data\/knowledge\/reviewed-claims\//u.test(sourcePath)) return "evidence-source";
   if (/^data\/route-v2\/images\/(?:batch\d{2}-dedicated-image-provenance|image-debt-[a-z0-9-]+)\.json$/u.test(sourcePath)) return "audit";
   if (/^data\/route-v2\/images\/audit\//u.test(sourcePath)) return "audit";
   if (/^(?:docs\/|ROUTE_V2_.*\.md$)/u.test(sourcePath) || sourcePath.endsWith(".md")) return "audit";

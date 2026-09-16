@@ -1,0 +1,1316 @@
+{
+  "schemaVersion": "route-v2-plannable-expansion-batch01-evidence-audit-v1",
+  "retrievedAt": "2026-09-16T08:00:00.000Z",
+  "countries": [
+    {
+      "countryCode": "BB",
+      "countryEntityId": "country-8b569ea96aff660e",
+      "destinationCount": 3,
+      "transportStatus": "validated",
+      "requiredDirectedTransportSegments": 4,
+      "plannedDirectedTransportSegments": 4,
+      "admittedDirectedTransportSegments": 4,
+      "missingDirectedTransportSegments": 0,
+      "requiredSeasonMonthProfiles": 3,
+      "admittedSeasonMonthProfiles": 3,
+      "themeEvidence": 0,
+      "transportSatisfied": true,
+      "seasonSatisfied": true,
+      "evidenceReadyCandidate": true,
+      "plannable": false,
+      "evidenceBacked": false,
+      "catalogOnly": true,
+      "readinessPromotion": false,
+      "blocker": null
+    },
+    {
+      "countryCode": "BZ",
+      "countryEntityId": "country-510d7bdffedde15b",
+      "destinationCount": 4,
+      "transportStatus": "blocked",
+      "requiredDirectedTransportSegments": 6,
+      "plannedDirectedTransportSegments": 6,
+      "admittedDirectedTransportSegments": 0,
+      "missingDirectedTransportSegments": 6,
+      "requiredSeasonMonthProfiles": 4,
+      "admittedSeasonMonthProfiles": 4,
+      "themeEvidence": 0,
+      "transportSatisfied": false,
+      "seasonSatisfied": true,
+      "evidenceReadyCandidate": false,
+      "plannable": false,
+      "evidenceBacked": false,
+      "catalogOnly": true,
+      "readinessPromotion": false,
+      "blocker": "Official material confirms terminals and regulated services but does not establish all three exact endpoint pairs in both directions."
+    },
+    {
+      "countryCode": "CV",
+      "countryEntityId": "country-ea24233c3e8acbde",
+      "destinationCount": 2,
+      "transportStatus": "blocked",
+      "requiredDirectedTransportSegments": 2,
+      "plannedDirectedTransportSegments": 2,
+      "admittedDirectedTransportSegments": 0,
+      "missingDirectedTransportSegments": 2,
+      "requiredSeasonMonthProfiles": 2,
+      "admittedSeasonMonthProfiles": 2,
+      "themeEvidence": 0,
+      "transportSatisfied": false,
+      "seasonSatisfied": true,
+      "evidenceReadyCandidate": false,
+      "plannable": false,
+      "evidenceBacked": false,
+      "catalogOnly": true,
+      "readinessPromotion": false,
+      "blocker": "The reviewed destinations page identifies Praia and Mindelo/São Vicente but does not prove the exact directed Praia–Mindelo service in either direction."
+    },
+    {
+      "countryCode": "DM",
+      "countryEntityId": "country-41f3a8da535d4601",
+      "destinationCount": 2,
+      "transportStatus": "validated",
+      "requiredDirectedTransportSegments": 2,
+      "plannedDirectedTransportSegments": 2,
+      "admittedDirectedTransportSegments": 2,
+      "missingDirectedTransportSegments": 0,
+      "requiredSeasonMonthProfiles": 2,
+      "admittedSeasonMonthProfiles": 0,
+      "themeEvidence": 0,
+      "transportSatisfied": true,
+      "seasonSatisfied": false,
+      "evidenceReadyCandidate": false,
+      "plannable": false,
+      "evidenceBacked": false,
+      "catalogOnly": true,
+      "readinessPromotion": false,
+      "blocker": "One or more required destination/month claims lack authoritative source binding."
+    },
+    {
+      "countryCode": "MN",
+      "countryEntityId": "country-bea943b938e45c46",
+      "destinationCount": 3,
+      "transportStatus": "validated",
+      "requiredDirectedTransportSegments": 4,
+      "plannedDirectedTransportSegments": 4,
+      "admittedDirectedTransportSegments": 4,
+      "missingDirectedTransportSegments": 0,
+      "requiredSeasonMonthProfiles": 3,
+      "admittedSeasonMonthProfiles": 0,
+      "themeEvidence": 0,
+      "transportSatisfied": true,
+      "seasonSatisfied": false,
+      "evidenceReadyCandidate": false,
+      "plannable": false,
+      "evidenceBacked": false,
+      "catalogOnly": true,
+      "readinessPromotion": false,
+      "blocker": "One or more required destination/month claims lack authoritative source binding."
+    },
+    {
+      "countryCode": "RW",
+      "countryEntityId": "country-aebbc06911d68974",
+      "destinationCount": 4,
+      "transportStatus": "validated",
+      "requiredDirectedTransportSegments": 6,
+      "plannedDirectedTransportSegments": 6,
+      "admittedDirectedTransportSegments": 6,
+      "missingDirectedTransportSegments": 0,
+      "requiredSeasonMonthProfiles": 4,
+      "admittedSeasonMonthProfiles": 4,
+      "themeEvidence": 0,
+      "transportSatisfied": true,
+      "seasonSatisfied": true,
+      "evidenceReadyCandidate": true,
+      "plannable": false,
+      "evidenceBacked": false,
+      "catalogOnly": true,
+      "readinessPromotion": false,
+      "blocker": null
+    },
+    {
+      "countryCode": "SC",
+      "countryEntityId": "country-00b4a4ddf326425f",
+      "destinationCount": 1,
+      "transportStatus": "single-destination-not-required",
+      "requiredDirectedTransportSegments": 0,
+      "plannedDirectedTransportSegments": 0,
+      "admittedDirectedTransportSegments": 0,
+      "missingDirectedTransportSegments": 0,
+      "requiredSeasonMonthProfiles": 1,
+      "admittedSeasonMonthProfiles": 1,
+      "themeEvidence": 0,
+      "transportSatisfied": true,
+      "seasonSatisfied": true,
+      "evidenceReadyCandidate": true,
+      "plannable": false,
+      "evidenceBacked": false,
+      "catalogOnly": true,
+      "readinessPromotion": false,
+      "blocker": null
+    },
+    {
+      "countryCode": "SM",
+      "countryEntityId": "country-83b52e81bbbc412c",
+      "destinationCount": 1,
+      "transportStatus": "single-destination-not-required",
+      "requiredDirectedTransportSegments": 0,
+      "plannedDirectedTransportSegments": 0,
+      "admittedDirectedTransportSegments": 0,
+      "missingDirectedTransportSegments": 0,
+      "requiredSeasonMonthProfiles": 1,
+      "admittedSeasonMonthProfiles": 1,
+      "themeEvidence": 0,
+      "transportSatisfied": true,
+      "seasonSatisfied": true,
+      "evidenceReadyCandidate": true,
+      "plannable": false,
+      "evidenceBacked": false,
+      "catalogOnly": true,
+      "readinessPromotion": false,
+      "blocker": null
+    },
+    {
+      "countryCode": "TT",
+      "countryEntityId": "country-c51d9da3fddaf5d2",
+      "destinationCount": 3,
+      "transportStatus": "validated",
+      "requiredDirectedTransportSegments": 4,
+      "plannedDirectedTransportSegments": 4,
+      "admittedDirectedTransportSegments": 2,
+      "missingDirectedTransportSegments": 2,
+      "requiredSeasonMonthProfiles": 3,
+      "admittedSeasonMonthProfiles": 3,
+      "themeEvidence": 0,
+      "transportSatisfied": false,
+      "seasonSatisfied": true,
+      "evidenceReadyCandidate": false,
+      "plannable": false,
+      "evidenceBacked": false,
+      "catalogOnly": true,
+      "readinessPromotion": false,
+      "blocker": "Only the two explicitly listed outbound directions are admitted; reverse directions remain blocked."
+    },
+    {
+      "countryCode": "UG",
+      "countryEntityId": "country-ddc6a6e5874ed167",
+      "destinationCount": 3,
+      "transportStatus": "blocked",
+      "requiredDirectedTransportSegments": 4,
+      "plannedDirectedTransportSegments": 4,
+      "admittedDirectedTransportSegments": 0,
+      "missingDirectedTransportSegments": 4,
+      "requiredSeasonMonthProfiles": 3,
+      "admittedSeasonMonthProfiles": 3,
+      "themeEvidence": 0,
+      "transportSatisfied": false,
+      "seasonSatisfied": true,
+      "evidenceReadyCandidate": false,
+      "plannable": false,
+      "evidenceBacked": false,
+      "catalogOnly": true,
+      "readinessPromotion": false,
+      "blocker": "Official Kampala route material names the Entebbe and Jinja road corridors but does not prove both exact intercity endpoint services in both directions."
+    },
+    {
+      "countryCode": "ZM",
+      "countryEntityId": "country-cdde3f0cbf80314a",
+      "destinationCount": 3,
+      "transportStatus": "validated",
+      "requiredDirectedTransportSegments": 4,
+      "plannedDirectedTransportSegments": 4,
+      "admittedDirectedTransportSegments": 4,
+      "missingDirectedTransportSegments": 0,
+      "requiredSeasonMonthProfiles": 3,
+      "admittedSeasonMonthProfiles": 3,
+      "themeEvidence": 0,
+      "transportSatisfied": true,
+      "seasonSatisfied": true,
+      "evidenceReadyCandidate": true,
+      "plannable": false,
+      "evidenceBacked": false,
+      "catalogOnly": true,
+      "readinessPromotion": false,
+      "blocker": null
+    },
+    {
+      "countryCode": "ZW",
+      "countryEntityId": "country-7561cf912a06d6c7",
+      "destinationCount": 4,
+      "transportStatus": "validated",
+      "requiredDirectedTransportSegments": 6,
+      "plannedDirectedTransportSegments": 6,
+      "admittedDirectedTransportSegments": 6,
+      "missingDirectedTransportSegments": 0,
+      "requiredSeasonMonthProfiles": 4,
+      "admittedSeasonMonthProfiles": 4,
+      "themeEvidence": 0,
+      "transportSatisfied": true,
+      "seasonSatisfied": true,
+      "evidenceReadyCandidate": true,
+      "plannable": false,
+      "evidenceBacked": false,
+      "catalogOnly": true,
+      "readinessPromotion": false,
+      "blocker": null
+    }
+  ],
+  "totals": {
+    "requiredDirectedTransportSegments": 42,
+    "admittedDirectedTransportSegments": 28,
+    "missingDirectedTransportSegments": 14,
+    "requiredSeasonMonthProfiles": 33,
+    "admittedSeasonMonthProfiles": 28,
+    "themeEvidence": 0,
+    "evidenceReadyCandidateCountries": 6,
+    "blockedCountries": 6
+  },
+  "authority": {
+    "resultLabel": "EVIDENCE READY CANDIDATE",
+    "productionCounts": {
+      "countries": 195,
+      "cities": 866,
+      "pois": 4071,
+      "totalEntities": 5132
+    },
+    "readinessCounts": {
+      "plannable": 118,
+      "evidenceBacked": 115,
+      "catalogOnly": 77
+    },
+    "readinessPromotions": 0,
+    "addedPlannable": 0,
+    "addedEvidenceBacked": 0,
+    "candidateLeakage": "NONE"
+  },
+  "conflicts": [],
+  "blockedClaims": [
+    {
+      "countryCode": "BZ",
+      "claim": "directed-transport",
+      "missing": 6,
+      "reason": "Official material confirms terminals and regulated services but does not establish all three exact endpoint pairs in both directions."
+    },
+    {
+      "countryCode": "CV",
+      "claim": "directed-transport",
+      "missing": 2,
+      "reason": "The reviewed destinations page identifies Praia and Mindelo/São Vicente but does not prove the exact directed Praia–Mindelo service in either direction."
+    },
+    {
+      "countryCode": "DM",
+      "claim": "directed-transport",
+      "missing": 0,
+      "reason": "One or more required destination/month claims lack authoritative source binding."
+    },
+    {
+      "countryCode": "MN",
+      "claim": "directed-transport",
+      "missing": 0,
+      "reason": "One or more required destination/month claims lack authoritative source binding."
+    },
+    {
+      "countryCode": "TT",
+      "claim": "directed-transport",
+      "missing": 2,
+      "reason": "Only the two explicitly listed outbound directions are admitted; reverse directions remain blocked."
+    },
+    {
+      "countryCode": "UG",
+      "claim": "directed-transport",
+      "missing": 4,
+      "reason": "Official Kampala route material names the Entebbe and Jinja road corridors but does not prove both exact intercity endpoint services in both directions."
+    }
+  ],
+  "transportReAdjudication": [
+    {
+      "countryCode": "BB",
+      "origin": "Bridgetown",
+      "destination": "Holetown",
+      "currentSource": "https://www.transportboard.com/wp-content/uploads/Secondary-School-Bus-Service.pdf",
+      "reviewedSource": "https://www.transportboard.com/wp-content/uploads/Secondary-School-Bus-Service.pdf",
+      "directionSupported": "YES",
+      "bidirectionalExplicitlySupported": "YES",
+      "admission": "ADMIT",
+      "reason": "The Barbados Transport Board route list identifies Bridgetown service via Holetown and Speightstown on the Route 1 corridor and establishes service in both directions along that corridor."
+    },
+    {
+      "countryCode": "BB",
+      "origin": "Holetown",
+      "destination": "Bridgetown",
+      "currentSource": "https://www.transportboard.com/wp-content/uploads/Secondary-School-Bus-Service.pdf",
+      "reviewedSource": "https://www.transportboard.com/wp-content/uploads/Secondary-School-Bus-Service.pdf",
+      "directionSupported": "YES",
+      "bidirectionalExplicitlySupported": "YES",
+      "admission": "ADMIT",
+      "reason": "The Barbados Transport Board route list identifies Bridgetown service via Holetown and Speightstown on the Route 1 corridor and establishes service in both directions along that corridor."
+    },
+    {
+      "countryCode": "BB",
+      "origin": "Bridgetown",
+      "destination": "Speightstown",
+      "currentSource": "https://www.transportboard.com/wp-content/uploads/Secondary-School-Bus-Service.pdf",
+      "reviewedSource": "https://www.transportboard.com/wp-content/uploads/Secondary-School-Bus-Service.pdf",
+      "directionSupported": "YES",
+      "bidirectionalExplicitlySupported": "YES",
+      "admission": "ADMIT",
+      "reason": "The Barbados Transport Board route list identifies Bridgetown service via Holetown and Speightstown on the Route 1 corridor and establishes service in both directions along that corridor."
+    },
+    {
+      "countryCode": "BB",
+      "origin": "Speightstown",
+      "destination": "Bridgetown",
+      "currentSource": "https://www.transportboard.com/wp-content/uploads/Secondary-School-Bus-Service.pdf",
+      "reviewedSource": "https://www.transportboard.com/wp-content/uploads/Secondary-School-Bus-Service.pdf",
+      "directionSupported": "YES",
+      "bidirectionalExplicitlySupported": "YES",
+      "admission": "ADMIT",
+      "reason": "The Barbados Transport Board route list identifies Bridgetown service via Holetown and Speightstown on the Route 1 corridor and establishes service in both directions along that corridor."
+    },
+    {
+      "countryCode": "CV",
+      "origin": "Praia",
+      "destination": "Mindelo",
+      "currentSource": "https://www.cvsky.cv/planear-viagem/destinos",
+      "reviewedSource": "https://www.cvsky.cv/planear-viagem/destinos",
+      "reason": "The page lists destinations but does not establish this exact directed service.",
+      "directionSupported": "NO",
+      "bidirectionalExplicitlySupported": "NO",
+      "admission": "BLOCK"
+    },
+    {
+      "countryCode": "CV",
+      "origin": "Mindelo",
+      "destination": "Praia",
+      "currentSource": "https://www.cvsky.cv/planear-viagem/destinos",
+      "reviewedSource": "https://www.cvsky.cv/planear-viagem/destinos",
+      "reason": "The page lists destinations but does not establish this exact directed service.",
+      "directionSupported": "NO",
+      "bidirectionalExplicitlySupported": "NO",
+      "admission": "BLOCK"
+    },
+    {
+      "countryCode": "DM",
+      "origin": "Roseau",
+      "destination": "Portsmouth",
+      "currentSource": "https://cdn.discoverdominica.com/production/20250909124137-new-bus-fares-feb-2023-rev.pdf",
+      "reviewedSource": "https://cdn.discoverdominica.com/production/20250909124137-new-bus-fares-feb-2023-rev.pdf",
+      "directionSupported": "YES",
+      "bidirectionalExplicitlySupported": "YES",
+      "admission": "ADMIT",
+      "reason": "The official Dominica bus fare schedule lists the Roseau-Portsmouth passenger route as a reciprocal fare corridor."
+    },
+    {
+      "countryCode": "DM",
+      "origin": "Portsmouth",
+      "destination": "Roseau",
+      "currentSource": "https://cdn.discoverdominica.com/production/20250909124137-new-bus-fares-feb-2023-rev.pdf",
+      "reviewedSource": "https://cdn.discoverdominica.com/production/20250909124137-new-bus-fares-feb-2023-rev.pdf",
+      "directionSupported": "YES",
+      "bidirectionalExplicitlySupported": "YES",
+      "admission": "ADMIT",
+      "reason": "The official Dominica bus fare schedule lists the Roseau-Portsmouth passenger route as a reciprocal fare corridor."
+    },
+    {
+      "countryCode": "MN",
+      "origin": "Ulaanbaatar",
+      "destination": "Darkhan",
+      "currentSource": "https://news.mnb.mn/i/327521",
+      "reviewedSource": "https://news.mnb.mn/i/327521",
+      "directionSupported": "YES",
+      "bidirectionalExplicitlySupported": "YES",
+      "admission": "ADMIT",
+      "reason": "The published passenger timetable separately lists Ulaanbaatar-Darkhan, Darkhan-Ulaanbaatar, Ulaanbaatar-Erdenet and Erdenet-Ulaanbaatar services."
+    },
+    {
+      "countryCode": "MN",
+      "origin": "Darkhan",
+      "destination": "Ulaanbaatar",
+      "currentSource": "https://news.mnb.mn/i/327521",
+      "reviewedSource": "https://news.mnb.mn/i/327521",
+      "directionSupported": "YES",
+      "bidirectionalExplicitlySupported": "YES",
+      "admission": "ADMIT",
+      "reason": "The published passenger timetable separately lists Ulaanbaatar-Darkhan, Darkhan-Ulaanbaatar, Ulaanbaatar-Erdenet and Erdenet-Ulaanbaatar services."
+    },
+    {
+      "countryCode": "MN",
+      "origin": "Ulaanbaatar",
+      "destination": "Erdenet",
+      "currentSource": "https://news.mnb.mn/i/327521",
+      "reviewedSource": "https://news.mnb.mn/i/327521",
+      "directionSupported": "YES",
+      "bidirectionalExplicitlySupported": "YES",
+      "admission": "ADMIT",
+      "reason": "The published passenger timetable separately lists Ulaanbaatar-Darkhan, Darkhan-Ulaanbaatar, Ulaanbaatar-Erdenet and Erdenet-Ulaanbaatar services."
+    },
+    {
+      "countryCode": "MN",
+      "origin": "Erdenet",
+      "destination": "Ulaanbaatar",
+      "currentSource": "https://news.mnb.mn/i/327521",
+      "reviewedSource": "https://news.mnb.mn/i/327521",
+      "directionSupported": "YES",
+      "bidirectionalExplicitlySupported": "YES",
+      "admission": "ADMIT",
+      "reason": "The published passenger timetable separately lists Ulaanbaatar-Darkhan, Darkhan-Ulaanbaatar, Ulaanbaatar-Erdenet and Erdenet-Ulaanbaatar services."
+    },
+    {
+      "countryCode": "RW",
+      "origin": "Kigali",
+      "destination": "Butare",
+      "currentSource": "https://www.rura.rw/fileadmin/docs/PUBLIC_TRANSPORT_OPERATORS.pdf",
+      "reviewedSource": "https://www.rura.rw/fileadmin/docs/PUBLIC_TRANSPORT_OPERATORS.pdf",
+      "directionSupported": "YES",
+      "bidirectionalExplicitlySupported": "YES",
+      "admission": "ADMIT",
+      "reason": "RURA's licensed operator register identifies reciprocal passenger routes between Kigali and Huye, Rubavu and Musanze, corresponding to Butare, Gisenyi and Ruhengeri."
+    },
+    {
+      "countryCode": "RW",
+      "origin": "Butare",
+      "destination": "Kigali",
+      "currentSource": "https://www.rura.rw/fileadmin/docs/PUBLIC_TRANSPORT_OPERATORS.pdf",
+      "reviewedSource": "https://www.rura.rw/fileadmin/docs/PUBLIC_TRANSPORT_OPERATORS.pdf",
+      "directionSupported": "YES",
+      "bidirectionalExplicitlySupported": "YES",
+      "admission": "ADMIT",
+      "reason": "RURA's licensed operator register identifies reciprocal passenger routes between Kigali and Huye, Rubavu and Musanze, corresponding to Butare, Gisenyi and Ruhengeri."
+    },
+    {
+      "countryCode": "RW",
+      "origin": "Kigali",
+      "destination": "Gisenyi",
+      "currentSource": "https://www.rura.rw/fileadmin/docs/PUBLIC_TRANSPORT_OPERATORS.pdf",
+      "reviewedSource": "https://www.rura.rw/fileadmin/docs/PUBLIC_TRANSPORT_OPERATORS.pdf",
+      "directionSupported": "YES",
+      "bidirectionalExplicitlySupported": "YES",
+      "admission": "ADMIT",
+      "reason": "RURA's licensed operator register identifies reciprocal passenger routes between Kigali and Huye, Rubavu and Musanze, corresponding to Butare, Gisenyi and Ruhengeri."
+    },
+    {
+      "countryCode": "RW",
+      "origin": "Gisenyi",
+      "destination": "Kigali",
+      "currentSource": "https://www.rura.rw/fileadmin/docs/PUBLIC_TRANSPORT_OPERATORS.pdf",
+      "reviewedSource": "https://www.rura.rw/fileadmin/docs/PUBLIC_TRANSPORT_OPERATORS.pdf",
+      "directionSupported": "YES",
+      "bidirectionalExplicitlySupported": "YES",
+      "admission": "ADMIT",
+      "reason": "RURA's licensed operator register identifies reciprocal passenger routes between Kigali and Huye, Rubavu and Musanze, corresponding to Butare, Gisenyi and Ruhengeri."
+    },
+    {
+      "countryCode": "RW",
+      "origin": "Kigali",
+      "destination": "Ruhengeri",
+      "currentSource": "https://www.rura.rw/fileadmin/docs/PUBLIC_TRANSPORT_OPERATORS.pdf",
+      "reviewedSource": "https://www.rura.rw/fileadmin/docs/PUBLIC_TRANSPORT_OPERATORS.pdf",
+      "directionSupported": "YES",
+      "bidirectionalExplicitlySupported": "YES",
+      "admission": "ADMIT",
+      "reason": "RURA's licensed operator register identifies reciprocal passenger routes between Kigali and Huye, Rubavu and Musanze, corresponding to Butare, Gisenyi and Ruhengeri."
+    },
+    {
+      "countryCode": "RW",
+      "origin": "Ruhengeri",
+      "destination": "Kigali",
+      "currentSource": "https://www.rura.rw/fileadmin/docs/PUBLIC_TRANSPORT_OPERATORS.pdf",
+      "reviewedSource": "https://www.rura.rw/fileadmin/docs/PUBLIC_TRANSPORT_OPERATORS.pdf",
+      "directionSupported": "YES",
+      "bidirectionalExplicitlySupported": "YES",
+      "admission": "ADMIT",
+      "reason": "RURA's licensed operator register identifies reciprocal passenger routes between Kigali and Huye, Rubavu and Musanze, corresponding to Butare, Gisenyi and Ruhengeri."
+    },
+    {
+      "countryCode": "TT",
+      "origin": "Port of Spain",
+      "destination": "Chaguanas",
+      "currentSource": "https://ptsc.co.tt/from/pos/",
+      "reviewedSource": "https://ptsc.co.tt/from/pos/",
+      "directionSupported": "YES",
+      "bidirectionalExplicitlySupported": "NO",
+      "admission": "ADMIT",
+      "reason": "The official PTSC Port of Spain route archive lists POS / Chaguanas service."
+    },
+    {
+      "countryCode": "TT",
+      "origin": "Chaguanas",
+      "destination": "San Fernando",
+      "currentSource": "https://ptsc.co.tt/from/chaguanas/",
+      "reviewedSource": "https://ptsc.co.tt/from/chaguanas/",
+      "directionSupported": "YES",
+      "bidirectionalExplicitlySupported": "NO",
+      "admission": "ADMIT",
+      "reason": "The official PTSC Chaguanas route archive lists Chaguanas / San Fernando service."
+    },
+    {
+      "countryCode": "TT",
+      "origin": "Chaguanas",
+      "destination": "Port of Spain",
+      "currentSource": "https://ptsc.co.tt/from/pos/",
+      "reviewedSource": null,
+      "reason": "The Port of Spain outbound archive does not prove the reverse direction.",
+      "directionSupported": "NO",
+      "bidirectionalExplicitlySupported": "NO",
+      "admission": "BLOCK"
+    },
+    {
+      "countryCode": "TT",
+      "origin": "San Fernando",
+      "destination": "Chaguanas",
+      "currentSource": "https://ptsc.co.tt/from/pos/",
+      "reviewedSource": null,
+      "reason": "The Port of Spain archive is unrelated to this direction, and no reviewed exact reverse page was admitted.",
+      "directionSupported": "NO",
+      "bidirectionalExplicitlySupported": "NO",
+      "admission": "BLOCK"
+    },
+    {
+      "countryCode": "ZM",
+      "origin": "Lusaka",
+      "destination": "Livingstone",
+      "currentSource": "https://www.zambia-airways.com/Cms_Data/Contents/ZambiaAirways/Media/Documents/Domestic-Schedule.pdf",
+      "reviewedSource": "https://www.zambia-airways.com/Cms_Data/Contents/ZambiaAirways/Media/Documents/Domestic-Schedule.pdf",
+      "directionSupported": "YES",
+      "bidirectionalExplicitlySupported": "YES",
+      "admission": "ADMIT",
+      "reason": "The official schedule separately lists Lusaka-Livingstone, Livingstone-Lusaka, Lusaka-Ndola and Ndola-Lusaka flights."
+    },
+    {
+      "countryCode": "ZM",
+      "origin": "Livingstone",
+      "destination": "Lusaka",
+      "currentSource": "https://www.zambia-airways.com/Cms_Data/Contents/ZambiaAirways/Media/Documents/Domestic-Schedule.pdf",
+      "reviewedSource": "https://www.zambia-airways.com/Cms_Data/Contents/ZambiaAirways/Media/Documents/Domestic-Schedule.pdf",
+      "directionSupported": "YES",
+      "bidirectionalExplicitlySupported": "YES",
+      "admission": "ADMIT",
+      "reason": "The official schedule separately lists Lusaka-Livingstone, Livingstone-Lusaka, Lusaka-Ndola and Ndola-Lusaka flights."
+    },
+    {
+      "countryCode": "ZM",
+      "origin": "Lusaka",
+      "destination": "Ndola",
+      "currentSource": "https://www.zambia-airways.com/Cms_Data/Contents/ZambiaAirways/Media/Documents/Domestic-Schedule.pdf",
+      "reviewedSource": "https://www.zambia-airways.com/Cms_Data/Contents/ZambiaAirways/Media/Documents/Domestic-Schedule.pdf",
+      "directionSupported": "YES",
+      "bidirectionalExplicitlySupported": "YES",
+      "admission": "ADMIT",
+      "reason": "The official schedule separately lists Lusaka-Livingstone, Livingstone-Lusaka, Lusaka-Ndola and Ndola-Lusaka flights."
+    },
+    {
+      "countryCode": "ZM",
+      "origin": "Ndola",
+      "destination": "Lusaka",
+      "currentSource": "https://www.zambia-airways.com/Cms_Data/Contents/ZambiaAirways/Media/Documents/Domestic-Schedule.pdf",
+      "reviewedSource": "https://www.zambia-airways.com/Cms_Data/Contents/ZambiaAirways/Media/Documents/Domestic-Schedule.pdf",
+      "directionSupported": "YES",
+      "bidirectionalExplicitlySupported": "YES",
+      "admission": "ADMIT",
+      "reason": "The official schedule separately lists Lusaka-Livingstone, Livingstone-Lusaka, Lusaka-Ndola and Ndola-Lusaka flights."
+    },
+    {
+      "countryCode": "ZW",
+      "origin": "Harare",
+      "destination": "Bulawayo",
+      "currentSource": "https://nrz.co.zw/train-schedules/",
+      "reviewedSource": "https://nrz.co.zw/train-schedules/",
+      "directionSupported": "YES",
+      "bidirectionalExplicitlySupported": "YES",
+      "admission": "ADMIT",
+      "reason": "NRZ separately lists both directions for Harare-Bulawayo, Harare-Mutare and Bulawayo-Victoria Falls passenger services."
+    },
+    {
+      "countryCode": "ZW",
+      "origin": "Bulawayo",
+      "destination": "Harare",
+      "currentSource": "https://nrz.co.zw/train-schedules/",
+      "reviewedSource": "https://nrz.co.zw/train-schedules/",
+      "directionSupported": "YES",
+      "bidirectionalExplicitlySupported": "YES",
+      "admission": "ADMIT",
+      "reason": "NRZ separately lists both directions for Harare-Bulawayo, Harare-Mutare and Bulawayo-Victoria Falls passenger services."
+    },
+    {
+      "countryCode": "ZW",
+      "origin": "Harare",
+      "destination": "Mutare",
+      "currentSource": "https://nrz.co.zw/train-schedules/",
+      "reviewedSource": "https://nrz.co.zw/train-schedules/",
+      "directionSupported": "YES",
+      "bidirectionalExplicitlySupported": "YES",
+      "admission": "ADMIT",
+      "reason": "NRZ separately lists both directions for Harare-Bulawayo, Harare-Mutare and Bulawayo-Victoria Falls passenger services."
+    },
+    {
+      "countryCode": "ZW",
+      "origin": "Mutare",
+      "destination": "Harare",
+      "currentSource": "https://nrz.co.zw/train-schedules/",
+      "reviewedSource": "https://nrz.co.zw/train-schedules/",
+      "directionSupported": "YES",
+      "bidirectionalExplicitlySupported": "YES",
+      "admission": "ADMIT",
+      "reason": "NRZ separately lists both directions for Harare-Bulawayo, Harare-Mutare and Bulawayo-Victoria Falls passenger services."
+    },
+    {
+      "countryCode": "ZW",
+      "origin": "Bulawayo",
+      "destination": "Victoria Falls",
+      "currentSource": "https://nrz.co.zw/train-schedules/",
+      "reviewedSource": "https://nrz.co.zw/train-schedules/",
+      "directionSupported": "YES",
+      "bidirectionalExplicitlySupported": "YES",
+      "admission": "ADMIT",
+      "reason": "NRZ separately lists both directions for Harare-Bulawayo, Harare-Mutare and Bulawayo-Victoria Falls passenger services."
+    },
+    {
+      "countryCode": "ZW",
+      "origin": "Victoria Falls",
+      "destination": "Bulawayo",
+      "currentSource": "https://nrz.co.zw/train-schedules/",
+      "reviewedSource": "https://nrz.co.zw/train-schedules/",
+      "directionSupported": "YES",
+      "bidirectionalExplicitlySupported": "YES",
+      "admission": "ADMIT",
+      "reason": "NRZ separately lists both directions for Harare-Bulawayo, Harare-Mutare and Bulawayo-Victoria Falls passenger services."
+    }
+  ],
+  "seasonReAdjudication": [
+    {
+      "countryCode": "BB",
+      "destination": "Bridgetown",
+      "source": "https://www.barbadosweather.org/PDF_Uploads/Climat%20Data.pdf",
+      "sourceAuthority": "Barbados Meteorological Services",
+      "geographicScope": {
+        "kind": "country",
+        "identity": "BB",
+        "reviewedApplicability": "The reviewed national fact applies to Bridgetown; no conflicting local climate scope is present in this batch."
+      },
+      "monthCoverage": [
+        9
+      ],
+      "reviewedFactualClaim": "The official climatological record identifies a September maximum-temperature extreme and the highest daily rainfall observation in September.",
+      "exactBinding": "PASS",
+      "admission": "ADMIT",
+      "reason": "The official climatological record identifies a September maximum-temperature extreme and the highest daily rainfall observation in September."
+    },
+    {
+      "countryCode": "BB",
+      "destination": "Holetown",
+      "source": "https://www.barbadosweather.org/PDF_Uploads/Climat%20Data.pdf",
+      "sourceAuthority": "Barbados Meteorological Services",
+      "geographicScope": {
+        "kind": "country",
+        "identity": "BB",
+        "reviewedApplicability": "The reviewed national fact applies to Holetown; no conflicting local climate scope is present in this batch."
+      },
+      "monthCoverage": [
+        9
+      ],
+      "reviewedFactualClaim": "The official climatological record identifies a September maximum-temperature extreme and the highest daily rainfall observation in September.",
+      "exactBinding": "PASS",
+      "admission": "ADMIT",
+      "reason": "The official climatological record identifies a September maximum-temperature extreme and the highest daily rainfall observation in September."
+    },
+    {
+      "countryCode": "BB",
+      "destination": "Speightstown",
+      "source": "https://www.barbadosweather.org/PDF_Uploads/Climat%20Data.pdf",
+      "sourceAuthority": "Barbados Meteorological Services",
+      "geographicScope": {
+        "kind": "country",
+        "identity": "BB",
+        "reviewedApplicability": "The reviewed national fact applies to Speightstown; no conflicting local climate scope is present in this batch."
+      },
+      "monthCoverage": [
+        9
+      ],
+      "reviewedFactualClaim": "The official climatological record identifies a September maximum-temperature extreme and the highest daily rainfall observation in September.",
+      "exactBinding": "PASS",
+      "admission": "ADMIT",
+      "reason": "The official climatological record identifies a September maximum-temperature extreme and the highest daily rainfall observation in September."
+    },
+    {
+      "countryCode": "BZ",
+      "destination": "Belize City",
+      "source": "https://nms.gov.bz/climate-services/climate-summary/",
+      "sourceAuthority": "National Meteorological Service of Belize",
+      "geographicScope": {
+        "kind": "country",
+        "identity": "BZ",
+        "reviewedApplicability": "The reviewed national fact applies to Belize City; no conflicting local climate scope is present in this batch."
+      },
+      "monthCoverage": [
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "reviewedFactualClaim": "Belize's official climate summary identifies June to November as the rainy season and September as the peak month for tropical storms and hurricanes affecting the country.",
+      "exactBinding": "PASS",
+      "admission": "ADMIT",
+      "reason": "Belize's official climate summary identifies June to November as the rainy season and September as the peak month for tropical storms and hurricanes affecting the country."
+    },
+    {
+      "countryCode": "BZ",
+      "destination": "Belmopan",
+      "source": "https://nms.gov.bz/climate-services/climate-summary/",
+      "sourceAuthority": "National Meteorological Service of Belize",
+      "geographicScope": {
+        "kind": "country",
+        "identity": "BZ",
+        "reviewedApplicability": "The reviewed national fact applies to Belmopan; no conflicting local climate scope is present in this batch."
+      },
+      "monthCoverage": [
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "reviewedFactualClaim": "Belize's official climate summary identifies June to November as the rainy season and September as the peak month for tropical storms and hurricanes affecting the country.",
+      "exactBinding": "PASS",
+      "admission": "ADMIT",
+      "reason": "Belize's official climate summary identifies June to November as the rainy season and September as the peak month for tropical storms and hurricanes affecting the country."
+    },
+    {
+      "countryCode": "BZ",
+      "destination": "Orange Walk Town",
+      "source": "https://nms.gov.bz/climate-services/climate-summary/",
+      "sourceAuthority": "National Meteorological Service of Belize",
+      "geographicScope": {
+        "kind": "country",
+        "identity": "BZ",
+        "reviewedApplicability": "The reviewed national fact applies to Orange Walk Town; no conflicting local climate scope is present in this batch."
+      },
+      "monthCoverage": [
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "reviewedFactualClaim": "Belize's official climate summary identifies June to November as the rainy season and September as the peak month for tropical storms and hurricanes affecting the country.",
+      "exactBinding": "PASS",
+      "admission": "ADMIT",
+      "reason": "Belize's official climate summary identifies June to November as the rainy season and September as the peak month for tropical storms and hurricanes affecting the country."
+    },
+    {
+      "countryCode": "BZ",
+      "destination": "San Ignacio",
+      "source": "https://nms.gov.bz/climate-services/climate-summary/",
+      "sourceAuthority": "National Meteorological Service of Belize",
+      "geographicScope": {
+        "kind": "country",
+        "identity": "BZ",
+        "reviewedApplicability": "The reviewed national fact applies to San Ignacio; no conflicting local climate scope is present in this batch."
+      },
+      "monthCoverage": [
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "reviewedFactualClaim": "Belize's official climate summary identifies June to November as the rainy season and September as the peak month for tropical storms and hurricanes affecting the country.",
+      "exactBinding": "PASS",
+      "admission": "ADMIT",
+      "reason": "Belize's official climate summary identifies June to November as the rainy season and September as the peak month for tropical storms and hurricanes affecting the country."
+    },
+    {
+      "countryCode": "CV",
+      "destination": "Mindelo",
+      "source": "https://www.inmg.gov.cv/index.php/servico-educativo/blog/133-previsao-sazonal-2025",
+      "sourceAuthority": "Cabo Verde National Institute of Meteorology and Geophysics",
+      "geographicScope": {
+        "kind": "country",
+        "identity": "CV",
+        "reviewedApplicability": "The reviewed national fact applies to Mindelo; no conflicting local climate scope is present in this batch."
+      },
+      "monthCoverage": [
+        6,
+        7,
+        8,
+        9
+      ],
+      "reviewedFactualClaim": "INMG identifies the June-to-September season and warns that intense rain, tropical depressions, strong winds and rough seas can affect the archipelago.",
+      "exactBinding": "PASS",
+      "admission": "ADMIT",
+      "reason": "INMG identifies the June-to-September season and warns that intense rain, tropical depressions, strong winds and rough seas can affect the archipelago."
+    },
+    {
+      "countryCode": "CV",
+      "destination": "Praia",
+      "source": "https://www.inmg.gov.cv/index.php/servico-educativo/blog/133-previsao-sazonal-2025",
+      "sourceAuthority": "Cabo Verde National Institute of Meteorology and Geophysics",
+      "geographicScope": {
+        "kind": "country",
+        "identity": "CV",
+        "reviewedApplicability": "The reviewed national fact applies to Praia; no conflicting local climate scope is present in this batch."
+      },
+      "monthCoverage": [
+        6,
+        7,
+        8,
+        9
+      ],
+      "reviewedFactualClaim": "INMG identifies the June-to-September season and warns that intense rain, tropical depressions, strong winds and rough seas can affect the archipelago.",
+      "exactBinding": "PASS",
+      "admission": "ADMIT",
+      "reason": "INMG identifies the June-to-September season and warns that intense rain, tropical depressions, strong winds and rough seas can affect the archipelago."
+    },
+    {
+      "countryCode": "DM",
+      "destination": "Portsmouth",
+      "source": "https://weather.ictu.gov.dm/index.php?Itemid=204&id=109&lang=en&option=com_content&view=article",
+      "sourceAuthority": null,
+      "geographicScope": null,
+      "monthCoverage": [],
+      "reviewedFactualClaim": null,
+      "exactBinding": "FAIL",
+      "admission": "BLOCK",
+      "reason": "The warning guide identifies hazards but does not bind them to September."
+    },
+    {
+      "countryCode": "DM",
+      "destination": "Roseau",
+      "source": "https://weather.ictu.gov.dm/index.php?Itemid=204&id=109&lang=en&option=com_content&view=article",
+      "sourceAuthority": null,
+      "geographicScope": null,
+      "monthCoverage": [],
+      "reviewedFactualClaim": null,
+      "exactBinding": "FAIL",
+      "admission": "BLOCK",
+      "reason": "The warning guide identifies hazards but does not bind them to September."
+    },
+    {
+      "countryCode": "MN",
+      "destination": "Darkhan",
+      "source": "https://namem.gov.mn/c/danger",
+      "sourceAuthority": null,
+      "geographicScope": null,
+      "monthCoverage": [],
+      "reviewedFactualClaim": null,
+      "exactBinding": "FAIL",
+      "admission": "BLOCK",
+      "reason": "The dangerous-weather archive identifies winter hazards but does not bind them to January."
+    },
+    {
+      "countryCode": "MN",
+      "destination": "Erdenet",
+      "source": "https://namem.gov.mn/c/danger",
+      "sourceAuthority": null,
+      "geographicScope": null,
+      "monthCoverage": [],
+      "reviewedFactualClaim": null,
+      "exactBinding": "FAIL",
+      "admission": "BLOCK",
+      "reason": "The dangerous-weather archive identifies winter hazards but does not bind them to January."
+    },
+    {
+      "countryCode": "MN",
+      "destination": "Ulaanbaatar",
+      "source": "https://namem.gov.mn/c/danger",
+      "sourceAuthority": null,
+      "geographicScope": null,
+      "monthCoverage": [],
+      "reviewedFactualClaim": null,
+      "exactBinding": "FAIL",
+      "admission": "BLOCK",
+      "reason": "The dangerous-weather archive identifies winter hazards but does not bind them to January."
+    },
+    {
+      "countryCode": "RW",
+      "destination": "Butare",
+      "source": "https://www.meteorwanda.gov.rw/fileadmin/user_upload/Meteorwanda/Seasonal_Forecast/____2024/Rainfall_Outlook_for_MAM_2024.pdf",
+      "sourceAuthority": "Rwanda Meteorology Agency",
+      "geographicScope": {
+        "kind": "country",
+        "identity": "RW",
+        "reviewedApplicability": "The reviewed national fact applies to Butare; no conflicting local climate scope is present in this batch."
+      },
+      "monthCoverage": [
+        3,
+        4,
+        5
+      ],
+      "reviewedFactualClaim": "Meteo Rwanda identifies March through May as a rainy season with above-normal rainfall risk and district-level rainfall outlooks.",
+      "exactBinding": "PASS",
+      "admission": "ADMIT",
+      "reason": "Meteo Rwanda identifies March through May as a rainy season with above-normal rainfall risk and district-level rainfall outlooks."
+    },
+    {
+      "countryCode": "RW",
+      "destination": "Gisenyi",
+      "source": "https://www.meteorwanda.gov.rw/fileadmin/user_upload/Meteorwanda/Seasonal_Forecast/____2024/Rainfall_Outlook_for_MAM_2024.pdf",
+      "sourceAuthority": "Rwanda Meteorology Agency",
+      "geographicScope": {
+        "kind": "country",
+        "identity": "RW",
+        "reviewedApplicability": "The reviewed national fact applies to Gisenyi; no conflicting local climate scope is present in this batch."
+      },
+      "monthCoverage": [
+        3,
+        4,
+        5
+      ],
+      "reviewedFactualClaim": "Meteo Rwanda identifies March through May as a rainy season with above-normal rainfall risk and district-level rainfall outlooks.",
+      "exactBinding": "PASS",
+      "admission": "ADMIT",
+      "reason": "Meteo Rwanda identifies March through May as a rainy season with above-normal rainfall risk and district-level rainfall outlooks."
+    },
+    {
+      "countryCode": "RW",
+      "destination": "Kigali",
+      "source": "https://www.meteorwanda.gov.rw/fileadmin/user_upload/Meteorwanda/Seasonal_Forecast/____2024/Rainfall_Outlook_for_MAM_2024.pdf",
+      "sourceAuthority": "Rwanda Meteorology Agency",
+      "geographicScope": {
+        "kind": "country",
+        "identity": "RW",
+        "reviewedApplicability": "The reviewed national fact applies to Kigali; no conflicting local climate scope is present in this batch."
+      },
+      "monthCoverage": [
+        3,
+        4,
+        5
+      ],
+      "reviewedFactualClaim": "Meteo Rwanda identifies March through May as a rainy season with above-normal rainfall risk and district-level rainfall outlooks.",
+      "exactBinding": "PASS",
+      "admission": "ADMIT",
+      "reason": "Meteo Rwanda identifies March through May as a rainy season with above-normal rainfall risk and district-level rainfall outlooks."
+    },
+    {
+      "countryCode": "RW",
+      "destination": "Ruhengeri",
+      "source": "https://www.meteorwanda.gov.rw/fileadmin/user_upload/Meteorwanda/Seasonal_Forecast/____2024/Rainfall_Outlook_for_MAM_2024.pdf",
+      "sourceAuthority": "Rwanda Meteorology Agency",
+      "geographicScope": {
+        "kind": "country",
+        "identity": "RW",
+        "reviewedApplicability": "The reviewed national fact applies to Ruhengeri; no conflicting local climate scope is present in this batch."
+      },
+      "monthCoverage": [
+        3,
+        4,
+        5
+      ],
+      "reviewedFactualClaim": "Meteo Rwanda identifies March through May as a rainy season with above-normal rainfall risk and district-level rainfall outlooks.",
+      "exactBinding": "PASS",
+      "admission": "ADMIT",
+      "reason": "Meteo Rwanda identifies March through May as a rainy season with above-normal rainfall risk and district-level rainfall outlooks."
+    },
+    {
+      "countryCode": "SC",
+      "destination": "Victoria",
+      "source": "https://www.meteo.sc/alerts/",
+      "sourceAuthority": "Seychelles Meteorological Authority",
+      "geographicScope": {
+        "kind": "country",
+        "identity": "SC",
+        "reviewedApplicability": "The reviewed national fact applies to Victoria; no conflicting local climate scope is present in this batch."
+      },
+      "monthCoverage": [
+        9
+      ],
+      "reviewedFactualClaim": "The official September alert archive records heavy-rain and strong-wind warnings affecting Mahé, including Victoria.",
+      "exactBinding": "PASS",
+      "admission": "ADMIT",
+      "reason": "The official September alert archive records heavy-rain and strong-wind warnings affecting Mahé, including Victoria."
+    },
+    {
+      "countryCode": "SM",
+      "destination": "San Marino",
+      "source": "https://www.gov.sm/pub2/upav/dam/jcr%3A2c7a7808-5bdc-4deb-a044-203e0bdf3ea3/Legge%203%20aprile%202014%20n.%2048.pdf",
+      "sourceAuthority": "Republic of San Marino",
+      "geographicScope": {
+        "kind": "country",
+        "identity": "SM",
+        "reviewedApplicability": "The reviewed national fact applies to San Marino; no conflicting local climate scope is present in this batch."
+      },
+      "monthCoverage": [
+        1
+      ],
+      "reviewedFactualClaim": "The official San Marino climatic table records January as the coldest monthly mean for the City of San Marino and defines sub-zero winter design temperatures.",
+      "exactBinding": "PASS",
+      "admission": "ADMIT",
+      "reason": "The official San Marino climatic table records January as the coldest monthly mean for the City of San Marino and defines sub-zero winter design temperatures."
+    },
+    {
+      "countryCode": "TT",
+      "destination": "Chaguanas",
+      "source": "https://metproducts.gov.tt/ttms/public/api/rainTempWetDrySeason/public",
+      "sourceAuthority": "Trinidad and Tobago Meteorological Service",
+      "geographicScope": {
+        "kind": "country",
+        "identity": "TT",
+        "reviewedApplicability": "The reviewed national fact applies to Chaguanas; no conflicting local climate scope is present in this batch."
+      },
+      "monthCoverage": [
+        8,
+        9,
+        10
+      ],
+      "reviewedFactualClaim": "The official June-November wet-season outlook identifies flooding potential and elevated heat risk, with the heat season peaking from August to October.",
+      "exactBinding": "PASS",
+      "admission": "ADMIT",
+      "reason": "The official June-November wet-season outlook identifies flooding potential and elevated heat risk, with the heat season peaking from August to October."
+    },
+    {
+      "countryCode": "TT",
+      "destination": "Port of Spain",
+      "source": "https://metproducts.gov.tt/ttms/public/api/rainTempWetDrySeason/public",
+      "sourceAuthority": "Trinidad and Tobago Meteorological Service",
+      "geographicScope": {
+        "kind": "country",
+        "identity": "TT",
+        "reviewedApplicability": "The reviewed national fact applies to Port of Spain; no conflicting local climate scope is present in this batch."
+      },
+      "monthCoverage": [
+        8,
+        9,
+        10
+      ],
+      "reviewedFactualClaim": "The official June-November wet-season outlook identifies flooding potential and elevated heat risk, with the heat season peaking from August to October.",
+      "exactBinding": "PASS",
+      "admission": "ADMIT",
+      "reason": "The official June-November wet-season outlook identifies flooding potential and elevated heat risk, with the heat season peaking from August to October."
+    },
+    {
+      "countryCode": "TT",
+      "destination": "San Fernando",
+      "source": "https://metproducts.gov.tt/ttms/public/api/rainTempWetDrySeason/public",
+      "sourceAuthority": "Trinidad and Tobago Meteorological Service",
+      "geographicScope": {
+        "kind": "country",
+        "identity": "TT",
+        "reviewedApplicability": "The reviewed national fact applies to San Fernando; no conflicting local climate scope is present in this batch."
+      },
+      "monthCoverage": [
+        8,
+        9,
+        10
+      ],
+      "reviewedFactualClaim": "The official June-November wet-season outlook identifies flooding potential and elevated heat risk, with the heat season peaking from August to October.",
+      "exactBinding": "PASS",
+      "admission": "ADMIT",
+      "reason": "The official June-November wet-season outlook identifies flooding potential and elevated heat risk, with the heat season peaking from August to October."
+    },
+    {
+      "countryCode": "UG",
+      "destination": "Entebbe",
+      "source": "https://www.mwe.go.ug/publications/meteorological/seasonal/september-to-december-sond-2025-seasonal-rainfall-outlook",
+      "sourceAuthority": "Uganda Ministry of Water and Environment",
+      "geographicScope": {
+        "kind": "country",
+        "identity": "UG",
+        "reviewedApplicability": "The reviewed national fact applies to Entebbe; no conflicting local climate scope is present in this batch."
+      },
+      "monthCoverage": [
+        9,
+        10,
+        11,
+        12
+      ],
+      "reviewedFactualClaim": "The official September-December climate outlook identifies Uganda's second rainy season and risks from heavy rain, flooding, landslides and strong winds.",
+      "exactBinding": "PASS",
+      "admission": "ADMIT",
+      "reason": "The official September-December climate outlook identifies Uganda's second rainy season and risks from heavy rain, flooding, landslides and strong winds."
+    },
+    {
+      "countryCode": "UG",
+      "destination": "Jinja",
+      "source": "https://www.mwe.go.ug/publications/meteorological/seasonal/september-to-december-sond-2025-seasonal-rainfall-outlook",
+      "sourceAuthority": "Uganda Ministry of Water and Environment",
+      "geographicScope": {
+        "kind": "country",
+        "identity": "UG",
+        "reviewedApplicability": "The reviewed national fact applies to Jinja; no conflicting local climate scope is present in this batch."
+      },
+      "monthCoverage": [
+        9,
+        10,
+        11,
+        12
+      ],
+      "reviewedFactualClaim": "The official September-December climate outlook identifies Uganda's second rainy season and risks from heavy rain, flooding, landslides and strong winds.",
+      "exactBinding": "PASS",
+      "admission": "ADMIT",
+      "reason": "The official September-December climate outlook identifies Uganda's second rainy season and risks from heavy rain, flooding, landslides and strong winds."
+    },
+    {
+      "countryCode": "UG",
+      "destination": "Kampala",
+      "source": "https://www.mwe.go.ug/publications/meteorological/seasonal/september-to-december-sond-2025-seasonal-rainfall-outlook",
+      "sourceAuthority": "Uganda Ministry of Water and Environment",
+      "geographicScope": {
+        "kind": "country",
+        "identity": "UG",
+        "reviewedApplicability": "The reviewed national fact applies to Kampala; no conflicting local climate scope is present in this batch."
+      },
+      "monthCoverage": [
+        9,
+        10,
+        11,
+        12
+      ],
+      "reviewedFactualClaim": "The official September-December climate outlook identifies Uganda's second rainy season and risks from heavy rain, flooding, landslides and strong winds.",
+      "exactBinding": "PASS",
+      "admission": "ADMIT",
+      "reason": "The official September-December climate outlook identifies Uganda's second rainy season and risks from heavy rain, flooding, landslides and strong winds."
+    },
+    {
+      "countryCode": "ZM",
+      "destination": "Livingstone",
+      "source": "https://zmd.gov.zm/products/seasonal-forecast/seasonal-rainfall-forecast-20252026/",
+      "sourceAuthority": "Zambia Meteorological Department",
+      "geographicScope": {
+        "kind": "country",
+        "identity": "ZM",
+        "reviewedApplicability": "The reviewed national fact applies to Livingstone; no conflicting local climate scope is present in this batch."
+      },
+      "monthCoverage": [
+        12,
+        1,
+        2
+      ],
+      "reviewedFactualClaim": "The national seasonal forecast identifies December through February as the main rainfall period and warns of flash-flood and localized flooding risk.",
+      "exactBinding": "PASS",
+      "admission": "ADMIT",
+      "reason": "The national seasonal forecast identifies December through February as the main rainfall period and warns of flash-flood and localized flooding risk."
+    },
+    {
+      "countryCode": "ZM",
+      "destination": "Lusaka",
+      "source": "https://zmd.gov.zm/products/seasonal-forecast/seasonal-rainfall-forecast-20252026/",
+      "sourceAuthority": "Zambia Meteorological Department",
+      "geographicScope": {
+        "kind": "country",
+        "identity": "ZM",
+        "reviewedApplicability": "The reviewed national fact applies to Lusaka; no conflicting local climate scope is present in this batch."
+      },
+      "monthCoverage": [
+        12,
+        1,
+        2
+      ],
+      "reviewedFactualClaim": "The national seasonal forecast identifies December through February as the main rainfall period and warns of flash-flood and localized flooding risk.",
+      "exactBinding": "PASS",
+      "admission": "ADMIT",
+      "reason": "The national seasonal forecast identifies December through February as the main rainfall period and warns of flash-flood and localized flooding risk."
+    },
+    {
+      "countryCode": "ZM",
+      "destination": "Ndola",
+      "source": "https://zmd.gov.zm/products/seasonal-forecast/seasonal-rainfall-forecast-20252026/",
+      "sourceAuthority": "Zambia Meteorological Department",
+      "geographicScope": {
+        "kind": "country",
+        "identity": "ZM",
+        "reviewedApplicability": "The reviewed national fact applies to Ndola; no conflicting local climate scope is present in this batch."
+      },
+      "monthCoverage": [
+        12,
+        1,
+        2
+      ],
+      "reviewedFactualClaim": "The national seasonal forecast identifies December through February as the main rainfall period and warns of flash-flood and localized flooding risk.",
+      "exactBinding": "PASS",
+      "admission": "ADMIT",
+      "reason": "The national seasonal forecast identifies December through February as the main rainfall period and warns of flash-flood and localized flooding risk."
+    },
+    {
+      "countryCode": "ZW",
+      "destination": "Bulawayo",
+      "source": "https://www.weatherzw.org.zw/products/seasonal-forecast/2025-2026-seasonal-forecast-update/",
+      "sourceAuthority": "Zimbabwe Meteorological Services Department",
+      "geographicScope": {
+        "kind": "country",
+        "identity": "ZW",
+        "reviewedApplicability": "The reviewed national fact applies to Bulawayo; no conflicting local climate scope is present in this batch."
+      },
+      "monthCoverage": [
+        11,
+        12,
+        1,
+        2,
+        3
+      ],
+      "reviewedFactualClaim": "The official November-March outlook identifies normal-to-above-normal rainfall and continuing risks from violent storms and flash floods.",
+      "exactBinding": "PASS",
+      "admission": "ADMIT",
+      "reason": "The official November-March outlook identifies normal-to-above-normal rainfall and continuing risks from violent storms and flash floods."
+    },
+    {
+      "countryCode": "ZW",
+      "destination": "Harare",
+      "source": "https://www.weatherzw.org.zw/products/seasonal-forecast/2025-2026-seasonal-forecast-update/",
+      "sourceAuthority": "Zimbabwe Meteorological Services Department",
+      "geographicScope": {
+        "kind": "country",
+        "identity": "ZW",
+        "reviewedApplicability": "The reviewed national fact applies to Harare; no conflicting local climate scope is present in this batch."
+      },
+      "monthCoverage": [
+        11,
+        12,
+        1,
+        2,
+        3
+      ],
+      "reviewedFactualClaim": "The official November-March outlook identifies normal-to-above-normal rainfall and continuing risks from violent storms and flash floods.",
+      "exactBinding": "PASS",
+      "admission": "ADMIT",
+      "reason": "The official November-March outlook identifies normal-to-above-normal rainfall and continuing risks from violent storms and flash floods."
+    },
+    {
+      "countryCode": "ZW",
+      "destination": "Mutare",
+      "source": "https://www.weatherzw.org.zw/products/seasonal-forecast/2025-2026-seasonal-forecast-update/",
+      "sourceAuthority": "Zimbabwe Meteorological Services Department",
+      "geographicScope": {
+        "kind": "country",
+        "identity": "ZW",
+        "reviewedApplicability": "The reviewed national fact applies to Mutare; no conflicting local climate scope is present in this batch."
+      },
+      "monthCoverage": [
+        11,
+        12,
+        1,
+        2,
+        3
+      ],
+      "reviewedFactualClaim": "The official November-March outlook identifies normal-to-above-normal rainfall and continuing risks from violent storms and flash floods.",
+      "exactBinding": "PASS",
+      "admission": "ADMIT",
+      "reason": "The official November-March outlook identifies normal-to-above-normal rainfall and continuing risks from violent storms and flash floods."
+    },
+    {
+      "countryCode": "ZW",
+      "destination": "Victoria Falls",
+      "source": "https://www.weatherzw.org.zw/products/seasonal-forecast/2025-2026-seasonal-forecast-update/",
+      "sourceAuthority": "Zimbabwe Meteorological Services Department",
+      "geographicScope": {
+        "kind": "country",
+        "identity": "ZW",
+        "reviewedApplicability": "The reviewed national fact applies to Victoria Falls; no conflicting local climate scope is present in this batch."
+      },
+      "monthCoverage": [
+        11,
+        12,
+        1,
+        2,
+        3
+      ],
+      "reviewedFactualClaim": "The official November-March outlook identifies normal-to-above-normal rainfall and continuing risks from violent storms and flash floods.",
+      "exactBinding": "PASS",
+      "admission": "ADMIT",
+      "reason": "The official November-March outlook identifies normal-to-above-normal rainfall and continuing risks from violent storms and flash floods."
+    }
+  ]
+}

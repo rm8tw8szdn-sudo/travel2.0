@@ -116,6 +116,9 @@ function assertImageAssetBaselineContractMatches(model, sealedModel) {
 function verifyReferenceAuthorityBoundaryFixtures() {
   assert.equal(imageReferenceKind("data/knowledge/raw/fixture.wikidata.json"), "audit");
   assert.equal(imageReferenceKind("data/knowledge/batches/provenance.fixture.json"), "audit");
+  assert.equal(imageReferenceKind("data/route-v2/evidence-seed/route-leg-evidence.jsonl"), "evidence-source");
+  assert.equal(imageReferenceKind("data/knowledge/seeds/fixture-evidence.json"), "evidence-source");
+  assert.equal(imageReferenceKind("data/knowledge/reviewed-claims/fixture.json"), "evidence-source");
   assert.equal(imageReferenceKind("src/lib/routes/runtime-image-map.mjs"), "production");
   assert.equal(imageReferenceKind("tests/browser/image-fixture.spec.cjs"), "test");
 
@@ -146,6 +149,12 @@ function verifyReferenceAuthorityBoundaryFixtures() {
     () => assertImageAssetBaselineContractMatches(changedAudit, fixture("audit")),
     "candidate/raw audit metadata mutations must remain outside the authoritative seal",
   );
+  const evidencePdf = fixture("evidence-source");
+  evidencePdf.references.externalImageReferences[0].url = "https://authority.example/evidence.pdf";
+  const evidenceImageLike = structuredClone(evidencePdf);
+  evidenceImageLike.references.externalImageReferences[0].url = "https://authority.example/source-image.webp";
+  assert.doesNotThrow(() => assertImageAssetBaselineContractMatches(evidencePdf, fixture("evidence-source")), "Evidence PDF URLs must remain outside the image seal");
+  assert.doesNotThrow(() => assertImageAssetBaselineContractMatches(evidenceImageLike, fixture("evidence-source")), "Evidence image-like URLs must be excluded by semantic authority, not extension");
 
   const production = fixture("production");
   const productionView = imageAssetBaselineContractView(production);
@@ -174,6 +183,8 @@ function verifyReferenceAuthorityBoundaryFixtures() {
   );
   return {
     auditMetadataMutationAccepted: true,
+    evidencePdfExcludedSemantically: true,
+    evidenceImageLikeUrlExcludedSemantically: true,
     productionReferenceMutationRejected: true,
     productionHashMutationRejected: true,
     productionByteSizeMutationRejected: true,

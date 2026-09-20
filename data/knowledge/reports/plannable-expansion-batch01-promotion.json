@@ -1,0 +1,424 @@
+{
+  "schemaVersion": "route-v2-plannable-expansion-batch01-promotion-v1",
+  "promotionAuthority": "data/knowledge/semantic/plannable-expansion-batch01-promotion-authority.json",
+  "reviewedCountries": 12,
+  "candidates": 6,
+  "promoted": 4,
+  "blocked": 2,
+  "promotedCountryCodes": [
+    "BB",
+    "RW",
+    "ZM",
+    "ZW"
+  ],
+  "blockedCountryCodes": [
+    "SC",
+    "SM"
+  ],
+  "evidencePhaseBlockedCountryCodes": [
+    "BZ",
+    "CV",
+    "DM",
+    "MN",
+    "TT",
+    "UG"
+  ],
+  "overallBlockedCountryCodes": [
+    "BZ",
+    "CV",
+    "DM",
+    "MN",
+    "SC",
+    "SM",
+    "TT",
+    "UG"
+  ],
+  "evidenceBackedPromotions": [
+    "BB",
+    "RW",
+    "ZM",
+    "ZW"
+  ],
+  "themeEvidence": 0,
+  "themeEvidenceRequired": false,
+  "decisions": [
+    {
+      "countryCode": "BB",
+      "eligible": true,
+      "reasons": [],
+      "identity": true,
+      "destinationPoi": true,
+      "transport": true,
+      "season": true,
+      "singleDestinationExemption": false,
+      "evidenceBackedEligible": true,
+      "counts": {
+        "cities": 3,
+        "pois": 12,
+        "transport": 4,
+        "season": 3
+      },
+      "routeGeneration": "pass",
+      "promotionGate": "pass",
+      "finalStatus": "promoted",
+      "routeFailures": []
+    },
+    {
+      "countryCode": "BZ",
+      "eligible": false,
+      "reasons": [
+        "directed-transport-incomplete"
+      ],
+      "identity": true,
+      "destinationPoi": true,
+      "transport": false,
+      "season": true,
+      "singleDestinationExemption": false,
+      "evidenceBackedEligible": false,
+      "counts": {
+        "cities": 4,
+        "pois": 13,
+        "transport": 0,
+        "season": 4
+      },
+      "routeGeneration": "not-eligible",
+      "promotionGate": "blocked",
+      "finalStatus": "catalog-only",
+      "routeFailures": []
+    },
+    {
+      "countryCode": "CV",
+      "eligible": false,
+      "reasons": [
+        "directed-transport-incomplete"
+      ],
+      "identity": true,
+      "destinationPoi": true,
+      "transport": false,
+      "season": true,
+      "singleDestinationExemption": false,
+      "evidenceBackedEligible": false,
+      "counts": {
+        "cities": 2,
+        "pois": 10,
+        "transport": 0,
+        "season": 2
+      },
+      "routeGeneration": "not-eligible",
+      "promotionGate": "blocked",
+      "finalStatus": "catalog-only",
+      "routeFailures": []
+    },
+    {
+      "countryCode": "DM",
+      "eligible": false,
+      "reasons": [
+        "season-profile-incomplete",
+        "season-profile-coverage-invalid"
+      ],
+      "identity": true,
+      "destinationPoi": true,
+      "transport": true,
+      "season": false,
+      "singleDestinationExemption": false,
+      "evidenceBackedEligible": false,
+      "counts": {
+        "cities": 2,
+        "pois": 8,
+        "transport": 2,
+        "season": 0
+      },
+      "routeGeneration": "not-eligible",
+      "promotionGate": "blocked",
+      "finalStatus": "catalog-only",
+      "routeFailures": []
+    },
+    {
+      "countryCode": "MN",
+      "eligible": false,
+      "reasons": [
+        "season-profile-incomplete",
+        "season-profile-coverage-invalid"
+      ],
+      "identity": true,
+      "destinationPoi": true,
+      "transport": true,
+      "season": false,
+      "singleDestinationExemption": false,
+      "evidenceBackedEligible": false,
+      "counts": {
+        "cities": 3,
+        "pois": 10,
+        "transport": 4,
+        "season": 0
+      },
+      "routeGeneration": "not-eligible",
+      "promotionGate": "blocked",
+      "finalStatus": "catalog-only",
+      "routeFailures": []
+    },
+    {
+      "countryCode": "RW",
+      "eligible": true,
+      "reasons": [],
+      "identity": true,
+      "destinationPoi": true,
+      "transport": true,
+      "season": true,
+      "singleDestinationExemption": false,
+      "evidenceBackedEligible": true,
+      "counts": {
+        "cities": 4,
+        "pois": 7,
+        "transport": 6,
+        "season": 4
+      },
+      "routeGeneration": "pass",
+      "promotionGate": "pass",
+      "finalStatus": "promoted",
+      "routeFailures": []
+    },
+    {
+      "countryCode": "SC",
+      "eligible": true,
+      "reasons": [],
+      "identity": true,
+      "destinationPoi": true,
+      "transport": true,
+      "season": true,
+      "singleDestinationExemption": true,
+      "evidenceBackedEligible": false,
+      "counts": {
+        "cities": 1,
+        "pois": 3,
+        "transport": 0,
+        "season": 1
+      },
+      "routeGeneration": "blocked",
+      "promotionGate": "blocked",
+      "finalStatus": "catalog-only",
+      "routeFailures": [
+        {
+          "countryCode": "SC",
+          "query": "Seychelles",
+          "reason": "constraint-conflict",
+          "plannerRejected": [
+            {
+              "reason": "skeleton-too-short"
+            }
+          ]
+        },
+        {
+          "countryCode": "SC",
+          "query": "Seychelles 7 days",
+          "reason": "constraint-conflict",
+          "plannerRejected": [
+            {
+              "reason": "skeleton-too-short"
+            }
+          ]
+        },
+        {
+          "countryCode": "SC",
+          "query": "Seychelles February",
+          "reason": "constraint-conflict",
+          "plannerRejected": [
+            {
+              "reason": "skeleton-too-short"
+            }
+          ]
+        },
+        {
+          "countryCode": "SC",
+          "query": "Seychelles 7 days in February",
+          "reason": "constraint-conflict",
+          "plannerRejected": [
+            {
+              "reason": "skeleton-too-short"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "countryCode": "SM",
+      "eligible": true,
+      "reasons": [],
+      "identity": true,
+      "destinationPoi": true,
+      "transport": true,
+      "season": true,
+      "singleDestinationExemption": true,
+      "evidenceBackedEligible": false,
+      "counts": {
+        "cities": 1,
+        "pois": 6,
+        "transport": 0,
+        "season": 1
+      },
+      "routeGeneration": "blocked",
+      "promotionGate": "blocked",
+      "finalStatus": "catalog-only",
+      "routeFailures": [
+        {
+          "countryCode": "SM",
+          "query": "San Marino February",
+          "reason": "unresolved-destination",
+          "plannerRejected": []
+        }
+      ]
+    },
+    {
+      "countryCode": "TT",
+      "eligible": false,
+      "reasons": [
+        "directed-transport-incomplete"
+      ],
+      "identity": true,
+      "destinationPoi": true,
+      "transport": false,
+      "season": true,
+      "singleDestinationExemption": false,
+      "evidenceBackedEligible": false,
+      "counts": {
+        "cities": 3,
+        "pois": 10,
+        "transport": 2,
+        "season": 3
+      },
+      "routeGeneration": "not-eligible",
+      "promotionGate": "blocked",
+      "finalStatus": "catalog-only",
+      "routeFailures": []
+    },
+    {
+      "countryCode": "UG",
+      "eligible": false,
+      "reasons": [
+        "directed-transport-incomplete"
+      ],
+      "identity": true,
+      "destinationPoi": true,
+      "transport": false,
+      "season": true,
+      "singleDestinationExemption": false,
+      "evidenceBackedEligible": false,
+      "counts": {
+        "cities": 3,
+        "pois": 11,
+        "transport": 0,
+        "season": 3
+      },
+      "routeGeneration": "not-eligible",
+      "promotionGate": "blocked",
+      "finalStatus": "catalog-only",
+      "routeFailures": []
+    },
+    {
+      "countryCode": "ZM",
+      "eligible": true,
+      "reasons": [],
+      "identity": true,
+      "destinationPoi": true,
+      "transport": true,
+      "season": true,
+      "singleDestinationExemption": false,
+      "evidenceBackedEligible": true,
+      "counts": {
+        "cities": 3,
+        "pois": 5,
+        "transport": 4,
+        "season": 3
+      },
+      "routeGeneration": "pass",
+      "promotionGate": "pass",
+      "finalStatus": "promoted",
+      "routeFailures": []
+    },
+    {
+      "countryCode": "ZW",
+      "eligible": true,
+      "reasons": [],
+      "identity": true,
+      "destinationPoi": true,
+      "transport": true,
+      "season": true,
+      "singleDestinationExemption": false,
+      "evidenceBackedEligible": true,
+      "counts": {
+        "cities": 4,
+        "pois": 13,
+        "transport": 6,
+        "season": 4
+      },
+      "routeGeneration": "pass",
+      "promotionGate": "pass",
+      "finalStatus": "promoted",
+      "routeFailures": []
+    }
+  ],
+  "routeProbe": {
+    "queryCount": 24,
+    "failures": [
+      {
+        "countryCode": "SC",
+        "query": "Seychelles",
+        "reason": "constraint-conflict",
+        "plannerRejected": [
+          {
+            "reason": "skeleton-too-short"
+          }
+        ]
+      },
+      {
+        "countryCode": "SC",
+        "query": "Seychelles 7 days",
+        "reason": "constraint-conflict",
+        "plannerRejected": [
+          {
+            "reason": "skeleton-too-short"
+          }
+        ]
+      },
+      {
+        "countryCode": "SC",
+        "query": "Seychelles February",
+        "reason": "constraint-conflict",
+        "plannerRejected": [
+          {
+            "reason": "skeleton-too-short"
+          }
+        ]
+      },
+      {
+        "countryCode": "SC",
+        "query": "Seychelles 7 days in February",
+        "reason": "constraint-conflict",
+        "plannerRejected": [
+          {
+            "reason": "skeleton-too-short"
+          }
+        ]
+      },
+      {
+        "countryCode": "SM",
+        "query": "San Marino February",
+        "reason": "unresolved-destination",
+        "plannerRejected": []
+      }
+    ]
+  },
+  "productionTruth": {
+    "countries": 195,
+    "cities": 866,
+    "pois": 4071,
+    "totalEntities": 5132
+  },
+  "readiness": {
+    "plannable": 122,
+    "evidenceBacked": 119,
+    "catalogOnly": 73
+  },
+  "candidateLeakage": "NONE",
+  "performanceClearance": "NOT_CLEARED"
+}

@@ -47,11 +47,19 @@ assert.equal(report.plannableCountryCodes.includes("AL"), true, "Batch 07 Albani
 assert.equal(report.plannableCountryCodes.includes("GT"), true, "Batch 07 Guatemala City/POI depth must be reflected as plannable");
 assert.equal(report.plannableCountryCodes.includes("AM"), true, "Batch 08 Armenia City/POI depth must be reflected as plannable");
 assert.equal(report.plannableCountryCodes.includes("NI"), true, "Batch 08 Nicaragua City/POI depth must be reflected as plannable");
+for (const code of ["BB", "RW", "ZM", "ZW"]) {
+  assert.equal(report.plannableCountryCodes.includes(code), true, `${code}: Batch 01 promotion must be Plannable`);
+  assert.equal(report.evidenceBackedCountryCodes.includes(code), true, `${code}: Batch 01 promotion must be Evidence-backed`);
+  assert.equal(report.countryOnlyCountryCodes.includes(code), false, `${code}: promoted Country must not remain Catalog-only`);
+}
+for (const code of ["SC", "SM"]) {
+  assert.equal(report.countryOnlyCountryCodes.includes(code), true, `${code}: failed runtime gate must remain Catalog-only`);
+}
 assert.deepEqual(report.countryOnlyCountryCodes, [
-  "AF", "AG", "AO", "BB", "BF", "BI", "BJ", "BY", "BZ", "CF", "CG", "CI", "CM", "CN",
+  "AF", "AG", "AO", "BF", "BI", "BJ", "BY", "BZ", "CF", "CG", "CI", "CM", "CN",
   "CV", "DJ", "DM", "ER", "FM", "GA", "GD", "GM", "GN", "GQ", "GW", "GY", "HT", "IQ",
   "IR", "KI", "KM", "KN", "LR", "LS", "LY", "MH", "ML", "MM", "MN", "MR", "MW", "MZ", "NE",
-  "NR", "PG", "PW", "RW", "SM", "SZ", "TD", "TJ", "TL", "TT", "UA", "UG", "ZM", "ZW",
+  "NR", "PG", "PW", "SM", "SZ", "TD", "TJ", "TL", "TT", "UA", "UG",
   "LC", "SB", "SC", "SD", "SL", "SO", "SR", "SS", "ST", "SY", "TG", "TM", "TO", "TV", "VC", "VE", "YE",
   "VA", "PS", "KP",
 ].sort(), "China and all evidence-pending sovereign expansion Countries must remain Catalog-only");

@@ -4,7 +4,6 @@
     "AF",
     "AG",
     "AO",
-    "BB",
     "BF",
     "BI",
     "BJ",
@@ -50,7 +49,6 @@
     "PG",
     "PS",
     "PW",
-    "RW",
     "SB",
     "SC",
     "SD",
@@ -75,9 +73,7 @@
     "VA",
     "VC",
     "VE",
-    "YE",
-    "ZM",
-    "ZW"
+    "YE"
   ],
   "batch01EntityFoundationCountryCodes": [
     "BB",
@@ -107,6 +103,7 @@
     "AU",
     "AZ",
     "BA",
+    "BB",
     "BD",
     "BE",
     "BG",
@@ -198,6 +195,7 @@
     "RO",
     "RS",
     "RU",
+    "RW",
     "SA",
     "SE",
     "SG",
@@ -215,7 +213,9 @@
     "VN",
     "VU",
     "WS",
-    "ZA"
+    "ZA",
+    "ZM",
+    "ZW"
   ],
   "evidenceBackedCountryCodes": [
     "AD",
@@ -227,6 +227,7 @@
     "AU",
     "AZ",
     "BA",
+    "BB",
     "BD",
     "BE",
     "BG",
@@ -317,6 +318,7 @@
     "RO",
     "RS",
     "RU",
+    "RW",
     "SA",
     "SE",
     "SI",
@@ -332,13 +334,14 @@
     "VN",
     "VU",
     "WS",
-    "ZA"
+    "ZA",
+    "ZM",
+    "ZW"
   ],
   "evidencePendingCountryCodes": [
     "AF",
     "AG",
     "AO",
-    "BB",
     "BF",
     "BI",
     "BJ",
@@ -383,7 +386,6 @@
     "PG",
     "PS",
     "PW",
-    "RW",
     "SB",
     "SC",
     "SD",
@@ -408,8 +410,61 @@
     "VA",
     "VC",
     "VE",
-    "YE",
-    "ZM",
-    "ZW"
-  ]
+    "YE"
+  ],
+  "expectedCounts": {
+    "plannable": 122,
+    "evidenceBacked": 119,
+    "catalogOnly": 73
+  },
+  "batch01Promotion": {
+    "reviewedCountryCodes": [
+      "BB",
+      "BZ",
+      "CV",
+      "DM",
+      "MN",
+      "RW",
+      "SC",
+      "SM",
+      "TT",
+      "UG",
+      "ZM",
+      "ZW"
+    ],
+    "candidateCountryCodes": [
+      "BB",
+      "RW",
+      "SC",
+      "SM",
+      "ZM",
+      "ZW"
+    ],
+    "promotedCountryCodes": [
+      "BB",
+      "RW",
+      "ZM",
+      "ZW"
+    ],
+    "blockedCountryCodes": [
+      "SC",
+      "SM"
+    ],
+    "evidencePhaseBlockedCountryCodes": [
+      "BZ",
+      "CV",
+      "DM",
+      "MN",
+      "TT",
+      "UG"
+    ],
+    "evidenceBackedCountryCodes": [
+      "BB",
+      "RW",
+      "ZM",
+      "ZW"
+    ],
+    "themeEvidenceRequired": false,
+    "authority": "production-facts-reviewed-evidence-and-live-route-gate"
+  }
 }

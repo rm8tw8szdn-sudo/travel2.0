@@ -16,6 +16,8 @@ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const json = (relativePath) => JSON.parse(fs.readFileSync(path.join(ROOT, relativePath), "utf8"));
 const jsonl = (relativePath) => fs.readFileSync(path.join(ROOT, relativePath), "utf8").split(/\r?\n/u).filter(Boolean).map(JSON.parse);
 const CODES = ["BB", "BZ", "CV", "DM", "MN", "RW", "SC", "SM", "TT", "UG", "ZM", "ZW"];
+const PROMOTED_CODES = ["BB", "RW", "ZM", "ZW"];
+const BLOCKED_CODES = ["BZ", "CV", "DM", "MN", "SC", "SM", "TT", "UG"];
 const citiesAsset = json("data/knowledge/batches/cities.p1b-batch50.json");
 const poisAsset = json("data/knowledge/batches/pois.p1b-batch50.json");
 const reviewQueue = json("data/knowledge/batches/review-queue.plannable-expansion-batch01.json");
@@ -72,29 +74,32 @@ const coverage = createKnowledgeCoverageSemantics({
   routeLegEvidence: jsonl("data/route-v2/evidence-seed/route-leg-evidence.jsonl"),
   seasonEvidence: jsonl("data/route-v2/evidence-seed/season-evidence.jsonl"),
 });
-assert.equal(coverage.plannableCountries, 118);
-assert.equal(coverage.evidenceBackedCountries, 115);
-assert.equal(coverage.countryOnlyCountries, 77);
-assert.equal(CODES.every((code) => coverage.countryOnlyCountryCodes.includes(code)), true);
+assert.equal(coverage.plannableCountries, 122);
+assert.equal(coverage.evidenceBackedCountries, 119);
+assert.equal(coverage.countryOnlyCountries, 73);
+assert.equal(PROMOTED_CODES.every((code) => coverage.plannableCountryCodes.includes(code) && coverage.evidenceBackedCountryCodes.includes(code)), true);
+assert.equal(BLOCKED_CODES.every((code) => coverage.countryOnlyCountryCodes.includes(code)), true);
 assert.deepEqual(readinessPolicy.batch01EntityFoundationCountryCodes, CODES);
 const readinessAuthority = getAuthoritativeKnowledgeReadiness();
-assert.equal(readinessAuthority.plannableCountryCodes.length, 118);
-assert.equal(readinessAuthority.evidenceBackedCountryCodes.length, 115);
-assert.equal(readinessAuthority.catalogOnlyCountryCodes.length, 77);
-assert.equal(CODES.every((code) => readinessAuthority.catalogOnlyCountryCodes.includes(code) && readinessAuthority.evidencePendingCountryCodes.includes(code)), true);
+assert.equal(readinessAuthority.plannableCountryCodes.length, 122);
+assert.equal(readinessAuthority.evidenceBackedCountryCodes.length, 119);
+assert.equal(readinessAuthority.catalogOnlyCountryCodes.length, 73);
+assert.equal(PROMOTED_CODES.every((code) => readinessAuthority.plannableCountryCodes.includes(code) && readinessAuthority.evidenceBackedCountryCodes.includes(code)), true);
+assert.equal(BLOCKED_CODES.every((code) => readinessAuthority.catalogOnlyCountryCodes.includes(code) && readinessAuthority.evidencePendingCountryCodes.includes(code)), true);
 const replaceCode = (codes, from, to) => codes.map((code) => code === from ? to : code);
 const malformedAuthorities = [
   null,
   {},
   { ...readinessPolicy, plannableCountryCodes: null },
-  { ...readinessPolicy, catalogOnlyCountryCodes: [...readinessPolicy.catalogOnlyCountryCodes, "BB"] },
+  { ...readinessPolicy, catalogOnlyCountryCodes: [...readinessPolicy.catalogOnlyCountryCodes, "BZ"] },
   { ...readinessPolicy, plannableCountryCodes: replaceCode(readinessPolicy.plannableCountryCodes, "JP", "ZZ"), evidenceBackedCountryCodes: replaceCode(readinessPolicy.evidenceBackedCountryCodes, "JP", "ZZ") },
   { ...readinessPolicy, evidenceBackedCountryCodes: replaceCode(readinessPolicy.evidenceBackedCountryCodes, "JP", "ZZ") },
-  { ...readinessPolicy, catalogOnlyCountryCodes: replaceCode(readinessPolicy.catalogOnlyCountryCodes, "BB", "ZZ"), evidencePendingCountryCodes: replaceCode(readinessPolicy.evidencePendingCountryCodes, "BB", "ZZ") },
-  { ...readinessPolicy, evidencePendingCountryCodes: replaceCode(readinessPolicy.evidencePendingCountryCodes, "BB", "ZZ") },
+  { ...readinessPolicy, catalogOnlyCountryCodes: replaceCode(readinessPolicy.catalogOnlyCountryCodes, "BZ", "ZZ"), evidencePendingCountryCodes: replaceCode(readinessPolicy.evidencePendingCountryCodes, "BZ", "ZZ") },
+  { ...readinessPolicy, evidencePendingCountryCodes: replaceCode(readinessPolicy.evidencePendingCountryCodes, "BZ", "ZZ") },
   { ...readinessPolicy, plannableCountryCodes: readinessPolicy.plannableCountryCodes.filter((code) => code !== "JP") },
   { ...readinessPolicy, catalogOnlyCountryCodes: [...readinessPolicy.catalogOnlyCountryCodes, "JP"] },
-  { ...readinessPolicy, evidenceBackedCountryCodes: replaceCode(readinessPolicy.evidenceBackedCountryCodes, "JP", "BB") },
+  { ...readinessPolicy, evidenceBackedCountryCodes: replaceCode(readinessPolicy.evidenceBackedCountryCodes, "JP", "BZ") },
+  { ...readinessPolicy, expectedCounts: { ...readinessPolicy.expectedCounts, plannable: 121 } },
 ];
 for (const malformed of malformedAuthorities) {
   assert.throws(() => validateKnowledgeReadinessAuthority(malformed), /READINESS_AUTHORITY_/u);
@@ -135,9 +140,9 @@ const runtimeService = createRouteSearchService({
     SEARCH_PLANNER_TIMEOUT_MS: "2000",
   },
 });
-await runtimeService.search({ query: "Barbados 7 days", limit: 3, sessionId: "batch01-readiness-negative" });
+await runtimeService.search({ query: "Belize 7 days", limit: 3, sessionId: "batch01-readiness-negative" });
 assert.equal(plannerCalls, 0, "Catalog-only Country with production entity depth must not enter the planner");
-await runtimeService.search({ query: "Japan 7 days", limit: 3, sessionId: "batch01-readiness-positive" });
+await runtimeService.search({ query: "Barbados 7 days", limit: 3, sessionId: "batch01-readiness-positive" });
 assert.equal(plannerCalls, 1, "authoritative Plannable Country must remain planner-eligible");
 
 for (const historicalPath of [

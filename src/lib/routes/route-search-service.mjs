@@ -612,7 +612,9 @@ function plannerContextFromIntent(intent, deadlineAt, abortSignal = null, {
   };
 }
 
-export function createRouteSearchService({
+const BATCH01_PROMOTION_CANDIDATE_CODES = Object.freeze(["BB", "RW", "SC", "SM", "ZM", "ZW"]);
+
+function createRouteSearchServiceInternal({
   acceptedRepository,
   searchCache,
   analytics = null,
@@ -622,11 +624,12 @@ export function createRouteSearchService({
   now = () => Date.now(),
   env = process.env,
   rankingWeights = DEFAULT_RANKING_WEIGHTS,
-} = {}) {
+} = {}, promotionEvaluation = false) {
   if (!acceptedRepository?.list) throw new Error("ACCEPTED_REPOSITORY_REQUIRED");
   if (!searchCache?.get || !searchCache?.put) throw new Error("SEARCH_CACHE_REQUIRED");
-  const readinessAuthority = getAuthoritativeKnowledgeReadiness();
-  const authoritativePlannableCountryCodes = new Set(readinessAuthority.plannableCountryCodes);
+  const authoritativePlannableCountryCodes = new Set(promotionEvaluation
+    ? BATCH01_PROMOTION_CANDIDATE_CODES
+    : getAuthoritativeKnowledgeReadiness().plannableCountryCodes);
   const plannerTimeoutMs = Math.max(1, Number(env.SEARCH_PLANNER_TIMEOUT_MS || 2000));
   const maxPlannerCalls = Math.max(0, Number(env.SEARCH_MAX_PLANNER_CALLS_PER_REQUEST || 1));
   const autoAcceptGenerated = String(env.SEARCH_AUTO_ACCEPT_GENERATED || "false").toLocaleLowerCase("en-US") === "true";
@@ -1196,4 +1199,12 @@ export function createRouteSearchService({
   }
 
   return { search, getSearchRoute };
+}
+
+export function createRouteSearchService(options = {}) {
+  return createRouteSearchServiceInternal(options);
+}
+
+export function createBatch01PromotionEvaluationSearchService(options = {}) {
+  return createRouteSearchServiceInternal(options, true);
 }

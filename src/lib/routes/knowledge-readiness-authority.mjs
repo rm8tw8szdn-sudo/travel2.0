@@ -10,6 +10,9 @@ const POLICY_PATH = path.resolve(moduleDirectory, "../../../data/knowledge/seman
 const PROMOTION_AUTHORITY_PATH = path.resolve(moduleDirectory, "../../../data/knowledge/semantic/plannable-expansion-batch01-promotion-authority.json");
 const PROMOTION_REPORT_PATH = path.resolve(moduleDirectory, "../../../data/knowledge/reports/plannable-expansion-batch01-promotion.json");
 const PROMOTION_COORDINATOR_PATH = path.resolve(moduleDirectory, "../../../scripts/promote-plannable-expansion-batch01.mjs");
+const PROMOTION_SEALED_COMMIT = "eddf46512863c115b7f39e29d5f6c448d1ce6251";
+const PROMOTION_AUTHORITY_RELATIVE_PATH = "data/knowledge/semantic/plannable-expansion-batch01-promotion-authority.json";
+const PROMOTION_REPORT_RELATIVE_PATH = "data/knowledge/reports/plannable-expansion-batch01-promotion.json";
 const SEALED_PRE_PROMOTION_COUNTS = Object.freeze({ plannable: 118, evidenceBacked: 115, catalogOnly: 77 });
 let cachedAuthority = null;
 let cachedLivePromotionDecision = null;
@@ -79,10 +82,10 @@ export function validateKnowledgeReadinessAuthority(policy) {
       || !sameCodes(evidencePendingCountryCodes, expectedEvidencePending)) {
       throw new Error("READINESS_AUTHORITY_DERIVED_PARTITION_MISMATCH");
     }
-    const auditArtifact = loadAuditJson(PROMOTION_AUTHORITY_PATH, "PROMOTION_AUDIT");
-    if (JSON.stringify(auditArtifact) !== JSON.stringify(derivedPayload.promotionAuthority)) throw new Error("READINESS_AUTHORITY_PROMOTION_AUDIT_MISMATCH");
-    const auditReport = loadAuditJson(PROMOTION_REPORT_PATH, "PROMOTION_REPORT");
-    if (JSON.stringify(auditReport) !== JSON.stringify(derivedPayload.report)) throw new Error("READINESS_AUTHORITY_PROMOTION_REPORT_MISMATCH");
+    const auditArtifact = loadSealedAuditJson(PROMOTION_AUTHORITY_PATH, PROMOTION_AUTHORITY_RELATIVE_PATH, "PROMOTION_AUDIT");
+    const sealedDecision = normalizeBatch01PromotionDecision(auditArtifact);
+    if (JSON.stringify(sealedDecision) !== JSON.stringify(derived)) throw new Error("READINESS_AUTHORITY_PROMOTION_AUDIT_MISMATCH");
+    loadSealedAuditJson(PROMOTION_REPORT_PATH, PROMOTION_REPORT_RELATIVE_PATH, "PROMOTION_REPORT");
     derivedCounts = {
       plannable: SEALED_PRE_PROMOTION_COUNTS.plannable + promotedCountryCodes.length,
       evidenceBacked: SEALED_PRE_PROMOTION_COUNTS.evidenceBacked + evidenceBackedPromotionCodes.length,
@@ -171,6 +174,28 @@ function deriveBatch01PromotionDecision() {
 function loadAuditJson(filePath, label) {
   try {
     return JSON.parse(fs.readFileSync(filePath, "utf8"));
+  } catch (error) {
+    throw new Error(`READINESS_AUTHORITY_${label}_UNAVAILABLE:${error.message}`);
+  }
+}
+
+function loadSealedAuditJson(filePath, relativePath, label) {
+  let currentText;
+  let sealedText;
+  try {
+    currentText = fs.readFileSync(filePath, "utf8");
+    sealedText = execFileSync("git", ["show", `${PROMOTION_SEALED_COMMIT}:${relativePath}`], {
+      cwd: path.resolve(moduleDirectory, "../../.."),
+      encoding: "utf8",
+      maxBuffer: 16 * 1024 * 1024,
+    });
+  } catch (error) {
+    throw new Error(`READINESS_AUTHORITY_${label}_SEALED_SOURCE_UNAVAILABLE:${error.stderr || error.stdout || error.message}`);
+  }
+  const canonicalText = (value) => value.replace(/\r\n/gu, "\n");
+  if (canonicalText(currentText) !== canonicalText(sealedText)) throw new Error(`READINESS_AUTHORITY_${label}_MISMATCH`);
+  try {
+    return JSON.parse(currentText);
   } catch (error) {
     throw new Error(`READINESS_AUTHORITY_${label}_UNAVAILABLE:${error.message}`);
   }

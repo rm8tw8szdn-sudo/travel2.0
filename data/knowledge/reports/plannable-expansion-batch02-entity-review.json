@@ -1,0 +1,2333 @@
+{
+  "schemaVersion": "route-v2-plannable-expansion-batch02-entity-review-v1",
+  "phase": "discovery-selection-entity-foundation",
+  "sealedMain": "eddf46512863c115b7f39e29d5f6c448d1ce6251",
+  "baseline": {
+    "countries": 195,
+    "cities": 866,
+    "pois": 4071,
+    "totalEntities": 5132,
+    "plannable": 122,
+    "evidenceBacked": 119,
+    "catalogOnly": 73
+  },
+  "discovery": {
+    "catalogCountries": 195,
+    "plannableCountries": 122,
+    "catalogOnlyCountries": 73,
+    "exactDisjointComplete": true,
+    "tiers": {
+      "A": [
+        "AO",
+        "BJ",
+        "BY",
+        "BZ",
+        "CI",
+        "CM",
+        "CV",
+        "DM",
+        "MN",
+        "MZ",
+        "PG",
+        "SC",
+        "SM",
+        "TT",
+        "UG"
+      ],
+      "B": [
+        "AG",
+        "BF",
+        "BI",
+        "CG",
+        "ER",
+        "GD",
+        "GM",
+        "GN",
+        "GQ",
+        "GW",
+        "GY",
+        "KN",
+        "LC",
+        "LR",
+        "ML",
+        "MR",
+        "MW",
+        "NE",
+        "SB",
+        "SL",
+        "SR",
+        "ST",
+        "SZ",
+        "TD",
+        "TG",
+        "TJ",
+        "TL",
+        "TM",
+        "TO",
+        "VC",
+        "VE"
+      ],
+      "C": [
+        "CF",
+        "DJ",
+        "FM",
+        "GA",
+        "KI",
+        "KM",
+        "LS",
+        "MH",
+        "NR",
+        "PW",
+        "TV"
+      ],
+      "D": [
+        "AF",
+        "CN",
+        "HT",
+        "IQ",
+        "IR",
+        "KP",
+        "LY",
+        "MM",
+        "PS",
+        "SD",
+        "SO",
+        "SS",
+        "SY",
+        "UA",
+        "VA",
+        "YE"
+      ]
+    }
+  },
+  "selection": {
+    "initial": [
+      "AO",
+      "BJ",
+      "BY",
+      "BZ",
+      "CI",
+      "CM",
+      "CV",
+      "DM",
+      "MN",
+      "MZ",
+      "PG",
+      "SZ",
+      "TT",
+      "UG"
+    ],
+    "replacements": [
+      {
+        "removed": "PG",
+        "added": "TL",
+        "reason": "PG failed per-destination POI sufficiency after region/river candidates were excluded"
+      }
+    ],
+    "final": [
+      "AO",
+      "BJ",
+      "BY",
+      "BZ",
+      "CI",
+      "CM",
+      "CV",
+      "DM",
+      "MN",
+      "MZ",
+      "SZ",
+      "TL",
+      "TT",
+      "UG"
+    ],
+    "batchSize": 14,
+    "authority": "derived-discovery-facts-and-fixed-selection-criteria; report-is-audit-only"
+  },
+  "review": {
+    "candidateDestinationsReviewed": 24,
+    "destinationsAdmitted": 24,
+    "destinationsRejected": 0,
+    "candidatePoisReviewed": 121,
+    "poisAdmitted": 88,
+    "poisExistingProductionReused": 0,
+    "poisQuarantined": 33,
+    "poisUnaccounted": 0,
+    "poisMultiDisposition": 0,
+    "identityConflicts": 0,
+    "duplicateConflicts": 0,
+    "regionIslandConflicts": 20
+  },
+  "poiDispositions": [
+    {
+      "countryCode": "AO",
+      "destinationEntityId": "city-7a7f677f510d9f6e",
+      "destinationName": "Lubango",
+      "candidateEntityId": "poi-37758a1c6f4893fb",
+      "wikidataId": "Q19892276",
+      "canonicalNameEn": "Cristo Rei, Lubango",
+      "disposition": "ADMITTED_NEW",
+      "reason": "reviewed-specific-travel-compatible-poi",
+      "admittedProductionEntityId": "poi-37758a1c6f4893fb"
+    },
+    {
+      "countryCode": "AO",
+      "destinationEntityId": "city-8072eb9ee3a0831c",
+      "destinationName": "Benguela",
+      "candidateEntityId": "poi-46bdfd57e68b1ed1",
+      "wikidataId": "Q10283975",
+      "canonicalNameEn": "Fort of Saint Philip of  Benguela",
+      "disposition": "ADMITTED_NEW",
+      "reason": "reviewed-specific-travel-compatible-poi",
+      "admittedProductionEntityId": "poi-46bdfd57e68b1ed1"
+    },
+    {
+      "countryCode": "AO",
+      "destinationEntityId": "city-8072eb9ee3a0831c",
+      "destinationName": "Benguela",
+      "candidateEntityId": "poi-a7ba41dd12b9f7d8",
+      "wikidataId": "Q9060630",
+      "canonicalNameEn": "Playa Morena",
+      "disposition": "ADMITTED_NEW",
+      "reason": "reviewed-specific-travel-compatible-poi",
+      "admittedProductionEntityId": "poi-a7ba41dd12b9f7d8"
+    },
+    {
+      "countryCode": "AO",
+      "destinationEntityId": "city-ec86f948d5cfe821",
+      "destinationName": "Luanda",
+      "candidateEntityId": "poi-28bff61d19d8f32a",
+      "wikidataId": "Q4795789",
+      "canonicalNameEn": "Arquivo Histórico Nacional",
+      "disposition": "QUARANTINED_REJECTED",
+      "reason": "operational-archive",
+      "quarantineEntityId": "poi-28bff61d19d8f32a"
+    },
+    {
+      "countryCode": "AO",
+      "destinationEntityId": "city-ec86f948d5cfe821",
+      "destinationName": "Luanda",
+      "candidateEntityId": "poi-f9f00380e01d52bc",
+      "wikidataId": "Q15043323",
+      "canonicalNameEn": "Church of Our Lady of Remedies",
+      "disposition": "ADMITTED_NEW",
+      "reason": "reviewed-specific-travel-compatible-poi",
+      "admittedProductionEntityId": "poi-f9f00380e01d52bc"
+    },
+    {
+      "countryCode": "AO",
+      "destinationEntityId": "city-ec86f948d5cfe821",
+      "destinationName": "Luanda",
+      "candidateEntityId": "poi-2c624499bd0f32fe",
+      "wikidataId": "Q2272674",
+      "canonicalNameEn": "Fortress of São Francisco do Penedo",
+      "disposition": "ADMITTED_NEW",
+      "reason": "reviewed-specific-travel-compatible-poi",
+      "admittedProductionEntityId": "poi-2c624499bd0f32fe"
+    },
+    {
+      "countryCode": "AO",
+      "destinationEntityId": "city-ec86f948d5cfe821",
+      "destinationName": "Luanda",
+      "candidateEntityId": "poi-0682a765aa7770f7",
+      "wikidataId": "Q1408988",
+      "canonicalNameEn": "Fortress of São Miguel",
+      "disposition": "ADMITTED_NEW",
+      "reason": "reviewed-specific-travel-compatible-poi",
+      "admittedProductionEntityId": "poi-0682a765aa7770f7"
+    },
+    {
+      "countryCode": "AO",
+      "destinationEntityId": "city-ec86f948d5cfe821",
+      "destinationName": "Luanda",
+      "candidateEntityId": "poi-2b6e241f216dffba",
+      "wikidataId": "Q868147",
+      "canonicalNameEn": "Museum of the Armed Forces",
+      "disposition": "ADMITTED_NEW",
+      "reason": "reviewed-specific-travel-compatible-poi",
+      "admittedProductionEntityId": "poi-2b6e241f216dffba"
+    },
+    {
+      "countryCode": "AO",
+      "destinationEntityId": "city-ec86f948d5cfe821",
+      "destinationName": "Luanda",
+      "candidateEntityId": "poi-ef57a300c76f4d97",
+      "wikidataId": "Q6974138",
+      "canonicalNameEn": "National Library of Angola",
+      "disposition": "QUARANTINED_REJECTED",
+      "reason": "operational-library",
+      "quarantineEntityId": "poi-ef57a300c76f4d97"
+    },
+    {
+      "countryCode": "AO",
+      "destinationEntityId": "city-ec86f948d5cfe821",
+      "destinationName": "Luanda",
+      "candidateEntityId": "poi-a82ba47a06adfb66",
+      "wikidataId": "Q9292748",
+      "canonicalNameEn": "Saint Peter of the Bar Fortress",
+      "disposition": "ADMITTED_NEW",
+      "reason": "reviewed-specific-travel-compatible-poi",
+      "admittedProductionEntityId": "poi-a82ba47a06adfb66"
+    },
+    {
+      "countryCode": "BJ",
+      "destinationEntityId": "city-17793b277caddfed",
+      "destinationName": "Porto-Novo",
+      "candidateEntityId": "poi-e3076330e15eb22b",
+      "wikidataId": "Q94238736",
+      "canonicalNameEn": "Great Mosque of Porto-Novo",
+      "disposition": "ADMITTED_NEW",
+      "reason": "reviewed-specific-travel-compatible-poi",
+      "admittedProductionEntityId": "poi-e3076330e15eb22b"
+    },
+    {
+      "countryCode": "BJ",
+      "destinationEntityId": "city-17793b277caddfed",
+      "destinationName": "Porto-Novo",
+      "candidateEntityId": "poi-3fbf0d351127958b",
+      "wikidataId": "Q6974139",
+      "canonicalNameEn": "National Library of Benin",
+      "disposition": "QUARANTINED_REJECTED",
+      "reason": "operational-library",
+      "quarantineEntityId": "poi-3fbf0d351127958b"
+    },
+    {
+      "countryCode": "BJ",
+      "destinationEntityId": "city-17793b277caddfed",
+      "destinationName": "Porto-Novo",
+      "candidateEntityId": "poi-28651ed298b0b59c",
+      "wikidataId": "Q4781577",
+      "canonicalNameEn": "Okpara River",
+      "disposition": "QUARANTINED_REJECTED",
+      "reason": "generic-watercourse",
+      "quarantineEntityId": "poi-28651ed298b0b59c"
+    },
+    {
+      "countryCode": "BJ",
+      "destinationEntityId": "city-17793b277caddfed",
+      "destinationName": "Porto-Novo",
+      "candidateEntityId": "poi-f8ee959ece5094f2",
+      "wikidataId": "Q2784858",
+      "canonicalNameEn": "Royal Palace Museum",
+      "disposition": "ADMITTED_NEW",
+      "reason": "reviewed-specific-travel-compatible-poi",
+      "admittedProductionEntityId": "poi-f8ee959ece5094f2"
+    },
+    {
+      "countryCode": "BJ",
+      "destinationEntityId": "city-3b3c9457618c868e",
+      "destinationName": "Cotonou",
+      "candidateEntityId": "poi-adbf8e78fcde0ae5",
+      "wikidataId": "Q112032217",
+      "canonicalNameEn": "Amazon Monument",
+      "disposition": "ADMITTED_NEW",
+      "reason": "reviewed-specific-travel-compatible-poi",
+      "admittedProductionEntityId": "poi-adbf8e78fcde0ae5"
+    },
+    {
+      "countryCode": "BJ",
+      "destinationEntityId": "city-3b3c9457618c868e",
+      "destinationName": "Cotonou",
+      "candidateEntityId": "poi-f7a6f16931a12a27",
+      "wikidataId": "Q4752787",
+      "canonicalNameEn": "Ancien Pont Bridge",
+      "disposition": "ADMITTED_NEW",
+      "reason": "reviewed-specific-travel-compatible-poi",
+      "admittedProductionEntityId": "poi-f7a6f16931a12a27"
+    },
+    {
+      "countryCode": "BJ",
+      "destinationEntityId": "city-3b3c9457618c868e",
+      "destinationName": "Cotonou",
+      "candidateEntityId": "poi-4765ef9eb12ae006",
+      "wikidataId": "Q2942229",
+      "canonicalNameEn": "Cotonou Cathedral",
+      "disposition": "ADMITTED_NEW",
+      "reason": "reviewed-specific-travel-compatible-poi",
+      "admittedProductionEntityId": "poi-4765ef9eb12ae006"
+    },
+    {
+      "countryCode": "BJ",
+      "destinationEntityId": "city-3b3c9457618c868e",
+      "destinationName": "Cotonou",
+      "candidateEntityId": "poi-0153c318af13b013",
+      "wikidataId": "Q5175452",
+      "canonicalNameEn": "Cotonou Central Mosque",
+      "disposition": "ADMITTED_NEW",
+      "reason": "reviewed-specific-travel-compatible-poi",
+      "admittedProductionEntityId": "poi-0153c318af13b013"
+    },
+    {
+      "countryCode": "BJ",
+      "destinationEntityId": "city-3b3c9457618c868e",
+      "destinationName": "Cotonou",
+      "candidateEntityId": "poi-841ae75ada2ae22e",
+      "wikidataId": "Q268631",
+      "canonicalNameEn": "Lake Nokoué",
+      "disposition": "ADMITTED_NEW",
+      "reason": "reviewed-specific-travel-compatible-poi",
+      "admittedProductionEntityId": "poi-841ae75ada2ae22e"
+    },
+    {
+      "countryCode": "BJ",
+      "destinationEntityId": "city-3b3c9457618c868e",
+      "destinationName": "Cotonou",
+      "candidateEntityId": "poi-d1c998bd93fdeda6",
+      "wikidataId": "Q106195578",
+      "canonicalNameEn": "Presidential Palace, Cotonou",
+      "disposition": "ADMITTED_NEW",
+      "reason": "reviewed-specific-travel-compatible-poi",
+      "admittedProductionEntityId": "poi-d1c998bd93fdeda6"
+    },
+    {
+      "countryCode": "BJ",
+      "destinationEntityId": "city-736f6f9f243c8718",
+      "destinationName": "Ouidah",
+      "candidateEntityId": "poi-e9d07df98d001077",
+      "wikidataId": "Q2091236",
+      "canonicalNameEn": "Basilique de l'Immaculée Conception",
+      "disposition": "ADMITTED_NEW",
+      "reason": "reviewed-specific-travel-compatible-poi",
+      "admittedProductionEntityId": "poi-e9d07df98d001077"
+    },
+    {
+      "countryCode": "BJ",
+      "destinationEntityId": "city-736f6f9f243c8718",
+      "destinationName": "Ouidah",
+      "candidateEntityId": "poi-ff5ee760bc908cee",
+      "wikidataId": "Q18467833",
+      "canonicalNameEn": "Door of No Return",
+      "disposition": "ADMITTED_NEW",
+      "reason": "reviewed-specific-travel-compatible-poi",
+      "admittedProductionEntityId": "poi-ff5ee760bc908cee"
+    },
+    {
+      "countryCode": "BJ",
+      "destinationEntityId": "city-736f6f9f243c8718",
+      "destinationName": "Ouidah",
+      "candidateEntityId": "poi-f850dd560cce22b7",
+      "wikidataId": "Q136148430",
+      "canonicalNameEn": "Jardin d'Essai (Ouidah)",
+      "disposition": "ADMITTED_NEW",
+      "reason": "reviewed-specific-travel-compatible-poi",
+      "admittedProductionEntityId": "poi-f850dd560cce22b7"
+    },
+    {
+      "countryCode": "BJ",
+      "destinationEntityId": "city-736f6f9f243c8718",
+      "destinationName": "Ouidah",
+      "candidateEntityId": "poi-26cc879ecd370083",
+      "wikidataId": "Q7110333",
+      "canonicalNameEn": "Ouidah Museum of History",
+      "disposition": "ADMITTED_NEW",
+      "reason": "reviewed-specific-travel-compatible-poi",
+      "admittedProductionEntityId": "poi-26cc879ecd370083"
+    },
+    {
+      "countryCode": "BJ",
+      "destinationEntityId": "city-736f6f9f243c8718",
+      "destinationName": "Ouidah",
+      "candidateEntityId": "poi-152aa7684eb80c9d",
+      "wikidataId": "Q1969968",
+      "canonicalNameEn": "São João Baptista d’Ajudá",
+      "disposition": "ADMITTED_NEW",
+      "reason": "reviewed-specific-travel-compatible-poi",
+      "admittedProductionEntityId": "poi-152aa7684eb80c9d"
+    },
+    {
+      "countryCode": "BY",
+      "destinationEntityId": "city-112c0170dc0c9510",
+      "destinationName": "Minsk",
+      "candidateEntityId": "poi-40991feac00ea1fc",
+      "wikidataId": "Q2584571",
+      "canonicalNameEn": "Belarusian National Arts Museum",
+      "disposition": "ADMITTED_NEW",
+      "reason": "reviewed-specific-travel-compatible-poi",
+      "admittedProductionEntityId": "poi-40991feac00ea1fc"
+    },
+    {
+      "countryCode": "BY",
+      "destinationEntityId": "city-112c0170dc0c9510",
+      "destinationName": "Minsk",
+      "candidateEntityId": "poi-26b4010b1324c648",
+      "wikidataId": "Q2034395",
+      "canonicalNameEn": "Belarusian National History and Culture Museum",
+      "disposition": "ADMITTED_NEW",
+      "reason": "reviewed-specific-travel-compatible-poi",
+      "admittedProductionEntityId": "poi-26b4010b1324c648"
+    },
+    {
+      "countryCode": "BY",
+      "destinationEntityId": "city-112c0170dc0c9510",
+      "destinationName": "Minsk",
+      "candidateEntityId": "poi-5ca2079e9b412e31",
+      "wikidataId": "Q1637149",
+      "canonicalNameEn": "Cathedral of the Holy Name of Saint Virgin Mary",
+      "disposition": "ADMITTED_NEW",
+      "reason": "reviewed-specific-travel-compatible-poi",
+      "admittedProductionEntityId": "poi-5ca2079e9b412e31"
+    },
+    {
+      "countryCode": "BY",
+      "destinationEntityId": "city-112c0170dc0c9510",
+      "destinationName": "Minsk",
+      "candidateEntityId": "poi-3ec3960c1faec89b",
+      "wikidataId": "Q1742825",
+      "canonicalNameEn": "Church of Saints Simon and Helena",
+      "disposition": "ADMITTED_NEW",
+      "reason": "reviewed-specific-travel-compatible-poi",
+      "admittedProductionEntityId": "poi-3ec3960c1faec89b"
+    },
+    {
+      "countryCode": "BY",
+      "destinationEntityId": "city-112c0170dc0c9510",
+      "destinationName": "Minsk",
+      "candidateEntityId": "poi-6115cff69a843c4d",
+      "wikidataId": "Q2588857",
+      "canonicalNameEn": "Holy Spirit Cathedral",
+      "disposition": "ADMITTED_NEW",
+      "reason": "reviewed-specific-travel-compatible-poi",
+      "admittedProductionEntityId": "poi-6115cff69a843c4d"
+    },
+    {
+      "countryCode": "BY",
+      "destinationEntityId": "city-112c0170dc0c9510",
+      "destinationName": "Minsk",
+      "candidateEntityId": "poi-edc56fa8ef1210d6",
+      "wikidataId": "Q1995558",
+      "canonicalNameEn": "Independence Square, Minsk",
+      "disposition": "ADMITTED_NEW",
+      "reason": "reviewed-specific-travel-compatible-poi",
+      "admittedProductionEntityId": "poi-edc56fa8ef1210d6"
+    },
+    {
+      "countryCode": "BY",
+      "destinationEntityId": "city-112c0170dc0c9510",
+      "destinationName": "Minsk",
+      "candidateEntityId": "poi-579d61cbe574dab9",
+      "wikidataId": "Q2635425",
+      "canonicalNameEn": "Victory Square",
+      "disposition": "ADMITTED_NEW",
+      "reason": "reviewed-specific-travel-compatible-poi",
+      "admittedProductionEntityId": "poi-579d61cbe574dab9"
+    },
+    {
+      "countryCode": "BY",
+      "destinationEntityId": "city-83f33b3921666ee2",
+      "destinationName": "Grodno",
+      "candidateEntityId": "poi-6b96b2c0aa1b9410",
+      "wikidataId": "Q2665045",
+      "canonicalNameEn": "Great Synagogue",
+      "disposition": "ADMITTED_NEW",
+      "reason": "reviewed-specific-travel-compatible-poi",
+      "admittedProductionEntityId": "poi-6b96b2c0aa1b9410"
+    },
+    {
+      "countryCode": "BY",
+      "destinationEntityId": "city-83f33b3921666ee2",
+      "destinationName": "Grodno",
+      "candidateEntityId": "poi-e7b022de74a88052",
+      "wikidataId": "Q2986701",
+      "canonicalNameEn": "Kaloža Church",
+      "disposition": "ADMITTED_NEW",
+      "reason": "reviewed-specific-travel-compatible-poi",
+      "admittedProductionEntityId": "poi-e7b022de74a88052"
+    },
+    {
+      "countryCode": "BY",
+      "destinationEntityId": "city-83f33b3921666ee2",
+      "destinationName": "Grodno",
+      "candidateEntityId": "poi-98766513bd69f3c0",
+      "wikidataId": "Q268433",
+      "canonicalNameEn": "New Grodno Castle",
+      "disposition": "ADMITTED_NEW",
+      "reason": "reviewed-specific-travel-compatible-poi",
+      "admittedProductionEntityId": "poi-98766513bd69f3c0"
+    },
+    {
+      "countryCode": "BY",
+      "destinationEntityId": "city-83f33b3921666ee2",
+      "destinationName": "Grodno",
+      "candidateEntityId": "poi-9170b496a11c0b79",
+      "wikidataId": "Q2659535",
+      "canonicalNameEn": "Old Grodno Castle",
+      "disposition": "ADMITTED_NEW",
+      "reason": "reviewed-specific-travel-compatible-poi",
+      "admittedProductionEntityId": "poi-9170b496a11c0b79"
+    },
+    {
+      "countryCode": "BY",
+      "destinationEntityId": "city-83f33b3921666ee2",
+      "destinationName": "Grodno",
+      "candidateEntityId": "poi-b4ffb0ad0e842731",
+      "wikidataId": "Q2630583",
+      "canonicalNameEn": "St. Francis Xavier Cathedral, Grodno",
+      "disposition": "ADMITTED_NEW",
+      "reason": "reviewed-specific-travel-compatible-poi",
+      "admittedProductionEntityId": "poi-b4ffb0ad0e842731"
+    },
+    {
+      "countryCode": "BY",
+      "destinationEntityId": "city-922749630466d376",
+      "destinationName": "Brest",
+      "candidateEntityId": "poi-2351dfbc524b7e77",
+      "wikidataId": "Q2499504",
+      "canonicalNameEn": "Berestye Archeological Museum",
+      "disposition": "ADMITTED_NEW",
+      "reason": "reviewed-specific-travel-compatible-poi",
+      "admittedProductionEntityId": "poi-2351dfbc524b7e77"
+    },
+    {
+      "countryCode": "BY",
+      "destinationEntityId": "city-922749630466d376",
+      "destinationName": "Brest",
+      "candidateEntityId": "poi-c8de64f459596417",
+      "wikidataId": "Q1189908",
+      "canonicalNameEn": "Brest Castle",
+      "disposition": "ADMITTED_NEW",
+      "reason": "reviewed-specific-travel-compatible-poi",
+      "admittedProductionEntityId": "poi-c8de64f459596417"
+    },
+    {
+      "countryCode": "BY",
+      "destinationEntityId": "city-922749630466d376",
+      "destinationName": "Brest",
+      "candidateEntityId": "poi-fd582557bc553016",
+      "wikidataId": "Q23868",
+      "canonicalNameEn": "Brest Fortress",
+      "disposition": "ADMITTED_NEW",
+      "reason": "reviewed-specific-travel-compatible-poi",
+      "admittedProductionEntityId": "poi-fd582557bc553016"
+    },
+    {
+      "countryCode": "BY",
+      "destinationEntityId": "city-922749630466d376",
+      "destinationName": "Brest",
+      "candidateEntityId": "poi-86f2d9b0c1711751",
+      "wikidataId": "Q2509602",
+      "canonicalNameEn": "Brest Railway Museum",
+      "disposition": "ADMITTED_NEW",
+      "reason": "reviewed-specific-travel-compatible-poi",
+      "admittedProductionEntityId": "poi-86f2d9b0c1711751"
+    },
+    {
+      "countryCode": "BY",
+      "destinationEntityId": "city-922749630466d376",
+      "destinationName": "Brest",
+      "candidateEntityId": "poi-4cfc5c06a5ed2e3e",
+      "wikidataId": "Q9349056",
+      "canonicalNameEn": "Choral Synagogue",
+      "disposition": "ADMITTED_NEW",
+      "reason": "reviewed-specific-travel-compatible-poi",
+      "admittedProductionEntityId": "poi-4cfc5c06a5ed2e3e"
+    },
+    {
+      "countryCode": "BZ",
+      "destinationEntityId": "city-364c92a54ef6ea30",
+      "destinationName": "San Ignacio",
+      "candidateEntityId": "poi-7b9fae02d1214a3e",
+      "wikidataId": "Q815650",
+      "canonicalNameEn": "Belize River",
+      "disposition": "QUARANTINED_REJECTED",
+      "reason": "generic-watercourse",
+      "quarantineEntityId": "poi-7b9fae02d1214a3e"
+    },
+    {
+      "countryCode": "BZ",
+      "destinationEntityId": "city-6ec906c9527fa58c",
+      "destinationName": "Belize City",
+      "candidateEntityId": "poi-e702ae39ad401247",
+      "wikidataId": "Q21870703",
+      "canonicalNameEn": "Haulover Creek",
+      "disposition": "QUARANTINED_REJECTED",
+      "reason": "generic-watercourse",
+      "quarantineEntityId": "poi-e702ae39ad401247"
+    },
+    {
+      "countryCode": "BZ",
+      "destinationEntityId": "city-ada97841bcc43314",
+      "destinationName": "Belmopan",
+      "candidateEntityId": "poi-e1425e351a5677fd",
+      "wikidataId": "Q609946",
+      "canonicalNameEn": "Belmopan Public Library",
+      "disposition": "QUARANTINED_REJECTED",
+      "reason": "operational-library",
+      "quarantineEntityId": "poi-e1425e351a5677fd"
+    },
+    {
+      "countryCode": "BZ",
+      "destinationEntityId": "city-ada97841bcc43314",
+      "destinationName": "Belmopan",
+      "candidateEntityId": "poi-9a62752fe36949a7",
+      "wikidataId": "Q6970423",
+      "canonicalNameEn": "National Archives of Belize",
+      "disposition": "QUARANTINED_REJECTED",
+      "reason": "operational-archive",
+      "quarantineEntityId": "poi-9a62752fe36949a7"
+    },
+    {
+      "countryCode": "CI",
+      "destinationEntityId": "city-3ae3e55afc2ba40b",
+      "destinationName": "Grand-Bassam",
+      "candidateEntityId": "poi-2728523ff8e2c0c8",
+      "wikidataId": "Q108103114",
+      "canonicalNameEn": "Bibliothèque municipale de Grand-Bassam",
+      "disposition": "QUARANTINED_REJECTED",
+      "reason": "operational-library",
+      "quarantineEntityId": "poi-2728523ff8e2c0c8"
+    },
+    {
+      "countryCode": "CI",
+      "destinationEntityId": "city-3ae3e55afc2ba40b",
+      "destinationName": "Grand-Bassam",
+      "candidateEntityId": "poi-408e39096d026144",
+      "wikidataId": "Q17623887",
+      "canonicalNameEn": "Centre de céramique of Grand-Bassam",
+      "disposition": "ADMITTED_NEW",
+      "reason": "reviewed-specific-travel-compatible-poi",
+      "admittedProductionEntityId": "poi-408e39096d026144"
+    },
+    {
+      "countryCode": "CI",
+      "destinationEntityId": "city-3ae3e55afc2ba40b",
+      "destinationName": "Grand-Bassam",
+      "candidateEntityId": "poi-fb79ce98eb6bbb84",
+      "wikidataId": "Q91461663",
+      "canonicalNameEn": "Grand-Bassam Lightouse",
+      "disposition": "ADMITTED_NEW",
+      "reason": "reviewed-specific-travel-compatible-poi",
+      "admittedProductionEntityId": "poi-fb79ce98eb6bbb84"
+    },
+    {
+      "countryCode": "CI",
+      "destinationEntityId": "city-3ae3e55afc2ba40b",
+      "destinationName": "Grand-Bassam",
+      "candidateEntityId": "poi-9bedbcfec4b6bc39",
+      "wikidataId": "Q16885363",
+      "canonicalNameEn": "Musée National du Costume de Grand-Bassam",
+      "disposition": "ADMITTED_NEW",
+      "reason": "reviewed-specific-travel-compatible-poi",
+      "admittedProductionEntityId": "poi-9bedbcfec4b6bc39"
+    },
+    {
+      "countryCode": "CI",
+      "destinationEntityId": "city-3ae3e55afc2ba40b",
+      "destinationName": "Grand-Bassam",
+      "candidateEntityId": "poi-ee04e02590bfaeea",
+      "wikidataId": "Q2942291",
+      "canonicalNameEn": "Sacred Heart Catheral of Grand-Bassam",
+      "disposition": "ADMITTED_NEW",
+      "reason": "reviewed-specific-travel-compatible-poi",
+      "admittedProductionEntityId": "poi-ee04e02590bfaeea"
+    },
+    {
+      "countryCode": "CI",
+      "destinationEntityId": "city-4f08d650dd59697a",
+      "destinationName": "Yamoussoukro",
+      "candidateEntityId": "poi-6113add54251d229",
+      "wikidataId": "Q815584",
+      "canonicalNameEn": "Basilica of Our Lady of Peace of Yamoussoukro",
+      "disposition": "ADMITTED_NEW",
+      "reason": "reviewed-specific-travel-compatible-poi",
+      "admittedProductionEntityId": "poi-6113add54251d229"
+    },
+    {
+      "countryCode": "CI",
+      "destinationEntityId": "city-dddcb743a7c5b440",
+      "destinationName": "Abidjan",
+      "candidateEntityId": "poi-436274793b9c303c",
+      "wikidataId": "Q1858100",
+      "canonicalNameEn": "Banco National Park",
+      "disposition": "ADMITTED_NEW",
+      "reason": "reviewed-specific-travel-compatible-poi",
+      "admittedProductionEntityId": "poi-436274793b9c303c"
+    },
+    {
+      "countryCode": "CI",
+      "destinationEntityId": "city-dddcb743a7c5b440",
+      "destinationName": "Abidjan",
+      "candidateEntityId": "poi-c795e3dc600bb5d9",
+      "wikidataId": "Q3396565",
+      "canonicalNameEn": "Henri Konan Bédié Bridge",
+      "disposition": "ADMITTED_NEW",
+      "reason": "reviewed-specific-travel-compatible-poi",
+      "admittedProductionEntityId": "poi-c795e3dc600bb5d9"
+    },
+    {
+      "countryCode": "CI",
+      "destinationEntityId": "city-dddcb743a7c5b440",
+      "destinationName": "Abidjan",
+      "candidateEntityId": "poi-8fb2d3f3a3ed4af5",
+      "wikidataId": "Q3396536",
+      "canonicalNameEn": "Houphouët-Boigny Bridge",
+      "disposition": "ADMITTED_NEW",
+      "reason": "reviewed-specific-travel-compatible-poi",
+      "admittedProductionEntityId": "poi-8fb2d3f3a3ed4af5"
+    },
+    {
+      "countryCode": "CI",
+      "destinationEntityId": "city-dddcb743a7c5b440",
+      "destinationName": "Abidjan",
+      "candidateEntityId": "poi-29107e694e25f13b",
+      "wikidataId": "Q16888110",
+      "canonicalNameEn": "Museum of Civilizations in Ivory Coast",
+      "disposition": "ADMITTED_NEW",
+      "reason": "reviewed-specific-travel-compatible-poi",
+      "admittedProductionEntityId": "poi-29107e694e25f13b"
+    },
+    {
+      "countryCode": "CI",
+      "destinationEntityId": "city-dddcb743a7c5b440",
+      "destinationName": "Abidjan",
+      "candidateEntityId": "poi-8fbcd5fcb672ba8c",
+      "wikidataId": "Q626855",
+      "canonicalNameEn": "National Library of Ivory Coast",
+      "disposition": "QUARANTINED_REJECTED",
+      "reason": "operational-library",
+      "quarantineEntityId": "poi-8fbcd5fcb672ba8c"
+    },
+    {
+      "countryCode": "CI",
+      "destinationEntityId": "city-dddcb743a7c5b440",
+      "destinationName": "Abidjan",
+      "candidateEntityId": "poi-4b378734e18a8be1",
+      "wikidataId": "Q4274688",
+      "canonicalNameEn": "Second Abidjan Bridge",
+      "disposition": "ADMITTED_NEW",
+      "reason": "reviewed-specific-travel-compatible-poi",
+      "admittedProductionEntityId": "poi-4b378734e18a8be1"
+    },
+    {
+      "countryCode": "CI",
+      "destinationEntityId": "city-dddcb743a7c5b440",
+      "destinationName": "Abidjan",
+      "candidateEntityId": "poi-6440ab20d302a4da",
+      "wikidataId": "Q2441417",
+      "canonicalNameEn": "St. Paul's Cathedral",
+      "disposition": "ADMITTED_NEW",
+      "reason": "reviewed-specific-travel-compatible-poi",
+      "admittedProductionEntityId": "poi-6440ab20d302a4da"
+    },
+    {
+      "countryCode": "CM",
+      "destinationEntityId": "city-1e4e8e5c247d7a1b",
+      "destinationName": "Yaoundé",
+      "candidateEntityId": "poi-11fe896eda32366d",
+      "wikidataId": "Q2886897",
+      "canonicalNameEn": "Basilique Marie-Reine-des-Apôtres",
+      "disposition": "ADMITTED_NEW",
+      "reason": "reviewed-specific-travel-compatible-poi",
+      "admittedProductionEntityId": "poi-11fe896eda32366d"
+    },
+    {
+      "countryCode": "CM",
+      "destinationEntityId": "city-1e4e8e5c247d7a1b",
+      "destinationName": "Yaoundé",
+      "candidateEntityId": "poi-15792be1f2ddeec4",
+      "wikidataId": "Q15961646",
+      "canonicalNameEn": "Blackitude Museum",
+      "disposition": "ADMITTED_NEW",
+      "reason": "reviewed-specific-travel-compatible-poi",
+      "admittedProductionEntityId": "poi-15792be1f2ddeec4"
+    },
+    {
+      "countryCode": "CM",
+      "destinationEntityId": "city-1e4e8e5c247d7a1b",
+      "destinationName": "Yaoundé",
+      "candidateEntityId": "poi-f4a7315f4335b9d1",
+      "wikidataId": "Q6356988",
+      "canonicalNameEn": "Mvog-Betsi Zoo",
+      "disposition": "ADMITTED_NEW",
+      "reason": "reviewed-specific-travel-compatible-poi",
+      "admittedProductionEntityId": "poi-f4a7315f4335b9d1"
+    },
+    {
+      "countryCode": "CM",
+      "destinationEntityId": "city-1e4e8e5c247d7a1b",
+      "destinationName": "Yaoundé",
+      "candidateEntityId": "poi-3eec3f7b95ab39f7",
+      "wikidataId": "Q6974144",
+      "canonicalNameEn": "National Library of Cameroon",
+      "disposition": "QUARANTINED_REJECTED",
+      "reason": "operational-library",
+      "quarantineEntityId": "poi-3eec3f7b95ab39f7"
+    },
+    {
+      "countryCode": "CM",
+      "destinationEntityId": "city-1e4e8e5c247d7a1b",
+      "destinationName": "Yaoundé",
+      "candidateEntityId": "poi-aee71b8979373942",
+      "wikidataId": "Q15957739",
+      "canonicalNameEn": "Our Lady of Victories Cathedral, Yaoundé",
+      "disposition": "ADMITTED_NEW",
+      "reason": "reviewed-specific-travel-compatible-poi",
+      "admittedProductionEntityId": "poi-aee71b8979373942"
+    },
+    {
+      "countryCode": "CM",
+      "destinationEntityId": "city-1e4e8e5c247d7a1b",
+      "destinationName": "Yaoundé",
+      "candidateEntityId": "poi-e8abbbe53e6d07d2",
+      "wikidataId": "Q16509753",
+      "canonicalNameEn": "Reunification Monument",
+      "disposition": "ADMITTED_NEW",
+      "reason": "reviewed-specific-travel-compatible-poi",
+      "admittedProductionEntityId": "poi-e8abbbe53e6d07d2"
+    },
+    {
+      "countryCode": "CM",
+      "destinationEntityId": "city-999f998d2955d071",
+      "destinationName": "Douala",
+      "candidateEntityId": "poi-8f43a292b3447363",
+      "wikidataId": "Q2942426",
+      "canonicalNameEn": "Cathedral of Saints Peter and Paul, Douala",
+      "disposition": "ADMITTED_NEW",
+      "reason": "reviewed-specific-travel-compatible-poi",
+      "admittedProductionEntityId": "poi-8f43a292b3447363"
+    },
+    {
+      "countryCode": "CM",
+      "destinationEntityId": "city-999f998d2955d071",
+      "destinationName": "Douala",
+      "candidateEntityId": "poi-ac704e0b73b02b1e",
+      "wikidataId": "Q47485629",
+      "canonicalNameEn": "Colonne Pascale",
+      "disposition": "ADMITTED_NEW",
+      "reason": "reviewed-specific-travel-compatible-poi",
+      "admittedProductionEntityId": "poi-ac704e0b73b02b1e"
+    },
+    {
+      "countryCode": "CM",
+      "destinationEntityId": "city-999f998d2955d071",
+      "destinationName": "Douala",
+      "candidateEntityId": "poi-ddc1e43922c95473",
+      "wikidataId": "Q3211132",
+      "canonicalNameEn": "La Nouvelle Liberté",
+      "disposition": "ADMITTED_NEW",
+      "reason": "reviewed-specific-travel-compatible-poi",
+      "admittedProductionEntityId": "poi-ddc1e43922c95473"
+    },
+    {
+      "countryCode": "CM",
+      "destinationEntityId": "city-999f998d2955d071",
+      "destinationName": "Douala",
+      "candidateEntityId": "poi-fa7ce155853aa768",
+      "wikidataId": "Q47484912",
+      "canonicalNameEn": "Njé Mo Yé",
+      "disposition": "ADMITTED_NEW",
+      "reason": "reviewed-specific-travel-compatible-poi",
+      "admittedProductionEntityId": "poi-fa7ce155853aa768"
+    },
+    {
+      "countryCode": "CM",
+      "destinationEntityId": "city-999f998d2955d071",
+      "destinationName": "Douala",
+      "candidateEntityId": "poi-cd257ee381a7882b",
+      "wikidataId": "Q3891237",
+      "canonicalNameEn": "Palace of the Kings Bell",
+      "disposition": "ADMITTED_NEW",
+      "reason": "reviewed-specific-travel-compatible-poi",
+      "admittedProductionEntityId": "poi-cd257ee381a7882b"
+    },
+    {
+      "countryCode": "CM",
+      "destinationEntityId": "city-999f998d2955d071",
+      "destinationName": "Douala",
+      "candidateEntityId": "poi-6e527c59d9d1760d",
+      "wikidataId": "Q47484927",
+      "canonicalNameEn": "Sud Obelisk",
+      "disposition": "ADMITTED_NEW",
+      "reason": "reviewed-specific-travel-compatible-poi",
+      "admittedProductionEntityId": "poi-6e527c59d9d1760d"
+    },
+    {
+      "countryCode": "CM",
+      "destinationEntityId": "city-999f998d2955d071",
+      "destinationName": "Douala",
+      "candidateEntityId": "poi-2124746ef94b4263",
+      "wikidataId": "Q1405842",
+      "canonicalNameEn": "Wouri River",
+      "disposition": "QUARANTINED_REJECTED",
+      "reason": "generic-watercourse",
+      "quarantineEntityId": "poi-2124746ef94b4263"
+    },
+    {
+      "countryCode": "CM",
+      "destinationEntityId": "city-bdf464a9ed2c7ca8",
+      "destinationName": "Buea",
+      "candidateEntityId": "poi-964bd2510c160447",
+      "wikidataId": "Q190562",
+      "canonicalNameEn": "Mount Cameroon",
+      "disposition": "ADMITTED_NEW",
+      "reason": "reviewed-specific-travel-compatible-poi",
+      "admittedProductionEntityId": "poi-964bd2510c160447"
+    },
+    {
+      "countryCode": "CV",
+      "destinationEntityId": "city-978446d3b0128242",
+      "destinationName": "Praia",
+      "candidateEntityId": "poi-95a6f4eca7a9099c",
+      "wikidataId": "Q6974145",
+      "canonicalNameEn": "National Library of Cape Verde",
+      "disposition": "QUARANTINED_REJECTED",
+      "reason": "operational-library",
+      "quarantineEntityId": "poi-95a6f4eca7a9099c"
+    },
+    {
+      "countryCode": "CV",
+      "destinationEntityId": "city-babb525024c5895b",
+      "destinationName": "Mindelo",
+      "candidateEntityId": "poi-2e813f8df6f9b9d3",
+      "wikidataId": "Q112031",
+      "canonicalNameEn": "São Vicente",
+      "disposition": "QUARANTINED_REJECTED",
+      "reason": "generic-island",
+      "quarantineEntityId": "poi-2e813f8df6f9b9d3"
+    },
+    {
+      "countryCode": "DM",
+      "destinationEntityId": "city-3f9f3579e6cd3ee4",
+      "destinationName": "Portsmouth",
+      "candidateEntityId": "poi-3be2c83e22c56a3c",
+      "wikidataId": "Q7056504",
+      "canonicalNameEn": "North River",
+      "disposition": "QUARANTINED_REJECTED",
+      "reason": "generic-watercourse",
+      "quarantineEntityId": "poi-3be2c83e22c56a3c"
+    },
+    {
+      "countryCode": "DM",
+      "destinationEntityId": "city-3f9f3579e6cd3ee4",
+      "destinationName": "Portsmouth",
+      "candidateEntityId": "poi-2a9d3485072f9407",
+      "wikidataId": "Q7190503",
+      "canonicalNameEn": "Picard River",
+      "disposition": "QUARANTINED_REJECTED",
+      "reason": "generic-watercourse",
+      "quarantineEntityId": "poi-2a9d3485072f9407"
+    },
+    {
+      "countryCode": "DM",
+      "destinationEntityId": "city-4e646805968aa7b9",
+      "destinationName": "Roseau",
+      "candidateEntityId": "poi-fa789c2ddeaed25f",
+      "wikidataId": "Q7337452",
+      "canonicalNameEn": "River Gillon",
+      "disposition": "QUARANTINED_REJECTED",
+      "reason": "generic-watercourse",
+      "quarantineEntityId": "poi-fa789c2ddeaed25f"
+    },
+    {
+      "countryCode": "DM",
+      "destinationEntityId": "city-4e646805968aa7b9",
+      "destinationName": "Roseau",
+      "candidateEntityId": "poi-2dbe00d26e95c3c8",
+      "wikidataId": "Q3018552",
+      "canonicalNameEn": "Roseau River",
+      "disposition": "QUARANTINED_REJECTED",
+      "reason": "generic-watercourse",
+      "quarantineEntityId": "poi-2dbe00d26e95c3c8"
+    },
+    {
+      "countryCode": "MN",
+      "destinationEntityId": "city-dc7b0fecf0cc52cf",
+      "destinationName": "Ulaanbaatar",
+      "candidateEntityId": "poi-d49316b860e0ae05",
+      "wikidataId": "Q625912",
+      "canonicalNameEn": "National Library of Mongolia",
+      "disposition": "QUARANTINED_REJECTED",
+      "reason": "operational-library",
+      "quarantineEntityId": "poi-d49316b860e0ae05"
+    },
+    {
+      "countryCode": "MZ",
+      "destinationEntityId": "city-0d86eecbaf33d381",
+      "destinationName": "Pemba",
+      "candidateEntityId": "poi-4a73ca7527ed5fca",
+      "wikidataId": "Q18387423",
+      "canonicalNameEn": "Pemba Bay",
+      "disposition": "ADMITTED_NEW",
+      "reason": "reviewed-specific-travel-compatible-poi",
+      "admittedProductionEntityId": "poi-4a73ca7527ed5fca"
+    },
+    {
+      "countryCode": "MZ",
+      "destinationEntityId": "city-0d86eecbaf33d381",
+      "destinationName": "Pemba",
+      "candidateEntityId": "poi-b1deb125ef7f953f",
+      "wikidataId": "Q28599292",
+      "canonicalNameEn": "St. Paul's Cathedral, Pemba",
+      "disposition": "ADMITTED_NEW",
+      "reason": "reviewed-specific-travel-compatible-poi",
+      "admittedProductionEntityId": "poi-b1deb125ef7f953f"
+    },
+    {
+      "countryCode": "MZ",
+      "destinationEntityId": "city-411f7dd7eb7a1147",
+      "destinationName": "Nampula",
+      "candidateEntityId": "poi-30bc826e76a03dd7",
+      "wikidataId": "Q2944162",
+      "canonicalNameEn": "National Museum of Ethnography Nampula",
+      "disposition": "ADMITTED_NEW",
+      "reason": "reviewed-specific-travel-compatible-poi",
+      "admittedProductionEntityId": "poi-30bc826e76a03dd7"
+    },
+    {
+      "countryCode": "MZ",
+      "destinationEntityId": "city-411f7dd7eb7a1147",
+      "destinationName": "Nampula",
+      "candidateEntityId": "poi-ba73f8ef004624de",
+      "wikidataId": "Q17624362",
+      "canonicalNameEn": "Our Lady of Fatima Cathedral",
+      "disposition": "ADMITTED_NEW",
+      "reason": "reviewed-specific-travel-compatible-poi",
+      "admittedProductionEntityId": "poi-ba73f8ef004624de"
+    },
+    {
+      "countryCode": "MZ",
+      "destinationEntityId": "city-574226c10f889449",
+      "destinationName": "Beira",
+      "candidateEntityId": "poi-9eb6b6e7c7c2dec8",
+      "wikidataId": "Q855412",
+      "canonicalNameEn": "Buzi River",
+      "disposition": "QUARANTINED_REJECTED",
+      "reason": "generic-watercourse",
+      "quarantineEntityId": "poi-9eb6b6e7c7c2dec8"
+    },
+    {
+      "countryCode": "MZ",
+      "destinationEntityId": "city-574226c10f889449",
+      "destinationName": "Beira",
+      "candidateEntityId": "poi-983b1bd4fa86692a",
+      "wikidataId": "Q17624339",
+      "canonicalNameEn": "Our Lady of the Rosary Cathedral, Beira",
+      "disposition": "ADMITTED_NEW",
+      "reason": "reviewed-specific-travel-compatible-poi",
+      "admittedProductionEntityId": "poi-983b1bd4fa86692a"
+    },
+    {
+      "countryCode": "MZ",
+      "destinationEntityId": "city-574226c10f889449",
+      "destinationName": "Beira",
+      "candidateEntityId": "poi-783e4b9bc044781e",
+      "wikidataId": "Q2116568",
+      "canonicalNameEn": "Pungwe River",
+      "disposition": "QUARANTINED_REJECTED",
+      "reason": "generic-watercourse",
+      "quarantineEntityId": "poi-783e4b9bc044781e"
+    },
+    {
+      "countryCode": "MZ",
+      "destinationEntityId": "city-bb27df741abe2752",
+      "destinationName": "Maputo",
+      "candidateEntityId": "poi-19df3fd348ecaa92",
+      "wikidataId": "Q127722",
+      "canonicalNameEn": "Cathedral of Our Lady of the Immaculate Conception",
+      "disposition": "ADMITTED_NEW",
+      "reason": "reviewed-specific-travel-compatible-poi",
+      "admittedProductionEntityId": "poi-19df3fd348ecaa92"
+    },
+    {
+      "countryCode": "MZ",
+      "destinationEntityId": "city-bb27df741abe2752",
+      "destinationName": "Maputo",
+      "candidateEntityId": "poi-06541b696374a98a",
+      "wikidataId": "Q10270271",
+      "canonicalNameEn": "Maputo City Hall",
+      "disposition": "ADMITTED_NEW",
+      "reason": "reviewed-specific-travel-compatible-poi",
+      "admittedProductionEntityId": "poi-06541b696374a98a"
+    },
+    {
+      "countryCode": "MZ",
+      "destinationEntityId": "city-bb27df741abe2752",
+      "destinationName": "Maputo",
+      "candidateEntityId": "poi-9a9b31f3a78f0e07",
+      "wikidataId": "Q19275941",
+      "canonicalNameEn": "Maputo–Catembe Bridge",
+      "disposition": "ADMITTED_NEW",
+      "reason": "reviewed-specific-travel-compatible-poi",
+      "admittedProductionEntityId": "poi-9a9b31f3a78f0e07"
+    },
+    {
+      "countryCode": "MZ",
+      "destinationEntityId": "city-bb27df741abe2752",
+      "destinationName": "Maputo",
+      "candidateEntityId": "poi-f9283ad25dc85ae5",
+      "wikidataId": "Q890723",
+      "canonicalNameEn": "Mbuluzi River",
+      "disposition": "QUARANTINED_REJECTED",
+      "reason": "generic-watercourse",
+      "quarantineEntityId": "poi-f9283ad25dc85ae5"
+    },
+    {
+      "countryCode": "MZ",
+      "destinationEntityId": "city-bb27df741abe2752",
+      "destinationName": "Maputo",
+      "candidateEntityId": "poi-47b05b8244047539",
+      "wikidataId": "Q16498204",
+      "canonicalNameEn": "National Library of Mozambique",
+      "disposition": "QUARANTINED_REJECTED",
+      "reason": "operational-library",
+      "quarantineEntityId": "poi-47b05b8244047539"
+    },
+    {
+      "countryCode": "MZ",
+      "destinationEntityId": "city-bb27df741abe2752",
+      "destinationName": "Maputo",
+      "candidateEntityId": "poi-dd828ed884e84772",
+      "wikidataId": "Q22952146",
+      "canonicalNameEn": "Samora Machel Statue",
+      "disposition": "ADMITTED_NEW",
+      "reason": "reviewed-specific-travel-compatible-poi",
+      "admittedProductionEntityId": "poi-dd828ed884e84772"
+    },
+    {
+      "countryCode": "MZ",
+      "destinationEntityId": "city-bb27df741abe2752",
+      "destinationName": "Maputo",
+      "candidateEntityId": "poi-654df32abd82d1a0",
+      "wikidataId": "Q17276617",
+      "canonicalNameEn": "Vila Algarve",
+      "disposition": "ADMITTED_NEW",
+      "reason": "reviewed-specific-travel-compatible-poi",
+      "admittedProductionEntityId": "poi-654df32abd82d1a0"
+    },
+    {
+      "countryCode": "SZ",
+      "destinationEntityId": "city-0df180268afeca04",
+      "destinationName": "Manzini",
+      "candidateEntityId": "poi-265bdc10d850c363",
+      "wikidataId": "Q2942235",
+      "canonicalNameEn": "Our Lady of Assumption Cathedral, Manzini",
+      "disposition": "ADMITTED_NEW",
+      "reason": "reviewed-specific-travel-compatible-poi",
+      "admittedProductionEntityId": "poi-265bdc10d850c363"
+    },
+    {
+      "countryCode": "SZ",
+      "destinationEntityId": "city-1ab1bd6cbc62b230",
+      "destinationName": "Mbabane",
+      "candidateEntityId": "poi-1fa2711ae3ec1f4b",
+      "wikidataId": "Q106371762",
+      "canonicalNameEn": "Ezulwini Mosque",
+      "disposition": "ADMITTED_NEW",
+      "reason": "reviewed-specific-travel-compatible-poi",
+      "admittedProductionEntityId": "poi-1fa2711ae3ec1f4b"
+    },
+    {
+      "countryCode": "SZ",
+      "destinationEntityId": "city-1ab1bd6cbc62b230",
+      "destinationName": "Mbabane",
+      "candidateEntityId": "poi-647b63714894b320",
+      "wikidataId": "Q1960512",
+      "canonicalNameEn": "Indingilizi Gallery",
+      "disposition": "ADMITTED_NEW",
+      "reason": "reviewed-specific-travel-compatible-poi",
+      "admittedProductionEntityId": "poi-647b63714894b320"
+    },
+    {
+      "countryCode": "SZ",
+      "destinationEntityId": "city-1ab1bd6cbc62b230",
+      "destinationName": "Mbabane",
+      "candidateEntityId": "poi-c85bf5625ba5b8b9",
+      "wikidataId": "Q24054414",
+      "canonicalNameEn": "Mater Dolorosa Church, Mbabane",
+      "disposition": "ADMITTED_NEW",
+      "reason": "reviewed-specific-travel-compatible-poi",
+      "admittedProductionEntityId": "poi-c85bf5625ba5b8b9"
+    },
+    {
+      "countryCode": "SZ",
+      "destinationEntityId": "city-a53237851e024b81",
+      "destinationName": "Lobamba",
+      "candidateEntityId": "poi-90ee49bfeedd0531",
+      "wikidataId": "Q1960575",
+      "canonicalNameEn": "Ezulwini Handicrafts Centre",
+      "disposition": "ADMITTED_NEW",
+      "reason": "reviewed-specific-travel-compatible-poi",
+      "admittedProductionEntityId": "poi-90ee49bfeedd0531"
+    },
+    {
+      "countryCode": "SZ",
+      "destinationEntityId": "city-a53237851e024b81",
+      "destinationName": "Lobamba",
+      "candidateEntityId": "poi-03a3dd357ef8320e",
+      "wikidataId": "Q5423444",
+      "canonicalNameEn": "Ezulwini Valley",
+      "disposition": "QUARANTINED_REJECTED",
+      "reason": "region-not-city-scoped-poi",
+      "quarantineEntityId": "poi-03a3dd357ef8320e"
+    },
+    {
+      "countryCode": "SZ",
+      "destinationEntityId": "city-a53237851e024b81",
+      "destinationName": "Lobamba",
+      "candidateEntityId": "poi-15dde7d6131e23ac",
+      "wikidataId": "Q4789096",
+      "canonicalNameEn": "Mbabane River",
+      "disposition": "QUARANTINED_REJECTED",
+      "reason": "generic-watercourse",
+      "quarantineEntityId": "poi-15dde7d6131e23ac"
+    },
+    {
+      "countryCode": "SZ",
+      "destinationEntityId": "city-a53237851e024b81",
+      "destinationName": "Lobamba",
+      "candidateEntityId": "poi-93aebae4dc94f349",
+      "wikidataId": "Q6802848",
+      "canonicalNameEn": "Mdimba",
+      "disposition": "ADMITTED_NEW",
+      "reason": "reviewed-specific-travel-compatible-poi",
+      "admittedProductionEntityId": "poi-93aebae4dc94f349"
+    },
+    {
+      "countryCode": "SZ",
+      "destinationEntityId": "city-a53237851e024b81",
+      "destinationName": "Lobamba",
+      "candidateEntityId": "poi-0a8229a8c2515b83",
+      "wikidataId": "Q1941204",
+      "canonicalNameEn": "Mlilwane Wildlife Sanctuary",
+      "disposition": "ADMITTED_NEW",
+      "reason": "reviewed-specific-travel-compatible-poi",
+      "admittedProductionEntityId": "poi-0a8229a8c2515b83"
+    },
+    {
+      "countryCode": "TL",
+      "destinationEntityId": "city-422d392e780b89a7",
+      "destinationName": "Baucau",
+      "candidateEntityId": "poi-e0eb14f301d6850b",
+      "wikidataId": "Q15987305",
+      "canonicalNameEn": "Municipal Market of Baucau",
+      "disposition": "ADMITTED_NEW",
+      "reason": "reviewed-specific-travel-compatible-poi",
+      "admittedProductionEntityId": "poi-e0eb14f301d6850b"
+    },
+    {
+      "countryCode": "TL",
+      "destinationEntityId": "city-422d392e780b89a7",
+      "destinationName": "Baucau",
+      "candidateEntityId": "poi-cc7ea56b7729a329",
+      "wikidataId": "Q14549207",
+      "canonicalNameEn": "Saint Anthony Cathedral",
+      "disposition": "ADMITTED_NEW",
+      "reason": "reviewed-specific-travel-compatible-poi",
+      "admittedProductionEntityId": "poi-cc7ea56b7729a329"
+    },
+    {
+      "countryCode": "TL",
+      "destinationEntityId": "city-422d392e780b89a7",
+      "destinationName": "Baucau",
+      "candidateEntityId": "poi-8618b8f12c3ed5ae",
+      "wikidataId": "Q2267147",
+      "canonicalNameEn": "Seiçal River",
+      "disposition": "QUARANTINED_REJECTED",
+      "reason": "generic-watercourse",
+      "quarantineEntityId": "poi-8618b8f12c3ed5ae"
+    },
+    {
+      "countryCode": "TL",
+      "destinationEntityId": "city-c99e249c394ba4de",
+      "destinationName": "Dili",
+      "candidateEntityId": "poi-a8596ddbef8e3f44",
+      "wikidataId": "Q15051400",
+      "canonicalNameEn": "An-Nur Mosque",
+      "disposition": "ADMITTED_NEW",
+      "reason": "reviewed-specific-travel-compatible-poi",
+      "admittedProductionEntityId": "poi-a8596ddbef8e3f44"
+    },
+    {
+      "countryCode": "TL",
+      "destinationEntityId": "city-c99e249c394ba4de",
+      "destinationName": "Dili",
+      "candidateEntityId": "poi-f48ab15e4125f01d",
+      "wikidataId": "Q680813",
+      "canonicalNameEn": "Cristo Rei of Dili",
+      "disposition": "ADMITTED_NEW",
+      "reason": "reviewed-specific-travel-compatible-poi",
+      "admittedProductionEntityId": "poi-f48ab15e4125f01d"
+    },
+    {
+      "countryCode": "TL",
+      "destinationEntityId": "city-c99e249c394ba4de",
+      "destinationName": "Dili",
+      "candidateEntityId": "poi-0424bc3001206574",
+      "wikidataId": "Q21540492",
+      "canonicalNameEn": "Hindu temple in Dili",
+      "disposition": "ADMITTED_NEW",
+      "reason": "reviewed-specific-travel-compatible-poi",
+      "admittedProductionEntityId": "poi-0424bc3001206574"
+    },
+    {
+      "countryCode": "TL",
+      "destinationEntityId": "city-c99e249c394ba4de",
+      "destinationName": "Dili",
+      "candidateEntityId": "poi-df2f455f765ca9ec",
+      "wikidataId": "Q1736176",
+      "canonicalNameEn": "Immaculate Conception Cathedral",
+      "disposition": "ADMITTED_NEW",
+      "reason": "reviewed-specific-travel-compatible-poi",
+      "admittedProductionEntityId": "poi-df2f455f765ca9ec"
+    },
+    {
+      "countryCode": "TL",
+      "destinationEntityId": "city-c99e249c394ba4de",
+      "destinationName": "Dili",
+      "candidateEntityId": "poi-a9f3b1269f07425a",
+      "wikidataId": "Q23693634",
+      "canonicalNameEn": "National Library of East Timor",
+      "disposition": "QUARANTINED_REJECTED",
+      "reason": "operational-library",
+      "quarantineEntityId": "poi-a9f3b1269f07425a"
+    },
+    {
+      "countryCode": "TL",
+      "destinationEntityId": "city-c99e249c394ba4de",
+      "destinationName": "Dili",
+      "candidateEntityId": "poi-46055f20ecb8520a",
+      "wikidataId": "Q4245248",
+      "canonicalNameEn": "Nicolau Lobato Presidential Palace",
+      "disposition": "ADMITTED_NEW",
+      "reason": "reviewed-specific-travel-compatible-poi",
+      "admittedProductionEntityId": "poi-46055f20ecb8520a"
+    },
+    {
+      "countryCode": "TL",
+      "destinationEntityId": "city-c99e249c394ba4de",
+      "destinationName": "Dili",
+      "candidateEntityId": "poi-57cece431674200b",
+      "wikidataId": "Q16493993",
+      "canonicalNameEn": "Timorese Resistance Archive and Museum",
+      "disposition": "ADMITTED_NEW",
+      "reason": "reviewed-specific-travel-compatible-poi",
+      "admittedProductionEntityId": "poi-57cece431674200b"
+    },
+    {
+      "countryCode": "TT",
+      "destinationEntityId": "city-94fbe7319f3f241e",
+      "destinationName": "San Fernando",
+      "candidateEntityId": "poi-8014f87f20414ee3",
+      "wikidataId": "Q17509679",
+      "canonicalNameEn": "Cipero Marl",
+      "disposition": "QUARANTINED_REJECTED",
+      "reason": "generic-geological-formation",
+      "quarantineEntityId": "poi-8014f87f20414ee3"
+    },
+    {
+      "countryCode": "TT",
+      "destinationEntityId": "city-94fbe7319f3f241e",
+      "destinationName": "San Fernando",
+      "candidateEntityId": "poi-f463646a0ee7dd33",
+      "wikidataId": "Q4151227",
+      "canonicalNameEn": "Guaracara River",
+      "disposition": "QUARANTINED_REJECTED",
+      "reason": "generic-watercourse",
+      "quarantineEntityId": "poi-f463646a0ee7dd33"
+    },
+    {
+      "countryCode": "TT",
+      "destinationEntityId": "city-94fbe7319f3f241e",
+      "destinationName": "San Fernando",
+      "candidateEntityId": "poi-9f9ab0567777bee1",
+      "wikidataId": "Q18354333",
+      "canonicalNameEn": "San Fernando Formation",
+      "disposition": "QUARANTINED_REJECTED",
+      "reason": "generic-geological-formation",
+      "quarantineEntityId": "poi-9f9ab0567777bee1"
+    },
+    {
+      "countryCode": "TT",
+      "destinationEntityId": "city-f8e7938698d274cb",
+      "destinationName": "Port of Spain",
+      "candidateEntityId": "poi-d9803606b13d59bb",
+      "wikidataId": "Q5045524",
+      "canonicalNameEn": "Caroni River",
+      "disposition": "QUARANTINED_REJECTED",
+      "reason": "generic-watercourse",
+      "quarantineEntityId": "poi-d9803606b13d59bb"
+    },
+    {
+      "countryCode": "UG",
+      "destinationEntityId": "city-12eabeee3a7a14d0",
+      "destinationName": "Kampala",
+      "candidateEntityId": "poi-61e0c816e74c5f36",
+      "wikidataId": "Q5594671",
+      "canonicalNameEn": "Grand Imperial Hotel",
+      "disposition": "ADMITTED_NEW",
+      "reason": "reviewed-specific-travel-compatible-poi",
+      "admittedProductionEntityId": "poi-61e0c816e74c5f36"
+    },
+    {
+      "countryCode": "UG",
+      "destinationEntityId": "city-12eabeee3a7a14d0",
+      "destinationName": "Kampala",
+      "candidateEntityId": "poi-019951eb86f6c204",
+      "wikidataId": "Q618252",
+      "canonicalNameEn": "National Library of Uganda",
+      "disposition": "QUARANTINED_REJECTED",
+      "reason": "operational-library",
+      "quarantineEntityId": "poi-019951eb86f6c204"
+    },
+    {
+      "countryCode": "UG",
+      "destinationEntityId": "city-a3ca46b81dd7dc2e",
+      "destinationName": "Jinja",
+      "candidateEntityId": "poi-372e953d16e4ec74",
+      "wikidataId": "Q22082371",
+      "canonicalNameEn": "Buwenda",
+      "disposition": "QUARANTINED_REJECTED",
+      "reason": "generic-geographic-feature",
+      "quarantineEntityId": "poi-372e953d16e4ec74"
+    },
+    {
+      "countryCode": "UG",
+      "destinationEntityId": "city-cf93ae1e3582d497",
+      "destinationName": "Entebbe",
+      "candidateEntityId": "poi-e29f2fa398c1cdcd",
+      "wikidataId": "Q122933018",
+      "canonicalNameEn": "Amansi and Mapeera monument",
+      "disposition": "ADMITTED_NEW",
+      "reason": "reviewed-specific-travel-compatible-poi",
+      "admittedProductionEntityId": "poi-e29f2fa398c1cdcd"
+    }
+  ],
+  "after": {
+    "countries": 195,
+    "cities": 890,
+    "pois": 4159,
+    "totalEntities": 5244,
+    "plannable": 122,
+    "evidenceBacked": 119,
+    "catalogOnly": 73
+  },
+  "evidenceAdditions": {
+    "transport": 0,
+    "seasonMonth": 0,
+    "theme": 0
+  },
+  "readinessPromotions": 0,
+  "accidentalPromotions": 0,
+  "candidateLeakage": "NONE",
+  "countriesReviewed": [
+    {
+      "countryCode": "AO",
+      "selectionRationale": "high-ranked-candidate-foundation; identity-and-poi-review-passed",
+      "candidateDestinationsReviewed": 3,
+      "admittedDestinations": 3,
+      "productionDestinationsAfter": 3,
+      "candidatePoisReviewed": 10,
+      "admittedPois": 8,
+      "productionPoisAfter": 8,
+      "quarantinedPois": 2,
+      "routeModel": "multi-destination",
+      "directedTransportSegmentUnits": [
+        {
+          "fromEntityId": "city-7a7f677f510d9f6e",
+          "toEntityId": "city-8072eb9ee3a0831c"
+        },
+        {
+          "fromEntityId": "city-8072eb9ee3a0831c",
+          "toEntityId": "city-7a7f677f510d9f6e"
+        },
+        {
+          "fromEntityId": "city-8072eb9ee3a0831c",
+          "toEntityId": "city-ec86f948d5cfe821"
+        },
+        {
+          "fromEntityId": "city-ec86f948d5cfe821",
+          "toEntityId": "city-8072eb9ee3a0831c"
+        }
+      ],
+      "seasonMonthProfileUnits": [
+        {
+          "entityId": "city-7a7f677f510d9f6e",
+          "countryCode": "AO"
+        },
+        {
+          "entityId": "city-8072eb9ee3a0831c",
+          "countryCode": "AO"
+        },
+        {
+          "entityId": "city-ec86f948d5cfe821",
+          "countryCode": "AO"
+        }
+      ],
+      "existingReusableEvidence": {
+        "transport": 0,
+        "season": 0,
+        "theme": 0
+      },
+      "missingTransportUnits": 4,
+      "missingSeasonUnits": 3,
+      "validEvidence": false,
+      "plannable": false,
+      "evidenceBacked": false,
+      "catalogOnly": true,
+      "evidencePending": true
+    },
+    {
+      "countryCode": "BJ",
+      "selectionRationale": "high-ranked-candidate-foundation; identity-and-poi-review-passed",
+      "candidateDestinationsReviewed": 3,
+      "admittedDestinations": 3,
+      "productionDestinationsAfter": 3,
+      "candidatePoisReviewed": 15,
+      "admittedPois": 13,
+      "productionPoisAfter": 13,
+      "quarantinedPois": 2,
+      "routeModel": "multi-destination",
+      "directedTransportSegmentUnits": [
+        {
+          "fromEntityId": "city-17793b277caddfed",
+          "toEntityId": "city-3b3c9457618c868e"
+        },
+        {
+          "fromEntityId": "city-3b3c9457618c868e",
+          "toEntityId": "city-17793b277caddfed"
+        },
+        {
+          "fromEntityId": "city-3b3c9457618c868e",
+          "toEntityId": "city-736f6f9f243c8718"
+        },
+        {
+          "fromEntityId": "city-736f6f9f243c8718",
+          "toEntityId": "city-3b3c9457618c868e"
+        }
+      ],
+      "seasonMonthProfileUnits": [
+        {
+          "entityId": "city-17793b277caddfed",
+          "countryCode": "BJ"
+        },
+        {
+          "entityId": "city-3b3c9457618c868e",
+          "countryCode": "BJ"
+        },
+        {
+          "entityId": "city-736f6f9f243c8718",
+          "countryCode": "BJ"
+        }
+      ],
+      "existingReusableEvidence": {
+        "transport": 0,
+        "season": 0,
+        "theme": 0
+      },
+      "missingTransportUnits": 4,
+      "missingSeasonUnits": 3,
+      "validEvidence": false,
+      "plannable": false,
+      "evidenceBacked": false,
+      "catalogOnly": true,
+      "evidencePending": true
+    },
+    {
+      "countryCode": "BY",
+      "selectionRationale": "high-ranked-candidate-foundation; identity-and-poi-review-passed",
+      "candidateDestinationsReviewed": 3,
+      "admittedDestinations": 3,
+      "productionDestinationsAfter": 3,
+      "candidatePoisReviewed": 17,
+      "admittedPois": 17,
+      "productionPoisAfter": 17,
+      "quarantinedPois": 0,
+      "routeModel": "multi-destination",
+      "directedTransportSegmentUnits": [
+        {
+          "fromEntityId": "city-112c0170dc0c9510",
+          "toEntityId": "city-83f33b3921666ee2"
+        },
+        {
+          "fromEntityId": "city-83f33b3921666ee2",
+          "toEntityId": "city-112c0170dc0c9510"
+        },
+        {
+          "fromEntityId": "city-83f33b3921666ee2",
+          "toEntityId": "city-922749630466d376"
+        },
+        {
+          "fromEntityId": "city-922749630466d376",
+          "toEntityId": "city-83f33b3921666ee2"
+        }
+      ],
+      "seasonMonthProfileUnits": [
+        {
+          "entityId": "city-112c0170dc0c9510",
+          "countryCode": "BY"
+        },
+        {
+          "entityId": "city-83f33b3921666ee2",
+          "countryCode": "BY"
+        },
+        {
+          "entityId": "city-922749630466d376",
+          "countryCode": "BY"
+        }
+      ],
+      "existingReusableEvidence": {
+        "transport": 0,
+        "season": 0,
+        "theme": 0
+      },
+      "missingTransportUnits": 4,
+      "missingSeasonUnits": 3,
+      "validEvidence": false,
+      "plannable": false,
+      "evidenceBacked": false,
+      "catalogOnly": true,
+      "evidencePending": true
+    },
+    {
+      "countryCode": "BZ",
+      "selectionRationale": "existing-reviewed-production-foundation; evidence-work-remains",
+      "candidateDestinationsReviewed": 0,
+      "admittedDestinations": 0,
+      "productionDestinationsAfter": 4,
+      "candidatePoisReviewed": 4,
+      "admittedPois": 0,
+      "productionPoisAfter": 13,
+      "quarantinedPois": 4,
+      "routeModel": "multi-destination",
+      "directedTransportSegmentUnits": [
+        {
+          "fromEntityId": "city-6ec906c9527fa58c",
+          "toEntityId": "city-ada97841bcc43314"
+        },
+        {
+          "fromEntityId": "city-ada97841bcc43314",
+          "toEntityId": "city-6ec906c9527fa58c"
+        },
+        {
+          "fromEntityId": "city-ada97841bcc43314",
+          "toEntityId": "city-09e784f122af849f"
+        },
+        {
+          "fromEntityId": "city-09e784f122af849f",
+          "toEntityId": "city-ada97841bcc43314"
+        },
+        {
+          "fromEntityId": "city-09e784f122af849f",
+          "toEntityId": "city-364c92a54ef6ea30"
+        },
+        {
+          "fromEntityId": "city-364c92a54ef6ea30",
+          "toEntityId": "city-09e784f122af849f"
+        }
+      ],
+      "seasonMonthProfileUnits": [
+        {
+          "entityId": "city-6ec906c9527fa58c",
+          "countryCode": "BZ"
+        },
+        {
+          "entityId": "city-ada97841bcc43314",
+          "countryCode": "BZ"
+        },
+        {
+          "entityId": "city-09e784f122af849f",
+          "countryCode": "BZ"
+        },
+        {
+          "entityId": "city-364c92a54ef6ea30",
+          "countryCode": "BZ"
+        }
+      ],
+      "existingReusableEvidence": {
+        "transport": 0,
+        "season": 4,
+        "theme": 0
+      },
+      "missingTransportUnits": 6,
+      "missingSeasonUnits": 0,
+      "validEvidence": false,
+      "plannable": false,
+      "evidenceBacked": false,
+      "catalogOnly": true,
+      "evidencePending": true
+    },
+    {
+      "countryCode": "CI",
+      "selectionRationale": "high-ranked-candidate-foundation; identity-and-poi-review-passed",
+      "candidateDestinationsReviewed": 3,
+      "admittedDestinations": 3,
+      "productionDestinationsAfter": 3,
+      "candidatePoisReviewed": 13,
+      "admittedPois": 11,
+      "productionPoisAfter": 11,
+      "quarantinedPois": 2,
+      "routeModel": "multi-destination",
+      "directedTransportSegmentUnits": [
+        {
+          "fromEntityId": "city-3ae3e55afc2ba40b",
+          "toEntityId": "city-4f08d650dd59697a"
+        },
+        {
+          "fromEntityId": "city-4f08d650dd59697a",
+          "toEntityId": "city-3ae3e55afc2ba40b"
+        },
+        {
+          "fromEntityId": "city-4f08d650dd59697a",
+          "toEntityId": "city-dddcb743a7c5b440"
+        },
+        {
+          "fromEntityId": "city-dddcb743a7c5b440",
+          "toEntityId": "city-4f08d650dd59697a"
+        }
+      ],
+      "seasonMonthProfileUnits": [
+        {
+          "entityId": "city-3ae3e55afc2ba40b",
+          "countryCode": "CI"
+        },
+        {
+          "entityId": "city-4f08d650dd59697a",
+          "countryCode": "CI"
+        },
+        {
+          "entityId": "city-dddcb743a7c5b440",
+          "countryCode": "CI"
+        }
+      ],
+      "existingReusableEvidence": {
+        "transport": 0,
+        "season": 0,
+        "theme": 0
+      },
+      "missingTransportUnits": 4,
+      "missingSeasonUnits": 3,
+      "validEvidence": false,
+      "plannable": false,
+      "evidenceBacked": false,
+      "catalogOnly": true,
+      "evidencePending": true
+    },
+    {
+      "countryCode": "CM",
+      "selectionRationale": "high-ranked-candidate-foundation; identity-and-poi-review-passed",
+      "candidateDestinationsReviewed": 3,
+      "admittedDestinations": 3,
+      "productionDestinationsAfter": 3,
+      "candidatePoisReviewed": 14,
+      "admittedPois": 12,
+      "productionPoisAfter": 12,
+      "quarantinedPois": 2,
+      "routeModel": "multi-destination",
+      "directedTransportSegmentUnits": [
+        {
+          "fromEntityId": "city-1e4e8e5c247d7a1b",
+          "toEntityId": "city-999f998d2955d071"
+        },
+        {
+          "fromEntityId": "city-999f998d2955d071",
+          "toEntityId": "city-1e4e8e5c247d7a1b"
+        },
+        {
+          "fromEntityId": "city-999f998d2955d071",
+          "toEntityId": "city-bdf464a9ed2c7ca8"
+        },
+        {
+          "fromEntityId": "city-bdf464a9ed2c7ca8",
+          "toEntityId": "city-999f998d2955d071"
+        }
+      ],
+      "seasonMonthProfileUnits": [
+        {
+          "entityId": "city-1e4e8e5c247d7a1b",
+          "countryCode": "CM"
+        },
+        {
+          "entityId": "city-999f998d2955d071",
+          "countryCode": "CM"
+        },
+        {
+          "entityId": "city-bdf464a9ed2c7ca8",
+          "countryCode": "CM"
+        }
+      ],
+      "existingReusableEvidence": {
+        "transport": 0,
+        "season": 0,
+        "theme": 0
+      },
+      "missingTransportUnits": 4,
+      "missingSeasonUnits": 3,
+      "validEvidence": false,
+      "plannable": false,
+      "evidenceBacked": false,
+      "catalogOnly": true,
+      "evidencePending": true
+    },
+    {
+      "countryCode": "CV",
+      "selectionRationale": "existing-reviewed-production-foundation; evidence-work-remains",
+      "candidateDestinationsReviewed": 0,
+      "admittedDestinations": 0,
+      "productionDestinationsAfter": 2,
+      "candidatePoisReviewed": 2,
+      "admittedPois": 0,
+      "productionPoisAfter": 10,
+      "quarantinedPois": 2,
+      "routeModel": "multi-destination",
+      "directedTransportSegmentUnits": [
+        {
+          "fromEntityId": "city-babb525024c5895b",
+          "toEntityId": "city-978446d3b0128242"
+        },
+        {
+          "fromEntityId": "city-978446d3b0128242",
+          "toEntityId": "city-babb525024c5895b"
+        }
+      ],
+      "seasonMonthProfileUnits": [
+        {
+          "entityId": "city-babb525024c5895b",
+          "countryCode": "CV"
+        },
+        {
+          "entityId": "city-978446d3b0128242",
+          "countryCode": "CV"
+        }
+      ],
+      "existingReusableEvidence": {
+        "transport": 0,
+        "season": 2,
+        "theme": 0
+      },
+      "missingTransportUnits": 2,
+      "missingSeasonUnits": 0,
+      "validEvidence": false,
+      "plannable": false,
+      "evidenceBacked": false,
+      "catalogOnly": true,
+      "evidencePending": true
+    },
+    {
+      "countryCode": "DM",
+      "selectionRationale": "existing-reviewed-production-foundation; evidence-work-remains",
+      "candidateDestinationsReviewed": 0,
+      "admittedDestinations": 0,
+      "productionDestinationsAfter": 2,
+      "candidatePoisReviewed": 4,
+      "admittedPois": 0,
+      "productionPoisAfter": 8,
+      "quarantinedPois": 4,
+      "routeModel": "multi-destination",
+      "directedTransportSegmentUnits": [
+        {
+          "fromEntityId": "city-3f9f3579e6cd3ee4",
+          "toEntityId": "city-4e646805968aa7b9"
+        },
+        {
+          "fromEntityId": "city-4e646805968aa7b9",
+          "toEntityId": "city-3f9f3579e6cd3ee4"
+        }
+      ],
+      "seasonMonthProfileUnits": [
+        {
+          "entityId": "city-3f9f3579e6cd3ee4",
+          "countryCode": "DM"
+        },
+        {
+          "entityId": "city-4e646805968aa7b9",
+          "countryCode": "DM"
+        }
+      ],
+      "existingReusableEvidence": {
+        "transport": 2,
+        "season": 0,
+        "theme": 0
+      },
+      "missingTransportUnits": 0,
+      "missingSeasonUnits": 2,
+      "validEvidence": false,
+      "plannable": false,
+      "evidenceBacked": false,
+      "catalogOnly": true,
+      "evidencePending": true
+    },
+    {
+      "countryCode": "MN",
+      "selectionRationale": "existing-reviewed-production-foundation; evidence-work-remains",
+      "candidateDestinationsReviewed": 0,
+      "admittedDestinations": 0,
+      "productionDestinationsAfter": 3,
+      "candidatePoisReviewed": 1,
+      "admittedPois": 0,
+      "productionPoisAfter": 10,
+      "quarantinedPois": 1,
+      "routeModel": "multi-destination",
+      "directedTransportSegmentUnits": [
+        {
+          "fromEntityId": "city-246c71fa111c145f",
+          "toEntityId": "city-81d1aa150179614b"
+        },
+        {
+          "fromEntityId": "city-81d1aa150179614b",
+          "toEntityId": "city-246c71fa111c145f"
+        },
+        {
+          "fromEntityId": "city-81d1aa150179614b",
+          "toEntityId": "city-dc7b0fecf0cc52cf"
+        },
+        {
+          "fromEntityId": "city-dc7b0fecf0cc52cf",
+          "toEntityId": "city-81d1aa150179614b"
+        }
+      ],
+      "seasonMonthProfileUnits": [
+        {
+          "entityId": "city-246c71fa111c145f",
+          "countryCode": "MN"
+        },
+        {
+          "entityId": "city-81d1aa150179614b",
+          "countryCode": "MN"
+        },
+        {
+          "entityId": "city-dc7b0fecf0cc52cf",
+          "countryCode": "MN"
+        }
+      ],
+      "existingReusableEvidence": {
+        "transport": 4,
+        "season": 0,
+        "theme": 0
+      },
+      "missingTransportUnits": 0,
+      "missingSeasonUnits": 3,
+      "validEvidence": false,
+      "plannable": false,
+      "evidenceBacked": false,
+      "catalogOnly": true,
+      "evidencePending": true
+    },
+    {
+      "countryCode": "MZ",
+      "selectionRationale": "high-ranked-candidate-foundation; identity-and-poi-review-passed",
+      "candidateDestinationsReviewed": 4,
+      "admittedDestinations": 4,
+      "productionDestinationsAfter": 4,
+      "candidatePoisReviewed": 14,
+      "admittedPois": 10,
+      "productionPoisAfter": 10,
+      "quarantinedPois": 4,
+      "routeModel": "multi-destination",
+      "directedTransportSegmentUnits": [
+        {
+          "fromEntityId": "city-0d86eecbaf33d381",
+          "toEntityId": "city-411f7dd7eb7a1147"
+        },
+        {
+          "fromEntityId": "city-411f7dd7eb7a1147",
+          "toEntityId": "city-0d86eecbaf33d381"
+        },
+        {
+          "fromEntityId": "city-411f7dd7eb7a1147",
+          "toEntityId": "city-574226c10f889449"
+        },
+        {
+          "fromEntityId": "city-574226c10f889449",
+          "toEntityId": "city-411f7dd7eb7a1147"
+        },
+        {
+          "fromEntityId": "city-574226c10f889449",
+          "toEntityId": "city-bb27df741abe2752"
+        },
+        {
+          "fromEntityId": "city-bb27df741abe2752",
+          "toEntityId": "city-574226c10f889449"
+        }
+      ],
+      "seasonMonthProfileUnits": [
+        {
+          "entityId": "city-0d86eecbaf33d381",
+          "countryCode": "MZ"
+        },
+        {
+          "entityId": "city-411f7dd7eb7a1147",
+          "countryCode": "MZ"
+        },
+        {
+          "entityId": "city-574226c10f889449",
+          "countryCode": "MZ"
+        },
+        {
+          "entityId": "city-bb27df741abe2752",
+          "countryCode": "MZ"
+        }
+      ],
+      "existingReusableEvidence": {
+        "transport": 0,
+        "season": 0,
+        "theme": 0
+      },
+      "missingTransportUnits": 6,
+      "missingSeasonUnits": 4,
+      "validEvidence": false,
+      "plannable": false,
+      "evidenceBacked": false,
+      "catalogOnly": true,
+      "evidencePending": true
+    },
+    {
+      "countryCode": "SZ",
+      "selectionRationale": "high-ranked-candidate-foundation; identity-and-poi-review-passed",
+      "candidateDestinationsReviewed": 3,
+      "admittedDestinations": 3,
+      "productionDestinationsAfter": 3,
+      "candidatePoisReviewed": 9,
+      "admittedPois": 7,
+      "productionPoisAfter": 7,
+      "quarantinedPois": 2,
+      "routeModel": "multi-destination",
+      "directedTransportSegmentUnits": [
+        {
+          "fromEntityId": "city-0df180268afeca04",
+          "toEntityId": "city-1ab1bd6cbc62b230"
+        },
+        {
+          "fromEntityId": "city-1ab1bd6cbc62b230",
+          "toEntityId": "city-0df180268afeca04"
+        },
+        {
+          "fromEntityId": "city-1ab1bd6cbc62b230",
+          "toEntityId": "city-a53237851e024b81"
+        },
+        {
+          "fromEntityId": "city-a53237851e024b81",
+          "toEntityId": "city-1ab1bd6cbc62b230"
+        }
+      ],
+      "seasonMonthProfileUnits": [
+        {
+          "entityId": "city-0df180268afeca04",
+          "countryCode": "SZ"
+        },
+        {
+          "entityId": "city-1ab1bd6cbc62b230",
+          "countryCode": "SZ"
+        },
+        {
+          "entityId": "city-a53237851e024b81",
+          "countryCode": "SZ"
+        }
+      ],
+      "existingReusableEvidence": {
+        "transport": 0,
+        "season": 0,
+        "theme": 0
+      },
+      "missingTransportUnits": 4,
+      "missingSeasonUnits": 3,
+      "validEvidence": false,
+      "plannable": false,
+      "evidenceBacked": false,
+      "catalogOnly": true,
+      "evidencePending": true
+    },
+    {
+      "countryCode": "TL",
+      "selectionRationale": "high-ranked-candidate-foundation; identity-and-poi-review-passed",
+      "candidateDestinationsReviewed": 2,
+      "admittedDestinations": 2,
+      "productionDestinationsAfter": 2,
+      "candidatePoisReviewed": 10,
+      "admittedPois": 8,
+      "productionPoisAfter": 8,
+      "quarantinedPois": 2,
+      "routeModel": "multi-destination",
+      "directedTransportSegmentUnits": [
+        {
+          "fromEntityId": "city-422d392e780b89a7",
+          "toEntityId": "city-c99e249c394ba4de"
+        },
+        {
+          "fromEntityId": "city-c99e249c394ba4de",
+          "toEntityId": "city-422d392e780b89a7"
+        }
+      ],
+      "seasonMonthProfileUnits": [
+        {
+          "entityId": "city-422d392e780b89a7",
+          "countryCode": "TL"
+        },
+        {
+          "entityId": "city-c99e249c394ba4de",
+          "countryCode": "TL"
+        }
+      ],
+      "existingReusableEvidence": {
+        "transport": 0,
+        "season": 0,
+        "theme": 0
+      },
+      "missingTransportUnits": 2,
+      "missingSeasonUnits": 2,
+      "validEvidence": false,
+      "plannable": false,
+      "evidenceBacked": false,
+      "catalogOnly": true,
+      "evidencePending": true
+    },
+    {
+      "countryCode": "TT",
+      "selectionRationale": "existing-reviewed-production-foundation; evidence-work-remains",
+      "candidateDestinationsReviewed": 0,
+      "admittedDestinations": 0,
+      "productionDestinationsAfter": 3,
+      "candidatePoisReviewed": 4,
+      "admittedPois": 0,
+      "productionPoisAfter": 10,
+      "quarantinedPois": 4,
+      "routeModel": "multi-destination",
+      "directedTransportSegmentUnits": [
+        {
+          "fromEntityId": "city-e1e545b8fe38ab50",
+          "toEntityId": "city-f8e7938698d274cb"
+        },
+        {
+          "fromEntityId": "city-f8e7938698d274cb",
+          "toEntityId": "city-e1e545b8fe38ab50"
+        },
+        {
+          "fromEntityId": "city-f8e7938698d274cb",
+          "toEntityId": "city-94fbe7319f3f241e"
+        },
+        {
+          "fromEntityId": "city-94fbe7319f3f241e",
+          "toEntityId": "city-f8e7938698d274cb"
+        }
+      ],
+      "seasonMonthProfileUnits": [
+        {
+          "entityId": "city-e1e545b8fe38ab50",
+          "countryCode": "TT"
+        },
+        {
+          "entityId": "city-f8e7938698d274cb",
+          "countryCode": "TT"
+        },
+        {
+          "entityId": "city-94fbe7319f3f241e",
+          "countryCode": "TT"
+        }
+      ],
+      "existingReusableEvidence": {
+        "transport": 2,
+        "season": 3,
+        "theme": 0
+      },
+      "missingTransportUnits": 2,
+      "missingSeasonUnits": 0,
+      "validEvidence": false,
+      "plannable": false,
+      "evidenceBacked": false,
+      "catalogOnly": true,
+      "evidencePending": true
+    },
+    {
+      "countryCode": "UG",
+      "selectionRationale": "existing-reviewed-production-foundation; evidence-work-remains",
+      "candidateDestinationsReviewed": 0,
+      "admittedDestinations": 0,
+      "productionDestinationsAfter": 3,
+      "candidatePoisReviewed": 4,
+      "admittedPois": 2,
+      "productionPoisAfter": 13,
+      "quarantinedPois": 2,
+      "routeModel": "multi-destination",
+      "directedTransportSegmentUnits": [
+        {
+          "fromEntityId": "city-cf93ae1e3582d497",
+          "toEntityId": "city-a3ca46b81dd7dc2e"
+        },
+        {
+          "fromEntityId": "city-a3ca46b81dd7dc2e",
+          "toEntityId": "city-cf93ae1e3582d497"
+        },
+        {
+          "fromEntityId": "city-a3ca46b81dd7dc2e",
+          "toEntityId": "city-12eabeee3a7a14d0"
+        },
+        {
+          "fromEntityId": "city-12eabeee3a7a14d0",
+          "toEntityId": "city-a3ca46b81dd7dc2e"
+        }
+      ],
+      "seasonMonthProfileUnits": [
+        {
+          "entityId": "city-cf93ae1e3582d497",
+          "countryCode": "UG"
+        },
+        {
+          "entityId": "city-a3ca46b81dd7dc2e",
+          "countryCode": "UG"
+        },
+        {
+          "entityId": "city-12eabeee3a7a14d0",
+          "countryCode": "UG"
+        }
+      ],
+      "existingReusableEvidence": {
+        "transport": 0,
+        "season": 3,
+        "theme": 0
+      },
+      "missingTransportUnits": 4,
+      "missingSeasonUnits": 0,
+      "validEvidence": false,
+      "plannable": false,
+      "evidenceBacked": false,
+      "catalogOnly": true,
+      "evidencePending": true
+    }
+  ],
+  "nextEvidencePhase": {
+    "countries": [
+      "AO",
+      "BJ",
+      "BY",
+      "BZ",
+      "CI",
+      "CM",
+      "CV",
+      "DM",
+      "MN",
+      "MZ",
+      "SZ",
+      "TL",
+      "TT",
+      "UG"
+    ],
+    "directedTransportSegmentUnits": 54,
+    "seasonMonthProfileUnits": 41,
+    "singleDestinationCountries": [],
+    "multiDestinationCountries": [
+      "AO",
+      "BJ",
+      "BY",
+      "BZ",
+      "CI",
+      "CM",
+      "CV",
+      "DM",
+      "MN",
+      "MZ",
+      "SZ",
+      "TL",
+      "TT",
+      "UG"
+    ],
+    "existingReusableTransportEvidence": 8,
+    "existingReusableSeasonEvidence": 12,
+    "missingTransportUnits": 46,
+    "missingSeasonUnits": 29,
+    "themeEvidenceAdded": 0
+  },
+  "performance": {
+    "dedicatedRunner": "NOT_AVAILABLE",
+    "realQualificationExecutions": 0,
+    "formalExperimentExecutions": 1,
+    "formalRun34622976529": "BLOCKED_INCONCLUSIVE",
+    "clearance": "NOT_CLEARED"
+  }
+}

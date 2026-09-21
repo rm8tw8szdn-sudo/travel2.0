@@ -48,7 +48,8 @@ const publishedPois = repository.listPois();
 const countryByEntityId = new Map(countries.map((entity) => [entity.entityId, entity]));
 const cityByEntityId = new Map(cities.map((entity) => [entity.entityId, entity]));
 const publishedIds = new Set(publishedPois.map((entry) => entry.entityId));
-const entityFoundationPois = readJson("data/knowledge/batches/pois.p1b-batch50.json").pois || [];
+const entityFoundationPois = ["data/knowledge/batches/pois.p1b-batch50.json", "data/knowledge/batches/pois.p1b-batch51.json"]
+  .flatMap((relativePath) => readJson(relativePath).pois || []);
 const entityFoundationIds = new Set(entityFoundationPois.map((entry) => entry.entityId));
 const quarantinedIds = new Set(audit.quarantined.map((entry) => entry.entityId));
 const quarantinedQids = new Set(audit.quarantined.map((entry) => entry.wikidataId));
@@ -81,7 +82,7 @@ assert.equal(audit.publishedAdmissions.length + entityFoundationPois.length, pub
 assert.deepEqual(
   new Set([...audit.publishedAdmissions.map((entry) => entry.entityId), ...entityFoundationIds]),
   publishedIds,
-  "sealed admission audit plus the Batch 01 reviewed entity foundation must cover every published POI",
+  "sealed admission audit plus reviewed Entity Foundation supplements must cover every published POI",
 );
 assert.equal(audit.quarantined.every((entry) => !publishedIds.has(entry.entityId)), true, "quarantined POIs must not remain published");
 const selectionFiles = fs.readdirSync(path.join(ROOT, "data/knowledge/batches")).filter((name) => /^selection\.p1b-batch\d+\.json$/u.test(name));

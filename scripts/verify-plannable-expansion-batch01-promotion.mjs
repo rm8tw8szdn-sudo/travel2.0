@@ -133,7 +133,9 @@ if (!PROBE) {
   assert.equal("createBatch01PromotionEvaluationSearchService" in publicRouteApi, false, "fixed internal evaluator must not be public");
 
   const authorityPath = path.join(ROOT, "data/knowledge/semantic/plannable-expansion-batch01-promotion-authority.json");
+  const reportPath = path.join(ROOT, "data/knowledge/reports/plannable-expansion-batch01-promotion.json");
   const originalAuthorityText = fs.readFileSync(authorityPath, "utf8");
+  const originalReportText = fs.readFileSync(reportPath, "utf8");
   const writeAuthorityMutation = (mutate) => {
     const value = JSON.parse(originalAuthorityText);
     mutate(value);
@@ -161,8 +163,12 @@ if (!PROBE) {
     assert.throws(() => validateKnowledgeReadinessAuthority(clone(readinessPolicy)), /READINESS_AUTHORITY_/u, "removed BB audit result");
     writeAuthorityMutation((value) => { value.routeGate.find((entry) => entry.countryCode === "BB").hardCountryConstraint = "FAIL_CLOSED"; });
     assert.throws(() => validateKnowledgeReadinessAuthority(clone(readinessPolicy)), /READINESS_AUTHORITY_/u, "route metadata tamper");
+    fs.writeFileSync(reportPath, `${JSON.stringify({ ...JSON.parse(originalReportText), status: "TAMPERED" }, null, 2)}\n`, "utf8");
+    fs.writeFileSync(authorityPath, originalAuthorityText, "utf8");
+    assert.throws(() => validateKnowledgeReadinessAuthority(clone(readinessPolicy)), /READINESS_AUTHORITY_PROMOTION_REPORT_MISMATCH/u, "historical promotion report tamper");
   } finally {
     fs.writeFileSync(authorityPath, originalAuthorityText, "utf8");
+    fs.writeFileSync(reportPath, originalReportText, "utf8");
   }
   assert.doesNotThrow(() => validateKnowledgeReadinessAuthority(clone(readinessPolicy)), "correct audit artifact");
 }
@@ -268,7 +274,7 @@ const result = {
   routeResults,
   staticAuthorityMutationCases: 5,
   productionAuthorityMutationCases: 10,
-  artifactTamperMutationCases: 7,
+  artifactTamperMutationCases: 8,
   publicBypassCases,
   externalFetchCalls,
   routeFailures,

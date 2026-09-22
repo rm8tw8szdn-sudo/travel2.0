@@ -1,0 +1,348 @@
+{
+  "schemaVersion": "route-v2-plannable-expansion-batch02-promotion-v1",
+  "authority": "independently-recomputed-live-production-evidence",
+  "evaluatedCountryCodes": [
+    "AO",
+    "BJ",
+    "BY",
+    "BZ",
+    "CI",
+    "CM",
+    "CV",
+    "DM",
+    "MN",
+    "MZ",
+    "SZ",
+    "TL",
+    "TT",
+    "UG"
+  ],
+  "evaluated": 14,
+  "unaccounted": 0,
+  "promotedCountryCodes": [],
+  "blockedCountryCodes": [
+    "AO",
+    "BJ",
+    "BY",
+    "BZ",
+    "CI",
+    "CM",
+    "CV",
+    "DM",
+    "MN",
+    "MZ",
+    "SZ",
+    "TL",
+    "TT",
+    "UG"
+  ],
+  "promoted": 0,
+  "blocked": 14,
+  "decisions": [
+    {
+      "countryCode": "AO",
+      "destinations": 3,
+      "transport": {
+        "required": 4,
+        "admitted": 0,
+        "blocked": 4
+      },
+      "season": {
+        "required": 3,
+        "admitted": 0,
+        "blocked": 3
+      },
+      "liveEvidenceReady": false,
+      "decision": "BLOCK",
+      "blockers": [
+        "directed-transport-incomplete",
+        "season-profile-incomplete"
+      ]
+    },
+    {
+      "countryCode": "BJ",
+      "destinations": 3,
+      "transport": {
+        "required": 4,
+        "admitted": 0,
+        "blocked": 4
+      },
+      "season": {
+        "required": 3,
+        "admitted": 0,
+        "blocked": 3
+      },
+      "liveEvidenceReady": false,
+      "decision": "BLOCK",
+      "blockers": [
+        "directed-transport-incomplete",
+        "season-profile-incomplete"
+      ]
+    },
+    {
+      "countryCode": "BY",
+      "destinations": 3,
+      "transport": {
+        "required": 4,
+        "admitted": 0,
+        "blocked": 4
+      },
+      "season": {
+        "required": 3,
+        "admitted": 0,
+        "blocked": 3
+      },
+      "liveEvidenceReady": false,
+      "decision": "BLOCK",
+      "blockers": [
+        "directed-transport-incomplete",
+        "season-profile-incomplete"
+      ]
+    },
+    {
+      "countryCode": "BZ",
+      "destinations": 4,
+      "transport": {
+        "required": 6,
+        "admitted": 0,
+        "blocked": 6
+      },
+      "season": {
+        "required": 4,
+        "admitted": 4,
+        "blocked": 0
+      },
+      "liveEvidenceReady": false,
+      "decision": "BLOCK",
+      "blockers": [
+        "directed-transport-incomplete"
+      ]
+    },
+    {
+      "countryCode": "CI",
+      "destinations": 3,
+      "transport": {
+        "required": 4,
+        "admitted": 0,
+        "blocked": 4
+      },
+      "season": {
+        "required": 3,
+        "admitted": 0,
+        "blocked": 3
+      },
+      "liveEvidenceReady": false,
+      "decision": "BLOCK",
+      "blockers": [
+        "directed-transport-incomplete",
+        "season-profile-incomplete"
+      ]
+    },
+    {
+      "countryCode": "CM",
+      "destinations": 3,
+      "transport": {
+        "required": 4,
+        "admitted": 2,
+        "blocked": 2
+      },
+      "season": {
+        "required": 3,
+        "admitted": 0,
+        "blocked": 3
+      },
+      "liveEvidenceReady": false,
+      "decision": "BLOCK",
+      "blockers": [
+        "directed-transport-incomplete",
+        "season-profile-incomplete"
+      ]
+    },
+    {
+      "countryCode": "CV",
+      "destinations": 2,
+      "transport": {
+        "required": 2,
+        "admitted": 0,
+        "blocked": 2
+      },
+      "season": {
+        "required": 2,
+        "admitted": 2,
+        "blocked": 0
+      },
+      "liveEvidenceReady": false,
+      "decision": "BLOCK",
+      "blockers": [
+        "directed-transport-incomplete"
+      ]
+    },
+    {
+      "countryCode": "DM",
+      "destinations": 2,
+      "transport": {
+        "required": 2,
+        "admitted": 2,
+        "blocked": 0
+      },
+      "season": {
+        "required": 2,
+        "admitted": 0,
+        "blocked": 2
+      },
+      "liveEvidenceReady": false,
+      "decision": "BLOCK",
+      "blockers": [
+        "season-profile-incomplete"
+      ]
+    },
+    {
+      "countryCode": "MN",
+      "destinations": 3,
+      "transport": {
+        "required": 4,
+        "admitted": 2,
+        "blocked": 2
+      },
+      "season": {
+        "required": 3,
+        "admitted": 0,
+        "blocked": 3
+      },
+      "liveEvidenceReady": false,
+      "decision": "BLOCK",
+      "blockers": [
+        "directed-transport-incomplete",
+        "season-profile-incomplete"
+      ]
+    },
+    {
+      "countryCode": "MZ",
+      "destinations": 4,
+      "transport": {
+        "required": 6,
+        "admitted": 4,
+        "blocked": 2
+      },
+      "season": {
+        "required": 4,
+        "admitted": 0,
+        "blocked": 4
+      },
+      "liveEvidenceReady": false,
+      "decision": "BLOCK",
+      "blockers": [
+        "directed-transport-incomplete",
+        "season-profile-incomplete"
+      ]
+    },
+    {
+      "countryCode": "SZ",
+      "destinations": 3,
+      "transport": {
+        "required": 4,
+        "admitted": 0,
+        "blocked": 4
+      },
+      "season": {
+        "required": 3,
+        "admitted": 0,
+        "blocked": 3
+      },
+      "liveEvidenceReady": false,
+      "decision": "BLOCK",
+      "blockers": [
+        "directed-transport-incomplete",
+        "season-profile-incomplete"
+      ]
+    },
+    {
+      "countryCode": "TL",
+      "destinations": 2,
+      "transport": {
+        "required": 2,
+        "admitted": 0,
+        "blocked": 2
+      },
+      "season": {
+        "required": 2,
+        "admitted": 0,
+        "blocked": 2
+      },
+      "liveEvidenceReady": false,
+      "decision": "BLOCK",
+      "blockers": [
+        "directed-transport-incomplete",
+        "season-profile-incomplete"
+      ]
+    },
+    {
+      "countryCode": "TT",
+      "destinations": 3,
+      "transport": {
+        "required": 4,
+        "admitted": 1,
+        "blocked": 3
+      },
+      "season": {
+        "required": 3,
+        "admitted": 3,
+        "blocked": 0
+      },
+      "liveEvidenceReady": false,
+      "decision": "BLOCK",
+      "blockers": [
+        "directed-transport-incomplete"
+      ]
+    },
+    {
+      "countryCode": "UG",
+      "destinations": 3,
+      "transport": {
+        "required": 4,
+        "admitted": 0,
+        "blocked": 4
+      },
+      "season": {
+        "required": 3,
+        "admitted": 3,
+        "blocked": 0
+      },
+      "liveEvidenceReady": false,
+      "decision": "BLOCK",
+      "blockers": [
+        "directed-transport-incomplete"
+      ]
+    }
+  ],
+  "evidence": {
+    "transport": {
+      "required": 54,
+      "admitted": 11,
+      "blocked": 43,
+      "unaccounted": 0
+    },
+    "season": {
+      "required": 41,
+      "admitted": 12,
+      "blocked": 29,
+      "unaccounted": 0
+    },
+    "evidenceReadyCountryCodes": []
+  },
+  "production": {
+    "countries": 195,
+    "destinations": 890,
+    "pois": 4159,
+    "total": 5244
+  },
+  "readiness": {
+    "plannable": 122,
+    "evidenceBacked": 119,
+    "catalogOnly": 73
+  },
+  "accidentalPromotions": 0,
+  "candidateLeakage": "NONE",
+  "artifactAuthority": "AUDIT_ONLY",
+  "performanceClearance": "NOT_CLEARED"
+}

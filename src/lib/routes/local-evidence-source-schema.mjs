@@ -11,6 +11,8 @@ export const LOCAL_EVIDENCE_SOURCE_TYPES = new Set([
 ]);
 
 const TRUSTED_SOURCE_DOMAINS = Object.freeze([
+  { domain: "citylink.techsolutions.co.mz", sourceType: "official-transport-operator", publisher: "CityLink" },
+  { domain: "camrail.cm", sourceType: "official-transport-operator", publisher: "Camrail" },
   { domain: "global.jr-central.co.jp", sourceType: "official-transport-operator", publisher: "Central Japan Railway Company" },
   { domain: "jr-central.co.jp", sourceType: "official-transport-operator", publisher: "Central Japan Railway Company" },
   { domain: "jreast.co.jp", sourceType: "official-transport-operator", publisher: "East Japan Railway Company" },

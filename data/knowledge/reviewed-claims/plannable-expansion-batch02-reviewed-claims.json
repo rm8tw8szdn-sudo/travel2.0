@@ -1,0 +1,88 @@
+{
+  "schemaVersion": "route-v2-reviewed-claim-catalog-v1",
+  "catalogId": "plannable-expansion-batch02",
+  "transportClaims": [
+    {
+      "claimId": "batch02-cm-yaounde-douala-1",
+      "countryCode": "CM",
+      "source": {
+        "url": "https://camrail.cm/en/transport-offer/",
+        "authority": "Camrail",
+        "pageIdentity": "Camrail transport offer: Douala–Yaoundé–Douala",
+        "locator": "Express and semi-direct service section"
+      },
+      "reviewedFact": "Camrail official transport offer lists Douala–Yaoundé–Douala services and separate daily departures from both Douala and Yaoundé.",
+      "origin": {
+        "canonicalNameEn": "Yaoundé",
+        "entityId": "city-1e4e8e5c247d7a1b"
+      },
+      "destination": {
+        "canonicalNameEn": "Douala",
+        "entityId": "city-999f998d2955d071"
+      },
+      "directionality": "bidirectional",
+      "transportMode": "rail",
+      "supports": [
+        "route-leg:city-1e4e8e5c247d7a1b>city-999f998d2955d071:feasibility",
+        "route-leg:city-999f998d2955d071>city-1e4e8e5c247d7a1b:feasibility"
+      ],
+      "retrievedAt": "2026-09-22T00:00:00.000Z",
+      "reviewedPayloadHash": "8974bb8e7dc948b87f1029e9f9c64ec7f63aedbade9d52f6a1b1e72c15ff0875"
+    },
+    {
+      "claimId": "batch02-mz-nampula-beira-1",
+      "countryCode": "MZ",
+      "source": {
+        "url": "https://citylink.techsolutions.co.mz/en/bilhetes/",
+        "authority": "CityLink",
+        "pageIdentity": "CityLink official tickets page",
+        "locator": "Nampula and Beira route tables"
+      },
+      "reviewedFact": "CityLink official tickets page lists passenger service from Nampula to Beira and from Beira to Nampula, with departures at 04:30.",
+      "origin": {
+        "canonicalNameEn": "Nampula",
+        "entityId": "city-411f7dd7eb7a1147"
+      },
+      "destination": {
+        "canonicalNameEn": "Beira",
+        "entityId": "city-574226c10f889449"
+      },
+      "directionality": "bidirectional",
+      "transportMode": "bus",
+      "supports": [
+        "route-leg:city-411f7dd7eb7a1147>city-574226c10f889449:feasibility",
+        "route-leg:city-574226c10f889449>city-411f7dd7eb7a1147:feasibility"
+      ],
+      "retrievedAt": "2026-09-22T00:00:00.000Z",
+      "reviewedPayloadHash": "c38e7dc0b261e682077bf5c888c3d717fc65de42e16d6b4c10287ab8e18ee632"
+    },
+    {
+      "claimId": "batch02-mz-beira-maputo-1",
+      "countryCode": "MZ",
+      "source": {
+        "url": "https://citylink.techsolutions.co.mz/en/bilhetes/",
+        "authority": "CityLink",
+        "pageIdentity": "CityLink official tickets page",
+        "locator": "Beira and Maputo route tables"
+      },
+      "reviewedFact": "CityLink official tickets page lists passenger service from Beira to Maputo and from Maputo to Beira, with departures at 04:30.",
+      "origin": {
+        "canonicalNameEn": "Beira",
+        "entityId": "city-574226c10f889449"
+      },
+      "destination": {
+        "canonicalNameEn": "Maputo",
+        "entityId": "city-bb27df741abe2752"
+      },
+      "directionality": "bidirectional",
+      "transportMode": "bus",
+      "supports": [
+        "route-leg:city-574226c10f889449>city-bb27df741abe2752:feasibility",
+        "route-leg:city-bb27df741abe2752>city-574226c10f889449:feasibility"
+      ],
+      "retrievedAt": "2026-09-22T00:00:00.000Z",
+      "reviewedPayloadHash": "0b6f5f4cb1ef5c773b85d24268adfc4a3e8d08f840709696d6780581b587fffe"
+    }
+  ],
+  "seasonClaims": []
+}

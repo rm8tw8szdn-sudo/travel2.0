@@ -1,0 +1,1227 @@
+{
+  "schemaVersion": "route-v2-plannable-expansion-batch02-search-attempt-audit-v1",
+  "batchId": "plannable-expansion-batch02",
+  "reviewedAt": "2026-09-22T11:32:32.9435737+08:00",
+  "attempts": [
+    {
+      "attemptId": "batch02-search-01",
+      "unitIdentity": "transport:city-17793b277caddfed>city-3b3c9457618c868e",
+      "unitType": "TRANSPORT",
+      "countryCode": "BJ",
+      "origin": {
+        "entityId": "city-17793b277caddfed",
+        "canonicalNameEn": "Porto-Novo"
+      },
+      "destination": {
+        "entityId": "city-3b3c9457618c868e",
+        "canonicalNameEn": "Cotonou"
+      },
+      "requiredProfile": null,
+      "executionStatus": "EXECUTED",
+      "executedQueries": [
+        "official passenger transport Porto-Novo to Cotonou timetable"
+      ],
+      "searchMethod": "OpenAI web search with result inspection; official/operator/government sources prioritized",
+      "checkedResultReferences": [
+        {
+          "url": "https://www.transplo.com/BJ/Cotonou/105377388212337/Nonvi-Voyage-Plus",
+          "title": "Nonvi Voyage Plus service page mirror",
+          "reviewOutcome": "Operator material describes Cotonou–Porto-Novo service, but the inspected reference is a third-party mirror and does not provide an authoritative stable timetable for this exact direction."
+        }
+      ],
+      "reviewedResultOutcome": "CREDIBLE_RESULT_REVIEWED",
+      "reviewedSourceFact": "Operator material describes Cotonou–Porto-Novo service, but the inspected reference is a third-party mirror and does not provide an authoritative stable timetable for this exact direction.",
+      "unitSpecificAdjudication": "transport:city-17793b277caddfed>city-3b3c9457618c868e: Operator material describes Cotonou–Porto-Novo service, but the inspected reference is a third-party mirror and does not provide an authoritative stable timetable for this exact direction.",
+      "reviewedAt": "2026-09-22T11:32:32.9435737+08:00",
+      "finalResearchOutcome": "SOURCE_FOUND_BUT_FACT_INSUFFICIENT"
+    },
+    {
+      "attemptId": "batch02-search-02",
+      "unitIdentity": "transport:city-3b3c9457618c868e>city-17793b277caddfed",
+      "unitType": "TRANSPORT",
+      "countryCode": "BJ",
+      "origin": {
+        "entityId": "city-3b3c9457618c868e",
+        "canonicalNameEn": "Cotonou"
+      },
+      "destination": {
+        "entityId": "city-17793b277caddfed",
+        "canonicalNameEn": "Porto-Novo"
+      },
+      "requiredProfile": null,
+      "executionStatus": "EXECUTED",
+      "executedQueries": [
+        "official passenger transport Cotonou to Porto-Novo timetable"
+      ],
+      "searchMethod": "OpenAI web search with result inspection; official/operator/government sources prioritized",
+      "checkedResultReferences": [
+        {
+          "url": "https://www.transplo.com/BJ/Cotonou/105377388212337/Nonvi-Voyage-Plus",
+          "title": "Nonvi Voyage Plus service page mirror",
+          "reviewOutcome": "Operator material describes Cotonou–Porto-Novo service, but the inspected reference is a third-party mirror and does not provide an authoritative stable timetable for this exact direction."
+        }
+      ],
+      "reviewedResultOutcome": "CREDIBLE_RESULT_REVIEWED",
+      "reviewedSourceFact": "Operator material describes Cotonou–Porto-Novo service, but the inspected reference is a third-party mirror and does not provide an authoritative stable timetable for this exact direction.",
+      "unitSpecificAdjudication": "transport:city-3b3c9457618c868e>city-17793b277caddfed: Operator material describes Cotonou–Porto-Novo service, but the inspected reference is a third-party mirror and does not provide an authoritative stable timetable for this exact direction.",
+      "reviewedAt": "2026-09-22T11:32:32.9435737+08:00",
+      "finalResearchOutcome": "SOURCE_FOUND_BUT_FACT_INSUFFICIENT"
+    },
+    {
+      "attemptId": "batch02-search-03",
+      "unitIdentity": "transport:city-3b3c9457618c868e>city-736f6f9f243c8718",
+      "unitType": "TRANSPORT",
+      "countryCode": "BJ",
+      "origin": {
+        "entityId": "city-3b3c9457618c868e",
+        "canonicalNameEn": "Cotonou"
+      },
+      "destination": {
+        "entityId": "city-736f6f9f243c8718",
+        "canonicalNameEn": "Ouidah"
+      },
+      "requiredProfile": null,
+      "executionStatus": "EXECUTED",
+      "executedQueries": [
+        "official passenger transport Cotonou to Ouidah timetable"
+      ],
+      "searchMethod": "OpenAI web search with result inspection; official/operator/government sources prioritized",
+      "checkedResultReferences": [
+        {
+          "url": "https://ecowas.int/wp-content/uploads/2024/08/Convention-Regulating-Inter-State-Road-Transportation-between-ECOWAS-Member-States.pdf",
+          "title": "ECOWAS road-transport convention",
+          "reviewOutcome": "The document identifies a Cotonou–Ouidah corridor but does not establish a current scheduled passenger service in the required direction."
+        }
+      ],
+      "reviewedResultOutcome": "CREDIBLE_RESULT_REVIEWED",
+      "reviewedSourceFact": "The document identifies a Cotonou–Ouidah corridor but does not establish a current scheduled passenger service in the required direction.",
+      "unitSpecificAdjudication": "transport:city-3b3c9457618c868e>city-736f6f9f243c8718: The document identifies a Cotonou–Ouidah corridor but does not establish a current scheduled passenger service in the required direction.",
+      "reviewedAt": "2026-09-22T11:32:32.9435737+08:00",
+      "finalResearchOutcome": "SOURCE_FOUND_BUT_FACT_INSUFFICIENT"
+    },
+    {
+      "attemptId": "batch02-search-04",
+      "unitIdentity": "transport:city-736f6f9f243c8718>city-3b3c9457618c868e",
+      "unitType": "TRANSPORT",
+      "countryCode": "BJ",
+      "origin": {
+        "entityId": "city-736f6f9f243c8718",
+        "canonicalNameEn": "Ouidah"
+      },
+      "destination": {
+        "entityId": "city-3b3c9457618c868e",
+        "canonicalNameEn": "Cotonou"
+      },
+      "requiredProfile": null,
+      "executionStatus": "EXECUTED",
+      "executedQueries": [
+        "official passenger transport Ouidah to Cotonou timetable"
+      ],
+      "searchMethod": "OpenAI web search with result inspection; official/operator/government sources prioritized",
+      "checkedResultReferences": [
+        {
+          "url": "https://ecowas.int/wp-content/uploads/2024/08/Convention-Regulating-Inter-State-Road-Transportation-between-ECOWAS-Member-States.pdf",
+          "title": "ECOWAS road-transport convention",
+          "reviewOutcome": "The document identifies the corridor but does not establish a current scheduled Ouidah-to-Cotonou passenger service."
+        }
+      ],
+      "reviewedResultOutcome": "CREDIBLE_RESULT_REVIEWED",
+      "reviewedSourceFact": "The document identifies the corridor but does not establish a current scheduled Ouidah-to-Cotonou passenger service.",
+      "unitSpecificAdjudication": "transport:city-736f6f9f243c8718>city-3b3c9457618c868e: The document identifies the corridor but does not establish a current scheduled Ouidah-to-Cotonou passenger service.",
+      "reviewedAt": "2026-09-22T11:32:32.9435737+08:00",
+      "finalResearchOutcome": "SOURCE_FOUND_BUT_FACT_INSUFFICIENT"
+    },
+    {
+      "attemptId": "batch02-search-05",
+      "unitIdentity": "transport:city-112c0170dc0c9510>city-83f33b3921666ee2",
+      "unitType": "TRANSPORT",
+      "countryCode": "BY",
+      "origin": {
+        "entityId": "city-112c0170dc0c9510",
+        "canonicalNameEn": "Minsk"
+      },
+      "destination": {
+        "entityId": "city-83f33b3921666ee2",
+        "canonicalNameEn": "Grodno"
+      },
+      "requiredProfile": null,
+      "executionStatus": "EXECUTED",
+      "executedQueries": [
+        "official passenger transport Minsk to Grodno timetable"
+      ],
+      "searchMethod": "OpenAI web search with result inspection; official/operator/government sources prioritized",
+      "checkedResultReferences": [
+        {
+          "url": "https://play.google.com/store/apps/details?hl=en&id=by.rw.client",
+          "title": "Belarusian Railway official application",
+          "reviewOutcome": "The official application exposes timetable search, but the reviewed result did not establish the exact Minsk-to-Grodno service fact in an auditable page."
+        }
+      ],
+      "reviewedResultOutcome": "CREDIBLE_RESULT_REVIEWED",
+      "reviewedSourceFact": "The official application exposes timetable search, but the reviewed result did not establish the exact Minsk-to-Grodno service fact in an auditable page.",
+      "unitSpecificAdjudication": "transport:city-112c0170dc0c9510>city-83f33b3921666ee2: The official application exposes timetable search, but the reviewed result did not establish the exact Minsk-to-Grodno service fact in an auditable page.",
+      "reviewedAt": "2026-09-22T11:32:32.9435737+08:00",
+      "finalResearchOutcome": "SOURCE_FOUND_BUT_FACT_INSUFFICIENT"
+    },
+    {
+      "attemptId": "batch02-search-06",
+      "unitIdentity": "transport:city-83f33b3921666ee2>city-112c0170dc0c9510",
+      "unitType": "TRANSPORT",
+      "countryCode": "BY",
+      "origin": {
+        "entityId": "city-83f33b3921666ee2",
+        "canonicalNameEn": "Grodno"
+      },
+      "destination": {
+        "entityId": "city-112c0170dc0c9510",
+        "canonicalNameEn": "Minsk"
+      },
+      "requiredProfile": null,
+      "executionStatus": "EXECUTED",
+      "executedQueries": [
+        "official passenger transport Grodno to Minsk timetable"
+      ],
+      "searchMethod": "OpenAI web search with result inspection; official/operator/government sources prioritized",
+      "checkedResultReferences": [
+        {
+          "url": "https://rasp.yandex.by/thread/R_732B_114",
+          "title": "Grodno–Minsk timetable result",
+          "reviewOutcome": "A timetable result was found, but it is an aggregator page rather than an independently reviewed official carrier fact."
+        }
+      ],
+      "reviewedResultOutcome": "CREDIBLE_RESULT_REVIEWED",
+      "reviewedSourceFact": "A timetable result was found, but it is an aggregator page rather than an independently reviewed official carrier fact.",
+      "unitSpecificAdjudication": "transport:city-83f33b3921666ee2>city-112c0170dc0c9510: A timetable result was found, but it is an aggregator page rather than an independently reviewed official carrier fact.",
+      "reviewedAt": "2026-09-22T11:32:32.9435737+08:00",
+      "finalResearchOutcome": "SOURCE_FOUND_BUT_FACT_INSUFFICIENT"
+    },
+    {
+      "attemptId": "batch02-search-07",
+      "unitIdentity": "transport:city-83f33b3921666ee2>city-922749630466d376",
+      "unitType": "TRANSPORT",
+      "countryCode": "BY",
+      "origin": {
+        "entityId": "city-83f33b3921666ee2",
+        "canonicalNameEn": "Grodno"
+      },
+      "destination": {
+        "entityId": "city-922749630466d376",
+        "canonicalNameEn": "Brest"
+      },
+      "requiredProfile": null,
+      "executionStatus": "EXECUTED",
+      "executedQueries": [
+        "official passenger transport Grodno to Brest timetable"
+      ],
+      "searchMethod": "OpenAI web search with result inspection; official/operator/government sources prioritized",
+      "checkedResultReferences": [
+        {
+          "url": "https://rasp.yandex.by/train/brest--grodno",
+          "title": "Brest/Grodno timetable result",
+          "reviewOutcome": "A reverse-route timetable result was found, but it does not authoritatively establish this required Grodno-to-Brest direction."
+        }
+      ],
+      "reviewedResultOutcome": "CREDIBLE_RESULT_REVIEWED",
+      "reviewedSourceFact": "A reverse-route timetable result was found, but it does not authoritatively establish this required Grodno-to-Brest direction.",
+      "unitSpecificAdjudication": "transport:city-83f33b3921666ee2>city-922749630466d376: A reverse-route timetable result was found, but it does not authoritatively establish this required Grodno-to-Brest direction.",
+      "reviewedAt": "2026-09-22T11:32:32.9435737+08:00",
+      "finalResearchOutcome": "SOURCE_FOUND_BUT_FACT_INSUFFICIENT"
+    },
+    {
+      "attemptId": "batch02-search-08",
+      "unitIdentity": "transport:city-922749630466d376>city-83f33b3921666ee2",
+      "unitType": "TRANSPORT",
+      "countryCode": "BY",
+      "origin": {
+        "entityId": "city-922749630466d376",
+        "canonicalNameEn": "Brest"
+      },
+      "destination": {
+        "entityId": "city-83f33b3921666ee2",
+        "canonicalNameEn": "Grodno"
+      },
+      "requiredProfile": null,
+      "executionStatus": "EXECUTED",
+      "executedQueries": [
+        "official passenger transport Brest to Grodno timetable"
+      ],
+      "searchMethod": "OpenAI web search with result inspection; official/operator/government sources prioritized",
+      "checkedResultReferences": [
+        {
+          "url": "https://rasp.yandex.by/train/brest--grodno",
+          "title": "Brest–Grodno timetable result",
+          "reviewOutcome": "A timetable result establishes the direction on an aggregator, but no independently reviewed official carrier fact was located."
+        }
+      ],
+      "reviewedResultOutcome": "CREDIBLE_RESULT_REVIEWED",
+      "reviewedSourceFact": "A timetable result establishes the direction on an aggregator, but no independently reviewed official carrier fact was located.",
+      "unitSpecificAdjudication": "transport:city-922749630466d376>city-83f33b3921666ee2: A timetable result establishes the direction on an aggregator, but no independently reviewed official carrier fact was located.",
+      "reviewedAt": "2026-09-22T11:32:32.9435737+08:00",
+      "finalResearchOutcome": "SOURCE_FOUND_BUT_FACT_INSUFFICIENT"
+    },
+    {
+      "attemptId": "batch02-search-09",
+      "unitIdentity": "transport:city-0d86eecbaf33d381>city-411f7dd7eb7a1147",
+      "unitType": "TRANSPORT",
+      "countryCode": "MZ",
+      "origin": {
+        "entityId": "city-0d86eecbaf33d381",
+        "canonicalNameEn": "Pemba"
+      },
+      "destination": {
+        "entityId": "city-411f7dd7eb7a1147",
+        "canonicalNameEn": "Nampula"
+      },
+      "requiredProfile": null,
+      "executionStatus": "EXECUTED",
+      "executedQueries": [
+        "official bus Pemba Nampula Mozambique timetable"
+      ],
+      "searchMethod": "OpenAI web search with result inspection; official/operator/government sources prioritized",
+      "checkedResultReferences": [
+        {
+          "url": "https://www.lam.co.mz/content/download/248946/2834932/version/2/file/INDICO56_LAM-compactado.pdf",
+          "title": "LAM historical timetable",
+          "reviewOutcome": "The LAM timetable contains Pemba-to-Nampula service, but it is an old timetable and is insufficient for current fresh feasibility Evidence."
+        }
+      ],
+      "reviewedResultOutcome": "CREDIBLE_RESULT_REVIEWED",
+      "reviewedSourceFact": "The LAM timetable contains Pemba-to-Nampula service, but it is an old timetable and is insufficient for current fresh feasibility Evidence.",
+      "unitSpecificAdjudication": "transport:city-0d86eecbaf33d381>city-411f7dd7eb7a1147: The LAM timetable contains Pemba-to-Nampula service, but it is an old timetable and is insufficient for current fresh feasibility Evidence.",
+      "reviewedAt": "2026-09-22T11:32:32.9435737+08:00",
+      "finalResearchOutcome": "SOURCE_FOUND_BUT_FACT_INSUFFICIENT"
+    },
+    {
+      "attemptId": "batch02-search-10",
+      "unitIdentity": "transport:city-411f7dd7eb7a1147>city-0d86eecbaf33d381",
+      "unitType": "TRANSPORT",
+      "countryCode": "MZ",
+      "origin": {
+        "entityId": "city-411f7dd7eb7a1147",
+        "canonicalNameEn": "Nampula"
+      },
+      "destination": {
+        "entityId": "city-0d86eecbaf33d381",
+        "canonicalNameEn": "Pemba"
+      },
+      "requiredProfile": null,
+      "executionStatus": "EXECUTED",
+      "executedQueries": [
+        "official bus Nampula Pemba Mozambique timetable"
+      ],
+      "searchMethod": "OpenAI web search with result inspection; official/operator/government sources prioritized",
+      "checkedResultReferences": [
+        {
+          "url": "https://www.lam.co.mz/content/download/248946/2834932/version/2/file/INDICO56_LAM-compactado.pdf",
+          "title": "LAM historical timetable",
+          "reviewOutcome": "The LAM timetable contains Nampula-to-Pemba service, but it is stale for current feasibility Evidence."
+        }
+      ],
+      "reviewedResultOutcome": "CREDIBLE_RESULT_REVIEWED",
+      "reviewedSourceFact": "The LAM timetable contains Nampula-to-Pemba service, but it is stale for current feasibility Evidence.",
+      "unitSpecificAdjudication": "transport:city-411f7dd7eb7a1147>city-0d86eecbaf33d381: The LAM timetable contains Nampula-to-Pemba service, but it is stale for current feasibility Evidence.",
+      "reviewedAt": "2026-09-22T11:32:32.9435737+08:00",
+      "finalResearchOutcome": "SOURCE_FOUND_BUT_FACT_INSUFFICIENT"
+    },
+    {
+      "attemptId": "batch02-search-11",
+      "unitIdentity": "transport:city-411f7dd7eb7a1147>city-574226c10f889449",
+      "unitType": "TRANSPORT",
+      "countryCode": "MZ",
+      "origin": {
+        "entityId": "city-411f7dd7eb7a1147",
+        "canonicalNameEn": "Nampula"
+      },
+      "destination": {
+        "entityId": "city-574226c10f889449",
+        "canonicalNameEn": "Beira"
+      },
+      "requiredProfile": null,
+      "executionStatus": "EXECUTED",
+      "executedQueries": [
+        "official bus Nampula Beira Mozambique timetable"
+      ],
+      "searchMethod": "OpenAI web search with result inspection; official/operator/government sources prioritized",
+      "checkedResultReferences": [
+        {
+          "url": "https://citylink.techsolutions.co.mz/en/bilhetes/",
+          "title": "CityLink official tickets page",
+          "reviewOutcome": "The current CityLink operator page explicitly establishes passenger service for city-411f7dd7eb7a1147>city-574226c10f889449; the direction is admitted by the independent Batch02 reviewed-claim catalog."
+        }
+      ],
+      "reviewedResultOutcome": "CREDIBLE_RESULT_REVIEWED_AND_CATALOGED",
+      "reviewedSourceFact": "The current CityLink operator page explicitly establishes passenger service for city-411f7dd7eb7a1147>city-574226c10f889449; the direction is admitted by the independent Batch02 reviewed-claim catalog.",
+      "unitSpecificAdjudication": "transport:city-411f7dd7eb7a1147>city-574226c10f889449: Exact endpoints and direction are independently admitted by the Batch02 reviewed-claim catalog.",
+      "reviewedAt": "2026-09-22T11:32:32.9435737+08:00",
+      "finalResearchOutcome": "SOURCE_FOUND_AND_ELIGIBLE_FOR_REVIEWED_CLAIM"
+    },
+    {
+      "attemptId": "batch02-search-12",
+      "unitIdentity": "transport:city-574226c10f889449>city-411f7dd7eb7a1147",
+      "unitType": "TRANSPORT",
+      "countryCode": "MZ",
+      "origin": {
+        "entityId": "city-574226c10f889449",
+        "canonicalNameEn": "Beira"
+      },
+      "destination": {
+        "entityId": "city-411f7dd7eb7a1147",
+        "canonicalNameEn": "Nampula"
+      },
+      "requiredProfile": null,
+      "executionStatus": "EXECUTED",
+      "executedQueries": [
+        "official bus Beira Nampula Mozambique timetable"
+      ],
+      "searchMethod": "OpenAI web search with result inspection; official/operator/government sources prioritized",
+      "checkedResultReferences": [
+        {
+          "url": "https://citylink.techsolutions.co.mz/en/bilhetes/",
+          "title": "CityLink official tickets page",
+          "reviewOutcome": "The current CityLink operator page explicitly establishes passenger service for city-574226c10f889449>city-411f7dd7eb7a1147; the direction is admitted by the independent Batch02 reviewed-claim catalog."
+        }
+      ],
+      "reviewedResultOutcome": "CREDIBLE_RESULT_REVIEWED_AND_CATALOGED",
+      "reviewedSourceFact": "The current CityLink operator page explicitly establishes passenger service for city-574226c10f889449>city-411f7dd7eb7a1147; the direction is admitted by the independent Batch02 reviewed-claim catalog.",
+      "unitSpecificAdjudication": "transport:city-574226c10f889449>city-411f7dd7eb7a1147: Exact endpoints and direction are independently admitted by the Batch02 reviewed-claim catalog.",
+      "reviewedAt": "2026-09-22T11:32:32.9435737+08:00",
+      "finalResearchOutcome": "SOURCE_FOUND_AND_ELIGIBLE_FOR_REVIEWED_CLAIM"
+    },
+    {
+      "attemptId": "batch02-search-13",
+      "unitIdentity": "transport:city-574226c10f889449>city-bb27df741abe2752",
+      "unitType": "TRANSPORT",
+      "countryCode": "MZ",
+      "origin": {
+        "entityId": "city-574226c10f889449",
+        "canonicalNameEn": "Beira"
+      },
+      "destination": {
+        "entityId": "city-bb27df741abe2752",
+        "canonicalNameEn": "Maputo"
+      },
+      "requiredProfile": null,
+      "executionStatus": "EXECUTED",
+      "executedQueries": [
+        "official bus Beira Maputo Mozambique timetable"
+      ],
+      "searchMethod": "OpenAI web search with result inspection; official/operator/government sources prioritized",
+      "checkedResultReferences": [
+        {
+          "url": "https://citylink.techsolutions.co.mz/en/bilhetes/",
+          "title": "CityLink official tickets page",
+          "reviewOutcome": "The current CityLink operator page explicitly establishes passenger service for city-574226c10f889449>city-bb27df741abe2752; the direction is admitted by the independent Batch02 reviewed-claim catalog."
+        }
+      ],
+      "reviewedResultOutcome": "CREDIBLE_RESULT_REVIEWED_AND_CATALOGED",
+      "reviewedSourceFact": "The current CityLink operator page explicitly establishes passenger service for city-574226c10f889449>city-bb27df741abe2752; the direction is admitted by the independent Batch02 reviewed-claim catalog.",
+      "unitSpecificAdjudication": "transport:city-574226c10f889449>city-bb27df741abe2752: Exact endpoints and direction are independently admitted by the Batch02 reviewed-claim catalog.",
+      "reviewedAt": "2026-09-22T11:32:32.9435737+08:00",
+      "finalResearchOutcome": "SOURCE_FOUND_AND_ELIGIBLE_FOR_REVIEWED_CLAIM"
+    },
+    {
+      "attemptId": "batch02-search-14",
+      "unitIdentity": "transport:city-bb27df741abe2752>city-574226c10f889449",
+      "unitType": "TRANSPORT",
+      "countryCode": "MZ",
+      "origin": {
+        "entityId": "city-bb27df741abe2752",
+        "canonicalNameEn": "Maputo"
+      },
+      "destination": {
+        "entityId": "city-574226c10f889449",
+        "canonicalNameEn": "Beira"
+      },
+      "requiredProfile": null,
+      "executionStatus": "EXECUTED",
+      "executedQueries": [
+        "official bus Maputo Beira Mozambique timetable"
+      ],
+      "searchMethod": "OpenAI web search with result inspection; official/operator/government sources prioritized",
+      "checkedResultReferences": [
+        {
+          "url": "https://citylink.techsolutions.co.mz/en/bilhetes/",
+          "title": "CityLink official tickets page",
+          "reviewOutcome": "The current CityLink operator page explicitly establishes passenger service for city-bb27df741abe2752>city-574226c10f889449; the direction is admitted by the independent Batch02 reviewed-claim catalog."
+        }
+      ],
+      "reviewedResultOutcome": "CREDIBLE_RESULT_REVIEWED_AND_CATALOGED",
+      "reviewedSourceFact": "The current CityLink operator page explicitly establishes passenger service for city-bb27df741abe2752>city-574226c10f889449; the direction is admitted by the independent Batch02 reviewed-claim catalog.",
+      "unitSpecificAdjudication": "transport:city-bb27df741abe2752>city-574226c10f889449: Exact endpoints and direction are independently admitted by the Batch02 reviewed-claim catalog.",
+      "reviewedAt": "2026-09-22T11:32:32.9435737+08:00",
+      "finalResearchOutcome": "SOURCE_FOUND_AND_ELIGIBLE_FOR_REVIEWED_CLAIM"
+    },
+    {
+      "attemptId": "batch02-search-15",
+      "unitIdentity": "transport:city-0df180268afeca04>city-1ab1bd6cbc62b230",
+      "unitType": "TRANSPORT",
+      "countryCode": "SZ",
+      "origin": {
+        "entityId": "city-0df180268afeca04",
+        "canonicalNameEn": "Manzini"
+      },
+      "destination": {
+        "entityId": "city-1ab1bd6cbc62b230",
+        "canonicalNameEn": "Mbabane"
+      },
+      "requiredProfile": null,
+      "executionStatus": "EXECUTED",
+      "executedQueries": [
+        "official bus Manzini Mbabane Eswatini timetable"
+      ],
+      "searchMethod": "OpenAI web search with result inspection; official/operator/government sources prioritized",
+      "checkedResultReferences": [
+        {
+          "url": "https://zeemanstransit.com/",
+          "title": "JMZ/Zulu Kaya Lami operator schedule",
+          "reviewOutcome": "The page text presents a timetable, but the reviewed source does not provide independently verifiable operator authority suitable for the trusted-source catalog."
+        }
+      ],
+      "reviewedResultOutcome": "SOURCE_AUTHORITY_UNVERIFIED",
+      "reviewedSourceFact": "A timetable-like page was found, but its operator authority could not be independently verified under the reviewed-source policy.",
+      "unitSpecificAdjudication": "transport:city-0df180268afeca04>city-1ab1bd6cbc62b230: reviewed-source policy failure: operator authority is not independently verifiable, so this record cannot enter the reviewed claim catalog.",
+      "reviewedAt": "2026-09-22T11:32:32.9435737+08:00",
+      "finalResearchOutcome": "OTHER_EXPLICIT_BLOCKER"
+    },
+    {
+      "attemptId": "batch02-search-16",
+      "unitIdentity": "transport:city-1ab1bd6cbc62b230>city-0df180268afeca04",
+      "unitType": "TRANSPORT",
+      "countryCode": "SZ",
+      "origin": {
+        "entityId": "city-1ab1bd6cbc62b230",
+        "canonicalNameEn": "Mbabane"
+      },
+      "destination": {
+        "entityId": "city-0df180268afeca04",
+        "canonicalNameEn": "Manzini"
+      },
+      "requiredProfile": null,
+      "executionStatus": "EXECUTED",
+      "executedQueries": [
+        "official bus Mbabane Manzini Eswatini timetable"
+      ],
+      "searchMethod": "OpenAI web search with result inspection; official/operator/government sources prioritized",
+      "checkedResultReferences": [
+        {
+          "url": "https://zeemanstransit.com/",
+          "title": "JMZ/Zulu Kaya Lami operator schedule",
+          "reviewOutcome": "The page text presents a timetable, but the reviewed source does not provide independently verifiable operator authority suitable for the trusted-source catalog."
+        }
+      ],
+      "reviewedResultOutcome": "SOURCE_AUTHORITY_UNVERIFIED",
+      "reviewedSourceFact": "A timetable-like page was found, but its operator authority could not be independently verified under the reviewed-source policy.",
+      "unitSpecificAdjudication": "transport:city-1ab1bd6cbc62b230>city-0df180268afeca04: reviewed-source policy failure: operator authority is not independently verifiable, so this record cannot enter the reviewed claim catalog.",
+      "reviewedAt": "2026-09-22T11:32:32.9435737+08:00",
+      "finalResearchOutcome": "OTHER_EXPLICIT_BLOCKER"
+    },
+    {
+      "attemptId": "batch02-search-17",
+      "unitIdentity": "transport:city-1ab1bd6cbc62b230>city-a53237851e024b81",
+      "unitType": "TRANSPORT",
+      "countryCode": "SZ",
+      "origin": {
+        "entityId": "city-1ab1bd6cbc62b230",
+        "canonicalNameEn": "Mbabane"
+      },
+      "destination": {
+        "entityId": "city-a53237851e024b81",
+        "canonicalNameEn": "Lobamba"
+      },
+      "requiredProfile": null,
+      "executionStatus": "EXECUTED",
+      "executedQueries": [
+        "official bus Mbabane Lobamba Eswatini timetable"
+      ],
+      "searchMethod": "OpenAI web search with result inspection; official/operator/government sources prioritized",
+      "checkedResultReferences": [
+        {
+          "url": "https://library.snls.org.sz/sz/1986/sz-government-gazette-dated-1986-04-25-no-436.pdf",
+          "title": "Eswatini government gazette",
+          "reviewOutcome": "A historical permit describes a route through Lobamba, but it is not current service evidence for the required direction."
+        }
+      ],
+      "reviewedResultOutcome": "CREDIBLE_RESULT_REVIEWED",
+      "reviewedSourceFact": "A historical permit describes a route through Lobamba, but it is not current service evidence for the required direction.",
+      "unitSpecificAdjudication": "transport:city-1ab1bd6cbc62b230>city-a53237851e024b81: A historical permit describes a route through Lobamba, but it is not current service evidence for the required direction.",
+      "reviewedAt": "2026-09-22T11:32:32.9435737+08:00",
+      "finalResearchOutcome": "SOURCE_FOUND_BUT_FACT_INSUFFICIENT"
+    },
+    {
+      "attemptId": "batch02-search-18",
+      "unitIdentity": "transport:city-a53237851e024b81>city-1ab1bd6cbc62b230",
+      "unitType": "TRANSPORT",
+      "countryCode": "SZ",
+      "origin": {
+        "entityId": "city-a53237851e024b81",
+        "canonicalNameEn": "Lobamba"
+      },
+      "destination": {
+        "entityId": "city-1ab1bd6cbc62b230",
+        "canonicalNameEn": "Mbabane"
+      },
+      "requiredProfile": null,
+      "executionStatus": "EXECUTED",
+      "executedQueries": [
+        "official bus Lobamba Mbabane Eswatini timetable"
+      ],
+      "searchMethod": "OpenAI web search with result inspection; official/operator/government sources prioritized",
+      "checkedResultReferences": [
+        {
+          "url": "https://library.snls.org.sz/sz/1986/sz-government-gazette-dated-1986-04-25-no-436.pdf",
+          "title": "Eswatini government gazette",
+          "reviewOutcome": "A historical route permit mentions both places but does not establish current Lobamba-to-Mbabane passenger service."
+        }
+      ],
+      "reviewedResultOutcome": "CREDIBLE_RESULT_REVIEWED",
+      "reviewedSourceFact": "A historical route permit mentions both places but does not establish current Lobamba-to-Mbabane passenger service.",
+      "unitSpecificAdjudication": "transport:city-a53237851e024b81>city-1ab1bd6cbc62b230: A historical route permit mentions both places but does not establish current Lobamba-to-Mbabane passenger service.",
+      "reviewedAt": "2026-09-22T11:32:32.9435737+08:00",
+      "finalResearchOutcome": "SOURCE_FOUND_BUT_FACT_INSUFFICIENT"
+    },
+    {
+      "attemptId": "batch02-search-19",
+      "unitIdentity": "transport:city-422d392e780b89a7>city-c99e249c394ba4de",
+      "unitType": "TRANSPORT",
+      "countryCode": "TL",
+      "origin": {
+        "entityId": "city-422d392e780b89a7",
+        "canonicalNameEn": "Baucau"
+      },
+      "destination": {
+        "entityId": "city-c99e249c394ba4de",
+        "canonicalNameEn": "Dili"
+      },
+      "requiredProfile": null,
+      "executionStatus": "EXECUTED",
+      "executedQueries": [
+        "official bus Baucau Dili Timor Leste timetable"
+      ],
+      "searchMethod": "OpenAI web search with result inspection; official/operator/government sources prioritized",
+      "checkedResultReferences": [
+        {
+          "url": "https://timorleste.mafint.org/media/1543/download?attachment=",
+          "title": "MAF Timor-Leste 2023 shuttle schedule",
+          "reviewOutcome": "The schedule lists Baucau-to-Dili shuttle movement, but the reviewed document is dated 2023 and does not satisfy current freshness."
+        }
+      ],
+      "reviewedResultOutcome": "CREDIBLE_RESULT_REVIEWED",
+      "reviewedSourceFact": "The schedule lists Baucau-to-Dili shuttle movement, but the reviewed document is dated 2023 and does not satisfy current freshness.",
+      "unitSpecificAdjudication": "transport:city-422d392e780b89a7>city-c99e249c394ba4de: The schedule lists Baucau-to-Dili shuttle movement, but the reviewed document is dated 2023 and does not satisfy current freshness.",
+      "reviewedAt": "2026-09-22T11:32:32.9435737+08:00",
+      "finalResearchOutcome": "SOURCE_FOUND_BUT_FACT_INSUFFICIENT"
+    },
+    {
+      "attemptId": "batch02-search-20",
+      "unitIdentity": "transport:city-c99e249c394ba4de>city-422d392e780b89a7",
+      "unitType": "TRANSPORT",
+      "countryCode": "TL",
+      "origin": {
+        "entityId": "city-c99e249c394ba4de",
+        "canonicalNameEn": "Dili"
+      },
+      "destination": {
+        "entityId": "city-422d392e780b89a7",
+        "canonicalNameEn": "Baucau"
+      },
+      "requiredProfile": null,
+      "executionStatus": "EXECUTED",
+      "executedQueries": [
+        "official bus Dili Baucau Timor Leste timetable"
+      ],
+      "searchMethod": "OpenAI web search with result inspection; official/operator/government sources prioritized",
+      "checkedResultReferences": [
+        {
+          "url": "https://timorleste.mafint.org/media/1543/download?attachment=",
+          "title": "MAF Timor-Leste 2023 shuttle schedule",
+          "reviewOutcome": "The schedule lists Dili-to-Baucau shuttle movement, but the reviewed document is dated 2023 and does not satisfy current freshness."
+        }
+      ],
+      "reviewedResultOutcome": "CREDIBLE_RESULT_REVIEWED",
+      "reviewedSourceFact": "The schedule lists Dili-to-Baucau shuttle movement, but the reviewed document is dated 2023 and does not satisfy current freshness.",
+      "unitSpecificAdjudication": "transport:city-c99e249c394ba4de>city-422d392e780b89a7: The schedule lists Dili-to-Baucau shuttle movement, but the reviewed document is dated 2023 and does not satisfy current freshness.",
+      "reviewedAt": "2026-09-22T11:32:32.9435737+08:00",
+      "finalResearchOutcome": "SOURCE_FOUND_BUT_FACT_INSUFFICIENT"
+    },
+    {
+      "attemptId": "batch02-search-21",
+      "unitIdentity": "season:city-3ae3e55afc2ba40b:objective-destination-month-risk",
+      "unitType": "SEASON",
+      "countryCode": "CI",
+      "origin": null,
+      "destination": {
+        "entityId": "city-3ae3e55afc2ba40b",
+        "canonicalNameEn": "Grand-Bassam"
+      },
+      "requiredProfile": "objective-destination-month-risk",
+      "executionStatus": "EXECUTED",
+      "executedQueries": [
+        "official meteorological climate Grand-Bassam monthly rainfall"
+      ],
+      "searchMethod": "OpenAI web search with result inspection; official/operator/government sources prioritized",
+      "checkedResultReferences": [
+        {
+          "url": "https://www.data.jma.go.jp/tcc/tcc/products/climate/climatview/graph_mkhtml_nrm.php?e=6&k=0&m=1&n=65578&r=0&s=1&y=2026",
+          "title": "JMA ClimatView Abidjan normals",
+          "reviewOutcome": "Nearest official normals are for Abidjan and do not establish a Grand-Bassam-specific objective month-risk binding."
+        }
+      ],
+      "reviewedResultOutcome": "CREDIBLE_RESULT_REVIEWED",
+      "reviewedSourceFact": "Nearest official normals are for Abidjan and do not establish a Grand-Bassam-specific objective month-risk binding.",
+      "unitSpecificAdjudication": "season:city-3ae3e55afc2ba40b:objective-destination-month-risk: Nearest official normals are for Abidjan and do not establish a Grand-Bassam-specific objective month-risk binding.",
+      "reviewedAt": "2026-09-22T11:32:32.9435737+08:00",
+      "finalResearchOutcome": "SOURCE_FOUND_BUT_FACT_INSUFFICIENT"
+    },
+    {
+      "attemptId": "batch02-search-22",
+      "unitIdentity": "season:city-4f08d650dd59697a:objective-destination-month-risk",
+      "unitType": "SEASON",
+      "countryCode": "CI",
+      "origin": null,
+      "destination": {
+        "entityId": "city-4f08d650dd59697a",
+        "canonicalNameEn": "Yamoussoukro"
+      },
+      "requiredProfile": "objective-destination-month-risk",
+      "executionStatus": "EXECUTED",
+      "executedQueries": [
+        "official meteorological climate Yamoussoukro monthly rainfall"
+      ],
+      "searchMethod": "OpenAI web search with result inspection; official/operator/government sources prioritized",
+      "checkedResultReferences": [
+        {
+          "url": "https://www.infoclimat.fr/climatologie/normales-records/1981-2010/yamoussoukro/valeurs/65563.html",
+          "title": "Yamoussoukro station normals result",
+          "reviewOutcome": "Climate normals were located, but no independently reviewed objective risk threshold and admitted month binding was established."
+        }
+      ],
+      "reviewedResultOutcome": "CREDIBLE_RESULT_REVIEWED",
+      "reviewedSourceFact": "Climate normals were located, but no independently reviewed objective risk threshold and admitted month binding was established.",
+      "unitSpecificAdjudication": "season:city-4f08d650dd59697a:objective-destination-month-risk: Climate normals were located, but no independently reviewed objective risk threshold and admitted month binding was established.",
+      "reviewedAt": "2026-09-22T11:32:32.9435737+08:00",
+      "finalResearchOutcome": "SOURCE_FOUND_BUT_FACT_INSUFFICIENT"
+    },
+    {
+      "attemptId": "batch02-search-23",
+      "unitIdentity": "season:city-dddcb743a7c5b440:objective-destination-month-risk",
+      "unitType": "SEASON",
+      "countryCode": "CI",
+      "origin": null,
+      "destination": {
+        "entityId": "city-dddcb743a7c5b440",
+        "canonicalNameEn": "Abidjan"
+      },
+      "requiredProfile": "objective-destination-month-risk",
+      "executionStatus": "EXECUTED",
+      "executedQueries": [
+        "official meteorological climate Abidjan monthly rainfall"
+      ],
+      "searchMethod": "OpenAI web search with result inspection; official/operator/government sources prioritized",
+      "checkedResultReferences": [
+        {
+          "url": "https://www.data.jma.go.jp/tcc/tcc/products/climate/climatview/graph_mkhtml_nrm.php?e=6&k=0&m=1&n=65578&r=0&s=1&y=2026",
+          "title": "JMA ClimatView Abidjan normals",
+          "reviewOutcome": "Exact monthly normals exist, but the source alone does not define the contract objective risk threshold or admitted month."
+        }
+      ],
+      "reviewedResultOutcome": "CREDIBLE_RESULT_REVIEWED",
+      "reviewedSourceFact": "Exact monthly normals exist, but the source alone does not define the contract objective risk threshold or admitted month.",
+      "unitSpecificAdjudication": "season:city-dddcb743a7c5b440:objective-destination-month-risk: Exact monthly normals exist, but the source alone does not define the contract objective risk threshold or admitted month.",
+      "reviewedAt": "2026-09-22T11:32:32.9435737+08:00",
+      "finalResearchOutcome": "SOURCE_FOUND_BUT_FACT_INSUFFICIENT"
+    },
+    {
+      "attemptId": "batch02-search-24",
+      "unitIdentity": "season:city-1e4e8e5c247d7a1b:objective-destination-month-risk",
+      "unitType": "SEASON",
+      "countryCode": "CM",
+      "origin": null,
+      "destination": {
+        "entityId": "city-1e4e8e5c247d7a1b",
+        "canonicalNameEn": "Yaoundé"
+      },
+      "requiredProfile": "objective-destination-month-risk",
+      "executionStatus": "EXECUTED",
+      "executedQueries": [
+        "official meteorological climate Yaoundé monthly rainfall"
+      ],
+      "searchMethod": "OpenAI web search with result inspection; official/operator/government sources prioritized",
+      "checkedResultReferences": [
+        {
+          "url": "https://meteocameroon.gov.cm/en/download-category/bulletins-climatologiques/",
+          "title": "Cameroon National Meteorological Directorate bulletins",
+          "reviewOutcome": "Official bulletins were located, but the reviewed index does not establish an exact stable Yaoundé month-risk profile."
+        }
+      ],
+      "reviewedResultOutcome": "CREDIBLE_RESULT_REVIEWED",
+      "reviewedSourceFact": "Official bulletins were located, but the reviewed index does not establish an exact stable Yaoundé month-risk profile.",
+      "unitSpecificAdjudication": "season:city-1e4e8e5c247d7a1b:objective-destination-month-risk: Official bulletins were located, but the reviewed index does not establish an exact stable Yaoundé month-risk profile.",
+      "reviewedAt": "2026-09-22T11:32:32.9435737+08:00",
+      "finalResearchOutcome": "SOURCE_FOUND_BUT_FACT_INSUFFICIENT"
+    },
+    {
+      "attemptId": "batch02-search-25",
+      "unitIdentity": "season:city-999f998d2955d071:objective-destination-month-risk",
+      "unitType": "SEASON",
+      "countryCode": "CM",
+      "origin": null,
+      "destination": {
+        "entityId": "city-999f998d2955d071",
+        "canonicalNameEn": "Douala"
+      },
+      "requiredProfile": "objective-destination-month-risk",
+      "executionStatus": "EXECUTED",
+      "executedQueries": [
+        "official meteorological climate Douala monthly rainfall"
+      ],
+      "searchMethod": "OpenAI web search with result inspection; official/operator/government sources prioritized",
+      "checkedResultReferences": [
+        {
+          "url": "https://studylib.net/doc/28588136/annuaire-statistique-du-littoral-ed-2024-vf-1-1",
+          "title": "Cameroon Littoral statistical yearbook mirror",
+          "reviewOutcome": "Monthly Douala observations exist, but the checked mirror is not a direct authoritative claim and does not define an admitted risk month."
+        }
+      ],
+      "reviewedResultOutcome": "CREDIBLE_RESULT_REVIEWED",
+      "reviewedSourceFact": "Monthly Douala observations exist, but the checked mirror is not a direct authoritative claim and does not define an admitted risk month.",
+      "unitSpecificAdjudication": "season:city-999f998d2955d071:objective-destination-month-risk: Monthly Douala observations exist, but the checked mirror is not a direct authoritative claim and does not define an admitted risk month.",
+      "reviewedAt": "2026-09-22T11:32:32.9435737+08:00",
+      "finalResearchOutcome": "SOURCE_FOUND_BUT_FACT_INSUFFICIENT"
+    },
+    {
+      "attemptId": "batch02-search-26",
+      "unitIdentity": "season:city-bdf464a9ed2c7ca8:objective-destination-month-risk",
+      "unitType": "SEASON",
+      "countryCode": "CM",
+      "origin": null,
+      "destination": {
+        "entityId": "city-bdf464a9ed2c7ca8",
+        "canonicalNameEn": "Buea"
+      },
+      "requiredProfile": "objective-destination-month-risk",
+      "executionStatus": "EXECUTED",
+      "executedQueries": [
+        "official meteorological climate Buea monthly rainfall"
+      ],
+      "searchMethod": "OpenAI web search with result inspection; official/operator/government sources prioritized",
+      "checkedResultReferences": [
+        {
+          "url": "https://www.pndp.org/documents/04_CDP_Buea.pdf",
+          "title": "Buea communal development plan",
+          "reviewOutcome": "The plan describes Buea climate and monthly patterns, but does not establish the required objective month-risk binding."
+        }
+      ],
+      "reviewedResultOutcome": "CREDIBLE_RESULT_REVIEWED",
+      "reviewedSourceFact": "The plan describes Buea climate and monthly patterns, but does not establish the required objective month-risk binding.",
+      "unitSpecificAdjudication": "season:city-bdf464a9ed2c7ca8:objective-destination-month-risk: The plan describes Buea climate and monthly patterns, but does not establish the required objective month-risk binding.",
+      "reviewedAt": "2026-09-22T11:32:32.9435737+08:00",
+      "finalResearchOutcome": "SOURCE_FOUND_BUT_FACT_INSUFFICIENT"
+    },
+    {
+      "attemptId": "batch02-search-27",
+      "unitIdentity": "season:city-3f9f3579e6cd3ee4:objective-destination-month-risk",
+      "unitType": "SEASON",
+      "countryCode": "DM",
+      "origin": null,
+      "destination": {
+        "entityId": "city-3f9f3579e6cd3ee4",
+        "canonicalNameEn": "Portsmouth"
+      },
+      "requiredProfile": "objective-destination-month-risk",
+      "executionStatus": "EXECUTED",
+      "executedQueries": [
+        "official meteorological climate Portsmouth monthly rainfall"
+      ],
+      "searchMethod": "OpenAI web search with result inspection; official/operator/government sources prioritized",
+      "checkedResultReferences": [
+        {
+          "url": "https://weather.gov.dm/climate/climate-data",
+          "title": "Dominica Meteorological Service climate data",
+          "reviewOutcome": "Official national station climatology exists, but it is not Portsmouth-specific and does not establish the requested destination/month risk."
+        }
+      ],
+      "reviewedResultOutcome": "CREDIBLE_RESULT_REVIEWED",
+      "reviewedSourceFact": "Official national station climatology exists, but it is not Portsmouth-specific and does not establish the requested destination/month risk.",
+      "unitSpecificAdjudication": "season:city-3f9f3579e6cd3ee4:objective-destination-month-risk: Official national station climatology exists, but it is not Portsmouth-specific and does not establish the requested destination/month risk.",
+      "reviewedAt": "2026-09-22T11:32:32.9435737+08:00",
+      "finalResearchOutcome": "SOURCE_FOUND_BUT_FACT_INSUFFICIENT"
+    },
+    {
+      "attemptId": "batch02-search-28",
+      "unitIdentity": "season:city-4e646805968aa7b9:objective-destination-month-risk",
+      "unitType": "SEASON",
+      "countryCode": "DM",
+      "origin": null,
+      "destination": {
+        "entityId": "city-4e646805968aa7b9",
+        "canonicalNameEn": "Roseau"
+      },
+      "requiredProfile": "objective-destination-month-risk",
+      "executionStatus": "EXECUTED",
+      "executedQueries": [
+        "official meteorological climate Roseau monthly rainfall"
+      ],
+      "searchMethod": "OpenAI web search with result inspection; official/operator/government sources prioritized",
+      "checkedResultReferences": [
+        {
+          "url": "https://weather.gov.dm/climate/climate-data",
+          "title": "Dominica Meteorological Service climate data",
+          "reviewOutcome": "Official Canefield climatology is relevant to the Roseau area but does not itself define an exact objective risk threshold and admitted month."
+        }
+      ],
+      "reviewedResultOutcome": "CREDIBLE_RESULT_REVIEWED",
+      "reviewedSourceFact": "Official Canefield climatology is relevant to the Roseau area but does not itself define an exact objective risk threshold and admitted month.",
+      "unitSpecificAdjudication": "season:city-4e646805968aa7b9:objective-destination-month-risk: Official Canefield climatology is relevant to the Roseau area but does not itself define an exact objective risk threshold and admitted month.",
+      "reviewedAt": "2026-09-22T11:32:32.9435737+08:00",
+      "finalResearchOutcome": "SOURCE_FOUND_BUT_FACT_INSUFFICIENT"
+    },
+    {
+      "attemptId": "batch02-search-29",
+      "unitIdentity": "season:city-246c71fa111c145f:objective-destination-month-risk",
+      "unitType": "SEASON",
+      "countryCode": "MN",
+      "origin": null,
+      "destination": {
+        "entityId": "city-246c71fa111c145f",
+        "canonicalNameEn": "Darkhan"
+      },
+      "requiredProfile": "objective-destination-month-risk",
+      "executionStatus": "EXECUTED",
+      "executedQueries": [
+        "official meteorological climate Darkhan Mongolia monthly"
+      ],
+      "searchMethod": "OpenAI web search with result inspection; official/operator/government sources prioritized",
+      "checkedResultReferences": [
+        {
+          "url": "https://www.mongolianatlas.ac.mn/en/atlas/nature/climate",
+          "title": "National Digital Atlas of Mongolia climate section",
+          "reviewOutcome": "A national climate source was located, but no exact Darkhan destination/month risk record was found."
+        }
+      ],
+      "reviewedResultOutcome": "CREDIBLE_RESULT_REVIEWED",
+      "reviewedSourceFact": "A national climate source was located, but no exact Darkhan destination/month risk record was found.",
+      "unitSpecificAdjudication": "season:city-246c71fa111c145f:objective-destination-month-risk: A national climate source was located, but no exact Darkhan destination/month risk record was found.",
+      "reviewedAt": "2026-09-22T11:32:32.9435737+08:00",
+      "finalResearchOutcome": "SOURCE_FOUND_BUT_FACT_INSUFFICIENT"
+    },
+    {
+      "attemptId": "batch02-search-30",
+      "unitIdentity": "season:city-81d1aa150179614b:objective-destination-month-risk",
+      "unitType": "SEASON",
+      "countryCode": "MN",
+      "origin": null,
+      "destination": {
+        "entityId": "city-81d1aa150179614b",
+        "canonicalNameEn": "Erdenet"
+      },
+      "requiredProfile": "objective-destination-month-risk",
+      "executionStatus": "EXECUTED",
+      "executedQueries": [
+        "official meteorological climate Erdenet Mongolia monthly"
+      ],
+      "searchMethod": "OpenAI web search with result inspection; official/operator/government sources prioritized",
+      "checkedResultReferences": [
+        {
+          "url": "https://statsclimat.com/climate/mongolia/erdenet-2031405",
+          "title": "Erdenet climate normals result",
+          "reviewOutcome": "Destination normals exist from a secondary analysis, but no independently reviewed official risk classification was established."
+        }
+      ],
+      "reviewedResultOutcome": "CREDIBLE_RESULT_REVIEWED",
+      "reviewedSourceFact": "Destination normals exist from a secondary analysis, but no independently reviewed official risk classification was established.",
+      "unitSpecificAdjudication": "season:city-81d1aa150179614b:objective-destination-month-risk: Destination normals exist from a secondary analysis, but no independently reviewed official risk classification was established.",
+      "reviewedAt": "2026-09-22T11:32:32.9435737+08:00",
+      "finalResearchOutcome": "SOURCE_FOUND_BUT_FACT_INSUFFICIENT"
+    },
+    {
+      "attemptId": "batch02-search-31",
+      "unitIdentity": "season:city-dc7b0fecf0cc52cf:objective-destination-month-risk",
+      "unitType": "SEASON",
+      "countryCode": "MN",
+      "origin": null,
+      "destination": {
+        "entityId": "city-dc7b0fecf0cc52cf",
+        "canonicalNameEn": "Ulaanbaatar"
+      },
+      "requiredProfile": "objective-destination-month-risk",
+      "executionStatus": "EXECUTED",
+      "executedQueries": [
+        "official meteorological climate Ulaanbaatar monthly normals"
+      ],
+      "searchMethod": "OpenAI web search with result inspection; official/operator/government sources prioritized",
+      "checkedResultReferences": [
+        {
+          "url": "https://www.data.jma.go.jp/tcc/tcc/products/climate/normal/parts/NrmMonth_e.php?stn=44292",
+          "title": "JMA ClimatView Ulaanbaatar normals",
+          "reviewOutcome": "Official exchanged monthly normals exist, but the source does not define the contract risk threshold/admitted month."
+        }
+      ],
+      "reviewedResultOutcome": "CREDIBLE_RESULT_REVIEWED",
+      "reviewedSourceFact": "Official exchanged monthly normals exist, but the source does not define the contract risk threshold/admitted month.",
+      "unitSpecificAdjudication": "season:city-dc7b0fecf0cc52cf:objective-destination-month-risk: Official exchanged monthly normals exist, but the source does not define the contract risk threshold/admitted month.",
+      "reviewedAt": "2026-09-22T11:32:32.9435737+08:00",
+      "finalResearchOutcome": "SOURCE_FOUND_BUT_FACT_INSUFFICIENT"
+    },
+    {
+      "attemptId": "batch02-search-32",
+      "unitIdentity": "season:city-0d86eecbaf33d381:objective-destination-month-risk",
+      "unitType": "SEASON",
+      "countryCode": "MZ",
+      "origin": null,
+      "destination": {
+        "entityId": "city-0d86eecbaf33d381",
+        "canonicalNameEn": "Pemba"
+      },
+      "requiredProfile": "objective-destination-month-risk",
+      "executionStatus": "EXECUTED",
+      "executedQueries": [
+        "official meteorological climate Pemba monthly rainfall"
+      ],
+      "searchMethod": "OpenAI web search with result inspection; official/operator/government sources prioritized",
+      "checkedResultReferences": [
+        {
+          "url": "https://www.ine.gov.mz/documents/20119/195507/Anuario-%202020_final.pdf/4483f08a-a8c0-bbd8-333e-8f351cd2d57c?download=true&t=1694236208128&version=1.0",
+          "title": "Mozambique INE statistical yearbook",
+          "reviewOutcome": "Official city temperature observations exist, but no complete objective destination/month risk profile was established."
+        }
+      ],
+      "reviewedResultOutcome": "CREDIBLE_RESULT_REVIEWED",
+      "reviewedSourceFact": "Official city temperature observations exist, but no complete objective destination/month risk profile was established.",
+      "unitSpecificAdjudication": "season:city-0d86eecbaf33d381:objective-destination-month-risk: Official city temperature observations exist, but no complete objective destination/month risk profile was established.",
+      "reviewedAt": "2026-09-22T11:32:32.9435737+08:00",
+      "finalResearchOutcome": "SOURCE_FOUND_BUT_FACT_INSUFFICIENT"
+    },
+    {
+      "attemptId": "batch02-search-33",
+      "unitIdentity": "season:city-411f7dd7eb7a1147:objective-destination-month-risk",
+      "unitType": "SEASON",
+      "countryCode": "MZ",
+      "origin": null,
+      "destination": {
+        "entityId": "city-411f7dd7eb7a1147",
+        "canonicalNameEn": "Nampula"
+      },
+      "requiredProfile": "objective-destination-month-risk",
+      "executionStatus": "EXECUTED",
+      "executedQueries": [
+        "official meteorological climate Nampula monthly rainfall"
+      ],
+      "searchMethod": "OpenAI web search with result inspection; official/operator/government sources prioritized",
+      "checkedResultReferences": [
+        {
+          "url": "https://ane.gov.mz/wp-content/uploads/2025/05/ESMF-Moz-CRRNP-P500488_clean.pdf",
+          "title": "Mozambique roads authority climate document",
+          "reviewOutcome": "Regional rainfall ranges were found, but they do not establish an exact Nampula city month-risk binding."
+        }
+      ],
+      "reviewedResultOutcome": "CREDIBLE_RESULT_REVIEWED",
+      "reviewedSourceFact": "Regional rainfall ranges were found, but they do not establish an exact Nampula city month-risk binding.",
+      "unitSpecificAdjudication": "season:city-411f7dd7eb7a1147:objective-destination-month-risk: Regional rainfall ranges were found, but they do not establish an exact Nampula city month-risk binding.",
+      "reviewedAt": "2026-09-22T11:32:32.9435737+08:00",
+      "finalResearchOutcome": "SOURCE_FOUND_BUT_FACT_INSUFFICIENT"
+    },
+    {
+      "attemptId": "batch02-search-34",
+      "unitIdentity": "season:city-574226c10f889449:objective-destination-month-risk",
+      "unitType": "SEASON",
+      "countryCode": "MZ",
+      "origin": null,
+      "destination": {
+        "entityId": "city-574226c10f889449",
+        "canonicalNameEn": "Beira"
+      },
+      "requiredProfile": "objective-destination-month-risk",
+      "executionStatus": "EXECUTED",
+      "executedQueries": [
+        "official meteorological climate Beira monthly rainfall"
+      ],
+      "searchMethod": "OpenAI web search with result inspection; official/operator/government sources prioritized",
+      "checkedResultReferences": [
+        {
+          "url": "https://www.data.jma.go.jp/tcc/tcc/products/climate/climatview/graph_mkhtml_nrm.php?e=6&k=0&m=11&n=67297&r=1&s=1&y=2023",
+          "title": "JMA ClimatView Beira normals",
+          "reviewOutcome": "Monthly normals exist, but the source does not independently define the project risk threshold/admitted month."
+        }
+      ],
+      "reviewedResultOutcome": "CREDIBLE_RESULT_REVIEWED",
+      "reviewedSourceFact": "Monthly normals exist, but the source does not independently define the project risk threshold/admitted month.",
+      "unitSpecificAdjudication": "season:city-574226c10f889449:objective-destination-month-risk: Monthly normals exist, but the source does not independently define the project risk threshold/admitted month.",
+      "reviewedAt": "2026-09-22T11:32:32.9435737+08:00",
+      "finalResearchOutcome": "SOURCE_FOUND_BUT_FACT_INSUFFICIENT"
+    },
+    {
+      "attemptId": "batch02-search-35",
+      "unitIdentity": "season:city-bb27df741abe2752:objective-destination-month-risk",
+      "unitType": "SEASON",
+      "countryCode": "MZ",
+      "origin": null,
+      "destination": {
+        "entityId": "city-bb27df741abe2752",
+        "canonicalNameEn": "Maputo"
+      },
+      "requiredProfile": "objective-destination-month-risk",
+      "executionStatus": "EXECUTED",
+      "executedQueries": [
+        "official meteorological climate Maputo monthly rainfall"
+      ],
+      "searchMethod": "OpenAI web search with result inspection; official/operator/government sources prioritized",
+      "checkedResultReferences": [
+        {
+          "url": "https://wwis.aemet.es/es/city.html?cityId=128",
+          "title": "WMO World Weather Information Service Maputo climatology",
+          "reviewOutcome": "Official climatology exists, but an exact objective risk rule and admitted month were not independently reviewed."
+        }
+      ],
+      "reviewedResultOutcome": "CREDIBLE_RESULT_REVIEWED",
+      "reviewedSourceFact": "Official climatology exists, but an exact objective risk rule and admitted month were not independently reviewed.",
+      "unitSpecificAdjudication": "season:city-bb27df741abe2752:objective-destination-month-risk: Official climatology exists, but an exact objective risk rule and admitted month were not independently reviewed.",
+      "reviewedAt": "2026-09-22T11:32:32.9435737+08:00",
+      "finalResearchOutcome": "SOURCE_FOUND_BUT_FACT_INSUFFICIENT"
+    },
+    {
+      "attemptId": "batch02-search-36",
+      "unitIdentity": "season:city-0df180268afeca04:objective-destination-month-risk",
+      "unitType": "SEASON",
+      "countryCode": "SZ",
+      "origin": null,
+      "destination": {
+        "entityId": "city-0df180268afeca04",
+        "canonicalNameEn": "Manzini"
+      },
+      "requiredProfile": "objective-destination-month-risk",
+      "executionStatus": "EXECUTED",
+      "executedQueries": [
+        "official meteorological climate Manzini monthly rainfall"
+      ],
+      "searchMethod": "OpenAI web search with result inspection; official/operator/government sources prioritized",
+      "checkedResultReferences": [
+        {
+          "url": "https://eswatinikualalumpur.org/climate-seasons/",
+          "title": "Eswatini High Commission climate page",
+          "reviewOutcome": "Government climate averages exist, but they do not establish an exact destination/month risk profile under the contract."
+        }
+      ],
+      "reviewedResultOutcome": "CREDIBLE_RESULT_REVIEWED",
+      "reviewedSourceFact": "Government climate averages exist, but they do not establish an exact destination/month risk profile under the contract.",
+      "unitSpecificAdjudication": "season:city-0df180268afeca04:objective-destination-month-risk: Government climate averages exist, but they do not establish an exact destination/month risk profile under the contract.",
+      "reviewedAt": "2026-09-22T11:32:32.9435737+08:00",
+      "finalResearchOutcome": "SOURCE_FOUND_BUT_FACT_INSUFFICIENT"
+    },
+    {
+      "attemptId": "batch02-search-37",
+      "unitIdentity": "season:city-1ab1bd6cbc62b230:objective-destination-month-risk",
+      "unitType": "SEASON",
+      "countryCode": "SZ",
+      "origin": null,
+      "destination": {
+        "entityId": "city-1ab1bd6cbc62b230",
+        "canonicalNameEn": "Mbabane"
+      },
+      "requiredProfile": "objective-destination-month-risk",
+      "executionStatus": "EXECUTED",
+      "executedQueries": [
+        "official meteorological climate Mbabane monthly rainfall"
+      ],
+      "searchMethod": "OpenAI web search with result inspection; official/operator/government sources prioritized",
+      "checkedResultReferences": [
+        {
+          "url": "https://wwis.meteoam.it/it/city.html?cityId=912",
+          "title": "WMO World Weather Information Service Mbabane climatology",
+          "reviewOutcome": "Official climatology exists, but it does not define the project risk threshold or admitted month."
+        }
+      ],
+      "reviewedResultOutcome": "CREDIBLE_RESULT_REVIEWED",
+      "reviewedSourceFact": "Official climatology exists, but it does not define the project risk threshold or admitted month.",
+      "unitSpecificAdjudication": "season:city-1ab1bd6cbc62b230:objective-destination-month-risk: Official climatology exists, but it does not define the project risk threshold or admitted month.",
+      "reviewedAt": "2026-09-22T11:32:32.9435737+08:00",
+      "finalResearchOutcome": "SOURCE_FOUND_BUT_FACT_INSUFFICIENT"
+    },
+    {
+      "attemptId": "batch02-search-38",
+      "unitIdentity": "season:city-a53237851e024b81:objective-destination-month-risk",
+      "unitType": "SEASON",
+      "countryCode": "SZ",
+      "origin": null,
+      "destination": {
+        "entityId": "city-a53237851e024b81",
+        "canonicalNameEn": "Lobamba"
+      },
+      "requiredProfile": "objective-destination-month-risk",
+      "executionStatus": "EXECUTED",
+      "executedQueries": [
+        "official meteorological climate Lobamba monthly rainfall"
+      ],
+      "searchMethod": "OpenAI web search with result inspection; official/operator/government sources prioritized",
+      "checkedResultReferences": [
+        {
+          "url": "https://climateknowledgeportal.worldbank.org/sites/default/files/2021-08/15929-WB_eSwatini%20Country%20Profile-WEB.pdf",
+          "title": "World Bank Eswatini climate profile",
+          "reviewOutcome": "Country-level climate patterns do not establish a Lobamba-specific objective month-risk binding."
+        }
+      ],
+      "reviewedResultOutcome": "CREDIBLE_RESULT_REVIEWED",
+      "reviewedSourceFact": "Country-level climate patterns do not establish a Lobamba-specific objective month-risk binding.",
+      "unitSpecificAdjudication": "season:city-a53237851e024b81:objective-destination-month-risk: Country-level climate patterns do not establish a Lobamba-specific objective month-risk binding.",
+      "reviewedAt": "2026-09-22T11:32:32.9435737+08:00",
+      "finalResearchOutcome": "SOURCE_FOUND_BUT_FACT_INSUFFICIENT"
+    },
+    {
+      "attemptId": "batch02-search-39",
+      "unitIdentity": "season:city-422d392e780b89a7:objective-destination-month-risk",
+      "unitType": "SEASON",
+      "countryCode": "TL",
+      "origin": null,
+      "destination": {
+        "entityId": "city-422d392e780b89a7",
+        "canonicalNameEn": "Baucau"
+      },
+      "requiredProfile": "objective-destination-month-risk",
+      "executionStatus": "EXECUTED",
+      "executedQueries": [
+        "official meteorological climate Baucau monthly rainfall"
+      ],
+      "searchMethod": "OpenAI web search with result inspection; official/operator/government sources prioritized",
+      "checkedResultReferences": [
+        {
+          "url": "https://baucau.gov.tl/en/",
+          "title": "Baucau Municipal Authority climate page",
+          "reviewOutcome": "Municipal seasonal climate description exists, but no exact objective risk threshold/month admission was established."
+        }
+      ],
+      "reviewedResultOutcome": "CREDIBLE_RESULT_REVIEWED",
+      "reviewedSourceFact": "Municipal seasonal climate description exists, but no exact objective risk threshold/month admission was established.",
+      "unitSpecificAdjudication": "season:city-422d392e780b89a7:objective-destination-month-risk: Municipal seasonal climate description exists, but no exact objective risk threshold/month admission was established.",
+      "reviewedAt": "2026-09-22T11:32:32.9435737+08:00",
+      "finalResearchOutcome": "SOURCE_FOUND_BUT_FACT_INSUFFICIENT"
+    },
+    {
+      "attemptId": "batch02-search-40",
+      "unitIdentity": "season:city-c99e249c394ba4de:objective-destination-month-risk",
+      "unitType": "SEASON",
+      "countryCode": "TL",
+      "origin": null,
+      "destination": {
+        "entityId": "city-c99e249c394ba4de",
+        "canonicalNameEn": "Dili"
+      },
+      "requiredProfile": "objective-destination-month-risk",
+      "executionStatus": "EXECUTED",
+      "executedQueries": [
+        "official meteorological climate Dili monthly rainfall"
+      ],
+      "searchMethod": "OpenAI web search with result inspection; official/operator/government sources prioritized",
+      "checkedResultReferences": [
+        {
+          "url": "https://dnmg.gov.tl/en/",
+          "title": "Timor-Leste DNMG official portal",
+          "reviewOutcome": "Official climate bulletins and station coverage exist, but the reviewed portal does not establish the exact stable Dili month-risk claim required."
+        }
+      ],
+      "reviewedResultOutcome": "CREDIBLE_RESULT_REVIEWED",
+      "reviewedSourceFact": "Official climate bulletins and station coverage exist, but the reviewed portal does not establish the exact stable Dili month-risk claim required.",
+      "unitSpecificAdjudication": "season:city-c99e249c394ba4de:objective-destination-month-risk: Official climate bulletins and station coverage exist, but the reviewed portal does not establish the exact stable Dili month-risk claim required.",
+      "reviewedAt": "2026-09-22T11:32:32.9435737+08:00",
+      "finalResearchOutcome": "SOURCE_FOUND_BUT_FACT_INSUFFICIENT"
+    }
+  ]
+}

@@ -1,0 +1,786 @@
+{
+  "schemaVersion": "route-v2-plannable-expansion-batch02-evidence-report-v1",
+  "phase": "EVIDENCE_IMPLEMENTED_NOT_SEALED",
+  "countries": [
+    "AO",
+    "BJ",
+    "BY",
+    "BZ",
+    "CI",
+    "CM",
+    "CV",
+    "DM",
+    "MN",
+    "MZ",
+    "SZ",
+    "TL",
+    "TT",
+    "UG"
+  ],
+  "summary": {
+    "transport": {
+      "required": 54,
+      "existingReviewed": 8,
+      "existingRetained": 5,
+      "existingRejected": 3,
+      "missingResearched": 46,
+      "newlyAdmitted": 6,
+      "totalAdmitted": 11,
+      "blocked": 43,
+      "unaccounted": 0,
+      "duplicates": 0,
+      "selfLoops": 0
+    },
+    "season": {
+      "required": 41,
+      "existingReviewed": 12,
+      "existingRetained": 12,
+      "existingRejected": 0,
+      "missingResearched": 29,
+      "newlyAdmitted": 0,
+      "totalAdmitted": 12,
+      "blocked": 29,
+      "unaccounted": 0
+    },
+    "evidenceReadyCountryCodes": [],
+    "evidenceBlockedCountryCodes": [
+      "AO",
+      "BJ",
+      "BY",
+      "BZ",
+      "CI",
+      "CM",
+      "CV",
+      "DM",
+      "MN",
+      "MZ",
+      "SZ",
+      "TL",
+      "TT",
+      "UG"
+    ],
+    "research": {
+      "transport": 49,
+      "season": 29,
+      "total": 78,
+      "unclassified": 0,
+      "outcomes": {
+        "OTHER_EXPLICIT_BLOCKER": 2,
+        "SOURCE_FOUND_AND_ELIGIBLE_FOR_REVIEWED_CLAIM": 6,
+        "SOURCE_FOUND_BUT_FACT_INSUFFICIENT": 70
+      }
+    }
+  },
+  "coverageMatrix": [
+    {
+      "countryCode": "AO",
+      "destinations": 3,
+      "requiredTransport": 4,
+      "admittedTransport": 0,
+      "blockedTransport": 4,
+      "requiredSeason": 3,
+      "admittedSeason": 0,
+      "blockedSeason": 3,
+      "themeEvidence": 0,
+      "evidenceReady": false,
+      "reason": "One or more independently authoritative Transport or Season Evidence units remain blocked."
+    },
+    {
+      "countryCode": "BJ",
+      "destinations": 3,
+      "requiredTransport": 4,
+      "admittedTransport": 0,
+      "blockedTransport": 4,
+      "requiredSeason": 3,
+      "admittedSeason": 0,
+      "blockedSeason": 3,
+      "themeEvidence": 0,
+      "evidenceReady": false,
+      "reason": "One or more independently authoritative Transport or Season Evidence units remain blocked."
+    },
+    {
+      "countryCode": "BY",
+      "destinations": 3,
+      "requiredTransport": 4,
+      "admittedTransport": 0,
+      "blockedTransport": 4,
+      "requiredSeason": 3,
+      "admittedSeason": 0,
+      "blockedSeason": 3,
+      "themeEvidence": 0,
+      "evidenceReady": false,
+      "reason": "One or more independently authoritative Transport or Season Evidence units remain blocked."
+    },
+    {
+      "countryCode": "BZ",
+      "destinations": 4,
+      "requiredTransport": 6,
+      "admittedTransport": 0,
+      "blockedTransport": 6,
+      "requiredSeason": 4,
+      "admittedSeason": 4,
+      "blockedSeason": 0,
+      "themeEvidence": 0,
+      "evidenceReady": false,
+      "reason": "One or more independently authoritative Transport or Season Evidence units remain blocked."
+    },
+    {
+      "countryCode": "CI",
+      "destinations": 3,
+      "requiredTransport": 4,
+      "admittedTransport": 0,
+      "blockedTransport": 4,
+      "requiredSeason": 3,
+      "admittedSeason": 0,
+      "blockedSeason": 3,
+      "themeEvidence": 0,
+      "evidenceReady": false,
+      "reason": "One or more independently authoritative Transport or Season Evidence units remain blocked."
+    },
+    {
+      "countryCode": "CM",
+      "destinations": 3,
+      "requiredTransport": 4,
+      "admittedTransport": 2,
+      "blockedTransport": 2,
+      "requiredSeason": 3,
+      "admittedSeason": 0,
+      "blockedSeason": 3,
+      "themeEvidence": 0,
+      "evidenceReady": false,
+      "reason": "One or more independently authoritative Transport or Season Evidence units remain blocked."
+    },
+    {
+      "countryCode": "CV",
+      "destinations": 2,
+      "requiredTransport": 2,
+      "admittedTransport": 0,
+      "blockedTransport": 2,
+      "requiredSeason": 2,
+      "admittedSeason": 2,
+      "blockedSeason": 0,
+      "themeEvidence": 0,
+      "evidenceReady": false,
+      "reason": "One or more independently authoritative Transport or Season Evidence units remain blocked."
+    },
+    {
+      "countryCode": "DM",
+      "destinations": 2,
+      "requiredTransport": 2,
+      "admittedTransport": 2,
+      "blockedTransport": 0,
+      "requiredSeason": 2,
+      "admittedSeason": 0,
+      "blockedSeason": 2,
+      "themeEvidence": 0,
+      "evidenceReady": false,
+      "reason": "One or more independently authoritative Transport or Season Evidence units remain blocked."
+    },
+    {
+      "countryCode": "MN",
+      "destinations": 3,
+      "requiredTransport": 4,
+      "admittedTransport": 2,
+      "blockedTransport": 2,
+      "requiredSeason": 3,
+      "admittedSeason": 0,
+      "blockedSeason": 3,
+      "themeEvidence": 0,
+      "evidenceReady": false,
+      "reason": "One or more independently authoritative Transport or Season Evidence units remain blocked."
+    },
+    {
+      "countryCode": "MZ",
+      "destinations": 4,
+      "requiredTransport": 6,
+      "admittedTransport": 4,
+      "blockedTransport": 2,
+      "requiredSeason": 4,
+      "admittedSeason": 0,
+      "blockedSeason": 4,
+      "themeEvidence": 0,
+      "evidenceReady": false,
+      "reason": "One or more independently authoritative Transport or Season Evidence units remain blocked."
+    },
+    {
+      "countryCode": "SZ",
+      "destinations": 3,
+      "requiredTransport": 4,
+      "admittedTransport": 0,
+      "blockedTransport": 4,
+      "requiredSeason": 3,
+      "admittedSeason": 0,
+      "blockedSeason": 3,
+      "themeEvidence": 0,
+      "evidenceReady": false,
+      "reason": "One or more independently authoritative Transport or Season Evidence units remain blocked."
+    },
+    {
+      "countryCode": "TL",
+      "destinations": 2,
+      "requiredTransport": 2,
+      "admittedTransport": 0,
+      "blockedTransport": 2,
+      "requiredSeason": 2,
+      "admittedSeason": 0,
+      "blockedSeason": 2,
+      "themeEvidence": 0,
+      "evidenceReady": false,
+      "reason": "One or more independently authoritative Transport or Season Evidence units remain blocked."
+    },
+    {
+      "countryCode": "TT",
+      "destinations": 3,
+      "requiredTransport": 4,
+      "admittedTransport": 1,
+      "blockedTransport": 3,
+      "requiredSeason": 3,
+      "admittedSeason": 3,
+      "blockedSeason": 0,
+      "themeEvidence": 0,
+      "evidenceReady": false,
+      "reason": "One or more independently authoritative Transport or Season Evidence units remain blocked."
+    },
+    {
+      "countryCode": "UG",
+      "destinations": 3,
+      "requiredTransport": 4,
+      "admittedTransport": 0,
+      "blockedTransport": 4,
+      "requiredSeason": 3,
+      "admittedSeason": 3,
+      "blockedSeason": 0,
+      "themeEvidence": 0,
+      "evidenceReady": false,
+      "reason": "One or more independently authoritative Transport or Season Evidence units remain blocked."
+    }
+  ],
+  "blockedTransportUnits": [
+    {
+      "countryCode": "AO",
+      "direction": "city-7a7f677f510d9f6e>city-8072eb9ee3a0831c",
+      "origin": "Lubango",
+      "destination": "Benguela",
+      "reason": "Government transport portal identifies operators and infrastructure, but does not establish the required passenger direction."
+    },
+    {
+      "countryCode": "AO",
+      "direction": "city-8072eb9ee3a0831c>city-7a7f677f510d9f6e",
+      "origin": "Benguela",
+      "destination": "Lubango",
+      "reason": "Government transport portal identifies operators and infrastructure, but does not establish the required passenger direction."
+    },
+    {
+      "countryCode": "AO",
+      "direction": "city-8072eb9ee3a0831c>city-ec86f948d5cfe821",
+      "origin": "Benguela",
+      "destination": "Luanda",
+      "reason": "Government transport portal identifies operators and infrastructure, but does not establish the required passenger direction."
+    },
+    {
+      "countryCode": "AO",
+      "direction": "city-ec86f948d5cfe821>city-8072eb9ee3a0831c",
+      "origin": "Luanda",
+      "destination": "Benguela",
+      "reason": "Government transport portal identifies operators and infrastructure, but does not establish the required passenger direction."
+    },
+    {
+      "countryCode": "BJ",
+      "direction": "city-17793b277caddfed>city-3b3c9457618c868e",
+      "origin": "Porto-Novo",
+      "destination": "Cotonou",
+      "reason": "transport:city-17793b277caddfed>city-3b3c9457618c868e: Operator material describes Cotonou–Porto-Novo service, but the inspected reference is a third-party mirror and does not provide an authoritative stable timetable for this exact direction."
+    },
+    {
+      "countryCode": "BJ",
+      "direction": "city-3b3c9457618c868e>city-17793b277caddfed",
+      "origin": "Cotonou",
+      "destination": "Porto-Novo",
+      "reason": "transport:city-3b3c9457618c868e>city-17793b277caddfed: Operator material describes Cotonou–Porto-Novo service, but the inspected reference is a third-party mirror and does not provide an authoritative stable timetable for this exact direction."
+    },
+    {
+      "countryCode": "BJ",
+      "direction": "city-3b3c9457618c868e>city-736f6f9f243c8718",
+      "origin": "Cotonou",
+      "destination": "Ouidah",
+      "reason": "transport:city-3b3c9457618c868e>city-736f6f9f243c8718: The document identifies a Cotonou–Ouidah corridor but does not establish a current scheduled passenger service in the required direction."
+    },
+    {
+      "countryCode": "BJ",
+      "direction": "city-736f6f9f243c8718>city-3b3c9457618c868e",
+      "origin": "Ouidah",
+      "destination": "Cotonou",
+      "reason": "transport:city-736f6f9f243c8718>city-3b3c9457618c868e: The document identifies the corridor but does not establish a current scheduled Ouidah-to-Cotonou passenger service."
+    },
+    {
+      "countryCode": "BY",
+      "direction": "city-112c0170dc0c9510>city-83f33b3921666ee2",
+      "origin": "Minsk",
+      "destination": "Grodno",
+      "reason": "transport:city-112c0170dc0c9510>city-83f33b3921666ee2: The official application exposes timetable search, but the reviewed result did not establish the exact Minsk-to-Grodno service fact in an auditable page."
+    },
+    {
+      "countryCode": "BY",
+      "direction": "city-83f33b3921666ee2>city-112c0170dc0c9510",
+      "origin": "Grodno",
+      "destination": "Minsk",
+      "reason": "transport:city-83f33b3921666ee2>city-112c0170dc0c9510: A timetable result was found, but it is an aggregator page rather than an independently reviewed official carrier fact."
+    },
+    {
+      "countryCode": "BY",
+      "direction": "city-83f33b3921666ee2>city-922749630466d376",
+      "origin": "Grodno",
+      "destination": "Brest",
+      "reason": "transport:city-83f33b3921666ee2>city-922749630466d376: A reverse-route timetable result was found, but it does not authoritatively establish this required Grodno-to-Brest direction."
+    },
+    {
+      "countryCode": "BY",
+      "direction": "city-922749630466d376>city-83f33b3921666ee2",
+      "origin": "Brest",
+      "destination": "Grodno",
+      "reason": "transport:city-922749630466d376>city-83f33b3921666ee2: A timetable result establishes the direction on an aggregator, but no independently reviewed official carrier fact was located."
+    },
+    {
+      "countryCode": "BZ",
+      "direction": "city-6ec906c9527fa58c>city-ada97841bcc43314",
+      "origin": "Belize City",
+      "destination": "Belmopan",
+      "reason": "The release identifies intercity bus terminals, but does not establish service for an exact required direction."
+    },
+    {
+      "countryCode": "BZ",
+      "direction": "city-ada97841bcc43314>city-6ec906c9527fa58c",
+      "origin": "Belmopan",
+      "destination": "Belize City",
+      "reason": "The release identifies intercity bus terminals, but does not establish service for an exact required direction."
+    },
+    {
+      "countryCode": "BZ",
+      "direction": "city-ada97841bcc43314>city-09e784f122af849f",
+      "origin": "Belmopan",
+      "destination": "Orange Walk Town",
+      "reason": "The release identifies intercity bus terminals, but does not establish service for an exact required direction."
+    },
+    {
+      "countryCode": "BZ",
+      "direction": "city-09e784f122af849f>city-ada97841bcc43314",
+      "origin": "Orange Walk Town",
+      "destination": "Belmopan",
+      "reason": "The release identifies intercity bus terminals, but does not establish service for an exact required direction."
+    },
+    {
+      "countryCode": "BZ",
+      "direction": "city-09e784f122af849f>city-364c92a54ef6ea30",
+      "origin": "Orange Walk Town",
+      "destination": "San Ignacio",
+      "reason": "The release identifies intercity bus terminals, but does not establish service for an exact required direction."
+    },
+    {
+      "countryCode": "BZ",
+      "direction": "city-364c92a54ef6ea30>city-09e784f122af849f",
+      "origin": "San Ignacio",
+      "destination": "Orange Walk Town",
+      "reason": "The release identifies intercity bus terminals, but does not establish service for an exact required direction."
+    },
+    {
+      "countryCode": "CI",
+      "direction": "city-3ae3e55afc2ba40b>city-4f08d650dd59697a",
+      "origin": "Grand-Bassam",
+      "destination": "Yamoussoukro",
+      "reason": "The page identifies road axes, but does not establish passenger service for an exact required direction."
+    },
+    {
+      "countryCode": "CI",
+      "direction": "city-4f08d650dd59697a>city-3ae3e55afc2ba40b",
+      "origin": "Yamoussoukro",
+      "destination": "Grand-Bassam",
+      "reason": "The page identifies road axes, but does not establish passenger service for an exact required direction."
+    },
+    {
+      "countryCode": "CI",
+      "direction": "city-4f08d650dd59697a>city-dddcb743a7c5b440",
+      "origin": "Yamoussoukro",
+      "destination": "Abidjan",
+      "reason": "The page identifies road axes, but does not establish passenger service for an exact required direction."
+    },
+    {
+      "countryCode": "CI",
+      "direction": "city-dddcb743a7c5b440>city-4f08d650dd59697a",
+      "origin": "Abidjan",
+      "destination": "Yamoussoukro",
+      "reason": "The page identifies road axes, but does not establish passenger service for an exact required direction."
+    },
+    {
+      "countryCode": "CM",
+      "direction": "city-999f998d2955d071>city-bdf464a9ed2c7ca8",
+      "origin": "Douala",
+      "destination": "Buea",
+      "reason": "The official offer establishes daily Douala–Yaoundé services in both directions; it does not establish a Douala–Buea service."
+    },
+    {
+      "countryCode": "CM",
+      "direction": "city-bdf464a9ed2c7ca8>city-999f998d2955d071",
+      "origin": "Buea",
+      "destination": "Douala",
+      "reason": "The official offer establishes daily Douala–Yaoundé services in both directions; it does not establish a Douala–Buea service."
+    },
+    {
+      "countryCode": "CV",
+      "direction": "city-babb525024c5895b>city-978446d3b0128242",
+      "origin": "Mindelo",
+      "destination": "Praia",
+      "reason": "The operator confirms inter-island passenger service, but the reviewed page does not establish the exact Praia–Mindelo direction and schedule."
+    },
+    {
+      "countryCode": "CV",
+      "direction": "city-978446d3b0128242>city-babb525024c5895b",
+      "origin": "Praia",
+      "destination": "Mindelo",
+      "reason": "The operator confirms inter-island passenger service, but the reviewed page does not establish the exact Praia–Mindelo direction and schedule."
+    },
+    {
+      "countryCode": "MN",
+      "direction": "city-246c71fa111c145f>city-81d1aa150179614b",
+      "origin": "Darkhan",
+      "destination": "Erdenet",
+      "reason": "The sealed worklist counted this unit as reusable, but exact-direction production Evidence backed by an independently catalogued reviewed claim was not found; the unit is returned to blocked/missing."
+    },
+    {
+      "countryCode": "MN",
+      "direction": "city-81d1aa150179614b>city-246c71fa111c145f",
+      "origin": "Erdenet",
+      "destination": "Darkhan",
+      "reason": "The sealed worklist counted this unit as reusable, but exact-direction production Evidence backed by an independently catalogued reviewed claim was not found; the unit is returned to blocked/missing."
+    },
+    {
+      "countryCode": "MZ",
+      "direction": "city-0d86eecbaf33d381>city-411f7dd7eb7a1147",
+      "origin": "Pemba",
+      "destination": "Nampula",
+      "reason": "transport:city-0d86eecbaf33d381>city-411f7dd7eb7a1147: The LAM timetable contains Pemba-to-Nampula service, but it is an old timetable and is insufficient for current fresh feasibility Evidence."
+    },
+    {
+      "countryCode": "MZ",
+      "direction": "city-411f7dd7eb7a1147>city-0d86eecbaf33d381",
+      "origin": "Nampula",
+      "destination": "Pemba",
+      "reason": "transport:city-411f7dd7eb7a1147>city-0d86eecbaf33d381: The LAM timetable contains Nampula-to-Pemba service, but it is stale for current feasibility Evidence."
+    },
+    {
+      "countryCode": "SZ",
+      "direction": "city-0df180268afeca04>city-1ab1bd6cbc62b230",
+      "origin": "Manzini",
+      "destination": "Mbabane",
+      "reason": "transport:city-0df180268afeca04>city-1ab1bd6cbc62b230: reviewed-source policy failure: operator authority is not independently verifiable, so this record cannot enter the reviewed claim catalog."
+    },
+    {
+      "countryCode": "SZ",
+      "direction": "city-1ab1bd6cbc62b230>city-0df180268afeca04",
+      "origin": "Mbabane",
+      "destination": "Manzini",
+      "reason": "transport:city-1ab1bd6cbc62b230>city-0df180268afeca04: reviewed-source policy failure: operator authority is not independently verifiable, so this record cannot enter the reviewed claim catalog."
+    },
+    {
+      "countryCode": "SZ",
+      "direction": "city-1ab1bd6cbc62b230>city-a53237851e024b81",
+      "origin": "Mbabane",
+      "destination": "Lobamba",
+      "reason": "transport:city-1ab1bd6cbc62b230>city-a53237851e024b81: A historical permit describes a route through Lobamba, but it is not current service evidence for the required direction."
+    },
+    {
+      "countryCode": "SZ",
+      "direction": "city-a53237851e024b81>city-1ab1bd6cbc62b230",
+      "origin": "Lobamba",
+      "destination": "Mbabane",
+      "reason": "transport:city-a53237851e024b81>city-1ab1bd6cbc62b230: A historical route permit mentions both places but does not establish current Lobamba-to-Mbabane passenger service."
+    },
+    {
+      "countryCode": "TL",
+      "direction": "city-422d392e780b89a7>city-c99e249c394ba4de",
+      "origin": "Baucau",
+      "destination": "Dili",
+      "reason": "transport:city-422d392e780b89a7>city-c99e249c394ba4de: The schedule lists Baucau-to-Dili shuttle movement, but the reviewed document is dated 2023 and does not satisfy current freshness."
+    },
+    {
+      "countryCode": "TL",
+      "direction": "city-c99e249c394ba4de>city-422d392e780b89a7",
+      "origin": "Dili",
+      "destination": "Baucau",
+      "reason": "transport:city-c99e249c394ba4de>city-422d392e780b89a7: The schedule lists Dili-to-Baucau shuttle movement, but the reviewed document is dated 2023 and does not satisfy current freshness."
+    },
+    {
+      "countryCode": "TT",
+      "direction": "city-e1e545b8fe38ab50>city-f8e7938698d274cb",
+      "origin": "Chaguanas",
+      "destination": "Port of Spain",
+      "reason": "The sealed worklist counted this unit as reusable, but exact-direction production Evidence backed by an independently catalogued reviewed claim was not found; the unit is returned to blocked/missing."
+    },
+    {
+      "countryCode": "TT",
+      "direction": "city-f8e7938698d274cb>city-94fbe7319f3f241e",
+      "origin": "Port of Spain",
+      "destination": "San Fernando",
+      "reason": "The Chaguanas archive establishes Chaguanas–San Fernando service, but not the required Chaguanas–Port of Spain direction."
+    },
+    {
+      "countryCode": "TT",
+      "direction": "city-94fbe7319f3f241e>city-f8e7938698d274cb",
+      "origin": "San Fernando",
+      "destination": "Port of Spain",
+      "reason": "The Chaguanas archive establishes Chaguanas–San Fernando service, but not the required Chaguanas–Port of Spain direction."
+    },
+    {
+      "countryCode": "UG",
+      "direction": "city-cf93ae1e3582d497>city-a3ca46b81dd7dc2e",
+      "origin": "Entebbe",
+      "destination": "Jinja",
+      "reason": "The project page establishes a Kampala–Jinja road corridor, not scheduled passenger service in the required direction."
+    },
+    {
+      "countryCode": "UG",
+      "direction": "city-a3ca46b81dd7dc2e>city-cf93ae1e3582d497",
+      "origin": "Jinja",
+      "destination": "Entebbe",
+      "reason": "The project page establishes a Kampala–Jinja road corridor, not scheduled passenger service in the required direction."
+    },
+    {
+      "countryCode": "UG",
+      "direction": "city-a3ca46b81dd7dc2e>city-12eabeee3a7a14d0",
+      "origin": "Jinja",
+      "destination": "Kampala",
+      "reason": "The project page establishes a Kampala–Jinja road corridor, not scheduled passenger service in the required direction."
+    },
+    {
+      "countryCode": "UG",
+      "direction": "city-12eabeee3a7a14d0>city-a3ca46b81dd7dc2e",
+      "origin": "Kampala",
+      "destination": "Jinja",
+      "reason": "The project page establishes a Kampala–Jinja road corridor, not scheduled passenger service in the required direction."
+    }
+  ],
+  "blockedSeasonProfiles": [
+    {
+      "countryCode": "AO",
+      "destinationEntityId": "city-7a7f677f510d9f6e",
+      "destination": "Lubango",
+      "requiredProfile": "objective-destination-month-risk",
+      "reason": "The reviewed material provides regional agro-climate monitoring but not an exact destination/month risk profile for every required city."
+    },
+    {
+      "countryCode": "AO",
+      "destinationEntityId": "city-8072eb9ee3a0831c",
+      "destination": "Benguela",
+      "requiredProfile": "objective-destination-month-risk",
+      "reason": "The reviewed material provides regional agro-climate monitoring but not an exact destination/month risk profile for every required city."
+    },
+    {
+      "countryCode": "AO",
+      "destinationEntityId": "city-ec86f948d5cfe821",
+      "destination": "Luanda",
+      "requiredProfile": "objective-destination-month-risk",
+      "reason": "The reviewed material provides regional agro-climate monitoring but not an exact destination/month risk profile for every required city."
+    },
+    {
+      "countryCode": "BJ",
+      "destinationEntityId": "city-17793b277caddfed",
+      "destination": "Porto-Novo",
+      "requiredProfile": "objective-destination-month-risk",
+      "reason": "The bulletin reports observed and forecast conditions, but does not establish the required stable month-risk profile for each destination."
+    },
+    {
+      "countryCode": "BJ",
+      "destinationEntityId": "city-3b3c9457618c868e",
+      "destination": "Cotonou",
+      "requiredProfile": "objective-destination-month-risk",
+      "reason": "The bulletin reports observed and forecast conditions, but does not establish the required stable month-risk profile for each destination."
+    },
+    {
+      "countryCode": "BJ",
+      "destinationEntityId": "city-736f6f9f243c8718",
+      "destination": "Ouidah",
+      "requiredProfile": "objective-destination-month-risk",
+      "reason": "The bulletin reports observed and forecast conditions, but does not establish the required stable month-risk profile for each destination."
+    },
+    {
+      "countryCode": "BY",
+      "destinationEntityId": "city-112c0170dc0c9510",
+      "destination": "Minsk",
+      "requiredProfile": "objective-destination-month-risk",
+      "reason": "The station view is city-specific climate data, but the reviewed record does not establish an objective risk claim and admitted month under the current contract."
+    },
+    {
+      "countryCode": "BY",
+      "destinationEntityId": "city-83f33b3921666ee2",
+      "destination": "Grodno",
+      "requiredProfile": "objective-destination-month-risk",
+      "reason": "The station view is city-specific climate data, but the reviewed record does not establish an objective risk claim and admitted month under the current contract."
+    },
+    {
+      "countryCode": "BY",
+      "destinationEntityId": "city-922749630466d376",
+      "destination": "Brest",
+      "requiredProfile": "objective-destination-month-risk",
+      "reason": "The station view is city-specific climate data, but the reviewed record does not establish an objective risk claim and admitted month under the current contract."
+    },
+    {
+      "countryCode": "CI",
+      "destinationEntityId": "city-3ae3e55afc2ba40b",
+      "destination": "Grand-Bassam",
+      "requiredProfile": "objective-destination-month-risk",
+      "reason": "season:city-3ae3e55afc2ba40b:objective-destination-month-risk: Nearest official normals are for Abidjan and do not establish a Grand-Bassam-specific objective month-risk binding."
+    },
+    {
+      "countryCode": "CI",
+      "destinationEntityId": "city-4f08d650dd59697a",
+      "destination": "Yamoussoukro",
+      "requiredProfile": "objective-destination-month-risk",
+      "reason": "season:city-4f08d650dd59697a:objective-destination-month-risk: Climate normals were located, but no independently reviewed objective risk threshold and admitted month binding was established."
+    },
+    {
+      "countryCode": "CI",
+      "destinationEntityId": "city-dddcb743a7c5b440",
+      "destination": "Abidjan",
+      "requiredProfile": "objective-destination-month-risk",
+      "reason": "season:city-dddcb743a7c5b440:objective-destination-month-risk: Exact monthly normals exist, but the source alone does not define the contract objective risk threshold or admitted month."
+    },
+    {
+      "countryCode": "CM",
+      "destinationEntityId": "city-1e4e8e5c247d7a1b",
+      "destination": "Yaoundé",
+      "requiredProfile": "objective-destination-month-risk",
+      "reason": "season:city-1e4e8e5c247d7a1b:objective-destination-month-risk: Official bulletins were located, but the reviewed index does not establish an exact stable Yaoundé month-risk profile."
+    },
+    {
+      "countryCode": "CM",
+      "destinationEntityId": "city-999f998d2955d071",
+      "destination": "Douala",
+      "requiredProfile": "objective-destination-month-risk",
+      "reason": "season:city-999f998d2955d071:objective-destination-month-risk: Monthly Douala observations exist, but the checked mirror is not a direct authoritative claim and does not define an admitted risk month."
+    },
+    {
+      "countryCode": "CM",
+      "destinationEntityId": "city-bdf464a9ed2c7ca8",
+      "destination": "Buea",
+      "requiredProfile": "objective-destination-month-risk",
+      "reason": "season:city-bdf464a9ed2c7ca8:objective-destination-month-risk: The plan describes Buea climate and monthly patterns, but does not establish the required objective month-risk binding."
+    },
+    {
+      "countryCode": "DM",
+      "destinationEntityId": "city-3f9f3579e6cd3ee4",
+      "destination": "Portsmouth",
+      "requiredProfile": "objective-destination-month-risk",
+      "reason": "season:city-3f9f3579e6cd3ee4:objective-destination-month-risk: Official national station climatology exists, but it is not Portsmouth-specific and does not establish the requested destination/month risk."
+    },
+    {
+      "countryCode": "DM",
+      "destinationEntityId": "city-4e646805968aa7b9",
+      "destination": "Roseau",
+      "requiredProfile": "objective-destination-month-risk",
+      "reason": "season:city-4e646805968aa7b9:objective-destination-month-risk: Official Canefield climatology is relevant to the Roseau area but does not itself define an exact objective risk threshold and admitted month."
+    },
+    {
+      "countryCode": "MN",
+      "destinationEntityId": "city-246c71fa111c145f",
+      "destination": "Darkhan",
+      "requiredProfile": "objective-destination-month-risk",
+      "reason": "season:city-246c71fa111c145f:objective-destination-month-risk: A national climate source was located, but no exact Darkhan destination/month risk record was found."
+    },
+    {
+      "countryCode": "MN",
+      "destinationEntityId": "city-81d1aa150179614b",
+      "destination": "Erdenet",
+      "requiredProfile": "objective-destination-month-risk",
+      "reason": "season:city-81d1aa150179614b:objective-destination-month-risk: Destination normals exist from a secondary analysis, but no independently reviewed official risk classification was established."
+    },
+    {
+      "countryCode": "MN",
+      "destinationEntityId": "city-dc7b0fecf0cc52cf",
+      "destination": "Ulaanbaatar",
+      "requiredProfile": "objective-destination-month-risk",
+      "reason": "season:city-dc7b0fecf0cc52cf:objective-destination-month-risk: Official exchanged monthly normals exist, but the source does not define the contract risk threshold/admitted month."
+    },
+    {
+      "countryCode": "MZ",
+      "destinationEntityId": "city-0d86eecbaf33d381",
+      "destination": "Pemba",
+      "requiredProfile": "objective-destination-month-risk",
+      "reason": "season:city-0d86eecbaf33d381:objective-destination-month-risk: Official city temperature observations exist, but no complete objective destination/month risk profile was established."
+    },
+    {
+      "countryCode": "MZ",
+      "destinationEntityId": "city-411f7dd7eb7a1147",
+      "destination": "Nampula",
+      "requiredProfile": "objective-destination-month-risk",
+      "reason": "season:city-411f7dd7eb7a1147:objective-destination-month-risk: Regional rainfall ranges were found, but they do not establish an exact Nampula city month-risk binding."
+    },
+    {
+      "countryCode": "MZ",
+      "destinationEntityId": "city-574226c10f889449",
+      "destination": "Beira",
+      "requiredProfile": "objective-destination-month-risk",
+      "reason": "season:city-574226c10f889449:objective-destination-month-risk: Monthly normals exist, but the source does not independently define the project risk threshold/admitted month."
+    },
+    {
+      "countryCode": "MZ",
+      "destinationEntityId": "city-bb27df741abe2752",
+      "destination": "Maputo",
+      "requiredProfile": "objective-destination-month-risk",
+      "reason": "season:city-bb27df741abe2752:objective-destination-month-risk: Official climatology exists, but an exact objective risk rule and admitted month were not independently reviewed."
+    },
+    {
+      "countryCode": "SZ",
+      "destinationEntityId": "city-0df180268afeca04",
+      "destination": "Manzini",
+      "requiredProfile": "objective-destination-month-risk",
+      "reason": "season:city-0df180268afeca04:objective-destination-month-risk: Government climate averages exist, but they do not establish an exact destination/month risk profile under the contract."
+    },
+    {
+      "countryCode": "SZ",
+      "destinationEntityId": "city-1ab1bd6cbc62b230",
+      "destination": "Mbabane",
+      "requiredProfile": "objective-destination-month-risk",
+      "reason": "season:city-1ab1bd6cbc62b230:objective-destination-month-risk: Official climatology exists, but it does not define the project risk threshold or admitted month."
+    },
+    {
+      "countryCode": "SZ",
+      "destinationEntityId": "city-a53237851e024b81",
+      "destination": "Lobamba",
+      "requiredProfile": "objective-destination-month-risk",
+      "reason": "season:city-a53237851e024b81:objective-destination-month-risk: Country-level climate patterns do not establish a Lobamba-specific objective month-risk binding."
+    },
+    {
+      "countryCode": "TL",
+      "destinationEntityId": "city-422d392e780b89a7",
+      "destination": "Baucau",
+      "requiredProfile": "objective-destination-month-risk",
+      "reason": "season:city-422d392e780b89a7:objective-destination-month-risk: Municipal seasonal climate description exists, but no exact objective risk threshold/month admission was established."
+    },
+    {
+      "countryCode": "TL",
+      "destinationEntityId": "city-c99e249c394ba4de",
+      "destination": "Dili",
+      "requiredProfile": "objective-destination-month-risk",
+      "reason": "season:city-c99e249c394ba4de:objective-destination-month-risk: Official climate bulletins and station coverage exist, but the reviewed portal does not establish the exact stable Dili month-risk claim required."
+    }
+  ],
+  "authority": {
+    "entityCounts": {
+      "countries": 195,
+      "cities": 890,
+      "pois": 4159,
+      "total": 5244
+    },
+    "readinessCounts": {
+      "plannable": 122,
+      "evidenceBacked": 119,
+      "catalogOnly": 73
+    },
+    "accidentalPromotions": 0,
+    "candidateLeakage": "NONE",
+    "themeEvidenceAdded": 0,
+    "reportsGrantAuthority": false,
+    "callerControlledEvidenceAuthority": false
+  },
+  "promotion": "NOT_STARTED",
+  "performance": "NOT_CLEARED_UNCHANGED"
+}

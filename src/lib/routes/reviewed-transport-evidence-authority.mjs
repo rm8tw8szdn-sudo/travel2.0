@@ -25,6 +25,20 @@ export function reviewedTransportClaimPayload(claim = {}) {
       entityId: String(claim.destination?.entityId || ""),
     },
     directionality: String(claim.directionality || ""),
+    ...(Array.isArray(claim.reviewedDirections) ? {
+      reviewedDirections: claim.reviewedDirections.map((direction) => ({
+        from: {
+          canonicalNameEn: String(direction?.from?.canonicalNameEn || ""),
+          entityId: String(direction?.from?.entityId || ""),
+        },
+        to: {
+          canonicalNameEn: String(direction?.to?.canonicalNameEn || ""),
+          entityId: String(direction?.to?.entityId || ""),
+        },
+        reviewedFact: String(direction?.reviewedFact || ""),
+        support: String(direction?.support || ""),
+      })),
+    } : {}),
     transportMode: String(claim.transportMode || ""),
     supports: Array.isArray(claim.supports) ? claim.supports.map(String) : [],
     retrievedAt: String(claim.retrievedAt || ""),
@@ -64,4 +78,41 @@ export function directedClaimsFromReviewedClaim(claim) {
   const claims = [{ from: payload.origin, to: payload.destination }];
   if (payload.directionality === "bidirectional") claims.push({ from: payload.destination, to: payload.origin });
   return claims;
+}
+
+export function exactReviewedDirectionsFromClaim(claim) {
+  const payload = reviewedTransportClaimPayload(claim);
+  const reviewedDirections = Array.isArray(claim?.reviewedDirections) ? claim.reviewedDirections : [];
+  return reviewedDirections.map((direction) => ({
+    from: {
+      canonicalNameEn: String(direction?.from?.canonicalNameEn || ""),
+      entityId: String(direction?.from?.entityId || ""),
+    },
+    to: {
+      canonicalNameEn: String(direction?.to?.canonicalNameEn || ""),
+      entityId: String(direction?.to?.entityId || ""),
+    },
+    reviewedFact: String(direction?.reviewedFact || ""),
+    support: String(direction?.support || ""),
+    claimId: payload.claimId,
+  }));
+}
+
+export function validateExactReviewedDirectionScope(claim) {
+  const reasons = [];
+  const payload = reviewedTransportClaimPayload(claim);
+  const expected = directedClaimsFromReviewedClaim(payload);
+  const reviewed = exactReviewedDirectionsFromClaim(claim);
+  if (reviewed.length !== expected.length) reasons.push("transport-exact-direction-count-mismatch");
+  for (let index = 0; index < expected.length; index += 1) {
+    const expectedDirection = expected[index];
+    const reviewedDirection = reviewed[index];
+    const expectedSupport = `route-leg:${expectedDirection.from.entityId}>${expectedDirection.to.entityId}:feasibility`;
+    if (!reviewedDirection
+      || JSON.stringify(reviewedDirection.from) !== JSON.stringify(expectedDirection.from)
+      || JSON.stringify(reviewedDirection.to) !== JSON.stringify(expectedDirection.to)) reasons.push(`transport-exact-direction-binding-mismatch:${index}`);
+    if (!reviewedDirection?.reviewedFact) reasons.push(`transport-exact-direction-fact-missing:${index}`);
+    if (reviewedDirection?.support !== expectedSupport || payload.supports[index] !== expectedSupport) reasons.push(`transport-exact-direction-support-mismatch:${index}`);
+  }
+  return { accepted: reasons.length === 0, reasons, directions: reviewed };
 }

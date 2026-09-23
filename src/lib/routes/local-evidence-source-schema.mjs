@@ -11,6 +11,8 @@ export const LOCAL_EVIDENCE_SOURCE_TYPES = new Set([
 ]);
 
 const TRUSTED_SOURCE_DOMAINS = Object.freeze([
+  { domain: "brazza-airlines.com", sourceType: "official-transport-operator", publisher: "Brazza Airlines" },
+  { domain: "met.gov.lc", sourceType: "approved-high-trust-source", publisher: "Saint Lucia Meteorological Services" },
   { domain: "citylink.techsolutions.co.mz", sourceType: "official-transport-operator", publisher: "CityLink" },
   { domain: "camrail.cm", sourceType: "official-transport-operator", publisher: "Camrail" },
   { domain: "global.jr-central.co.jp", sourceType: "official-transport-operator", publisher: "Central Japan Railway Company" },

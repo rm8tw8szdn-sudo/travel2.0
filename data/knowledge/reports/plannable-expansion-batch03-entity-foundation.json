@@ -1,0 +1,1418 @@
+{
+  "schemaVersion": "route-v2-plannable-expansion-batch03-entity-foundation-v1",
+  "baselineMain": "7a11095b9d1b626d64fac875762b4c95bab0fd65",
+  "countries": [
+    "LC",
+    "VC",
+    "ST",
+    "SB",
+    "TG",
+    "TM",
+    "TO",
+    "AG",
+    "CG",
+    "GD",
+    "GM",
+    "KN",
+    "BI",
+    "GN"
+  ],
+  "preflight": {
+    "reportedPoiUniverse": 130,
+    "reconciledPoiUniverse": 116,
+    "discrepancy": -14,
+    "reason": "The explicit per-country candidate counts sum to and match the actual candidate entity universe."
+  },
+  "authority": {
+    "source": "independent-raw-wikidata-semantic-gate",
+    "candidateAuthority": "NONE",
+    "reportAuthority": "NONE",
+    "callerAuthority": "NONE",
+    "checkedFacts": 46382,
+    "typePolicyNodes": 1549,
+    "destinationDecisions": [
+      {
+        "entityId": "city-431d56ce0f110a8f",
+        "wikidataId": "Q41699",
+        "canonicalNameEn": "Castries",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "city-efcf6ab20f4a3584",
+        "wikidataId": "Q41474",
+        "canonicalNameEn": "Kingstown",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "city-403d5fec2fb5fbda",
+        "wikidataId": "Q3932",
+        "canonicalNameEn": "São Tomé",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "city-49974cebb0f97983",
+        "wikidataId": "Q40921",
+        "canonicalNameEn": "Honiara",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "city-38995d15db6b543b",
+        "wikidataId": "Q3792",
+        "canonicalNameEn": "Lomé",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "city-caec21868a98aec1",
+        "wikidataId": "Q23438",
+        "canonicalNameEn": "Ashgabat",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "city-0d24db45467b9828",
+        "wikidataId": "Q38834",
+        "canonicalNameEn": "Nukuʻalofa",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "city-b42fb7994a854ea5",
+        "wikidataId": "Q36262",
+        "canonicalNameEn": "St. John's",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "city-8cbde2ce68a8bf1f",
+        "wikidataId": "Q31578200",
+        "canonicalNameEn": "English Harbour",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "city-b8651ce35876fbfe",
+        "wikidataId": "Q3844",
+        "canonicalNameEn": "Brazzaville",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "city-e34cdc0b0362d926",
+        "wikidataId": "Q223920",
+        "canonicalNameEn": "Pointe-Noire",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "city-c8aa57e633cd1289",
+        "wikidataId": "Q41547",
+        "canonicalNameEn": "St. George's",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "city-ba825291250c2c61",
+        "wikidataId": "Q375507",
+        "canonicalNameEn": "Gouyave",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "city-dd386d521ac4ce11",
+        "wikidataId": "Q3726",
+        "canonicalNameEn": "Banjul",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "city-2628cfaa45b85a20",
+        "wikidataId": "Q217568",
+        "canonicalNameEn": "Serekunda",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "city-c2ab81fa714c618e",
+        "wikidataId": "Q41295",
+        "canonicalNameEn": "Basseterre",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "city-79ceb5a70825c90f",
+        "wikidataId": "Q992311",
+        "canonicalNameEn": "Charlestown",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "city-e29b7b63b7d45b3f",
+        "wikidataId": "Q3854",
+        "canonicalNameEn": "Bujumbura",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "city-56af1d2dbde83b82",
+        "wikidataId": "Q167551",
+        "canonicalNameEn": "Gitega",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "city-c8ced73483e5a38d",
+        "wikidataId": "Q3733",
+        "canonicalNameEn": "Conakry",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "city-69bf2f0b7fc76fcc",
+        "wikidataId": "Q874317",
+        "canonicalNameEn": "Kankan",
+        "decision": "ADMIT",
+        "reasons": []
+      }
+    ],
+    "poiDecisions": [
+      {
+        "entityId": "poi-5f331824a80561aa",
+        "wikidataId": "Q124402010",
+        "canonicalNameEn": "Antigua Naval Dockyard and Related Archaeological Sites",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "poi-d8bd157adac36d79",
+        "wikidataId": "Q5432586",
+        "canonicalNameEn": "Falmouth Harbour",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "poi-15681a21ee957b09",
+        "wikidataId": "Q8022209",
+        "canonicalNameEn": "Willoughby Bay",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "poi-e3dc14dc05b9d6e1",
+        "wikidataId": "Q630708",
+        "canonicalNameEn": "Antigua Public Library",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "poi-23def205595fa426",
+        "wikidataId": "Q5167174",
+        "canonicalNameEn": "Cooks Creek",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "poi-0ff84311e87ae80e",
+        "wikidataId": "Q5471402",
+        "canonicalNameEn": "Fort James",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "poi-dfc11b339e9355cf",
+        "wikidataId": "Q6801990",
+        "canonicalNameEn": "McKinnon's Pond",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "poi-8d8e92e4df899707",
+        "wikidataId": "Q2912720",
+        "canonicalNameEn": "Museum of Antigua and Barbuda",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "poi-f7521b6b02b090d8",
+        "wikidataId": "Q25041774",
+        "canonicalNameEn": "Runaway Beach",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "poi-92dceaf42c5e9ba1",
+        "wikidataId": "Q4265706",
+        "canonicalNameEn": "St. John's Cathedral",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "poi-7cd99bc6ab1da0f0",
+        "wikidataId": "Q16964610",
+        "canonicalNameEn": "Christ the King Cathedral",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "poi-cf74cd09de9887f4",
+        "wikidataId": "Q2688645",
+        "canonicalNameEn": "National Museum of Gitega",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "poi-6ec038cd36a3ca55",
+        "wikidataId": "Q125218514",
+        "canonicalNameEn": "Bujumbura Textile Complex",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "poi-a6f78c75f5f8a9ef",
+        "wikidataId": "Q5000987",
+        "canonicalNameEn": "Living Museum of Bujumbura",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "poi-85ba55e3c4f21f47",
+        "wikidataId": "Q21331040",
+        "canonicalNameEn": "Muha River",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "poi-7262fbfbe3bab283",
+        "wikidataId": "Q21331054",
+        "canonicalNameEn": "Mutimbuzi",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "poi-4bf12a8bb4135117",
+        "wikidataId": "Q21331042",
+        "canonicalNameEn": "Ntahangwa",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "poi-056d88f2721380fb",
+        "wikidataId": "Q16964613",
+        "canonicalNameEn": "Regina Mundi Cathedral, Bujumbura",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "poi-a52b23ef9c6c4ada",
+        "wikidataId": "Q21331033",
+        "canonicalNameEn": "river Kanyosha",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "poi-22173b57304a2669",
+        "wikidataId": "Q2887058",
+        "canonicalNameEn": "basilique Sainte-Anne-du-Congo de Brazzaville",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "poi-fffd4691bb555e9d",
+        "wikidataId": "Q3397525",
+        "canonicalNameEn": "Brazzaville–Kinshasa Bridge",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "poi-b0e67c8a941a0982",
+        "wikidataId": "Q22636927",
+        "canonicalNameEn": "Djoué",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "poi-8cf61af9f6762896",
+        "wikidataId": "Q559340",
+        "canonicalNameEn": "Livingstone Falls",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "poi-4a30d9c496a2a349",
+        "wikidataId": "Q2942910",
+        "canonicalNameEn": "Sacred Heart Cathedral, Brazzaville",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "poi-cb2d680767a5ff96",
+        "wikidataId": "Q59485217",
+        "canonicalNameEn": "African Circle Museum of Pointe-Noire",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "poi-f42da89664c9e338",
+        "wikidataId": "Q42293623",
+        "canonicalNameEn": "Église Notre-Dame-de-l'Assomption de Pointe-Noire (république du Congo)",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "poi-2b331f6240067ac0",
+        "wikidataId": "Q7208308",
+        "canonicalNameEn": "Pointe-Noire Bay",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "poi-efab8c368f9e30de",
+        "wikidataId": "Q21484147",
+        "canonicalNameEn": "St. Peter the Apostle Cathedral, Pointe-Noire",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "poi-cdbebbb64a9e9eb1",
+        "wikidataId": "Q22470172",
+        "canonicalNameEn": "Tchimpounga",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "poi-c9c80b55681c1582",
+        "wikidataId": "Q859906",
+        "canonicalNameEn": "Bijilo Forest Park",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "poi-b66d7dbf65a46403",
+        "wikidataId": "Q1720898",
+        "canonicalNameEn": "Kachikally Museum and Crocodile Pool",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "poi-3c2e0abc24dc7b90",
+        "wikidataId": "Q1720678",
+        "canonicalNameEn": "Salagi Forest Park",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "poi-711991698aae8069",
+        "wikidataId": "Q335818",
+        "canonicalNameEn": "Abuko Nature Reserve",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "poi-c3d25f0c45da0c3f",
+        "wikidataId": "Q325000",
+        "canonicalNameEn": "Albert Market",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "poi-47f1a086a790c4f9",
+        "wikidataId": "Q632012",
+        "canonicalNameEn": "Arch 22",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "poi-dd3045b31f71a630",
+        "wikidataId": "Q1189924",
+        "canonicalNameEn": "Denton Bridge",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "poi-61c07233f145f242",
+        "wikidataId": "Q6974175",
+        "canonicalNameEn": "National Library of The Gambia",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "poi-eec7f50e7a06f17a",
+        "wikidataId": "Q2179688",
+        "canonicalNameEn": "Our Lady of the Assumption Cathedral, Banjul",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "poi-d5a0cde5ac33d0aa",
+        "wikidataId": "Q1253433",
+        "canonicalNameEn": "Tanbi Wetland Complex",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "poi-90cd2fdc0a341d7d",
+        "wikidataId": "Q123058472",
+        "canonicalNameEn": "Cathedral of Our Lady of Victories and Peace",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "poi-769353b87a22651a",
+        "wikidataId": "Q87476937",
+        "canonicalNameEn": "Musée du Camp Soundiata Keita",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "poi-c8e144c3635584cd",
+        "wikidataId": "Q5588514",
+        "canonicalNameEn": "Gouyave River",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "poi-38305513cb0ff697",
+        "wikidataId": "Q6651625",
+        "canonicalNameEn": "Little River",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "poi-47d8bbeb6ec43ea7",
+        "wikidataId": "Q525281",
+        "canonicalNameEn": "Mount Saint Catherine",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "poi-80ff41a0fb5c6bf4",
+        "wikidataId": "Q65129375",
+        "canonicalNameEn": "Fort George",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "poi-37e7e4233272760d",
+        "wikidataId": "Q24679916",
+        "canonicalNameEn": "Glover Island",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "poi-e7779140ac5d1b05",
+        "wikidataId": "Q5594534",
+        "canonicalNameEn": "Grand Etang Lake",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "poi-0e7aa049573fde0f",
+        "wikidataId": "Q15222142",
+        "canonicalNameEn": "Grenada National Museum",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "poi-61d0af24a7096bee",
+        "wikidataId": "Q23831971",
+        "canonicalNameEn": "Immaculate Conception Cathedral",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "poi-c89ac20b171996bc",
+        "wikidataId": "Q6896200",
+        "canonicalNameEn": "Molinere Underwater Sculpture Park",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "poi-a5b1493e0ebfeb7e",
+        "wikidataId": "Q7401492",
+        "canonicalNameEn": "Saint Johns River",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "poi-220e649a53af311d",
+        "wikidataId": "Q4255937",
+        "canonicalNameEn": "Cathedrale Sainte-Marie",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "poi-e3d81a5b42015762",
+        "wikidataId": "Q5158067",
+        "canonicalNameEn": "Conakry Botanical Garden",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "poi-094e6fc2880e164d",
+        "wikidataId": "Q2586343",
+        "canonicalNameEn": "Conakry National Museum",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "poi-d9a051e29a9b6f94",
+        "wikidataId": "Q254925",
+        "canonicalNameEn": "Grand Mosque of Conakry",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "poi-c346ca42a77531ef",
+        "wikidataId": "Q6906858",
+        "canonicalNameEn": "Monument du 22 Novembre 1970",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "poi-232bff4e217806b7",
+        "wikidataId": "Q3611476",
+        "canonicalNameEn": "Presidential Palace",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "poi-c21d69e8bfeefe8e",
+        "wikidataId": "Q1572991",
+        "canonicalNameEn": "Tombo Island",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "poi-0de5d1c72175ed68",
+        "wikidataId": "Q892946",
+        "canonicalNameEn": "Booby Island",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "poi-e0e6df1c822a8c2d",
+        "wikidataId": "Q1982346",
+        "canonicalNameEn": "Nevis Peak",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "poi-a12671def0584ea0",
+        "wikidataId": "Q3495992",
+        "canonicalNameEn": "The Narrows",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "poi-d982bf0f365a6b46",
+        "wikidataId": "Q4892058",
+        "canonicalNameEn": "Berkeley Memorial",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "poi-1f733b83eeb5071c",
+        "wikidataId": "Q5074840",
+        "canonicalNameEn": "Charles A. Halbert Public Library",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "poi-0395a4d727206ff4",
+        "wikidataId": "Q4868078",
+        "canonicalNameEn": "Co-Cathedral of Immaculate Conception, Basseterre",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "poi-98e58c19aeb1e10b",
+        "wikidataId": "Q5504478",
+        "canonicalNameEn": "Frigate Bay",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "poi-5ec9bf3829a42fa1",
+        "wikidataId": "Q7087246",
+        "canonicalNameEn": "Olivees Mountain",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "poi-fca9bd13265a492b",
+        "wikidataId": "Q7588089",
+        "canonicalNameEn": "St. George's Anglican Church",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "poi-6739f9404ca77c70",
+        "wikidataId": "Q7921002",
+        "canonicalNameEn": "Verchild's Peak",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "poi-05744b00b355359b",
+        "wikidataId": "Q4750333",
+        "canonicalNameEn": "Ana Chaves Bay",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "poi-d6f3a93824629608",
+        "wikidataId": "Q2426165",
+        "canonicalNameEn": "Estádio Nacional 12 de Julho",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "poi-3f59bd5620ed60d7",
+        "wikidataId": "Q748931",
+        "canonicalNameEn": "Ilhéu das Cabras",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "poi-b55e6f0684b60d89",
+        "wikidataId": "Q23647843",
+        "canonicalNameEn": "National Library of São Tomé and Príncipe",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "poi-575cdbc23299de89",
+        "wikidataId": "Q2607864",
+        "canonicalNameEn": "Our Lady of Grace Cathedral",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "poi-816a762abba3ff64",
+        "wikidataId": "Q10280174",
+        "canonicalNameEn": "São Sebastião Lighthouse",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "poi-e2e323143b80b9a8",
+        "wikidataId": "Q2110836",
+        "canonicalNameEn": "São Sebastião Museum",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "poi-6309b085316100c0",
+        "wikidataId": "Q5052198",
+        "canonicalNameEn": "Cathedral Basilica of the Immaculate Conception in Castries",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "poi-258e2d100f44b4d3",
+        "wikidataId": "Q1128510",
+        "canonicalNameEn": "Cul de Sac River",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "poi-b065c978f66307bd",
+        "wikidataId": "Q93259",
+        "canonicalNameEn": "Lesser Antilles",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "poi-aebef77068f7f04b",
+        "wikidataId": "Q6763299",
+        "canonicalNameEn": "Marigot Bay",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "poi-ff3ff952ccc2fe4a",
+        "wikidataId": "Q7193299",
+        "canonicalNameEn": "Pigeon Island",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "poi-2920c263df86ef0c",
+        "wikidataId": "Q7356852",
+        "canonicalNameEn": "Rodney Bay",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "poi-9a147a150f4b3239",
+        "wikidataId": "Q7928894",
+        "canonicalNameEn": "Vigie Beach",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "poi-8994621dd37ba62d",
+        "wikidataId": "Q28653599",
+        "canonicalNameEn": "Assumption Cathedral, Kingstown",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "poi-f758a13fcc4022ca",
+        "wikidataId": "Q4948422",
+        "canonicalNameEn": "Botanic Gardens St. Vincent",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "poi-608d801ed97ad2e0",
+        "wikidataId": "Q5003913",
+        "canonicalNameEn": "Byahaut Bat Cave",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "poi-cd723e8bb4084fbe",
+        "wikidataId": "Q28448431",
+        "canonicalNameEn": "Fort Charlotte",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "poi-bb7f666fef5bdc35",
+        "wikidataId": "Q31839495",
+        "canonicalNameEn": "Fort Duvernette",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "poi-0a89b16deb13ea9f",
+        "wikidataId": "Q5594324",
+        "canonicalNameEn": "Grand Bonhomme",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "poi-b2e5a25ec81fd123",
+        "wikidataId": "Q1254282",
+        "canonicalNameEn": "Young Island",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "poi-5075bfac7196a14e",
+        "wikidataId": "Q16891911",
+        "canonicalNameEn": "Guadalcanal American Memorial",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "poi-9378181228765d91",
+        "wikidataId": "Q28747002",
+        "canonicalNameEn": "Holy Cross Cathedral",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "poi-8047a70ce913e1ae",
+        "wikidataId": "Q28224122",
+        "canonicalNameEn": "Honiara Central Market",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "poi-632828ea4e042cd3",
+        "wikidataId": "Q349382",
+        "canonicalNameEn": "Matanikau River",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "poi-01ce931de5292a36",
+        "wikidataId": "Q25083458",
+        "canonicalNameEn": "National Archives of Solomon Islands",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "poi-9b6a2086dc106820",
+        "wikidataId": "Q130718410",
+        "canonicalNameEn": "National Library of Solomon Islands",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "poi-ec38e3cf2e22484f",
+        "wikidataId": "Q106512453",
+        "canonicalNameEn": "Solomon Islands National Museum",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "poi-d3637df73e830cf4",
+        "wikidataId": "Q109535973",
+        "canonicalNameEn": "Al-Khadeejah Mosque",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "poi-21114e55fbd249f1",
+        "wikidataId": "Q24249438",
+        "canonicalNameEn": "Basilica of St. Anthony of Padua",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "poi-9f55cfc7a29a6629",
+        "wikidataId": "Q22668306",
+        "canonicalNameEn": "Monūafe",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "poi-e6430f993688b68d",
+        "wikidataId": "Q3845259",
+        "canonicalNameEn": "Nukuʻalofa Tonga Temple",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "poi-3390c45fec76ce65",
+        "wikidataId": "Q7361669",
+        "canonicalNameEn": "Roman Catholic Church of Tonga",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "poi-b3042d66ec4bf411",
+        "wikidataId": "Q2992825",
+        "canonicalNameEn": "Royal Palace of Nukuʻalofa",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "poi-ae4bbbbbd3a48d0c",
+        "wikidataId": "Q25048076",
+        "canonicalNameEn": "Tonga National Museum",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "poi-05fa5ac2361a2533",
+        "wikidataId": "Q27030937",
+        "canonicalNameEn": "Akodessawa Fetish Market",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "poi-dbf7f4babe3e859b",
+        "wikidataId": "Q39048890",
+        "canonicalNameEn": "Independence Monument, Lome",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "poi-48e2fcdbaadace10",
+        "wikidataId": "Q6669569",
+        "canonicalNameEn": "Lomé Grand Market",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "poi-c77d8d5941d47538",
+        "wikidataId": "Q16875664",
+        "canonicalNameEn": "National Archives of Togo",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "poi-67b54655bad5e2cd",
+        "wikidataId": "Q618258",
+        "canonicalNameEn": "National Library of Togo",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "poi-7258b6b75135d72c",
+        "wikidataId": "Q766138",
+        "canonicalNameEn": "Sacred Heart Cathedral",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "poi-51576ad84899ca6e",
+        "wikidataId": "Q2564552",
+        "canonicalNameEn": "Arch of Neutrality",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "poi-300a8efbb4558e1c",
+        "wikidataId": "Q18404626",
+        "canonicalNameEn": "Ashgabat Memorial Complex",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "poi-1a96549fe020d7be",
+        "wikidataId": "Q993863",
+        "canonicalNameEn": "Ertuğrul Gazi Mosque",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "poi-4d63e2eae804a2b9",
+        "wikidataId": "Q3323339",
+        "canonicalNameEn": "Independence Monument, Ashgabat",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "poi-e8654015a2621a5c",
+        "wikidataId": "Q4302176",
+        "canonicalNameEn": "Monument to the Constitution",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "poi-b674144abcf401c8",
+        "wikidataId": "Q12016613",
+        "canonicalNameEn": "National Library of Turkmenistan",
+        "decision": "ADMIT",
+        "reasons": []
+      },
+      {
+        "entityId": "poi-274cee811409d032",
+        "wikidataId": "Q1835821",
+        "canonicalNameEn": "Turkmen Carpet Museum",
+        "decision": "ADMIT",
+        "reasons": []
+      }
+    ]
+  },
+  "destinationDisposition": {
+    "reviewed": 21,
+    "admitted": 21,
+    "reused": 0,
+    "quarantined": 0,
+    "rejected": 0,
+    "unaccounted": 0,
+    "multiDisposition": 0
+  },
+  "poiDisposition": {
+    "reviewed": 116,
+    "admitted": 116,
+    "reused": 0,
+    "quarantined": 0,
+    "rejected": 0,
+    "unaccounted": 0,
+    "multiDisposition": 0
+  },
+  "perCountry": [
+    {
+      "countryCode": "LC",
+      "admittedDestinations": [
+        {
+          "entityId": "city-431d56ce0f110a8f",
+          "wikidataId": "Q41699",
+          "canonicalNameEn": "Castries"
+        }
+      ],
+      "admittedDestinationCount": 1,
+      "admittedPoiCount": 7,
+      "foundationComplete": true,
+      "remainingBlocker": "evidence-pending",
+      "transport": {
+        "required": 0,
+        "admitted": 0,
+        "missing": 0
+      },
+      "season": {
+        "required": 1,
+        "admitted": 0,
+        "missing": 1
+      },
+      "themeExisting": 0
+    },
+    {
+      "countryCode": "VC",
+      "admittedDestinations": [
+        {
+          "entityId": "city-efcf6ab20f4a3584",
+          "wikidataId": "Q41474",
+          "canonicalNameEn": "Kingstown"
+        }
+      ],
+      "admittedDestinationCount": 1,
+      "admittedPoiCount": 7,
+      "foundationComplete": true,
+      "remainingBlocker": "evidence-pending",
+      "transport": {
+        "required": 0,
+        "admitted": 0,
+        "missing": 0
+      },
+      "season": {
+        "required": 1,
+        "admitted": 0,
+        "missing": 1
+      },
+      "themeExisting": 0
+    },
+    {
+      "countryCode": "ST",
+      "admittedDestinations": [
+        {
+          "entityId": "city-403d5fec2fb5fbda",
+          "wikidataId": "Q3932",
+          "canonicalNameEn": "São Tomé"
+        }
+      ],
+      "admittedDestinationCount": 1,
+      "admittedPoiCount": 7,
+      "foundationComplete": true,
+      "remainingBlocker": "evidence-pending",
+      "transport": {
+        "required": 0,
+        "admitted": 0,
+        "missing": 0
+      },
+      "season": {
+        "required": 1,
+        "admitted": 0,
+        "missing": 1
+      },
+      "themeExisting": 0
+    },
+    {
+      "countryCode": "SB",
+      "admittedDestinations": [
+        {
+          "entityId": "city-49974cebb0f97983",
+          "wikidataId": "Q40921",
+          "canonicalNameEn": "Honiara"
+        }
+      ],
+      "admittedDestinationCount": 1,
+      "admittedPoiCount": 7,
+      "foundationComplete": true,
+      "remainingBlocker": "evidence-pending",
+      "transport": {
+        "required": 0,
+        "admitted": 0,
+        "missing": 0
+      },
+      "season": {
+        "required": 1,
+        "admitted": 0,
+        "missing": 1
+      },
+      "themeExisting": 0
+    },
+    {
+      "countryCode": "TG",
+      "admittedDestinations": [
+        {
+          "entityId": "city-38995d15db6b543b",
+          "wikidataId": "Q3792",
+          "canonicalNameEn": "Lomé"
+        }
+      ],
+      "admittedDestinationCount": 1,
+      "admittedPoiCount": 6,
+      "foundationComplete": true,
+      "remainingBlocker": "evidence-pending",
+      "transport": {
+        "required": 0,
+        "admitted": 0,
+        "missing": 0
+      },
+      "season": {
+        "required": 1,
+        "admitted": 0,
+        "missing": 1
+      },
+      "themeExisting": 0
+    },
+    {
+      "countryCode": "TM",
+      "admittedDestinations": [
+        {
+          "entityId": "city-caec21868a98aec1",
+          "wikidataId": "Q23438",
+          "canonicalNameEn": "Ashgabat"
+        }
+      ],
+      "admittedDestinationCount": 1,
+      "admittedPoiCount": 7,
+      "foundationComplete": true,
+      "remainingBlocker": "evidence-pending",
+      "transport": {
+        "required": 0,
+        "admitted": 0,
+        "missing": 0
+      },
+      "season": {
+        "required": 1,
+        "admitted": 0,
+        "missing": 1
+      },
+      "themeExisting": 0
+    },
+    {
+      "countryCode": "TO",
+      "admittedDestinations": [
+        {
+          "entityId": "city-0d24db45467b9828",
+          "wikidataId": "Q38834",
+          "canonicalNameEn": "Nukuʻalofa"
+        }
+      ],
+      "admittedDestinationCount": 1,
+      "admittedPoiCount": 7,
+      "foundationComplete": true,
+      "remainingBlocker": "evidence-pending",
+      "transport": {
+        "required": 0,
+        "admitted": 0,
+        "missing": 0
+      },
+      "season": {
+        "required": 1,
+        "admitted": 0,
+        "missing": 1
+      },
+      "themeExisting": 0
+    },
+    {
+      "countryCode": "AG",
+      "admittedDestinations": [
+        {
+          "entityId": "city-8cbde2ce68a8bf1f",
+          "wikidataId": "Q31578200",
+          "canonicalNameEn": "English Harbour"
+        },
+        {
+          "entityId": "city-b42fb7994a854ea5",
+          "wikidataId": "Q36262",
+          "canonicalNameEn": "St. John's"
+        }
+      ],
+      "admittedDestinationCount": 2,
+      "admittedPoiCount": 10,
+      "foundationComplete": true,
+      "remainingBlocker": "evidence-pending",
+      "transport": {
+        "required": 2,
+        "admitted": 0,
+        "missing": 2
+      },
+      "season": {
+        "required": 2,
+        "admitted": 0,
+        "missing": 2
+      },
+      "themeExisting": 0
+    },
+    {
+      "countryCode": "CG",
+      "admittedDestinations": [
+        {
+          "entityId": "city-b8651ce35876fbfe",
+          "wikidataId": "Q3844",
+          "canonicalNameEn": "Brazzaville"
+        },
+        {
+          "entityId": "city-e34cdc0b0362d926",
+          "wikidataId": "Q223920",
+          "canonicalNameEn": "Pointe-Noire"
+        }
+      ],
+      "admittedDestinationCount": 2,
+      "admittedPoiCount": 10,
+      "foundationComplete": true,
+      "remainingBlocker": "evidence-pending",
+      "transport": {
+        "required": 2,
+        "admitted": 0,
+        "missing": 2
+      },
+      "season": {
+        "required": 2,
+        "admitted": 0,
+        "missing": 2
+      },
+      "themeExisting": 0
+    },
+    {
+      "countryCode": "GD",
+      "admittedDestinations": [
+        {
+          "entityId": "city-ba825291250c2c61",
+          "wikidataId": "Q375507",
+          "canonicalNameEn": "Gouyave"
+        },
+        {
+          "entityId": "city-c8aa57e633cd1289",
+          "wikidataId": "Q41547",
+          "canonicalNameEn": "St. George's"
+        }
+      ],
+      "admittedDestinationCount": 2,
+      "admittedPoiCount": 10,
+      "foundationComplete": true,
+      "remainingBlocker": "evidence-pending",
+      "transport": {
+        "required": 2,
+        "admitted": 0,
+        "missing": 2
+      },
+      "season": {
+        "required": 2,
+        "admitted": 0,
+        "missing": 2
+      },
+      "themeExisting": 0
+    },
+    {
+      "countryCode": "GM",
+      "admittedDestinations": [
+        {
+          "entityId": "city-2628cfaa45b85a20",
+          "wikidataId": "Q217568",
+          "canonicalNameEn": "Serekunda"
+        },
+        {
+          "entityId": "city-dd386d521ac4ce11",
+          "wikidataId": "Q3726",
+          "canonicalNameEn": "Banjul"
+        }
+      ],
+      "admittedDestinationCount": 2,
+      "admittedPoiCount": 10,
+      "foundationComplete": true,
+      "remainingBlocker": "evidence-pending",
+      "transport": {
+        "required": 2,
+        "admitted": 0,
+        "missing": 2
+      },
+      "season": {
+        "required": 2,
+        "admitted": 0,
+        "missing": 2
+      },
+      "themeExisting": 0
+    },
+    {
+      "countryCode": "KN",
+      "admittedDestinations": [
+        {
+          "entityId": "city-79ceb5a70825c90f",
+          "wikidataId": "Q992311",
+          "canonicalNameEn": "Charlestown"
+        },
+        {
+          "entityId": "city-c2ab81fa714c618e",
+          "wikidataId": "Q41295",
+          "canonicalNameEn": "Basseterre"
+        }
+      ],
+      "admittedDestinationCount": 2,
+      "admittedPoiCount": 10,
+      "foundationComplete": true,
+      "remainingBlocker": "evidence-pending",
+      "transport": {
+        "required": 2,
+        "admitted": 0,
+        "missing": 2
+      },
+      "season": {
+        "required": 2,
+        "admitted": 0,
+        "missing": 2
+      },
+      "themeExisting": 0
+    },
+    {
+      "countryCode": "BI",
+      "admittedDestinations": [
+        {
+          "entityId": "city-56af1d2dbde83b82",
+          "wikidataId": "Q167551",
+          "canonicalNameEn": "Gitega"
+        },
+        {
+          "entityId": "city-e29b7b63b7d45b3f",
+          "wikidataId": "Q3854",
+          "canonicalNameEn": "Bujumbura"
+        }
+      ],
+      "admittedDestinationCount": 2,
+      "admittedPoiCount": 9,
+      "foundationComplete": true,
+      "remainingBlocker": "evidence-pending",
+      "transport": {
+        "required": 2,
+        "admitted": 0,
+        "missing": 2
+      },
+      "season": {
+        "required": 2,
+        "admitted": 0,
+        "missing": 2
+      },
+      "themeExisting": 0
+    },
+    {
+      "countryCode": "GN",
+      "admittedDestinations": [
+        {
+          "entityId": "city-69bf2f0b7fc76fcc",
+          "wikidataId": "Q874317",
+          "canonicalNameEn": "Kankan"
+        },
+        {
+          "entityId": "city-c8ced73483e5a38d",
+          "wikidataId": "Q3733",
+          "canonicalNameEn": "Conakry"
+        }
+      ],
+      "admittedDestinationCount": 2,
+      "admittedPoiCount": 9,
+      "foundationComplete": true,
+      "remainingBlocker": "evidence-pending",
+      "transport": {
+        "required": 2,
+        "admitted": 0,
+        "missing": 2
+      },
+      "season": {
+        "required": 2,
+        "admitted": 0,
+        "missing": 2
+      },
+      "themeExisting": 0
+    }
+  ],
+  "production": {
+    "countries": 195,
+    "destinations": 911,
+    "pois": 4275,
+    "total": 5381
+  },
+  "readiness": {
+    "plannable": 122,
+    "evidenceBacked": 119,
+    "catalogOnly": 73,
+    "accidentalPromotions": 0
+  },
+  "candidateLeakage": "NONE",
+  "evidenceAdded": 0,
+  "imageChanges": 0,
+  "performanceClearance": "NOT_CLEARED"
+}

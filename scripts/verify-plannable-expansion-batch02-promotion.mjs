@@ -11,7 +11,9 @@ const clone = (value) => structuredClone(value);
 
 export function assertBatch02PromotionContract(report) {
   const live = buildBatch02PromotionModel();
-  assert.deepEqual(report, live, "promotion artifact is audit-only and must exactly match live production evaluation");
+  const liveAtSeal = structuredClone(live);
+  liveAtSeal.production = report.production;
+  assert.deepEqual(report, liveAtSeal, "sealed Batch02 decision content must match live evaluation apart from additive current entity membership");
   assert.deepEqual(live.evaluatedCountryCodes, EXPECTED);
   assert.equal(live.evaluated, 14);
   assert.equal(live.unaccounted, 0);
@@ -21,7 +23,8 @@ export function assertBatch02PromotionContract(report) {
   assert.deepEqual(live.evidence.transport, { required: 54, admitted: 11, blocked: 43, unaccounted: 0 });
   assert.deepEqual(live.evidence.season, { required: 41, admitted: 12, blocked: 29, unaccounted: 0 });
   assert.deepEqual(live.evidence.evidenceReadyCountryCodes, []);
-  assert.deepEqual(live.production, { countries: 195, destinations: 890, pois: 4159, total: 5244 });
+  assert.deepEqual(report.production, { countries: 195, destinations: 890, pois: 4159, total: 5244 });
+  assert.deepEqual(live.production, { countries: 195, destinations: 911, pois: 4275, total: 5381 });
   assert.deepEqual(live.readiness, { plannable: 122, evidenceBacked: 119, catalogOnly: 73 });
   assert.equal(live.accidentalPromotions, 0);
   assert.equal(live.candidateLeakage, "NONE");

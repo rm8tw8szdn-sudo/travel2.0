@@ -22,8 +22,12 @@ const writtenReport = json("data/knowledge/reports/plannable-expansion-batch02-e
 const rebuilt = buildBatch02EvidenceModel();
 
 export function assertBatch02EvidenceContract({ audit, report }) {
-  assert.deepEqual(audit, rebuilt.audit, "audit must be deterministic and cannot define authority");
-  assert.deepEqual(report, rebuilt.report, "report must match independently derived live Evidence coverage");
+  const rebuiltAtSeal = structuredClone(rebuilt.audit);
+  rebuiltAtSeal.authority.entityCounts = audit.authority.entityCounts;
+  assert.deepEqual(audit, rebuiltAtSeal, "sealed Batch02 evidence content must remain deterministic apart from additive current entity membership");
+  const rebuiltReportAtSeal = structuredClone(rebuilt.report);
+  rebuiltReportAtSeal.authority.entityCounts = report.authority.entityCounts;
+  assert.deepEqual(report, rebuiltReportAtSeal, "sealed Batch02 report must match live Evidence coverage apart from additive current entity membership");
   assert.equal(audit.transportUnits.length, 54);
   assert.equal(audit.seasonUnits.length, 41);
   assert.equal(audit.summary.transport.required, audit.summary.transport.totalAdmitted + audit.summary.transport.blocked);
@@ -36,6 +40,7 @@ export function assertBatch02EvidenceContract({ audit, report }) {
   assert.deepEqual(audit.summary.evidenceBlockedCountryCodes, ["AO", "BJ", "BY", "BZ", "CI", "CM", "CV", "DM", "MN", "MZ", "SZ", "TL", "TT", "UG"]);
   assert.equal(audit.coverageMatrix.every((entry) => entry.evidenceReady === false && (entry.blockedTransport > 0 || entry.blockedSeason > 0)), true);
   assert.deepEqual(audit.authority.entityCounts, { countries: 195, cities: 890, pois: 4159, total: 5244 });
+  assert.deepEqual(rebuilt.audit.authority.entityCounts, { countries: 195, cities: 911, pois: 4275, total: 5381 });
   assert.deepEqual(audit.authority.readinessCounts, { plannable: 122, evidenceBacked: 119, catalogOnly: 73 });
   assert.equal(audit.authority.accidentalPromotions, 0);
   assert.equal(audit.authority.candidateLeakage, "NONE");
@@ -155,7 +160,7 @@ for (const [label, mutate] of contractMutations) {
 }
 
 const repository = createPublishedKnowledgeEntityLayerRepository({ projectRoot: ROOT });
-assert.deepEqual({ countries: repository.listCountries().length, cities: repository.listCities().length, pois: repository.listPois().length }, { countries: 195, cities: 890, pois: 4159 });
+assert.deepEqual({ countries: repository.listCountries().length, cities: repository.listCities().length, pois: repository.listPois().length }, { countries: 195, cities: 911, pois: 4275 });
 assert.deepEqual(getAuthoritativeKnowledgeReadiness().expectedCounts, { plannable: 122, evidenceBacked: 119, catalogOnly: 73 });
 
 console.log(JSON.stringify({

@@ -12,9 +12,9 @@ const defaultProjectRoot = path.resolve(moduleDirectory, "../../..");
 
 export const KNOWLEDGE_ENTITY_LAYER_PUBLISHED_TOTALS = Object.freeze({
   countries: 195,
-  cities: 890,
-  pois: 4159,
-  total: 5244,
+  cities: 911,
+  pois: 4275,
+  total: 5381,
 });
 
 export const KNOWLEDGE_ENTITY_LAYER_PUBLISHED_ASSETS = Object.freeze({
@@ -72,6 +72,7 @@ export const KNOWLEDGE_ENTITY_LAYER_PUBLISHED_ASSETS = Object.freeze({
     "data/knowledge/batches/cities.p1b-batch33.json",
     "data/knowledge/batches/cities.p1b-batch50.json",
     "data/knowledge/batches/cities.p1b-batch51.json",
+    "data/knowledge/batches/cities.p1b-batch52.json",
   ]),
   pois: Object.freeze([
     "data/knowledge/pois.p1b-pilot.json",
@@ -110,6 +111,7 @@ export const KNOWLEDGE_ENTITY_LAYER_PUBLISHED_ASSETS = Object.freeze({
     "data/knowledge/batches/pois.p1b-batch33.json",
     "data/knowledge/batches/pois.p1b-batch50.json",
     "data/knowledge/batches/pois.p1b-batch51.json",
+    "data/knowledge/batches/pois.p1b-batch52.json",
   ]),
 });
 

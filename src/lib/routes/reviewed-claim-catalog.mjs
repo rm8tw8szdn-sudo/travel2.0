@@ -6,6 +6,7 @@ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../../.
 const TRUSTED_CATALOGS = Object.freeze([
   ["plannable-expansion-batch01", "data/knowledge/reviewed-claims/plannable-expansion-batch01-reviewed-claims.json"],
   ["plannable-expansion-batch02", "data/knowledge/reviewed-claims/plannable-expansion-batch02-reviewed-claims.json"],
+  ["plannable-expansion-batch03", "data/knowledge/reviewed-claims/plannable-expansion-batch03-reviewed-claims.json"],
 ]);
 
 export function assertReviewedClaimCatalogSet(catalogEntries) {

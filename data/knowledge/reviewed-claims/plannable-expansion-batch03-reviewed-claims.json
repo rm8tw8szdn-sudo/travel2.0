@@ -1,0 +1,97 @@
+{
+  "schemaVersion": "route-v2-reviewed-claim-catalog-v1",
+  "catalogId": "plannable-expansion-batch03",
+  "transportClaims": [
+    {
+      "claimId": "batch03-cg-brazzaville-pointe-noire-1",
+      "countryCode": "CG",
+      "source": {
+        "url": "https://brazza-airlines.com/programme-des-vols/",
+        "authority": "Brazza Airlines",
+        "pageIdentity": "Brazza Airlines official service page",
+        "locator": "Published route/schedule section"
+      },
+      "reviewedFact": "Official operator timetable explicitly lists current scheduled passenger flights in both Brazzaville–Pointe-Noire directions.",
+      "origin": {
+        "canonicalNameEn": "Brazzaville",
+        "entityId": "city-b8651ce35876fbfe"
+      },
+      "destination": {
+        "canonicalNameEn": "Pointe-Noire",
+        "entityId": "city-e34cdc0b0362d926"
+      },
+      "directionality": "bidirectional",
+      "transportMode": "air",
+      "supports": [
+        "route-leg:city-b8651ce35876fbfe>city-e34cdc0b0362d926:feasibility",
+        "route-leg:city-e34cdc0b0362d926>city-b8651ce35876fbfe:feasibility"
+      ],
+      "retrievedAt": "2026-09-23T06:39:22.420847Z",
+      "reviewedPayloadHash": "95e37fc497803d7543dc5e0c45714691114e865e8c2604358b31362fbfc9262b",
+      "reviewedDirections": [
+        {
+          "from": {
+            "canonicalNameEn": "Brazzaville",
+            "entityId": "city-b8651ce35876fbfe"
+          },
+          "to": {
+            "canonicalNameEn": "Pointe-Noire",
+            "entityId": "city-e34cdc0b0362d926"
+          },
+          "reviewedFact": "The inspected official timetable explicitly lists Brazzaville departures to Pointe-Noire.",
+          "support": "route-leg:city-b8651ce35876fbfe>city-e34cdc0b0362d926:feasibility"
+        },
+        {
+          "from": {
+            "canonicalNameEn": "Pointe-Noire",
+            "entityId": "city-e34cdc0b0362d926"
+          },
+          "to": {
+            "canonicalNameEn": "Brazzaville",
+            "entityId": "city-b8651ce35876fbfe"
+          },
+          "reviewedFact": "The inspected official timetable explicitly lists Pointe-Noire departures to Brazzaville.",
+          "support": "route-leg:city-e34cdc0b0362d926>city-b8651ce35876fbfe:feasibility"
+        }
+      ]
+    }
+  ],
+  "seasonClaims": [
+    {
+      "claimId": "batch03-season-lc-castries-1",
+      "countryCode": "LC",
+      "source": {
+        "url": "https://met.gov.lc/climatology-of-saint-lucia/",
+        "authority": "Saint Lucia Meteorological Services",
+        "pageIdentity": "Climatology of Saint Lucia",
+        "locator": "George F L Charles station, Castries rainfall section"
+      },
+      "reviewedFact": "Official climatology gives Castries station dry-season and wet-season monthly rainfall ranges; October is within the documented wet season.",
+      "destination": {
+        "canonicalNameEn": "Castries",
+        "entityId": "city-431d56ce0f110a8f"
+      },
+      "geographicScope": {
+        "kind": "destination",
+        "identity": "city-431d56ce0f110a8f",
+        "reviewedApplicability": "The official station is explicitly identified with Castries."
+      },
+      "supportedMonths": [
+        10
+      ],
+      "admittedMonth": 10,
+      "factType": "seasonal-climate-risk",
+      "factualPayload": {
+        "risks": [
+          "heavy-rain-risk"
+        ],
+        "conditions": "October is within the official June–November wet season, when Castries station monthly rainfall is documented at 156–250 mm."
+      },
+      "supports": [
+        "season:city-431d56ce0f110a8f:10:risk"
+      ],
+      "retrievedAt": "2026-09-23T06:39:22.420847Z",
+      "reviewedPayloadHash": "096b97052bcb480c517644dffde1319891760b4495175a6ba7730b9798d13290"
+    }
+  ]
+}

@@ -1,0 +1,1314 @@
+{
+  "schemaVersion": "route-v2-plannable-expansion-batch03-evidence-research-v1",
+  "batchId": "plannable-expansion-batch03",
+  "reviewedAt": "2026-09-23T06:39:22.420847Z",
+  "records": [
+    {
+      "unitType": "transport",
+      "unitIdentity": "transport:city-8cbde2ce68a8bf1f>city-b42fb7994a854ea5",
+      "countryCode": "AG",
+      "origin": {
+        "entityId": "city-8cbde2ce68a8bf1f",
+        "wikidataId": "Q31578200",
+        "canonicalNameEn": "English Harbour"
+      },
+      "destination": {
+        "entityId": "city-b42fb7994a854ea5",
+        "wikidataId": "Q36262",
+        "canonicalNameEn": "St. John's"
+      },
+      "requiredDirection": "city-8cbde2ce68a8bf1f>city-b42fb7994a854ea5",
+      "searchAttempt": {
+        "attemptId": "batch03-search-01",
+        "unitIdentity": "transport:city-8cbde2ce68a8bf1f>city-b42fb7994a854ea5",
+        "executionStatus": "EXECUTED",
+        "executedQueries": [
+          "official passenger transport English Harbour to St. John's timetable"
+        ],
+        "searchMethod": "OpenAI web search with direct result inspection; official/operator/government sources prioritized",
+        "checkedResultReferences": [
+          {
+            "url": "https://www.visitantiguabarbuda.com/getting-around/",
+            "title": "Antigua and Barbuda Tourism Authority",
+            "reviewOutcome": "Official tourism material describes island buses and St. John’s stations, but does not establish both exact current directed St. John’s–English Harbour services."
+          }
+        ],
+        "sourceAuthorityAssessment": "Antigua and Barbuda Tourism Authority",
+        "reviewedSourceFact": "Official tourism material describes island buses and St. John’s stations, but does not establish both exact current directed St. John’s–English Harbour services.",
+        "unitSpecificAdjudication": "transport:city-8cbde2ce68a8bf1f>city-b42fb7994a854ea5: Official tourism material describes island buses and St. John’s stations, but does not establish both exact current directed St. John’s–English Harbour services.",
+        "reviewedAt": "2026-09-23T06:39:22.420847Z",
+        "finalResearchOutcome": "FACT_INSUFFICIENT"
+      },
+      "researchOutcome": "FACT_INSUFFICIENT",
+      "adjudicationReason": "Official tourism material describes island buses and St. John’s stations, but does not establish both exact current directed St. John’s–English Harbour services.",
+      "reviewedClaimStatus": "NOT_APPROVED"
+    },
+    {
+      "unitType": "transport",
+      "unitIdentity": "transport:city-b42fb7994a854ea5>city-8cbde2ce68a8bf1f",
+      "countryCode": "AG",
+      "origin": {
+        "entityId": "city-b42fb7994a854ea5",
+        "wikidataId": "Q36262",
+        "canonicalNameEn": "St. John's"
+      },
+      "destination": {
+        "entityId": "city-8cbde2ce68a8bf1f",
+        "wikidataId": "Q31578200",
+        "canonicalNameEn": "English Harbour"
+      },
+      "requiredDirection": "city-b42fb7994a854ea5>city-8cbde2ce68a8bf1f",
+      "searchAttempt": {
+        "attemptId": "batch03-search-02",
+        "unitIdentity": "transport:city-b42fb7994a854ea5>city-8cbde2ce68a8bf1f",
+        "executionStatus": "EXECUTED",
+        "executedQueries": [
+          "official passenger transport St. John's to English Harbour timetable"
+        ],
+        "searchMethod": "OpenAI web search with direct result inspection; official/operator/government sources prioritized",
+        "checkedResultReferences": [
+          {
+            "url": "https://www.visitantiguabarbuda.com/getting-around/",
+            "title": "Antigua and Barbuda Tourism Authority",
+            "reviewOutcome": "Official tourism material describes island buses and St. John’s stations, but does not establish both exact current directed St. John’s–English Harbour services."
+          }
+        ],
+        "sourceAuthorityAssessment": "Antigua and Barbuda Tourism Authority",
+        "reviewedSourceFact": "Official tourism material describes island buses and St. John’s stations, but does not establish both exact current directed St. John’s–English Harbour services.",
+        "unitSpecificAdjudication": "transport:city-b42fb7994a854ea5>city-8cbde2ce68a8bf1f: Official tourism material describes island buses and St. John’s stations, but does not establish both exact current directed St. John’s–English Harbour services.",
+        "reviewedAt": "2026-09-23T06:39:22.420847Z",
+        "finalResearchOutcome": "FACT_INSUFFICIENT"
+      },
+      "researchOutcome": "FACT_INSUFFICIENT",
+      "adjudicationReason": "Official tourism material describes island buses and St. John’s stations, but does not establish both exact current directed St. John’s–English Harbour services.",
+      "reviewedClaimStatus": "NOT_APPROVED"
+    },
+    {
+      "unitType": "transport",
+      "unitIdentity": "transport:city-b8651ce35876fbfe>city-e34cdc0b0362d926",
+      "countryCode": "CG",
+      "origin": {
+        "entityId": "city-b8651ce35876fbfe",
+        "wikidataId": "Q3844",
+        "canonicalNameEn": "Brazzaville"
+      },
+      "destination": {
+        "entityId": "city-e34cdc0b0362d926",
+        "wikidataId": "Q223920",
+        "canonicalNameEn": "Pointe-Noire"
+      },
+      "requiredDirection": "city-b8651ce35876fbfe>city-e34cdc0b0362d926",
+      "searchAttempt": {
+        "attemptId": "batch03-search-03",
+        "unitIdentity": "transport:city-b8651ce35876fbfe>city-e34cdc0b0362d926",
+        "executionStatus": "EXECUTED",
+        "executedQueries": [
+          "official passenger transport Brazzaville to Pointe-Noire timetable"
+        ],
+        "searchMethod": "OpenAI web search with direct result inspection; official/operator/government sources prioritized",
+        "checkedResultReferences": [
+          {
+            "url": "https://brazza-airlines.com/programme-des-vols/",
+            "title": "Brazza Airlines",
+            "reviewOutcome": "Official operator timetable explicitly lists current scheduled passenger flights in both Brazzaville–Pointe-Noire directions."
+          }
+        ],
+        "sourceAuthorityAssessment": "Brazza Airlines",
+        "reviewedSourceFact": "Official operator timetable explicitly lists current scheduled passenger flights in both Brazzaville–Pointe-Noire directions.",
+        "unitSpecificAdjudication": "transport:city-b8651ce35876fbfe>city-e34cdc0b0362d926: Official operator timetable explicitly lists current scheduled passenger flights in both Brazzaville–Pointe-Noire directions.",
+        "reviewedAt": "2026-09-23T06:39:22.420847Z",
+        "finalResearchOutcome": "ELIGIBLE"
+      },
+      "researchOutcome": "ELIGIBLE",
+      "adjudicationReason": "Official operator timetable explicitly lists current scheduled passenger flights in both Brazzaville–Pointe-Noire directions.",
+      "reviewedClaimStatus": "APPROVED"
+    },
+    {
+      "unitType": "transport",
+      "unitIdentity": "transport:city-e34cdc0b0362d926>city-b8651ce35876fbfe",
+      "countryCode": "CG",
+      "origin": {
+        "entityId": "city-e34cdc0b0362d926",
+        "wikidataId": "Q223920",
+        "canonicalNameEn": "Pointe-Noire"
+      },
+      "destination": {
+        "entityId": "city-b8651ce35876fbfe",
+        "wikidataId": "Q3844",
+        "canonicalNameEn": "Brazzaville"
+      },
+      "requiredDirection": "city-e34cdc0b0362d926>city-b8651ce35876fbfe",
+      "searchAttempt": {
+        "attemptId": "batch03-search-04",
+        "unitIdentity": "transport:city-e34cdc0b0362d926>city-b8651ce35876fbfe",
+        "executionStatus": "EXECUTED",
+        "executedQueries": [
+          "official passenger transport Pointe-Noire to Brazzaville timetable"
+        ],
+        "searchMethod": "OpenAI web search with direct result inspection; official/operator/government sources prioritized",
+        "checkedResultReferences": [
+          {
+            "url": "https://brazza-airlines.com/programme-des-vols/",
+            "title": "Brazza Airlines",
+            "reviewOutcome": "Official operator timetable explicitly lists current scheduled passenger flights in both Brazzaville–Pointe-Noire directions."
+          }
+        ],
+        "sourceAuthorityAssessment": "Brazza Airlines",
+        "reviewedSourceFact": "Official operator timetable explicitly lists current scheduled passenger flights in both Brazzaville–Pointe-Noire directions.",
+        "unitSpecificAdjudication": "transport:city-e34cdc0b0362d926>city-b8651ce35876fbfe: Official operator timetable explicitly lists current scheduled passenger flights in both Brazzaville–Pointe-Noire directions.",
+        "reviewedAt": "2026-09-23T06:39:22.420847Z",
+        "finalResearchOutcome": "ELIGIBLE"
+      },
+      "researchOutcome": "ELIGIBLE",
+      "adjudicationReason": "Official operator timetable explicitly lists current scheduled passenger flights in both Brazzaville–Pointe-Noire directions.",
+      "reviewedClaimStatus": "APPROVED"
+    },
+    {
+      "unitType": "transport",
+      "unitIdentity": "transport:city-ba825291250c2c61>city-c8aa57e633cd1289",
+      "countryCode": "GD",
+      "origin": {
+        "entityId": "city-ba825291250c2c61",
+        "wikidataId": "Q375507",
+        "canonicalNameEn": "Gouyave"
+      },
+      "destination": {
+        "entityId": "city-c8aa57e633cd1289",
+        "wikidataId": "Q41547",
+        "canonicalNameEn": "St. George's"
+      },
+      "requiredDirection": "city-ba825291250c2c61>city-c8aa57e633cd1289",
+      "searchAttempt": {
+        "attemptId": "batch03-search-05",
+        "unitIdentity": "transport:city-ba825291250c2c61>city-c8aa57e633cd1289",
+        "executionStatus": "EXECUTED",
+        "executedQueries": [
+          "official passenger transport Gouyave to St. George's timetable"
+        ],
+        "searchMethod": "OpenAI web search with direct result inspection; official/operator/government sources prioritized",
+        "checkedResultReferences": [
+          {
+            "url": "https://grenadaparliament.gd/wp-content/uploads/2021/08/Cap289A-ROAD-TRAFFIC-ACT.pdf",
+            "title": "Grenada Parliament",
+            "reviewOutcome": "Official route regulation names St. George’s and Gouyave on a bus route, but does not establish a current timetable in each direction."
+          }
+        ],
+        "sourceAuthorityAssessment": "Grenada Parliament",
+        "reviewedSourceFact": "Official route regulation names St. George’s and Gouyave on a bus route, but does not establish a current timetable in each direction.",
+        "unitSpecificAdjudication": "transport:city-ba825291250c2c61>city-c8aa57e633cd1289: Official route regulation names St. George’s and Gouyave on a bus route, but does not establish a current timetable in each direction.",
+        "reviewedAt": "2026-09-23T06:39:22.420847Z",
+        "finalResearchOutcome": "FACT_INSUFFICIENT"
+      },
+      "researchOutcome": "FACT_INSUFFICIENT",
+      "adjudicationReason": "Official route regulation names St. George’s and Gouyave on a bus route, but does not establish a current timetable in each direction.",
+      "reviewedClaimStatus": "NOT_APPROVED"
+    },
+    {
+      "unitType": "transport",
+      "unitIdentity": "transport:city-c8aa57e633cd1289>city-ba825291250c2c61",
+      "countryCode": "GD",
+      "origin": {
+        "entityId": "city-c8aa57e633cd1289",
+        "wikidataId": "Q41547",
+        "canonicalNameEn": "St. George's"
+      },
+      "destination": {
+        "entityId": "city-ba825291250c2c61",
+        "wikidataId": "Q375507",
+        "canonicalNameEn": "Gouyave"
+      },
+      "requiredDirection": "city-c8aa57e633cd1289>city-ba825291250c2c61",
+      "searchAttempt": {
+        "attemptId": "batch03-search-06",
+        "unitIdentity": "transport:city-c8aa57e633cd1289>city-ba825291250c2c61",
+        "executionStatus": "EXECUTED",
+        "executedQueries": [
+          "official passenger transport St. George's to Gouyave timetable"
+        ],
+        "searchMethod": "OpenAI web search with direct result inspection; official/operator/government sources prioritized",
+        "checkedResultReferences": [
+          {
+            "url": "https://grenadaparliament.gd/wp-content/uploads/2021/08/Cap289A-ROAD-TRAFFIC-ACT.pdf",
+            "title": "Grenada Parliament",
+            "reviewOutcome": "Official route regulation names St. George’s and Gouyave on a bus route, but does not establish a current timetable in each direction."
+          }
+        ],
+        "sourceAuthorityAssessment": "Grenada Parliament",
+        "reviewedSourceFact": "Official route regulation names St. George’s and Gouyave on a bus route, but does not establish a current timetable in each direction.",
+        "unitSpecificAdjudication": "transport:city-c8aa57e633cd1289>city-ba825291250c2c61: Official route regulation names St. George’s and Gouyave on a bus route, but does not establish a current timetable in each direction.",
+        "reviewedAt": "2026-09-23T06:39:22.420847Z",
+        "finalResearchOutcome": "FACT_INSUFFICIENT"
+      },
+      "researchOutcome": "FACT_INSUFFICIENT",
+      "adjudicationReason": "Official route regulation names St. George’s and Gouyave on a bus route, but does not establish a current timetable in each direction.",
+      "reviewedClaimStatus": "NOT_APPROVED"
+    },
+    {
+      "unitType": "transport",
+      "unitIdentity": "transport:city-2628cfaa45b85a20>city-dd386d521ac4ce11",
+      "countryCode": "GM",
+      "origin": {
+        "entityId": "city-2628cfaa45b85a20",
+        "wikidataId": "Q217568",
+        "canonicalNameEn": "Serekunda"
+      },
+      "destination": {
+        "entityId": "city-dd386d521ac4ce11",
+        "wikidataId": "Q3726",
+        "canonicalNameEn": "Banjul"
+      },
+      "requiredDirection": "city-2628cfaa45b85a20>city-dd386d521ac4ce11",
+      "searchAttempt": {
+        "attemptId": "batch03-search-07",
+        "unitIdentity": "transport:city-2628cfaa45b85a20>city-dd386d521ac4ce11",
+        "executionStatus": "EXECUTED",
+        "executedQueries": [
+          "official passenger transport Serekunda to Banjul timetable"
+        ],
+        "searchMethod": "OpenAI web search with direct result inspection; official/operator/government sources prioritized",
+        "checkedResultReferences": [
+          {
+            "url": "https://demdikk.sn/offres-de-transport/",
+            "title": "Dakar Dem Dikk",
+            "reviewOutcome": "Official operator page establishes Dakar–Banjul service, not the required Banjul–Serekunda directions."
+          }
+        ],
+        "sourceAuthorityAssessment": "Dakar Dem Dikk",
+        "reviewedSourceFact": "Official operator page establishes Dakar–Banjul service, not the required Banjul–Serekunda directions.",
+        "unitSpecificAdjudication": "transport:city-2628cfaa45b85a20>city-dd386d521ac4ce11: Official operator page establishes Dakar–Banjul service, not the required Banjul–Serekunda directions.",
+        "reviewedAt": "2026-09-23T06:39:22.420847Z",
+        "finalResearchOutcome": "FACT_INSUFFICIENT"
+      },
+      "researchOutcome": "FACT_INSUFFICIENT",
+      "adjudicationReason": "Official operator page establishes Dakar–Banjul service, not the required Banjul–Serekunda directions.",
+      "reviewedClaimStatus": "NOT_APPROVED"
+    },
+    {
+      "unitType": "transport",
+      "unitIdentity": "transport:city-dd386d521ac4ce11>city-2628cfaa45b85a20",
+      "countryCode": "GM",
+      "origin": {
+        "entityId": "city-dd386d521ac4ce11",
+        "wikidataId": "Q3726",
+        "canonicalNameEn": "Banjul"
+      },
+      "destination": {
+        "entityId": "city-2628cfaa45b85a20",
+        "wikidataId": "Q217568",
+        "canonicalNameEn": "Serekunda"
+      },
+      "requiredDirection": "city-dd386d521ac4ce11>city-2628cfaa45b85a20",
+      "searchAttempt": {
+        "attemptId": "batch03-search-08",
+        "unitIdentity": "transport:city-dd386d521ac4ce11>city-2628cfaa45b85a20",
+        "executionStatus": "EXECUTED",
+        "executedQueries": [
+          "official passenger transport Banjul to Serekunda timetable"
+        ],
+        "searchMethod": "OpenAI web search with direct result inspection; official/operator/government sources prioritized",
+        "checkedResultReferences": [
+          {
+            "url": "https://demdikk.sn/offres-de-transport/",
+            "title": "Dakar Dem Dikk",
+            "reviewOutcome": "Official operator page establishes Dakar–Banjul service, not the required Banjul–Serekunda directions."
+          }
+        ],
+        "sourceAuthorityAssessment": "Dakar Dem Dikk",
+        "reviewedSourceFact": "Official operator page establishes Dakar–Banjul service, not the required Banjul–Serekunda directions.",
+        "unitSpecificAdjudication": "transport:city-dd386d521ac4ce11>city-2628cfaa45b85a20: Official operator page establishes Dakar–Banjul service, not the required Banjul–Serekunda directions.",
+        "reviewedAt": "2026-09-23T06:39:22.420847Z",
+        "finalResearchOutcome": "FACT_INSUFFICIENT"
+      },
+      "researchOutcome": "FACT_INSUFFICIENT",
+      "adjudicationReason": "Official operator page establishes Dakar–Banjul service, not the required Banjul–Serekunda directions.",
+      "reviewedClaimStatus": "NOT_APPROVED"
+    },
+    {
+      "unitType": "transport",
+      "unitIdentity": "transport:city-79ceb5a70825c90f>city-c2ab81fa714c618e",
+      "countryCode": "KN",
+      "origin": {
+        "entityId": "city-79ceb5a70825c90f",
+        "wikidataId": "Q992311",
+        "canonicalNameEn": "Charlestown"
+      },
+      "destination": {
+        "entityId": "city-c2ab81fa714c618e",
+        "wikidataId": "Q41295",
+        "canonicalNameEn": "Basseterre"
+      },
+      "requiredDirection": "city-79ceb5a70825c90f>city-c2ab81fa714c618e",
+      "searchAttempt": {
+        "attemptId": "batch03-search-09",
+        "unitIdentity": "transport:city-79ceb5a70825c90f>city-c2ab81fa714c618e",
+        "executionStatus": "EXECUTED",
+        "executedQueries": [
+          "official passenger transport Charlestown to Basseterre timetable",
+          "independent official ferry timetable Charlestown → Basseterre"
+        ],
+        "searchMethod": "OpenAI web search with direct result inspection; official/operator/government sources prioritized",
+        "checkedResultReferences": [
+          {
+            "url": "https://www.nevisisland.com/plan/ferry-services",
+            "title": "Nevis Tourism Authority",
+            "reviewOutcome": "Official tourism authority states passenger ferries connect Basseterre Pier and Charlestown Pier and provides the live schedule path."
+          },
+          {
+            "url": "https://www.nevisisland.com/plan/ferry-services",
+            "title": "Nevis Tourism Authority ferry services page",
+            "reviewOutcome": "Connection-only wording; the linked third-party schedule does not inherit the authority of the tourism page and was not accepted as exact-direction proof."
+          }
+        ],
+        "sourceAuthorityAssessment": "Nevis Tourism Authority",
+        "reviewedSourceFact": "The inspected Nevis Tourism Authority page states only that passenger ferries connect Basseterre Pier and Charlestown Pier; its linked third-party schedule was not independently accepted as authoritative proof of departures for the exact Charlestown → Basseterre direction.",
+        "unitSpecificAdjudication": "transport:city-79ceb5a70825c90f>city-c2ab81fa714c618e: The inspected Nevis Tourism Authority page states only that passenger ferries connect Basseterre Pier and Charlestown Pier; its linked third-party schedule was not independently accepted as authoritative proof of departures for the exact Charlestown → Basseterre direction.",
+        "reviewedAt": "2026-09-23T06:39:22.420847Z",
+        "finalResearchOutcome": "FACT_INSUFFICIENT"
+      },
+      "researchOutcome": "FACT_INSUFFICIENT",
+      "adjudicationReason": "The inspected Nevis Tourism Authority page states only that passenger ferries connect Basseterre Pier and Charlestown Pier; its linked third-party schedule was not independently accepted as authoritative proof of departures for the exact Charlestown → Basseterre direction.",
+      "reviewedClaimStatus": "NOT_APPROVED"
+    },
+    {
+      "unitType": "transport",
+      "unitIdentity": "transport:city-c2ab81fa714c618e>city-79ceb5a70825c90f",
+      "countryCode": "KN",
+      "origin": {
+        "entityId": "city-c2ab81fa714c618e",
+        "wikidataId": "Q41295",
+        "canonicalNameEn": "Basseterre"
+      },
+      "destination": {
+        "entityId": "city-79ceb5a70825c90f",
+        "wikidataId": "Q992311",
+        "canonicalNameEn": "Charlestown"
+      },
+      "requiredDirection": "city-c2ab81fa714c618e>city-79ceb5a70825c90f",
+      "searchAttempt": {
+        "attemptId": "batch03-search-10",
+        "unitIdentity": "transport:city-c2ab81fa714c618e>city-79ceb5a70825c90f",
+        "executionStatus": "EXECUTED",
+        "executedQueries": [
+          "official passenger transport Basseterre to Charlestown timetable",
+          "independent official ferry timetable Basseterre → Charlestown"
+        ],
+        "searchMethod": "OpenAI web search with direct result inspection; official/operator/government sources prioritized",
+        "checkedResultReferences": [
+          {
+            "url": "https://www.nevisisland.com/plan/ferry-services",
+            "title": "Nevis Tourism Authority",
+            "reviewOutcome": "Official tourism authority states passenger ferries connect Basseterre Pier and Charlestown Pier and provides the live schedule path."
+          },
+          {
+            "url": "https://www.nevisisland.com/plan/ferry-services",
+            "title": "Nevis Tourism Authority ferry services page",
+            "reviewOutcome": "Connection-only wording; the linked third-party schedule does not inherit the authority of the tourism page and was not accepted as exact-direction proof."
+          }
+        ],
+        "sourceAuthorityAssessment": "Nevis Tourism Authority",
+        "reviewedSourceFact": "The inspected Nevis Tourism Authority page states only that passenger ferries connect Basseterre Pier and Charlestown Pier; its linked third-party schedule was not independently accepted as authoritative proof of departures for the exact Basseterre → Charlestown direction.",
+        "unitSpecificAdjudication": "transport:city-c2ab81fa714c618e>city-79ceb5a70825c90f: The inspected Nevis Tourism Authority page states only that passenger ferries connect Basseterre Pier and Charlestown Pier; its linked third-party schedule was not independently accepted as authoritative proof of departures for the exact Basseterre → Charlestown direction.",
+        "reviewedAt": "2026-09-23T06:39:22.420847Z",
+        "finalResearchOutcome": "FACT_INSUFFICIENT"
+      },
+      "researchOutcome": "FACT_INSUFFICIENT",
+      "adjudicationReason": "The inspected Nevis Tourism Authority page states only that passenger ferries connect Basseterre Pier and Charlestown Pier; its linked third-party schedule was not independently accepted as authoritative proof of departures for the exact Basseterre → Charlestown direction.",
+      "reviewedClaimStatus": "NOT_APPROVED"
+    },
+    {
+      "unitType": "transport",
+      "unitIdentity": "transport:city-56af1d2dbde83b82>city-e29b7b63b7d45b3f",
+      "countryCode": "BI",
+      "origin": {
+        "entityId": "city-56af1d2dbde83b82",
+        "wikidataId": "Q167551",
+        "canonicalNameEn": "Gitega"
+      },
+      "destination": {
+        "entityId": "city-e29b7b63b7d45b3f",
+        "wikidataId": "Q3854",
+        "canonicalNameEn": "Bujumbura"
+      },
+      "requiredDirection": "city-56af1d2dbde83b82>city-e29b7b63b7d45b3f",
+      "searchAttempt": {
+        "attemptId": "batch03-search-11",
+        "unitIdentity": "transport:city-56af1d2dbde83b82>city-e29b7b63b7d45b3f",
+        "executionStatus": "EXECUTED",
+        "executedQueries": [
+          "official passenger transport Gitega to Bujumbura timetable"
+        ],
+        "searchMethod": "OpenAI web search with direct result inspection; official/operator/government sources prioritized",
+        "checkedResultReferences": [
+          {
+            "url": "https://api.insbu.bi/storage/documents/01KNPCJ8ZPKVPN6J1B5W0T56MB.pdf",
+            "title": "Burundi National Statistics Institute",
+            "reviewOutcome": "Government statistics identify passenger transport between Bujumbura and Gitega, but not a current scheduled service for each direction."
+          }
+        ],
+        "sourceAuthorityAssessment": "Burundi National Statistics Institute",
+        "reviewedSourceFact": "Government statistics identify passenger transport between Bujumbura and Gitega, but not a current scheduled service for each direction.",
+        "unitSpecificAdjudication": "transport:city-56af1d2dbde83b82>city-e29b7b63b7d45b3f: Government statistics identify passenger transport between Bujumbura and Gitega, but not a current scheduled service for each direction.",
+        "reviewedAt": "2026-09-23T06:39:22.420847Z",
+        "finalResearchOutcome": "FACT_INSUFFICIENT"
+      },
+      "researchOutcome": "FACT_INSUFFICIENT",
+      "adjudicationReason": "Government statistics identify passenger transport between Bujumbura and Gitega, but not a current scheduled service for each direction.",
+      "reviewedClaimStatus": "NOT_APPROVED"
+    },
+    {
+      "unitType": "transport",
+      "unitIdentity": "transport:city-e29b7b63b7d45b3f>city-56af1d2dbde83b82",
+      "countryCode": "BI",
+      "origin": {
+        "entityId": "city-e29b7b63b7d45b3f",
+        "wikidataId": "Q3854",
+        "canonicalNameEn": "Bujumbura"
+      },
+      "destination": {
+        "entityId": "city-56af1d2dbde83b82",
+        "wikidataId": "Q167551",
+        "canonicalNameEn": "Gitega"
+      },
+      "requiredDirection": "city-e29b7b63b7d45b3f>city-56af1d2dbde83b82",
+      "searchAttempt": {
+        "attemptId": "batch03-search-12",
+        "unitIdentity": "transport:city-e29b7b63b7d45b3f>city-56af1d2dbde83b82",
+        "executionStatus": "EXECUTED",
+        "executedQueries": [
+          "official passenger transport Bujumbura to Gitega timetable"
+        ],
+        "searchMethod": "OpenAI web search with direct result inspection; official/operator/government sources prioritized",
+        "checkedResultReferences": [
+          {
+            "url": "https://api.insbu.bi/storage/documents/01KNPCJ8ZPKVPN6J1B5W0T56MB.pdf",
+            "title": "Burundi National Statistics Institute",
+            "reviewOutcome": "Government statistics identify passenger transport between Bujumbura and Gitega, but not a current scheduled service for each direction."
+          }
+        ],
+        "sourceAuthorityAssessment": "Burundi National Statistics Institute",
+        "reviewedSourceFact": "Government statistics identify passenger transport between Bujumbura and Gitega, but not a current scheduled service for each direction.",
+        "unitSpecificAdjudication": "transport:city-e29b7b63b7d45b3f>city-56af1d2dbde83b82: Government statistics identify passenger transport between Bujumbura and Gitega, but not a current scheduled service for each direction.",
+        "reviewedAt": "2026-09-23T06:39:22.420847Z",
+        "finalResearchOutcome": "FACT_INSUFFICIENT"
+      },
+      "researchOutcome": "FACT_INSUFFICIENT",
+      "adjudicationReason": "Government statistics identify passenger transport between Bujumbura and Gitega, but not a current scheduled service for each direction.",
+      "reviewedClaimStatus": "NOT_APPROVED"
+    },
+    {
+      "unitType": "transport",
+      "unitIdentity": "transport:city-69bf2f0b7fc76fcc>city-c8ced73483e5a38d",
+      "countryCode": "GN",
+      "origin": {
+        "entityId": "city-69bf2f0b7fc76fcc",
+        "wikidataId": "Q874317",
+        "canonicalNameEn": "Kankan"
+      },
+      "destination": {
+        "entityId": "city-c8ced73483e5a38d",
+        "wikidataId": "Q3733",
+        "canonicalNameEn": "Conakry"
+      },
+      "requiredDirection": "city-69bf2f0b7fc76fcc>city-c8ced73483e5a38d",
+      "searchAttempt": {
+        "attemptId": "batch03-search-13",
+        "unitIdentity": "transport:city-69bf2f0b7fc76fcc>city-c8ced73483e5a38d",
+        "executionStatus": "EXECUTED",
+        "executedQueries": [
+          "official passenger transport Kankan to Conakry timetable"
+        ],
+        "searchMethod": "OpenAI web search with direct result inspection; official/operator/government sources prioritized",
+        "checkedResultReferences": [
+          {
+            "url": "https://ecowas.int/wp-content/uploads/2024/08/Convention-Regulating-Inter-State-Road-Transportation-between-ECOWAS-Member-States.pdf",
+            "title": "ECOWAS",
+            "reviewOutcome": "Official corridor material names Conakry and Kankan, but does not establish a current scheduled passenger service in either exact direction."
+          }
+        ],
+        "sourceAuthorityAssessment": "ECOWAS",
+        "reviewedSourceFact": "Official corridor material names Conakry and Kankan, but does not establish a current scheduled passenger service in either exact direction.",
+        "unitSpecificAdjudication": "transport:city-69bf2f0b7fc76fcc>city-c8ced73483e5a38d: Official corridor material names Conakry and Kankan, but does not establish a current scheduled passenger service in either exact direction.",
+        "reviewedAt": "2026-09-23T06:39:22.420847Z",
+        "finalResearchOutcome": "FACT_INSUFFICIENT"
+      },
+      "researchOutcome": "FACT_INSUFFICIENT",
+      "adjudicationReason": "Official corridor material names Conakry and Kankan, but does not establish a current scheduled passenger service in either exact direction.",
+      "reviewedClaimStatus": "NOT_APPROVED"
+    },
+    {
+      "unitType": "transport",
+      "unitIdentity": "transport:city-c8ced73483e5a38d>city-69bf2f0b7fc76fcc",
+      "countryCode": "GN",
+      "origin": {
+        "entityId": "city-c8ced73483e5a38d",
+        "wikidataId": "Q3733",
+        "canonicalNameEn": "Conakry"
+      },
+      "destination": {
+        "entityId": "city-69bf2f0b7fc76fcc",
+        "wikidataId": "Q874317",
+        "canonicalNameEn": "Kankan"
+      },
+      "requiredDirection": "city-c8ced73483e5a38d>city-69bf2f0b7fc76fcc",
+      "searchAttempt": {
+        "attemptId": "batch03-search-14",
+        "unitIdentity": "transport:city-c8ced73483e5a38d>city-69bf2f0b7fc76fcc",
+        "executionStatus": "EXECUTED",
+        "executedQueries": [
+          "official passenger transport Conakry to Kankan timetable"
+        ],
+        "searchMethod": "OpenAI web search with direct result inspection; official/operator/government sources prioritized",
+        "checkedResultReferences": [
+          {
+            "url": "https://ecowas.int/wp-content/uploads/2024/08/Convention-Regulating-Inter-State-Road-Transportation-between-ECOWAS-Member-States.pdf",
+            "title": "ECOWAS",
+            "reviewOutcome": "Official corridor material names Conakry and Kankan, but does not establish a current scheduled passenger service in either exact direction."
+          }
+        ],
+        "sourceAuthorityAssessment": "ECOWAS",
+        "reviewedSourceFact": "Official corridor material names Conakry and Kankan, but does not establish a current scheduled passenger service in either exact direction.",
+        "unitSpecificAdjudication": "transport:city-c8ced73483e5a38d>city-69bf2f0b7fc76fcc: Official corridor material names Conakry and Kankan, but does not establish a current scheduled passenger service in either exact direction.",
+        "reviewedAt": "2026-09-23T06:39:22.420847Z",
+        "finalResearchOutcome": "FACT_INSUFFICIENT"
+      },
+      "researchOutcome": "FACT_INSUFFICIENT",
+      "adjudicationReason": "Official corridor material names Conakry and Kankan, but does not establish a current scheduled passenger service in either exact direction.",
+      "reviewedClaimStatus": "NOT_APPROVED"
+    },
+    {
+      "unitType": "season",
+      "unitIdentity": "season:city-431d56ce0f110a8f:objective-destination-month-risk",
+      "countryCode": "LC",
+      "destination": {
+        "entityId": "city-431d56ce0f110a8f",
+        "wikidataId": "Q41699",
+        "canonicalNameEn": "Castries"
+      },
+      "requiredProfile": "objective-destination-month-risk",
+      "searchAttempt": {
+        "attemptId": "batch03-search-15",
+        "unitIdentity": "season:city-431d56ce0f110a8f:objective-destination-month-risk",
+        "executionStatus": "EXECUTED",
+        "executedQueries": [
+          "official climate Castries monthly rainfall meteorological"
+        ],
+        "searchMethod": "OpenAI web search with direct result inspection; official meteorological and government sources prioritized",
+        "checkedResultReferences": [
+          {
+            "url": "https://met.gov.lc/climatology-of-saint-lucia/",
+            "title": "Saint Lucia Meteorological Services",
+            "reviewOutcome": "Official climatology gives Castries station dry-season and wet-season monthly rainfall ranges; October is within the documented wet season."
+          }
+        ],
+        "sourceAuthorityAssessment": "Saint Lucia Meteorological Services",
+        "reviewedSourceFact": "Official climatology gives Castries station dry-season and wet-season monthly rainfall ranges; October is within the documented wet season.",
+        "unitSpecificAdjudication": "season:city-431d56ce0f110a8f:objective-destination-month-risk: Official climatology gives Castries station dry-season and wet-season monthly rainfall ranges; October is within the documented wet season.",
+        "reviewedAt": "2026-09-23T06:39:22.420847Z",
+        "finalResearchOutcome": "ELIGIBLE"
+      },
+      "researchOutcome": "ELIGIBLE",
+      "adjudicationReason": "Official climatology gives Castries station dry-season and wet-season monthly rainfall ranges; October is within the documented wet season.",
+      "reviewedClaimStatus": "APPROVED"
+    },
+    {
+      "unitType": "season",
+      "unitIdentity": "season:city-efcf6ab20f4a3584:objective-destination-month-risk",
+      "countryCode": "VC",
+      "destination": {
+        "entityId": "city-efcf6ab20f4a3584",
+        "wikidataId": "Q41474",
+        "canonicalNameEn": "Kingstown"
+      },
+      "requiredProfile": "objective-destination-month-risk",
+      "searchAttempt": {
+        "attemptId": "batch03-search-16",
+        "unitIdentity": "season:city-efcf6ab20f4a3584:objective-destination-month-risk",
+        "executionStatus": "EXECUTED",
+        "executedQueries": [
+          "official climate Kingstown monthly rainfall meteorological"
+        ],
+        "searchMethod": "OpenAI web search with direct result inspection; official meteorological and government sources prioritized",
+        "checkedResultReferences": [
+          {
+            "url": "https://www.meteo.gov.vc/meteo/index.php/products-services/climate-data",
+            "title": "Saint Vincent and the Grenadines Meteorological Service",
+            "reviewOutcome": "Official archive description does not publish an exact Kingstown month-risk profile on the inspected page."
+          }
+        ],
+        "sourceAuthorityAssessment": "Saint Vincent and the Grenadines Meteorological Service",
+        "reviewedSourceFact": "Official archive description does not publish an exact Kingstown month-risk profile on the inspected page.",
+        "unitSpecificAdjudication": "season:city-efcf6ab20f4a3584:objective-destination-month-risk: Official archive description does not publish an exact Kingstown month-risk profile on the inspected page.",
+        "reviewedAt": "2026-09-23T06:39:22.420847Z",
+        "finalResearchOutcome": "FACT_INSUFFICIENT"
+      },
+      "researchOutcome": "FACT_INSUFFICIENT",
+      "adjudicationReason": "Official archive description does not publish an exact Kingstown month-risk profile on the inspected page.",
+      "reviewedClaimStatus": "NOT_APPROVED"
+    },
+    {
+      "unitType": "season",
+      "unitIdentity": "season:city-403d5fec2fb5fbda:objective-destination-month-risk",
+      "countryCode": "ST",
+      "destination": {
+        "entityId": "city-403d5fec2fb5fbda",
+        "wikidataId": "Q3932",
+        "canonicalNameEn": "São Tomé"
+      },
+      "requiredProfile": "objective-destination-month-risk",
+      "searchAttempt": {
+        "attemptId": "batch03-search-17",
+        "unitIdentity": "season:city-403d5fec2fb5fbda:objective-destination-month-risk",
+        "executionStatus": "EXECUTED",
+        "executedQueries": [
+          "official climate São Tomé monthly rainfall meteorological"
+        ],
+        "searchMethod": "OpenAI web search with direct result inspection; official meteorological and government sources prioritized",
+        "checkedResultReferences": [
+          {
+            "url": "https://climateknowledgeportal.worldbank.org/country/sao-tome-and-principe/climate-data-historical",
+            "title": "World Bank Climate Knowledge Portal",
+            "reviewOutcome": "Country-level climate data did not independently establish an exact São Tomé destination month-risk profile."
+          }
+        ],
+        "sourceAuthorityAssessment": "World Bank Climate Knowledge Portal",
+        "reviewedSourceFact": "Country-level climate data did not independently establish an exact São Tomé destination month-risk profile.",
+        "unitSpecificAdjudication": "season:city-403d5fec2fb5fbda:objective-destination-month-risk: Country-level climate data did not independently establish an exact São Tomé destination month-risk profile.",
+        "reviewedAt": "2026-09-23T06:39:22.420847Z",
+        "finalResearchOutcome": "FACT_INSUFFICIENT"
+      },
+      "researchOutcome": "FACT_INSUFFICIENT",
+      "adjudicationReason": "Country-level climate data did not independently establish an exact São Tomé destination month-risk profile.",
+      "reviewedClaimStatus": "NOT_APPROVED"
+    },
+    {
+      "unitType": "season",
+      "unitIdentity": "season:city-49974cebb0f97983:objective-destination-month-risk",
+      "countryCode": "SB",
+      "destination": {
+        "entityId": "city-49974cebb0f97983",
+        "wikidataId": "Q40921",
+        "canonicalNameEn": "Honiara"
+      },
+      "requiredProfile": "objective-destination-month-risk",
+      "searchAttempt": {
+        "attemptId": "batch03-search-18",
+        "unitIdentity": "season:city-49974cebb0f97983:objective-destination-month-risk",
+        "executionStatus": "EXECUTED",
+        "executedQueries": [
+          "official climate Honiara monthly rainfall meteorological"
+        ],
+        "searchMethod": "OpenAI web search with direct result inspection; official meteorological and government sources prioritized",
+        "checkedResultReferences": [
+          {
+            "url": "https://www.met.gov.sb/",
+            "title": "Solomon Islands Meteorological Service",
+            "reviewOutcome": "Inspected official material did not establish an exact Honiara month-risk profile."
+          }
+        ],
+        "sourceAuthorityAssessment": "Solomon Islands Meteorological Service",
+        "reviewedSourceFact": "Inspected official material did not establish an exact Honiara month-risk profile.",
+        "unitSpecificAdjudication": "season:city-49974cebb0f97983:objective-destination-month-risk: Inspected official material did not establish an exact Honiara month-risk profile.",
+        "reviewedAt": "2026-09-23T06:39:22.420847Z",
+        "finalResearchOutcome": "FACT_INSUFFICIENT"
+      },
+      "researchOutcome": "FACT_INSUFFICIENT",
+      "adjudicationReason": "Inspected official material did not establish an exact Honiara month-risk profile.",
+      "reviewedClaimStatus": "NOT_APPROVED"
+    },
+    {
+      "unitType": "season",
+      "unitIdentity": "season:city-38995d15db6b543b:objective-destination-month-risk",
+      "countryCode": "TG",
+      "destination": {
+        "entityId": "city-38995d15db6b543b",
+        "wikidataId": "Q3792",
+        "canonicalNameEn": "Lomé"
+      },
+      "requiredProfile": "objective-destination-month-risk",
+      "searchAttempt": {
+        "attemptId": "batch03-search-19",
+        "unitIdentity": "season:city-38995d15db6b543b:objective-destination-month-risk",
+        "executionStatus": "EXECUTED",
+        "executedQueries": [
+          "official climate Lomé monthly rainfall meteorological"
+        ],
+        "searchMethod": "OpenAI web search with direct result inspection; official meteorological and government sources prioritized",
+        "checkedResultReferences": [
+          {
+            "url": "https://meteotogo.tg/",
+            "title": "Togo National Meteorology",
+            "reviewOutcome": "Inspected official material did not establish an exact Lomé month-risk profile."
+          }
+        ],
+        "sourceAuthorityAssessment": "Togo National Meteorology",
+        "reviewedSourceFact": "Inspected official material did not establish an exact Lomé month-risk profile.",
+        "unitSpecificAdjudication": "season:city-38995d15db6b543b:objective-destination-month-risk: Inspected official material did not establish an exact Lomé month-risk profile.",
+        "reviewedAt": "2026-09-23T06:39:22.420847Z",
+        "finalResearchOutcome": "FACT_INSUFFICIENT"
+      },
+      "researchOutcome": "FACT_INSUFFICIENT",
+      "adjudicationReason": "Inspected official material did not establish an exact Lomé month-risk profile.",
+      "reviewedClaimStatus": "NOT_APPROVED"
+    },
+    {
+      "unitType": "season",
+      "unitIdentity": "season:city-caec21868a98aec1:objective-destination-month-risk",
+      "countryCode": "TM",
+      "destination": {
+        "entityId": "city-caec21868a98aec1",
+        "wikidataId": "Q23438",
+        "canonicalNameEn": "Ashgabat"
+      },
+      "requiredProfile": "objective-destination-month-risk",
+      "searchAttempt": {
+        "attemptId": "batch03-search-20",
+        "unitIdentity": "season:city-caec21868a98aec1:objective-destination-month-risk",
+        "executionStatus": "EXECUTED",
+        "executedQueries": [
+          "official climate Ashgabat monthly rainfall meteorological"
+        ],
+        "searchMethod": "OpenAI web search with direct result inspection; official meteorological and government sources prioritized",
+        "checkedResultReferences": [
+          {
+            "url": "https://hydromet.gov.tm/",
+            "title": "Turkmenistan Hydrometeorological Service",
+            "reviewOutcome": "Inspected official material did not establish an exact Ashgabat month-risk profile."
+          }
+        ],
+        "sourceAuthorityAssessment": "Turkmenistan Hydrometeorological Service",
+        "reviewedSourceFact": "Inspected official material did not establish an exact Ashgabat month-risk profile.",
+        "unitSpecificAdjudication": "season:city-caec21868a98aec1:objective-destination-month-risk: Inspected official material did not establish an exact Ashgabat month-risk profile.",
+        "reviewedAt": "2026-09-23T06:39:22.420847Z",
+        "finalResearchOutcome": "FACT_INSUFFICIENT"
+      },
+      "researchOutcome": "FACT_INSUFFICIENT",
+      "adjudicationReason": "Inspected official material did not establish an exact Ashgabat month-risk profile.",
+      "reviewedClaimStatus": "NOT_APPROVED"
+    },
+    {
+      "unitType": "season",
+      "unitIdentity": "season:city-0d24db45467b9828:objective-destination-month-risk",
+      "countryCode": "TO",
+      "destination": {
+        "entityId": "city-0d24db45467b9828",
+        "wikidataId": "Q38834",
+        "canonicalNameEn": "Nukuʻalofa"
+      },
+      "requiredProfile": "objective-destination-month-risk",
+      "searchAttempt": {
+        "attemptId": "batch03-search-21",
+        "unitIdentity": "season:city-0d24db45467b9828:objective-destination-month-risk",
+        "executionStatus": "EXECUTED",
+        "executedQueries": [
+          "official climate Nukuʻalofa monthly rainfall meteorological"
+        ],
+        "searchMethod": "OpenAI web search with direct result inspection; official meteorological and government sources prioritized",
+        "checkedResultReferences": [
+          {
+            "url": "https://met.gov.to/",
+            "title": "Tonga Meteorological Service",
+            "reviewOutcome": "Inspected official material did not establish an exact Nukuʻalofa month-risk profile."
+          }
+        ],
+        "sourceAuthorityAssessment": "Tonga Meteorological Service",
+        "reviewedSourceFact": "Inspected official material did not establish an exact Nukuʻalofa month-risk profile.",
+        "unitSpecificAdjudication": "season:city-0d24db45467b9828:objective-destination-month-risk: Inspected official material did not establish an exact Nukuʻalofa month-risk profile.",
+        "reviewedAt": "2026-09-23T06:39:22.420847Z",
+        "finalResearchOutcome": "FACT_INSUFFICIENT"
+      },
+      "researchOutcome": "FACT_INSUFFICIENT",
+      "adjudicationReason": "Inspected official material did not establish an exact Nukuʻalofa month-risk profile.",
+      "reviewedClaimStatus": "NOT_APPROVED"
+    },
+    {
+      "unitType": "season",
+      "unitIdentity": "season:city-8cbde2ce68a8bf1f:objective-destination-month-risk",
+      "countryCode": "AG",
+      "destination": {
+        "entityId": "city-8cbde2ce68a8bf1f",
+        "wikidataId": "Q31578200",
+        "canonicalNameEn": "English Harbour"
+      },
+      "requiredProfile": "objective-destination-month-risk",
+      "searchAttempt": {
+        "attemptId": "batch03-search-22",
+        "unitIdentity": "season:city-8cbde2ce68a8bf1f:objective-destination-month-risk",
+        "executionStatus": "EXECUTED",
+        "executedQueries": [
+          "official climate English Harbour monthly rainfall meteorological"
+        ],
+        "searchMethod": "OpenAI web search with direct result inspection; official meteorological and government sources prioritized",
+        "checkedResultReferences": [
+          {
+            "url": "https://www.antiguamet.com/",
+            "title": "Antigua and Barbuda Meteorological Service",
+            "reviewOutcome": "Inspected official material did not establish exact destination-specific month-risk profiles for both reviewed destinations."
+          }
+        ],
+        "sourceAuthorityAssessment": "Antigua and Barbuda Meteorological Service",
+        "reviewedSourceFact": "Inspected official material did not establish exact destination-specific month-risk profiles for both reviewed destinations.",
+        "unitSpecificAdjudication": "season:city-8cbde2ce68a8bf1f:objective-destination-month-risk: Inspected official material did not establish exact destination-specific month-risk profiles for both reviewed destinations.",
+        "reviewedAt": "2026-09-23T06:39:22.420847Z",
+        "finalResearchOutcome": "FACT_INSUFFICIENT"
+      },
+      "researchOutcome": "FACT_INSUFFICIENT",
+      "adjudicationReason": "Inspected official material did not establish exact destination-specific month-risk profiles for both reviewed destinations.",
+      "reviewedClaimStatus": "NOT_APPROVED"
+    },
+    {
+      "unitType": "season",
+      "unitIdentity": "season:city-b42fb7994a854ea5:objective-destination-month-risk",
+      "countryCode": "AG",
+      "destination": {
+        "entityId": "city-b42fb7994a854ea5",
+        "wikidataId": "Q36262",
+        "canonicalNameEn": "St. John's"
+      },
+      "requiredProfile": "objective-destination-month-risk",
+      "searchAttempt": {
+        "attemptId": "batch03-search-23",
+        "unitIdentity": "season:city-b42fb7994a854ea5:objective-destination-month-risk",
+        "executionStatus": "EXECUTED",
+        "executedQueries": [
+          "official climate St. John's monthly rainfall meteorological"
+        ],
+        "searchMethod": "OpenAI web search with direct result inspection; official meteorological and government sources prioritized",
+        "checkedResultReferences": [
+          {
+            "url": "https://www.antiguamet.com/",
+            "title": "Antigua and Barbuda Meteorological Service",
+            "reviewOutcome": "Inspected official material did not establish exact destination-specific month-risk profiles for both reviewed destinations."
+          }
+        ],
+        "sourceAuthorityAssessment": "Antigua and Barbuda Meteorological Service",
+        "reviewedSourceFact": "Inspected official material did not establish exact destination-specific month-risk profiles for both reviewed destinations.",
+        "unitSpecificAdjudication": "season:city-b42fb7994a854ea5:objective-destination-month-risk: Inspected official material did not establish exact destination-specific month-risk profiles for both reviewed destinations.",
+        "reviewedAt": "2026-09-23T06:39:22.420847Z",
+        "finalResearchOutcome": "FACT_INSUFFICIENT"
+      },
+      "researchOutcome": "FACT_INSUFFICIENT",
+      "adjudicationReason": "Inspected official material did not establish exact destination-specific month-risk profiles for both reviewed destinations.",
+      "reviewedClaimStatus": "NOT_APPROVED"
+    },
+    {
+      "unitType": "season",
+      "unitIdentity": "season:city-b8651ce35876fbfe:objective-destination-month-risk",
+      "countryCode": "CG",
+      "destination": {
+        "entityId": "city-b8651ce35876fbfe",
+        "wikidataId": "Q3844",
+        "canonicalNameEn": "Brazzaville"
+      },
+      "requiredProfile": "objective-destination-month-risk",
+      "searchAttempt": {
+        "attemptId": "batch03-search-24",
+        "unitIdentity": "season:city-b8651ce35876fbfe:objective-destination-month-risk",
+        "executionStatus": "EXECUTED",
+        "executedQueries": [
+          "official climate Brazzaville monthly rainfall meteorological"
+        ],
+        "searchMethod": "OpenAI web search with direct result inspection; official meteorological and government sources prioritized",
+        "checkedResultReferences": [
+          {
+            "url": "https://climateknowledgeportal.worldbank.org/country/congo-rep/climate-data-historical",
+            "title": "World Bank Climate Knowledge Portal",
+            "reviewOutcome": "Country-level data did not independently bind exact Brazzaville and Pointe-Noire month-risk profiles."
+          }
+        ],
+        "sourceAuthorityAssessment": "World Bank Climate Knowledge Portal",
+        "reviewedSourceFact": "Country-level data did not independently bind exact Brazzaville and Pointe-Noire month-risk profiles.",
+        "unitSpecificAdjudication": "season:city-b8651ce35876fbfe:objective-destination-month-risk: Country-level data did not independently bind exact Brazzaville and Pointe-Noire month-risk profiles.",
+        "reviewedAt": "2026-09-23T06:39:22.420847Z",
+        "finalResearchOutcome": "FACT_INSUFFICIENT"
+      },
+      "researchOutcome": "FACT_INSUFFICIENT",
+      "adjudicationReason": "Country-level data did not independently bind exact Brazzaville and Pointe-Noire month-risk profiles.",
+      "reviewedClaimStatus": "NOT_APPROVED"
+    },
+    {
+      "unitType": "season",
+      "unitIdentity": "season:city-e34cdc0b0362d926:objective-destination-month-risk",
+      "countryCode": "CG",
+      "destination": {
+        "entityId": "city-e34cdc0b0362d926",
+        "wikidataId": "Q223920",
+        "canonicalNameEn": "Pointe-Noire"
+      },
+      "requiredProfile": "objective-destination-month-risk",
+      "searchAttempt": {
+        "attemptId": "batch03-search-25",
+        "unitIdentity": "season:city-e34cdc0b0362d926:objective-destination-month-risk",
+        "executionStatus": "EXECUTED",
+        "executedQueries": [
+          "official climate Pointe-Noire monthly rainfall meteorological"
+        ],
+        "searchMethod": "OpenAI web search with direct result inspection; official meteorological and government sources prioritized",
+        "checkedResultReferences": [
+          {
+            "url": "https://climateknowledgeportal.worldbank.org/country/congo-rep/climate-data-historical",
+            "title": "World Bank Climate Knowledge Portal",
+            "reviewOutcome": "Country-level data did not independently bind exact Brazzaville and Pointe-Noire month-risk profiles."
+          }
+        ],
+        "sourceAuthorityAssessment": "World Bank Climate Knowledge Portal",
+        "reviewedSourceFact": "Country-level data did not independently bind exact Brazzaville and Pointe-Noire month-risk profiles.",
+        "unitSpecificAdjudication": "season:city-e34cdc0b0362d926:objective-destination-month-risk: Country-level data did not independently bind exact Brazzaville and Pointe-Noire month-risk profiles.",
+        "reviewedAt": "2026-09-23T06:39:22.420847Z",
+        "finalResearchOutcome": "FACT_INSUFFICIENT"
+      },
+      "researchOutcome": "FACT_INSUFFICIENT",
+      "adjudicationReason": "Country-level data did not independently bind exact Brazzaville and Pointe-Noire month-risk profiles.",
+      "reviewedClaimStatus": "NOT_APPROVED"
+    },
+    {
+      "unitType": "season",
+      "unitIdentity": "season:city-ba825291250c2c61:objective-destination-month-risk",
+      "countryCode": "GD",
+      "destination": {
+        "entityId": "city-ba825291250c2c61",
+        "wikidataId": "Q375507",
+        "canonicalNameEn": "Gouyave"
+      },
+      "requiredProfile": "objective-destination-month-risk",
+      "searchAttempt": {
+        "attemptId": "batch03-search-26",
+        "unitIdentity": "season:city-ba825291250c2c61:objective-destination-month-risk",
+        "executionStatus": "EXECUTED",
+        "executedQueries": [
+          "official climate Gouyave monthly rainfall meteorological"
+        ],
+        "searchMethod": "OpenAI web search with direct result inspection; official meteorological and government sources prioritized",
+        "checkedResultReferences": [
+          {
+            "url": "https://www.weather.gov/sju/climo_rainfall_monthly_maps",
+            "title": "US National Weather Service",
+            "reviewOutcome": "The inspected source does not cover exact Grenada destination month-risk profiles."
+          }
+        ],
+        "sourceAuthorityAssessment": "US National Weather Service",
+        "reviewedSourceFact": "The inspected source does not cover exact Grenada destination month-risk profiles.",
+        "unitSpecificAdjudication": "season:city-ba825291250c2c61:objective-destination-month-risk: The inspected source does not cover exact Grenada destination month-risk profiles.",
+        "reviewedAt": "2026-09-23T06:39:22.420847Z",
+        "finalResearchOutcome": "FACT_INSUFFICIENT"
+      },
+      "researchOutcome": "FACT_INSUFFICIENT",
+      "adjudicationReason": "The inspected source does not cover exact Grenada destination month-risk profiles.",
+      "reviewedClaimStatus": "NOT_APPROVED"
+    },
+    {
+      "unitType": "season",
+      "unitIdentity": "season:city-c8aa57e633cd1289:objective-destination-month-risk",
+      "countryCode": "GD",
+      "destination": {
+        "entityId": "city-c8aa57e633cd1289",
+        "wikidataId": "Q41547",
+        "canonicalNameEn": "St. George's"
+      },
+      "requiredProfile": "objective-destination-month-risk",
+      "searchAttempt": {
+        "attemptId": "batch03-search-27",
+        "unitIdentity": "season:city-c8aa57e633cd1289:objective-destination-month-risk",
+        "executionStatus": "EXECUTED",
+        "executedQueries": [
+          "official climate St. George's monthly rainfall meteorological"
+        ],
+        "searchMethod": "OpenAI web search with direct result inspection; official meteorological and government sources prioritized",
+        "checkedResultReferences": [
+          {
+            "url": "https://www.weather.gov/sju/climo_rainfall_monthly_maps",
+            "title": "US National Weather Service",
+            "reviewOutcome": "The inspected source does not cover exact Grenada destination month-risk profiles."
+          }
+        ],
+        "sourceAuthorityAssessment": "US National Weather Service",
+        "reviewedSourceFact": "The inspected source does not cover exact Grenada destination month-risk profiles.",
+        "unitSpecificAdjudication": "season:city-c8aa57e633cd1289:objective-destination-month-risk: The inspected source does not cover exact Grenada destination month-risk profiles.",
+        "reviewedAt": "2026-09-23T06:39:22.420847Z",
+        "finalResearchOutcome": "FACT_INSUFFICIENT"
+      },
+      "researchOutcome": "FACT_INSUFFICIENT",
+      "adjudicationReason": "The inspected source does not cover exact Grenada destination month-risk profiles.",
+      "reviewedClaimStatus": "NOT_APPROVED"
+    },
+    {
+      "unitType": "season",
+      "unitIdentity": "season:city-2628cfaa45b85a20:objective-destination-month-risk",
+      "countryCode": "GM",
+      "destination": {
+        "entityId": "city-2628cfaa45b85a20",
+        "wikidataId": "Q217568",
+        "canonicalNameEn": "Serekunda"
+      },
+      "requiredProfile": "objective-destination-month-risk",
+      "searchAttempt": {
+        "attemptId": "batch03-search-28",
+        "unitIdentity": "season:city-2628cfaa45b85a20:objective-destination-month-risk",
+        "executionStatus": "EXECUTED",
+        "executedQueries": [
+          "official climate Serekunda monthly rainfall meteorological"
+        ],
+        "searchMethod": "OpenAI web search with direct result inspection; official meteorological and government sources prioritized",
+        "checkedResultReferences": [
+          {
+            "url": "https://climateknowledgeportal.worldbank.org/country/gambia/climate-data-historical",
+            "title": "World Bank Climate Knowledge Portal",
+            "reviewOutcome": "Country-level data did not independently bind exact Banjul and Serekunda profiles."
+          }
+        ],
+        "sourceAuthorityAssessment": "World Bank Climate Knowledge Portal",
+        "reviewedSourceFact": "Country-level data did not independently bind exact Banjul and Serekunda profiles.",
+        "unitSpecificAdjudication": "season:city-2628cfaa45b85a20:objective-destination-month-risk: Country-level data did not independently bind exact Banjul and Serekunda profiles.",
+        "reviewedAt": "2026-09-23T06:39:22.420847Z",
+        "finalResearchOutcome": "FACT_INSUFFICIENT"
+      },
+      "researchOutcome": "FACT_INSUFFICIENT",
+      "adjudicationReason": "Country-level data did not independently bind exact Banjul and Serekunda profiles.",
+      "reviewedClaimStatus": "NOT_APPROVED"
+    },
+    {
+      "unitType": "season",
+      "unitIdentity": "season:city-dd386d521ac4ce11:objective-destination-month-risk",
+      "countryCode": "GM",
+      "destination": {
+        "entityId": "city-dd386d521ac4ce11",
+        "wikidataId": "Q3726",
+        "canonicalNameEn": "Banjul"
+      },
+      "requiredProfile": "objective-destination-month-risk",
+      "searchAttempt": {
+        "attemptId": "batch03-search-29",
+        "unitIdentity": "season:city-dd386d521ac4ce11:objective-destination-month-risk",
+        "executionStatus": "EXECUTED",
+        "executedQueries": [
+          "official climate Banjul monthly rainfall meteorological"
+        ],
+        "searchMethod": "OpenAI web search with direct result inspection; official meteorological and government sources prioritized",
+        "checkedResultReferences": [
+          {
+            "url": "https://climateknowledgeportal.worldbank.org/country/gambia/climate-data-historical",
+            "title": "World Bank Climate Knowledge Portal",
+            "reviewOutcome": "Country-level data did not independently bind exact Banjul and Serekunda profiles."
+          }
+        ],
+        "sourceAuthorityAssessment": "World Bank Climate Knowledge Portal",
+        "reviewedSourceFact": "Country-level data did not independently bind exact Banjul and Serekunda profiles.",
+        "unitSpecificAdjudication": "season:city-dd386d521ac4ce11:objective-destination-month-risk: Country-level data did not independently bind exact Banjul and Serekunda profiles.",
+        "reviewedAt": "2026-09-23T06:39:22.420847Z",
+        "finalResearchOutcome": "FACT_INSUFFICIENT"
+      },
+      "researchOutcome": "FACT_INSUFFICIENT",
+      "adjudicationReason": "Country-level data did not independently bind exact Banjul and Serekunda profiles.",
+      "reviewedClaimStatus": "NOT_APPROVED"
+    },
+    {
+      "unitType": "season",
+      "unitIdentity": "season:city-79ceb5a70825c90f:objective-destination-month-risk",
+      "countryCode": "KN",
+      "destination": {
+        "entityId": "city-79ceb5a70825c90f",
+        "wikidataId": "Q992311",
+        "canonicalNameEn": "Charlestown"
+      },
+      "requiredProfile": "objective-destination-month-risk",
+      "searchAttempt": {
+        "attemptId": "batch03-search-30",
+        "unitIdentity": "season:city-79ceb5a70825c90f:objective-destination-month-risk",
+        "executionStatus": "EXECUTED",
+        "executedQueries": [
+          "official climate Charlestown monthly rainfall meteorological"
+        ],
+        "searchMethod": "OpenAI web search with direct result inspection; official meteorological and government sources prioritized",
+        "checkedResultReferences": [
+          {
+            "url": "https://www.nevisisland.com/",
+            "title": "Nevis Tourism Authority",
+            "reviewOutcome": "Tourism material did not supply authoritative exact monthly risk facts for both destinations."
+          }
+        ],
+        "sourceAuthorityAssessment": "Nevis Tourism Authority",
+        "reviewedSourceFact": "Tourism material did not supply authoritative exact monthly risk facts for both destinations.",
+        "unitSpecificAdjudication": "season:city-79ceb5a70825c90f:objective-destination-month-risk: Tourism material did not supply authoritative exact monthly risk facts for both destinations.",
+        "reviewedAt": "2026-09-23T06:39:22.420847Z",
+        "finalResearchOutcome": "FACT_INSUFFICIENT"
+      },
+      "researchOutcome": "FACT_INSUFFICIENT",
+      "adjudicationReason": "Tourism material did not supply authoritative exact monthly risk facts for both destinations.",
+      "reviewedClaimStatus": "NOT_APPROVED"
+    },
+    {
+      "unitType": "season",
+      "unitIdentity": "season:city-c2ab81fa714c618e:objective-destination-month-risk",
+      "countryCode": "KN",
+      "destination": {
+        "entityId": "city-c2ab81fa714c618e",
+        "wikidataId": "Q41295",
+        "canonicalNameEn": "Basseterre"
+      },
+      "requiredProfile": "objective-destination-month-risk",
+      "searchAttempt": {
+        "attemptId": "batch03-search-31",
+        "unitIdentity": "season:city-c2ab81fa714c618e:objective-destination-month-risk",
+        "executionStatus": "EXECUTED",
+        "executedQueries": [
+          "official climate Basseterre monthly rainfall meteorological"
+        ],
+        "searchMethod": "OpenAI web search with direct result inspection; official meteorological and government sources prioritized",
+        "checkedResultReferences": [
+          {
+            "url": "https://www.nevisisland.com/",
+            "title": "Nevis Tourism Authority",
+            "reviewOutcome": "Tourism material did not supply authoritative exact monthly risk facts for both destinations."
+          }
+        ],
+        "sourceAuthorityAssessment": "Nevis Tourism Authority",
+        "reviewedSourceFact": "Tourism material did not supply authoritative exact monthly risk facts for both destinations.",
+        "unitSpecificAdjudication": "season:city-c2ab81fa714c618e:objective-destination-month-risk: Tourism material did not supply authoritative exact monthly risk facts for both destinations.",
+        "reviewedAt": "2026-09-23T06:39:22.420847Z",
+        "finalResearchOutcome": "FACT_INSUFFICIENT"
+      },
+      "researchOutcome": "FACT_INSUFFICIENT",
+      "adjudicationReason": "Tourism material did not supply authoritative exact monthly risk facts for both destinations.",
+      "reviewedClaimStatus": "NOT_APPROVED"
+    },
+    {
+      "unitType": "season",
+      "unitIdentity": "season:city-56af1d2dbde83b82:objective-destination-month-risk",
+      "countryCode": "BI",
+      "destination": {
+        "entityId": "city-56af1d2dbde83b82",
+        "wikidataId": "Q167551",
+        "canonicalNameEn": "Gitega"
+      },
+      "requiredProfile": "objective-destination-month-risk",
+      "searchAttempt": {
+        "attemptId": "batch03-search-32",
+        "unitIdentity": "season:city-56af1d2dbde83b82:objective-destination-month-risk",
+        "executionStatus": "EXECUTED",
+        "executedQueries": [
+          "official climate Gitega monthly rainfall meteorological"
+        ],
+        "searchMethod": "OpenAI web search with direct result inspection; official meteorological and government sources prioritized",
+        "checkedResultReferences": [
+          {
+            "url": "https://bi.chm-cbd.net/sites/bi/files/2021-06/tcncc_en.pdf",
+            "title": "Government of Burundi",
+            "reviewOutcome": "Government climate communication contains station climatology but did not establish the exact required destination month-risk profile for both destinations."
+          }
+        ],
+        "sourceAuthorityAssessment": "Government of Burundi",
+        "reviewedSourceFact": "Government climate communication contains station climatology but did not establish the exact required destination month-risk profile for both destinations.",
+        "unitSpecificAdjudication": "season:city-56af1d2dbde83b82:objective-destination-month-risk: Government climate communication contains station climatology but did not establish the exact required destination month-risk profile for both destinations.",
+        "reviewedAt": "2026-09-23T06:39:22.420847Z",
+        "finalResearchOutcome": "FACT_INSUFFICIENT"
+      },
+      "researchOutcome": "FACT_INSUFFICIENT",
+      "adjudicationReason": "Government climate communication contains station climatology but did not establish the exact required destination month-risk profile for both destinations.",
+      "reviewedClaimStatus": "NOT_APPROVED"
+    },
+    {
+      "unitType": "season",
+      "unitIdentity": "season:city-e29b7b63b7d45b3f:objective-destination-month-risk",
+      "countryCode": "BI",
+      "destination": {
+        "entityId": "city-e29b7b63b7d45b3f",
+        "wikidataId": "Q3854",
+        "canonicalNameEn": "Bujumbura"
+      },
+      "requiredProfile": "objective-destination-month-risk",
+      "searchAttempt": {
+        "attemptId": "batch03-search-33",
+        "unitIdentity": "season:city-e29b7b63b7d45b3f:objective-destination-month-risk",
+        "executionStatus": "EXECUTED",
+        "executedQueries": [
+          "official climate Bujumbura monthly rainfall meteorological"
+        ],
+        "searchMethod": "OpenAI web search with direct result inspection; official meteorological and government sources prioritized",
+        "checkedResultReferences": [
+          {
+            "url": "https://bi.chm-cbd.net/sites/bi/files/2021-06/tcncc_en.pdf",
+            "title": "Government of Burundi",
+            "reviewOutcome": "Government climate communication contains station climatology but did not establish the exact required destination month-risk profile for both destinations."
+          }
+        ],
+        "sourceAuthorityAssessment": "Government of Burundi",
+        "reviewedSourceFact": "Government climate communication contains station climatology but did not establish the exact required destination month-risk profile for both destinations.",
+        "unitSpecificAdjudication": "season:city-e29b7b63b7d45b3f:objective-destination-month-risk: Government climate communication contains station climatology but did not establish the exact required destination month-risk profile for both destinations.",
+        "reviewedAt": "2026-09-23T06:39:22.420847Z",
+        "finalResearchOutcome": "FACT_INSUFFICIENT"
+      },
+      "researchOutcome": "FACT_INSUFFICIENT",
+      "adjudicationReason": "Government climate communication contains station climatology but did not establish the exact required destination month-risk profile for both destinations.",
+      "reviewedClaimStatus": "NOT_APPROVED"
+    },
+    {
+      "unitType": "season",
+      "unitIdentity": "season:city-69bf2f0b7fc76fcc:objective-destination-month-risk",
+      "countryCode": "GN",
+      "destination": {
+        "entityId": "city-69bf2f0b7fc76fcc",
+        "wikidataId": "Q874317",
+        "canonicalNameEn": "Kankan"
+      },
+      "requiredProfile": "objective-destination-month-risk",
+      "searchAttempt": {
+        "attemptId": "batch03-search-34",
+        "unitIdentity": "season:city-69bf2f0b7fc76fcc:objective-destination-month-risk",
+        "executionStatus": "EXECUTED",
+        "executedQueries": [
+          "official climate Kankan monthly rainfall meteorological"
+        ],
+        "searchMethod": "OpenAI web search with direct result inspection; official meteorological and government sources prioritized",
+        "checkedResultReferences": [
+          {
+            "url": "https://anmeteo.gov.gn/lagence/qui-sommes-nous/",
+            "title": "Guinea National Meteorological Agency",
+            "reviewOutcome": "Agency material inspected did not publish exact Conakry and Kankan month-risk profiles."
+          }
+        ],
+        "sourceAuthorityAssessment": "Guinea National Meteorological Agency",
+        "reviewedSourceFact": "Agency material inspected did not publish exact Conakry and Kankan month-risk profiles.",
+        "unitSpecificAdjudication": "season:city-69bf2f0b7fc76fcc:objective-destination-month-risk: Agency material inspected did not publish exact Conakry and Kankan month-risk profiles.",
+        "reviewedAt": "2026-09-23T06:39:22.420847Z",
+        "finalResearchOutcome": "FACT_INSUFFICIENT"
+      },
+      "researchOutcome": "FACT_INSUFFICIENT",
+      "adjudicationReason": "Agency material inspected did not publish exact Conakry and Kankan month-risk profiles.",
+      "reviewedClaimStatus": "NOT_APPROVED"
+    },
+    {
+      "unitType": "season",
+      "unitIdentity": "season:city-c8ced73483e5a38d:objective-destination-month-risk",
+      "countryCode": "GN",
+      "destination": {
+        "entityId": "city-c8ced73483e5a38d",
+        "wikidataId": "Q3733",
+        "canonicalNameEn": "Conakry"
+      },
+      "requiredProfile": "objective-destination-month-risk",
+      "searchAttempt": {
+        "attemptId": "batch03-search-35",
+        "unitIdentity": "season:city-c8ced73483e5a38d:objective-destination-month-risk",
+        "executionStatus": "EXECUTED",
+        "executedQueries": [
+          "official climate Conakry monthly rainfall meteorological"
+        ],
+        "searchMethod": "OpenAI web search with direct result inspection; official meteorological and government sources prioritized",
+        "checkedResultReferences": [
+          {
+            "url": "https://anmeteo.gov.gn/lagence/qui-sommes-nous/",
+            "title": "Guinea National Meteorological Agency",
+            "reviewOutcome": "Agency material inspected did not publish exact Conakry and Kankan month-risk profiles."
+          }
+        ],
+        "sourceAuthorityAssessment": "Guinea National Meteorological Agency",
+        "reviewedSourceFact": "Agency material inspected did not publish exact Conakry and Kankan month-risk profiles.",
+        "unitSpecificAdjudication": "season:city-c8ced73483e5a38d:objective-destination-month-risk: Agency material inspected did not publish exact Conakry and Kankan month-risk profiles.",
+        "reviewedAt": "2026-09-23T06:39:22.420847Z",
+        "finalResearchOutcome": "FACT_INSUFFICIENT"
+      },
+      "researchOutcome": "FACT_INSUFFICIENT",
+      "adjudicationReason": "Agency material inspected did not publish exact Conakry and Kankan month-risk profiles.",
+      "reviewedClaimStatus": "NOT_APPROVED"
+    }
+  ]
+}

@@ -613,6 +613,11 @@ function plannerContextFromIntent(intent, deadlineAt, abortSignal = null, {
 }
 
 const BATCH01_PROMOTION_CANDIDATE_CODES = Object.freeze(["BB", "RW", "SC", "SM", "ZM", "ZW"]);
+const BATCH03_PROMOTION_CANDIDATE_CODES = Object.freeze(["LC", "VC", "ST", "SB", "TG", "TM", "TO", "AG", "CG", "GD", "GM", "KN", "BI", "GN"]);
+const PROMOTION_EVALUATION_SCOPES = Object.freeze({
+  batch01: BATCH01_PROMOTION_CANDIDATE_CODES,
+  batch03: BATCH03_PROMOTION_CANDIDATE_CODES,
+});
 
 function createRouteSearchServiceInternal({
   acceptedRepository,
@@ -624,12 +629,12 @@ function createRouteSearchServiceInternal({
   now = () => Date.now(),
   env = process.env,
   rankingWeights = DEFAULT_RANKING_WEIGHTS,
-} = {}, promotionEvaluation = false) {
+} = {}, promotionEvaluationScope = null) {
   if (!acceptedRepository?.list) throw new Error("ACCEPTED_REPOSITORY_REQUIRED");
   if (!searchCache?.get || !searchCache?.put) throw new Error("SEARCH_CACHE_REQUIRED");
-  const authoritativePlannableCountryCodes = new Set(promotionEvaluation
-    ? BATCH01_PROMOTION_CANDIDATE_CODES
-    : getAuthoritativeKnowledgeReadiness().plannableCountryCodes);
+  const trustedPromotionScope = promotionEvaluationScope === null ? null : PROMOTION_EVALUATION_SCOPES[promotionEvaluationScope];
+  if (promotionEvaluationScope !== null && !trustedPromotionScope) throw new Error("PROMOTION_EVALUATION_SCOPE_INVALID");
+  const authoritativePlannableCountryCodes = new Set(trustedPromotionScope || getAuthoritativeKnowledgeReadiness().plannableCountryCodes);
   const plannerTimeoutMs = Math.max(1, Number(env.SEARCH_PLANNER_TIMEOUT_MS || 2000));
   const maxPlannerCalls = Math.max(0, Number(env.SEARCH_MAX_PLANNER_CALLS_PER_REQUEST || 1));
   const autoAcceptGenerated = String(env.SEARCH_AUTO_ACCEPT_GENERATED || "false").toLocaleLowerCase("en-US") === "true";
@@ -1206,5 +1211,9 @@ export function createRouteSearchService(options = {}) {
 }
 
 export function createBatch01PromotionEvaluationSearchService(options = {}) {
-  return createRouteSearchServiceInternal(options, true);
+  return createRouteSearchServiceInternal(options, "batch01");
+}
+
+export function createBatch03PromotionEvaluationSearchService(options = {}) {
+  return createRouteSearchServiceInternal(options, "batch03");
 }

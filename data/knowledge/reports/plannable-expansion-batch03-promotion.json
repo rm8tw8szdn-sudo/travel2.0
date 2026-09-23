@@ -1,0 +1,1349 @@
+{
+  "schemaVersion": "route-v2-plannable-expansion-batch03-promotion-v1",
+  "authority": "production-facts-sealed-evidence-and-live-route-gate",
+  "evaluatedCountryCodes": [
+    "LC",
+    "VC",
+    "ST",
+    "SB",
+    "TG",
+    "TM",
+    "TO",
+    "AG",
+    "CG",
+    "GD",
+    "GM",
+    "KN",
+    "BI",
+    "GN"
+  ],
+  "evaluated": 14,
+  "unaccounted": 0,
+  "multiDisposition": 0,
+  "promoted": 0,
+  "blocked": 14,
+  "promotedCountryCodes": [],
+  "blockedCountryCodes": [
+    "LC",
+    "VC",
+    "ST",
+    "SB",
+    "TG",
+    "TM",
+    "TO",
+    "AG",
+    "CG",
+    "GD",
+    "GM",
+    "KN",
+    "BI",
+    "GN"
+  ],
+  "decisions": [
+    {
+      "countryCode": "LC",
+      "eligible": true,
+      "reasons": [],
+      "requiredTransport": 0,
+      "admittedTransport": 0,
+      "requiredSeason": 1,
+      "admittedSeason": 1,
+      "transportExempt": true,
+      "destinations": 1,
+      "pois": 7,
+      "liveRouteGate": {
+        "countryCode": "LC",
+        "requiredQueries": 4,
+        "passedQueries": 0,
+        "results": [],
+        "failures": [
+          {
+            "countryCode": "LC",
+            "query": "Saint Lucia",
+            "parsedConstraints": {
+              "countryCodes": [
+                "LC"
+              ],
+              "destinationIds": [],
+              "destinationNames": [],
+              "durationDays": null,
+              "months": [],
+              "season": null,
+              "region": null,
+              "theme": null,
+              "transport": null,
+              "invalidDuration": false
+            },
+            "candidateScopeMembership": true,
+            "reason": "constraint-conflict",
+            "constraintConflict": {
+              "reasonCodes": [
+                "no-valid-route"
+              ],
+              "missingRequiredDestinationIds": [],
+              "missingRequiredDestinationNames": [],
+              "orderMismatch": false,
+              "durationConflict": false,
+              "capacityConflict": false,
+              "timeConstraintConflict": false,
+              "destinationConflict": false,
+              "countryConflict": false,
+              "regionConflict": false,
+              "themeConflict": false,
+              "themeEvidenceSources": [],
+              "rejectedFallbackCount": 0,
+              "rejectedSources": {},
+              "examples": []
+            },
+            "plannerRejected": [
+              {
+                "reason": "skeleton-too-short"
+              }
+            ]
+          },
+          {
+            "countryCode": "LC",
+            "query": "Saint Lucia 7 days",
+            "parsedConstraints": {
+              "countryCodes": [
+                "LC"
+              ],
+              "destinationIds": [],
+              "destinationNames": [],
+              "durationDays": 7,
+              "months": [],
+              "season": null,
+              "region": null,
+              "theme": null,
+              "transport": null,
+              "invalidDuration": false
+            },
+            "candidateScopeMembership": true,
+            "reason": "constraint-conflict",
+            "constraintConflict": {
+              "reasonCodes": [
+                "no-valid-route"
+              ],
+              "missingRequiredDestinationIds": [],
+              "missingRequiredDestinationNames": [],
+              "orderMismatch": false,
+              "durationConflict": false,
+              "capacityConflict": false,
+              "timeConstraintConflict": false,
+              "destinationConflict": false,
+              "countryConflict": false,
+              "regionConflict": false,
+              "themeConflict": false,
+              "themeEvidenceSources": [],
+              "rejectedFallbackCount": 0,
+              "rejectedSources": {},
+              "examples": []
+            },
+            "plannerRejected": [
+              {
+                "reason": "skeleton-too-short"
+              }
+            ]
+          },
+          {
+            "countryCode": "LC",
+            "query": "Saint Lucia February",
+            "parsedConstraints": {
+              "countryCodes": [
+                "LC"
+              ],
+              "destinationIds": [],
+              "destinationNames": [],
+              "durationDays": null,
+              "months": [
+                2
+              ],
+              "season": null,
+              "region": null,
+              "theme": null,
+              "transport": null,
+              "invalidDuration": false
+            },
+            "candidateScopeMembership": true,
+            "reason": "constraint-conflict",
+            "constraintConflict": {
+              "reasonCodes": [
+                "no-valid-route"
+              ],
+              "missingRequiredDestinationIds": [],
+              "missingRequiredDestinationNames": [],
+              "orderMismatch": false,
+              "durationConflict": false,
+              "capacityConflict": false,
+              "timeConstraintConflict": false,
+              "destinationConflict": false,
+              "countryConflict": false,
+              "regionConflict": false,
+              "themeConflict": false,
+              "themeEvidenceSources": [],
+              "rejectedFallbackCount": 0,
+              "rejectedSources": {},
+              "examples": []
+            },
+            "plannerRejected": [
+              {
+                "reason": "skeleton-too-short"
+              }
+            ]
+          },
+          {
+            "countryCode": "LC",
+            "query": "Saint Lucia 7 days in February",
+            "parsedConstraints": {
+              "countryCodes": [
+                "LC"
+              ],
+              "destinationIds": [],
+              "destinationNames": [],
+              "durationDays": 7,
+              "months": [
+                2
+              ],
+              "season": null,
+              "region": null,
+              "theme": null,
+              "transport": null,
+              "invalidDuration": false
+            },
+            "candidateScopeMembership": true,
+            "reason": "constraint-conflict",
+            "constraintConflict": {
+              "reasonCodes": [
+                "no-valid-route"
+              ],
+              "missingRequiredDestinationIds": [],
+              "missingRequiredDestinationNames": [],
+              "orderMismatch": false,
+              "durationConflict": false,
+              "capacityConflict": false,
+              "timeConstraintConflict": false,
+              "destinationConflict": false,
+              "countryConflict": false,
+              "regionConflict": false,
+              "themeConflict": false,
+              "themeEvidenceSources": [],
+              "rejectedFallbackCount": 0,
+              "rejectedSources": {},
+              "examples": []
+            },
+            "plannerRejected": [
+              {
+                "reason": "skeleton-too-short"
+              }
+            ]
+          }
+        ],
+        "hardCountryConstraint": "FAIL_CLOSED",
+        "decision": "BLOCK"
+      },
+      "decision": "BLOCK",
+      "firstAuthoritativeBlocker": "live-route-gate-failed"
+    },
+    {
+      "countryCode": "VC",
+      "eligible": false,
+      "reasons": [
+        "season-profile-incomplete",
+        "season-profile-coverage-invalid"
+      ],
+      "requiredTransport": 0,
+      "admittedTransport": 0,
+      "requiredSeason": 1,
+      "admittedSeason": 0,
+      "transportExempt": true,
+      "destinations": 1,
+      "pois": 7,
+      "liveRouteGate": null,
+      "decision": "BLOCK",
+      "firstAuthoritativeBlocker": "season-profile-incomplete"
+    },
+    {
+      "countryCode": "ST",
+      "eligible": false,
+      "reasons": [
+        "season-profile-incomplete",
+        "season-profile-coverage-invalid"
+      ],
+      "requiredTransport": 0,
+      "admittedTransport": 0,
+      "requiredSeason": 1,
+      "admittedSeason": 0,
+      "transportExempt": true,
+      "destinations": 1,
+      "pois": 7,
+      "liveRouteGate": null,
+      "decision": "BLOCK",
+      "firstAuthoritativeBlocker": "season-profile-incomplete"
+    },
+    {
+      "countryCode": "SB",
+      "eligible": false,
+      "reasons": [
+        "season-profile-incomplete",
+        "season-profile-coverage-invalid"
+      ],
+      "requiredTransport": 0,
+      "admittedTransport": 0,
+      "requiredSeason": 1,
+      "admittedSeason": 0,
+      "transportExempt": true,
+      "destinations": 1,
+      "pois": 7,
+      "liveRouteGate": null,
+      "decision": "BLOCK",
+      "firstAuthoritativeBlocker": "season-profile-incomplete"
+    },
+    {
+      "countryCode": "TG",
+      "eligible": false,
+      "reasons": [
+        "season-profile-incomplete",
+        "season-profile-coverage-invalid"
+      ],
+      "requiredTransport": 0,
+      "admittedTransport": 0,
+      "requiredSeason": 1,
+      "admittedSeason": 0,
+      "transportExempt": true,
+      "destinations": 1,
+      "pois": 6,
+      "liveRouteGate": null,
+      "decision": "BLOCK",
+      "firstAuthoritativeBlocker": "season-profile-incomplete"
+    },
+    {
+      "countryCode": "TM",
+      "eligible": false,
+      "reasons": [
+        "season-profile-incomplete",
+        "season-profile-coverage-invalid"
+      ],
+      "requiredTransport": 0,
+      "admittedTransport": 0,
+      "requiredSeason": 1,
+      "admittedSeason": 0,
+      "transportExempt": true,
+      "destinations": 1,
+      "pois": 7,
+      "liveRouteGate": null,
+      "decision": "BLOCK",
+      "firstAuthoritativeBlocker": "season-profile-incomplete"
+    },
+    {
+      "countryCode": "TO",
+      "eligible": false,
+      "reasons": [
+        "season-profile-incomplete",
+        "season-profile-coverage-invalid"
+      ],
+      "requiredTransport": 0,
+      "admittedTransport": 0,
+      "requiredSeason": 1,
+      "admittedSeason": 0,
+      "transportExempt": true,
+      "destinations": 1,
+      "pois": 7,
+      "liveRouteGate": null,
+      "decision": "BLOCK",
+      "firstAuthoritativeBlocker": "season-profile-incomplete"
+    },
+    {
+      "countryCode": "AG",
+      "eligible": false,
+      "reasons": [
+        "directed-transport-incomplete",
+        "season-profile-incomplete",
+        "season-profile-coverage-invalid"
+      ],
+      "requiredTransport": 2,
+      "admittedTransport": 0,
+      "requiredSeason": 2,
+      "admittedSeason": 0,
+      "transportExempt": false,
+      "destinations": 2,
+      "pois": 10,
+      "liveRouteGate": null,
+      "decision": "BLOCK",
+      "firstAuthoritativeBlocker": "directed-transport-incomplete"
+    },
+    {
+      "countryCode": "CG",
+      "eligible": false,
+      "reasons": [
+        "season-profile-incomplete",
+        "season-profile-coverage-invalid"
+      ],
+      "requiredTransport": 2,
+      "admittedTransport": 2,
+      "requiredSeason": 2,
+      "admittedSeason": 0,
+      "transportExempt": false,
+      "destinations": 2,
+      "pois": 10,
+      "liveRouteGate": null,
+      "decision": "BLOCK",
+      "firstAuthoritativeBlocker": "season-profile-incomplete"
+    },
+    {
+      "countryCode": "GD",
+      "eligible": false,
+      "reasons": [
+        "directed-transport-incomplete",
+        "season-profile-incomplete",
+        "season-profile-coverage-invalid"
+      ],
+      "requiredTransport": 2,
+      "admittedTransport": 0,
+      "requiredSeason": 2,
+      "admittedSeason": 0,
+      "transportExempt": false,
+      "destinations": 2,
+      "pois": 10,
+      "liveRouteGate": null,
+      "decision": "BLOCK",
+      "firstAuthoritativeBlocker": "directed-transport-incomplete"
+    },
+    {
+      "countryCode": "GM",
+      "eligible": false,
+      "reasons": [
+        "directed-transport-incomplete",
+        "season-profile-incomplete",
+        "season-profile-coverage-invalid"
+      ],
+      "requiredTransport": 2,
+      "admittedTransport": 0,
+      "requiredSeason": 2,
+      "admittedSeason": 0,
+      "transportExempt": false,
+      "destinations": 2,
+      "pois": 10,
+      "liveRouteGate": null,
+      "decision": "BLOCK",
+      "firstAuthoritativeBlocker": "directed-transport-incomplete"
+    },
+    {
+      "countryCode": "KN",
+      "eligible": false,
+      "reasons": [
+        "directed-transport-incomplete",
+        "season-profile-incomplete",
+        "season-profile-coverage-invalid"
+      ],
+      "requiredTransport": 2,
+      "admittedTransport": 0,
+      "requiredSeason": 2,
+      "admittedSeason": 0,
+      "transportExempt": false,
+      "destinations": 2,
+      "pois": 10,
+      "liveRouteGate": null,
+      "decision": "BLOCK",
+      "firstAuthoritativeBlocker": "directed-transport-incomplete"
+    },
+    {
+      "countryCode": "BI",
+      "eligible": false,
+      "reasons": [
+        "directed-transport-incomplete",
+        "season-profile-incomplete",
+        "season-profile-coverage-invalid"
+      ],
+      "requiredTransport": 2,
+      "admittedTransport": 0,
+      "requiredSeason": 2,
+      "admittedSeason": 0,
+      "transportExempt": false,
+      "destinations": 2,
+      "pois": 9,
+      "liveRouteGate": null,
+      "decision": "BLOCK",
+      "firstAuthoritativeBlocker": "directed-transport-incomplete"
+    },
+    {
+      "countryCode": "GN",
+      "eligible": false,
+      "reasons": [
+        "directed-transport-incomplete",
+        "season-profile-incomplete",
+        "season-profile-coverage-invalid"
+      ],
+      "requiredTransport": 2,
+      "admittedTransport": 0,
+      "requiredSeason": 2,
+      "admittedSeason": 0,
+      "transportExempt": false,
+      "destinations": 2,
+      "pois": 9,
+      "liveRouteGate": null,
+      "decision": "BLOCK",
+      "firstAuthoritativeBlocker": "directed-transport-incomplete"
+    }
+  ],
+  "evidence": {
+    "research": "35/35",
+    "transport": {
+      "required": 14,
+      "admitted": 2,
+      "blocked": 12
+    },
+    "season": {
+      "required": 21,
+      "admitted": 1,
+      "blocked": 20
+    },
+    "evidenceReadyCountryCodes": [
+      "LC"
+    ]
+  },
+  "production": {
+    "countries": 195,
+    "destinations": 911,
+    "pois": 4275,
+    "total": 5381
+  },
+  "readinessBefore": {
+    "plannable": 122,
+    "evidenceBacked": 119,
+    "catalogOnly": 73
+  },
+  "readinessAfter": {
+    "plannable": 122,
+    "evidenceBacked": 119,
+    "catalogOnly": 73
+  },
+  "exactMembershipChange": [],
+  "reportAuthority": "NONE",
+  "callerAuthority": "NONE",
+  "artifactAuthority": "NONE",
+  "liveEvaluatorAuthority": "PASS",
+  "evidenceGateAuthority": "PASS",
+  "accidentalPromotions": 0,
+  "candidateLeakage": "NONE",
+  "positiveControl": {
+    "countryCode": "BB",
+    "requiredQueries": 4,
+    "passedQueries": 4,
+    "results": [
+      {
+        "countryCode": "BB",
+        "query": "Barbados",
+        "parsedConstraints": {
+          "countryCodes": [
+            "BB"
+          ],
+          "destinationIds": [],
+          "destinationNames": [],
+          "durationDays": null,
+          "months": [],
+          "season": null,
+          "region": null,
+          "theme": null,
+          "transport": null,
+          "invalidDuration": false
+        },
+        "candidateScopeMembership": true,
+        "routeId": "planner-designed-::::::Q2290478|Q2544610|Q36168::5天::Classic First Trip::::Q2544610>Q2290478>Q36168",
+        "durationDays": 5,
+        "destinationCount": 3,
+        "poiCount": 12
+      },
+      {
+        "countryCode": "BB",
+        "query": "Barbados 7 days",
+        "parsedConstraints": {
+          "countryCodes": [
+            "BB"
+          ],
+          "destinationIds": [],
+          "destinationNames": [],
+          "durationDays": 7,
+          "months": [],
+          "season": null,
+          "region": null,
+          "theme": null,
+          "transport": null,
+          "invalidDuration": false
+        },
+        "candidateScopeMembership": true,
+        "routeId": "planner-designed-::::::Q2290478|Q2544610|Q36168::7天::Classic First Trip::::Q2290478>Q2544610>Q36168",
+        "durationDays": 7,
+        "destinationCount": 3,
+        "poiCount": 12
+      },
+      {
+        "countryCode": "BB",
+        "query": "Barbados February",
+        "parsedConstraints": {
+          "countryCodes": [
+            "BB"
+          ],
+          "destinationIds": [],
+          "destinationNames": [],
+          "durationDays": null,
+          "months": [
+            2
+          ],
+          "season": null,
+          "region": null,
+          "theme": null,
+          "transport": null,
+          "invalidDuration": false
+        },
+        "candidateScopeMembership": true,
+        "routeId": "planner-designed-::::::Q2290478|Q2544610|Q36168::5天::Classic First Trip::::Q2544610>Q2290478>Q36168",
+        "durationDays": 5,
+        "destinationCount": 3,
+        "poiCount": 12
+      },
+      {
+        "countryCode": "BB",
+        "query": "Barbados 7 days in February",
+        "parsedConstraints": {
+          "countryCodes": [
+            "BB"
+          ],
+          "destinationIds": [],
+          "destinationNames": [],
+          "durationDays": 7,
+          "months": [
+            2
+          ],
+          "season": null,
+          "region": null,
+          "theme": null,
+          "transport": null,
+          "invalidDuration": false
+        },
+        "candidateScopeMembership": true,
+        "routeId": "planner-designed-::::::Q2290478|Q2544610|Q36168::7天::Classic First Trip::::Q2290478>Q2544610>Q36168",
+        "durationDays": 7,
+        "destinationCount": 3,
+        "poiCount": 12
+      }
+    ],
+    "failures": [],
+    "hardCountryConstraint": "PASS",
+    "decision": "PROMOTE"
+  },
+  "scopeControls": {
+    "batch01CannotAuthorizeLc": {
+      "countryCode": "LC",
+      "requiredQueries": 4,
+      "passedQueries": 0,
+      "results": [],
+      "failures": [
+        {
+          "countryCode": "LC",
+          "query": "Saint Lucia",
+          "parsedConstraints": {
+            "countryCodes": [
+              "LC"
+            ],
+            "destinationIds": [],
+            "destinationNames": [],
+            "durationDays": null,
+            "months": [],
+            "season": null,
+            "region": null,
+            "theme": null,
+            "transport": null,
+            "invalidDuration": false
+          },
+          "candidateScopeMembership": false,
+          "reason": "constraint-conflict",
+          "constraintConflict": {
+            "reasonCodes": [
+              "no-valid-route"
+            ],
+            "missingRequiredDestinationIds": [],
+            "missingRequiredDestinationNames": [],
+            "orderMismatch": false,
+            "durationConflict": false,
+            "capacityConflict": false,
+            "timeConstraintConflict": false,
+            "destinationConflict": false,
+            "countryConflict": false,
+            "regionConflict": false,
+            "themeConflict": false,
+            "themeEvidenceSources": [],
+            "rejectedFallbackCount": 0,
+            "rejectedSources": {},
+            "examples": []
+          },
+          "plannerRejected": []
+        },
+        {
+          "countryCode": "LC",
+          "query": "Saint Lucia 7 days",
+          "parsedConstraints": {
+            "countryCodes": [
+              "LC"
+            ],
+            "destinationIds": [],
+            "destinationNames": [],
+            "durationDays": 7,
+            "months": [],
+            "season": null,
+            "region": null,
+            "theme": null,
+            "transport": null,
+            "invalidDuration": false
+          },
+          "candidateScopeMembership": false,
+          "reason": "constraint-conflict",
+          "constraintConflict": {
+            "reasonCodes": [
+              "no-valid-route"
+            ],
+            "missingRequiredDestinationIds": [],
+            "missingRequiredDestinationNames": [],
+            "orderMismatch": false,
+            "durationConflict": false,
+            "capacityConflict": false,
+            "timeConstraintConflict": false,
+            "destinationConflict": false,
+            "countryConflict": false,
+            "regionConflict": false,
+            "themeConflict": false,
+            "themeEvidenceSources": [],
+            "rejectedFallbackCount": 0,
+            "rejectedSources": {},
+            "examples": []
+          },
+          "plannerRejected": []
+        },
+        {
+          "countryCode": "LC",
+          "query": "Saint Lucia February",
+          "parsedConstraints": {
+            "countryCodes": [
+              "LC"
+            ],
+            "destinationIds": [],
+            "destinationNames": [],
+            "durationDays": null,
+            "months": [
+              2
+            ],
+            "season": null,
+            "region": null,
+            "theme": null,
+            "transport": null,
+            "invalidDuration": false
+          },
+          "candidateScopeMembership": false,
+          "reason": "constraint-conflict",
+          "constraintConflict": {
+            "reasonCodes": [
+              "no-valid-route"
+            ],
+            "missingRequiredDestinationIds": [],
+            "missingRequiredDestinationNames": [],
+            "orderMismatch": false,
+            "durationConflict": false,
+            "capacityConflict": false,
+            "timeConstraintConflict": false,
+            "destinationConflict": false,
+            "countryConflict": false,
+            "regionConflict": false,
+            "themeConflict": false,
+            "themeEvidenceSources": [],
+            "rejectedFallbackCount": 0,
+            "rejectedSources": {},
+            "examples": []
+          },
+          "plannerRejected": []
+        },
+        {
+          "countryCode": "LC",
+          "query": "Saint Lucia 7 days in February",
+          "parsedConstraints": {
+            "countryCodes": [
+              "LC"
+            ],
+            "destinationIds": [],
+            "destinationNames": [],
+            "durationDays": 7,
+            "months": [
+              2
+            ],
+            "season": null,
+            "region": null,
+            "theme": null,
+            "transport": null,
+            "invalidDuration": false
+          },
+          "candidateScopeMembership": false,
+          "reason": "constraint-conflict",
+          "constraintConflict": {
+            "reasonCodes": [
+              "no-valid-route"
+            ],
+            "missingRequiredDestinationIds": [],
+            "missingRequiredDestinationNames": [],
+            "orderMismatch": false,
+            "durationConflict": false,
+            "capacityConflict": false,
+            "timeConstraintConflict": false,
+            "destinationConflict": false,
+            "countryConflict": false,
+            "regionConflict": false,
+            "themeConflict": false,
+            "themeEvidenceSources": [],
+            "rejectedFallbackCount": 0,
+            "rejectedSources": {},
+            "examples": []
+          },
+          "plannerRejected": []
+        }
+      ],
+      "hardCountryConstraint": "FAIL_CLOSED",
+      "decision": "BLOCK"
+    },
+    "unrelatedCountryExcluded": {
+      "countryCode": "BB",
+      "requiredQueries": 4,
+      "passedQueries": 0,
+      "results": [],
+      "failures": [
+        {
+          "countryCode": "BB",
+          "query": "Barbados",
+          "parsedConstraints": {
+            "countryCodes": [
+              "BB"
+            ],
+            "destinationIds": [],
+            "destinationNames": [],
+            "durationDays": null,
+            "months": [],
+            "season": null,
+            "region": null,
+            "theme": null,
+            "transport": null,
+            "invalidDuration": false
+          },
+          "candidateScopeMembership": false,
+          "reason": "constraint-conflict",
+          "constraintConflict": {
+            "reasonCodes": [
+              "no-valid-route"
+            ],
+            "missingRequiredDestinationIds": [],
+            "missingRequiredDestinationNames": [],
+            "orderMismatch": false,
+            "durationConflict": false,
+            "capacityConflict": false,
+            "timeConstraintConflict": false,
+            "destinationConflict": false,
+            "countryConflict": false,
+            "regionConflict": false,
+            "themeConflict": false,
+            "themeEvidenceSources": [],
+            "rejectedFallbackCount": 0,
+            "rejectedSources": {},
+            "examples": []
+          },
+          "plannerRejected": []
+        },
+        {
+          "countryCode": "BB",
+          "query": "Barbados 7 days",
+          "parsedConstraints": {
+            "countryCodes": [
+              "BB"
+            ],
+            "destinationIds": [],
+            "destinationNames": [],
+            "durationDays": 7,
+            "months": [],
+            "season": null,
+            "region": null,
+            "theme": null,
+            "transport": null,
+            "invalidDuration": false
+          },
+          "candidateScopeMembership": false,
+          "reason": "constraint-conflict",
+          "constraintConflict": {
+            "reasonCodes": [
+              "no-valid-route"
+            ],
+            "missingRequiredDestinationIds": [],
+            "missingRequiredDestinationNames": [],
+            "orderMismatch": false,
+            "durationConflict": false,
+            "capacityConflict": false,
+            "timeConstraintConflict": false,
+            "destinationConflict": false,
+            "countryConflict": false,
+            "regionConflict": false,
+            "themeConflict": false,
+            "themeEvidenceSources": [],
+            "rejectedFallbackCount": 0,
+            "rejectedSources": {},
+            "examples": []
+          },
+          "plannerRejected": []
+        },
+        {
+          "countryCode": "BB",
+          "query": "Barbados February",
+          "parsedConstraints": {
+            "countryCodes": [
+              "BB"
+            ],
+            "destinationIds": [],
+            "destinationNames": [],
+            "durationDays": null,
+            "months": [
+              2
+            ],
+            "season": null,
+            "region": null,
+            "theme": null,
+            "transport": null,
+            "invalidDuration": false
+          },
+          "candidateScopeMembership": false,
+          "reason": "constraint-conflict",
+          "constraintConflict": {
+            "reasonCodes": [
+              "no-valid-route"
+            ],
+            "missingRequiredDestinationIds": [],
+            "missingRequiredDestinationNames": [],
+            "orderMismatch": false,
+            "durationConflict": false,
+            "capacityConflict": false,
+            "timeConstraintConflict": false,
+            "destinationConflict": false,
+            "countryConflict": false,
+            "regionConflict": false,
+            "themeConflict": false,
+            "themeEvidenceSources": [],
+            "rejectedFallbackCount": 0,
+            "rejectedSources": {},
+            "examples": []
+          },
+          "plannerRejected": []
+        },
+        {
+          "countryCode": "BB",
+          "query": "Barbados 7 days in February",
+          "parsedConstraints": {
+            "countryCodes": [
+              "BB"
+            ],
+            "destinationIds": [],
+            "destinationNames": [],
+            "durationDays": 7,
+            "months": [
+              2
+            ],
+            "season": null,
+            "region": null,
+            "theme": null,
+            "transport": null,
+            "invalidDuration": false
+          },
+          "candidateScopeMembership": false,
+          "reason": "constraint-conflict",
+          "constraintConflict": {
+            "reasonCodes": [
+              "no-valid-route"
+            ],
+            "missingRequiredDestinationIds": [],
+            "missingRequiredDestinationNames": [],
+            "orderMismatch": false,
+            "durationConflict": false,
+            "capacityConflict": false,
+            "timeConstraintConflict": false,
+            "destinationConflict": false,
+            "countryConflict": false,
+            "regionConflict": false,
+            "themeConflict": false,
+            "themeEvidenceSources": [],
+            "rejectedFallbackCount": 0,
+            "rejectedSources": {},
+            "examples": []
+          },
+          "plannerRejected": []
+        }
+      ],
+      "hardCountryConstraint": "FAIL_CLOSED",
+      "decision": "BLOCK"
+    },
+    "callerCannotInject": {
+      "countryCode": "BB",
+      "requiredQueries": 4,
+      "passedQueries": 0,
+      "results": [],
+      "failures": [
+        {
+          "countryCode": "BB",
+          "query": "Barbados",
+          "parsedConstraints": {
+            "countryCodes": [
+              "BB"
+            ],
+            "destinationIds": [],
+            "destinationNames": [],
+            "durationDays": null,
+            "months": [],
+            "season": null,
+            "region": null,
+            "theme": null,
+            "transport": null,
+            "invalidDuration": false
+          },
+          "candidateScopeMembership": false,
+          "reason": "constraint-conflict",
+          "constraintConflict": {
+            "reasonCodes": [
+              "no-valid-route"
+            ],
+            "missingRequiredDestinationIds": [],
+            "missingRequiredDestinationNames": [],
+            "orderMismatch": false,
+            "durationConflict": false,
+            "capacityConflict": false,
+            "timeConstraintConflict": false,
+            "destinationConflict": false,
+            "countryConflict": false,
+            "regionConflict": false,
+            "themeConflict": false,
+            "themeEvidenceSources": [],
+            "rejectedFallbackCount": 0,
+            "rejectedSources": {},
+            "examples": []
+          },
+          "plannerRejected": []
+        },
+        {
+          "countryCode": "BB",
+          "query": "Barbados 7 days",
+          "parsedConstraints": {
+            "countryCodes": [
+              "BB"
+            ],
+            "destinationIds": [],
+            "destinationNames": [],
+            "durationDays": 7,
+            "months": [],
+            "season": null,
+            "region": null,
+            "theme": null,
+            "transport": null,
+            "invalidDuration": false
+          },
+          "candidateScopeMembership": false,
+          "reason": "constraint-conflict",
+          "constraintConflict": {
+            "reasonCodes": [
+              "no-valid-route"
+            ],
+            "missingRequiredDestinationIds": [],
+            "missingRequiredDestinationNames": [],
+            "orderMismatch": false,
+            "durationConflict": false,
+            "capacityConflict": false,
+            "timeConstraintConflict": false,
+            "destinationConflict": false,
+            "countryConflict": false,
+            "regionConflict": false,
+            "themeConflict": false,
+            "themeEvidenceSources": [],
+            "rejectedFallbackCount": 0,
+            "rejectedSources": {},
+            "examples": []
+          },
+          "plannerRejected": []
+        },
+        {
+          "countryCode": "BB",
+          "query": "Barbados February",
+          "parsedConstraints": {
+            "countryCodes": [
+              "BB"
+            ],
+            "destinationIds": [],
+            "destinationNames": [],
+            "durationDays": null,
+            "months": [
+              2
+            ],
+            "season": null,
+            "region": null,
+            "theme": null,
+            "transport": null,
+            "invalidDuration": false
+          },
+          "candidateScopeMembership": false,
+          "reason": "constraint-conflict",
+          "constraintConflict": {
+            "reasonCodes": [
+              "no-valid-route"
+            ],
+            "missingRequiredDestinationIds": [],
+            "missingRequiredDestinationNames": [],
+            "orderMismatch": false,
+            "durationConflict": false,
+            "capacityConflict": false,
+            "timeConstraintConflict": false,
+            "destinationConflict": false,
+            "countryConflict": false,
+            "regionConflict": false,
+            "themeConflict": false,
+            "themeEvidenceSources": [],
+            "rejectedFallbackCount": 0,
+            "rejectedSources": {},
+            "examples": []
+          },
+          "plannerRejected": []
+        },
+        {
+          "countryCode": "BB",
+          "query": "Barbados 7 days in February",
+          "parsedConstraints": {
+            "countryCodes": [
+              "BB"
+            ],
+            "destinationIds": [],
+            "destinationNames": [],
+            "durationDays": 7,
+            "months": [
+              2
+            ],
+            "season": null,
+            "region": null,
+            "theme": null,
+            "transport": null,
+            "invalidDuration": false
+          },
+          "candidateScopeMembership": false,
+          "reason": "constraint-conflict",
+          "constraintConflict": {
+            "reasonCodes": [
+              "no-valid-route"
+            ],
+            "missingRequiredDestinationIds": [],
+            "missingRequiredDestinationNames": [],
+            "orderMismatch": false,
+            "durationConflict": false,
+            "capacityConflict": false,
+            "timeConstraintConflict": false,
+            "destinationConflict": false,
+            "countryConflict": false,
+            "regionConflict": false,
+            "themeConflict": false,
+            "themeEvidenceSources": [],
+            "rejectedFallbackCount": 0,
+            "rejectedSources": {},
+            "examples": []
+          },
+          "plannerRejected": []
+        }
+      ],
+      "hardCountryConstraint": "FAIL_CLOSED",
+      "decision": "BLOCK"
+    },
+    "callerCannotRemoveLc": {
+      "countryCode": "LC",
+      "requiredQueries": 4,
+      "passedQueries": 0,
+      "results": [],
+      "failures": [
+        {
+          "countryCode": "LC",
+          "query": "Saint Lucia",
+          "parsedConstraints": {
+            "countryCodes": [
+              "LC"
+            ],
+            "destinationIds": [],
+            "destinationNames": [],
+            "durationDays": null,
+            "months": [],
+            "season": null,
+            "region": null,
+            "theme": null,
+            "transport": null,
+            "invalidDuration": false
+          },
+          "candidateScopeMembership": true,
+          "reason": "constraint-conflict",
+          "constraintConflict": {
+            "reasonCodes": [
+              "no-valid-route"
+            ],
+            "missingRequiredDestinationIds": [],
+            "missingRequiredDestinationNames": [],
+            "orderMismatch": false,
+            "durationConflict": false,
+            "capacityConflict": false,
+            "timeConstraintConflict": false,
+            "destinationConflict": false,
+            "countryConflict": false,
+            "regionConflict": false,
+            "themeConflict": false,
+            "themeEvidenceSources": [],
+            "rejectedFallbackCount": 0,
+            "rejectedSources": {},
+            "examples": []
+          },
+          "plannerRejected": [
+            {
+              "reason": "skeleton-too-short"
+            }
+          ]
+        },
+        {
+          "countryCode": "LC",
+          "query": "Saint Lucia 7 days",
+          "parsedConstraints": {
+            "countryCodes": [
+              "LC"
+            ],
+            "destinationIds": [],
+            "destinationNames": [],
+            "durationDays": 7,
+            "months": [],
+            "season": null,
+            "region": null,
+            "theme": null,
+            "transport": null,
+            "invalidDuration": false
+          },
+          "candidateScopeMembership": true,
+          "reason": "constraint-conflict",
+          "constraintConflict": {
+            "reasonCodes": [
+              "no-valid-route"
+            ],
+            "missingRequiredDestinationIds": [],
+            "missingRequiredDestinationNames": [],
+            "orderMismatch": false,
+            "durationConflict": false,
+            "capacityConflict": false,
+            "timeConstraintConflict": false,
+            "destinationConflict": false,
+            "countryConflict": false,
+            "regionConflict": false,
+            "themeConflict": false,
+            "themeEvidenceSources": [],
+            "rejectedFallbackCount": 0,
+            "rejectedSources": {},
+            "examples": []
+          },
+          "plannerRejected": [
+            {
+              "reason": "skeleton-too-short"
+            }
+          ]
+        },
+        {
+          "countryCode": "LC",
+          "query": "Saint Lucia February",
+          "parsedConstraints": {
+            "countryCodes": [
+              "LC"
+            ],
+            "destinationIds": [],
+            "destinationNames": [],
+            "durationDays": null,
+            "months": [
+              2
+            ],
+            "season": null,
+            "region": null,
+            "theme": null,
+            "transport": null,
+            "invalidDuration": false
+          },
+          "candidateScopeMembership": true,
+          "reason": "constraint-conflict",
+          "constraintConflict": {
+            "reasonCodes": [
+              "no-valid-route"
+            ],
+            "missingRequiredDestinationIds": [],
+            "missingRequiredDestinationNames": [],
+            "orderMismatch": false,
+            "durationConflict": false,
+            "capacityConflict": false,
+            "timeConstraintConflict": false,
+            "destinationConflict": false,
+            "countryConflict": false,
+            "regionConflict": false,
+            "themeConflict": false,
+            "themeEvidenceSources": [],
+            "rejectedFallbackCount": 0,
+            "rejectedSources": {},
+            "examples": []
+          },
+          "plannerRejected": [
+            {
+              "reason": "skeleton-too-short"
+            }
+          ]
+        },
+        {
+          "countryCode": "LC",
+          "query": "Saint Lucia 7 days in February",
+          "parsedConstraints": {
+            "countryCodes": [
+              "LC"
+            ],
+            "destinationIds": [],
+            "destinationNames": [],
+            "durationDays": 7,
+            "months": [
+              2
+            ],
+            "season": null,
+            "region": null,
+            "theme": null,
+            "transport": null,
+            "invalidDuration": false
+          },
+          "candidateScopeMembership": true,
+          "reason": "constraint-conflict",
+          "constraintConflict": {
+            "reasonCodes": [
+              "no-valid-route"
+            ],
+            "missingRequiredDestinationIds": [],
+            "missingRequiredDestinationNames": [],
+            "orderMismatch": false,
+            "durationConflict": false,
+            "capacityConflict": false,
+            "timeConstraintConflict": false,
+            "destinationConflict": false,
+            "countryConflict": false,
+            "regionConflict": false,
+            "themeConflict": false,
+            "themeEvidenceSources": [],
+            "rejectedFallbackCount": 0,
+            "rejectedSources": {},
+            "examples": []
+          },
+          "plannerRejected": [
+            {
+              "reason": "skeleton-too-short"
+            }
+          ]
+        }
+      ],
+      "hardCountryConstraint": "FAIL_CLOSED",
+      "decision": "BLOCK"
+    }
+  },
+  "performanceClearance": "NOT_CLEARED"
+}
